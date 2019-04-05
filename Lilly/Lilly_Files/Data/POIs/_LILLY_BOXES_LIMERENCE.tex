@@ -1,0 +1,66 @@
+
+%%% TITEL TITLEPREFIX OPTIONAL-CONTROLLERS 
+
+
+\tcbset{LillyxBOXxDesignxLimerence/.style={ enforce breakable, enhanced jigsaw,sharp corners, boxrule=0pt, fonttitle={\large\bfseries}, coltitle={black}, attach title to upper, opacityfill=0.5, top=3pt, bottom=3pt, right=3pt, frame hidden, baseline={\tcb@height-2\kvtcb@boxsep+\baselineskip-2\lineskip},colback=LightGray!22!white,}}
+
+\tcbset{tag/.style={after title=}}
+
+%%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
+%%OLD TITLEC: IfValueTF={#1}{title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}}{title={$\vcenter{\hbox{#2}}$}}
+%% DEF: IfValueTF={#1}{title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$\\}}{title={$\vcenter{\hbox{#2}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$}}
+
+%%% Die Definition-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxDefinition},  %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}, %
+}
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxDefinition},  %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$\\}, %
+}
+
+
+%%% Die Beispiel-Box:
+\ifx\LILLYxBOXxBeispielxBox\true\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBeispiel}}}\else\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={}}\fi
+
+\RenewTColorBox[use counter from=LILLYxBOXxBeispiel]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ enlarge left by=-3pt, LILLYxBOXxBeispielxBoxxLimerence,   %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}, %
+}
+
+
+%%% Die Bemerkung-Box:
+%% Da Borderline sich nicht einfach löschen lässt - hier über einen extra Marker
+\ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBemerkung}}}\else\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={}}\fi
+
+\RenewTColorBox[use counter from=LILLYxBOXxBemerkung]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ enlarge left by=-3pt,LILLYxBOXxBemerkungxBoxxLimerence ,  %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}, %
+}
+
+%%% Die Satz-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxSatz]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxSatz},   %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}, %
+}
+
+
+%%% Die Beweis-Box:
+\ifx\LILLYxBOXxBeweisxBox\true\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBeweis}}}\else\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={}}\fi
+
+\RenewTColorBox[use counter from=LILLYxBOXxBeweis]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ enlarge left by=-3pt,LILLYxBOXxBeweisxBoxxLimerence ,  %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}, %
+}
+
+
+%%% Die Lemma-Box:
+
+\RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxLemma} ,  %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}, %
+}
+
+
+%%% Die Zusammenfassung-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxZusammenfassung]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxZusammenfassung},   %
+LillyxBOXxDesignxLimerence, #3, IfValueTF={#1}{title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}$\\}}{title={$\vcenter{\hbox{#2}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}$}}, %
+}
+
+%title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}},
+
+%%TODO: BREAKS ON DIFFERENT AMOUNT OF LINES FOR NORMAL AND ALTERNATE - FIXpo

@@ -1,0 +1,93 @@
+\RequirePackage[automark,headsepline]{scrlayer-scrpage}         %Header konfigurieren
+\RequirePackage{caption}
+\RequirePackage{lastpage}                                       %Letzte Seite erhalten
+
+\renewcommand{\sectionmark}[1]{%
+    \markright{#1}%
+}
+
+\RequirePackage{titlesec}
+% lines above and below, number right
+\renewcommand{\chaptermark}[1]{\markboth{#1}{\faBookmark}} %%Chaptermark fix inject
+
+
+\titleformat{\chapter}[display]%             
+        {\relax}
+        {\vspace{-4\baselineskip}\raggedleft{\color{LightGray}\chapterNumber\thechapter} \\ }
+        {0pt}%
+        {\vspace*{-4\baselineskip}\color{\LILLYxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here 
+        [\normalcolor\normalsize\vspace*{-.7\baselineskip}\rule{\textwidth}{0.5pt}\vspace*{-1.7\baselineskip}]%
+
+\newcommand*{\TitleSUB}[1]{ 
+    \begingroup\vspace{-1.25\baselineskip}\textsc{\textcolor{\LILLYxTITLExCOLOR}{#1}}~\\[1\baselineskip]\endgroup
+}
+
+\let\defChapter\chapter
+\renewcommand*{\chapter}{
+    \@ifstar{\starchapter}{\@dblarg\nostarchapter}
+}
+\newcommand{\starchapter}[1]{
+    \defChapter*{#1}
+}
+\def\nostarchapter[#1]#2{\defChapter[{#1}]{#2}\addcontentsline{DEFS}{chapter}{#1}
+\addcontentsline{SATZE}{chapter}{#1}\addcontentsline{ZSM}{chapter}{#1}\addcontentsline{UB}{chapter}{#1}\renewcommand{\leftmark}{#2}}
+
+\LILLYcommand{\LILLYxLayoutxClear}{ %
+    \pagestyle{empty} %KOMA-FTW!
+    \pagenumbering{gobble}
+}
+\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+}
+
+
+\AtBeginDocument{
+    \pagenumbering{arabic}
+    \pagestyle{scrheadings} %KOMA-FTW!
+    \renewcommand{\chapterpagestyle}{scrheadings} %Kein Übungsblatt? => Mitschrieb => Konfiguriere Kapitel
+    %\def\leftmark{Ruf mich an!}
+    %\ifEAGLE@zsfg
+    %\lofoot{\tiny{\jmark[Kapitel]{INHA}\textnormal{\guilsinglright}\theTOPIC}}
+    %\else
+    \ifx\LILLYxMODE\LILLXxMODExPRINT
+        \lehead{{\leftmark}}
+        \rohead{{\rightmark}}
+        \cofoot{\scriptsize{\AUTHOR}}
+        \cefoot{\scriptsize{\TITLE}}
+        \ofoot{\textbf{\thepage}}
+        %\ihead{\hspace{-0.1cm}\raisebox{-2em}{\faCaretDown}}
+    \else
+        \lofoot{\scriptsize{\silentHmark[Kapitel]{eagleTOC}\textnormal{\guilsinglright}\leftmark}}
+        %\fi
+        \lohead{\AUTHOR}
+        \cofoot{}
+        \rohead{\heute}
+        %\lofoot{\tiny{{\rightmark} \(\rangle\){\leftmark}}}
+        \ifx\LILLYxFOOTERxBUTTONS\true
+            \rofoot{\raisebox{0.75pt}{\eXButton{Find}{\tiny \faSearch} \text{ } \eXButton{GoBack}{\tiny \faUndo} \text{ } \eXButton{GoForward}{\tiny \faRepeat}\text{ } \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{0.75pt}{\eXButton{NextPage}{\(\RHD\)}}}
+        \else
+            \rofoot{\thepage}
+        \fi
+    \fi
+}
+
+
+\makeatletter
+\renewcommand{\@seccntformat}[1]{\llap{\textcolor{\LILLYxColorxDefinition}{\csname the#1\endcsname}\hspace{1em}}}                    
+\renewcommand{\section}{\@startsection{section}{1}{\z@}
+{-4ex \@plus -1ex \@minus -.4ex}
+{1ex \@plus.2ex }
+{\normalfont\LARGE\sffamily\bfseries}}
+\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
+{-3ex \@plus -0.1ex \@minus -.4ex}
+{0.5ex \@plus.2ex }
+{\normalfont\Large\sffamily\bfseries}}
+\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
+{-2ex \@plus -0.1ex \@minus -.2ex}
+{.2ex \@plus.2ex }
+{\normalfont\small\sffamily\bfseries}}                        
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+{-2ex \@plus-.2ex \@minus .2ex}
+{.1ex}
+{\normalfont\sffamily\bfseries}}
+
+\setlength{\parindent}{0pt}

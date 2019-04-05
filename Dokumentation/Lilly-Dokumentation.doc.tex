@@ -1,0 +1,71 @@
+\providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
+\documentclass[Typ=Dokumentation]{Lilly} 
+%% TODO: Einbauen von simpleren Makros für nur: [Dokumentation]
+%\tcbuselibrary{documentation}
+
+\usepackage[subject={TestTip},author={EagleoutIce},version=1]{pdfcomment}
+
+
+%%TODO:: INCLUDE TITLE-Control in lilly
+
+%%Move \Lilly to Lilly :D
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sonderboxen                                                                                                         %     %%%% EXTRAS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%%taken and adaptet from tcolorbox
+\newcommand{\ENVpar}[1]{\marginpar{\raggedleft\raisebox{1pt}{\T{\tiny\ttfamily env: #1}}}}
+\newcommand{\CMDpreview}[2][]{\marginpar{\raggedleft\raisebox{1pt}{\T{\tiny\ttfamily \textbackslash #2}}}\T{\textbackslash #2#1}}
+\newcommand{\CMDshow}[2][]{\T{\textbackslash #1#2}}
+
+
+\newtcbox{\LILLYxBOXxLibrary}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
+  right=0mm,left=4mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dlg~}},
+  colframe=green!50!black,coltext=green!25!black,colback=green!10!white,
+  overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)
+    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {LIB} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
+
+\newtcbox{\LILLYxBOXxVersion}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
+ right=0mm,left=5.25mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dll~}},
+ colframe=Azure!50!black,coltext=Azure!25!black,colback=Azure!10!white,
+ overlay={\begin{tcbclipinterior}\fill[Azure!75!blue!50!white] (frame.south west)
+    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {VER} ([xshift=5.25mm]frame.north west);\end{tcbclipinterior}}}
+
+\newtcbox{\LILLYxBOXxWarning}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
+  right=0mm,left=5.25mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dll~}},
+  colframe=Aureolin!60!black,coltext=Aureolin!60!black,colback=Aureolin!10!white,
+  overlay={\begin{tcbclipinterior}\fill[Aureolin!75!blue!50!white] (frame.south west)
+    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {WAR} ([xshift=5.25mm]frame.north west);\end{tcbclipinterior}}}
+
+\robustify{\LILLYxBOXxWarning}
+\robustify{\LILLYxBOXxVersion}
+
+\newcommand{\LILLYxNOTExWarning}[1]{{\normalfont\tiny\raisebox{1.5pt}{\LILLYxBOXxWarning{\bfseries#1}}}}
+
+
+\input Konanur.fd
+
+\newcommand{\kfont}[1]{\begingroup\usefont{U}{Konanur}{xl}{n}#1\endgroup}
+\newcommand{\LILLYxNOTExVersion}[1]{\marginpar{\vspace*{0\baselineskip}\LILLYxBOXxVersion{\small #1}}}
+\LILLYcommand{\Lilly}{\kfont{Lilly}}
+\robustify{\LILLYxNOTExVersion}
+
+\begin{document}
+\LILLYxLayoutxClear
+    \linput{Data/Title.doc}
+    \linput{Data/Abstract.doc}\clearpage
+\elable{eagleTOC}
+\listofTOPS\clearpage
+\LILLYxLayoutxRestore
+
+\linput{Data/Einleitung.doc}
+\linput{Data/Maths.doc}
+\linput{Data/Grafiken.doc}
+\linput{Data/Farben.doc}
+\linput{Data/Listings.doc}
+\linput{Data/Boxen.doc}
+
+\linput{Data/Aussicht.doc}
+\end{document}

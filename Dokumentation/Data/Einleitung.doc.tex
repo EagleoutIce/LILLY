@@ -1,0 +1,197 @@
+\chapter{Einleitung}
+\TitleSUB{Integrieren von LILLY -- Die Grundlagen von A-Z}
+\section{Installieren von Lilly}
+\LILLYxNOTExVersion{1.0.7}Aktuell kommt die Dokumentklasse ohne \T{.ins} oder \T{.dtx} Datei und besitzt keinen Installer - Jaaay \Smiley. Deswegen gibt es im folgenden Erklärungen für die manuelle Installation!
+\begin{bemerkung}[Mithilfe]
+    Wenn du dich mit \TeX{} oder \LaTeX{} auskennst, schreibe an folgende Email-Adresse \T{\AUTHORMAIL} (Ein Repository wird aktuell eingerichtet).
+\end{bemerkung}
+
+\subsection{Linux}
+\LILLYxNOTExVersion{1.0.0}Da LILLY komplett auf einem Linux-Betriebsystem entwickelt wurde, gestaltet sich die Implementierung relativ einfach. 
+Zuerst gilt es einen neuen Ordner zu erstellen\marginpar{\tiny  Es wird \emph{nicht} auf die Semantik einzelner Befehle eingegangen! Copy\&Paste ist doof, tippen! ;)}:
+\begin{lstlisting}[style=bash]
+mkdir -p "${HOME}/texmf/tex/latex/"
+\end{lstlisting}
+In diesen Ordner (wenn nicht sogar bereits existent) kann nun der gesamte \T{Lilly}-Ordner verschoben werden (oder mithilfe eines symbolischen Links verknüpft). Als letztes muss man nun noch \TeX{} über das neue Verzeichnis informieren:\marginpar{\tiny  Dies sichert uns die Persistenz des Pakets im Falle einer Neuinstallation/Updates von \LaTeX}
+\begin{lstlisting}[style=bash]
+texhash "${HOME}/texmf"
+\end{lstlisting}
+
+Nun gilt es sich den anderen mitgelieferten Dateien zu widmen! Von besonderer Relevanz ist hierbei \T{lilly\_compile.sh}, welches hier ausführlicher beschrieben wird(TODO: LINK). Grundlegend generiert es ein Makefile, das dann zum Kompilieren des Dokuments gedacht ist!\newline
+Mithilfe von folgendem Befehl wurde das Makefile für diese Dokumentation generiert:
+\begin{lstlisting}[style=bash]
+*\textcolor{white}{\bfseries \T{./}}*lilly_compile.sh "Lilly-Dokumentation.doc.tex" \
+                 -dir="Dokumentation/"
+\end{lstlisting}
+\LILLYxNOTExVersion{1.0.2}Hierbei wird das Makefile gemäß folgenden Regeln erzeugt:
+\begin{itemize}[label=$\diamond$]\narrowitems
+    \item Es soll die tex-Datei: \say{Lilly-Dokumentation.doc.tex} kompiliert werden.\marginpar{\tiny  Dies muss nicht sein siehe hierfür (TODO) idir und odir}
+    \item Das ganze soll (relativ zu \T{lilly\_compile.sh}) im Verzeichnis \T{Dokumentation} stattfinden - hier wird ebenfalls das Makefile generiert. \marginpar{\vspace*{2em}\tiny  Es wird mit den Regeln \T{default, all} und \T{clean} generiert, selbstredend lässt sich dies erweitern}\begin{bemerkung}[make]
+        Logischerweise muss damit auch \T{make} auf dem System vorhanden sein:
+\begin{lstlisting}[style=bash]
+sudo apt install "make"
+\end{lstlisting}
+    \end{bemerkung}
+\end{itemize}
+Mit diesem Makefile kann man nun das Dokument generieren lassen. Zu beachten sei hierbei, dass \T{make} - im Falle der Regel \T{all} - Regeln parallel ausführen wird! \newline
+\marginpar{\tiny  Die Anführungszeichen dienen hier und in anderen Codebeispielen lediglich zur Übersicht!}Diese Dokumentation wurde mit folgendem Befehl erstellt:
+\begin{lstlisting}[style=bash]
+make "BOXMODE=LIMERENCE"
+\end{lstlisting}
+Hierbei lässt sich ebenfalls erkennen wie sich noch mit dem Makefile einzelne Komponenten (wie das verwendete Boxdesign) ändern lassen!
+\subsection{Windows \LILLYxNOTExWarning{Ausstehend}}
+\subsection{MacOSX \LILLYxNOTExWarning{Ausstehend}}
+
+\subsection{Keine Installation}
+\begin{bemerkung}
+    Von dieser Methode wird abgeraten
+\end{bemerkung}
+Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu kompilierende Latex-Datei im selben Verzeichnis wie die Datei \T{Lilly.cls} liegen (also: \T{Lilly}). Natürlich kann dies bei mehreren Dateien, die auf Lilly zugreifen, unübersichtlich werden.
+\clearpage
+\section[Erstellen eines Dokuments mit Lilly]{Erstellen eines Dokuments mit Lilly \tiny\LILLYxBOXxVersion{1.0.5}}
+\subsection{Das Gerüst}
+Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine Dokumentklasse handelt, wird sie wie folgt eingebunden:
+\begin{lstlisting}[style=latex]
+\documentclass[Typ=Dokumentation]{Lilly} 
+\end{lstlisting}
+\LILLYxNOTExVersion{1.0.7}Für den Typ gibt es hierfür 3 Optionen:
+\begin{multicols}{3}
+    \begin{itemize}[label=$\diamond$]\narrowitems
+        \item Dokumentation
+        \item Mitschrieb
+        \item Uebungsblatt
+    \end{itemize}
+\end{multicols}
+\marginpar{\tiny \bfseries TODO}Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
+So benötigt \emph{Mitschrieb} noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester}\marginpar{\tiny  Semester ist standartmäßig 1} gemäß:
+\begin{lstlisting}[style=latex,frame=none]
+\input{Lilly_Files/Data/Semster/\LILLY@Semster/Definitions/
+       \LILLY@Vorlesung}
+\end{lstlisting}
+die für die jeweilige Vorlesung definierten Daten lädt (TODO: SIEHE DEFINITIONS).
+Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semster} sowie noch die optionale Option (tihihi) \T{n} die angibt, um das wievielte Übungsblatt es sich handelt. \\
+Im Folgenden wird angenommen der Typ Mitschrieb ist gewählt - für ausführliche Informationen siehe (LINK \LILLYxNOTExWarning{Kommt}).
+Nun stehen alle grundlegenden Befehle zur Verfügung.\marginpar{\tiny  Es wird versucht die Befehle für jeden Typ identisch zu deklarieren!} Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert!
+\subsection[Wie funktionieren Boxen]{Die Böxli}
+Jede Box besteht als Environment und bringt (leider noch) ihren eigenen Counter mit (einzige Ausnahme: Übungsblätter mit Aufgaben).
+Sie lassen sich wie folgt benutzen:
+\begin{multicols}{2}
+\begin{definition*}[Titel]
+    Hallo Welt
+\begin{lstlisting}[style=latex]
+\begin{definition*}[Titel]
+    Hallo welt
+\end{definition*}\end{lstlisting}
+\end{definition*}
+
+\begin{definition}
+    Hallo Welt
+\begin{lstlisting}[style=latex]
+\begin{definition}
+    Hallo welt
+\end{definition}\end{lstlisting}
+\end{definition}
+
+\begin{satz}[Titel]
+    Hallo Welt
+\begin{lstlisting}[style=latex]
+\begin{satz}[Titel]
+    Hallo welt
+\end{satz}\end{lstlisting}
+\end{satz}
+\LILLYcommand{\LILLYxBOXxAufgabexBox}{FALSE}
+
+\begin{aufgabe}[Titel][3]
+    Hallo Welt
+\begin{lstlisting}[style=latex]
+\begin{aufgabe}[Titel][3]
+    Hallo welt
+\end{aufgabe}\end{lstlisting}
+\end{aufgabe}
+\end{multicols}
+Letztere ändert sich zum Beispiel mit dem Dokumenttyp, so wird die Aufgabenbox in einem Übungsblatt immernoch wie folgt veranschaulicht:
+\LILLYcommand{\LILLYxBOXxAufgabexBox}{TRUE}
+\begin{aufgabe}[Titel][3]
+    Hallo Welt
+\begin{lstlisting}[style=latex]
+\begin{aufgabe}[Titel][3]
+    Hallo welt
+\end{aufgabe}\end{lstlisting}
+\end{aufgabe}
+Hier eine Liste aller Boxen:
+\begin{multicols}{3}
+    \begin{itemize}[label=$\diamond$]\narrowitems
+        \item definition
+        \item bemerkung
+        \item beispiel
+        \item satz
+        \item beweis
+        \item lemma
+        \item zusammenfassung
+        \item aufgabe
+        \item uebungsblatt
+    \end{itemize}
+\end{multicols}
+Sie können alle mithilfe von:
+\begin{lstlisting}[style=latex]
+%% Allgemein
+% \LILLYcommand{\LILLYxBOXx<FirstLetterUp-Name>xEnable}{FALSE}
+\LILLYcommand{\LILLYxBOXxDefinitionxEnable}{FALSE}
+\end{lstlisting}
+jeweils deaktiviert und damit aus dem Dokument entfernt werden (auch nur abschnittsweise, das Reaktivieren funktioniert analog mit \T{TRUE}). \newline
+Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeugen. \marginpar{\tiny  Die Bezeichnung der Listen sind bisher noch inkonsitent :/}Beispielhaft:
+\begin{lstlisting}[style=latex]
+\listofDEFINITIONS
+\end{lstlisting}
+\marginpar{\tiny  Natürlich sind die Linien nur zur Trennung eingfügt}erzeugt hierbei:\\
+\tocloftpagestyle{scrheadings}
+\rule{\linewidth}{1.2pt}\vspace{-0.75\baselineskip}
+\rule{\linewidth}{0.6pt}\vspace*{-1.5cm}
+\listofDEFINITIONS    
+\rule{\linewidth}{0.6pt}\vspace{-0.7\baselineskip}
+\rule{\linewidth}{1.2pt}
+
+\clearpage
+\newcommand{\printmark}[2][Linkname]{\ensuremath{\text{#1}^{\rightarrow~\text{\pageref{#2}}}}}
+
+\subsection{Hyperlinks}
+\LILLYxNOTExVersion{1.0.0}\elable{mrk:Hey}Eine Sprungmarke innerhalb eines Dokuments lässt sich mit:
+\begin{lstlisting}[style=latex]
+\elable{mrk:Hey} %% \elable{<Sprungmarke>}
+\end{lstlisting}
+erstellen. Referenziert werden kann sie mithilfe des Befehls \textbf{\T{jmark}}:
+\begin{lstlisting}[style=latex]
+\jmark[Klick mich]{mrk:Hey} %% \jmark[Text]{Sprungmarke}
+\end{lstlisting}
+der erzeugte Link: \jmark[Klick mich]{mrk:Hey}, passt sich zudem der Akzentfarbe der aktuellen Boxumgebung und dem Druckmodus an:\smallskip
+\begin{zusammenfassung}[Testzusammenfassung]
+Siehe hier: \jmark[Klick mich]{mrk:Hey} (Wenn Druck: \printmark[Klick mich]{mrk:Hey})
+\end{zusammenfassung}~\smallskip\newline
+\marginpar{\tiny \textbf{\T{jmark*}}, welcher die Akzentfarbe ignoriert, ist bereits geplant, wurde allerdings bisher nicht zwangsläufig benötigt }Der alternative Vertreter für \textbf{\T{jmark}} ist \textbf{\T{hmark}}, er ignoriert sämtliche Farbattribute:
+\begin{lstlisting}[style=latex]
+\hmark[Klick mich]{mrk:Hey} %% \hmark[Text]{Sprungmarke}
+\end{lstlisting}
+und erzeugt damit: \hmark[Klick mich]{mrk:Hey}. 
+
+\section{Einbinden von weiteren Dokumenten}
+\subsection{Aufgliedern eines Dokuments}
+\LILLYxNOTExVersion{1.0.4}Um Dokumente portabel kompilierbar zu machen, setzt das Makefile gemäß der Konfiguration \verb|\LILLYxPATH| (hier: \T{\LILLYxPATH}). Nun lässt sich mithilfe des Befehls \T{\textbf{\textbackslash linput}\{<Pfad>\}} eine Datei relativ zur Quelldatei angeben (beachte, dass absolute Pfade bei \T{\textbf{\textbackslash linput}} keinen Sinn machen. Siehe hierzu: TODO LINK).
+Zudem lässt sich damit über \T{\textbf{\textbackslash LILLYxDOC\-UM\-ENTxSUB\-NAME}} der Name der zuletzt eingebundenen Datei (\T{\LILLYxDOCUMENTxSUBNAME}) abfragen.\newline
+\LILLYxNOTExVersion{1.0.7}Weiter gilt zu beachten, dass es \emph{nicht} möglich ist, das klassische \verb|\include| zu verwenden! Dieser Befehl wird aber von LILLY deswegen direkt entsprechend erneuert (hierzu wird das klassische Latex \verb|\input| im Zusammenspiel mit \verb|\clearpage| verwendet, nicht LILLYs \T{\textbf{\textbackslash linput}}!).
+\subsection{Übungsblätter}
+\marginpar{\tiny Aktuell wird daran gearbeitet eine \T{make}-Regel für Übungsblätter zu integrieren}Da es von Bedeutung war Übungsblätter so zu erstellen, dass die Abgaben direkt (passend formatiert) in die Mitschrift eingebunden werden können,\marginpar{\tiny \vspace*{2em}\tiny Die Verwendung von \T{\textbackslash tcblower} ist noch in arbeit} gibt es hierfür eine einfache Möglichkeit:\marginpar{\vspace*{1em} \tiny Es gibt auch eine Umgebung mit * und gleichermaßen \T{\textbf{\textbackslash inputUBS}}. Diese setzen den Zähler für die Aufgaben \emph{nicht} zurück!}
+\begin{lstlisting}[style=latex]
+%% \inputUB{<Name>}{<Nummer>}{<Pfad - linput>}
+\inputUB{Mengen}{1}{Aufgaben_Data/Uebungsblatt_1.tex} 
+
+%% Wird zu: 
+\clearpage
+\begin{uebungsblatt}[Mengen][1]
+    \linput{Aufgaben_Data/Uebungsblatt_1.tex}
+\end{uebungsblatt}
+\newpage
+\end{lstlisting}
+Übungsblätter können gleich, wie alle anderen Boxen deaktiviert werden\marginpar{\tiny Hierfür gibt es dann noch TODO die Option noextra}.
+
+
+\clearpage

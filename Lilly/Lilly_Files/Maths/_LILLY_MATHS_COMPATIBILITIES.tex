@@ -1,0 +1,48 @@
+\RequirePackage{enumerate}
+\RequirePackage{enumitem} %Anpassbare Enumerates/Itemizes
+\setlist{nolistsep}
+\newcommand{\enum}[1]{\begin{enumerate}\narrowitems  #1 \end{enumerate}  }
+\newcommand{\liste}[1]{\begin{enumerate}[label=\roman*)]\narrowitems  #1 \end{enumerate}  }
+
+\newcommand{\xa}{\overline{x_1}\tab[0.04cm]}
+\newcommand{\xb}{\overline{x_2}\tab[0.04cm]}
+\newcommand{\xc}{\overline{x_3}\tab[0.04cm]}
+
+\newcommand{\crossAT}[1]{\node at #1 {\large \ding{55}};}
+\newcommand{\circAT}[1]{\draw[thick] #1 circle (0.13);}
+\newcommand*\bblock[2]{\draw #1 [thin] rectangle ++(0.5,0.5) node [pos=.5] {\tiny{#2} }; }
+
+\newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
+
+
+%%Tabbing umgebung ohne Abstand - Veraltet
+\newenvironment{nstabbing}{
+        \setlength{\topsep}{-\parskip}%
+        \setlength{\partopsep}{0pt}%
+        \tabbing
+    } {\endtabbing}
+
+%%Center umgebung ohne Abstand
+\newenvironment{centered}{%
+    \setlength\topsep{0pt}
+    \setlength\parskip{0pt}
+    \begin{center}}{%
+    \end{center}
+  }
+  
+\newenvironment{sqcases}{
+    \begingroup\left.
+    \def\arraystretch{1.2}%
+    \array{@{}l@{\quad}l@{}}%
+        }{%
+    \endarray\hspace{-0.3cm}\right\rbrack\endgroup%
+    }
+    
+%%% Column Compatibility
+\newcolumntype{b}{>{\bfseries}c}
+\newcolumntype{u}{>{\(}c<{\)}}
+\newcolumntype{g}{>{\footnotesize}l}
+\newcolumntype{w}{>{\footnotesize}X}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}

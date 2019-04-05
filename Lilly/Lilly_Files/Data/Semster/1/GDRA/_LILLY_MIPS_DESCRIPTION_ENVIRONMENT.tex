@@ -1,0 +1,81 @@
+\DeclareDocumentEnvironment{cmdDESCP}{
+    O {add} % MIPS COMMAND
+    O {I}      % REGISTER FORMAT
+    O {\mipsADD \text{ }\$rd, \$rt, \$rs} % EXAMPLE
+    O {BRIEF BRIEF BRIEF BRIEF} %%BRIEF
+    O {0000 0000 0000 0000 0000 0000 0000 0000} %%CODEC
+    O {0x00} % OPCODE
+    O {NA} % FUNCCODE
+    O {\textcolor{black}{Normal}} % IS MAKRO ?
+    O {4} %PROGRAMMCOUNTER INCREASE
+}{\leavevmode\\[0.5em] %%REFERENCE
+\relax\noindent
+\begin{tikzpicture}[card/.style={inner sep=0pt}]
+    \node [card,right] (a) at(0.5,0.35) {\large\bfseries\LILLYxlstTypeWriter\textcolor{black}{\text{ }#1 }};
+    \node [card,left,minimum width=2cm] (c) at(\textwidth-2.75cm,0.35) {\small \textcolor{black}{\hmark[\text{ }\textbf{#2}--Format ]{frmt:#2}}};
+    \draw (2.6,0.35) node [right] (b) {\tiny\parbox{\widthof{\mnemonicDecode{#1}}-0.15cm}{\mnemonicDecode{#1}}\hspace{-0.2cm}};
+    \draw[-latex] (a) ++(0.5,1.25) -- ++(-0.5,-1) node[pos=0,above] {\sffamily Name des Befehls};
+    \draw[-latex] (b) ++(0.5,0.5) -- ++(-0.3,-0.3) node[pos=0,above right] {\sffamily Langform};
+    \draw[-latex] (c) ++(-1.1,0.6) -- ++(0.6,-0.3) node[pos=0,above left] {\sffamily Format (Klick-Mich!)};
+
+    \node [card,left] (d) at(\textwidth-0.6cm,0.35) {\small \textcolor{black}{\text{ }\hmark[\mdseries #9]{cmd:PC} }};
+    \draw[-latex] (d) ++(0,1.3) -- ++(0,-1) node[pos=0,above left] {\sffamily PC-Increase (Klick-Mich!)};
+    \draw[rounded corners=6pt] (0,0) |- (a) (a) -- (b) (b) -- (c) (c) -- (d) (d) -| (\textwidth,0);
+    \draw (\textwidth/4-3cm ,-0.125) rectangle ++(6cm,-0.75) node[midway,centered] {\LILLYxlstTypeWriter #3};
+    \draw (\textwidth/4-3cm ,-1.125) rectangle ++(2.75+0.125,-0.5) node[midway,centered] {\small \textbf{Opcode:} #6};
+    \draw (\textwidth/4+0.125cm,-1.125) rectangle ++(2.75+0.125,-0.5) node[midway,centered] {\small \textbf{Funct:} #7};
+    %\draw (\textwidth/4-3cm ,-1.125-0.75) rectangle ++(6cm,-0.5) node[midway,centered] {\scriptsize\LILLYxlstTypeWriter #5};
+    \node[below right] at(\textwidth/2-0.5cm,0) {\parbox{0.5\textwidth}{\small #4}};
+    \draw[-latex] (5.75,1.5) -- ++(0,-1.5) node[pos=0,above] {\sffamily Syntax};
+
+\end{tikzpicture}
+}{
+    \begin{tikzpicture}[card/.style={inner sep=0pt}]
+        \node at(3*\textwidth/4,-0.35) (b) {\footnotesize #8};
+        \node at(\textwidth/4,-0.35) (a) {\footnotesize\LILLYxlstTypeWriter #5};
+        \draw[rounded corners=6pt,black] (0,0) |- (a) (a) -- (b) (b) --(\textwidth,-0.35) -- ++(0,0.35);
+        \draw[-latex] (a) ++(0.3,-0.8) -- ++(-0.3,0.5) node[pos=0,below right] {\sffamily Encoding};
+        \draw[-latex] (b) ++(0,-0.8) -- ++(0,0.5) node[pos=0,below] {\sffamily Befehlsart};
+        \draw[-latex] (1.3,-1.4) -- ++(0,1.5) node[pos=0,below] {\sffamily OP-Codierung};
+        \draw[-latex] (6.3,-2) -- ++(0,2.1) node[pos=0,below] {\sffamily Funktionscodierung (R-Format)};
+        \draw[-latex] (13.3,-2) -- ++(0,2.1) node[pos=0,below] {\sffamily Befehlserklärung};
+
+    \end{tikzpicture}\\[0.5em]
+}
+\DeclareDocumentEnvironment{cmdDESC}{
+    O {npoint} % MIPS COMMAND
+    O {I}      % REGISTER FORMAT
+    O {\mipsADD \text{ }\$rd, \$rt, \$rs} % EXAMPLE
+    O {BRIEF BRIEF BRIEF BRIEF} %%BRIEF
+    O {0000 0000 0000 0000 0000 0000 0000 0000} %%CODEC
+    O {0x00} % OPCODE
+    O {NA} % FUNCCODE
+    O {\textcolor{black}{Normal}} % IS MAKRO ?
+    O {4} %PROGRAMMCOUNTER INCREASE
+}{\phantomsection\elable{cmd:#1}\leavevmode\\[0.5em] %%REFERENCE
+\relax\noindent
+\begin{minipage}{\textwidth} %%no midbreak
+\begin{tikzpicture}[card/.style={inner sep=0pt}]
+    \node [card,right] (a) at(0.5,0.35) {\large\bfseries\LILLYxlstTypeWriter\textcolor{black}{\text{ }#1 }};
+
+    \draw (2.6,0.35) node [right] (b) {\tiny\parbox{\widthof{\mnemonicDecode{#1}}-0.15cm}{\mnemonicDecode{#1}}\hspace{-0.2cm}};
+
+    \node [card,left,minimum width=2cm] (c) at(\textwidth-2.75cm,0.35) {\small \textcolor{black}{\hmark[\text{ }\textbf{#2}--Format ]{frmt:#2}}};
+    
+    \node [card,left] (d) at(\textwidth-0.6cm,0.35) {\small \textcolor{black}{\text{ }\hmark[\mdseries #9]{cmd:PC} }};
+    \draw[rounded corners=6pt] (0,0) |- (a) (a) -- (b) (b) -- (c) (c) -- (d) (d) -| (\textwidth,0);
+    \draw (\textwidth/4-3cm ,-0.125) rectangle ++(6cm,-0.75) node[midway,centered] {\LILLYxlstTypeWriter #3};
+    \draw (\textwidth/4-3cm ,-1.125) rectangle ++(2.75+0.125,-0.5) node[midway,centered] {\small \textbf{Opcode:} #6};
+    \draw (\textwidth/4+0.125cm,-1.125) rectangle ++(2.75+0.125,-0.5) node[midway,centered] {\small \textbf{Funct:} #7};
+    %\draw (\textwidth/4-3cm ,-1.125-0.75) rectangle ++(6cm,-0.5) node[midway,centered] {\scriptsize\LILLYxlstTypeWriter #5};
+    \node[below right] at(\textwidth/2-0.5cm,0) {\parbox{0.5\textwidth}{\small #4}};
+\end{tikzpicture}
+}{
+    \begin{tikzpicture}[card/.style={inner sep=0pt}]
+        \node at(3*\textwidth/4,-0.35) (b) {\footnotesize #8};
+        \node at(\textwidth/4,-0.35) (a) {\footnotesize\LILLYxlstTypeWriter #5};
+        \draw[rounded corners=6pt,black] (0,0) |- (a) (a) -- (b) (b) --(\textwidth,-0.35) -- ++(0,0.35);
+
+    \end{tikzpicture}\\[0.5em]
+    \end{minipage}
+}

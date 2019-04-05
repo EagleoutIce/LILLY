@@ -1,0 +1,88 @@
+%%% TITEL TITLEPREFIX OPTIONAL-CONTROLLERS 
+
+%% Dies ist die renew umgebung um default boxen zu forcieren auch wenn eine andere option gesetzt wurde
+
+%%% Die Definition-Box: 
+
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
+colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
+title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+}
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
+colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
+title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+}
+
+
+%%% Die Beispiel-Box: 
+\RenewTColorBox[use counter from=LILLYxBOXxBeispiel]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
+colback=\LILLYxColorxBeispiel!5!white, colframe=\LILLYxColorxBeispiel, #3,%
+title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}}%
+}
+
+
+%%% Die Bemerkung-Box: 
+\RenewTColorBox[use counter from=LILLYxBOXxBemerkung]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
+colback=\LILLYxColorxBemerkung!5!white, colframe=\LILLYxColorxBemerkung, #3,%
+title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+}
+
+
+
+%%% Die Satz-Box: 
+\RenewTColorBox[use counter from=LILLYxBOXxSatz]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
+colback=\LILLYxColorxSatz!5!white, colframe=\LILLYxColorxSatz, #3,%
+title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+}
+
+
+%%% Die Beweis-Box: 
+\RenewTColorBox[use counter from=LILLYxBOXxBeweis]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
+colback=\LILLYxColorxBeweis!5!white, colframe=\LILLYxColorxBeweis, #3,%
+title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+}
+
+
+%%% Die Lemma-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
+colback=\LILLYxColorxLemma!5!white, colframe=\LILLYxColorxLemma, #3,%
+title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+}
+
+%%% Die Zusammenfassung-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxZusammenfassung]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
+colback=\LILLYxColorxZusammenfassung!5!white, colframe=\LILLYxColorxZusammenfassung, #3,%
+title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+}
+
+
+
+%%sloppy - fix => MAKE ALL BOXES ENVIRONMENTS AND PROVIDE OLD COMMAND STYLE AS COMPAT FEATURE TODO:
+\RenewTColorBox{LILLYxBOXxAufgabe}{O{} O{} O{}}{enforce breakable, %enforce breakable für: Mehr Seiten
+    enhanced jigsaw, before skip=2mm,after skip=2mm,
+    colback=white,colframe=black!50,boxrule=0.2mm,
+    attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+    varwidth boxed title*=-3cm,
+    boxed title style={
+        frame code={
+            \path[fill=tcbcol@back!30!black]
+                ([yshift=-1mm,xshift=-1mm]frame.north west)
+                arc[start angle=0,end angle=180,radius=1mm]
+                ([yshift=-1mm,xshift=1mm]frame.north east)
+                arc[start angle=180,end angle=0,radius=1mm];
+            \path[left color=tcbcol@back!60!black,right color=tcbcol@back!60!black,
+                middle color=tcbcol@back!80!black]
+                ([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+                [rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+                -- (frame.south east) -- (frame.south west)
+                -- ([xshift=-1mm,yshift=-1mm]frame.north west)
+                [sharp corners]-- cycle;
+        },interior engine=empty,
+    },
+    fonttitle=\bfseries, #3,%
+    title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}, %Aufgabe
+}
+
+\RenewTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}}{enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm, colback=white,colframe=black!50,boxrule=0.2mm,fonttitle=\bfseries, #3,title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}}
+
+

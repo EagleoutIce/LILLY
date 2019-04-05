@@ -1,0 +1,14 @@
+%%% Eigentlich kein Controller aber naja wo soll man es sonst machen :P
+%% Überschreibt normale environements sodass sie sich besser ans Dokuemnt anpassen
+\RequirePackage{enumerate}
+\RequirePackage{enumitem} %Anpassbare Enumerates/Itemizes
+\setlist{nolistsep}
+% \newcommand{\enum}[1]{\begin{enumerate}\narrowitems  #1 \end{enumerate}  }
+% \newcommand{\liste}[1]{\begin{enumerate}[label=\roman*)]\narrowitems  #1 \end{enumerate}  }
+
+%\renewenvironment{enumerate}[1][,]{\begin{enumerate}[#1]\narrowitems}{\end{enumerate}}
+\newenvironment{enumeratea}[1][,]{\begin{enumerate}[label=\alph*),#1]}{\end{enumerate}}
+
+%\renewenvironment{itemize}[1][,]{\begin{itemize}[#1]\narrowitems}{\end{itemize}}
+
+%% \newenvironment{liste}[1][,]{\begin{enumerate}[label=\roman*),#1]}{\end{enumerate}}

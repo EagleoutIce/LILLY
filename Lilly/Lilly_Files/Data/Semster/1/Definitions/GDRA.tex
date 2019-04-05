@@ -1,0 +1,44 @@
+%%% Diese Datei enthält alle notwendigen Definitionen
+
+\LILLYcommand{\PROFESSOR}{Prof. Dr.-Ing. Frank Slomka}
+
+\LILLYcommand{\UEBUNGSLEITER}{Marcel Rieß}
+\LILLYcommand{\TUTOR}{Julia A.}
+
+\LILLYcommand{\ABGABEAUTHOR}{Florian Sihler \& Felix Rieg}
+
+\LILLYcommand{\TITLE}{Grundlagen der Rechnerarchitektur}
+\LILLYcommand{\SUBTITLE}{\PROFESSOR}    
+
+
+\LILLYcommand{\UEBUNGSHEADER}{\TITLE\\Übungsblatt \LILLY@n }
+\LILLYcommand{\FULLTITLE}{ \TITLE \\\fontsize{18pt}{16pt}\selectfont{\SUBTITLE} }
+
+\LILLYcommand{\VORLESUNG}{\gdra}
+
+\DeclareRobustCommand{\POLITEINTRO}{\setcounter{TOPICS}{-1}
+\TOP[disc]{Disclaimer}{Worte des Autors}
+Offensichtlich erhebt dieses Dokument keinen Anspruch auf vollständige Richtigkeit. Es wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien, dem beiligendem Skript und dem Repititorium erstellt und ist eher als unverbindliche Hilfe zu verstehen. Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesungsvorlage dort durchbrochen wurde, wo eine andere Gruppierung angenehmer oder passender erschien. Bei Anregungen oder Ver\-bes\-ser\-ungs\-vor\-schlä\-gen einfach melden! Diese Zusammenfassung dient zudem explizit \textbf{nicht} als Cheat-Sheet und wurde bewusst ausführlicher gestaltet.\\
+Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und basieren zum Teil auf denen des Vorlesungsmaterials.{}\hfill {\tiny Florian Sihler}\begin{center}
+    \say{Viel Spaß beim Lernen!}
+\end{center}
+}
+
+%% LAYOUT CONTROL
+\providecommand\LILLYxBOXxSatzxLock{TRUE}
+\providecommand\LILLYxBOXxDefinitionxLock{TRUE}
+
+
+\LILLYcommand\LILLYxBOXxBemerkungxBox{TRUE}
+\providecommand\LILLYxBOXxBeispielxBox{FALSE}
+\providecommand\LILLYxBOXxBeweisxBox{FALSE}
+\providecommand{\LILLYxUBxSHOWTUTOR}{TRUE}
+
+%% MIPS-Codes
+
+% Special links
+\newcommand{\cmd}[2][Linkname]{\parbox{1cm}{\T{\textbf{\hypersetup{linkcolor=purple}{\hyperref[#2]{#1}}}}}}
+\newcommand{\cmdGreen}[2][Linkname]{\parbox{1.425cm}{\T{\textbf{\hypersetup{linkcolor=limegreen}{\hyperref[#2]{#1}}}}}}
+\newcommand{\cmdGreenRAW}[2][Linkname]{{\T{\textbf{\hypersetup{linkcolor=limegreen}{\hyperref[#2]{#1}}}}}}
+
+\input{Lilly_Files/Data/Semster/1/GDRA/_LILLY_MIPS_CORE}

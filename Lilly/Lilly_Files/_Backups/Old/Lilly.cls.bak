@@ -1,0 +1,209 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{lilly}[2019/02/24 EagleoutIce - Latex-Ultimate styling class with command-line support]
+
+
+%%%% LILLY - Lilly is a latex loveable yougurht
+%%%% - it doens't has to make any sense if it does look beautiful
+
+%%% lilly unterstütz die Verhaltenssteuerung über die Kommandozeile und erlaubt es so alle Paramter auch per '\def' zu setzen!
+
+\ifx\LILLYxDummy \undefined
+    \newcommand*{\LILLYxDummy}{dummy}                        %%% 
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Setzen und Abfragen der Werte für das Dokument                                                                      %     %%%% PRE-DEFAULTS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\LILLYxGeneralxPaperformat \undefined
+    \newcommand*{\LILLYxGeneralxPaperformat}{a4}          %%% A4 Papier
+    \RequirePackage[a4paper, total={6in, 9.05in}]{geometry}
+\fi
+\ifx\LILLYxGeneralxFontsize \undefined
+    \newcommand*{\LILLYxGeneralxFontsize}{11pt}           %%% 11-Punkt-Schrift
+\fi
+\ifx\LILLYxDocumentxTYPE \undefined
+    \newcommand*{\LILLYxDocumentxTYPE}{scrbook}           %%% Dokumentbasisklasse es Dokuments
+\fi
+\ifx\LILLYxDocumentxTYPExExtras \undefined
+    \newcommand*{\LILLYxDocumentxTYPExExtras}{oneside}    %%% Weitere Zusätze für das Dokument
+\fi
+
+%DEFAULT: \documentclass[a4paper,11pt,oneside]{scrbook}
+\LoadClass[paper=\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,\LILLYxDocumentxTYPExExtras]{\LILLYxDocumentxTYPE}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grundlegende Pakete (Encoding etc.)                                                                                 %     %%%% ENCODINGS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifx\LILLYxEXCLUDExEncodings \undefined                   %%% Lade standartkonfiguration für Encoding
+    \RequirePackage[utf8x]{inputenc}                        %unicode
+    \RequirePackage[T1]{fontenc}                            %8-Bit encoding
+    \RequirePackage{ngerman}                                %Deutsche Sprache
+\fi
+
+\RequirePackage{expl3}
+
+%% tex '\def' in latex style - überschreibe einen Befehl oder erzeuge ihn, wenn es ihn noch nicht gibt
+\ExplSyntaxOn
+\def\LILLYcommand{
+    \@ifstar
+        \LILLYcommand@S %% star
+        \LILLYcommand@N %% nostar
+}
+
+\def\LILLYcommand@S#1{
+    \let#1\outer\renewcommand*#1
+}
+\def\LILLYcommand@N#1{
+    \let#1\outer\renewcommand#1
+}
+
+\ExplSyntaxOff
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Key-Val-Optionen zum verarbeiten von Argumenten                                                                     %     %%%% PACKAGE-OPTIONS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{kvoptions}                                  %Erweiterte Optionen
+
+\SetupKeyvalOptions{                                        %Interne Benennung für Steuervariablen
+    family=LILLY,
+    prefix=LILLY@
+}
+
+\DeclareStringOption [1]{n}[1]                              %Das wievielte Übungsblatt ist es?
+\DeclareStringOption [1]{Semster}[1]                        %Das wievielte Semster ist es?
+
+\ProcessKeyvalOptions*                                      %Verarbeite Paketargumente (Optionen, wie auch immer)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Setup für mathematisches                                                                                            %     %%%% PACKAGE-OPTIONS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifx\LILLYxMathxMode \undefined
+    \newcommand*{\LILLYxMathxMode}{normal}                %%% Niemand mag euler-mathfont
+\fi
+
+\RequirePackage{amsmath}                                        %Mathe
+%\RequirePackage{kpfonts}
+
+\mathversion{\LILLYxMathxMode}                              % Welche Schriftart für Matheumgebung
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Mathe Shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Zahlen und andere Freuden 
+
+\LILLYcommand\N{\ensuremath{\mathbb{N}}}
+\LILLYcommand\Z{\ensuremath{\mathbb{Z}}}
+\LILLYcommand\Q{\ensuremath{\mathbb{Q}}}
+\LILLYcommand\R{\ensuremath{\mathbb{R}}}
+\LILLYcommand\C{\ensuremath{\mathbb{C}}}
+
+\LILLYcommand\i{\ensuremath{\mathtt{i}}}
+
+\LILLYcommand\B{\ensuremath{\mathbb{B}}}
+\LILLYcommand\X{\ensuremath{\chi}}
+\LILLYcommand\K{\ensuremath{\mathbb{K}}}
+\LILLYcommand\F{{\cal F}}
+
+\LILLYcommand\O{\ensuremath{{\cal O}}} %%Landau
+
+\LILLYcommand\diag{\text{diag}\tab[0.04cm]}
+
+%% Bessere Formatierungen mancher Formatierungen in der Matheumgebung
+
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} %Anpassung overlapping GDRA
+
+\RequirePackage{letltxmacro}
+\RequirePackage{tocloft}
+
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{%
+\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} }      %%Schönere Wurzel
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TiKz und andere Grafik freuden                                                                                      %     %%%% TIKZ-OPTIONS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifx\LILLYxTIKZxenable \undefined
+    \RequirePackage{tkz-euclide} 
+    \RequirePackage{tikz}[remember picture,overlay]                 %tkiz implementation
+    \RequirePackage[european]{circuitikz}                           %Schaltkreise, standart: Europäisches Schaltkreislayout
+    \usetikzlibrary{%
+    arrows,automata,calc,intersections,%
+    through,decorations.pathreplacing,%
+    decorations.pathmorphing,backgrounds,%
+    positioning,fit,shapes,shadings,chains,matrix,scopes, shadows,external}
+    \usetikzlibrary{patterns,mindmap} 
+    \usetikzlibrary{shadows.blur}
+    \tikzexternalenable
+    \tikzset{external/export=true}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lstlisting include                                                                                                  %     %%%% LSTLISTING-OPTIONS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\lstset{literate=
+%  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+%  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+%  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+%  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+%  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+%  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+%  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+%  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+%  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+%  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+%  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+%  {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+%  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+%} %Damit die Umlaute in lstlistings auch gescheit formatiert werden. Entnommen der Dokumentation: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+
+%\ExplSyntaxOn
+%\DeclareCaptionFont{black}{ \color{black} }
+%\DeclareCaptionFormat{none}{
+%    \makebox[\textwidth]{#1#2#3}
+%}
+%\DeclareCaptionFont{black}{ \color{black} }
+%
+%\ExplSyntaxOff
+%\DeclareCaptionFormat{listing}{
+%    \makebox[\textwidth]{#1#2#3}
+%}
+
+%\def\noprint#1{}
+
+%\ExplSyntaxOn
+%\NewDocumentCommand \mipsspecifier { }
+%{
+%    \tl_set:No \l_demo_tl {\the\use:c{lst@token}}
+%    \regex_replace_all:nnN { .([a-zA-Z]+[0-9]+) } {\$\c{textcolor}\cB\{ limegreen \cE\}\cB{ \1 \cE} } \l_demo_tl
+%    \tl_use:N \l_demo_tl
+%    \noprint
+%}
+
+%\ExplSyntaxOff
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Unterdrücken verschiedener Fehler                                                                                   %     %%%% ERROR HANDLING %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hbadness=99999
+\hfuzz=15000pt
+\clubpenalty=10000
+\widowpenalty=10000
+
+\input{Lilly_Files/Colors/_LILLY_DEFAULT_COLORPROFILE}
+\input{Lilly_Files/POIs/_LILLY_BOX_CONTROLLER}

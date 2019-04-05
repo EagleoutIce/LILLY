@@ -1,0 +1,86 @@
+\RequirePackage[automark,headsepline]{scrlayer-scrpage}         %Header konfigurieren
+\RequirePackage{caption}
+\RequirePackage{lastpage}                                       %Letzte Seite erhalten
+\RequirePackage{titlesec}
+
+\LILLYcommand{\cftsubsecleader}{\hfill}
+\LILLYcommand{\cftsubsecfont}{\pgfsetfillopacity{1.0}\footnotesize}
+\LILLYcommand{\cftsecfont}{\pgfsetfillopacity{1.0}\small}
+\LILLYcommand{\cftchapfont}{\pgfsetfillopacity{1.0}\bfseries}
+
+\LILLYcommand{\cftsecleader}{\normalfont{\cftdotfill{\cftsecdotsep}}}
+
+\LILLYcommand{\cftsubsecpagefont}{\pgfsetfillopacity{0.0}}
+
+\newcommand{\LILLYxFormatxTitle}[2][]{~\\{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont #2\hfill{\normalfont\tiny #1}}\\[-0.3cm]
+\noindent\rule{\textwidth}{1.25pt}\\[0.15cm]}
+
+\newlistof{TOPS}{TOP}{\LILLYxFormatxTitle{Inhaltsverzeichnis}\vspace*{-2cm}}
+
+\LILLYcommand{\LILLYxLayoutxClear}{ %
+    \pagestyle{empty} %KOMA-FTW!
+    \pagenumbering{gobble}
+}
+\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+    \pagenumbering{arabic}   %
+    \pagestyle{scrheadings} %KOMA-FTW!
+    \renewcommand{\chapterpagestyle}{scrheadings} %Kein Übungsblatt? => Mitschrieb => Konfiguriere Thema
+    \lofoot{\scriptsize{\silentHmark[Thema]{eagleTOC}\textnormal{\guilsinglright} \leftmark}} %
+    \lohead{\AUTHOR} %
+    \cofoot{} %
+    \cohead{\VORLESUNG} %
+    \rohead{\heute} %
+    %\lofoot{\tiny{{\rightmark} \(\rangle\){\leftmark}}}
+    \ifx\LILLYxFOOTERxBUTTONS\true %
+        \rofoot{\raisebox{0.75pt}{\eXButton{Find}{\tiny \faSearch} \text{ } \eXButton{GoBack}{\tiny \faUndo} \text{ } \eXButton{GoForward}{\tiny \faRepeat}\text{ } \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{0.75pt}{\eXButton{NextPage}{\(\RHD\)}}} %
+    \else %
+        \rofoot{\thepage/\pageref{LastPage}} %
+    \fi %
+}
+
+\providecommand{\LILLYxBOXxDefinitionxLock}{TRUE}
+
+\setlength{\parindent}{0pt}
+\newcounter{ctr_ADDONS}
+
+\newcommand{\theTOPIC}{undefined}
+\newcommand{\listTOPICSname}{\leavevmode\\[-4.75cm]}
+\newlistof{TOPICS}{TOPIC}{\listTOPICSname}
+\newcommand{\TOPICS}[1]{%
+\renewcommand{\theTOPIC}{#1}%
+\refstepcounter{TOPICS}%
+\addcontentsline{TOPIC}{TOPICS}{#1}\par%
+}
+
+
+
+
+\providecommand{\TOP}[3][top_default_jmpmrk]{
+    \addcontentsline{DEFS}{chapter}{#2}\addcontentsline{toc}{section}{#2}
+    \phantomsection\TOPICS{#2}\elable{top:#1}\markleft{#2}
+    \begin{minipage}{\textwidth} %%breakpatch
+        \raggedright{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \arabic{TOPICS}) #2} \hfill\tiny #3\\
+        \noindent\rule{\textwidth}{2pt}\\[0.4cm]
+        \vspace*{0.15em}
+    \end{minipage}
+}
+
+\providecommand{\TOPA}[3][top_default_jmpmrk]{
+\phantomsection\elable{top:#1}\refstepcounter{ctr_ADDONS}\addcontentsline{toc}{subsection}{#2}
+\begin{minipage}{\textwidth} %%breakpatch
+    \raggedright{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \alph{ctr_ADDONS}) #2} \hfill\tiny #3\\
+    \noindent\rule{\textwidth}{2pt}\\[0.4cm]
+    \vspace*{0.15em}
+\end{minipage}
+}
+
+
+\DeclareRobustCommand{\kw}[1]{\textbf{#1}\index{#1}}
+\DeclareRobustCommand{\sw}[2][Gruppenname]{#2\index{#1!#2}}
+\DeclareRobustCommand{\sr}[3][Gruppenname]{#3\index{#1!#2!#3}}
+
+\AtBeginDocument{
+    \LILLYxLayoutxRestore
+}
+
+

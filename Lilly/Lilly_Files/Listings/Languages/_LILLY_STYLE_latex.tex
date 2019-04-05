@@ -1,0 +1,32 @@
+%% Wird für die Dokumentation entsprechnd erweitert
+
+\lstdefinestyle{latex}{
+    stringstyle = \color{Amber},
+    keywordstyle = \bfseries, %%Hey Justin :D
+    keywordstyle = [2]\color{Awesome}\bfseries, %%KW
+    keywordstyle = [3]{\color{Amber}}, %% PARAM
+    keywordstyle = [4]{\bfseries}, %% FILES
+    keywordstyle = [5]{\color{Ao}}, %% PARAM
+    keywordstyle = [6]{\color{Azure}}, %% PARAM
+    comment=[l]{\%},
+    commentstyle={\color{gray}\LILLYxlstTypeWriter},
+    alsoletter={\#},
+    extendedchars=true,
+    breaklines=true,
+    frame=single,
+    columns=flexible,
+    xleftmargin=3pt,
+    xrightmargin=3pt,
+    %frameround=tttt, %% mag backgroundcolor nicht
+    framerule=0.5pt,
+    escapeinside={!*}{*!}, 
+    showstringspaces=true,  %Damit es keine Verwechslungen gibt
+    basicstyle=\LILLYxlstTypeWriter,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
+    numbers=none,           %Zeilennummern
+    morekeywords = [2]{Lilly},
+    morekeywords = [3]{Typ},
+    morekeywords = [4]{documentclass,begin,end,document,input,TRUE,FALSE,LILLYcommand, elable,examplecube,rotateRPY,node,STATE,state, jmark,hmark,listofDEFS,clearpage,newpage,linput,include,linclude,inputUB,draw,plotline,graphPOI,loopTop,loopRight,loopBot,loopLeft,tcbset,DeclareTColorBox,LILLYxColorxDefinition,textbf,textsc,hfill,textwidth,tcboxedtitleheight,ifthenelse,equal,bfseries,path,},
+    morekeywords = [5]{definition,bemerkung,definition*,beispiel,satz,beweis,lemma,zusammenfassung,aufgabe,uebungsblatt,mrk,pmatrix,tabular,tikzpicture,graph,plot,grid,scope,Automat,minipage,LILLYxBOXxDefinition,LILLYxBOXxAufgabe},
+    morekeywords = [6]{\#1,\#2,\#3,\#4,\#5,\#6,\#7,\#8,\#9}
+}
+

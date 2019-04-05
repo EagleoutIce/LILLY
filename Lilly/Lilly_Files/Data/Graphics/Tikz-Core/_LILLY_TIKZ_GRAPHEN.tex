@@ -1,0 +1,28 @@
+\newlength{\POLYRAD}\setlength{\POLYRAD}{1.61cm}
+
+
+\LILLYcommand{\graphdot}[5]{\node [label=center:\small{#3},draw, circle, color = #5, fill=#1!50!white, very thick, minimum width = 0.6cm] at #2 (#4) {};}
+\LILLYcommand{\tgraphdot}[5]{\node [label=center:\small{#3},draw, circle, color = #5, fill=#1!50!white, very thick, minimum width = 0.6cm, fill opacity=0] at #2 (#4) {};}
+\LILLYcommand{\oragraphdot}[3]{\graphdot{mint}{#1}{#2}{#3}{black};}
+\LILLYcommand{\blugraphdot}[3]{\graphdot{tealblue}{#1}{#2}{#3}{black};}
+\LILLYcommand{\gregraphdot}[3]{\graphdot{limegreen}{#1}{#2}{#3}{black};}
+\LILLYcommand{\purgraphdot}[3]{\graphdot{purple}{#1}{#2}{#3}{black};}
+\LILLYcommand{\golgraphdot}[3]{\graphdot{dgold}{#1}{#2}{#3}{black};}
+\LILLYcommand{\blagraphdot}[3]{\graphdot{black}{#1}{\textcolor{white}{#2}}{#3}{black};}
+\LILLYcommand{\norgraphdot}[3]{\tgraphdot{superlightgray}{#1}{#2}{#3}{black};}
+\LILLYcommand{\margraphdot}[3]{\tgraphdot{superlightgray}{#1}{#2}{#3}{purple};}
+
+\ifx\LILLYxMODExEXTRA\true
+\LILLYcommand{\graphPOI}[8]{    
+\filldraw [thick,color=#2] #1 circle (1.45pt) node[align=left] {}   -- ++(0.5,0) node [right,color=#2] {\begin{minipage}{0.49\textwidth}\small{\textbf{#3}}\hfill #8\end{minipage}} ++(-0.3,-0.2) node[below right] {\begin{minipage}{0.5\textwidth}
+    \textbf{\textcolor{#2!80}{#4:}} \textcolor{#2!65}{#5} 
+\end{minipage} } ++(9cm,0.3) node [below right] {\begin{minipage}[c]{0.3\textwidth}
+    \href{#7}{\fcolorbox{#2}{white}{\includegraphics[height=2cm]{\LILLYxPATH#6}}}
+\end{minipage}} ;}
+\else
+\LILLYcommand{\graphPOI}[8]{    
+\filldraw [thick,color=#2] #1 circle (1.45pt) node[align=left] {}   -- ++(0.5,0) node [right,color=#2] {\begin{minipage}{0.49\textwidth}\small{\textbf{#3}}\hfill #8\end{minipage}} ++(-0.3,-0.2) node[below right] {\begin{minipage}{0.5\textwidth}
+    \textbf{\textcolor{#2!80}{#4:}} \textcolor{#2!65}{#5} 
+\end{minipage} } ++(9cm,0.3) node [below right] {\begin{minipage}[c]{0.3\textwidth}
+\end{minipage}} ;}
+\fi
