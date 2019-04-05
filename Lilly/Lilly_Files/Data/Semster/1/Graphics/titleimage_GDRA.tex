@@ -1,0 +1,141 @@
+\documentclass[11pt]{standalone}
+ 
+\usepackage{tikz}
+\usepackage{pict2e}
+\usepackage{xcolor}
+\usetikzlibrary{3d}
+%\selectcolormodel{wave};
+\definecolor{limegreen}{rgb}{0.2, 0.8, 0.2} 
+\definecolor{candypink}{rgb}{0.89, 0.44, 0.48} 
+\makeatletter
+\tikzoption{canvas is xy plane at z}[]{%
+  \def\tikz@plane@origin{\pgfpointxyz{0}{0}{#1}}%
+  \def\tikz@plane@x{\pgfpointxyz{1}{0}{#1}}%
+  \def\tikz@plane@y{\pgfpointxyz{0}{1}{#1}}%
+  \tikz@canvas@is@plane
+}
+
+\newcommand{\rotateRPY}[3]
+{   \pgfmathsetmacro{\rollangle}{#1}
+    \pgfmathsetmacro{\pitchangle}{#2}
+    \pgfmathsetmacro{\yawangle}{#3}
+
+    \pgfmathsetmacro{\newxx}{cos(\yawangle)*cos(\pitchangle)}
+    \pgfmathsetmacro{\newxy}{sin(\yawangle)*cos(\pitchangle)}
+    \pgfmathsetmacro{\newxz}{-sin(\pitchangle)}
+    \path (\newxx,\newxy,\newxz);
+    \pgfgetlastxy{\nxx}{\nxy};
+
+    \pgfmathsetmacro{\newyx}{cos(\yawangle)*sin(\pitchangle)*sin(\rollangle)-sin(\yawangle)*cos(\rollangle)}
+    \pgfmathsetmacro{\newyy}{sin(\yawangle)*sin(\pitchangle)*sin(\rollangle)+ cos(\yawangle)*cos(\rollangle)}
+    \pgfmathsetmacro{\newyz}{cos(\pitchangle)*sin(\rollangle)}
+    \path (\newyx,\newyy,\newyz);
+    \pgfgetlastxy{\nyx}{\nyy};
+
+    \pgfmathsetmacro{\newzx}{cos(\yawangle)*sin(\pitchangle)*cos(\rollangle)+ sin(\yawangle)*sin(\rollangle)}
+    \pgfmathsetmacro{\newzy}{sin(\yawangle)*sin(\pitchangle)*cos(\rollangle)-cos(\yawangle)*sin(\rollangle)}
+    \pgfmathsetmacro{\newzz}{cos(\pitchangle)*cos(\rollangle)}
+    \path (\newzx,\newzy,\newzz);
+    \pgfgetlastxy{\nzx}{\nzy};
+}
+
+\tikzset{RPY/.style={x={(\nxx,\nxy)},y={(\nyx,\nyy)},z={(\nzx,\nzy)}}}
+\begin{document}
+\begin{tikzpicture}[scale=2,every node/.style={transform shape}]
+    \tikzset{3d/.style={canvas is xy plane at z=0}} 
+    \tikzstyle{dot}=[circle,inner sep = 1.4pt,draw,fill=lightgray]
+    
+    \tikzstyle{edge} = []
+    \tikzstyle{b edge} = [densely dashed,thin]
+    \tikzstyle{d dot}=[circle,inner sep = 1.4pt,draw,fill=darkgray]
+
+\rotateRPY{87}{184}{-1.3}
+\begin{scope}[RPY]
+    \node at(-0.59,1.63,0.30) {\begin{tikzpicture}[scale=0.26]
+        \draw[candypink,fill=candypink] (0,0) .. controls (0,0.75) and (-1.5,1.00) .. (-1.5,2)  arc (180:0:0.75)  -- cycle;
+        \draw[candypink,fill=candypink] (0,0) .. controls (0,0.75) and ( 1.5,1.00) .. ( 1.5,2)  arc (0:180:0.75) -- cycle;
+    \end{tikzpicture}};
+\end{scope}
+
+
+    \rotateRPY{0}{94}{-1.3}
+    \begin{scope}[RPY]
+        \node at(0.52,0.78,0.4) {\begin{tikzpicture}[scale=0.28]
+            \draw[candypink,fill=candypink] (0,0) .. controls (0,0.75) and (-1.5,1.00) .. (-1.5,2)  arc (180:0:0.75)  -- cycle;
+            \draw[candypink,fill=candypink] (0,0) .. controls (0,0.75) and ( 1.5,1.00) .. ( 1.5,2)  arc (0:180:0.75) -- cycle;
+        \end{tikzpicture}};
+    \end{scope}
+    \rotateRPY{0}{4}{-1.3}
+        \begin{scope}[RPY]
+            \fill[fill=gray!15!white,opacity=0.02] (0,0,0) -- ++(3,0,0) -- ++(0,3,0) -- ++ (-3,0,0) -- cycle;
+
+            \node at(1.32,1.25,0.35) {\begin{tikzpicture}[scale=0.28]
+                \draw[candypink!90!black,fill=candypink!90!black] (0,0) .. controls (0,0.75) and (-1.5,1.00) .. (-1.5,2)  arc (180:0:0.75)  -- cycle;
+                \draw[candypink!90!black,fill=candypink!90!black] (0,0) .. controls (0,0.75) and ( 1.5,1.00) .. ( 1.5,2)  arc (0:180:0.75) -- cycle;
+            \end{tikzpicture}};
+
+        \fill[fill=gray!10!white,opacity=0.02] (0,0,3) -- ++(0,0,-3) -- ++(0,3,0) -- ++ (0,0,3) -- cycle;
+        \node[dot]  (a1)  at (0,0,0) {}; 
+        \node[dot]    (b1)  at (0,0,3) {};
+        \node[dot]   (c1)  at (3,0,3) {};
+        \node[dot]   (d1)  at (3,0,0) {};
+        \node[dot]  (e1)  at (0,3,0) {};
+        \node[dot]   (f1)  at (3,3,0) {};
+        \node[dot]    (g1)  at (0,3,3) {};
+        \node[dot]    (h1)  at (3,3,3) {};
+
+        \node[d dot]  (a2)  at (1,1,1) {}; 
+        %\fill[3d,color=white,opacity=0.1] (0.4,0.23) rectangle ++(1,1);
+        \draw[fill=gray!10!white,opacity=0.7] (1,1,2) -- ++(1,0,0) -- ++(0,1,0) -- ++ (-1,0,0) -- cycle;
+        \draw[fill=gray!15!white,opacity=0.7] (2,1,2) -- ++(0,0,-1) -- ++(0,1,0) -- ++ (0,0,1) -- cycle;
+        \fill[fill=gray!15!white,opacity=0.7] (1,1,2) -- ++(0,0,-1) -- ++(0,1,0) -- ++ (0,0,1) -- cycle;
+        \fill[fill=gray!15!white,opacity=0.7] (1,1,1) -- ++(1,0,0) -- ++(0,1,0) -- ++ (-1,0,0) -- cycle;
+        \fill[fill=gray!10!white,opacity=0.7] (1,1,2) -- ++(0,0,-1) -- ++(1,0,0) -- ++ (0,0,1) -- cycle;
+        \fill[fill=gray!10!white,opacity=0.7] (1,2,2) -- ++(0,0,-1) -- ++(1,0,0) -- ++ (0,0,1) -- cycle;
+        \node[d dot]   (b2)  at (1,1,2) {};
+
+        \node[d dot]   (c2)  at (2,1,2) {};
+        \node[d dot]    (d2)  at (2,1,1) {};
+        \node[d dot]  (e2)  at (1,2,1) {};
+        \node[d dot]    (f2)  at (2,2,1) {};
+        \node[d dot]    (g2)  at (1,2,2) {};
+        \node[d dot]    (h2)  at (2,2,2) {};
+        \foreach \x in {1,2}{
+            \draw[edge] (g\x) -- (b\x) -- (c\x) -- (d\x) -- (f\x) -- (h\x) -- (g\x) (c\x) -- (h\x);
+            \draw[b edge] (d\x) -- (a\x) -- (b\x) (a\x) -- (e\x) -- (g\x) (e\x) -- (f\x);
+        }    
+        \foreach \alph in {b,c,d,f,g,h} {
+            \draw[edge] (\alph2) -- (\alph1);
+        }
+        \foreach \alph in {a,e} {
+            \draw[b edge] (\alph2) -- (\alph1);
+        }
+        \node at(1.35,1.35,1.5) {\begin{tikzpicture}[scale=0.3]
+            \draw[candypink!90!white,fill=candypink!90!white] (0,0) .. controls (0,0.75) and (-1.5,1.00) .. (-1.5,2)  arc (180:0:0.75)  -- cycle;
+            \draw[candypink!90!white,fill=candypink!90!white] (0,0) .. controls (0,0.75) and ( 1.5,1.00) .. ( 1.5,2)  arc (0:180:0.75) -- cycle;
+        \end{tikzpicture}};
+       
+
+        \fill[fill=gray!5!white,opacity=0.1] (0,0,0) -- ++(3,0,0) -- ++(0,3,0) -- ++ (-3,0,0) -- cycle;
+        \end{scope}
+        \rotateRPY{0}{94}{-1.3}
+        \begin{scope}[RPY]
+        \node at(0.52,0.75,1.4) {\begin{tikzpicture}[scale=0.28]
+            \draw[candypink,fill=candypink] (0,0) .. controls (0,0.75) and (-1.5,1.00) .. (-1.5,2)  arc (180:0:0.75)  -- cycle;
+            \draw[candypink,fill=candypink] (0,0) .. controls (0,0.75) and ( 1.5,1.00) .. ( 1.5,2)  arc (0:180:0.75) -- cycle;
+        \end{tikzpicture}};
+
+        \end{scope}
+        \rotateRPY{87}{184}{-1.3}
+        \begin{scope}[RPY]
+        \node at(-0.59,1.7,-0.7) {\begin{tikzpicture}[scale=0.26]
+            \draw[candypink,fill=candypink] (0,0) .. controls (0,0.75) and (-1.5,1.00) .. (-1.5,2)  arc (180:0:0.75)  -- cycle;
+            \draw[candypink,fill=candypink] (0,0) .. controls (0,0.75) and ( 1.5,1.00) .. ( 1.5,2)  arc (0:180:0.75) -- cycle;
+        \end{tikzpicture}};
+
+
+        \end{scope}
+    \end{tikzpicture}
+
+\end{document} 
+ 

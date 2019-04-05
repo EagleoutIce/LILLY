@@ -1,0 +1,40 @@
+#Laden der jeweiligen '.tex datei':
+TEXFILES := $(shell ls *.tex)
+
+PDFFILES := $(addsuffix .pdf,$(basename $(TEXFILES)))
+
+LATEXARGS := -shell-escape -enable-write18 -interaction=batchmode
+MACROARGS := \\def\\LILLYxDummy{Hallo Welt}
+
+OUTPUTDRIVER := -output-driver='xdvipdfmx -z3'
+
+
+
+all:	$(PDFFILES)
+
+
+clean:
+	rm -f *.pdf
+
+#Generiere die Standardversion des Dokuments
+default: $(PDFFILES)
+
+
+
+
+compile:
+
+%.pdf: %.tex
+	pdflatex -jobname $(basename $@) $(LATEXARGS) $(MACROARGS) \\input{$<} # Nehme die erste Datei
+	bibtex # Selbst wenn es nicht benötigt wird - dann tut es eben nichts.
+	pdflatex -jobname $(basename $@) $(OUTPUTDRIVER) $(LATEXARGS) $(MACROARGS) \\input{$<}
+	
+	## alles löschen - auch wenn es nicht generiert wird ^^
+	rm -f *.log && rm -f *.aux && rm -f *.out
+	rm -f *.ind && rm -f *.bbl && rm -f *.blg
+	rm -f *.lof && rm -f *.lot && rm -f *.toc
+	rm -f *.idx && rm -f *.acn && rm -f *.acr
+	rm -f *.alg && rm -f *.glg && rm -f *.glo
+	rm -f *.gls && rm -f *.fls && rm -f *.fdb_latexmk
+	
+	

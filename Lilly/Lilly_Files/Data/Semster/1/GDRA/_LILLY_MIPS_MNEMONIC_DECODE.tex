@@ -1,0 +1,68 @@
+\ExplSyntaxOn
+\NewDocumentCommand{\xhrulefill}{O{}}
+ {
+  \group_begin:
+  \severin_xhrulefill:n { #1 }
+  \group_end:
+ }
+
+ \newcommand{\mnemonicDecode}[1]{
+    \begin{switch}{#1}  
+        \case{addi}{add~immediate}  
+        \case{addu}{add~unsigned}  
+        \case{sub}{subtract} 
+        \case{addiu}{add~immediate~unsigned}  
+        \case{subu}{subtract~unsigned}  
+        \case{mult}{multiplicate}  
+        \case{multu}{multiplicate~unsigned}  
+        \case{div}{divide} 
+        \case{divu}{divide~unsigned}  
+        \case{sw}{store~word} 
+        \case{lw}{load~word} 
+        \case{li}{load~immediate} 
+        \case{mfhi}{move~from~hi~register} 
+        \case{mthi}{move~to~hi~register} 
+        \case{mflo}{move~from~lo~register} 
+        \case{mtlo}{move~to~lo~register} 
+        \case{slt}{set~on~less~than}
+        \case{slti}{set~on~less~than~immediate}
+        \case{andi}{and~immediate}
+        \case{ori}{or~immediate}
+        \case{xori}{xor~immediate}
+        \case{nop}{no~operation}
+        \case{sll}{shift~left~logical}
+        \case{srl}{shift~right~logical}
+        \case{sra}{shift~right~arithmetic}
+        \case{syscall}{system~call}
+        \case{beq}{branch~if~equal}
+        \case{bne}{branch~if~not~equal}
+        \case{blez}{branch~if~less~than~or~equal~to~zero}
+        \case{jr}{jump~to~register}
+        \case{la}{load~address}
+        \case{j}{jump}
+        \case{lb}{load~byte}
+        \case{jal}{jump~and~link}
+        \default{#1}  
+    \end{switch}
+}
+\keys_define:nn { severin/xhrulefill }
+ {
+  height .dim_set:N    = \l_severin_xhrule_height_dim,
+  thickness .dim_set:N = \l_severin_xhrule_thickness_dim,
+  fill .skip_set:N     = \l_severin_xhrule_fill_skip,
+  height .initial:n    = 0pt,
+  thickness .initial:n = 0.4pt,
+  fill .initial:n      = 0pt plus 1fill,
+ }
+
+\cs_new_protected:Nn \severin_xhrulefill:n
+ {
+  \keys_set:nn { severin/xhrulefill } { #1 }
+  \leavevmode
+  \leaders\hrule 
+    height \dim_eval:n { \l_severin_xhrule_thickness_dim + \l_severin_xhrule_height_dim }
+    depth  \dim_eval:n { -\l_severin_xhrule_height_dim }
+  \skip_horizontal:N \l_severin_xhrule_fill_skip
+  \kern 0pt
+}
+\ExplSyntaxOff

@@ -1,0 +1,13 @@
+\newcounter{ctr_MIP}
+\renewcommand{\lstlistingname}{MIPS-Programm}% Listing -> Algorithm
+\newcommand{\listMIPSname}{~\\[-1.75cm]}
+\newlistof{MIPS}{MIP}{\listMIPSname}
+\newcommand{\MIPS}[1]{%
+\refstepcounter{MIPS}
+\addcontentsline{MIP}{MIPS}
+{ #1}\par
+}
+
+\input{Lilly_Files/Data/Semster/1/GDRA/_LILLY_MIPS_COMMANDS}
+\input{Lilly_Files/Data/Semster/1/GDRA/_LILLY_MIPS_DESCRIPTION_ENVIRONMENT}
+\input{Lilly_Files/Data/Semster/1/GDRA/_LILLY_MIPS_MNEMONIC_DECODE}

@@ -1,0 +1,53 @@
+\newcommand{\T}[1]{{\LILLYxlstTypeWriter #1}} %Shortcut Schreibmaschine
+\newcommand\narrowitems{\setlength{\itemsep}{0pt}}
+\newcommand\closeritems{\setlength{\itemsep}{-4pt}} 
+
+\newcommand\tab[1][1cm]{\hspace*{#1}} %find ich logischer so....
+\newcommand\lreqn[2]{\noindent\makebox[\textwidth]{\(\displaystyle\)#1\hfill#2}} %für coole Beweisboxen
+\newcommand\q[1][0]{\glq#1\grq{}} %''
+\newcommand\qq[1][0]{\glqq#1\grqq{}} %""
+\newcommand\colvec[1]{\begin{pmatrix}#1\end{pmatrix}} %Vektoren für Mathe
+\newcommand\minicolvec[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)} %Vektoren für Mathe
+
+\newcommand{\qedsymbol}{\(\blacksquare\)}  %Beweisbox
+\newcommand{\say}[1]{\glqq{#1}\grqq}
+
+
+
+\newcommand{\rom}[1]{\text{\MakeUppercase{\romannumeral #1}}} %Zahlen Römisch (GDRA)
+
+
+%TIKZSYMBOLS
+\newcommand\ring[1]{\fill #1 circle [radius=0.7pt];} %%Schortcuts für Schaltkreise, weil es mir so besser gefällt ^^ und ich das Scaling erst nachher angepasst habe ^^
+\newcommand\bigRing[1]{\fill #1 circle [radius=1.4pt];}
+\newcommand\bigCRing[2][limegreen]{\fill[fill=#1] #2 circle [radius=1.4pt];}
+
+\newcommand\ringC[2][limegreen]{\fill[fill=#1] #2 circle [radius=0.7pt];}
+
+
+
+\LILLYcommand{\LILLYcoloredSQ}[1]{\tikz{\draw[fill=#1!75!white,#1!75!white] (-0.05,-0.05) rectangle ++ (0.4,0.4);\draw[fill=#1!50!white,#1!50!white] (0,0) rectangle ++ (0.35,0.35);\draw[fill=#1,#1] (0,0) rectangle ++ (0.3,0.3);}}
+
+
+\def\firstcircle{(90:0.5cm) circle (0.75cm)} %%Shortcuts für FG, auch danach gerne genutzt
+\def\secondcircle{(330:0.5cm) circle (0.75cm)}
+\def\thirdcircle{(210:0.5cm) circle (0.75cm)}
+\def\bigcircle{(0:0cm) circle (1.5cm)}
+
+
+
+\LILLYcommand{\LILLYxCOLORxRainbow}{
+    \LILLYcoloredSQ{\LILLYxColorxDefinition}
+    \LILLYcoloredSQ{\LILLYxColorxSatz}
+    \LILLYcoloredSQ{\LILLYxColorxBeweis}
+    \LILLYcoloredSQ{\LILLYxColorxLemma}
+    \LILLYcoloredSQ{\LILLYxColorxBemerkung}
+    \LILLYcoloredSQ{\LILLYxColorxZusammenfassung}
+    \LILLYcoloredSQ{\LILLYxColorxBeispiel}
+    \LILLYcoloredSQ{\LILLYxColorxUebungsaufgabe}
+    \LILLYcoloredSQ{\LILLYxColorxZusatzuebung}
+    \LILLYcoloredSQ{\LILLYxLINKSxMainColor}
+    \LILLYcoloredSQ{\LILLYxLINKSxMainColorDarker}
+    \LILLYcoloredSQ{\LILLYxLINKSxCiteColor}
+    \LILLYcoloredSQ{\LILLYxLINKSxUrlColor}
+}

@@ -1,0 +1,39 @@
+\documentclass[11pt]{standalone}
+ 
+\usepackage{tikz}
+\usepackage{pict2e}
+\usepackage{xcolor}
+\begin{document}
+%\selectcolormodel{wave};
+\definecolor{purp1}{RGB}{97,0,233}
+\definecolor{red1}{RGB}{156,0,0}
+\definecolor{gre1}{RGB}{36,255,0}
+\definecolor{ora1}{RGB}{255,20,0}
+\definecolor{blu2}{RGB}{43,0,255}
+\definecolor{red2}{RGB}{189,0,0}
+\definecolor{gre2}{RGB}{0,255,63}
+\definecolor{ora2}{RGB}{255,0,0}
+
+\begin{tikzpicture}
+ 
+    \path[left color=blu2, right color=red2] (-4,2.5) rectangle ++(8.5,0.04);
+    \path[left color=gre2, right color=ora2] (-4,-2.5) rectangle ++(8.5,0.04);
+    \path[top color=blu2, bottom color=gre2] (-4.33,2.5) rectangle ++(0.04,-5);
+    \path[top color=red2, bottom color=ora2] (4.28,2.5) rectangle ++(0.04,-5);
+
+    \path[left color=purp1, right color=red1] (-3.5,3.3) rectangle ++(7,0.04);
+    \path[top color=purp1, bottom color=gre1] (-3.7,3.5) rectangle ++(0.04,-7);
+    \path[left color=gre1, right color=ora1] (-3.5,-3.3) rectangle ++(7,0.04);
+    \path[top color=red1, bottom color=ora1] (3.7,3.5) rectangle ++(0.04,-7);
+
+    \foreach \x [count=\xi] in {355,370,...,800} {
+        %\colorlet{nodecol}[wave]{\x};
+        \draw[thick] (90+\xi*12:5cm) --(0,0);
+        \node[circle,draw,color=black,minimum width=21, very thick] at (90+\xi*12-12:5cm) (p\xi) {\put(0,0){\color[wave]{\x}\circle*{20}}};
+    }
+    \draw[thick] (p1) -- (p2) -- (p3) -- (p4) -- (p5) --(p6) -- (p7) -- (p8) -- (p9) -- (p10) -- (p11) -- (p12) -- (p13) -- (p14) -- (p15) -- (p16) -- (p17) -- (p18) -- (p19) -- (p20) -- (p21) -- (p22) -- (p23) -- (p24) -- (p25) -- (p26) -- (p27) -- (p28) -- (p29) -- (p30) -- (p1);
+    \node at(6.3,0) {};
+
+\end{tikzpicture}
+\end{document} 
+ 

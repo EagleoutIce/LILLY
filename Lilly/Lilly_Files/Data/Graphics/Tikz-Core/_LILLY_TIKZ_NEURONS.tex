@@ -1,0 +1,6 @@
+\LILLYcommand{\neuronSquare}[4]{
+    \draw[thick] (0,0) node[label={[label distance = -0.1cm]above right:\fontsize{4pt}{3pt}\selectfont{(0,0)}}] {} -- (2,0) node[label={[label distance = -0.1cm]above left:\fontsize{4pt}{3pt}\selectfont{(1,0)}}] {}-- (2,2) node[label={[label distance = -0.1cm]below left:\fontsize{4pt}{3pt}\selectfont{(1,1)}}] {} -- (0,2) node[label={[label distance = -0.1cm]below right:\fontsize{4pt}{3pt}\selectfont{(0,1)}}] {} -- cycle ;    \draw[fill=#1,thick] (0,0) circle (0.15);
+    \draw[fill=#2,thick] (0,2) circle (0.15);
+    \draw[fill=#3,thick] (2,0) circle (0.15);
+    \draw[fill=#4,thick] (2,2) circle (0.15);
+}

@@ -1,0 +1,44 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grundelgendes setup von hyperref                                                                                    %     %%%% HYPERREF-BASICS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\RequirePackage{hyperref}
+
+\hypersetup{         %Niemand mag Rote Boxen um links
+    colorlinks=true, %Das gelbe highlighting ist aber cool
+    linktoc=all,
+    linkcolor=\LILLYxLINKSxMainColor,
+    citecolor=\LILLYxLINKSxCiteColor,
+    filecolor=black!75!black,
+    urlcolor=\LILLYxLINKSxUrlColor,
+    hyperfootnotes=true,
+    hypertexnames,
+    bookmarks=true,
+    unicode=true,
+    pdftoolbar=false,
+    pdfpagemode=UseAttachments,
+    pdfmenubar=false,
+    pdffitwindow=true,
+    pdfauthor={\AUTHOR (Lilly - Florian Sihler)},
+    pdfsubject={Latex-Dokument},
+    pdfauthor={\AUTHOR (Lilly - Florian Sihler)},
+    pdfcreator={pdflatex on Linux (eagle) using the LILLY-Package},
+    bookmarks=true
+}
+
+\providecommand{\LILLYxHYPERLINK}{TRUE}
+
+\LILLYcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}
+
+\providecommand*{\elable}[1]{\phantomsection\label{#1}}  %\phantomsection % wenn gewünscht das direkter sprung
+\ifx\LILLYxHYPERLINK\true
+    \newcommand{\jmark}[2][Linkname]{{\hypersetup{linkcolor=\LILLYxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
+    \newcommand{\hmark}[2][Linkname]{\hypersetup{linkcolor=black}\textbf{{\hyperref[#2]{#1}}}}
+    \newcommand{\silentHmark}[2][Linkname]{\hmark[#1]{#2}}
+\else
+    \newcommand{\jmark}[2][Linkname]{\ensuremath{\text{#1}^{\rightarrow~\text{\pageref{#2}}}}}
+    \newcommand{\hmark}[2][Linkname]{\ensuremath{\textbf{#1}^{\rightarrow~\text{\pageref{#2}}}}}
+    \newcommand{\silentHmark}[2][Linkname]{#1}
+\fi
+
+\providecommand*{\eXButton}[2]{\Acrobatmenu{#1}{\textcolor{\LILLYxLINKSxMainColor}{#2}}}

@@ -1,0 +1,38 @@
+\newcommand{\rotateRPY}[4][0/0/0]% point to be saved to \savedxyz, roll, pitch, yaw
+{   \pgfmathsetmacro{\rollangle}{#2}
+    \pgfmathsetmacro{\pitchangle}{#3}
+    \pgfmathsetmacro{\yawangle}{#4}
+
+    % to what vector is the x unit vector transformed, and which 2D vector is this?
+    \pgfmathsetmacro{\newxx}{cos(\yawangle)*cos(\pitchangle)}% a
+    \pgfmathsetmacro{\newxy}{sin(\yawangle)*cos(\pitchangle)}% d
+    \pgfmathsetmacro{\newxz}{-sin(\pitchangle)}% g
+    \path (\newxx,\newxy,\newxz);
+    \pgfgetlastxy{\nxx}{\nxy};
+
+    % to what vector is the y unit vector transformed, and which 2D vector is this?
+    \pgfmathsetmacro{\newyx}{cos(\yawangle)*sin(\pitchangle)*sin(\rollangle)-sin(\yawangle)*cos(\rollangle)}% b
+    \pgfmathsetmacro{\newyy}{sin(\yawangle)*sin(\pitchangle)*sin(\rollangle)+ cos(\yawangle)*cos(\rollangle)}% e
+    \pgfmathsetmacro{\newyz}{cos(\pitchangle)*sin(\rollangle)}% h
+    \path (\newyx,\newyy,\newyz);
+    \pgfgetlastxy{\nyx}{\nyy};
+
+    % to what vector is the z unit vector transformed, and which 2D vector is this?
+    \pgfmathsetmacro{\newzx}{cos(\yawangle)*sin(\pitchangle)*cos(\rollangle)+ sin(\yawangle)*sin(\rollangle)}
+    \pgfmathsetmacro{\newzy}{sin(\yawangle)*sin(\pitchangle)*cos(\rollangle)-cos(\yawangle)*sin(\rollangle)}
+    \pgfmathsetmacro{\newzz}{cos(\pitchangle)*cos(\rollangle)}
+    \path (\newzx,\newzy,\newzz);
+    \pgfgetlastxy{\nzx}{\nzy};
+
+    % transform the point given by #1
+    \foreach \x/\y/\z in {#1}
+    {   \pgfmathsetmacro{\transformedx}{\x*\newxx+\y*\newyx+\z*\newzx}
+        \pgfmathsetmacro{\transformedy}{\x*\newxy+\y*\newyy+\z*\newzy}
+        \pgfmathsetmacro{\transformedz}{\x*\newxz+\y*\newyz+\z*\newzz}
+        \xdef\savedx{\transformedx}
+        \xdef\savedy{\transformedy}
+        \xdef\savedz{\transformedz}     
+    }
+}
+
+\tikzset{RPY/.style={x={(\nxx,\nxy)},y={(\nyx,\nyy)},z={(\nzx,\nzy)}}}

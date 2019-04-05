@@ -1,0 +1,149 @@
+\renewcommand{\arraystretch}{1.5}
+\setlength\intextsep{0pt}
+\chapter[Listings \LILLYxBOXxVersion{\small 1.0.0}]{Listings}
+\TitleSUB{Ist this\ldots the Matrix? \hfill \LILLYxBOXxVersion{\small 1.0.0}}
+Sei es nun \fg[], \eidi oder \gdra[], in jeder Vorlesungsreihe war es von Relevanz Quelltexte mit Syntax-Highlighting zu versehen. Hierfür verwendet LILLY die Bibliothek \T{listings} und fügt einige Styles und ein paar Sprachen hinzu, die ebenfalls frei gewählt werden können. Aktuell ist die Implementation an vielen Stellen noch weit weg von perfekt. So ist es in GDRA zum Beispiel immer noch vonnöten das Highlighting, von zum Beispiel \T{addiu}, mithilfe von \verb|*\mipsADD*| einzubinden. An einer Lösung hierfür wird aktuell gearbeitet, siehe weiter \jmark[unten]{jmp:lstCodeInject}.\normalmarginpar
+\section{Die grundlegenden Eigenschaften}
+\subsection{Grundlegendes Design}
+{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Listings/\_LILLY\_LISTINGS\_STYLE}}\vspace*{0.5\baselineskip}\par}
+
+LILLY verwendet nicht das normale \verb|listings|-Paket, sondern greift auf das erweiterte Paket \verb|listingsutf8| zu. Weiter definiert es für alle klassischen Umlaute die nötigen Befehle mithilfe von \verb|\lstset{literate=...}|. Dieser Code wurde folgender Seite entnommen: \url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}.\newline
+Um dynamisch zu bleiben bindet LILLY nicht einfach verschiedene Stile ein, sondern Dateien, welche dann für sich definieren, welche Stile und Sprachen zusätzlich zur Verfügung stehen.\marginpar{\tiny Bisher ist das Einbinden neuer Stile noch recht starr, da der Dateipfad bis auf das Suffix vorgegeben ist. Dies sollte geändert werden}\par\reversemarginpar
+Mithilfe von \CMDpreview{LIL\-LY\-xLis\-tings\-xLang} kann man das jeweilige Paket auswählen. Dieses Paket wird über den klassischen \verb|\input{}|-Befehl eingebunden und zwar über folgende Anweisung: 
+{\small\begin{lstlisting}[style=latex, breaklines=true]
+\input{Lilly_Files/Listings/Languages/_LILLY_LANG_\LILLYxListingsxLang}
+\end{lstlisting}}
+
+Standardmäßig wird so das \T{MAIN}-Paket geladen, welches ebenfalls die \T{LANG}-Signatur besitzt - dies soll geändert werden. 
+\clearpage
+\subsection{Das MAIN-Paket}
+{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Listings/Languages/\_LILLY\_LANG\_MAIN}}\vspace*{0.5\baselineskip}\par}
+
+\begin{wraptable}{L}{0.5\linewidth}
+    \footnotesize
+    \begin{centered}
+        \begin{tabular}{|>{\LILLYxlstTypeWriter}l|>{\LILLYxlstTypeWriter}l|}
+            \hline
+                showstringspaces & true \\\hline
+                basicstyle & \CMDshow{LILLYxlstTypeWriter} \\\hline
+                numbers & left \\\hline
+                escapeinside & \{!*\}\{*)\}\\\hline
+                frame & single \\\hline
+                language & assembler \\\hline
+                numberstyle & \CMDshow{small}\CMDshow{color}\{gray\} \\\hline
+                keywordstyle & \CMDshow{color}\{purple\}\CMDshow{bfseries} \\\hline
+                commentstyle & \CMDshow{color}\{gray\} \\\hline
+                stringstyle & \CMDshow{color}\{mint\}\\\hline
+                extendedchars & true \\
+            \hline
+        \end{tabular}
+    \end{centered}
+\end{wraptable}
+Die allgemeine TypeWriter-Schriftart wird mithilfe von \CMDpreview{LILLYxlstTypeWriter} auf \T{AnonymousPro} gesetzt. Sie wird auch hier für die Dokumentation verwendet. Weiter lädt es folgende Sprachen \& Stile (die Differenzierung ist hierbei noch nicht abgeschlossen):
+\begin{multicols}{2}
+    \begin{itemize}[label=$\diamond$]\narrowitems
+        \item assembler
+        \item pseudo
+        \item pseudo\_nospace
+        \item bash
+        \item latex
+    \end{itemize}
+\end{multicols}
+Zudem lädt \T{MAIN} noch das Paket \T{MIPS}, auf welches weiter unten noch weiter eingegangen wird. Weiter wird \verb|\lst@PlaceNumber| modifiziert und es werden einige grundlegende Einstellungen getätigt, welche sich in der linken Tabelle wiederfinden lassen. Im Folgenden werden die einzelnen hierrüber eingebundenen Sprachen nicht weiter beschrieben - hierzu gibt es eigene Sektionen weiter unten\ldots\smallskip\newline
+\subsection{Das MIPS-Paket}
+{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Listings/Languages/\_LILLY\_LANG\_MIPS}}\vspace*{0.5\baselineskip}\par}
+Dieses Paket wurde vor allem im Rahmen von \gdra erstellt und bindet das Paket \verb|caption| mit ein, um die Positionierung von Titeln zu vereinfachen. Weiter definiert es die Befehle \CMDpreview{gitRAW} und \CMDpreview{git} (Diese sollten besser verschoben werden TODO:). Sie fügen mithilfe von FontAwesome ein Github Symbol ein, welches auf ein Github-Repository verweist, indem sich alle in \gdra verwendeten Codes befinden (\url{https://www.github.com/EagleoutIce/MIPS_UniUlm_Examples/}: \git). Dieses Paket wird vom \T{MAIN}-Paket eingebunden und definiert weiter folgende Stile:
+\paragraph{MIPS} Syntax-Highlighting für alle grundlegende MIPS-Befehle - verwendet 6 verschiedene Farben für verschiedene Arten von Keywords:
+\newcommand{\cs@lslave}[2]{\T{#1}${}^{~(#2)}$}
+\begin{multicols}{2}
+    \begin{itemize}[label=$\diamond$]\narrowitems
+        \foreach \c/\l in {Zeichenketten/candypink,
+                           Befehle/purple,
+                           Register/tealblue,
+                           Direktiven/dgold,
+                           Spezielle~Befehle/limegreen,
+                           Buzzwords/thered,
+                           Daten-Direktiven/tealblue!60!black%
+                           } {
+            \item[\cs@show{\l}] \cs@lslave{\c}{\l}
+        }
+    \end{itemize}
+\end{multicols}
+Weiter setzt es die Position der Zeilenummern auf die rechte Seite. 
+\paragraph{MIPSSNIP}
+Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitte. 
+
+\section{Die mitgelieferten Erweiterungen}
+\subsection{assembler}
+{\centering \framebox{Definitionen aus der Datei: \T{Listings/Languages/\_LILLY\_LANG\_assembler}}\vspace*{0.5\baselineskip}\par}
+
+\begin{wraptable}{L}{0.5\linewidth}
+    \footnotesize\centering\begin{tabular}{|>{\LILLYxlstTypeWriter}l|>{\LILLYxlstTypeWriter}l|}
+            \hline
+                showstringspaces & true \\\hline
+                basicstyle & \CMDshow{LILLYxlstTypeWriter} \\\hline
+                keywordstyle & \CMDshow{color}\{purple\}\CMDshow{bfseries} \\\hline
+                commentstyle & \CMDshow{color}\{gray\} \\\hline
+                stringstyle & \CMDshow{color}\{mint\}\\\hline
+                extendedchars & true \\\hline
+                comment & [l]\{//\} \\\hline
+                morecomment & [s]\{/*\}\{*/\} \\\hline
+                morestring & [b]' \\
+            \hline
+        \end{tabular}
+        \vspace{-50pt}
+\end{wraptable}
+Diese Sprache liefert eine seltsame Mischung an Assembler-Befehlen, die in \gdra zum Teil als Pseudo-Assembler-Befehlssatz verwendet wurden. Die definierten Schlüsselwörter lauten:\smallskip\newline \parbox{0.98\linewidth}{\T{while, if, r, ld, st, sr, sl, beq, bnq, add, sub, and, or, not, xor, dec, inc, jmp, addi, sw, addui, add, sw, lw, slti, j, jal, div, mul, hi, lo}.}\smallskip\newline Weiter werden \T{ndkeywords} definiert \T{nop, X, acc}, mit folgendem Style:\smallskip\newline \T{\CMDshow{color}\{tealblue!80!black\}\CMDshow{bfseries}}.
+
+\subsection{pseudo}
+{\centering \framebox{Definitionen aus der Datei: \T{Listings/Languages/\_LILLY\_LANG\_pseudo}}\vspace*{0.5\baselineskip}\par}
+
+\begin{wraptable}{L}{0.5\linewidth}
+    \footnotesize\centering\begin{tabular}{|>{\LILLYxlstTypeWriter}l|>{\LILLYxlstTypeWriter}l|}
+            \hline
+                showstringspaces & false \\\hline
+                basicstyle & \CMDshow{LILLYxlstTypeWriter} \\\hline
+                keywordstyle & \CMDshow{color}\{purple\}\CMDshow{bfseries} \\\hline
+                commentstyle & \CMDshow{color}\{gray\} \\\hline
+                stringstyle & \CMDshow{color}\{mint\}\\\hline
+                extendedchars & true \\\hline
+                comment & [l]\{//\} \\\hline
+                morecomment & [s]\{/*\}\{*/\} \\\hline
+                morestring & [b]' \\
+            \hline
+        \end{tabular}
+        \vspace{-80pt}
+\end{wraptable}
+Diese Sprache liefert die Befehle für die Pseudo-Programmiersprache in \fg[]. Die definierten Schlüsselwörter lauten:\medskip\newline \parbox{0.98\linewidth}{\T{INPUT, REPEAT, ELSE, UNTIL, OR, END, FOR, IF, END, TO, DO, THEN, TRUE, FALSE, END,  print, println, goto, system}.}\vspace{50pt}\newline
+
+\subsection{pseudo\_nospace \LILLYxNOTExWarning{Veraltet}}
+{\centering \framebox{Definitionen aus der Datei: \T{Listings/Languages/\_LILLY\_LANG\_pseudo\_nospace}}\vspace*{0.5\baselineskip}\par}
+Definiert bis auf die Option \T{sensitive} die selben Dinge wie \T{pseudo} und ist nur noch aus Kompatibilitätsgründen vorhanden. 
+
+\subsection{bash}
+{\centering \framebox{Definitionen aus der Datei: \T{Listings/Languages/\_LILLY\_LANG\_bash}}\vspace*{0.5\baselineskip}\par}
+
+Dieser Stil wurde für die Dokumentation erstellt und wird mit ihr erweitert und verfeinert. Es ist davon auszugehen, dass alle in dieser Dokumentation verwendeten Befehle zur Verfügung stehen. Bei Bedarf kann dieses Paket gerne erweitert und ausgebaut werden. Bisher definiert es Befehle wie: \T{mkdir, texhash, make, apt}, Parameter wie \T{-p, -dir, print, install} und Dokumentbezeichnern wie: \T{lilly\_compile.sh, sudo}. \begin{center}
+    FunFact: Für Variablen mit \$ wird die Farbe \emph{antiVeg} verwendet (\cs@show{antiVeg} - \#BEEEEF)
+\end{center}
+
+\subsection{latex}
+{\centering \framebox{Definitionen aus der Datei: \T{Listings/Languages/\_LILLY\_LANG\_latex}}\vspace*{0.5\baselineskip}\par}
+
+Dieser Stil wurde ebenfalls für die Dokumentation erstellt und wird genauso erweitert und verfeinert. Deswegen wird in diesem Rahmen hier ebenfalls keine vollständige Auflistung stattfinden. Lediglich eine Auflistung der verwendeten Stile für die einzelnen Schlüsselwörter:
+\begin{multicols}{2}
+    \begin{itemize}[label=$\diamond$]\narrowitems
+        \foreach \c/\l/\a/\f in {Zeichenketten/Amber//,
+                           Befehle/black/\CMDshow{bfseries}/thick,
+                           Lilly/Awesome/\CMDshow{bfseries}/thick,
+                           Parameter/Amber//,
+                           Umgebungen/Ao//,
+                           Kommentare/gray//%
+                           } {
+            \item[{\cs@show[\f]{\l}}] \cs@lslave{\c}{\l\ifthenelse{\equal{\a}{}}{}{~-~\a}}
+        }
+    \end{itemize}
+\end{multicols}
+Es werden keine Zeilennummern angezeigt. 
+\normalmarginpar
+\renewcommand{\arraystretch}{1}

@@ -1,0 +1,14 @@
+\LILLYcommand{\loopTo}[5][1]{\draw[-latex] (#3) to[out=#2-30,in=#2+30,looseness=#1,edge node={node [#5] {\small \(#4\) }}] (#3);}
+
+\LILLYcommand{\loopTop}[3][1]{\loopTo[#1]{90}{#2}{#3}{above};}
+\LILLYcommand{\loopRight}[3][1]{\loopTo[#1]{0}{#2}{#3}{right};}
+\LILLYcommand{\loopLeft}[3][1]{\loopTo[#1]{180}{#2}{#3}{left};}
+\LILLYcommand{\loopBot}[3][1]{\loopTo[#1]{270}{#2}{#3}{below};}
+
+\newcommand\drawloop[4][]%
+{\draw[shorten <=0pt, shorten >=0pt,#1]
+    ($(#2)!\pgfkeysvalueof{/tikz/stretch}!(#2.#3)$)
+    let \p1=($(#2.center)!\pgfkeysvalueof{/tikz/stretch}!(#2.north)-(#2)$),
+        \n1= {veclen(\x1,\y1)*sin(0.5*(#4-#3))/sin(0.5*(180-#4+#3))}
+    in arc [start angle={#3-90}, end angle={#4+90}, radius=\n1]%
+}
