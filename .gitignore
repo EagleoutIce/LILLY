@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# jake exe
+lilly_jake
+
+# Folder
+.directory
