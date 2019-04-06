@@ -21,15 +21,19 @@ Jake wird als `.cpp`--Datei geliefert. Um die Datei lauffertig zu machen genügt
 
 `make`
 
-Soll kein Symlink zu `/usr/local/bin` erstellt werden so wird die Regel `no_link` empfohlen:
+| Beachte: |
+| --- |
+| Bisher verändert Jake `$PATH` indem er sich sowohl in die `.bashrc` als auch in eine `.zshrc` einträgt. Dies kann unter umständen zu Problemen führen. In diesem Fall wird empfohlen einfach zu Weinen und anschließend die jeweiligen Dateien zu öffnen und die Zeile nach `#LILLY_CODE` zu entfernen. Es wird geraten den Kommentar unverändert zu lassen! Über ihn identifiziert das Makefile ob es etwas in die Dateien eintragen soll oder nicht.|
+
+Soll keine Veränderung von `$PATH` durchgeführt werden so wird die Regel `no_link` empfohlen:
 
 `make no_link`
 
-Zum entfernen eines existenten links genügt:
+(TODO:) Zum Entfernen eines existenten links genügt:
 
 `make clean`
 
-Anschließend kann man Jake ganz normal aufrufen 
+Anschließend kann man Jake (als `lilly_jake`) ganz normal aufrufen.
 
 ### Windows
 ### MacOS
@@ -37,10 +41,10 @@ Anschließend kann man Jake ganz normal aufrufen
 ## Wie benutzt man Jake?
 Startet man Jake mit dem Argument `install` so versucht Jake LILLY zu installieren. Hierzu geht Jake davon aus, dass es sich im Ordner `LILLY` befindet, in dem sich alle notwendigen Dateien befinden. Zum Aufsetzen von LILLY genügt also ein:
 
-`jake install`
+`lilly_jake install`
 
 Möchte man nun für eine Datei ein Makefile generieren (welches auch mit Version 1.0.7 verschiedene BoxModi Unterstützt) so genügt das Schreiben des Dateinamens:
 
-`jake TollesDokument.tex`
+`lilly_jake TollesDokument.tex`
 
-Weitere Funktionen sind dem Hilfe-Parameter zu entnehmen (`jake --help`) 
+Weitere Funktionen sind dem Hilfe-Parameter zu entnehmen (`lilly_jake help`) 

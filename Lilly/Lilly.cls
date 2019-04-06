@@ -65,7 +65,7 @@
 
 \RequirePackage{tabularx} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
 \RequirePackage{ltablex} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
-
+\RequirePackage{pgfkeys}
 \keepXColumns
 
 
@@ -205,5 +205,6 @@
 \input{Lilly_Files/Maths/_LILLY_MATHS_SYMBOLS}
 \input{Lilly_Files/Maths/_LILLY_MATHS_OPERATORS}
 \input{Lilly_Files/Maths/_LILLY_MATHS_COMPATIBILITIES}
+\input{Lilly_Files/Maths/_LILLY_MATHS_PLOTS}
 
 \input{Lilly_Files/Controllers/Outro/_LILLY_OUTRO_CONTROLLER}

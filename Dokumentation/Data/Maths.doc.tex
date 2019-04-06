@@ -143,7 +143,24 @@ Es soll ein graph-Environment existieren, was auf Basis von PGF das Erstellen fo
     \end{tabular}\]
 Der Befehl \CMDshow{plotline} soll hierbei nur in der Umgebung verfügbar sein (TODO: gleiches geplant mit PLA etc.).
 \subsection{Positionierung}
-Für die Platzierung von Plots wurden 3 valide Positionen vorgesehen: Zentriert, Links (Text auf rechter Seite), Rechts (Text auf linker Seite). Diese Positionierungen können mithilfe von Floats realisiert werden, sollen aber auf jedenfall auch noch einen absoluten Modus zur Verfügung stellen (primär von zentriert analog zu \verb|\[\]|). Zudem soll das \T{plot}-Environment selbstverständlich auch ohne Positionierung manuell eingebunden werden können!\newpage
+Für die Platzierung von Plots wurden 3 valide Positionen vorgesehen: Zentriert, Links (Text auf rechter Seite), Rechts (Text auf linker Seite). Diese Positionierungen können mithilfe von Floats realisiert werden, sollen aber auf jedenfall auch noch einen absoluten Modus zur Verfügung stellen (primär von zentriert analog zu \verb|\[\]|). Zudem soll das \T{plot}-Environment selbstverständlich auch ohne Positionierung manuell eingebunden werden können!
+
+\section{Bisheriger Stand}
+\subsection{graph-Environment}
+Bisher existiert folgende Implementation der Graph-Umgebung:
+\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
+    \specialrule{1pt}{0pt}{0pt}
+    {\footnotesize\begin{lstlisting}[style=latex,frame=none,breaklines=true]
+\begin{graph}[scale=1.25,maxY=3]
+    \plotline[purple]{sqrt(\x+2.5)};
+    \plotline[Ao][\y]{(\y*\y)/1.5};
+\end{graph}
+    \end{lstlisting}} &  \begin{graph}[scale=1.25,maxY=3]
+        \plotline[purple]{sqrt(\x+2.5)};
+        \plotline[Ao][\y]{(\y*\y)/1.5};
+    \end{graph}\\
+    \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}\]
 \section{3D-Plots \LILLYxNOTExWarning{Ausstehend}}
 Ich bin freier Platz :D
 \renewcommand{\arraystretch}{1}

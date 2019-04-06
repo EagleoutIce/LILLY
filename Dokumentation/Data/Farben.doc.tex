@@ -9,8 +9,8 @@ Im folgenden wird beschrieben wie grundlegend die Einbettung eines neuen Farbpro
 \subsection{Das Standardfarbprofil}
 {\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Colors/\_LILLY\_DEFAULT\_COLORPROFILE}}\vspace*{0.5\baselineskip}\par}
 Dieses Farbprofil wird nur geladen, wenn die Variable \CMDpreview{LILLYxColorxInject} nicht definiert ist. Es selbst bindet die Pakete \T{xcolor} und \T{pgf} (?) mit ein und definiert seinerseits eine Menge Farben, die zum einen einfach gut aussehen \smiley{} und zum anderen von Einzelpersonen gewünscht wurden. Alle Farben, welche LILLY darüber zur Verfügung gestellt bekommt, werden im folgenden aufgelistet:  %% define colordefault preview:
-\newcommand{\cs@show}[2][]{\tikz{\draw[fill=#2,#1] (0,0) circle (0.15);}}
-\newcommand{\cs@color}[4]{#1${}^{~(r:~#2,~g:~#3,~b:~#4)}$}
+\newcommand{\csXshow}[2][]{\tikz{\draw[fill=#2,#1] (0,0) circle (0.15);}}
+\newcommand{\csXcolor}[4]{#1\({}^{~(r:~#2,~g:~#3,~b:~#4)}\)}
 \begin{multicols}{2}
     \begin{itemize}[label=$\diamond$]\narrowitems
         \foreach \c/\r/\g/\b in {Aureolin/253/238/0,
@@ -43,7 +43,7 @@ Dieses Farbprofil wird nur geladen, wenn die Variable \CMDpreview{LILLYxColorxIn
                                  LightGray/224/224/224,
                                  AuroMetalSaurus/110/127/128,
                                  Charcoal/54/69/79} {
-            \item[\cs@show{\c}] \cs@color{\c}{\r}{\g}{\b}
+            \item[\csXshow{\c}] \csXcolor{\c}{\r}{\g}{\b}
         }
     \end{itemize}
 \end{multicols}
@@ -66,14 +66,14 @@ Weiter gibt es die folgenden Farben, welche aus Kompatibilitätsgründen aus dem
                                  tealblue/51/153/255,
                                  superlightgray/240/240/240
                                  } {
-            \item[\cs@show{\c}] \cs@color{\c}{\r}{\g}{\b}
+            \item[\csXshow{\c}] \csXcolor{\c}{\r}{\g}{\b}
         }
     \end{itemize}
 \end{multicols}
 
 Sie sollten nicht mehr verwendet werden!
 \end{bemerkung}
-\newcommand{\cs@cslave}[3][Color]{\T{#1x#2}${}^{~(#3)}$}
+\newcommand{\csXcslave}[3][Color]{\T{#1x#2}${}^{~(#3)}$}
 
 Weiter definiert dieses Farbprofil die Farben, welche LILLY für Links, Boxen usw. verwenden soll. Alle diese Befehle sollten auch bei eigenen Implementationen und Erweiterungen angewendet werden, darum folgt hier eine Auflistung für die Boxen (alle Befehle beginnen mit \T{\textbackslash LILLYx}):
 \begin{multicols}{2}
@@ -92,12 +92,12 @@ Weiter definiert dieses Farbprofil die Farben, welche LILLY für Links, Boxen us
                            UrlColor/DarkMidnightBlue/LINKS,
                            COLOR/DebianRed/TITLE%
                            } {
-            \item[\cs@show{\l}] \cs@cslave[\r]{\c}{\l}
+            \item[\csXshow{\l}] \csXcslave[\r]{\c}{\l}
         }
     \end{itemize}
 \end{multicols}
-Weiter gibt es noch die Farbe: \CMDshow{LILLYxLINKSxMainColorDarker} (\cs@show{\LILLYxLINKSxMainColorDarker}). Sie wird gemäß: \T{\textbackslash LILLYxLINKSxMainColor!90!black} generiert. \newline
-Beispielhaft lässt sich die Definitionsfarbe mit: \CMDshow{LILLYxColorxDefinition} abfragen (\cs@show{\LILLYxColorxDefinition})
+Weiter gibt es noch die Farbe: \CMDshow{LILLYxLINKSxMainColorDarker} (\csXshow{\LILLYxLINKSxMainColorDarker}). Sie wird gemäß: \T{\textbackslash LILLYxLINKSxMainColor!90!black} generiert. \newline
+Beispielhaft lässt sich die Definitionsfarbe mit: \CMDshow{LILLYxColorxDefinition} abfragen (\csXshow{\LILLYxColorxDefinition})
 
 \subsection{Das Druckprofil}
 {\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Colors/\_LILLY\_PRINT\_COLORPROFILE}}\vspace*{0.5\baselineskip}\par}
@@ -119,11 +119,11 @@ Aus Kompatibilitätsgründen zu Versionen vor \LILLYxBOXxVersion{\small 1.0.4} d
                            UrlColor/Charcoal/LINKS,
                            COLOR/DebianRed/TITLE%
                            } {
-            \item[\cs@show{\l}] \cs@cslave[\r]{\c}{\l}
+            \item[\csXshow{\l}] \csXcslave[\r]{\c}{\l}
         }
     \end{itemize}
 \end{multicols}
-Die Farbe \CMDshow{LILLYxLINKSxMainColorDarker} (\cs@show{\LILLYxLINKSxMainColorDarker}) wird hier mithilfe von: \T{\textbackslash LILLYxLINKSxMainColor!95!black} generiert.
+Die Farbe \CMDshow{LILLYxLINKSxMainColorDarker} (\csXshow{\LILLYxLINKSxMainColorDarker}) wird hier mithilfe von: \T{\textbackslash LILLYxLINKSxMainColor!95!black} generiert.
 
 \section{Weitere Planungen}
 \begin{itemize}[label=$\diamond$]\narrowitems

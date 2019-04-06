@@ -177,8 +177,6 @@ inline status_t fkt_compile(const std::string& cmd) noexcept { /* unsupported */
 
 /**
  * @brief Versucht LILLY zu installieren
- * 
- * @todo Implementiere Funktion
  *
  * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden 
  * 

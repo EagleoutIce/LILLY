@@ -15,7 +15,7 @@ default: no_link
 	$(call WRITE_RC,"${HOME}/.bashrc")
 	
 	@export PATH=${PATH}:$(shell pwd)
-	@chmod +x ./lilly_jake
 
 no_link: jake.cpp
 	g++ -std=c++11 -I './' jake.cpp -o lilly_jake
+	@chmod +x ./lilly_jake

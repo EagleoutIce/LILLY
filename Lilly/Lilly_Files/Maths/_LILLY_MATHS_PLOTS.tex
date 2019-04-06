@@ -1,0 +1,41 @@
+%%% Implementation des in der Dokumentation gewünschten LILLY-PLOT environments!
+
+%% Dieses Feature ist seinerseits mit dem Wechsel in Version 1.0.8 angsetzt
+
+\RequirePackage{pgfkeys}
+
+\pgfkeys { %
+    /lillyxPlot/.is family, /lillyxPlot,
+    defaults/.style = { %
+        scale=1, minX=-2, maxX=2,
+        minY=0, maxY=4, offset=0.4,
+        loffset=0.1, labelX=$x$, labelY=$y$,
+        samples=250,
+    },
+    scale/.estore in = \lillyxPlotxScale,
+    minX/.estore in = \lillyxPlotxMinX,
+    maxX/.estore in = \lillyxPlotxMaxX,
+    minY/.estore in = \lillyxPlotxMinY,
+    maxY/.estore in = \lillyxPlotxMaxY,
+    offset/.estore in =\lillyxPlotxOffset,
+    loffset/.estore in =\lillyxPlotxLoffset,
+    labelX/.estore in = \lillyxPlotxLabelX,
+    labelY/.estore in = \lillyxPlotxLabelY,
+    samples/.estore in = \lillyxPlotxSamples,
+}
+
+\NewDocumentCommand{\plotline}{ O{Ao} O{\x} m }{\draw[domain=\lillyxPlotxMinX:\lillyxPlotxMaxX, smooth, variable=#2,#1] plot[samples=\lillyxPlotxSamples] ({#2}, {#3});}
+
+\DeclareDocumentEnvironment{graph}{ O{} O{} }{
+\pgfkeys{/lillyxPlot, defaults, #1}
+
+\begin{tikzpicture}[scale=\lillyxPlotxScale,#2]
+    \draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset) 
+            grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
+}{\draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0) 
+-- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
+node[right] {\lillyxPlotxLabelX};
+\draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset) 
+-- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
+node[above] {\lillyxPlotxLabelY};
+\end{tikzpicture}}
