@@ -35,6 +35,7 @@
 #include <string>
 #include <map>
 #include <iterator>
+#include <cstdlib>
 
 /* ================================================================================================================== */        /* ################# */
 /* Preprocessor Makros                                                                                                */        /* ################# */
@@ -44,6 +45,8 @@
 #define COL_RESET "\033[m"
 /// @brief Design-Makro zum Setzen der Fehler-Farbe in der Konsole
 #define COL_ERROR "\033[38;2;255;32;82m"
+/// @brief Design-Makro zum Setzen der Erfolgs-Farbe in der Konsole
+#define COL_SUCCESS "\033[38;2;102;250;0m"
 
 /// @brief Signatur mit der ein single-Argument beginnt
 #define ARG_PATTERN "-"
@@ -122,6 +125,18 @@ inline void er_unknown_setting(const char* setting){
               << program << " help\"" << COL_RESET << std::endl;
 }
 
+/**
+ * @brief Dekodiert Rückgabewerte Menschenlesbar
+ * 
+ * @param code GNU Fehlercode
+ * 
+ * @returns SUCCESS wenn == 0, sonst: ERROR (code)
+ */
+inline std::string er_decode(int code) {
+    return ((code)?std::string(COL_ERROR) + "ERROR (" + std::to_string(code) +")"
+                  :(std::string(COL_SUCCESS) + "SUCCESS")) + COL_RESET;
+}
+
 /* ================================================================================================================== */        /* ################# */
 /* Signaturen                                                                                                         */        /* ################# */
 /* ================================================================================================================== */        /* ################# */
@@ -169,7 +184,7 @@ inline status_t fkt_compile(const std::string& cmd) noexcept { /* unsupported */
  * 
  * @returns Statuswert (bisher nichts)
  */
-inline status_t fkt_install(const std::string& cmd) noexcept { /* unsupported */}
+status_t fkt_install(const std::string& cmd) noexcept;
 
 /**
  * @brief Lädt die Einstellung auf Basis der Kommandozeilen argumente
@@ -182,6 +197,20 @@ inline status_t fkt_install(const std::string& cmd) noexcept { /* unsupported */
  * @returns Statuswert (bisher nichts)
  */
 status_t ld_settings(int n /* = argc */, const char** argv);
+
+
+/**
+ * @brief Installationsregel für Linux-Basierte Systeme - nutzt konfigurationen der settings
+ * 
+ * @todo Implementiere Rückgabewert
+ *
+ * @returns Statuswert (bisher nichts)
+ */
+status_t ins_linux( void );
+
+/* ################################################################################################################## */        /* ################# */
+/* Implementationen                                                                                                   */        /* ################# */
+/* ################################################################################################################## */        /* ################# */
 
 /* ================================================================================================================== */        /* ################# */
 /* Strukturen - Mappings                                                                                              */        /* ################# */
@@ -207,13 +236,42 @@ settings_t settings {
     {"operation", "help"},
     {"file", "none.tex"},
     {"debug", "false"},
-    {"path", "./"}
+    {"path", "./"},
+    {"install-path","\"${HOME}/texmf\""},
+    {"lilly-path","\"${PWD}/../../Lilly\""}
 };
 
-/* ################################################################################################################## */        /* ################# */
-/* Implementationen                                                                                                   */        /* ################# */
-/* ################################################################################################################## */        /* ################# */
 
+/* ================================================================================================================== */        /* ################# */
+/* Installationsregeln                                                                                                */        /* ################# */
+/* ================================================================================================================== */        /* ################# */
+
+status_t ins_linux( void ) {
+    std::cout << "  - Erstelle (" <<  settings["install-path"] << "/tex/latex): "
+              << er_decode(system(("mkdir -p " + settings["install-path"] + "/tex/latex").c_str()))
+              << std::endl;
+
+    std::cout << "  - Verlinke (" << settings["lilly-path"] << ") nach (" << settings["install-path"] << "/tex/latex): "
+              << er_decode(system(("ln -sf "+settings["lilly-path"]+" "+settings["install-path"]+"/tex/latex").c_str()))
+              << std::endl;
+    if(settings["lilly-path"]=="\"${PWD}/../../Lilly\"")
+    std::cout << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst. Nutze hierzu: " 
+              << std::endl << "    jake -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl;
+
+    std::cout << "  - Informiere TEX über (" << settings["install-path"] << "): "
+              << er_decode(system(("texhash " + settings["install-path"]).c_str()))
+              << std::endl;
+              
+    std::cout << "Installationsprozess wurde abgeschlossen :D" << std::endl;
+    
+    return EXIT_SUCCESS;
+}
+
+
+
+/* ================================================================================================================== */        /* ################# */
+/* Operationen                                                                                                        */        /* ################# */
+/* ================================================================================================================== */        /* ################# */
 
 status_t fkt_dump(const std::string& cmd) noexcept {
     std::cout << "Settings Dump: " << std::endl;
@@ -271,6 +329,18 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
         }
     }
 }
+
+status_t fkt_install(const std::string& cmd) noexcept { 
+//Determine Operating System
+#if defined(__linux__)
+    std::cout << "Betriebsystem wurde als Linux-Basiert identifiziert - versuche ins_linux()" << std::endl;
+    ins_linux();
+#else 
+    std::cerr << "Es existiert keine Installationsregel für dein Betriebssystem :/ - Bitte melde dich beim Maintainer dieses Pakets!" << std::endl;
+#endif
+    
+}
+
 
 /* ================================================================================================================== */        /* ################# */
 /* Main                                                                                                               */        /* ################# */
