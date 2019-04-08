@@ -3,7 +3,7 @@
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 
 \renewcommand{\sectionmark}[1]{%
-    \markright{#1}%
+    \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
 }
 
 \RequirePackage{titlesec}
@@ -21,7 +21,7 @@
 \newcommand*{\TitleSUB}[1]{ 
     \begingroup\vspace{-1.25\baselineskip}\textsc{\textcolor{\LILLYxTITLExCOLOR}{#1}}~\\[1\baselineskip]\endgroup
 }
-
+\newcommand{\LILLYxRIGHTMARK}{\faBookmark}
 \let\defChapter\chapter
 \renewcommand*{\chapter}{
     \@ifstar{\starchapter}{\@dblarg\nostarchapter}
@@ -30,7 +30,7 @@
     \defChapter*{#1}
 }
 \def\nostarchapter[#1]#2{\defChapter[{#1}]{#2}\addcontentsline{DEFS}{chapter}{#1}
-\addcontentsline{SATZE}{chapter}{#1}\addcontentsline{ZSM}{chapter}{#1}\addcontentsline{UB}{chapter}{#1}\renewcommand{\leftmark}{#2}}
+\addcontentsline{SATZE}{chapter}{#1}\addcontentsline{ZSM}{chapter}{#1}\addcontentsline{UB}{chapter}{#1}\renewcommand{\leftmark}{#2}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}}
 
 \LILLYcommand{\LILLYxLayoutxClear}{ %
     \pagestyle{empty} %KOMA-FTW!
@@ -50,7 +50,8 @@
     %\else
     \ifx\LILLYxMODE\LILLXxMODExPRINT
         \lehead{{\leftmark}}
-        \rohead{{\rightmark}}
+        %%\rohead{{\rightmark}} %% seems to be buggy?
+        \rohead{\LILLYxRIGHTMARK}
         \cofoot{\scriptsize{\AUTHOR}}
         \cefoot{\scriptsize{\TITLE}}
         \ofoot{\textbf{\thepage}}
