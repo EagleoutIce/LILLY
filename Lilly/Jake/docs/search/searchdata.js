@@ -6,7 +6,7 @@ var indexSectionsWithContent =
   3: "efilm",
   4: "bfps",
   5: "dfs",
-  6: "act",
+  6: "acpt",
   7: "ac"
 };
 

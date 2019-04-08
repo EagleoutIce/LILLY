@@ -1,7 +1,12 @@
+#if not defined(__linux__) 
+    #error Jake mag bisher nur Tux basierte Systeme - Tut mir leid :/
+#endif
+
+
 /**
  * @file jake.cpp
  * @author Florian Sihler
- * @version 1.0.0
+ * @version 1.0.7
  * @warning Die Aktuelle Version ist WIP einige Funktionnen sind noch nicht implementiert
  * 
  * 
@@ -32,6 +37,7 @@
 /* ================================================================================================================== */        /* ################# */
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <map>
 #include <iterator>
@@ -40,6 +46,9 @@
 /* ================================================================================================================== */        /* ################# */
 /* Preprocessor Makros                                                                                                */        /* ################# */
 /* ================================================================================================================== */        /* ################# */
+
+/// @brief Kurzbeschreibung der Aktuellen Jake-Version
+#define PRG_BRIEF "Jake 1.0.7 - A Servant for Lilly"
 
 /// @brief Design-Makro zum Zurücksetzen der Farbe
 #define COL_RESET "\033[m"
@@ -173,7 +182,7 @@ status_t fkt_dump(const std::string& cmd) noexcept;
  * 
  * @returns Statuswert (bisher nichts)
  */
-inline status_t fkt_compile(const std::string& cmd) noexcept { /* unsupported */ }
+status_t fkt_compile(const std::string& cmd);
 
 /**
  * @brief Versucht LILLY zu installieren
@@ -236,7 +245,11 @@ settings_t settings {
     {"debug", "false"},
     {"path", "./"},
     {"install-path","\"${HOME}/texmf\""},
-    {"lilly-path","\"${PWD}/../../Lilly\""}
+    {"lilly-path","\"${PWD}/../../Lilly\""},
+    {"mk-name", "makefile.lilly"},
+    {"mk-path","./"},
+    {"lilly-out","./$(BASENAME)-OUT/"}, // issues mkdir inside of makefile -- OS-Slave 
+
 };
 
 
@@ -336,9 +349,30 @@ status_t fkt_install(const std::string& cmd) noexcept {
 #else 
     std::cerr << "Es existiert keine Installationsregel für dein Betriebssystem :/ - Bitte melde dich beim Maintainer dieses Pakets!" << std::endl;
 #endif
-    
+   return EXIT_SUCCESS; 
 }
 
+status_t fkt_compile(const std::string& cmd) {
+    std::cout << "Generiere Makefile für Datei: " << settings["file"] << std::endl;
+    std::ofstream out_makefile(settings["path"]+"/"+settings["mk-name"], std::ofstream::out); 
+   
+    // Generiere Notwendige Ordnerstruktur für Ein- und Ausgabedateien!
+    std::cout << "    Erstelle Ordner settings[\"mk-path\"] (" << settings["mk-path"] << ") " 
+              << er_decode(system(("mkdir -p " + settings["mk-path"]).c_str())) << std::endl; // OS - BARRIER
+    
+    
+    out_makefile << "# " << PRG_BRIEF << "     (compiled on: " << __DATE__ << " at: " << __TIME__ << ")" << std::endl << std::endl;
+    
+    // Einfügen der Variablen des Makefiles, es erhält eine andere Struktur wie das, welches von lilly_compile zur Verfügung gestellt wird!!
+    out_makefile << "TEXFILE     := " << settings["file"]                                    << std::endl    
+                 << "BASENAME    := $(basename $(TEXFILE))"                                  << std::endl
+                 << "PDFFILE     := $(addsuffix .pdf,$(basename $(TEXFILE)))"                << std::endl
+                 << "LATEXARGS   := -shell-escape -enable-write18 -interaction=batchmode"    << std::endl << std::endl
+                 // lilly- settings 
+                 << "## Directories used for INPUT and OUTPUT Files "                        << std::endl
+                 << "OUTPUTDIR   := " << settings["lilly-out"]                               << std::endl;
+    out_makefile.close();
+}
 
 /* ================================================================================================================== */        /* ################# */
 /* Main                                                                                                               */        /* ################# */

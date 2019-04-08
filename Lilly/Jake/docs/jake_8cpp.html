@@ -130,13 +130,17 @@ $(document).ready(function(){initNavTree('jake_8cpp.html','');});
 <p>Hilfsprogramm im Umgang mit LILLY.  
 <a href="#details">Mehr ...</a></p>
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
 <code>#include &lt;iterator&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include-Abhängigkeitsdiagramm für jake.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="jake_8cpp__incl.png" border="0" usemap="#jake_8cpp" alt=""/></div>
+<map name="jake_8cpp" id="jake_8cpp">
+</map>
 </div>
 </div>
 <p><a href="jake_8cpp_source.html">gehe zum Quellcode dieser Datei</a></p>
@@ -149,12 +153,18 @@ Klassen</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Makrodefinitionen</h2></td></tr>
+<tr class="memitem:aa5746350eebec2fe47d2697efae3e37b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#aa5746350eebec2fe47d2697efae3e37b">PRG_BRIEF</a>&#160;&#160;&#160;&quot;Jake 1.0.7 - A Servant for Lilly&quot;</td></tr>
+<tr class="memdesc:aa5746350eebec2fe47d2697efae3e37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kurzbeschreibung der Aktuellen Jake-Version.  <a href="#aa5746350eebec2fe47d2697efae3e37b">Mehr ...</a><br /></td></tr>
+<tr class="separator:aa5746350eebec2fe47d2697efae3e37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63373358eb4288de0bc4a08395a2500c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#a63373358eb4288de0bc4a08395a2500c">COL_RESET</a>&#160;&#160;&#160;&quot;\033[m&quot;</td></tr>
 <tr class="memdesc:a63373358eb4288de0bc4a08395a2500c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Design-Makro zum Zurücksetzen der Farbe.  <a href="#a63373358eb4288de0bc4a08395a2500c">Mehr ...</a><br /></td></tr>
 <tr class="separator:a63373358eb4288de0bc4a08395a2500c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14e4c7bca15c8e63f4000b8045d73b34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#a14e4c7bca15c8e63f4000b8045d73b34">COL_ERROR</a>&#160;&#160;&#160;&quot;\033[38;2;255;32;82m&quot;</td></tr>
 <tr class="memdesc:a14e4c7bca15c8e63f4000b8045d73b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Design-Makro zum Setzen der Fehler-Farbe in der Konsole.  <a href="#a14e4c7bca15c8e63f4000b8045d73b34">Mehr ...</a><br /></td></tr>
 <tr class="separator:a14e4c7bca15c8e63f4000b8045d73b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed5f9d955a9b744d5684d7607a4aae2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#abed5f9d955a9b744d5684d7607a4aae2">COL_SUCCESS</a>&#160;&#160;&#160;&quot;\033[38;2;102;250;0m&quot;</td></tr>
+<tr class="memdesc:abed5f9d955a9b744d5684d7607a4aae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Design-Makro zum Setzen der Erfolgs-Farbe in der Konsole.  <a href="#abed5f9d955a9b744d5684d7607a4aae2">Mehr ...</a><br /></td></tr>
+<tr class="separator:abed5f9d955a9b744d5684d7607a4aae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a133b62c324fbf7e3f798f2a202bcb914"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#a133b62c324fbf7e3f798f2a202bcb914">ARG_PATTERN</a>&#160;&#160;&#160;&quot;-&quot;</td></tr>
 <tr class="memdesc:a133b62c324fbf7e3f798f2a202bcb914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signatur mit der ein single-Argument beginnt.  <a href="#a133b62c324fbf7e3f798f2a202bcb914">Mehr ...</a><br /></td></tr>
 <tr class="separator:a133b62c324fbf7e3f798f2a202bcb914"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,21 +204,27 @@ Funktionen</h2></td></tr>
 <tr class="memitem:a73230e33b010721204237c8022dd59c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#a73230e33b010721204237c8022dd59c0">er_unknown_setting</a> (const char *setting)</td></tr>
 <tr class="memdesc:a73230e33b010721204237c8022dd59c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lesbare Ausgabe einer unbekannten Einstellung.  <a href="#a73230e33b010721204237c8022dd59c0">Mehr ...</a><br /></td></tr>
 <tr class="separator:a73230e33b010721204237c8022dd59c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaa422f178210ca08aeccfc8788a1736"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#aeaa422f178210ca08aeccfc8788a1736">er_decode</a> (int code)</td></tr>
+<tr class="memdesc:aeaa422f178210ca08aeccfc8788a1736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dekodiert Rückgabewerte Menschenlesbar.  <a href="#aeaa422f178210ca08aeccfc8788a1736">Mehr ...</a><br /></td></tr>
+<tr class="separator:aeaa422f178210ca08aeccfc8788a1736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6e4d8d136e46ec35480bdbb370cc936"><td class="memItemLeft" align="right" valign="top"><a class="el" href="jake_8cpp.html#aad3e9bed6edfa23b0864bff50a1391e9">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#ab6e4d8d136e46ec35480bdbb370cc936">fkt_help</a> (const std::string &amp;cmd) noexcept</td></tr>
 <tr class="memdesc:ab6e4d8d136e46ec35480bdbb370cc936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt Hilfe zur Verwendung von lilly_jake.  <a href="#ab6e4d8d136e46ec35480bdbb370cc936">Mehr ...</a><br /></td></tr>
 <tr class="separator:ab6e4d8d136e46ec35480bdbb370cc936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7681441147951dec558162390652428"><td class="memItemLeft" align="right" valign="top"><a class="el" href="jake_8cpp.html#aad3e9bed6edfa23b0864bff50a1391e9">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#ae7681441147951dec558162390652428">fkt_dump</a> (const std::string &amp;cmd) noexcept</td></tr>
 <tr class="memdesc:ae7681441147951dec558162390652428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt die aktuellen Settings aus.  <a href="#ae7681441147951dec558162390652428">Mehr ...</a><br /></td></tr>
 <tr class="separator:ae7681441147951dec558162390652428"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdd170ef925072b219cd2230140df684"><td class="memItemLeft" align="right" valign="top"><a class="el" href="jake_8cpp.html#aad3e9bed6edfa23b0864bff50a1391e9">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#afdd170ef925072b219cd2230140df684">fkt_compile</a> (const std::string &amp;cmd) noexcept</td></tr>
-<tr class="memdesc:afdd170ef925072b219cd2230140df684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt ein Makefile für die mit settings["file"] angegebene Datei.  <a href="#afdd170ef925072b219cd2230140df684">Mehr ...</a><br /></td></tr>
-<tr class="separator:afdd170ef925072b219cd2230140df684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a109bc70d60f8bb626576e3a42d7615a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="jake_8cpp.html#aad3e9bed6edfa23b0864bff50a1391e9">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#a109bc70d60f8bb626576e3a42d7615a1">fkt_compile</a> (const std::string &amp;cmd)</td></tr>
+<tr class="memdesc:a109bc70d60f8bb626576e3a42d7615a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt ein Makefile für die mit settings["file"] angegebene Datei.  <a href="#a109bc70d60f8bb626576e3a42d7615a1">Mehr ...</a><br /></td></tr>
+<tr class="separator:a109bc70d60f8bb626576e3a42d7615a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a604925c59a3aa5e94162e3f87bd645"><td class="memItemLeft" align="right" valign="top"><a class="el" href="jake_8cpp.html#aad3e9bed6edfa23b0864bff50a1391e9">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#a0a604925c59a3aa5e94162e3f87bd645">fkt_install</a> (const std::string &amp;cmd) noexcept</td></tr>
 <tr class="memdesc:a0a604925c59a3aa5e94162e3f87bd645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Versucht LILLY zu installieren.  <a href="#a0a604925c59a3aa5e94162e3f87bd645">Mehr ...</a><br /></td></tr>
 <tr class="separator:a0a604925c59a3aa5e94162e3f87bd645"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1961726b7f162bd25cfa4693d91d151"><td class="memItemLeft" align="right" valign="top"><a class="el" href="jake_8cpp.html#aad3e9bed6edfa23b0864bff50a1391e9">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#ab1961726b7f162bd25cfa4693d91d151">ld_settings</a> (int n, const char **argv)</td></tr>
 <tr class="memdesc:ab1961726b7f162bd25cfa4693d91d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lädt die Einstellung auf Basis der Kommandozeilen argumente.  <a href="#ab1961726b7f162bd25cfa4693d91d151">Mehr ...</a><br /></td></tr>
 <tr class="separator:ab1961726b7f162bd25cfa4693d91d151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab686147785a97aff73bafca7ce66f84f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="jake_8cpp.html#aad3e9bed6edfa23b0864bff50a1391e9">status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#ab686147785a97aff73bafca7ce66f84f">ins_linux</a> (void)</td></tr>
+<tr class="memdesc:ab686147785a97aff73bafca7ce66f84f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Installationsregel für Linux-Basierte Systeme - nutzt konfigurationen der settings.  <a href="#ab686147785a97aff73bafca7ce66f84f">Mehr ...</a><br /></td></tr>
+<tr class="separator:ab686147785a97aff73bafca7ce66f84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a217dbf8b442f20279ea00b898af96f52"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jake_8cpp.html#a217dbf8b442f20279ea00b898af96f52">main</a> (int argc, const char **argv)</td></tr>
 <tr class="memdesc:a217dbf8b442f20279ea00b898af96f52"><td class="mdescLeft">&#160;</td><td class="mdescRight">startet Jake - jippie  <a href="#a217dbf8b442f20279ea00b898af96f52">Mehr ...</a><br /></td></tr>
 <tr class="separator:a217dbf8b442f20279ea00b898af96f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,7 +244,7 @@ Variablen</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Ausführliche Beschreibung</h2>
 <div class="textblock"><p class="">Hilfsprogramm im Umgang mit LILLY. </p>
 <dl class="section author"><dt>Autor</dt><dd>Florian Sihler </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0.0 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0.7 </dd></dl>
 <dl class="section warning"><dt>Warnung</dt><dd>Die Aktuelle Version ist WIP einige Funktionnen sind noch nicht implementiert</dd></dl>
 <dl class="section note"><dt>Zu beachten</dt><dd>Zum Kompilieren dieser Datei sollte das beiliegende Makefile verwendet werdne </dd></dl>
 
@@ -248,9 +264,9 @@ Variablen</h2></td></tr>
 
 <p>Signatur mit der ein single-Argument beginnt. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00049">49</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00061">61</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00250">ld_settings()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00319">ld_settings()</a>.</p>
 
 </div>
 </div>
@@ -268,9 +284,9 @@ Variablen</h2></td></tr>
 
 <p>Signatur einer Zuweisung. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00051">51</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00063">63</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00250">ld_settings()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00319">ld_settings()</a>.</p>
 
 </div>
 </div>
@@ -288,9 +304,9 @@ Variablen</h2></td></tr>
 
 <p>Design-Makro zum Setzen der Fehler-Farbe in der Konsole. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00046">46</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00056">56</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00120">er_unknown_setting()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00144">er_decode()</a> und <a class="el" href="jake_8cpp_source.html#l00132">er_unknown_setting()</a>.</p>
 
 </div>
 </div>
@@ -308,9 +324,49 @@ Variablen</h2></td></tr>
 
 <p>Design-Makro zum Zurücksetzen der Farbe. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00044">44</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00054">54</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00120">er_unknown_setting()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00144">er_decode()</a> und <a class="el" href="jake_8cpp_source.html#l00132">er_unknown_setting()</a>.</p>
+
+</div>
+</div>
+<a id="abed5f9d955a9b744d5684d7607a4aae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abed5f9d955a9b744d5684d7607a4aae2">&#9670;&nbsp;</a></span>COL_SUCCESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COL_SUCCESS&#160;&#160;&#160;&quot;\033[38;2;102;250;0m&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Design-Makro zum Setzen der Erfolgs-Farbe in der Konsole. </p>
+
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00058">58</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00144">er_decode()</a>.</p>
+
+</div>
+</div>
+<a id="aa5746350eebec2fe47d2697efae3e37b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5746350eebec2fe47d2697efae3e37b">&#9670;&nbsp;</a></span>PRG_BRIEF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRG_BRIEF&#160;&#160;&#160;&quot;Jake 1.0.7 - A Servant for Lilly&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kurzbeschreibung der Aktuellen Jake-Version. </p>
+
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00051">51</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00355">fkt_compile()</a>.</p>
 
 </div>
 </div>
@@ -328,9 +384,9 @@ Variablen</h2></td></tr>
 
 <p>Signatur einer TeX/LaTeX-Datei. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00053">53</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00065">65</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00250">ld_settings()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00319">ld_settings()</a>.</p>
 
 </div>
 </div>
@@ -352,9 +408,9 @@ Variablen</h2></td></tr>
 
 <p>convenience-wrapper </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00056">56</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00068">68</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00250">ld_settings()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00319">ld_settings()</a>.</p>
 
 </div>
 </div>
@@ -373,7 +429,7 @@ Variablen</h2></td></tr>
 
 <p>Datentyp für die Einstellungen. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00075">75</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00087">87</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
 </div>
 </div>
@@ -391,7 +447,7 @@ Variablen</h2></td></tr>
 
 <p>Funktions-Signatur für erlaubte Operationen. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00084">84</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00096">96</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
 </div>
 </div>
@@ -409,7 +465,7 @@ Variablen</h2></td></tr>
 
 <p>Signatur fürs Funktionsmapping. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00090">90</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00102">102</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
 </div>
 </div>
@@ -427,7 +483,7 @@ Variablen</h2></td></tr>
 
 <p>Mappings-Signatur für die Einstellungen. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00087">87</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00099">99</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
 </div>
 </div>
@@ -446,11 +502,47 @@ Variablen</h2></td></tr>
 <p>Rückabewert für Funktionen. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Noch zu erledigen:</a></b></dt><dd>Funktionalität einbauen </dd></dl>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00081">81</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00093">93</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Dokumentation der Funktionen</h2>
+<a id="aeaa422f178210ca08aeccfc8788a1736"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaa422f178210ca08aeccfc8788a1736">&#9670;&nbsp;</a></span>er_decode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string er_decode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dekodiert Rückgabewerte Menschenlesbar. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>GNU Fehlercode</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>SUCCESS wenn == 0, sonst: ERROR (code) </dd></dl>
+
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00144">144</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+
+<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00056">COL_ERROR</a>, <a class="el" href="jake_8cpp_source.html#l00054">COL_RESET</a> und <a class="el" href="jake_8cpp_source.html#l00058">COL_SUCCESS</a>.</p>
+
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00355">fkt_compile()</a> und <a class="el" href="jake_8cpp_source.html#l00260">ins_linux()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                                     {</div><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordflow">return</span> ((code)?std::string(<a class="code" href="jake_8cpp.html#a14e4c7bca15c8e63f4000b8045d73b34">COL_ERROR</a>) + <span class="stringliteral">&quot;ERROR (&quot;</span> + std::to_string(code) +<span class="stringliteral">&quot;)&quot;</span></div><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                  :(std::string(<a class="code" href="jake_8cpp.html#abed5f9d955a9b744d5684d7607a4aae2">COL_SUCCESS</a>) + <span class="stringliteral">&quot;SUCCESS&quot;</span>)) + <a class="code" href="jake_8cpp.html#a63373358eb4288de0bc4a08395a2500c">COL_RESET</a>;</div><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a14e4c7bca15c8e63f4000b8045d73b34"><div class="ttname"><a href="jake_8cpp.html#a14e4c7bca15c8e63f4000b8045d73b34">COL_ERROR</a></div><div class="ttdeci">#define COL_ERROR</div><div class="ttdoc">Design-Makro zum Setzen der Fehler-Farbe in der Konsole. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00056">jake.cpp:56</a></div></div>
+<div class="ttc" id="jake_8cpp_html_abed5f9d955a9b744d5684d7607a4aae2"><div class="ttname"><a href="jake_8cpp.html#abed5f9d955a9b744d5684d7607a4aae2">COL_SUCCESS</a></div><div class="ttdeci">#define COL_SUCCESS</div><div class="ttdoc">Design-Makro zum Setzen der Erfolgs-Farbe in der Konsole. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00058">jake.cpp:58</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a63373358eb4288de0bc4a08395a2500c"><div class="ttname"><a href="jake_8cpp.html#a63373358eb4288de0bc4a08395a2500c">COL_RESET</a></div><div class="ttdeci">#define COL_RESET</div><div class="ttdoc">Design-Makro zum Zurücksetzen der Farbe. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00054">jake.cpp:54</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a73230e33b010721204237c8022dd59c0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a73230e33b010721204237c8022dd59c0">&#9670;&nbsp;</a></span>er_unknown_setting()</h2>
 
@@ -475,25 +567,22 @@ Variablen</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00120">120</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00132">132</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00046">COL_ERROR</a>, <a class="el" href="jake_8cpp_source.html#l00044">COL_RESET</a> und <a class="el" href="jake_8cpp_source.html#l00097">program</a>.</p>
+<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00056">COL_ERROR</a>, <a class="el" href="jake_8cpp_source.html#l00054">COL_RESET</a> und <a class="el" href="jake_8cpp_source.html#l00109">program</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00250">ld_settings()</a> und <a class="el" href="jake_8cpp_source.html#l00288">main()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                                                   {</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    std::cerr &lt;&lt; <a class="code" href="jake_8cpp.html#a14e4c7bca15c8e63f4000b8045d73b34">COL_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Die Einstellung: \&quot;&quot;</span> &lt;&lt; setting &lt;&lt; <span class="stringliteral">&quot;\&quot; ist so nicht gültig!&quot;</span> &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;Schreib \&quot;&quot;</span></div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;              &lt;&lt; <a class="code" href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a> &lt;&lt; <span class="stringliteral">&quot; help\&quot;&quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#a63373358eb4288de0bc4a08395a2500c">COL_RESET</a> &lt;&lt; std::endl;</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a14e4c7bca15c8e63f4000b8045d73b34"><div class="ttname"><a href="jake_8cpp.html#a14e4c7bca15c8e63f4000b8045d73b34">COL_ERROR</a></div><div class="ttdeci">#define COL_ERROR</div><div class="ttdoc">Design-Makro zum Setzen der Fehler-Farbe in der Konsole. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00046">jake.cpp:46</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a451fb3866139bc9c8dfb5155974db964"><div class="ttname"><a href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a></div><div class="ttdeci">std::string program</div><div class="ttdoc">argv[0] - zur Einfachheit tihihihi </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00097">jake.cpp:97</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a63373358eb4288de0bc4a08395a2500c"><div class="ttname"><a href="jake_8cpp.html#a63373358eb4288de0bc4a08395a2500c">COL_RESET</a></div><div class="ttdeci">#define COL_RESET</div><div class="ttdoc">Design-Makro zum Zurücksetzen der Farbe. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00044">jake.cpp:44</a></div></div>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00319">ld_settings()</a> und <a class="el" href="jake_8cpp_source.html#l00390">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                                                   {</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    std::cerr &lt;&lt; <a class="code" href="jake_8cpp.html#a14e4c7bca15c8e63f4000b8045d73b34">COL_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Die Einstellung: \&quot;&quot;</span> &lt;&lt; setting &lt;&lt; <span class="stringliteral">&quot;\&quot; ist so nicht gültig!&quot;</span> &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;Schreib \&quot;&quot;</span></div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;              &lt;&lt; <a class="code" href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a> &lt;&lt; <span class="stringliteral">&quot; help\&quot;&quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#a63373358eb4288de0bc4a08395a2500c">COL_RESET</a> &lt;&lt; std::endl;</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a14e4c7bca15c8e63f4000b8045d73b34"><div class="ttname"><a href="jake_8cpp.html#a14e4c7bca15c8e63f4000b8045d73b34">COL_ERROR</a></div><div class="ttdeci">#define COL_ERROR</div><div class="ttdoc">Design-Makro zum Setzen der Fehler-Farbe in der Konsole. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00056">jake.cpp:56</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a451fb3866139bc9c8dfb5155974db964"><div class="ttname"><a href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a></div><div class="ttdeci">std::string program</div><div class="ttdoc">argv[0] - zur Einfachheit tihihihi </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00109">jake.cpp:109</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a63373358eb4288de0bc4a08395a2500c"><div class="ttname"><a href="jake_8cpp.html#a63373358eb4288de0bc4a08395a2500c">COL_RESET</a></div><div class="ttdeci">#define COL_RESET</div><div class="ttdoc">Design-Makro zum Zurücksetzen der Farbe. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00054">jake.cpp:54</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="afdd170ef925072b219cd2230140df684"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afdd170ef925072b219cd2230140df684">&#9670;&nbsp;</a></span>fkt_compile()</h2>
+<a id="a109bc70d60f8bb626576e3a42d7615a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a109bc70d60f8bb626576e3a42d7615a1">&#9670;&nbsp;</a></span>fkt_compile()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="jake_8cpp.html#aad3e9bed6edfa23b0864bff50a1391e9">status_t</a> fkt_compile </td>
@@ -503,11 +592,6 @@ Variablen</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Erstellt ein Makefile für die mit settings["file"] angegebene Datei. </p>
@@ -520,8 +604,13 @@ Variablen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>Statuswert (bisher nichts) </dd></dl>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00161">161</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;{ <span class="comment">/* unsupported */</span> }</div></div><!-- fragment -->
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00355">355</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+
+<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00144">er_decode()</a>, <a class="el" href="jake_8cpp_source.html#l00051">PRG_BRIEF</a> und <a class="el" href="jake_8cpp_source.html#l00242">settings</a>.</p>
+<div class="fragment"><div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                                           {</div><div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Generiere Makefile für Datei: &quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;file&quot;</span>] &lt;&lt; std::endl;</div><div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    std::ofstream out_makefile(<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;path&quot;</span>]+<span class="stringliteral">&quot;/&quot;</span>+<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;mk-name&quot;</span>], std::ofstream::out); </div><div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;   </div><div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="comment">// Generiere Notwendige Ordnerstruktur für Ein- und Ausgabedateien!</span></div><div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    Erstelle Ordner settings[\&quot;mk-path\&quot;] (&quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;mk-path&quot;</span>] &lt;&lt; <span class="stringliteral">&quot;) &quot;</span> </div><div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;              &lt;&lt; <a class="code" href="jake_8cpp.html#aeaa422f178210ca08aeccfc8788a1736">er_decode</a>(system((<span class="stringliteral">&quot;mkdir -p &quot;</span> + <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;mk-path&quot;</span>]).c_str())) &lt;&lt; std::endl; <span class="comment">// OS - BARRIER</span></div><div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    </div><div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    </div><div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    out_makefile &lt;&lt; <span class="stringliteral">&quot;# &quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#aa5746350eebec2fe47d2697efae3e37b">PRG_BRIEF</a> &lt;&lt; <span class="stringliteral">&quot;     (compiled on: &quot;</span> &lt;&lt; __DATE__ &lt;&lt; <span class="stringliteral">&quot; at: &quot;</span> &lt;&lt; __TIME__ &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div><div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    </div><div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="comment">// Einfügen der Variablen des Makefiles, es erhält eine andere Struktur wie das, welches von lilly_compile zur Verfügung gestellt wird!!</span></div><div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    out_makefile &lt;&lt; <span class="stringliteral">&quot;TEXFILE     := &quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;file&quot;</span>]                                    &lt;&lt; std::endl    </div><div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                 &lt;&lt; <span class="stringliteral">&quot;BASENAME    := $(basename $(TEXFILE))&quot;</span>                                  &lt;&lt; std::endl</div><div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                 &lt;&lt; <span class="stringliteral">&quot;PDFFILE     := $(addsuffix .pdf,$(basename $(TEXFILE)))&quot;</span>                &lt;&lt; std::endl</div><div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                 &lt;&lt; <span class="stringliteral">&quot;LATEXARGS   := -shell-escape -enable-write18 -interaction=batchmode&quot;</span>    &lt;&lt; std::endl &lt;&lt; std::endl</div><div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                 <span class="comment">// lilly- settings </span></div><div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                 &lt;&lt; <span class="stringliteral">&quot;## Directories used for INPUT and OUTPUT Files &quot;</span>                        &lt;&lt; std::endl</div><div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                 &lt;&lt; <span class="stringliteral">&quot;OUTPUTDIR   := &quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;lilly-out&quot;</span>]                               &lt;&lt; std::endl;</div><div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    out_makefile.close();</div><div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_aeaa422f178210ca08aeccfc8788a1736"><div class="ttname"><a href="jake_8cpp.html#aeaa422f178210ca08aeccfc8788a1736">er_decode</a></div><div class="ttdeci">std::string er_decode(int code)</div><div class="ttdoc">Dekodiert Rückgabewerte Menschenlesbar. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00144">jake.cpp:144</a></div></div>
+<div class="ttc" id="jake_8cpp_html_aa5746350eebec2fe47d2697efae3e37b"><div class="ttname"><a href="jake_8cpp.html#aa5746350eebec2fe47d2697efae3e37b">PRG_BRIEF</a></div><div class="ttdeci">#define PRG_BRIEF</div><div class="ttdoc">Kurzbeschreibung der Aktuellen Jake-Version. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00051">jake.cpp:51</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a448b7c9fa402ef11eb60e01e434c0227"><div class="ttname"><a href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a></div><div class="ttdeci">settings_t settings</div><div class="ttdoc">Speicherstruktur für Einstellungen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00242">jake.cpp:242</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ae7681441147951dec558162390652428"></a>
@@ -558,10 +647,10 @@ Variablen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>Statuswert (bisher nichts) </dd></dl>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00218">218</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00287">287</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00206">settings</a>.</p>
-<div class="fragment"><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                                                 {</div><div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Settings Dump: &quot;</span> &lt;&lt; std::endl;</div><div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    settings_t::iterator it = <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>.begin();</div><div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordflow">while</span>(it != <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>.end()){ <span class="comment">// iterate over all settings </span></div><div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="comment">// simple padding without &lt;iomanip&gt; std::setw</span></div><div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        std::cout &lt;&lt; it-&gt;first &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; std::string(20-it-&gt;first.length(),<span class="charliteral">&#39; &#39;</span>)&lt;&lt; it-&gt;second &lt;&lt; std::endl; </div><div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        it++;</div><div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    }</div><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a448b7c9fa402ef11eb60e01e434c0227"><div class="ttname"><a href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a></div><div class="ttdeci">settings_t settings</div><div class="ttdoc">Speicherstruktur für Einstellungen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00206">jake.cpp:206</a></div></div>
+<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00242">settings</a>.</p>
+<div class="fragment"><div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                                                 {</div><div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Settings Dump: &quot;</span> &lt;&lt; std::endl;</div><div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    settings_t::iterator it = <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>.begin();</div><div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="keywordflow">while</span>(it != <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>.end()){ <span class="comment">// iterate over all settings </span></div><div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        <span class="comment">// simple padding without &lt;iomanip&gt; std::setw</span></div><div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        std::cout &lt;&lt; it-&gt;first &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; std::string(20-it-&gt;first.length(),<span class="charliteral">&#39; &#39;</span>)&lt;&lt; it-&gt;second &lt;&lt; std::endl; </div><div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        it++;</div><div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    }</div><div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a448b7c9fa402ef11eb60e01e434c0227"><div class="ttname"><a href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a></div><div class="ttdeci">settings_t settings</div><div class="ttdoc">Speicherstruktur für Einstellungen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00242">jake.cpp:242</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -600,11 +689,11 @@ Variablen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>Statuswert (bisher nichts) </dd></dl>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00228">228</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00297">297</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00198">functions</a> und <a class="el" href="jake_8cpp_source.html#l00097">program</a>.</p>
-<div class="fragment"><div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                                                 {</div><div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;Benutzung:&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div><div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    std::cerr &lt;&lt; <a class="code" href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a> &lt;&lt; <span class="stringliteral">&quot; [options=help] [file]&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div><div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;[options]:&quot;</span> &lt;&lt; std::endl;</div><div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    functions_t::iterator it = <a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>.begin();</div><div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordflow">while</span>(it != <a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>.end()){ <span class="comment">// iterate over all functions </span></div><div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; std::string(15-it-&gt;first.length(),<span class="charliteral">&#39; &#39;</span>)&lt;&lt; it-&gt;second.brief_description </div><div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                  &lt;&lt; std::endl;                                 <span class="comment">// simple padding without &lt;iomanip&gt; std::setw</span></div><div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        it++;</div><div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div><div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    std::cerr &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;[file]:&quot;</span> &lt;&lt; std::endl</div><div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;Angabe genäß \&quot;xxx.tex\&quot;. Dies setzt die Operation automatisch auf file_compile und generiert damit \</span></div><div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="stringliteral">                  ein generelles makefile für \&quot;xxx.tex\&quot;.&quot;</span></div><div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;              &lt;&lt; std::endl;</div><div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div><div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    std::cerr &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;note:&quot;</span> &lt;&lt; std::endl</div><div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;Allgemeine Einstellungen können über \&quot;-key=value\&quot; gesetzt werden (\&quot;-key\&quot; für boolesche). So \</span></div><div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="stringliteral">                  setzt: \&quot;-path=/es/gibt/kuchen\&quot; die Einstellung settings[\&quot;path\&quot;] auf besagten Wert: \</span></div><div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="stringliteral">                  \&quot;/es/gibt/kuchen\&quot;&quot;</span> </div><div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;              &lt;&lt; std::endl;</div><div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a451fb3866139bc9c8dfb5155974db964"><div class="ttname"><a href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a></div><div class="ttdeci">std::string program</div><div class="ttdoc">argv[0] - zur Einfachheit tihihihi </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00097">jake.cpp:97</a></div></div>
-<div class="ttc" id="jake_8cpp_html_abdeaed6542f92441fefa55f697012dae"><div class="ttname"><a href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a></div><div class="ttdeci">functions_t functions</div><div class="ttdoc">Liste aller unterstützer Operationen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00198">jake.cpp:198</a></div></div>
+<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00234">functions</a> und <a class="el" href="jake_8cpp_source.html#l00109">program</a>.</p>
+<div class="fragment"><div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                                                 {</div><div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;Benutzung:&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div><div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    std::cerr &lt;&lt; <a class="code" href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a> &lt;&lt; <span class="stringliteral">&quot; [options=help] [file]&quot;</span> &lt;&lt; std::endl &lt;&lt; std::endl;</div><div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;[options]:&quot;</span> &lt;&lt; std::endl;</div><div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    functions_t::iterator it = <a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>.begin();</div><div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordflow">while</span>(it != <a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>.end()){ <span class="comment">// iterate over all functions </span></div><div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; std::string(15-it-&gt;first.length(),<span class="charliteral">&#39; &#39;</span>)&lt;&lt; it-&gt;second.brief_description </div><div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                  &lt;&lt; std::endl;                                 <span class="comment">// simple padding without &lt;iomanip&gt; std::setw</span></div><div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        it++;</div><div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    }</div><div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    std::cerr &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;[file]:&quot;</span> &lt;&lt; std::endl</div><div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;Angabe genäß \&quot;xxx.tex\&quot;. Dies setzt die Operation automatisch auf file_compile und generiert damit \</span></div><div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="stringliteral">                  ein generelles makefile für \&quot;xxx.tex\&quot;.&quot;</span></div><div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;              &lt;&lt; std::endl;</div><div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div><div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    std::cerr &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;note:&quot;</span> &lt;&lt; std::endl</div><div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;              &lt;&lt; <span class="stringliteral">&quot;Allgemeine Einstellungen können über \&quot;-key=value\&quot; gesetzt werden (\&quot;-key\&quot; für boolesche). So \</span></div><div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="stringliteral">                  setzt: \&quot;-path=/es/gibt/kuchen\&quot; die Einstellung settings[\&quot;path\&quot;] auf besagten Wert: \</span></div><div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="stringliteral">                  \&quot;/es/gibt/kuchen\&quot;&quot;</span> </div><div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;              &lt;&lt; std::endl;</div><div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a451fb3866139bc9c8dfb5155974db964"><div class="ttname"><a href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a></div><div class="ttdeci">std::string program</div><div class="ttdoc">argv[0] - zur Einfachheit tihihihi </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00109">jake.cpp:109</a></div></div>
+<div class="ttc" id="jake_8cpp_html_abdeaed6542f92441fefa55f697012dae"><div class="ttname"><a href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a></div><div class="ttdeci">functions_t functions</div><div class="ttdoc">Liste aller unterstützer Operationen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00234">jake.cpp:234</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -633,7 +722,6 @@ Variablen</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Versucht LILLY zu installieren. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Noch zu erledigen:</a></b></dt><dd>Implementiere Funktion</dd></dl>
 <dl class="params"><dt>Parameter</dt><dd>
   <table class="params">
     <tr><td class="paramname">cmd</td><td>erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden</td></tr>
@@ -642,8 +730,11 @@ Variablen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>Statuswert (bisher nichts) </dd></dl>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00172">172</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;{ <span class="comment">/* unsupported */</span>}</div></div><!-- fragment -->
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00344">344</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+
+<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00260">ins_linux()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                                                    { </div><div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment">//Determine Operating System</span></div><div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="preprocessor">#if defined(__linux__)</span></div><div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Betriebsystem wurde als Linux-Basiert identifiziert - versuche ins_linux()&quot;</span> &lt;&lt; std::endl;</div><div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <a class="code" href="jake_8cpp.html#ab686147785a97aff73bafca7ce66f84f">ins_linux</a>();</div><div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="preprocessor">#else </span></div><div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    std::cerr &lt;&lt; <span class="stringliteral">&quot;Es existiert keine Installationsregel für dein Betriebssystem :/ - Bitte melde dich beim Maintainer dieses Pakets!&quot;</span> &lt;&lt; std::endl;</div><div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;   <span class="keywordflow">return</span> EXIT_SUCCESS; </div><div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_ab686147785a97aff73bafca7ce66f84f"><div class="ttname"><a href="jake_8cpp.html#ab686147785a97aff73bafca7ce66f84f">ins_linux</a></div><div class="ttdeci">status_t ins_linux(void)</div><div class="ttdoc">Installationsregel für Linux-Basierte Systeme - nutzt konfigurationen der settings. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00260">jake.cpp:260</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a1eca0a09aaef92813a70a52171a82ec2"></a>
@@ -682,10 +773,40 @@ Variablen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>true - wenn die Sequenz enthalten ist, sonst false </dd></dl>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00111">111</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00123">123</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00250">ld_settings()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                                                       {</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">return</span> (std::string(str).find(seq) != std::string::npos);</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div></div><!-- fragment -->
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00319">ld_settings()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                                                       {</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">return</span> (std::string(str).find(seq) != std::string::npos);</div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div></div><!-- fragment -->
+</div>
+</div>
+<a id="ab686147785a97aff73bafca7ce66f84f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab686147785a97aff73bafca7ce66f84f">&#9670;&nbsp;</a></span>ins_linux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="jake_8cpp.html#aad3e9bed6edfa23b0864bff50a1391e9">status_t</a> ins_linux </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Installationsregel für Linux-Basierte Systeme - nutzt konfigurationen der settings. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Noch zu erledigen:</a></b></dt><dd>Implementiere Rückgabewert</dd></dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Statuswert (bisher nichts) </dd></dl>
+
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00260">260</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+
+<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00144">er_decode()</a> und <a class="el" href="jake_8cpp_source.html#l00242">settings</a>.</p>
+
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00344">fkt_install()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                           {</div><div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;  - Erstelle (&quot;</span> &lt;&lt;  <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;install-path&quot;</span>] &lt;&lt; <span class="stringliteral">&quot;/tex/latex): &quot;</span></div><div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;              &lt;&lt; <a class="code" href="jake_8cpp.html#aeaa422f178210ca08aeccfc8788a1736">er_decode</a>(system((<span class="stringliteral">&quot;mkdir -p &quot;</span> + <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;install-path&quot;</span>] + <span class="stringliteral">&quot;/tex/latex&quot;</span>).c_str()))</div><div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;              &lt;&lt; std::endl;</div><div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div><div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;  - Verlinke (&quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;lilly-path&quot;</span>] &lt;&lt; <span class="stringliteral">&quot;) nach (&quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;install-path&quot;</span>] &lt;&lt; <span class="stringliteral">&quot;/tex/latex): &quot;</span></div><div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;              &lt;&lt; <a class="code" href="jake_8cpp.html#aeaa422f178210ca08aeccfc8788a1736">er_decode</a>(system((<span class="stringliteral">&quot;ln -sf &quot;</span>+<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;lilly-path&quot;</span>]+<span class="stringliteral">&quot; &quot;</span>+<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;install-path&quot;</span>]+<span class="stringliteral">&quot;/tex/latex&quot;</span>).c_str()))</div><div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;              &lt;&lt; std::endl;</div><div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;lilly-path&quot;</span>]==<span class="stringliteral">&quot;\&quot;${PWD}/../../Lilly\&quot;&quot;</span>)</div><div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst. Nutze hierzu: &quot;</span> </div><div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;              &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;    jake -lilly-path=\&quot;/pfad/zum/kuchen\&quot; install&quot;</span> &lt;&lt; std::endl;</div><div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div><div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;  - Informiere TEX über (&quot;</span> &lt;&lt; <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;install-path&quot;</span>] &lt;&lt; <span class="stringliteral">&quot;): &quot;</span></div><div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;              &lt;&lt; <a class="code" href="jake_8cpp.html#aeaa422f178210ca08aeccfc8788a1736">er_decode</a>(system((<span class="stringliteral">&quot;texhash &quot;</span> + <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;install-path&quot;</span>]).c_str()))</div><div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;              &lt;&lt; std::endl;</div><div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;              </div><div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Installationsprozess wurde abgeschlossen :D&quot;</span> &lt;&lt; std::endl;</div><div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    </div><div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div><div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_aeaa422f178210ca08aeccfc8788a1736"><div class="ttname"><a href="jake_8cpp.html#aeaa422f178210ca08aeccfc8788a1736">er_decode</a></div><div class="ttdeci">std::string er_decode(int code)</div><div class="ttdoc">Dekodiert Rückgabewerte Menschenlesbar. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00144">jake.cpp:144</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a448b7c9fa402ef11eb60e01e434c0227"><div class="ttname"><a href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a></div><div class="ttdeci">settings_t settings</div><div class="ttdoc">Speicherstruktur für Einstellungen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00242">jake.cpp:242</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ab1961726b7f162bd25cfa4693d91d151"></a>
@@ -715,7 +836,7 @@ Variablen</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lädt die Einstellung auf Basis der Kommandozeilen argumente. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Noch zu erledigen:</a></b></dt><dd>Implementiere Rückgabewert</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Noch zu erledigen:</a></b></dt><dd>Implementiere Rückgabewert</dd></dl>
 <dl class="params"><dt>Parameter</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>Anzahl der Argumente die Übergeben werden </td></tr>
@@ -725,18 +846,18 @@ Variablen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>Statuswert (bisher nichts) </dd></dl>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00250">250</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00319">319</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00049">ARG_PATTERN</a>, <a class="el" href="jake_8cpp_source.html#l00051">ASS_PATTERN</a>, <a class="el" href="jake_8cpp_source.html#l00120">er_unknown_setting()</a>, <a class="el" href="jake_8cpp_source.html#l00111">in_str()</a>, <a class="el" href="jake_8cpp_source.html#l00206">settings</a>, <a class="el" href="jake_8cpp_source.html#l00053">TEX_PATTERN</a> und <a class="el" href="jake_8cpp_source.html#l00056">TO_DATA</a>.</p>
+<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00061">ARG_PATTERN</a>, <a class="el" href="jake_8cpp_source.html#l00063">ASS_PATTERN</a>, <a class="el" href="jake_8cpp_source.html#l00132">er_unknown_setting()</a>, <a class="el" href="jake_8cpp_source.html#l00123">in_str()</a>, <a class="el" href="jake_8cpp_source.html#l00242">settings</a>, <a class="el" href="jake_8cpp_source.html#l00065">TEX_PATTERN</a> und <a class="el" href="jake_8cpp_source.html#l00068">TO_DATA</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00288">main()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                                                 {</div><div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keywordflow">for</span>(; n &gt; 0; n--) {</div><div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="jake_8cpp.html#a1eca0a09aaef92813a70a52171a82ec2">in_str</a>(argv[n],<a class="code" href="jake_8cpp.html#a133b62c324fbf7e3f798f2a202bcb914">ARG_PATTERN</a>)){                       <span class="comment">// not a single argument</span></div><div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keywordflow">if</span>(!<a class="code" href="jake_8cpp.html#a1eca0a09aaef92813a70a52171a82ec2">in_str</a>(argv[n],<a class="code" href="jake_8cpp.html#a897b0f8b46982d071ba8e3998bbdff18">TEX_PATTERN</a>)) {                  <span class="comment">// not a .tex file</span></div><div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>] = <a class="code" href="jake_8cpp.html#ae59a167155c772d72701056f01851837">TO_DATA</a>(argv[n]);</div><div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            } <span class="keywordflow">else</span> {                                            <span class="comment">// is a .tex file</span></div><div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>] = <span class="stringliteral">&quot;file_compile&quot;</span>;</div><div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;file&quot;</span>] = <a class="code" href="jake_8cpp.html#ae59a167155c772d72701056f01851837">TO_DATA</a>(argv[n]);</div><div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            }</div><div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        } <span class="keywordflow">else</span> {                                                <span class="comment">// is a single argument</span></div><div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            <span class="keywordflow">if</span>(!<a class="code" href="jake_8cpp.html#a1eca0a09aaef92813a70a52171a82ec2">in_str</a>(argv[n], <a class="code" href="jake_8cpp.html#a324ad63726655936016f5e9854dffda0">ASS_PATTERN</a>)) {                 <span class="comment">// not an assignment</span></div><div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                <span class="keywordflow">if</span>(<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>.find(argv[n] + 1 <span class="comment">/* offset for &#39;-&#39; */</span>) != <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>.end()</div><div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                    &amp;&amp; <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[argv[n]+1] == <span class="stringliteral">&quot;false&quot;</span>) {        <span class="comment">// valid bool-setting</span></div><div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                    <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[argv[n]+1] = <span class="stringliteral">&quot;true&quot;</span>;</div><div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                } <span class="keywordflow">else</span> {                                        <span class="comment">// no valid bool-setting</span></div><div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                    <a class="code" href="jake_8cpp.html#a73230e33b010721204237c8022dd59c0">er_unknown_setting</a>(argv[n]+1);</div><div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                }</div><div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            } <span class="keywordflow">else</span> {                                            <span class="comment">// is an assignment</span></div><div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                std::string s{argv[n]+1};</div><div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[s.substr(0,s.find(<span class="stringliteral">&quot;=&quot;</span>))] = s.substr(s.find(<span class="stringliteral">&quot;=&quot;</span>)+1);</div><div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            }</div><div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        }</div><div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    }</div><div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a324ad63726655936016f5e9854dffda0"><div class="ttname"><a href="jake_8cpp.html#a324ad63726655936016f5e9854dffda0">ASS_PATTERN</a></div><div class="ttdeci">#define ASS_PATTERN</div><div class="ttdoc">Signatur einer Zuweisung. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00051">jake.cpp:51</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a897b0f8b46982d071ba8e3998bbdff18"><div class="ttname"><a href="jake_8cpp.html#a897b0f8b46982d071ba8e3998bbdff18">TEX_PATTERN</a></div><div class="ttdeci">#define TEX_PATTERN</div><div class="ttdoc">Signatur einer TeX/LaTeX-Datei. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00053">jake.cpp:53</a></div></div>
-<div class="ttc" id="jake_8cpp_html_ae59a167155c772d72701056f01851837"><div class="ttname"><a href="jake_8cpp.html#ae59a167155c772d72701056f01851837">TO_DATA</a></div><div class="ttdeci">#define TO_DATA(x)</div><div class="ttdoc">convenience-wrapper </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00056">jake.cpp:56</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a73230e33b010721204237c8022dd59c0"><div class="ttname"><a href="jake_8cpp.html#a73230e33b010721204237c8022dd59c0">er_unknown_setting</a></div><div class="ttdeci">void er_unknown_setting(const char *setting)</div><div class="ttdoc">Lesbare Ausgabe einer unbekannten Einstellung. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00120">jake.cpp:120</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a133b62c324fbf7e3f798f2a202bcb914"><div class="ttname"><a href="jake_8cpp.html#a133b62c324fbf7e3f798f2a202bcb914">ARG_PATTERN</a></div><div class="ttdeci">#define ARG_PATTERN</div><div class="ttdoc">Signatur mit der ein single-Argument beginnt. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00049">jake.cpp:49</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a448b7c9fa402ef11eb60e01e434c0227"><div class="ttname"><a href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a></div><div class="ttdeci">settings_t settings</div><div class="ttdoc">Speicherstruktur für Einstellungen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00206">jake.cpp:206</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a1eca0a09aaef92813a70a52171a82ec2"><div class="ttname"><a href="jake_8cpp.html#a1eca0a09aaef92813a70a52171a82ec2">in_str</a></div><div class="ttdeci">status_t in_str(const char *str, const char *seq)</div><div class="ttdoc">Lesbarer Test ob char* in char*. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00111">jake.cpp:111</a></div></div>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00390">main()</a>.</p>
+<div class="fragment"><div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                                                 {</div><div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordflow">for</span>(; n &gt; 0; n--) {</div><div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="jake_8cpp.html#a1eca0a09aaef92813a70a52171a82ec2">in_str</a>(argv[n],<a class="code" href="jake_8cpp.html#a133b62c324fbf7e3f798f2a202bcb914">ARG_PATTERN</a>)){                       <span class="comment">// not a single argument</span></div><div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <span class="keywordflow">if</span>(!<a class="code" href="jake_8cpp.html#a1eca0a09aaef92813a70a52171a82ec2">in_str</a>(argv[n],<a class="code" href="jake_8cpp.html#a897b0f8b46982d071ba8e3998bbdff18">TEX_PATTERN</a>)) {                  <span class="comment">// not a .tex file</span></div><div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>] = <a class="code" href="jake_8cpp.html#ae59a167155c772d72701056f01851837">TO_DATA</a>(argv[n]);</div><div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            } <span class="keywordflow">else</span> {                                            <span class="comment">// is a .tex file</span></div><div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>] = <span class="stringliteral">&quot;file_compile&quot;</span>;</div><div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;file&quot;</span>] = <a class="code" href="jake_8cpp.html#ae59a167155c772d72701056f01851837">TO_DATA</a>(argv[n]);</div><div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            }</div><div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        } <span class="keywordflow">else</span> {                                                <span class="comment">// is a single argument</span></div><div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keywordflow">if</span>(!<a class="code" href="jake_8cpp.html#a1eca0a09aaef92813a70a52171a82ec2">in_str</a>(argv[n], <a class="code" href="jake_8cpp.html#a324ad63726655936016f5e9854dffda0">ASS_PATTERN</a>)) {                 <span class="comment">// not an assignment</span></div><div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                <span class="keywordflow">if</span>(<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>.find(argv[n] + 1 <span class="comment">/* offset for &#39;-&#39; */</span>) != <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>.end()</div><div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                    &amp;&amp; <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[argv[n]+1] == <span class="stringliteral">&quot;false&quot;</span>) {        <span class="comment">// valid bool-setting</span></div><div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                    <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[argv[n]+1] = <span class="stringliteral">&quot;true&quot;</span>;</div><div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                } <span class="keywordflow">else</span> {                                        <span class="comment">// no valid bool-setting</span></div><div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                    <a class="code" href="jake_8cpp.html#a73230e33b010721204237c8022dd59c0">er_unknown_setting</a>(argv[n]+1);</div><div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                }</div><div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            } <span class="keywordflow">else</span> {                                            <span class="comment">// is an assignment</span></div><div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                std::string s{argv[n]+1};</div><div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[s.substr(0,s.find(<span class="stringliteral">&quot;=&quot;</span>))] = s.substr(s.find(<span class="stringliteral">&quot;=&quot;</span>)+1);</div><div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;            }</div><div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        }</div><div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    }</div><div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a324ad63726655936016f5e9854dffda0"><div class="ttname"><a href="jake_8cpp.html#a324ad63726655936016f5e9854dffda0">ASS_PATTERN</a></div><div class="ttdeci">#define ASS_PATTERN</div><div class="ttdoc">Signatur einer Zuweisung. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00063">jake.cpp:63</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a897b0f8b46982d071ba8e3998bbdff18"><div class="ttname"><a href="jake_8cpp.html#a897b0f8b46982d071ba8e3998bbdff18">TEX_PATTERN</a></div><div class="ttdeci">#define TEX_PATTERN</div><div class="ttdoc">Signatur einer TeX/LaTeX-Datei. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00065">jake.cpp:65</a></div></div>
+<div class="ttc" id="jake_8cpp_html_ae59a167155c772d72701056f01851837"><div class="ttname"><a href="jake_8cpp.html#ae59a167155c772d72701056f01851837">TO_DATA</a></div><div class="ttdeci">#define TO_DATA(x)</div><div class="ttdoc">convenience-wrapper </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00068">jake.cpp:68</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a73230e33b010721204237c8022dd59c0"><div class="ttname"><a href="jake_8cpp.html#a73230e33b010721204237c8022dd59c0">er_unknown_setting</a></div><div class="ttdeci">void er_unknown_setting(const char *setting)</div><div class="ttdoc">Lesbare Ausgabe einer unbekannten Einstellung. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00132">jake.cpp:132</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a133b62c324fbf7e3f798f2a202bcb914"><div class="ttname"><a href="jake_8cpp.html#a133b62c324fbf7e3f798f2a202bcb914">ARG_PATTERN</a></div><div class="ttdeci">#define ARG_PATTERN</div><div class="ttdoc">Signatur mit der ein single-Argument beginnt. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00061">jake.cpp:61</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a448b7c9fa402ef11eb60e01e434c0227"><div class="ttname"><a href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a></div><div class="ttdeci">settings_t settings</div><div class="ttdoc">Speicherstruktur für Einstellungen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00242">jake.cpp:242</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a1eca0a09aaef92813a70a52171a82ec2"><div class="ttname"><a href="jake_8cpp.html#a1eca0a09aaef92813a70a52171a82ec2">in_str</a></div><div class="ttdeci">status_t in_str(const char *str, const char *seq)</div><div class="ttdoc">Lesbarer Test ob char* in char*. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00123">jake.cpp:123</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -776,14 +897,14 @@ Variablen</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>status </dd></dl>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00288">288</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00390">390</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00120">er_unknown_setting()</a>, <a class="el" href="jake_8cpp_source.html#l00198">functions</a>, <a class="el" href="jake_8cpp_source.html#l00250">ld_settings()</a>, <a class="el" href="jake_8cpp_source.html#l00097">program</a> und <a class="el" href="jake_8cpp_source.html#l00206">settings</a>.</p>
-<div class="fragment"><div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                                      {</div><div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <a class="code" href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a> = argv[0];</div><div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    </div><div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <a class="code" href="jake_8cpp.html#ab1961726b7f162bd25cfa4693d91d151">ld_settings</a>(argc-1, argv);</div><div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="comment">//fkt_help(argv[0]);</span></div><div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>.find(<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>]) != <a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>.end()) {                   <span class="comment">// Operation ist valide</span></div><div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>[<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>]].fkt(argv[0]);                           <span class="comment">// Führe Operation aus</span></div><div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    } <span class="keywordflow">else</span> {</div><div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        <a class="code" href="jake_8cpp.html#a73230e33b010721204237c8022dd59c0">er_unknown_setting</a>((<span class="stringliteral">&quot;operation (=&quot;</span> + <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>] + <span class="stringliteral">&quot;)&quot;</span>).c_str());  <span class="comment">// Diese Operation kenne ich nicht</span></div><div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    }</div><div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    </div><div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div><div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a451fb3866139bc9c8dfb5155974db964"><div class="ttname"><a href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a></div><div class="ttdeci">std::string program</div><div class="ttdoc">argv[0] - zur Einfachheit tihihihi </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00097">jake.cpp:97</a></div></div>
-<div class="ttc" id="jake_8cpp_html_ab1961726b7f162bd25cfa4693d91d151"><div class="ttname"><a href="jake_8cpp.html#ab1961726b7f162bd25cfa4693d91d151">ld_settings</a></div><div class="ttdeci">status_t ld_settings(int n, const char **argv)</div><div class="ttdoc">Lädt die Einstellung auf Basis der Kommandozeilen argumente. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00250">jake.cpp:250</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a73230e33b010721204237c8022dd59c0"><div class="ttname"><a href="jake_8cpp.html#a73230e33b010721204237c8022dd59c0">er_unknown_setting</a></div><div class="ttdeci">void er_unknown_setting(const char *setting)</div><div class="ttdoc">Lesbare Ausgabe einer unbekannten Einstellung. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00120">jake.cpp:120</a></div></div>
-<div class="ttc" id="jake_8cpp_html_abdeaed6542f92441fefa55f697012dae"><div class="ttname"><a href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a></div><div class="ttdeci">functions_t functions</div><div class="ttdoc">Liste aller unterstützer Operationen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00198">jake.cpp:198</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a448b7c9fa402ef11eb60e01e434c0227"><div class="ttname"><a href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a></div><div class="ttdeci">settings_t settings</div><div class="ttdoc">Speicherstruktur für Einstellungen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00206">jake.cpp:206</a></div></div>
+<p class="reference">Benutzt <a class="el" href="jake_8cpp_source.html#l00132">er_unknown_setting()</a>, <a class="el" href="jake_8cpp_source.html#l00234">functions</a>, <a class="el" href="jake_8cpp_source.html#l00319">ld_settings()</a>, <a class="el" href="jake_8cpp_source.html#l00109">program</a> und <a class="el" href="jake_8cpp_source.html#l00242">settings</a>.</p>
+<div class="fragment"><div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                                      {</div><div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <a class="code" href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a> = argv[0];</div><div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    </div><div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <a class="code" href="jake_8cpp.html#ab1961726b7f162bd25cfa4693d91d151">ld_settings</a>(argc-1, argv);</div><div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="comment">//fkt_help(argv[0]);</span></div><div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>.find(<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>]) != <a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>.end()) {                   <span class="comment">// Operation ist valide</span></div><div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            <a class="code" href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a>[<a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>]].fkt(argv[0]);                           <span class="comment">// Führe Operation aus</span></div><div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    } <span class="keywordflow">else</span> {</div><div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        <a class="code" href="jake_8cpp.html#a73230e33b010721204237c8022dd59c0">er_unknown_setting</a>((<span class="stringliteral">&quot;operation (=&quot;</span> + <a class="code" href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a>[<span class="stringliteral">&quot;operation&quot;</span>] + <span class="stringliteral">&quot;)&quot;</span>).c_str());  <span class="comment">// Diese Operation kenne ich nicht</span></div><div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    }</div><div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    </div><div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div><div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;}</div><div class="ttc" id="jake_8cpp_html_a451fb3866139bc9c8dfb5155974db964"><div class="ttname"><a href="jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a></div><div class="ttdeci">std::string program</div><div class="ttdoc">argv[0] - zur Einfachheit tihihihi </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00109">jake.cpp:109</a></div></div>
+<div class="ttc" id="jake_8cpp_html_ab1961726b7f162bd25cfa4693d91d151"><div class="ttname"><a href="jake_8cpp.html#ab1961726b7f162bd25cfa4693d91d151">ld_settings</a></div><div class="ttdeci">status_t ld_settings(int n, const char **argv)</div><div class="ttdoc">Lädt die Einstellung auf Basis der Kommandozeilen argumente. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00319">jake.cpp:319</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a73230e33b010721204237c8022dd59c0"><div class="ttname"><a href="jake_8cpp.html#a73230e33b010721204237c8022dd59c0">er_unknown_setting</a></div><div class="ttdeci">void er_unknown_setting(const char *setting)</div><div class="ttdoc">Lesbare Ausgabe einer unbekannten Einstellung. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00132">jake.cpp:132</a></div></div>
+<div class="ttc" id="jake_8cpp_html_abdeaed6542f92441fefa55f697012dae"><div class="ttname"><a href="jake_8cpp.html#abdeaed6542f92441fefa55f697012dae">functions</a></div><div class="ttdeci">functions_t functions</div><div class="ttdoc">Liste aller unterstützer Operationen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00234">jake.cpp:234</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a448b7c9fa402ef11eb60e01e434c0227"><div class="ttname"><a href="jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227">settings</a></div><div class="ttdeci">settings_t settings</div><div class="ttdoc">Speicherstruktur für Einstellungen. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00242">jake.cpp:242</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -799,16 +920,16 @@ Variablen</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initialisierung:</b><div class="fragment"><div class="line">{</div><div class="line">    {<span class="stringliteral">&quot;help&quot;</span>, {<a class="code" href="jake_8cpp.html#ab6e4d8d136e46ec35480bdbb370cc936">fkt_help</a>, <span class="stringliteral">&quot;Zeigt diese Hilfe an&quot;</span>}},</div><div class="line">    {<span class="stringliteral">&quot;dump&quot;</span>, {<a class="code" href="jake_8cpp.html#ae7681441147951dec558162390652428">fkt_dump</a>, <span class="stringliteral">&quot;Zeigt alle settings und ihre Werte an&quot;</span> }},</div><div class="line">    {<span class="stringliteral">&quot;file_compile&quot;</span>, {<a class="code" href="jake_8cpp.html#afdd170ef925072b219cd2230140df684">fkt_compile</a>, <span class="stringliteral">&quot;Erstellt ein makefile für settings[\&quot;file\&quot;]&quot;</span>}},</div><div class="line">    {<span class="stringliteral">&quot;install&quot;</span>, {<a class="code" href="jake_8cpp.html#a0a604925c59a3aa5e94162e3f87bd645">fkt_install</a>, <span class="stringliteral">&quot;Versucht LILLY zu installieren&quot;</span>}}</div><div class="line">}</div><div class="ttc" id="jake_8cpp_html_ab6e4d8d136e46ec35480bdbb370cc936"><div class="ttname"><a href="jake_8cpp.html#ab6e4d8d136e46ec35480bdbb370cc936">fkt_help</a></div><div class="ttdeci">status_t fkt_help(const std::string &amp;cmd) noexcept</div><div class="ttdoc">Gibt Hilfe zur Verwendung von lilly_jake. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00228">jake.cpp:228</a></div></div>
-<div class="ttc" id="jake_8cpp_html_ae7681441147951dec558162390652428"><div class="ttname"><a href="jake_8cpp.html#ae7681441147951dec558162390652428">fkt_dump</a></div><div class="ttdeci">status_t fkt_dump(const std::string &amp;cmd) noexcept</div><div class="ttdoc">Gibt die aktuellen Settings aus. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00218">jake.cpp:218</a></div></div>
-<div class="ttc" id="jake_8cpp_html_a0a604925c59a3aa5e94162e3f87bd645"><div class="ttname"><a href="jake_8cpp.html#a0a604925c59a3aa5e94162e3f87bd645">fkt_install</a></div><div class="ttdeci">status_t fkt_install(const std::string &amp;cmd) noexcept</div><div class="ttdoc">Versucht LILLY zu installieren. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00172">jake.cpp:172</a></div></div>
-<div class="ttc" id="jake_8cpp_html_afdd170ef925072b219cd2230140df684"><div class="ttname"><a href="jake_8cpp.html#afdd170ef925072b219cd2230140df684">fkt_compile</a></div><div class="ttdeci">status_t fkt_compile(const std::string &amp;cmd) noexcept</div><div class="ttdoc">Erstellt ein Makefile für die mit settings[&quot;file&quot;] angegebene Datei. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00161">jake.cpp:161</a></div></div>
+<b>Initialisierung:</b><div class="fragment"><div class="line">{</div><div class="line">    {<span class="stringliteral">&quot;help&quot;</span>, {<a class="code" href="jake_8cpp.html#ab6e4d8d136e46ec35480bdbb370cc936">fkt_help</a>, <span class="stringliteral">&quot;Zeigt diese Hilfe an&quot;</span>}},</div><div class="line">    {<span class="stringliteral">&quot;dump&quot;</span>, {<a class="code" href="jake_8cpp.html#ae7681441147951dec558162390652428">fkt_dump</a>, <span class="stringliteral">&quot;Zeigt alle settings und ihre Werte an&quot;</span> }},</div><div class="line">    {<span class="stringliteral">&quot;file_compile&quot;</span>, {<a class="code" href="jake_8cpp.html#a109bc70d60f8bb626576e3a42d7615a1">fkt_compile</a>, <span class="stringliteral">&quot;Erstellt ein makefile für settings[\&quot;file\&quot;]&quot;</span>}},</div><div class="line">    {<span class="stringliteral">&quot;install&quot;</span>, {<a class="code" href="jake_8cpp.html#a0a604925c59a3aa5e94162e3f87bd645">fkt_install</a>, <span class="stringliteral">&quot;Versucht LILLY zu installieren&quot;</span>}}</div><div class="line">}</div><div class="ttc" id="jake_8cpp_html_a109bc70d60f8bb626576e3a42d7615a1"><div class="ttname"><a href="jake_8cpp.html#a109bc70d60f8bb626576e3a42d7615a1">fkt_compile</a></div><div class="ttdeci">status_t fkt_compile(const std::string &amp;cmd)</div><div class="ttdoc">Erstellt ein Makefile für die mit settings[&quot;file&quot;] angegebene Datei. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00355">jake.cpp:355</a></div></div>
+<div class="ttc" id="jake_8cpp_html_ab6e4d8d136e46ec35480bdbb370cc936"><div class="ttname"><a href="jake_8cpp.html#ab6e4d8d136e46ec35480bdbb370cc936">fkt_help</a></div><div class="ttdeci">status_t fkt_help(const std::string &amp;cmd) noexcept</div><div class="ttdoc">Gibt Hilfe zur Verwendung von lilly_jake. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00297">jake.cpp:297</a></div></div>
+<div class="ttc" id="jake_8cpp_html_ae7681441147951dec558162390652428"><div class="ttname"><a href="jake_8cpp.html#ae7681441147951dec558162390652428">fkt_dump</a></div><div class="ttdeci">status_t fkt_dump(const std::string &amp;cmd) noexcept</div><div class="ttdoc">Gibt die aktuellen Settings aus. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00287">jake.cpp:287</a></div></div>
+<div class="ttc" id="jake_8cpp_html_a0a604925c59a3aa5e94162e3f87bd645"><div class="ttname"><a href="jake_8cpp.html#a0a604925c59a3aa5e94162e3f87bd645">fkt_install</a></div><div class="ttdeci">status_t fkt_install(const std::string &amp;cmd) noexcept</div><div class="ttdoc">Versucht LILLY zu installieren. </div><div class="ttdef"><b>Definition:</b> <a href="jake_8cpp_source.html#l00344">jake.cpp:344</a></div></div>
 </div><!-- fragment -->
 <p>Liste aller unterstützer Operationen. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00198">198</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00234">234</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00228">fkt_help()</a> und <a class="el" href="jake_8cpp_source.html#l00288">main()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00297">fkt_help()</a> und <a class="el" href="jake_8cpp_source.html#l00390">main()</a>.</p>
 
 </div>
 </div>
@@ -826,9 +947,9 @@ Variablen</h2></td></tr>
 
 <p>argv[0] - zur Einfachheit tihihihi </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00097">97</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00109">109</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00120">er_unknown_setting()</a>, <a class="el" href="jake_8cpp_source.html#l00228">fkt_help()</a> und <a class="el" href="jake_8cpp_source.html#l00288">main()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00132">er_unknown_setting()</a>, <a class="el" href="jake_8cpp_source.html#l00297">fkt_help()</a> und <a class="el" href="jake_8cpp_source.html#l00390">main()</a>.</p>
 
 </div>
 </div>
@@ -843,12 +964,12 @@ Variablen</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initialisierung:</b><div class="fragment"><div class="line">{</div><div class="line">    {<span class="stringliteral">&quot;operation&quot;</span>, <span class="stringliteral">&quot;help&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;file&quot;</span>, <span class="stringliteral">&quot;none.tex&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;debug&quot;</span>, <span class="stringliteral">&quot;false&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;path&quot;</span>, <span class="stringliteral">&quot;./&quot;</span>}</div><div class="line">}</div></div><!-- fragment -->
+<b>Initialisierung:</b><div class="fragment"><div class="line">{</div><div class="line">    {<span class="stringliteral">&quot;operation&quot;</span>, <span class="stringliteral">&quot;help&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;file&quot;</span>, <span class="stringliteral">&quot;none.tex&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;debug&quot;</span>, <span class="stringliteral">&quot;false&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;path&quot;</span>, <span class="stringliteral">&quot;./&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;install-path&quot;</span>,<span class="stringliteral">&quot;\&quot;${HOME}/texmf\&quot;&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;lilly-path&quot;</span>,<span class="stringliteral">&quot;\&quot;${PWD}/../../Lilly\&quot;&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;mk-name&quot;</span>, <span class="stringliteral">&quot;makefile.lilly&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;mk-path&quot;</span>,<span class="stringliteral">&quot;./&quot;</span>},</div><div class="line">    {<span class="stringliteral">&quot;lilly-out&quot;</span>,<span class="stringliteral">&quot;./$(BASENAME)-OUT/&quot;</span>}, </div><div class="line"></div><div class="line">}</div></div><!-- fragment -->
 <p>Speicherstruktur für Einstellungen. </p>
 
-<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00206">206</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
+<p class="definition">Definiert in Zeile <a class="el" href="jake_8cpp_source.html#l00242">242</a> der Datei <a class="el" href="jake_8cpp_source.html">jake.cpp</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00218">fkt_dump()</a>, <a class="el" href="jake_8cpp_source.html#l00250">ld_settings()</a> und <a class="el" href="jake_8cpp_source.html#l00288">main()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="jake_8cpp_source.html#l00355">fkt_compile()</a>, <a class="el" href="jake_8cpp_source.html#l00287">fkt_dump()</a>, <a class="el" href="jake_8cpp_source.html#l00260">ins_linux()</a>, <a class="el" href="jake_8cpp_source.html#l00319">ld_settings()</a> und <a class="el" href="jake_8cpp_source.html#l00390">main()</a>.</p>
 
 </div>
 </div>

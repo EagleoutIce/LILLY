@@ -1,0 +1,9 @@
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr  8 2019 at: 02:46:44)
+
+TEXFILE     := a.tex
+BASENAME    := $(basename $(TEXFILE))
+PDFFILE     := $(addsuffix .pdf,$(basename $(TEXFILE)))
+LATEXARGS   := -shell-escape -enable-write18 -interaction=batchmode
+
+## Directories used for INPUT and OUTPUT Files 
+OUTPUTDIR   := ./$(BASENAME)-OUT/

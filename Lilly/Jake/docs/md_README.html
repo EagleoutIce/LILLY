@@ -114,19 +114,38 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 <div class="title"># Jake </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p class=""><b>Author:</b> Florian Sihler <b>Version:</b> 1.0.7 (LILLY: 1.0.7) &ndash; 5.4.2019 </p><h2>**OS:** Linux </h2>
-<h2>Was ist Jake?</h2>
+<div class="textblock"><p class=""><b>Author:</b> Florian Sihler</p>
+<p class=""><b>Version:</b> 1.0.7 (LILLY: 1.0.7) &ndash; 5.4.2019</p>
+<p class=""><b>OS:</b> Linux </p><hr/>
+ <h2>Was ist Jake?</h2>
 <p class="">Jake ist ein in C++ geschriebenes Programm, welches die Arbeit mit dem LILLY-Framework vereinfacht. Es ist bisher für folgende Betriebssysteme Definiert:</p><ul>
 <li>Linux</li>
 </ul>
-<p class="">Diese Version wurde entwickelt für LILLY (VER: 1.0.7) und zusammen mit dem nötigen makefile ausgeliefert. <em><b>JAKE Ist nicht nötig um mit dem LILLY-Framework zu arbeiten, es handelt sich lediglich um ein Hilfsprogramm.</b></em></p>
+<p class="">Diese Version wurde entwickelt für LILLY (VER: 1.0.7) und zusammen mit dem nötigen makefile ausgeliefert.</p>
+<p class=""><em><b>JAKE Ist nicht nötig um mit dem LILLY-Framework zu arbeiten, es handelt sich lediglich um ein Hilfsprogramm.</b></em></p>
 <h2>Wie zieht man Jake das Anoräckchen an?</h2>
 <h3>Linux</h3>
-<p class="">Jake wird als <code>.cpp</code>&ndash;Datei geliefert. Um die Datei lauffertig zu machen genügt folgender Befehl: <code>make</code> Soll kein Symlink zu <code>/usr/local/bin</code> erstellt werden so wird die Regel <code>no_link</code> empfohlen: <code>make no_link</code> Zum entfernen eines existenten links genügt: <code>make clean</code> Anschließend kann man Jake ganz normal aufrufen</p>
+<p class="">Jake wird als <code>.cpp</code>&ndash;Datei geliefert. Um die Datei lauffertig zu machen genügt folgender Befehl:</p>
+<p class=""><code>make</code></p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Beac   </th></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Bisher verändert Jake <code>$PATH</code> indem er sich sowohl in die <code>.bashrc</code> als auch in eine <code>.zshrc</code> einträgt. Dies kann unter umständen zu Problemen führen. In diesem Fall wird empfohlen einfach zu Weinen und anschließend die jeweiligen Dateien zu öffnen und die Zeile nach <code>#LILLY_CODE</code> zu entfernen. Es wird geraten den Kommentar unverändert zu lassen! Über ihn identifiziert das Makefile ob es etwas in die Dateien eintragen soll oder nicht.   </td></tr>
+</table>
+<p class="">Soll keine Veränderung von <code>$PATH</code> durchgeführt werden so wird die Regel <code>no_link</code> empfohlen:</p>
+<p class=""><code>make no_link</code></p>
+<p class="">(TODO:) Zum Entfernen eines existenten links genügt:</p>
+<p class=""><code>make clean</code></p>
+<p class="">Anschließend kann man Jake (als <code>lilly_jake</code>) ganz normal aufrufen.</p>
 <h3>Windows</h3>
 <h3>MacOS</h3>
 <h2>Wie benutzt man Jake?</h2>
-<p class="">Startet man Jake mit dem Argument <code>install</code> so versucht Jake LILLY zu installieren. Hierzu geht Jake davon aus, dass es sich im Ordner <code>LILLY</code> befindet, in dem sich alle notwendigen Dateien befinden. Zum Aufsetzen von LILLY genügt also ein: <code>jake install</code> Möchte man nun für eine Datei ein Makefile generieren (welches auch mit Version 1.0.7 verschiedene BoxModi Unterstützt) so genügt das Schreiben des Dateinamens: <code>jake TollesDokument.tex</code> Weitere Funktionen sind dem Hilfe-Parameter zu entnehmen (<code>jake --help</code>) </p>
+<p class="">Startet man Jake mit dem Argument <code>install</code> so versucht Jake LILLY zu installieren. Hierzu geht Jake davon aus, dass es sich im Ordner <code>LILLY</code> befindet, in dem sich alle notwendigen Dateien befinden. Zum Aufsetzen von LILLY genügt also ein:</p>
+<p class=""><code>lilly_jake install</code></p>
+<p class="">Möchte man nun für eine Datei ein Makefile generieren (welches auch mit Version 1.0.7 verschiedene BoxModi Unterstützt) so genügt das Schreiben des Dateinamens:</p>
+<p class=""><code>lilly_jake TollesDokument.tex</code></p>
+<p class="">Weitere Funktionen sind dem Hilfe-Parameter zu entnehmen (<code>lilly_jake help</code>) </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
