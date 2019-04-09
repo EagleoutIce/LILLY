@@ -8,7 +8,7 @@
 
 \RequirePackage{titlesec}
 % lines above and below, number right
-\renewcommand{\chaptermark}[1]{\markboth{#1}{\faBookmark}} %%Chaptermark fix inject
+\renewcommand{\chaptermark}[1]{\markboth{\rmdefault #1}{\faBookmark}} %%Chaptermark fix inject
 
 
 \titleformat{\chapter}[display]%             
@@ -30,7 +30,7 @@
     \defChapter*{#1}
 }
 \def\nostarchapter[#1]#2{\defChapter[{#1}]{#2}\addcontentsline{DEFS}{chapter}{#1}
-\addcontentsline{SATZE}{chapter}{#1}\addcontentsline{ZSM}{chapter}{#1}\addcontentsline{UB}{chapter}{#1}\renewcommand{\leftmark}{#2}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}}
+\addcontentsline{SATZE}{chapter}{#1}\addcontentsline{ZSM}{chapter}{#1}\addcontentsline{UB}{chapter}{#1}\renewcommand{\leftmark}{{#2}}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}}
 
 \LILLYcommand{\LILLYxLayoutxClear}{ %
     \pagestyle{empty} %KOMA-FTW!
@@ -49,9 +49,9 @@
     %\lofoot{\tiny{\jmark[Kapitel]{INHA}\textnormal{\guilsinglright}\theTOPIC}}
     %\else
     \ifx\LILLYxMODE\LILLXxMODExPRINT
-        \lehead{{\leftmark}}
+        \lehead{\textsf{$\mathbf{\thechapter}\,\mid$ \mdseries\textsf{\leftmark}}}
         %%\rohead{{\rightmark}} %% seems to be buggy?
-        \rohead{\LILLYxRIGHTMARK}
+        \rohead{\normalfont\textsf{\LILLYxRIGHTMARK}}
         \cofoot{\scriptsize{\AUTHOR}}
         \cefoot{\scriptsize{\TITLE}}
         \ofoot{\textbf{\thepage}}
