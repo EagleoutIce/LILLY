@@ -39,14 +39,14 @@
     \newcommand*{\LILLYxDocumentxTYPE}{scrbook}           %%% Dokumentbasisklasse es Dokuments
 \fi
 \ifx\LILLYxDocumentxTYPExExtras \undefined
-    \providecommand\LILLXxMODExPRINT{print}
-    \ifx\LILLYxMODE\LILLXxMODExPRINT
+    \providecommand\LILLYxMODExPRINT{print}
+    \ifx\LILLYxMODE\LILLYxMODExPRINT
         \newcommand*{\LILLYxDocumentxTYPExExtras}{twoside}    %%% Weitere Zusätze für das Dokument
         \ifx\LILLYxDEBUG\true
             %\newcommand*{\LILLYxGeometryxExtras}{bindingoffset=8mm,showframe}            
-            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=8mm}            
+            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=10mm}            
         \else
-            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=8mm}
+            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=10mm}
         \fi
     \else
         \newcommand*{\LILLYxDocumentxTYPExExtras}{oneside}    %%% Weitere Zusätze für das Dokument
@@ -61,11 +61,12 @@
 \RequirePackage[\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight},top=1.25in,centering]{geometry}
 %top=1.5in,bottom=1.25in,textwidth=6.25in]{geometry}
 
-\RequirePackage[german,english]{babel}
+\RequirePackage[english,ngerman]{babel}
 
 \RequirePackage{tabularx} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
 \RequirePackage{ltablex} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
 \RequirePackage{pgfkeys}
+\RequirePackage{refcount}
 \keepXColumns
 
 
@@ -111,7 +112,7 @@
 \RequirePackage{tocloft}
 \RequirePackage{multirow}
 \RequirePackage{booktabs}
-
+\RequirePackage{hhline}
 \ifx\LILLYxTIKZxenable \undefined
     \input{Lilly_Files/Data/Graphics/Tikz-Core/_LILLY_TIKZ_CORE}
     \tikzset{invclip/.style={clip,insert path={{[reset cm](-100pt,-100pt) rectangle (100pt,100pt)}}}} %Für die FG-Kreise, damit man clippings auch invertieren kann
@@ -182,7 +183,7 @@
 
 \input{Lilly_Files/Controllers/_LILLY_BOX_CONTROLLER}
 
-
+\input{Lilly_Files/Controllers/_LILLY_HYPHEN_CONTROLLER}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
