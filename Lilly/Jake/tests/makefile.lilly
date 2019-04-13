@@ -18,10 +18,7 @@ JOBCOUNT     := 2                             ## <= CPU_COUNT!
 
 
 define LILLYxCompile = 
-	pdflatex -jobname $(BASENAME) $(LATEXARGS) $(_LILLYARGS) ${2}\\\providecommand{\\\LILLYxPDFNAME}{${1}}
-	pdflatex -jobname $(BASENAME) $(LATEXARGS) $(_LILLYARGS) ${2}\\\providecommand{\\\LILLYxPDFNAME}{${1}}
-	pdflatex -jobname $(BASENAME) $(LATEXARGS) $(_LILLYARGS) ${2}\\\providecommand{\\\LILLYxPDFNAME}{${1}}
+@pdflatex -jobname $(BASENAME) $(LATEXARGS) $(_LILLYARGS) ${2}\\\providecommand{\\\LILLYxPDFNAME}{${1}}
+@pdflatex -jobname $(BASENAME) $(LATEXARGS) $(_LILLYARGS) ${2}\\\providecommand{\\\LILLYxPDFNAME}{${1}}
+@pdflatex -jobname $(BASENAME) $(LATEXARGS) $(_LILLYARGS) ${2}\\\providecommand{\\\LILLYxPDFNAME}{${1}}
 endef
-
-default: test.tex
-	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)$(PDFFILE),\\providecommand\\LILLYxMODE{default})

@@ -2,11 +2,13 @@ var jake_8cpp =
 [
     [ "fkt_descriptor", "structfkt__descriptor.html", "structfkt__descriptor" ],
     [ "ARG_PATTERN", "jake_8cpp.html#a133b62c324fbf7e3f798f2a202bcb914", null ],
+    [ "ASA_PATTERN", "jake_8cpp.html#a4727ade02222e770a233e51e90c5c72e", null ],
     [ "ASS_PATTERN", "jake_8cpp.html#a324ad63726655936016f5e9854dffda0", null ],
     [ "COL_ERROR", "jake_8cpp.html#a14e4c7bca15c8e63f4000b8045d73b34", null ],
     [ "COL_RESET", "jake_8cpp.html#a63373358eb4288de0bc4a08395a2500c", null ],
     [ "COL_SUCCESS", "jake_8cpp.html#abed5f9d955a9b744d5684d7607a4aae2", null ],
     [ "PRG_BRIEF", "jake_8cpp.html#aa5746350eebec2fe47d2697efae3e37b", null ],
+    [ "STY_PARAM", "jake_8cpp.html#a8ed328969e9bb6c528d83febd98cb9e4", null ],
     [ "TEX_PATTERN", "jake_8cpp.html#a897b0f8b46982d071ba8e3998bbdff18", null ],
     [ "TO_DATA", "jake_8cpp.html#ae59a167155c772d72701056f01851837", null ],
     [ "data_t", "jake_8cpp.html#aa4b40fa7ff8b004945c08552032210cc", null ],
@@ -24,6 +26,7 @@ var jake_8cpp =
     [ "ins_linux", "jake_8cpp.html#ab686147785a97aff73bafca7ce66f84f", null ],
     [ "ld_settings", "jake_8cpp.html#ab1961726b7f162bd25cfa4693d91d151", null ],
     [ "main", "jake_8cpp.html#a217dbf8b442f20279ea00b898af96f52", null ],
+    [ "padPrint", "jake_8cpp.html#af8addd16964fb8bace49095454464452", null ],
     [ "functions", "jake_8cpp.html#abdeaed6542f92441fefa55f697012dae", null ],
     [ "program", "jake_8cpp.html#a451fb3866139bc9c8dfb5155974db964", null ],
     [ "settings", "jake_8cpp.html#a448b7c9fa402ef11eb60e01e434c0227", null ]

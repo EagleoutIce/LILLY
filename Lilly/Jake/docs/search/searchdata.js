@@ -3,10 +3,10 @@ var indexSectionsWithContent =
   0: "abcdefijlmprst",
   1: "f",
   2: "jr",
-  3: "efilm",
+  3: "efilmp",
   4: "bfps",
   5: "dfs",
-  6: "acpt",
+  6: "acpst",
   7: "ac"
 };
 

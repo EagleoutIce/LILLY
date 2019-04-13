@@ -56,11 +56,15 @@
 #define COL_ERROR "\033[38;2;255;32;82m"
 /// @brief Design-Makro zum Setzen der Erfolgs-Farbe in der Konsole
 #define COL_SUCCESS "\033[38;2;102;250;0m"
+/// @brief Design für Parameter
+#define STY_PARAM "\033[2;3;51m"
 
 /// @brief Signatur mit der ein single-Argument beginnt
 #define ARG_PATTERN "-"
 /// @brief Signatur einer Zuweisung
 #define ASS_PATTERN "="
+/// @brief Signatur einer Hinzufügenden Zuweisung
+#define ASA_PATTERN "+="
 /// @brief Signatur einer TeX/LaTeX-Datei
 #define TEX_PATTERN ".tex"
 
@@ -145,6 +149,17 @@ inline std::string er_decode(int code) {
     return ((code)?std::string(COL_ERROR) + "ERROR (" + std::to_string(code) +")"
                   :(std::string(COL_SUCCESS) + "SUCCESS")) + COL_RESET;
 }
+/**
+ * @brief Fügt ähnlich iomanip's setw Leerfelder ein
+ *
+ * @param entry Eintrag der mit (left) pad ausgegeben werden soll
+ * @param toWidth Breite auf die der Pad gesetzt werden soll
+ *
+ * @note Sollte toWidth <= der Länge von entry sein, so wird lediglich entry zurück gegeben!
+ *
+ * @returns formatierte Zeichenkette
+ */
+std::string padPrint(const std::string& entry, uint16_t toWidth=30);
 
 /* ================================================================================================================== */        /* ################# */
 /* Signaturen                                                                                                         */        /* ################# */
@@ -240,16 +255,21 @@ functions_t functions {
 
 /// @brief Speicherstruktur für Einstellungen
 settings_t settings {
-    {"operation", "help"},
-    {"file", "none.tex"},
-    {"debug", "false"},
-    {"path", "./"},
-    {"install-path","\"${HOME}/texmf\""},
-    {"lilly-path","\"${PWD}/../../Lilly\""},
-    {"mk-name", "makefile.lilly"},
-    {"mk-path","./"},
-    {"lilly-out","./$(BASENAME)-OUT/"}, // issues mkdir inside of makefile -- OS-Slave 
-
+    {"operation",           "help"},
+    {"file",                "none.tex"},
+    {"debug",               "false"},
+    {"path",                "./"},
+    {"install-path",        "\"${HOME}/texmf\""},
+    {"lilly-path",          "\"${PWD}/../../Lilly\""},
+    {"mk-name",             "makefile.lilly"},
+    {"mk-path",             "./"},
+    {"lilly-out",           "./$(BASENAME)-OUT/"}, // issues mkdir inside of makefile -- OS-Slave
+    {"lilly-in",            "./"},
+    {"lilly-nameprefix",    ""},
+    {"lilly-boxes",         "DEFAULT"},
+    {"lilly-cleans",        "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC "},
+    {"lilly-compiletimes",  "3"}, // wie oft soll pdflatex aufgerufen werden?
+    {"jobcount",            "2"},
 };
 
 
@@ -258,6 +278,24 @@ settings_t settings {
 /* ================================================================================================================== */        /* ################# */
 
 status_t ins_linux( void ) {
+    int fb;
+    std::cout << "  - Prüfe auf das Vorhandensein von pdflatex: "
+              << er_decode(fb = system("which pdflatex"))
+              << std::endl;
+    
+    if(fb) {
+        char c_inp = '\0';
+        std::cout << "  Jake kann 'pdflatex' nicht finden, dies ist für die Arbeit mit Lilly zwanghaft notwendig!" << std::endl
+                  << "  Soll 'texlive-full' installiert werden?  [(y)es/(n)o]> ";
+        while(c_inp != 'y' && c_inp != 'n')
+            std::cin >> c_inp;
+        if(c_inp == 'y') {
+            std::cout << "Installiere 'texlive-full' via _apt_ : " << er_decode(system("sudo apt install texlive-full")) << std::endl;
+        } else {
+            std::cout << "  Jake installiert LILLY nun weiter, ohne 'pdflatex', da  du (n)o gewählt hast!" << std::endl;
+        }
+    }  
+
     std::cout << "  - Erstelle (" <<  settings["install-path"] << "/tex/latex): "
               << er_decode(system(("mkdir -p " + settings["install-path"] + "/tex/latex").c_str()))
               << std::endl;
@@ -284,14 +322,21 @@ status_t ins_linux( void ) {
 /* Operationen                                                                                                        */        /* ################# */
 /* ================================================================================================================== */        /* ################# */
 
+std::string padPrint(const std::string& entry, uint16_t toWidth) {
+    if (toWidth<=entry.length()) return entry;
+    return entry + std::string(toWidth-entry.length(), ' ');
+}
+
+
 status_t fkt_dump(const std::string& cmd) noexcept {
     std::cout << "Settings Dump: " << std::endl;
     settings_t::iterator it = settings.begin();
     while(it != settings.end()){ // iterate over all settings 
         // simple padding without <iomanip> std::setw
-        std::cout << it->first << ": " << std::string(20-it->first.length(),' ')<< it->second << std::endl; 
-        it++;
+        std::cout << it->first << ": " << std::string(20-it->first.length(),' ') << STY_PARAM << it->second << COL_RESET << std::endl; 
+        ++it;
     }
+    return EXIT_SUCCESS;
 }
 
 status_t fkt_help(const std::string& cmd) noexcept {
@@ -302,7 +347,7 @@ status_t fkt_help(const std::string& cmd) noexcept {
     while(it != functions.end()){ // iterate over all functions 
         std::cout << "  " << it->first << " " << std::string(15-it->first.length(),' ')<< it->second.brief_description 
                   << std::endl;                                 // simple padding without <iomanip> std::setw
-        it++;
+        ++it;
     }
     std::cerr << std::endl << "[file]:" << std::endl
               << "Angabe genäß \"xxx.tex\". Dies setzt die Operation automatisch auf file_compile und generiert damit \
@@ -310,10 +355,11 @@ status_t fkt_help(const std::string& cmd) noexcept {
               << std::endl;
 
     std::cerr << std::endl << "note:" << std::endl
-              << "Allgemeine Einstellungen können über \"-key=value\" gesetzt werden (\"-key\" für boolesche). So \
-                  setzt: \"-path=/es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: \
-                  \"/es/gibt/kuchen\"" 
+              << "Allgemeine Einstellungen können über \"-key=value\" gesetzt werden (\"-key\" für boolesche). So "
+              << "setzt: \"-path=/es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: "
+              << "\"/es/gibt/kuchen\". Weiter ist es möglich mit '+=' values hinzuzufügen." 
               << std::endl;
+    return EXIT_SUCCESS;
 }
 
 status_t ld_settings(int n /* = argc */, const char** argv) {
@@ -330,15 +376,20 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
                 if(settings.find(argv[n] + 1 /* offset for '-' */) != settings.end()
                     && settings[argv[n]+1] == "false") {        // valid bool-setting
                     settings[argv[n]+1] = "true";
-                } else {                                        // no valid bool-setting
+                } else {                                        // non valid bool-setting
                     er_unknown_setting(argv[n]+1);
                 }
             } else {                                            // is an assignment
                 std::string s{argv[n]+1};
-                settings[s.substr(0,s.find("="))] = s.substr(s.find("=")+1);
+                if(in_str(argv[n], ASA_PATTERN)) {              // is an addition statement
+                    settings[s.substr(0,s.find(ASA_PATTERN))] += s.substr(s.find(ASA_PATTERN)+std::string(ASA_PATTERN).length());
+                } else {                                        // normal statement
+                    settings[s.substr(0,s.find(ASS_PATTERN))]  = s.substr(s.find(ASS_PATTERN)+std::string(ASS_PATTERN).length());
+                }
             }
         }
     }
+    return EXIT_SUCCESS;
 }
 
 status_t fkt_install(const std::string& cmd) noexcept { 
@@ -364,14 +415,44 @@ status_t fkt_compile(const std::string& cmd) {
     out_makefile << "# " << PRG_BRIEF << "     (compiled on: " << __DATE__ << " at: " << __TIME__ << ")" << std::endl << std::endl;
     
     // Einfügen der Variablen des Makefiles, es erhält eine andere Struktur wie das, welches von lilly_compile zur Verfügung gestellt wird!!
-    out_makefile << "TEXFILE     := " << settings["file"]                                    << std::endl    
-                 << "BASENAME    := $(basename $(TEXFILE))"                                  << std::endl
-                 << "PDFFILE     := $(addsuffix .pdf,$(basename $(TEXFILE)))"                << std::endl
-                 << "LATEXARGS   := -shell-escape -enable-write18 -interaction=batchmode"    << std::endl << std::endl
+    out_makefile << "TEXFILE      := " << settings["file"]                                                                      << std::endl    
+                 << "BASENAME     := $(basename $(TEXFILE))"                                                                    << std::endl
+                 << "PDFFILE      := $(addsuffix .pdf,$(basename $(TEXFILE)))"                                                  << std::endl
+                 << "LATEXARGS    := -shell-escape -enable-write18 -interaction=batchmode"                                      << std::endl 
                  // lilly- settings 
-                 << "## Directories used for INPUT and OUTPUT Files "                        << std::endl
-                 << "OUTPUTDIR   := " << settings["lilly-out"]                               << std::endl;
-    out_makefile.close();
+                 << "## Directories used for INPUT and OUTPUT Files "                                                           << std::endl
+                 << "OUTPUTDIR    := " << settings["lilly-out"]                                                                 << std::endl
+                 << "INPUTDIR     := " << settings["lilly-in"]                                                                  << std::endl
+                 << "BOXMODES     := " << padPrint(settings["lilly-boxes"])                 << "## Seperator: ' '"              << std::endl
+                 << "CLEANTARGETS := " << settings["lilly-cleans"]                                                              << std::endl
+                 // lilly- names
+                 << "NAMEPREFIX   := " << padPrint(settings["lilly-nameprefix"])            << "## Immer"                       << std::endl  
+                 << std::endl
+                 //Generals
+                 << "## Makefile/General settings"                                                                              << std::endl
+                 << R"(_LILLYARGS   :=  \\\providecommand{\\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\\providecommand{\\\LILLYxPATH}{${INPUTDIR}} \\input{$(INPUTDIR)$(TEXFILE)} )" << std::endl << std::endl //DONT'T Change
+                 << "JOBCOUNT     := " << padPrint(settings["jobcount"])                    << "## <= CPU_COUNT! "              << std::endl
+                 << std::endl << std::endl;
+    //Compile-Regel
+    out_makefile << "define LILLYxCompile = "                                                                                   << std::endl;
+    //clean log
+    out_makefile << R"( @echo LOGFILE: $(date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1)"                      << std::endl;
+    for(int i = 0; i < std::stoi(settings["lilly-compiletimes"]); i++) {
+        out_makefile << "   @pdflatex -jobname $(BASENAME) $(LATEXARGS) $(_LILLYARGS) ${2}" << R"(\\\providecommand{\\\LILLYxPDFNAME}{${1}} >> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1)" << std::endl;
+    }
+    
+    // call clean routine if clean is enabled :D
+    //TODO: 
+    out_makefile << "endef" << std::endl;
+
+
+
+    out_makefile.close(); // PREFIXES FOR DIFFERENT RULES DEFINE WITH: --rule=name:specials or --rule:name:specials
+   
+    // TODO:
+    // add cleantarget, jobcount, debug, general: options for remote compile, etc.
+    // jake prepare document: expandable macros
+    return EXIT_SUCCESS;
 }
 
 /* ================================================================================================================== */        /* ################# */
