@@ -1,0 +1,10 @@
+<map id="jake.cpp" name="jake.cpp">
+<area shape="rect" id="node8" href="$j__Definitions_8hpp.html" title="Präprozessor Makros. " alt="" coords="195,333,402,360"/>
+<area shape="rect" id="node9" href="$j__Typedefs_8hpp.html" title="Diverse abkürzende Typdefinitionen. " alt="" coords="590,408,789,435"/>
+<area shape="rect" id="node10" href="$j__Globals_8hpp.html" title="Global verfügbare Variablen. " alt="" coords="1055,333,1244,360"/>
+<area shape="rect" id="node11" href="$j__Helper_8hpp.html" title="Enthält diverse Hilfsprogramme. " alt="" coords="767,259,921,285"/>
+<area shape="rect" id="node14" href="$j__Settings_8hpp.html" title="Die Einstellungen. " alt="" coords="426,333,561,360"/>
+<area shape="rect" id="node15" href="$j__Functions_8hpp.html" title="Enthält alle Funkionen die über die Konsole aufgerufen werden können. " alt="" coords="777,80,911,121"/>
+<area shape="rect" id="node16" href="$j__ins__Linux_8hpp.html" title="Verwaltet die Installation für Linuxiodie (apt&#45;basierte) Systeme. " alt="" coords="1098,169,1209,211"/>
+<area shape="rect" id="node21" href="$j__Parser_8hpp.html" title="Verwaltet das Laden der Einstellungen auf Basis der Kommandozeilenargumente. " alt="" coords="305,169,439,211"/>
+</map>

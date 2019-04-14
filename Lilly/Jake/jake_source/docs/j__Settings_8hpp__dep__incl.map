@@ -1,0 +1,12 @@
+<map id="jake_files/core/j_Settings.hpp" name="jake_files/core/j_Settings.hpp">
+<area shape="rect" id="node2" href="$j__Helper_8hpp.html" title="Enthält diverse Hilfsprogramme. " alt="" coords="202,80,357,107"/>
+<area shape="rect" id="node3" href="$jake_8cpp.html" title="Hilfsprogramm im Umgang mit LILLY. " alt="" coords="244,341,315,367"/>
+<area shape="rect" id="node4" href="$j__Functions_8hpp.html" title="Enthält alle Funkionen die über die Konsole aufgerufen werden können. " alt="" coords="24,244,157,285"/>
+<area shape="rect" id="node6" href="$j__ins__Linux_8hpp.html" title="Verwaltet die Installation für Linuxiodie (apt&#45;basierte) Systeme. " alt="" coords="331,155,458,196"/>
+<area shape="rect" id="node8" href="$j__Parser_8hpp.html" title="Verwaltet das Laden der Einstellungen auf Basis der Kommandozeilenargumente. " alt="" coords="508,155,641,196"/>
+<area shape="rect" id="node11" href="$j__Settings_8cpp.html" title="jake_files/core/j_Settings.cpp" alt="" coords="483,80,676,107"/>
+<area shape="rect" id="node10" href="$j__Helper_8cpp.html" title="jake_files/j_Helper.cpp" alt="" coords="101,162,256,189"/>
+<area shape="rect" id="node5" href="$j__Functions_8cpp.html" title="jake_files/cmd_line\l/j_Functions.cpp" alt="" coords="24,333,157,375"/>
+<area shape="rect" id="node7" href="$j__ins__Linux_8cpp.html" title="jake_files/installer\l/j_ins_Linux.cpp" alt="" coords="318,244,444,285"/>
+<area shape="rect" id="node9" href="$j__Parser_8cpp.html" title="jake_files/cmd_line\l/j_Parser.cpp" alt="" coords="520,244,653,285"/>
+</map>
