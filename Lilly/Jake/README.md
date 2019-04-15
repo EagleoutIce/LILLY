@@ -17,7 +17,7 @@ Diese Version wurde entwickelt für LILLY (VER: 1.0.7) und zusammen mit dem nöt
 
 ## Wie zieht man Jake das Anoräckchen an?
 ### Linux
-Jake wird als `.cpp`--Datei geliefert. Um die Datei lauffertig zu machen genügt folgender Befehl:
+Jake wird als `.cpp`--Datei geliefert. Um die Datei lauffertig zu machen genügt (im Verzeichnis `jake_files`) folgender Befehl:
 
 `make`
 
@@ -29,7 +29,7 @@ Soll keine Veränderung von `$PATH` durchgeführt werden so wird die Regel `no_l
 
 `make no_link`
 
-(TODO:) Zum Entfernen eines existenten links genügt:
+Zum Entfernen eines existenten links genügt:
 
 `make clean`
 

@@ -77,19 +77,6 @@
 
 #include "jake_files/cmd_line/j_Functions.hpp"
 
-/**
- * @brief Lädt die Einstellung auf Basis der Kommandozeilen argumente
- *
- * @todo Implementiere Rückgabewert
- *
- * @param n Anzahl der Argumente die Übergeben werden
- * @param argv Array der Kommandozeilenargumente (alternativ beliebiges array)
- * 
- * @returns Statuswert (bisher nichts)
- */
-status_t ld_settings(int n /* = argc */, const char** argv);
-
-
 
 /* ################################################################################################################## */        /* ################# */
 /* Implementationen                                                                                                   */        /* ################# */

@@ -146,13 +146,13 @@ Funktionen</h2></td></tr>
 <tr class="memitem:a5ec5407b8d7f28fd0aa7699dbe16c448"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="j__Helper_8cpp.html#a5ec5407b8d7f28fd0aa7699dbe16c448">split</a> (const std::string &amp;str, char delim)</td></tr>
 <tr class="memdesc:a5ec5407b8d7f28fd0aa7699dbe16c448"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spaltet eine Zeichenketten auf Basis eines Zeichens.  <a href="#a5ec5407b8d7f28fd0aa7699dbe16c448">Mehr ...</a><br /></td></tr>
 <tr class="separator:a5ec5407b8d7f28fd0aa7699dbe16c448"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfdc4683461bc473745c2c64c0716d60"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="j__Helper_8cpp.html#abfdc4683461bc473745c2c64c0716d60">create_buildrule</a> (const std::string &amp;name_type, const std::string &amp;name_rule, const std::string &amp;mode, bool complete) noexcept</td></tr>
-<tr class="memdesc:abfdc4683461bc473745c2c64c0716d60"><td class="mdescLeft">&#160;</td><td class="mdescRight">erstellt eine buildrule fürs Makefile  <a href="#abfdc4683461bc473745c2c64c0716d60">Mehr ...</a><br /></td></tr>
-<tr class="separator:abfdc4683461bc473745c2c64c0716d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06d2ff6d96c5e0cbefec45f65c61c5d7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="j__Helper_8cpp.html#a06d2ff6d96c5e0cbefec45f65c61c5d7">create_buildrule</a> (const std::string &amp;name_type, const std::string &amp;name_rule, const std::string &amp;mode, bool complete, const std::string &amp;name_addon) noexcept</td></tr>
+<tr class="memdesc:a06d2ff6d96c5e0cbefec45f65c61c5d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">erstellt eine buildrule fürs Makefile  <a href="#a06d2ff6d96c5e0cbefec45f65c61c5d7">Mehr ...</a><br /></td></tr>
+<tr class="separator:a06d2ff6d96c5e0cbefec45f65c61c5d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Dokumentation der Funktionen</h2>
-<a id="abfdc4683461bc473745c2c64c0716d60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfdc4683461bc473745c2c64c0716d60">&#9670;&nbsp;</a></span>create_buildrule()</h2>
+<a id="a06d2ff6d96c5e0cbefec45f65c61c5d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06d2ff6d96c5e0cbefec45f65c61c5d7">&#9670;&nbsp;</a></span>create_buildrule()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -182,7 +182,13 @@ Funktionen</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>complete</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>complete</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name_addon</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -200,21 +206,21 @@ Funktionen</h2></td></tr>
 <p>erstellt eine buildrule fürs Makefile </p>
 <dl class="params"><dt>Parameter</dt><dd>
   <table class="params">
-    <tr><td class="paramname">complete</td><td>soll eine complete variante erstellt werden? </td></tr>
     <tr><td class="paramname">name_type</td><td>Name des Typs </td></tr>
     <tr><td class="paramname">name_rule</td><td>der Name der Regel </td></tr>
     <tr><td class="paramname">mode</td><td>der Name des LILLY-Modi </td></tr>
-    <tr><td class="paramname">extra</td><td>soll die option extra gesetzt werden? </td></tr>
+    <tr><td class="paramname">complete</td><td>soll eine complete variante erstellt werden? </td></tr>
+    <tr><td class="paramname">name_addon</td><td>Zusätzlicher Namensbezeichner </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Noch zu erledigen:</a></b></dt><dd>: others zusäzliche optionen</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Noch zu erledigen:</a></b></dt><dd>: others zusäzliche optionen</dd></dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>String-Repräsentation der Build-Regel </dd></dl>
 
 <p class="definition">Definiert in Zeile <a class="el" href="j__Helper_8cpp_source.html#l00016">16</a> der Datei <a class="el" href="j__Helper_8cpp_source.html">j_Helper.cpp</a>.</p>
 
 <p class="reference">Wird benutzt von <a class="el" href="j__Functions_8cpp_source.html#l00048">fkt_compile()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                                                                                                                                    {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::string ret_str = name_rule + <span class="stringliteral">&quot;: $(INPUTDIR)$(TEXFILE)\n\t@echo \&quot;&quot;</span>;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    ret_str += <span class="stringliteral">&quot;\\033[38;2;255;191;0mGeneriere &quot;</span> + name_type + <span class="stringliteral">&quot;-Version($(BOXMODES)) der Latex-Datei: \&quot;$(TEXFILE)\&quot;...\\033[m\&quot;\n&quot;</span>;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    ret_str += std::string(<span class="stringliteral">&quot;\t&quot;</span>) + R<span class="stringliteral">&quot;($(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)$(PDFFILE),\\providecommand\\LILLYxMODE{)&quot; + name_rule + R</span><span class="stringliteral">&quot;(}\\providecommand\\LILLYxMODExEXTRA{)&quot; + (complete?</span><span class="stringliteral">&quot;TRUE&quot;</span>:<span class="stringliteral">&quot;FALSE&quot;</span>) + R<span class="stringliteral">&quot;(})))&quot;;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">    </span><span class="keywordflow">return</span> ret_str;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                                                                                                                                                                {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::string ret_str = name_rule + <span class="stringliteral">&quot;: $(INPUTDIR)$(TEXFILE)\n\t@echo \&quot;&quot;</span>;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    ret_str += <span class="stringliteral">&quot;\\033[38;2;255;191;0mGeneriere &quot;</span> + name_type + <span class="stringliteral">&quot;-Version($(BOXMODES)) der Latex-Datei: \&quot;$(TEXFILE)\&quot;...\\033[m\&quot;\n&quot;</span>;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    ret_str += std::string(<span class="stringliteral">&quot;\t&quot;</span>) + R<span class="stringliteral">&quot;($(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX))&quot; + name_addon + R</span><span class="stringliteral">&quot;(,$(PDFFILE),\\providecommand\\LILLYxMODE{)&quot; + mode + R</span><span class="stringliteral">&quot;(}\\providecommand\\LILLYxMODExEXTRA{)&quot; + (complete?</span><span class="stringliteral">&quot;TRUE&quot;</span>:<span class="stringliteral">&quot;FALSE&quot;</span>) + R<span class="stringliteral">&quot;(})))&quot;;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">    </span><span class="keywordflow">return</span> ret_str;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
 <a id="a8f4347f5b375194ea8ae8f6d83bc42de"></a>

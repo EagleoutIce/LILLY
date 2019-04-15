@@ -97,15 +97,15 @@ std::vector<std::string> split(const std::string& str, char delim = ' ');
 /**
  * @brief erstellt eine buildrule fürs Makefile
  * 
- * @param complete soll eine complete variante erstellt werden?
  * @param name_type Name des Typs
  * @param name_rule der Name der Regel 
  * @param mode der Name des LILLY-Modi
- * @param extra soll die option extra gesetzt werden?
+ * @param complete soll eine complete variante erstellt werden?
+ * @param name_addon Zusätzlicher Namensbezeichner
  * @todo: others zusäzliche optionen
  * 
  * @returns String-Repräsentation der Build-Regel
  */
-std::string create_buildrule(const std::string& name_type, const std::string& name_rule, const std::string& mode,bool complete=false/*, const std::vector<std::string>& others*/) noexcept;
+std::string create_buildrule(const std::string& name_type, const std::string& name_rule, const std::string& mode,bool complete=false, const std::string& name_addon=""/*, const std::vector<std::string>& others*/) noexcept;
 
 #endif

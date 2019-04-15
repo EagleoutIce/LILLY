@@ -65,37 +65,37 @@ status_t fkt_compile(const std::string& cmd) {
                  << "## Directories used for INPUT and OUTPUT Files "                                                           << std::endl
                  << "OUTPUTDIR    := $(shell echo " << settings["lilly-out"] << "| sed 's:/*$$::')/"                            << std::endl
                  << "INPUTDIR     := $(shell echo " << settings["lilly-in"] << "| sed 's:/*$$::')/"                             << std::endl
-                 << "BOXMODES     := " << padPrint("\""+settings["lilly-boxes"]+"\"#")      << "## Seperator: ' '"              << std::endl
+                 << "BOXMODES     := " << padPrint(settings["lilly-boxes"]+"#")      << "## Seperator: ' '"                     << std::endl
+                 << "CLEANTARGET  := LILLYxClean"                                                                               << std::endl
                  << "CLEANTARGETS := " << settings["lilly-cleans"]                                                              << std::endl
                  // lilly- names
-                 << "NAMEPREFIX   := " << padPrint(settings["lilly-nameprefix"])            << "## Immer"                       << std::endl  
+                 << "NAMEPREFIX   := " << padPrint(settings["lilly-nameprefix"])            << "## Immer"                       << std::endl
                  << std::endl
                  //Generals
                  << "## Makefile/General settings"                                                                              << std::endl
-                 << R"(_LILLYARGS   :=  \\\providecommand{\\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\\providecommand{\\\LILLYxPATH}{${INPUTDIR}} \\input{$(INPUTDIR)$(TEXFILE)} )" << std::endl << std::endl //DONT'T Change
-                 << "JOBCOUNT     := " << padPrint(settings["jobcount"])                    << "## <= CPU_COUNT! "              << std::endl
+                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}} \\input{$(INPUTDIR)$(TEXFILE)} )" << std::endl << std::endl //DONT'T Change
+                 << "JOBCOUNT     := " << padPrint(settings["jobcount"])                    << "## should: <= CPU_COUNT! "      << std::endl
                  << std::endl << std::endl;
     //Compile-Regel
     out_makefile << "define LILLYxCompile = "                                                                                   << std::endl;
     //clean log
-    out_makefile << R"(    @echo LOGFILE: $(date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1)"                   << std::endl
-                 << "    @for bm in $(BOXMODES); do \\" << std::endl << "    ";
+    out_makefile << R"(    @echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1)"                   << std::endl
+                 << "    @for bm in $(BOXMODES); do \\" << std::endl;
     for(int i = 0; i < std::stoi(settings["lilly-compiletimes"]); i++) {
-        out_makefile << "pdflatex -jobname $(basename ${1}) $(LATEXARGS) $(_LILLYARGS) ${2}" << R"(\\\providecommand{\\\LILLYxBOXxMODE}{$$bm}\\\providecommand{\\\LILLYxPDFNAME}{${1}} >> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && )";
+        out_makefile << "       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}} )" << " ${3} $(_LILLYARGS)" << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
     }
-    out_makefile << "echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}\" abgeschlossen\\033[m\"; done;"                                                                                                   << std::endl;
+    out_makefile << "       echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}$${bm}-${2}\" ($${bm}) abgeschlossen\\033[m\"; done;"                                                                                                   << std::endl;
 
     // call clean routine if clean is enabled :D
     if (settings["lilly-autoclean"] == "true")
-        out_makefile << "    $(call LILLYxClean)" << std::endl;
+        out_makefile << "    $(call ${CLEANTARGET}) ##  Da 'lilly-autoclean' = true " << std::endl;
 
     out_makefile << "endef" << std::endl;
 
-    // URGENT TODO: REPLACE * WITH FINALNAME! (AND CREATE FINALNAMEMACRO)
     out_makefile << "define LILLYxClean = "                                                                                     << std::endl;
     out_makefile << "    @echo \"\033[38;2;255;191;0m> Lösche temporäre Dateien...\033[m\""                                     << std::endl;
     out_makefile << "    @for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done;"                                        << std::endl;
-    out_makefile << "endef" << std::endl;
+    out_makefile << "endef" << std::endl << std::endl;
 
 
     // parse the modes:
@@ -103,23 +103,46 @@ status_t fkt_compile(const std::string& cmd) {
      * @todo [MK] Make modes editable by textfile! so print shall be defined as: Bezeichner:LILLYxMODE,MODExEXTRA,OTHERS...
      * 
      * @todo [MK] .Phony
+     * 
+     * @todo [MK] build-rules sollen auch variablen überschreibe können so soll es möglich sein BoxModues nur spezifisch herzustellen um so zum Beispiel _test_ oder so zu ermöglochen undnicht immer ein eigenes Makefile zu forcieren
      */
 
-    for(std::string s : split(settings["lilly-modes"])) {
-        if(s == "default")
-            out_makefile << create_buildrule("Standart","default","default") << std::endl;
-        else if(s == "print")
-            out_makefile << create_buildrule("Druck","print","print") << std::endl;
-        else {
-            
+    for(std::string s : split(settings["lilly-modes"] /* => buildrule_names*/)) {
+        if(s == "default"){
+            out_makefile << create_buildrule("Standart","default","default", false) << std::endl << std::endl;
+            if((settings["lilly-complete"]=="true"))
+                out_makefile << create_buildrule("vollständige Standart", "c_default", "default", true, settings["lilly-complete-name"]) << std::endl << std::endl;
+        } else if(s == "print"){
+            out_makefile << create_buildrule("Druck","print","print", false, settings["lilly-print-name"]) << std::endl << std::endl;
+            if((settings["lilly-complete"]=="true"))
+                    out_makefile << create_buildrule("Vollständige-Druck", "c_print", "print", true, settings["lilly-print-name"] + settings["lilly-complete-name"]) << std::endl << std::endl;
+        } else {
+            std::cerr << "    Der spezifizierte Build-Modus: \"" << s << "\" steht leider nicht zur Verfügung!" << std::endl;
         }
     }
-
-    out_makefile.close(); // PREFIXES FOR DIFFERENT RULES DEFINE WITH: --rule=name:specials or --rule:name:specials
+    
+    std::string all = "";
+    // generate all rule:
+    out_makefile << std::endl << "all: $(INPUTDIR)$(TEXFILE)" << std::endl; 
+    for(std::string s : split(settings["lilly-modes"])) {
+        all += s + ((settings["lilly-complete"] == "true")?(" c_" + s):"") + " ";
+    }
+    
+    out_makefile << "\t@$(MAKE) -s --no-print-directory " << all << " CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line"
+                 << std::endl << "\t@$(MAKE) -s --no-print-directory clean" << std::endl << std::endl;
+    
+    //generate clean rule:
+    out_makefile << "clean: " << std::endl << "\t$(call LILLYxClean)"<< std::endl << std::endl;  
+    
+    //generate Phony
+    out_makefile << ".PHONY: " << all << "all clean" << std::endl;
+    
+    //finish
+    out_makefile.close(); ///@todo  PREFIXES FOR DIFFERENT RULES DEFINE WITH: --rule=name:specials or --rule:name:specials
    
     // TODO:
-    // add cleantarget, jobcount, debug, general: options for remote compile, etc.
-    // jake prepare document: expandable macros
+    /// @todo add debug, general: options for remote compile, etc.
+    /// @todo jake prepare document: expandable macros, encapsulate - restructure commands etc.
     return EXIT_SUCCESS;
 }
 

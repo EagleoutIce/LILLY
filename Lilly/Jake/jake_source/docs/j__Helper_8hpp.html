@@ -189,9 +189,9 @@ Funktionen</h2></td></tr>
 <tr class="memitem:a52c1c63d14e558bbd414e899cbdb3b58"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="j__Helper_8hpp.html#a52c1c63d14e558bbd414e899cbdb3b58">split</a> (const std::string &amp;str, char delim=' ')</td></tr>
 <tr class="memdesc:a52c1c63d14e558bbd414e899cbdb3b58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spaltet eine Zeichenketten auf Basis eines Zeichens.  <a href="#a52c1c63d14e558bbd414e899cbdb3b58">Mehr ...</a><br /></td></tr>
 <tr class="separator:a52c1c63d14e558bbd414e899cbdb3b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfbfda21852ca60d1acbb66c7bd11c92"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="j__Helper_8hpp.html#abfbfda21852ca60d1acbb66c7bd11c92">create_buildrule</a> (const std::string &amp;name_type, const std::string &amp;name_rule, const std::string &amp;mode, bool complete=false) noexcept</td></tr>
-<tr class="memdesc:abfbfda21852ca60d1acbb66c7bd11c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">erstellt eine buildrule fürs Makefile  <a href="#abfbfda21852ca60d1acbb66c7bd11c92">Mehr ...</a><br /></td></tr>
-<tr class="separator:abfbfda21852ca60d1acbb66c7bd11c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae33736b727cdacda3d88227accf360c8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="j__Helper_8hpp.html#ae33736b727cdacda3d88227accf360c8">create_buildrule</a> (const std::string &amp;name_type, const std::string &amp;name_rule, const std::string &amp;mode, bool complete=false, const std::string &amp;name_addon=&quot;&quot;) noexcept</td></tr>
+<tr class="memdesc:ae33736b727cdacda3d88227accf360c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">erstellt eine buildrule fürs Makefile  <a href="#ae33736b727cdacda3d88227accf360c8">Mehr ...</a><br /></td></tr>
+<tr class="separator:ae33736b727cdacda3d88227accf360c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Ausführliche Beschreibung</h2>
 <div class="textblock"><p class="">Enthält diverse Hilfsprogramme. </p>
@@ -249,8 +249,8 @@ Funktionen</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                               {</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    std::ifstream f(name.c_str());</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> f.good();</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
-<a id="abfbfda21852ca60d1acbb66c7bd11c92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfbfda21852ca60d1acbb66c7bd11c92">&#9670;&nbsp;</a></span>create_buildrule()</h2>
+<a id="ae33736b727cdacda3d88227accf360c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae33736b727cdacda3d88227accf360c8">&#9670;&nbsp;</a></span>create_buildrule()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -280,7 +280,13 @@ Funktionen</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>complete</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>complete</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name_addon</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -298,21 +304,21 @@ Funktionen</h2></td></tr>
 <p>erstellt eine buildrule fürs Makefile </p>
 <dl class="params"><dt>Parameter</dt><dd>
   <table class="params">
-    <tr><td class="paramname">complete</td><td>soll eine complete variante erstellt werden? </td></tr>
     <tr><td class="paramname">name_type</td><td>Name des Typs </td></tr>
     <tr><td class="paramname">name_rule</td><td>der Name der Regel </td></tr>
     <tr><td class="paramname">mode</td><td>der Name des LILLY-Modi </td></tr>
-    <tr><td class="paramname">extra</td><td>soll die option extra gesetzt werden? </td></tr>
+    <tr><td class="paramname">complete</td><td>soll eine complete variante erstellt werden? </td></tr>
+    <tr><td class="paramname">name_addon</td><td>Zusätzlicher Namensbezeichner </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Noch zu erledigen:</a></b></dt><dd>: others zusäzliche optionen</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Noch zu erledigen:</a></b></dt><dd>: others zusäzliche optionen</dd></dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>String-Repräsentation der Build-Regel </dd></dl>
 
 <p class="definition">Definiert in Zeile <a class="el" href="j__Helper_8cpp_source.html#l00016">16</a> der Datei <a class="el" href="j__Helper_8cpp_source.html">j_Helper.cpp</a>.</p>
 
 <p class="reference">Wird benutzt von <a class="el" href="j__Functions_8cpp_source.html#l00048">fkt_compile()</a>.</p>
-<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                                                                                                                                    {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::string ret_str = name_rule + <span class="stringliteral">&quot;: $(INPUTDIR)$(TEXFILE)\n\t@echo \&quot;&quot;</span>;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    ret_str += <span class="stringliteral">&quot;\\033[38;2;255;191;0mGeneriere &quot;</span> + name_type + <span class="stringliteral">&quot;-Version($(BOXMODES)) der Latex-Datei: \&quot;$(TEXFILE)\&quot;...\\033[m\&quot;\n&quot;</span>;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    ret_str += std::string(<span class="stringliteral">&quot;\t&quot;</span>) + R<span class="stringliteral">&quot;($(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)$(PDFFILE),\\providecommand\\LILLYxMODE{)&quot; + name_rule + R</span><span class="stringliteral">&quot;(}\\providecommand\\LILLYxMODExEXTRA{)&quot; + (complete?</span><span class="stringliteral">&quot;TRUE&quot;</span>:<span class="stringliteral">&quot;FALSE&quot;</span>) + R<span class="stringliteral">&quot;(})))&quot;;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">    </span><span class="keywordflow">return</span> ret_str;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                                                                                                                                                                {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::string ret_str = name_rule + <span class="stringliteral">&quot;: $(INPUTDIR)$(TEXFILE)\n\t@echo \&quot;&quot;</span>;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    ret_str += <span class="stringliteral">&quot;\\033[38;2;255;191;0mGeneriere &quot;</span> + name_type + <span class="stringliteral">&quot;-Version($(BOXMODES)) der Latex-Datei: \&quot;$(TEXFILE)\&quot;...\\033[m\&quot;\n&quot;</span>;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    ret_str += std::string(<span class="stringliteral">&quot;\t&quot;</span>) + R<span class="stringliteral">&quot;($(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX))&quot; + name_addon + R</span><span class="stringliteral">&quot;(,$(PDFFILE),\\providecommand\\LILLYxMODE{)&quot; + mode + R</span><span class="stringliteral">&quot;(}\\providecommand\\LILLYxMODExEXTRA{)&quot; + (complete?</span><span class="stringliteral">&quot;TRUE&quot;</span>:<span class="stringliteral">&quot;FALSE&quot;</span>) + R<span class="stringliteral">&quot;(})))&quot;;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">    </span><span class="keywordflow">return</span> ret_str;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
 <a id="aeaa422f178210ca08aeccfc8788a1736"></a>
@@ -379,7 +385,7 @@ Funktionen</h2></td></tr>
 
 <p class="reference">Benutzt <a class="el" href="j__Definitions_8hpp_source.html#l00018">COL_ERROR</a>, <a class="el" href="j__Definitions_8hpp_source.html#l00016">COL_RESET</a> und <a class="el" href="j__Globals_8cpp_source.html#l00004">program</a>.</p>
 
-<p class="reference">Wird benutzt von <a class="el" href="j__Parser_8cpp_source.html#l00003">ld_settings()</a> und <a class="el" href="jake_8cpp_source.html#l00132">main()</a>.</p>
+<p class="reference">Wird benutzt von <a class="el" href="j__Parser_8cpp_source.html#l00003">ld_settings()</a> und <a class="el" href="jake_8cpp_source.html#l00119">main()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                                   {</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::cerr &lt;&lt; <a class="code" href="j__Definitions_8hpp.html#a14e4c7bca15c8e63f4000b8045d73b34">COL_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Die Einstellung: \&quot;&quot;</span> &lt;&lt; setting &lt;&lt; <span class="stringliteral">&quot;\&quot; ist so nicht gültig!&quot;</span> &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;Schreib \&quot;&quot;</span></div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;              &lt;&lt; <a class="code" href="j__Globals_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a> &lt;&lt; <span class="stringliteral">&quot; help\&quot;&quot;</span> &lt;&lt; <a class="code" href="j__Definitions_8hpp.html#a63373358eb4288de0bc4a08395a2500c">COL_RESET</a> &lt;&lt; std::endl;</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div><div class="ttc" id="j__Globals_8cpp_html_a451fb3866139bc9c8dfb5155974db964"><div class="ttname"><a href="j__Globals_8cpp.html#a451fb3866139bc9c8dfb5155974db964">program</a></div><div class="ttdeci">std::string program</div><div class="ttdoc">argv[0] - zur Einfachheit tihihihi </div><div class="ttdef"><b>Definition:</b> <a href="j__Globals_8cpp_source.html#l00004">j_Globals.cpp:4</a></div></div>
 <div class="ttc" id="j__Definitions_8hpp_html_a14e4c7bca15c8e63f4000b8045d73b34"><div class="ttname"><a href="j__Definitions_8hpp.html#a14e4c7bca15c8e63f4000b8045d73b34">COL_ERROR</a></div><div class="ttdeci">#define COL_ERROR</div><div class="ttdoc">Design-Makro zum Setzen der Fehler-Farbe in der Konsole. </div><div class="ttdef"><b>Definition:</b> <a href="j__Definitions_8hpp_source.html#l00018">j_Definitions.hpp:18</a></div></div>
 <div class="ttc" id="j__Definitions_8hpp_html_a63373358eb4288de0bc4a08395a2500c"><div class="ttname"><a href="j__Definitions_8hpp.html#a63373358eb4288de0bc4a08395a2500c">COL_RESET</a></div><div class="ttdeci">#define COL_RESET</div><div class="ttdoc">Design-Makro zum Zurücksetzen der Farbe. </div><div class="ttdef"><b>Definition:</b> <a href="j__Definitions_8hpp_source.html#l00016">j_Definitions.hpp:16</a></div></div>
