@@ -33,4 +33,31 @@
 /// @brief convenience-wrapper
 #define TO_DATA(x) x
 
+// Setting Definitions: ======================================================================================
+
+/// @brief Pfad an dem die Lilly.cls liegen soll
+#define S_LILLY_PATH                    "lilly-path"
+/// @brief Lilly output path
+#define S_LILLY_OUT                     "lilly-out"
+/// @brief Lilly input path
+#define S_LILLY_IN                      "lilly-in"
+/// @brief Lilly Namenspärfix für das generieren einer Datei
+#define S_LILLY_NAMEPREFIX              "lilly-nameprefix"
+/// @brief Zur Verfügung stehende Boxen
+#define S_LILLY_BOXES                   "lilly-boxes"
+/// @brief Zur Verfügung stehende Modi
+#define S_LILLY_MODES                   "lilly-modes"
+/// @brief sollen complete Varianten erstellt werden?
+#define S_LILLY_COMPLETE                "lilly-complete"
+/// @brief Lilly Namenspräfix für vollständige Dokumentvarianten
+#define S_LILLY_COMPLETE_NAME           "lilly-complete-name"
+/// @brief Lilly Namenspräfix für die Druckvariante
+#define S_LILLY_PRINT_NAME              "lilly-print-name"
+/// @brief Lilly cleantargets für `make clean`
+#define S_LILLY_CLEANS                  "lilly-cleans"
+/// @brief wie oft soll das Dokument kompiliert werden?
+#define S_LILLY_COMPILETIMES            "lilly-compiletimes"
+/// @brief sollen nach dem kompilieren automatisch alle Arbeitsdateien entfernt werden?
+#define S_LILLY_AUTOCLEAN               "lilly-autoclean"
+
 #endif

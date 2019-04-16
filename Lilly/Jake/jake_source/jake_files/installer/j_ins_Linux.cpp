@@ -37,18 +37,18 @@ status_t ins_linux( void ) {
               << std::endl;
 
     // Expand path:
-    if (!check_file(exec("echo -n " + settings["lilly-path"])+"/Lilly.cls")) {
-        std::cerr << COL_ERROR << "Die Lilly.cls konnte unter dem eingestellten Pfad: \"" << exec("echo -n " + settings["lilly-path"]) << "\" nicht gefunden werden. Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
+    if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
+        std::cerr << COL_ERROR << "Die Lilly.cls konnte unter dem eingestellten Pfad: \"" << exec("echo -n " + settings[S_LILLY_PATH]) << "\" nicht gefunden werden. Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
         << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
         << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
         std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
         system("locate -e -q -l 5 'Lilly.cls'");
         return EXIT_FAILURE;
     }
-    std::cout << "  - Verlinke (" << settings["lilly-path"] << ") nach (" << settings["install-path"] << "/tex/latex): "
-              << er_decode(system(("ln -sf "+settings["lilly-path"]+" "+settings["install-path"]+"/tex/latex").c_str()))
+    std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << ") nach (" << settings["install-path"] << "/tex/latex): "
+              << er_decode(system(("ln -sf "+settings[S_LILLY_PATH]+" "+settings["install-path"]+"/tex/latex").c_str()))
               << std::endl;
-    if(settings["lilly-path"]=="\"${PWD}/../../Lilly\"")
+    if(settings[S_LILLY_PATH]=="\"$(dirname $(locate -e -q -l 1 'Lilly.cls'))\"")
     std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst. Nutze hierzu: " 
               << std::endl << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
 

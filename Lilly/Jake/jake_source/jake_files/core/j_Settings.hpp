@@ -10,6 +10,7 @@
  */
 
 #include "j_Typedefs.hpp"
+#include "j_Definitions.hpp"
 
 /// @brief Speicherstruktur für Einstellungen
 extern settings_t settings;

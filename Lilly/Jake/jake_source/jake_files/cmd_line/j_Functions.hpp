@@ -13,6 +13,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
+
+#include <experimental/filesystem>
 
 #include "../core/j_Typedefs.hpp"
 #include "../core/j_Globals.hpp"
@@ -48,8 +51,6 @@ status_t fkt_dump(const std::string& cmd) noexcept;
 
 /**
  * @brief Erstellt ein Makefile für die mit settings["file"] angegebene Datei
- * 
- * @todo Implementiere Funktion
  *
  * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden 
  * 

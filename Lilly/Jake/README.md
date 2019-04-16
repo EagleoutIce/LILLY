@@ -39,12 +39,28 @@ Anschließend kann man Jake (als `lilly_jake`) ganz normal aufrufen.
 ### MacOS
 
 ## Wie benutzt man Jake?
+
+### Installation von Lilly
+
 Startet man Jake mit dem Argument `install` so versucht Jake LILLY zu installieren. Hierzu geht Jake davon aus, dass es sich im Ordner `LILLY` befindet, in dem sich alle notwendigen Dateien befinden. Zum Aufsetzen von LILLY genügt also ein:
 
 `lilly_jake install`
+
+Ohne konfiguration sucht make hierbei automatisch den Ordner in dem die Lilly.cls vorliegt. Sollte hierbei nichts gefunden werden, oder die datei die gefunden wird fehlerhaft sein, so bricht Lilly die Installation ab, mit der Bitte den expliziten Pfad zur Lilly-Installation anzugeben. Diese Angabe kann zum Beispiel wie folgt aussehen:
+
+`lilly_jake -lilly-path="/eagle_extra/Studium/LILLY/Lilly" install`
+
+
+### Kompilieren eines Dokuments
+
+Jake unterstützt bisher nur das explizite Generieren einer Datei durch das generieren eines Makefiles, weitere Funktionen sind in Arbeit :D
+
+#### Makefile
 
 Möchte man nun für eine Datei ein Makefile generieren (welches auch mit Version 1.0.7 verschiedene BoxModi Unterstützt) so genügt das Schreiben des Dateinamens:
 
 `lilly_jake TollesDokument.tex`
 
-Weitere Funktionen sind dem Hilfe-Parameter zu entnehmen (`lilly_jake help`) 
+Anschließend reicht `make` um die gewünschte Konfiguration durchzuführen.
+
+Weitere Funktionen und mappings sind dem Hilfe-Parameter zu entnehmen (`lilly_jake help`) 

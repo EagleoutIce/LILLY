@@ -1,4 +1,4 @@
-# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 15 2019 at: 13:21:59)
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 16 2019 at: 18:42:37)
 
 TEXFILE      := test.tex
 BASENAME     := $(basename $(TEXFILE))
@@ -7,7 +7,7 @@ LATEXARGS    := -shell-escape -enable-write18 -interaction=batchmode
 ## Directories used for INPUT and OUTPUT Files 
 OUTPUTDIR    := $(shell echo ./$(BASENAME)-OUT/| sed 's:/*$$::')/
 INPUTDIR     := $(shell echo ./| sed 's:/*$$::')/
-BOXMODES     := DEFAULT ALTERNATE#            ## Seperator: ' '
+BOXMODES     := DEFAULT #                     ## Seperator: ' '
 CLEANTARGET  := LILLYxClean
 CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC DEFS
 NAMEPREFIX   :=                               ## Immer
@@ -15,7 +15,7 @@ NAMEPREFIX   :=                               ## Immer
 ## Makefile/General settings
 _LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}} \\input{$(INPUTDIR)$(TEXFILE)} 
 
-JOBCOUNT     := 2                             ## <= CPU_COUNT! 
+JOBCOUNT     := 2                             ## should: <= cpu/thread count!
 
 
 define LILLYxCompile = 
@@ -28,7 +28,7 @@ define LILLYxCompile =
     $(call ${CLEANTARGET}) ##  Da 'lilly-autoclean' = true 
 endef
 define LILLYxClean = 
-    @echo "[38;2;255;191;0m> Lösche temporäre Dateien...[m"
+    @echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m"
     @for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done;
 endef
 
@@ -36,24 +36,16 @@ default: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
 	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE}))
 
-c_default: $(INPUTDIR)$(TEXFILE)
-	@echo "\033[38;2;255;191;0mGeneriere vollständige Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)COMPLETE-,$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{TRUE}))
-
 print: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Druck-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
 	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{FALSE}))
 
-c_print: $(INPUTDIR)$(TEXFILE)
-	@echo "\033[38;2;255;191;0mGeneriere Vollständige-Druck-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)PRINT-COMPLETE-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{TRUE}))
-
 
 all: $(INPUTDIR)$(TEXFILE)
-	@$(MAKE) -s --no-print-directory default c_default print c_print  CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
+	@$(MAKE) -s --no-print-directory default print  CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
 	@$(MAKE) -s --no-print-directory clean
 
-clean: 
+clean:
 	$(call LILLYxClean)
 
-.PHONY: default c_default print c_print all clean
+.PHONY: default print all clean
