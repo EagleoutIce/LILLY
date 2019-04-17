@@ -9,6 +9,9 @@
  * @brief Die Einstellungen
  */
 
+// Danke #DreckOS
+#include <string>
+
 #include "j_Typedefs.hpp"
 #include "j_Definitions.hpp"
 

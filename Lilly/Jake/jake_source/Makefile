@@ -1,7 +1,7 @@
 ## Makefile for jake.cpp
 
 EXTRA_FILES := jake_files/j_Helper.cpp jake_files/cmd_line/j_Functions.cpp jake_files/installer/j_ins_Linux.cpp jake_files/core/j_Settings.cpp jake_files/cmd_line/j_Parser.cpp jake_files/core/j_Globals.cpp
-LINKERS := -lstdc++fs
+LINKERS :=
 
 define WRITE_RC =
 	@if grep -q "#LILLY_CODE" "$(1)"; then\
@@ -16,6 +16,8 @@ default: no_link
 	$(call WRITE_RC,"${HOME}/.zshrc")
 	@#Write for bash
 	$(call WRITE_RC,"${HOME}/.bashrc")
+	@#Write for MacOS
+	$(call WRITE_RC,"${HOME}/.bash_profile")
 	@if [ "$(shell which lilly_jake)" = "" ]; then echo "\033[31mBitte starte nun dein Terminal neu um auf lilly_jake zugreifen zu können!\033[m"; fi;
 
 no_link: jake.cpp

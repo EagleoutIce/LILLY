@@ -46,24 +46,23 @@ status_t fkt_install(const std::string& cmd) noexcept {
 }
 
 status_t fkt_compile(const std::string& cmd) {
-    using namespace std::experimental::filesystem::v1;
     std::cout << "Generiere Makefile für Datei: " << settings["file"] << std::endl;
 
     //URGENT TODO: 
     //check if file exists:
-    path in_dir(settings[S_LILLY_IN]); // Do with all
-    path file(settings["file"]);
 
-    if(!check_file(in_dir / file)) {
-        std::cout << "Die von dir angegebene Datei: " << in_dir / file << " konnte nicht gefunden werden! Soll Jake sie für dich erstellen?" << std::endl
+    std::string targetpath = settings[S_LILLY_IN] + "/" + settings["file"];
+
+    if(!check_file(targetpath)) {
+        std::cout << "Die von dir angegebene Datei: " << targetpath << " konnte nicht gefunden werden! Soll Jake sie für dich erstellen?" << std::endl
                   << "(y)es/(n)o/(c)ancel> ";
         char answer; std::cin >> answer;
         if(answer=='y'){
-            std::ofstream out_texfile(in_dir/file, std::fstream::out);
+            std::ofstream out_texfile(targetpath, std::fstream::out);
 
             out_texfile << R"(%% Von Jake erstelltes Lilly-Texfile :D)" << std::endl;
             out_texfile << R"(%% TODO: implement structures)" << std::endl;
-            
+
             /// @todo do stuff like: import Lilly, and give Instruction with comments about how to use and stuff.. 
 
             out_texfile.close();
@@ -177,12 +176,10 @@ status_t fkt_compile(const std::string& cmd) {
 
 
 
+    targetpath = settings["path"] + "/" + settings["mk-name"];
+    std::ofstream out_makefile(targetpath, std::ofstream::out); 
 
-    path mk_p(settings["path"]); // Do with all
-    path mk_f(settings["mk-name"]);
-    std::ofstream out_makefile(mk_p/mk_f, std::ofstream::out); 
-
-    std::cout << "        - Makefile Dateistatus: \"" << mk_p/mk_f << "\", good: " << out_makefile.good() << std::endl
+    std::cout << "        - Makefile Dateistatus: \"" << targetpath << "\", good: " << out_makefile.good() << std::endl
               << "          Compile Version: " << __DATE__ << " " << __TIME__ << std::endl << std::endl;
 
     if(settings["debug"]=="true"){

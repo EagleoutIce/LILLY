@@ -15,8 +15,6 @@
 #include <fstream>
 #include <sstream>
 
-#include <experimental/filesystem>
-
 #include "../core/j_Typedefs.hpp"
 #include "../core/j_Globals.hpp"
 #include "../core/j_Settings.hpp"
