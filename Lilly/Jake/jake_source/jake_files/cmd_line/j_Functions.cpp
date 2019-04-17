@@ -115,30 +115,30 @@ status_t fkt_compile(const std::string& cmd) {
                  << "JOBCOUNT     := " << padPrint(settings["jobcount"])              << "## should: <= cpu/thread count!"      << std::endl
                  << std::endl << std::endl;
     //Compile-Regel
-    buf_makefile << "define LILLYxCompile = "                                                                                   << std::endl;
+    buf_makefile << "LILLYxCompile = \\"                                                                                   << std::endl;
 #if defined(__linux__)
-
-    buf_makefile << "    @mkdir -p \"$(OUTPUTDIR)\"" << std::endl; // Auf windows vermutlich identisch nur ohne -p
+    buf_makefile << "    mkdir -p \"$(OUTPUTDIR)\" && \\" << std::endl; // Auf windows vermutlich identisch nur ohne -p
 #endif
     //clean log
 
-    buf_makefile << R"(    @echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1)"                   << std::endl
-                 << "    @for bm in $(BOXMODES); do \\" << std::endl;
+    buf_makefile << R"(    echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
+                 << "    (for bm in $(BOXMODES); do \\" << std::endl;
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
         buf_makefile << "       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}} )" << " ${3} $(_LILLYARGS)" << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
     }
-    buf_makefile << "       echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}$${bm}-${2}\" ($${bm}) abgeschlossen\\033[m\"; done;"                                                                                                   << std::endl;
+    buf_makefile << "       echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}$${bm}-${2}\" ($${bm}) abgeschlossen\\033[m\"; done &&\\"                                                                                                   << std::endl;
 
     // call clean routine if clean is enabled :D
     if (settings[S_LILLY_AUTOCLEAN] == "true")
-        buf_makefile << "    $(call ${CLEANTARGET}) ##  Da 'lilly-autoclean' = true " << std::endl;
+        buf_makefile << "    $(call $(CLEANTARGET)) ) || (";
+    else 
+        buf_makefile << "    echo \"Kein autoclean da zugehörige Einstellung != true\" || (";
+    
+    buf_makefile << "echo \"\\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\\033[m\")"<< std::endl<< std::endl;  //) && (echo \"$(shell echo -E \"$(grep -R --include=\"*.log\" -i -E \"error[^(bars)][^(messages)]\" -A 7 -H \"./$(OUTPUTDIR)\" | more)\")\"))" << std::endl << std::endl;
+    
 
-    buf_makefile << "endef" << std::endl;
-
-    buf_makefile << "define LILLYxClean = "                                                                                     << std::endl;
-    buf_makefile << "    @echo \"\\033[38;2;255;191;0m> Lösche temporäre Dateien...\033[m\""                                     << std::endl;
-    buf_makefile << "    @for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done;"                                        << std::endl;
-    buf_makefile << "endef" << std::endl << std::endl;
+    buf_makefile << "LILLYxClean = echo \"\\033[38;2;255;191;0m> Lösche temporäre Dateien...\033[m\" && \\"                     << std::endl;
+    buf_makefile << "     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done"                                         << std::endl<< std::endl<< std::endl;
 
     // parse the modes:
     /**
@@ -172,7 +172,7 @@ status_t fkt_compile(const std::string& cmd) {
                  << std::endl << "\t@$(MAKE) -s --no-print-directory clean" << std::endl << std::endl;
 
     //generate clean rule:
-    buf_makefile << "clean:" << std::endl << "\t$(call LILLYxClean)"<< std::endl << std::endl;
+    buf_makefile << "clean:" << std::endl << "\t@$(call LILLYxClean)"<< std::endl << std::endl;
 
     //generate Phony
     buf_makefile << ".PHONY: " << all << "all clean" << std::endl;

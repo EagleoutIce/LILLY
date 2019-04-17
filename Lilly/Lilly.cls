@@ -90,7 +90,14 @@
 
 
 %%% TODO: MOVE: MOVE ME PLS
-\RequirePackage{tabularx} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
+% \RequirePackage{tabularx} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
+
+\LILLYxDemandPackage{tabularx}{Niemand würde es wagen, das glorreiche tabularx-Paket zu ersetzen!}
+                    {NEIN NEIN NEIN OHNE MACHE ICH GARNICHTS - Aber, ich brauch doch gar kein tabularx %
+                     - ABER ICH BIN EINE FLIESE.... ICH MEINE EIN DRUCKER... EINE BIENE... EIN STEIN? %
+                     AUF JEDEN FALL GEHT DAS NICHT! AAAAAAAAARGH}
+                    {}{}
+                    
 \RequirePackage{ltablex} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
 \RequirePackage{refcount}
 \keepXColumns

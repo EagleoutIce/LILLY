@@ -40,4 +40,9 @@ std::string exec(const std::string& command);
  */
 status_t ins_linux( void );
 
+/**
+ * @brief Ziegt eine generische Fehlermeldung an
+ */
+void li_show_error( void );
+
 #endif

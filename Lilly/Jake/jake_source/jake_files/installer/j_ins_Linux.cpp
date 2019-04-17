@@ -13,6 +13,14 @@ std::string exec(const std::string& command) {
     return result;
 }
 
+void li_show_error( void ){
+    std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
+    << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
+    << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
+    std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
+    system("locate -e -q -l 5 'Lilly.cls'");
+}
+
 status_t ins_linux( void ) {
     int fb;
     std::cout << "  - Prüfe auf das Vorhandensein von pdflatex: "
@@ -54,18 +62,10 @@ status_t ins_linux( void ) {
                 std::cout << "Lilly wurde erfolgreich gefunden! aktualisiere Einstellungen :D" << COL_RESET << std::endl;
                 settings[S_LILLY_PATH] = path;
             } else {
-                std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
-                    << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
-                    << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
-                    std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
-                    system("locate -e -q -l 5 'Lilly.cls'");
+                li_show_error();
             }
         } else {
-                std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
-                << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
-                << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
-                std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
-                system("locate -e -q -l 5 'Lilly.cls'");
+                li_show_error();
                 return EXIT_FAILURE;
             }
         }
@@ -89,13 +89,13 @@ status_t ins_linux( void ) {
     
     std::cout << "Sammlung der Pakete abgeschlossen: " << er_decode(system(("for i in $(cd " + settings["install-path"] + "/tex/latex && grep -E " + \
                     "\"(LILLYxDemandPackage|LILLYxLoadPackage){([a-zA-Z]+[a-zA-Z0-9]*)}\" -r * " + \
-                    "--exclude=_LILLY_PACKAGE_CTRL.tex -hos | grep -E '[a-zA-Z]+[a-zA-Z0-9]*' -os); do if " +\
+                    "-hos | grep -E '[a-zA-Z]+[a-zA-Z0-9]*' -os); do if " +\
                     "[ \"$i\" = \"LILLYxLoadPackage\" ]; then export a=load && continue; elif " + \
                     "[ \"$i\" = \"LILLYxDemandPackage\" ]; then export a=demand && continue; fi; " +\
                     "echo \"      - ($a): $i\"; done;").c_str())) << std::endl;
     
     
-    std::cout << "Installationsprozess wurde abgeschlossen :D" << std::endl;
+    std::cout << "Der Installationsprozess wurde abgeschlossen :D" << std::endl;
     
     return EXIT_SUCCESS;
 }

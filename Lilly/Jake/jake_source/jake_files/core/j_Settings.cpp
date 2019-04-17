@@ -8,7 +8,7 @@ settings_t settings {
     {"install-path",        "\"${HOME}/texmf\""},
 #if defined(__linux__)
     {S_LILLY_PATH,          "\"$(dirname $(locate -e -q -l 1 'Lilly.cls'))\""},
-#else
+#else //if defined __APPLE__ oder __MACH__
     {S_LILLY_PATH,          "\"$(dirname $(mdfind Lilly.cls | head -1))\""},
 #endif
     {"mk-name",             "Makefile"},

@@ -1,4 +1,4 @@
-# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 17 2019 at: 20:39:17)
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 18 2019 at: 01:33:34)
 
 TEXFILE      := test.tex
 BASENAME     := $(basename $(TEXFILE))
@@ -18,27 +18,27 @@ _LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\p
 JOBCOUNT     := 2                             ## should: <= cpu/thread count!
 
 
-define LILLYxCompile = 
-    @echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1
-    @for bm in $(BOXMODES); do \
+LILLYxCompile = \
+    mkdir -p "$(OUTPUTDIR)" && \
+    echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\
+    (for bm in $(BOXMODES); do \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS)>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS)>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS)>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
-       echo "\033[38;2;102;250;0mGenerierierung von "${1}$${bm}-${2}" ($${bm}) abgeschlossen\033[m"; done;
-    $(call ${CLEANTARGET}) ##  Da 'lilly-autoclean' = true 
-endef
-define LILLYxClean = 
-    @echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m"
-    @for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done;
-endef
+       echo "\033[38;2;102;250;0mGenerierierung von "${1}$${bm}-${2}" ($${bm}) abgeschlossen\033[m"; done &&\
+    $(call $(CLEANTARGET)) ) || (echo "\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\033[m")
+
+LILLYxClean = echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m" && \
+     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done
+
 
 default: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE})
+	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE})
 
 print: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Druck-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{FALSE})
+	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{FALSE})
 
 
 all: $(INPUTDIR)$(TEXFILE)
@@ -46,6 +46,6 @@ all: $(INPUTDIR)$(TEXFILE)
 	@$(MAKE) -s --no-print-directory clean
 
 clean:
-	$(call LILLYxClean)
+	@$(call LILLYxClean)
 
 .PHONY: default print all clean

@@ -3,11 +3,11 @@
 ---
 Dieser Ordner ist unmittelbar abhängig von _LILLY_PACKAGE_CTRL und sollte auch nur auf der Basis der darin definierten Befehle:
 
-- `\LILLYxDemandPackage{Paketname}{Infotext}{Fehlermeldung}{Optionale Paketargumente}{Code für den Fall, dass das Paket existiert}`
+- `\LILLYxDemandPackage (Signatur: {Paketname}{Infotext}{Fehlermeldung}{Optionale Paketargumente}{Code für den Fall, dass das Paket existiert})`
   Information: Das letzte Argument ist mitnichten obsolet. Da Latex bei derartigen Fehlern nicht direkt abbrechen soll,
   können so Folge-Fehler vermieden werden!
 
-- `\LILLYxLoadPackage{Paketname}{Infotext}{Fehlermeldung}{Fehlerbehandlung}{Optionale Paketargumente}{Code für den positiven Fall}`
+- `\LILLYxLoadPackage (Signatur: {Paketname}{Infotext}{Fehlermeldung}{Fehlerbehandlung}{Optionale Paketargumente}{Code für den positiven Fall})`
 
 
 durch Controller verwendet Werden!

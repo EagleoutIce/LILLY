@@ -1,4 +1,6 @@
-
+#if not (defined(__linux__) || defined(__APPLE__) | defined(__MACH__))
+    #warning Bisher beherrscht Jake nur Betriebssysteme die der POSIX-Implementation (spezifisch: Linuxioide und MacOS) genügen!
+#endif
 
 /**
  * @file jake.cpp
@@ -11,13 +13,18 @@
  * 
  * @note Zum Kompilieren dieser Datei sollte das beiliegende Makefile verwendet werdne
  * 
- * @mainpage
- * @section README README.md
- * @include README.md
- * 
+ * @page Important Super stuff
+ * @tableofcontents
+ *
+ * @section Main Wichtiger Einstieg
  * Folgende Seiten sind unter Umständen interesssant
  * - @ref Changelog
  * - @ref jake.cpp
+ * 
+ * @section README README.md
+ * @include README.md
+ * 
+
  * 
  * @page Changelog Changelog
  * @tableofcontents

@@ -6,7 +6,7 @@
  * @author Florian Sihler
  * @version 1.0.7
  *
- * @brief Verwaltet die Installation für Linuxiodie (apt-basierte) Systeme
+ * @brief Verwaltet die Installation für MacOS Systeme
  */
 
 
@@ -25,7 +25,7 @@
 #include "j_ins_Linux.hpp"
 
 /**
- * @brief Installationsregel für Linux-Basierte Systeme - nutzt konfigurationen der settings
+ * @brief Installationsregel für MacOS Systeme - nutzt konfigurationen der settings
  *
  * @todo Implementiere Rückgabewert
  *

@@ -12,7 +12,7 @@ status_t ins_macOS( void ) {
         while(c_inp != 'y' && c_inp != 'n')
             std::cin >> c_inp;
         if(c_inp == 'y')
-            std::cout << "Installiere 'texlive-full' via _apt_ : " << er_decode(system("sudo apt install texlive-full")) << std::endl;
+            std::cout << "Installiere (ungetestet) 'texlive-full' via _macports_ : " << er_decode(system("sudo port install texlive-full")) << std::endl;
         else
             std::cout << "  Jake installiert LILLY nun weiter, ohne 'pdflatex', da  du (n)o gewählt hast!" << std::endl;
     }
@@ -24,45 +24,19 @@ status_t ins_macOS( void ) {
     // Expand path:
     if (!check_file(exec("printf " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
         std::cerr << COL_ERROR << "Die Lilly.cls konnte unter dem eingestellten Pfad: \""
-                << (exec("printf " + settings[S_LILLY_PATH])+"/Lilly.cls") << "\" nicht gefunden werden. "
-                << "Soll die Datenbank aktualisiert werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
-        while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
-        if(c_inp == 'y') std::cout << "Aktualisiere die Datenbank 'sudo updatedb': " << er_decode(system("sudo updatedb")) << std::endl;
-
-        if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
-
-        std::cerr << COL_ERROR << "Die Lilly.cls nun wieder nicht gefunden werden :/ "
-        << "Soll eine ausführliche Suche gestartet werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
-        while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
-        if(c_inp == 'y') {
-            std::string path;
-            std::cout << "Suche Lilly.cls: " << (path = exec("echo -n $(dirname $(find \"${HOME}\" / -name Lilly.cls 2>/dev/null))")) << std::endl;
-            if(check_file(path + "/Lilly.cls")){
-                std::cout << "Lilly wurde erfolgreich gefunden! aktualisiere Einstellungen :D" << COL_RESET << std::endl;
-                settings[S_LILLY_PATH] = path;
-            } else {
-                std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
-                    << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
-                    << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
-                    std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
-                    system("locate -e -q -l 5 'Lilly.cls'");
-            }
-        } else {
+                << (exec("printf " + settings[S_LILLY_PATH])+"/Lilly.cls") << "\" nicht gefunden werden. " << std::endl;
+        
                 std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
                 << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
                 << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
-                std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
-                system("locate -e -q -l 5 'Lilly.cls'");
-                return EXIT_FAILURE;
-            }
-        }
 
-    } //URGENT TODO: AUSFÜHRLICHE SUChE
+                return EXIT_FAILURE;
+    }
 
     std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << ") nach (" << settings["install-path"] << "/tex/latex): "
               << er_decode(system(("ln -sf "+settings[S_LILLY_PATH]+" "+settings["install-path"]+"/tex/latex").c_str()))
               << std::endl;
-    if(settings[S_LILLY_PATH]=="\"$(dirname $(locate -e -q -l 1 'Lilly.cls'))\"")
+    if(settings[S_LILLY_PATH]=="\"$(dirname $(mdfind Lilly.cls | head -1))\"")
     std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst. Nutze hierzu: "
               << std::endl << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
 
@@ -81,8 +55,7 @@ status_t ins_macOS( void ) {
                     "[ \"$i\" = \"LILLYxDemandPackage\" ]; then export a=demand && continue; fi; " +\
                     "echo \"      - ($a): $i\"; done;").c_str())) << std::endl;
 
-
-    std::cout << "Installationsprozess wurde abgeschlossen :D" << std::endl;
+    std::cout << "Der Installationsprozess wurde abgeschlossen :D" << std::endl;
 
     return EXIT_SUCCESS;
 }
