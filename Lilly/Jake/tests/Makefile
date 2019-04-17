@@ -1,4 +1,4 @@
-# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 17 2019 at: 18:55:06)
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 17 2019 at: 20:39:17)
 
 TEXFILE      := test.tex
 BASENAME     := $(basename $(TEXFILE))
@@ -19,7 +19,6 @@ JOBCOUNT     := 2                             ## should: <= cpu/thread count!
 
 
 define LILLYxCompile = 
-    @mkdir -p "$(OUTPUTDIR)"
     @echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1
     @for bm in $(BOXMODES); do \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS)>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
@@ -35,11 +34,11 @@ endef
 
 default: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE}))
+	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE})
 
 print: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Druck-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{FALSE}))
+	$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{FALSE})
 
 
 all: $(INPUTDIR)$(TEXFILE)

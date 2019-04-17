@@ -1,6 +1,3 @@
-#if not defined(__linux__) 
-    #error Jake mag bisher nur Tux basierte Systeme - Tut mir leid :/
-#endif
 
 
 /**

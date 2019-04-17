@@ -6,7 +6,11 @@ settings_t settings {
     {"debug",               "false"},
     {"path",                "./"},
     {"install-path",        "\"${HOME}/texmf\""},
+#if defined(__linux__)
     {S_LILLY_PATH,          "\"$(dirname $(locate -e -q -l 1 'Lilly.cls'))\""},
+#else
+    {S_LILLY_PATH,          "\"$(dirname $(mdfind Lilly.cls | head -1))\""},
+#endif
     {"mk-name",             "Makefile"},
     {"mk-path",             "./"},
     {S_LILLY_OUT,           "./$(BASENAME)-OUT/"}, // issues mkdir inside of makefile -- OS-Slave
@@ -16,7 +20,7 @@ settings_t settings {
     {S_LILLY_MODES,         "default print "},
     {S_LILLY_COMPLETE,      "false"},
     {S_LILLY_COMPLETE_NAME, "COMPLETE-"}, /// @todo move lilly-x-name to rule descriptor
-    {S_LILLY_PRINT_NAME,    "PRINT-"}, 
+    {S_LILLY_PRINT_NAME,    "PRINT-"},
     {S_LILLY_CLEANS,        "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC DEFS"},
     {S_LILLY_COMPILETIMES,  "3"}, // wie oft soll pdflatex aufgerufen werden?
     {S_LILLY_AUTOCLEAN,     "true"},

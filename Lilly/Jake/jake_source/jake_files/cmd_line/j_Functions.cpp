@@ -3,9 +3,9 @@
 status_t fkt_dump(const std::string& cmd) noexcept {
     std::cout << "Settings Dump: " << std::endl;
     settings_t::iterator it = settings.begin();
-    while(it != settings.end()){ // iterate over all settings 
+    while(it != settings.end()){ // iterate over all settings
         // simple padding without <iomanip> std::setw
-        std::cout << it->first << ": " << std::string(20-it->first.length(),' ') << STY_PARAM << it->second << COL_RESET << std::endl; 
+        std::cout << it->first << ": " << std::string(20-it->first.length(),' ') << STY_PARAM << it->second << COL_RESET << std::endl;
         ++it;
     }
     return EXIT_SUCCESS;
@@ -16,8 +16,8 @@ status_t fkt_help(const std::string& cmd) noexcept {
     std::cerr << program << " [options=help] [file]" << std::endl << std::endl;
     std::cerr << "[options]:" << std::endl;
     functions_t::iterator it = functions.begin();
-    while(it != functions.end()){ // iterate over all functions 
-        std::cout << "  " << it->first << " " << std::string(15-it->first.length(),' ')<< it->second.brief_description 
+    while(it != functions.end()){ // iterate over all functions
+        std::cout << "  " << it->first << " " << std::string(15-it->first.length(),' ')<< it->second.brief_description
                   << std::endl;                                 // simple padding without <iomanip> std::setw
         ++it;
     }
@@ -29,26 +29,29 @@ status_t fkt_help(const std::string& cmd) noexcept {
     std::cerr << std::endl << "note:" << std::endl
               << "Allgemeine Einstellungen können über \"-key=value\" gesetzt werden (\"-key\" für boolesche). So "
               << "setzt: \"-path=/es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: "
-              << "\"/es/gibt/kuchen\". Weiter ist es möglich mit '+=' values hinzuzufügen." 
+              << "\"/es/gibt/kuchen\". Weiter ist es möglich mit '+=' values hinzuzufügen."
               << std::endl;
     return EXIT_SUCCESS;
 }
 
-status_t fkt_install(const std::string& cmd) noexcept { 
+status_t fkt_install(const std::string& cmd) noexcept {
 //Determine Operating System
 #if defined(__linux__)
     std::cout << "Betriebsystem wurde als Linux-Basiert identifiziert - versuche ins_linux()" << std::endl;
     ins_linux();
-#else 
+#elif defined(__APPLE__) || defined(__MACH__)
+    std::cout << "Betriebsystem wurde als MacOS identifiziert - versuche ins_macOS()" << std::endl;
+    ins_macOS();
+#else
     std::cerr << "Es existiert keine Installationsregel für dein Betriebssystem :/ - Bitte melde dich beim Maintainer dieses Pakets!" << std::endl;
 #endif
-   return EXIT_SUCCESS; 
+   return EXIT_SUCCESS;
 }
 
 status_t fkt_compile(const std::string& cmd) {
     std::cout << "Generiere Makefile für Datei: " << settings["file"] << std::endl;
 
-    //URGENT TODO: 
+    //URGENT TODO:
     //check if file exists:
 
     std::string targetpath = settings[S_LILLY_IN] + "/" + settings["file"];
@@ -63,7 +66,7 @@ status_t fkt_compile(const std::string& cmd) {
             out_texfile << R"(%% Von Jake erstelltes Lilly-Texfile :D)" << std::endl;
             out_texfile << R"(%% TODO: implement structures)" << std::endl;
 
-            /// @todo do stuff like: import Lilly, and give Instruction with comments about how to use and stuff.. 
+            /// @todo do stuff like: import Lilly, and give Instruction with comments about how to use and stuff..
 
             out_texfile.close();
         } else if (answer=='n') {
@@ -76,9 +79,9 @@ status_t fkt_compile(const std::string& cmd) {
 
 
 
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__) || defined(__MACH__)
     // Generiere Notwendige Ordnerstruktur für Ein- und Ausgabedateien!
-    std::cout << "    - Erstelle Ordner settings[\"mk-path\"] (" << settings["mk-path"] << ")... " 
+    std::cout << "    - Erstelle Ordner settings[\"mk-path\"] (" << settings["mk-path"] << ")... "
               << er_decode(system(("mkdir -p " + settings["mk-path"]).c_str())) << std::endl; // OS - BARRIER
 #else
     std::cout << "!   Auf deinem Betriesbsystem ist noch keine Regel implementiert die mir es erlaubt einen Ordner zu erstellen!" << std::endl
@@ -92,11 +95,11 @@ status_t fkt_compile(const std::string& cmd) {
     buf_makefile << "# " << PRG_BRIEF << "     (compiled on: " << __DATE__ << " at: " << __TIME__ << ")" << std::endl << std::endl;
 
     // Einfügen der Variablen des Makefiles, es erhält eine andere Struktur wie das, welches von lilly_compile zur Verfügung gestellt wird!!
-    buf_makefile << "TEXFILE      := " << settings["file"]                                                                      << std::endl    
+    buf_makefile << "TEXFILE      := " << settings["file"]                                                                      << std::endl
                  << "BASENAME     := $(basename $(TEXFILE))"                                                                    << std::endl
                  << "PDFFILE      := $(addsuffix .pdf,$(basename $(TEXFILE)))"                                                  << std::endl
-                 << "LATEXARGS    := -shell-escape -enable-write18 -interaction=batchmode"                                      << std::endl 
-                 // lilly- settings 
+                 << "LATEXARGS    := -shell-escape -enable-write18 -interaction=batchmode"                                      << std::endl
+                 // lilly- settings
                  << "## Directories used for INPUT and OUTPUT Files "                                                           << std::endl
                  << "OUTPUTDIR    := $(shell echo " << settings[S_LILLY_OUT] << "| sed 's:/*$$::')/"                            << std::endl
                  << "INPUTDIR     := $(shell echo " << settings[S_LILLY_IN] << "| sed 's:/*$$::')/"                             << std::endl
@@ -160,7 +163,7 @@ status_t fkt_compile(const std::string& cmd) {
 
     std::string all = "";
     // generate all rule:
-    buf_makefile << std::endl << "all: $(INPUTDIR)$(TEXFILE)" << std::endl; 
+    buf_makefile << std::endl << "all: $(INPUTDIR)$(TEXFILE)" << std::endl;
     for(std::string s : split(settings[S_LILLY_MODES])) {
         all += s + ((settings[S_LILLY_COMPLETE] == "true")?(" c_" + s):"") + " ";
     }
@@ -169,7 +172,7 @@ status_t fkt_compile(const std::string& cmd) {
                  << std::endl << "\t@$(MAKE) -s --no-print-directory clean" << std::endl << std::endl;
 
     //generate clean rule:
-    buf_makefile << "clean:" << std::endl << "\t$(call LILLYxClean)"<< std::endl << std::endl;  
+    buf_makefile << "clean:" << std::endl << "\t$(call LILLYxClean)"<< std::endl << std::endl;
 
     //generate Phony
     buf_makefile << ".PHONY: " << all << "all clean" << std::endl;
@@ -177,7 +180,7 @@ status_t fkt_compile(const std::string& cmd) {
 
 
     targetpath = settings["path"] + "/" + settings["mk-name"];
-    std::ofstream out_makefile(targetpath, std::ofstream::out); 
+    std::ofstream out_makefile(targetpath, std::ofstream::out);
 
     std::cout << "        - Makefile Dateistatus: \"" << targetpath << "\", good: " << out_makefile.good() << std::endl
               << "          Compile Version: " << __DATE__ << " " << __TIME__ << std::endl << std::endl;
