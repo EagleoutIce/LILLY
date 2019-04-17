@@ -16,8 +16,7 @@ default: no_link
 	$(call WRITE_RC,"${HOME}/.zshrc")
 	@#Write for bash
 	$(call WRITE_RC,"${HOME}/.bashrc")
-	
-	@echo "\033[31mBitte starte nun dein Terminal neu um auf lilly_jake zugreifen zu können!\033[m"
+	@if [ "$(shell which lilly_jake)" = "" ]; then echo "\033[31mBitte starte nun dein Terminal neu um auf lilly_jake zugreifen zu können!\033[m"; fi;
 
 no_link: jake.cpp
 	@g++ -std=c++11 -I './' $(EXTRA_FILES) jake.cpp -o lilly_jake $(LINKERS)

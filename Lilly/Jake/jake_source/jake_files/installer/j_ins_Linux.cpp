@@ -18,18 +18,16 @@ status_t ins_linux( void ) {
     std::cout << "  - Prüfe auf das Vorhandensein von pdflatex: "
               << er_decode(fb = system("which pdflatex > /dev/null"))
               << std::endl;
-    
+    char c_inp = '\0';
     if(fb) {
-        char c_inp = '\0';
         std::cout << "  Jake kann 'pdflatex' nicht finden, dies ist für die Arbeit mit Lilly zwanghaft notwendig!" << std::endl
                   << "  Soll 'texlive-full' installiert werden?  [(y)es/(n)o]> ";
         while(c_inp != 'y' && c_inp != 'n')
             std::cin >> c_inp;
-        if(c_inp == 'y') {
+        if(c_inp == 'y')
             std::cout << "Installiere 'texlive-full' via _apt_ : " << er_decode(system("sudo apt install texlive-full")) << std::endl;
-        } else {
+        else
             std::cout << "  Jake installiert LILLY nun weiter, ohne 'pdflatex', da  du (n)o gewählt hast!" << std::endl;
-        }
     }  
 
     std::cout << "  - Erstelle (" <<  settings["install-path"] << "/tex/latex): "
@@ -38,13 +36,42 @@ status_t ins_linux( void ) {
 
     // Expand path:
     if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
-        std::cerr << COL_ERROR << "Die Lilly.cls konnte unter dem eingestellten Pfad: \"" << exec("echo -n " + settings[S_LILLY_PATH]) << "\" nicht gefunden werden. Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
-        << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
-        << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
-        std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
-        system("locate -e -q -l 5 'Lilly.cls'");
-        return EXIT_FAILURE;
-    }
+        std::cerr << COL_ERROR << "Die Lilly.cls konnte unter dem eingestellten Pfad: \"" 
+                << exec("echo -n " + settings[S_LILLY_PATH]) << "\" nicht gefunden werden. "
+                << "Soll die Datenbank aktualisiert werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
+        while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
+        if(c_inp == 'y') std::cout << "Aktualisiere die Datenbank 'sudo updatedb': " << er_decode(system("sudo updatedb")) << std::endl;
+
+        if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
+
+        std::cerr << COL_ERROR << "Die Lilly.cls nun wieder nicht gefunden werden :/ "
+        << "Soll eine ausführliche Suche gestartet werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
+        while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
+        if(c_inp == 'y') {
+            std::string path;
+            std::cout << "Suche Lilly.cls: " << (path = exec("echo -n $(dirname $(find \"${HOME}\" / -name Lilly.cls 2>/dev/null))")) << std::endl;
+            if(check_file(path + "/Lilly.cls")){
+                std::cout << "Lilly wurde erfolgreich gefunden! aktualisiere Einstellungen :D" << COL_RESET << std::endl;
+                settings[S_LILLY_PATH] = path;
+            } else {
+                std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
+                    << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
+                    << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
+                    std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
+                    system("locate -e -q -l 5 'Lilly.cls'");
+            }
+        } else {
+                std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
+                << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
+                << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
+                std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
+                system("locate -e -q -l 5 'Lilly.cls'");
+                return EXIT_FAILURE;
+            }
+        }
+
+    } //URGENT TODO: AUSFÜHRLICHE SUChE
+    
     std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << ") nach (" << settings["install-path"] << "/tex/latex): "
               << er_decode(system(("ln -sf "+settings[S_LILLY_PATH]+" "+settings["install-path"]+"/tex/latex").c_str()))
               << std::endl;

@@ -84,7 +84,7 @@
 
 %% \RequirePackage{pgfkeys}
 
-\LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schlüssel-Wert-Spiel zur Verfügung} %% IST DIES ÜBERHAUPT NÖTIG? TODO:
+\LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schlüssel-Wert-Spiel zur Verfuegung} %% IST DIES ÜBERHAUPT NÖTIG? TODO:
                     {Lilly ist sich ziemlich sicher, aber doch nicht ganz ob dieses Paket relevant ist}
                     {}{} %% keine Argumente
 
@@ -107,10 +107,11 @@
                       {Kein Inputencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
                       {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
                       {utf8x}{}
-
+    %% FIX COMPAT ISSUE
+                      
 %%    \RequirePackage[T1]{fontenc}                            %8-Bit encoding
 
-    \LILLYxLoadPackage{fontenc}{Damit Eingaben auch brav codiert werden :D}
+    \LILLYxLoadPackage{fontenc}{Damit Schriften auch brav codiert werden :D}
                       {Kein Fontencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
                       {\def\LILLYxDEMOxFONTENC{Ist nicht Da}} %% Heile heile Welt
                       {T1}{\def\LILLYxDEMOxFONTENC{Ist Da}}
@@ -133,8 +134,13 @@
 \fi
 
 %%  \RequirePackage{expl3}
-\LILLYxDemandPackage{expl3}{Da wir auch was von der tollen Latex3-Zukunft abhaben mögen :D} 
+\LILLYxDemandPackage{expl3}{Da wir auch was von der tollen Latex3-Zukunft abhaben moegen :D} 
                     {Leider kann LILLY aus diversen Gründen nicht ohne expl3 existieren :/}
+                    {}{} %% keine Argumente
+
+
+\LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!} 
+                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
                     {}{} %% keine Argumente
 
 \input{Lilly_Files/Helper/_LILLY_COMMAND}
@@ -151,7 +157,11 @@
 
 \input{Lilly_Files/Controllers/_LILLY_ENVIRONMENT_CONTROLLER}
 \input{Lilly_Files/Helper/_LILLY_SHORTCUTS}
-\RequirePackage{wrapfig}
+
+\LILLYxLoadPackage{wrapfig}{Um Figuren und Tabellen angenehmer einzubetten}
+                    {Ich versuche nun von Hand die Umgebungen wrapfigure und wraptable notduerftig zu simulieren ERROR}
+                    {\input{Lilly_Files/Fallbacks/_LILLY_FALLBACK_WRAPFIG}}
+                    {}{} %% NO ARGS
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Key-Val-Optionen zum verarbeiten von Argumenten                                                                     %     %%%% PACKAGE-OPTIONS %%%%
