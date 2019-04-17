@@ -1,4 +1,4 @@
-# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 16 2019 at: 18:42:37)
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 17 2019 at: 02:34:37)
 
 TEXFILE      := test.tex
 BASENAME     := $(basename $(TEXFILE))

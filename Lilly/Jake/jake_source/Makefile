@@ -17,7 +17,7 @@ default: no_link
 	@#Write for bash
 	$(call WRITE_RC,"${HOME}/.bashrc")
 	
-	@export PATH=${PATH}:$(shell pwd)
+	@echo "\033[31mBitte starte nun dein Terminal neu um auf lilly_jake zugreifen zu können!\033[m"
 
 no_link: jake.cpp
 	@g++ -std=c++11 -I './' $(EXTRA_FILES) jake.cpp -o lilly_jake $(LINKERS)

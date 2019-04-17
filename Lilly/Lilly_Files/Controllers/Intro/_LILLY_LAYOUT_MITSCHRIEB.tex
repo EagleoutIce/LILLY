@@ -84,11 +84,11 @@
 {\makebox[0pt][r]{\smaller#3\hspace{\marginparsep}}#4}%
 \fi%
 \else %% is oneside
-\llap{\textcolor{\LILLYxColorxDefinition}{\csname the#1\endcsname}\hspace{1em}}%
+{\makebox[0pt][r]{\textcolor{\LILLYxTITLExCOLOR}{#3}\hspace{\marginparsep}}#4}%
 \fi%
 }
 
-\renewcommand{\@seccntformat}[1]{\textcolor{\LILLYxColorxDefinition}{\csname the#1\endcsname}}
+\renewcommand{\@seccntformat}[1]{\textcolor{\LILLYxTITLExCOLOR}{\csname the#1\endcsname}}
 
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
 {-4ex \@plus -1ex \@minus -.4ex}

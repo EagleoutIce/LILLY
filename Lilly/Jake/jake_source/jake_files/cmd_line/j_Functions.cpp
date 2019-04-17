@@ -81,6 +81,8 @@ status_t fkt_compile(const std::string& cmd) {
     // Generiere Notwendige Ordnerstruktur für Ein- und Ausgabedateien!
     std::cout << "    - Erstelle Ordner settings[\"mk-path\"] (" << settings["mk-path"] << ")... " 
               << er_decode(system(("mkdir -p " + settings["mk-path"]).c_str())) << std::endl; // OS - BARRIER
+    std::cout << "    - Erstelle Ordner output[\"" << S_LILLY_OUT << "\"] (" << settings[S_LILLY_OUT] << ")... " 
+            << er_decode(system(("mkdir -p " + settings[S_LILLY_OUT]).c_str())) << std::endl; // Auf windows vermutlich identisch nur ohne -p
 #else
     std::cout << "!   Auf deinem Betriesbsystem ist noch keine Regel implementiert die mir es erlaubt einen Ordner zu erstellen!" << std::endl
               << "!   Es ist wichtig, dass du die Existenz aller Pfade die du benötigst selbst gewährleistest :/" << std::endl;

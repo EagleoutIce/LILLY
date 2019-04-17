@@ -1,15 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{Lilly}[2019/02/24 EagleoutIce - Latex-Ultimate styling class with command-line support]
 
-
 \providecommand{\AUTHOR}{Florian Sihler}
 \providecommand{\AUTHORMAIL}{florian.sihler@web.de}
 \newcommand*{\LILLYxVERSION}{1.0.7}
 \newcommand*{\LILLYxSTATUS}{Work in Progress}
 \newcommand*{\LILLYxVERSIONxLONG}{1.0.7 - Wanna take a shower}
 
-\newcommand*\TikZ{\textup{Ti\textit kZ}}
+\input{Lilly_Files/Helper/_LILLY_PACKAGE_CTRL}
+%\LILLY%LoadPackage{lipsum42}{Gutes Paket}{MAUMAUMAU}{\def\MauMau{Hauihao}}
+%\LILLY%DemandPackage{lipsum42}{Super Paket}{HAUHAUHAU}{\def\MauMau{Raurau}}
 
+\input{Lilly_Files/Data/_LILLY_GENERAL_COMMANDS}
 
 \newcounter{ctr_DUMMY}
 
@@ -18,13 +20,13 @@
 
 %%% lilly unterstütz die Verhaltenssteuerung über die Kommandozeile und erlaubt es so alle Paramter auch per '\def' zu setzen!
 
-\providecommand*{\LILLYxDummy}{dummy}                        %%% 
+\providecommand*{\LILLYxDummy}{dummy}                        %%% ONLY THING DEFINE HERE
 
 \input{Lilly_Files/Helper/_LILLY_PATH} %% provides \linput as \LILLYxPATH based input
 
 \input{Lilly_Files/Helper/_LILLY_BOOLEAN}
 
-\providecommand{\LILLYxDEBUG}{\false}
+\providecommand{\LILLYxDEBUG}{\false}                        %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Setzen und Abfragen der Werte für das Dokument                                                                      %     %%%% PRE-DEFAULTS %%%%
@@ -56,16 +58,40 @@
 \providecommand{\LILLYxLayoutxWidth}{6in}
 \providecommand{\LILLYxLayoutxHeight}{9.05in}
 
+\LILLYxPoliteKnock[.cls]{\LILLYxDocumentxTYPE}{} %% Hier ist alles toll
+                  {\ClassError{Ich brauche leider \LILLYxDocumentxTYPE als Paket um irgendwas tun zu können! Ich darf auch nicht auf article oder gleichwertige Pakete umsteigen. Tut mir Leid, so wird das nichts!}} %% Hier dann wohl nicht!
+
 %DEFAULT: \documentclass[a4paper,11pt,oneside]{scrbook}
 \LoadClass[\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,titlepage=firstiscover,\LILLYxDocumentxTYPExExtras,table,makeidx]{\LILLYxDocumentxTYPE}
-\RequirePackage[\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight},top=1.25in,centering]{geometry}
+
+%%\RequirePackage[\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight},top=1.25in,centering]{geometry}
 %top=1.5in,bottom=1.25in,textwidth=6.25in]{geometry}
 
-\RequirePackage[english,ngerman]{babel}
+%% NEU, weil cooler: 
 
+\LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}%% Package, Info
+                    {Dieses Paket ist für LILLY überlebenswichtig}%% Error-Text
+                    {\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight},top=1.25in,centering}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D - wenn er das dann mal kann
+
+
+%% \RequirePackage[english,ngerman]{babel}
+
+\LILLYxDemandPackage{babel}{Dieses Paket brauchen wir für Sprachen, weil sie toll sind}
+                    {Um dieses Paket kommt LILLY nicht herum!}
+                    {english,ngerman}{}
+
+
+%% \RequirePackage{pgfkeys}
+
+\LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schlüssel-Wert-Spiel zur Verfügung} %% IST DIES ÜBERHAUPT NÖTIG? TODO:
+                    {Lilly ist sich ziemlich sicher, aber doch nicht ganz ob dieses Paket relevant ist}
+                    {}{} %% keine Argumente
+
+
+%%% TODO: MOVE: MOVE ME PLS
 \RequirePackage{tabularx} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
 \RequirePackage{ltablex} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
-\RequirePackage{pgfkeys}
 \RequirePackage{refcount}
 \keepXColumns
 
@@ -75,13 +101,41 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \ifx\LILLYxEXCLUDExEncodings \undefined                   %%% Lade standartkonfiguration für Encoding
-    \RequirePackage[utf8x]{inputenc}                        %unicode
-    \RequirePackage[T1]{fontenc}                            %8-Bit encoding
-    \RequirePackage{ngerman}                                %Deutsche Sprache
-    \RequirePackage{lmodern}
+
+%% \RequirePackage[utf8x]{inputenc}                        %unicode
+    \LILLYxLoadPackage{inputenc}{Damit Eingaben auch brav codiert werden :D}
+                      {Kein Inputencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
+                      {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                      {utf8x}{}
+
+%%    \RequirePackage[T1]{fontenc}                            %8-Bit encoding
+
+    \LILLYxLoadPackage{fontenc}{Damit Eingaben auch brav codiert werden :D}
+                      {Kein Fontencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
+                      {\def\LILLYxDEMOxFONTENC{Ist nicht Da}} %% Heile heile Welt
+                      {T1}{\def\LILLYxDEMOxFONTENC{Ist Da}}
+
+
+%%   \RequirePackage{ngerman}                                %Deutsche Sprache
+
+    \LILLYxLoadPackage{ngerman}{Damit auch wirklich Deutsch gesprochen wird, ist zur Sicherheit da, redundant da babel!}
+                      {Keine Deutsche Sprache ist schade, aber da mach ich mal nix :D}
+                      {} %% Heile heile Welt
+                      {}{} %% NO ARGS
+
+%%  \RequirePackage{lmodern}
+
+    \LILLYxLoadPackage{lmodern}{Da die normale Computer Modern in PDFs pixelig wirkt: nimm Latin Modern}
+                      {Pffh dann behalte halt deine Pixel wenn es lmodern nicht gibt}
+                      {} %% Heile heile Welt
+                      {}{} %% NO ARGS
+                      
 \fi
 
-\RequirePackage{expl3}
+%%  \RequirePackage{expl3}
+\LILLYxDemandPackage{expl3}{Da wir auch was von der tollen Latex3-Zukunft abhaben mögen :D} 
+                    {Leider kann LILLY aus diversen Gründen nicht ohne expl3 existieren :/}
+                    {}{} %% keine Argumente
 
 \input{Lilly_Files/Helper/_LILLY_COMMAND}
 

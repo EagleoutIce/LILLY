@@ -55,7 +55,19 @@ status_t ins_linux( void ) {
     std::cout << "  - Informiere TEX über (" << settings["install-path"] << "): "
               << er_decode(system(("texhash " + settings["install-path"] + " > /dev/null").c_str()))
               << std::endl;
-              
+    
+    std::cout << "  ? Experimental sucht Jake alle Pakete heraus die Lilly benötigen könnte um dann, in einer späteren Version," << std::endl << "    Variable Installationen anzubieten :D" << std::endl;
+    
+    //for i in $(cd ~/texmf/tex/latex/Lilly/ && grep -E "(LILLYxDemandPackage|LILLYxLoadPackage){([a-zA-Z]+[a-zA-Z0-9]*)}" -r * --exclude=_LILLY_PACKAGE_CTRL.tex -hos | grep -E "{[a-zA-Z]+[a-zA-Z0-9]*" -os); do if [[ "$i" == "LILLYxLoadPackage" ]]; then export a=load && continue; elif [[ "$i" == "LILLYxDemandPackage" ]]; then export a=demand && continue; fi;  echo "- ($a): $i"; done;
+    
+    std::cout << "Sammlung der Pakete abgeschlossen: " << er_decode(system(("for i in $(cd " + settings["install-path"] + "/tex/latex && grep -E " + \
+                    "\"(LILLYxDemandPackage|LILLYxLoadPackage){([a-zA-Z]+[a-zA-Z0-9]*)}\" -r * " + \
+                    "--exclude=_LILLY_PACKAGE_CTRL.tex -hos | grep -E '[a-zA-Z]+[a-zA-Z0-9]*' -os); do if " +\
+                    "[ \"$i\" = \"LILLYxLoadPackage\" ]; then export a=load && continue; elif " + \
+                    "[ \"$i\" = \"LILLYxDemandPackage\" ]; then export a=demand && continue; fi; " +\
+                    "echo \"      - ($a): $i\"; done;").c_str())) << std::endl;
+    
+    
     std::cout << "Installationsprozess wurde abgeschlossen :D" << std::endl;
     
     return EXIT_SUCCESS;
