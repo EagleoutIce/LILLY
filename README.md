@@ -26,7 +26,9 @@ Momentan kommt Lilly mit 3 Boxdesigns:
 - Default 
 - Alternate 
 - Limerence 
+
 sowie zwei verschiedenen Generierungstypen:
+
 - Normal
 - Druck
 Des weiteren gibt es die kleine (mittlerweilen immer größer werdende) helfende Hand, namens Jake. 
