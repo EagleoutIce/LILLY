@@ -1,8 +1,8 @@
 ---
-name: Bug report
+name: LILLY Fehlerbericht
 about: Bitte erstelle einen Fehlerbericht um LILLY zu verbessern
 title: "<KURZER NAME DES PROBLEMS> [BUG]"
-labels: bug
+labels: LILLY (latex), bug
 assignees: EagleoutIce, LordYellow
 
 ---
