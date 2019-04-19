@@ -14,3 +14,15 @@ Da sich diese Readme noch im Aufbau befindet. Für alle Hinweise bezüglich der 
 
 2. [Lilly/Jake/README.md](Lilly/Jake/README.md) 
    Für eine grundlegende Einführung in Jake und das Installieren von LILLY
+   
+## Motivation 
+
+Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm umgesetzt, um die Umsetzung von Skripten und Mitschriften in Latex zu vereinfachen.
+
+## Funktionen 
+
+Im Allgemeinen bietet Lilly die möglichkeit ein in Latex mit Lilly-Commands geschriebenes Dokument im Nachhinein über Konsolbefehle 
+zu konfigurieren. 
+Momentan kommt Lilly mit 3 Boxdesigns: Default, Alternate und Limerence und Versionen für den Druck.
+Des weiteren gibt es die kleine helfende Hand, namentlich Jake. 
+Jake hilft euch bei der Installation von Lilly sowie beim Installieren von fehlenden Latex-Packages.
