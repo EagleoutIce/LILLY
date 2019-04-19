@@ -1,5 +1,23 @@
 #include "j_Functions.hpp"
 
+
+status_t fkt_gsettings(const std::string& cmd) noexcept {
+    settings_t::iterator it = settings.begin();
+    while(it != settings.end()){ 
+        std::cout << "-" << it->first << " "; ++it;
+    }
+    return EXIT_SUCCESS;
+}
+
+status_t fkt_goptions(const std::string& cmd) noexcept {
+    functions_t::iterator it = functions.begin();
+    while(it != functions.end()){ 
+        if (it->first.length()>0 && it->first[0] != '_')
+            std::cout << it->first << " "; ++it;
+    }
+    return EXIT_SUCCESS;
+}
+
 status_t fkt_dump(const std::string& cmd) noexcept {
     std::cout << "Settings Dump: " << std::endl;
     settings_t::iterator it = settings.begin();
@@ -17,6 +35,7 @@ status_t fkt_help(const std::string& cmd) noexcept {
     std::cerr << "[options]:" << std::endl;
     functions_t::iterator it = functions.begin();
     while(it != functions.end()){ // iterate over all functions
+        if (it->first.length()>0 && it->first[0] != '_')
         std::cout << "  " << it->first << " " << std::string(15-it->first.length(),' ')<< it->second.brief_description
                   << std::endl;                                 // simple padding without <iomanip> std::setw
         ++it;
@@ -206,5 +225,7 @@ functions_t functions = {
     {"help", {fkt_help, "Zeigt diese Hilfe an"}},
     {"dump", {fkt_dump, "Zeigt alle settings und ihre Werte an" }},
     {"file_compile", {fkt_compile, "Erstellt ein makefile für settings[\"file\"]"}},
-    {"install", {fkt_install, "Versucht LILLY zu installieren"}}
+    {"install", {fkt_install, "Versucht LILLY zu installieren"}},
+    {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}},
+    {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}
 };

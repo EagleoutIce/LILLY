@@ -4,10 +4,11 @@ EXTRA_FILES := jake_files/j_Helper.cpp jake_files/cmd_line/j_Functions.cpp jake_
 LINKERS :=
 RC_FILES := "${HOME}/.zshrc" "${HOME}/.bashrc" "${HOME}/.bash_profile"
 
+
 WRITE_RC = if grep -q "LILLY_CODE" "$(1)"; then \
         echo "DEBUG: Already prepped $(1)";\
     else \
-        echo "export PATH=\044PATH:$(shell pwd)  \#LILLY_CODE"  >> $(1);\
+        echo "export PATH=\044PATH:$(shell pwd); autoload bashcompinit &>/dev/null; bashcompinit &>/dev/null; source $(shell pwd)/_jake_autocomplete \#LILLY_CODE"  >> $(1);\
     fi
 
 default: no_link

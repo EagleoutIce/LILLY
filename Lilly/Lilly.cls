@@ -182,7 +182,12 @@
 
 \RequirePackage{tocloft}
 \RequirePackage{multirow}
-\RequirePackage{booktabs}
+%% \RequirePackage{booktabs}
+\LILLYxLoadPackage{booktabs}{für noch tollerererererere Tabellen}
+                    {Ich finde es gut, dass du kein booktabs hast, ist ja auch zu fanatisch, aber irgendwie müssen wir damit jetzt wohl klarkommen ERROR}
+                    {\input{Lilly_Files/Fallbacks/_LILLY_FALLBACK_BOOKTABS}}
+                    {}{} %% NO ARGS
+                    
 \RequirePackage{hhline}
 \ifx\LILLYxTIKZxenable \undefined
     \input{Lilly_Files/Data/Graphics/Tikz-Core/_LILLY_TIKZ_CORE}

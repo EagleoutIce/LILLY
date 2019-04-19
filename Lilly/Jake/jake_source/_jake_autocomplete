@@ -1,0 +1,14 @@
+_jake() {
+    local cur prev
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    if [[ ${cur} == -* ]] ; then
+        COMPREPLY=( $(compgen -W "$(lilly_jake _gsettings)" -- ${cur}))
+        return 0
+    else
+        COMPREPLY=( $(compgen -W "$(lilly_jake _goptions)" -- ${cur}))
+        return 0
+    fi
+}
+complete -F _jake lilly_jake
