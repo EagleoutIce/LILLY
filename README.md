@@ -17,12 +17,17 @@ Da sich diese Readme noch im Aufbau befindet. Für alle Hinweise bezüglich der 
    
 ## Motivation 
 
-Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm umgesetzt, um die Umsetzung von Skripten und Mitschriften in Latex zu vereinfachen.
+Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm betrieben, um die Realisierung von Skripten und Mitschriften in Latex zu vereinfachen.
 
 ## Funktionen 
 
-Im Allgemeinen bietet Lilly die möglichkeit ein in Latex mit Lilly-Commands geschriebenes Dokument im Nachhinein über Konsolbefehle 
-zu konfigurieren. 
-Momentan kommt Lilly mit 3 Boxdesigns: Default, Alternate und Limerence und Versionen für den Druck.
-Des weiteren gibt es die kleine helfende Hand, namentlich Jake. 
-Jake hilft euch bei der Installation von Lilly sowie beim Installieren von fehlenden Latex-Packages.
+Im Allgemeinen bietet Lilly die Möglichkeit ein in LaTeX geschriebenes Dokument im Nachhinein über Konsolbefehle zu konfigurieren. Hierzu bietet LILLY auch einige Funktionen zur Layoutgestaltung selbst an.
+Momentan kommt Lilly mit 3 Boxdesigns: 
+- Default 
+- Alternate 
+- Limerence 
+sowie zwei verschiedenen Generierungstypen:
+- Normal
+- Druck
+Des weiteren gibt es die kleine (mittlerweilen immer größer werdende) helfende Hand, namens Jake. 
+Jake hilft bei der Installation von Lilly, beim Installieren von fehlenden Latex-Paketen, beim Generieren der notwendigen Makefiles und noch vielem mehr!
