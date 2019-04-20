@@ -7,7 +7,8 @@ EXTRA_FILES := jake_files/j_Helper.cpp \
 	       jake_files/core/j_Settings.cpp \
 	       jake_files/cmd_line/j_Parser.cpp \
 	       jake_files/core/j_Globals.cpp \
-	       jake_files/provider/j_Tokenizer.cpp
+	       jake_files/provider/j_Tokenizer.cpp \
+	       jake_files/provider/j_Configurator.cpp
 LINKERS :=
 RC_FILES := "${HOME}/.zshrc" "${HOME}/.bashrc" "${HOME}/.bash_profile"
 
@@ -23,7 +24,7 @@ default: no_link
 		@if [ "$(shell which lilly_jake)" = "" ]; then echo "\033[31mBitte starte nun dein Terminal neu um auf lilly_jake zugreifen zu können!\033[m"; fi;
 
 no_link: jake.cpp
-		@g++ -std=c++11 -I './' $(EXTRA_FILES) jake.cpp -o lilly_jake $(LINKERS)
+		@g++ -std=c++14 -I './' $(EXTRA_FILES) jake.cpp -o lilly_jake $(LINKERS)
 		
 		@chmod +x ./lilly_jake
 		@echo Compiled lilly_jake

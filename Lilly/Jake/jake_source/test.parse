@@ -1,7 +1,31 @@
- Hallo Mama
- 
- Hallo = Mama
- 
- ! A !
- 
- Hallo !a! = !Mama! Das ! ist echt toll finde Ich :D !findest du nicht auch?
+! Diese Datei zeigt beispielhaft auf, wie man Jake durch Einstellungen laden kann !
+
+! Setzen wir zuerst eine andere Operation. !
+! Da sich dump hierbei hübsch macht, sei es dump: !
+
+
+operation                           =          dump
+
+
+! Fun-Fact: Sollte man die operation nicht ändern, so kann es passieren, dass !
+! Eine Konfigurationsdatei endlos oft geladen wird. Um dies zu vermeiden      !
+! Wurde hierfür ein Zähler eingebaut der die Anzahl der Aufrufe beschränkt.   !
+
+! Fügen wir doch den Boxen das begehrte LIMERENCE-Design hinzu : !
+
+
+lilly-boxes !kein Leerfeld bei +=! +=          LIMERENCE
+
+
+! Ändern wir letztlich noch die Vorlesung - alle anderen Operationen ergeben sich analog !
+
+
+lilly-vorlesung = FG
+
+
+! Ach ja, und der Dateiname ist natürlich auch völlig Schnurzibumburzi !
+
+! Und, da es ja eine Testdatei ist.. Hier ein Fehler: !
+
+Löffeltöffel  =   Röffel böffel
+

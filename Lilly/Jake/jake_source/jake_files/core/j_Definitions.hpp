@@ -33,6 +33,9 @@
 /// @brief convenience-wrapper
 #define TO_DATA(x) x
 
+/// @brief Maximum successiver Einstellungsaufrufe
+#define MAX_SETTINGS_REC 5
+
 // Setting Definitions: ======================================================================================
 
 /// @brief Pfad an dem die Lilly.cls liegen soll
@@ -63,4 +66,6 @@
 #define S_LILLY_VORLESUNG               "lilly-vorlesung"
 /// @brief Bsp: Das wievielste Übunsgblatt?
 #define S_LILLY_N                       "lilly-n"
+/// @brief Das wievielste Semster?
+#define S_LILLY_SEMESTER                "lilly-semester"
 #endif

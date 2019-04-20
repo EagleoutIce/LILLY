@@ -21,11 +21,14 @@
 #include "../core/j_Definitions.hpp"
 
 #include "../provider/j_Tokenizer.hpp"
+#include "../provider/j_Configurator.hpp"
 
 #include "../j_Helper.hpp"
 
 #include "../installer/j_ins_Linux.hpp"
 #include "../installer/j_ins_MacOS.hpp"
+
+#include "j_Parser.hpp"
 
 /**
  * @brief Gibt Hilfe zur Verwendung von lilly_jake
@@ -48,6 +51,15 @@ status_t fkt_help (const std::string& cmd) noexcept;
  * @returns Statuswert (bisher nichts)
  */
 status_t fkt_tokentest (const std::string& cmd);
+
+/**
+ * @brief Lädt alle Einstellungen aus "file" und arbeitet ab da normal.
+ *
+ * @param cmd ist hier endlich mal wichtig :D 
+ *
+ * @returns Statuswert (bisher nichts)
+ */
+status_t fkt_config (const std::string& cmd);
 
 /**
  * @brief Gibt die aktuellen Settings aus
@@ -116,4 +128,6 @@ struct fkt_descriptor {
 /// @brief Liste aller unterstützer Operationen
 extern functions_t functions;
 
+/// @brief Verhindert deadly recursion bei Einstellungen
+extern uint8_t RECURSIVE_CALLCOUNTER;
 #endif

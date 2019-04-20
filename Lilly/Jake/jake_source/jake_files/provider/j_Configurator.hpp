@@ -10,8 +10,44 @@
  * 
  */
 
+
+#include <string>
+#include <memory>
+
+#include "../core/j_Definitions.hpp"
+
+#include "../core/j_Typedefs.hpp"
+
+#include "j_Tokenizer.hpp"
+
+/**
+ * @class Configurator
+ * @brief Lädt eine Konfigurationsdatei für Jake und überschreibt auf dieser Basis Einstellungen
+ * 
+ */
 class Configurator {
-    // Kommt schon noch :D
+
+    ///@brief Operating Tokenizer
+    std::unique_ptr<Tokenizer> _t = nullptr;
+
+public:
+
+    /**
+     * @brief konstruiert einen neuen Konfigurator
+     * 
+     * @param config_file der Pfad zur Datei
+     */
+    Configurator (const std::string& config_file);
+
+    /**
+     * @brief Modifiziert die Einstellungen gegeben der geladenen Daten
+     * 
+     * @param settings die Einstellungen, die modifiziert werden sollen.
+     * @param add_unkown Wie soll mit unbekannten einstellungen verfahren werden?
+     * 
+     */
+    status_t parse_settings(std::map<std::string, data_t>* settings, bool add_unkown=false);
+
 };
 
 #endif

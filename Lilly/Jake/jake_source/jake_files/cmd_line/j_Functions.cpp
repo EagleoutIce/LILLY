@@ -4,7 +4,16 @@
 status_t fkt_gsettings(const std::string& cmd) noexcept {
     settings_t::iterator it = settings.begin();
     while(it != settings.end()){ 
-        std::cout << "-" << it->first << " "; ++it;
+        if(it->second=="true"||it->second=="false") // boolean
+            std::cout << "-" << it->first << " \t";
+        else if (it->second.length() > 0 && it->second[it->second.length()-1] == ' '){ // erlaubt +=
+            std::cout << "-" << it->first << "=\t";
+            std::cout << "-" << it->first << "+=\t";
+        } else  {
+            std::cout << "-" << it->first << "=\t";
+        }
+        
+        ++it;
     }
     return EXIT_SUCCESS;
 }
@@ -13,7 +22,7 @@ status_t fkt_goptions(const std::string& cmd) noexcept {
     functions_t::iterator it = functions.begin();
     while(it != functions.end()){ 
         if (it->first.length()>0 && it->first[0] != '_')
-            std::cout << it->first << " "; ++it;
+            std::cout << it->first << " \t"; ++it;
     }
     return EXIT_SUCCESS;
 }
@@ -127,6 +136,7 @@ status_t fkt_compile(const std::string& cmd) {
                  << "CLEANTARGETS := " << settings[S_LILLY_CLEANS]                                                              << std::endl
                  // lilly- names
                  << "NAMEPREFIX   := " << padPrint(settings[S_LILLY_NAMEPREFIX])           << "## Immer"                        << std::endl
+                 << "SEMESTER     := " << padPrint(settings[S_LILLY_SEMESTER])             << "## Übungsblatt"                  << std::endl
                  << "VORLESUNG    := " << padPrint(settings[S_LILLY_VORLESUNG])            << "## Übungsblatt"                  << std::endl
                  << "N            := " << padPrint(settings[S_LILLY_N])                    << "## Anzahl"                       << std::endl
                  << "_C           := ,                             ## No Joke xD"                                               << std::endl
@@ -180,7 +190,7 @@ status_t fkt_compile(const std::string& cmd) {
                     buf_makefile << create_buildrule("Vollständige-Druck", "c_print", "print", true, settings[S_LILLY_PRINT_NAME] + settings[S_LILLY_COMPLETE_NAME]) << std::endl << std::endl;
         } else if (s == "uebungsblatt"){
             buf_makefile << create_buildrule("Übungsblatt","uebungsblatt","default", true, "",
-                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})") 
+                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})") 
                          << std::endl << std::endl;
         }
         else {
@@ -232,8 +242,7 @@ status_t fkt_compile(const std::string& cmd) {
 status_t fkt_tokentest(const std::string& cmd) {
     // test für den Tokenizer :D
     std::cout << "Einzelne Gruppen werden mit \"~\" getrennt!" << std::endl;
-    std::ifstream a(settings["file"]);
-    Tokenizer t(a);
+    Tokenizer t(settings["file"]);
     while(t.loadNext()) { 
         Tokenizer::Match m = t.get();
         if(m.failure()) continue;
@@ -242,8 +251,20 @@ status_t fkt_tokentest(const std::string& cmd) {
         }
         std::cout << "#" << std::endl;
     }
-    a.close();
     return EXIT_SUCCESS;
+}
+
+uint8_t RECURSIVE_CALLCOUNTER = 0;
+
+status_t fkt_config(const std::string& cmd) {
+    if(RECURSIVE_CALLCOUNTER++ > MAX_SETTINGS_REC) {
+        std::cerr << COL_ERROR << "Du hast das Limit an Konfigurationsaufrufen erreicht! Mehr erscheint wirklich nicht sinnvoll!" 
+                  << COL_RESET << std::endl;
+        throw std::runtime_error("Zu viele Konfigurationsdateien");
+    }
+    Configurator c(settings["file"]);
+    c.parse_settings(&settings);
+    return in_settings(cmd); 
 }
 
 
@@ -254,6 +275,7 @@ functions_t functions = {
     {"file_compile", {fkt_compile, "Erstellt ein makefile für settings[\"file\"]"}},
     {"install", {fkt_install, "Versucht LILLY zu installieren"}},
     {"tokentest", {fkt_tokentest, "Testet den Tokenizer auf seine Funktionalität"}},
+    {"config", {fkt_config, "Lädt die Einstellungen aus der Datei 'file'"}},
     {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}},
     {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}
 };

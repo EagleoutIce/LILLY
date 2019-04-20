@@ -26,5 +26,6 @@ settings_t settings {
     {S_LILLY_AUTOCLEAN,     "true"},
     {"jobcount",            "2"},
     {S_LILLY_VORLESUNG,     "LAII"},
-    {S_LILLY_N,              "42"}
+    {S_LILLY_N,             "42"},
+    {S_LILLY_SEMESTER,      "1"}
 };

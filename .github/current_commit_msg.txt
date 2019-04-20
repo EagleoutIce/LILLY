@@ -1,23 +1,44 @@
-Start der Parserimplementation für Jake
+Fortführung der Parserimplementation für Jake
 
 JAKE:
 
-    * Jakes Makefile wurde angepasst
+------ For https://github.com/EagleoutIce/LILLY/issues/8 -----
+                       checked 2 points
+------                                                   -----
 
-    + Jake hat nun die neue Option `tokentest` um den Tokenizer zu Testen
+    * Jake nutzt nun C++14 und nichtmehr C++11 !
 
-    + Jake besitzt nun einen Tokenizer der von den geplanten Providern benutzt werden kann!
+    * Der Konfigurator unterstützt nun die selben Zuweisungen
+      wie sie auch in der Kommandozeile möglich sind.
+      Er verwendet keine intelligenten Zuweisungen!
+      (Auch .tex-Dateien müssen als Zuweisung angegeben werden)
+      Es ist möglich mit `! Hallo Mama !` zu Kommentieren!
+      Für ein Beispiel betrachte die test.parse
 
-    + WIP: Jake bekommt momentan einen Konfigurator, der es ermöglichen soll alle Komandozeilenargumente
-      auch über eine Datei zu laden.
+    * Die Autovervollständigung ist nun nichtmehr ganz so stroh dumm
+      und kann entsprechend des Sinns '=', '+=' bzw ' ' für
+      Wahrheitswerte ersetzen. 
 
-    ? TODO es soll auf dieser Basis auch die Option geben so neue Modi zu laden und Jake auch über diese modi
-      in Kenntniss setzen, da Jake ein Verzeichnis besitzt aus dem er die Modis lädt. Diese sollen auch in die
-      Auovervollständigung eingebunden werden. Das geplante Dateiformat hat in etwa folgenden Ausdruck:
-      | BEGIN <ModeName>:
-      |   SETTINGS := VALUE
-      |   .
-      |   .
-      |   .
-      | END
+    * Wahrheitswerte wie `-debug` sind nun doch toggles
 
+    + Es wird aktiv an einem Generator-Parser gearbeitet :D
+      Das Konzept beschreibt sich wie folgt (Auszug aus: 
+      j_Generator_Parser.hpp):
+
+      Konzept: erkennt Grupppen mithilfe von "BEGIN <NAME>" und "END"
+      Der Gruppenname gibt an, was generiert werden soll. 
+      Beispiel: "BEGIN BOXMODE" zum Erstellen eines neuen Boxmodis
+      Die verchiedenen Gruppen können ihre eigenen Parameter definieren
+      und fordern. Der Generator_Parser arbeitet hierbei ähnlich wie 
+      der Konfigurator indem er ein Datenpaket erhält welches er
+      zu füllen versucht. 
+      Wie dann dieses Datenpaket zu interpretieren ist obliegt dem
+      initiator. So müsste es allerdings sehr einfach möglich sein
+      dem Generator listen für alle BOXMODE - Gruppen usw. 
+      zu Übergeben, sodass er diese dann füllt 
+      und Jake dann entsprechend damit arbieten kann!
+
+
+    ! lilly-semester wurde nun auch nachgepflegt (für Übungsblätter)
+
+    ? TODO Jake soll auch selbst kompilieren können 

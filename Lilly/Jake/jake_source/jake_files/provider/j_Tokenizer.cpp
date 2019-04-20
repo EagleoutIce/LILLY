@@ -1,5 +1,17 @@
 #include "j_Tokenizer.hpp"
 
+Tokenizer::Tokenizer(const std::string& input_path, const std::string& pattern) : _eol('\n'){
+    _pattern = std::regex(pattern); _skipper = std::regex(R"(![^!]*!)");
+    _ifs = std::ifstream(input_path);
+    if(!_ifs.good()){
+        std::cerr << COL_ERROR << "Konnte keinen Tokenizer erstellen!" 
+                  << " Die Datei: \"" << input_path << "\" scheint korrupt/nonexistent zu sein!" 
+                  << COL_RESET << std::endl;
+        throw std::runtime_error("Tokenizer: Datei scheint fehlerhaft/nonexistent");
+    }
+    _input = &_ifs;
+}
+
 
 Tokenizer::Tokenizer(std::istream& input,
                      const std::string& pattern,

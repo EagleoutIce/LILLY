@@ -14,12 +14,15 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
             }
         } else {                                                // is a single argument
             if(!in_str(argv[n], ASS_PATTERN)) {                 // not an assignment
-                if(settings.find(argv[n] + 1 /* offset for '-' */) != settings.end()
-                    && settings[argv[n]+1] == "false") {        // valid bool-setting
-                    settings[argv[n]+1] = "true";
-                } else {                                        // non valid bool-setting
-                    er_unknown_setting(argv[n]+1);
-                }
+                if(settings.find(argv[n] + 1 /* offset for '-' */) != settings.end()) {
+                    if(settings[argv[n]+1] == "false") {        // valid bool-setting
+                        settings[argv[n]+1] = "true";
+                    } else if (settings[argv[n]+1] == "true") // Das ist zwar dumm, aber ich bin faul :D
+                        settings[argv[n]+1] = "false";
+                    else                                         // non valid bool-setting
+                        er_unknown_setting(argv[n]+1);
+                } else                                         // non valid bool-setting
+                    er_unknown_setting(argv[n]+1); // zu faul zum entkaspeln
             } else {                                            // is an assignment
                 std::string s{argv[n]+1};
                 if(in_str(argv[n], ASA_PATTERN)) {              // is an addition statement
@@ -29,6 +32,16 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
                 }
             }
         }
+    }
+    return EXIT_SUCCESS;
+}
+
+status_t in_settings(std::string v0) {
+    if(functions.find(settings["operation"]) != functions.end()) {                   // Operation ist valide
+            functions[settings["operation"]].fkt(v0);                                // Führe Operation aus
+    } else {
+        er_unknown_setting(("operation (=" + settings["operation"] + ")").c_str());  // Diese Operation kenne ich nicht
+        return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
 }

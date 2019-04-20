@@ -124,11 +124,7 @@ int main(int argc, const char** argv) {
 
     ld_settings(argc-1, argv);
     //fkt_help(argv[0]);
-    if(functions.find(settings["operation"]) != functions.end()) {                   // Operation ist valide
-            functions[settings["operation"]].fkt(argv[0]);                           // Führe Operation aus
-    } else {
-        er_unknown_setting(("operation (=" + settings["operation"] + ")").c_str());  // Diese Operation kenne ich nicht
-    }
+    in_settings(argv[0]);
     
     return EXIT_SUCCESS;
 }

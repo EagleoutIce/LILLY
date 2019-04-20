@@ -7,20 +7,25 @@
  * @brief liefert den grundlegenden Tokenizer
  */
 
-/** @class Tokenizer
+#include <iostream>
+#include <fstream>
+#include <istream>
+#include <regex>
+#include <string>
+#include <vector>
+#include <stdexcept>
+
+
+#include "../core/j_Definitions.hpp"
+#include "../core/j_Typedefs.hpp"
+
+/** 
+ * @class Tokenizer
  * @author Florian Sihler
  * @version 1.0.0
  * 
  * @brief Generelle Klasse, die für alle Lader einen Regex-Parser zur Verfügung stellt
  */
-
-#include <iostream>
-#include <istream>
-#include <regex>
-#include <string>
-#include <vector>
-
-#include "../core/j_Typedefs.hpp"
 
 class Tokenizer {
 public:
@@ -49,6 +54,13 @@ public:
         inline bool failure( void ) { return this->stripped=="";}
     };
 
+    /**
+     * @brief Konstruiert den Tokenizer auf einem normalen InputStream
+     * 
+     * @param input der Pfad zur Datei
+     * @param pattern Token-Selector
+     */
+    Tokenizer(const std::string& input_path, const std::string& pattern = "([^= ]*) *(=) *([^=\n]*)$");
 
     /**
      * @brief Konstruiert den Tokenizer auf einem normalen InputStream
@@ -103,7 +115,9 @@ public:
 
 protected:
     std::string _current_line, _current_original;
-
+    
+    std::ifstream _ifs; // only used if tokenizer is using own fs
+    
     std::istream* _input;
     std::regex _pattern;
     std::regex _skipper;
