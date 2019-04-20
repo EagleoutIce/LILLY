@@ -36,7 +36,7 @@ status_t ins_macOS( void ) {
     std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << ") nach (" << settings["install-path"] << "/tex/latex): "
               << er_decode(system(("ln -sf "+settings[S_LILLY_PATH]+" "+settings["install-path"]+"/tex/latex").c_str()))
               << std::endl;
-    if(settings[S_LILLY_PATH]=="\"$(dirname $(mdfind Lilly.cls | head -1))\"")
+    if(settings[S_LILLY_PATH]=="\"$(dirname $(mdfind Lilly.cls | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"")
     std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst. Nutze hierzu: "
               << std::endl << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
 

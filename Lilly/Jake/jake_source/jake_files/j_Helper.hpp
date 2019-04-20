@@ -75,11 +75,15 @@ std::string padPrint(const std::string& entry, uint16_t toWidth=30);
  * 
  * @param name Der Pfad zur Datei
  * 
- * @returns ob auf die Datei zugegriffen werden kann
+ * @returns ob auf die Datei zugegriffen werden kann 
  * 
  * 
  */
 inline bool check_file (const std::string& name) {
+    /*if(name.find(".Trash") != std::string::npos ||
+       name.find("Backup") != std::string::npos ||
+       name.find("backup") != std::string::npos)
+        return false;*/
     std::ifstream f(name.c_str());
     return f.good();
 }
@@ -102,10 +106,12 @@ std::vector<std::string> split(const std::string& str, char delim = ' ');
  * @param mode der Name des LILLY-Modi
  * @param complete soll eine complete variante erstellt werden?
  * @param name_addon Zusätzlicher Namensbezeichner
+ * @param input_build Input-regel
  * @todo: others zusäzliche optionen
  * 
  * @returns String-Repräsentation der Build-Regel
  */
-std::string create_buildrule(const std::string& name_type, const std::string& name_rule, const std::string& mode,bool complete=false, const std::string& name_addon=""/*, const std::vector<std::string>& others*/) noexcept;
-
+std::string create_buildrule(const std::string& name_type, const std::string& name_rule, 
+                             const std::string& mode, bool complete=false, const std::string& name_addon="", 
+                             const std::string input_build=R"(\\input{$(INPUTDIR)$(TEXFILE)})"/*, const std::vector<std::string>& others*/) noexcept;
 #endif

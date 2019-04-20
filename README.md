@@ -36,3 +36,12 @@ sowie zwei verschiedenen Generierungstypen:
 
 Des weiteren gibt es die kleine (mittlerweilen immer größer werdende) helfende Hand, namens Jake. 
 Jake hilft bei der Installation von Lilly, beim Installieren von fehlenden Latex-Paketen, beim Generieren der notwendigen Makefiles und noch vielem mehr!
+
+### FAQ Template
+
+Im Folgenden sind eineige häufig gestellte Fragen (Im Aufbau :P)
+
+<details>
+  <summary>Ich habe diese Frage?</summary>
+  <p>> Hier habe ich diese **sehr** lange Antwort! </p>
+</details>

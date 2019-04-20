@@ -8,7 +8,7 @@ Die 3 Standart-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt:
 \begin{tabularx}{\linewidth}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
     \bfseries DEFAULT & \bfseries ALTERNATE & \bfseries LIMERENCE \\\hline %% Leider ist es nicht möglich zu mischen ^^
-{\input{Lilly_Files/Data/POIs/_LILLY_BOXES_DEFAULT(renew)}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
+{\input{Lilly_Files/Data/POIs/_LILLY_BOXES_DEFAULT}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
     \begin{satz}[Nice]
         Superwichtig
     \end{satz}
@@ -28,7 +28,7 @@ Auch wenn sie hier explizit forciert wurden ist es grundlegend möglich (und auc
 \begin{lstlisting}[style=bash]
 make "BOXMODE=<Name>"
 \end{lstlisting}
-\marginpar{\tiny Da DEFAULT als Standartoption die Boxen grundlegend zur Verfügung stellt, muss das Forcieren dieses Boxentyps mithilfe von DEFAULT(renew) getan werden.}wobei \T{<Name>} mit einem der oben stehenden Bezeichner ersetzt wird. Die Bezeichner werden vom weiter unten näher beschriebenem Box-Controller wie folgt aufgelöst:
+\marginpar{\tiny LILLY lädt übrigens nicht DEFAULT sondern immer DEFAULT(init)!}wobei \T{<Name>} mit einem der oben stehenden Bezeichner ersetzt wird. Die Bezeichner werden vom weiter unten näher beschriebenem Box-Controller wie folgt aufgelöst:
 \begin{lstlisting}[style=latex,frame=none]
 \input{Lilly_Files/Data/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
 \end{lstlisting}

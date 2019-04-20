@@ -126,11 +126,14 @@ status_t fkt_compile(const std::string& cmd) {
                  << "CLEANTARGET  := LILLYxClean"                                                                               << std::endl
                  << "CLEANTARGETS := " << settings[S_LILLY_CLEANS]                                                              << std::endl
                  // lilly- names
-                 << "NAMEPREFIX   := " << padPrint(settings[S_LILLY_NAMEPREFIX])            << "## Immer"                       << std::endl
+                 << "NAMEPREFIX   := " << padPrint(settings[S_LILLY_NAMEPREFIX])           << "## Immer"                        << std::endl
+                 << "VORLESUNG    := " << padPrint(settings[S_LILLY_VORLESUNG])            << "## Übungsblatt"                  << std::endl
+                 << "N            := " << padPrint(settings[S_LILLY_N])                    << "## Anzahl"                       << std::endl
+                 << "_C           := ,                             ## No Joke xD"                                               << std::endl
                  << std::endl
                  //Generals
                  << "## Makefile/General settings"                                                                              << std::endl
-                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}} \\input{$(INPUTDIR)$(TEXFILE)} )" << std::endl << std::endl //DONT'T Change
+                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}})" << std::endl << std::endl //DONT'T Change
                  << "JOBCOUNT     := " << padPrint(settings["jobcount"])              << "## should: <= cpu/thread count!"      << std::endl
                  << std::endl << std::endl;
     //Compile-Regel
@@ -143,7 +146,7 @@ status_t fkt_compile(const std::string& cmd) {
     buf_makefile << R"(    echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
                  << "    (for bm in $(BOXMODES); do \\" << std::endl;
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
-        buf_makefile << "       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}} )" << " ${3} $(_LILLYARGS)" << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
+        buf_makefile << "       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}} )" << " ${3} $(_LILLYARGS) ${4}" << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
     }
     buf_makefile << "       echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}$${bm}-${2}\" ($${bm}) abgeschlossen\\033[m\"; done &&\\"                                                                                                   << std::endl;
 
@@ -175,7 +178,12 @@ status_t fkt_compile(const std::string& cmd) {
             buf_makefile << create_buildrule("Druck","print","print", false, settings[S_LILLY_PRINT_NAME]) << std::endl << std::endl;
             if((settings[S_LILLY_COMPLETE]=="true"))
                     buf_makefile << create_buildrule("Vollständige-Druck", "c_print", "print", true, settings[S_LILLY_PRINT_NAME] + settings[S_LILLY_COMPLETE_NAME]) << std::endl << std::endl;
-        } else {
+        } else if (s == "uebungsblatt"){
+            buf_makefile << create_buildrule("Übungsblatt","uebungsblatt","default", true, "",
+                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})") 
+                         << std::endl << std::endl;
+        }
+        else {
             std::cerr << "    Der spezifizierte Build-Modus: \"" << s << "\" steht leider nicht zur Verfügung!" << std::endl;
         }
     }

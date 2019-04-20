@@ -49,7 +49,7 @@ status_t ins_linux( void ) {
                 << "Soll die Datenbank aktualisiert werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
         while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
         if(c_inp == 'y') std::cout << "Aktualisiere die Datenbank 'sudo updatedb': " << er_decode(system("sudo updatedb")) << std::endl;
-
+        c_inp='\0';
         if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
 
         std::cerr << COL_ERROR << "Die Lilly.cls nun wieder nicht gefunden werden :/ "
@@ -72,10 +72,10 @@ status_t ins_linux( void ) {
 
     } //URGENT TODO: AUSFÜHRLICHE SUChE
     
-    std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << ") nach (" << settings["install-path"] << "/tex/latex): "
+    std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << " = " << exec("echo -n " + settings[S_LILLY_PATH]) << ") nach (" << settings["install-path"] << "/tex/latex): "
               << er_decode(system(("ln -sf "+settings[S_LILLY_PATH]+" "+settings["install-path"]+"/tex/latex").c_str()))
               << std::endl;
-    if(settings[S_LILLY_PATH]=="\"$(dirname $(locate -e -q -l 1 'Lilly.cls'))\"")
+    if(settings[S_LILLY_PATH]=="\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"")
     std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst."<< std::endl
               << " Nutze hierzu: " 
               << std::endl << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;

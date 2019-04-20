@@ -4,9 +4,19 @@
 
 %%ja das einführen eines currentcolor - stacks hätte die Länge dieser Datei beschränkt, allerdings - wozu? 
 
-\RequirePackage[skins,many]{tcolorbox}                          %Für tolle Kästen
+%% \RequirePackage[skins,many]{tcolorbox}                          %Für tolle Kästen
+\LILLYxDemandPackage{tcolorbox}{Fuer all die schoenen boexlis:D} %% Package, Info
+                    {Dieses Paket ist für LILLY überlebenswichtig, ohne es gibt es keine Boxen!}%% Error-Text
+                    {skins,many}%%Params
+                    {}
 
-\RequirePackage{environ}
+%% \RequirePackage{environ}
+\LILLYxDemandPackage{environ}{Uebernimmt das leere environment ohne grosse Probleme} %% Package, Info
+                    {Leider ist auch dieses Paket verpflichtend :/}%% Error-Text
+                    {}%%Params
+                    {}
+
+
 %%%DEFAULTS
 \providecommand{\LILLYxBOXxDefinitionxLock}{chapter}        \providecommand{\LILLYxBOXxDefinitionxEnable}{TRUE}
 \providecommand{\LILLYxBOXxBeispielxLock}{chapter}          \providecommand{\LILLYxBOXxBemerkungxEnable}{TRUE}          \providecommand{\LILLYxBOXxBemerkungxBox}{TRUE}
@@ -19,11 +29,12 @@
 
 \providecommand{\LILLYxBOXxUebungsblattxEnable}{TRUE}       \providecommand{\LILLYxBOXxUebungsblattxBox}{TRUE}
 
+
 \newcounter{ctr_TSK} %% verwendet einen eigenen counter um im Zeifelsfall dynamisch die nummer zu ändern
 \newcounter{ctr_EXE} %% Übungsblatt Counter für Mitschriebe
 
 \providecommand{\LILLYxBOXxMODExDEFAULT}{DEFAULT}
-\input{Lilly_Files/Data/POIs/_LILLY_BOXES_DEFAULT}
+\input{Lilly_Files/Data/POIs/_LILLY_BOXES_DEFAULT(init)}
 
 %\input{Lilly_Files/Data/POIs/_LILLY_BOXES_DEFAULT} % May the ones below do not cover all boxes - default will happily provide them
 \ifx\LILLYxBOXxMODE\LILLYxBOXxMODExDEFAULT\else
@@ -42,8 +53,9 @@
 }
 
 \LILLYcommand{\DEFINITIONS}[1]{%
-    %%\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{}
-    \relax %% TODO IMPLEMENT CONVENIENT INCREMEMT => MANUAL COUNTERS?
+    \LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcb@cnt@LILLYxBOXxDefinition}{#1}{}
+    \refstepcounter{tcb@cnt@LILLYxBOXxDefinition}
+    %%\relax %% TODO IMPLEMENT CONVENIENT INCREMEMT => MANUAL COUNTERS?
 }
 
 \tcbset{LillyxBOXxDesignxPlain/.style={frame hidden, frame code={},leftrule=0mm, left=0pt, skin first is subskin of={emptyfirst}{frame code={},interior code={}}, skin middle is subskin of={emptymiddle}{frame code={},interior code={}},skin last is subskin of={emptylast}{frame code={},interior code={}}, colback=white,colframe=white,right=-2pt,top=0pt, fonttitle=\bfseries\color{black},attach title to upper={},enhanced,opacityfill=0}}

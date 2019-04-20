@@ -22,7 +22,7 @@
 #define STY_PARAM "\033[2;3;51m"
 
 /// @brief Signatur mit der ein single-Argument beginnt
-#define ARG_PATTERN "-"
+#define ARG_PATTERN '-'
 /// @brief Signatur einer Zuweisung
 #define ASS_PATTERN "="
 /// @brief Signatur einer Hinzufügenden Zuweisung
@@ -59,5 +59,8 @@
 #define S_LILLY_COMPILETIMES            "lilly-compiletimes"
 /// @brief sollen nach dem kompilieren automatisch alle Arbeitsdateien entfernt werden?
 #define S_LILLY_AUTOCLEAN               "lilly-autoclean"
-
+/// @brief um welches Vorlesungskürzel handelt es sich? Siehe Lilly Dokumentation für Gültige vertreter
+#define S_LILLY_VORLESUNG               "lilly-vorlesung"
+/// @brief Bsp: Das wievielste Übunsgblatt?
+#define S_LILLY_N                       "lilly-n"
 #endif
