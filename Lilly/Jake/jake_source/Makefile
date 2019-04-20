@@ -1,6 +1,13 @@
 ## Makefile for jake.cpp
 
-EXTRA_FILES := jake_files/j_Helper.cpp jake_files/cmd_line/j_Functions.cpp jake_files/installer/j_ins_Linux.cpp jake_files/installer/j_ins_MacOS.cpp jake_files/core/j_Settings.cpp jake_files/cmd_line/j_Parser.cpp jake_files/core/j_Globals.cpp
+EXTRA_FILES := jake_files/j_Helper.cpp \
+	       jake_files/cmd_line/j_Functions.cpp \
+	       jake_files/installer/j_ins_Linux.cpp \
+	       jake_files/installer/j_ins_MacOS.cpp \
+	       jake_files/core/j_Settings.cpp \
+	       jake_files/cmd_line/j_Parser.cpp \
+	       jake_files/core/j_Globals.cpp \
+	       jake_files/provider/j_Tokenizer.cpp
 LINKERS :=
 RC_FILES := "${HOME}/.zshrc" "${HOME}/.bashrc" "${HOME}/.bash_profile"
 

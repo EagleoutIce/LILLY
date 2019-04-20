@@ -229,11 +229,31 @@ status_t fkt_compile(const std::string& cmd) {
 }
 
 
+status_t fkt_tokentest(const std::string& cmd) {
+    // test für den Tokenizer :D
+    std::cout << "Einzelne Gruppen werden mit \"~\" getrennt!" << std::endl;
+    std::ifstream a(settings["file"]);
+    Tokenizer t(a);
+    while(t.loadNext()) { 
+        Tokenizer::Match m = t.get();
+        if(m.failure()) continue;
+        for(int i = 1; i < m.matchings.size(); ++i){
+            std::cout << m.matchings[i] << "~";
+        }
+        std::cout << "#" << std::endl;
+    }
+    a.close();
+    return EXIT_SUCCESS;
+}
+
+
+
 functions_t functions = {
     {"help", {fkt_help, "Zeigt diese Hilfe an"}},
     {"dump", {fkt_dump, "Zeigt alle settings und ihre Werte an" }},
     {"file_compile", {fkt_compile, "Erstellt ein makefile für settings[\"file\"]"}},
     {"install", {fkt_install, "Versucht LILLY zu installieren"}},
+    {"tokentest", {fkt_tokentest, "Testet den Tokenizer auf seine Funktionalität"}},
     {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}},
     {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}
 };

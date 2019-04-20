@@ -1,0 +1,23 @@
+Start der Parserimplementation für Jake
+
+JAKE:
+
+    * Jakes Makefile wurde angepasst
+
+    + Jake hat nun die neue Option `tokentest` um den Tokenizer zu Testen
+
+    + Jake besitzt nun einen Tokenizer der von den geplanten Providern benutzt werden kann!
+
+    + WIP: Jake bekommt momentan einen Konfigurator, der es ermöglichen soll alle Komandozeilenargumente
+      auch über eine Datei zu laden.
+
+    ? TODO es soll auf dieser Basis auch die Option geben so neue Modi zu laden und Jake auch über diese modi
+      in Kenntniss setzen, da Jake ein Verzeichnis besitzt aus dem er die Modis lädt. Diese sollen auch in die
+      Auovervollständigung eingebunden werden. Das geplante Dateiformat hat in etwa folgenden Ausdruck:
+      | BEGIN <ModeName>:
+      |   SETTINGS := VALUE
+      |   .
+      |   .
+      |   .
+      | END
+

@@ -4,7 +4,7 @@
 
 **Version:** 1.0.7 (LILLY: 1.0.7) -- 5.4.2019
 
-**OS:** Linux
+**OS:** Linux & MacOS
 
 ----
 ## Was ist Jake?

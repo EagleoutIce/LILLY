@@ -20,6 +20,8 @@
 #include "../core/j_Settings.hpp"
 #include "../core/j_Definitions.hpp"
 
+#include "../provider/j_Tokenizer.hpp"
+
 #include "../j_Helper.hpp"
 
 #include "../installer/j_ins_Linux.hpp"
@@ -36,6 +38,16 @@
  * @returns Statuswert (bisher nichts)
  */
 status_t fkt_help (const std::string& cmd) noexcept;
+
+
+/**
+ * @brief Testet den Tokenizer
+ *
+ * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
+ *
+ * @returns Statuswert (bisher nichts)
+ */
+status_t fkt_tokentest (const std::string& cmd);
 
 /**
  * @brief Gibt die aktuellen Settings aus
