@@ -10,6 +10,18 @@ Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm betrieben,
 Wenn du mitarbeiten möchtest ist das super, melde dich einfach bei mir! Allgemein gilt zu beachten: 
 Dieses Repository akzeptiert nur signed Commits: https://help.github.com/en/articles/signing-commits
 
+Wenn dir beim Schreiben ein to-do einfällt, so markiere es einfach entsprechend mit `TODO` oder `@todo` im Code :D
+
+**Aktuelle Aufgabenfelder:**
+
+1. [Lilly](https://github.com/EagleoutIce/LILLY/projects/3?fullscreen=true)
+
+2. [Jake](https://github.com/EagleoutIce/LILLY/projects/2?fullscreen=true)
+
+3. [Kommentieren](https://github.com/EagleoutIce/LILLY/projects/1?fullscreen=true)
+
+Bitte füge alle geplanten oder gewünschten Ziele hinzu!
+
 ## Wie es losgeht
 Da sich diese Readme noch im Aufbau befindet. Für alle Hinweise bezüglich der Installation nach dem Herunterladen des Repositories siehe:
 
