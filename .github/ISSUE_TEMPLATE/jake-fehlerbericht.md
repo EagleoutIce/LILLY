@@ -3,7 +3,7 @@ name: Jake Fehlerbericht
 about: Bitte erstelle einen Fehlerbericht um Jake zu verbessern
 title: "<KURZER NAME DES PROBLEMS> [BUG]"
 labels: Jake, bug
-assignees: EagleoutIce, preincrement
+assignees: EagleoutIce, LordYellow, LeFinal, preincrement
 
 ---
 
@@ -25,4 +25,4 @@ Sollte dir nicht klar sein, wie ausführlich die Ordnerstruktur geschildert werd
  - Verwendete Jake-Version ? [Beispiel: 1.0.7]
 
 **Weiteres**
-Liste alle weiteren nötigen Informationen hier auf
+Liste alle weiteren nötigen Informationen hier auf!

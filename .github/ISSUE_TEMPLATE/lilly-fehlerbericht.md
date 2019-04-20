@@ -3,7 +3,7 @@ name: LILLY Fehlerbericht
 about: Bitte erstelle einen Fehlerbericht um LILLY zu verbessern
 title: "<KURZER NAME DES PROBLEMS> [BUG]"
 labels: LILLY (latex), bug
-assignees: EagleoutIce, LordYellow
+assignees: EagleoutIce, LordYellow, LeFinal, NathanGr01
 
 ---
 
