@@ -16,7 +16,7 @@
 }
 
 %% [Packargs]{Info}{Paket}{Fehlerm}{Fehlerb}{Call-Cmd}{type}{true}
-\newcommand\LILLY@L@adP@ck@ge[9][]{
+\newcommand\LILLY@L@adP@ck@ge[9][]{\@ifpackageloaded{#3}{}{ %% Paket bereits geladen? => Nichts machen!
 \ClassInfo{Lilly}{#6: #2               }\relax{}%%Infotext ist optional, wird nicht angezeigt wenn leer
 %% \IfFileExists{} %% check
 \LILLYxPoliteKnock{#3}{%true
@@ -26,7 +26,7 @@
 \csname #7\endcsname{Lilly}{Paket #3 (genauer: #3.sty) nicht gefunden! Fehlermeldung: #4}{}%%return false %% Optional Error help with Demand - not implemented
 \ClassInfo{Lilly}{#8             }% - Vielleicht spezifisch machen, bringt jabei error nichts
 \protect#5%%
-}
+}}
 }
 
 \@ifundefined{LILLYxNOxPACKAGEC}{%

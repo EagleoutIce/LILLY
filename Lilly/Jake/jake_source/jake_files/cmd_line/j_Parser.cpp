@@ -2,12 +2,15 @@
 
 status_t ld_settings(int n /* = argc */, const char** argv) {
     for(; n > 0; n--) {
-        if(!in_str(argv[n],ARG_PATTERN)){                       // not a single argument
+        if(argv[n][0] != ARG_PATTERN){                       // not a single argument
             if(!in_str(argv[n],TEX_PATTERN)) {                  // not a .tex file
                 settings["operation"] = TO_DATA(argv[n]);
             } else {                                            // is a .tex file
                 settings["operation"] = "file_compile";
                 settings["file"] = TO_DATA(argv[n]);
+                if (std::string(TO_DATA(argv[n])).find("uebungsblatt") != std::string::npos  
+                    || std::string(TO_DATA(argv[n])).find("UBdata") != std::string::npos ) // Definitiv zu faul im intensitive search einzubauen
+                        settings[S_LILLY_MODES] = "uebungsblatt";
             }
         } else {                                                // is a single argument
             if(!in_str(argv[n], ASS_PATTERN)) {                 // not an assignment

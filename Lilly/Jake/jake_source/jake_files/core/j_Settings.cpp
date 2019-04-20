@@ -7,9 +7,9 @@ settings_t settings {
     {"path",                "./"},
     {"install-path",        "\"${HOME}/texmf\""},
 #if defined(__linux__)
-    {S_LILLY_PATH,          "\"$(dirname $(locate -e -q -l 1 'Lilly.cls'))\""},
+    {S_LILLY_PATH,          "\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\""},
 #else //if defined __APPLE__ oder __MACH__
-    {S_LILLY_PATH,          "\"$(dirname $(mdfind Lilly.cls | head -1))\""},
+    {S_LILLY_PATH,          "\"$(dirname $(mdfind Lilly.cls | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\""},
 #endif
     {"mk-name",             "Makefile"},
     {"mk-path",             "./"},
@@ -17,7 +17,7 @@ settings_t settings {
     {S_LILLY_IN,            "./"},
     {S_LILLY_NAMEPREFIX,    ""},
     {S_LILLY_BOXES,         "DEFAULT "},
-    {S_LILLY_MODES,         "default print "},
+    {S_LILLY_MODES,         "default print uebungsblatt"},
     {S_LILLY_COMPLETE,      "false"},
     {S_LILLY_COMPLETE_NAME, "COMPLETE-"}, /// @todo move lilly-x-name to rule descriptor
     {S_LILLY_PRINT_NAME,    "PRINT-"},
@@ -25,4 +25,6 @@ settings_t settings {
     {S_LILLY_COMPILETIMES,  "3"}, // wie oft soll pdflatex aufgerufen werden?
     {S_LILLY_AUTOCLEAN,     "true"},
     {"jobcount",            "2"},
+    {S_LILLY_VORLESUNG,     "LAII"},
+    {S_LILLY_N,              "42"}
 };

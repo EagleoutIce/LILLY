@@ -1,5 +1,23 @@
 #include "j_Functions.hpp"
 
+
+status_t fkt_gsettings(const std::string& cmd) noexcept {
+    settings_t::iterator it = settings.begin();
+    while(it != settings.end()){ 
+        std::cout << "-" << it->first << " "; ++it;
+    }
+    return EXIT_SUCCESS;
+}
+
+status_t fkt_goptions(const std::string& cmd) noexcept {
+    functions_t::iterator it = functions.begin();
+    while(it != functions.end()){ 
+        if (it->first.length()>0 && it->first[0] != '_')
+            std::cout << it->first << " "; ++it;
+    }
+    return EXIT_SUCCESS;
+}
+
 status_t fkt_dump(const std::string& cmd) noexcept {
     std::cout << "Settings Dump: " << std::endl;
     settings_t::iterator it = settings.begin();
@@ -17,6 +35,7 @@ status_t fkt_help(const std::string& cmd) noexcept {
     std::cerr << "[options]:" << std::endl;
     functions_t::iterator it = functions.begin();
     while(it != functions.end()){ // iterate over all functions
+        if (it->first.length()>0 && it->first[0] != '_')
         std::cout << "  " << it->first << " " << std::string(15-it->first.length(),' ')<< it->second.brief_description
                   << std::endl;                                 // simple padding without <iomanip> std::setw
         ++it;
@@ -107,11 +126,14 @@ status_t fkt_compile(const std::string& cmd) {
                  << "CLEANTARGET  := LILLYxClean"                                                                               << std::endl
                  << "CLEANTARGETS := " << settings[S_LILLY_CLEANS]                                                              << std::endl
                  // lilly- names
-                 << "NAMEPREFIX   := " << padPrint(settings[S_LILLY_NAMEPREFIX])            << "## Immer"                       << std::endl
+                 << "NAMEPREFIX   := " << padPrint(settings[S_LILLY_NAMEPREFIX])           << "## Immer"                        << std::endl
+                 << "VORLESUNG    := " << padPrint(settings[S_LILLY_VORLESUNG])            << "## Übungsblatt"                  << std::endl
+                 << "N            := " << padPrint(settings[S_LILLY_N])                    << "## Anzahl"                       << std::endl
+                 << "_C           := ,                             ## No Joke xD"                                               << std::endl
                  << std::endl
                  //Generals
                  << "## Makefile/General settings"                                                                              << std::endl
-                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}} \\input{$(INPUTDIR)$(TEXFILE)} )" << std::endl << std::endl //DONT'T Change
+                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}})" << std::endl << std::endl //DONT'T Change
                  << "JOBCOUNT     := " << padPrint(settings["jobcount"])              << "## should: <= cpu/thread count!"      << std::endl
                  << std::endl << std::endl;
     //Compile-Regel
@@ -124,7 +146,7 @@ status_t fkt_compile(const std::string& cmd) {
     buf_makefile << R"(    echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
                  << "    (for bm in $(BOXMODES); do \\" << std::endl;
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
-        buf_makefile << "       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}} )" << " ${3} $(_LILLYARGS)" << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
+        buf_makefile << "       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}} )" << " ${3} $(_LILLYARGS) ${4}" << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
     }
     buf_makefile << "       echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}$${bm}-${2}\" ($${bm}) abgeschlossen\\033[m\"; done &&\\"                                                                                                   << std::endl;
 
@@ -156,7 +178,12 @@ status_t fkt_compile(const std::string& cmd) {
             buf_makefile << create_buildrule("Druck","print","print", false, settings[S_LILLY_PRINT_NAME]) << std::endl << std::endl;
             if((settings[S_LILLY_COMPLETE]=="true"))
                     buf_makefile << create_buildrule("Vollständige-Druck", "c_print", "print", true, settings[S_LILLY_PRINT_NAME] + settings[S_LILLY_COMPLETE_NAME]) << std::endl << std::endl;
-        } else {
+        } else if (s == "uebungsblatt"){
+            buf_makefile << create_buildrule("Übungsblatt","uebungsblatt","default", true, "",
+                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})") 
+                         << std::endl << std::endl;
+        }
+        else {
             std::cerr << "    Der spezifizierte Build-Modus: \"" << s << "\" steht leider nicht zur Verfügung!" << std::endl;
         }
     }
@@ -206,5 +233,7 @@ functions_t functions = {
     {"help", {fkt_help, "Zeigt diese Hilfe an"}},
     {"dump", {fkt_dump, "Zeigt alle settings und ihre Werte an" }},
     {"file_compile", {fkt_compile, "Erstellt ein makefile für settings[\"file\"]"}},
-    {"install", {fkt_install, "Versucht LILLY zu installieren"}}
+    {"install", {fkt_install, "Versucht LILLY zu installieren"}},
+    {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}},
+    {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}
 };

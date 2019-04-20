@@ -15,7 +15,8 @@ Andere Bezeichner werden *nicht* beachtet. Die spezifikation wird genutzt für:
   - Generierung der Titelseite
   - Titel- & Fußleiste
   - Boxen design (speziell: *NoBox*)
-  - Candy-Commands (zum vermeiden von doppeldeutigkeiten)
+  - Candy-Commands (zum vermeiden von Doppeldeutigkeiten)
+  
 - Übungsblatt (`LILLY@Typ=Uebungsblatt`)
   - Generierung der Tutorbox
   - Titel- & Fußleiste (No Buttons etc. )

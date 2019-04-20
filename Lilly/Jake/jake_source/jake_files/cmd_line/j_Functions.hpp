@@ -66,6 +66,28 @@ status_t fkt_compile(const std::string& cmd);
  */
 status_t fkt_install(const std::string& cmd) noexcept;
 
+
+/**
+ * @brief liefert eine Liste aller Einstellungen für die Autovervollständigung zurück
+ * 
+ * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
+ *
+ * @returns Statuswert (bisher nichts)
+ * 
+ */
+status_t fkt_gsettings(const std::string& cmd) noexcept;
+
+/**
+ * @brief liefert eine Liste aller Operationen für die Autovervollständigung zurück
+ * 
+ * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
+ *
+ * @returns Statuswert (bisher nichts)
+ * 
+ */
+status_t fkt_goptions(const std::string& cmd) noexcept;
+
+
 /**
  * @struct fkt_descriptor
  *

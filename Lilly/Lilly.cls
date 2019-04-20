@@ -46,9 +46,9 @@
         \newcommand*{\LILLYxDocumentxTYPExExtras}{twoside}    %%% Weitere Zusätze für das Dokument
         \ifx\LILLYxDEBUG\true
             %\newcommand*{\LILLYxGeometryxExtras}{bindingoffset=8mm,showframe}            
-            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=10mm}            
+            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=11mm}            
         \else
-            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=10mm}
+            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=11mm}
         \fi
     \else
         \newcommand*{\LILLYxDocumentxTYPExExtras}{oneside}    %%% Weitere Zusätze für das Dokument
@@ -97,7 +97,12 @@
                      - ABER ICH BIN EINE FLIESE.... ICH MEINE EIN DRUCKER... EINE BIENE... EIN STEIN? %
                      AUF JEDEN FALL GEHT DAS NICHT! AAAAAAAAARGH}
                     {}{}
-                    
+
+\LILLYxLoadPackage{setspace}{Abstand Wapstand Lapstnd}
+                    {Dieses Paket ist für Lilly nicht Lebensnotwendig}
+                    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                    {}{}
+
 \RequirePackage{ltablex} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL 
 \RequirePackage{refcount}
 \keepXColumns
@@ -182,15 +187,19 @@
 
 \RequirePackage{tocloft}
 \RequirePackage{multirow}
-\RequirePackage{booktabs}
+%% \RequirePackage{booktabs}
+\LILLYxLoadPackage{booktabs}{für noch tollerererererere Tabellen}
+                    {Ich finde es gut, dass du kein booktabs hast, ist ja auch zu fanatisch, aber irgendwie müssen wir damit jetzt wohl klarkommen ERROR}
+                    {\input{Lilly_Files/Fallbacks/_LILLY_FALLBACK_BOOKTABS}}
+                    {}{} %% NO ARGS
+                    
 \RequirePackage{hhline}
 \ifx\LILLYxTIKZxenable \undefined
     \input{Lilly_Files/Data/Graphics/Tikz-Core/_LILLY_TIKZ_CORE}
     \tikzset{invclip/.style={clip,insert path={{[reset cm](-100pt,-100pt) rectangle (100pt,100pt)}}}} %Für die FG-Kreise, damit man clippings auch invertieren kann
 \fi
 
-%%MOVE TO COMPAT
-\newcommand{\trenner}{\ensuremath{\tab[0.05cm]\Big|\tab[0.05cm]}}
+
 
 
 
@@ -253,6 +262,7 @@
 \input{Lilly_Files/Controllers/Intro/_LILLY_INTRO_CONTROLLER}
 
 \input{Lilly_Files/Controllers/_LILLY_BOX_CONTROLLER}
+\input{Lilly_Files/Helper/_LILLY_BOX_COUNTER}
 
 \input{Lilly_Files/Controllers/_LILLY_HYPHEN_CONTROLLER}
 

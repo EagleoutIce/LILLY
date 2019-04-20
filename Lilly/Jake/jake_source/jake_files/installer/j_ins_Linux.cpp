@@ -36,11 +36,13 @@ status_t ins_linux( void ) {
             std::cout << "Installiere 'texlive-full' via _apt_ : " << er_decode(system("sudo apt install texlive-full")) << std::endl;
         else
             std::cout << "  Jake installiert LILLY nun weiter, ohne 'pdflatex', da  du (n)o gewählt hast!" << std::endl;
-    }  
+    }
 
     std::cout << "  - Erstelle (" <<  settings["install-path"] << "/tex/latex): "
               << er_decode(system(("mkdir -p " + settings["install-path"] + "/tex/latex").c_str()))
               << std::endl;
+
+    c_inp='\0';
 
     // Expand path:
     if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
@@ -49,7 +51,7 @@ status_t ins_linux( void ) {
                 << "Soll die Datenbank aktualisiert werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
         while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
         if(c_inp == 'y') std::cout << "Aktualisiere die Datenbank 'sudo updatedb': " << er_decode(system("sudo updatedb")) << std::endl;
-
+        c_inp='\0';
         if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
 
         std::cerr << COL_ERROR << "Die Lilly.cls nun wieder nicht gefunden werden :/ "
@@ -71,31 +73,32 @@ status_t ins_linux( void ) {
         }
 
     } //URGENT TODO: AUSFÜHRLICHE SUChE
-    
-    std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << ") nach (" << settings["install-path"] << "/tex/latex): "
+
+    std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << " = " << exec("echo -n " + settings[S_LILLY_PATH]) << ") nach (" << settings["install-path"] << "/tex/latex): "
               << er_decode(system(("ln -sf "+settings[S_LILLY_PATH]+" "+settings["install-path"]+"/tex/latex").c_str()))
               << std::endl;
-    if(settings[S_LILLY_PATH]=="\"$(dirname $(locate -e -q -l 1 'Lilly.cls'))\"")
-    std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst. Nutze hierzu: " 
+    if(settings[S_LILLY_PATH]=="\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"")
+    std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst."<< std::endl
+              << " Nutze hierzu: " 
               << std::endl << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
 
     std::cout << "  - Informiere TEX über (" << settings["install-path"] << "): "
               << er_decode(system(("texhash " + settings["install-path"] + " > /dev/null").c_str()))
               << std::endl;
-    
-    std::cout << "  ? Experimental sucht Jake alle Pakete heraus die Lilly benötigen könnte um dann, in einer späteren Version," << std::endl << "    Variable Installationen anzubieten :D" << std::endl;
-    
+
+    std::cout << "  ? Experimental sucht Jake alle Pakete heraus die Lilly benötigen könnte um dann, " << std::endl << "    in einer späteren Version, Variable Installationen anzubieten :D" << std::endl;
+
     //for i in $(cd ~/texmf/tex/latex/Lilly/ && grep -E "(LILLYxDemandPackage|LILLYxLoadPackage){([a-zA-Z]+[a-zA-Z0-9]*)}" -r * --exclude=_LILLY_PACKAGE_CTRL.tex -hos | grep -E "{[a-zA-Z]+[a-zA-Z0-9]*" -os); do if [[ "$i" == "LILLYxLoadPackage" ]]; then export a=load && continue; elif [[ "$i" == "LILLYxDemandPackage" ]]; then export a=demand && continue; fi;  echo "- ($a): $i"; done;
-    
+
     std::cout << "Sammlung der Pakete abgeschlossen: " << er_decode(system(("for i in $(cd " + settings["install-path"] + "/tex/latex && grep -E " + \
                     "\"(LILLYxDemandPackage|LILLYxLoadPackage){([a-zA-Z]+[a-zA-Z0-9]*)}\" -r * " + \
                     "-hos | grep -E '[a-zA-Z]+[a-zA-Z0-9]*' -os); do if " +\
                     "[ \"$i\" = \"LILLYxLoadPackage\" ]; then export a=load && continue; elif " + \
                     "[ \"$i\" = \"LILLYxDemandPackage\" ]; then export a=demand && continue; fi; " +\
                     "echo \"      - ($a): $i\"; done;").c_str())) << std::endl;
-    
-    
+
+
     std::cout << "Der Installationsprozess wurde abgeschlossen :D" << std::endl;
-    
+
     return EXIT_SUCCESS;
 }
