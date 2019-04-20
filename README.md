@@ -27,7 +27,7 @@ Momentan kommt Lilly mit 3 Boxdesigns:
 - Alternate
 - Limerence
 sowie zwei verschiedenen Generierungstypen:
-- Normalo
+- Normal
 - Druck
 Des weiteren gibt es die kleine (mittlerweilen immer größer werdende) helfende Hand, namens Jake.
 Jake hilft bei der Installation von Lilly, beim Installieren von fehlenden Latex-Paketen, beim Generieren der notwendigen Makefiles und noch vielem mehr!
