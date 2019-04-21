@@ -10,7 +10,7 @@ Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm betrieben,
 Wenn du mitarbeiten möchtest ist das super, melde dich einfach bei mir! Allgemein gilt zu beachten: 
 Dieses Repository akzeptiert nur signed Commits: https://help.github.com/en/articles/signing-commits
 
-Wenn dir beim Schreiben ein to-do einfällt, so markiere es einfach entsprechend mit `TODO` oder `@todo` im Code :D
+Wenn dir beim Schreiben ein To-Do einfällt, so markiere es einfach entsprechend mit `TODO` oder `@todo` im Code :D
 
 **Aktuelle Aufgabenfelder:**
 
@@ -34,8 +34,8 @@ Da sich diese Readme noch im Aufbau befindet. Für alle Hinweise bezüglich der 
 
 ## Funktionen 
 
-Im Allgemeinen bietet Lilly die Möglichkeit ein in LaTeX geschriebenes Dokument im Nachhinein über Konsolbefehle zu konfigurieren. Hierzu bietet LILLY auch einige Funktionen zur Layoutgestaltung selbst an.
-Momentan kommt Lilly mit 3 Boxdesigns: 
+Im Allgemeinen bietet Lilly die Möglichkeit ein in LaTeX geschriebenes Dokument im Nachhinein über Konsolbefehle zu konfigurieren. Hierzu bietet Lilly auch einige Funktionen zur Layoutgestaltung selbst an.
+Momentan sind 3 Boxdesigns verfügbar: 
 
 - Default 
 - Alternate 
@@ -46,12 +46,12 @@ sowie zwei verschiedenen Generierungstypen:
 - Normal
 - Druck
 
-Des weiteren gibt es die kleine (mittlerweilen immer größer werdende) helfende Hand, namens Jake. 
-Jake hilft bei der Installation von Lilly, beim Installieren von fehlenden Latex-Paketen, beim Generieren der notwendigen Makefiles und noch vielem mehr!
+Desweiteren gibt es die kleine (mittlerweilen immer größer werdende) helfende Hand namens Jake. 
+Jake hilft bei der Installation von Lilly und fehlenden Latex-Paketen, beim Generieren der notwendigen Makefiles und noch vielem mehr!
 
 ### FAQ Template
 
-Im Folgenden sind eineige häufig gestellte Fragen (Im Aufbau :P)
+Im Folgenden sind einige häufig gestellte Fragen (Im Aufbau :P)
 
 <details>
   <summary>Ich habe diese Frage?</summary>
