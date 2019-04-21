@@ -20,7 +20,7 @@ lilly-boxes !kein Leerfeld bei +=! +=          LIMERENCE
 ! Ändern wir letztlich noch die Vorlesung - alle anderen Operationen ergeben sich analog !
 
 
-lilly-vorlesung = FG
+lilly-vorlesung = FG          ! Leerfelder sind nun auch kein Problem mehr :D !      
 
 
 ! Ach ja, und der Dateiname ist natürlich auch völlig Schnurzibumburzi !
@@ -29,3 +29,4 @@ lilly-vorlesung = FG
 
 Löffeltöffel  =   Röffel böffel
 
+ÜCH BÜN EINS = ÜMLÄUÜTß !!

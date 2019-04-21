@@ -10,6 +10,7 @@
 ## Was ist Jake?
 Jake ist ein in C++ geschriebenes Programm, welches die Arbeit mit dem LILLY-Framework vereinfacht. Es ist bisher für folgende Betriebssysteme definiert: 
  - Linux
+ - MacOS (Aktuell in Argbeit)
 
 Diese Version wurde entwickelt für LILLY (VER: 1.0.7) und zusammen mit dem nötigen makefile ausgeliefert. 
 

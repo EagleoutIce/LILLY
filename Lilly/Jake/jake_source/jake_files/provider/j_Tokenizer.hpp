@@ -60,7 +60,7 @@ public:
      * @param input der Pfad zur Datei
      * @param pattern Token-Selector
      */
-    Tokenizer(const std::string& input_path, const std::string& pattern = "([^= ]*) *(=) *([^=\n]*)$");
+    Tokenizer(const std::string& input_path, const std::string& pattern = R"(^ *([\w-äöüßÄÖÜ]+(?: [\w-äöüÄÖÜß]+)*) *(=) *([\w-äöüÄÖÜß]+(?: [\w-äöüÄÖÜß]+)*))");
 
     /**
      * @brief Konstruiert den Tokenizer auf einem normalen InputStream
@@ -72,7 +72,7 @@ public:
      * @param eol Welches Zeichen beendet eine Zeile?
      */
     Tokenizer(std::istream& input,
-              const std::string& pattern = "([^= ]*) *(=) *([^=\n]*)$", 
+              const std::string& pattern = R"(^ *([\w-äöüÄÖÜß]+(?: [\w-äöüÄÖÜß]+)*) *(=) *([\w-äöüÄÖÜß]+(?: [\w-äöüÄÖÜß]+)*))", //Danke ECMAScript: ^([^=]*)(?<! ) *(=) *([^=\n]*)(?<! )
               unsigned int skip_lines = 0,
               const std::string& skipper = R"(![^!]*!)", // Matches ! Hallo ! na du !Wie gehts?! correct
               const char eol = '\n');
@@ -99,11 +99,23 @@ public:
      * @brief Hilfsfunktion, entfernt Kommentare aus einer Zeile
      * 
      * @param inp Der zu bearbeitende String
+     * @param skipper der zu verwendende Skipper
+     * 
+     * @returns einen bearbeiteten String
+     */
+    inline static const std::string erase_skipper(const std::string& inp, const std::regex& skipper = std::regex(R"(![^!]*!)")){
+        return std::regex_replace(inp, skipper, ""); 
+    }
+
+    /**
+     * @brief Hilfsfunktion, entfernt Kommentare aus einer Zeile
+     * 
+     * @param inp Der zu bearbeitende String
      * 
      * @returns einen bearbeiteten String
      */
     inline const std::string erase_comments(const std::string & inp) {
-        return std::regex_replace(inp, this->_skipper, ""); 
+        return Tokenizer::erase_skipper(inp, this->_skipper);
     }
 
     /**

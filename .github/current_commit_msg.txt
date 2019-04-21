@@ -2,43 +2,28 @@ Fortführung der Parserimplementation für Jake
 
 JAKE:
 
------- For https://github.com/EagleoutIce/LILLY/issues/8 -----
-                       checked 2 points
-------                                                   -----
+    Arbeit an: https://github.com/EagleoutIce/LILLY/issues/8
 
-    * Jake nutzt nun C++14 und nichtmehr C++11 !
+    * Update der Regex-Expressions für Configurator und Tokenizer - Sie sind nun toll :D
+      Da C++ kein Lookaround für Regex unterstützt isses nun halt:
+           ^ *([\w-äöüßÄÖÜ]+(?: [\w-äöüÄÖÜß]+)*) *(=) *([\w-äöüÄÖÜß]+(?: [\w-äöüÄÖÜß]+)*)
+      anstelle von: 
+           ^([^=]*)(?<! ) *(=) *([^=\n]*)(?<! )
+      Danke für die Nutzung von ECMAScript @C++ (oder? "(?! )*")
+      Unt
 
-    * Der Konfigurator unterstützt nun die selben Zuweisungen
-      wie sie auch in der Kommandozeile möglich sind.
-      Er verwendet keine intelligenten Zuweisungen!
-      (Auch .tex-Dateien müssen als Zuweisung angegeben werden)
-      Es ist möglich mit `! Hallo Mama !` zu Kommentieren!
-      Für ein Beispiel betrachte die test.parse
+    * Die Readmes wurden an die MacOS implementation angepasst - allerdings noch WIP
 
-    * Die Autovervollständigung ist nun nichtmehr ganz so stroh dumm
-      und kann entsprechend des Sinns '=', '+=' bzw ' ' für
-      Wahrheitswerte ersetzen. 
+    - Übungsblatt wurde als Standarteinstellung für S_LILLY_MODES in den Settings wieder entfernt
+      Diese Option hätte sowieso nur als Test dort verweilen sollen.
 
-    * Wahrheitswerte wie `-debug` sind nun doch toggles
+    ! FIX: Die all-Regel funktioniert nun wieder so wie gedacht :D
 
-    + Es wird aktiv an einem Generator-Parser gearbeitet :D
-      Das Konzept beschreibt sich wie folgt (Auszug aus: 
-      j_Generator_Parser.hpp):
+LILLY:
 
-      Konzept: erkennt Grupppen mithilfe von "BEGIN <NAME>" und "END"
-      Der Gruppenname gibt an, was generiert werden soll. 
-      Beispiel: "BEGIN BOXMODE" zum Erstellen eines neuen Boxmodis
-      Die verchiedenen Gruppen können ihre eigenen Parameter definieren
-      und fordern. Der Generator_Parser arbeitet hierbei ähnlich wie 
-      der Konfigurator indem er ein Datenpaket erhält welches er
-      zu füllen versucht. 
-      Wie dann dieses Datenpaket zu interpretieren ist obliegt dem
-      initiator. So müsste es allerdings sehr einfach möglich sein
-      dem Generator listen für alle BOXMODE - Gruppen usw. 
-      zu Übergeben, sodass er diese dann füllt 
-      und Jake dann entsprechend damit arbieten kann!
+    + Es gibt nun den Mathe shortcut '\cd' für '\cdot' - er wird mit '\ensuremath' abgesichert
+      er befindet sich in: _LILLY_MATHS_OPERATORS (Maths).
 
+ALLGEMEIN:
 
-    ! lilly-semester wurde nun auch nachgepflegt (für Übungsblätter)
-
-    ? TODO Jake soll auch selbst kompilieren können 
+    * Das Titelbild wurde als anlehnung an 'Kommentare' bereits jetzt aktualisiert :D

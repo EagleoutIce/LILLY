@@ -38,7 +38,7 @@ providern (zum Beispiel dem Konfigurator) verwendet wird.
 Ermöglicht es Einstellungen für Jake mithilfe der Option `config` aus einer Datei zu Laden. Die Datei wiederrum kann mithilfe
 der Einstellung `file` angegeben werden!
 
-## Der Generator-Parser (WIP)
+## Der Generator-Parser
 
 -----
 
@@ -48,21 +48,80 @@ der Einstellung `file` angegeben werden!
 
 **Gehört zu:** [Jake](../../README.md) 1.0.7
 
-**Wohnt in:** [`j_Generator_Parser.hpp`](j_Generator_Parser.hpp) (Quelle: Work-In-Progress)
+**Wohnt in:** [`j_Generator_Parser.hpp`](j_Generator_Parser.hpp) (Quelle: [`j_Generator_Parser.cpp`](j_Generator_Parser.cpp))
 
 ----
 
-Aktueller TODO-Auszug:
+Super genereller Parser der in der Lage ist interne Konfigurations-Strukturen auf Basis von Gruppen zu erstellen. 
 
-Konzept: erkennt Grupppen mithilfe von "BEGIN <NAME>" und "END"
-Der Gruppenname gibt an, was generiert werden soll. 
-Beispiel: "BEGIN BOXMODE" zum Erstellen eines neuen Boxmodis
-Die verchiedenen Gruppen können ihre eigenen Parameter definieren
-und fordern. Der Generator_Parser arbeitet hierbei ähnlich wie 
-der Konfigurator indem er ein Datenpaket erhält welches er
-zu füllen versucht. 
-Wie dann dieses Datenpaket zu interpretieren ist obliegt dem
-initiator. So müsste es allerdings sehr einfach möglich sein
-dem Generator listen für alle BOXMODE - Gruppen usw. 
-zu Übergeben, sodass er diese dann füllt 
-und Jake dann entsprechend damit arbieten kann!
+
+## Die Buildrules
+
+-----
+
+**Author:** Florian Sihler
+
+**Version:** 1.0.7 (LILLY: 1.0.7) -- 5.4.2019
+
+**Gehört zu:** [Jake](../../README.md) 1.0.7
+
+**Wohnt in:** [`j_buildrules.hpp`](box_profiles/j_buildrules.hpp) (Quelle: [`j_buildrules.cpp`](box_profiles/j_buildrules.cpp))
+
+----
+
+Beispielhafte Implementation einer Funktionserweiterung auf dieser Basis weiß der Generator Parser wie er die
+jObjects zur Verfügung stellen soll. Somit lassen sich beliebige buildrules erstellen. 
+Da diese die Datei auch nicht verändern können übrigens alle Boxen in eine Datei gepackt werden :D 
+Das ist ja der Sinn und Zweck der veschiedenen Gruppen :bowtie:
+
+### Wie geht so eine Buildrule?
+
+Im folgenden die Beispielhafte Implementation zweier Standart Buildrules sowie eines kleinen Bonus. 
+Dies ist ein Aufzug der Datei: [`build_modes.parse`](../../../tests/build_modes.parse): 
+
+```
+BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn nicht !
+
+    ! Das Einrücken _und_ die Leerfelder sind optional. !
+    ! Allerdings sollten erstmal nur Leerfelder verwendet werden !
+    ! Mit X sind Zuweisungen markiert die verpflichtend sein sollen (aber nicht sind) !
+
+!X!  name            = default     ! buildrule name für lilly-modes !
+
+!X!  display-name    = Standart    ! Anzeigename (Standart-Version) !
+
+!X!  lilly-mode      = default     ! Welcher Modus soll an Lilly übergeben werden? !
+                                   ! Info: Diese können noch nicht frei konfiguriert werden !
+
+    complete         = false       ! Keine complete-Version !
+
+    complete-prefix  = c_          ! Bezeichner wenn complete !
+
+    nameprefix       = MY-DEFAULT- ! Weicht vom normalen default ab !
+
+    lilly-loader     = \\\\input{$(INPUTDIR)$(TEXFILE)}
+                    ! Diese Funktion ist advanced und beschreib die einbinde routine - einfach ignorieren !
+
+END; ! Semikolon wieder nicht nötig, aber ich mag es :D !
+
+BEGIN buildrule:
+
+!X! name            = print
+!X! display-name    = Druck
+!X! lilly-mode      = print
+    complete        = false
+    complete-prefix = c_
+    nameprefix      = MY-PRINT-
+    lilly-loader    = \\\\input{$(INPUTDIR)$(TEXFILE)}
+
+END;
+
+BEGIN buildrule:
+
+!X! name            = Waffel
+!X! display-name    = DEMO-WAFFEL
+!X! lilly-mode      = default
+    nameprefix      = waffel-
+
+END;
+```

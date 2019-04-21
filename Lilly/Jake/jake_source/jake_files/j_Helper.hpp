@@ -101,6 +101,8 @@ std::vector<std::string> split(const std::string& str, char delim = ' ');
 /**
  * @brief erstellt eine buildrule fürs Makefile
  * 
+ * @deprecated mit j_buildrules.hpp
+ * 
  * @param name_type Name des Typs
  * @param name_rule der Name der Regel 
  * @param mode der Name des LILLY-Modi

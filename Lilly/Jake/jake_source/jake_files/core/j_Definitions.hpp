@@ -36,6 +36,13 @@
 /// @brief Maximum successiver Einstellungsaufrufe
 #define MAX_SETTINGS_REC 5
 
+/// @brief geschätzte Größe eines Blocks
+#define EXPECTED_BLOCKSIZE 75
+
+
+/// @brief Name für Konfigurationsboxen für Buildregeln des Makefiles
+#define NAME_BOXPROFILE_BUILDRULE "buildrule"
+
 // Setting Definitions: ======================================================================================
 
 /// @brief Pfad an dem die Lilly.cls liegen soll
@@ -68,4 +75,6 @@
 #define S_LILLY_N                       "lilly-n"
 /// @brief Das wievielste Semster?
 #define S_LILLY_SEMESTER                "lilly-semester"
+/// @brief Pfad zur Buildrule-settings-Datei (wenn leer (default), dann werden die Standartdaten geladen :D )
+#define S_BUILDRULES_PATH               "buildrule-path"
 #endif

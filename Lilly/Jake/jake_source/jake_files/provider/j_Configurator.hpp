@@ -10,7 +10,7 @@
  * 
  */
 
-
+#include <istream>
 #include <string>
 #include <memory>
 
@@ -39,6 +39,13 @@ public:
      */
     Configurator (const std::string& config_file);
 
+    /**
+     * @brief konstruiert einen neuen Konfigurator
+     * 
+     * @param config_file input-stream der Datei/der Quelle
+     */
+    Configurator (std::istream& config_file);
+    
     /**
      * @brief Modifiziert die Einstellungen gegeben der geladenen Daten
      * 

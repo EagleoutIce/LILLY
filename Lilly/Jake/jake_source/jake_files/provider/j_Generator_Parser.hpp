@@ -11,6 +11,19 @@
  * @warning #WIP
  */
 
+#include <fstream>
+#include <memory>
+#include <string>
+#include <vector>
+#include <map>
+#include <stdexcept>
+#include <regex>
+
+#include "../core/j_Typedefs.hpp"
+
+#include "j_Configurator.hpp"
+
+
 /*
  * Konzept: erkennt Grupppen mithilfe von "BEGIN <NAME>" und "END"
  * Der Gruppenname gibt an, was generiert werden soll. 
@@ -36,7 +49,78 @@
 
 
 class GeneratorParser {
+
+    const std::string _op_path;
+
+public:
+    /**
+     * @struct jObject
+     * 
+     * @brief Definiert einen Block, der Selbst einen Modus oder ähnliches definieren kann
+     */
+    struct jObject {
+        /// @brief Der Bezeichner
+        const std::string name;
+        /// @brief Key-Value Liste der Konfiguration
+        settings_t configuration;
+    };
+
+    /**
+     * @struct Box
+     * 
+     * @brief Enthält die Grunddaten einer eingelsenen Box
+     */
+    struct Box {
+        /// @brief Name der Box
+        std::string name = "";
+        /// @brief unbearbeiteter Boxinhalt
+        std::string content = "";
+
+        /**
+         * @brief Generiert ein jObject auf Basis des Configurators
+         * 
+         * @param blueprint die Einstellungen auf derer Basis das Objekt erstellt werden soll
+         * 
+         * @returns ein entsprechendes jObject;
+         */
+        GeneratorParser::jObject get_jObject(settings_t blueprint);
+    };
     
+    /**
+     * @brief Konstruiert den Generator Parser (GePard)
+     * 
+     * @param filename Der Dateiname der zugrunde liegenden Datei
+     */
+    GeneratorParser(const std::string& filename);
+
+    /**
+     * @brief Extrahiert alle 'identifier'-Definitionen aus einer Datei
+     * 
+     * @param identifer der Name der Blöcke die Analysiert werden sollen
+     * @param blueprint die Zugrunde liegenden Einstellungen - es ist nicht erlaubt unbekannte hinzu zu fügen
+     * 
+     * @returns Alle gefundenen Objekte. Wird keins Gefunden so wird ein leerer Vektor zurück geben
+     */
+    std::vector<GeneratorParser::jObject> parseFile( 
+                                      const std::string& identifier, 
+                                      settings_t blueprint);
+
+/* protected: */
+
+    /**
+     * @brief liefert die nächste BEGIN X END Klausel wirft einen Fehler wenn Datei Fehlerhaft
+     * 
+     * @param inp Der Inputstream auf dem gearbeitet werden soll. tellg liefert danach eine Zeile nach END
+     * @param name Wenn nicht ="" wird die erste Box mit dem entsprechenden Namen geliefert und "" wenn es keine mehr gibt
+     * @param bufs die zu erwartende Block Größe - Muss normalerweise nicht verändert werden
+     * 
+     * @note diese Funktion füttert Parse File und sollte sonst nicht verwendet werden, ist zu textzwecken aber doch public
+     * 
+     * @returns den unveränderten String zwischen BEGIN X und END
+     */
+    GeneratorParser::Box get_next_box(std::istream& inp, const std::string& name="", size_t bufs = EXPECTED_BLOCKSIZE);
+
+    // TODO: Generate Group
 };
 
 

@@ -17,7 +17,7 @@ settings_t settings {
     {S_LILLY_IN,            "./"},
     {S_LILLY_NAMEPREFIX,    ""},
     {S_LILLY_BOXES,         "DEFAULT "},
-    {S_LILLY_MODES,         "default print uebungsblatt"},
+    {S_LILLY_MODES,         "default print "},
     {S_LILLY_COMPLETE,      "false"},
     {S_LILLY_COMPLETE_NAME, "COMPLETE-"}, /// @todo move lilly-x-name to rule descriptor
     {S_LILLY_PRINT_NAME,    "PRINT-"},
@@ -27,5 +27,6 @@ settings_t settings {
     {"jobcount",            "2"},
     {S_LILLY_VORLESUNG,     "LAII"},
     {S_LILLY_N,             "42"},
-    {S_LILLY_SEMESTER,      "1"}
+    {S_LILLY_SEMESTER,      "1"},
+    {S_BUILDRULES_PATH,     ""}
 };

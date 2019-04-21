@@ -79,7 +79,7 @@ status_t ins_linux( void ) {
               << std::endl;
     if(settings[S_LILLY_PATH]=="\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"")
     std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst."<< std::endl
-              << " Nutze hierzu: " 
+              << "    Nutze hierzu: " 
               << std::endl << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
 
     std::cout << "  - Informiere TEX über (" << settings["install-path"] << "): "
@@ -98,7 +98,16 @@ status_t ins_linux( void ) {
                     "echo \"      - ($a): $i\"; done;").c_str())) << std::endl;
 
 
+    //TODO: Fragen ob Dokumentation erstellt weden soll
+                    // Wenn Ja: Gibt es Doxygen? Nein? Dann Doxygen und graphviz installieren.
+                    // Shell-Befehl: Verzeichnis für Jake naivigieren && doxygen Doxyfile && xdg-open docs/index.html
+    // Wenn nein Ende
+
     std::cout << "Der Installationsprozess wurde abgeschlossen :D" << std::endl;
 
     return EXIT_SUCCESS;
 }
+
+// TODO Jake move - Befehl der Auf Basis einer Konfigurationsdatei verschiedene Proile laden kann (bsp: fg: Updated Fg-Skripte) - Besserer Name?
+
+// TODO Jake autocomplete - Jake soll die Komplette Autovervollständigung übernehmen - Er soll mit GENARGS -args="Bisherige Eingabe" aufgerufen werden können und auf dieser Basis dann mögliche antworten zurück liefern.

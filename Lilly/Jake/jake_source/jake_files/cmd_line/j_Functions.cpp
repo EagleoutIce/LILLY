@@ -146,6 +146,8 @@ status_t fkt_compile(const std::string& cmd) {
                  << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}})" << std::endl << std::endl //DONT'T Change
                  << "JOBCOUNT     := " << padPrint(settings["jobcount"])              << "## should: <= cpu/thread count!"      << std::endl
                  << std::endl << std::endl;
+
+    buf_makefile << "void = return 0;  "                                                                                   << std::endl<< std::endl<< std::endl;
     //Compile-Regel
     buf_makefile << "LILLYxCompile = \\"                                                                                   << std::endl;
 #if defined(__linux__)
@@ -166,42 +168,30 @@ status_t fkt_compile(const std::string& cmd) {
     else 
         buf_makefile << "    echo \"Kein autoclean da zugehörige Einstellung != true\" || (";
     
-    buf_makefile << "echo \"\\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\\033[m\")"<< std::endl<< std::endl;  //) && (echo \"$(shell echo -E \"$(grep -R --include=\"*.log\" -i -E \"error[^(bars)][^(messages)]\" -A 7 -H \"./$(OUTPUTDIR)\" | more)\")\"))" << std::endl << std::endl;
+    buf_makefile << "echo \"\\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\\033[m\"; return 1;)"<< std::endl<< std::endl;  //) && (echo \"$(shell echo -E \"$(grep -R --include=\"*.log\" -i -E \"error[^(bars)][^(messages)]\" -A 7 -H \"./$(OUTPUTDIR)\" | more)\")\"))" << std::endl << std::endl;
     
 
     buf_makefile << "LILLYxClean = echo \"\\033[38;2;255;191;0m> Lösche temporäre Dateien...\033[m\" && \\"                     << std::endl;
     buf_makefile << "     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done"                                         << std::endl<< std::endl<< std::endl;
 
     // parse the modes:
-    /**
-     * @todo [MK] Make modes editable by textfile! so print shall be defined as: Bezeichner:LILLYxMODE,MODExEXTRA,OTHERS...
-     *
-     * @todo [MK] build-rules sollen auch variablen überschreibe können so soll es möglich sein BoxModues nur spezifisch herzustellen um so zum Beispiel _test_ oder so zu ermöglochen undnicht immer ein eigenes Makefile zu forcieren
-     */
+    configuration_t b_rules = getRules(settings[S_BUILDRULES_PATH],settings[S_LILLY_COMPLETE]=="true");
+
+    std::string added_rules = "";
 
     for(std::string s : split(settings[S_LILLY_MODES] /* => buildrule_names*/)) {
-        if(s == "default"){
-            buf_makefile << create_buildrule("Standart","default","default", false) << std::endl << std::endl;
-            if((settings[S_LILLY_COMPLETE]=="true"))
-                buf_makefile << create_buildrule("vollständige Standart", "c_default", "default", true, settings[S_LILLY_COMPLETE_NAME]) << std::endl << std::endl;
-        } else if(s == "print"){
-            buf_makefile << create_buildrule("Druck","print","print", false, settings[S_LILLY_PRINT_NAME]) << std::endl << std::endl;
-            if((settings[S_LILLY_COMPLETE]=="true"))
-                    buf_makefile << create_buildrule("Vollständige-Druck", "c_print", "print", true, settings[S_LILLY_PRINT_NAME] + settings[S_LILLY_COMPLETE_NAME]) << std::endl << std::endl;
-        } else if (s == "uebungsblatt"){
-            buf_makefile << create_buildrule("Übungsblatt","uebungsblatt","default", true, "",
-                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})") 
-                         << std::endl << std::endl;
-        }
-        else {
-            std::cerr << "    Der spezifizierte Build-Modus: \"" << s << "\" steht leider nicht zur Verfügung!" << std::endl;
-        }
+        if(b_rules.find(s) != b_rules.end()){
+            buf_makefile << b_rules[s] << std::endl << std::endl;
+            added_rules += s + " ";
+        } else 
+            std::cerr << COL_ERROR << "    Der spezifizierte Build-Modus: \"" << s << "\" steht leider nicht zur Verfügung!" << COL_RESET << std::endl;
     }
+
 
     std::string all = "";
     // generate all rule:
     buf_makefile << std::endl << "all: $(INPUTDIR)$(TEXFILE)" << std::endl;
-    for(std::string s : split(settings[S_LILLY_MODES])) {
+    for(std::string s : split(added_rules)) {
         all += s + ((settings[S_LILLY_COMPLETE] == "true")?(" c_" + s):"") + " ";
     }
 
@@ -229,9 +219,9 @@ status_t fkt_compile(const std::string& cmd) {
     }
     out_makefile << buf_makefile.rdbuf();
 
-    //finish
-    out_makefile.close(); ///@todo  PREFIXES FOR DIFFERENT RULES DEFINE WITH: --rule=name:specials or --rule:name:specials
-    // TODO:
+    // finish
+    out_makefile.close();
+
     /// @todo add debug, general: options for remote compile, etc.
     /// @todo jake prepare document: expandable macros, encapsulate - restructure commands etc.
     std::cout << "Generierung des Makefiles abgeschlossen: " << er_decode(EXIT_SUCCESS) << std::endl;

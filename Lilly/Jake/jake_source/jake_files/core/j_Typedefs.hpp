@@ -37,4 +37,6 @@ using settings_t = std::map<std::string, data_t>;
 /// @brief Signatur fürs Funktionsmapping
 using functions_t = std::map<std::string, fkt_descriptor>;
 
+/// @brief Signatur für Konfigurationen
+using configuration_t = std::map<std::string, std::string>; 
 #endif

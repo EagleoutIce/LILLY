@@ -8,7 +8,10 @@ EXTRA_FILES := jake_files/j_Helper.cpp \
 	       jake_files/cmd_line/j_Parser.cpp \
 	       jake_files/core/j_Globals.cpp \
 	       jake_files/provider/j_Tokenizer.cpp \
-	       jake_files/provider/j_Configurator.cpp
+	       jake_files/provider/j_Configurator.cpp \
+	       jake_files/provider/j_Generator_Parser.cpp \
+	       jake_files/provider/box_profiles/j_buildrules.cpp
+
 LINKERS :=
 RC_FILES := "${HOME}/.zshrc" "${HOME}/.bashrc" "${HOME}/.bash_profile"
 

@@ -22,6 +22,7 @@
 
 #include "../provider/j_Tokenizer.hpp"
 #include "../provider/j_Configurator.hpp"
+#include "../provider/box_profiles/j_buildrules.hpp"
 
 #include "../j_Helper.hpp"
 
