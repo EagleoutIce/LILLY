@@ -28,6 +28,9 @@
     %%Generieren Inhaltsverzeichnis
 
     \LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}} 
+    \addto\captionsngerman{%
+        \renewcommand{\contentsname}{\hbox{}\relax\hfill Inhaltsverzeichnis\hfill\hbox{}\relax}%
+    }
     \LILLYcommand{\cftsubsecfont}{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxLINKSxMainColorDarker!90!white}}
     %\renewcommand{\cftsecleader}{\hfill}
     \LILLYcommand{\cftsubsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
@@ -42,8 +45,14 @@
         \protect\pagestyle{empty}
         \elable{eagleTOC}
         \tableofcontents
-        \newpage
-        \clearpairofpagestyles
+        \ifx\LILLYxMODE\LILLYxMODExPRINT%
+        \newpage\hbox{}\relax%
+        \clearpairofpagestyles%
+        \cleardoublepage%
+        \else %
+        \newpage%
+        \clearpairofpagestyles%
+        \fi%
     }
 
     %% Layout für Mitschrieb

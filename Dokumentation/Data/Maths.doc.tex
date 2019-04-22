@@ -1,7 +1,7 @@
 \chapter[Mathe \LILLYxBOXxVersion{\small 1.0.0}]{Mathe}
 \TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 1.0.0}}
-\renewcommand{\arraystretch}{1.5}
-\reversemarginpar
+\smallskip\renewcommand{\arraystretch}{1.5}
+\reversemarginpar\par
 An sich ändert LILLY nicht viel an der normalen Implementation der Matheumgebung. Die verwendete Matheumgebung lässt sich mithilfe des Befehls \CMDpreview{LILLYxMathxMode} frei einstellen. Standardmäßig wird dieser Wert auf \emph{normal} gesetzt.
 
 \section{Weitere Befehle}
@@ -25,7 +25,7 @@ Weiter wurde das Aussehen der Wurzel verändert, so liefert nun der Befehl \CMDp
     \specialrule{1pt}{0pt}{0pt}
 \end{tabular}\smallskip\]
 Zudem gibt es einige Vereinfachungen für etliche typischen mathematischen Operatoren: \newline 
-\CMDpreview{det} ($\det$), \CMDpreview{adj} ($\adj$), \CMDpreview{LH} ($\LH$), \CMDpreview{eig} ($\eig$), \CMDpreview{Dim} ($\Dim$), \CMDpreview{sel} ($\sel$), \CMDpreview{sign} ($\sign$), \CMDpreview{diag} ($\diag$), \CMDpreview{LK} ($\LK$), \CMDpreview{rg} ($\rg$), \CMDpreview{KER} ($\KER$), \CMDpreview{Eig} ($\Eig$).
+\CMDpreview{det} ($\det$), \CMDpreview{adj} ($\adj$), \CMDpreview{LH} ($\LH$), \CMDpreview{eig} ($\eig$), \CMDpreview{Dim} ($\Dim$), \CMDpreview{sel} ($\sel$), \CMDpreview{sign} ($\sign$), \CMDpreview{diag} ($\diag$), \CMDpreview{LK} ($\LK$), \CMDpreview{rg} ($\rg$), \CMDpreview{KER} ($\KER$), \CMDpreview{Eig} ($\Eig$), \CMDpreview{cd} {$\cd$}.
 Auch wurde das Aussehen von \verb|\mod|, \verb|\Im| und \verb|\Re| modifiziert:
 \[\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
@@ -47,7 +47,6 @@ $\begin{pmatrix}[cc|c]
 \end{pmatrix}$}\\
 \specialrule{1pt}{0pt}{0pt}
 \end{tabular}\]
-\clearpage
 
 \subsection[Symbole \LILLYxBOXxVersion{\small 1.0.3}]{Symbole}
 {\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}}\vspace*{0.5\baselineskip}\par}
@@ -103,47 +102,60 @@ Weiter gibt es noch einige verschiedene Tabellen-Spalten, deren Kurzbezeichner d
     \end{itemize}
 \end{multicols}
 \normalmarginpar
+
+
 \section{Plots \tiny\LILLYxBOXxVersion{1.0.8}}
-{\centering \framebox{\parbox{\linewidth}{\centering Dieser Abschnitt beschreibt die Richtlinien, auf denen Plots in LILLY integriert werden sollen. Es wurden noch keine (Ti\textit{k}Z) basierte Plot-Umgebungen in LILLY integriert.\par}}\vspace*{0.5\baselineskip}\par}
+\begin{center}
+    \framebox{Für die Spezifikationen siehe hier: \jmark[klick mich]{jmp:PLOTSSPEC}!}
+\end{center}
+
 \subsection{graph-Environment}
-Es soll ein graph-Environment existieren, was auf Basis von PGF das Erstellen folgender Grafiken immens vereinfachen soll:
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.25\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.3\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
-    \specialrule{1pt}{0pt}{0pt}
-    \bfseries Aktuell &\bfseries Ergebnis &\bfseries Wunsch\\
+Es existiert die folgende Implementation der Graph-Umgebung:
+\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.45\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.45\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
     {\footnotesize\begin{lstlisting}[style=latex,frame=none,breaklines=true]
-\begin{tikzpicture}[scale=0.6]
-    \draw[help lines, color=gray!30,
-          densely dashed] (-2.4,-0.4) grid (2.4,4.9);
-    \draw[->,thick] (-2.5,0) -- (2.5,0)
-          node[right]{$x$};
-    \draw[->,thick] (0,-0.5) -- (0,5)
-          node[above]{$y$};
-    \draw[scale=1,domain=-2:2,
-          smooth,variable=\x,purple]
-          plot ({\x},{\x*\x});
-\end{tikzpicture}
-    \end{lstlisting}} &  \begin{tikzpicture}[scale=0.6]
-        \draw[help lines, color=gray!30,
-              densely dashed] (-2.4,-0.4) 
-              grid (2.4,4.9);
-        \draw[->,thick] (-2.5,0) -- (2.5,0)
-              node[right]{$x$};
-        \draw[->,thick] (0,-0.5) -- (0,5)
-              node[above]{$y$};
-        \draw[scale=1,domain=-2:2,
-              smooth,variable=\x,purple]
-              plot ({\x},{\x*\x});
-    \end{tikzpicture} &    {\footnotesize\begin{lstlisting}[style=latex,frame=none,breaklines=true]
-\begin{graph}[scale=0.6,domain=-2:2]
-    \plotline[purple]{\x}{\x*\x};
+\begin{graph}[scale=1.25,maxY=3]
+    \plotline[purple]{sqrt(\x+2.5)};
+    \plotline[Ao][\y]{(\y*\y)/1.5};
 \end{graph}
-            \end{lstlisting}}\\
+    \end{lstlisting}} &  \begin{graph}[scale=1.25,maxY=3]
+        \plotline[purple]{sqrt(\x+2.5)};
+        \plotline[Ao][\y]{(\y*\y)/1.5};
+    \end{graph}\\
     \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\]
-Der Befehl \CMDshow{plotline} soll hierbei nur in der Umgebung verfügbar sein (TODO: gleiches geplant mit PLA etc.).
-\subsection{Positionierung}
-Für die Platzierung von Plots wurden 3 valide Positionen vorgesehen: Zentriert, Links (Text auf rechter Seite), Rechts (Text auf linker Seite). Diese Positionierungen können mithilfe von Floats realisiert werden, sollen aber auf jedenfall auch noch einen absoluten Modus zur Verfügung stellen (primär von zentriert analog zu \verb|\[\]|). Zudem soll das \T{plot}-Environment selbstverständlich auch ohne Positionierung manuell eingebunden werden können!\newpage
+Die Signatur des Environments \ENVpar{graph} lautet: \T{[Argumente][tikz-Argumente]}.
+Letzere sind einfach zusätzliche Argumente die der unterliegenden \T{tikzpicture}
+beigefügt werden. Für die Argumente gibt es folgende Möglichkeiten:\newline
+\begin{center}
+    \begin{tabular}{>{\LILLYxlstTypeWriter}l>{\em}lcl}
+        \toprule
+        Bezeichner & \normalfont Typ & Standart & Beschreibung\\\midrule
+        scale & Zahl & 1 & Skalierungsfaktor \\
+        minX & Zahl & -2 & X-Achse Start \\
+        maxX & Zahl & 2 & X-Achse Ende \\
+        minY & Zahl & 0 & Y-Achse Start \\
+        maxY & Zahl & 4 & Y-Achse Ende \\
+        offset & Zahl & 0.4 & Zusatzlänge Achsen \\
+        loffset & Zahl & 0.1 & Unbeachteter Zusatz Achsen\\
+        labelX & String & \$x\$ & Bezeichner X-Achse \\
+        labelY & String & \$y\$ & Bezeichner Y-Achse \\
+        samples & Zahl & 250 & Anzahl an Kalkulationen \\
+        \bottomrule
+    \end{tabular}    
+\end{center}
+
+\subsection{wgraph-Environment}
+Um die Graph-Umgebung noch vielfälter zu Gestalten wurde \ENVpar{wgraph} geschaffen.
+Nach reichlicher Überlegung wurde ein neuer Befehl etabliert anstelle es in das
+normale \T{graph}-Environment einzubetten. Er funktioniert mit der Syntax:
+\begin{lstlisting}[style=latex,frame=none,breaklines=true]
+    \begin{wgraph}{l}[][][0pt][\caption{Wichtiger Graph}]
+        \plotline{\x*\x}
+    \end{wgraph}
+\end{lstlisting}
+Die Signatur hierbei lautet: \T{\{ORIENTATION\}[Argumente][tikz-Argumente][width][wrapfig-zusatz]}.
+
 \section{3D-Plots \LILLYxNOTExWarning{Ausstehend}}
 Ich bin freier Platz :D
 \renewcommand{\arraystretch}{1}

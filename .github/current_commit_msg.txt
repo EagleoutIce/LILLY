@@ -1,0 +1,14 @@
+It's 1.0.8 baby
+
+DOKUMENTATION:
+
+    FÜR: https://github.com/EagleoutIce/LILLY/projects/1#card-20483616
+
+    * Die Dokumentation wurde aktualisiert
+
+
+JAKE:
+
+    * An Jake wurden die letzten Anpassungen vorgenommen
+
+    * Der MacOS-Installer ist nun getestet worden. 
