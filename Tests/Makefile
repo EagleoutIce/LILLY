@@ -1,6 +1,6 @@
-# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 19 2019 at: 23:18:12)
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 22 2019 at: 19:00:34)
 
-TEXFILE      := SemesterDataTest.tex
+TEXFILE      := test.tex
 BASENAME     := $(basename $(TEXFILE))
 PDFFILE      := $(addsuffix .pdf,$(basename $(TEXFILE)))
 LATEXARGS    := -shell-escape -enable-write18 -interaction=batchmode
@@ -11,6 +11,7 @@ BOXMODES     := DEFAULT #                     ## Seperator: ' '
 CLEANTARGET  := LILLYxClean
 CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC DEFS
 NAMEPREFIX   :=                               ## Immer
+SEMESTER     := 1                             ## Übungsblatt
 VORLESUNG    := LAII                          ## Übungsblatt
 N            := 42                            ## Anzahl
 _C           := ,                             ## No Joke xD
@@ -21,15 +22,18 @@ _LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\p
 JOBCOUNT     := 2                             ## should: <= cpu/thread count!
 
 
+void = true
+
+
 LILLYxCompile = \
     mkdir -p "$(OUTPUTDIR)" && \
-    echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\
+    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\
     (for bm in $(BOXMODES); do \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
        echo "\033[38;2;102;250;0mGenerierierung von "${1}$${bm}-${2}" ($${bm}) abgeschlossen\033[m"; done &&\
-    $(call $(CLEANTARGET)) ) || (echo "\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\033[m")
+    $(call $(CLEANTARGET)) ) || (echo "\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\033[m"; exit 1;)
 
 LILLYxClean = echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m" && \
      for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done
@@ -43,16 +47,12 @@ print: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Druck-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
 	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
 
-uebungsblatt: $(INPUTDIR)$(TEXFILE)
-	@echo "\033[38;2;255;191;0mGeneriere Übungsblatt-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{TRUE},"\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document}")
-
 
 all: $(INPUTDIR)$(TEXFILE)
-	@$(MAKE) -s --no-print-directory default print uebungsblatt  CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
+	@$(MAKE) -s --no-print-directory default print  CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
 	@$(MAKE) -s --no-print-directory clean
 
 clean:
 	@$(call LILLYxClean)
 
-.PHONY: default print uebungsblatt all clean
+.PHONY: default print all clean

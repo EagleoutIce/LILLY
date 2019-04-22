@@ -1,4 +1,4 @@
-#if not (defined(__linux__) || defined(__APPLE__) | defined(__MACH__))
+#if not (defined(__linux__) || defined(__APPLE__) || defined(__MACH__))
     #warning Bisher beherrscht Jake nur Betriebssysteme die der POSIX-Implementation (spezifisch: Linuxioide und MacOS) genügen!
 #endif
 
@@ -7,12 +7,12 @@
  * @author Florian Sihler
  * @version 1.0.7
  * @warning Die Aktuelle Version ist WIP einige Funktionnen sind noch nicht implementiert
- * 
- * 
+ *
+ *
  * @brief Hilfsprogramm im Umgang mit LILLY
- * 
+ *
  * @note Zum Kompilieren dieser Datei sollte das beiliegende Makefile verwendet werdne
- * 
+ *
  * @page Important Super stuff
  * @tableofcontents
  *
@@ -20,20 +20,20 @@
  * Folgende Seiten sind unter Umständen interesssant
  * - @ref Changelog
  * - @ref jake.cpp
- * 
+ *
  * @section README README.md
  * @include README.md
- * 
+ *
 
- * 
+ *
  * @page Changelog Changelog
  * @tableofcontents
  *  @section Version100 Version 1.0.0 -- Penguin
  *      * Command-Line-Parser
  *      * Grundlegende Funktionalität
  *      * Kommentar-Grundstruktur
- * 
- * 
+ *
+ *
  */
 
 /* ================================================================================================================== */        /* ################# */
@@ -113,10 +113,10 @@
 
 /**
  * @brief startet Jake - jippie
- * 
+ *
  * @param argc Kommandozeilenargumentanzahl
  * @param argv Kommandozeilenargumentearray
- * 
+ *
  * @returns status
  */
 
@@ -139,7 +139,7 @@ int main(int argc, const char** argv) {
     }
     */
     in_settings(argv[0]);
-    
+
     return EXIT_SUCCESS;
 }
 
@@ -178,7 +178,7 @@ default: no_link
 
 no_link: jake.cpp
 		@g++ -std=c++14 -I './' $(EXTRA_FILES) jake.cpp -o lilly_jake $(LINKERS)
-		
+
 		@chmod +x ./lilly_jake
 		@echo Compiled lilly_jake
 clean:

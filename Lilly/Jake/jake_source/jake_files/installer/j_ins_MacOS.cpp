@@ -25,7 +25,7 @@ status_t ins_macOS( void ) {
     if (!check_file(exec("printf " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
         std::cerr << COL_ERROR << "Die Lilly.cls konnte unter dem eingestellten Pfad: \""
                 << (exec("printf " + settings[S_LILLY_PATH])+"/Lilly.cls") << "\" nicht gefunden werden. " << std::endl;
-        
+
                 std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
                 << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
                 << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
@@ -41,7 +41,7 @@ status_t ins_macOS( void ) {
               << std::endl << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
 
     std::cout << "  - Informiere TEX über (" << settings["install-path"] << "): "
-              << er_decode(system(("texhash " + settings["install-path"] + " > /dev/null").c_str()))
+              << er_decode(system(("sudo texhash " + settings["install-path"] + " > /dev/null").c_str()))
               << std::endl;
 
     std::cout << "  ? Experimental sucht Jake alle Pakete heraus die Lilly benötigen könnte um dann, in einer späteren Version," << std::endl << "    Variable Installationen anzubieten :D" << std::endl;

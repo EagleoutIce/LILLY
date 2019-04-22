@@ -3,7 +3,7 @@
 
 status_t fkt_gsettings(const std::string& cmd) noexcept {
     settings_t::iterator it = settings.begin();
-    while(it != settings.end()){ 
+    while(it != settings.end()){
         if(it->second=="true"||it->second=="false") // boolean
             std::cout << "-" << it->first << " \t";
         else if (it->second.length() > 0 && it->second[it->second.length()-1] == ' '){ // erlaubt +=
@@ -12,7 +12,7 @@ status_t fkt_gsettings(const std::string& cmd) noexcept {
         } else  {
             std::cout << "-" << it->first << "=\t";
         }
-        
+
         ++it;
     }
     return EXIT_SUCCESS;
@@ -20,7 +20,7 @@ status_t fkt_gsettings(const std::string& cmd) noexcept {
 
 status_t fkt_goptions(const std::string& cmd) noexcept {
     functions_t::iterator it = functions.begin();
-    while(it != functions.end()){ 
+    while(it != functions.end()){
         if (it->first.length()>0 && it->first[0] != '_')
             std::cout << it->first << " \t"; ++it;
     }
@@ -148,10 +148,10 @@ status_t fkt_compile(const std::string& cmd) {
                  << "JOBCOUNT     := " << padPrint(settings["jobcount"])              << "## should: <= cpu/thread count!"      << std::endl
                  << std::endl << std::endl;
 
-    buf_makefile << "void = return 0;  "                                                                                   << std::endl<< std::endl<< std::endl;
+    buf_makefile << "void = true"                                                                                   << std::endl<< std::endl<< std::endl;
     //Compile-Regel
     buf_makefile << "LILLYxCompile = \\"                                                                                   << std::endl;
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__) || defined(__MACH__)
     buf_makefile << "    mkdir -p \"$(OUTPUTDIR)\" && \\" << std::endl; // Auf windows vermutlich identisch nur ohne -p
 #endif
     //clean log
@@ -166,11 +166,11 @@ status_t fkt_compile(const std::string& cmd) {
     // call clean routine if clean is enabled :D
     if (settings[S_LILLY_AUTOCLEAN] == "true")
         buf_makefile << "    $(call $(CLEANTARGET)) ) || (";
-    else 
+    else
         buf_makefile << "    echo \"Kein autoclean da zugehörige Einstellung != true\" || (";
-    
-    buf_makefile << "echo \"\\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\\033[m\"; return 1;)"<< std::endl<< std::endl;  //) && (echo \"$(shell echo -E \"$(grep -R --include=\"*.log\" -i -E \"error[^(bars)][^(messages)]\" -A 7 -H \"./$(OUTPUTDIR)\" | more)\")\"))" << std::endl << std::endl;
-    
+
+    buf_makefile << "echo \"\\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\\033[m\"; exit 1;)"<< std::endl<< std::endl;  //) && (echo \"$(shell echo -E \"$(grep -R --include=\"*.log\" -i -E \"error[^(bars)][^(messages)]\" -A 7 -H \"./$(OUTPUTDIR)\" | more)\")\"))" << std::endl << std::endl;
+
 
     buf_makefile << "LILLYxClean = echo \"\\033[38;2;255;191;0m> Lösche temporäre Dateien...\033[m\" && \\"                     << std::endl;
     buf_makefile << "     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done"                                         << std::endl<< std::endl<< std::endl;
@@ -186,7 +186,7 @@ status_t fkt_compile(const std::string& cmd) {
             if(settings[S_LILLY_COMPLETE] == "true" && b_rules.find("c_" + s) != b_rules.end())
                 buf_makefile << b_rules["c_" + s] << std::endl << std::endl;
             added_rules += s + " ";
-        } else 
+        } else
             std::cerr << COL_ERROR << "    Der spezifizierte Build-Modus: \"" << s << "\" steht leider nicht zur Verfügung!" << COL_RESET << std::endl;
     }
 
@@ -236,7 +236,7 @@ status_t fkt_tokentest(const std::string& cmd) {
     // test für den Tokenizer :D
     std::cout << "Einzelne Gruppen werden mit \"~\" getrennt!" << std::endl;
     Tokenizer t(settings["file"]);
-    while(t.loadNext()) { 
+    while(t.loadNext()) {
         Tokenizer::Match m = t.get();
         if(m.failure()) continue;
         for(int i = 1; i < m.matchings.size(); ++i){
@@ -251,13 +251,13 @@ uint8_t RECURSIVE_CALLCOUNTER = 0;
 
 status_t fkt_config(const std::string& cmd) {
     if(RECURSIVE_CALLCOUNTER++ > MAX_SETTINGS_REC) {
-        std::cerr << COL_ERROR << "Du hast das Limit an Konfigurationsaufrufen erreicht! Mehr erscheint wirklich nicht sinnvoll!" 
+        std::cerr << COL_ERROR << "Du hast das Limit an Konfigurationsaufrufen erreicht! Mehr erscheint wirklich nicht sinnvoll!"
                   << COL_RESET << std::endl;
         throw std::runtime_error("Zu viele Konfigurationsdateien");
     }
     Configurator c(settings["file"]);
     c.parse_settings(&settings);
-    return in_settings(cmd); 
+    return in_settings(cmd);
 }
 
 

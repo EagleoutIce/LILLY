@@ -5,10 +5,11 @@ settings_t settings {
     {"file",                "none.tex"},
     {"debug",               "false"},
     {"path",                "./"},
-    {"install-path",        "\"${HOME}/texmf\""},
 #if defined(__linux__)
+    {"install-path",        "\"${HOME}/texmf\""},
     {S_LILLY_PATH,          "\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\""},
 #else //if defined __APPLE__ oder __MACH__
+    {"install-path",        "\"${HOME}/Library/texmf\""},
     {S_LILLY_PATH,          "\"$(dirname $(mdfind Lilly.cls | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\""},
 #endif
     {"mk-name",             "Makefile"},
