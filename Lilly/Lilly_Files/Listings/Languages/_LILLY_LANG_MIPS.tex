@@ -51,8 +51,11 @@
     escapeinside={*}{*}, 
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     basicstyle=\LILLYxlstTypeWriter,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
-    numbers=right,           %Zeilennummern
+    numbers=left,           %Zeilennummern
     numbersep=5pt,
+    xleftmargin=15pt,
+    framexleftmargin=0pt,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
     morekeywords=[2]{while,if,r,ld,st,sr,sl,beq,bnq,add,sub,and,or,not,xor,dec,inc,jmp,addi,sw,addui,add,sw,lw,slti,j,jal,div,mul,hi,lo,jr,addiu,
     la, lb, li, bne, mult, mflo},
     morekeywords = [3]{.text,.data,.ascii,.word},

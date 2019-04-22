@@ -54,7 +54,7 @@ Zudem lädt \T{MAIN} noch das Paket \T{MIPS}, auf welches weiter unten noch weit
 {\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Listings/Languages/\_LILLY\_LANG\_MIPS}}\vspace*{0.5\baselineskip}\par}
 Dieses Paket wurde vor allem im Rahmen von \gdra erstellt und bindet das Paket \verb|caption| mit ein, um die Positionierung von Titeln zu vereinfachen. Weiter definiert es die Befehle \CMDpreview{gitRAW} und \CMDpreview{git} (Diese sollten besser verschoben werden TODO:). Sie fügen mithilfe von FontAwesome ein Github Symbol ein, welches auf ein Github-Repository verweist, indem sich alle in \gdra verwendeten Codes befinden (\url{https://www.github.com/EagleoutIce/MIPS_UniUlm_Examples/}: \git). Dieses Paket wird vom \T{MAIN}-Paket eingebunden und definiert weiter folgende Stile:
 \paragraph{MIPS} Syntax-Highlighting für alle grundlegende MIPS-Befehle - verwendet 6 verschiedene Farben für verschiedene Arten von Keywords:
-\newcommand{\cs@lslave}[2]{\T{#1}${}^{~(#2)}$}
+\newcommand{\csXlslave}[2]{\T{#1}${}^{~(#2)}$}
 \begin{multicols}{2}
     \begin{itemize}[label=$\diamond$]\narrowitems
         \foreach \c/\l in {Zeichenketten/candypink,
@@ -65,7 +65,7 @@ Dieses Paket wurde vor allem im Rahmen von \gdra erstellt und bindet das Paket \
                            Buzzwords/thered,
                            Daten-Direktiven/tealblue!60!black%
                            } {
-            \item[\cs@show{\l}] \cs@lslave{\c}{\l}
+            \item[\csXshow{\l}] \csXlslave{\c}{\l}
         }
     \end{itemize}
 \end{multicols}
@@ -124,7 +124,7 @@ Definiert bis auf die Option \T{sensitive} die selben Dinge wie \T{pseudo} und i
 {\centering \framebox{Definitionen aus der Datei: \T{Listings/Languages/\_LILLY\_LANG\_bash}}\vspace*{0.5\baselineskip}\par}
 
 Dieser Stil wurde für die Dokumentation erstellt und wird mit ihr erweitert und verfeinert. Es ist davon auszugehen, dass alle in dieser Dokumentation verwendeten Befehle zur Verfügung stehen. Bei Bedarf kann dieses Paket gerne erweitert und ausgebaut werden. Bisher definiert es Befehle wie: \T{mkdir, texhash, make, apt}, Parameter wie \T{-p, -dir, print, install} und Dokumentbezeichnern wie: \T{lilly\_compile.sh, sudo}. \begin{center}
-    FunFact: Für Variablen mit \$ wird die Farbe \emph{antiVeg} verwendet (\cs@show{antiVeg} - \#BEEEEF)
+    FunFact: Für Variablen mit \$ wird die Farbe \emph{antiVeg} verwendet (\csXshow{antiVeg} - \#BEEEEF)
 \end{center}
 
 \subsection{latex}
@@ -140,7 +140,7 @@ Dieser Stil wurde ebenfalls für die Dokumentation erstellt und wird genauso erw
                            Umgebungen/Ao//,
                            Kommentare/gray//%
                            } {
-            \item[{\cs@show[\f]{\l}}] \cs@lslave{\c}{\l\ifthenelse{\equal{\a}{}}{}{~-~\a}}
+            \item[{\csXshow[\f]{\l}}] \csXlslave{\c}{\l\ifthenelse{\equal{\a}{}}{}{~-~\a}}
         }
     \end{itemize}
 \end{multicols}

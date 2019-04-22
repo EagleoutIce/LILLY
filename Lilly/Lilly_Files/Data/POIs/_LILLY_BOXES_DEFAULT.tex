@@ -1,119 +1,64 @@
 %%% TITEL TITLEPREFIX OPTIONAL-CONTROLLERS 
 
-
-\tcbset{LillyxBOXxDesignxDefault/.style={enhanced jigsaw, pad before break*=2mm, pad after break=2mm, % 
-lines before break=4, before skip=0pt, boxrule = 0mm, toprule=0.5mm, % 
-bottomtitle=0.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=\baselineskip, enlarge bottom by=\baselineskip, sharp corners=south, enforce breakable}}
-
-%%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
+%% Dies ist die renew umgebung um default boxen zu forcieren auch wenn eine andere option gesetzt wurde
 
 %%% Die Definition-Box: 
-\ifx\LILLYxBOXxDefinitionxLock\true
-\DeclareTColorBox[auto counter]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
+
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
 title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
-\DeclareTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
 title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
-\else
-\DeclareTColorBox[auto counter, number within=\LILLYxBOXxDefinitionxLock]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
-colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
-}
-\DeclareTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
-colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
-}
-\fi
 
 
 %%% Die Beispiel-Box: 
-\ifx\LILLYxBOXxBeispielxLock\true
-\DeclareTColorBox[auto counter]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
+\RenewTColorBox[use counter from=LILLYxBOXxBeispiel]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBeispiel!5!white, colframe=\LILLYxColorxBeispiel, #3,%
 title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}}%
 }
-\else
-\DeclareTColorBox[auto counter, number within=\LILLYxBOXxBeispielxLock]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
-colback=\LILLYxColorxBeispiel!5!white, colframe=\LILLYxColorxBeispiel, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}}%
-}
-\fi
 
 
 %%% Die Bemerkung-Box: 
-\ifx\LILLYxBOXxBemerkungxLock\true
-\DeclareTColorBox[auto counter]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
+\RenewTColorBox[use counter from=LILLYxBOXxBemerkung]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBemerkung!5!white, colframe=\LILLYxColorxBemerkung, #3,%
 title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
-\else
-\DeclareTColorBox[auto counter, number within=\LILLYxBOXxBemerkungxLock]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
-colback=\LILLYxColorxBemerkung!5!white, colframe=\LILLYxColorxBemerkung, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
-}
-\fi
+
 
 
 %%% Die Satz-Box: 
-\ifx\LILLYxBOXxSatzxLock\true
-\DeclareTColorBox[auto counter]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
+\RenewTColorBox[use counter from=LILLYxBOXxSatz]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxSatz!5!white, colframe=\LILLYxColorxSatz, #3,%
 title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
-\else
-\DeclareTColorBox[auto counter, number within=\LILLYxBOXxSatzxLock]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
-colback=\LILLYxColorxSatz!5!white, colframe=\LILLYxColorxSatz, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
-}
-\fi
 
 
 %%% Die Beweis-Box: 
-\ifx\LILLYxBOXxBeweisxLock\true
-\DeclareTColorBox[auto counter]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
+\RenewTColorBox[use counter from=LILLYxBOXxBeweis]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxBeweis!5!white, colframe=\LILLYxColorxBeweis, #3,%
 title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
-\else
-\DeclareTColorBox[auto counter, number within=\LILLYxBOXxBeweisxLock]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
-colback=\LILLYxColorxBeweis!5!white, colframe=\LILLYxColorxBeweis, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
-}
-\fi
 
 
 %%% Die Lemma-Box:
-\ifx\LILLYxBOXxLemmaxLock\true
-\DeclareTColorBox[auto counter]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
+\RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxLemma!5!white, colframe=\LILLYxColorxLemma, #3,%
 title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
-\else
-\DeclareTColorBox[auto counter, number within=\LILLYxBOXxLemmaxLock]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
-colback=\LILLYxColorxLemma!5!white, colframe=\LILLYxColorxLemma, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
-}
-\fi
 
 %%% Die Zusammenfassung-Box:
-\ifx\LILLYxBOXxZusammenfassungxLock\true
-\DeclareTColorBox[auto counter]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
+\RenewTColorBox[use counter from=LILLYxBOXxZusammenfassung]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxZusammenfassung!5!white, colframe=\LILLYxColorxZusammenfassung, #3,%
 title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
-\else
-\DeclareTColorBox[auto counter, number within=\LILLYxBOXxZusammenfassungxLock]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
-colback=\LILLYxColorxZusammenfassung!5!white, colframe=\LILLYxColorxZusammenfassung, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
-}
-\fi
+
 
 
 %%sloppy - fix => MAKE ALL BOXES ENVIRONMENTS AND PROVIDE OLD COMMAND STYLE AS COMPAT FEATURE TODO:
-\DeclareTColorBox{LILLYxBOXxAufgabe}{O{} O{} O{}}{enforce breakable, %enforce breakable für: Mehr Seiten
+\RenewTColorBox{LILLYxBOXxAufgabe}{O{} O{} O{}}{enforce breakable, %enforce breakable für: Mehr Seiten
     enhanced jigsaw, before skip=2mm,after skip=2mm,
     colback=white,colframe=black!50,boxrule=0.2mm,
     attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
@@ -138,6 +83,6 @@ title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill 
     title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}, %Aufgabe
 }
 
-\DeclareTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}}{enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm, colback=white,colframe=black!50,boxrule=0.2mm,fonttitle=\bfseries, #3,title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}}
+\RenewTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}}{enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm, colback=white,colframe=black!50,boxrule=0.2mm,fonttitle=\bfseries, #3,title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}}
 
 

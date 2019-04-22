@@ -1,46 +1,112 @@
 \chapter{Einleitung}
 \TitleSUB{Integrieren von LILLY -- Die Grundlagen von A-Z}
 \section{Installieren von Lilly}
-\LILLYxNOTExVersion{1.0.7}Aktuell kommt die Dokumentklasse ohne \T{.ins} oder \T{.dtx} Datei und besitzt keinen Installer - Jaaay \Smiley. Deswegen gibt es im folgenden Erklärungen für die manuelle Installation!
+\LILLYxNOTExVersion{1.0.8}Aktuell kommt die Dokumentklasse ohne \T{.ins} oder \T{.dtx} Datei, dafür allerdings mit einem Installer für alle Debian (Linux) basierten Betriebsysteme und für MacOSX wobei letzerer bisher nur in einer
+\emph{light}-Variante zur Verfügung steht.
+
 \begin{bemerkung}[Mithilfe]
-    Wenn du dich mit \TeX{} oder \LaTeX{} auskennst, schreibe an folgende Email-Adresse \T{\AUTHORMAIL} (Ein Repository wird aktuell eingerichtet).
+    Wenn du dich mit \TeX{} oder \LaTeX{} auskennst, schreibe an folgende Email-Adresse \T{\AUTHORMAIL}.\smallskip\newline
+    Mittlerweile gibt es auch ein offizielles Github-Repository (\url{https://github.com/EagleoutIce/LILLY} \href{https://github.com/EagleoutIce/LILLY}{\faGithub})
+    über das die gesamte Entwicklung abläuft. Hier werden noch Helfer für folgende Aufgaben gesucht:
+    \begin{multicols}{2}
+        \begin{itemize}[label=$\diamond$]
+            \item C++11/C++14 - Entwicklung
+            \item Makefile/Bash - Entwicklung
+            \item Kommentieren in Markdown
+            \item Maintainig (\TeX, \LaTeX)
+            \item Kommentieren in Doxygen
+            \item Layout Gestaltung
+            \item \TeX, \LaTeX{} -Entwicklung
+            \item Tester (\faLinux, \faApple, \faWindows)
+        \end{itemize}
+    \end{multicols}
 \end{bemerkung}
 
 \subsection{Linux}
-\LILLYxNOTExVersion{1.0.0}Da LILLY komplett auf einem Linux-Betriebsystem entwickelt wurde, gestaltet sich die Implementierung relativ einfach. 
-Zuerst gilt es einen neuen Ordner zu erstellen\marginpar{\tiny  Es wird \emph{nicht} auf die Semantik einzelner Befehle eingegangen! Copy\&Paste ist doof, tippen! ;)}:
+\begin{center}
+    Für Versionen < 1.0.8 klicke hier: \jmark[klick mich]{jmp:oldInstallLinux}!
+\end{center}
+\LILLYxNOTExVersion{1.0.8}Da LILLY komplett auf einem Linux-Betriebsystem entwickelt wurde, gestaltet sich die Implementierung relativ einfach. 
+Hierzu nutzen wir das Hilfsprogramm \Jake welches selbst in C++ geschrieben wurde. 
+Im Folgendenen sind die Schritte kurz erklärt. 
+\paragraph{Installation von \Jake:}Eine ausführliche Erklärung von \Jake selbst findest sich weiter hinten (\jmark[hier]{jmp:iJake}) in dieser Dokumentation:\smallskip
+\marginpar{\tiny Für ausführliche Informationen zur Installation konsultiere bitte die README-Datei in: 
+\url{../Lilly/Jake/jake_source/README.md}. \newline
+Für Informationen zur Nutzung konsultiere: \url{../Lilly/Jake/README.md}}
+\begin{enumerate}\setlength{\itemsep}{0.25\baselineskip}
+    \item Navigiere mit dem Terminal in das Verzeichnis: \verb|Lilly/Jake/jake_source|
+    \item Führe nun \verb|make| aus um \Jake zu kompilieren. 
+          Es wird vermutlich kurz dauern, aber danach wird dir das Programm \LJake zur Verfügung stehen.
+    \item Nun kannst du dein Terminal neu starten und von überall her \verb|lilly_jake install| aufrufen.
+          Dies sollte den Installationsprozess in Gang setzen.\smallskip
+\end{enumerate}
+Sollte das Ganze fehlerfrei verlaufen sein, dann: Glückwunsch, du hast Lilly erfolgreich installiert!
+Betrachte im Falle eines Fehlers bitte erst die Readme-Dateien und die bereits beantworteten Fehler
+auf Github (\href{https://github.com/EagleoutIce/LILLY/issues}{\faGithub}) bevor du einen neuen Fehler
+eröffnest oder mir eine Nachricht schreibst \Smiley.
+\paragraph{Erstellen eines Makefiles:}
+Nun möchtest du natürlich auch ausprobieren ob die Installation funktioniert hat. 
+Hierzu kannst du in das Testverzeichnis navigieren (\verb|Lilly/Jake/tests|). 
+Hier befinden sich eine Menge Dateien die in dieser Dokumentation auch als Beispiele benutzt werden.
+Du gibst nun folgendes in die Konsole ein: 
 \begin{lstlisting}[style=bash]
-mkdir -p "${HOME}/texmf/tex/latex/"
+lilly_jake test.tex
 \end{lstlisting}
-In diesen Ordner (wenn nicht sogar bereits existent) kann nun der gesamte \T{Lilly}-Ordner verschoben werden (oder mithilfe eines symbolischen Links verknüpft). Als letztes muss man nun noch \TeX{} über das neue Verzeichnis informieren:\marginpar{\tiny  Dies sichert uns die Persistenz des Pakets im Falle einer Neuinstallation/Updates von \LaTeX}
+\Jake erstellt nun ein entsprechendes Makefile für dich, welches du nun ausführen kannst:
 \begin{lstlisting}[style=bash]
-texhash "${HOME}/texmf"
+make 
 \end{lstlisting}
-
-Nun gilt es sich den anderen mitgelieferten Dateien zu widmen! Von besonderer Relevanz ist hierbei \T{lilly\_compile.sh}, welches hier ausführlicher beschrieben wird(TODO: LINK). Grundlegend generiert es ein Makefile, das dann zum Kompilieren des Dokuments gedacht ist!\newline
-Mithilfe von folgendem Befehl wurde das Makefile für diese Dokumentation generiert:
-\begin{lstlisting}[style=bash]
-*\textcolor{white}{\bfseries \T{./}}*lilly_compile.sh "Lilly-Dokumentation.doc.tex" \
-                 -dir="Dokumentation/"
-\end{lstlisting}
-\LILLYxNOTExVersion{1.0.2}Hierbei wird das Makefile gemäß folgenden Regeln erzeugt:
-\begin{itemize}[label=$\diamond$]\narrowitems
-    \item Es soll die tex-Datei: \say{Lilly-Dokumentation.doc.tex} kompiliert werden.\marginpar{\tiny  Dies muss nicht sein siehe hierfür (TODO) idir und odir}
-    \item Das ganze soll (relativ zu \T{lilly\_compile.sh}) im Verzeichnis \T{Dokumentation} stattfinden - hier wird ebenfalls das Makefile generiert. \marginpar{\vspace*{2em}\tiny  Es wird mit den Regeln \T{default, all} und \T{clean} generiert, selbstredend lässt sich dies erweitern}\begin{bemerkung}[make]
-        Logischerweise muss damit auch \T{make} auf dem System vorhanden sein:
+Im standartmäßig konfigurierten Ausgabe-Ordner \verb|test-OUT| befindet sich nun eine entsprechende PDF
+Datei \Smiley.\smallskip
+\begin{bemerkung}[make]
+    Logischerweise muss damit auch \T{make} auf dem System vorhanden sein:
 \begin{lstlisting}[style=bash]
 sudo apt install "make"
 \end{lstlisting}
-    \end{bemerkung}
-\end{itemize}
-Mit diesem Makefile kann man nun das Dokument generieren lassen. Zu beachten sei hierbei, dass \T{make} - im Falle der Regel \T{all} - Regeln parallel ausführen wird! \newline
-\marginpar{\tiny  Die Anführungszeichen dienen hier und in anderen Codebeispielen lediglich zur Übersicht!}Diese Dokumentation wurde mit folgendem Befehl erstellt:
-\begin{lstlisting}[style=bash]
-make "BOXMODE=LIMERENCE"
-\end{lstlisting}
-Hierbei lässt sich ebenfalls erkennen wie sich noch mit dem Makefile einzelne Komponenten (wie das verwendete Boxdesign) ändern lassen!
+\end{bemerkung}
+
 \subsection{Windows \LILLYxNOTExWarning{Ausstehend}}
-\subsection{MacOSX \LILLYxNOTExWarning{Ausstehend}}
+\subsection{MacOS}
+\begin{center}
+    Entspricht, dank \Jake, der Linux-Installation.
+\end{center}
+Hierzu nutzen wir das Hilfsprogramm \Jake welches selbst in C++ geschrieben wurde. 
+Im Folgendenen sind die Schritte kurz erklärt. 
+\paragraph{Installation von \Jake:}Eine ausführliche Erklärung von \Jake selbst findest sich weiter hinten (TODO: LINK) in dieser Dokumentation:\smallskip
+\marginpar{\tiny Für ausführliche Informationen zur Installation konsultiere bitte die README-Datei in: 
+\url{../Lilly/Jake/jake_source/README.md}. \newline
+Für Informationen zur Nutzung konsultiere: \url{../Lilly/Jake/README.md}}
+\begin{enumerate}\setlength{\itemsep}{0.25\baselineskip}
+    \item Navigiere mit dem Terminal in das Verzeichnis: \verb|Lilly/Jake/jake_source|
+    \item Führe nun \verb|make| aus um \Jake zu kompilieren. 
+          Es wird vermutlich kurz dauern, aber danach wird dir das Programm \LJake zur Verfügung stehen.
+    \item Nun kannst du dein Terminal neu starten und von überall her \verb|lilly_jake install| aufrufen.
+          Dies sollte den Installationsprozess in Gang setzen.\smallskip
+\end{enumerate}
+Sollte das Ganze fehlerfrei verlaufen sein, dann: Glückwunsch, du hast Lilly erfolgreich installiert!
+Betrachte im Falle eines Fehlers bitte erst die Readme-Dateien und die bereits beantworteten Fehler
+auf Github (\href{https://github.com/EagleoutIce/LILLY/issues}{\faGithub}) bevor du einen neuen Fehler
+eröffnest oder mir eine Nachricht schreibst \Smiley.
+\paragraph{Erstellen eines Makefiles:}
+Nun möchtest du natürlich auch ausprobieren ob die Installation funktioniert hat. 
+Hierzu kannst du in das Testverzeichnis navigieren (\verb|Lilly/Jake/tests|). 
+Hier befinden sich eine Menge Dateien die in dieser Dokumentation auch als Beispiele benutzt werden.
+Du gibst nun folgendes in die Konsole ein: 
+\begin{lstlisting}[style=bash]
+lilly_jake test.tex
+\end{lstlisting}
+\Jake erstellt nun ein entsprechendes Makefile für dich, welches du nun ausführen kannst:
+\begin{lstlisting}[style=bash]
+make 
+\end{lstlisting}
+Im standartmäßig konfigurierten Ausgabe-Ordner \verb|test-OUT| befindet sich nun eine entsprechende PDF
+Datei \Smiley.\smallskip
+\begin{bemerkung}[make]
+    Logischerweise muss damit auch \T{make} auf dem System vorhanden sein:
+\begin{lstlisting}[style=bash]
+sudo apt install "make"
+\end{lstlisting}
+\end{bemerkung}
 
 \subsection{Keine Installation}
 \begin{bemerkung}
@@ -54,27 +120,35 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
 \begin{lstlisting}[style=latex]
 \documentclass[Typ=Dokumentation]{Lilly} 
 \end{lstlisting}
-\LILLYxNOTExVersion{1.0.7}Für den Typ gibt es hierfür 3 Optionen:
-\begin{multicols}{3}
+\LILLYxNOTExVersion{1.0.7}Für den Typ gibt es hierfür 4 Optionen:
+\begin{multicols}{2}
     \begin{itemize}[label=$\diamond$]\narrowitems
         \item Dokumentation
         \item Mitschrieb
         \item Uebungsblatt
+        \item Zusammenfassung
     \end{itemize}
 \end{multicols}
-\marginpar{\tiny \bfseries TODO}Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
-So benötigt \emph{Mitschrieb} noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester}\marginpar{\tiny  Semester ist standartmäßig 1} gemäß:
+Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
+So benötigt \verb|Mitschrieb| noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester}\marginpar{\tiny  Semester ist standartmäßig 1} gemäß:
 \begin{lstlisting}[style=latex,frame=none]
 \input{Lilly_Files/Data/Semster/\LILLY@Semster/Definitions/
        \LILLY@Vorlesung}
 \end{lstlisting}
-die für die jeweilige Vorlesung definierten Daten lädt (TODO: SIEHE DEFINITIONS).
+die für die jeweilige Vorlesung definierten Daten lädt.
+Erklärungen für die geladenen Daten befinden sich in den jeweiligen README-Dateien:
+\begin{description}
+    \item[1. Semster] \url{../Lilly/Lilly_Files/Data/Semster/1/Readme.md}
+    \item[2. Semster] \url{../Lilly/Lilly_Files/Data/Semster/2/Readme.md}
+\end{description}
+
+
 Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semster} sowie noch die optionale Option (tihihi) \T{n} die angibt, um das wievielte Übungsblatt es sich handelt. \\
-Im Folgenden wird angenommen der Typ Mitschrieb ist gewählt - für ausführliche Informationen siehe (LINK \LILLYxNOTExWarning{Kommt}).
-Nun stehen alle grundlegenden Befehle zur Verfügung.\marginpar{\tiny  Es wird versucht die Befehle für jeden Typ identisch zu deklarieren!} Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert!
+
+Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert!
+
 \subsection[Wie funktionieren Boxen]{Die Böxli}
-Jede Box besteht als Environment und bringt (leider noch) ihren eigenen Counter mit (einzige Ausnahme: Übungsblätter mit Aufgaben).
-Sie lassen sich wie folgt benutzen:
+Jede Box besteht als Environment und lässt sich wie folgt nutzen: 
 \begin{multicols}{2}
 \begin{definition*}[Titel]
     Hallo Welt
@@ -154,6 +228,10 @@ Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeu
 \clearpage
 \newcommand{\printmark}[2][Linkname]{\ensuremath{\text{#1}^{\rightarrow~\text{\pageref{#2}}}}}
 
+
+
+
+
 \subsection{Hyperlinks}
 \LILLYxNOTExVersion{1.0.0}\elable{mrk:Hey}Eine Sprungmarke innerhalb eines Dokuments lässt sich mit:
 \begin{lstlisting}[style=latex]
@@ -173,13 +251,23 @@ Siehe hier: \jmark[Klick mich]{mrk:Hey} (Wenn Druck: \printmark[Klick mich]{mrk:
 \end{lstlisting}
 und erzeugt damit: \hmark[Klick mich]{mrk:Hey}. 
 
+
+
+
+
 \section{Einbinden von weiteren Dokumenten}
 \subsection{Aufgliedern eines Dokuments}
-\LILLYxNOTExVersion{1.0.4}Um Dokumente portabel kompilierbar zu machen, setzt das Makefile gemäß der Konfiguration \verb|\LILLYxPATH| (hier: \T{\LILLYxPATH}). Nun lässt sich mithilfe des Befehls \T{\textbf{\textbackslash linput}\{<Pfad>\}} eine Datei relativ zur Quelldatei angeben (beachte, dass absolute Pfade bei \T{\textbf{\textbackslash linput}} keinen Sinn machen. Siehe hierzu: TODO LINK).
+\LILLYxNOTExVersion{1.0.4}Um Dokumente portabel kompilierbar zu machen, setzt das Makefile gemäß der Konfiguration \verb|\LILLYxPATH| (hier: \say{\T{\LILLYxPATH}}). Nun lässt sich mithilfe des Befehls \T{\textbf{\textbackslash linput}\{<Pfad>\}} eine Datei relativ zur Quelldatei angeben (beachte, dass absolute Pfade bei \T{\textbf{\textbackslash linput}} keinen Sinn machen. Hierfür solltest du weiterhin \verb|\input| verwenden).\newline
 Zudem lässt sich damit über \T{\textbf{\textbackslash LILLYxDOC\-UM\-ENTxSUB\-NAME}} der Name der zuletzt eingebundenen Datei (\T{\LILLYxDOCUMENTxSUBNAME}) abfragen.\newline
-\LILLYxNOTExVersion{1.0.7}Weiter gilt zu beachten, dass es \emph{nicht} möglich ist, das klassische \verb|\include| zu verwenden! Dieser Befehl wird aber von LILLY deswegen direkt entsprechend erneuert (hierzu wird das klassische Latex \verb|\input| im Zusammenspiel mit \verb|\clearpage| verwendet, nicht LILLYs \T{\textbf{\textbackslash linput}}!).
+\LILLYxNOTExVersion{1.0.7}Weiter gilt zu beachten, dass es \emph{nicht} möglich ist, das klassische \verb|\include| zu verwenden! Dieser Befehl wird aber von LILLY deswegen direkt entsprechend erneuert (hierzu wird das klassische Latex \verb|\input| im Zusammenspiel mit \verb|\clearpage| verwendet, nicht LILLYs \T{\textbf{\textbackslash linput}}!). Es ist also im Endeffekt doch möglich Dokumente mit \verb|\include| 
+zu verwenden.
+
+
+
+
+
 \subsection{Übungsblätter}
-\marginpar{\tiny Aktuell wird daran gearbeitet eine \T{make}-Regel für Übungsblätter zu integrieren}Da es von Bedeutung war Übungsblätter so zu erstellen, dass die Abgaben direkt (passend formatiert) in die Mitschrift eingebunden werden können,\marginpar{\tiny \vspace*{2em}\tiny Die Verwendung von \T{\textbackslash tcblower} ist noch in arbeit} gibt es hierfür eine einfache Möglichkeit:\marginpar{\vspace*{1em} \tiny Es gibt auch eine Umgebung mit * und gleichermaßen \T{\textbf{\textbackslash inputUBS}}. Diese setzen den Zähler für die Aufgaben \emph{nicht} zurück!}
+\marginpar{\tiny Aktuell wird daran gearbeitet eine \T{make}-Regel für Übungsblätter zu integrieren}Da es von Bedeutung war Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können,\marginpar{\tiny \vspace*{2em}\tiny Die Verwendung von \T{\textbackslash tcblower} ist noch in arbeit} gibt es hierfür eine einfache Möglichkeit:\marginpar{\vspace*{1em} \tiny Es gibt auch eine Umgebung mit * und gleichermaßen \T{\textbf{\textbackslash inputUBS}}. Diese setzen den Zähler für die Aufgaben \emph{nicht} zurück!}
 \begin{lstlisting}[style=latex]
 %% \inputUB{<Name>}{<Nummer>}{<Pfad - linput>}
 \inputUB{Mengen}{1}{Aufgaben_Data/Uebungsblatt_1.tex} 
@@ -191,7 +279,7 @@ Zudem lässt sich damit über \T{\textbf{\textbackslash LILLYxDOC\-UM\-ENTxSUB\-
 \end{uebungsblatt}
 \newpage
 \end{lstlisting}
-Übungsblätter können gleich, wie alle anderen Boxen deaktiviert werden\marginpar{\tiny Hierfür gibt es dann noch TODO die Option noextra}.
+Übungsblätter sind nur in \textbf{complete}-Varianten Verfügbar! TODO LINK
 
 
 \clearpage
