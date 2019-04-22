@@ -115,5 +115,6 @@ std::vector<std::string> split(const std::string& str, char delim = ' ');
  */
 std::string create_buildrule(const std::string& name_type, const std::string& name_rule, 
                              const std::string& mode, bool complete=false, const std::string& name_addon="", 
-                             const std::string input_build=R"(\\input{$(INPUTDIR)$(TEXFILE)})"/*, const std::vector<std::string>& others*/) noexcept;
+                             const std::string& input_build=R"(\\input{$(INPUTDIR)$(TEXFILE)})",
+                             const std::string& l_comp_name = "COMPLETE-" /*, const std::vector<std::string>& others*/) noexcept;
 #endif

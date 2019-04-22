@@ -2,7 +2,27 @@
 
 %% Dieses Feature ist seinerseits mit dem Wechsel in Version 1.0.8 angsetzt
 
-\RequirePackage{pgfkeys}
+%% \RequirePackage{pgfkeys}
+\LILLYxDemandPackage{pgfkeys}{Damit wir angenehme kv-pairs haben}
+                    {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
+                    {}{}
+
+\LILLYxDemandPackage{wrapfig}{Falls wir es floating haben möchten :D}
+                    {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
+                    {}{}
+
+\makeatletter
+\LILLYxLoadPackage{placeins}{Halte Floatings auf (sub)section level konsistent}
+                    {Dieses Paket ist für Lilly nicht Lebensnotwendig}
+                    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                    {section}{\AtBeginDocument{%
+                    \expandafter\renewcommand\expandafter\subsection\expandafter
+                      {\expandafter\@fb@subsecFB\subsection}%
+                    \newcommand\@fb@subsecFB{\FloatBarrier
+                    \gdef\@fb@afterHsHook{\@fb@topbarrier \gdef\@fb@afterHsHook{}}}
+                    \g@addto@macro\@afterheading{\@fb@afterHsHook}
+                    \gdef\@fb@afterHsHook{} %% currently not working as excepted :P
+                 }}
 
 \pgfkeys { %
     /lillyxPlot/.is family, /lillyxPlot,
@@ -26,10 +46,10 @@
 
 \NewDocumentCommand{\plotline}{ O{Ao} O{\x} m }{\draw[domain=\lillyxPlotxMinX:\lillyxPlotxMaxX, smooth, variable=#2,#1] plot[samples=\lillyxPlotxSamples] ({#2}, {#3});}
 
-\DeclareDocumentEnvironment{graph}{ O{} O{} }{
-\pgfkeys{/lillyxPlot, defaults, #1}
-
-\begin{tikzpicture}[scale=\lillyxPlotxScale,#2]
+%%% [KEYS][TIKZPICTURE]
+\DeclareDocumentEnvironment{graph}{ O{} O{}}{
+\pgfkeys{/lillyxPlot, defaults, #1} %% Hier könnte graph wrapfigure support erhalten mit ifthenelse{\equal{#3}{}}{}{\wrapfigure{#3}{#4}} oder so
+\begingroup\begin{tikzpicture}[scale=\lillyxPlotxScale,#2]
     \draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset) 
             grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
 }{\draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0) 
@@ -38,4 +58,12 @@ node[right] {\lillyxPlotxLabelX};
 \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset) 
 -- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
 node[above] {\lillyxPlotxLabelY};
-\end{tikzpicture}}
+\end{tikzpicture}\endgroup}
+
+%% {POS}[PGFKEYS][TIKZKEYS][WIDTH][WRAPFIGOFF]
+\DeclareDocumentEnvironment{wgraph}{ m O{} O{}  O{0pt} O{}} {%
+\wrapfigure{#1}{#4}% as \begin{wrapfigure} will enforce break
+    \begin{graph}[#2][#3]}{%
+    \end{graph}#5%
+\endwrapfigure%
+}

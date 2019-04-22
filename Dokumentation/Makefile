@@ -1,52 +1,58 @@
-### 26.03.2019 21:42:55 - Generiertes Makefile (makefile) für Lilly
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 22 2019 at: 15:11:57)
 
-TEXFILE   = Lilly-Dokumentation.doc.tex## Alternativ: '$(shell ls *.tex)'
-PDFFILE   := $(addsuffix .pdf,$(basename $(TEXFILE)))
-LATEXARGS := -shell-escape -enable-write18 -interaction=batchmode
-OUTPUTDRIVER := 
-OUTPUTDIR = ./
-DEBUG := 
-NAMEPREFIX = 
-BOXMODE = ALTERNATE
-PRINTNAME = PRINT-
-COMPLETENAME = COMPLETE-
-INPUTDIR = ./
-CLEANTARGET = LILLY_clean
-JOBCOUNT = 2
-define LILLY_compile = 
-    @pdflatex -jobname $(basename ${1}) $(LATEXARGS) \\def\\LILLYxDummy{Hallo Welt}\\\providecommand{\\\LILLYxBOXxMODE}{$(BOXMODE)}\\\providecommand{\\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) ${2}\\\providecommand{\\\LILLYxPDFNAME}{${1}}\\\providecommand{\\\LILLYxPATH}{${INPUTDIR}} \\input{$(INPUTDIR)$(TEXFILE)} > $(OUTPUTDIR)LILLY_COMPILE.log
-    @pdflatex -jobname $(basename ${1}) $(LATEXARGS) \\def\\LILLYxDummy{Hallo Welt}\\\providecommand{\\\LILLYxBOXxMODE}{$(BOXMODE)}\\\providecommand{\\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) ${2} \\\providecommand{\\\LILLYxPDFNAME}{${1}}\\\providecommand{\\\LILLYxPATH}{${INPUTDIR}}\\input{$(INPUTDIR)$(TEXFILE)} >> $(OUTPUTDIR)LILLY_COMPILE.log
-    @pdflatex -jobname $(basename ${1}) $(OUTPUTDRIVER) $(LATEXARGS) \\def\\LILLYxDummy{Hallo Welt}\\\providecommand{\\\LILLYxBOXxMODE}{$(BOXMODE)}\\\providecommand{\\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) ${2}  \\\providecommand{\\\LILLYxPDFNAME}{${1}}\\\providecommand{\\\LILLYxPATH}{${INPUTDIR}}\\input{$(INPUTDIR)$(TEXFILE)}  >> $(OUTPUTDIR)LILLY_COMPILE.log
-    @## Lösche unbenötigte Dateien: (Kann durch '-no_clean' verhindert werden!)
-    $(call ${CLEANTARGET})
-    @echo "[38;2;102;250;0mGenerierierung von \"${1}\" abgeschlossen[m"
-endef
+TEXFILE      := Lilly-Dokumentation.doc.tex
+BASENAME     := $(basename $(TEXFILE))
+PDFFILE      := $(addsuffix .pdf,$(basename $(TEXFILE)))
+LATEXARGS    := -shell-escape -enable-write18 -interaction=batchmode
+## Directories used for INPUT and OUTPUT Files 
+OUTPUTDIR    := $(shell echo ./| sed 's:/*$$::')/
+INPUTDIR     := $(shell echo ./| sed 's:/*$$::')/
+BOXMODES     := LIMERENCE#                    ## Seperator: ' '
+CLEANTARGET  := LILLYxClean
+CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC DEFS
+NAMEPREFIX   :=                               ## Immer
+SEMESTER     := 1                             ## Übungsblatt
+VORLESUNG    := LAII                          ## Übungsblatt
+N            := 42                            ## Anzahl
+_C           := ,                             ## No Joke xD
+
+## Makefile/General settings
+_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}
+
+JOBCOUNT     := 2                             ## should: <= cpu/thread count!
+
+
+void = return 0;  
+
+
+LILLYxCompile = \
+    mkdir -p "$(OUTPUTDIR)" && \
+    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\
+    (for bm in $(BOXMODES); do \
+       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
+       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
+       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
+       echo "\033[38;2;102;250;0mGenerierierung von "${1}$${bm}-${2}" ($${bm}) abgeschlossen\033[m"; done &&\
+    $(call $(CLEANTARGET)) ) || (echo "\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\033[m"; return 1;)
+
+LILLYxClean = echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m" && \
+     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done
 
 
 default: $(INPUTDIR)$(TEXFILE)
-	@echo "[38;2;255;191;0mGeneriere Standart-Version($(BOXMODE)) der Latex-Datei: \"$(TEXFILE)\"...[m"
-	$(call LILLY_compile,$(OUTPUTDIR)$(NAMEPREFIX)$(PDFFILE),\\providecommand\\LILLYxMODE{default})
+	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
+	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
+
+c_default: $(INPUTDIR)$(TEXFILE)
+	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
+	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)COMPLETE-,$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{TRUE},"\\input{$(INPUTDIR)$(TEXFILE)}")
+
 
 all: $(INPUTDIR)$(TEXFILE)
-	@$(MAKE) -s --no-print-directory default CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
+	@$(MAKE) -s --no-print-directory default c_default  CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
 	@$(MAKE) -s --no-print-directory clean
-.PHONY: clean
 
-clean: 
-	$(call LILLY_clean)
+clean:
+	@$(call LILLYxClean)
 
-
-define LILLY_clean = 
-    @echo "[38;2;255;191;0m> Lösche temporäre Dateien...[m"
-    @rm -f $(OUTPUTDIR)*.log && rm -f $(OUTPUTDIR)*.aux && rm -f $(OUTPUTDIR)*.out
-    @rm -f $(OUTPUTDIR)*.ind && rm -f $(OUTPUTDIR)*.bbl && rm -f $(OUTPUTDIR)*.blg
-    @rm -f $(OUTPUTDIR)*.lof && rm -f $(OUTPUTDIR)*.lot && rm -f $(OUTPUTDIR)*.toc
-    @rm -f $(OUTPUTDIR)*.idx && rm -f $(OUTPUTDIR)*.acn && rm -f $(OUTPUTDIR)*.acr
-    @rm -f $(OUTPUTDIR)*.alg && rm -f $(OUTPUTDIR)*.glg && rm -f $(OUTPUTDIR)*.glo
-    @rm -f $(OUTPUTDIR)*.gls && rm -f $(OUTPUTDIR)*.fls && rm -f $(OUTPUTDIR)*.fdb_latexmk
-    @rm -f $(OUTPUTDIR)*.auxlock && rm -f $(OUTPUTDIR)*.md5 && rm -f $(OUTPUTDIR)*.DEFS
-    @rm -f $(OUTPUTDIR)*.SATZE && rm -f $(OUTPUTDIR)*.ZSM && rm -f $(OUTPUTDIR)*.UB
-    @rm -f $(OUTPUTDIR)*TOP && rm -f $(OUTPUTDIR)*.listing && rm -f $(OUTPUTDIR)*.upa
-endef 
-
-
+.PHONY: default c_default all clean

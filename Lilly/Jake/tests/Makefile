@@ -1,4 +1,4 @@
-# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 21 2019 at: 23:34:42)
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 22 2019 at: 14:06:49)
 
 TEXFILE      := test.tex
 BASENAME     := $(basename $(TEXFILE))
@@ -27,7 +27,7 @@ void = return 0;
 
 LILLYxCompile = \
     mkdir -p "$(OUTPUTDIR)" && \
-    echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\
+    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\
     (for bm in $(BOXMODES); do \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
@@ -43,9 +43,17 @@ default: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
 	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)MY-DEFAULT-,$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
 
+c_default: $(INPUTDIR)$(TEXFILE)
+	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
+	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)COMPLETE-MY-DEFAULT-,$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{TRUE},"\\input{$(INPUTDIR)$(TEXFILE)}")
+
 print: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Druck-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
 	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)MY-PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
+
+c_print: $(INPUTDIR)$(TEXFILE)
+	@echo "\033[38;2;255;191;0mGeneriere Druck-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
+	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)COMPLETE-MY-PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{TRUE},"\\input{$(INPUTDIR)$(TEXFILE)}")
 
 Waffel: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere DEMO-WAFFEL-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
@@ -53,10 +61,10 @@ Waffel: $(INPUTDIR)$(TEXFILE)
 
 
 all: $(INPUTDIR)$(TEXFILE)
-	@$(MAKE) -s --no-print-directory default print Waffel  CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
+	@$(MAKE) -s --no-print-directory default c_default print c_print Waffel c_Waffel  CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
 	@$(MAKE) -s --no-print-directory clean
 
 clean:
 	@$(call LILLYxClean)
 
-.PHONY: default print Waffel all clean
+.PHONY: default c_default print c_print Waffel c_Waffel all clean

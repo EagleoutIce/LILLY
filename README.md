@@ -4,13 +4,15 @@
 
 Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm betrieben, um die Realisierung von Skripten und Mitschriften in Latex zu vereinfachen.
 
-
 ## Wichtig
 
 Wenn du mitarbeiten möchtest ist das super, melde dich einfach bei mir! Allgemein gilt zu beachten: 
 Dieses Repository akzeptiert nur signed Commits: https://help.github.com/en/articles/signing-commits
 
 Wenn dir beim Schreiben ein To-Do einfällt, so markiere es einfach entsprechend mit `TODO` oder `@todo` im Code :D
+
+Die sich bisher in Arbeit befindende [Dokumentation](Dokumentation/LIMERENCE-Lilly-Dokumentation.doc.pdf) sollte noch mit
+vorsicht genossen werden :D Sie sollte dringend mal wieder aktualisiert werden :sweat_smile:!
 
 **Aktuelle Aufgabenfelder:**
 

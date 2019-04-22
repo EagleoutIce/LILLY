@@ -12,20 +12,22 @@ BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn ni
     ! Allerdings sollten erstmal nur Leerfelder verwendet werden !
     ! Mit X sind Zuweisungen markiert die verpflichtend sein sollen (aber nicht sind) !
 
-!X!  name            = default     ! buildrule name für lilly-modes !
+!X!  name                   = default     ! buildrule name für lilly-modes !
 
-!X!  display-name    = Standart    ! Anzeigename (Standart-Version) !
+!X!  display-name           = Standart    ! Anzeigename (Standart-Version) !
 
-!X!  lilly-mode      = default     ! Welcher Modus soll an Lilly übergeben werden? !
-                                   ! Info: Diese können noch nicht frei konfiguriert werden !
+!X!  lilly-mode             = default     ! Welcher Modus soll an Lilly übergeben werden? !
+                                          ! Info: Diese können noch nicht frei konfiguriert werden !
 
-    complete         = false       ! Keine complete-Version !
+    complete                = false       ! Keine complete-Version !
 
-    complete-prefix  = c_          ! Bezeichner wenn complete !
+    complete-prefix         = c_          ! Bezeichner wenn complete !
 
-    nameprefix       = MY-DEFAULT- ! Weicht vom normalen default ab !
+    nameprefix              = MY-DEFAULT- ! Weicht vom normalen default ab !
 
-    lilly-loader     = \\\\input{$(INPUTDIR)$(TEXFILE)}
+    lilly-complete-prefix   = COMPLETE-   ! Namenszusatz wenn complete Version (Default: COMPLETE-)!
+
+    lilly-loader            = \\\\input{$(INPUTDIR)$(TEXFILE)}
                     ! Diese Funktion ist advanced und beschreib die einbinde routine - einfach ignorieren !
 
 END; ! Semikolon wieder nicht nötig, aber ich mag es :D !
@@ -65,5 +67,6 @@ BEGIN buildrule:
 !X! display-name    = DEMO-WAFFEL
 !X! lilly-mode      = default
     nameprefix      = waffel-
-
+    complete-prefix = all_the_waffles_
+    lilly-complete-prefix = ALL-THE-WAFFLES-
 END;

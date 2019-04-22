@@ -5,9 +5,17 @@ Dieses Datenpaket benötigt die Option `LILLY@Semster=2` und wird *nur* über de
 ## Vorlesungen
 Es werden folgende Bezeichner über `LILLY@Vorlesung` zur Verfügung gestellt:
 
-**TODO**
+- **ANA1** - Analysis 1 für Inf. und Ing.   [Leiter: Prof. Dr. Jan-Willem Liebezeit, ÜBL: Müller]
+- **GDBS** - Grundlagen der Betriebssysteme [Leiter: ?, ÜBL: ?]
+- **PDP**  - Paradigmen der Programmierung  [Leiter: Prof. Dr. Alexander Raschke, ÜBL: Böhm]
+- **PVS**  - Programmierung von Systemen    [Leiter: ?, ÜBL: ?]
 
-Andere Bezeichner werden *nicht* beachtet. Die spezifikation wird genutzt für:
+Weiter werden noch die folgenden Proseminare ebenfalls über `LILLY@Vorlesung` akzeptiert:
+
+- **KNN**  - Proseminar: Künstliche neuerale Netze [Leiter: ?, TUT: ?]
+
+
+Andere Bezeichner werden *nicht* beachtet. Die Spezifikation wird genutzt für:
 
 - Mitschrieb (`LILLY@Typ=Mitschrieb`):
   - Generierung der Titelseite

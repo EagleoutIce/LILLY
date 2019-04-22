@@ -117,4 +117,51 @@
             Diese ist noch viel wichtiger sie gibt 42 mal so viel Punkte!
         \end{aufgabe}
 
+\chapter{Spezifische supertests}
+
+\section{Graphentests - wrapper }
+\subsection{nonfloating - default}
+    \begin{graph}
+        \plotline{\x*\x}
+    \end{graph}\lipsum[6-8]
+
+\subsection{as custom wrap}
+\begin{wrapfigure}{l}{0pt}
+    \begin{graph}
+        \plotline{\x*\x}
+    \end{graph}
+\end{wrapfigure}\lipsum[6-8]
+
+\subsection{as wrapper}
+
+        \begin{wgraph}{l}
+            \plotline[purple]{\x*\x}
+        \end{wgraph}\lipsum[6-8]
+
+\subsection{as wrapper with enforced wrongwidth}
+        \begin{wgraph}{l}[][][1cm]
+            \plotline[Ao]{\x*\x}
+        \end{wgraph}\lipsum[6-8]
+
+\subsection{Beispiel mit externem caption}
+        \begin{wgraph}{l}[][][0pt][\caption{Wichtiger Graph}]
+            \plotline[Azure]{\x*\x}
+        \end{wgraph}\lipsum[6-8]
+
+\clearpage
+\section{Graphentests - floats}
+    \subsection{as float}
+    \begin{wgraph}{L}[][]
+        \plotline[Veronica]{\x*\x}
+    \end{wgraph}\lipsum[6-8]
+
+\subsection{as float with enforced wrongwidth}
+    \begin{wgraph}{L}[][][1cm]
+        \plotline[Amber]{\x*\x}
+    \end{wgraph}\lipsum[6-8]
+
+\subsection{Beispiel mit externem caption}
+    \begin{wgraph}{L}[][][0pt][\caption{Wichtiger Graph}]
+        \plotline[Aureolin]{\x*\x}
+    \end{wgraph}\lipsum[6-8]
 \end{document}  

@@ -28,11 +28,12 @@ status_t fkt_goptions(const std::string& cmd) noexcept {
 }
 
 status_t fkt_dump(const std::string& cmd) noexcept {
-    std::cout << "Settings Dump: " << std::endl;
+    std::cout << "Settings Dump: " << std::endl
+              << "Information: Die '[' ']' gehören jeweils nicht zum Wert, sie dienen lediglich der Übersicht!" << std::endl;
     settings_t::iterator it = settings.begin();
     while(it != settings.end()){ // iterate over all settings
         // simple padding without <iomanip> std::setw
-        std::cout << it->first << ": " << std::string(20-it->first.length(),' ') << STY_PARAM << it->second << COL_RESET << std::endl;
+        std::cout << it->first << ": " << std::string(20-it->first.length(),' ') << STY_PARAM << "[" << it->second << "]" << COL_RESET << std::endl;
         ++it;
     }
     return EXIT_SUCCESS;
@@ -155,7 +156,7 @@ status_t fkt_compile(const std::string& cmd) {
 #endif
     //clean log
 
-    buf_makefile << R"(    echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
+    buf_makefile << R"(    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
                  << "    (for bm in $(BOXMODES); do \\" << std::endl;
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
         buf_makefile << "       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}} )" << " ${3} $(_LILLYARGS) ${4}" << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
@@ -182,6 +183,8 @@ status_t fkt_compile(const std::string& cmd) {
     for(std::string s : split(settings[S_LILLY_MODES] /* => buildrule_names*/)) {
         if(b_rules.find(s) != b_rules.end()){
             buf_makefile << b_rules[s] << std::endl << std::endl;
+            if(settings[S_LILLY_COMPLETE] == "true" && b_rules.find("c_" + s) != b_rules.end())
+                buf_makefile << b_rules["c_" + s] << std::endl << std::endl;
             added_rules += s + " ";
         } else 
             std::cerr << COL_ERROR << "    Der spezifizierte Build-Modus: \"" << s << "\" steht leider nicht zur Verfügung!" << COL_RESET << std::endl;
