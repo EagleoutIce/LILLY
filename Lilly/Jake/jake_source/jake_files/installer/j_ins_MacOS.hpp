@@ -1,10 +1,10 @@
 #ifndef _J_INS_MACOS_HPP
-#define _J_INS_MACOS_HPP 10007
+#define _J_INS_MACOS_HPP 10008
 
 /**
  * @file j_ins_Linux.hpp
  * @author Florian Sihler
- * @version 1.0.7
+ * @version 1.0.8
  *
  * @brief Verwaltet die Installation für MacOS Systeme
  */

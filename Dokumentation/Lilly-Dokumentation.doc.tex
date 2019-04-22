@@ -1,11 +1,11 @@
 \providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
 \documentclass[Typ=Dokumentation]{Lilly} 
-%% TODO: Einbauen von simpleren Makros für nur: [Dokumentation]
+%% TODO Einbauen von simpleren Makros für nur: [Dokumentation]
 %\tcbuselibrary{documentation}
 \usepackage[subject={TestTip},author={EagleoutIce},version=1]{pdfcomment}
 
 
-%%TODO:: INCLUDE TITLE-Control in lilly
+%%TODO INCLUDE TITLE-Control in lilly
 
 %%Move \Lilly to Lilly :D
 
@@ -51,6 +51,14 @@
 \LILLYcommand{\Lilly}{\kfont{Lilly}}
 \robustify{\LILLYxNOTExVersion}
 
+\usepackage{aurical}
+\newcommand{\Jake}[1][~]{\begingroup\Fontauri Jake#1\endgroup}
+\newcommand{\LJake}[1][~]{\begingroup\T|lilly\_jake|\endgroup#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dokumentation                                                                                                       %     %%%% DOC %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
 \begin{document}
 \LILLYxLayoutxClear
     \linput{Data/Title.doc}
@@ -65,7 +73,13 @@
 \linput{Data/Farben.doc}
 \linput{Data/Listings.doc}
 \linput{Data/Boxen.doc}
+\linput{Data/Jake.doc}
 
 
 \linput{Data/Aussicht.doc}
+\normalmarginpar\par
+\chapter{Anhang}
+\TitleSUB{Veraltete Dokumente, Zusätzliches, Easter-Eggs, \ldots}
+\linput{Data/Old/Ver10007.doc.old}
+
 \end{document}

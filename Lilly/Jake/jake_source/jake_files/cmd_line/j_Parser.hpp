@@ -1,10 +1,10 @@
 #ifndef _J_PARSER_HPP_
-#define _J_PARSER_HPP_ 10007
+#define _J_PARSER_HPP_ 10008
 
 /**
  * @file j_Parser.hpp
  * @author Florian Sihler
- * @version 1.0.7
+ * @version 1.0.8
  * 
  * @brief Verwaltet das Laden der Einstellungen auf Basis der Kommandozeilenargumente
  */

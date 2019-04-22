@@ -1,10 +1,10 @@
 #ifndef _J_TYPEDEFS_HPP_
-#define _J_TYPEDEFS_HPP_ 10007
+#define _J_TYPEDEFS_HPP_ 10008
 
 /**
  * @file j_Typedefs.hpp
  * @author Florian Sihler
- * @version 1.0.7
+ * @version 1.0.8
  * 
  * @brief Diverse abkürzende Typdefinitionen
  */

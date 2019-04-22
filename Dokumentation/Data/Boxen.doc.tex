@@ -143,13 +143,13 @@ Für bisher leider noch nicht alle Boxen wird zudem der Befehl: \CMDpreview{LILL
 Setzt man den Wert auf \T{FALSE} so wird das sogenannte \T{plain}-Design angewendet, welches jedes Design wieder selbst definieren kann! (TODO: custom Box counters).\newline
 Zudem existieren aus Kompatibilitätsgründen auch noch die alten Befehle aus dem \T{eagleStudiPackage}: \CMDpreview[(2)]{DEF}, \CMDpreview[(2)]{BEM}, \ENVpar{task}\T{task},\ldots\medskip\newline
 Mit \LILLYxBOXxVersion{\small 1.0.3} wurden in LILLY zudem Kurzbefehle für das Einbinden von Übungsblättern integiert:
-\CMDpreview[(3)]{inputUB} (mit Signatur: \verb|{Name}{Nummer}{Pfad}|) und \CMDpreview[(3)]{inputUBS} (analog für \T{uebungsblatt*})
+\CMDpreview[(3)]{inputUB} (mit Signatur: \verb|{Name}{Nummer}{Pfad}|) und \CMDpreview[(3)]{inputUBS} (analog für \T{uebungsblatt*})\normalfont
 
 \section{Die Boxmodi}
 \subsection{Default-Design}
 Mit \LILLYxBOXxVersion{\small 1.0.0} stellt dieses Design den Urvater dar. Im Folgenden wird auf die genaue Implementation eingegangen:\newline
 Auf Basis des Pakets \T{tcolorbox} definiert LILLY das Design \T{LillyxBOXxDesignxDefault} - auf das Großschreiben von Lilly wurde hier bewusst verzichtet - mit folgender Implementation:
-{\scriptsize\begin{lstlisting}[style=latex]
+{\begin{lstlisting}[style=latex]
 \tcbset{LillyxBOXxDesignxDefault/.style={enhanced jigsaw, pad before break*=2mm %
     pad after break=2mm, lines before break=4, before skip=0pt, boxrule = 0mm, toprule=0.5mm,% 
     bottomtitle=0.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=\baselineskip,%
@@ -157,7 +157,7 @@ Auf Basis des Pakets \T{tcolorbox} definiert LILLY das Design \T{LillyxBOXxDesig
 }
 \end{lstlisting}}
 Bisher definiert LILLY die Counter über die Einstellung \verb|auto counter| - dies soll aber bald auf das vom eagleStudiPackage Package verwendete \T{counter}-Verfahren umgestellt werden. Bis dato sieht eine exemplarische Definition einer Box wie folgt aus:
-{\scriptsize\begin{lstlisting}[style=latex]
+{\begin{lstlisting}[style=latex]
 \DeclareTColorBox[auto counter]%
     {LILLYxBOXxDefinition}%
     { O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }%
@@ -171,7 +171,7 @@ Bisher definiert LILLY die Counter über die Einstellung \verb|auto counter| - d
     }
 \end{lstlisting}}
 Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
-{\scriptsize\begin{lstlisting}[style=latex]
+\begingroup{\begin{lstlisting}[style=latex]
 \DeclareTColorBox{LILLYxBOXxAufgabe}{O{} O{} O{}}{enforce breakable,%
     colback=white,colframe=black!50,boxrule=0.2mm,%
     attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},%
@@ -198,7 +198,7 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
 }
 \end{lstlisting}}
 Und die der Plain-Box:
-{\scriptsize\begin{lstlisting}[style=latex]
+{\begin{lstlisting}[style=latex]
 \DeclareTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}} {%
         enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm,%
         colback=white,colframe=black!50,boxrule=0.2mm,fonttitle=\bfseries,%

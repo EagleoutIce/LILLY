@@ -1,56 +1,14 @@
-Finaler Auftakt 2. Semster - Verbesserüngen :D
+It's 1.0.8 baby
 
-LILLY:
+DOKUMENTATION:
 
-    + Vorlesungen ANA1, GDBS, PDP, PVS und das Proseminar KNN wurden hinzugefügt
+    FÜR: https://github.com/EagleoutIce/LILLY/projects/1#card-20483616
 
-    - Dummy is dead :/ long lived the mighty Dummy
+    * Die Dokumentation wurde aktualisiert
 
-    * Die integration einer Vorlesung wurde angepasst um Änderungen wie 
-      `\ABABEAUTHOR` zu vereinfachen :D
-
-    + Zum Generieren der Titelbilder gibt es nun Makefiles :D
-
-    * `\inputUB` und `\inputUBS` erzeugen nun auch eine leere Seite wenn noextra gesetzt ist.
-       DIes sorgt für konsistente Seitentrennung beim unkonventionellen einbinden von
-       Übungsblättern nicht am Kapitelende!
-
-    + Es wurde entschieden graph an sich nicht mit Floating unterstützung auszustatten,
-      da der Befehl sonst unhübsch länger werden würde. Es ergibt sich nun die neue
-      Umgebung: `wgraph` mit der Signatur: `{POS}[PGFKEYS][TIKZKEYS][WIDTH=0pt][WRAPFIGOFF]`
-      Über WRAPFIGOFF können hierbei wrapfigure befehle wie `\caption` eingebunden werden.
-
-    * Das Testdokument wurde für graph angepasst
-
-    * Der Footer der Printversion wurde angepasst
-
-    * Das Makefile für die Dokumentation wurde nun ENDLICH von Jake generiert.
-      Das macht allerdings die in der Doku aufgeführten Build-Befehle obsolet :/
-      TODO Die Dokumentation braucht die neuen Buildregeln von und mit Jake
 
 JAKE:
 
-    * Der Parser arbeitet nun intuitiv von links nach rechts und nicht, wie 
-      zuvor von rechts nach links :P
-      (Beispielhafte Anwendung: Fürs debugging lässt sich nun einfach dump
-       ans Ende des Befehls anfügen um die Werte zu betrachten. 
-       Beispiel: `lilly_jake test.tex -lilly-modes+=Waffel -buildrule-path=build_modes.parse -lilly-complete dump`
-       Kompiliert nichts, sondern zeigt nur an :D)
+    * An Jake wurden die letzten Anpassungen vorgenommen
 
-    * Dump bettet Werte nun in `[` `]` ein um Leerfelder besser zu identifizieren
-
-    * Es gibt nun für buildrules die neue Einstellung: `lilly-complete-prefix`
-      Sie gibt einen Namenszusatz für die extra-Version an.
-      TODO Weitere Einstellungen wie: `adapt-boxname` um präfixe wie "LIMERENCE-" 
-           zu unterdrücken
-
-    ! FIX? Für den Fall das echo keine Datei erstellen darf, wird nun ein
-      touch vorangestellt. Dies sollte auch Zugriffsfehler besser abfangen.
-
-    ! FIX Ohne buildrulefile berücksichtigt jake nun auch die `lilly-complete` option
-
-    ! WICHTIGE INFORMATION: lilly-complete macht bisher nur den service c_ - Completes
-      automatisch einzubinden. Eine Regel die zum Beispiel die complete-Variante:
-      `all_the_waffles_Waffel` besitzt wird dadurch nicht eingebunden.
-      Dies ist absicht, da so standart completes und custom completes getrennt werden
-      können! 
+    * Der MacOS-Installer ist nun getestet worden. 

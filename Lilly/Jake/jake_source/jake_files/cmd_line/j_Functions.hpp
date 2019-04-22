@@ -1,11 +1,11 @@
 #ifndef _J_FUNCTIONS_HPP_
-#define _J_FUNCTIONS_HPP_ 10007
+#define _J_FUNCTIONS_HPP_ 10008
 
 
 /**
  * @file j_Functions.hpp
  * @author Florian Sihler
- * @version 1.0.7
+ * @version 1.0.8
  *
  * @brief Enthält alle Funkionen die über die Konsole aufgerufen werden können
  */

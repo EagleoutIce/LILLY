@@ -3,9 +3,9 @@
 
 \providecommand{\AUTHOR}{Florian Sihler}
 \providecommand{\AUTHORMAIL}{florian.sihler@web.de}
-\newcommand*{\LILLYxVERSION}{1.0.7}
+\newcommand*{\LILLYxVERSION}{1.0.8}
 \newcommand*{\LILLYxSTATUS}{Work in Progress}
-\newcommand*{\LILLYxVERSIONxLONG}{1.0.7 - Wanna take a shower}
+\newcommand*{\LILLYxVERSIONxLONG}{1.0.8 - Where Jake meets the GePard}
 
 \input{Lilly_Files/Helper/_LILLY_PACKAGE_CTRL}
 %\LILLY%LoadPackage{lipsum42}{Gutes Paket}{MAUMAUMAU}{\def\MauMau{Hauihao}}
