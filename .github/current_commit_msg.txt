@@ -1,14 +1,18 @@
-It's 1.0.8 baby
+Ein Paar mehr Shortcuts
 
-DOKUMENTATION:
+LILLY:
 
-    FÜR: https://github.com/EagleoutIce/LILLY/projects/1#card-20483616
+    + Neuer shortcut \engl zum Anzeigen von Übersetzungen
 
-    * Die Dokumentation wurde aktualisiert
-
+    * Verschieben von \cd von MATH_OPERATORS zu SHORTCUTS
 
 JAKE:
 
-    * An Jake wurden die letzten Anpassungen vorgenommen
+    + Neue Option: get - bisher simple Suche
 
-    * Der MacOS-Installer ist nun getestet worden. 
+    ! FIX c_default bzw. im Allgemeinen c_ - Regeln stehen nun auch
+      ohne -lilly-complete zur Verfügung!
+
+
+TODO Universe-Translation für Deutsche und Englische Befehle
+     Inklusive Integration von BABEL etc.

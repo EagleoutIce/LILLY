@@ -1,28 +1,30 @@
-\newcommand{\T}[1]{{\LILLYxlstTypeWriter #1}} %Shortcut Schreibmaschine
-\newcommand\narrowitems{\setlength{\itemsep}{0pt}}
-\newcommand\closeritems{\setlength{\itemsep}{-4pt}} 
+\providecommand{\T}[1]{{\LILLYxlstTypeWriter #1}} %Shortcut Schreibmaschine
+\providecommand\narrowitems{\setlength{\itemsep}{0pt}}
+\providecommand\closeritems{\setlength{\itemsep}{-4pt}} 
 
-\newcommand\tab[1][1cm]{\hspace*{#1}} %find ich logischer so....
-\newcommand\lreqn[2]{\noindent\makebox[\textwidth]{\(\displaystyle\)#1\hfill#2}} %für coole Beweisboxen
-\newcommand\q[1][0]{\glq#1\grq{}} %''
-\newcommand\qq[1][0]{\glqq#1\grqq{}} %""
-\newcommand\colvec[1]{\begin{pmatrix}#1\end{pmatrix}} %Vektoren für Mathe
-\newcommand\minicolvec[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)} %Vektoren für Mathe
+\providecommand\tab[1][1cm]{\hspace*{#1}} %find ich logischer so....
+\providecommand\lreqn[2]{\noindent\makebox[\textwidth]{\(\displaystyle\)#1\hfill#2}} %für coole Beweisboxen
+\providecommand\q[1][0]{\glq#1\grq{}} %''
+\providecommand\qq[1][0]{\glqq#1\grqq{}} %""
+\providecommand\colvec[1]{\begin{pmatrix}#1\end{pmatrix}} %Vektoren für Mathe
+\providecommand\minicolvec[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)} %Vektoren für Mathe
 
-\newcommand{\qedsymbol}{\(\blacksquare\)}  %Beweisbox
-\newcommand{\say}[1]{\glqq{#1}\grqq}
+\providecommand{\qedsymbol}{\(\blacksquare\)}  %Beweisbox
+\providecommand{\say}[1]{\glqq{#1}\grqq}
 
+\providecommand{\engl}[2][]{#1(engl. \textit{#2})#1}
 
+\providecommand\cd{\ensuremath{\cdot}}
 
-\newcommand{\rom}[1]{\text{\MakeUppercase{\romannumeral #1}}} %Zahlen Römisch (GDRA)
+\providecommand{\rom}[1]{\text{\MakeUppercase{\romannumeral #1}}} %Zahlen Römisch (GDRA)
 
 
 %TIKZSYMBOLS
-\newcommand\ring[1]{\fill #1 circle [radius=0.7pt];} %%Schortcuts für Schaltkreise, weil es mir so besser gefällt ^^ und ich das Scaling erst nachher angepasst habe ^^
-\newcommand\bigRing[1]{\fill #1 circle [radius=1.4pt];}
-\newcommand\bigCRing[2][limegreen]{\fill[fill=#1] #2 circle [radius=1.4pt];}
+\providecommand\ring[1]{\fill #1 circle [radius=0.7pt];} %%Schortcuts für Schaltkreise, weil es mir so besser gefällt ^^ und ich das Scaling erst nachher angepasst habe ^^
+\providecommand\bigRing[1]{\fill #1 circle [radius=1.4pt];}
+\providecommand\bigCRing[2][limegreen]{\fill[fill=#1] #2 circle [radius=1.4pt];}
 
-\newcommand\ringC[2][limegreen]{\fill[fill=#1] #2 circle [radius=0.7pt];}
+\providecommand\ringC[2][limegreen]{\fill[fill=#1] #2 circle [radius=0.7pt];}
 
 
 
@@ -36,7 +38,7 @@
 
 
 
-\LILLYcommand{\LILLYxCOLORxRainbow}{
+\LILLYcommand{\LILLYxCOLORxRainbow}{%
     \LILLYcoloredSQ{\LILLYxColorxDefinition}
     \LILLYcoloredSQ{\LILLYxColorxSatz}
     \LILLYcoloredSQ{\LILLYxColorxBeweis}

@@ -17,7 +17,7 @@ std::string create_buildrule(const std::string& name_type, const std::string& na
                              const std::string& mode, bool complete, const std::string& name_addon, 
                              const std::string& input_build, const std::string& l_comp_name/*, const std::vector<std::string>& others*/) noexcept {
     std::string ret_str = name_rule + ": $(INPUTDIR)$(TEXFILE)\n\t@echo \"";
-    ret_str += "\\033[38;2;255;191;0mGeneriere " + name_type + "-Version($(BOXMODES)) der Latex-Datei: \"$(TEXFILE)\"...\\033[m\"\n";
+    ret_str += "\\033[38;2;255;191;0mGeneriere " + (complete?l_comp_name:"") + name_type + "-Version($(BOXMODES)) der Latex-Datei: \"$(TEXFILE)\"...\\033[m\"\n";
     ret_str += std::string("\t") + R"(@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX))" + (complete?l_comp_name:"") + name_addon + R"(,$(PDFFILE),\\providecommand\\LILLYxMODE{)" 
                 + mode + R"(}\\providecommand\\LILLYxMODExEXTRA{)" + (complete?"TRUE":"FALSE") + R"(},")" + input_build + "\")";
     return ret_str;

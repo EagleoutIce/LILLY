@@ -112,6 +112,15 @@ status_t fkt_gsettings(const std::string& cmd) noexcept;
  */
 status_t fkt_goptions(const std::string& cmd) noexcept;
 
+/**
+ * @brief liefert eine Liste aller Operationen deren spezifikation settings["what"] entspricht
+ * 
+ * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
+ *
+ * @returns Statuswert (bisher nichts)
+ * 
+ */
+status_t fkt_get(const std::string& cmd) noexcept;
 
 /**
  * @struct fkt_descriptor
