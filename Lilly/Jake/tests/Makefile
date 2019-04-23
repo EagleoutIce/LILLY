@@ -1,4 +1,4 @@
-# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 22 2019 at: 14:06:49)
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 23 2019 at: 11:48:10)
 
 TEXFILE      := test.tex
 BASENAME     := $(basename $(TEXFILE))
@@ -41,30 +41,18 @@ LILLYxClean = echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m" && \
 
 default: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)MY-DEFAULT-,$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
-
-c_default: $(INPUTDIR)$(TEXFILE)
-	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)COMPLETE-MY-DEFAULT-,$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{TRUE},"\\input{$(INPUTDIR)$(TEXFILE)}")
+	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
 
 print: $(INPUTDIR)$(TEXFILE)
 	@echo "\033[38;2;255;191;0mGeneriere Druck-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)MY-PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
-
-c_print: $(INPUTDIR)$(TEXFILE)
-	@echo "\033[38;2;255;191;0mGeneriere Druck-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)COMPLETE-MY-PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{TRUE},"\\input{$(INPUTDIR)$(TEXFILE)}")
-
-Waffel: $(INPUTDIR)$(TEXFILE)
-	@echo "\033[38;2;255;191;0mGeneriere DEMO-WAFFEL-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
-	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)waffel-,$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
+	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX)PRINT-,$(PDFFILE),\\providecommand\\LILLYxMODE{print}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
 
 
 all: $(INPUTDIR)$(TEXFILE)
-	@$(MAKE) -s --no-print-directory default c_default print c_print Waffel c_Waffel  CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
+	@$(MAKE) -s --no-print-directory default print  CLEANTARGET=void -j ${JOBCOUNT} --output-sync=line
 	@$(MAKE) -s --no-print-directory clean
 
 clean:
 	@$(call LILLYxClean)
 
-.PHONY: default c_default print c_print Waffel c_Waffel all clean
+.PHONY: default print all clean

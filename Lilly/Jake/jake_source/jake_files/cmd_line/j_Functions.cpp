@@ -260,6 +260,10 @@ status_t fkt_config(const std::string& cmd) {
     return in_settings(cmd);
 }
 
+status_t fkt_get(const std::string& cmd) noexcept {
+    return system(("grep -E \"" + settings["what"] + "\" -r * -hs").c_str());
+}
+
 
 
 functions_t functions = {
@@ -269,6 +273,7 @@ functions_t functions = {
     {"install", {fkt_install, "Versucht LILLY zu installieren"}},
     {"tokentest", {fkt_tokentest, "Testet den Tokenizer auf seine Funktionalität"}},
     {"config", {fkt_config, "Lädt die Einstellungen aus der Datei 'file'"}},
+    {"get", {fkt_get, "Sucht nach Pattern in settings[\"what\"]"}},
     {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}},
     {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}
 };

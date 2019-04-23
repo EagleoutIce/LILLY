@@ -14,19 +14,14 @@ settings_t buildrules_settings = {
 configuration_t buildrules_default = {
     {"default",         create_buildrule("Standart","default","default", false)},
     {"print",           create_buildrule("Druck","print","print", false, settings[S_LILLY_PRINT_NAME])},
-    {"uebungsblatt",    create_buildrule("Übungsblatt","uebungsblatt","default", true, "",
-                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})")},
-
+    {"uebungsblatt",    create_buildrule("Übungsblatt","uebungsblatt","default", true, "",                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})")},
+    {"c_default",       create_buildrule("Standart","c_default","default", true)},
+    {"c_print",         create_buildrule("Druck","c_print","print", true, settings[S_LILLY_PRINT_NAME])}
 };
 
 configuration_t getRules(const std::string& rulefile, bool complete) {
-    if(rulefile=="") {
-        if(complete) {
-            buildrules_default["c_default"] = create_buildrule("Standart","c_default","default", true);
-            buildrules_default["c_print"] = create_buildrule("Druck","c_print","print", true, settings[S_LILLY_PRINT_NAME]);
-        }
-        return buildrules_default;
-    }
+    if(rulefile=="") return buildrules_default;
+
     GeneratorParser gp(rulefile);
     configuration_t ret_config = buildrules_default;
     std::vector<GeneratorParser::jObject> got = gp.parseFile(NAME_BOXPROFILE_BUILDRULE,buildrules_settings);

@@ -5,6 +5,7 @@ settings_t settings {
     {"file",                "none.tex"},
     {"debug",               "false"},
     {"path",                "./"},
+    {"what",                "\\\\LILLYcommand"}, // operation specifier for get or so
 #if defined(__linux__)
     {"install-path",        "\"${HOME}/texmf\""},
     {S_LILLY_PATH,          "\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\""},
