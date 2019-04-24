@@ -5,6 +5,7 @@ sich unter diesem Deckmantel.
 Genauere Informationen zu Jake befinden sich [hier](Jake/README.md)
 
 Des weiteren ist *Lilly.cls* in diesem Ordner welche mehrere Funktionen bereit stellt: 
+
 **1. Setzen und abfragen der Dokumentwerte**
  * A4 Papier
  * 11-Punkt Schrift
