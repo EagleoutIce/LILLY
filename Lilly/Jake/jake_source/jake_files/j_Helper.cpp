@@ -22,3 +22,17 @@ std::string create_buildrule(const std::string& name_type, const std::string& na
                 + mode + R"(}\\providecommand\\LILLYxMODExEXTRA{)" + (complete?"TRUE":"FALSE") + R"(},")" + input_build + "\")";
     return ret_str;
 }
+
+status_t assert_all_differ(configuration_t theall, const std::string& thediffer, const std::string& flavour) {
+        configuration_t::iterator it = theall.begin();
+        while (it != theall.end()){
+            if(it->second == thediffer){
+                std::cerr << COL_ERROR << "Die Option \"" << it->first << "\" ist für " << flavour << " verpflichtend! Bitte gib sie an" << COL_RESET << std::endl;
+                if(warning_debug("Im debug-Modus wird diese Box verworfen!","Asserter") == EXIT_FAILURE)
+                    throw std::runtime_error("MISSING NAME-SPECIFIER FOR BOX RUN WITH -debug FOR MORE INFORMATION");
+                return EXIT_FAILURE;
+            }
+            ++it;
+        }
+    return EXIT_SUCCESS; 
+}

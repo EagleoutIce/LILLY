@@ -1,6 +1,6 @@
 # LILLY Data - Erstes Semster
 
-Dieses Datenpaket benötigt die Option `LILLY@Semster=1` und wird *nur* über den `_LILLY_INTRO_CONTROLLER` geladen.
+Dieses Datenpaket benötigt die Option `LILLY@Semester=1` und wird *nur* über den `_LILLY_INTRO_CONTROLLER` geladen.
 
 ## Vorlesungen
 Es werden folgende Bezeichner über `LILLY@Vorlesung` zur Verfügung gestellt:

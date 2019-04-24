@@ -14,7 +14,7 @@
 %% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten. 
 
 
-\input{Lilly_Files/Data/Semster/\LILLY@Semster/Definitions/GENERAL.tex}
+\input{Lilly_Files/Data/Semster/\LILLY@Semester/Definitions/GENERAL.tex}
 
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
 \providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
@@ -22,9 +22,9 @@
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
 
     %%Lade gewünschtes Titelblatt
-    \input{Lilly_Files/Data/Semster/\LILLY@Semster/Definitions/\LILLY@Vorlesung} %%Konstanten etc.
+    \input{Lilly_Files/Data/Semster/\LILLY@Semester/Definitions/\LILLY@Vorlesung} %%Konstanten etc.
 
-    \input{Lilly_Files/Data/Semster/\LILLY@Semster/TitlepageProvider.tex}
+    \input{Lilly_Files/Data/Semster/\LILLY@Semester/TitlepageProvider.tex}
     %%Generieren Inhaltsverzeichnis
 
     \LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}} 
@@ -60,7 +60,7 @@
     \input{Lilly_Files/Controllers/Intro/_LILLY_LAYOUT_MITSCHRIEB}
 \else\ifx\LILLY@Typ\LILLY@Typ@Uebungsblatt
     
-    \input{Lilly_Files/Data/Semster/\LILLY@Semster/Definitions/\LILLY@Vorlesung} %%Konstanten etc.
+    \input{Lilly_Files/Data/Semster/\LILLY@Semester/Definitions/\LILLY@Vorlesung} %%Konstanten etc.
 
     \input{Lilly_Files/Controllers/Intro/_LILLY_LAYOUT_UEBUNGSBLATT} %% Einleitung Übungsblatt
 
@@ -78,11 +78,11 @@
 }
 
 \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
-\input{Lilly_Files/Data/Semster/\LILLY@Semster/Definitions/\LILLY@Vorlesung} %%Konstanten etc.
+\input{Lilly_Files/Data/Semster/\LILLY@Semester/Definitions/\LILLY@Vorlesung} %%Konstanten etc.
 
 \input{Lilly_Files/Controllers/Intro/_LILLY_LAYOUT_ZUSAMMENFASSUNG}
 
-\input{Lilly_Files/Data/Semster/\LILLY@Semster/TitlepageProvider.tex}
+\input{Lilly_Files/Data/Semster/\LILLY@Semester/TitlepageProvider.tex}
 
 \fi\fi\fi\fi
 

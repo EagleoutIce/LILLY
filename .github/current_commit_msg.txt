@@ -1,18 +1,58 @@
-Ein Paar mehr Shortcuts
+:EagleoutIce for Lilly
+============================================================================================
 
-LILLY:
+Jake trifft Captain Hook & Einige Änderungen
 
-    + Neuer shortcut \engl zum Anzeigen von Übersetzungen
-
-    * Verschieben von \cd von MATH_OPERATORS zu SHORTCUTS
 
 JAKE:
 
-    + Neue Option: get - bisher simple Suche
+    * Der GeneratorParser unterstützt nun mehrere durch ':' getrennte Pfade - das ist cool
 
-    ! FIX c_default bzw. im Allgemeinen c_ - Regeln stehen nun auch
-      ohne -lilly-complete zur Verfügung!
+    * Der REGEX-Ausdruck für GeParD wurde freier und auch einfacher gestaltet
+
+    * !!!!! buildrule-path heißt nun gepardrule-path!!!!!
 
 
-TODO Universe-Translation für Deutsche und Englische Befehle
-     Inklusive Integration von BABEL etc.
+    + Jake beginnt nun, neben 'dump' ein grunlegendes Debug-System zu integrieren um die
+      Fehlersuche zu erleichtern.
+
+    + GeParD unterstützt und forciert nun verpflichtende Argumente
+
+    + Es gibt nun (verbesserte) PRE- und POST-Hooks (ALL und IN sind TODO)
+
+    + Hinzufügen der (lightweight-Variante der) Debug-Bibliothek aus dem EAGLE-Framework (Juchey :D)
+
+    + Endlich gibt es nun die Einstellung: 'lilly-show-boxname' um Boxnamen auszublenden wenn man nur einen
+      Boxtyp kompiliert :D
+
+    ! FIX: GePard Boxmode Beispiele
+
+LILLY:
+
+    ! FIX \LILLY@Semster to \LILLY@Semester typo
+
+    ! PROBLEM: \ifx\\LILLYxBOXxLemmaxBox wird nicht richtig aufgelöst im Modecontroller
+
+
+    + PDP hat nun ein ordentliches Profilbild (mit Random-Color on Compile Bonus)
+
+    + Es gibt nun die neue Farbe Butter - Weil ichs ie mag
+      Ebenfalls gibt es noch Leaf und MudWhite aus den gleichen gründen
+
+    + Es gibt nun `\Hcolor` und `\HBcolor` um generelle Highlighting Farben für Lilly zu
+      standartisieren.
+
+
+    * Edited DarkMidnightBlue für bessere Lesbarkeit
+
+    * Es wurden einige Korrekturen an den Daten für die Vorlesungen vorgenommen.
+
+    * Der Style bash wurde angepasst um Druckerfreundlich zu sein.
+
+    * Es gibt nun eine auf der Sprache C++ aufbauende neue Sprache Cpp für lstlistings
+
+
+    - Das Print-Profil liefert nun keine Farben mehr, dies war ohnehin überflüssig
+
+============================================================================================
+:

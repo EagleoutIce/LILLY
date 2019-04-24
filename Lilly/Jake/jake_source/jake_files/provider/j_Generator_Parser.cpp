@@ -11,27 +11,28 @@ GeneratorParser::jObject GeneratorParser::Box::get_jObject(settings_t blueprint)
 
 
 
-GeneratorParser::GeneratorParser(const std::string& filename) : _op_path(filename) {}
+GeneratorParser::GeneratorParser(const std::string& filenames) {this->_op_paths = split(filenames,':');}
 
 std::vector<GeneratorParser::jObject> GeneratorParser::parseFile(const std::string& identifier, settings_t blueprint) {
-    // Erstellen des InputStreams:
-    std::ifstream dataFile(this->_op_path);
     GeneratorParser::Box cur_box;
-
     std::vector<GeneratorParser::jObject> ret_jObjects = {};
-
-    for(;;){
-        cur_box = get_next_box(dataFile, identifier); // Erhalte eine Box
-        if(cur_box.name == "") break; // Die Box ist ungültig / es gibt keine mehr
-        ret_jObjects.push_back(cur_box.get_jObject(blueprint)); // Füge Box hinzu
+    for(const std::string& path : this->_op_paths){
+            std::ifstream dataFile(path);
+            w_debug("Generator Parser beararbeitet nun die Datei: \"" + path + "\"", "GenPar");
+            for(;;){
+                cur_box = get_next_box(dataFile, identifier); // Erhalte eine Box
+                if(cur_box.name == "") break; // Die Box ist ungültig / es gibt keine mehr
+                ret_jObjects.push_back(cur_box.get_jObject(blueprint)); // Füge Box hinzu
+                w_debug("   Found-Box: " + ret_jObjects.back().name + ": " + ret_jObjects.back().configuration["name"], "GenPar");
+            }
+            dataFile.close();
     }
-
     return ret_jObjects;
 }
 
 GeneratorParser::Box GeneratorParser::get_next_box(std::istream& inp, const std::string& name, size_t bufs) {
     // Check if inp is valid:
-    if(!inp.good() || inp.eof()) throw std::runtime_error("Inputstream in get_next_box failed (Datei nonexistent?)");
+    if(!inp.good() || inp.eof()) throw std::runtime_error("Inputstream in get_next_box failed (Datei nonexistent?) use -debug for more info");
 
     std::string buffer; buffer.reserve(bufs);
 
@@ -45,6 +46,7 @@ GeneratorParser::Box GeneratorParser::get_next_box(std::istream& inp, const std:
     //    if(std::regex_search(line, matches, this->_pattern)){
     std::match_results<std::string::const_iterator> c_match;
     while(std::getline(inp, current_line)){
+        //w_debug("parsing: " + current_line);
         current_line = Tokenizer::erase_skipper(current_line);
         if(std::regex_search(current_line, c_match, p_begin)) { // match BEGIN X
             if (name == "" || c_match[BOX_NAME] == name) { // FOUND A BOX
@@ -63,8 +65,7 @@ GeneratorParser::Box GeneratorParser::get_next_box(std::istream& inp, const std:
             } // found no box
         }
     }
-
-    return {""}; // Da ist nichts
+    return {.name = ""}; // Da ist nichts
 }
 
 #undef BOX_NAME

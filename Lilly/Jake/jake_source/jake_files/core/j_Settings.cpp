@@ -26,9 +26,10 @@ settings_t settings {
     {S_LILLY_CLEANS,        "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC DEFS"},
     {S_LILLY_COMPILETIMES,  "3"}, // wie oft soll pdflatex aufgerufen werden?
     {S_LILLY_AUTOCLEAN,     "true"},
+    {S_LILLY_SHOW_BOX_NAME, "true"},
     {"jobcount",            "2"},
     {S_LILLY_VORLESUNG,     "LAII"},
     {S_LILLY_N,             "42"},
     {S_LILLY_SEMESTER,      "1"},
-    {S_BUILDRULES_PATH,     ""}
+    {S_GEPARDRULES_PATH,     ""}
 };
