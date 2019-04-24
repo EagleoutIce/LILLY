@@ -13,9 +13,9 @@ Controller werden von LILLY zum hauptsächlichen Kontrollfluss eingesetzt. Auch 
 
 ---
 ## Box-Controller <a name="box"></a>
-Der Box-Controller ist das Herz der Strukturierung. Er bietet uns alle Designs die wir in der Späteren nutzung benötigen. 
+Der Box-Controller ist das Herz der Strukturierung. Er bietet uns alle Designs die wir in der späteren Nutzung benötigen. 
 
-Generell werden uns verschiedene Arten von Boxen zur verfügung gestellt: 
+Generell werden uns verschiedene Arten von Boxen zur Verfügung gestellt: 
 
   * Definitionen
   * Bemerkungen
