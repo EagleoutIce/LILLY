@@ -21,6 +21,9 @@
 #include <sstream>
 
 #include "../core/j_Typedefs.hpp"
+#include "../core/j_Debug.hpp"
+
+#include "../j_Helper.hpp"
 
 #include "j_Configurator.hpp"
 
@@ -48,10 +51,9 @@
  * @brief Tut bisher niada :D
  */
 
-
 class GeneratorParser {
 
-    const std::string _op_path;
+    std::vector<std::string> _op_paths;
 
 public:
     /**
@@ -90,9 +92,9 @@ public:
     /**
      * @brief Konstruiert den Generator Parser (GePard)
      *
-     * @param filename Der Dateiname der zugrunde liegenden Datei
+     * @param filenames Die mit ':' getrennten Dateinamen der zugrunde liegenden Datei
      */
-    GeneratorParser(const std::string& filename);
+    GeneratorParser(const std::string& filenames);
 
     /**
      * @brief Extrahiert alle 'identifier'-Definitionen aus einer Datei

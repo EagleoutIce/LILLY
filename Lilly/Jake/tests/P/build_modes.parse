@@ -27,7 +27,7 @@ BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn ni
 
     lilly-complete-prefix   = COMPLETE-   ! Namenszusatz wenn complete Version (Default: COMPLETE-)!
 
-    lilly-loader            = \\\\input{$(INPUTDIR)$(TEXFILE)}
+    lilly-loader            = \\input{$(INPUTDIR)$(TEXFILE)}
                     ! Diese Funktion ist advanced und beschreib die einbinde routine - einfach ignorieren !
 
 END; ! Semikolon wieder nicht nötig, aber ich mag es :D !
@@ -40,7 +40,7 @@ BEGIN buildrule:
     complete        = false
     complete-prefix = c_
     nameprefix      = MY-PRINT-
-    lilly-loader    = \\\\input{$(INPUTDIR)$(TEXFILE)}
+    lilly-loader    = \\input{$(INPUTDIR)$(TEXFILE)}
 
 END;
 
@@ -50,9 +50,9 @@ BEGIN buildrule:
 !X! display-name    = Übungsblatt
 !X! lilly-mode      = default
     complete        = true
-    complete-prefix = "" ! Dies entspricht einer leeren Antwort, sonst ist "" nicht zugelassen !
+    complete-prefix =  ! Dies entspricht einer leeren Antwort, sonst ist "" nicht zugelassen !
     nameprefix      = MY-PRINT-
-    lilly-loader    = \\\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}
+    lilly-loader    = \\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document}
                 ! Information: Aus Makefile kompatibilitätsgründen ist ein Komma als "${_C}" codiert !
                 ! TODO ein dearartige loader sollte auf jedenfall aufgespalten werden !
                 ! TODO einfache angabe zusätzlicher optionen !

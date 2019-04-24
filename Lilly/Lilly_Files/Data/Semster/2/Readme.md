@@ -1,13 +1,13 @@
 # LILLY Data - Zweites Semster
 
-Dieses Datenpaket benötigt die Option `LILLY@Semster=2` und wird *nur* über den `_LILLY_INTRO_CONTROLLER` geladen.
+Dieses Datenpaket benötigt die Option `LILLY@Semester=2` und wird *nur* über den `_LILLY_INTRO_CONTROLLER` geladen.
 
 ## Vorlesungen
 Es werden folgende Bezeichner über `LILLY@Vorlesung` zur Verfügung gestellt:
 
 - **ANA1** - Analysis 1 für Inf. und Ing.   [Leiter: Prof. Dr. Jan-Willem Liebezeit, ÜBL: Müller]
 - **GDBS** - Grundlagen der Betriebssysteme [Leiter: ?, ÜBL: ?]
-- **PDP**  - Paradigmen der Programmierung  [Leiter: Prof. Dr. Alexander Raschke, ÜBL: Böhm]
+- **PDP**  - Paradigmen der Programmierung  [Leiter: Prof. Dr. Alexander Raschke & Frühwirth, ÜBL: Böhm]
 - **PVS**  - Programmierung von Systemen    [Leiter: ?, ÜBL: ?]
 
 Weiter werden noch die folgenden Proseminare ebenfalls über `LILLY@Vorlesung` akzeptiert:

@@ -151,6 +151,22 @@ status_t fkt_compile(const std::string& cmd) {
     buf_makefile << "void = true"                                                                                   << std::endl<< std::endl<< std::endl;
     //Compile-Regel
     buf_makefile << "LILLYxCompile = \\"                                                                                   << std::endl;
+    configuration_t all_hooks = getHooks(settings[S_GEPARDRULES_PATH]);
+    configuration_t::iterator a = all_hooks.begin();
+    /*while(a != all_hooks.end()){
+        std::cout << a->first << " " << a->second << std::endl;;
+        ++a;
+    }*/
+
+    configuration_t pre_hooks = getTagged(all_hooks, "PRE");
+
+    configuration_t::iterator prIt = pre_hooks.begin();
+    while(prIt != pre_hooks.end()){
+        w_debug4("Platziere die Pre-Hook: \""  + prIt->first + "\" mit Body: \"" + prIt->second + "\" im Makefile!", "hooker","INF","", DEBUG_8BIT_FOREGROUND(33));
+        buf_makefile << "    echo Lilly Pre-Hook[" << prIt->first << "] evaluiert zu: $(shell " << prIt->second << ") && \\" << std::endl;
+        ++prIt;
+    }
+
 #if defined(__linux__) || defined(__APPLE__) || defined(__MACH__)
     buf_makefile << "    mkdir -p \"$(OUTPUTDIR)\" && \\" << std::endl; // Auf windows vermutlich identisch nur ohne -p
 #endif
@@ -159,9 +175,21 @@ status_t fkt_compile(const std::string& cmd) {
     buf_makefile << R"(    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
                  << "    (for bm in $(BOXMODES); do \\" << std::endl;
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
-        buf_makefile << "       pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}} )" << " ${3} $(_LILLYARGS) ${4}" << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
+        buf_makefile << "       pdflatex -jobname $(basename ${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  
+                     << "${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1})" 
+                     << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  << R"(${2}} )" << " ${3} $(_LILLYARGS) ${4}" 
+                     << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
     }
-    buf_makefile << "       echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}$${bm}-${2}\" ($${bm}) abgeschlossen\\033[m\"; done &&\\"                                                                                                   << std::endl;
+    buf_makefile << "       echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  << "${2}\" ($${bm}) abgeschlossen\\033[m\"; done &&\\"                                                                                                   << std::endl;
+
+    configuration_t post_hooks = getTagged(all_hooks, "POST");
+
+    configuration_t::iterator poIt = post_hooks.begin();
+    while(poIt != post_hooks.end()){
+        w_debug4("Platziere die Post-Hook: \""  + poIt->first + "\" mit Body: \"" + poIt->second + "\" im Makefile!", "hooker","INF","", DEBUG_8BIT_FOREGROUND(33));
+        buf_makefile << "    echo Lilly Post-Hook[" << poIt->first << "] evaluiert zu: $(shell " << poIt->second << ") && \\" << std::endl;
+        ++poIt;
+    }
 
     // call clean routine if clean is enabled :D
     if (settings[S_LILLY_AUTOCLEAN] == "true")
@@ -176,8 +204,9 @@ status_t fkt_compile(const std::string& cmd) {
     buf_makefile << "     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done"                                         << std::endl<< std::endl<< std::endl;
 
     // parse the modes:
-    configuration_t b_rules = getRules(settings[S_BUILDRULES_PATH],settings[S_LILLY_COMPLETE]=="true");
+    configuration_t b_rules = getRules(settings[S_GEPARDRULES_PATH],settings[S_LILLY_COMPLETE]=="true");
 
+    configuration_t::iterator it = b_rules.begin();
     std::string added_rules = "";
 
     for(std::string s : split(settings[S_LILLY_MODES] /* => buildrule_names*/)) {
@@ -216,9 +245,13 @@ status_t fkt_compile(const std::string& cmd) {
               << "          Compile Version: " << __DATE__ << " " << __TIME__ << std::endl << std::endl;
 
     if(settings["debug"]=="true"){
-    std::cout << std::endl
-              << "Debug Writing: =================================================================" << std::endl << buf_makefile.str()
-              << "================================================================================" << std::endl;
+        std::cout << "Du hast debugging aktiviert. Soll das Makefile vor dem Schreiben im Log ausgegeben werden?" << std::endl
+                 << "(y)es/(n)o> ";
+        char answer='\0'; while(answer != 'y' && answer != 'n') std::cin >> answer;
+        if(answer == 'y')
+            std::cout << std::endl
+                    << "Debug Writing: =================================================================" << std::endl << buf_makefile.str()
+                    << "================================================================================" << std::endl;
     }
     out_makefile << buf_makefile.rdbuf();
 
@@ -277,3 +310,4 @@ functions_t functions = {
     {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}},
     {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}
 };
+

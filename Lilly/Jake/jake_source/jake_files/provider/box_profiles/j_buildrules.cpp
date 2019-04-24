@@ -1,9 +1,9 @@
 #include "j_buildrules.hpp"
 
 settings_t buildrules_settings = {
-    {"name", ""}, // needed
-    {"display-name", ""}, // needed
-    {"lilly-mode", ""}, // needed
+    {"name", "!!"}, // needed
+    {"display-name", "!!"}, // needed
+    {"lilly-mode", "!!"}, // needed
     {"complete", "false"},
     {"complete-prefix", "c_"},
     {"lilly-complete-prefix", "COMPLETE-"},
@@ -19,13 +19,20 @@ configuration_t buildrules_default = {
     {"c_print",         create_buildrule("Druck","c_print","print", true, settings[S_LILLY_PRINT_NAME])}
 };
 
-configuration_t getRules(const std::string& rulefile, bool complete) {
-    if(rulefile=="") return buildrules_default;
+configuration_t getRules(const std::string& rulefiles, bool complete) {
+    if(rulefiles=="") return buildrules_default;
 
-    GeneratorParser gp(rulefile);
+    GeneratorParser gp(rulefiles);
     configuration_t ret_config = buildrules_default;
     std::vector<GeneratorParser::jObject> got = gp.parseFile(NAME_BOXPROFILE_BUILDRULE,buildrules_settings);
     for (GeneratorParser::jObject jo : got){
+        // check validity with assigning "!!" to value (which cannot be in code) and then throwing debug error if msising
+
+        if(assert_all_differ(jo.configuration, "!!", "diese Buildrule"))
+            continue; //Pass on not correct
+
+            //|| jo.configuration["display-mode"] =="!!" || jo.configuration["lilly-mode"] == "!!")
+        
         ret_config[jo.configuration["name"]] = create_buildrule(jo.configuration["display-name"],
                                                     (jo.configuration["complete"]=="true")?
                                                     jo.configuration["complete-prefix"]:"" +
@@ -50,3 +57,4 @@ configuration_t getRules(const std::string& rulefile, bool complete) {
 
     return ret_config;
 }
+

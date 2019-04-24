@@ -12,6 +12,9 @@
 /// @brief Kurzbeschreibung der Aktuellen Jake-Version
 #define PRG_BRIEF "Jake 1.0.7 - A Servant for Lilly"
 
+///@brief Jake Version als Makro (const char*)
+#define JAKE_VERSION "1.0.8"
+
 /// @brief Design-Makro zum Zurücksetzen der Farbe
 #define COL_RESET "\033[m"
 /// @brief Design-Makro zum Setzen der Fehler-Farbe in der Konsole
@@ -42,6 +45,8 @@
 
 /// @brief Name für Konfigurationsboxen für Buildregeln des Makefiles
 #define NAME_BOXPROFILE_BUILDRULE "buildrule"
+/// @brief Name für Konfigurationsboxen für Hooks um das Makefile
+#define NAME_HOOK_BUILDRULE "hook"
 
 // Setting Definitions: ======================================================================================
 
@@ -75,6 +80,8 @@
 #define S_LILLY_N                       "lilly-n"
 /// @brief Das wievielste Semster?
 #define S_LILLY_SEMESTER                "lilly-semester"
+///@brief Soll der Boxname bei der Generierung angezeigt werden? dies macht nur Sinn auf false gesetzt werden wenn es nur eine Box gibt
+#define S_LILLY_SHOW_BOX_NAME           "lilly-show-boxname"
 /// @brief Pfad zur Buildrule-settings-Datei (wenn leer (default), dann werden die Standartdaten geladen :D )
-#define S_BUILDRULES_PATH               "buildrule-path"
+#define S_GEPARDRULES_PATH               "gepardrule-path"
 #endif

@@ -1,0 +1,6 @@
+BEGIN hook:
+!X!     name       =      testhook ! Tolles Beispiel :D !
+!X!     type       =      PRE      ! Entweder PRE, POST (bereits implementiert) oder: ALL/IN sonst Fehler !
+        body       = touch testfile
+        on-success = "Ist gut gelaufen" ! analog on-failure !
+END;

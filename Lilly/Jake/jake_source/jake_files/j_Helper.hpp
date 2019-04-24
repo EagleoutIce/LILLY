@@ -20,7 +20,7 @@
 #include "core/j_Settings.hpp"
 #include "core/j_Typedefs.hpp"
 #include "core/j_Globals.hpp"
-
+#include "core/j_Debug.hpp"
 
 /**
  * @brief Lesbarer Test ob char* in char*
@@ -109,6 +109,7 @@ std::vector<std::string> split(const std::string& str, char delim = ' ');
  * @param complete soll eine complete variante erstellt werden?
  * @param name_addon Zusätzlicher Namensbezeichner
  * @param input_build Input-regel
+ * @param showboxname should the boxname be shown in name?
  * @todo: others zusäzliche optionen
  * 
  * @returns String-Repräsentation der Build-Regel
@@ -116,5 +117,20 @@ std::vector<std::string> split(const std::string& str, char delim = ' ');
 std::string create_buildrule(const std::string& name_type, const std::string& name_rule, 
                              const std::string& mode, bool complete=false, const std::string& name_addon="", 
                              const std::string& input_build=R"(\\input{$(INPUTDIR)$(TEXFILE)})",
-                             const std::string& l_comp_name = "COMPLETE-" /*, const std::vector<std::string>& others*/) noexcept;
+                             const std::string& l_comp_name = "COMPLETE-"/*, const std::vector<std::string>& others*/) noexcept;
+/**
+ * @brief Sichert zu, dass alle Konfigurationen nicht diesen Wert haben
+ * 
+ * @param theall alle Konfigurationen die getestet werden Sollen
+ * @param thediffer der String auf den der Unterschied getestet wird
+ * @param flavour Zusatz-text für die Ausgabe
+ * 
+ * @note Wirft ohne 'debug' eine Ausnahme wenn ein String die Regel verletzt
+ * 
+ * @returns 1 Wenn im Debug ein Fehler passiert => Verwerfe Box/assertedObject
+ * 
+ */
+status_t assert_all_differ(configuration_t theall, const std::string& thediffer = "!!", const std::string& flavour = "diesen Boxtyp");
+
+
 #endif

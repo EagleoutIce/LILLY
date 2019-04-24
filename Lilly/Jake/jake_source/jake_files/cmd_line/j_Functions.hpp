@@ -15,6 +15,8 @@
 #include <fstream>
 #include <sstream>
 
+#include "../core/j_Debug.hpp"
+
 #include "../core/j_Typedefs.hpp"
 #include "../core/j_Globals.hpp"
 #include "../core/j_Settings.hpp"
@@ -22,7 +24,9 @@
 
 #include "../provider/j_Tokenizer.hpp"
 #include "../provider/j_Configurator.hpp"
+
 #include "../provider/box_profiles/j_buildrules.hpp"
+#include "../provider/general_profiles/j_hooks.hpp" // implement rules for create buildrule and LILLYxCompile to attach hook - in may trigger every time for now?
 
 #include "../j_Helper.hpp"
 
@@ -140,4 +144,5 @@ extern functions_t functions;
 
 /// @brief Verhindert deadly recursion bei Einstellungen
 extern uint8_t RECURSIVE_CALLCOUNTER;
+
 #endif
