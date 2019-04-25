@@ -33,6 +33,8 @@
 /// @brief Signatur einer TeX/LaTeX-Datei
 #define TEX_PATTERN ".tex"
 
+/// @brief Signatur einer Konfigurationsdatei für Jake
+#define CONF_PATTERN ".conf"
 /// @brief convenience-wrapper
 #define TO_DATA(x) x
 

@@ -19,6 +19,7 @@
 
 #include "../core/j_Settings.hpp"
 #include "../core/j_Typedefs.hpp"
+#include "../core/j_Debug.hpp"
 
 #include "../j_Helper.hpp"
 

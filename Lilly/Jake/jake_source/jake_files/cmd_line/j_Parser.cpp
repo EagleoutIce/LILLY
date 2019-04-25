@@ -4,7 +4,12 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
     for(int i = 1; i <= n; i++) { // 0 = Programmaufruf (wie z.B. lilly_jake)
         if(argv[i][0] != ARG_PATTERN){                       // not a single argument
             if(!in_str(argv[i],TEX_PATTERN)) {                  // not a .tex file
-                settings["operation"] = TO_DATA(argv[i]);
+                if(!in_str(argv[i], CONF_PATTERN)){
+                    settings["operation"] = TO_DATA(argv[i]);
+                } else {
+                    settings["operation"] = "config";
+                    settings["file"] = TO_DATA(argv[i]);
+                }
             } else {                                            // is a .tex file
                 settings["operation"] = "file_compile";
                 settings["file"] = TO_DATA(argv[i]);

@@ -49,5 +49,14 @@ configuration_t getHooks(const std::string& rulefiles, /* not supported: */ uint
  */
 configuration_t getTagged(configuration_t rules, const std::string& tag="PRE");
 
-
+/**
+ * @brief Schreibt alle Hooks die tag oder ALL entsprechend in den angegebenen Stream
+ * 
+ * @param out der Stream auf den geschrieben werden soll
+ * @param rules die Regeln auf deren Basis die hooks gesucht werden sollen
+ * @param tag der Tag der gesucht werden soll 
+ * 
+ * @returns EXIT_FAILURE wenn der Stream beschädigt ist.
+ */
+status_t writeHooks(std::ostream& out, configuration_t rules, const std::string& tag);
 #endif

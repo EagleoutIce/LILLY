@@ -1,58 +1,24 @@
+Und alles wird besser
+
+============================================================================================
 :EagleoutIce for Lilly
 ============================================================================================
 
-Jake trifft Captain Hook & Einige Änderungen
-
-
 JAKE:
 
-    * Der GeneratorParser unterstützt nun mehrere durch ':' getrennte Pfade - das ist cool
+    * Verbesserung der Hooks - Ausgaben werden nun nichtmehr als weiterer Befehl aufgefasst
+      :D
 
-    * Der REGEX-Ausdruck für GeParD wurde freier und auch einfacher gestaltet
+    * .conf dateien werden jetzt auch per Autovervollständigung angezeigt,
+      sie setzten Operation automatisch auf config (wieder nicht in config files)
 
-    * !!!!! buildrule-path heißt nun gepardrule-path!!!!!
+    * Es wird nun ALL unterstützt und INX wobei X eine beliebige Zahl sein kann, so
+      triggert IN2 zum Beispiel VOR dem 3. Compile-Vorgang (beginnt bei 0). 
+      Nach dem 3. Compile-Vorgang triggert wie gewohnt POST.
 
+    * Das Debugging wurde ausgebaut
 
-    + Jake beginnt nun, neben 'dump' ein grunlegendes Debug-System zu integrieren um die
-      Fehlersuche zu erleichtern.
-
-    + GeParD unterstützt und forciert nun verpflichtende Argumente
-
-    + Es gibt nun (verbesserte) PRE- und POST-Hooks (ALL und IN sind TODO)
-
-    + Hinzufügen der (lightweight-Variante der) Debug-Bibliothek aus dem EAGLE-Framework (Juchey :D)
-
-    + Endlich gibt es nun die Einstellung: 'lilly-show-boxname' um Boxnamen auszublenden wenn man nur einen
-      Boxtyp kompiliert :D
-
-    ! FIX: GePard Boxmode Beispiele
-
-LILLY:
-
-    ! FIX \LILLY@Semster to \LILLY@Semester typo
-
-    ! PROBLEM: \ifx\\LILLYxBOXxLemmaxBox wird nicht richtig aufgelöst im Modecontroller
-
-
-    + PDP hat nun ein ordentliches Profilbild (mit Random-Color on Compile Bonus)
-
-    + Es gibt nun die neue Farbe Butter - Weil ichs ie mag
-      Ebenfalls gibt es noch Leaf und MudWhite aus den gleichen gründen
-
-    + Es gibt nun `\Hcolor` und `\HBcolor` um generelle Highlighting Farben für Lilly zu
-      standartisieren.
-
-
-    * Edited DarkMidnightBlue für bessere Lesbarkeit
-
-    * Es wurden einige Korrekturen an den Daten für die Vorlesungen vorgenommen.
-
-    * Der Style bash wurde angepasst um Druckerfreundlich zu sein.
-
-    * Es gibt nun eine auf der Sprache C++ aufbauende neue Sprache Cpp für lstlistings
-
-
-    - Das Print-Profil liefert nun keine Farben mehr, dies war ohnehin überflüssig
+    ! FIX: kein autoclean sorgt nun nichtmehr für Fehler :D
 
 ============================================================================================
 :
