@@ -2,6 +2,7 @@
 
 
 status_t fkt_gsettings(const std::string& cmd) noexcept {
+    w_debug("Liefere zur Verfügung stehende Einstellungen (fkt_gsettings)", "func");
     settings_t::iterator it = settings.begin();
     while(it != settings.end()){
         if(it->second=="true"||it->second=="false") // boolean
@@ -19,6 +20,7 @@ status_t fkt_gsettings(const std::string& cmd) noexcept {
 }
 
 status_t fkt_goptions(const std::string& cmd) noexcept {
+    w_debug("Liefere zur Verfügung stehende Optionen (fkt_goptions)", "func");
     functions_t::iterator it = functions.begin();
     while(it != functions.end()){
         if (it->first.length()>0 && it->first[0] != '_')
@@ -28,6 +30,7 @@ status_t fkt_goptions(const std::string& cmd) noexcept {
 }
 
 status_t fkt_dump(const std::string& cmd) noexcept {
+    w_debug("Liefere die Konfigurationen (fkt_dump)", "func");
     std::cout << "Settings Dump: " << std::endl
               << "Information: Die '[' ']' gehören jeweils nicht zum Wert, sie dienen lediglich der Übersicht!" << std::endl;
     settings_t::iterator it = settings.begin();
@@ -40,6 +43,7 @@ status_t fkt_dump(const std::string& cmd) noexcept {
 }
 
 status_t fkt_help(const std::string& cmd) noexcept {
+    w_debug("Gebe die Hilfe aus (fkt_help)", "func");
     std::cerr << "Benutzung:" << std::endl << std::endl;
     std::cerr << program << " [options=help] [file]" << std::endl << std::endl;
     std::cerr << "[options]:" << std::endl;
@@ -64,6 +68,8 @@ status_t fkt_help(const std::string& cmd) noexcept {
 }
 
 status_t fkt_install(const std::string& cmd) noexcept {
+    w_debug("Beginnne mit der Installation (fkt_install) aufruf an ins:", "func");
+    w_debug4("Morgeeen, na wie gehts? ", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
 //Determine Operating System
 #if defined(__linux__)
     std::cout << "Betriebsystem wurde als Linux-Basiert identifiziert - versuche ins_linux()" << std::endl;
@@ -158,14 +164,7 @@ status_t fkt_compile(const std::string& cmd) {
         ++a;
     }*/
 
-    configuration_t pre_hooks = getTagged(all_hooks, "PRE");
-
-    configuration_t::iterator prIt = pre_hooks.begin();
-    while(prIt != pre_hooks.end()){
-        w_debug4("Platziere die Pre-Hook: \""  + prIt->first + "\" mit Body: \"" + prIt->second + "\" im Makefile!", "hooker","INF","", DEBUG_8BIT_FOREGROUND(33));
-        buf_makefile << "    echo Lilly Pre-Hook[" << prIt->first << "] evaluiert zu: $(shell " << prIt->second << ") && \\" << std::endl;
-        ++prIt;
-    }
+    writeHooks(buf_makefile, all_hooks, "PRE");
 
 #if defined(__linux__) || defined(__APPLE__) || defined(__MACH__)
     buf_makefile << "    mkdir -p \"$(OUTPUTDIR)\" && \\" << std::endl; // Auf windows vermutlich identisch nur ohne -p
@@ -175,6 +174,7 @@ status_t fkt_compile(const std::string& cmd) {
     buf_makefile << R"(    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
                  << "    (for bm in $(BOXMODES); do \\" << std::endl;
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
+        writeHooks(buf_makefile, all_hooks, "IN" + std::to_string(i));
         buf_makefile << "       pdflatex -jobname $(basename ${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  
                      << "${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1})" 
                      << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  << R"(${2}} )" << " ${3} $(_LILLYARGS) ${4}" 
@@ -182,20 +182,13 @@ status_t fkt_compile(const std::string& cmd) {
     }
     buf_makefile << "       echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  << "${2}\" ($${bm}) abgeschlossen\\033[m\"; done &&\\"                                                                                                   << std::endl;
 
-    configuration_t post_hooks = getTagged(all_hooks, "POST");
-
-    configuration_t::iterator poIt = post_hooks.begin();
-    while(poIt != post_hooks.end()){
-        w_debug4("Platziere die Post-Hook: \""  + poIt->first + "\" mit Body: \"" + poIt->second + "\" im Makefile!", "hooker","INF","", DEBUG_8BIT_FOREGROUND(33));
-        buf_makefile << "    echo Lilly Post-Hook[" << poIt->first << "] evaluiert zu: $(shell " << poIt->second << ") && \\" << std::endl;
-        ++poIt;
-    }
+    writeHooks(buf_makefile, all_hooks, "POST");
 
     // call clean routine if clean is enabled :D
     if (settings[S_LILLY_AUTOCLEAN] == "true")
         buf_makefile << "    $(call $(CLEANTARGET)) ) || (";
     else
-        buf_makefile << "    echo \"Kein autoclean da zugehörige Einstellung != true\" || (";
+        buf_makefile << "    echo \"Kein autoclean da zugehörige Einstellung (lilly-autoclean) != true\" ) || (";
 
     buf_makefile << "echo \"\\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\\033[m\"; exit 1;)"<< std::endl<< std::endl;  //) && (echo \"$(shell echo -E \"$(grep -R --include=\"*.log\" -i -E \"error[^(bars)][^(messages)]\" -A 7 -H \"./$(OUTPUTDIR)\" | more)\")\"))" << std::endl << std::endl;
 

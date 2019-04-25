@@ -22,21 +22,29 @@ void li_show_error( void ){
 }
 
 status_t ins_linux( void ) {
+    w_debug4("Im installer: Linux", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
     int fb;
+    w_debug4("Teste Vorhandensein durch: 'which pdflatex > /dev/null'", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
     std::cout << "  - Prüfe auf das Vorhandensein von pdflatex: "
               << er_decode(fb = system("which pdflatex > /dev/null"))
               << std::endl;
     char c_inp = '\0';
     if(fb) {
+        w_debug4("er_decode(fb = system(\"which pdflatex > /dev/null\")) != 0 => Frage nach Installation", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
         std::cout << "  Jake kann 'pdflatex' nicht finden, dies ist für die Arbeit mit Lilly zwanghaft notwendig!" << std::endl
                   << "  Soll 'texlive-full' installiert werden?  [(y)es/(n)o]> ";
-        while(c_inp != 'y' && c_inp != 'n')
+        while(c_inp != 'y' && c_inp != 'n'){
+            w_debug4(std::string("Antwort im Buffer: ") + c_inp, "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
             std::cin >> c_inp;
-        if(c_inp == 'y')
+        }
+        if(c_inp == 'y'){
+            w_debug4("Installation scheint erwünscht! Installiere mit 'system(\"sudo apt install texlive-full\")'", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
             std::cout << "Installiere 'texlive-full' via _apt_ : " << er_decode(system("sudo apt install texlive-full")) << std::endl;
-        else
+        }else
             std::cout << "  Jake installiert LILLY nun weiter, ohne 'pdflatex', da  du (n)o gewählt hast!" << std::endl;
     }
+
+    w_debug4("Erstelle Installationspfad auf Basis von settings[\"install-path\"](=" + settings["install-path"] + "): system((\"mkdir -p \" + settings[\"install-path\"] + \"/tex/latex\").c_str())" , "inst","INF","", DEBUG_8BIT_FOREGROUND(33));    
 
     std::cout << "  - Erstelle (" <<  settings["install-path"] << "/tex/latex): "
               << er_decode(system(("mkdir -p " + settings["install-path"] + "/tex/latex").c_str()))
