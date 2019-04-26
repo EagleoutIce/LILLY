@@ -1,12 +1,44 @@
+\providecommand{\lillyPathLayout}{\LILLYxgetDOCPATH/P/}
+\documentclass[Typ=CUSTOMLAYOUT,Vorlesung=LAII]{Lilly} 
+
+%%PREHEAD
 %\def\LILLYxBOXxNoBoxBemerkung{TRUE} 
-%\providecommand\LILLYxBOXxMODE{alternate}
-\documentclass[Typ=Mitschrieb,Vorlesung=DUMMY,Semester=2]{Lilly} 
+%\providecommand\LILLYxBOXxMODE{ALTERNATE}
+% \def\LILLYxNOxPACKAGEC{}
 \usepackage{lipsum}  
+
+%MACH EINEN FEHLER
+
+%%% \dataInput{_LILLY_FONTS.tex} %% ESCAPE TODO
+
 
 \begin{document}  
     \chapter{Allgemeine Grundlagen ein sehr langes Kapitelnamen gedöns}\elable{jmp} 
     \TitleSUB{Dies ist ein sehr wichtiges Kapitel}
-\section{IntroMintro}
+    Docname: \LILLYxDOCUMENTNAME\newline
+    Boxmode: \LILLYxBOXxMODE\newline
+    %%\MauMau
+    Wannabe: \LILLYxWANNABExERROR\newline
+    Demo Fontenc: \LILLYxDEMOxFONTENC\newline
+    PFAD : \LILLYxCLSPATH!\newline
+    
+    OFFICIAL(Lill-root: LILLYxgetCLSPATH): \LILLYxgetCLSPATH!\newline
+    DOC-ROOT: $\LILLYxgetDOCPATH$!\newline
+    \includegraphics[height=16em]{\getSemester{2}{Graphics/titleimageANA1.pdf}}
+    
+    %% This will fail, was used for auto root-detection :D
+    %\includegraphics[height=16em]{\getSemester{2}{titleimagePVS.pdf}}
+
+    
+    
+    
+    %Wrapfig tester:
+    %\begin{wrapfigure}{c}{4cm}
+    %    Hallo Mama, na wie gehts?
+    %    \caption{Das ist toll :D}
+    %\end{wrapfigure}
+    
+    \section{IntroMintro a}
         \begin{tabularx}{\linewidth}{lX}
             h & b \\
             c & d
@@ -59,7 +91,7 @@
             }
             \jmark[Link!!!!!]{jmp}
         }
-        \newpage
+        \clearpage
         \section{BINITRINTO}
         \renewcommand{\tabularxcolumn}[1]{m{#1}}
         \BEI{Binärbäume}{
@@ -100,4 +132,51 @@
             Diese ist noch viel wichtiger sie gibt 42 mal so viel Punkte!
         \end{aufgabe}
 
+\chapter{Spezifische supertests}
+
+\section{Graphentests - wrapper }
+\subsection{nonfloating - default}
+    \begin{graph}
+        \plotline{\x*\x}
+    \end{graph}\lipsum[6-8]
+
+\subsection{as custom wrap}
+\begin{wrapfigure}{l}{0pt}
+    \begin{graph}
+        \plotline{\x*\x}
+    \end{graph}
+\end{wrapfigure}\lipsum[6-8]
+
+\subsection{as wrapper}
+
+        \begin{wgraph}{l}
+            \plotline[purple]{\x*\x}
+        \end{wgraph}\lipsum[6-8]
+
+\subsection{as wrapper with enforced wrongwidth}
+        \begin{wgraph}{l}[][][1cm]
+            \plotline[Ao]{\x*\x}
+        \end{wgraph}\lipsum[6-8]
+
+\subsection{Beispiel mit externem caption}
+        \begin{wgraph}{l}[][][0pt][\caption{Wichtiger Graph}]
+            \plotline[Azure]{\x*\x}
+        \end{wgraph}\lipsum[6-8]
+
+\clearpage
+\section{Graphentests - floats}
+    \subsection{as float}
+    \begin{wgraph}{L}[][]
+        \plotline[Veronica]{\x*\x}
+    \end{wgraph}\lipsum[6-8]
+
+\subsection{as float with enforced wrongwidth}
+    \begin{wgraph}{L}[][][1cm]
+        \plotline[Amber]{\x*\x}
+    \end{wgraph}\lipsum[6-8]
+
+\subsection{Beispiel mit externem caption}
+    \begin{wgraph}{L}[][][0pt][\caption{Wichtiger Graph}]
+        \plotline[Aureolin]{\x*\x}
+    \end{wgraph}\lipsum[6-8]
 \end{document}  

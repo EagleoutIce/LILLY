@@ -1,58 +1,76 @@
+(IMPORTANT) Commander, Laden!
+
+============================================================================================
 :EagleoutIce for Lilly
 ============================================================================================
 
-Jake trifft Captain Hook & Einige Änderungen
+(IMPORTANT)
+!!!! DIE DOKUMENTSTRUKTUR WURDE VERÄNDART BITTE JAKE NEU KOMPILIEREN UND INSTALL ERNEUT
+     AUSFÜHREN; DANKE !!!!
+
+
+note: Dateien mit '_' sind absichtlich aus den Lilly-Custom-Includes ausgeschlossen :D
+
+note: Bitte alle falschen Verzeichnis-Links korrigieren, Danke :D
 
 
 JAKE:
 
-    * Der GeneratorParser unterstützt nun mehrere durch ':' getrennte Pfade - das ist cool
+    * Ordnerstruktur verändert
 
-    * Der REGEX-Ausdruck für GeParD wurde freier und auch einfacher gestaltet
+    * Im Debug-Modus versucht sich die Installation nun selbst zu verifizieren
 
-    * !!!!! buildrule-path heißt nun gepardrule-path!!!!!
+    * Es sollten nun fehler der hooks im LILLY_COMPILE.log ausgegeben werden
 
+    + Jake stellt für Custom-Layout-Loads nun die Option: 'lilly-layout-loader'
+      zur Verfügung. Sie ermöglicht es direkt relativ zu DOCPATH den Pfad an-
+      zugeben. So wird: 'lilly-layout-loader=waffel/' aufgelöst zu:
+      \providecommand{\lillyPathLayout}{\LILLYxgetDOCPATH/waffel/}
 
-    + Jake beginnt nun, neben 'dump' ein grunlegendes Debug-System zu integrieren um die
-      Fehlersuche zu erleichtern.
-
-    + GeParD unterstützt und forciert nun verpflichtende Argumente
-
-    + Es gibt nun (verbesserte) PRE- und POST-Hooks (ALL und IN sind TODO)
-
-    + Hinzufügen der (lightweight-Variante der) Debug-Bibliothek aus dem EAGLE-Framework (Juchey :D)
-
-    + Endlich gibt es nun die Einstellung: 'lilly-show-boxname' um Boxnamen auszublenden wenn man nur einen
-      Boxtyp kompiliert :D
-
-    ! FIX: GePard Boxmode Beispiele
+      Für ein Beispiel siehe jake tests test.tex (/test.conf)
 
 LILLY:
 
-    ! FIX \LILLY@Semster to \LILLY@Semester typo
+    * Header und leftmargin für print wurde für eine schönere Optik angepasst.
 
-    ! PROBLEM: \ifx\\LILLYxBOXxLemmaxBox wird nicht richtig aufgelöst im Modecontroller
+    * Ordnerstruktur verändert
 
+    * Pfadverteilung wird nun über den Content-Provider abgewickelt
 
-    + PDP hat nun ein ordentliches Profilbild (mit Random-Color on Compile Bonus)
+    * Fixed nasty Typo (Semster => Semester)
 
-    + Es gibt nun die neue Farbe Butter - Weil ichs ie mag
-      Ebenfalls gibt es noch Leaf und MudWhite aus den gleichen gründen
-
-    + Es gibt nun `\Hcolor` und `\HBcolor` um generelle Highlighting Farben für Lilly zu
-      standartisieren.
+    * Generelle Definitionen werden nun nur geladen, sofern Semester > 0 ist. (hoffe ich XD)
 
 
-    * Edited DarkMidnightBlue für bessere Lesbarkeit
+    + Es sind nun eigene Datenauflösungen für Öffentliche Dateien des Data Verzeichnisses
+      möglich! So liefert zum Beispiel '\getSemester{2}{/Graphics/titleimageANA1.pdf'
+      Den exakten Pfad zum im 2. Semster gelagerten Titelbild für ANA1.
+      Allgemein lässt sich der Pfad zum LILLY-Root Verzeichnis erhalten über:
+      '\LILLYxgetCLSPATH' (no trailing '/', WIP, uses: 
+            printf $(dirname $(kpsewhich Lilly.cls)))
+      Dies benötigt LILLY installiert, anderweitig versucht LILLY auf das lokale
+      Verzeichnis zurück zu fallen. Scheitert dies auch, dann schade XD
+      Zu beachten ist, dass beim zurückfallen auf den lokalen Pfad
+      ebenfalls eine Äquivalente Struktur geliefert werden muss!
+      So ist der Pfad './source/Data/Semster/NUMMER/' (mit passender NUMMER)
+      zwangsläufig notwendig, da lediglich die wurzel automatisch umgelegt wird
 
-    * Es wurden einige Korrekturen an den Daten für die Vorlesungen vorgenommen.
 
-    * Der Style bash wurde angepasst um Druckerfreundlich zu sein.
+    + Es werden nun auch dynamische Dokumenttypen hinzugefügt. So versucht Lilly
+      nun auch unbekannte Dokumenttypen aufzulösen
+        + Neuer Dokumentstil: PLAIN (Wie Mitschrieb, nur keinerlei AtBeginDocument 
+          modifikation - ausgenommen der kleine Header-Fix um die LILLY-Header 
+          implementation nicht zu vernichten :D)
 
-    * Es gibt nun eine auf der Sprache C++ aufbauende neue Sprache Cpp für lstlistings
+    + Es ist nun möglich über '\LILLYxgetDOCPATH' den Pfad zum aktuellen Dokument zu
+      erhalten damit lassen sich portabel "pseudo-absolute" Pfade angeben.
+      NOTE: Die direkte Anzeige dieser kann scheitern, wenn der Pfad einen Unterstrich 
+      enthält (dies ändert aber nichts an der funktionalität)
 
+    + ALS POC IST ES NUN MÖGLICH CUSTOM-LAYOUTS ZU LADEN :D Bisherige Header-Syntax:
+      \providecommand{\lillyPathLayout}{\LILLYxgetDOCPATH/P/}
+      \documentclass[Typ=CUSTOMLAYOUT,Vorlesung=LAII]{Lilly} 
 
-    - Das Print-Profil liefert nun keine Farben mehr, dies war ohnehin überflüssig
 
 ============================================================================================
 :

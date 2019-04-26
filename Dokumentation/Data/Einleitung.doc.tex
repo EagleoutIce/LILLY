@@ -132,18 +132,18 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
 Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
 So benötigt \verb|Mitschrieb| noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester}\marginpar{\tiny  Semester ist standartmäßig 1} gemäß:
 \begin{lstlisting}[style=latex,frame=none]
-\input{Lilly_Files/Data/Semster/\LILLY@Semester/Definitions/
+\input{\LILLYxPATHxDATA/Semester/\LILLY@Semester/Definitions/
        \LILLY@Vorlesung}
 \end{lstlisting}
 die für die jeweilige Vorlesung definierten Daten lädt.
 Erklärungen für die geladenen Daten befinden sich in den jeweiligen README-Dateien:
 \begin{description}
-    \item[1. Semster] \url{../Lilly/Lilly_Files/Data/Semster/1/Readme.md}
-    \item[2. Semster] \url{../Lilly/Lilly_Files/Data/Semster/2/Readme.md}
+    \item[1. Semester] \url{../Lilly/\LILLYxPATHxDATA/Semester/1/Readme.md}
+    \item[2. Semester] \url{../Lilly/\LILLYxPATHxDATA/Semester/2/Readme.md}
 \end{description}
 
 
-Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semster} sowie noch die optionale Option (tihihi) \T{n} die angibt, um das wievielte Übungsblatt es sich handelt. \\
+Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semester} sowie noch die optionale Option (tihihi) \T{n} die angibt, um das wievielte Übungsblatt es sich handelt. \\
 
 Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert!
 

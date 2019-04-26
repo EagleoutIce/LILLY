@@ -1,0 +1,52 @@
+
+\ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
+\AtBeginDocument{
+\clearpage\begin{titlepage} 
+    {\centering\par\vspace*{7em}\par
+    {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
+    \vspace{1cm}
+    {\scshape \tiny{\LILLY@Typ{} von}\\\large\AUTHOR\par}
+    \vspace{0.5cm}
+    {\itshape\small Version vom: \\ \heute\par}
+    \par\vspace*{9em}\par
+    \includegraphics[height=14em]{\LILLYxPATHxDATA/Semester/1/Graphics/titleimage\LILLY@Vorlesung.pdf}
+    \par\vspace*{1em}\par
+    {\fontsize{3pt}{2pt}\selectfont\centering Fassung vom \heute{} um \currenttime Uhr}\hfill\href{https://www.instagram.com/eagleoutice/}{\faInstagram} \href{https://steamcommunity.com/id/EagleoutIce/}{\faSteamSquare} \href{https://www.amazon.de/Niederegger-Marzipan-Klassiker-Variationen-1-075/dp/B00L7UQY2K/ref=sr_1_29?s=grocery&ie=UTF8&qid=1548528851&sr=1-29&keywords=Marzipan}{\faGift}\vspace{-1.1em}
+    \noindent\rule{\textwidth}{0.6pt}\\[0.2cm] %% TITLECANDY :D
+    \footnotesize{and i promise you\ldots the time shall come and you will know\ldots\\
+        the \emph{darkness will rise} and it will shatter everything below.\\[0.1cm]
+        you will know for the birds falling from the skies, \\
+        you will know for the flames, reflecting in your eyes\\
+        you will know there will be; no place to hide\\[0.1cm]
+        because when the darkness rise'\\
+        It shall be the only thing alive.\par
+    }
+    {\raggedleft\tiny{\usefont{T1}{qzc}{m}{it}  Florian Sihler, 23.12.2018}\\[-1.2em]}
+    \noindent\rule{\textwidth}{0.6pt}}
+\end{titlepage}
+}
+\else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
+\AtBeginDocument{
+\clearpage\begin{titlepage} 
+    {\centering\par
+    \par\vspace*{3em}\par
+    {\tab[\LILLYxTITLExOffset] \raisebox{4.5em}{\parbox[0em]{0em}{\includegraphics[height=8em]{\LILLYxPATHxDATA/Semester/1/Graphics/titleimage_\LILLY@Vorlesung.pdf}}\tab[-\LILLYxTITLExOffset]}}
+    {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
+    \vspace{1cm}
+    {\scshape\tiny{Zusammenfassung von}\\\large\AUTHOR\par}
+	\vspace{0.5cm}
+    {\itshape\small Version vom:\\ \heute\par}
+    }
+\pagestyle{empty}
+\addtocontents{TOPIC}{\protect\thispagestyle{empty}}
+{\par\vspace*{4.25em}\par\phantomsection\elable{INHA}
+
+{\bfseries\Large Inhaltsübersicht\hfill\small\jmark[DEF]{mrk:DEFS}}\\[-0.25cm]
+\noindent\rule{\textwidth}{2pt}\\[0.2cm]
+\listofTOPICS
+\vfill
+\POLITEINTRO
+}
+\end{titlepage}
+}
+\fi\fi
