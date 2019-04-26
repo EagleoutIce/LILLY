@@ -1,0 +1,79 @@
+%%% Verwaltet das Laden SÄMTLICHER DATEN-Dateien
+%% Zu unterbinden
+
+\LILLYxDemandPackage{ifthen}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
+                    {Um dieses Paket kommt LILLY nicht herum!}
+                    {}{}
+
+\def\remSpace#1 {#1}
+
+%% GET PATH OF LILLY
+\newread\res
+\immediate\write18{printf $(dirname $(kpsewhich Lilly.cls)) > xres.txt}
+\immediate\openin\res=xres.txt
+\read\res to \LILLYxCLSPATH
+
+
+\newcommand{\LILLYxgetCLSPATH}{\expandafter\remSpace\LILLYxCLSPATH}
+
+%%% GET PATH OF DOC
+
+
+\immediate\write18{printf $(dirname $(find `pwd` -name \LILLYxDOCUMENTNAME)) > xres.txt}
+\immediate\openin\res=xres.txt
+\immediate\write18{rm xres.txt}
+\read\res to \LILLYxDOCPATH
+
+\newcommand{\LILLYxgetDOCPATH}{\expandafter\remSpace\LILLYxDOCPATH}
+
+
+\IfFileExists{\LILLYxgetCLSPATH/Lilly.cls}{%
+    \ClassInfo{Lilly}{Automatische Pfaderkennung erfolgreich, LILLY-Quellverzeichnis erfolgreich gefunden}%
+}{% else
+    \ClassWarning{Lilly}{Automatische Pfaderkennung gescheitert. Fallback zu lokalem Verzeichnis!}%
+    \renewcommand{\LILLYxgetCLSPATH}{.}
+}
+
+%%%%%%% NICE HELPER
+
+%% WON'T ALLOW '_'  which is fine as they should'nt be used anyway
+\providecommand{\dataInput}[1]{\InputIfFileExists{\LILLYxgetCLSPATH/source/Data/#1}{}{\ClassWarning{Lilly}{Die per \protect\dataInput\space angeforderte Datei #1 konnte nicht gefunden werden!}}}
+
+%%% Semesterzahl Path
+\providecommand{\getSemester}[2]{\LILLYxgetCLSPATH/\LILLYxPATHxDATA/Semester/#1/#2}
+
+
+
+\providecommand{\LILLYxPATHxROOT}{.} %%% WILL BE DEFINITLY SET BY JAKE - TODO
+
+\providecommand{\LILLYxPATHxFILExROOT}{source}
+
+%%% MAIN LOCATIONS
+
+\providecommand{\LILLYxPATHxCONTROLLERS}{\LILLYxPATHxFILExROOT/Controllers}
+\providecommand{\LILLYxPATHxDATA}{\LILLYxPATHxFILExROOT/Data}
+\providecommand{\LILLYxPATHxFALLBACKS}{\LILLYxPATHxFILExROOT/Fallbacks}
+\providecommand{\LILLYxPATHxHELPER}{\LILLYxPATHxFILExROOT/Helper}
+\providecommand{\LILLYxPATHxLISTINGS}{\LILLYxPATHxFILExROOT/Listings}
+\providecommand{\LILLYxPATHxMATHS}{\LILLYxPATHxFILExROOT/Maths}
+
+%%% Wir respektieren unseren Nutzer als netten, aber oft unwissenden Menschen
+%%% {Datei}{Nutzerpfad}{Systempfad} -NO TRAILING '/'
+\providecommand{\userput}[3]{%
+\ifthenelse{\equal{#2}{#3}}{%
+    \input{#3/#1}%
+}{%
+    \InputIfFileExists{#2/#1}{%
+        \ClassInfo{Lilly}{Lilly hat die Nutzerdatei: #2/#1 respektiert}%
+    }{%
+        \ClassInfo{Lilly}{Lilly hat die Nutzerdatei: #2/#1 ignoriert, weil nicht gefunden}%
+        \input{#3/#1}%
+    }%
+}%
+}
+
+%%% Used userput-paths by LILLY - available for overwrite
+%% Bitte akzeptiere, dass die Systempfade nicht überschrieben werden _dürfen_
+\providecommand{\lillyPathLayout}{\LILLYxPATHxCONTROLLERS/Intro/Layouts}
+
+

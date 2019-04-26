@@ -1,24 +1,76 @@
-Und alles wird besser
+(IMPORTANT) Commander, Laden!
 
 ============================================================================================
 :EagleoutIce for Lilly
 ============================================================================================
 
+(IMPORTANT)
+!!!! DIE DOKUMENTSTRUKTUR WURDE VERÄNDART BITTE JAKE NEU KOMPILIEREN UND INSTALL ERNEUT
+     AUSFÜHREN; DANKE !!!!
+
+
+note: Dateien mit '_' sind absichtlich aus den Lilly-Custom-Includes ausgeschlossen :D
+
+note: Bitte alle falschen Verzeichnis-Links korrigieren, Danke :D
+
+
 JAKE:
 
-    * Verbesserung der Hooks - Ausgaben werden nun nichtmehr als weiterer Befehl aufgefasst
-      :D
+    * Ordnerstruktur verändert
 
-    * .conf dateien werden jetzt auch per Autovervollständigung angezeigt,
-      sie setzten Operation automatisch auf config (wieder nicht in config files)
+    * Im Debug-Modus versucht sich die Installation nun selbst zu verifizieren
 
-    * Es wird nun ALL unterstützt und INX wobei X eine beliebige Zahl sein kann, so
-      triggert IN2 zum Beispiel VOR dem 3. Compile-Vorgang (beginnt bei 0). 
-      Nach dem 3. Compile-Vorgang triggert wie gewohnt POST.
+    * Es sollten nun fehler der hooks im LILLY_COMPILE.log ausgegeben werden
 
-    * Das Debugging wurde ausgebaut
+    + Jake stellt für Custom-Layout-Loads nun die Option: 'lilly-layout-loader'
+      zur Verfügung. Sie ermöglicht es direkt relativ zu DOCPATH den Pfad an-
+      zugeben. So wird: 'lilly-layout-loader=waffel/' aufgelöst zu:
+      \providecommand{\lillyPathLayout}{\LILLYxgetDOCPATH/waffel/}
 
-    ! FIX: kein autoclean sorgt nun nichtmehr für Fehler :D
+      Für ein Beispiel siehe jake tests test.tex (/test.conf)
+
+LILLY:
+
+    * Header und leftmargin für print wurde für eine schönere Optik angepasst.
+
+    * Ordnerstruktur verändert
+
+    * Pfadverteilung wird nun über den Content-Provider abgewickelt
+
+    * Fixed nasty Typo (Semster => Semester)
+
+    * Generelle Definitionen werden nun nur geladen, sofern Semester > 0 ist. (hoffe ich XD)
+
+
+    + Es sind nun eigene Datenauflösungen für Öffentliche Dateien des Data Verzeichnisses
+      möglich! So liefert zum Beispiel '\getSemester{2}{/Graphics/titleimageANA1.pdf'
+      Den exakten Pfad zum im 2. Semster gelagerten Titelbild für ANA1.
+      Allgemein lässt sich der Pfad zum LILLY-Root Verzeichnis erhalten über:
+      '\LILLYxgetCLSPATH' (no trailing '/', WIP, uses: 
+            printf $(dirname $(kpsewhich Lilly.cls)))
+      Dies benötigt LILLY installiert, anderweitig versucht LILLY auf das lokale
+      Verzeichnis zurück zu fallen. Scheitert dies auch, dann schade XD
+      Zu beachten ist, dass beim zurückfallen auf den lokalen Pfad
+      ebenfalls eine Äquivalente Struktur geliefert werden muss!
+      So ist der Pfad './source/Data/Semster/NUMMER/' (mit passender NUMMER)
+      zwangsläufig notwendig, da lediglich die wurzel automatisch umgelegt wird
+
+
+    + Es werden nun auch dynamische Dokumenttypen hinzugefügt. So versucht Lilly
+      nun auch unbekannte Dokumenttypen aufzulösen
+        + Neuer Dokumentstil: PLAIN (Wie Mitschrieb, nur keinerlei AtBeginDocument 
+          modifikation - ausgenommen der kleine Header-Fix um die LILLY-Header 
+          implementation nicht zu vernichten :D)
+
+    + Es ist nun möglich über '\LILLYxgetDOCPATH' den Pfad zum aktuellen Dokument zu
+      erhalten damit lassen sich portabel "pseudo-absolute" Pfade angeben.
+      NOTE: Die direkte Anzeige dieser kann scheitern, wenn der Pfad einen Unterstrich 
+      enthält (dies ändert aber nichts an der funktionalität)
+
+    + ALS POC IST ES NUN MÖGLICH CUSTOM-LAYOUTS ZU LADEN :D Bisherige Header-Syntax:
+      \providecommand{\lillyPathLayout}{\LILLYxgetDOCPATH/P/}
+      \documentclass[Typ=CUSTOMLAYOUT,Vorlesung=LAII]{Lilly} 
+
 
 ============================================================================================
 :

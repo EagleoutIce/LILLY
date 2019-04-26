@@ -7,11 +7,15 @@
 \newcommand*{\LILLYxSTATUS}{Work in Progress}
 \newcommand*{\LILLYxVERSIONxLONG}{1.0.8 - Where Jake meets the GePard}
 
-\input{Lilly_Files/Helper/_LILLY_PACKAGE_CTRL}
+
+\input{source/Helper/_LILLY_PACKAGE_CTRL}
+
+\input{source/Controllers/_LILLY_CONTENT_CONTROLLER}
+
 %\LILLY%LoadPackage{lipsum42}{Gutes Paket}{MAUMAUMAU}{\def\MauMau{Hauihao}}
 %\LILLY%DemandPackage{lipsum42}{Super Paket}{HAUHAUHAU}{\def\MauMau{Raurau}}
 
-\input{Lilly_Files/Data/_LILLY_GENERAL_COMMANDS}
+\input{\LILLYxPATHxDATA/_LILLY_GENERAL_COMMANDS}
 
 \newcounter{ctr_DUMMY}
 
@@ -22,9 +26,9 @@
 
 \providecommand*{\LILLYxDummy}{dummy}                        %%% ONLY THING DEFINE HERE
 
-\input{Lilly_Files/Helper/_LILLY_PATH} %% provides \linput as \LILLYxPATH based input
+\input{\LILLYxPATHxHELPER/_LILLY_PATH} %% provides \linput as \LILLYxPATH based input
 
-\input{Lilly_Files/Helper/_LILLY_BOOLEAN}
+\input{\LILLYxPATHxHELPER/_LILLY_BOOLEAN}
 
 \providecommand{\LILLYxDEBUG}{\false}                        %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
 
@@ -46,9 +50,9 @@
         \newcommand*{\LILLYxDocumentxTYPExExtras}{twoside}    %%% Weitere Zusätze für das Dokument
         \ifx\LILLYxDEBUG\true
             %\newcommand*{\LILLYxGeometryxExtras}{bindingoffset=8mm,showframe}            
-            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=11mm}            
+            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=18mm}            
         \else
-            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=11mm}
+            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=18mm}
         \fi
     \else
         \newcommand*{\LILLYxDocumentxTYPExExtras}{oneside}    %%% Weitere Zusätze für das Dokument
@@ -71,7 +75,7 @@
 
 \LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}%% Package, Info
                     {Dieses Paket ist für LILLY überlebenswichtig}%% Error-Text
-                    {\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight},top=1.25in,centering}%%Params
+                    {\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D - wenn er das dann mal kann
 
 
@@ -155,31 +159,31 @@
                     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
                     {}{} %% keine Argumente
 
-\input{Lilly_Files/Helper/_LILLY_COMMAND}
+\input{\LILLYxPATHxHELPER/_LILLY_COMMAND}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Schriftarten                                                                                                        %     %%%% FONTS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{Lilly_Files/Data/_LILLY_FONTS}
+\input{\LILLYxPATHxDATA/_LILLY_FONTS}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Shortcuts                                                                                                           %     %%%% SHORTCUTS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{Lilly_Files/Controllers/_LILLY_ENVIRONMENT_CONTROLLER}
-\input{Lilly_Files/Helper/_LILLY_SHORTCUTS}
+\input{\LILLYxPATHxCONTROLLERS/_LILLY_ENVIRONMENT_CONTROLLER}
+\input{\LILLYxPATHxHELPER/_LILLY_SHORTCUTS}
 
 \LILLYxLoadPackage{wrapfig}{Um Figuren und Tabellen angenehmer einzubetten}
                     {Ich versuche nun von Hand die Umgebungen wrapfigure und wraptable notduerftig zu simulieren ERROR}
-                    {\input{Lilly_Files/Fallbacks/_LILLY_FALLBACK_WRAPFIG}}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_WRAPFIG}}
                     {}{} %% NO ARGS
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Key-Val-Optionen zum verarbeiten von Argumenten                                                                     %     %%%% PACKAGE-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{Lilly_Files/Controllers/Parser/_LILLY_KEYVAL_PARSER}
+\input{\LILLYxPATHxCONTROLLERS/Parser/_LILLY_KEYVAL_PARSER}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TiKz und andere Grafik freuden                                                                                      %     %%%% TIKZ-OPTIONS %%%%
@@ -190,12 +194,12 @@
 %% \RequirePackage{booktabs}
 \LILLYxLoadPackage{booktabs}{für noch tollerererererere Tabellen}
                     {Ich finde es gut, dass du kein booktabs hast, ist ja auch zu fanatisch, aber irgendwie müssen wir damit jetzt wohl klarkommen ERROR}
-                    {\input{Lilly_Files/Fallbacks/_LILLY_FALLBACK_BOOKTABS}}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_BOOKTABS}}
                     {}{} %% NO ARGS
                     
 \RequirePackage{hhline}
 \ifx\LILLYxTIKZxenable \undefined
-    \input{Lilly_Files/Data/Graphics/Tikz-Core/_LILLY_TIKZ_CORE}
+    \input{\LILLYxPATHxDATA/Graphics/Tikz-Core/_LILLY_TIKZ_CORE}
     \tikzset{invclip/.style={clip,insert path={{[reset cm](-100pt,-100pt) rectangle (100pt,100pt)}}}} %Für die FG-Kreise, damit man clippings auch invertieren kann
 \fi
 
@@ -210,7 +214,7 @@
 
 \RequirePackage{multicol}
 
-\input{Lilly_Files/Listings/_LILLY_LISTINGS_STYLE}
+\input{\LILLYxPATHxLISTINGS/_LILLY_LISTINGS_STYLE}
 
 %\ExplSyntaxOn
 %\DeclareCaptionFont{black}{ \color{black} }
@@ -250,21 +254,21 @@
 \widowpenalty=10000
 
 
-\input{Lilly_Files/Helper/_LILLY_SWITCH_CASE}
+\input{\LILLYxPATHxHELPER/_LILLY_SWITCH_CASE}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generelle Controller                                                                                                %     %%%% General Controller %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{Lilly_Files/Controllers/_LILLY_MODE_CONTROLLER}
-\input{Lilly_Files/Controllers/_LILLY_LINK_CONTROLLER}
+\input{\LILLYxPATHxCONTROLLERS/_LILLY_MODE_CONTROLLER}
+\input{\LILLYxPATHxCONTROLLERS/_LILLY_LINK_CONTROLLER}
 
-\input{Lilly_Files/Controllers/Intro/_LILLY_INTRO_CONTROLLER}
+\input{\LILLYxPATHxCONTROLLERS/Intro/_LILLY_INTRO_CONTROLLER}
 
-\input{Lilly_Files/Controllers/_LILLY_BOX_CONTROLLER}
-\input{Lilly_Files/Helper/_LILLY_BOX_COUNTER}
+\input{\LILLYxPATHxCONTROLLERS/_LILLY_BOX_CONTROLLER}
+\input{\LILLYxPATHxHELPER/_LILLY_BOX_COUNTER}
 
-\input{Lilly_Files/Controllers/_LILLY_HYPHEN_CONTROLLER}
+\input{\LILLYxPATHxCONTROLLERS/_LILLY_HYPHEN_CONTROLLER}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -274,7 +278,7 @@
 \providecommand{\LILLYxMathxMode}{normal}                %%% Niemand mag euler-mathfont
 
 
-\input{Lilly_Files/Maths/_LILLY_MATHS_INCLUDES}
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_INCLUDES}
 
 %\RequirePackage{kpfonts}
 
@@ -284,9 +288,9 @@
 
 %% Zahlen und andere Freuden 
 
-\input{Lilly_Files/Maths/_LILLY_MATHS_SYMBOLS}
-\input{Lilly_Files/Maths/_LILLY_MATHS_OPERATORS}
-\input{Lilly_Files/Maths/_LILLY_MATHS_COMPATIBILITIES}
-\input{Lilly_Files/Maths/_LILLY_MATHS_PLOTS}
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_SYMBOLS}
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_OPERATORS}
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_COMPATIBILITIES}
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_PLOTS}
 
-\input{Lilly_Files/Controllers/Outro/_LILLY_OUTRO_CONTROLLER}
+\input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}
