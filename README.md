@@ -27,7 +27,7 @@ Bitte füge alle geplanten oder gewünschten Ziele hinzu!
 ## Wie es losgeht
 Da sich diese Readme noch im Aufbau befindet. Für alle Hinweise bezüglich der Installation nach dem Herunterladen des Repositories siehe:
 
-1. [Jake/jake_source/README.md](Jake/jake_source/README.md)
+1. [Jake/source/README.md](Jake/source/README.md)
    Für das Installieren und Dokumentieren von Jake (lilly_jake) 
 
 2. [Jake/README.md](Jake/README.md) 
