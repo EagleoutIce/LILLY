@@ -33,6 +33,7 @@
 #include "../installer/j_ins_Linux.hpp"
 #include "../installer/j_ins_MacOS.hpp"
 
+#include "j_Autocomplete.hpp"
 #include "j_Parser.hpp"
 
 /**
@@ -101,6 +102,8 @@ status_t fkt_install(const std::string& cmd) noexcept;
  * 
  * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
  *
+ * @deprecated left for debugging reasons
+ * 
  * @returns Statuswert (bisher nichts)
  * 
  */
@@ -111,10 +114,22 @@ status_t fkt_gsettings(const std::string& cmd) noexcept;
  * 
  * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
  *
+ * @deprecated left for debugging reasons
+ * 
  * @returns Statuswert (bisher nichts)
  * 
  */
 status_t fkt_goptions(const std::string& cmd) noexcept;
+
+/**
+ * @brief liefert eine Liste aller Dinge für die Autovervollständigung zurück auf Basis von settings["what"]
+ * 
+ * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
+ *
+ * @returns Statuswert (bisher nichts)
+ * 
+ */
+status_t fkt_autoget(const std::string& cmd) noexcept;
 
 /**
  * @brief liefert eine Liste aller Operationen deren spezifikation settings["what"] entspricht

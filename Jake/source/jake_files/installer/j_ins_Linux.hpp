@@ -24,15 +24,6 @@
 #include "../j_Helper.hpp"
 
 /**
- * @brief Führt einen Befehl aus und liefert das Ergebnis zurück
- * 
- * @param command der Befehl
- * 
- * @returns das Ergebnis
- */
-std::string exec(const std::string& command);
-
-/**
  * @brief Installationsregel für Linux-Basierte Systeme - nutzt konfigurationen der settings
  * 
  * @todo Implementiere Rückgabewert

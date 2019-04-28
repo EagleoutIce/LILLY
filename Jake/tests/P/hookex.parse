@@ -49,6 +49,6 @@ BEGIN hook:
         type       =       IN0
         body       = echo "Hallo Welt - will it break?"
         on-failure =       !nothing at all!
-        on-success = ""    ! still nothign1 
+        on-success = ""    ! still nothign !
 
 END;

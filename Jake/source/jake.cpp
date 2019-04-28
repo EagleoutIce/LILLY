@@ -123,7 +123,8 @@
 int main(int argc, const char** argv) {
     program = argv[0];
 
-    ld_settings(argc-1, argv);
+    if(!ld_settings(argc-1, argv)) 
+        in_settings(argv[0]);
     //fkt_help(argv[0]);
     /* GeneratorParser gp(settings["file"]);
 
@@ -138,7 +139,6 @@ int main(int argc, const char** argv) {
         std::cout << "Found: " << a.name << " Hallo=" << a.configuration["Hallo"] << std::endl;
     }
     */
-    in_settings(argv[0]);
 
     return EXIT_SUCCESS;
 }

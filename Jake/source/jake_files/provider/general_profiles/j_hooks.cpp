@@ -1,11 +1,11 @@
 #include "j_hooks.hpp"
 
-settings_t hooks_settings = {
-    {"name", "!!"}, // needed, must be unique - specifier
-    {"type", "!!"}, // needed PRE, IN, POST, TODO: ALL- wann soll die hook loslegen?
-    {"body", ""}, //hookcontent - was macht die hook ? 
-    {"on-success", "success"}, //Nachricht, wenn (zmd letzte) Operation erfolgreich
-    {"on-failure", "failure"} //Nachricht, wenn (zmd letzte) Operation scheitert
+settings_t __hooks_settings = {
+    {"name", {"!!", "Name der Hook"}}, // needed, must be unique - specifier
+    {"type", {"!!", "Hook-Typ (PRE, IN#, POST, ALL)"}}, // needed PRE, IN, POST, TODO: ALL- wann soll die hook loslegen?
+    {"body", {"", "Inhalt der Hook"}}, //hookcontent - was macht die hook ? 
+    {"on-success", {"success", "Ausgabe im Falle eines Erfolgs der Hook"}}, //Nachricht, wenn (zmd letzte) Operation erfolgreich
+    {"on-failure", {"failure", "Ausgabe im falle eines Misserfolgs der Hook"}} //Nachricht, wenn (zmd letzte) Operation scheitert
     // letzere sind shortcuts für (op) && (echo succ) || (echo err)
 };
 
@@ -19,15 +19,17 @@ configuration_t getHooks(const std::string& rulefiles, uint8_t in_max) {
 
     GeneratorParser gp(rulefiles);
     configuration_t ret_config = hooks_default;
-    std::vector<GeneratorParser::jObject> got = gp.parseFile(NAME_HOOK_BUILDRULE,hooks_settings);
+    std::vector<GeneratorParser::jObject> got = gp.parseFile(NAME_HOOK_BUILDRULE,hooks_settings._settings);
     for(GeneratorParser::jObject jo : got) {
         if(assert_all_differ(jo.configuration, "!!", "diese Hook"))
             continue;
-        if(! (jo.configuration["type"]=="PRE" || jo.configuration["type"] == "POST"  || jo.configuration["type"] == "ALL" || (jo.configuration["type"].length() > 1 && jo.configuration["type"].substr(0,2) =="IN") ))
+        if(! (jo.configuration["type"].value=="PRE" || jo.configuration["type"].value == "POST"
+              || jo.configuration["type"].value == "ALL"
+              || (jo.configuration["type"].length() > 1 && jo.configuration["type"].value.substr(0,2) =="IN") ))
             throw std::runtime_error("Für eine Buildrule sind für \"Typ\" nur die Konfigurationen 'INX', 'PRE' und 'POST' zulässig!");
-        ret_config[jo.configuration["type"] + ":" + jo.configuration["name"]] = "(" + jo.configuration["body"] 
-                            + ") >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [" + jo.configuration["on-success"]  + "] ||  echo  [" 
-                            + jo.configuration["on-failure"]  + "]" ;
+        ret_config[jo.configuration["type"].value + ":" + jo.configuration["name"].value] = "(" + jo.configuration["body"].value 
+                            + ") >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [" + jo.configuration["on-success"].value  
+                            + "] ||  echo  [" + jo.configuration["on-failure"].value  + "]" ;
     }
     return ret_config;
 }
@@ -66,3 +68,5 @@ status_t writeHooks(std::ostream& out, configuration_t rules, const std::string&
     }
     return EXIT_SUCCESS;
 }
+
+__settings_t hooks_settings{__hooks_settings};

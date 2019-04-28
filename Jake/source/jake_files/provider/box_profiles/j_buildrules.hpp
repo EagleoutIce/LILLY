@@ -16,6 +16,7 @@
 
 #include "../../core/j_Definitions.hpp"
 #include "../../core/j_Typedefs.hpp"
+#include "../../core/j_Settings.hpp"
 
 #include "../../j_Helper.hpp"
 
@@ -24,7 +25,10 @@
 /**
  * @brief Alle möglichen Einstellungen für Buildrules
  */
-extern settings_t buildrules_settings;
+extern settings_t __buildrules_settings;
+
+/// @brief Kapselt die eigentlichen Einstellungen 
+extern __settings_t buildrule_settings;
 
 /// @brief Die Standartkonfiguration für Bauregeln
 extern configuration_t buildrules_default;
@@ -32,7 +36,7 @@ extern configuration_t buildrules_default;
 /**
  * @brief Liefert Regeln gemäß der Form: map[NAME] = MAKEFILETEXT
  * 
- * @param rulefile mit ':' separierte Liste an Dateien
+ * @param rulefiles mit ':' separierte Liste an Dateien
  * @param complete soll eine complete Regel automatisch erstellt werden?
  * 
  * @returns map aller gefundener Regeln map[NAME] = MAKEFILETEXT

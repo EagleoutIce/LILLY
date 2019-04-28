@@ -15,6 +15,7 @@
 #include "../core/j_Typedefs.hpp"
 #include "../core/j_Settings.hpp"
 #include "../core/j_Definitions.hpp"
+#include "../core/j_Debug.hpp"
 
 #include "../j_Helper.hpp"
 
@@ -41,5 +42,14 @@ status_t ld_settings(int n /* = argc */, const char** argv);
  */
 
 status_t in_settings( std::string v0 );
+
+/**
+ * @brief Entfert alle modifikatoren wie '-' und ':' von einem String
+ * 
+ * @param str die Zeichenkette die es zu bearbeiten gilt
+ * 
+ * @returns den modifizierten String
+ */
+std::string strip_mod( const std::string& str );
 
 #endif

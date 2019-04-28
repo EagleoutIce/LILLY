@@ -27,11 +27,14 @@
 /// @brief Signatur mit der ein single-Argument beginnt
 #define ARG_PATTERN '-'
 /// @brief Signatur einer Zuweisung
-#define ASS_PATTERN "="
+#define ASS_PATTERN ":"
 /// @brief Signatur einer Hinzufügenden Zuweisung
-#define ASA_PATTERN "+="
+#define ASA_PATTERN "+:"
 /// @brief Signatur einer TeX/LaTeX-Datei
 #define TEX_PATTERN ".tex"
+
+/// @brief hidden functions und so :D
+#define HIDDEN '_'
 
 /// @brief Signatur einer Konfigurationsdatei für Jake
 #define CONF_PATTERN ".conf"
@@ -85,7 +88,9 @@
 ///@brief Soll der Boxname bei der Generierung angezeigt werden? dies macht nur Sinn auf false gesetzt werden wenn es nur eine Box gibt
 #define S_LILLY_SHOW_BOX_NAME           "lilly-show-boxname"
 /// @brief Pfad zur Buildrule-settings-Datei (wenn leer (default), dann werden die Standartdaten geladen :D )
-#define S_GEPARDRULES_PATH               "gepardrule-path"
+#define S_GEPARDRULES_PATH              "gepardrule-path"
 /// @brief Bsp: Loader-Path für Lilly Layout
-#define S_LILLY_LAYOUT_LOADER            "lilly-layout-loader"
+#define S_LILLY_LAYOUT_LOADER           "lilly-layout-loader"
+/// @brief Soll externalization verwendet werden?
+#define S_LILLY_EXTERNAL                "lilly-external"
 #endif

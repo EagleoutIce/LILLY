@@ -1,4 +1,3 @@
-\providecommand{\lillyPathLayout}{\LILLYxgetDOCPATH/P/}
 \documentclass[Typ=CUSTOMLAYOUT,Vorlesung=LAII]{Lilly} 
 
 %%PREHEAD
@@ -101,27 +100,27 @@
                 \begin{tikzpicture}
                     \oragraphdot{(0,0)}{w}{a}; 
                     %\node at(0,-1) {};
-                \end{tikzpicture} & \ding{51}, da ein einzelner Knoten bereits ein gültiger Binärbaum ist.& \begin{tikzpicture}
+                \end{tikzpicture} & \ding{51}, da ein einzelner Knoten bereits ein gültiger Binärbaum ist.& \begin{tikzternal}
                     \oragraphdot{(0,0)}{a}{a}; 
                     \oragraphdot{(-1,-1)}{b}{b}; 
                     \node at(1,-1) {};
                     \node at(0,0.75) {};
                     \draw (a) -- (b); 
-                \end{tikzpicture}\vspace{0.14cm} & \ding{55}, da jeder Knoten entweder \(2\) oder \(0\) Kindknoten haben muss. \\\hline
-                \begin{tikzpicture}
+                \end{tikzternal}\vspace{0.14cm} & \ding{55}, da jeder Knoten entweder \(2\) oder \(0\) Kindknoten haben muss. \\\hline
+                \begin{tikzternal}
                     \oragraphdot{(0,0)}{a}{a}; 
                     \oragraphdot{(-1,-1)}{b}{b}; 
                     \oragraphdot{(1,-1)}{c}{c};
                     \node at(0,0.75) {};
                     \draw (a) -- (b) (a) -- (c) (b) -- (c) ; 
-                \end{tikzpicture}\vspace{0.14cm} & \ding{55}, da es keine \say{Ringe} geben darf. & \begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]
+                \end{tikzternal}\vspace{0.14cm} & \ding{55}, da es keine \say{Ringe} geben darf. & \begin{tikzternal}[scale=0.5, every node/.style={transform shape}]
                     \oragraphdot{(0,0)}{a}{a}; 
                     \oragraphdot{(-1,-1)}{b}{b}; 
                     \oragraphdot{(1,-1)}{c}{c};
                     \oragraphdot{(0,-2)}{d}{d}; 
                     \oragraphdot{(2,-2)}{e}{e};
                     \draw (a) -- (b) (a) -- (c) (c) -- (d) (c) -- (e); 
-                \end{tikzpicture} & \ding{51}, da jeder Knoten \(0\) oder \(2\) Kindknoten besitzt\\\hline    
+                \end{tikzternal} & \ding{51}, da jeder Knoten \(0\) oder \(2\) Kindknoten besitzt\\\hline    
             \end{tabularx}
         }
         \renewcommand{\tabularxcolumn}[1]{p{#1}}

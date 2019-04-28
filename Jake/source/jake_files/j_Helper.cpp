@@ -23,10 +23,10 @@ std::string create_buildrule(const std::string& name_type, const std::string& na
     return ret_str;
 }
 
-status_t assert_all_differ(configuration_t theall, const std::string& thediffer, const std::string& flavour) {
-        configuration_t::iterator it = theall.begin();
+status_t assert_all_differ(settings_t theall, const std::string& thediffer, const std::string& flavour) {
+        settings_t::iterator it = theall.begin();
         while (it != theall.end()){
-            if(it->second == thediffer){
+            if(it->second.value == thediffer){
                 std::cerr << COL_ERROR << "Die Option \"" << it->first << "\" ist für " << flavour << " verpflichtend! Bitte gib sie an" << COL_RESET << std::endl;
                 if(warning_debug("Im debug-Modus wird diese Box verworfen!","Asserter") == EXIT_FAILURE)
                     throw std::runtime_error("MISSING NAME-SPECIFIER FOR BOX RUN WITH -debug FOR MORE INFORMATION");
@@ -35,4 +35,17 @@ status_t assert_all_differ(configuration_t theall, const std::string& thediffer,
             ++it;
         }
     return EXIT_SUCCESS; 
+}
+
+std::string exec(const std::string& command) {
+    std::array<char, 1024> buffer;
+    std::string result;
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(command.c_str(), "r"), pclose);
+    if (!pipe) {
+        throw std::runtime_error("popen() failed!");
+    }
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+        result += buffer.data();
+    }
+    return result;
 }

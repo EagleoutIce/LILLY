@@ -23,7 +23,7 @@ std::vector<GeneratorParser::jObject> GeneratorParser::parseFile(const std::stri
                 cur_box = get_next_box(dataFile, identifier); // Erhalte eine Box
                 if(cur_box.name == "") break; // Die Box ist ungültig / es gibt keine mehr
                 ret_jObjects.push_back(cur_box.get_jObject(blueprint)); // Füge Box hinzu
-                w_debug("   Found-Box: " + ret_jObjects.back().name + ": " + ret_jObjects.back().configuration["name"], "GenPar");
+                w_debug("   Found-Box: " + ret_jObjects.back().name + ": " + ret_jObjects.back().configuration["name"].value, "GenPar");
             }
             dataFile.close();
     }

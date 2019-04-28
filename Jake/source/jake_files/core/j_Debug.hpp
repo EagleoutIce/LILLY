@@ -61,6 +61,8 @@ inline std::string _PT() {
  * 
  * @param what Die Fehlernachricht
  * @param who Wer sendet den Fehlerbericht? (locked to 10 chars)
+ * @param file aktuelle Datei
+ * @param line aktuelle Zeile
  * @param signature Der Fehlertyp
  * @param bgcode Hintergrundfarbe
  * @param fgcode Vordergrundfarbe

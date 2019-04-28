@@ -23,27 +23,30 @@ _jake() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD]}"
-    sets=$(lilly_jake _gsettings)
-    #Man sollte _goptions unbedingt in _goperations umbenennen
-    opts=$(lilly_jake _goptions)
-    opts+=$(ls | grep -e ".tex" -e ".conf") ## find -maxdepth 1 -type f
+    # sets=$(lilly_jake _gsettings)
+    # Man sollte _goptions unbedingt in _goperations umbenennen
+    # opts=$(lilly_jake _goptions)
+    # opts+=$(ls | grep -e ".tex" -e ".conf") ## find -maxdepth 1 -type f
 
+    opts=$(lilly_jake _get -what: "${COMP_WORDS[*]}")
 
-    seen=$(__seen_operation "${opts}")
-
+    # seen=$(__seen_operation "${opts}")
     local IFS=$'\t\n'
 
-    
-    if [[ $(__test_in ${prev//-} ${sets}) != 0 ]]; then 
-        COMPREPLY=( $(compgen -W "Es gab ein wichtiges Update - Bitte installiere Jake erneut!" -- ${cur}) )
-        return 0
+    if [[ "${opts}" == "" ]]; then
+        COMPREPLY=()
     fi
-    
-    if [[ ${cur} == -* || ${seen} != 0 ]]; then
-        COMPREPLY=( $(compgen -W "${sets}" -- ${cur}) )
-    else
-        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
-    fi
-    return 0
+
+    # if [[ $(__test_in ${prev//-} ${sets}) != 0 ]]; then 
+    # COMPREPLY=( $(compgen -W "Es gab ein wichtiges Update - Bitte installiere Jake erneut!" -- ${cur}) )
+    #    return 0
+    # fi
+
+    # if [[ ${cur} == -* || ${seen} != 0 ]]; then
+    #     COMPREPLY=( $(compgen -W "${sets}" -- ${cur}) )
+    # else
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    # fi
+    # return 0
 }
-complete -o nospace -F _jake lilly_jake
+complete -o dirnames -F _jake lilly_jake
