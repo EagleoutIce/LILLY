@@ -40,6 +40,8 @@ public:
          * 
          * @param m Matchings ([0] = entire, [1] = First Group, ...)
          * @param o original
+         * @param s stripped Match
+         * 
          */
         Match(std::vector<std::string> m, const std::string& o, const std::string s) :
             matchings(m), original(o), stripped(s) {} 
@@ -57,7 +59,7 @@ public:
     /**
      * @brief Konstruiert den Tokenizer auf einem normalen InputStream
      * 
-     * @param input der Pfad zur Datei
+     * @param input_path der Pfad zur Datei
      * @param pattern Token-Selector
      */
     Tokenizer(const std::string& input_path, const std::string& pattern = R"(^ *([\w-äöüßÄÖÜ]+(?: [\w-äöüÄÖÜß]+)*) *(=) *([\w-äöüÄÖÜß]+(?: [\w-äöüÄÖÜß]+)*))");

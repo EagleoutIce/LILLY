@@ -6,13 +6,13 @@ Dieses Datenpaket benötigt die Option `LILLY@Semester=2` und wird *nur* über d
 Es werden folgende Bezeichner über `LILLY@Vorlesung` zur Verfügung gestellt:
 
 - **ANA1** - Analysis 1 für Inf. und Ing.   [Leiter: Prof. Dr. Jan-Willem Liebezeit, ÜBL: Müller]
-- **GDBS** - Grundlagen der Betriebssysteme [Leiter: ?, ÜBL: ?]
+- **GDBS** - Grundlagen der Betriebssysteme [Leiter: Prof. Dr.-Ing. Franz J. Hauck, ÜBL: Habiger&Mödinger]
 - **PDP**  - Paradigmen der Programmierung  [Leiter: Prof. Dr. Alexander Raschke & Frühwirth, ÜBL: Böhm]
-- **PVS**  - Programmierung von Systemen    [Leiter: ?, ÜBL: ?]
+- **PVS**  - Programmierung von Systemen    [Leiter: Prof. Dr. Matthias Tichy, ÜBL: Stefan Götz]
 
 Weiter werden noch die folgenden Proseminare ebenfalls über `LILLY@Vorlesung` akzeptiert:
 
-- **KNN**  - Proseminar: Künstliche neuerale Netze [Leiter: ?, TUT: ?]
+- **KNN**  - Proseminar: Künstliche neuerale Netze [Leiter: PD Dr. Friedhelm Schwenker, TUT: Peter Bellmann]
 
 
 Andere Bezeichner werden *nicht* beachtet. Die Spezifikation wird genutzt für:

@@ -1,0 +1,6 @@
+%%0 \tikz[baseline=-0.6ex]{\node[rectangle, draw, rounded corners=5pt,MudWhite, fill=MudWhite, centered]{\lstinline[style=bash]{$ ghc Skript.hs}};}
+
+\DeclareRobustCommand{\LILLYxwriteLst}[2][shell]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.9\baselineskip, inner sep=1pt,draw, rounded corners=5pt,MudWhite, fill=MudWhite, centered]{\;\lstinline[style=#1]{#2}\,};}}
+
+\DeclareRobustCommand{\haskell}[1]{\LILLYxwriteLst[haskell]{#1}}
+\DeclareRobustCommand{\shell}[1]{\LILLYxwriteLst[bash]{\$ #1}}

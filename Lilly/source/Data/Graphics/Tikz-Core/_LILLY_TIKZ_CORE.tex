@@ -9,10 +9,33 @@ positioning,fit,shapes,shadings,chains,%
 matrix,scopes, shadows,patterns,mindmap}
 %%\usetikzlibrary{external}
 \RequirePackage{pgfplots}   
-%%\usepgfplotslibrary{external}  %%THIS DOESNT WORK SOMEHOW
-%%\tikzexternalize[up to date check=md5, optimize=false]
-%%\tikzset{external/export=true}
-%%\tikzexternaldisable
+\ifx\LILLYxEXTERNALIZE\true
+\usetikzlibrary{external}
+\tikzexternalize[up to date check=md5, optimize=false]
+\tikzsetfigurename{\LILLYxOUTPUTDIR/extimg/grafik_}
+\tikzexternaldisable
+\LILLYxDemandPackage{environ}{Ermöglicht spezifisches externalize} %% Package, Info
+                    {Leider ist auch dieses Paket verpflichtend :/}%% Error-Text
+                    {}%%Params
+                    {}
+\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape
+          -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"}
+        }
+\NewEnviron{tikzternal}[1][]{%
+\tikzexternalenable%
+\begin{tikzpicture}[#1]%
+\BODY%
+\end{tikzpicture}%
+\tikzexternaldisable%
+}
+
+\tikzexternaldisable
+\else
+\newenvironment{tikzternal}[1][]{\begin{tikzpicture}[#1]}{\end{tikzpicture}}
+\fi
+
+
+%%
 
 \tikzset{stretch/.initial=1}
 

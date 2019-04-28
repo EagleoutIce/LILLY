@@ -1,18 +1,5 @@
 #include "j_ins_Linux.hpp"
 
-std::string exec(const std::string& command) {
-    std::array<char, 128> buffer;
-    std::string result;
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(command.c_str(), "r"), pclose);
-    if (!pipe) {
-        throw std::runtime_error("popen() failed!");
-    }
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-        result += buffer.data();
-    }
-    return result;
-}
-
 void li_show_error( void ){
     std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
     << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
@@ -88,7 +75,7 @@ status_t ins_linux( void ) {
     if(settings[S_LILLY_PATH]=="\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"")
     std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst."<< std::endl
               << "    Nutze hierzu: " 
-              << std::endl << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
+              << std::endl << "    $ " << program << " -lilly-path" << ASS_PATTERN << " \"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
 
     std::cout << "  - Informiere TEX über (" << settings["install-path"] << "): "
               << er_decode(system(("texhash " + settings["install-path"] + " > /dev/null").c_str()))

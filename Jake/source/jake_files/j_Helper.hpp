@@ -23,6 +23,18 @@
 #include "core/j_Debug.hpp"
 
 /**
+ * @brief Lesbarer Test ob char* in string
+ * 
+ * @param str Der String in dem gesucht werden soll
+ * @param seq Die zu suchende Sequenz
+ * 
+ * @returns true - wenn die Sequenz enthalten ist, sonst false
+ */
+inline status_t in_str(const std::string& str,const char* seq){
+    return (str.find(seq) != std::string::npos);
+}
+
+/**
  * @brief Lesbarer Test ob char* in char*
  * 
  * @param str Der String in dem gesucht werden soll
@@ -31,7 +43,7 @@
  * @returns true - wenn die Sequenz enthalten ist, sonst false
  */
 inline status_t in_str(const char* str,const char* seq){
-    return (std::string(str).find(seq) != std::string::npos);
+    return in_str(std::string(str), seq);
 }
 
 /**
@@ -109,7 +121,7 @@ std::vector<std::string> split(const std::string& str, char delim = ' ');
  * @param complete soll eine complete variante erstellt werden?
  * @param name_addon Zusätzlicher Namensbezeichner
  * @param input_build Input-regel
- * @param showboxname should the boxname be shown in name?
+ * @param l_comp_name should the boxname be shown in name?
  * @todo: others zusäzliche optionen
  * 
  * @returns String-Repräsentation der Build-Regel
@@ -130,7 +142,14 @@ std::string create_buildrule(const std::string& name_type, const std::string& na
  * @returns 1 Wenn im Debug ein Fehler passiert => Verwerfe Box/assertedObject
  * 
  */
-status_t assert_all_differ(configuration_t theall, const std::string& thediffer = "!!", const std::string& flavour = "diesen Boxtyp");
+status_t assert_all_differ(settings_t theall, const std::string& thediffer = "!!", const std::string& flavour = "diesen Boxtyp");
 
-
+/**
+ * @brief Führt einen Befehl aus und liefert das Ergebnis zurück
+ * 
+ * @param command der Befehl
+ * 
+ * @returns das Ergebnis
+ */
+std::string exec(const std::string& command);
 #endif

@@ -8,7 +8,6 @@
  *
  * @brief Kann Blueprints für verschiedene Designs erstellen - naja, bald :D
  *
- * @warning #WIP
  */
 
 #include <fstream>
@@ -99,7 +98,7 @@ public:
     /**
      * @brief Extrahiert alle 'identifier'-Definitionen aus einer Datei
      *
-     * @param identifer der Name der Blöcke die Analysiert werden sollen
+     * @param identifier der Name der Blöcke die Analysiert werden sollen
      * @param blueprint die Zugrunde liegenden Einstellungen - es ist nicht erlaubt unbekannte hinzu zu fügen
      *
      * @returns Alle gefundenen Objekte. Wird keins Gefunden so wird ein leerer Vektor zurück geben

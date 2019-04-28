@@ -1,14 +1,14 @@
 #include "j_buildrules.hpp"
 
-settings_t buildrules_settings = {
-    {"name", "!!"}, // needed
-    {"display-name", "!!"}, // needed
-    {"lilly-mode", "!!"}, // needed
-    {"complete", "false"},
-    {"complete-prefix", "c_"},
-    {"lilly-complete-prefix", "COMPLETE-"},
-    {"nameprefix", ""},
-    {"lilly-loader", R"(\\input{$(INPUTDIR)$(TEXFILE)})"}
+settings_t __buildrules_settings = {
+    {"name", {"!!", "interner Name der Regel" }}, // needed
+    {"display-name", {"!!", "anzuzeigender Name"}}, // needed
+    {"lilly-mode", {"!!", "zu verwendender Modi"}}, // needed
+    {"complete", {"false", "Ist es eine complete-Version?", IS_SWITCH}},
+    {"complete-prefix", {"c_", "Anzeige-Präfix für vollständige Version"}},
+    {"lilly-complete-prefix", {"COMPLETE-", "Lilly-Präfix für vollständige Version"}},
+    {"nameprefix", {"", "Generelles Namenspräfix"}},
+    {"lilly-loader", {R"(\\input{$(INPUTDIR)$(TEXFILE)})", "Lade Sequenz für Datei"}}
 };
 
 configuration_t buildrules_default = {
@@ -24,37 +24,38 @@ configuration_t getRules(const std::string& rulefiles, bool complete) {
 
     GeneratorParser gp(rulefiles);
     configuration_t ret_config = buildrules_default;
-    std::vector<GeneratorParser::jObject> got = gp.parseFile(NAME_BOXPROFILE_BUILDRULE,buildrules_settings);
+    std::vector<GeneratorParser::jObject> got = gp.parseFile(NAME_BOXPROFILE_BUILDRULE,buildrule_settings._settings);
     for (GeneratorParser::jObject jo : got){
         // check validity with assigning "!!" to value (which cannot be in code) and then throwing debug error if msising
 
         if(assert_all_differ(jo.configuration, "!!", "diese Buildrule"))
             continue; //Pass on not correct
 
-            //|| jo.configuration["display-mode"] =="!!" || jo.configuration["lilly-mode"] == "!!")
-        
-        ret_config[jo.configuration["name"]] = create_buildrule(jo.configuration["display-name"],
-                                                    (jo.configuration["complete"]=="true")?
-                                                    jo.configuration["complete-prefix"]:"" +
-                                               jo.configuration["name"],
-                                               jo.configuration["lilly-mode"],
-                                               jo.configuration["complete"]=="true",
-                                               jo.configuration["nameprefix"],
-                                               jo.configuration["lilly-loader"],
-                                               jo.configuration["lilly-complete-prefix"]
+        //|| jo.configuration["display-mode"] =="!!" || jo.configuration["lilly-mode"] == "!!")
+
+        ret_config[jo.configuration["name"].value] = create_buildrule(jo.configuration["display-name"].value,
+                                                    (jo.configuration["complete"].value=="true")?
+                                                    jo.configuration["complete-prefix"].value:"" +
+                                               jo.configuration["name"].value,
+                                               jo.configuration["lilly-mode"].value,
+                                               jo.configuration["complete"].value=="true",
+                                               jo.configuration["nameprefix"].value,
+                                               jo.configuration["lilly-loader"].value,
+                                               jo.configuration["lilly-complete-prefix"].value
                                               );
         if (complete)
-            ret_config[jo.configuration["complete-prefix"]+jo.configuration["name"]] = create_buildrule(jo.configuration["display-name"],
-                                                                        jo.configuration["complete-prefix"] +
-                                                                    jo.configuration["name"],
-                                                                    jo.configuration["lilly-mode"],
+            ret_config[jo.configuration["complete-prefix"].value+jo.configuration["name"].value] = create_buildrule(jo.configuration["display-name"].value,
+                                                                        jo.configuration["complete-prefix"].value +
+                                                                    jo.configuration["name"].value,
+                                                                    jo.configuration["lilly-mode"].value,
                                                                     true,
-                                                                    jo.configuration["nameprefix"],
-                                                                    jo.configuration["lilly-loader"],
-                                                                    jo.configuration["lilly-complete-prefix"]
+                                                                    jo.configuration["nameprefix"].value,
+                                                                    jo.configuration["lilly-loader"].value,
+                                                                    jo.configuration["lilly-complete-prefix"].value
                                                                 );
     }
 
     return ret_config;
 }
 
+__settings_t buildrule_settings{__buildrules_settings};

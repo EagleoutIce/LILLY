@@ -38,7 +38,7 @@ status_t ins_macOS( void ) {
               << std::endl;
     if(settings[S_LILLY_PATH]=="\"$(dirname $(mdfind Lilly.cls | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"")
     std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst. Nutze hierzu: "
-              << std::endl << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
+              << std::endl << "    $ " << program << " -lilly-path" << ASS_PATTERN << " \"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
 
     std::cout << "  - Informiere TEX über (" << settings["install-path"] << "): "
               << er_decode(system(("sudo texhash " + settings["install-path"] + " > /dev/null").c_str()))

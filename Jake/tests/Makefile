@@ -1,4 +1,4 @@
-# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 26 2019 at: 21:40:53)
+# Jake 1.0.7 - A Servant for Lilly     (compiled on: Apr 28 2019 at: 01:44:55)
 
 TEXFILE      := test.tex
 BASENAME     := $(basename $(TEXFILE))
@@ -9,7 +9,7 @@ OUTPUTDIR    := $(shell echo ./$(BASENAME)-OUT/| sed 's:/*$$::')/
 INPUTDIR     := $(shell echo ./| sed 's:/*$$::')/
 BOXMODES     := DEFAULT #                     ## Seperator: ' '
 CLEANTARGET  := LILLYxClean
-CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC DEFS
+CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock SATZE ZSM UB TOP listing upa ilg TOPIC DEFS
 NAMEPREFIX   :=                               ## Immer
 SEMESTER     := 1                             ## Übungsblatt
 VORLESUNG    := LAII                          ## Übungsblatt
@@ -17,7 +17,7 @@ N            := 42                            ## Anzahl
 _C           := ,                             ## No Joke xD
 
 ## Makefile/General settings
-_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/P/}
+_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/P/}\\providecommand{\\LILLYxEXTERNALIZE}{FALSE}
 
 JOBCOUNT     := 2                             ## should: <= cpu/thread count!
 

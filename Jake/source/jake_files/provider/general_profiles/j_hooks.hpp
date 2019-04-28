@@ -23,7 +23,11 @@
 /**
  * @brief Alle möglichen Einstellungen für Buildrules
  */
-extern settings_t hooks_settings;
+extern settings_t __hooks_settings;
+
+/// @brief Kapselt die __hooks_settings
+extern __settings_t hooks_settings;
+
 
 /// @brief Die Standartkonfiguration für Bauregeln
 extern configuration_t hooks_default;
@@ -31,13 +35,12 @@ extern configuration_t hooks_default;
 /**
  * @brief Liefert Regeln gemäß der Form: map[NAME] = MAKEFILETEXT
  * 
- * @param rulefile mit ':' separierte Liste an Dateien
- * @param complete soll eine complete Regel automatisch erstellt werden?
- * @todo in_max Anzahl der laufenden Compilevorgänge for IN-RULE
+ * @param rulefiles mit ':' separierte Liste an Dateien
+ * @param in_max Anzahl der laufenden Compilevorgänge for IN-RULE
  * 
  * @returns map aller gefundener Regeln map[NAME] = MAKEFILETEXT
  */
-configuration_t getHooks(const std::string& rulefiles, /* not supported: */ uint8_t in_max=3);
+configuration_t getHooks(const std::string& rulefiles, uint8_t in_max=3);
 
 /**
  * @brief liefert aus einer Masse an Regeln die, deren Präfix-Tag (PRE:RULENAME) dem TAG entspricht

@@ -1,7 +1,7 @@
 %% Wird für die Dokumentation entsprechnd erweitert
 
-\lstdefinestyle{bash}{
-    language=bash,
+\lstdefinestyle{haskell}{
+    language=haskell,
     caption={},
     breaklines=true,
     backgroundcolor=\color{MudWhite},
@@ -13,7 +13,7 @@
     keywordstyle = [4]{\color{AppleGreen}}, %% FILES
     keywordstyle = [5]{\color{Orchid}\bfseries}, %% SHELLPRE
     otherkeywords = {;,<<,>>,2>,<,|},
-    alsoletter={-,|,~,{,},_,.,>,:},
+    alsoletter={-,|,~,{,},_,.,>,:,*},
     comment=[l]{\#},
     keywordsprefix={\$},
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
@@ -24,14 +24,14 @@
     xrightmargin=3pt,
     %frameround=tttt, %% mag backgroundcolor nicht
     framerule=1pt,
-    escapeinside={*}{*}, 
+    escapeinside={!*!}{!*!}, 
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     basicstyle=\LILLYxlstTypeWriter\color{black},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     numbers=none,           %Zeilennummern
-    morekeywords = {},
-    morekeywords = [2]{mkdir,texhash,make,apt,>},
-    morekeywords = [3]{-p, -dir, print, install},
-    morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake, ghci, ghc},
-    morekeywords = [5]{},
+    morekeywords = {:l,:cd,:q,:r},
+    morekeywords = [2]{>},
+    morekeywords = [3]{},
+    morekeywords = [4]{},
+    morekeywords = [5]{Prelude>,*Main>},
 }
 

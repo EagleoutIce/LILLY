@@ -2,7 +2,7 @@
 #define _J_INS_MACOS_HPP 10008
 
 /**
- * @file j_ins_Linux.hpp
+ * @file j_ins_MacOS.hpp
  * @author Florian Sihler
  * @version 1.0.8
  *
@@ -21,8 +21,6 @@
 #include "../core/j_Typedefs.hpp"
 
 #include "../j_Helper.hpp"
-
-#include "j_ins_Linux.hpp"
 
 /**
  * @brief Installationsregel für MacOS Systeme - nutzt konfigurationen der settings

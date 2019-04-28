@@ -5,13 +5,13 @@ status_t fkt_gsettings(const std::string& cmd) noexcept {
     w_debug("Liefere zur Verfügung stehende Einstellungen (fkt_gsettings)", "func");
     settings_t::iterator it = settings.begin();
     while(it != settings.end()){
-        if(it->second=="true"||it->second=="false") // boolean
+        if(it->second.type == IS_SWITCH) // boolean
             std::cout << "-" << it->first << " \t";
-        else if (it->second.length() > 0 && it->second[it->second.length()-1] == ' '){ // erlaubt +=
-            std::cout << "-" << it->first << "=\t";
-            std::cout << "-" << it->first << "+=\t";
+        else if (it->second.type == IS_TEXTLIST){ // erlaubt +=
+            std::cout << "-" << it->first << ":\t";
+            std::cout << "-" << it->first << "+:\t";
         } else  {
-            std::cout << "-" << it->first << "=\t";
+            std::cout << "-" << it->first << ":\t";
         }
 
         ++it;
@@ -36,7 +36,8 @@ status_t fkt_dump(const std::string& cmd) noexcept {
     settings_t::iterator it = settings.begin();
     while(it != settings.end()){ // iterate over all settings
         // simple padding without <iomanip> std::setw
-        std::cout << it->first << ": " << std::string(20-it->first.length(),' ') << STY_PARAM << "[" << it->second << "]" << COL_RESET << std::endl;
+        std::cout << it->first << ": " << std::string(20-it->first.length(),' ')
+                  << STY_PARAM << "[" << it->second.value << "]" << COL_RESET << std::endl;
         ++it;
     }
     return EXIT_SUCCESS;
@@ -60,9 +61,9 @@ status_t fkt_help(const std::string& cmd) noexcept {
               << std::endl;
 
     std::cerr << std::endl << "note:" << std::endl
-              << "Allgemeine Einstellungen können über \"-key=value\" gesetzt werden (\"-key\" für boolesche). So "
-              << "setzt: \"-path=/es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: "
-              << "\"/es/gibt/kuchen\". Weiter ist es möglich mit '+=' values hinzuzufügen."
+              << "Allgemeine Einstellungen können über \"-key" << ASS_PATTERN << " value\" gesetzt werden (\"-key\" für boolesche). So "
+              << "setzt: \"-path" << ASS_PATTERN <<  " /es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: "
+              << "\"/es/gibt/kuchen\". Weiter ist es möglich mit '" << ASA_PATTERN << "' values hinzuzufügen."
               << std::endl;
     return EXIT_SUCCESS;
 }
@@ -150,8 +151,9 @@ status_t fkt_compile(const std::string& cmd) {
                  << std::endl
                  //Generals
                  << "## Makefile/General settings"                                                                              << std::endl
-                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}})" 
-                 << R"(\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/)" << settings[S_LILLY_LAYOUT_LOADER]<< "}" << std::endl << std::endl //DONT'T Change
+                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}})" 
+                 << R"(\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/)" << settings[S_LILLY_LAYOUT_LOADER]<< "}" 
+                 << R"(\\providecommand{\\LILLYxEXTERNALIZE}{)" << ((settings[S_LILLY_EXTERNAL]=="true")?"TRUE":"FALSE") << "}"<< std::endl << std::endl //DONT'T Change
                  << "JOBCOUNT     := " << padPrint(settings["jobcount"])              << "## should: <= cpu/thread count!"      << std::endl
                  << std::endl << std::endl;
 
@@ -168,15 +170,20 @@ status_t fkt_compile(const std::string& cmd) {
     writeHooks(buf_makefile, all_hooks, "PRE");
 
 #if defined(__linux__) || defined(__APPLE__) || defined(__MACH__)
-    buf_makefile << "    mkdir -p \"$(OUTPUTDIR)\" && \\" << std::endl; // Auf windows vermutlich identisch nur ohne -p
+    if(settings[S_LILLY_EXTERNAL]=="true")
+        buf_makefile << "    mkdir -p \"$(OUTPUTDIR)/extimg\" && \\" << std::endl; // Auf windows vermutlich identisch nur ohne -p
+    else
+        buf_makefile << "    mkdir -p \"$(OUTPUTDIR)\" && \\" << std::endl; // Auf windows vermutlich identisch nur ohne -p        
 #endif
     //clean log
 
     buf_makefile << R"(    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
                  << "    (for bm in $(BOXMODES); do \\" << std::endl;
+    if(settings[S_LILLY_EXTERNAL]=="true")
+        buf_makefile << "       ([ -r $(basename ${1}$${bm}-${2}).tex ] || echo \\\\providecommand{\\\\LILLYxBOXxMODE}{$${bm}}\\\\providecommand{\\\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4} > $(basename ${1}$${bm}-${2}).tex) && \\" << std::endl;
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
         writeHooks(buf_makefile, all_hooks, "IN" + std::to_string(i));
-        buf_makefile << "       pdflatex -jobname $(basename ${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  
+        buf_makefile << "       pdflatex -jobname $(basename ${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")
                      << "${2}) $(LATEXARGS)" << R"( \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1})" 
                      << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  << R"(${2}} )" << " ${3} $(_LILLYARGS) ${4}" 
                      << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
@@ -195,7 +202,10 @@ status_t fkt_compile(const std::string& cmd) {
 
 
     buf_makefile << "LILLYxClean = echo \"\\033[38;2;255;191;0m> Lösche temporäre Dateien...\033[m\" && \\"                     << std::endl;
-    buf_makefile << "     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done"                                         << std::endl<< std::endl<< std::endl;
+    if(settings[S_LILLY_EXTERNAL]=="true")
+        buf_makefile << "     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd && rm -f $(OUTPUTDIR)extimg/*.$$fd; done"                                         << std::endl<< std::endl<< std::endl;
+    else
+        buf_makefile << "     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done"                                         << std::endl<< std::endl<< std::endl;
 
     // parse the modes:
     configuration_t b_rules = getRules(settings[S_GEPARDRULES_PATH],settings[S_LILLY_COMPLETE]=="true");
@@ -283,12 +293,17 @@ status_t fkt_config(const std::string& cmd) {
         throw std::runtime_error("Zu viele Konfigurationsdateien oder ungültige Konfigurationsdatei. Stelle sicher die 'operation' zu ändern!");
     }
     Configurator c(settings["file"]);
-    c.parse_settings(&settings);
+    c.parse_settings(&settings._settings);
     return in_settings(cmd);
 }
 
 status_t fkt_get(const std::string& cmd) noexcept {
     return system(("grep -E \"" + settings["what"] + "\" -r * -hs").c_str());
+}
+
+status_t fkt_autoget(const std::string& cmd) noexcept{
+    std::cout << parse_cmd_line_autocomplete(settings["what"]);
+    return EXIT_SUCCESS;
 }
 
 
@@ -301,7 +316,8 @@ functions_t functions = {
     {"tokentest", {fkt_tokentest, "Testet den Tokenizer auf seine Funktionalität"}},
     {"config", {fkt_config, "Lädt die Einstellungen aus der Datei 'file'"}},
     {"get", {fkt_get, "Sucht nach Pattern in settings[\"what\"]"}},
-    {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}},
-    {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}
+    {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}}, // DEPRECATED
+    {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}, // DEPRECATED
+    {"_get", {fkt_autoget, "Interne Funktion, liefert Alles für die Autovervollständigung"}}
 };
 
