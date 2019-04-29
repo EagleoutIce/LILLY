@@ -62,7 +62,7 @@ public:
      * @param input_path der Pfad zur Datei
      * @param pattern Token-Selector
      */
-    Tokenizer(const std::string& input_path, const std::string& pattern = R"(^ *([\w-äöüßÄÖÜ]+(?: [\w-äöüÄÖÜß]+)*) *(=) *([\w-äöüÄÖÜß]+(?: [\w-äöüÄÖÜß]+)*))");
+    Tokenizer(const std::string& input_path, const std::string& pattern = R"(^ *([a-zA-Z0-9_\-äöüßÄÖÜ]+(?: [a-zA-Z0-9_\-äöüÄÖÜß]+)*) *(=) *([a-zA-Z0-9_\-äöüÄÖÜß]+(?: [a-zA-Z0-9_\-äöüÄÖÜß]+)*))");
 
     /**
      * @brief Konstruiert den Tokenizer auf einem normalen InputStream
@@ -74,7 +74,7 @@ public:
      * @param eol Welches Zeichen beendet eine Zeile?
      */
     Tokenizer(std::istream& input,
-              const std::string& pattern = R"(^ *([\w-äöüÄÖÜß]+(?: [\w-äöüÄÖÜß]+)*) *(=) *([\w-äöüÄÖÜß]+(?: [\w-äöüÄÖÜß]+)*))", //Danke ECMAScript: ^([^=]*)(?<! ) *(=) *([^=\n]*)(?<! )
+              const std::string& pattern = R"(^ *([a-zA-Z0-9_\-äöüßÄÖÜ]+(?: [a-zA-Z0-9_\-äöüÄÖÜß]+)*) *(=) *([a-zA-Z0-9_\-äöüÄÖÜß]+(?: [a-zA-Z0-9_\-äöüÄÖÜß]+)*))", //Danke ECMAScript: ^([^=]*)(?<! ) *(=) *([^=\n]*)(?<! )
               unsigned int skip_lines = 0,
               const std::string& skipper = R"(![^!]*!)", // Matches ! Hallo ! na du !Wie gehts?! correct
               const char eol = '\n');

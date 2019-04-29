@@ -23,7 +23,7 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
                     return EXIT_FAILURE;
                 }
                 if(in_str(argv[x], ASA_PATTERN)) {              // is an addition statement
-                    settings[s.substr(0,s.find(ASA_PATTERN))] += argv[++x];
+                    settings[s.substr(0,s.find(ASA_PATTERN))] += std::string(" ") + argv[++x];
                 } else {                                        // normal statement
                     settings[s.substr(0,s.find(ASS_PATTERN))]  = argv[++x];
                 }
