@@ -7,24 +7,24 @@
  * @version 1.0.8
  *
  * @brief Macros fürs Debugging
- * 
+ *
  * @note diese Datei hat einen Bruder! - ./Debug/eagle_preprocess_debug.hpp
- * 
+ *
  * Hier werden die veschiedenen DEBUG-Level zur Laufzeit aufgelistet
  * Es sind 3 Stufen unterstützt die bei Bedarf beliebig erweitert werden
  * können.
  * j_Debug beruft sich auf den j_color_debug Farbstandart
- * 
+ *
  * @todo include logger
- * 
+ *
  * Die Kompatible Version dieser Datei basiert auf JAKE_PREPROCESS_DEBUG und
  * wird nur sporadisch aktualisiert um den Funktionsumfang zu erweitern.
  * Die lokale Versionsnummer findet sich hier:
- * 
+ *
  * @version 0.1.2 -- 0.1.5
- * 
+ *
  * @note stark modifiziert für Jake - A Lilly servant
- * 
+ *
  * Die hier aufgelisteten Macros werden mit JAKE_PREPROCESS_DEBUG gesteuert
  */
 
@@ -33,7 +33,7 @@
 #include <time.h>
 
 #include "Debug/j_color_debug.hpp"
-#include "Debug/j_preprocessor_debug.hpp" 
+#include "Debug/j_preprocessor_debug.hpp"
 
 #include "j_Typedefs.hpp"
 #include "j_Settings.hpp"
@@ -44,12 +44,18 @@ PREP_DEB_FULL_MSG("Eingebunden - DATEI: j_Debug.hpp");
 #define MSG_LEN  70
 #define PAT_LEN  40
 
-inline std::string _PT() {
-    struct timespec ts;
-    timespec_get(&ts, TIME_UTC);
-    char buff[100];
-    strftime(buff, sizeof buff, "%d.%m.%Y  %T", gmtime(&ts.tv_sec));
-    std::cout << " [" << buff << "." << std::to_string(ts.tv_nsec).substr(0,5) << " UTC]" ;
+/**
+ * @brief Liefert aktuelle UTC-Zeitangabe im europäisch gängigen Format
+ *
+ * @returns entsprechende Zeitangabe
+ */
+inline const std::string _PT() {
+    time_t     now = time(0);
+    struct tm  ts;
+    char       buf[80];
+    ts = *localtime(&now);
+    strftime(buf, sizeof(buf), "%d.%m.%Y  %T", &ts);
+    std::cout << " [" << buf << " UTC]" ;
     return "";
 }
 
@@ -58,7 +64,7 @@ inline std::string _PT() {
 
 /**
  * @brief Generelles Debug
- * 
+ *
  * @param what Die Fehlernachricht
  * @param who Wer sendet den Fehlerbericht? (locked to 10 chars)
  * @param file aktuelle Datei
@@ -67,12 +73,12 @@ inline std::string _PT() {
  * @param bgcode Hintergrundfarbe
  * @param fgcode Vordergrundfarbe
  * @param prenote Daten wie PASSED
- * 
+ *
  * @returns EXIT_SUCCESS, wenn die Nachricht ausgegeben wurde, sonst EXIT_FAILURE
  */
-inline status_t _w_debug(const std::string& what, 
+inline status_t _w_debug(const std::string& what,
                         const std::string& who,
-                        const std::string& file, 
+                        const std::string& file,
                          const std::string& line,
                         const std::string& signature = "INF",
                         const std::string& bgcode = "",
@@ -83,10 +89,10 @@ inline status_t _w_debug(const std::string& what,
         std::cout  << DEBUG_RESET << DEBUG_BOLD << bgcode << fgcode
                    << "[" << std::setw(3) << signature << "] "
                    << std::left << std::setw(8)<< who << ": " << prenote
-                   << DEBUG_NORMALIZE << std::left << std::setw(MSG_LEN-prenote.length()) 
-                   << DEBUG_FORMATF(what,MSG_LEN-prenote.length()) << " @"<< std::right << std::setw(5) 
+                   << DEBUG_NORMALIZE << std::left << std::setw(MSG_LEN-prenote.length())
+                   << DEBUG_FORMATF(what,MSG_LEN-prenote.length()) << " @"<< std::right << std::setw(5)
                    << line << " ~ " << std::setw(PAT_LEN) << std::left << DEBUG_FORMAT(file,PAT_LEN) << _PT()
-                   << DEBUG_RESET <<  std::endl; 
+                   << DEBUG_RESET <<  std::endl;
         return EXIT_SUCCESS;
     }
     return EXIT_FAILURE;
@@ -129,7 +135,7 @@ inline status_t _w_debug(const std::string& what,
 #else
     #define DEB_MSG_2S(str);
 #endif
-#if JAKE_PREPROCESS_DEBUG > 2 
+#if JAKE_PREPROCESS_DEBUG > 2
     #define DEB_MSG_3S(str) { \
       std::cout  << DEBUG_RESET << DEBUG_BOLD << DEBUG_COLOR_BG_RGB(230,230,230)<< \
       DEBUG_COLOR_FG_RGB(000,000,000)<< "[DL3] "<< std::left << std::setw(10)<<\
@@ -140,7 +146,7 @@ inline status_t _w_debug(const std::string& what,
     #define DEB_MSG_3S(str);
 #endif
 
-#if JAKE_PREPROCESS_DEBUG > 3 
+#if JAKE_PREPROCESS_DEBUG > 3
     #define DEB_MSG_CS(str) { \
       std::cout  << DEBUG_RESET << DEBUG_BOLD << \
       DEBUG_COLOR_BG_RGB(188,205,209)<< \
