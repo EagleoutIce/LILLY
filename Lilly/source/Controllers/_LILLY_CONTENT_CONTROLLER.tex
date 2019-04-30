@@ -9,7 +9,7 @@
 
 %% GET PATH OF LILLY
 \newread\res
-\immediate\write18{printf $(dirname $(kpsewhich Lilly.cls)) > xres.txt}
+\immediate\write18{printf $(dirname $(kpsewhich --progname=pdflatex Lilly.cls)) > xres.txt}
 \immediate\openin\res=xres.txt
 \read\res to \LILLYxCLSPATH
 
