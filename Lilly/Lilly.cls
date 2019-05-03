@@ -282,15 +282,4 @@
 
 %\RequirePackage{kpfonts}
 
-\mathversion{\LILLYxMathxMode}                              % Welche Schriftart für Matheumgebung
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Mathe Shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Zahlen und andere Freuden 
-
-\input{\LILLYxPATHxMATHS/_LILLY_MATHS_SYMBOLS}
-\input{\LILLYxPATHxMATHS/_LILLY_MATHS_OPERATORS}
-\input{\LILLYxPATHxMATHS/_LILLY_MATHS_COMPATIBILITIES}
-\input{\LILLYxPATHxMATHS/_LILLY_MATHS_PLOTS}
-
-\input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}

@@ -1,0 +1,57 @@
+BEGIN hook:
+!X!     name       =      testhook ! Tolles Beispiel :D !
+!X!     type       =      PRE      ! Entweder PRE, POST (bereits implementiert) oder: ALL/IN sonst Fehler !
+        body       = touch testfile
+        on-success = "Ist gut gelaufen" ! analog on-failure !
+END;
+
+BEGIN hook:
+
+        name       =       in1-hook ! :D !
+        type       =       IN1
+        body       = echo "Hallo Welt"++\
+                     &&echo "Wuff  ++\
+                     Duffel"
+
+        on-failure = "It's dead"
+END;
+
+BEGIN hook:
+
+        name       =       in2-hook ! :D !
+        type       =       IN2
+        body       = echo "Hallo Welt 2"
+        on-failure = "It's dead"
+
+END;
+
+
+BEGIN hook:
+
+        name       =       in12-hook ! :D !
+        type       =       IN12 ! kommt nicht :D !
+        body       = echo "Hallo Welt 12"
+        on-failure = "It's dead"
+
+END;
+
+
+! BEGIN hook:!
+!!
+!        name       =       all-hook ! :D !!
+!        type       =       ALL!
+!        body       = echo "Hallo Welt ALL"!
+!        on-failure = "It's dead"!
+!!
+!END;!
+
+
+BEGIN hook:
+
+        name       =       in0-hook ! :D !
+        type       =       IN0
+        body       = echo "Hallo Welt - will it break?"
+        on-failure =       !nothing at all!
+        on-success = ""    ! still nothign !
+
+END;

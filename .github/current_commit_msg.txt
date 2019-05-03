@@ -1,4 +1,4 @@
-Sorry, I'm no intern, I'm an extern!
+Du bist Tippfaul? Super! Ich auch.
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -7,39 +7,41 @@ Sorry, I'm no intern, I'm an extern!
 
 JAKE:
 
-    + grundlegende external-Einstellungen hinzugefügt (default: false)
+    + Arbeit am Name-Parser
 
-    + Makefile besitzt nun die Regel 'documentation' für, naja, die Dokumentation
+    + Gepard beherrscht nun Multiline parameter!
+      Hierzu gilt es lediglich eine Zeile mit: ++\ zu beenden!
+      Ein Beispiel im folgenden:
+      ```
+      body = echo "Hallo Welt"++\
+             &&echo "Wuff  ++\
+             Duffel"
+      ```
+      ! TABS sind weiterhin als Böse zu verbannen und verboten
+      
+      
+    * Jake-Brief aktualisiert
+      
+    * Die Dokumentation wurde angepasst
 
-    * Die Art der Kommandozeileninterpretation hat sich leicht geändert:
-      '=' ist nun ':', '+=' ist '+:' gleichermaßen gilt es nun ein Leerfeld
-      zwischen Key und Value zu Setzen, also:
-        ' -path: /kucheeen/'
-      Anstelle von :
-        ' -path=/kucheen/'
-      Dies sieht nicht nur besser aus, sondern ermöglicht auch eine bessere
-      Completition, da sonst verschiedene Terminalemulatoren jeweils eine
-      eigene behandlung brauchen würden.
+    * Fixed typos
 
-    * Verbesserte Autovervollständigung
 
-    * Alle Settings-Container sind nun gekapselt
+    - Unnötiges in_max für hook-controller entfernt
 
-    * Doku-Daten angepasst
 
+    ! FIX: doppelte Leerfelder führen bei Gepard nun nichtmehr zu Problemen
 
 LILLY:
 
-    + rudimentäres external implementiert. Es kann durch Jake mit '-lilly-external'
-      aktiviert werden und erstellt in diesem Zuge den Ordner extimg
-      Grafiken die ausgelagert werden wollen können in die Umgebung:
-      'tikzternal' anstelle 'tikzpicture' eingebettet werden.
+    + Neues Ttitelbild für ANA1 - ANA1 wurde zudem freigegeben
 
-    + Die Sprache haskell wurde hinzugefügt - es wurden designanpassungen vorgenommen
-      Es ist nun theoretisch möglich Befehle in listings zu implementieren.
-
-
-    * Semesterdaten aktualisiert
+    + Es gibt nun die Option 'Jake' Mit der auch bei Mitschrieben
+      Optionen wie Semester gesetzt werden können. Beispielhafte verwendung
+      in Jake>tests>map_tests
+      
+    
+    * Allererste Premium-Demo-Idee für neue Titlepages :D
 
 ============================================================================================
 :

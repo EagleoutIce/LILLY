@@ -2,10 +2,10 @@
 
 #define BOX_NAME 2
 
-GeneratorParser::jObject GeneratorParser::Box::get_jObject(settings_t blueprint) {
+GeneratorParser::jObject GeneratorParser::Box::get_jObject(settings_t blueprint, bool add_unknown) {
     std::stringstream strstr(this->content);
     Configurator cfg(strstr);
-    cfg.parse_settings(&blueprint);
+    cfg.parse_settings(&blueprint, add_unknown);
     return { this->name, blueprint };
 }
 
@@ -13,16 +13,16 @@ GeneratorParser::jObject GeneratorParser::Box::get_jObject(settings_t blueprint)
 
 GeneratorParser::GeneratorParser(const std::string& filenames) {this->_op_paths = split(filenames,':');}
 
-std::vector<GeneratorParser::jObject> GeneratorParser::parseFile(const std::string& identifier, settings_t blueprint) {
+std::vector<GeneratorParser::jObject> GeneratorParser::parseFile(const std::string& identifier, settings_t blueprint, bool add_unknown) {
     GeneratorParser::Box cur_box;
     std::vector<GeneratorParser::jObject> ret_jObjects = {};
     for(const std::string& path : this->_op_paths){
             std::ifstream dataFile(path);
-            w_debug("Generator Parser beararbeitet nun die Datei: \"" + path + "\"", "GenPar");
+            w_debug("Generator Parser bearbeitet nun die Datei: \"" + path + "\"", "GenPar");
             for(;;){
                 cur_box = get_next_box(dataFile, identifier); // Erhalte eine Box
                 if(cur_box.name == "") break; // Die Box ist ungültig / es gibt keine mehr
-                ret_jObjects.push_back(cur_box.get_jObject(blueprint)); // Füge Box hinzu
+                ret_jObjects.push_back(cur_box.get_jObject(blueprint, add_unknown)); // Füge Box hinzu
                 w_debug("   Found-Box: " + ret_jObjects.back().name + ": " + ret_jObjects.back().configuration["name"].value, "GenPar");
             }
             dataFile.close();

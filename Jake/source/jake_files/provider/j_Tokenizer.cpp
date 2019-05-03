@@ -30,7 +30,16 @@ status_t Tokenizer::loadNext() {
 
     while(tmp.find_first_not_of(' ') == std::string::npos) {
         std::getline(*this->_input,tmp,this->_eol);
-        if(this->_input->eof()) return 0;
+        if(this->_input->eof()) return 0; // if(getline)
+        // Multiline via '++\'
+        while(tmp.length() > 2 && tmp.substr(tmp.length()-3) == R"(++\)") {
+            tmp = tmp.substr(0, tmp.length()-3);
+            w_debug("Lineskip detected - welcome2multiline: \"" + tmp + "\"","TokenZ");
+            std::string supertmp =""; // :DDDDDDD
+            std::getline(*this->_input,supertmp,this->_eol);
+            if(this->_input->eof()) return 0; // again: if(getline) => ERROR MULTILINE MISSING
+            tmp += supertmp.substr(supertmp.find_first_not_of(' ')); // skip beginning spaces because its nice
+        }
         _current_original = tmp;
         tmp = Tokenizer::erase_comments(tmp);
     }

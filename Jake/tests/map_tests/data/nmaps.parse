@@ -1,0 +1,7 @@
+BEGIN nmap:
+    name        = Paradigmen der Programmierung
+    patterns    = pdp,PDP,PdP
+
+    lilly-vorlesung = PDP!!
+    lilly-semester  = 2!!
+END;

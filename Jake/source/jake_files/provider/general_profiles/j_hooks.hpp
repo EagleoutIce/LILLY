@@ -21,7 +21,7 @@
 #include "../j_Generator_Parser.hpp"
 
 /**
- * @brief Alle möglichen Einstellungen für Buildrules
+ * @brief Alle möglichen Einstellungen für Hooks
  */
 extern settings_t __hooks_settings;
 
@@ -29,18 +29,17 @@ extern settings_t __hooks_settings;
 extern __settings_t hooks_settings;
 
 
-/// @brief Die Standartkonfiguration für Bauregeln
+/// @brief Die Standartkonfiguration für Hooks
 extern configuration_t hooks_default;
 
 /**
- * @brief Liefert Regeln gemäß der Form: map[NAME] = MAKEFILETEXT
+ * @brief Liefert Regeln gemäß der Form: map[TYPE:NAME] = HOOKETEXT
  * 
  * @param rulefiles mit ':' separierte Liste an Dateien
- * @param in_max Anzahl der laufenden Compilevorgänge for IN-RULE
  * 
- * @returns map aller gefundener Regeln map[NAME] = MAKEFILETEXT
+ * @returns map aller gefundener Regeln map[TYPE:NAME] = HOOKTEXT
  */
-configuration_t getHooks(const std::string& rulefiles, uint8_t in_max=3);
+configuration_t getHooks(const std::string& rulefiles);
 
 /**
  * @brief liefert aus einer Masse an Regeln die, deren Präfix-Tag (PRE:RULENAME) dem TAG entspricht

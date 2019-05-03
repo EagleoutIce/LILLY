@@ -13,7 +13,6 @@ status_t fkt_gsettings(const std::string& cmd) noexcept {
         } else  {
             std::cout << "-" << it->first << ":\t";
         }
-
         ++it;
     }
     return EXIT_SUCCESS;
@@ -56,7 +55,7 @@ status_t fkt_help(const std::string& cmd) noexcept {
         ++it;
     }
     std::cerr << std::endl << "[file]:" << std::endl
-              << "Angabe genäß \"xxx.tex\". Dies setzt die Operation automatisch auf file_compile und generiert damit \
+              << "Angabe gemäß \"xxx.tex\". Dies setzt die Operation automatisch auf file_compile und generiert damit \
                   ein generelles makefile für \"xxx.tex\"."
               << std::endl;
 
@@ -113,14 +112,26 @@ status_t fkt_compile(const std::string& cmd) {
         }
     }
 
+    configuration_t update_config = whatTrigger(getNameMaps(settings[S_GEPARDRULES_PATH]),settings["file"]);
+    if(!update_config.empty()) {
+        std::cout << "    - Information aufgrund des Name-Mappings werden deine Einstellungen angepasst. Die Regeln werden im Folgenden angezeigt und angewendet!" << std::endl;
 
+        std::string new_config = "";
+        for(auto it = update_config.begin(); it != update_config.end(); ++it) {
+            std::cout << "        - " << it->first << std::endl;
+            new_config += it->second + "\n"; // die letzte Neuzeile kann vernachlässigt werden.
+        }
+        std::istringstream strstr_conf(new_config);
+        Configurator config_updator(strstr_conf);
+        config_updator.parse_settings(&settings._settings);
+    }
 
 #if defined(__linux__) || defined(__APPLE__) || defined(__MACH__)
     // Generiere Notwendige Ordnerstruktur für Ein- und Ausgabedateien!
     std::cout << "    - Erstelle Ordner settings[\"mk-path\"] (" << settings["mk-path"] << ")... "
               << er_decode(system(("mkdir -p " + settings["mk-path"]).c_str())) << std::endl; // OS - BARRIER
 #else
-    std::cout << "!   Auf deinem Betriesbsystem ist noch keine Regel implementiert die mir es erlaubt einen Ordner zu erstellen!" << std::endl
+    std::cout << "!   Auf deinem Betriebssystem ist noch keine Regel implementiert die mir es erlaubt einen Ordner zu erstellen!" << std::endl
               << "!   Es ist wichtig, dass du die Existenz aller Pfade die du benötigst selbst gewährleistest :/" << std::endl;
 #endif
 
@@ -142,19 +153,21 @@ status_t fkt_compile(const std::string& cmd) {
                  << "BOXMODES     := " << padPrint(settings[S_LILLY_BOXES]+"#")      << "## Seperator: ' '"                     << std::endl
                  << "CLEANTARGET  := LILLYxClean"                                                                               << std::endl
                  << "CLEANTARGETS := " << settings[S_LILLY_CLEANS]                                                              << std::endl
+                 << "AUTHOR       := " << settings[S_LILLY_AUTHOR]                                                              << std::endl
+                 << "AUTHORMAIL   := " << settings[S_LILLY_AUTHORMAIL]                                                          << std::endl
                  // lilly- names
-                 << "NAMEPREFIX   := " << padPrint(settings[S_LILLY_NAMEPREFIX])           << "## Immer"                        << std::endl
-                 << "SEMESTER     := " << padPrint(settings[S_LILLY_SEMESTER])             << "## Übungsblatt"                  << std::endl
-                 << "VORLESUNG    := " << padPrint(settings[S_LILLY_VORLESUNG])            << "## Übungsblatt"                  << std::endl
-                 << "N            := " << padPrint(settings[S_LILLY_N])                    << "## Anzahl"                       << std::endl
+                 << "NAMEPREFIX   := " << padPrint(settings[S_LILLY_NAMEPREFIX]+"#")           << "## Immer"                    << std::endl
+                 << "SEMESTER     := " << padPrint(settings[S_LILLY_SEMESTER]+"#")             << "## Übungsblatt"              << std::endl
+                 << "VORLESUNG    := " << padPrint(settings[S_LILLY_VORLESUNG]+"#")            << "## Übungsblatt"              << std::endl
+                 << "N            := " << padPrint(settings[S_LILLY_N]+"#")                    << "## Anzahl"                   << std::endl
                  << "_C           := ,                             ## No Joke xD"                                               << std::endl
                  << std::endl
                  //Generals
                  << "## Makefile/General settings"                                                                              << std::endl
-                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}})" 
+                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}})" 
                  << R"(\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/)" << settings[S_LILLY_LAYOUT_LOADER]<< "}" 
                  << R"(\\providecommand{\\LILLYxEXTERNALIZE}{)" << ((settings[S_LILLY_EXTERNAL]=="true")?"TRUE":"FALSE") << "}"<< std::endl << std::endl //DONT'T Change
-                 << "JOBCOUNT     := " << padPrint(settings["jobcount"])              << "## should: <= cpu/thread count!"      << std::endl
+                 << "JOBCOUNT     := " << padPrint(settings["jobcount"]+"#")         << "## should: <= cpu/thread count!"      << std::endl
                  << std::endl << std::endl;
 
     buf_makefile << "void = true"                                                                                   << std::endl<< std::endl<< std::endl;

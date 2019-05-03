@@ -10,7 +10,7 @@
  */
 
 /// @brief Kurzbeschreibung der Aktuellen Jake-Version
-#define PRG_BRIEF "Jake 1.0.7 - A Servant for Lilly"
+#define PRG_BRIEF "Jake 1.0.8 - An intelligent Servant for Lilly"
 
 ///@brief Jake Version als Makro (const char*)
 #define JAKE_VERSION "1.0.8"
@@ -50,8 +50,11 @@
 
 /// @brief Name für Konfigurationsboxen für Buildregeln des Makefiles
 #define NAME_BOXPROFILE_BUILDRULE "buildrule"
-/// @brief Name für Konfigurationsboxen für Hooks um das Makefile
+/// @brief Name für Konfigurationsboxen für Hooks (Makefile)
 #define NAME_HOOK_BUILDRULE "hook"
+/// @brief Name für Konfigurationsboxen für NMaps (Makefile)
+#define NAME_NMAP_BUILDRULE "nmap"
+
 
 // Setting Definitions: ======================================================================================
 
@@ -81,9 +84,9 @@
 #define S_LILLY_AUTOCLEAN               "lilly-autoclean"
 /// @brief um welches Vorlesungskürzel handelt es sich? Siehe Lilly Dokumentation für Gültige vertreter
 #define S_LILLY_VORLESUNG               "lilly-vorlesung"
-/// @brief Bsp: Das wievielste Übunsgblatt?
+/// @brief Bsp: Das wievielte Übunsgblatt?
 #define S_LILLY_N                       "lilly-n"
-/// @brief Das wievielste Semester?
+/// @brief Das wievielte Semester?
 #define S_LILLY_SEMESTER                "lilly-semester"
 ///@brief Soll der Boxname bei der Generierung angezeigt werden? dies macht nur Sinn auf false gesetzt werden wenn es nur eine Box gibt
 #define S_LILLY_SHOW_BOX_NAME           "lilly-show-boxname"
@@ -93,4 +96,9 @@
 #define S_LILLY_LAYOUT_LOADER           "lilly-layout-loader"
 /// @brief Soll externalization verwendet werden?
 #define S_LILLY_EXTERNAL                "lilly-external"
+/// @brief Zum Setzen des Autors
+#define S_LILLY_AUTHOR                  "lilly-author"
+/// @brief Zum Setzen der Autoren-Mail
+#define S_LILLY_AUTHORMAIL              "lilly-author-mail"
+
 #endif

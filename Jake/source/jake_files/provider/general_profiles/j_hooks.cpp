@@ -2,7 +2,7 @@
 
 settings_t __hooks_settings = {
     {"name", {"!!", "Name der Hook"}}, // needed, must be unique - specifier
-    {"type", {"!!", "Hook-Typ (PRE, IN#, POST, ALL)"}}, // needed PRE, IN, POST, TODO: ALL- wann soll die hook loslegen?
+    {"type", {"!!", "Hook-Typ (PRE, IN#, POST, ALL)"}}, // needed PRE, IN, POST, ALL
     {"body", {"", "Inhalt der Hook"}}, //hookcontent - was macht die hook ? 
     {"on-success", {"success", "Ausgabe im Falle eines Erfolgs der Hook"}}, //Nachricht, wenn (zmd letzte) Operation erfolgreich
     {"on-failure", {"failure", "Ausgabe im falle eines Misserfolgs der Hook"}} //Nachricht, wenn (zmd letzte) Operation scheitert
@@ -14,7 +14,7 @@ configuration_t hooks_default = {
     {"POST:hello-world-out", "echo Hello World - I am out"}
 };
 
-configuration_t getHooks(const std::string& rulefiles, uint8_t in_max) {
+configuration_t getHooks(const std::string& rulefiles) {
     if(rulefiles=="") return hooks_default;
 
     GeneratorParser gp(rulefiles);
