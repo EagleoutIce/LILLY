@@ -15,6 +15,7 @@
 #include <vector>
 #include <stdexcept>
 
+#include "../core/j_Debug.hpp"
 
 #include "../core/j_Definitions.hpp"
 #include "../core/j_Typedefs.hpp"

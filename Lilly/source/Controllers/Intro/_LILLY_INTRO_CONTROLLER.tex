@@ -13,8 +13,8 @@
 
 %% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten. 
 
-\ifnum\LILLY@Semester>0
-\input{\LILLYxPATHxDATA/Semester/\LILLY@Semester/Definitions/GENERAL.tex}
+\ifnum\LILLYxSemester>0
+\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
 \fi
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
 \providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
@@ -22,9 +22,9 @@
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
 
     %%Lade gewünschtes Titelblatt
-    \input{\LILLYxPATHxDATA/Semester/\LILLY@Semester/Definitions/\LILLY@Vorlesung} %%Konstanten etc.
+    \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
-    \input{\LILLYxPATHxDATA/Semester/\LILLY@Semester/TitlepageProvider.tex}
+    \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
     %%Generieren Inhaltsverzeichnis
 
     \LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}} 
@@ -60,7 +60,7 @@
     \input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_MITSCHRIEB}
 \else\ifx\LILLY@Typ\LILLY@Typ@Uebungsblatt
     
-    \input{\LILLYxPATHxDATA/Semester/\LILLY@Semester/Definitions/\LILLY@Vorlesung} %%Konstanten etc.
+    \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
     \input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_UEBUNGSBLATT} %% Einleitung Übungsblatt
 
@@ -78,11 +78,11 @@
 }
 
 \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
-\input{\LILLYxPATHxDATA/Semester/\LILLY@Semester/Definitions/\LILLY@Vorlesung} %%Konstanten etc.
+\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
 \input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_ZUSAMMENFASSUNG}
 
-\input{\LILLYxPATHxDATA/Semester/\LILLY@Semester/TitlepageProvider.tex}
+\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
 \else
 \userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxCONTROLLERS/Intro/Layouts}
 \fi\fi\fi\fi

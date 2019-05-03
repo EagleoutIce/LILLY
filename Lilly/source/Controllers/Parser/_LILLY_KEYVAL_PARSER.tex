@@ -9,11 +9,19 @@
 \DeclareStringOption [1]{Semester}[1]                        %Das wievielte Semester ist es?
 \DeclareStringOption [Niemand]{Vorlesung}[Liemann]          %Bezeichner der Vorlesung
 \DeclareStringOption [DONNO]{Typ}[ONNO]
-
+\DeclareBoolOption[false]{Jake}
 
 
 
 %%\DeclareBoolOption{Vorlesung}                               % Wir wollen einfache keys :D
 
 \ProcessKeyvalOptions*                                      %Verarbeite Paketargumente (Optionen, wie auch immer)
-
+\ifLILLY@Jake
+\ClassInfo{Lilly}{Nutze Jake-Unterstuetzung}
+\providecommand{\LILLYxSemester}{\LILLY@Semester}
+\providecommand{\LILLYxVorlesung}{\LILLY@Vorlesung}
+\else
+\ClassInfo{Lilly}{Nutze keine Jake-Unterstuetzung}
+\renewcommand{\LILLYxSemester}{\LILLY@Semester}
+\renewcommand{\LILLYxVorlesung}{\LILLY@Vorlesung}
+\fi

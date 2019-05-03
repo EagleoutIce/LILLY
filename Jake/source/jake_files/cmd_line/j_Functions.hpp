@@ -26,7 +26,8 @@
 #include "../provider/j_Configurator.hpp"
 
 #include "../provider/box_profiles/j_buildrules.hpp"
-#include "../provider/general_profiles/j_hooks.hpp" // implement rules for create buildrule and LILLYxCompile to attach hook - in may trigger every time for now?
+#include "../provider/general_profiles/j_hooks.hpp" // implement rules for create buildrule and LILLYxCompile to attach hook
+#include "../provider/general_profiles/j_nmaps.hpp"
 
 #include "../j_Helper.hpp"
 

@@ -5,12 +5,12 @@
 #define RHS 3
 
 Configurator::Configurator(std::istream& config_file) {
-    this->_t = std::make_unique<Tokenizer>(config_file,R"(^ *([^ !=]+(?: [^ !=]+)*) *(=|\+=) *([^ !=]+(?: [^ !=]+)*))");
+    this->_t = std::make_unique<Tokenizer>(config_file,R"(^ *([^ !=]+(?: [^ !=]+)*) *(=|\+=) *([^ !=]+(?: +[^ !=]+)*))");
 }
 
 
 Configurator::Configurator(const std::string& config_file) {
-    this->_t = std::make_unique<Tokenizer>(config_file,R"(^ *([^ !=+]+(?: [^ !=+]+)*) *(=|\+=) *([^ !=]+(?: [^ !=]+)*))");
+    this->_t = std::make_unique<Tokenizer>(config_file,R"(^ *([^ !=+]+(?: [^ !=+]+)*) *(=|\+=) *([^ !=]+(?: +[^ !=]+)*))");
 }
 
 status_t Configurator::parse_settings(std::map<std::string, data_t>* settings, bool add_unkown) {

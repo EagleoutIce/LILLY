@@ -70,7 +70,7 @@ public:
     /**
      * @struct Box
      *
-     * @brief Enthält die Grunddaten einer eingelsenen Box
+     * @brief Enthält die Grunddaten einer eingelesenen Box
      */
     struct Box {
         /// @brief Name der Box
@@ -82,10 +82,11 @@ public:
          * @brief Generiert ein jObject auf Basis des Configurators
          *
          * @param blueprint die Einstellungen auf derer Basis das Objekt erstellt werden soll
-         *
+         * @param add_unknown sollen unbekannte hinzugefügt werden? siehe: @ref Configurator
+         * 
          * @returns ein entsprechendes jObject;
          */
-        GeneratorParser::jObject get_jObject(settings_t blueprint);
+        GeneratorParser::jObject get_jObject(settings_t blueprint, bool add_unknown = false);
     };
 
     /**
@@ -100,12 +101,14 @@ public:
      *
      * @param identifier der Name der Blöcke die Analysiert werden sollen
      * @param blueprint die Zugrunde liegenden Einstellungen - es ist nicht erlaubt unbekannte hinzu zu fügen
-     *
+     * @param add_unknown sollen unbekannte hinzugefügt werden? siehe: @ref Configurator
+     * 
      * @returns Alle gefundenen Objekte. Wird keins Gefunden so wird ein leerer Vektor zurück geben
      */
     std::vector<GeneratorParser::jObject> parseFile(
                                       const std::string& identifier,
-                                      settings_t blueprint);
+                                      settings_t blueprint,
+                                      bool add_unknown = false);
 
 /* protected: */
 

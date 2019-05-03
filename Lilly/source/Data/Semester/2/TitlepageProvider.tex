@@ -1,27 +1,32 @@
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
+\input Konanur.fd
 \immediate\write18{cd Lilly/\LILLYxPATHxDATA/Semester/2/Graphics && make -B all}
 \AtBeginDocument{
 \clearpage\begin{titlepage} 
+    \newgeometry{margin = 0pt}
     {\centering\par\vspace*{7em}\par
-    {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
-    \vspace{1cm}
-    {\scshape \tiny{\LILLY@Typ{} von}\\\large\AUTHOR\par}
-    \vspace{0.5cm}
-    {\itshape\small Version vom: \\ \heute\par}
-    \par\vspace*{9em}\par
-    \includegraphics[height=15em]{\LILLYxPATHxDATA/Semester/2/Graphics/titleimage\LILLY@Vorlesung.pdf}
-    \par\vspace*{1em}\par
-    {\fontsize{3pt}{2pt}\selectfont\centering Fassung vom \heute{} um \currenttime Uhr}\hfill\href{https://www.instagram.com/eagleoutice/}{\faInstagram} \href{https://steamcommunity.com/id/EagleoutIce/}{\faSteamSquare} \href{https://www.amazon.de/Niederegger-Marzipan-Klassiker-Variationen-1-075/dp/B00L7UQY2K/ref=sr_1_29?s=grocery&ie=UTF8&qid=1548528851&sr=1-29&keywords=Marzipan}{\faGift}\vspace{-1.1em}
-    \noindent\rule{\textwidth}{0.6pt}\\[0.2cm] %% TITLECANDY :D
-    \footnotesize{Und da waren sie wieder und tanzten im Mondlicht,\\
-        Während um sie eine Welt voller Hohn ist,\\
-        Es waren die Schritte, die sie verführten,\\
-        Sie klammheimlich zueinander entführten\\
-        Und nun schlugen ihre Herzen wie die Füße im Takt\\[0.1cm]
-        - ein Glück, dass das Eis gehalten hat -\par
+        {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
+        \vspace{1cm}
+        {\scshape \tiny{\LILLY@Typ{} von}\\\large\AUTHOR\par}
+        \vspace{0.5cm}
+        {\itshape\small Version vom: \\ \heute\par}
+        \par\vspace*{9em}\par
+        \includegraphics[height=17em]{\LILLYxPATHxDATA/Semester/2/Graphics/titleimage\LILLYxVorlesung.pdf}
+        \par\vspace*{1em}\par
     }
-    {\raggedleft\tiny{\usefont{T1}{qzc}{m}{it}  Florian Sihler, 28.02.2019}\\[-1.2em]}
-    \noindent\rule{\textwidth}{0.6pt}}
+    \hbox{}\vfill
+    \begin{tikzpicture}
+        \node[above right] at (0,4) {\centering\fontsize{3pt}{2pt}\selectfont\centering Fassung vom \heute{} um \currenttime Uhr\par};
+        \filldraw[\LILLYxTITLExCOLOR] (0,0) -- ++(\paperwidth,0) -- ++(0,4) --  ++(-0.1\paperwidth,0) -- ++(-0.1\paperwidth,1) -- ++(-0.1\paperwidth,0) --  ++(-0.1\paperwidth,-1) -- ++(-0.6\paperwidth,0) -- cycle;
+        \begin{scope}[every node/.style={color=LightGray}]
+            \node at(0.75\paperwidth,2.5) {\chapterNumber \LILLYxSemester};
+            \node[right] at(0.05\paperwidth,1) {\bfseries\textsf{\AUTHOR}};
+            \node[right] at(0.05\paperwidth,0.5) {\LILLYxlstTypeWriter\AUTHORMAIL};
+            \node[above left] at(\paperwidth,0.02) {\begingroup\usefont{U}{Konanur}{xl}{n}LILLY\endgroup};
+            \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};
+        \end{scope}
+    \end{tikzpicture}
+
 \end{titlepage}
 }
 \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
@@ -29,7 +34,7 @@
 \clearpage\begin{titlepage} 
     {\centering\par
     \par\vspace*{3em}\par
-    {\tab[\LILLYxTITLExOffset] \raisebox{4.5em}{\parbox[0em]{0em}{\includegraphics[height=8em]{\LILLYxPATHxDATA/Semester/2/Graphics/titleimage_\LILLY@Vorlesung.pdf}}\tab[-\LILLYxTITLExOffset]}}
+    {\tab[\LILLYxTITLExOffset] \raisebox{4.5em}{\parbox[0em]{0em}{\includegraphics[height=8em]{\LILLYxPATHxDATA/Semester/2/Graphics/titleimage_\LILLYxVorlesung.pdf}}\tab[-\LILLYxTITLExOffset]}}
     {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
     \vspace{1cm}
     {\scshape\tiny{Zusammenfassung von}\\\large\AUTHOR\par}
