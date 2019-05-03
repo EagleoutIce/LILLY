@@ -27,7 +27,7 @@ WRITE_RC = if grep -q "LILLY_CODE" "$(1)"; then \
 
 UNAME_S := $(shell uname -s)
 
-default: no_link
+default: clean no_link
 		@for path in $(RC_FILES); do if [ -f $$path ]; then $(call WRITE_RC,$$path); fi; done
 		@if [ "$(shell which lilly_jake)" = "" ]; then echo "\033[31mBitte starte nun dein Terminal neu um auf lilly_jake zugreifen zu können!\033[m"; fi;
 		
