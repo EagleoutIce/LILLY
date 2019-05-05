@@ -111,6 +111,17 @@ public:
     }
 
     /**
+     *  @brief Lazy-Tab unterstützung für alle Parse-Dateien
+     * 
+     *  @param inp Der zu bearbeitende String
+     * 
+     *  @returns einen bearbeiteten String
+     */
+    inline static const std::string erase_tabs(const std::string& inp) {
+        return std::regex_replace(inp, std::regex(R"(\t)"), "    ");
+    }
+
+    /**
      * @brief Hilfsfunktion, entfernt Kommentare aus einer Zeile
      * 
      * @param inp Der zu bearbeitende String

@@ -34,11 +34,11 @@
 \ifx\LILLYxHYPERLINK\true
     \newcommand{\jmark}[2][Linkname]{{\hypersetup{linkcolor=\LILLYxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
     \newcommand{\hmark}[2][Linkname]{\hypersetup{linkcolor=black}\textbf{{\hyperref[#2]{#1}}}}
-    \newcommand{\silentHmark}[2][Linkname]{\hmark[#1]{#2}}
+    \DeclareDocumentCommand{\silentHmark}{ O{Linkname} m O{black} }{\hypersetup{linkcolor=#3}\begingroup\normalfont\textbf{{\hyperref[#2]{#1}}}\endgroup}
 \else
     \newcommand{\jmark}[2][Linkname]{\ensuremath{\text{#1}^{\rightarrow~\text{\pageref{#2}}}}}
     \newcommand{\hmark}[2][Linkname]{\ensuremath{\textbf{#1}^{\rightarrow~\text{\pageref{#2}}}}}
-    \newcommand{\silentHmark}[2][Linkname]{#1}
+    \DeclareDocumentCommand{\silentHmark}{ O{Linkname} m O{black} }{\begingroup\normalfont#1\endgroup}
 \fi
 
 \providecommand*{\eXButton}[2]{\Acrobatmenu{#1}{\textcolor{\LILLYxLINKSxMainColor}{#2}}}

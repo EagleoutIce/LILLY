@@ -2,6 +2,8 @@
 
 \RequirePackage{listingsutf8}                                   %UTF8-Formatiertes Code-Highlighting
 
+
+
 \lstset{literate=
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
@@ -20,6 +22,10 @@
 
 
 \providecommand{\LILLYxListingsxLang}{MAIN}
-    
+\DeclareRobustCommand{\LILLYxwriteLst}[2][style=shell]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.9\baselineskip, inner sep=1pt,draw, rounded corners=5pt,MudWhite, fill=MudWhite, centered]{\,\lstinline[#1]{#2}\,};}}
 
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_\LILLYxListingsxLang}
+
+
+
+\DeclareRobustCommand{\java}[1]{\LILLYxwriteLst[style=bash,language=Java]{#1}}

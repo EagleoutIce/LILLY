@@ -13,18 +13,25 @@
 
 %% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten. 
 
+
 \ifnum\LILLYxSemester>0
-\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+    \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
 \fi
+
+
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
 \providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
+\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
 
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
 
-    %%Lade gewünschtes Titelblatt
-    \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
-    \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
+    %%Lade gewünschtes Titelblatt => LILLYxTITLE
+    % \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+
+    %%OLD: \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
+    \AtBeginDocument{\LILLYxTITLE}
+
     %%Generieren Inhaltsverzeichnis
 
     \LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}} 

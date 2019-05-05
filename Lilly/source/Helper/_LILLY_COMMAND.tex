@@ -13,4 +13,11 @@
     \let#1\outer\renewcommand#1
 }
 
+%% DANKE an: https://tex.stackexchange.com/questions/51733/global-renewcommand-equivalent-of-global-def
+\makeatletter
+\def\gnewcommand{\g@star@or@long\new@command}
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{% 
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
+
 \ExplSyntaxOff

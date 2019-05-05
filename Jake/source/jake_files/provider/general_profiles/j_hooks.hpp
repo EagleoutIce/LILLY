@@ -28,9 +28,12 @@ extern settings_t __hooks_settings;
 /// @brief Kapselt die __hooks_settings
 extern __settings_t hooks_settings;
 
-
-/// @brief Die Standartkonfiguration für Hooks
-extern configuration_t hooks_default;
+/**
+ * @brief kläglicher versuch toll zu sein :D
+ * 
+ * @returns neu generiertes hooks-default;
+ */
+configuration_t get_default_hooks( void );
 
 /**
  * @brief Liefert Regeln gemäß der Form: map[TYPE:NAME] = HOOKETEXT

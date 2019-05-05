@@ -33,8 +33,10 @@ _jake() {
     # seen=$(__seen_operation "${opts}")
     local IFS=$'\t\n'
 
-    if [[ "${opts}" == "" ]]; then
+    if [[ "${opts}" == "" || "${opts}" == "\t" || "${opts}" == "\t " ]]; then
         COMPREPLY=()
+    else
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
     fi
 
     # if [[ $(__test_in ${prev//-} ${sets}) != 0 ]]; then 
@@ -45,8 +47,7 @@ _jake() {
     # if [[ ${cur} == -* || ${seen} != 0 ]]; then
     #     COMPREPLY=( $(compgen -W "${sets}" -- ${cur}) )
     # else
-    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
     # fi
     # return 0
 }
-complete -o dirnames -F _jake lilly_jake
+complete -o default -F _jake lilly_jake

@@ -193,7 +193,10 @@ status_t fkt_compile(const std::string& cmd) {
     buf_makefile << R"(    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
                  << "    (for bm in $(BOXMODES); do \\" << std::endl;
     if(settings[S_LILLY_EXTERNAL]=="true")
+        if(settings[S_LILLY_SHOW_BOX_NAME]=="true")
         buf_makefile << "       ([ -r $(basename ${1}$${bm}-${2}).tex ] || echo \\\\providecommand{\\\\LILLYxBOXxMODE}{$${bm}}\\\\providecommand{\\\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4} > $(basename ${1}$${bm}-${2}).tex) && \\" << std::endl;
+        else 
+        buf_makefile << "       ([ -r $(basename ${1}${2}).tex ] || echo \\\\providecommand{\\\\LILLYxBOXxMODE}{$${bm}}\\\\providecommand{\\\\LILLYxPDFNAME}{${1}${2}}  ${3} $(_LILLYARGS) ${4} > $(basename ${1}${2}).tex) && \\" << std::endl;
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
         writeHooks(buf_makefile, all_hooks, "IN" + std::to_string(i));
         buf_makefile << "       pdflatex -jobname $(basename ${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")
@@ -300,6 +303,7 @@ status_t fkt_tokentest(const std::string& cmd) {
 uint8_t RECURSIVE_CALLCOUNTER = 0;
 
 status_t fkt_config(const std::string& cmd) {
+    w_debug("Jetzt in: fkt_config","func");
     if(RECURSIVE_CALLCOUNTER++ > MAX_SETTINGS_REC) {
         std::cerr << COL_ERROR << "Du hast das Limit an Konfigurationsaufrufen erreicht! Mehr erscheint wirklich nicht sinnvoll!"
                   << COL_RESET << std::endl;
@@ -319,6 +323,35 @@ status_t fkt_autoget(const std::string& cmd) noexcept{
     return EXIT_SUCCESS;
 }
 
+status_t fkt_update(const std::string& cmd) noexcept{
+    w_debug("Versuche Lilly zu Aktualisieren (fkt_update)","func");
+    std::cout << "Aktualisiere Lilly: " << std::endl;
+    w_debug("Aktualisiere: export tf=$(tempfile) && echo \"Schreibe in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make > ${tf} && lilly_jake install -debug >> ${tf}", "update");
+    std::cout << "Update: " << er_decode(system("export tf=$(tempfile) && echo \"Schreibe in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make > ${tf} && lilly_jake install -debug >> ${tf}")) << std::endl;
+#if defined(__linux__) 
+    std::cout << "Soll eine Dokumentation generiert werden?" << std::endl << "(y)es/(n)o> ";
+
+    char answer='\0'; while(answer != 'y' && answer != 'n') std::cin >> answer;
+    if(answer=='y') {
+        w_debug("Prüfe auf doxygen und graphviz.","update");
+        if(system("which doxygen > /dev/null") || system("which dot > /dev/null")) {
+            w_debug("Prüfung gescheitert","update");
+            std::cout << "Du verfügst nicht über mindestens eins der beiden benötigten Pakete doxygen und graphviz. Soll Jake sie für dich installieren? " << std::endl << "(y)es/(n)o> ";
+            answer='\0'; while(answer != 'y' && answer != 'n') std::cin >> answer;
+            if(answer=='y') {
+                std::cout << "Installiere Pakete: " << er_decode(system("sudo apt install doxygen graphviz")) << std::endl;
+            } else {
+                std::cerr << COL_ERROR << "Abbruch!" << COL_RESET << std::endl;
+                return EXIT_FAILURE;
+            }
+        }
+        std::cout << "Erstelle Dokumentation... " << er_decode(system("cd $(dirname $(which lilly_jake))/../../Jake/source && make documentation")) << std::endl;
+    } else {
+        std::cout << "Fertig!" << std::endl;
+    }
+#endif
+    return EXIT_SUCCESS;
+}
 
 
 functions_t functions = {
@@ -329,6 +362,7 @@ functions_t functions = {
     {"tokentest", {fkt_tokentest, "Testet den Tokenizer auf seine Funktionalität"}},
     {"config", {fkt_config, "Lädt die Einstellungen aus der Datei 'file'"}},
     {"get", {fkt_get, "Sucht nach Pattern in settings[\"what\"]"}},
+    {"update", {fkt_update, "Versucht Lilly & Jake zu aktualisieren"}},
     {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}}, // DEPRECATED
     {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}, // DEPRECATED
     {"_get", {fkt_autoget, "Interne Funktion, liefert Alles für die Autovervollständigung"}}

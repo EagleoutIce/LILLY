@@ -1,24 +1,28 @@
 #include "j_hooks.hpp"
 
+
+
 settings_t __hooks_settings = {
     {"name", {"!!", "Name der Hook"}}, // needed, must be unique - specifier
     {"type", {"!!", "Hook-Typ (PRE, IN#, POST, ALL)"}}, // needed PRE, IN, POST, ALL
     {"body", {"", "Inhalt der Hook"}}, //hookcontent - was macht die hook ? 
     {"on-success", {"success", "Ausgabe im Falle eines Erfolgs der Hook"}}, //Nachricht, wenn (zmd letzte) Operation erfolgreich
     {"on-failure", {"failure", "Ausgabe im falle eines Misserfolgs der Hook"}} //Nachricht, wenn (zmd letzte) Operation scheitert
-    // letzere sind shortcuts für (op) && (echo succ) || (echo err)
+    // letztere sind shortcuts für (op) && (echo succ) || (echo err)
 };
 
-configuration_t hooks_default = {
-    {"PRE:hello-world", "echo Hello World"},
-    {"POST:hello-world-out", "echo Hello World - I am out"}
-};
+configuration_t get_default_hooks( void ) {
+return {
+        {"PRE:hello-world", "echo Hello World"},
+        {"POST:hello-world-out", "echo Hello World - I am out"}
+    };
+}
 
 configuration_t getHooks(const std::string& rulefiles) {
-    if(rulefiles=="") return hooks_default;
+    if(rulefiles=="") return get_default_hooks();
 
     GeneratorParser gp(rulefiles);
-    configuration_t ret_config = hooks_default;
+    configuration_t ret_config = get_default_hooks();
     std::vector<GeneratorParser::jObject> got = gp.parseFile(NAME_HOOK_BUILDRULE,hooks_settings._settings);
     for(GeneratorParser::jObject jo : got) {
         if(assert_all_differ(jo.configuration, "!!", "diese Hook"))

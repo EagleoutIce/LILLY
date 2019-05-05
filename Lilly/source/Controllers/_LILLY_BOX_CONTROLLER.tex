@@ -22,7 +22,7 @@
 \providecommand{\LILLYxBOXxBeispielxLock}{chapter}          \providecommand{\LILLYxBOXxBemerkungxEnable}{TRUE}          \providecommand{\LILLYxBOXxBemerkungxBox}{TRUE}
 \providecommand{\LILLYxBOXxBemerkungxLock}{chapter}         \providecommand{\LILLYxBOXxBeispielxEnable}{TRUE}           \providecommand{\LILLYxBOXxBeispielxBox}{TRUE}
 \providecommand{\LILLYxBOXxSatzxLock}{chapter}              \providecommand{\LILLYxBOXxSatzxEnable}{TRUE}
-\providecommand{\LILLYxBOXxBeweisxLock}{chapter}            \providecommand{\LILLYxBOXxBeweisxEnable}{TRUE}             \providecommand{\LILLYxBOXxBeweisxBox}{TRUE}
+\providecommand{\LILLYxBOXxBeweisxLock}{chapter}            \providecommand{\LILLYxBOXxBeweisxEnable}{TRUE}             \providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
 \providecommand{\LILLYxBOXxLemmaxLock}{chapter}             \providecommand{\LILLYxBOXxLemmaxEnable}{TRUE}
 \providecommand{\LILLYxBOXxZusammenfassungxLock}{chapter}   \providecommand{\LILLYxBOXxZusammenfassungxEnable}{TRUE}
 \providecommand{\LILLYxBOXxAufgabexLock}{}                  \providecommand{\LILLYxBOXxAufgabexEnable}{TRUE}           \providecommand{\LILLYxBOXxAufgabexBox}{TRUE}
@@ -42,18 +42,27 @@
 \fi
 
 
-%%Liste typ counter name
-\LILLYcommand{\LILLYxBOXESxaddListElement}[4][]{
+%%Liste typ counter name lock
+\LILLYcommand{\LILLYxBOXESxaddListElement}[5][]{
     \refstepcounter{#1}\phantomsection
-    \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} #4}
+    \ifx#5\true%
+        \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} #4}%
+    \else% Da 1.12 mehr platz!
+        \addcontentsline{#2}{#1}{\makebox[1cm][l]{#3} #4}%
+    \fi%
 }
-\LILLYcommand{\LILLYxBOXESxaddListElementxAD}[5][]{
-    \refstepcounter{#1}\phantomsection
-    \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} \makebox[1em][c]{#5}~#4}
+%% Liste typ counter name pin lock
+\LILLYcommand{\LILLYxBOXESxaddListElementxAD}[6][]{
+    \refstepcounter{#1}\
+    \ifx#6\true%
+        \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} \makebox[1em][c]{#5}~#4}%
+    \else% Da 1.12 mehr platz!
+        \addcontentsline{#2}{#1}{\makebox[1cm][l]{#3} \makebox[1em][c]{#5}~#4}%
+    \fi%
 }
 
 \LILLYcommand{\DEFINITIONS}[1]{%
-    \LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcb@cnt@LILLYxBOXxDefinition}{#1}{}
+    \LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcb@cnt@LILLYxBOXxDefinition}{#1}{}{\LILLYxBOXxDefinitionxLock}
     \refstepcounter{tcb@cnt@LILLYxBOXxDefinition}
     %%\relax %% TODO IMPLEMENT CONVENIENT INCREMEMT => MANUAL COUNTERS?
 }
@@ -64,14 +73,16 @@
 % Definitionen                                                                                                        %     %%%% DEFS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\providecommand{\LILLYxSEENxDEFINITION}{FALSE}
+
 \ifx\LILLYxBOXxDefinitionxEnable\true
     \newlistof{DEFINITIONS}{DEFS}{Alle Definitionen\\[-1.5cm]}
     %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{definition}{O{} O{}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition} %
-        \begin{LILLYxBOXxDefinition}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+    \DeclareDocumentEnvironment{definition}{O{} O{}}{\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition} %
+        \begin{LILLYxBOXxDefinition}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
     }{\end{LILLYxBOXxDefinition}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
-    \DeclareDocumentEnvironment{definition*}{O{} O{}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition} %
-    \begin{LILLYxBOXxDefinition*}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{\small\faThumbTack}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+    \DeclareDocumentEnvironment{definition*}{O{} O{}}{\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition} %
+    \begin{LILLYxBOXxDefinition*}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{\small\faThumbTack}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
     }{\end{LILLYxBOXxDefinition*}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
 \else %% Keine Definitionen
     \NewEnviron{definition}{}
@@ -101,7 +112,7 @@
     %% TITEL OPTIONALE-ADDONS
     \ifx\LILLYxBOXxBemerkungxBox\true\LILLYcommand{\LILLYSUBCOLBEM}{\LILLYxColorxBemerkung}\tcbset{LillyxBOXxDesignxBemerkung/.style={}}\else\LILLYcommand{\LILLYSUBCOLBEM}{\LILLYxLINKSxMainColor}\tcbset{LillyxBOXxDesignxBemerkung/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEM}\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}\elable{auto:BEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
+    \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEM}\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}{\LILLYxBOXxBemerkungxLock}\elable{auto:BEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
 
 \else %% Keine Bemerkungen
     \NewEnviron{bemerkung}{}
@@ -124,7 +135,7 @@
     %% TITEL OPTIONALE-ADDONS
     \ifx\LILLYxBOXxBeispielxBox\true\LILLYcommand{\LILLYSUBCOLBEI}{\LILLYxColorxBeispiel}\tcbset{LillyxBOXxDesignxBeispiel/.style={}}\else\LILLYcommand{\LILLYSUBCOLBEI}{\LILLYxLINKSxMainColor}\tcbset{LillyxBOXxDesignxBeispiel/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEI}\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
+    \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEI}\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}{\LILLYxBOXxBeispielxLock}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
 
 \else %% Keine Beispielen
     \NewEnviron{beispiel}{}
@@ -141,12 +152,14 @@
 % Sätze                                                                                                               %     %%%% SATS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\providecommand{\LILLYxSEENxSATZ}{FALSE}
+
 \ifx\LILLYxBOXxSatzxEnable\true
     \newlistof{SATZ}{SATZE}{Alle Sätze\\[-1.5cm]}
 
     %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{satz}{O{} O{}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxSatz}%
-        \begin{LILLYxBOXxSatz}[#1][Satz \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[SATZ]{SATZE}{\thetcbcounter}{#1}\elable{auto:SAT\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+    \DeclareDocumentEnvironment{satz}{O{} O{}}{\grenewcommand{\LILLYxSEENxSATZ}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxSatz}%
+        \begin{LILLYxBOXxSatz}[#1][Satz \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[SATZ]{SATZE}{\thetcbcounter}{#1}{\LILLYxBOXxSatzxLock}\elable{auto:SAT\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
     }{\end{LILLYxBOXxSatz}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
 \else %% Keine Sätze
     \NewEnviron{satz}{}
@@ -169,7 +182,7 @@
     %% TITEL OPTIONALE-ADDONS
     \ifx\LILLYxBOXxBeispielxBox\true\LILLYcommand{\LILLYSUBCOLBEW}{\LILLYxColorxBeweis}\tcbset{LillyxBOXxDesignxBeweis/.style={}}\else\LILLYcommand{\LILLYSUBCOLBEW}{\LILLYxLINKSxMainColor}\tcbset{LillyxBOXxDesignxBeweis/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEW}\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
+    \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEW}\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}{\LILLYxBOXxBeweisxLock}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
 \else %% Keine Beweise
     \NewEnviron{beweis}{}
 \fi
@@ -190,7 +203,7 @@
 
     %% TITEL OPTIONALE-ADDONS
     \DeclareDocumentEnvironment{lemma}{O{} O{}}{ \renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxLemma}%
-        \begin{LILLYxBOXxLemma}[#1][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[LEMMAS]{LEMME}{\thetcbcounter}{#1}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+        \begin{LILLYxBOXxLemma}[#1][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[LEMMAS]{LEMME}{\thetcbcounter}{#1}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
     }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
 \else %% Keine Lemmas
     \NewEnviron{lemma}{}
@@ -207,12 +220,14 @@
 % Zusammenfassungen                                                                                                   %     %%%% ZSMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\providecommand{\LILLYxSEENxZUSAMMENFASSUNG}{FALSE}
+
 \ifx\LILLYxBOXxZusammenfassungxEnable\true
     \newlistof{ZSMS}{ZSM}{Alle Zusammenfassungen\\[-1.5cm]}
 
     %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{zusammenfassung}{O{} O{}}{ \renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxZusammenfassung}%
-        \begin{LILLYxBOXxZusammenfassung}[#1][Zusammenfassung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[ZSMS]{ZSM}{\thetcbcounter}{#1}\elable{auto:ZSM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+    \DeclareDocumentEnvironment{zusammenfassung}{O{} O{}}{\grenewcommand{\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxZusammenfassung}%
+        \begin{LILLYxBOXxZusammenfassung}[#1][Zusammenfassung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[ZSMS]{ZSM}{\thetcbcounter}{#1}{\LILLYxBOXxZusammenfassungxLock}\elable{auto:ZSM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
     }{\end{LILLYxBOXxZusammenfassung}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
 \else %% Keine Zusammenfassungs
     \NewEnviron{zusammenfassung}{}
@@ -252,9 +267,9 @@
     \DeclareDocumentEnvironment{aufgabe}{O{} O{42} O{}}{ %
     \refstepcounter{ctr_TSK}
     \ifx\LILLYxBOXxAufgabexBox\true
-        \begin{LILLYxBOXxAufgabe}[#1][Aufgabe \arabic{ctr_TSK}][#3]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}~\\[-.25\baselineskip]\ignorespacesafterend
+        \begin{LILLYxBOXxAufgabe}[#1][Aufgabe \arabic{ctr_TSK}][#3]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}{\TRUE}~\\[-.25\baselineskip]\ignorespacesafterend
     \else
-        \begin{LILLYxBOXxAufgabexPlain}[#1][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][#3,LillyxBOXxDesignxPlain, after title={\hfill~\mdseries\emph{ #2 \ifnum#2=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}~\\\ignorespacesafterend
+        \begin{LILLYxBOXxAufgabexPlain}[#1][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][#3,LillyxBOXxDesignxPlain, after title={\hfill~\mdseries\emph{ #2 \ifnum#2=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}{\TRUE}~\\\ignorespacesafterend
     \fi
     }{\ifx\LILLYxBOXxAufgabexBox\true\end{LILLYxBOXxAufgabe}\else\end{LILLYxBOXxAufgabexPlain}\fi}
 \else %% Keine Aufgabes
@@ -267,9 +282,9 @@
     \newlistof{UBS}{UB}{Alle Übungsblätter\\[-1.5cm]}
     %% TITEL NUMMER
     \DeclareDocumentEnvironment{uebungsblatt}{O{} O{42}}{ %
-    \setcounter{ctr_EXE}{#2}\setcounter{ctr_TSK}{0}{\large \textbf{Übungsblatt} \arabic{ctr_EXE}\mdseries\hfill#1}\LILLYxBOXESxaddListElement[UBS]{UB}{\arabic{ctr_EXE}}{#1}\elable{auto:UBS\arabic{ctr_EXE}}\\[0.2\baselineskip]\ignorespacesafterend}{}
+    \setcounter{ctr_EXE}{#2}\setcounter{ctr_TSK}{0}{\large \textbf{Übungsblatt} \arabic{ctr_EXE}\mdseries\hfill#1}\LILLYxBOXESxaddListElement[UBS]{UB}{\arabic{ctr_EXE}}{#1}{\TRUE}\elable{auto:UBS\arabic{ctr_EXE}}\\[0.2\baselineskip]\ignorespacesafterend}{}
     \DeclareDocumentEnvironment{uebungsblatt*}{O{} O{42}}{ % - differs: does not change counter
-    {\large \textbf{Übungsaufgabe} #2\mdseries\hfill #1}\LILLYxBOXESxaddListElement[UBS]{UB}{#2}{#1}\elable{auto:UBS#2}\\[0.2\baselineskip]\ignorespacesafterend}{}
+    {\large \textbf{Übungsaufgabe} #2\mdseries\hfill #1}\LILLYxBOXESxaddListElement[UBS]{UB}{#2}{#1}{\TRUE}\elable{auto:UBS#2}\\[0.2\baselineskip]\ignorespacesafterend}{}
 \else
     \NewEnviron{uebungsblatt}{}
     \NewEnviron{uebungsblatt*}{}

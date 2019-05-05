@@ -1,47 +1,61 @@
-Du bist Tippfaul? Super! Ich auch.
+Neue Titel - Unglaublich wunderschön - Gaff Gaff
 
 ============================================================================================
 :EagleoutIce for Lilly
 ============================================================================================
 
+Done: 
+    : https://github.com/EagleoutIce/LILLY/issues/25
+    : https://github.com/EagleoutIce/LILLY/issues/18
 
 JAKE:
 
-    + Arbeit am Name-Parser
+    + uebungsblatt zeigt nun kein 'COMPLETE-' mehr an
 
-    + Gepard beherrscht nun Multiline parameter!
-      Hierzu gilt es lediglich eine Zeile mit: ++\ zu beenden!
-      Ein Beispiel im folgenden:
-      ```
-      body = echo "Hallo Welt"++\
-             &&echo "Wuff  ++\
-             Duffel"
-      ```
-      ! TABS sind weiterhin als Böse zu verbannen und verboten
-      
-      
-    * Jake-Brief aktualisiert
-      
-    * Die Dokumentation wurde angepasst
+    + Neue Funktion: update - aktualisiert ab jetzt alles
+      Neue Funktionen sollten also mit:
+      `lilly_jake update` geholt werden können.
 
-    * Fixed typos
+    * Besseres Autocomplete
 
-
-    - Unnötiges in_max für hook-controller entfernt
-
-
-    ! FIX: doppelte Leerfelder führen bei Gepard nun nichtmehr zu Problemen
+    
+    ! FIX gepard-rule-defaults sind nun endlich dynmaisch 
 
 LILLY:
 
-    + Neues Ttitelbild für ANA1 - ANA1 wurde zudem freigegeben
-
-    + Es gibt nun die Option 'Jake' Mit der auch bei Mitschrieben
-      Optionen wie Semester gesetzt werden können. Beispielhafte verwendung
-      in Jake>tests>map_tests
-      
+    + Gepard Highlighting
     
-    * Allererste Premium-Demo-Idee für neue Titlepages :D
+    + WIP Philosopher-Titlepageprovider der von Mitschrieb verwendet wird
+      und generell über \LILLYxTITLE[1] mit der Signatur:
+          \LILLYxTITLE[Pfad-Grafik]
+      (da optional natürlich auch ohne) verwendet werden kann.
+      Die Einstellungen werden über \LILLYxTITLExSETTINGSxGENERAL und
+      \LILLYxTITLExSETTINGSxVORLESUNG aufgelöst.
+    
+    + VIEL ZU VIELE NEUE TITELSACHEN
 
+
+    * Listen rücken nun im Falle eines Box-Locks mehr ein 
+    
+    * Experimental footer '| Kapitel >' Design für normale version
+      FEEDBACK ERWÜNSCHT
+    
+    * Es werden nun auch nur dann Listen am Ende eines Mitschriebs angezeigt
+      Wenn es mindestens eine Box vom entsprechendem Typ gibt.
+      Ausgenommen hierfür sind Übungsaufgaben mit der Complete-Option
+    
+    * Typos und Dokumentation angepasst
+
+
+    ! FIX Regex-Shit XD
+    
+    ! FIX '\' highlighting :D
+    
+    ! FIX Eidi - Daten (Thom Frühwirth)
+
+    ! FIX += error for set_descriptor
+    
+    ! FIX External akzeptiert nun auch die Einstellung show-box-name
+    
 ============================================================================================
 :

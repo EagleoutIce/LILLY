@@ -11,6 +11,8 @@
 % lines above and below, number right
 \renewcommand{\chaptermark}[1]{\markboth{\rmdefault #1}{\faBookmark}} %%Chaptermark fix inject
 
+\LILLYcommand{\leftmark}{} %% fix no chapter bug
+\LILLYcommand{\rightmark}{}
 
 \titleformat{\chapter}[display]%             
         {\relax}
@@ -54,8 +56,8 @@
         \cefoot{{\scriptsize{\TITLE}}}
         \ofoot{\normalfont\textbf{\thepage}}
         %\ihead{\hspace{-0.1cm}\raisebox{-2em}{\faCaretDown}}
-    \else
-        \lofoot{\scriptsize{\silentHmark[Kapitel]{eagleTOC}\textnormal{\guilsinglright}\leftmark}}
+    \else%% \LILLYxFACULTYxCOLOR
+        \lofoot{\scriptsize{\tikz[baseline=1.215ex]{\filldraw[LightGray,draw, rounded corners=1pt] (0,0) -- ++(1.45,0) -- ++(0.25,0.25) -- ++ (-0.25,0.25) -- ++(-1.45,0) -- cycle (0.75,0.25) node[minimum height=\baselineskip, inner sep=1pt,\LILLYxLINKSxMainColor]{\silentHmark[Kapitel]{eagleTOC}[\LILLYxLINKSxMainColor]};} \leftmark}}
         %\fi
         \lohead{\AUTHOR}
         \cofoot{}

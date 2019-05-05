@@ -10,17 +10,17 @@
     \ohead{}\chead{}\ihead{} %clear header
     \ofoot{}\cfoot{}\ifoot{} %clear footer => fixes double page issue
    \pagestyle{empty}
-   \ifx\LILLYxBOXxDefinitionxEnable\true
+   \ifx\LILLYxBOXxDefinitionxEnable\true\ifx\LILLYxSEENxDEFINITION\true
    \clearpage\phantomsection\addcontentsline{toc}{chapter}{Definitionen}
    \listofDEFINITIONS
-   \clearpage\fi
-   \ifx\LILLYxBOXxSatzxEnable\true
+   \clearpage\fi\fi
+   \ifx\LILLYxBOXxSatzxEnable\true\ifx\LILLYxSEENxSATZ\true
    \phantomsection\addcontentsline{toc}{chapter}{Sätze}
    \listofSATZ
-   \clearpage\fi
-   \ifx\LILLYxBOXxZusammenfassungxEnable\true
+   \clearpage\fi\fi
+   \ifx\LILLYxBOXxZusammenfassungxEnable\true\ifx\LILLYxSEENxZUSAMMENFASSUNG\true
    \phantomsection\addcontentsline{toc}{chapter}{Zusammenfassungen}
-   \listofZSMS\clearpage\fi
+   \listofZSMS\clearpage\fi\fi
     \ifx\LILLYxBOXxUebungsblattxEnable\true
    \phantomsection\addcontentsline{toc}{chapter}{Übungsblätter}
    \listofUBS\fi

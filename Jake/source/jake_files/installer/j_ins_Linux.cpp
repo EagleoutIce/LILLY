@@ -99,7 +99,7 @@ status_t ins_linux( void ) {
     // Wenn nein Ende
 
     //kpsewhich Lilly.cls
-    w_debug4("Verify install: " + er_decode(system("kpsewhich Lilly.cls")), "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
+    w_debug4("Verify install: " + er_decode(system("kpsewhich -progname=pdflatex Lilly.cls")), "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
     std::cout << "Der Installationsprozess wurde abgeschlossen :D" << std::endl;
 
     return EXIT_SUCCESS;

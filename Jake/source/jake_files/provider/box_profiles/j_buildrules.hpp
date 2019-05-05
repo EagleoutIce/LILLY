@@ -30,8 +30,12 @@ extern settings_t __buildrules_settings;
 /// @brief Kapselt die eigentlichen Einstellungen 
 extern __settings_t buildrule_settings;
 
-/// @brief Die Standartkonfiguration für Bauregeln
-extern configuration_t buildrules_default;
+/**
+ * @brief kläglicher versuch toll zu sein :D
+ * 
+ * @returns neu generiertes buildrules-default;
+ */
+configuration_t get_default_buildrules( void );
 
 /**
  * @brief Liefert Regeln gemäß der Form: map[NAME] = MAKEFILETEXT
