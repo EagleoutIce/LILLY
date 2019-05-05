@@ -9,17 +9,20 @@ settings_t __nmaps_settings = {
      */
 };
 
-configuration_t nmaps_default = {
-    {"GDBS", "gdbs,GdBS,GDBS:lilly-vorlesung=GDBS\nlilly-semester=2"}
-};
+
+configuration_t get_default_nmaps( void ) {
+    configuration_t _ret;
+    _ret["GDBS"] = "gdbs,GdBS,GDBS:lilly-vorlesung=GDBS\nlilly-semester=2";
+    return _ret;
+}
 
 __settings_t nmaps_settings{__nmaps_settings};
 
 configuration_t getNameMaps(const std::string& rulefiles) {
-    if(rulefiles=="") return nmaps_default;
+    if(rulefiles=="") return get_default_nmaps();
 
     GeneratorParser gp(rulefiles);
-    configuration_t ret_config = nmaps_default;
+    configuration_t ret_config = get_default_nmaps();
     std::vector<GeneratorParser::jObject> got = gp.parseFile(NAME_NMAP_BUILDRULE,nmaps_settings._settings, true);
     for(GeneratorParser::jObject jo : got) {
         if(assert_all_differ(jo.configuration, "!!", "diese Name Map"))

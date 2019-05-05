@@ -65,7 +65,7 @@ struct set_descriptor{
      * 
      * @param rhs zuzuweisender Wert
      */
-    inline void operator+=(const std::string& rhs) { this->value = ((type==IS_TEXTLIST)?" ": "") + rhs; }
+    inline void operator+=(const std::string& rhs) { this->value += ((type==IS_TEXTLIST)?" ": "") + rhs; }
 };
 
 /// @brief Datentyp für die Einstellungen

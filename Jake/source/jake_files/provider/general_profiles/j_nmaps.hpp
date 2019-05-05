@@ -46,8 +46,12 @@ extern settings_t __nmaps_settings;
 /// @brief Kapselt die __nmaps_settings
 extern __settings_t nmaps_settings;
 
-/// @brief Die Standartkonfiguration für Mappings
-extern configuration_t nmaps_default;
+/**
+ * @brief kläglicher versuch toll zu sein :D
+ * 
+ * @returns neu generiertes nmaps-default;
+ */
+configuration_t get_default_nmaps( void );
 
 /**
  * @brief Liefert Regeln gemäß der Form: map[Name] = Pattern:Settings(\n)
@@ -88,7 +92,7 @@ inline std::vector<std::string> getPatterns(const std::string& src) {
  * @note whatTrigger verwendet die C++-Standart-Regeximplementation (ohne Look-Arounds usw.) Dies muss beachtet werden!
  *       gibt aber gleichzeitig auch ein enormes Spektrum an Möglichkeiten für Patterns
  * 
- * @returns <leer> entsprechend zu false: niemand triggert
+ * @returns "leer" entsprechend zu false: niemand triggert
  */
 configuration_t whatTrigger(const configuration_t& rules, const std::string& seq );
 

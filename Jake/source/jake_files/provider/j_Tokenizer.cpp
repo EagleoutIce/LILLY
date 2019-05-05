@@ -41,7 +41,7 @@ status_t Tokenizer::loadNext() {
             tmp += supertmp.substr(supertmp.find_first_not_of(' ')); // skip beginning spaces because its nice
         }
         _current_original = tmp;
-        tmp = Tokenizer::erase_comments(tmp);
+        tmp = Tokenizer::erase_comments(Tokenizer::erase_tabs(tmp));
     }
 
     this->_current_line = tmp;

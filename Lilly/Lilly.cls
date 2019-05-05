@@ -48,11 +48,12 @@
     \providecommand\LILLYxMODExPRINT{print}
     \ifx\LILLYxMODE\LILLYxMODExPRINT
         \newcommand*{\LILLYxDocumentxTYPExExtras}{twoside}    %%% Weitere Zusätze für das Dokument
+        \newcommand*{\LILLYxLeftOffset}{18mm}
         \ifx\LILLYxDEBUG\true
             %\newcommand*{\LILLYxGeometryxExtras}{bindingoffset=8mm,showframe}            
-            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=18mm}            
+            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=\LILLYxLeftOffset}            
         \else
-            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=18mm}
+            \newcommand*{\LILLYxGeometryxExtras}{bindingoffset=\LILLYxLeftOffset}
         \fi
     \else
         \newcommand*{\LILLYxDocumentxTYPExExtras}{oneside}    %%% Weitere Zusätze für das Dokument
@@ -64,6 +65,9 @@
 
 \LILLYxPoliteKnock[.cls]{\LILLYxDocumentxTYPE}{} %% Hier ist alles toll
                   {\ClassError{Ich brauche leider \LILLYxDocumentxTYPE als Paket um irgendwas tun zu können! Ich darf auch nicht auf article oder gleichwertige Pakete umsteigen. Tut mir Leid, so wird das nichts!}} %% Hier dann wohl nicht!
+
+\RequirePackage{colortbl}
+\RequirePackage{\LILLYxPATHxDATA/Semester/1/EIDI/tikz-uml}
 
 %DEFAULT: \documentclass[a4paper,11pt,oneside]{scrbook}
 \LoadClass[\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,titlepage=firstiscover,\LILLYxDocumentxTYPExExtras,table,makeidx]{\LILLYxDocumentxTYPE}

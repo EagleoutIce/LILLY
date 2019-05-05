@@ -142,6 +142,17 @@ status_t fkt_autoget(const std::string& cmd) noexcept;
  */
 status_t fkt_get(const std::string& cmd) noexcept;
 
+
+/**
+ * @brief Versucht Lilly zu aktualisieren. 
+ * 
+ * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
+ *
+ * @returns Statuswert (bisher nichts)
+ * 
+ */
+status_t fkt_update(const std::string& cmd) noexcept;
+
 /**
  * @struct fkt_descriptor
  *

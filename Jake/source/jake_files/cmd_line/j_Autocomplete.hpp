@@ -24,6 +24,17 @@
 
 const std::string parse_cmd_line_autocomplete( const std::string cmd_line );
 
+
+/**
+ * @brief sucht ob es bereits eine operation gab
+ * 
+ * @param inside_here zu durchsuchender vektor
+ * 
+ * @returns true wenn es bereits eine operation gab 
+ */
+bool was_there_what(const std::vector<std::string>& inside_here);
+
+
 /**
  * @brief liste alle Optionen auf
  */

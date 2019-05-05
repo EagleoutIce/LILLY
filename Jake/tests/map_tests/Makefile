@@ -1,4 +1,4 @@
-# Jake 1.0.8 - An intelligent Servant for Lilly     (compiled on: May  3 2019 at: 22:53:35)
+# Jake 1.0.8 - An intelligent Servant for Lilly     (compiled on: May  4 2019 at: 18:37:39)
 
 TEXFILE      := Mitschrieb-GDBS.tex
 BASENAME     := $(basename $(TEXFILE))

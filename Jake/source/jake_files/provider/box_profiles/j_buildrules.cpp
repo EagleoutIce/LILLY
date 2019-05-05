@@ -11,19 +11,22 @@ settings_t __buildrules_settings = {
     {"lilly-loader", {R"(\\input{$(INPUTDIR)$(TEXFILE)})", "Lade Sequenz für Datei"}}
 };
 
-configuration_t buildrules_default = {
-    {"default",         create_buildrule("Standart","default","default", false)},
-    {"print",           create_buildrule("Druck","print","print", false, settings[S_LILLY_PRINT_NAME])},
-    {"uebungsblatt",    create_buildrule("Übungsblatt","uebungsblatt","default", true, "",                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})")},
-    {"c_default",       create_buildrule("Standart","c_default","default", true)},
-    {"c_print",         create_buildrule("Druck","c_print","print", true, settings[S_LILLY_PRINT_NAME])}
-};
+configuration_t get_default_buildrules( void ){
+    return {
+        {"default",         create_buildrule("Standart","default","default", false)},
+        {"print",           create_buildrule("Druck","print","print", false, settings[S_LILLY_PRINT_NAME])},
+        {"uebungsblatt",    create_buildrule("Übungsblatt","uebungsblatt","default", true, "",                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})","")},
+        {"c_default",       create_buildrule("Standart","c_default","default", true)},
+        {"c_print",         create_buildrule("Druck","c_print","print", true, settings[S_LILLY_PRINT_NAME])}
+    };
+}
+
 
 configuration_t getRules(const std::string& rulefiles, bool complete) {
-    if(rulefiles=="") return buildrules_default;
+    if(rulefiles=="") return get_default_buildrules();
 
     GeneratorParser gp(rulefiles);
-    configuration_t ret_config = buildrules_default;
+    configuration_t ret_config = get_default_buildrules();
     std::vector<GeneratorParser::jObject> got = gp.parseFile(NAME_BOXPROFILE_BUILDRULE,buildrule_settings._settings);
     for (GeneratorParser::jObject jo : got){
         // check validity with assigning "!!" to value (which cannot be in code) and then throwing debug error if msising

@@ -34,7 +34,7 @@ struct __settings_t {
     /**
      * @brief Konstruktor
      * 
-     * @param init die Standartmäßig zu verwendenen Einstellungen
+     * @param init die Standartmäßig zu verwendeten Einstellungen
      */
     __settings_t( settings_t init =  generate_default_lilly_settings()) : _settings(init) {};
 

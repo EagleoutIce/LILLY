@@ -1,5 +1,17 @@
 #include "j_Autocomplete.hpp"
 
+bool was_there_what(const std::vector<std::string>& inside_here) {
+    for (functions_t::iterator it = functions.begin(); it != functions.end(); ++it ){
+        if (it->first.length()>0 && it->first[0] != '_')
+            for(const std::string& str : inside_here) {
+                if(it->first == str || str.find(".tex") != std::string::npos
+                                    || str.find(".conf") != std::string::npos) 
+                        return true;
+            }
+    }
+    return false;
+}
+
 std::string print_settings() {
     std::string str = "";
     for(auto it = settings.begin(); it != settings.end(); ++it){
@@ -27,13 +39,11 @@ const std::string parse_cmd_line_autocomplete( const std::string cmd_line ) {
     std::vector<std::string> a = split(cmd_line, ' ');
     std::string ret = "";
 
-    if (a.size() <= 1) { // Gab es noch keine operatin - so schlagen wir stehts optionen for
+    if (a.size() <= 1 || !was_there_what(a)) { // Gab es noch keine operation - so schlagen wir stehts optionen for
         ret += print_options();
         std::cout << exec("ls | grep -e \".tex\" -e \".conf\"") ;
         return ret; // Zur übersicht
     }
-
-    // TODO: suche operation
 
     // Erhalte typ des letzten Argument:
     // std::cout << strip_mod(a[a.size()-2].substr(1)) << std::endl; // kann nicht scheitern, da mind > 1
@@ -42,7 +52,8 @@ const std::string parse_cmd_line_autocomplete( const std::string cmd_line ) {
         data_t t =  settings.get(strip_mod(a.back().substr(1)));
         switch (t.type) {
             case IS_CONFIG:
-                ret =  exec("for a in $(find . -maxdepth 4 -type f | grep -e \".conf\"); do printf \"$a\t\"; done"); std::cout << "\t " << std::endl; break;
+                ret =  exec("for a in $(find . -maxdepth 4 -type f | grep -e \".conf\"); do printf \"$a\t\"; done"); std::cout << "\t " << std::endl; 
+                ret += "\t Finde einen Pfad zu einer Konfigurationsdatei"; break;
             case IS_FILE:
                 ret =  exec("for a in $(find . -maxdepth 1 -type f ); do printf \"$a\t\"; done"); std::cout << "\t " << std::endl;  break;
             case IS_NUM:
@@ -63,7 +74,6 @@ const std::string parse_cmd_line_autocomplete( const std::string cmd_line ) {
             default:
                 std::cout << "Unbekannte Konfiguration\tBitte melde diesen Fehler\t " << std::endl;
         }
-
     } else {
         ret += print_settings();
     }
@@ -72,7 +82,7 @@ const std::string parse_cmd_line_autocomplete( const std::string cmd_line ) {
     /**
      * Ablauf:
      *  - Operation gesehen? 
-     *    Nein: Auflisten .tex, .conf und operatioenen (wenn lilly-in spezifiziert: nutzen)
+     *    Nein: Auflisten .tex, .conf und Operationen (wenn lilly-in spezifiziert: nutzen)
      *    Ja: Direkt Settings angeben
      * grade by settings? tanzen!
      */
