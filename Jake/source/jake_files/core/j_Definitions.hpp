@@ -100,5 +100,7 @@
 #define S_LILLY_AUTHOR                  "lilly-author"
 /// @brief Zum Setzen der Autoren-Mail
 #define S_LILLY_AUTHORMAIL              "lilly-author-mail"
+/// @brief Farbe mit der in Lilly Dokumenten per \Hcolor (und \HBcolor) eine Farbe definiert wird
+#define s_LILLY_SIGNATURE_COLOR         "lilly-signatur-farbe"
 
 #endif

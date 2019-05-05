@@ -31,16 +31,20 @@
 #include <iostream>
 #include <iomanip>
 #include <time.h>
+#include <fstream>
+
 
 #include "Debug/j_color_debug.hpp"
 #include "Debug/j_preprocessor_debug.hpp"
 
+#include "../j_Helper.hpp"
+
 #include "j_Typedefs.hpp"
 #include "j_Settings.hpp"
 
-
 PREP_DEB_FULL_MSG("Eingebunden - DATEI: j_Debug.hpp");
 
+#define LOG_LEN  100
 #define MSG_LEN  70
 #define PAT_LEN  40
 
@@ -49,18 +53,12 @@ PREP_DEB_FULL_MSG("Eingebunden - DATEI: j_Debug.hpp");
  *
  * @returns entsprechende Zeitangabe
  */
-inline const std::string _PT() {
-    time_t     now = time(0);
-    struct tm  ts;
-    char       buf[80];
-    ts = *localtime(&now);
-    strftime(buf, sizeof(buf), "%d.%m.%Y  %T", &ts);
-    std::cout << " [" << buf << " UTC]" ;
-    return "";
-}
+const std::string _PT( void );
 
 #define DEBUG_FORMATF(str,len) ((str.length()>(len-3))?(str.substr(0,len-3) + "..."): (str) ) // FORMAT_FRONT
 #define DEBUG_FORMAT(str,len) ((str.length()>(len-3))?  ( "..." +  str.substr(str.length()-len+3) ) : (str) ) //FORMAT _BACK
+extern std::string log_path;
+extern std::ofstream log_output_stream;
 
 /**
  * @brief Generelles Debug
@@ -76,7 +74,7 @@ inline const std::string _PT() {
  *
  * @returns EXIT_SUCCESS, wenn die Nachricht ausgegeben wurde, sonst EXIT_FAILURE
  */
-inline status_t _w_debug(const std::string& what,
+status_t _w_debug(const std::string& what,
                         const std::string& who,
                         const std::string& file,
                          const std::string& line,
@@ -84,19 +82,7 @@ inline status_t _w_debug(const std::string& what,
                         const std::string& bgcode = "",
                         const std::string& fgcode = DEBUG_FG_CYAN,
                         const std::string& prenote = ""
-                       ) {
-    if(settings["debug"]=="true"){
-        std::cout  << DEBUG_RESET << DEBUG_BOLD << bgcode << fgcode
-                   << "[" << std::setw(3) << signature << "] "
-                   << std::left << std::setw(8)<< who << ": " << prenote
-                   << DEBUG_NORMALIZE << std::left << std::setw(MSG_LEN-prenote.length())
-                   << DEBUG_FORMATF(what,MSG_LEN-prenote.length()) << " @"<< std::right << std::setw(5)
-                   << line << " ~ " << std::setw(PAT_LEN) << std::left << DEBUG_FORMAT(file,PAT_LEN) << _PT()
-                   << DEBUG_RESET <<  std::endl;
-        return EXIT_SUCCESS;
-    }
-    return EXIT_FAILURE;
-}
+                       );
 
 //THIS IS CRAPPY BUT RESOLVE IN THE RIGHT LINE AND FILE REFERENCE
 

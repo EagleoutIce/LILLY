@@ -6,12 +6,12 @@
  * @file jake.cpp
  * @author Florian Sihler
  * @version 1.0.7
- * @warning Die Aktuelle Version ist WIP einige Funktionnen sind noch nicht implementiert
+ * @warning Die Aktuelle Version ist WIP einige Funktionen sind noch nicht implementiert
  *
  *
  * @brief Hilfsprogramm im Umgang mit LILLY
  *
- * @note Zum Kompilieren dieser Datei sollte das beiliegende Makefile verwendet werdne
+ * @note Zum Kompilieren dieser Datei sollte das beiliegende Makefile verwendet werden
  *
  * @page Important Super stuff
  * @tableofcontents
@@ -32,8 +32,9 @@
  *      * Command-Line-Parser
  *      * Grundlegende Funktionalität
  *      * Kommentar-Grundstruktur
- *
- *
+ * 
+ *  @section Version108 Version 1.0.8 -- TODO
+ *      @todo continue changelog
  */
 
 /* ================================================================================================================== */        /* ################# */
@@ -152,6 +153,7 @@ int main(int argc, const char** argv) {
 
 EXTRA_FILES := jake_files/j_Helper.cpp \
 	       jake_files/cmd_line/j_Functions.cpp \
+	       jake_files/cmd_line/j_Autocomplete.cpp \
 	       jake_files/installer/j_ins_Linux.cpp \
 	       jake_files/installer/j_ins_MacOS.cpp \
 	       jake_files/core/j_Settings.cpp \
@@ -160,11 +162,14 @@ EXTRA_FILES := jake_files/j_Helper.cpp \
 	       jake_files/provider/j_Tokenizer.cpp \
 	       jake_files/provider/j_Configurator.cpp \
 	       jake_files/provider/j_Generator_Parser.cpp \
-	       jake_files/provider/box_profiles/j_buildrules.cpp
+	       jake_files/provider/box_profiles/j_buildrules.cpp \
+	       jake_files/provider/general_profiles/j_hooks.cpp \
+	       jake_files/provider/general_profiles/j_nmaps.cpp
 
 LINKERS :=
 RC_FILES := "${HOME}/.zshrc" "${HOME}/.bashrc" "${HOME}/.bash_profile"
 
+DEBUG := 0
 
 WRITE_RC = if grep -q "LILLY_CODE" "$(1)"; then \
         echo "DEBUG: Already prepped $(1)";\
@@ -172,17 +177,35 @@ WRITE_RC = if grep -q "LILLY_CODE" "$(1)"; then \
         echo "export PATH=\044PATH:$(shell pwd); autoload bashcompinit &>/dev/null; bashcompinit &>/dev/null; source $(shell pwd)/_jake_autocomplete \#LILLY_CODE"  >> $(1);\
     fi
 
+UNAME_S := $(shell uname -s)
+
 default: clean no_link
 		@for path in $(RC_FILES); do if [ -f $$path ]; then $(call WRITE_RC,$$path); fi; done
 		@if [ "$(shell which lilly_jake)" = "" ]; then echo "\033[31mBitte starte nun dein Terminal neu um auf lilly_jake zugreifen zu können!\033[m"; fi;
 
-no_link: jake.cpp
-		@g++ -std=c++14 -I './' $(EXTRA_FILES) jake.cpp -o lilly_jake $(LINKERS)
+debug: _dodebug1 default
+
+debug2: _dodebug2 default
+
+
+documentation:
+	@doxygen Doxyfile
+
+	@$(shell open docs/index.html || xdg-open docs/index.html )
+
+no_link: jake.cpp $(EXTRA_FILES)
+		@g++ -std=c++14 -I './' $(EXTRA_FILES) -DJAKE_PREPROCESS_DEBUG=$(DEBUG) jake.cpp -o lilly_jake $(LINKERS)
 
 		@chmod +x ./lilly_jake
 		@echo Compiled lilly_jake
 clean:
 		@$(foreach path,$(RC_FILES),if [ -f $(path) ] ; then echo "Lösche Lilly in: \"$(path)\" (backup: \"$(path).bak\")" && sed -i'.bak' '/\#LILLY_CODE/d' $(path); fi;)
 
-.PHONY: default no_link clean
+_dodebug1:
+	$(eval DEBUG=1)
+
+_dodebug2:
+	$(eval DEBUG=2)
+
+.PHONY: default no_link clean debug debug2 _dodebug1 _dodebug2
 */

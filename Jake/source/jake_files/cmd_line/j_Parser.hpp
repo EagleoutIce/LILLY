@@ -17,6 +17,8 @@
 #include "../core/j_Definitions.hpp"
 #include "../core/j_Debug.hpp"
 
+#include "../provider/j_Configurator.hpp"
+
 #include "../j_Helper.hpp"
 
 #include "j_Functions.hpp"
@@ -34,17 +36,25 @@
 status_t ld_settings(int n /* = argc */, const char** argv);
 
 /**
+ * @brief lädt die Standartkonfiguration und, wenn vorhanden, die Nutzer-Konfiguration
+ * 
+ * @param v0 Die Art, wie das Programm aufgerufen wurde :D (./, etc)
+ * 
+ * @returns Statuswert 
+ */
+status_t ld_config( std::string v0);
+
+/**
  * @brief Forciert, dass die aktuellen Einstellungen interpretiert werden - Dies kann eine endlose Rekursion verursachen :D
  * 
  * @param v0 Die Art, wie das Programm aufgerufen wurde :D (./, etc)
  * 
  * @returns Statuswert 
  */
-
 status_t in_settings( std::string v0 );
 
 /**
- * @brief Entfert alle modifikatoren wie '-' und ':' von einem String
+ * @brief Entfernt alle modifikatoren wie '-' und ':' von einem String
  * 
  * @param str die Zeichenkette die es zu bearbeiten gilt
  * 

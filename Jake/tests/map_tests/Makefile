@@ -1,4 +1,4 @@
-# Jake 1.0.8 - An intelligent Servant for Lilly     (compiled on: May  4 2019 at: 18:37:39)
+# Jake 1.0.8 - An intelligent Servant for Lilly     (compiled on: May  5 2019 at: 18:12:59)
 
 TEXFILE      := Mitschrieb-GDBS.tex
 BASENAME     := $(basename $(TEXFILE))
@@ -33,11 +33,11 @@ LILLYxCompile = \
     mkdir -p "$(OUTPUTDIR)" && \
     touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\
     (for bm in $(BOXMODES); do \
-    echo "Lilly IN0-Hook[in0-hook] evaluiert zu: $(shell (echo "Hallo Welt - will it break?") >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [""] ||  echo  [failure])" && \
+    echo "Lilly IN0-Hook[in0-hook] evaluiert zu: $(shell (echo "Hallo Welt - will it break) >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [""] ||  echo  [failure])" && \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
-    echo "Lilly IN1-Hook[in1-hook] evaluiert zu: $(shell (echo "Hallo Welt"&&echo "Wuff  Duffel") >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [success] ||  echo  ["It's dead"])" && \
+    echo "Lilly IN1-Hook[in1-hook] evaluiert zu: $(shell (echo "Hallo Welt"&&echo "Wuff  Duffel") >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [success] ||  echo  ["It])" && \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
-    echo "Lilly IN2-Hook[in2-hook] evaluiert zu: $(shell (echo "Hallo Welt 2") >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [success] ||  echo  ["It's dead"])" && \
+    echo "Lilly IN2-Hook[in2-hook] evaluiert zu: $(shell (echo "Hallo Welt 2") >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [success] ||  echo  ["It])" && \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
        echo "\033[38;2;102;250;0mGenerierierung von "${1}$${bm}-${2}" ($${bm}) abgeschlossen\033[m"; done &&\
     echo "Lilly POST-Hook[hello-world-out] evaluiert zu: $(shell echo Hello World - I am out)" && \

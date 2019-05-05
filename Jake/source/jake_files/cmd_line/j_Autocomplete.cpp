@@ -51,9 +51,6 @@ const std::string parse_cmd_line_autocomplete( const std::string cmd_line ) {
     if (in_str(a.back(), ":") && settings.find(strip_mod(a.back().substr(1))) != settings.end() ) { // Argument gefunden
         data_t t =  settings.get(strip_mod(a.back().substr(1)));
         switch (t.type) {
-            case IS_CONFIG:
-                ret =  exec("for a in $(find . -maxdepth 4 -type f | grep -e \".conf\"); do printf \"$a\t\"; done"); std::cout << "\t " << std::endl; 
-                ret += "\t Finde einen Pfad zu einer Konfigurationsdatei"; break;
             case IS_FILE:
                 ret =  exec("for a in $(find . -maxdepth 1 -type f ); do printf \"$a\t\"; done"); std::cout << "\t " << std::endl;  break;
             case IS_NUM:
