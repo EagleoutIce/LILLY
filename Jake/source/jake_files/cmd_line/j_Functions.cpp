@@ -29,6 +29,7 @@ status_t fkt_goptions(const std::string& cmd) noexcept {
 }
 
 status_t fkt_dump(const std::string& cmd) noexcept {
+    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Liefere die Konfigurationen (fkt_dump)", "func");
     std::cout << "Settings Dump: " << std::endl
               << "Information: Die '[' ']' gehören jeweils nicht zum Wert, sie dienen lediglich der Übersicht!" << std::endl;
@@ -43,6 +44,7 @@ status_t fkt_dump(const std::string& cmd) noexcept {
 }
 
 status_t fkt_help(const std::string& cmd) noexcept {
+    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Gebe die Hilfe aus (fkt_help)", "func");
     std::cerr << "Benutzung:" << std::endl << std::endl;
     std::cerr << program << " [options=help] [file]" << std::endl << std::endl;
@@ -84,6 +86,7 @@ status_t fkt_install(const std::string& cmd) noexcept {
 }
 
 status_t fkt_compile(const std::string& cmd) {
+    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     std::cout << "Generiere Makefile für Datei: " << settings["file"] << std::endl;
 
     //URGENT TODO:
@@ -114,7 +117,7 @@ status_t fkt_compile(const std::string& cmd) {
 
     configuration_t update_config = whatTrigger(getNameMaps(settings[S_GEPARDRULES_PATH]),settings["file"]);
     if(!update_config.empty()) {
-        std::cout << "    - Information aufgrund des Name-Mappings werden deine Einstellungen angepasst. Die Regeln werden im Folgenden angezeigt und angewendet!" << std::endl;
+        std::cout << "    - Information: aufgrund des Name-Mappings werden deine Einstellungen angepasst. Die Regeln werden im Folgenden angezeigt und angewendet!" << std::endl;
 
         std::string new_config = "";
         for(auto it = update_config.begin(); it != update_config.end(); ++it) {
@@ -153,6 +156,7 @@ status_t fkt_compile(const std::string& cmd) {
                  << "BOXMODES     := " << padPrint(settings[S_LILLY_BOXES]+"#")      << "## Seperator: ' '"                     << std::endl
                  << "CLEANTARGET  := LILLYxClean"                                                                               << std::endl
                  << "CLEANTARGETS := " << settings[S_LILLY_CLEANS]                                                              << std::endl
+                 << "SIGNATURECOL := " << settings[s_LILLY_SIGNATURE_COLOR]                                                     << std::endl
                  << "AUTHOR       := " << settings[S_LILLY_AUTHOR]                                                              << std::endl
                  << "AUTHORMAIL   := " << settings[S_LILLY_AUTHORMAIL]                                                          << std::endl
                  // lilly- names
@@ -164,7 +168,7 @@ status_t fkt_compile(const std::string& cmd) {
                  << std::endl
                  //Generals
                  << "## Makefile/General settings"                                                                              << std::endl
-                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}})" 
+                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}}\\providecommand{\\Hcolor}{${SIGNATURECOL}})" 
                  << R"(\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/)" << settings[S_LILLY_LAYOUT_LOADER]<< "}" 
                  << R"(\\providecommand{\\LILLYxEXTERNALIZE}{)" << ((settings[S_LILLY_EXTERNAL]=="true")?"TRUE":"FALSE") << "}"<< std::endl << std::endl //DONT'T Change
                  << "JOBCOUNT     := " << padPrint(settings["jobcount"]+"#")         << "## should: <= cpu/thread count!"      << std::endl
@@ -287,6 +291,7 @@ status_t fkt_compile(const std::string& cmd) {
 
 status_t fkt_tokentest(const std::string& cmd) {
     // test für den Tokenizer :D
+    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     std::cout << "Einzelne Gruppen werden mit \"~\" getrennt!" << std::endl;
     Tokenizer t(settings["file"]);
     while(t.loadNext()) {
@@ -303,6 +308,7 @@ status_t fkt_tokentest(const std::string& cmd) {
 uint8_t RECURSIVE_CALLCOUNTER = 0;
 
 status_t fkt_config(const std::string& cmd) {
+    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Jetzt in: fkt_config","func");
     if(RECURSIVE_CALLCOUNTER++ > MAX_SETTINGS_REC) {
         std::cerr << COL_ERROR << "Du hast das Limit an Konfigurationsaufrufen erreicht! Mehr erscheint wirklich nicht sinnvoll!"
@@ -315,6 +321,7 @@ status_t fkt_config(const std::string& cmd) {
 }
 
 status_t fkt_get(const std::string& cmd) noexcept {
+    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     return system(("grep -E \"" + settings["what"] + "\" -r * -hs").c_str());
 }
 
@@ -324,10 +331,18 @@ status_t fkt_autoget(const std::string& cmd) noexcept{
 }
 
 status_t fkt_update(const std::string& cmd) noexcept{
+    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Versuche Lilly zu Aktualisieren (fkt_update)","func");
     std::cout << "Aktualisiere Lilly: " << std::endl;
-    w_debug("Aktualisiere: export tf=$(tempfile) && echo \"Schreibe in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make > ${tf} && lilly_jake install -debug >> ${tf}", "update");
-    std::cout << "Update: " << er_decode(system("export tf=$(tempfile) && echo \"Schreibe in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make > ${tf} && lilly_jake install -debug >> ${tf}")) << std::endl;
+    if(settings["path"] == "./") {
+        std::cout << "Pfad soll nicht überschrieben werden, nutze alten (${LILLY_JAKE_CONFIG_PATH}=" << exec("printf ${LILLY_JAKE_CONFIG_PATH}") << ")" << std::endl;
+        w_debug("Aktualisiere: export tf=$(tempfile) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"${LILLY_JAKE_CONFIG_PATH}\" > ${tf} && lilly_jake install -debug >> ${tf}", "update");
+        std::cout << "Update: " << er_decode(system("export tf=$(tempfile) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"${LILLY_JAKE_CONFIG_PATH}\" > ${tf} && lilly_jake install -debug >> ${tf}")) << std::endl;
+    } else {
+        std::cout << "Pfad soll überschrieben werden, nutze neuen (settings[\"path\"]=" << settings["path"] << ")" << std::endl;
+        w_debug("Aktualisiere: export tf=$(tempfile) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"settings[\"path\"]\" > ${tf} && lilly_jake install -debug >> ${tf}", "update");
+        std::cout << "Update: " << er_decode(system(("export tf=$(tempfile) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"" + settings["path"] + "\" > ${tf} && lilly_jake install -debug >> ${tf}").c_str())) << std::endl;
+    }
 #if defined(__linux__) 
     std::cout << "Soll eine Dokumentation generiert werden?" << std::endl << "(y)es/(n)o> ";
 
@@ -345,7 +360,8 @@ status_t fkt_update(const std::string& cmd) noexcept{
                 return EXIT_FAILURE;
             }
         }
-        std::cout << "Erstelle Dokumentation... " << er_decode(system("cd $(dirname $(which lilly_jake))/../../Jake/source && make documentation")) << std::endl;
+        w_debug("Aktualisiere mit: export tf=$(tempfile) && echo \"Schreibe Dokumentations-log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../Jake/source && make documentation > ${tf} 2>&1","update");
+        std::cout << "Erstelle Dokumentation... " << er_decode(system("export tf=$(tempfile) && echo \"Schreibe Dokumentations-log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../Jake/source && make documentation > ${tf} 2>&1")) << std::endl;
     } else {
         std::cout << "Fertig!" << std::endl;
     }

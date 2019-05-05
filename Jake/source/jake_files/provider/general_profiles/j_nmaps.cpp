@@ -12,7 +12,20 @@ settings_t __nmaps_settings = {
 
 configuration_t get_default_nmaps( void ) {
     configuration_t _ret;
-    _ret["GDBS"] = "gdbs,GdBS,GDBS:lilly-vorlesung=GDBS\nlilly-semester=2";
+    /* cSpell:disable */
+    _ret["GDBS"] = "gdbs,GdBS,GDBS,[Gg]rundlagen[\\ \\-]?([Dd]er[\\ \\-]?)?[Bb]etriebssysteme:lilly-vorlesung=GDBS\nlilly-semester=2";
+    _ret["ANA1"] = "ana1,ANA1,[Aa]nalysis[\\ \\-]?1:lilly-vorlesung=ANA1\nlilly-semester=2";
+    _ret["PVS"] = "pvs,PvS,PVS,[Pp]rogrammierung[\\ \\-]?([Vv]on[\\ \\-]?)?[Ss]ystemen:lilly-vorlesung=PVS\nlilly-semester=2";
+    _ret["PDP"] = "pdp,PdP,PDP,[Pp]aradigmen[\\ \\-]?([Dd]er[\\ \\-]?)?[Pp]rogrammierung:lilly-vorlesung=PVS\nlilly-semester=2";
+
+    _ret["GDRA"] = "[Gg][Dd][Rr][Aa],[Gg]rundlagen[\\ \\-]?([Dd]er[\\ \\-]?)?[Rr]echnerarchitektur:lilly-vorlesung=GDRA\nlilly-semester=1";
+    _ret["EIDI"] = "[Ee][Ii][Dd][Ii],[Ee]inführung[\\ \\-]?([Ii]n[\\ \\-]?)?([Dd]ie[\\ \\-]?)?[Ii]nformatik:lilly-vorlesung=EIDI\nlilly-semester=1";
+    _ret["FG"] = "[Ff][Gg],[Ff]ormale[\\ \\-]?[Gg]rundlagen:lilly-vorlesung=FG\nlilly-semester=1";
+    _ret["LA"] = "LA,LAII,[Ll]ineare[\\ \\-]?[Aa]lgebra:lilly-vorlesung=LAII\nlilly-semester=1";
+
+    _ret["Übungsblatt"] = "UB,uebungsblatt:lilly-modes=uebungsblatt";
+    /* cSpell:enable */
+
     return _ret;
 }
 

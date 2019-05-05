@@ -1,61 +1,39 @@
-Neue Titel - Unglaublich wunderschön - Gaff Gaff
+Verbesserungen
 
 ============================================================================================
 :EagleoutIce for Lilly
 ============================================================================================
 
-Done: 
-    : https://github.com/EagleoutIce/LILLY/issues/25
-    : https://github.com/EagleoutIce/LILLY/issues/18
-
 JAKE:
 
-    + uebungsblatt zeigt nun kein 'COMPLETE-' mehr an
+    + Name-Maps für alle relevanten Blöcke hinzugefügt
 
-    + Neue Funktion: update - aktualisiert ab jetzt alles
-      Neue Funktionen sollten also mit:
-      `lilly_jake update` geholt werden können.
+    + Es gibt nun Konfigurationen!
 
-    * Besseres Autocomplete
 
-    
-    ! FIX gepard-rule-defaults sind nun endlich dynmaisch 
+    * Rechtschreibfööhler
+ 
+    * Experimentell werden nun Manpages geladen.
+
+
+    ! FIX: https://github.com/EagleoutIce/LILLY/issues/35 funktioniert jetzt.
+      (Wenn auch nicht so, wie ursprünglich erhofft)
+
+    ! FIX: return from _PT()
+
+    ! FIX: Konfigurator erlaubt nun auch Zuweisungen in der letzten Zeile
 
 LILLY:
 
-    + Gepard Highlighting
-    
-    + WIP Philosopher-Titlepageprovider der von Mitschrieb verwendet wird
-      und generell über \LILLYxTITLE[1] mit der Signatur:
-          \LILLYxTITLE[Pfad-Grafik]
-      (da optional natürlich auch ohne) verwendet werden kann.
-      Die Einstellungen werden über \LILLYxTITLExSETTINGSxGENERAL und
-      \LILLYxTITLExSETTINGSxVORLESUNG aufgelöst.
-    
-    + VIEL ZU VIELE NEUE TITELSACHEN
+    + Starred Environments für: beweis, beispiel, bemerkung
+      handhabt abstände wenn nur Liste als Element.
 
+    + \nskip für hübschen negative-skip
+    
+    * ALTERNATE ändert nun den Boxmodi der Abgabe
+    
+    
+    - Abgabeauthor entfernt und durch Author ersetzt. 
 
-    * Listen rücken nun im Falle eines Box-Locks mehr ein 
-    
-    * Experimental footer '| Kapitel >' Design für normale version
-      FEEDBACK ERWÜNSCHT
-    
-    * Es werden nun auch nur dann Listen am Ende eines Mitschriebs angezeigt
-      Wenn es mindestens eine Box vom entsprechendem Typ gibt.
-      Ausgenommen hierfür sind Übungsaufgaben mit der Complete-Option
-    
-    * Typos und Dokumentation angepasst
-
-
-    ! FIX Regex-Shit XD
-    
-    ! FIX '\' highlighting :D
-    
-    ! FIX Eidi - Daten (Thom Frühwirth)
-
-    ! FIX += error for set_descriptor
-    
-    ! FIX External akzeptiert nun auch die Einstellung show-box-name
-    
 ============================================================================================
 :

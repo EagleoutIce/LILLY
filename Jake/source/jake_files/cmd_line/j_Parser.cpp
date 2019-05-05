@@ -44,7 +44,10 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
 }
 
 status_t in_settings(std::string v0) {
+    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     if(functions.find(settings["operation"]) != functions.end()) {                   // Operation ist valide
+            if(settings["operation"][0] != '_') 
+                ld_config(v0); // Lade Einstellungen
             functions[settings["operation"]].fkt(v0);                                // Führe Operation aus
     } else {
         er_unknown_setting(("operation (=" + settings["operation"] + ")").c_str());  // Diese Operation kenne ich nicht
@@ -57,4 +60,33 @@ std::string strip_mod(const std::string& str) {
     if(str.length() > 1)
         return str.substr(0,str.find( (in_str(str.c_str(), ASA_PATTERN))?ASA_PATTERN:ASS_PATTERN));
     return str;
+}
+
+status_t ld_config( std::string v0) {
+    // Lade Standartkonfiguration
+    try {
+        w_debug("Lade Standartkonfiguration mit: \"printf $(dirname $(which lilly_jake))/jake_files/jake_default.conf\"","parser");
+        Configurator default_config_loader(exec("printf $(dirname $(which lilly_jake))/jake_files/jake_default.conf"));
+        default_config_loader.parse_settings(&settings._settings);
+    } catch (std::runtime_error er) {
+        error_debug("Laden gescheitert","parser");
+        std::cerr << COL_ERROR << "Die Installation von Jake scheint entweder fehlerhaft zu sein, oder du hast an der Konfigurationsdatei gepfuscht!"
+                  << std::endl << "Fehler: " << std::endl <<
+                  er.what() << std::endl;
+    }
+    if(exec("printf $(dirname $(which lilly_jake))/jake_files/jake_default.conf") != exec("printf ${LILLY_JAKE_CONFIG_PATH}")){
+        try {
+            w_debug("Lade Nutzerkonfiguration mit: \"printf ${LILLY_JAKE_CONFIG_PATH}\"","parser");
+            Configurator user_config_loader(exec("printf ${LILLY_JAKE_CONFIG_PATH}"));
+            user_config_loader.parse_settings(&settings._settings);
+        } catch (std::runtime_error er) {
+            warning_debug("Laden gescheitert","parser");
+            std::cerr << COL_ERROR << "Deine Konfigurationsdatei für Jake scheint fehlerhaft: "
+                    << std::endl << "Fehler: " << std::endl <<
+                    er.what() << std::endl;
+        }
+    } else {
+        w_debug("Keine Nutzer-Konfiguration registriert!", "parser");
+    }
+    return EXIT_SUCCESS;
 }

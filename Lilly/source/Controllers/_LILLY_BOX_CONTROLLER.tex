@@ -113,9 +113,11 @@
     \ifx\LILLYxBOXxBemerkungxBox\true\LILLYcommand{\LILLYSUBCOLBEM}{\LILLYxColorxBemerkung}\tcbset{LillyxBOXxDesignxBemerkung/.style={}}\else\LILLYcommand{\LILLYSUBCOLBEM}{\LILLYxLINKSxMainColor}\tcbset{LillyxBOXxDesignxBemerkung/.style={LillyxBOXxDesignxPlain}}\fi
 
     \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEM}\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}{\LILLYxBOXxBemerkungxLock}\elable{auto:BEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
+    \DeclareDocumentEnvironment{bemerkung*}{O{} O{LillyxBOXxDesignxBemerkung}}{\begin{bemerkung}[#1][#2]\nskip}{\end{bemerkung}}
 
 \else %% Keine Bemerkungen
     \NewEnviron{bemerkung}{}
+    \NewEnviron{bemerkung*}{}
 \fi
 
 %%% Comaptibility environment
@@ -136,10 +138,12 @@
     \ifx\LILLYxBOXxBeispielxBox\true\LILLYcommand{\LILLYSUBCOLBEI}{\LILLYxColorxBeispiel}\tcbset{LillyxBOXxDesignxBeispiel/.style={}}\else\LILLYcommand{\LILLYSUBCOLBEI}{\LILLYxLINKSxMainColor}\tcbset{LillyxBOXxDesignxBeispiel/.style={LillyxBOXxDesignxPlain}}\fi
 
     \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEI}\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}{\LILLYxBOXxBeispielxLock}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
-
+    \DeclareDocumentEnvironment{beispiel*}{O{} O{LillyxBOXxDesignxBeispiel}}{\begin{beispiel}[#1][#2]\nskip}{\end{beispiel}}
 \else %% Keine Beispielen
     \NewEnviron{beispiel}{}
+    \NewEnviron{beispiel*}{}
 \fi
+
 
 %%% Comaptibility environment
 \LILLYcommand{\BEI}[2]{ % Beispiel
@@ -183,8 +187,10 @@
     \ifx\LILLYxBOXxBeispielxBox\true\LILLYcommand{\LILLYSUBCOLBEW}{\LILLYxColorxBeweis}\tcbset{LillyxBOXxDesignxBeweis/.style={}}\else\LILLYcommand{\LILLYSUBCOLBEW}{\LILLYxLINKSxMainColor}\tcbset{LillyxBOXxDesignxBeweis/.style={LillyxBOXxDesignxPlain}}\fi
 
     \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEW}\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}{\LILLYxBOXxBeweisxLock}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
+    \DeclareDocumentEnvironment{beweis*}{O{} O{LillyxBOXxDesignxBeweis}}{\begin{beweis}[#1][#2]\nskip}{\end{beweis}}
 \else %% Keine Beweise
     \NewEnviron{beweis}{}
+    \NewEnviron{beweis*}{}
 \fi
 
 %%% Comaptibility environment
@@ -257,9 +263,11 @@
     \ifx\LILLYxBOXxAufgabexBox\true
         %\tcbset{LillyxBOXxDesignxAufgabe/.style={}}
         \LILLYcommand{\Splitter}{\vspace{0.1cm} {\color{black!50}\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]} %% Linie für tasks
+        \LILLYcommand{\vSplitter}{\vspace{-1\baselineskip} \Splitter \nskip}
     \else
         %\tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
         \LILLYcommand{\Splitter}{\vspace{0.1cm} {~\\[0.2cm]\textbf{Lösung:}\\}}
+        \LILLYcommand{\vSplitter}{\Splitter}
     \fi
 
 

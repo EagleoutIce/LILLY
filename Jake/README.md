@@ -2,11 +2,19 @@
 -----
 **Author:** Florian Sihler
 
-**Version:** 1.0.7 (LILLY: 1.0.7) -- 5.4.2019
+**Version:** 1.0.8 (LILLY: 1.0.8) -- 5.5.2019
 
 **OS:** Linux & MacOS
 
 ----
+## Jake aktualisieren
+
+Wenn du Jake bereits einmal installiert hast, so kannst du ihn mithilfe:
+
+`lilly_jake update`
+
+aktualisieren. (Dies funktioniert nicht, wenn du noch nicht gepushte Änderungen besitzt. Stelle sicher, dass du Lilly über die richtige Branch installiert hast)
+
 ## Was ist Jake?
 Jake ist ein in C++ geschriebenes Programm, welches die Arbeit mit dem LILLY-Framework vereinfacht. Es ist bisher für folgende Betriebssysteme definiert: 
  - Linux

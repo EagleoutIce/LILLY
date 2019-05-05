@@ -29,7 +29,7 @@ settings_t generate_default_lilly_settings() {
     ret_settings["mk-path"]                    = {"./", "Wo soll das Makefile hin?", IS_PATH};
 
     // ==== Externe Konfiguration
-    ret_settings[S_GEPARDRULES_PATH]           = {"", "Konfigurationsdatei für Gepard", IS_CONFIG};
+    ret_settings[S_GEPARDRULES_PATH]           = {"", "Konfigurationsdatei für Gepard", IS_PATH};
 
     // ==== Lilly Konfiguration
     ret_settings[S_LILLY_OUT]                  = {"./$(BASENAME)-OUT/", "Ausgabeordner der PDF-Datei", IS_PATH};
@@ -60,6 +60,8 @@ settings_t generate_default_lilly_settings() {
 
     ret_settings[S_LILLY_AUTHOR]               = {"Florian Sihler", "Wer sonst?", IS_TEXT};
     ret_settings[S_LILLY_AUTHORMAIL]           = {"florian.sihler@web.de", "Schreib mir :smirk:", IS_TEXT};
+    
+    ret_settings[s_LILLY_SIGNATURE_COLOR]      = {"Leaf", "Farbe, die in in Lilly Dokumenten per Hcolor (und HBcolor) als Highlighting-Farbe definiert wird", IS_TEXT};
 
     // ==== Makefile Regeln
     ret_settings["jobcount"]                   = {"2", "Wie viele Jobs für multithreaded-Kompilieren", IS_NUM};

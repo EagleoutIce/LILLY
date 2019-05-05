@@ -29,8 +29,8 @@ status_t Tokenizer::loadNext() {
     std::string tmp=" ";
 
     while(tmp.find_first_not_of(' ') == std::string::npos) {
-        std::getline(*this->_input,tmp,this->_eol);
         if(this->_input->eof()) return 0; // if(getline)
+        std::getline(*this->_input,tmp,this->_eol);
         // Multiline via '++\'
         while(tmp.length() > 2 && tmp.substr(tmp.length()-3) == R"(++\)") {
             tmp = tmp.substr(0, tmp.length()-3);
