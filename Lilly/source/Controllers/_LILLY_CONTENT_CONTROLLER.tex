@@ -8,21 +8,27 @@
 \def\remSpace#1 {#1}
 
 %% GET PATH OF LILLY
+\ifx\LILLYxCMD\undefined
 \newread\res
 \immediate\write18{printf $(dirname $(kpsewhich --progname=pdflatex Lilly.cls)) > xres.txt}
 \immediate\openin\res=xres.txt
 \read\res to \LILLYxCLSPATH
-
+\else
+    \providecommand{\LILLYxCLSPATH}{./}
+\fi
 
 \newcommand{\LILLYxgetCLSPATH}{\expandafter\remSpace\LILLYxCLSPATH}
 
 %%% GET PATH OF DOC
 
-
+\ifx\LILLYxCMD\undefined
 \immediate\write18{printf $(dirname $(find `pwd` -name \LILLYxDOCUMENTNAME)) > xres.txt}
 \immediate\openin\res=xres.txt
 \immediate\write18{rm xres.txt}
 \read\res to \LILLYxDOCPATH
+\else
+    \providecommand{\LILLYxDOCPATH}{./}
+\fi
 
 \newcommand{\LILLYxgetDOCPATH}{\expandafter\remSpace\LILLYxDOCPATH}
 
@@ -52,6 +58,7 @@
 
 \providecommand{\LILLYxPATHxCONTROLLERS}{\LILLYxPATHxFILExROOT/Controllers}
 \providecommand{\LILLYxPATHxDATA}{\LILLYxPATHxFILExROOT/Data}
+\providecommand{\LILLYxPATHxGRAPHICS}{\LILLYxPATHxFILExROOT/Graphics}
 \providecommand{\LILLYxPATHxFALLBACKS}{\LILLYxPATHxFILExROOT/Fallbacks}
 \providecommand{\LILLYxPATHxHELPER}{\LILLYxPATHxFILExROOT/Helper}
 \providecommand{\LILLYxPATHxLISTINGS}{\LILLYxPATHxFILExROOT/Listings}

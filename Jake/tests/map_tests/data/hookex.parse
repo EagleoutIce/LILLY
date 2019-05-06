@@ -13,7 +13,7 @@ BEGIN hook:
                      &&echo "Wuff  ++\
                      Duffel"
 
-        on-failure = "It's dead"
+        on-failure = "It is dead"
 END;
 
 BEGIN hook:

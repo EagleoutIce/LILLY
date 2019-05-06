@@ -57,9 +57,11 @@
         \ofoot{\normalfont\textbf{\thepage}}
         %\ihead{\hspace{-0.1cm}\raisebox{-2em}{\faCaretDown}}
     \else%% \LILLYxFACULTYxCOLOR
-        \lofoot{\scriptsize{\tikz[baseline=1.215ex]{\filldraw[LightGray,draw, rounded corners=1pt] (0,0) -- ++(1.45,0) -- ++(0.25,0.25) -- ++ (-0.25,0.25) -- ++(-1.45,0) -- cycle (0.75,0.25) node[minimum height=\baselineskip, inner sep=1pt,\LILLYxLINKSxMainColor]{\silentHmark[Kapitel]{eagleTOC}[\LILLYxLINKSxMainColor]};} \leftmark}}
+        %%\lohead{\hspace*{-1.83cm}\small{\tikz[baseline=1.215ex]{\filldraw[LightGray!50!white,draw, rounded corners=1pt] (0,0) -- ++(1.45,0) -- ++(0.25,0.25) -- ++ (-0.25,0.25) -- ++(-1.45,0) -- cycle (0.75,0.25) node[minimum height=\baselineskip, inner sep=1pt,\LILLYxLINKSxMainColor]{\silentHmark[Kapitel]{eagleTOC}[\LILLYxLINKSxMainColor]};} \leftmark}}
+        
         %\fi
         \lohead{\AUTHOR}
+        \lofoot{\silentHmark[Kapitel]{eagleTOC}[\LILLYxLINKSxMainColor]> \leftmark}
         \cofoot{}
         \rohead{\heute}
         %\lofoot{\tiny{{\rightmark} \(\rangle\){\leftmark}}}

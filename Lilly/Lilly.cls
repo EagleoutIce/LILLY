@@ -8,6 +8,9 @@
 \newcommand*{\LILLYxVERSIONxLONG}{1.0.8 - Where Jake meets the GePard}
 
 
+\providecommand{\LILLYxSemester}{1}
+\providecommand{\LILLYxVorlesung}{LAII}
+
 \input{source/Helper/_LILLY_PACKAGE_CTRL}
 
 \input{source/Controllers/_LILLY_CONTENT_CONTROLLER}
@@ -151,7 +154,8 @@
                       {Pffh dann behalte halt deine Pixel wenn es lmodern nicht gibt}
                       {} %% Heile heile Welt
                       {}{} %% NO ARGS
-                      
+    
+    \RequirePackage{textcomp}
 \fi
 
 %%  \RequirePackage{expl3}
@@ -204,7 +208,7 @@
                     
 \RequirePackage{hhline}
 \ifx\LILLYxTIKZxenable \undefined
-    \input{\LILLYxPATHxDATA/Graphics/Tikz-Core/_LILLY_TIKZ_CORE}
+    \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_CORE}
     \tikzset{invclip/.style={clip,insert path={{[reset cm](-100pt,-100pt) rectangle (100pt,100pt)}}}} %Für die FG-Kreise, damit man clippings auch invertieren kann
 \fi
 
@@ -247,8 +251,6 @@
 %\ExplSyntaxOff
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Unterdrücken verschiedener Fehler                                                                                   %     %%%% ERROR HANDLING %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -287,4 +289,8 @@
 
 %\RequirePackage{kpfonts}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Übersetzungen, alternativen, etc...                                                                                 %     %%%% TRANSLATIONS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\input{\LILLYxPATHxDATA/Aliasse/_LILLY_TRANSLATIONS_UNIVERSE}
