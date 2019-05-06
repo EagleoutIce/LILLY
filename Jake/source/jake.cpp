@@ -123,7 +123,8 @@
 
 int main(int argc, const char** argv) {
     program = argv[0];
-
+	if(argc < 2 || argv[1][0] != '_') 
+		ld_config(argv[0]); // Lade Einstellungen
     if(!ld_settings(argc-1, argv)) 
         in_settings(argv[0]);
     //fkt_help(argv[0]);

@@ -46,8 +46,6 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
 status_t in_settings(std::string v0) {
     w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     if(functions.find(settings["operation"]) != functions.end()) {                   // Operation ist valide
-            if(settings["operation"][0] != '_') 
-                ld_config(v0); // Lade Einstellungen
             functions[settings["operation"]].fkt(v0);                                // Führe Operation aus
     } else {
         er_unknown_setting(("operation (=" + settings["operation"] + ")").c_str());  // Diese Operation kenne ich nicht
