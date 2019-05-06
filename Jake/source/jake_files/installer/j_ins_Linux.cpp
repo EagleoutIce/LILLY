@@ -11,11 +11,13 @@ void li_show_error( void ){
 status_t ins_linux( void ) {
     w_debug4("Im installer: Linux", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
     int fb;
+
     w_debug4("Teste Vorhandensein durch: 'which pdflatex > /dev/null'", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
     std::cout << "  - Prüfe auf das Vorhandensein von pdflatex: "
               << er_decode(fb = system("which pdflatex > /dev/null"))
               << std::endl;
     char c_inp = '\0';
+
     if(fb) {
         w_debug4("er_decode(fb = system(\"which pdflatex > /dev/null\")) != 0 => Frage nach Installation", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
         std::cout << "  Jake kann 'pdflatex' nicht finden, dies ist für die Arbeit mit Lilly zwanghaft notwendig!" << std::endl
@@ -31,7 +33,7 @@ status_t ins_linux( void ) {
             std::cout << "  Jake installiert LILLY nun weiter, ohne 'pdflatex', da  du (n)o gewählt hast!" << std::endl;
     }
 
-    w_debug4("Erstelle Installationspfad auf Basis von settings[\"install-path\"](=" + settings["install-path"] + "): system((\"mkdir -p \" + settings[\"install-path\"] + \"/tex/latex\").c_str())" , "inst","INF","", DEBUG_8BIT_FOREGROUND(33));    
+    w_debug4("Erstelle Installationspfad auf Basis von settings[\"install-path\"](=" + settings["install-path"] + "): system((\"mkdir -p \" + settings[\"install-path\"] + \"/tex/latex\").c_str())" , "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
 
     std::cout << "  - Erstelle (" <<  settings["install-path"] << "/tex/latex): "
               << er_decode(system(("mkdir -p " + settings["install-path"] + "/tex/latex").c_str()))
@@ -41,7 +43,7 @@ status_t ins_linux( void ) {
 
     // Expand path:
     if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
-        std::cerr << COL_ERROR << "Die Lilly.cls konnte unter dem eingestellten Pfad: \"" 
+        std::cerr << COL_ERROR << "Die Lilly.cls konnte unter dem eingestellten Pfad: \""
                 << exec("echo -n " + settings[S_LILLY_PATH]) << "\" nicht gefunden werden. "
                 << "Soll die Datenbank aktualisiert werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
         while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
@@ -49,32 +51,56 @@ status_t ins_linux( void ) {
         c_inp='\0';
         if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
 
-        std::cerr << COL_ERROR << "Die Lilly.cls nun wieder nicht gefunden werden :/ "
-        << "Soll eine ausführliche Suche gestartet werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
-        while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
-        if(c_inp == 'y') {
-            std::string path;
-            std::cout << "Suche Lilly.cls: " << (path = exec("echo -n $(dirname $(find \"${HOME}\" / -name Lilly.cls 2>/dev/null))")) << std::endl;
-            if(check_file(path + "/Lilly.cls")){
-                std::cout << "Lilly wurde erfolgreich gefunden! aktualisiere Einstellungen :D" << COL_RESET << std::endl;
-                settings[S_LILLY_PATH] = path;
-            } else {
-                li_show_error();
-            }
-        } else {
-                li_show_error();
-                return EXIT_FAILURE;
-            }
+          std::cerr << COL_ERROR << "Die Lilly.cls konnte nun wieder nicht gefunden werden :/ "
+          << "Soll eine ausführliche Suche gestartet werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
+          while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
+          if(c_inp == 'y') {
+              std::string path;
+              std::cout << "Suche Lilly.cls: " << (path = exec("echo -n $(dirname $(find \"${HOME}\" / -name Lilly.cls 2>/dev/null))")) << std::endl;
+              if(check_file(path + "/Lilly.cls")){
+                  std::cout << "Lilly wurde erfolgreich gefunden! Aktualisiere Einstellungen :D" << COL_RESET << std::endl;
+                  settings[S_LILLY_PATH] = path;
+              } else {
+                  li_show_error();
+              }
+          } else {
+                  li_show_error();
+                  return EXIT_FAILURE;
+              }
+          }
+
+    }
+
+    //check for MiKTeX
+    w_debug4("Teste auf aktive MiKTeX Konfiguration: 'pdflatex --version | grep MiKTeX > /dev/null'", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
+    std::cout << "  - Prüfe auf aktive MiKTeX Konfiguration..." << std::endl;
+    if(system("pdflatex --version | grep MiKTeX > /dev/null") > 0) {
+        //MiKTeX installed
+        /* cSpell:disable */
+        std::cout << "  MiKTeX wurde als aktiv identifiziert. Jake wird die Installation dementsprechend anpassen." << std::endl;
+        std::cout << "  - Kopiere Inhalt von " << settings[S_LILLY_PATH] << " nach " << settings["install-path"] << ": "
+                << er_decode(system(("cp -u -R " + settings[S_LILLY_PATH] + "/* " + settings["install-path"] + "/tex/latex").c_str())) << std::endl;
+        std::cout << "  - Prüfe, ob das Verzeichnis MiKTeX bekannt ist: " << er_decode(fb = system(("cat /var/lib/miktex-texmf/miktex/config/miktexstartup.ini | grep " + settings["install-path"]).c_str())) << std::endl;
+        if(fb) {
+            //not in config
+            std::cout << "  Das Verzeichnis ist MiKTeX nicht bekannt. Jake wird nun die Konfigurationsdatei ergänzen." << std::endl;
+            std::cout << "  - Schreibe in /var/lib/miktex-texmf/miktex/config: "
+                    << er_decode(system(("sudo sh -c \"echo 'CommonRoots;=" + settings["install-path"] + "' >> /var/lib/miktex-texmf/miktex/config/miktexstartup.ini\"").c_str())) << std::endl;
         }
-
-    } //URGENT TODO: AUSFÜHRLICHE SUChE
-
-    std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << " = " << exec("echo -n " + settings[S_LILLY_PATH]) << ") nach (" << settings["install-path"] << "/tex/latex): "
-              << er_decode(system(("ln -sf "+settings[S_LILLY_PATH]+" "+settings["install-path"]+"/tex/latex").c_str()))
-              << std::endl;
+        std::cout << "  Fahre nun mit der Installation fort." << std::endl;
+    } else {
+        std::cout << "  MiKTeX wurde als nicht-aktiv identifiziert. Jake baut auf einer texlive-Implementierung auf." << std::endl;
+        //normal installation
+        std::cout << "  - Verlinke (" << settings[S_LILLY_PATH] << " = " << exec("echo -n " + settings[S_LILLY_PATH])
+                  << ") nach (" << settings["install-path"] << "/tex/latex): "
+                  << er_decode(system(("ln -sf " + settings[S_LILLY_PATH] + " " + settings["install-path"] +
+                                       "/tex/latex").c_str()))
+                  << std::endl;
+    }
+    /* cSpell:enable */
     if(settings[S_LILLY_PATH]=="\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"")
     std::cout << COL_ERROR << "    Information: es ist immer besser, wenn du den absoluten Pfad zu Lilly angibst."<< std::endl
-              << "    Nutze hierzu: " 
+              << "    Nutze hierzu: "
               << std::endl << "    $ " << program << " -lilly-path" << ASS_PATTERN << " \"/pfad/zum/kuchen\" install" << COL_RESET << std::endl;
 
     std::cout << "  - Informiere TEX über (" << settings["install-path"] << "): "
@@ -93,18 +119,10 @@ status_t ins_linux( void ) {
                     "echo \"      - ($a): $i\"; done;").c_str())) << std::endl;
 
 
-    //TODO: Fragen ob Dokumentation erstellt weden soll
-                    // Wenn Ja: Gibt es Doxygen? Nein? Dann Doxygen und graphviz installieren.
-                    // Shell-Befehl: Verzeichnis für Jake naivigieren && doxygen Doxyfile && xdg-open docs/index.html
-    // Wenn nein Ende
-
-    //kpsewhich Lilly.cls
+    //kpsewhich -progname=pdflatex Lilly.cls
     w_debug4("Verify install: " + er_decode(system("kpsewhich -progname=pdflatex Lilly.cls")), "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
     std::cout << "Der Installationsprozess wurde abgeschlossen :D" << std::endl;
 
     return EXIT_SUCCESS;
 }
 
-// TODO Jake move - Befehl der Auf Basis einer Konfigurationsdatei verschiedene Proile laden kann (bsp: fg: Updated Fg-Skripte) - Besserer Name?
-
-// TODO Jake autocomplete - Jake soll die Komplette Autovervollständigung übernehmen - Er soll mit GENARGS -args="Bisherige Eingabe" aufgerufen werden können und auf dieser Basis dann mögliche antworten zurück liefern.

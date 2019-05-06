@@ -23,7 +23,7 @@ configuration_t get_default_nmaps( void ) {
     _ret["FG"] = "[Ff][Gg],[Ff]ormale[\\ \\-]?[Gg]rundlagen:lilly-vorlesung=FG\nlilly-semester=1";
     _ret["LA"] = "LA,LAII,[Ll]ineare[\\ \\-]?[Aa]lgebra:lilly-vorlesung=LAII\nlilly-semester=1";
 
-    _ret["Übungsblatt"] = "UB,uebungsblatt:lilly-modes=uebungsblatt";
+    _ret["Übungsblatt"] = "UB,uebungsblatt,[Üü]bungsblatt,ÜB:lilly-modes=uebungsblatt";
     /* cSpell:enable */
 
     return _ret;

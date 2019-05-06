@@ -151,6 +151,8 @@ int main(int argc, const char** argv) {
 /*
 ## Makefile for jake.cpp
 
+CONFIG = "$(shell pwd)/jake_files/jake_default.conf"
+
 EXTRA_FILES := jake_files/j_Helper.cpp \
 	       jake_files/cmd_line/j_Functions.cpp \
 	       jake_files/cmd_line/j_Autocomplete.cpp \
@@ -159,6 +161,7 @@ EXTRA_FILES := jake_files/j_Helper.cpp \
 	       jake_files/core/j_Settings.cpp \
 	       jake_files/cmd_line/j_Parser.cpp \
 	       jake_files/core/j_Globals.cpp \
+		   jake_files/core/j_Debug.cpp \
 	       jake_files/provider/j_Tokenizer.cpp \
 	       jake_files/provider/j_Configurator.cpp \
 	       jake_files/provider/j_Generator_Parser.cpp \
@@ -174,7 +177,7 @@ DEBUG := 0
 WRITE_RC = if grep -q "LILLY_CODE" "$(1)"; then \
         echo "DEBUG: Already prepped $(1)";\
     else \
-        echo "export PATH=\044PATH:$(shell pwd); autoload bashcompinit &>/dev/null; bashcompinit &>/dev/null; source $(shell pwd)/_jake_autocomplete \#LILLY_CODE"  >> $(1);\
+        echo "export PATH=\044PATH:\"$(shell pwd)\"; export LILLY_JAKE_CONFIG_PATH=\"${CONFIG}\"; autoload bashcompinit &>/dev/null; bashcompinit &>/dev/null; source $(shell pwd)/_jake_autocomplete \#LILLY_CODE"  >> $(1);\
     fi
 
 UNAME_S := $(shell uname -s)

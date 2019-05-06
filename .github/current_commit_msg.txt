@@ -1,4 +1,4 @@
-Verbesserungen
+Jetzt auch ohne Befehle
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -6,34 +6,29 @@ Verbesserungen
 
 JAKE:
 
-    + Name-Maps für alle relevanten Blöcke hinzugefügt
+    * Jake installation für MikTeX wurde angepasst
 
-    + Es gibt nun Konfigurationen!
+    * Die neue REGEX-Expression für die Configurator wurde angepasst
 
-
-    * Rechtschreibfööhler
- 
-    * Experimentell werden nun Manpages geladen.
-
-
-    ! FIX: https://github.com/EagleoutIce/LILLY/issues/35 funktioniert jetzt.
-      (Wenn auch nicht so, wie ursprünglich erhofft)
-
-    ! FIX: return from _PT()
-
-    ! FIX: Konfigurator erlaubt nun auch Zuweisungen in der letzten Zeile
+    * Default Name-Maps wurde entsprechend angepasst
 
 LILLY:
 
-    + Starred Environments für: beweis, beispiel, bemerkung
-      handhabt abstände wenn nur Liste als Element.
+    + Durch das definieren von '\LILLYxCMD' vor dem einbinden von Lilly
+      können nun Shellbefehle die direkt von LILLY ausgeführt werden verhindert werden.
+      Die option 'external' steht allerdings nach wie vor zu verfügung und kann diese
+      nach wie vor einsetzen.
 
-    + \nskip für hübschen negative-skip
-    
-    * ALTERNATE ändert nun den Boxmodi der Abgabe
-    
-    
-    - Abgabeauthor entfernt und durch Author ersetzt. 
+
+    * Exemplarische Universe-Übersetzungspaket hinzugefügt
+
+
+    * Pfad für Tikz-Dateien angepasst TODO anpassen doku
+
+ALLGEMEIN:
+
+    + Es wurde ein Wiki-Template eingeführt 
+      (https://github.com/EagleoutIce/LILLY/wiki/conf-Einstellungen)
 
 ============================================================================================
 :
