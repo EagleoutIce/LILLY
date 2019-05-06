@@ -72,9 +72,9 @@ status_t ins_linux( void ) {
     }
 
     //check for MiKTeX
-    w_debug4("Teste auf aktive MiKTeX Konfiguration: 'pdflatex --version | grep MiKTeX > /dev/null'", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
+    w_debug4("Teste auf aktive MiKTeX Konfiguration: 'pdflatex --version | grep MiKTeX' == \"\"", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
     std::cout << "  - Prüfe auf aktive MiKTeX Konfiguration..." << std::endl;
-    if(system("pdflatex --version | grep MiKTeX > /dev/null") > 0) {
+    if(exec("printf $(pdflatex --version | grep MiKTeX)").find_first_not_of(" ") != std::string::npos) {
         //MiKTeX installed
         /* cSpell:disable */
         std::cout << "  MiKTeX wurde als aktiv identifiziert. Jake wird die Installation dementsprechend anpassen." << std::endl;
