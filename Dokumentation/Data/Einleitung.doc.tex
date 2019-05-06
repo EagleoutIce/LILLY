@@ -12,12 +12,12 @@ Zuerst gilt es einen neuen Ordner zu erstellen\marginpar{\tiny  Es wird \emph{ni
 \begin{lstlisting}[style=bash]
 mkdir -p "${HOME}/texmf/tex/latex/"
 \end{lstlisting}
-In diesen Ordner (wenn nicht sogar bereits existent) kann nun der gesamte \T{Lilly}-Ordner verschoben werden (oder mithilfe eines symbolischen Links verknüpft). Als letztes muss man nun noch \TeX{} über das neue Verzeichnis informieren:\marginpar{\tiny  Dies sichert uns die Persistenz des Pakets im Falle einer Neuinstallation/Updates von \LaTeX}
+In diesen Ordner (wenn nicht sogar bereits existent) kann nun der gesamte \T{Lilly}-Ordner verschoben werden (oder mithilfe eines symbolischen Links verknüpft). Als letztes muss man nun noch \TeX{} über das neue Verzeichnis informieren:\marginpar{\tiny  Dies sichert uns die Persistenz des Pakets im Falle einer Neuinstallation oder eines Updates von \LaTeX}
 \begin{lstlisting}[style=bash]
 texhash "${HOME}/texmf"
 \end{lstlisting}
 
-Nun gilt es sich den anderen mitgelieferten Dateien zu widmen! Von besonderer Relevanz ist hierbei \T{lilly\_compile.sh}, welches hier ausführlicher beschrieben wird(TODO: LINK). Grundlegend generiert es ein Makefile, das dann zum Kompilieren des Dokuments gedacht ist!\newline
+Nun gilt es sich den anderen mitgelieferten Dateien zu widmen! Von besonderer Relevanz ist hierbei \T{lilly\_compile.sh}, welches hier ausführlicher beschrieben wird(TODO: LINK). Grundlegend generiert es ein Makefile, das dann zum Kompilieren des Dokuments gedacht ist.\newline
 Mithilfe von folgendem Befehl wurde das Makefile für diese Dokumentation generiert:
 \begin{lstlisting}[style=bash]
 *\textcolor{white}{\bfseries \T{./}}*lilly_compile.sh "Lilly-Dokumentation.doc.tex" \
@@ -25,7 +25,7 @@ Mithilfe von folgendem Befehl wurde das Makefile für diese Dokumentation generi
 \end{lstlisting}
 \LILLYxNOTExVersion{1.0.2}Hierbei wird das Makefile gemäß folgenden Regeln erzeugt:
 \begin{itemize}[label=$\diamond$]\narrowitems
-    \item Es soll die tex-Datei: \say{Lilly-Dokumentation.doc.tex} kompiliert werden.\marginpar{\tiny  Dies muss nicht sein siehe hierfür (TODO) idir und odir}
+    \item Es soll die tex-Datei \say{Lilly-Dokumentation.doc.tex} kompiliert werden.\marginpar{\tiny  Dies muss nicht sein siehe hierfür (TODO) idir und odir}
     \item Das ganze soll (relativ zu \T{lilly\_compile.sh}) im Verzeichnis \T{Dokumentation} stattfinden - hier wird ebenfalls das Makefile generiert. \marginpar{\vspace*{2em}\tiny  Es wird mit den Regeln \T{default, all} und \T{clean} generiert, selbstredend lässt sich dies erweitern}\begin{bemerkung}[make]
         Logischerweise muss damit auch \T{make} auf dem System vorhanden sein:
 \begin{lstlisting}[style=bash]
@@ -38,7 +38,7 @@ Mit diesem Makefile kann man nun das Dokument generieren lassen. Zu beachten sei
 \begin{lstlisting}[style=bash]
 make "BOXMODE=LIMERENCE"
 \end{lstlisting}
-\marginpar{\tiny Dies ändert sich mit Version 1.0.8 und der Übernahme von Jake TODO}Hierbei lässt sich ebenfalls erkennen wie sich noch mit dem Makefile einzelne Komponenten (wie das verwendete Boxdesign) ändern lassen!
+\marginpar{\tiny Dies ändert sich mit Version 1.0.8 und der Übernahme von Jake TODO}Hierbei lässt sich ebenfalls erkennen, wie sich noch mit dem Makefile einzelne Komponenten (wie das verwendete Boxdesign) ändern lassen!
 \subsection{Windows \LILLYxNOTExWarning{Ausstehend}}
 \subsection{MacOSX \LILLYxNOTExWarning{Ausstehend}}
 
@@ -46,7 +46,7 @@ make "BOXMODE=LIMERENCE"
 \begin{bemerkung}
     Von dieser Methode wird abgeraten
 \end{bemerkung}
-Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu kompilierende Latex-Datei im selben Verzeichnis wie die Datei \T{Lilly.cls} liegen (also: \T{Lilly}). Natürlich kann dies bei mehreren Dateien, die auf Lilly zugreifen, unübersichtlich werden.
+Natürlich lässt sich Lilly auch so nutzen. Hierfür muss einfach nur die zu kompilierende Latex-Datei im selben Verzeichnis wie die Datei \T{Lilly.cls} liegen (also: \T{Lilly}). Dementsprechend kann dies bei mehreren Dateien, die auf Lilly zugreifen, unübersichtlich werden.
 \clearpage
 \section[Erstellen eines Dokuments mit Lilly]{Erstellen eines Dokuments mit Lilly \tiny\LILLYxBOXxVersion{1.0.5}}
 \subsection{Das Gerüst}
