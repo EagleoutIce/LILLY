@@ -1,7 +1,7 @@
-#LISTINGS
+# LISTINGS
 
-##LILLY_LISTINGS
+## LILLY_LISTINGS
 Sorgt für korrekte Formatierung von Umlauten.
 
-##Languages
+## Languages
 Enthält Formatierung für verschiedene Sprachen
