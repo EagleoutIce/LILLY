@@ -1,6 +1,6 @@
 # Bring your own data
 
-## _Lilly_Fonts.tex
+## Lilly_Fonts
 
 Diese Datei enthält die volle Pracht der Schift der Lilly.
 
@@ -18,7 +18,7 @@ Semsterinformationen
 
 ## Graphics
 
-Hier versteckt sich die TikZ-Datein welche in den bisherigen Vorlesungen verwendet wurden.
+Hier verstecken sich Shortcuts zum besseren Umsetzen von Grafiken
 
 ## Titlepages
 
