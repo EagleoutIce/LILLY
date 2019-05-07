@@ -4,7 +4,7 @@
 \section{Grundlegendes}
 \subsection{Eine kleine Einführung}
 
-Die 3 Standart-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt: 
+Die 3 Standart-Designs, welche mit LILLY ausgeliefert werden, lauten wie folgt: 
 \begin{tabularx}{\linewidth}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
     \bfseries DEFAULT & \bfseries ALTERNATE & \bfseries LIMERENCE \\\hline %% Leider ist es nicht möglich zu mischen ^^
@@ -24,7 +24,7 @@ Die 3 Standart-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt:
 \\
     \specialrule{1pt}{0pt}{0pt}
     \end{tabularx}
-Auch wenn sie hier explizit forciert wurden ist es grundlegend möglich (und auch so gedacht) sie mithilfe des Makefiles konfiguerieren. Die allgemeine Syntax hierfür lautet:
+Auch wenn sie hier explizit forciert wurden, ist es grundlegend möglich (und auch so gedacht) sie mithilfe des Makefiles konfiguerieren. Die allgemeine Syntax hierfür lautet:
 \begin{lstlisting}[style=bash]
 make "BOXMODE=<Name>"
 \end{lstlisting}
@@ -32,10 +32,10 @@ make "BOXMODE=<Name>"
 \begin{lstlisting}[style=latex,frame=none]
 \input{Lilly_Files/Data/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
 \end{lstlisting}
-\marginpar{\tiny Natürlich wäre es schöner auch andere Verzeichnisse zuzulasen und hierbei dann den gesamten Pfad anzugeben - dies ist aber bisher auch TODO:}Über genau dieses Verfahren lassen sich auch beliebig die Box-Designs erweitern.
+\marginpar{\tiny Natürlich wäre es schöner auch andere Verzeichnisse zuzulasen und hierbei dann den gesamten Pfad anzugeben - dies ist aber bisher auch TODO:}Über genau dieses Verfahren lassen sich auch die Box-Designs beliebig erweitern.
 \subsection{Der Box-Controller}
 {\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Controllers/\_LILLY\_BOX\_CONTROLLER}}\vspace*{0.5\baselineskip}\par}\reversemarginpar
-Alle Box-Desings werden über den Box-Controller geladen, der über \CMDpreview{LILLYxBOXxMODE} die Möglichkeit zur Verfügung stellt die jeweilige \T{POI}-Datei zu laden (TODO: LINK). Er definiert ein gigantisches Paket an Befehlen (TODO: pgf foreach) die allerdings für jeden Boxtyp identisch sind. allgemein werden: \CMDpreview{LILLYxBOXx*xLock} und \CMDpreview{LILLYxBOXx*xEnable} für alle Boxen definiert. So kann man zum Beispiel durch das Setzen von \CMDshow{LILLYxBOXxDefinitionxEnable} auf \T{FALSE} das Anzeigen von Definitionsboxen deaktivieren (Information: Sie werden einfach entfernt, es wird kein adäquater Platzhalter als Ersatz eingefügt) und durch das Setzen von \CMDshow{LILLYxBOXxBeispielxLock} auf\T{section} das Nummerieren der Box auf die Sektionen festlegen (\T{TRUE} für ungebunden).
+Alle Box-Desings werden über den Box-Controller geladen, der über \CMDpreview{LILLYxBOXxMODE} die Möglichkeit zur Verfügung stellt die jeweilige \T{POI}-Datei zu laden (TODO: LINK). Er definiert ein gigantisches Paket an Befehlen (TODO: pgf foreach), die allerdings für jeden Boxtyp identisch sind. Allgemein werden: \CMDpreview{LILLYxBOXx*xLock} und \CMDpreview{LILLYxBOXx*xEnable} für alle Boxen definiert. So kann man zum Beispiel durch das Setzen von \CMDshow{LILLYxBOXxDefinitionxEnable} auf \T{FALSE} das Anzeigen von Definitionsboxen deaktivieren (Information: Sie werden einfach entfernt, es wird kein adäquater Platzhalter als Ersatz eingefügt) und durch das Setzen von \CMDshow{LILLYxBOXxBeispielxLock} auf\T{section} das Nummerieren der Box auf die Sektionen festlegen (\T{TRUE} für ungebunden).
 Weiter definiert es die folgenden Box-Environments:
 %%PYSCRIPT:
 %
@@ -130,7 +130,7 @@ Nicht richtig darstellbar aber weiter existiert:
 \end{uebungsblatt}\end{lstlisting}
 
 \end{multicols}}
-Für bisher leider noch nicht alle Boxen wird zudem der Befehl: \CMDpreview{LILLYxBOXx*xBox} definiert. Bisher unterstützt werden:
+Für bisher leider noch nicht alle Boxen wird zudem der Befehl \CMDpreview{LILLYxBOXx*xBox} definiert. Bisher unterstützt werden:
 \begin{multicols}{3}
     \begin{itemize}[label=$\diamond$]\narrowitems
         \item Bemerkung
