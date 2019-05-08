@@ -44,7 +44,7 @@ LILLYxClean = echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m" && \
 
 
 default: $(INPUTDIR)$(TEXFILE)
-	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
+	@echo "\033[38;2;255;191;0mGeneriere Standard-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
 	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
 
 print: $(INPUTDIR)$(TEXFILE)

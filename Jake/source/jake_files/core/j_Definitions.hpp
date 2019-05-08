@@ -90,7 +90,7 @@
 #define S_LILLY_SEMESTER                "lilly-semester"
 ///@brief Soll der Boxname bei der Generierung angezeigt werden? dies macht nur Sinn auf false gesetzt werden wenn es nur eine Box gibt
 #define S_LILLY_SHOW_BOX_NAME           "lilly-show-boxname"
-/// @brief Pfad zur Buildrule-settings-Datei (wenn leer (default), dann werden die Standartdaten geladen :D )
+/// @brief Pfad zur Buildrule-settings-Datei (wenn leer (default), dann werden die Standarddaten geladen :D )
 #define S_GEPARDRULES_PATH              "gepardrule-path"
 /// @brief Bsp: Loader-Path für Lilly Layout
 #define S_LILLY_LAYOUT_LOADER           "lilly-layout-loader"
@@ -101,6 +101,7 @@
 /// @brief Zum Setzen der Autoren-Mail
 #define S_LILLY_AUTHORMAIL              "lilly-author-mail"
 /// @brief Farbe mit der in Lilly Dokumenten per \Hcolor (und \HBcolor) eine Farbe definiert wird
-#define s_LILLY_SIGNATURE_COLOR         "lilly-signatur-farbe"
-
+#define S_LILLY_SIGNATURE_COLOR         "lilly-signatur-farbe"
+/// @brief Soll Bibtex automatisch integriert werden => JA? Name der Datei angeben 
+#define S_LILLY_BIBTEX                  "lilly-bibtex"
 #endif

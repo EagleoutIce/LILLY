@@ -13,7 +13,7 @@
  * Hier werden die veschiedenen DEBUG-Level zur Laufzeit aufgelistet
  * Es sind 3 Stufen unterstützt die bei Bedarf beliebig erweitert werden
  * können.
- * j_Debug beruft sich auf den j_color_debug Farbstandart
+ * j_Debug beruft sich auf den j_color_debug FarbStandard
  *
  * @todo include logger
  *

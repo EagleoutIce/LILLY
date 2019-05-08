@@ -6,29 +6,34 @@ Jetzt auch ohne Befehle
 
 JAKE:
 
-    * Jake installation für MikTeX wurde angepasst
+    + Jake unterstützt nun ein rudimentäres Bibtex.
+      Hierzu muss man mit der Flagge: -lilly-bibtex: NAMEDERBIB
+      Kompilieren UND bisher mit -lilly-autoclean, da die implementation von mir
+      momentan aus Zeitgründen _nichts_ hinbekommt.
+      => tests/bibtest
 
-    * Die neue REGEX-Expression für die Configurator wurde angepasst
+    ! URGENT TODO Makefiles als Helferlein sollen KOMPLETT entfernt werden.
+      Stück für Stück wird nun Jake all diese Funktionen (AUCH Multithreading etc.)
+      Übernehmen, was etliches Einfacher macht (Variablen nicht einzeln in Settings etc.)
+      Dies wird der MEILENSTEIN für 1.0.9 - mit dem Erreichen dieser Funktionalität
+      und dem hinzufügen von PAPER- Wird die neue Version also eingeleitet. 
 
-    * Default Name-Maps wurde entsprechend angepasst
+    * func: get liefert nun eine Liste der zur verfügung stehenden Grafiken - JAIKS
+      => TEST mit: lilly_jake get -what: Automat (oder -what: Demo)
+    - Deprecated _gsettings und _goptions entfernt
 
 LILLY:
 
-    + Durch das definieren von '\LILLYxCMD' vor dem einbinden von Lilly
-      können nun Shellbefehle die direkt von LILLY ausgeführt werden verhindert werden.
-      Die option 'external' steht allerdings nach wie vor zu verfügung und kann diese
-      nach wie vor einsetzen.
+    + Lilly unterstützt nun Bibtex (auftakt Paper-Layout)
 
+    + Neues GDBS-Titelbild
 
-    * Exemplarische Universe-Übersetzungspaket hinzugefügt
+    * Kleinere Optimierungen
 
-
-    * Pfad für Tikz-Dateien angepasst TODO anpassen doku
+    ! Typo Standart => Standard überall geändert
 
 ALLGEMEIN:
 
-    + Es wurde ein Wiki-Template eingeführt 
-      (https://github.com/EagleoutIce/LILLY/wiki/conf-Einstellungen)
 
 ============================================================================================
 :

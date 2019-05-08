@@ -11,7 +11,7 @@ settings_t generate_default_lilly_settings() {
     ret_settings["file"]                       = {"none.tex", "Beschreibt die Datei die bearbeitet werden soll", IS_FILE};
     ret_settings["debug"]                      = {"false", "Sollen Meldungen ausgegeben werden?", IS_SWITCH};
     ret_settings["path"]                       = {"./", "Zum Beispiel: Pfad zu LILLY", IS_PATH};
-    ret_settings["what"]                       = {R"(\\LILLYcommand)", "Spezifikator, um was gehts?", IS_TEXT};
+    ret_settings["what"]                       = {R"(Automat)", "Spezifikator, um was gehts?", IS_TEXT};
 
     // ==== Installation
 #if defined(__linux__)
@@ -61,7 +61,9 @@ settings_t generate_default_lilly_settings() {
     ret_settings[S_LILLY_AUTHOR]               = {"Florian Sihler", "Wer sonst?", IS_TEXT};
     ret_settings[S_LILLY_AUTHORMAIL]           = {"florian.sihler@web.de", "Schreib mir :smirk:", IS_TEXT};
     
-    ret_settings[s_LILLY_SIGNATURE_COLOR]      = {"Leaf", "Farbe, die in in Lilly Dokumenten per Hcolor (und HBcolor) als Highlighting-Farbe definiert wird", IS_TEXT};
+    ret_settings[S_LILLY_BIBTEX]               = {"", "Gib die .bib Datei ohne Endung an!", IS_TEXT};
+
+    ret_settings[S_LILLY_SIGNATURE_COLOR]      = {"Leaf", "Farbe, die in in Lilly Dokumenten per Hcolor (und HBcolor) als Highlighting-Farbe definiert wird", IS_TEXT};
 
     // ==== Makefile Regeln
     ret_settings["jobcount"]                   = {"2", "Wie viele Jobs für multithreaded-Kompilieren", IS_NUM};

@@ -89,7 +89,7 @@ inline std::vector<std::string> getPatterns(const std::string& src) {
  * @param rules die Regeln die überprüft werden sollen - müssen nameMaps sein 
  * @param seq - die zu testende Sequenz
  * 
- * @note whatTrigger verwendet die C++-Standart-Regeximplementation (ohne Look-Arounds usw.) Dies muss beachtet werden!
+ * @note whatTrigger verwendet die C++-Standard-Regeximplementation (ohne Look-Arounds usw.) Dies muss beachtet werden!
  *       gibt aber gleichzeitig auch ein enormes Spektrum an Möglichkeiten für Patterns
  * 
  * @returns "leer" entsprechend zu false: niemand triggert

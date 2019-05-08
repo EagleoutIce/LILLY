@@ -97,31 +97,6 @@ status_t fkt_compile(const std::string& cmd);
  */
 status_t fkt_install(const std::string& cmd) noexcept;
 
-
-/**
- * @brief liefert eine Liste aller Einstellungen für die Autovervollständigung zurück
- * 
- * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
- *
- * @deprecated left for debugging reasons
- * 
- * @returns Statuswert (bisher nichts)
- * 
- */
-status_t fkt_gsettings(const std::string& cmd) noexcept;
-
-/**
- * @brief liefert eine Liste aller Operationen für die Autovervollständigung zurück
- * 
- * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
- *
- * @deprecated left for debugging reasons
- * 
- * @returns Statuswert (bisher nichts)
- * 
- */
-status_t fkt_goptions(const std::string& cmd) noexcept;
-
 /**
  * @brief liefert eine Liste aller Dinge für die Autovervollständigung zurück auf Basis von settings["what"]
  * 
@@ -133,7 +108,7 @@ status_t fkt_goptions(const std::string& cmd) noexcept;
 status_t fkt_autoget(const std::string& cmd) noexcept;
 
 /**
- * @brief liefert eine Liste aller Operationen deren spezifikation settings["what"] entspricht
+ * @brief liefert eine PDF die alle Grafiken listet deren Bezeichner settings["what"] erfüllt
  * 
  * @param cmd erfüllt bisher nur den Zweck der Signatur von func_t gerecht zu werden
  *

@@ -76,7 +76,7 @@ Das ist ja der Sinn und Zweck der veschiedenen Gruppen :bowtie:
 
 ### Wie geht so eine Buildrule?
 
-Im folgenden die Beispielhafte Implementation zweier Standart Buildrules sowie eines kleinen Bonus. 
+Im folgenden die Beispielhafte Implementation zweier Standard Buildrules sowie eines kleinen Bonus. 
 Dies ist ein Aufzug der Datei: [`build_modes.parse`](../../../tests/build_modes.parse): 
 
 ```
@@ -88,7 +88,7 @@ BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn ni
 
 !X!  name            = default     ! buildrule name für lilly-modes !
 
-!X!  display-name    = Standart    ! Anzeigename (Standart-Version) !
+!X!  display-name    = Standard    ! Anzeigename (Standard-Version) !
 
 !X!  lilly-mode      = default     ! Welcher Modus soll an Lilly übergeben werden? !
                                    ! Info: Diese können noch nicht frei konfiguriert werden !

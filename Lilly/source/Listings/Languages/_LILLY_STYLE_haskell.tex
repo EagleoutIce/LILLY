@@ -10,9 +10,9 @@
     keywordstyle = \color{DebianRed},
     keywordstyle = [2]\color{Azure}\bfseries, %%KW
     keywordstyle = [3]{\color{Amber}}, %% PARAM
-    keywordstyle = [4]{\color{AppleGreen}}, %% FILES
+    keywordstyle = [4]{\color{AppleGreen}\bfseries}, %% FILES
     keywordstyle = [5]{\color{Orchid}\bfseries}, %% SHELLPRE
-    otherkeywords = {;,<<,>>,2>,<,|},
+    otherkeywords = {;,<<,>>,2>,<,|,->},
     alsoletter={-,|,~,{,},_,.,>,:,*},
     comment=[l]{\#},
     keywordsprefix={\$},
@@ -29,10 +29,10 @@
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     basicstyle=\LILLYxlstTypeWriter\color{black},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     numbers=none,           %Zeilennummern
-    morekeywords = {:l,:cd,:q,:r},
+    morekeywords = {:l,:cd,:q,:r,String,Char,Bool},
     morekeywords = [2]{>},
-    morekeywords = [3]{},
-    morekeywords = [4]{},
+    morekeywords = [3]{True,False},
+    morekeywords = [4]{::},
     morekeywords = [5]{Prelude>,*Main>},
 }
 
