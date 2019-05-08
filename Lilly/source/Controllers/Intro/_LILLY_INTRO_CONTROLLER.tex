@@ -15,15 +15,22 @@
 
 
 \ifnum\LILLYxSemester>0
-    \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+    \InputIfFileExists{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}{}{}
+\fi
+
+\ifx\LILLYxBIBTEX\undefined
+    \ClassInfo{Lilly}{Bibtex wird nicht verwendet!}
+\else
+    \ClassInfo{Lilly}{Bibtex wird verwendet!}
+    \RequirePackage{cite}
 \fi
 
 
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
 \providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
-\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
 
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
+\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
 
 
     %%Lade gewünschtes Titelblatt => LILLYxTITLE
@@ -66,7 +73,8 @@
 
     \input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_MITSCHRIEB}
 \else\ifx\LILLY@Typ\LILLY@Typ@Uebungsblatt
-    
+\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
+
     \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
     \input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_UEBUNGSBLATT} %% Einleitung Übungsblatt
@@ -76,6 +84,7 @@
 %% Wir setzen keine Definitionen und definieren ein Standard Layout
 
 \input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_DOKUMENTATION}
+\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
 
 \RequirePackage{marginnote} 
 
@@ -85,6 +94,8 @@
 }
 
 \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
+\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
+
 \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
 \input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_ZUSAMMENFASSUNG}

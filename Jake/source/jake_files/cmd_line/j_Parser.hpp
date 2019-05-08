@@ -36,7 +36,7 @@
 status_t ld_settings(int n /* = argc */, const char** argv);
 
 /**
- * @brief lädt die Standartkonfiguration und, wenn vorhanden, die Nutzer-Konfiguration
+ * @brief lädt die Standardkonfiguration und, wenn vorhanden, die Nutzer-Konfiguration
  * 
  * @param v0 Die Art, wie das Programm aufgerufen wurde :D (./, etc)
  * 

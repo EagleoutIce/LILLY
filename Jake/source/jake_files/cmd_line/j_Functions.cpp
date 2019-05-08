@@ -1,33 +1,5 @@
 #include "j_Functions.hpp"
 
-
-status_t fkt_gsettings(const std::string& cmd) noexcept {
-    w_debug("Liefere zur Verfügung stehende Einstellungen (fkt_gsettings)", "func");
-    settings_t::iterator it = settings.begin();
-    while(it != settings.end()){
-        if(it->second.type == IS_SWITCH) // boolean
-            std::cout << "-" << it->first << " \t";
-        else if (it->second.type == IS_TEXTLIST){ // erlaubt +=
-            std::cout << "-" << it->first << ":\t";
-            std::cout << "-" << it->first << "+:\t";
-        } else  {
-            std::cout << "-" << it->first << ":\t";
-        }
-        ++it;
-    }
-    return EXIT_SUCCESS;
-}
-
-status_t fkt_goptions(const std::string& cmd) noexcept {
-    w_debug("Liefere zur Verfügung stehende Optionen (fkt_goptions)", "func");
-    functions_t::iterator it = functions.begin();
-    while(it != functions.end()){
-        if (it->first.length()>0 && it->first[0] != '_')
-            std::cout << it->first << " \t"; ++it;
-    }
-    return EXIT_SUCCESS;
-}
-
 status_t fkt_dump(const std::string& cmd) noexcept {
     w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Liefere die Konfigurationen (fkt_dump)", "func");
@@ -156,7 +128,7 @@ status_t fkt_compile(const std::string& cmd) {
                  << "BOXMODES     := " << padPrint(settings[S_LILLY_BOXES]+"#")      << "## Seperator: ' '"                     << std::endl
                  << "CLEANTARGET  := LILLYxClean"                                                                               << std::endl
                  << "CLEANTARGETS := " << settings[S_LILLY_CLEANS]                                                              << std::endl
-                 << "SIGNATURECOL := " << settings[s_LILLY_SIGNATURE_COLOR]                                                     << std::endl
+                 << "SIGNATURECOL := " << settings[S_LILLY_SIGNATURE_COLOR]                                                     << std::endl
                  << "AUTHOR       := " << settings[S_LILLY_AUTHOR]                                                              << std::endl
                  << "AUTHORMAIL   := " << settings[S_LILLY_AUTHORMAIL]                                                          << std::endl
                  // lilly- names
@@ -168,7 +140,7 @@ status_t fkt_compile(const std::string& cmd) {
                  << std::endl
                  //Generals
                  << "## Makefile/General settings"                                                                              << std::endl
-                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}}\\providecommand{\\Hcolor}{${SIGNATURECOL}})" 
+                 << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}}\\providecommand{\\Hcolor}{${SIGNATURECOL}})" << ((settings[S_LILLY_BIBTEX]!="")?(R"(\\providecommand{\\LILLYxBIBTEX}{)" + settings[S_LILLY_BIBTEX] + R"(})"):"")
                  << R"(\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/)" << settings[S_LILLY_LAYOUT_LOADER]<< "}" 
                  << R"(\\providecommand{\\LILLYxEXTERNALIZE}{)" << ((settings[S_LILLY_EXTERNAL]=="true")?"TRUE":"FALSE") << "}"<< std::endl << std::endl //DONT'T Change
                  << "JOBCOUNT     := " << padPrint(settings["jobcount"]+"#")         << "## should: <= cpu/thread count!"      << std::endl
@@ -195,12 +167,12 @@ status_t fkt_compile(const std::string& cmd) {
     //clean log
 
     buf_makefile << R"(    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
-                 << "    (for bm in $(BOXMODES); do \\" << std::endl;
+                 << "    (for bm in $(BOXMODES); do echo $${bm} > /tmp/lillytmp.bib.p && \\" << std::endl;
     if(settings[S_LILLY_EXTERNAL]=="true")
         if(settings[S_LILLY_SHOW_BOX_NAME]=="true")
-        buf_makefile << "       ([ -r $(basename ${1}$${bm}-${2}).tex ] || echo \\\\providecommand{\\\\LILLYxBOXxMODE}{$${bm}}\\\\providecommand{\\\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4} > $(basename ${1}$${bm}-${2}).tex) && \\" << std::endl;
+        buf_makefile << "       ([ -r $(basename ${1}$${bm}-${2}).tex ] || echo \\\\providecommand{\\\\LILLYxBOXxMODE}{$${bm}}\\\\providecommand{\\\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4} > $(basename ${1}$${bm}-${2}).tex) \\" << std::endl;
         else 
-        buf_makefile << "       ([ -r $(basename ${1}${2}).tex ] || echo \\\\providecommand{\\\\LILLYxBOXxMODE}{$${bm}}\\\\providecommand{\\\\LILLYxPDFNAME}{${1}${2}}  ${3} $(_LILLYARGS) ${4} > $(basename ${1}${2}).tex) && \\" << std::endl;
+        buf_makefile << "       ([ -r $(basename ${1}${2}).tex ] || echo \\\\providecommand{\\\\LILLYxBOXxMODE}{$${bm}}\\\\providecommand{\\\\LILLYxPDFNAME}{${1}${2}}  ${3} $(_LILLYARGS) ${4} > $(basename ${1}${2}).tex) \\" << std::endl;
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
         writeHooks(buf_makefile, all_hooks, "IN" + std::to_string(i));
         buf_makefile << "       pdflatex -jobname $(basename ${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")
@@ -320,9 +292,19 @@ status_t fkt_config(const std::string& cmd) {
     return in_settings(cmd);
 }
 
+// export d_path=$(dirname `which lilly_jake`)/../../Lilly/source/Data/Graphics/ && find ${d_path} | grep -E "${d_path}.*QUERY.*\.tex" 
+
 status_t fkt_get(const std::string& cmd) noexcept {
     w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
-    return system(("grep -E \"" + settings["what"] + "\" -r * -hs").c_str());
+    w_debug("Versuche nun alle Grafiken auf Basis von QUERY (-settings[what]) zu erstellen" + log_path,"func");
+
+    //std::cout << (R"(bash -c 'rm -r /tmp/gcol/ && mkdir /tmp/gcol/ && export d_path=$(dirname `which lilly_jake`)/../../Lilly/source/Data/Graphics/ && export tfile=$(tempfile --prefix gcol/ --suffix .tex) && echo -e  "\\documentclass[Typ=PLAIN]{Lilly}\n\\\\begin{document}\n \\\\verb|Ergebnisse der Suche: )" + settings["what"] + R"(|\\\\\\\\ \\\\bigskip\n\\\\begin{tabular}{m{0.45\linewidth}>{\\\\centering\\\\arraybackslash}m{0.5\linewidth}}\\\\toprule \\\\bfseries Code &\\\\bfseries Ergebnis\\\\\\\\ \n\\\\midrule\n" > ${tfile} && for a in $(find ${d_path} | grep -E "${d_path}.*)" + settings["what"] + R"(.*\.tex"); do echo -e  "{\\\\small\\\\begin{lstlisting}[style=latex,frame=none, morekeywords={)" + settings["what"] + R"(}]\n\\\\framebox{%\n  \\\\getGraphics{${a/${d_path}/}}%\n}\\\\end{lstlisting}} & {\\\\begin{center}\\\\framebox{\\getGraphics{${a/${d_path}/}}}\\\\end{center}}\\\\\\\\ \n" >> ${tfile}; done && echo -e  "\n\\\\bottomrule\\\\end{tabular}\\\\end{document}" >> ${tfile} && cd /tmp/gcol && lilly_jake $(basename ${tfile}) -debug: false -lilly-show-boxname: false>/dev/null&& make >/dev/null && echo /tmp/gcol/$(basename ${tfile%.*})-OUT/ && xdg-open /tmp/gcol/$(basename ${tfile%.*})-OUT/$(basename ${tfile%.*}).pdf 2>/dev/null')") << std::endl;
+
+    // Have fun debugging that future idiot :P 
+    std::cout << "Suche: " << settings["what"] << " " << er_decode(system ((R"(bash -c 'rm -r /tmp/gcol/ && mkdir /tmp/gcol/ && export d_path=$(dirname `which lilly_jake`)/../../Lilly/source/Data/Graphics/ && export tfile=$(tempfile --prefix gcol/ --suffix .tex) && echo -e "\\documentclass[Typ=PLAIN]{Lilly}\n\\\\begin{document}\n \\\\verb|Ergebnisse der Suche: )" + settings["what"] + R"(|\\\\\\\\ \n Die Größe der Grafiken wurde angepasst! \\\\bigskip \\\\\\\\ \n\\\\begin{tabular}{m{0.45\linewidth}>{\\\\centering\\\\arraybackslash}m{0.5\linewidth}}\\\\toprule \\\\bfseries Code &\\\\bfseries Ergebnis\\\\\\\\ \n\\\\midrule\n" > ${tfile} && for a in $(find ${d_path} | grep -E "${d_path}.*)" + settings["what"] + R"(.*\.tex" | sort ); do echo -e  "{\\\\small\\\\begin{lstlisting}[style=latex,frame=none, morekeywords={)" + settings["what"] + R"(}]\n\\\\framebox{%\n  \\\\getGraphics{${a/${d_path}/}}%\n}\\\\end{lstlisting}} & {\\\\begin{center}\\\\resizebox{0.97\\\\linewidth}{!}{\\\\framebox{\\getGraphics{${a/${d_path}/}}}}\\\\end{center}}\\\\\\\\ \n" >> ${tfile}; done && echo -e  "\n\\\\bottomrule\\\\end{tabular}\\\\end{document}" >> ${tfile} && cd /tmp/gcol && lilly_jake $(basename ${tfile}) -debug: false -lilly-show-boxname: false>/dev/null&& make >/dev/null && echo /tmp/gcol/$(basename ${tfile%.*})-OUT/ && xdg-open /tmp/gcol/$(basename ${tfile%.*})-OUT/$(basename ${tfile%.*}).pdf 2>/dev/null')").c_str())) << std::endl;
+
+    return EXIT_SUCCESS;
+    //return system(("grep -E \"" + settings["what"] + "\" -r * -hs").c_str());
 }
 
 status_t fkt_autoget(const std::string& cmd) noexcept{
@@ -377,10 +359,8 @@ functions_t functions = {
     {"install", {fkt_install, "Versucht LILLY zu installieren"}},
     {"tokentest", {fkt_tokentest, "Testet den Tokenizer auf seine Funktionalität"}},
     {"config", {fkt_config, "Lädt die Einstellungen aus der Datei 'file'"}},
-    {"get", {fkt_get, "Sucht nach Pattern in settings[\"what\"]"}},
+    {"get", {fkt_get, "Sucht nach Grafiken die settings[\"what\"] enthalten!"}},
     {"update", {fkt_update, "Versucht Lilly & Jake zu aktualisieren"}},
-    {"_gsettings", {fkt_gsettings, "Interne Funktion, liefert Einstellungen für die Autovervollständigung"}}, // DEPRECATED
-    {"_goptions", {fkt_goptions, "Interne Funktion, liefert Operationen für die Autovervollständigung"}}, // DEPRECATED
     {"_get", {fkt_autoget, "Interne Funktion, liefert Alles für die Autovervollständigung"}}
 };
 

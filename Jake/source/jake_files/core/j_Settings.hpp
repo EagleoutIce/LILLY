@@ -16,7 +16,7 @@
 #include "j_Definitions.hpp"
 
 /**
- * @brief Generiert alle standart-Einstellungen - Kann somit auch für Fallbacks verwendet werden
+ * @brief Generiert alle Standard-Einstellungen - Kann somit auch für Fallbacks verwendet werden
  * 
  * @returns die neuen Einstellungen
  */
@@ -34,7 +34,7 @@ struct __settings_t {
     /**
      * @brief Konstruktor
      * 
-     * @param init die Standartmäßig zu verwendeten Einstellungen
+     * @param init die Standardmäßig zu verwendeten Einstellungen
      */
     __settings_t( settings_t init =  generate_default_lilly_settings()) : _settings(init) {};
 
@@ -64,7 +64,7 @@ struct __settings_t {
     /**
      * @brief Shortcut für: ._settings.end()
      * 
-     * @returns end-iterator für die Einstellungen (also nach letztem Element per Standart)
+     * @returns end-iterator für die Einstellungen (also nach letztem Element per Standard)
      */
     settings_t::iterator end() {return _settings.end();}
     /**

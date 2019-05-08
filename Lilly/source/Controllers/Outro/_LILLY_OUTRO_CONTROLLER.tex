@@ -43,3 +43,14 @@
 }
 
 \fi\fi
+
+\ifx\LILLYxBIBTEX\undefined\else
+\AtEndDocument{
+   \protect\pagestyle{empty}\thispagestyle{empty}
+    \lohead{}\cohead{}\rohead{} %clear header
+    \lofoot{}\cofoot{}\rofoot{} %clear footer => fixes double page issue
+    \pagestyle{empty}
+    \bibliographystyle{ieeetr}
+    \bibliography{\LILLYxBIBTEX}{}
+}
+\fi

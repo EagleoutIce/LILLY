@@ -12,10 +12,16 @@ settings_t __hooks_settings = {
 };
 
 configuration_t get_default_hooks( void ) {
-return {
-        {"PRE:hello-world", "echo Hello World"},
-        {"POST:hello-world-out", "echo Hello World - I am out"}
-    };
+    if(settings[S_LILLY_BIBTEX] != "") {
+        return {
+            {"IN1:Bibtex-Compile", "(bibtex $(basename ${1}`cat /tmp/lillytmp.bib.p`-${2}) >> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1) && echo SUCCESS || echo FAILURE"}
+        };
+    }
+
+    return {
+            {"PRE:hello-world", "echo Hello World"},
+            {"POST:hello-world-out", "echo Hello World - I am out"}
+        };
 }
 
 configuration_t getHooks(const std::string& rulefiles) {

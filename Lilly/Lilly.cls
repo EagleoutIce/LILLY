@@ -124,7 +124,7 @@
 % Grundlegende Pakete (Encoding etc.)                                                                                 %     %%%% ENCODINGS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifx\LILLYxEXCLUDExEncodings \undefined                   %%% Lade standartkonfiguration für Encoding
+\ifx\LILLYxEXCLUDExEncodings \undefined                   %%% Lade Standartkonfiguration für Encoding
 
 %% \RequirePackage[utf8x]{inputenc}                        %unicode
     \LILLYxLoadPackage{inputenc}{Damit Eingaben auch brav codiert werden :D}
@@ -157,6 +157,8 @@
     
     \RequirePackage{textcomp}
 \fi
+
+\RequirePackage{cancel}
 
 %%  \RequirePackage{expl3}
 \LILLYxDemandPackage{expl3}{Da wir auch was von der tollen Latex3-Zukunft abhaben moegen :D} 

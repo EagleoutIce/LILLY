@@ -61,9 +61,9 @@ std::string strip_mod(const std::string& str) {
 }
 
 status_t ld_config( std::string v0) {
-    // Lade Standartkonfiguration
+    // Lade Standardkonfiguration
     try {
-        w_debug("Lade Standartkonfiguration mit: \"printf $(dirname $(which lilly_jake))/jake_files/jake_default.conf\"","parser");
+        w_debug("Lade Standardkonfiguration mit: \"printf $(dirname $(which lilly_jake))/jake_files/jake_default.conf\"","parser");
         Configurator default_config_loader(exec("printf $(dirname $(which lilly_jake))/jake_files/jake_default.conf"));
         default_config_loader.parse_settings(&settings._settings);
     } catch (std::runtime_error er) {

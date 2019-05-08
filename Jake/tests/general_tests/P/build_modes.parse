@@ -1,5 +1,5 @@
 ! Diese Datei zeigt beispielhaft wie man neue Build-Modi definieren kann !
-! Hier definiert sie erst die Standart modi, und sogar noch einen weiteren !
+! Hier definiert sie erst die Standard modi, und sogar noch einen weiteren !
 ! Die Datei kann über -buildrule-path=<PFAD ZUR DATEI> eingebunden und geladen werden !
 
 
@@ -14,7 +14,7 @@ BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn ni
 
 !X!  name                   = default     ! buildrule name für lilly-modes !
 
-!X!  display-name           = Standart    ! Anzeigename (Standart-Version) !
+!X!  display-name           = Standard    ! Anzeigename (Standard-Version) !
 
 !X!  lilly-mode             = default     ! Welcher Modus soll an Lilly übergeben werden? !
                                           ! Info: Diese können noch nicht frei konfiguriert werden !
