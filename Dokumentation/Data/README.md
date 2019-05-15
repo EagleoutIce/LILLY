@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Die Daaaaaaten
+=======
+# Die Daten
+>>>>>>> f9d41f3e1addaeb781f2b586f57a239188e095a8
 
 2003.jpg: Bild des sagenumwogenen Wesens bekannt als @EagleOutIce
 
