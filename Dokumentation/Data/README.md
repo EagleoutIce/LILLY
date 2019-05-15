@@ -1,6 +1,6 @@
 # Die DAAAAATEN
 
-2003.jpg: Bild des Wesens bekannt als @EagleOutIce
+2003.jpg: Bild des sagenumwogenen Wesens bekannt als @EagleOutIce
 
 Die folgenden Datein beinhalten den der [Dokumentation](https://github.com/EagleoutIce/LILLY/blob/Kommentare/Dokumentation/Lilly-Dokumentation.doc.pdf) zugrundeliegneden LaTeX-Code.
 
