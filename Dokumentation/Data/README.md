@@ -1,4 +1,4 @@
-# Die DAAAAATEN
+# Die Daten
 
 2003.jpg: Bild des sagenumwogenen Wesens bekannt als @EagleOutIce
 
