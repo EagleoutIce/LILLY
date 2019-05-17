@@ -56,20 +56,32 @@ PREP_DEB_FULL_MSG("Eingebunden - DATEI: j_Debug.hpp");
  */
 const std::string _PT( void );
 
-// TODO simon refactor code
-
+/**
+ * @brief returns size of error in string length depending on special chars
+ *
+ * @returns length offset
+ */
 inline size_t GET_UTF8_LENGTH_OFFSET(const std::string& str) {
-    const std::string& _s = std::regex_replace(std::regex_replace(str, std::regex(R"([ÄÖÜäöüß€])"), "µ"),std::regex(R"(µµ)"), "X");
+  const std::string& filteredString = std::regex_replace(
+      std::regex_replace(str, std::regex(R"([ÄÖÜäöüß€])"), "µ"),
+      std::regex(R"(µµ)"), "X");
 
-    // std::cout << ">> LENGTH FIX ( " << str.length() << " -> " << _s.length() << " ) " << _s << std::endl;
-
-    // std::cout << std::regex_replace(std::regex_replace(str,std::regex(R"([ÄÖÜäöüß€])"), "µ"),std::regex(R"(µµ)"), "µ") << " " << std::regex_replace(std::regex_replace(str,std::regex(R"([ÄÖÜäöüß€])"), "µ"),std::regex(R"(µµ)"), "X").length() << " " <<  str.length() << std::endl;
-
-    return str.length() - _s.length();
+  return str.length() - filteredString.length();
 }
 
-#define DEBUG_FORMATF(str,len) (((str.length())>(len-3))?(str.substr(0,len-3+GET_UTF8_LENGTH_OFFSET(str)) + "..."): (str+std::string(GET_UTF8_LENGTH_OFFSET(str), ' '))) // FORMAT_FRONT
-#define DEBUG_FORMAT(str,len) (((str.length())>(len-3))?  ( "..." +  str.substr((str.length())-len+3+GET_UTF8_LENGTH_OFFSET(str)) ) : (str+std::string(GET_UTF8_LENGTH_OFFSET(str), ' '))) //FORMAT _BACK
+// FORMAT_FRONT
+#define DEBUG_FORMATF(str, len)                                         \
+  ((str.length() > (len - 3))                                           \
+       ? (str.substr(0, len + GET_UTF8_LENGTH_OFFSET(str) - 3) + "...") \
+       : (str + std::string(GET_UTF8_LENGTH_OFFSET(str), ' ')))
+
+// FORMAT_BACK
+#define DEBUG_FORMAT(str, len)                                              \
+  ((str.length() > (len - 3))                                               \
+       ? ("..." +                                                           \
+          str.substr(str.length() - len + GET_UTF8_LENGTH_OFFSET(str) + 3)) \
+       : (str + std::string(GET_UTF8_LENGTH_OFFSET(str), ' ')))
+
 extern std::string log_path;
 extern std::ofstream log_output_stream;
 

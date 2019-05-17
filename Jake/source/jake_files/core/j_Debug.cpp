@@ -30,14 +30,18 @@ status_t _w_debug(const std::string& what,
                           << what << " @"<< std::right << std::setw(5)
                           << line << " ~ " << std::setw(PAT_LEN) << std::left << DEBUG_FORMAT(file,PAT_LEN)
                           << std::endl;
-        } else {std::cout << "mööp" << std::endl;}
+        } else {
+            std::cout << "mööp" << std::endl;
+        }
+
         std::cout  << DEBUG_RESET << DEBUG_BOLD << bgcode << fgcode
                    << "[" << std::setw(3) << signature << "] "
                    << std::left << std::setw(8)<< who << ": " << prenote
-                   << DEBUG_NORMALIZE << std::left << std::setw(MSG_LEN-prenote.length()+GET_UTF8_LENGTH_OFFSET(what))
-                   << DEBUG_FORMATF(what,MSG_LEN-prenote.length()) << " @"<< std::right << std::setw(5)
+                   << DEBUG_NORMALIZE << std::left
+                   << std::setw(MSG_LEN - prenote.length() + GET_UTF8_LENGTH_OFFSET(what))
+                   << DEBUG_FORMATF(what, MSG_LEN - prenote.length()) << " @"<< std::right << std::setw(5)
                    << line << " ~ " << std::setw(PAT_LEN) << std::left << DEBUG_FORMAT(file,PAT_LEN) << _PT()
-                   << DEBUG_RESET <<  std::endl;
+                   << DEBUG_RESET << std::endl;
         return EXIT_SUCCESS;
     }
     return EXIT_FAILURE;
