@@ -18,6 +18,9 @@
    \phantomsection\addcontentsline{toc}{chapter}{Sätze}
    \listofSATZ
    \clearpage\fi\fi
+    \ifx\LILLYxBOXxLemmaxEnable\true\ifx\LILLYxSEENxLEMMA\true
+   \phantomsection\addcontentsline{toc}{chapter}{Lemmata}
+   \listofLEMMAS\clearpage\fi\fi
    \ifx\LILLYxBOXxZusammenfassungxEnable\true\ifx\LILLYxSEENxZUSAMMENFASSUNG\true
    \phantomsection\addcontentsline{toc}{chapter}{Zusammenfassungen}
    \listofZSMS\clearpage\fi\fi
@@ -45,12 +48,16 @@
 \fi\fi
 
 \ifx\LILLYxBIBTEX\undefined\else
-\AtEndDocument{
+
+\providecommand{\printbib}[1][\LILLYxBIBTEX]{
+   \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
    \protect\pagestyle{empty}\thispagestyle{empty}
     \lohead{}\cohead{}\rohead{} %clear header
     \lofoot{}\cofoot{}\rofoot{} %clear footer => fixes double page issue
     \pagestyle{empty}
-    \bibliographystyle{ieeetr}
-    \bibliography{\LILLYxBIBTEX}{}
+   \fi
+   \bibliographystyle{apalike}
+   \bibliography{#1}
 }
+
 \fi

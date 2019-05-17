@@ -20,7 +20,7 @@ N            := 42#                           ## Anzahl
 _C           := ,                             ## No Joke xD
 
 ## Makefile/General settings
-_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}}\\providecommand{\\Hcolor}{${SIGNATURECOL}}\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/}\\providecommand{\\LILLYxEXTERNALIZE}{FALSE}
+_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}}\\providecommand{\\Hcolor}{${SIGNATURECOL}}\\providecommand{\\lillyPathLayout}{\\LILLYxDOCPATH/}\\providecommand{\\LILLYxEXTERNALIZE}{FALSE}
 
 JOBCOUNT     := 2#                            ## should: <= cpu/thread count!
 

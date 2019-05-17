@@ -18,7 +18,8 @@
 
 
 %%%DEFAULTS
-\providecommand{\LILLYxBOXxDefinitionxLock}{chapter}        \providecommand{\LILLYxBOXxDefinitionxEnable}{TRUE}
+
+\providecommand{\LILLYxBOXxDefinitionxLock}{chapter}        \providecommand{\LILLYxBOXxDefinitionxEnable}{TRUE}         \providecommand{\LILLYxBOXxDefinitionxBox}{TRUE}
 \providecommand{\LILLYxBOXxBeispielxLock}{chapter}          \providecommand{\LILLYxBOXxBemerkungxEnable}{TRUE}          \providecommand{\LILLYxBOXxBemerkungxBox}{TRUE}
 \providecommand{\LILLYxBOXxBemerkungxLock}{chapter}         \providecommand{\LILLYxBOXxBeispielxEnable}{TRUE}           \providecommand{\LILLYxBOXxBeispielxBox}{TRUE}
 \providecommand{\LILLYxBOXxSatzxLock}{chapter}              \providecommand{\LILLYxBOXxSatzxEnable}{TRUE}
@@ -78,10 +79,13 @@
 \ifx\LILLYxBOXxDefinitionxEnable\true
     \newlistof{DEFINITIONS}{DEFS}{Alle Definitionen\\[-1.5cm]}
     %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{definition}{O{} O{}}{\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition} %
+
+    \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LillyxBOXxDesignxDefinition/.style={}}\else\tcbset{LillyxBOXxDesignxDefinition/.style={LillyxBOXxDesignxPlain}}\fi
+
+    \DeclareDocumentEnvironment{definition}{O{} O{LillyxBOXxDesignxDefinition}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}
         \begin{LILLYxBOXxDefinition}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
     }{\end{LILLYxBOXxDefinition}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
-    \DeclareDocumentEnvironment{definition*}{O{} O{}}{\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition} %
+    \DeclareDocumentEnvironment{definition*}{O{} O{}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}%
     \begin{LILLYxBOXxDefinition*}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{\small\faThumbTack}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
     }{\end{LILLYxBOXxDefinition*}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
 \else %% Keine Definitionen
@@ -102,6 +106,8 @@
 }
 
 
+%%5 TODO Colorrename not working as expected a sclor isint found => second buffer color
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bemerkungen                                                                                                         %     %%%% BEMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -110,9 +116,9 @@
     \newlistof{BEMERKUNGEN}{BEMS}{Alle Bemerkungen\\[-1.5cm]}
 
     %% TITEL OPTIONALE-ADDONS
-    \ifx\LILLYxBOXxBemerkungxBox\true\LILLYcommand{\LILLYSUBCOLBEM}{\LILLYxColorxBemerkung}\tcbset{LillyxBOXxDesignxBemerkung/.style={}}\else\LILLYcommand{\LILLYSUBCOLBEM}{\LILLYxLINKSxMainColor}\tcbset{LillyxBOXxDesignxBemerkung/.style={LillyxBOXxDesignxPlain}}\fi
+    \ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LillyxBOXxDesignxBemerkung/.style={}}\else\tcbset{LillyxBOXxDesignxBemerkung/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEM}\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}{\LILLYxBOXxBemerkungxLock}\elable{auto:BEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
+    \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxBemerkung}\fi\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}{\LILLYxBOXxBemerkungxLock}\elable{auto:BEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
     \DeclareDocumentEnvironment{bemerkung*}{O{} O{LillyxBOXxDesignxBemerkung}}{\begin{bemerkung}[#1][#2]\nskip}{\end{bemerkung}}
 
 \else %% Keine Bemerkungen
@@ -135,9 +141,9 @@
     \newlistof{BEISPIELE}{BEIS}{Alle Beispiele\\[-1.5cm]}
 
     %% TITEL OPTIONALE-ADDONS
-    \ifx\LILLYxBOXxBeispielxBox\true\LILLYcommand{\LILLYSUBCOLBEI}{\LILLYxColorxBeispiel}\tcbset{LillyxBOXxDesignxBeispiel/.style={}}\else\LILLYcommand{\LILLYSUBCOLBEI}{\LILLYxLINKSxMainColor}\tcbset{LillyxBOXxDesignxBeispiel/.style={LillyxBOXxDesignxPlain}}\fi
+    \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeispiel/.style={}}\else\tcbset{LillyxBOXxDesignxBeispiel/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEI}\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}{\LILLYxBOXxBeispielxLock}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
+    \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxBeispiel}\fi\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}{\LILLYxBOXxBeispielxLock}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
     \DeclareDocumentEnvironment{beispiel*}{O{} O{LillyxBOXxDesignxBeispiel}}{\begin{beispiel}[#1][#2]\nskip}{\end{beispiel}}
 \else %% Keine Beispielen
     \NewEnviron{beispiel}{}
@@ -184,9 +190,9 @@
     \newlistof{BEWEISE}{BEWS}{Alle Beweise\\[-1.5cm]}
     
     %% TITEL OPTIONALE-ADDONS
-    \ifx\LILLYxBOXxBeispielxBox\true\LILLYcommand{\LILLYSUBCOLBEW}{\LILLYxColorxBeweis}\tcbset{LillyxBOXxDesignxBeweis/.style={}}\else\LILLYcommand{\LILLYSUBCOLBEW}{\LILLYxLINKSxMainColor}\tcbset{LillyxBOXxDesignxBeweis/.style={LillyxBOXxDesignxPlain}}\fi
+    \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeweis/.style={}}\else\tcbset{LillyxBOXxDesignxBeweis/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYSUBCOLBEW}\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}{\LILLYxBOXxBeweisxLock}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
+    \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxBeweis}\fi\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}{\LILLYxBOXxBeweisxLock}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
     \DeclareDocumentEnvironment{beweis*}{O{} O{LillyxBOXxDesignxBeweis}}{\begin{beweis}[#1][#2]\nskip}{\end{beweis}}
 \else %% Keine Beweise
     \NewEnviron{beweis}{}
@@ -204,15 +210,22 @@
 % Lemmas                                                                                                              %     %%%% LEMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\providecommand{\LILLYxSEENxLEMMA}{FALSE}
+
+
 \ifx\LILLYxBOXxLemmaxEnable\true
-    \newlistof{LEMMAS}{LEMME}{Alle Lemmas\\[-1.5cm]}
+    \newlistof{LEMMAS}{LEMME}{Alle Lemmata\\[-1.5cm]}
 
     %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{lemma}{O{} O{}}{ \renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxLemma}%
-        \begin{LILLYxBOXxLemma}[#1][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[LEMMAS]{LEMME}{\thetcbcounter}{#1}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+    \DeclareDocumentEnvironment{lemma}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxLemma}%
+        \begin{LILLYxBOXxLemma}[#1][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+    }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
+    \DeclareDocumentEnvironment{lemma*}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxLemma}%
+        \begin{LILLYxBOXxLemma}[#1~~\hbox{}\hfill\small\textcolor{\LILLYxColorxLemma}{\faStar}][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{\small\faStar}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
     }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}}
 \else %% Keine Lemmas
     \NewEnviron{lemma}{}
+    \NewEnviron{lemma*}{}
 \fi
 
 %%% Comaptibility environment
@@ -267,7 +280,7 @@
     \else
         %\tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
         \LILLYcommand{\Splitter}{\vspace{0.1cm} {~\\[0.2cm]\textbf{Lösung:}\\}}
-        \LILLYcommand{\vSplitter}{\Splitter}
+        \LILLYcommand{\vSplitter}{\vspace{-1\baselineskip} \Splitter \nskip}
     \fi
 
 

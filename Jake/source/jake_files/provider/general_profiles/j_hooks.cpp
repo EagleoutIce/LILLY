@@ -13,9 +13,11 @@ settings_t __hooks_settings = {
 
 configuration_t get_default_hooks( void ) {
     if(settings[S_LILLY_BIBTEX] != "") {
-        return {
-            {"IN1:Bibtex-Compile", "(bibtex $(basename ${1}`cat /tmp/lillytmp.bib.p`-${2}) >> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1) && echo SUCCESS || echo FAILURE"}
-        };
+        
+            if (settings[S_LILLY_SHOW_BOX_NAME]=="true")
+            return {{"IN1:Bibtex-Compile", "(bibtex $(basename ${1}`cat /tmp/lillytmp.bib.p`-${2}) >> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1) && echo SUCCESS || echo FAILURE"}};
+            else return {{"IN1:Bibtex-Compile", "(bibtex $(basename ${1}${2}) >> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1) && echo SUCCESS || echo FAILURE"}};
+        
     }
 
     return {

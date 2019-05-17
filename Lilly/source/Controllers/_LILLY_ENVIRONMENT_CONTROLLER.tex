@@ -13,7 +13,15 @@
 \LILLYxLoadPackage{enumitem}{Wir wollen ja noch schoenere Auflistungen :D}
                     {Wie, kein enumitem?! Das könnte aua machen!}
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}} 
-                    {}{\newenvironment{enumeratea}[1][,]{\begin{enumerate}[label=\textbf{\alph*)},##1]\setlength{\itemsep}{1pt}}{\end{enumerate}}} % shortlabels
+                    {}{
+                        \newenvironment{enumeratea}[1][,]{\begin{enumerate}[label=\textbf{\alph*)},##1]\setlength{\itemsep}{1pt}}{\end{enumerate}}
+                        \setlistdepth{9}
+                        \newlist{ditemize}{itemize}{4}
+                        \setlist[ditemize,1]{label=$\diamond$}
+                        \setlist[ditemize,2]{label=$\heartsuit$}
+                        \setlist[ditemize,3]{label=--} %$\spadesuit$
+                        \setlist[ditemize,4]{label=--} %$\clubsuit$
+                    } % shortlabels
 
 
 % \newcommand{\enum}[1]{\begin{enumerate}\narrowitems  #1 \end{enumerate}  }

@@ -43,16 +43,16 @@ settings_t generate_default_lilly_settings() {
     ret_settings[S_LILLY_COMPLETE_NAME]        = {"COMPLETE-", "Wie sollen die vollständigen Versionen genannt werden?", IS_TEXT};
     ret_settings[S_LILLY_PRINT_NAME]           = {"PRINT-", "Wie soll die Druck Version genannt werden", IS_TEXT};
 
-    ret_settings[S_LILLY_CLEANS]               = {"log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock SATZE ZSM UB TOP listing upa ilg TOPIC DEFS",
+    ret_settings[S_LILLY_CLEANS]               = {"log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS",
                                                 "Welche Dateiendungen liegen auf der Abschuss- (/clean-)liste?", IS_TEXTLIST};
     ret_settings[S_LILLY_COMPILETIMES]         = {"3", "Wie oft soll kompiliert werden?", IS_NUM};
     ret_settings[S_LILLY_AUTOCLEAN]            = {"true", "Soll automatisch aufgeräumt werden?", IS_SWITCH};
     ret_settings[S_LILLY_SHOW_BOX_NAME]        = {"true", "Sollen Boxnamen hinzugefügt werden?", IS_SWITCH};
 
     // ==== Besondere Lilly-Einstellungen
-    ret_settings[S_LILLY_VORLESUNG]            = {"LAII", "Um was für eine Vorlesung handelt es sich?", IS_VLS}; // Fällt vorerst auf IS_TEXT zurück
+    ret_settings[S_LILLY_VORLESUNG]            = {"NONE", "Um was für eine Vorlesung handelt es sich?", IS_VLS}; // Fällt vorerst auf IS_TEXT zurück
     ret_settings[S_LILLY_N]                    = {"42", "Um das wievielte Übungsblatt handelt es sich?", IS_NUM}; 
-    ret_settings[S_LILLY_SEMESTER]             = {"1", "Das wievielte Semester ist es?", IS_NUM};
+    ret_settings[S_LILLY_SEMESTER]             = {"0", "Das wievielte Semester ist es?", IS_NUM};
 
     ret_settings[S_LILLY_EXTERNAL]             = {"false", "Soll versucht werden tikzternal auszulagern?", IS_SWITCH};
 
@@ -61,7 +61,7 @@ settings_t generate_default_lilly_settings() {
     ret_settings[S_LILLY_AUTHOR]               = {"Florian Sihler", "Wer sonst?", IS_TEXT};
     ret_settings[S_LILLY_AUTHORMAIL]           = {"florian.sihler@web.de", "Schreib mir :smirk:", IS_TEXT};
     
-    ret_settings[S_LILLY_BIBTEX]               = {"", "Gib die .bib Datei ohne Endung an!", IS_TEXT};
+    ret_settings[S_LILLY_BIBTEX]               = {"", "Gib die .bib Datei ohne Endung an!", IS_FILE};
 
     ret_settings[S_LILLY_SIGNATURE_COLOR]      = {"Leaf", "Farbe, die in in Lilly Dokumenten per Hcolor (und HBcolor) als Highlighting-Farbe definiert wird", IS_TEXT};
 

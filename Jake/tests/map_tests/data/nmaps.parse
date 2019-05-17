@@ -1,7 +1,17 @@
 BEGIN nmap:
-    name        = Paradigmen der Programmierung
-    patterns    = pdp,PDP,PdP
+    name        = Paradigmen-der-Programmierung
+    patterns    = GDBS,pdp,PDP,PdP
 
+    lilly-author= Schlingelwingel
+    
     lilly-vorlesung = PDP!!
     lilly-semester  = 2!!
+END;
+
+BEGIN nmap:
+    name        = Ich-bin-doof
+    patterns = Mitschrieb
+
+    lilly-nameprefix = Waffel-
+    lilly-author = Knödelblödel
 END;

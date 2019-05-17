@@ -63,10 +63,14 @@
 
 \providecommand{\LILLYxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
 \providecommand{\LILLYxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung}
+\ifnum\LILLYxSemester>0
 \input{\LILLYxTITLExSETTINGSxGENERAL}\input{\LILLYxTITLExSETTINGSxVORLESUNG}
+\fi
 \makeatletter
 %% Pfad zu den Einstellungen %% Pfad zur Grafik 
-\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf} } {\makeatletter
+\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
+\ifnum\LILLYxSemester>0
+\makeatletter
     \begingroup
     \clearpage\begin{titlepage} 
         \newgeometry{margin = 0pt}
@@ -94,4 +98,5 @@
             \end{scope}
         \end{tikzpicture}
     \end{titlepage}\endgroup\restoregeometry
+\fi
 }

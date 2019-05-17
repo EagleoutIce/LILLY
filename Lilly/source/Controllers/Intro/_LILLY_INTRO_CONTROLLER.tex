@@ -14,6 +14,8 @@
 %% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten. 
 
 
+%% TODO DEFINE DEFAULTS
+
 \ifnum\LILLYxSemester>0
     \InputIfFileExists{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}{}{}
 \fi
@@ -71,19 +73,19 @@
 
     %% Layout für Mitschrieb
 
-    \input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_MITSCHRIEB}
+    \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_MITSCHRIEB}
 \else\ifx\LILLY@Typ\LILLY@Typ@Uebungsblatt
 \input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
 
     \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
-    \input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_UEBUNGSBLATT} %% Einleitung Übungsblatt
+    \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_UEBUNGSBLATT} %% Einleitung Übungsblatt
 
 \else\ifx\LILLY@Typ\LILLY@Typ@Dokumentation
 
 %% Wir setzen keine Definitionen und definieren ein Standard Layout
 
-\input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_DOKUMENTATION}
+\input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_DOKUMENTATION}
 \input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
 
 \RequirePackage{marginnote} 
@@ -98,10 +100,10 @@
 
 \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
-\input{\LILLYxPATHxCONTROLLERS/Intro/Layouts/_LILLY_LAYOUT_ZUSAMMENFASSUNG}
+\input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_ZUSAMMENFASSUNG}
 
 \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
 \else
-\userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxCONTROLLERS/Intro/Layouts}
+\userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
 \fi\fi\fi\fi
 

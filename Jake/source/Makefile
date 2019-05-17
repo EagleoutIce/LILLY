@@ -2,6 +2,8 @@
 
 CONFIG = "$(shell pwd)/jake_files/jake_default.conf"
 
+PROGNAME := lilly_jake
+
 EXTRA_FILES := jake_files/j_Helper.cpp \
 	       jake_files/cmd_line/j_Functions.cpp \
 	       jake_files/cmd_line/j_Autocomplete.cpp \
@@ -33,7 +35,7 @@ UNAME_S := $(shell uname -s)
 
 default: clean no_link
 		@for path in $(RC_FILES); do if [ -f $$path ]; then $(call WRITE_RC,$$path); fi; done
-		@if [ "$(shell which lilly_jake)" = "" ]; then echo "\033[31mBitte starte nun dein Terminal neu um auf lilly_jake zugreifen zu können!\033[m"; fi;
+		@if [ "$(shell which $(PROGNAME))" = "" ]; then echo "\033[31mBitte starte nun dein Terminal neu um auf $(PROGNAME) zugreifen zu können!\033[m"; fi;
 
 debug: _dodebug1 default
 
@@ -46,10 +48,10 @@ documentation:
 	@$(shell open docs/index.html || xdg-open docs/index.html )
 
 no_link: jake.cpp $(EXTRA_FILES)
-		@g++ -std=c++14 -I './' $(EXTRA_FILES) -DJAKE_PREPROCESS_DEBUG=$(DEBUG) jake.cpp -o lilly_jake $(LINKERS)
+		@g++ -std=c++14 -I './' $(EXTRA_FILES) -DJAKE_PREPROCESS_DEBUG=$(DEBUG) jake.cpp -o $(PROGNAME) $(LINKERS)
 
-		@chmod +x ./lilly_jake
-		@echo Compiled lilly_jake
+		@chmod +x ./$(PROGNAME)
+		@echo Compiled $(PROGNAME)
 clean:
 		@$(foreach path,$(RC_FILES),if [ -f $(path) ] ; then echo "Lösche Lilly in: \"$(path)\" (backup: \"$(path).bak\")" && sed -i'.bak' '/\#LILLY_CODE/d' $(path); fi;)
 

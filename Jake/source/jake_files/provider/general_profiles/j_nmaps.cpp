@@ -41,9 +41,11 @@ configuration_t getNameMaps(const std::string& rulefiles) {
         if(assert_all_differ(jo.configuration, "!!", "diese Name Map"))
             continue;
         ret_config[jo.configuration["name"].value] = jo.configuration["patterns"].value + ":";
+        w_debug("Catched: " + jo.configuration["name"].value + " /w patterns: " + jo.configuration["patterns"].value, "nmaps");
         for(auto s = jo.configuration.begin(); s != jo.configuration.end(); ++s) {
             if(s->first == "name" || s->first == "patterns") continue;
-            ret_config[jo.configuration["name"].value] += s->first + "=" + s->second.value;
+            ret_config[jo.configuration["name"].value] += s->first + "=" + s->second.value + "\n";
+            w_debug("Adding  " + jo.configuration["name"].value + " " + s->first + "=" + s->second.value, "nmaps");
         } // Dies kann man effizienter machen
     }
     return ret_config;
@@ -56,10 +58,12 @@ configuration_t whatTrigger(const configuration_t& rules, const std::string& seq
     std::match_results<std::string::const_iterator> match;
     for(auto i = rules.begin(); i != rules.end(); ++i) {
         for(const std::string& reg : getPatterns(i->second)) {
+            w_debug("Bearbeite: " + reg + " für " + i->first + " mit pl: " + i->second,"nmaps");
             if(std::regex_search(seq, match, std::regex(reg))) {
                 w_debug("Match: " + reg + " PL: " + i->second, "nmaps");
                 ret_config[i->first] = (i->second).substr(i->second.find(":")+1);
-            } else w_debug("No Match: " + reg + " for: " + i->first, "nmaps");
+                w_debug("ret contains now: " + ret_config[i->first], "nmaps");
+            } /* else w_debug("No Match: " + reg + " for: " + i->first, "nmaps"); */
         }
     }
     return ret_config;

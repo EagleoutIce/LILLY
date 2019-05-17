@@ -164,7 +164,7 @@ Bisher definiert LILLY die Counter über die Einstellung \verb|auto counter| - d
     {LillyxBOXxDesignxDefault, colback=\LILLYxColorxDefinition!5!white,%
         colframe=\LILLYxColorxDefinition, #3,%
         title={%
-            \begin{minipage}[t][0.35cm][l]{\textwidth}%
+            \begin{minipage}[t][\baselineskip][l]{\textwidth}%
                 \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}%
             \end{minipage}%
         }%
@@ -178,13 +178,13 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
     varwidth boxed title*=-3cm,%
     boxed title style={
         frame code={
-            \path[fill=tcbcol@back!30!black]%
+            \path[fill=white!30!black]%
                 ([yshift=-1mm,xshift=-1mm]frame.north west)%
                     arc[start angle=0,!*\T{end}*! angle=180,radius=1mm]%
                 ([yshift=-1mm,xshift=1mm]frame.north east)%
                     arc[start angle=180,!*\T{end}*! angle=0,radius=1mm];
-            \path[left color=tcbcol@back!60!black,right color=tcbcol@back!60!black,%
-                middle color=tcbcol@back!80!black]%
+            \path[left color=white!40!black,right color=white!40!black,
+                    middle color=white!55!black]
                 ([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)%
                 [rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)%
                 -- (frame.south east) -- (frame.south west)%

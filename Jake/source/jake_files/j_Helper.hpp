@@ -123,14 +123,14 @@ std::vector<std::string> split(const std::string& str, char delim = ' ');
  * @param name_addon Zusätzlicher Namensbezeichner
  * @param input_build Input-regel
  * @param l_comp_name should the boxname be shown in name?
- * @todo: others zusäzliche optionen
+ * @todo: others zusätzliche optionen
  *
  * @returns String-Repräsentation der Build-Regel
  */
 std::string create_buildrule(const std::string& name_type, const std::string& name_rule,
-                             const std::string& mode, bool complete=false, const std::string& name_addon="",
+                             const std::string& mode, bool complete=false, const std::string& name_addon=settings[S_LILLY_NAMEPREFIX],
                              const std::string& input_build=R"(\\input{$(INPUTDIR)$(TEXFILE)})",
-                             const std::string& l_comp_name = "COMPLETE-"/*, const std::vector<std::string>& others*/) noexcept;
+                             const std::string& l_comp_name = settings[S_LILLY_COMPLETE_NAME]/*, const std::vector<std::string>& others*/) noexcept;
 /**
  * @brief Sichert zu, dass alle Konfigurationen nicht diesen Wert haben
  *

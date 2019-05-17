@@ -61,9 +61,6 @@ status_t fkt_compile(const std::string& cmd) {
     w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     std::cout << "Generiere Makefile für Datei: " << settings["file"] << std::endl;
 
-    //URGENT TODO:
-    //check if file exists:
-
     std::string targetpath = settings[S_LILLY_IN] + "/" + settings["file"];
 
     if(!check_file(targetpath)) {
@@ -73,11 +70,14 @@ status_t fkt_compile(const std::string& cmd) {
         if(answer=='y'){
             std::ofstream out_texfile(targetpath, std::fstream::out);
 
-            out_texfile << R"(%% Von Jake erstelltes Lilly-Texfile :D)" << std::endl;
-            out_texfile << R"(%% TODO: implement structures)" << std::endl;
-
-            /// @todo do stuff like: import Lilly, and give Instruction with comments about how to use and stuff..
-
+            out_texfile << R"(%% Von Jake erstelltes Lilly-Texfile :D)" << std::endl << std::endl
+                        << R"(\documentclass[Typ=Mitschrieb,Jake]{Lilly})" << std::endl<<std::endl
+                        << R"(\begin{document})" << std::endl
+                        << R"(Hallo Welt!\newline)" << std::endl
+                        << R"(Lilly-Version: \LILLYxVERSIONxLONG!\newline)" << std::endl
+                        << R"(Status: \LILLYxSTATUS\newline)" << std::endl
+                        << R"(Colormap: \LILLYxCOLORxRainbow)" << std::endl
+                        << R"(\end{document})" << std::endl;
             out_texfile.close();
         } else if (answer=='n') {
             std::cout << "Jake wird so tun als gäbe es die Datei und spielt heile Welt" << std::endl;
@@ -141,7 +141,7 @@ status_t fkt_compile(const std::string& cmd) {
                  //Generals
                  << "## Makefile/General settings"                                                                              << std::endl
                  << R"(_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}}\\providecommand{\\Hcolor}{${SIGNATURECOL}})" << ((settings[S_LILLY_BIBTEX]!="")?(R"(\\providecommand{\\LILLYxBIBTEX}{)" + settings[S_LILLY_BIBTEX] + R"(})"):"")
-                 << R"(\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/)" << settings[S_LILLY_LAYOUT_LOADER]<< "}" 
+                 << R"(\\providecommand{\\lillyPathLayout}{\\LILLYxPATHxDATA/Layouts)" << settings[S_LILLY_LAYOUT_LOADER]<< "}" 
                  << R"(\\providecommand{\\LILLYxEXTERNALIZE}{)" << ((settings[S_LILLY_EXTERNAL]=="true")?"TRUE":"FALSE") << "}"<< std::endl << std::endl //DONT'T Change
                  << "JOBCOUNT     := " << padPrint(settings["jobcount"]+"#")         << "## should: <= cpu/thread count!"      << std::endl
                  << std::endl << std::endl;
@@ -190,7 +190,7 @@ status_t fkt_compile(const std::string& cmd) {
     else
         buf_makefile << "    echo \"Kein autoclean da zugehörige Einstellung (lilly-autoclean) != true\" ) || (";
 
-    buf_makefile << "echo \"\\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\\033[m\"; exit 1;)"<< std::endl<< std::endl;  //) && (echo \"$(shell echo -E \"$(grep -R --include=\"*.log\" -i -E \"error[^(bars)][^(messages)]\" -A 7 -H \"./$(OUTPUTDIR)\" | more)\")\"))" << std::endl << std::endl;
+    buf_makefile << "echo \"\\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechenden Logdatei\\033[m\"; exit 1;)"<< std::endl<< std::endl;  //) && (echo \"$(shell echo -E \"$(grep -R --include=\"*.log\" -i -E \"error[^(bars)][^(messages)]\" -A 7 -H \"./$(OUTPUTDIR)\" | more)\")\"))" << std::endl << std::endl;
 
 
     buf_makefile << "LILLYxClean = echo \"\\033[38;2;255;191;0m> Lösche temporäre Dateien...\033[m\" && \\"                     << std::endl;
@@ -301,7 +301,7 @@ status_t fkt_get(const std::string& cmd) noexcept {
     //std::cout << (R"(bash -c 'rm -r /tmp/gcol/ && mkdir /tmp/gcol/ && export d_path=$(dirname `which lilly_jake`)/../../Lilly/source/Data/Graphics/ && export tfile=$(tempfile --prefix gcol/ --suffix .tex) && echo -e  "\\documentclass[Typ=PLAIN]{Lilly}\n\\\\begin{document}\n \\\\verb|Ergebnisse der Suche: )" + settings["what"] + R"(|\\\\\\\\ \\\\bigskip\n\\\\begin{tabular}{m{0.45\linewidth}>{\\\\centering\\\\arraybackslash}m{0.5\linewidth}}\\\\toprule \\\\bfseries Code &\\\\bfseries Ergebnis\\\\\\\\ \n\\\\midrule\n" > ${tfile} && for a in $(find ${d_path} | grep -E "${d_path}.*)" + settings["what"] + R"(.*\.tex"); do echo -e  "{\\\\small\\\\begin{lstlisting}[style=latex,frame=none, morekeywords={)" + settings["what"] + R"(}]\n\\\\framebox{%\n  \\\\getGraphics{${a/${d_path}/}}%\n}\\\\end{lstlisting}} & {\\\\begin{center}\\\\framebox{\\getGraphics{${a/${d_path}/}}}\\\\end{center}}\\\\\\\\ \n" >> ${tfile}; done && echo -e  "\n\\\\bottomrule\\\\end{tabular}\\\\end{document}" >> ${tfile} && cd /tmp/gcol && lilly_jake $(basename ${tfile}) -debug: false -lilly-show-boxname: false>/dev/null&& make >/dev/null && echo /tmp/gcol/$(basename ${tfile%.*})-OUT/ && xdg-open /tmp/gcol/$(basename ${tfile%.*})-OUT/$(basename ${tfile%.*}).pdf 2>/dev/null')") << std::endl;
 
     // Have fun debugging that future idiot :P 
-    std::cout << "Suche: " << settings["what"] << " " << er_decode(system ((R"(bash -c 'rm -r /tmp/gcol/ && mkdir /tmp/gcol/ && export d_path=$(dirname `which lilly_jake`)/../../Lilly/source/Data/Graphics/ && export tfile=$(tempfile --prefix gcol/ --suffix .tex) && echo -e "\\documentclass[Typ=PLAIN]{Lilly}\n\\\\begin{document}\n \\\\verb|Ergebnisse der Suche: )" + settings["what"] + R"(|\\\\\\\\ \n Die Größe der Grafiken wurde angepasst! \\\\bigskip \\\\\\\\ \n\\\\begin{tabular}{m{0.45\linewidth}>{\\\\centering\\\\arraybackslash}m{0.5\linewidth}}\\\\toprule \\\\bfseries Code &\\\\bfseries Ergebnis\\\\\\\\ \n\\\\midrule\n" > ${tfile} && for a in $(find ${d_path} | grep -E "${d_path}.*)" + settings["what"] + R"(.*\.tex" | sort ); do echo -e  "{\\\\small\\\\begin{lstlisting}[style=latex,frame=none, morekeywords={)" + settings["what"] + R"(}]\n\\\\framebox{%\n  \\\\getGraphics{${a/${d_path}/}}%\n}\\\\end{lstlisting}} & {\\\\begin{center}\\\\resizebox{0.97\\\\linewidth}{!}{\\\\framebox{\\getGraphics{${a/${d_path}/}}}}\\\\end{center}}\\\\\\\\ \n" >> ${tfile}; done && echo -e  "\n\\\\bottomrule\\\\end{tabular}\\\\end{document}" >> ${tfile} && cd /tmp/gcol && lilly_jake $(basename ${tfile}) -debug: false -lilly-show-boxname: false>/dev/null&& make >/dev/null && echo /tmp/gcol/$(basename ${tfile%.*})-OUT/ && xdg-open /tmp/gcol/$(basename ${tfile%.*})-OUT/$(basename ${tfile%.*}).pdf 2>/dev/null')").c_str())) << std::endl;
+    std::cout << "Suche: " << settings["what"] << " " << er_decode(system ((R"(bash -c 'rm -r /tmp/gcol/ > /dev/null; mkdir /tmp/gcol/ && export d_path=$(dirname `which lilly_jake`)/../../Lilly/source/Data/Graphics/ && export tfile=$(tempfile --prefix gcol/ --suffix .tex) && echo -e "\\documentclass[Typ=PLAIN]{Lilly}\n\\\\begin{document}\n \\\\verb|Ergebnisse der Suche: )" + settings["what"] + R"(|\\\\\\\\ \n Die Größe der Grafiken wurde angepasst! \\\\bigskip \\\\\\\\ \n\\\\begin{tabular}{m{0.45\linewidth}>{\\\\centering\\\\arraybackslash}m{0.5\linewidth}}\\\\toprule \\\\bfseries Code &\\\\bfseries Ergebnis\\\\\\\\ \n\\\\midrule\n" > ${tfile} && for a in $(find ${d_path} | grep -E "${d_path}.*)" + settings["what"] + R"(.*\.tex" | sort ); do echo -e  "{\\\\small\\\\begin{lstlisting}[style=latex,frame=none, morekeywords={)" + settings["what"] + R"(}]\n\\\\framebox{%\n  \\\\getGraphics{${a/${d_path}/}}%\n}\\\\end{lstlisting}} & {\\\\begin{center}\\\\resizebox{0.97\\\\linewidth}{!}{\\\\framebox{\\getGraphics{${a/${d_path}/}}}}\\\\end{center}}\\\\\\\\ \n" >> ${tfile}; done && echo -e  "\n\\\\bottomrule\\\\end{tabular}\\\\end{document}" >> ${tfile} && cd /tmp/gcol && lilly_jake $(basename ${tfile}) -debug: false -lilly-show-boxname: false>/dev/null&& make >/dev/null && echo /tmp/gcol/$(basename ${tfile%.*})-OUT/ && xdg-open /tmp/gcol/$(basename ${tfile%.*})-OUT/$(basename ${tfile%.*}).pdf 2>/dev/null')").c_str())) << std::endl;
 
     return EXIT_SUCCESS;
     //return system(("grep -E \"" + settings["what"] + "\" -r * -hs").c_str());

@@ -1,4 +1,4 @@
-# Jake 1.0.8 - An intelligent Servant for Lilly     (compiled on: May  7 2019 at: 11:46:39)
+# Jake 1.0.8 - An intelligent Servant for Lilly     (compiled on: May  9 2019 at: 16:23:40)
 
 TEXFILE      := Mitschrieb-GDBS.tex
 BASENAME     := $(basename $(TEXFILE))
@@ -11,16 +11,16 @@ BOXMODES     := DEFAULT#                      ## Seperator: ' '
 CLEANTARGET  := LILLYxClean
 CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock SATZE ZSM UB TOP listing upa ilg TOPIC DEFS
 SIGNATURECOL := Leaf
-AUTHOR       := Florian der Echte von Sieben
+AUTHOR       := Schlingelwingel
 AUTHORMAIL   := florian.sihler@web.de
-NAMEPREFIX   := #                             ## Immer
+NAMEPREFIX   := Waffel-#                      ## Immer
 SEMESTER     := 2#                            ## Übungsblatt
-VORLESUNG    := GDBS#                         ## Übungsblatt
+VORLESUNG    := PDP#                          ## Übungsblatt
 N            := 42#                           ## Anzahl
 _C           := ,                             ## No Joke xD
 
 ## Makefile/General settings
-_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}}\\providecommand{\\Hcolor}{${SIGNATURECOL}}\\providecommand{\\lillyPathLayout}{\\LILLYxgetDOCPATH/}\\providecommand{\\LILLYxEXTERNALIZE}{FALSE}
+_LILLYARGS   :=  \\providecommand{\\LILLYxDOCUMENTNAME{$(TEXFILE)}}\\providecommand{\\LILLYxOUTPUTDIR{$(OUTPUTDIR)}} $(DEBUG) \\providecommand{\\LILLYxPATH}{${INPUTDIR}}\\providecommand{\\AUTHOR}{${AUTHOR}}\\providecommand{\\AUTHORMAIL}{${AUTHORMAIL}}\\providecommand{\\LILLYxSemester}{${SEMESTER}}\\providecommand{\\LILLYxVorlesung}{${VORLESUNG}}\\providecommand{\\Hcolor}{${SIGNATURECOL}}\\providecommand{\\lillyPathLayout}{\\LILLYxDOCPATH/}\\providecommand{\\LILLYxEXTERNALIZE}{FALSE}
 
 JOBCOUNT     := 2#                            ## should: <= cpu/thread count!
 
@@ -33,7 +33,7 @@ LILLYxCompile = \
     echo "Lilly PRE-Hook[testhook] evaluiert zu: $(shell (touch testfile) >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  ["Ist gut gelaufen"] ||  echo  [failure])" && \
     mkdir -p "$(OUTPUTDIR)" && \
     touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\
-    (for bm in $(BOXMODES); do \
+    (for bm in $(BOXMODES); do echo $${bm} > /tmp/lillytmp.bib.p && \
     echo "Lilly IN0-Hook[in0-hook] evaluiert zu: $(shell (echo "Hallo Welt - will it break?") >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [""] ||  echo  [failure])" && \
        pdflatex -jobname $(basename ${1}$${bm}-${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
     echo "Lilly IN1-Hook[in1-hook] evaluiert zu: $(shell (echo "Hallo Welt"&&echo "Wuff  Duffel") >$(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && echo  [success] ||  echo  ["It is dead"])" && \
@@ -49,7 +49,7 @@ LILLYxClean = echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m" && \
 
 
 default: $(INPUTDIR)$(TEXFILE)
-	@echo "\033[38;2;255;191;0mGeneriere Standart-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
+	@echo "\033[38;2;255;191;0mGeneriere Standard-Version($(BOXMODES)) der Latex-Datei: "$(TEXFILE)"...\033[m"
 	@$(call LILLYxCompile,$(OUTPUTDIR)$(NAMEPREFIX),$(PDFFILE),\\providecommand\\LILLYxMODE{default}\\providecommand\\LILLYxMODExEXTRA{FALSE},"\\input{$(INPUTDIR)$(TEXFILE)}")
 
 print: $(INPUTDIR)$(TEXFILE)
