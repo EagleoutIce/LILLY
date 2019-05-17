@@ -3,7 +3,7 @@
 
 \tcbset{LillyxBOXxDesignxDefault/.style={enhanced jigsaw, pad before break*=2mm, pad after break=2mm, % 
 lines before break=4, before skip=0pt, boxrule = 0mm, toprule=0.5mm, % 
-bottomtitle=0.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=\baselineskip, enlarge bottom by=\baselineskip, sharp corners=south, enforce breakable}}
+bottomtitle=0.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=0.6\baselineskip, enlarge bottom by=0.6\baselineskip, sharp corners=south, enforce breakable}}
 
 %%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
 
@@ -11,20 +11,20 @@ bottomtitle=0.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=\baselineskip
 \ifx\LILLYxBOXxDefinitionxLock\true
 \DeclareTColorBox[auto counter]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \DeclareTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \else
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxDefinitionxLock]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \DeclareTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \fi
 
@@ -33,12 +33,12 @@ title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill 
 \ifx\LILLYxBOXxBeispielxLock\true
 \DeclareTColorBox[auto counter]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBeispiel!5!white, colframe=\LILLYxColorxBeispiel, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}}%
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}}%
 }
 \else
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxBeispielxLock]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBeispiel!5!white, colframe=\LILLYxColorxBeispiel, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}}%
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}}%
 }
 \fi
 
@@ -47,12 +47,12 @@ title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill 
 \ifx\LILLYxBOXxBemerkungxLock\true
 \DeclareTColorBox[auto counter]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBemerkung!5!white, colframe=\LILLYxColorxBemerkung, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \else
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxBemerkungxLock]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBemerkung!5!white, colframe=\LILLYxColorxBemerkung, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \fi
 
@@ -61,12 +61,12 @@ title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill 
 \ifx\LILLYxBOXxSatzxLock\true
 \DeclareTColorBox[auto counter]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxSatz!5!white, colframe=\LILLYxColorxSatz, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \else
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxSatzxLock]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxSatz!5!white, colframe=\LILLYxColorxSatz, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \fi
 
@@ -75,12 +75,12 @@ title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill 
 \ifx\LILLYxBOXxBeweisxLock\true
 \DeclareTColorBox[auto counter]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxBeweis!5!white, colframe=\LILLYxColorxBeweis, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \else
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxBeweisxLock]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxBeweis!5!white, colframe=\LILLYxColorxBeweis, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \fi
 
@@ -89,12 +89,12 @@ title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill 
 \ifx\LILLYxBOXxLemmaxLock\true
 \DeclareTColorBox[auto counter]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxLemma!5!white, colframe=\LILLYxColorxLemma, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \else
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxLemmaxLock]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxLemma!5!white, colframe=\LILLYxColorxLemma, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \fi
 
@@ -102,12 +102,12 @@ title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill 
 \ifx\LILLYxBOXxZusammenfassungxLock\true
 \DeclareTColorBox[auto counter]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxZusammenfassung!5!white, colframe=\LILLYxColorxZusammenfassung, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \else
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxZusammenfassungxLock]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxZusammenfassung!5!white, colframe=\LILLYxColorxZusammenfassung, #3,%
-title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
+title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}} %
 }
 \fi
 
@@ -120,13 +120,13 @@ title={\begin{minipage}[t][0.35cm][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill 
     varwidth boxed title*=-3cm,
     boxed title style={
         frame code={
-            \path[fill=tcbcol@back!30!black]
+            \path[fill=white!30!black]
                 ([yshift=-1mm,xshift=-1mm]frame.north west)
                 arc[start angle=0,end angle=180,radius=1mm]
                 ([yshift=-1mm,xshift=1mm]frame.north east)
                 arc[start angle=180,end angle=0,radius=1mm];
-            \path[left color=tcbcol@back!60!black,right color=tcbcol@back!60!black,
-                middle color=tcbcol@back!80!black]
+            \path[left color=white!40!black,right color=white!40!black,
+                middle color=white!55!black]
                 ([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
                 [rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
                 -- (frame.south east) -- (frame.south west)

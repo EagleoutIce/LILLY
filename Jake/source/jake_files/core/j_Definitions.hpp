@@ -16,7 +16,7 @@
 #define JAKE_VERSION "1.0.8"
 
 /// @brief Design-Makro zum Zurücksetzen der Farbe
-#define COL_RESET "\033[m"
+#define COL_RESET "\033[0m"
 /// @brief Design-Makro zum Setzen der Fehler-Farbe in der Konsole
 #define COL_ERROR "\033[38;2;255;32;82m"
 /// @brief Design-Makro zum Setzen der Erfolgs-Farbe in der Konsole

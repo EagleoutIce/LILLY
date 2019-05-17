@@ -5,49 +5,49 @@
                     {Um dieses Paket kommt LILLY nicht herum!}
                     {}{}
 
-\def\remSpace#1 {#1}
-
 %% GET PATH OF LILLY
 \ifx\LILLYxCMD\undefined
 \newread\res
-\immediate\write18{printf $(dirname $(kpsewhich --progname=pdflatex Lilly.cls)) > xres.txt}
+\immediate\write18{printf "$(dirname "$(kpsewhich --progname=pdflatex Lilly.cls)")"> xres.txt}
+\endlinechar=\m@ne
 \immediate\openin\res=xres.txt
 \read\res to \LILLYxCLSPATH
+\endlinechar=13
+\closein\res
 \else
     \providecommand{\LILLYxCLSPATH}{./}
 \fi
 
-\newcommand{\LILLYxgetCLSPATH}{\expandafter\remSpace\LILLYxCLSPATH}
-
 %%% GET PATH OF DOC
 
 \ifx\LILLYxCMD\undefined
-\immediate\write18{printf $(dirname $(find `pwd` -name \LILLYxDOCUMENTNAME)) > xres.txt}
+\immediate\write18{printf "$(dirname "$(find "$(pwd)" -name "\LILLYxDOCUMENTNAME")")" > xres.txt}
+\endlinechar=\m@ne
 \immediate\openin\res=xres.txt
-\immediate\write18{rm xres.txt}
 \read\res to \LILLYxDOCPATH
+\endlinechar=13
+\immediate\write18{rm xres.txt}
+\closein\res
 \else
     \providecommand{\LILLYxDOCPATH}{./}
 \fi
 
-\newcommand{\LILLYxgetDOCPATH}{\expandafter\remSpace\LILLYxDOCPATH}
 
-
-\IfFileExists{\LILLYxgetCLSPATH/Lilly.cls}{%
+\IfFileExists{\LILLYxCLSPATH/Lilly.cls}{%
     \ClassInfo{Lilly}{Automatische Pfaderkennung erfolgreich, LILLY-Quellverzeichnis erfolgreich gefunden}%
 }{% else
     \ClassWarning{Lilly}{Automatische Pfaderkennung gescheitert. Fallback zu lokalem Verzeichnis!}%
-    \renewcommand{\LILLYxgetCLSPATH}{.}
+    \renewcommand{\LILLYxCLSPATH}{.}
 }
 
 %%%%%%% NICE HELPER
 
 
 %% WON'T ALLOW '_'  which is fine as they should'nt be used anyway
-\providecommand{\dataInput}[1]{\InputIfFileExists{\LILLYxgetCLSPATH/source/Data/#1}{}{\ClassWarning{Lilly}{Die per \protect\dataInput\space angeforderte Datei #1 konnte nicht gefunden werden!}}}
+\providecommand{\dataInput}[1]{\InputIfFileExists{\LILLYxCLSPATH/source/Data/#1}{}{\ClassWarning{Lilly}{Die per \protect\dataInput\space angeforderte Datei #1 konnte nicht gefunden werden!}}}
 
 %%% Semesterzahl Path
-\providecommand{\getSemester}[2]{\LILLYxgetCLSPATH/\LILLYxPATHxDATA/Semester/#1/#2}
+\providecommand{\getSemester}[2]{\LILLYxCLSPATH/\LILLYxPATHxDATA/Semester/#1/#2}
 
 
 
@@ -64,6 +64,7 @@
 \providecommand{\LILLYxPATHxHELPER}{\LILLYxPATHxFILExROOT/Helper}
 \providecommand{\LILLYxPATHxLISTINGS}{\LILLYxPATHxFILExROOT/Listings}
 \providecommand{\LILLYxPATHxMATHS}{\LILLYxPATHxFILExROOT/Maths}
+\providecommand{\LILLYxPATHxBEAMER}{\LILLYxPATHxFILExROOT/Beamer}
 
 %%% Wir respektieren unseren Nutzer als netten, aber oft unwissenden Menschen
 %%% {Datei}{Nutzerpfad}{Systempfad} -NO TRAILING '/'
@@ -82,6 +83,6 @@
 
 %%% Used userput-paths by LILLY - available for overwrite
 %% Bitte akzeptiere, dass die Systempfade nicht überschrieben werden _dürfen_
-\providecommand{\lillyPathLayout}{\LILLYxPATHxCONTROLLERS/Intro/Layouts}
+\providecommand{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
 
 

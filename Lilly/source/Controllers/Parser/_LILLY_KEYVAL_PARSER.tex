@@ -6,11 +6,14 @@
 }
 
 \DeclareStringOption [-1]{n}[-1]                            %Das wievielte Übungsblatt ist es?
-\DeclareStringOption [1]{Semester}[1]                        %Das wievielte Semester ist es?
-\DeclareStringOption [Niemand]{Vorlesung}[Liemann]          %Bezeichner der Vorlesung
+\DeclareStringOption [0]{Semester}[0]                       %Das wievielte Semester ist es?
+\DeclareStringOption [GDRA]{Vorlesung}[GDRA]                %Bezeichner der Vorlesung
 \DeclareStringOption [DONNO]{Typ}[ONNO]
 \DeclareBoolOption[false]{Jake}
 \DeclareBoolOption[false]{Universe}
+\DeclareBoolOption[false]{paper}
+\DeclareBoolOption[false]{beamer}
+\DeclareBoolOption[true]{beamerKiz}
 
 
 
@@ -26,3 +29,16 @@
 \renewcommand{\LILLYxSemester}{\LILLY@Semester}
 \renewcommand{\LILLYxVorlesung}{\LILLY@Vorlesung}
 \fi
+
+\ifLILLY@paper
+\ClassInfo{Lilly}{Nutze Paper Layout} %% TODO PRELOADER FOR SOME LAYOUTS COMING BEFORE LOADCLASS
+%% \typeout{Moin}
+\providecommand{\LILLYxGeneralxFontsize}{8pt}
+\providecommand{\LILLYxLayoutxWidth}{5.5in}
+\providecommand{\LILLYxPAPER}{twocolumn}
+\providecommand{\LILLYxGeometryxExtras}{marginparwidth=6em,marginparsep=3mm}
+\providecommand{\LILLYxDocumentxTYPE}{scrartcl}
+\providecommand{\LILLYxBOXxDefinitionxBox}{FALSE}
+\providecommand{\LILLYxLINKSxMainColor}{black}
+\def\LILLY@Typ{PAPER}
+\else\providecommand{\LILLYxPAPER}{}\fi

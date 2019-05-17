@@ -46,19 +46,22 @@
 
 \NewDocumentCommand{\plotline}{ O{Ao} O{\x} m }{\draw[domain=\lillyxPlotxMinX:\lillyxPlotxMaxX, smooth, variable=#2,#1] plot[samples=\lillyxPlotxSamples] ({#2}, {#3});}
 
+%% color variable function max min circlesize
+\NewDocumentCommand{\plotseq}{ O{DebianRed} O{\x} m O{\lillyxPlotxMaxX} O{1} O{1pt}}{\foreach #2 in {#5,...,#4}{\pgfmathparse{#3}\filldraw[#1](#2,\pgfmathresult) circle (#6);}}
+
 %%% [KEYS][TIKZPICTURE]
 \DeclareDocumentEnvironment{graph}{ O{} O{}}{
-\pgfkeys{/lillyxPlot, defaults, #1} %% Hier könnte graph wrapfigure support erhalten mit ifthenelse{\equal{#3}{}}{}{\wrapfigure{#3}{#4}} oder so
+\pgfkeys{/lillyxPlot, defaults, #1} %% Hier köznnte graph wrapfigure support erhalten mit ifthenelse{\equal{#3}{}}{}{\wrapfigure{#3}{#4}} oder so
 \begingroup\begin{tikzpicture}[scale=\lillyxPlotxScale,#2]
     \draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset) 
             grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
-}{\draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0) 
--- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
-node[right] {\lillyxPlotxLabelX};
-\draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset) 
--- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
-node[above] {\lillyxPlotxLabelY};
-\end{tikzpicture}\endgroup}
+            \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0) 
+            -- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
+            node[right] {\lillyxPlotxLabelX};
+            \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset) 
+            -- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
+            node[above] {\lillyxPlotxLabelY};
+        }{\end{tikzpicture}\endgroup}
 
 %% {POS}[PGFKEYS][TIKZKEYS][WIDTH][WRAPFIGOFF]
 \DeclareDocumentEnvironment{wgraph}{ m O{} O{}  O{0pt} O{}} {%

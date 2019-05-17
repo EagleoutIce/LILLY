@@ -15,7 +15,7 @@ configuration_t get_default_buildrules( void ){
     return {
         {"default",         create_buildrule("Standard","default","default", false)},
         {"print",           create_buildrule("Druck","print","print", false, settings[S_LILLY_PRINT_NAME])},
-        {"uebungsblatt",    create_buildrule("Übungsblatt","uebungsblatt","default", true, "",                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\begin{document}\\input{$(INPUTDIR)$(TEXFILE)}\\end{document})","")},
+        {"uebungsblatt",    create_buildrule("Übungsblatt","uebungsblatt","default", true, "",                                             R"(\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\begin{document}\\ignorespaces\\noindent \\input{$(INPUTDIR)$(TEXFILE)}\\end{document})","")},
         {"c_default",       create_buildrule("Standard","c_default","default", true)},
         {"c_print",         create_buildrule("Druck","c_print","print", true, settings[S_LILLY_PRINT_NAME])}
     };

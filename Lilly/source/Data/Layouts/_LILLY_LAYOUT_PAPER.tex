@@ -1,0 +1,124 @@
+\RequirePackage[automark]{scrlayer-scrpage}         %Header konfigurieren
+\RequirePackage{caption}
+\RequirePackage{lastpage}                                       %Letzte Seite erhalten
+\RequirePackage{relsize}
+
+\providecommand{\LILLYxBOXxDefinitionxLock}{TRUE}
+\providecommand{\LILLYxBOXxBeispielxLock}{TRUE}
+\providecommand{\LILLYxBOXxBemerkungxLock}{TRUE}
+\providecommand{\LILLYxBOXxSatzxLock}{TRUE}
+\providecommand{\LILLYxBOXxBeweisxLock}{TRUE}
+\providecommand{\LILLYxBOXxLemmaxLock}{TRUE}
+\providecommand{\LILLYxBOXxZusammenfassungxLock}{TRUE}
+
+\@ifpackagelater{scrbase}{2014/12/12}{}{\def\scr@startsection{\@startsection}}%
+
+
+\renewcommand{\sectionmark}[1]{%
+    \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
+}
+
+\RequirePackage{titlesec}
+
+\LILLYcommand{\leftmark}{}
+\LILLYcommand{\rightmark}{}
+
+\newcommand{\LILLYxRIGHTMARK}{\faBookmark}
+
+
+\LILLYcommand{\LILLYxLayoutxClear}{ %
+    \pagestyle{empty} %KOMA-FTW!
+    \pagenumbering{gobble}
+}
+\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+    \pagenumbering{arabic}
+    \pagestyle{scrheadings} %KOMA-FTW!
+
+    \lofoot{\textsc{\TITLE}}
+    \cofoot{}
+    \rofoot{\textbf{\thepage}/\,\begingroup\hypersetup{linkcolor=black}\pageref{LastPage}\endgroup}
+}
+
+
+\newcommand{\printHeader}{\setlength{\columnsep}{2em}{\twocolumn[
+    \begin{@twocolumnfalse}
+     {\centering \usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{\TITLE}\par~\newline}
+     {\centering \AUTHOR,~\BRIEF\par}~\bigskip\newline
+     \rule{\linewidth}{1pt}\vspace{3pt}\newline
+     \textbf{Abstract:}\quad {\lipsum[2]}
+     \rule{\linewidth}{1pt}\bigskip\newline
+    \end{@twocolumnfalse}
+ ]}}
+
+\AtBeginDocument{
+    \LILLYxLayoutxRestore
+}
+
+\RequirePackage{marginnote}
+%% fontsize
+\def\XfszXsection{\normalsize}
+\def\XfszXsubsection{\footnotesize}
+\def\XfszXsubsubsection{\scriptsize}
+\def\XfszXparagraph{\footnotesize}
+\def\LILLYxsection{section}
+\def\LILLYxparagraph{paragraph}
+%\expandafter\expandafter\expandafter\widthof{\csname the#1 \endcsname}
+\makeatletter
+% \renewcommand\sectionlinesformat[4]{%
+% \def\st{#1}\ifx\st\LILLYxparagraph\else\marginnote[\csname XfszX#1\endcsname\hbox{}\hfill\sffamily\textcolor{\LILLYxTITLExCOLOR}{\ifx\st\LILLYxsection\else\vspace{-1.4\baselineskip}\fi\vspace{-0.02cm}\newline#3\vphantom{\normalsize I}}]{\csname XfszX#1\endcsname\sffamily\textcolor{\LILLYxTITLExCOLOR}{\ifx\st\LILLYxsection\else\vspace{-1.4\baselineskip}\fi\vspace{-0.02cm}\newline#3\vphantom{\normalsize I}}}\fi\phantomsection\ifx\st\LILLYxsection{\nobreak\tikz{\draw (0,0) |- ++(\linewidth,0.2) -- ++(0,-0.2);}}\vspace{-1.35\baselineskip}\newline\fi\begingroup\parskip=0pt\par\nopagebreak\centering#4\par\noindent\ignorespacesafterend\endgroup\ifx\st\LILLYxsection{\vspace{-1.55\baselineskip}\newline\nobreak\tikz{\draw (0,0) |- ++(\linewidth,-0.2) -- ++(0,0.2);}}\vspace{-0.5\baselineskip}\newline\else\vspace{-1.9\baselineskip}\newline\fi
+% }
+\addto\captionsngerman{%
+    \renewcommand{\listfigurename}{\vspace{-1.5\baselineskip}}%
+    \renewcommand{\listtablename}{\vspace{-1.5\baselineskip}}%
+    \renewcommand{\figurename}{\textbf{Abb.}~}
+    \renewcommand{\tablename}{\textbf{Tbl.}~}
+}
+
+\providecommand{\LILLYxPAPERxNUM}{TRUE}
+
+\newcommand{\getNum}[1]{
+    \ifx\LILLYxPAPERxNUM\true\Roman{#1}\else\Alph{#1}\fi
+}
+
+\newcommand{\startAppendix}{
+    \grenewcommand{\LILLYxPAPERxNUM}{FALSE}
+    \setcounter{section}{0}
+    \section{Anhang}
+    \printbib
+    \tocloftpagestyle{scrheadings}
+}
+
+\newcommand{\intro}[1]{\smallskip\par\textit{#1}\smallskip\par}
+
+\renewcommand{\sectionlinesformat}[4]{
+    \begingroup%
+        \def\st{#1}\nopagebreak%
+        \ifx\st\LILLYxsection%
+            \parskip=0pt\par\centering%
+            \getNum{#1}.~%
+        \else\ifx\st\LILLYxparagraph\else
+            \normalsize\getNum{section}.\arabic{subsection}
+        \fi\fi%
+        #4%
+        \par%
+    \noindent\ignorespacesafterend\endgroup
+}
+
+\renewcommand{\section}{\@startsection{section}{1}{\z@}
+{-4ex \@plus -1ex \@minus -.4ex}
+{1ex \@plus.2ex }
+{\normalfont\LARGE\bfseries}}
+\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
+{-3ex \@plus -0.1ex \@minus -.4ex}
+{0.5ex \@plus.2ex }
+{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
+{-2ex \@plus -0.1ex \@minus -.2ex}
+{.2ex \@plus.2ex }
+{\normalfont\small\bfseries}}                        
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+{-2ex \@plus-.2ex \@minus .2ex}
+{.1ex}
+{\normalfont\bfseries}}
+
+\setlength{\parindent}{0pt}

@@ -6,7 +6,6 @@
  * @author Florian Sihler
  * @brief Dieser ermöglicht es alle Jake-Einstellungen auch über ein config-Dokument zu laden :D
  * 
- * @todo Implementieren von '-f' für Jake um Einstellungen komplett aus einer Datei zu beziehen! (Diese können dann durch nachfolgende Kommandozeilenargumente wieder überschrieben werden)
  * 
  */
 
