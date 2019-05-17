@@ -26,7 +26,7 @@ DEBUG := 0
 WRITE_RC = if grep -q "LILLY_CODE" "$(1)"; then \
         echo "DEBUG: Already prepped $(1)";\
     else \
-		echo "export PATH="$$'\x24'"PATH:\"$(shell pwd)\"; export LILLY_JAKE_CONFIG_PATH=\"${CONFIG}\"; autoload bashcompinit &>/dev/null; bashcompinit &>/dev/null; source $(shell pwd)/_jake_autocomplete \#LILLY_CODE"  >> $(1);\
+        echo "export PATH=\$$PATH:\"$(shell pwd)\"; export LILLY_JAKE_CONFIG_PATH=\"${CONFIG}\"; autoload bashcompinit &>/dev/null; bashcompinit &>/dev/null; source $(shell pwd)/_jake_autocomplete \#LILLY_CODE"  >> $(1);\
     fi
 
 UNAME_S := $(shell uname -s)
