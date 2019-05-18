@@ -124,11 +124,13 @@
 int main(int argc, const char** argv) {
     program = argv[0];
 	if(argc < 2 || argv[1][0] != '_') {
-		ld_config(argv[0]); // Lade Einstellungen
+		if(ld_config(argv[0]) == EXIT_FAILURE) // Lade Einstellungen
+			return EXIT_FAILURE;
 		w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
 	}
     if(!ld_settings(argc-1, argv)) 
-        in_settings(argv[0]);
+        return in_settings(argv[0]);
+	else return EXIT_FAILURE;
     //fkt_help(argv[0]);
     /* GeneratorParser gp(settings["file"]);
 

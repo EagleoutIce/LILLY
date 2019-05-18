@@ -35,9 +35,9 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
                     } else if (settings[argv[x]+1] == "true") // Das ist zwar dumm, aber ich bin faul :D
                         settings[argv[x]+1] = "false";
                     else                                         // non valid bool-setting
-                        er_unknown_setting(argv[x]+1);
+                        return er_unknown_setting(argv[x]+1);
                 } else                                         // non valid bool-setting
-                    er_unknown_setting(argv[x]+1); // zu faul zum entkaspeln
+                    return er_unknown_setting(argv[x]+1); // zu faul zum entkaspeln
         }
     }
     return EXIT_SUCCESS;
@@ -48,8 +48,7 @@ status_t in_settings(std::string v0) {
     if(functions.find(settings["operation"]) != functions.end()) {                   // Operation ist valide
             functions[settings["operation"]].fkt(v0);                                // Führe Operation aus
     } else {
-        er_unknown_setting(("operation (=" + settings["operation"] + ")").c_str());  // Diese Operation kenne ich nicht
-        return EXIT_FAILURE;
+        return er_unknown_setting(("operation (=" + settings["operation"] + ")").c_str());  // Diese Operation kenne ich nicht
     }
     return EXIT_SUCCESS;
 }
@@ -71,6 +70,7 @@ status_t ld_config( std::string v0) {
         std::cerr << COL_ERROR << "Die Installation von Jake scheint entweder fehlerhaft zu sein, oder du hast an der Konfigurationsdatei gepfuscht!"
                   << std::endl << "Fehler: " << std::endl <<
                   er.what() << std::endl;
+        return EXIT_FAILURE;
     }
     if(exec("printf $(dirname $(which lilly_jake))/jake_files/jake_default.conf") != exec("printf ${LILLY_JAKE_CONFIG_PATH}")){
         try {
@@ -82,6 +82,7 @@ status_t ld_config( std::string v0) {
             std::cerr << COL_ERROR << "Deine Konfigurationsdatei für Jake scheint fehlerhaft: "
                     << std::endl << "Fehler: " << std::endl <<
                     er.what() << std::endl;
+            return EXIT_FAILURE;
         }
     } else {
         w_debug("Keine Nutzer-Konfiguration registriert!", "parser");
