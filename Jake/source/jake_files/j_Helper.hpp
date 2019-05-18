@@ -51,10 +51,13 @@ inline status_t in_str(const char* str,const char* seq){
  * @brief Lesbare Ausgabe einer unbekannten Einstellung
  *
  * @param setting die Einstellung die unbekannt ist
+ * 
+ * @returns failure
  */
-inline void er_unknown_setting(const char* setting){
+inline status_t er_unknown_setting(const char* setting){
     std::cerr << COL_ERROR << "Die Einstellung: \"" << setting << "\" ist so nicht gültig!" << std::endl << "Schreib \""
               << program << " help\"" << COL_RESET << std::endl;
+    return EXIT_FAILURE;
 }
 
 /**

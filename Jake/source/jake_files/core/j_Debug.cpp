@@ -1,7 +1,7 @@
 #include "j_Debug.hpp"
 
 
-std::string log_path = exec("printf $(mktemp)");
+std::string log_path = exec("printf $(mktemp lilly.XXXXXXXXXX --tmpdir)");
 std::ofstream log_output_stream{log_path, std::ios::out | std::ios::app };
 
 const std::string _PT( void ) {
