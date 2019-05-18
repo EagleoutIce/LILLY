@@ -20,10 +20,11 @@ configuration_t get_default_hooks( void ) {
         
     }
 
-    return {
-            {"PRE:hello-world", "echo Hello World"},
-            {"POST:hello-world-out", "echo Hello World - I am out"}
-        };
+    configuration_t ret;
+    for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); ++i) {
+        ret["IN" + std::to_string(i) + ":compile-" + std::to_string(i)] = "echo Kompiliere " + std::to_string(i+1) + "/" + settings[S_LILLY_COMPILETIMES];
+    }
+    return ret;
 }
 
 configuration_t getHooks(const std::string& rulefiles) {

@@ -1,4 +1,4 @@
-Selbst ist der Selbige (Endlich ein Update :P)
+Test commit - kleine optimierung (hereami)
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -6,54 +6,9 @@ Selbst ist der Selbige (Endlich ein Update :P)
 
 JAKE:
 
-    + Grundstruktur Jake-compile (WIP)
-
-
-    ! FIX Generator nameprefix und completename für normale buildrules
-
-    ! FIX no SemesSet on Jake: Einstellungen sind jetzt logischer (Semester=0)
+    + Jake fügt nun standartmäßig: "Hier-bin-ich"-Hooks fürs kompilieren ein
 
 LILLY:
-
-    + Adding Paper Layout:
-      Intro:
-      ```TeX
-        \providecommand{\TITLE}{Titel}
-        \providecommand{\BRIEF}{Informatik Student,\\Universit\"{a}t Ulm -- \heute} %% Erklärung
-        \documentclass[paper]{Lilly}
-      ```
-      Titel mit: `\printHeader`, Outro mit: `\startAppendix`
-
-    + Bibtex mit Link unterstützung
-
-    + nobox für Definitionen
-
-    + Color-Fallthrough Boxen halten nun korrekte Farbe
-
-
-    * Abstand für no-box-Boxen in Limerence 
-
-    * Neue Worttrennungen
-
-    * Layouts sind nun im Data Verzeichnis
-
-    * Größen für manche Fulltitle sporadisch angepasst (exemplarisch - nicht perfekt)
-
-    * \T{} wird nun auch in Matheumgebungen akzeptiert
-
-    ! FIX Leerfelder in Pfaden werden nun erlaubt, sofern sie nicht direkt über path 
-      aufgelöst werden müssen diese Handhabung wird großzügig dem Nutzer überlassen 
-
-    ! FIX elable & [mode] uebungsblatt space bug
-
-    ! FIX Haskell Syntax-Highlight
-
-    ! FIX on Unknown Semester
-
-    ! FIX Aufgaben-Box nutzt nun kein tcbcol@back mehr da dies auf Tablets nicht
-      funktioniert (IOS)
-
-    ! FIX typos
 
 ============================================================================================
 :
