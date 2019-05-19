@@ -3,6 +3,8 @@
 
 std::string log_path = exec("printf $(mktemp lilly.XXXXXXXXXX --tmpdir)");
 std::ofstream log_output_stream{log_path, std::ios::out | std::ios::app };
+std::match_results<std::string::const_iterator> _ctmatch;
+
 
 const std::string _PT( void ) {
     time_t     now = time(0);
@@ -24,22 +26,22 @@ status_t _w_debug(const std::string& what,
                        ) {
     if(settings["debug"]=="true"){
         if(log_output_stream.is_open()) {
-        log_output_stream << _PT() << "  ["<< std::setw(3) << signature << "] "
+        log_output_stream << _PT() << " @" << std::right << std::setw(5)
+                          << line << " ~ " << std::setw(PAT_LEN) << std::left 
+                          << DEBUG_FORMAT(file,PAT_LEN) << "  ["<< std::setw(3) << signature << "] "
                           << std::left << std::setw(8)<< who << ": " << prenote 
                           << std::left << std::setw(LOG_LEN-prenote.length())
-                          << what << " @"<< std::right << std::setw(5)
-                          << line << " ~ " << std::setw(PAT_LEN) << std::left << DEBUG_FORMAT(file,PAT_LEN)
+                          << what
                           << std::endl;
-        } else {
-            std::cout << "mööp" << std::endl;
-        }
+        } else { std::cerr << "Konnte nicht in LogDatei schreiben!" << std::endl; }
 
+        if(std::regex_search(who,_ctmatch,std::regex(settings["debug-filter"])))
         std::cout  << DEBUG_RESET << DEBUG_BOLD << bgcode << fgcode
                    << "[" << std::setw(3) << signature << "] "
                    << std::left << std::setw(8)<< who << ": " << prenote
                    << DEBUG_NORMALIZE << std::left
                    << std::setw(MSG_LEN - prenote.length() + GET_UTF8_LENGTH_OFFSET(what))
-                   << DEBUG_FORMATF(what, MSG_LEN - prenote.length()) << " @"<< std::right << std::setw(5)
+                   << DEBUG_FORMATF(what, MSG_LEN - prenote.length()) << bgcode << fgcode <<  " @"<< std::right << std::setw(5)
                    << line << " ~ " << std::setw(PAT_LEN) << std::left << DEBUG_FORMAT(file,PAT_LEN) << _PT()
                    << DEBUG_RESET << std::endl;
         return EXIT_SUCCESS;

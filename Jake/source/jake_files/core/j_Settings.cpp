@@ -10,6 +10,7 @@ settings_t generate_default_lilly_settings() {
     ret_settings["operation"]                  = {"help", "Beschreibt was getan werden soll", IS_OPERATION};
     ret_settings["file"]                       = {"none.tex", "Beschreibt die Datei die bearbeitet werden soll", IS_FILE};
     ret_settings["debug"]                      = {"false", "Sollen Meldungen ausgegeben werden?", IS_SWITCH};
+    ret_settings["debug-filter"]               = {".*", "Regex-Expression welche Debug-Nachrichten anzuzeigen sind!", IS_TEXT};
     ret_settings["path"]                       = {"./", "Zum Beispiel: Pfad zu LILLY", IS_PATH};
     ret_settings["what"]                       = {R"(Automat)", "Spezifikator, um was gehts?", IS_TEXT};
 
@@ -31,7 +32,7 @@ settings_t generate_default_lilly_settings() {
     ret_settings["mk-name"]                    = {"Makefile", "Name des Makefiles", IS_TEXT};
     ret_settings["mk-path"]                    = {"./", "Wo soll das Makefile hin?", IS_PATH};
 
-    ret_settings["mk-use"]                      = {"true","Soll Ein Makefile erstellt werden?", IS_SWITCH};
+    ret_settings["mk-use"]                      = {"false","Soll Ein Makefile erstellt werden?", IS_SWITCH};
 
     // ==== Externe Konfiguration
     ret_settings[S_GEPARDRULES_PATH]           = {"", "Konfigurationsdatei für Gepard", IS_PATH};

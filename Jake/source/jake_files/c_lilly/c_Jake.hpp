@@ -15,6 +15,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <thread>
 
 #include "../core/j_Debug.hpp"
 
@@ -44,6 +45,17 @@
  */
 status_t c_jake(const std::string& cmd);
 
-
+/**
+ * @brief Führt das eigentliche kompilieren aus
+ * 
+ * @param id die threadID des Kompiliervorgangs. Startet mit 1 (0=main)
+ * @param b_data die notwendigen Informationen über die buildrule
+ * @param expandables konfigurierte Erweiterungen
+ * @param all_hooks konfigurierte Hooks
+ * 
+ * @note wird für mehrere Buildrules asynchron ausgeführt
+ * 
+ */
+void c_jake_compile(uint8_t id, const std::vector<std::string>& b_data, configuration_t expandables, configuration_t all_hooks);
 
 #endif

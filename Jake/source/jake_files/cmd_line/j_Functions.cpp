@@ -1,10 +1,16 @@
 #include "j_Functions.hpp"
 
 status_t fkt_dump(const std::string& cmd) noexcept {
-    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Liefere die Konfigurationen (fkt_dump)", "func");
+
+    if(settings["file"].find(".conf") != std::string::npos) {
+        w_debug("Da eine konfigurationsdatei angegeben wurde wird diese zuerst aufgelöst!", "dump");
+        Configurator c(settings["file"]);
+        c.parse_settings(&settings._settings);
+    }
+
     std::cout << "Settings Dump: " << std::endl
-              << "Information: Die '[' ']' gehören jeweils nicht zum Wert, sie dienen lediglich der Übersicht! Durch '=>' gekennzeichnet ergibt sich die erweiterte Variante der Ausdrücke" << std::endl;
+              << "Information: Die '[' ']' gehören jeweils nicht zum Wert, sie dienen lediglich der Übersicht! Durch '=>' gekennzeichnet ergibt sich die erweiterte Variante des Ausdrucks" << std::endl;
     settings_t::iterator it = settings.begin();
     std::string tmp;
     configuration_t expandables = getExpandables(settings[S_GEPARDRULES_PATH]);
@@ -22,7 +28,6 @@ status_t fkt_dump(const std::string& cmd) noexcept {
 }
 
 status_t fkt_help(const std::string& cmd) noexcept {
-    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Gebe die Hilfe aus (fkt_help)", "func");
     std::cerr << "Benutzung:" << std::endl << std::endl;
     std::cerr << program << " [options=help] [file]" << std::endl << std::endl;
@@ -71,7 +76,6 @@ status_t fkt_compile(const std::string& cmd) {
 
 status_t fkt_tokentest(const std::string& cmd) {
     // test für den Tokenizer :D
-    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     std::cout << "Einzelne Gruppen werden mit \"~\" getrennt!" << std::endl;
     Tokenizer t(settings["file"]);
     while(t.loadNext()) {
@@ -88,7 +92,6 @@ status_t fkt_tokentest(const std::string& cmd) {
 uint8_t RECURSIVE_CALLCOUNTER = 0;
 
 status_t fkt_config(const std::string& cmd) {
-    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Jetzt in: fkt_config","func");
     if(RECURSIVE_CALLCOUNTER++ > MAX_SETTINGS_REC) {
         std::cerr << COL_ERROR << "Du hast das Limit an Konfigurationsaufrufen erreicht! Mehr erscheint wirklich nicht sinnvoll!"
@@ -103,7 +106,6 @@ status_t fkt_config(const std::string& cmd) {
 // export d_path=$(dirname `which lilly_jake`)/../../Lilly/source/Data/Graphics/ && find ${d_path} | grep -E "${d_path}.*QUERY.*\.tex" 
 
 status_t fkt_get(const std::string& cmd) noexcept {
-    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Versuche nun alle Grafiken auf Basis von QUERY (-settings[what]) zu erstellen" + log_path,"func");
 
     // Have fun debugging that future idiot :P 
@@ -119,7 +121,6 @@ status_t fkt_autoget(const std::string& cmd) noexcept{
 }
 
 status_t fkt_update(const std::string& cmd) noexcept{
-    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     w_debug("Versuche Lilly zu Aktualisieren (fkt_update)","func");
     std::cout << "Aktualisiere Lilly: " << std::endl;
     if(settings["path"] == "./") {
