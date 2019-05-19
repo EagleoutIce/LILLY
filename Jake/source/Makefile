@@ -18,7 +18,10 @@ EXTRA_FILES := jake_files/j_Helper.cpp \
 	       jake_files/provider/j_Generator_Parser.cpp \
 	       jake_files/provider/box_profiles/j_buildrules.cpp \
 	       jake_files/provider/general_profiles/j_hooks.cpp \
-	       jake_files/provider/general_profiles/j_nmaps.cpp
+	       jake_files/provider/general_profiles/j_nmaps.cpp \
+		   jake_files/provider/general_profiles/j_expandables.cpp \
+		   jake_files/c_lilly/c_Jake.cpp \
+		   jake_files/c_lilly/c_Makefile.cpp 
 
 LINKERS :=
 RC_FILES := "${HOME}/.zshrc" "${HOME}/.bashrc" "${HOME}/.bash_profile"

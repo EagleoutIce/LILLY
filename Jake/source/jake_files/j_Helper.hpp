@@ -156,4 +156,35 @@ status_t assert_all_differ(settings_t theall, const std::string& thediffer = "!!
  * @returns das Ergebnis
  */
 std::string exec(const std::string& command);
+
+/**
+ * @brief Versucht das entsprechende Paket für das System zu installieren
+ * 
+ * @param install_str das zu installierende Paket
+ * @param backup versuch, wenn der erste Scheitert
+ * 
+ * @returns != 0 im Falle eines fehlers
+ */
+status_t install(const std::string& install_str, const std::string& backup="");
+
+/**
+ * @brief erfragt eine Antwort vom Nutzer
+ * 
+ * @param prompt Optionen für Nutzer
+ * @param options Optionen für Code
+ * 
+ * @returns eine der akzeptierten Optionen
+ */
+char get_answer(const std::string& prompt = "[(y)es/(n)o]> ", const std::string& options="yn");
+
+
+/**
+ * @brief generiert eine Basis-Latex-Datei
+ * 
+ * @name der Name (inklusive Pfad) der Datei
+ * 
+ * @returns != 0 bei einem Fehler
+ */
+status_t generate_dummyfile(const std::string name);
+
 #endif

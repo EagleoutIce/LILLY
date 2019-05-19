@@ -13,6 +13,8 @@ settings_t generate_default_lilly_settings() {
     ret_settings["path"]                       = {"./", "Zum Beispiel: Pfad zu LILLY", IS_PATH};
     ret_settings["what"]                       = {R"(Automat)", "Spezifikator, um was gehts?", IS_TEXT};
 
+    ret_settings["answer"]                     = {"", "Antwort auf alle Fragen", IS_TEXT};
+
     // ==== Installation
 #if defined(__linux__)
     ret_settings["install-path"]               = {"\"${HOME}/texmf\"", "Wohin gilt es Lilly zu installieren?", IS_PATH};
@@ -24,15 +26,18 @@ settings_t generate_default_lilly_settings() {
                                                 "Wo liegt die Lilly.cls?", IS_PATH};
 #endif
 
+
     // ==== Makefile Generierung
     ret_settings["mk-name"]                    = {"Makefile", "Name des Makefiles", IS_TEXT};
     ret_settings["mk-path"]                    = {"./", "Wo soll das Makefile hin?", IS_PATH};
+
+    ret_settings["mk-use"]                      = {"true","Soll Ein Makefile erstellt werden?", IS_SWITCH};
 
     // ==== Externe Konfiguration
     ret_settings[S_GEPARDRULES_PATH]           = {"", "Konfigurationsdatei für Gepard", IS_PATH};
 
     // ==== Lilly Konfiguration
-    ret_settings[S_LILLY_OUT]                  = {"./$(BASENAME)-OUT/", "Ausgabeordner der PDF-Datei", IS_PATH};
+    ret_settings[S_LILLY_OUT]                  = {"./OUTPUT/", "Ausgabeordner der PDF-Datei", IS_PATH};
     ret_settings[S_LILLY_IN]                   = {"./", "Eingabeordner der TEX-Datei", IS_PATH};
 
     ret_settings[S_LILLY_NAMEPREFIX]           = {"", "Namenspräfix für PDF-Datei", IS_TEXT};

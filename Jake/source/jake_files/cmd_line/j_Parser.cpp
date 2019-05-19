@@ -70,7 +70,6 @@ status_t ld_config( std::string v0) {
         std::cerr << COL_ERROR << "Die Installation von Jake scheint entweder fehlerhaft zu sein, oder du hast an der Konfigurationsdatei gepfuscht!"
                   << std::endl << "Fehler: " << std::endl <<
                   er.what() << std::endl;
-        return EXIT_FAILURE;
     }
     if(exec("printf $(dirname $(which lilly_jake))/jake_files/jake_default.conf") != exec("printf ${LILLY_JAKE_CONFIG_PATH}")){
         try {
@@ -82,7 +81,6 @@ status_t ld_config( std::string v0) {
             std::cerr << COL_ERROR << "Deine Konfigurationsdatei für Jake scheint fehlerhaft: "
                     << std::endl << "Fehler: " << std::endl <<
                     er.what() << std::endl;
-            return EXIT_FAILURE;
         }
     } else {
         w_debug("Keine Nutzer-Konfiguration registriert!", "parser");

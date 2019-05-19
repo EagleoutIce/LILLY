@@ -1,21 +1,21 @@
-# Jake 1.0.8 - An intelligent Servant for Lilly     (compiled on: May 11 2019 at: 18:58:47)
+# Jake 1.0.8 - An intelligent Servant for Lilly     (compiled on: May 19 2019 at: 01:57:53)
 
 TEXFILE      := paper.tex
 BASENAME     := $(basename $(TEXFILE))
 PDFFILE      := $(addsuffix .pdf,$(basename $(TEXFILE)))
 LATEXARGS    := -shell-escape -enable-write18 -interaction=batchmode
 ## Directories used for INPUT and OUTPUT Files 
-OUTPUTDIR    := $(shell echo ./$(BASENAME)-OUT/| sed 's:/*$$::')/
+OUTPUTDIR    := $(shell echo ./${BASENAME}-OUT/| sed 's:/*$$::')/
 INPUTDIR     := $(shell echo ./| sed 's:/*$$::')/
 BOXMODES     := LIMERENCE#                    ## Seperator: ' '
 CLEANTARGET  := LILLYxClean
-CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock SATZE ZSM UB TOP listing upa ilg TOPIC DEFS
+CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS
 SIGNATURECOL := Leaf
 AUTHOR       := Florian Sihler
 AUTHORMAIL   := florian.sihler@web.de
 NAMEPREFIX   := #                             ## Immer
-SEMESTER     := 1#                            ## Übungsblatt
-VORLESUNG    := LAII#                         ## Übungsblatt
+SEMESTER     := 0#                            ## Übungsblatt
+VORLESUNG    := NONE#                         ## Übungsblatt
 N            := 42#                           ## Anzahl
 _C           := ,                             ## No Joke xD
 
@@ -37,7 +37,7 @@ LILLYxCompile = \
        pdflatex -jobname $(basename ${1}${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
        pdflatex -jobname $(basename ${1}${2}) $(LATEXARGS) \\providecommand{\\LILLYxBOXxMODE}{$${bm}}\\providecommand{\\LILLYxPDFNAME}{${1}${2}}  ${3} $(_LILLYARGS) ${4}>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \
        echo "\033[38;2;102;250;0mGenerierierung von "${1}${2}" ($${bm}) abgeschlossen\033[m"; done &&\
-    echo "Kein autoclean da zugehörige Einstellung (lilly-autoclean) != true" ) || (echo "\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechendne Logdatei\033[m"; exit 1;)
+    echo "Kein autoclean da zugehörige Einstellung (lilly-autoclean) != true" ) || (echo "\033[31m! Das Kompilieren mit LILLY ist fehlgeschlagen. Fehler finden sich in der entsprechenden Logdatei\033[m"; exit 1;)
 
 LILLYxClean = echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m" && \
      for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done

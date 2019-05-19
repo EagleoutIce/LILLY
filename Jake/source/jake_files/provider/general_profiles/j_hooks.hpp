@@ -15,6 +15,7 @@
 
 #include "../../core/j_Definitions.hpp"
 #include "../../core/j_Typedefs.hpp"
+#include "../../core/j_Debug.hpp"
 
 #include "../../j_Helper.hpp"
 
@@ -55,13 +56,26 @@ configuration_t getHooks(const std::string& rulefiles);
 configuration_t getTagged(configuration_t rules, const std::string& tag="PRE");
 
 /**
- * @brief Schreibt alle Hooks die tag oder ALL entsprechend in den angegebenen Stream
+ * @brief Schreibt alle Hooks, die tag oder ALL entsprechen in den angegebenen Stream
  * 
  * @param out der Stream auf den geschrieben werden soll
  * @param rules die Regeln auf deren Basis die hooks gesucht werden sollen
  * @param tag der Tag der gesucht werden soll 
  * 
+ * @deprecated with move to Jakecompile?
+ * 
  * @returns EXIT_FAILURE wenn der Stream beschädigt ist.
  */
 status_t writeHooks(std::ostream& out, configuration_t rules, const std::string& tag);
+
+/**
+ * @brief Führt alle Hooks, die tag oder ALL entsprechen aus
+ * 
+ * @param rules die Regeln auf deren Basis die hooks gesucht werden sollen
+ * @param tag der Tag der gesucht werden soll 
+ * 
+ * @returns EXIT_FAILURE wenn der Stream beschädigt ist.
+ */
+status_t executeHooks(configuration_t rules, const std::string& tag);
+
 #endif

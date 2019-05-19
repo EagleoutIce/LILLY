@@ -5,7 +5,7 @@
 /**
  * @file jake.cpp
  * @author Florian Sihler
- * @version 1.0.7
+ * @version 1.0.9
  * @warning Die Aktuelle Version ist WIP einige Funktionen sind noch nicht implementiert
  *
  *

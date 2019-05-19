@@ -21,7 +21,7 @@ configuration_t get_default_nmaps( void ) {
     _ret["GDRA"] = "[Gg][Dd][Rr][Aa],[Gg]rundlagen[\\ \\-]?([Dd]er[\\ \\-]?)?[Rr]echnerarchitektur:lilly-vorlesung=GDRA\nlilly-semester=1";
     _ret["EIDI"] = "[Ee][Ii][Dd][Ii],[Ee]inführung[\\ \\-]?([Ii]n[\\ \\-]?)?([Dd]ie[\\ \\-]?)?[Ii]nformatik:lilly-vorlesung=EIDI\nlilly-semester=1";
     _ret["FG"] = "[Ff][Gg],[Ff]ormale[\\ \\-]?[Gg]rundlagen:lilly-vorlesung=FG\nlilly-semester=1";
-    _ret["LA"] = "LA,LAII,[Ll]ineare[\\ \\-]?[Aa]lgebra:lilly-vorlesung=LAII\nlilly-semester=1";
+    _ret["LA"] = "LA,LAII,[Ll]ineare[\\ \\-]?[Aa]lgebra:lilly-vorlesung=LAIIa\nlilly-semester=1";
 
     _ret["Übungsblatt"] = "UB,uebungsblatt,[Üü]bungsblatt,ÜB:lilly-modes=uebungsblatt";
     /* cSpell:enable */

@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <string>
+#include <regex>
 
 #include "../core/j_Typedefs.hpp"
 #include "../core/j_Settings.hpp"
@@ -18,6 +19,7 @@
 #include "../core/j_Debug.hpp"
 
 #include "../provider/j_Configurator.hpp"
+#include "../provider/general_profiles/j_expandables.hpp"
 
 #include "../j_Helper.hpp"
 
