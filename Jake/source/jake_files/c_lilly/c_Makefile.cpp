@@ -1,7 +1,6 @@
 #include "c_Makefile.hpp"
 
 status_t c_makefile(const std::string& cmd) {
-     w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     std::cout << "Generiere Makefile für Datei: " << settings["file"] << std::endl;
 
     std::string targetpath = settings[S_LILLY_IN] + "/" + settings["file"];
@@ -109,7 +108,7 @@ status_t c_makefile(const std::string& cmd) {
                      << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  << R"(${2}} )" << " ${3} $(_LILLYARGS) ${4}" 
                      << R"(>> $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 && \)" << std::endl;
     }
-    buf_makefile << "       echo \"\\033[38;2;102;250;0mGenerierierung von \"${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  << "${2}\" ($${bm}) abgeschlossen\\033[m\"; done &&\\"                                                                                                   << std::endl;
+    buf_makefile << "       echo \"\\033[38;2;102;250;0mGenerierung von \"${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")  << "${2}\" ($${bm}) abgeschlossen\\033[m\"; done &&\\"                                                                                                   << std::endl;
 
     writeHooks(buf_makefile, all_hooks, "POST");
 

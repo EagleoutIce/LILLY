@@ -23,7 +23,7 @@ EXTRA_FILES := jake_files/j_Helper.cpp \
 		   jake_files/c_lilly/c_Jake.cpp \
 		   jake_files/c_lilly/c_Makefile.cpp 
 
-LINKERS :=
+LINKERS := -lpthread
 RC_FILES := "${HOME}/.zshrc" "${HOME}/.bashrc" "${HOME}/.bash_profile"
 
 DEBUG := 0

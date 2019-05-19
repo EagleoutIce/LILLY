@@ -125,6 +125,7 @@ status_t _w_debug(const std::string& what,
 
 
 #define hl_debug(what, who) w_debug4(what, who, "INF", DEBUG_FG_MAGENTA,"");
+#define hl2_debug(what, who) w_debug4(what, who, "INF", DEBUG_FG_GREEN,"");
 
 /*
 #if JAKE_PREPROCESS_DEBUG >  0

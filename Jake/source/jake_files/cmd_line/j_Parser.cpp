@@ -44,7 +44,6 @@ status_t ld_settings(int n /* = argc */, const char** argv) {
 }
 
 status_t in_settings(std::string v0) {
-    w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
     if(functions.find(settings["operation"]) != functions.end()) {                   // Operation ist valide
             functions[settings["operation"]].fkt(v0);                                // Führe Operation aus
     } else {

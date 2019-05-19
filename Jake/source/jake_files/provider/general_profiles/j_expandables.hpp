@@ -76,6 +76,7 @@ configuration_t expand_Settings( void );
 status_t expand_Config( configuration_t& config );
 
 
+extern int rec_exp_calls;
 
 /**
  * @brief erweitert Bestimmte Argumente (auch um Makefile-kompatibel zu bleiben) 

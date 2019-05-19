@@ -1,59 +1,24 @@
-Geh aus dem Weg ich kann das! (jake compile)
+Jake-compile vollständig
 
 ============================================================================================
 :EagleoutIce for Lilly
 ============================================================================================
 
+DURCH ANGABE EINER DATEI ERSTELLT JAKE NUN KEIN MAKEFILE MEHR. UM DAS ALTER VERHALTEN ZU ERZEUGEN GENÜGT '-mk-use' ALLERDINGS UNTERSTÜTZT DIESE VARIANTE KEINE EXPANDABLES (WIE @[SELTEXF]).
+Einziger bisher erkannter Nachteil der Jake-version: Der Konsolen-log im multithreaded output ist... Überfüllt ^^
+
+
 JAKE:
 
-    + Es ist nun möglich mit -answer Antworten auf alle Rückfragen festzulegen
-      Wählt man zum Beispiel "c" welches bei nicht allen Fragen zur Verfügung steht
-      so wird bei den Fragen, welche die Option nicht akzeptieren dennoch gefragt.
+    + Es sind nun auch Klammern in Argumenten erlaubt :D
 
-    + UNGLAUBLICH WIP (im Ansatz funktionierendes :D) jake-compile es kann mit '-mk-use'
-      aktiviert werden.
+    + Mit 'debug-filter' lässt sich ein unter umständen verboser Debug Filtern
+      Natürlich betrifft dieser Filter lediglich die Ausgabe in der Befehlszeile
+      Dies wird von den Global-Konfig parsern allderings noch ignoriert um
+      Fehler wie zum Beispiel ein falsch geladener Filter abzufangen
 
-    + Die expands werden in dump auch angezeigt aber noch nicht global verwendet um das 
-      Makefile _komplett_ unabhängig zu machen!
+    + Jake-compile funktioniert nun grundlegend
 
-    + Argumente können nun Erweitert werden! Siehe: j_expandables.cpp :
-      ```
-        _ret["TEXFILE"] = settings["file"];
-        _ret["BASENAME"] = exec("printf \"$(basename " + settings["file"] + " .tex)\"");
-        _ret["PDFFILE"] = exec("printf \"$(basename " + settings["file"] + " .tex).pdf\"");
-        _ret["LATEXARGS"] = "-shell-escape -enable-write18 -interaction=batchmode";
-        _ret["OUTPUTDIR"] = exec("printf \"$(echo " + settings[S_LILLY_OUT] + "| sed 's:/*$$::')/\"");
-        _ret["INPUTDIR"] = exec("printf \"$(echo " + settings[S_LILLY_IN] + "| sed 's:/*$$::')/\"");
-        _ret["BOXMODES"] = settings[S_LILLY_BOXES];
-        _ret["CLEANTARGETS"] = settings[S_LILLY_CLEANS];
-        _ret["SIGNATURECOL"] = settings[S_LILLY_SIGNATURE_COLOR];
-        _ret["AUTHOR"] = settings[S_LILLY_AUTHOR];
-        _ret["AUTHORMAIL"] = settings[S_LILLY_AUTHORMAIL];
-        _ret["NAMEPREFIX"] = settings[S_LILLY_NAMEPREFIX];
-        _ret["SEMESTER"] = settings[S_LILLY_SEMESTER];
-        _ret["VORLESUNG"] = settings[S_LILLY_VORLESUNG];
-        _ret["N"] = settings[S_LILLY_N];
-        _ret["JOBCOUNT"] = settings["jobcount"];
-        _ret["_LILLYARGS"] = R"(\\providecommand{\\LILLYxDOCUMENTNAME{)" + settings["file"] + R"(}}\\providecommand{\\LILLYxOUTPUTDIR{)" + settings[S_LILLY_OUT] + R"(} \\providecommand{\\LILLYxPATH}{)" + settings[S_LILLY_IN]+  R"(}\\providecommand{\\AUTHOR}{)" + settings[S_LILLY_AUTHOR]+  R"(}\\providecommand{\\AUTHORMAIL}{)" + settings[S_LILLY_AUTHORMAIL]+  R"(}\\providecommand{\\LILLYxSemester}{)" + settings[S_LILLY_SEMESTER]+  R"(}\\providecommand{\\LILLYxVorlesung}{)" + settings[S_LILLY_VORLESUNG]+  R"(}\\providecommand{\\Hcolor}{)" + settings[S_LILLY_SIGNATURE_COLOR]+  R"(})" + ((settings[S_LILLY_BIBTEX]!="")?(R"(\\providecommand{\\LILLYxBIBTEX}{)" + settings[S_LILLY_BIBTEX] + R"(})"):"")
-                 + R"(\\providecommand{\\lillyPathLayout}{\\LILLYxPATHxDATA/Layouts)" + settings[S_LILLY_LAYOUT_LOADER] + "}" 
-                 + R"(\\providecommand{\\LILLYxEXTERNALIZE}{)" + ((settings[S_LILLY_EXTERNAL]=="true")?"TRUE":"FALSE") + "}";
-        _ret["_C"] = ",";
-        _ret["HOME"] = exec("printf \"${HOME}\"");
-        _ret["TRUE"] = "true";
-        _ret["FALSE"] = "false";
-        // Extras all marked with @
-        _ret["@JAKEVER"] = JAKE_VERSION;
-        _ret["@JAKECDATE"] = __DATE__;
-        _ret["@JAKECTIME"] = __TIME__;
-        _ret["@GITHUB"] = "https://github.com/EagleoutIce/LILLY";
-        _ret["@CONFPATH"] = exec("printf \"${LILLY_JAKE_CONFIG_PATH}\""); // maybe lazy eval with !!?
-        _ret["@WAFFLE"] = "GIVE ME THAT WAFFLE";
-        _ret["@SELTEXF"] = exec("printf \"$(ls | grep .tex | head -n 1)\"");
-        _ret["@SELCONF"] = exec("printf \"$(ls | grep .conf | head -n 1)\"");
-      ```
-
-
-    * Jake passt seine Installationsziele nun auch für Arch-Systeme an
 LILLY:
 
 ============================================================================================

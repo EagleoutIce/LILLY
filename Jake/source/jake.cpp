@@ -123,10 +123,11 @@
 
 int main(int argc, const char** argv) {
     program = argv[0];
+
 	if(argc < 2 || argv[1][0] != '_') {
+		std::cerr << "Log-Deskriptor: " << log_path << std::endl;
 		if(ld_config(argv[0]) == EXIT_FAILURE) // Lade Einstellungen
 			return EXIT_FAILURE;
-		w_debug("Refresh: Logpfad lautet: " + log_path,"STAT");
 	}
     if(!ld_settings(argc-1, argv)) 
         return in_settings(argv[0]);

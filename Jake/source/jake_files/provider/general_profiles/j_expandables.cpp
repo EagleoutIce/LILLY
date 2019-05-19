@@ -11,13 +11,13 @@ configuration_t get_default_expandables( void ) {
     configuration_t _ret;
     /* cSpell:disable */
         _ret["TEXFILE"] = settings["file"];
-        _ret["BASENAME"] = exec("printf \"$(basename " + settings["file"] + " .tex)\"");
-        _ret["PDFFILE"] = exec("printf \"$(basename " + settings["file"] + " .tex).pdf\"");
+        _ret["BASENAME"] = ("!!printf \"$(basename " + settings["file"] + " .tex)\"");
+        _ret["PDFFILE"] = ("!!printf \"$(basename " + settings["file"] + " .tex).pdf\"");
 
         _ret["LATEXARGS"] = "-shell-escape -enable-write18 -interaction=batchmode";
 
-        _ret["OUTPUTDIR"] = exec("printf \"$(echo " + settings[S_LILLY_OUT] + "| sed 's:/*$$::')/\"");
-        _ret["INPUTDIR"] = exec("printf \"$(echo " + settings[S_LILLY_IN] + "| sed 's:/*$$::')/\"");
+        _ret["OUTPUTDIR"] = ("!!printf \"$(echo " + settings[S_LILLY_OUT] + "| sed 's:/*$$::')/\"");
+        _ret["INPUTDIR"] = ("!!printf \"$(echo " + settings[S_LILLY_IN] + "| sed 's:/*$$::')/\"");
         
         _ret["BOXMODES"] = settings[S_LILLY_BOXES];
 
@@ -36,13 +36,13 @@ configuration_t get_default_expandables( void ) {
 
         _ret["JOBCOUNT"] = settings["jobcount"];
 
-        _ret["_LILLYARGS"] = R"(\\providecommand{\\LILLYxDOCUMENTNAME{)" + settings["file"] + R"(}}\\providecommand{\\LILLYxOUTPUTDIR{)" + settings[S_LILLY_OUT] + R"(} \\providecommand{\\LILLYxPATH}{)" + settings[S_LILLY_IN]+  R"(}\\providecommand{\\AUTHOR}{)" + settings[S_LILLY_AUTHOR]+  R"(}\\providecommand{\\AUTHORMAIL}{)" + settings[S_LILLY_AUTHORMAIL]+  R"(}\\providecommand{\\LILLYxSemester}{)" + settings[S_LILLY_SEMESTER]+  R"(}\\providecommand{\\LILLYxVorlesung}{)" + settings[S_LILLY_VORLESUNG]+  R"(}\\providecommand{\\Hcolor}{)" + settings[S_LILLY_SIGNATURE_COLOR]+  R"(})" + ((settings[S_LILLY_BIBTEX]!="")?(R"(\\providecommand{\\LILLYxBIBTEX}{)" + settings[S_LILLY_BIBTEX] + R"(})"):"")
+        _ret["_LILLYARGS"] = R"(\\providecommand{\\LILLYxDOCUMENTNAME{)" + settings["file"] + R"(}}\\providecommand{\\LILLYxOUTPUTDIR}{)" + settings[S_LILLY_OUT] + R"(} \\providecommand{\\LILLYxPATH}{)" + settings[S_LILLY_IN]+  R"(}\\providecommand{\\AUTHOR}{)" + settings[S_LILLY_AUTHOR]+  R"(}\\providecommand{\\AUTHORMAIL}{)" + settings[S_LILLY_AUTHORMAIL]+  R"(}\\providecommand{\\LILLYxSemester}{)" + settings[S_LILLY_SEMESTER]+  R"(}\\providecommand{\\LILLYxVorlesung}{)" + settings[S_LILLY_VORLESUNG]+  R"(}\\providecommand{\\Hcolor}{)" + settings[S_LILLY_SIGNATURE_COLOR]+  R"(})" + ((settings[S_LILLY_BIBTEX]!="")?(R"(\\providecommand{\\LILLYxBIBTEX}{)" + settings[S_LILLY_BIBTEX] + R"(})"):"")
                  + R"(\\providecommand{\\lillyPathLayout}{\\LILLYxPATHxDATA/Layouts)" + settings[S_LILLY_LAYOUT_LOADER] + "}" 
                  + R"(\\providecommand{\\LILLYxEXTERNALIZE}{)" + ((settings[S_LILLY_EXTERNAL]=="true")?"TRUE":"FALSE") + "}";
 
         _ret["_C"] = ",";
 
-        _ret["HOME"] = exec("printf \"${HOME}\"");
+        _ret["HOME"] = ("!!printf \"$HOME\"");
 
         _ret["TRUE"] = "true";
         _ret["FALSE"] = "false";
@@ -52,12 +52,12 @@ configuration_t get_default_expandables( void ) {
         _ret["@JAKECDATE"] = __DATE__;
         _ret["@JAKECTIME"] = __TIME__;
         _ret["@GITHUB"] = "https://github.com/EagleoutIce/LILLY";
-        _ret["@CONFPATH"] = exec("printf \"${LILLY_JAKE_CONFIG_PATH}\""); // maybe lazy eval with !!?
+        _ret["@CONFPATH"] = ("!!printf \"${LILLY_JAKE_CONFIG_PATH}\""); // maybe lazy eval with !!?
 
         _ret["@WAFFLE"] = "GIVE ME THAT WAFFLE";
 
-        _ret["@SELTEXF"] = exec("printf \"$(ls | grep .tex | head -n 1)\"");
-        _ret["@SELCONF"] = exec("printf \"$(ls | grep .conf | head -n 1)\"");
+        _ret["@SELTEXF"] = ("!!printf \"$(ls | grep .tex | head -n 1)\"");
+        _ret["@SELCONF"] = ("!!printf \"$(ls | grep .conf | head -n 1)\"");
 
     /* cSpell:enable */
     return _ret;
@@ -114,19 +114,35 @@ status_t expand_Config( configuration_t& config ) {
     return EXIT_SUCCESS;
 }
 
+int rec_exp_calls=0;
+
 std::string expand(configuration_t& expandables, std::string str) {
+    if(rec_exp_calls > MAX_SETTINGS_REC) {
+        throw std::runtime_error("Maximale Expansionstiefe für Expandables erreicht! Der Request: \"" + str + "\" führt zu einer zu tiefen Rekursion! In der Erweiterung eines Expandables darf dieses selbst nicht verwendet werden!");
+    }
+    rec_exp_calls++;
     std::string last = ""; int counter = 0;
     do {
         last = str;
         configuration_t::iterator it = expandables.begin();
         std::regex x;
+        std::match_results<std::string::const_iterator> matches;
         while(it != expandables.end()){
             if(it->first[0]=='@')
                 x = std::regex(R"(@[\[])" + it->first.substr(1) + R"([\]])");
             else 
                 x = std::regex (R"(\$[\{\(])" + it->first + R"([\)\}])");
             
-            str = std::regex_replace(str,x,it->second);
+            // only eval if needed
+            if(std::regex_search(str,matches,x)){
+                hl2_debug("Expanding in: " + str + " /w"  + it->second,"expander");
+                if(it->second.length() > 1 && it->second.substr(0,2) == "!!"){ //lazy eval
+                    hl2_debug(" Which is lazy eval: " + exec(expand(expandables, it->second.substr(2))),"expander");
+                    str = std::regex_replace(str,x,exec(expand(expandables,it->second.substr(2))));
+                } else
+                    str = std::regex_replace(str,x,it->second);
+            }
+
             ++it;
         }
         counter++;
@@ -134,5 +150,6 @@ std::string expand(configuration_t& expandables, std::string str) {
     if(counter == 8) {
         std::cerr << "Recursive Expansion limit reached" << std::endl;
     }
+    rec_exp_calls=0;
     return str;
 }
