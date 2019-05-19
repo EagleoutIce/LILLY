@@ -5,13 +5,10 @@ status_t ins_macOS( void ) {
     std::cout << "  - Prüfe auf das Vorhandensein von pdflatex: "
               << er_decode(fb = system("which pdflatex > /dev/null"))
               << std::endl;
-    char c_inp = '\0';
     if(fb) {
         std::cout << "  Jake kann 'pdflatex' nicht finden, dies ist für die Arbeit mit Lilly zwanghaft notwendig!" << std::endl
-                  << "  Soll 'texlive-full' installiert werden?  [(y)es/(n)o]> ";
-        while(c_inp != 'y' && c_inp != 'n')
-            std::cin >> c_inp;
-        if(c_inp == 'y')
+                  << "  Soll 'texlive-full' installiert werden?";
+        if(get_answer() == 'y')
             std::cout << "Installiere (ungetestet) 'texlive-full' via _macports_ : " << er_decode(system("sudo port install texlive-full")) << std::endl;
         else
             std::cout << "  Jake installiert LILLY nun weiter, ohne 'pdflatex', da  du (n)o gewählt hast!" << std::endl;

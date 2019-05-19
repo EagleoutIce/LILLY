@@ -10,7 +10,7 @@
  *
  * @note diese Datei hat einen Bruder! - ./Debug/eagle_preprocess_debug.hpp
  *
- * Hier werden die veschiedenen DEBUG-Level zur Laufzeit aufgelistet
+ * Hier werden die verschiedenen DEBUG-Level zur Laufzeit aufgelistet
  * Es sind 3 Stufen unterstützt die bei Bedarf beliebig erweitert werden
  * können.
  * j_Debug beruft sich auf den j_color_debug FarbStandard
@@ -45,8 +45,8 @@
 
 PREP_DEB_FULL_MSG("Eingebunden - DATEI: j_Debug.hpp");
 
-#define LOG_LEN  100
-#define MSG_LEN  70
+#define LOG_LEN  160
+#define MSG_LEN  100
 #define PAT_LEN  40
 
 /**
@@ -104,7 +104,7 @@ status_t _w_debug(const std::string& what,
                         const std::string& file,
                          const std::string& line,
                         const std::string& signature = "INF",
-                        const std::string& bgcode = "",
+                        const std::string& bgcode = DEBUG_DEFAULT_BACKGROUND,
                         const std::string& fgcode = DEBUG_FG_CYAN,
                         const std::string& prenote = ""
                        );
@@ -123,6 +123,8 @@ status_t _w_debug(const std::string& what,
 
 #define pass_debug(what, who) w_debug5(what, who, "UNT", DEBUG_COLOR_BG_RGB(210,255,210), DEBUG_COLOR_FG_RGB(000,000,000), "PASSED");
 
+
+#define hl_debug(what, who) w_debug4(what, who, "INF", DEBUG_FG_MAGENTA,"");
 
 /*
 #if JAKE_PREPROCESS_DEBUG >  0

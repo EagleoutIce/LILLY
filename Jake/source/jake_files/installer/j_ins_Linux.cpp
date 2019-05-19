@@ -1,9 +1,9 @@
 #include "j_ins_Linux.hpp"
 
 void li_show_error( void ){
-    std::cerr<< " Bitte gib explizit einene anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
+    std::cerr<< " Bitte gib explizit einen anderen Pfad an! Hierzu stellt sich folgendes Muster zur Verfügung: " << std::endl
     << "    $ " << program << " -lilly-path=\"/pfad/zum/kuchen\" install" << std::endl
-    << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angegben werden!" << COL_RESET << std::endl;
+    << "Hierbei muss '/Lilly.cls' nichtmehr im Pfad angeben werden!" << COL_RESET << std::endl;
     std::cerr << "Hier eine Liste an möglichen Pfaden an denen eine 'Lilly.cls' gefunden wurde: " << std::endl;
     system("locate -e -q -l 5 'Lilly.cls'");
 }
@@ -16,19 +16,15 @@ status_t ins_linux( void ) {
     std::cout << "  - Prüfe auf das Vorhandensein von pdflatex: "
               << er_decode(fb = system("which pdflatex > /dev/null"))
               << std::endl;
-    char c_inp = '\0';
 
     if(fb) {
         w_debug4("er_decode(fb = system(\"which pdflatex > /dev/null\")) != 0 => Frage nach Installation", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
         std::cout << "  Jake kann 'pdflatex' nicht finden, dies ist für die Arbeit mit Lilly zwanghaft notwendig!" << std::endl
-                  << "  Soll 'texlive-full' installiert werden?  [(y)es/(n)o]> ";
-        while(c_inp != 'y' && c_inp != 'n'){
-            w_debug4(std::string("Antwort im Buffer: ") + c_inp, "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
-            std::cin >> c_inp;
-        }
-        if(c_inp == 'y'){
-            w_debug4("Installation scheint erwünscht! Installiere mit 'system(\"sudo apt install texlive-full\")'", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
-            std::cout << "Installiere 'texlive-full' via _apt_ : " << er_decode(system("sudo apt install texlive-full")) << std::endl;
+                  << "  Soll 'texlive-full' installiert werden?";
+
+        if(get_answer() == 'y'){
+            w_debug4("Installation scheint erwünscht!", "inst","INF","", DEBUG_8BIT_FOREGROUND(33));
+            std::cout << "Installiere 'texlive-full' via install() : " << std::endl << er_decode(install("texlive-most mlocate texlive-lang texlive-langextra biber","texlive-full")) << std::endl;
         }else
             std::cout << "  Jake installiert LILLY nun weiter, ohne 'pdflatex', da  du (n)o gewählt hast!" << std::endl;
     }
@@ -39,22 +35,21 @@ status_t ins_linux( void ) {
               << er_decode(system(("mkdir -p " + settings["install-path"] + "/tex/latex").c_str()))
               << std::endl;
 
-    c_inp='\0';
 
     // Expand path:
     if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
         std::cerr << COL_ERROR << "Die Lilly.cls konnte unter dem eingestellten Pfad: \""
                 << exec("echo -n " + settings[S_LILLY_PATH]) << "\" nicht gefunden werden. "
-                << "Soll die Datenbank aktualisiert werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
-        while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
-        if(c_inp == 'y') std::cout << "Aktualisiere die Datenbank 'sudo updatedb': " << er_decode(system("sudo updatedb")) << std::endl;
-        c_inp='\0';
+                << "Soll die Datenbank aktualisiert werden? Dies kann etwas dauern!" << std::endl;
+
+        if(get_answer() == 'y') std::cout << "Aktualisiere die Datenbank 'sudo updatedb': " << er_decode(system("sudo updatedb")) << std::endl;
+
         if (!check_file(exec("echo -n " + settings[S_LILLY_PATH])+"/Lilly.cls")) {
 
           std::cerr << COL_ERROR << "Die Lilly.cls konnte nun wieder nicht gefunden werden :/ "
-          << "Soll eine ausführliche Suche gestartet werden? Dies kann etwas dauern!" << std::endl << "[(y)es/(n)o]> ";
-          while(c_inp != 'y' && c_inp != 'n') std::cin >> c_inp;
-          if(c_inp == 'y') {
+          << "Soll eine ausführliche Suche gestartet werden? Dies kann etwas dauern!" << std::endl;
+
+          if(get_answer() == 'y') {
               std::string path;
               std::cout << "Suche Lilly.cls: " << (path = exec("echo -n $(dirname $(find \"${HOME}\" / -name Lilly.cls 2>/dev/null))")) << std::endl;
               if(check_file(path + "/Lilly.cls")){
@@ -68,7 +63,6 @@ status_t ins_linux( void ) {
                   return EXIT_FAILURE;
               }
           }
-
     }
 
     //check for MiKTeX

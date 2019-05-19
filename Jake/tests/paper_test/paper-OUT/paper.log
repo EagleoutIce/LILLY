@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.5.1)  11 MAY 2019 18:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.5.1)  19 MAY 2019 02:00
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -7,10 +7,10 @@ paper-OUT/paper.pdf} \providecommand\LILLYxMODE{default}\providecommand\LILLYxM
 ODExEXTRA{FALSE} \providecommand{\LILLYxDOCUMENTNAME{paper.tex}}\providecommand
 {\LILLYxOUTPUTDIR{./paper-OUT/}} \providecommand{\LILLYxPATH}{./}\providecomman
 d{\AUTHOR}{Florian Sihler}\providecommand{\AUTHORMAIL}{florian.sihler@web.de}\p
-rovidecommand{\LILLYxSemester}{1}\providecommand{\LILLYxVorlesung}{LAII}\provid
+rovidecommand{\LILLYxSemester}{0}\providecommand{\LILLYxVorlesung}{NONE}\provid
 ecommand{\Hcolor}{Leaf}\providecommand{\LILLYxBIBTEX}{books.bib}\providecommand
-{\lillyPathLayout}{{\LILLYxDOCPATH}/}\providecommand{\LILLYxEXTERNALIZE}{FALSE}
- \input{./paper.tex}
+{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}\providecommand{\LILLYxEXTERNALIZE}
+{FALSE} \input{./paper.tex}
 (./paper.tex
 
 LaTeX Warning: File `books.bib' already exists on the system.
@@ -64,8 +64,8 @@ Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 ))))
-Class Lilly Info: Nutze keine Jake-Unterstuetzung on input line 26.
-Class Lilly Info: Nutze Paper Layout on input line 32.
+Class Lilly Info: Nutze keine Jake-Unterstuetzung on input line 28.
+Class Lilly Info: Nutze Paper Layout on input line 34.
 ) (/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2018/12/12 v1.0d Color table columns (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
@@ -761,7 +761,7 @@ Class scrartcl Info: Redefining `\numberline' on input line 5957.
 \bibindent=\dimen163
 )
 Class Lilly Info: LILLYxDemandPackage: Paket zum Einstellen das Seitenlayouts  
-on input line 94.
+on input line 96.
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2018/04/16 v5.8 Page Geometry
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
@@ -786,7 +786,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@dimlist=\toks31
 )
 Class Lilly Info: LILLYxDemandPackage: Dieses Paket brauchen wir f\IeC {\"u}r S
-prachen, weil sie toll sind  on input line 101.
+prachen, weil sie toll sind  on input line 103.
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2018/11/13 3.27 The Babel package
 (/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
@@ -812,7 +812,7 @@ aphy)
 Package babel Info: Making " an active character on input line 121.
 )))
 Class Lilly Info: LILLYxDemandPackage: Niemand w\IeC {\"u}rde es wagen, das glo
-rreiche tabularx-Paket zu ersetzen!  on input line 118.
+rreiche tabularx-Paket zu ersetzen!  on input line 120.
 (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2016/02/03 v2.11b `tabularx' package (DPC)
 \TX@col@width=\dimen173
@@ -824,7 +824,7 @@ Package: tabularx 2016/02/03 v2.11b `tabularx' package (DPC)
 \TX@ftn=\toks32
 )
 Class Lilly Info: LILLYxLoadPackage: Abstand Wapstand Lapstnd  on input line 12
-3.
+5.
 (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 ) (/usr/share/texlive/texmf-dist/tex/latex/ltablex/ltablex.sty
@@ -853,7 +853,7 @@ Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 )
 \LILLYxNegativeSkip=\skip90
 Class Lilly Info: LILLYxLoadPackage: Damit Eingaben auch brav codiert werden :D
-  on input line 141.
+  on input line 143.
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks34
@@ -871,7 +871,7 @@ File: uni-global.def 2013/05/13 UCS: Unicode global data
 \uc@temptokena=\toks38
 )
 Class Lilly Info: LILLYxLoadPackage: Damit Schriften auch brav codiert werden :
-D  on input line 149.
+D  on input line 151.
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
@@ -879,7 +879,7 @@ File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
 Class Lilly Info: LILLYxLoadPackage: Damit auch wirklich Deutsch gesprochen wir
-d, ist zur Sicherheit da, redundant da babel!  on input line 157.
+d, ist zur Sicherheit da, redundant da babel!  on input line 159.
 (/usr/share/texlive/texmf-dist/tex/generic/german/ngerman.sty v2.5e 1998-07-08
 Package: ngerman 1998/07/08 v2.5e Support for writing german texts (br)
 \grmnU@D=\dimen179
@@ -892,7 +892,7 @@ LaTeX Info: Redefining \frq on input line 304.
 ngerman -- \language number for naustrian undefined, default 64 used.
 )
 Class Lilly Info: LILLYxLoadPackage: Da die normale Computer Modern in PDFs pix
-elig wirkt: nimm Latin Modern  on input line 164.
+elig wirkt: nimm Latin Modern  on input line 166.
 (/usr/share/texmf/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -1007,11 +1007,13 @@ Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
 Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+) (/usr/share/texlive/texmf-dist/tex/latex/initials/Konanur.fd
+File: Konanur.fd 2003/04/02 Font definition file for U/Konanur
 ) (/usr/share/texlive/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 )
 Class Lilly Info: LILLYxDemandPackage: Da wir auch was von der tollen Latex3-Zu
-kunft abhaben moegen :D  on input line 174.
+kunft abhaben moegen :D  on input line 185.
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2019-02-15 L3 programming layer (loader) 
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
@@ -1168,7 +1170,7 @@ File: l3pdfmode.def 2019-02-15 v L3 Experimental driver: PDF mode
 \l__driver_color_stack_int=\count319
 ))
 Class Lilly Info: LILLYxDemandPackage: Damit es auch toll und einfach geht mehr
-ere optionale Argumente zu verwalten!  on input line 179.
+ere optionale Argumente zu verwalten!  on input line 190.
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2018-10-17 L3 Experimental document command parser
 \l__xparse_current_arg_int=\count320
@@ -1217,7 +1219,7 @@ Package: enumitem 2019/02/04 v3.8 Customized lists
 \enitdp@ditemize=\count327
 ) (/home/the-limerent/texmf/tex/latex/Lilly/source/Helper/_LILLY_SHORTCUTS.tex)
 Class Lilly Info: LILLYxLoadPackage: Um Figuren und Tabellen angenehmer einzube
-tten  on input line 199.
+tten  on input line 210.
 (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen269
 \WF@size=\dimen270
@@ -1245,7 +1247,7 @@ Class scrartcl Warning: Usage of package `tocloft' together
 (scrartcl)              `part', `chapter', `section', `subsection',
 (scrartcl)              `subsubsection', `paragraph' and `subparagraph'.
 (scrartcl)              Nevertheless, using requested
-(scrartcl)              package `tocloft' on input line 206.
+(scrartcl)              package `tocloft' on input line 217.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
@@ -1292,7 +1294,7 @@ Package: multirow 2019/01/01 v2.4 Span multiple rows of a table
 )
 Class Lilly Info: LILLYxLoadPackage: f\begingroup \let \relax \relax \endgroup 
 [Pleaseinsert\PrerenderUnicode{ü}intopreamble]r noch tollerererererere Tabelle
-n  on input line 211.
+n  on input line 222.
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \heavyrulewidth=\dimen272
@@ -1742,8 +1744,10 @@ E_latex.tex)
 (/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_STYL
 E_gepard.tex)
 (/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
-_Cpp.tex))) (/home/the-limerent/texmf/tex/latex/Lilly/source/Helper/_LILLY_SWIT
-CH_CASE.tex)
+_Cpp.tex)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_Python.tex))) (/home/the-limerent/texmf/tex/latex/Lilly/source/Helper/_LILLY_S
+WITCH_CASE.tex)
 (/home/the-limerent/texmf/tex/latex/Lilly/source/Controllers/_LILLY_MODE_CONTRO
 LLER.tex
 
@@ -1869,8 +1873,6 @@ Package hyperref Warning: Option `bookmarks' has already been used,
 )
 (/home/the-limerent/texmf/tex/latex/Lilly/source/Controllers/Intro/_LILLY_INTRO
 _CONTROLLER.tex
-(/home/the-limerent/texmf/tex/latex/Lilly/source/Data/Semester/1/Definitions/GE
-NERAL.tex)
 Class Lilly Info: Bibtex wird verwendet! on input line 26.
 (/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 302.
@@ -1958,10 +1960,6 @@ LaTeX Info: Redefining \datengerman on input line 86.
 \dt@a=\toks53
 \dt@b=\toks54
 )
-Class Lilly Info: Lilly hat die Nutzerdatei: {{/home/the-limerent/Uni/Studium/L
-ILLY/Jake/tests/paper_test}/}/_LILLY_LAYOUT_PAPER ignoriert, weil nicht gefunde
-n on input line 107.
-
 (/home/the-limerent/texmf/tex/latex/Lilly/source/Data/Layouts/_LILLY_LAYOUT_PAP
 ER.tex (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlayer-scrpage.st
 y
@@ -2400,8 +2398,8 @@ e
 * \headsep=14.25pt
 * \topskip=8.0pt
 * \footskip=33.25pt
-* \marginparwidth=24.89616pt
-* \marginparsep=12.8401pt
+* \marginparwidth=51.00073pt
+* \marginparsep=8.53581pt
 * \columnsep=10.0pt
 * \skip\footins=7.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
@@ -2416,8 +2414,8 @@ e
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
-Package pgfplots notification 'compat/show suggested version=true': you might b
-enefit from \pgfplotsset{compat=1.16} (current compat level: 1.8).
+Package pgfplots notification 'compat/show suggested version=true': document ha
+s been generated with the most recent feature set (\pgfplotsset{compat=1.16}).
 
 \c@lstlisting=\count475
 Package caption Info: Begin \AtBeginDocument code.
@@ -2533,13 +2531,13 @@ Package rerunfilecheck Info: File `./paper-OUT/paper.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 53.
  ) 
 Here is how much of TeX's memory you used:
- 72311 strings out of 492615
- 1640728 string characters out of 6131391
- 2470543 words of memory out of 5000000
- 74846 multiletter control sequences out of 15000+600000
+ 72332 strings out of 492615
+ 1641005 string characters out of 6131391
+ 2471744 words of memory out of 5000000
+ 74864 multiletter control sequences out of 15000+600000
  577904 words of font info for 64 fonts, out of 8000000 for 9000
- 1180 hyphenation exceptions out of 8191
- 75i,19n,108p,9726b,1117s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 1182 hyphenation exceptions out of 8191
+ 89i,19n,138p,9733b,1117s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/tex-gyre/q-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/
 share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/publi
@@ -2548,7 +2546,7 @@ e/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/
 lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmro8.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmtt8.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qz
 cmi.pfb>
-Output written on ./paper-OUT/paper.pdf (2 pages, 211367 bytes).
+Output written on ./paper-OUT/paper.pdf (2 pages, 211544 bytes).
 PDF statistics:
  136 PDF objects out of 1000 (max. 8388607)
  98 compressed objects within 1 object stream

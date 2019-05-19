@@ -25,17 +25,21 @@
 #include "../provider/j_Tokenizer.hpp"
 #include "../provider/j_Configurator.hpp"
 
+#include "../j_Helper.hpp"
+
 #include "../provider/box_profiles/j_buildrules.hpp"
 #include "../provider/general_profiles/j_hooks.hpp" // implement rules for create buildrule and LILLYxCompile to attach hook
 #include "../provider/general_profiles/j_nmaps.hpp"
 
-#include "../j_Helper.hpp"
 
 #include "../installer/j_ins_Linux.hpp"
 #include "../installer/j_ins_MacOS.hpp"
 
 #include "j_Autocomplete.hpp"
 #include "j_Parser.hpp"
+
+#include "../c_lilly/c_Jake.hpp"
+#include "../c_lilly/c_Makefile.hpp"
 
 /**
  * @brief Gibt Hilfe zur Verwendung von lilly_jake

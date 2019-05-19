@@ -71,10 +71,29 @@ status_t writeHooks(std::ostream& out, configuration_t rules, const std::string&
             const std::string _rnam = it->first.substr(it->first.find(":")+1);
             if (_rtag == tag){
                 w_debug4("Platziere die " + _rtag + "-Hook: \""  + _rnam + "\" mit Body: \"" + it->second + "\" im Makefile!", "hooker","INF","", DEBUG_8BIT_FOREGROUND(33));
-                out << "    echo \"Lilly " + _rtag + "-Hook[" << _rnam << "] evaluiert zu: $(shell " << it->second << ")\" && \\" << std::endl;
+                out << "    echo \"Lilly " << _rtag << "-Hook[" << _rnam << "] evaluiert zu: $(shell " << it->second << ")\" && \\" << std::endl;
             } else if (_rtag == "ALL") {
                 w_debug4("Platziere die " + _rtag + "-Hook als " + tag + ": \""  + _rnam + "\" mit Body: \"" + it->second + "\" im Makefile!", "hooker","INF","", DEBUG_8BIT_FOREGROUND(33));
-                out << "    echo \"Lilly " + _rtag + "-Hook[" << _rnam << "] für " + tag + " evaluiert zu: $(shell " << it->second << ")\" && \\" << std::endl;
+                out << "    echo \"Lilly " << _rtag << "-Hook[" << _rnam << "] für " + tag + " evaluiert zu: $(shell " << it->second << ")\" && \\" << std::endl;
+            }
+        }
+        ++it;
+    }
+    return EXIT_SUCCESS;
+}
+
+status_t executeHooks( configuration_t rules, const std::string& tag) {
+    configuration_t::iterator it = rules.begin();
+    while(it != rules.end()){
+        if(it->first.find(":") != std::string::npos) {
+            const std::string _rtag = it->first.substr(0,it->first.find(":"));
+            const std::string _rnam = it->first.substr(it->first.find(":")+1);
+            if (_rtag == tag){
+                w_debug4("Führe die " + _rtag + "-Hook: \""  + _rnam + "\" mit Body: \"" + it->second + "\" aus!", "hooker","INF","", DEBUG_8BIT_FOREGROUND(33));
+                w_debug("Execute: " + er_decode(system(("echo \"Lilly " + _rtag + "-Hook[" + _rnam + "] evaluiert zu: $( " + it->second + " )\"").c_str())),"hooker");
+            } else if (_rtag == "ALL") {
+                w_debug4("Führe die " + _rtag + "-Hook als " + tag + ": \""  + _rnam + "\" mit Body: \"" + it->second + "\" aus!", "hooker","INF","", DEBUG_8BIT_FOREGROUND(33));
+                w_debug("Execute: " + er_decode(system(("echo \"Lilly " + _rtag + "-Hook[" + _rnam + "] für " + tag + " evaluiert zu: $(" + it->second + ")\"").c_str())),"hooker");
             }
         }
         ++it;

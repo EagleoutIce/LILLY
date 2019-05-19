@@ -41,20 +41,31 @@
 /// @brief convenience-wrapper
 #define TO_DATA(x) x
 
-/// @brief Maximum successiver Einstellungsaufrufe
+/// @brief Maximum sukzessiver Einstellungsaufrufe
 #define MAX_SETTINGS_REC 5
 
 /// @brief geschätzte Größe eines Blocks
 #define EXPECTED_BLOCKSIZE 75
 
 
-/// @brief Name für Konfigurationsboxen für Buildregeln des Makefiles
+/// @brief Name für Konfigurationsboxen für Buildregeln (c_Makefile,c_Jake)
 #define NAME_BOXPROFILE_BUILDRULE "buildrule"
-/// @brief Name für Konfigurationsboxen für Hooks (Makefile)
+/// @brief Name für Konfigurationsboxen für Hooks (c_Makefile,c_Jake)
 #define NAME_HOOK_BUILDRULE "hook"
-/// @brief Name für Konfigurationsboxen für NMaps (Makefile)
+/// @brief Name für Konfigurationsboxen für NMaps (c_Makefile,c_Jake)
 #define NAME_NMAP_BUILDRULE "nmap"
+/// @brief Name für Konfigurationsboxen für NMaps (c_Makefile,c_Jake)
+#define NAME_EXPANDABLE_BUILDRULE "expandable"
 
+// FÜR LESBARE BOXMODE KODIERUNG
+/// @brief Name des Dokuments für die buildrule
+#define B_NAME 0
+/// @brief Extra Code für die Buildrule
+#define B_EXTRA 1
+/// @brief Input-Loader für die Buildrule
+#define B_INPUT 2
+/// @brief Text für die Buildrule
+#define B_TEXT 3
 
 // Setting Definitions: ======================================================================================
 
