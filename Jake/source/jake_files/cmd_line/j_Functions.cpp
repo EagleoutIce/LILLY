@@ -125,12 +125,12 @@ status_t fkt_update(const std::string& cmd) noexcept{
     std::cout << "Aktualisiere Lilly: " << std::endl;
     if(settings["path"] == "./") {
         std::cout << "Pfad soll nicht überschrieben werden, nutze alten (${LILLY_JAKE_CONFIG_PATH}=" << exec("printf ${LILLY_JAKE_CONFIG_PATH}") << ")" << std::endl;
-        w_debug("Aktualisiere: export tf=$(mktemp lilly.XXXXXXXXXX --tmpdir) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"${LILLY_JAKE_CONFIG_PATH}\" > ${tf} && lilly_jake install -debug >> ${tf}", "update");
-        std::cout << "Update: " << er_decode(system("export tf=$(mktemp lilly.XXXXXXXXXX --tmpdir) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"${LILLY_JAKE_CONFIG_PATH}\" > ${tf} && lilly_jake install -debug >> ${tf}")) << std::endl;
+        w_debug("Aktualisiere: export tf=$(mktemp) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"${LILLY_JAKE_CONFIG_PATH}\" > ${tf} && lilly_jake install -debug >> ${tf}", "update");
+        std::cout << "Update: " << er_decode(system("export tf=$(mktemp) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"${LILLY_JAKE_CONFIG_PATH}\" > ${tf} && lilly_jake install -debug >> ${tf}")) << std::endl;
     } else {
         std::cout << "Pfad soll überschrieben werden, nutze neuen (settings[\"path\"]=" << settings["path"] << ")" << std::endl;
-        w_debug("Aktualisiere: export tf=$(mktemp lilly.XXXXXXXXXX --tmpdir) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"settings[\"path\"]\" > ${tf} && lilly_jake install -debug >> ${tf}", "update");
-        std::cout << "Update: " << er_decode(system(("export tf=$(mktemp lilly.XXXXXXXXXX --tmpdir) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"" + settings["path"] + "\" > ${tf} && lilly_jake install -debug >> ${tf}").c_str())) << std::endl;
+        w_debug("Aktualisiere: export tf=$(mktemp) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"settings[\"path\"]\" > ${tf} && lilly_jake install -debug >> ${tf}", "update");
+        std::cout << "Update: " << er_decode(system(("export tf=$(mktemp) && echo \"Schreibe Update-Log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../ && git pull && cd Jake/source && make CONFIG=\"" + settings["path"] + "\" > ${tf} && lilly_jake install -debug >> ${tf}").c_str())) << std::endl;
     }
 #if defined(__linux__) 
     std::cout << "Soll eine Dokumentation generiert werden?" << std::endl;
@@ -149,8 +149,8 @@ status_t fkt_update(const std::string& cmd) noexcept{
                 return EXIT_FAILURE;
             }
         }
-        w_debug("Aktualisiere mit: export tf=$(mktemp lilly.XXXXXXXXXX --tmpdir) && echo \"Schreibe Dokumentations-log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../Jake/source && make documentation > ${tf} 2>&1","update");
-        std::cout << "Erstelle Dokumentation... " << er_decode(system("export tf=$(mktemp lilly.XXXXXXXXXX --tmpdir) && echo \"Schreibe Dokumentations-log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../Jake/source && make documentation > ${tf} 2>&1")) << std::endl;
+        w_debug("Aktualisiere mit: export tf=$(mktemp) && echo \"Schreibe Dokumentations-log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../Jake/source && make documentation > ${tf} 2>&1","update");
+        std::cout << "Erstelle Dokumentation... " << er_decode(system("export tf=$(mktemp) && echo \"Schreibe Dokumentations-log in: ${tf}\" && cd $(dirname $(which lilly_jake))/../../Jake/source && make documentation > ${tf} 2>&1")) << std::endl;
     } else {
         std::cout << "Fertig!" << std::endl;
     }
