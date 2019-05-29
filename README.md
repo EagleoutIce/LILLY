@@ -9,6 +9,9 @@ Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm betrieben,
 Wenn du mitarbeiten möchtest ist das super, melde dich einfach bei mir! Allgemein gilt zu beachten: 
 Dieses Repository akzeptiert nur signed Commits: https://help.github.com/en/articles/signing-commits
 
+Ein exemplarischer Wiki-Eintrag um die Frage "How to create a wiki?" zu beantworten, befindet sich hier:
+https://github.com/EagleoutIce/LILLY/wiki/Eine-Vorlesung-erstellen
+
 Wenn dir beim Schreiben ein To-Do einfällt, so markiere es einfach entsprechend mit `TODO` oder `@todo` im Code :D
 
 Die sich bisher in Arbeit befindende [Dokumentation](Dokumentation/LIMERENCE-Lilly-Dokumentation.doc.pdf) sollte noch mit

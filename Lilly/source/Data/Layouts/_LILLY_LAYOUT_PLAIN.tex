@@ -11,6 +11,8 @@
 % lines above and below, number right
 \renewcommand{\chaptermark}[1]{\markboth{\rmdefault #1}{\faBookmark}} %%Chaptermark fix inject
 
+\LILLYcommand{\leftmark}{} %% fix no chapter bug
+\LILLYcommand{\rightmark}{}
 
 \titleformat{\chapter}[display]%             
         {\relax}
@@ -50,16 +52,7 @@
 \makeatletter
 \renewcommand\sectionlinesformat[4]{%
 \phantomsection%%
-\protect\if@twoside%%% e.g. LILLYxMODEXPRINT
-\protect\ifodd\c@page%% oddpage -> rSide
-{#4\hfill\makebox[0pt][l]{\smaller\hspace{.75\marginparsep}#3}}%
-\else%
-{\makebox[0pt][r]{\smaller#3\hspace{\marginparsep}}#4}%
-\fi%
-\else %% is oneside
-{\makebox[0pt][r]{\textcolor{\LILLYxTITLExCOLOR}{#3}\hspace{\marginparsep}}#4}%
-\fi%
-}
+#4}
 
 \renewcommand{\@seccntformat}[1]{\textcolor{\LILLYxTITLExCOLOR}{\csname the#1\endcsname}}
 
@@ -70,7 +63,7 @@
 \renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
 {-3ex \@plus -0.1ex \@minus -.4ex}
 {0.5ex \@plus.2ex }
-{\normalfont\Large\sffamily\bfseries}}
+{\normalfont\normalsize\sffamily\bfseries}}
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -0.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }

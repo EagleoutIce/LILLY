@@ -96,11 +96,13 @@ status_t c_makefile(const std::string& cmd) {
 
     buf_makefile << R"(    touch $(OUTPUTDIR)LILLY_COMPILE.log && echo LILLY_LOGFILE stamp: $(shell date +'%d.%m.%Y %H:%M:%S') > $(OUTPUTDIR)LILLY_COMPILE.log 2>&1 &&\)"                   << std::endl
                  << "    (for bm in $(BOXMODES); do echo $${bm} > /tmp/lillytmp.bib.p && \\" << std::endl;
-    if(settings[S_LILLY_EXTERNAL]=="true")
-        if(settings[S_LILLY_SHOW_BOX_NAME]=="true")
+    if(settings[S_LILLY_EXTERNAL]=="true") {
+        if(settings[S_LILLY_SHOW_BOX_NAME]=="true") {
         buf_makefile << "       ([ -r $(basename ${1}$${bm}-${2}).tex ] || echo \\\\providecommand{\\\\LILLYxBOXxMODE}{$${bm}}\\\\providecommand{\\\\LILLYxPDFNAME}{${1}$${bm}-${2}}  ${3} $(_LILLYARGS) ${4} > $(basename ${1}$${bm}-${2}).tex) \\" << std::endl;
-        else 
+        } else {  
         buf_makefile << "       ([ -r $(basename ${1}${2}).tex ] || echo \\\\providecommand{\\\\LILLYxBOXxMODE}{$${bm}}\\\\providecommand{\\\\LILLYxPDFNAME}{${1}${2}}  ${3} $(_LILLYARGS) ${4} > $(basename ${1}${2}).tex) \\" << std::endl;
+        }
+    }
     for(int i = 0; i < std::stoi(settings[S_LILLY_COMPILETIMES]); i++) {
         writeHooks(buf_makefile, all_hooks, "IN" + std::to_string(i));
         buf_makefile << "       pdflatex -jobname $(basename ${1}" << ((settings[S_LILLY_SHOW_BOX_NAME]=="true")?("$${bm}-"):"")

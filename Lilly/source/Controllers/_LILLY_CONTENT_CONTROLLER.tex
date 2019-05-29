@@ -8,9 +8,9 @@
 %% GET PATH OF LILLY
 \ifx\LILLYxCMD\undefined
 \newread\res
-\immediate\write18{printf "$(dirname "$(kpsewhich --progname=pdflatex Lilly.cls)")"> xres.txt}
+\immediate\write18{printf "$(dirname "$(kpsewhich --progname=pdflatex Lilly.cls)")"> \jobname.txt}
 \endlinechar=\m@ne
-\immediate\openin\res=xres.txt
+\immediate\openin\res=\jobname.txt
 \read\res to \LILLYxCLSPATH
 \endlinechar=13
 \closein\res
@@ -21,12 +21,12 @@
 %%% GET PATH OF DOC
 
 \ifx\LILLYxCMD\undefined
-\immediate\write18{printf "$(dirname "$(find "$(pwd)" -name "\LILLYxDOCUMENTNAME")")" > xres.txt}
+\immediate\write18{printf "$(dirname "$(find "$(pwd)" -name "\LILLYxDOCUMENTNAME")")" > \jobname.txt}
 \endlinechar=\m@ne
-\immediate\openin\res=xres.txt
+\immediate\openin\res=\jobname.txt
 \read\res to \LILLYxDOCPATH
 \endlinechar=13
-\immediate\write18{rm xres.txt}
+\immediate\write18{rm \jobname.txt}
 \closein\res
 \else
     \providecommand{\LILLYxDOCPATH}{./}
@@ -43,7 +43,7 @@
 %%%%%%% NICE HELPER
 
 
-%% WON'T ALLOW '_'  which is fine as they should'nt be used anyway
+%% WON'T ALLOW '_'  which is fine as they shouldn't be used anyway
 \providecommand{\dataInput}[1]{\InputIfFileExists{\LILLYxCLSPATH/source/Data/#1}{}{\ClassWarning{Lilly}{Die per \protect\dataInput\space angeforderte Datei #1 konnte nicht gefunden werden!}}}
 
 %%% Semesterzahl Path

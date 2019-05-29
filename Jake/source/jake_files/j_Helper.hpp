@@ -187,4 +187,12 @@ char get_answer(const std::string& prompt = "[(y)es/(n)o]> ", const std::string&
  */
 status_t generate_dummyfile(const std::string name);
 
+/**
+ * @brief liefert die erste Nummer in einer Zeichenkette zurück
+ *
+ * @param str die zu durchsuchende Zeichenkette
+ * 
+ * @returns die entsprechende Zahl
+ */
+std::string get_number(const std::string& str);
 #endif

@@ -82,6 +82,7 @@
 \RequirePackage{colortbl}
 \RequirePackage{\LILLYxPATHxDATA/Semester/1/EIDI/tikz-uml}
 
+
 %DEFAULT: \documentclass[a4paper,11pt,oneside]{scrbook}
 \LoadClass[\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,titlepage=firstiscover,\LILLYxDocumentxTYPExExtras,table,makeidx,\LILLYxPAPER]{\LILLYxDocumentxTYPE}
 
@@ -117,6 +118,12 @@
                     {NEIN NEIN NEIN OHNE MACHE ICH GARNICHTS - Aber, ich brauch doch gar kein tabularx %
                      - ABER ICH BIN EINE FLIESE.... ICH MEINE EIN DRUCKER... EINE BIENE... EIN STEIN? %
                      AUF JEDEN FALL GEHT DAS NICHT! AAAAAAAAARGH}
+                    {}{}
+
+
+\LILLYxLoadPackage{graphicx}{Für tolle Grafiken}
+                    {Dieses Paket ist für includegraphics von nöten!}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}} %% Sloppy includegraphics draft
                     {}{}
 
 \LILLYxLoadPackage{setspace}{Abstand Wapstand Lapstnd}
@@ -239,6 +246,8 @@
 \RequirePackage{multicol}
 
 \input{\LILLYxPATHxLISTINGS/_LILLY_LISTINGS_STYLE}
+
+\input{\LILLYxPATHxLISTINGS/CommandLine/_LILLY_LISTINGS_CMDLINE}
 
 %\ExplSyntaxOn
 %\DeclareCaptionFont{black}{ \color{black} }

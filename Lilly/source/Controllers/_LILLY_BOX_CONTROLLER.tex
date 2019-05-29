@@ -44,27 +44,27 @@
 
 
 %%Liste typ counter name lock
-\LILLYcommand{\LILLYxBOXESxaddListElement}[5][]{
-    \refstepcounter{#1}\phantomsection
+\LILLYcommand{\LILLYxBOXESxaddListElement}[5][]{%
+    \refstepcounter{#1}\phantomsection%
     \ifx#5\true%
         \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} #4}%
     \else% Da 1.12 mehr platz!
         \addcontentsline{#2}{#1}{\makebox[1cm][l]{#3} #4}%
-    \fi%
+    \fi\ignorespacesafterend%
 }
 %% Liste typ counter name pin lock
-\LILLYcommand{\LILLYxBOXESxaddListElementxAD}[6][]{
-    \refstepcounter{#1}\
+\LILLYcommand{\LILLYxBOXESxaddListElementxAD}[6][]{%
+    \refstepcounter{#1}%
     \ifx#6\true%
         \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} \makebox[1em][c]{#5}~#4}%
     \else% Da 1.12 mehr platz!
         \addcontentsline{#2}{#1}{\makebox[1cm][l]{#3} \makebox[1em][c]{#5}~#4}%
-    \fi%
+    \fi\ignorespacesafterend%
 }
 
 \LILLYcommand{\DEFINITIONS}[1]{%
-    \LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcb@cnt@LILLYxBOXxDefinition}{#1}{}{\LILLYxBOXxDefinitionxLock}
-    \refstepcounter{tcb@cnt@LILLYxBOXxDefinition}
+    \LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcb@cnt@LILLYxBOXxDefinition}{#1}{}{\LILLYxBOXxDefinitionxLock}%
+    \refstepcounter{tcb@cnt@LILLYxBOXxDefinition}%
     %%\relax %% TODO IMPLEMENT CONVENIENT INCREMEMT => MANUAL COUNTERS?
 }
 
