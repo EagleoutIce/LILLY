@@ -42,7 +42,7 @@
 #define TO_DATA(x) x
 
 /// @brief Maximum sukzessiver Einstellungsaufrufe
-#define MAX_SETTINGS_REC 5
+#define MAX_SETTINGS_REC 12
 
 /// @brief geschätzte Größe eines Blocks
 #define EXPECTED_BLOCKSIZE 75

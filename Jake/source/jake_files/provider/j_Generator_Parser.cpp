@@ -38,7 +38,7 @@ GeneratorParser::Box GeneratorParser::get_next_box(std::istream& inp, const std:
 
     std::string current_line;
 
-    const std::regex p_begin = std::regex(R"(^ *(BEGIN) *([\w-äöüßÄÖÜ]+))");
+    const std::regex p_begin = std::regex(R"(^ *(BEGIN) *([a-zA-Z-äöüßÄÖÜ]+))");
     const std::regex p_end   = std::regex(R"(^ *(END))");
 
     GeneratorParser::Box ret_box;

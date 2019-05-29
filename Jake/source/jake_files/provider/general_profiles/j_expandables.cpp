@@ -54,6 +54,8 @@ configuration_t get_default_expandables( void ) {
         _ret["@GITHUB"] = "https://github.com/EagleoutIce/LILLY";
         _ret["@CONFPATH"] = ("!!printf \"${LILLY_JAKE_CONFIG_PATH}\""); // maybe lazy eval with !!?
 
+        _ret["@AUTONUM"] = "Expans Special"; 
+
         _ret["@WAFFLE"] = "GIVE ME THAT WAFFLE";
 
         _ret["@SELTEXF"] = ("!!printf \"$(ls | grep .tex | head -n 1)\"");
@@ -136,10 +138,13 @@ std::string expand(configuration_t& expandables, std::string str) {
             // only eval if needed
             if(std::regex_search(str,matches,x)){
                 hl2_debug("Expanding in: " + str + " /w"  + it->second,"expander");
+                // expand autonum here
                 if(it->second.length() > 1 && it->second.substr(0,2) == "!!"){ //lazy eval
                     hl2_debug(" Which is lazy eval: " + exec(expand(expandables, it->second.substr(2))),"expander");
                     str = std::regex_replace(str,x,exec(expand(expandables,it->second.substr(2))));
-                } else
+                } else if (it->first=="@AUTONUM")
+                    str = get_number(expand(expandables,"$(TEXFILE)"));
+                else
                     str = std::regex_replace(str,x,it->second);
             }
 

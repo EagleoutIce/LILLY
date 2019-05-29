@@ -292,7 +292,7 @@
   \ifthenelse{\equal{\tikzumlPackageTypeTmp}{tikzumlEmpty}}{%
     \def\tikzumlPackageType{}%
   }{%
-    \expandafter\def\expandafter\tikzumlPackageType\expandafter{$\ll$\tikzumlPackageTypeTmp$\gg$ \\}%
+    \expandafter\def\expandafter\tikzumlPackageType\expandafter{\footnotesize$\ll$\tikzumlPackageTypeTmp$\gg$ \\}%
   }%
   %
   \ifnum\thetikzumlPackageLevel>0%
@@ -424,10 +424,10 @@
                                text/.get=\tikzumlClassTextColor, fill template/.get=\tikzumlClassTemplateFillColor%
   }%
   %
-  \ifthenelse{\equal{\tikzumlClassTypeTmp}{class}\OR\equal{\tikzumlClassTypeTmp}{abstract}}{%
+  \ifthenelse{\equal{\tikzumlClassTypeTmp}{class}}{%
     \def\tikzumlClassType{}%
   }{%
-    \expandafter\def\expandafter\tikzumlClassType\expandafter{$\ll$\tikzumlClassTypeTmp$\gg$ \\}%
+    \expandafter\def\expandafter\tikzumlClassType\expandafter{\footnotesize$\ll$\tikzumlClassTypeTmp$\gg$ \\}%
   }%
   %
   \ifthenelse{\equal{\tikzumlClassTagsTmp}{}}{%
@@ -456,11 +456,6 @@
   %
   \StrSubstitute{\tikzumlClassNodeName}{:}{@COLON@}[\tikzumlClassNodeName]%
   \StrSubstitute{\tikzumlClassNodeName}{\_}{@UNDERSCORE@}[\tikzumlClassNodeName]%
-  %
-  \ifthenelse{\equal{\tikzumlClassTypeTmp}{abstract}}{%
-    \let\tikzumlClassNameOld\tikzumlClassName%
-    \def\tikzumlClassName{{\it \tikzumlClassNameOld}}%
-  }{}%
   %
   \def\tikzumlClassPos{\tikzumlClassX,\tikzumlClassY}%
   \def\tikzumlClassAttributes{#3}%
@@ -2446,10 +2441,10 @@
                                     text/.get=\tikzumlAssocClassTextColor, fill template/.get=\tikzumlAssocClassTemplateFillColor%
   }%
   %
-  \ifthenelse{\equal{\tikzumlAssocClassTypeTmp}{class}\OR\equal{\tikzumlAssocClassTypeTmp}{abstract}}{%
+  \ifthenelse{\equal{\tikzumlAssocClassTypeTmp}{class}}{%
     \def\tikzumlAssocClassType{}%
   }{%
-    \def\tikzumlAssocClassType{$\ll$\tikzumlAssocClassTypeTmp$\gg$ \\}%
+    \def\tikzumlAssocClassType{\footnotesize$\ll$\tikzumlAssocClassTypeTmp$\gg$ \\}%
   }%
   %
   \ifthenelse{\equal{\tikzumlAssocClassTemplateParam}{}}{%
@@ -2477,11 +2472,6 @@
   %
   \StrSubstitute{\tikzumlAssocClassNodeName}{:}{@COLON@}[\tikzumlAssocClassNodeName]%
   \StrSubstitute{\tikzumlAssocClassNodeName}{\_}{@UNDERSCORE@}[\tikzumlAssocClassNodeName]%
-  %
-  \ifthenelse{\equal{\tikzumlAssocClassTypeTmp}{abstract}}{%
-    \let\tikzumlAssocClassNameOld\tikzumlAssocClassName%
-    \def\tikzumlAssocClassName{{\it \tikzumlAssocClassNameOld}}%
-  }{}%
   %
   \def\tikzumlAssocClassPos{\tikzumlAssocClassX,\tikzumlAssocClassY}%
   \def\tikzumlAssocClassAttributes{#4}%

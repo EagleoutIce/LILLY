@@ -77,7 +77,7 @@ return fb;
 
 #elif defined(__APPLE__) || defined(__MACH__)
     #warning currently the installation for macOS is unsafe and work in progress
-    return system("sudo brew install " + install_str+ " 2>/dev/null");
+    return system(("brew install " + install_str+ " 2>/dev/null").c_str());
 #else 
     #warning unsupported install architecture
     w_debug("Keine Installation, Betriebssystem nicht Unterstützt","p-inst");
@@ -110,4 +110,12 @@ status_t generate_dummyfile(const std::string name) {
                 << R"(\end{document})" << std::endl;
     out_texfile.close();
     return EXIT_SUCCESS;
+}
+
+std::string get_number(const std::string& str) {
+    std::match_results<std::string::const_iterator> matches;
+    if(std::regex_search(str, matches, std::regex("[0-9]+"))){
+        return matches[0];
+    }
+    return "42";
 }
