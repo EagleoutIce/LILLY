@@ -1,0 +1,42 @@
+\RequirePackage[yyyymmdd,hhmmss]{datetime}
+\RequirePackage[automark,headsepline]{scrlayer-scrpage}         %Header konfigurieren
+\RequirePackage{caption}
+\RequirePackage{lastpage}                                       %Letzte Seite erhalten
+
+
+\LILLYcommand{\TUTORBOX}{ %Tutorboxen für Blätter die analog abgegeben werden sollen => !Wird automatisch eingebunden. Siehe weiter unten. Komfort! Yay
+    \begin{centered}
+    \noindent\fbox{
+        \begin{minipage}{\dimexpr0.8\textwidth-2\fboxsep-2\fboxrule\relax}
+            \vspace{0.1cm}
+        \begin{centered}
+            \textbf{Tutor}: \\ 
+            \large{\TUTOR}
+        \end{centered}
+        \vspace{0.1cm}
+        \end{minipage}
+    }
+    \end{centered}
+    \vspace{0.5cm}
+}
+
+\LILLYcommand{\LILLYxLayoutxClear}{ %
+    \pagestyle{empty} %KOMA-FTW!
+    \pagenumbering{gobble}
+}
+
+\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+    \pagenumbering{arabic}
+    \pagestyle{scrheadings} %KOMA-FTW!
+    \lohead{\parbox[b][\headheight][b]{0.4\textwidth}{\AUTHOR}}
+    \cohead{\parbox[b][\headheight][b]{0.5\textwidth}{\centering\tiny{\UEBUNGSHEADER}}}
+    \rohead{\parbox[b][\headheight][b]{0.3\textwidth}{\raggedleft \heute}} \cofoot{}
+    \rofoot{\thepage/\pageref{LastPage}}
+    \ifx\LILLYxUBxSHOWTUTOR\true
+        \TUTORBOX
+    \fi
+}
+
+\AtBeginDocument{
+    \LILLYxLayoutxRestore
+}

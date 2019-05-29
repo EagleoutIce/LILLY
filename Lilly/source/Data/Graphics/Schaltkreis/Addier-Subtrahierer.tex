@@ -1,0 +1,24 @@
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{
+\begin{tikzternal}
+    \draw[fill=LightGray!50!white] (-1,0) rectangle ++(-8.5,1) node[midway,centered] {Addierwerk};
+    \foreach \x/\ii in {-3/0,-5/1,-7/2,-9/3} {
+        \draw (\x,1)        -- ++(0,1.5)   node[above] {$a_{\ii}$}
+                (\x+0.5,1.95) -- ++(0,0.55)  node[above] {$b_{\ii}$}
+                (\x+1.1,1.95) -- ++(0,0.25); 
+        
+        \draw[rounded corners=5pt, fill=LightGray!25!white] 
+                (\x+0.3,1.4) rectangle ++(1,0.55)
+                node[midway, centered] {$\bigoplus$};
+        \draw (\x+0.8,1.4) -- ++(0,-0.4);
+        \draw[-latex] (\x+0.4,0) -- ++(0,-0.5) node[below] {$s_\ii$};
+    }
+    \bigRing{(-3+1.1,1.95+0.25)};
+    \bigRing{(-5+1.1,1.95+0.25)};
+    \bigRing{(-7+1.1,1.95+0.25)};
+
+    \draw (-9+1.1,1.95+0.25) -| ++(8,-1.7);
+    \draw[-latex] (-9.5,1.95+0.25-1.7) -- ++(-0.75,0)node[left] {$c_{out}$};
+    \draw (1,0.5) node[right] {X: $\overline{\text{ADD}}/\text{SUB}$} -- ++(-2,0)  node [below right] {$c_{in}$};
+    \bigRing{(-9+1.1+8,1.95+0.25-1.7)};
+\end{tikzternal}
+}

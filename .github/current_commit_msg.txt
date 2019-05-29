@@ -1,14 +1,25 @@
-It's 1.0.8 baby
+Jake-compile vollständig
 
-DOKUMENTATION:
+============================================================================================
+:EagleoutIce for Lilly
+============================================================================================
 
-    FÜR: https://github.com/EagleoutIce/LILLY/projects/1#card-20483616
-
-    * Die Dokumentation wurde aktualisiert
+DURCH ANGABE EINER DATEI ERSTELLT JAKE NUN KEIN MAKEFILE MEHR. UM DAS ALTER VERHALTEN ZU ERZEUGEN GENÜGT '-mk-use' ALLERDINGS UNTERSTÜTZT DIESE VARIANTE KEINE EXPANDABLES (WIE @[SELTEXF]).
+Einziger bisher erkannter Nachteil der Jake-version: Der Konsolen-log im multithreaded output ist... Überfüllt ^^
 
 
 JAKE:
 
-    * An Jake wurden die letzten Anpassungen vorgenommen
+    + Es sind nun auch Klammern in Argumenten erlaubt :D
 
-    * Der MacOS-Installer ist nun getestet worden. 
+    + Mit 'debug-filter' lässt sich ein unter umständen verboser Debug Filtern
+      Natürlich betrifft dieser Filter lediglich die Ausgabe in der Befehlszeile
+      Dies wird von den Global-Konfig parsern allderings noch ignoriert um
+      Fehler wie zum Beispiel ein falsch geladener Filter abzufangen
+
+    + Jake-compile funktioniert nun grundlegend
+
+LILLY:
+
+============================================================================================
+:

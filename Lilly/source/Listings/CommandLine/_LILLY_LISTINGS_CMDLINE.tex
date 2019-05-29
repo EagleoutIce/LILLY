@@ -1,0 +1,44 @@
+%% Diese Datei liefert einen Befehl mit folgenden Eigenschaften:
+% Laden einer Shell-Datei
+% Ausführen dieser Shell-Datei mit einem angebenen Interpreter
+% Evaluation zu Ergebnis der Ausführung
+
+\lstdefinestyle{BashOutput}{
+  basicstyle=\small\LILLYxlstTypeWriter,
+  frame=tblr,
+  numbers=none,
+  frame=single,
+  xleftmargin=3pt,
+  xrightmargin=3pt,
+  backgroundcolor=\color{MudWhite},
+  rulecolor=\color{MudWhite}
+}
+
+
+\ifx\LILLYxCMD\undefined
+%% {file} (coming soon: [input])
+\NewDocumentCommand{\getFileExecutionOutput}{ m } {%
+\immediate\write18{ #1 > \jobname.txt } 
+\lstinputlisting[style=BashOutput]{\jobname.txt}
+\immediate\write18{ rm \jobname.txt } 
+}
+\else
+\NewDocumentCommand{\getFileExecutionOutput}{ m } {Direkte Befehlsevaluation deaktiviert!}
+\fi
+
+
+\NewDocumentCommand{\previewBash}{ m } {%
+\begingroup
+\colorbox{MudWhite!90!black}{\lstinline[style=bash]{$ #1}}
+\getFileExecutionOutput{#1}
+\endgroup
+}
+
+
+
+\NewDocumentCommand{\previewBashFile}{ m } {
+\begingroup
+\lstinputlisting[style=bash, caption={Inhalt der Datei #1}]{#1}
+\endgroup
+\previewBash{bash #1}
+}
