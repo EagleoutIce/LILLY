@@ -4,19 +4,19 @@
 \section{Grundlegendes}
 \subsection{Eine kleine Einführung}
 
-Die 3 Standart-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt: 
+Die 3 Standard-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt: 
 \begin{tabularx}{\linewidth}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
     \bfseries DEFAULT & \bfseries ALTERNATE & \bfseries LIMERENCE \\\hline %% Leider ist es nicht möglich zu mischen ^^
-{\input{Lilly_Files/Data/POIs/_LILLY_BOXES_DEFAULT}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
+{\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
     \begin{satz}[Nice]
         Superwichtig
     \end{satz}
-\end{minipage}} & {\input{Lilly_Files/Data/POIs/_LILLY_BOXES_ALTERNATE}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
+\end{minipage}} & {\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_ALTERNATE}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
     \begin{satz}[Nice]
         Superwichtig
     \end{satz}
-\end{minipage}} & {\input{Lilly_Files/Data/POIs/_LILLY_BOXES_LIMERENCE}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
+\end{minipage}} & {\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_LIMERENCE}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
     \begin{satz}[Nice]
         Superwichtig
     \end{satz}
@@ -30,7 +30,7 @@ make "BOXMODE=<Name>"
 \end{lstlisting}
 \marginpar{\tiny LILLY lädt übrigens nicht DEFAULT sondern immer DEFAULT(init)!}wobei \T{<Name>} mit einem der oben stehenden Bezeichner ersetzt wird. Die Bezeichner werden vom weiter unten näher beschriebenem Box-Controller wie folgt aufgelöst:
 \begin{lstlisting}[style=latex,frame=none]
-\input{Lilly_Files/Data/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
+\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
 \end{lstlisting}
 \marginpar{\tiny Natürlich wäre es schöner auch andere Verzeichnisse zuzulasen und hierbei dann den gesamten Pfad anzugeben - dies ist aber bisher auch TODO:}Über genau dieses Verfahren lassen sich auch beliebig die Box-Designs erweitern.
 \subsection{Der Box-Controller}
@@ -164,7 +164,7 @@ Bisher definiert LILLY die Counter über die Einstellung \verb|auto counter| - d
     {LillyxBOXxDesignxDefault, colback=\LILLYxColorxDefinition!5!white,%
         colframe=\LILLYxColorxDefinition, #3,%
         title={%
-            \begin{minipage}[t][0.35cm][l]{\textwidth}%
+            \begin{minipage}[t][\baselineskip][l]{\textwidth}%
                 \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}%
             \end{minipage}%
         }%
@@ -178,13 +178,13 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
     varwidth boxed title*=-3cm,%
     boxed title style={
         frame code={
-            \path[fill=tcbcol@back!30!black]%
+            \path[fill=white!30!black]%
                 ([yshift=-1mm,xshift=-1mm]frame.north west)%
                     arc[start angle=0,!*\T{end}*! angle=180,radius=1mm]%
                 ([yshift=-1mm,xshift=1mm]frame.north east)%
                     arc[start angle=180,!*\T{end}*! angle=0,radius=1mm];
-            \path[left color=tcbcol@back!60!black,right color=tcbcol@back!60!black,%
-                middle color=tcbcol@back!80!black]%
+            \path[left color=white!40!black,right color=white!40!black,
+                    middle color=white!55!black]
                 ([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)%
                 [rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)%
                 -- (frame.south east) -- (frame.south west)%

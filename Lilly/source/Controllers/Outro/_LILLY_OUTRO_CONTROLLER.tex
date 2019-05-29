@@ -1,0 +1,63 @@
+%% Dieser Controller kümmert sich um die korrekte implementierung des OUTROS eines Dokuments er fügt bei Bedarf Listen für Definitionen usw an und bindet auch den Index ein etc.
+
+\ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
+   %% Wir haben einen Mitschrieb => 
+   %% - Definitionen
+   %% - Sätze
+   %% - Zusamenfassungen 
+\AtEndDocument{
+   \pagestyle{empty}\tocloftpagestyle{plain}
+    \ohead{}\chead{}\ihead{} %clear header
+    \ofoot{}\cfoot{}\ifoot{} %clear footer => fixes double page issue
+   \pagestyle{empty}
+   \ifx\LILLYxBOXxDefinitionxEnable\true\ifx\LILLYxSEENxDEFINITION\true
+   \clearpage\phantomsection\addcontentsline{toc}{chapter}{Definitionen}
+   \listofDEFINITIONS
+   \clearpage\fi\fi
+   \ifx\LILLYxBOXxSatzxEnable\true\ifx\LILLYxSEENxSATZ\true
+   \phantomsection\addcontentsline{toc}{chapter}{Sätze}
+   \listofSATZ
+   \clearpage\fi\fi
+    \ifx\LILLYxBOXxLemmaxEnable\true\ifx\LILLYxSEENxLEMMA\true
+   \phantomsection\addcontentsline{toc}{chapter}{Lemmata}
+   \listofLEMMAS\clearpage\fi\fi
+   \ifx\LILLYxBOXxZusammenfassungxEnable\true\ifx\LILLYxSEENxZUSAMMENFASSUNG\true
+   \phantomsection\addcontentsline{toc}{chapter}{Zusammenfassungen}
+   \listofZSMS\clearpage\fi\fi
+    \ifx\LILLYxBOXxUebungsblattxEnable\true
+   \phantomsection\addcontentsline{toc}{chapter}{Übungsblätter}
+   \listofUBS\fi
+   %% Gibt es Übungsaufgaben innerhalb des Mitschriebs? TODO: !!!
+   %% PRINT? => TODO: INDEX
+}
+\else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
+
+\AtEndDocument {
+\addtocontents{DEFINITIONS}{\protect\thispagestyle{empty}}
+\protect\pagestyle{empty}\thispagestyle{empty}
+    \lohead{}\cohead{}\rohead{} %clear header
+    \lofoot{}\cofoot{}\rofoot{} %clear footer => fixes double page issue
+    \pagestyle{empty}
+\protect\pagestyle{empty}\TOPICS{Stichwortverzeichnis}
+\printindex
+\ifx\LILLYxBOXxDefinitionxEnable\true
+\clearpage\pagenumbering{gobble}\protect\pagestyle{empty}\phantomsection\addcontentsline{toc}{chapter}{Definitionen}\elable{mrk:DEFS}
+\listofDEFINITIONS\fi
+}
+
+\fi\fi
+
+\ifx\LILLYxBIBTEX\undefined\else
+
+\providecommand{\printbib}[1][\LILLYxBIBTEX]{
+   \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
+   \protect\pagestyle{empty}\thispagestyle{empty}
+    \lohead{}\cohead{}\rohead{} %clear header
+    \lofoot{}\cofoot{}\rofoot{} %clear footer => fixes double page issue
+    \pagestyle{empty}
+   \fi
+   \bibliographystyle{apalike}
+   \bibliography{#1}
+}
+
+\fi

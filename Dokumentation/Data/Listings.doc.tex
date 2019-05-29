@@ -11,7 +11,7 @@ LILLY verwendet nicht das normale \verb|listings|-Paket, sondern greift auf das 
 Um dynamisch zu bleiben bindet LILLY nicht einfach verschiedene Stile ein, sondern Dateien, welche dann für sich definieren, welche Stile und Sprachen zusätzlich zur Verfügung stehen.\marginpar{\tiny Bisher ist das Einbinden neuer Stile noch recht starr, da der Dateipfad bis auf das Suffix vorgegeben ist. Dies sollte geändert werden}\par\reversemarginpar
 Mithilfe von \CMDpreview{LIL\-LY\-xLis\-tings\-xLang} kann man das jeweilige Paket auswählen. Dieses Paket wird über den klassischen \verb|\input{}|-Befehl eingebunden und zwar über folgende Anweisung: 
 {\small\begin{lstlisting}[style=latex, breaklines=true]
-\input{Lilly_Files/Listings/Languages/_LILLY_LANG_\LILLYxListingsxLang}
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_\LILLYxListingsxLang}
 \end{lstlisting}}
 
 Standardmäßig wird so das \T{MAIN}-Paket geladen, welches ebenfalls die \T{LANG}-Signatur besitzt - dies soll geändert werden. 

@@ -1,0 +1,102 @@
+%% PHILOSOPHER ist ein Titlepageprovider der nach und nach die alten provider ersetzen soll
+
+\usetikzlibrary{decorations.text}
+
+\input Konanur.fd
+
+%% Mathe
+\definecolor{FacultyMathexColor}{RGB}{086,170,028}
+%% Praktische Informatik
+\definecolor{FacultyPraktischeInformatikxColor}{RGB}{221,101,015}
+%% Theoretische Informatik
+\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221}
+%% Technische Informatik
+\definecolor{FacultyTechnischeInformatikxColor}{RGB}{177,2,221}
+
+\newlength{\LILLYxLeftsep}\setlength{\LILLYxLeftsep}{2cm}
+
+%% Upper Text %% Symbol %% WHITE Color %% BACK Color %% Tikz %% Size %% FONTSIZE UPPER
+\DeclareDocumentCommand{\LILLYxGENxFACULTY} { m m m O{} O{} O{} O{} O{0.1} O{0.05}} {
+    \begin{tikzpicture}[#5]
+        \draw [decorate,decoration={text along path,text align=center,
+        text={|\footnotesize\normalNumber\color{#3}#7|#1}}]
+       (-1.275-#8,0) arc [start angle=180, end angle=00, radius=1.275+#8];
+       \draw(-1.5,0) node {{$\bullet$}} ++ (3,0) node {{$\bullet$}};
+       \draw [decorate,decoration={text along path,text align=center,
+       text={|\footnotesize\normalNumber\color{#3}| ulm university  }}] 
+      (-1.6,0) arc [start angle=-180, end angle=00, radius=1.6];
+       \draw[very thick, color=#3] (0,0) circle (1.25);
+       \draw[thick, color=#3] (0,0) circle (1.75);
+       \draw[thin, color=#3] circle (1.2);
+       \foreach \r in {0,20,...,360} {
+           \filldraw[#3] (\r:1.2) circle (0.01) node (\r) {};
+       }
+       \foreach \r in {0,20,...,360} {
+           \foreach \rr in {0,20,...,\r}{
+               \draw[very thin] (\r) -- (\rr);
+           }
+       }
+       \node[opacity=0.5] at(0.02+#9,-#9) {\fontsize{#6}{16pt}\selectfont#2};
+       \draw (0.02,0) node {\fontsize{#6}{16pt}\selectfont\color{#4}#2};
+   \end{tikzpicture}
+}
+
+\DeclareDocumentCommand{\LILLYxFACULTYxMATHE}{ O{MudWhite} O{FacultyMathexColor} O{} }{%
+\LILLYxGENxFACULTY{Mathematik}{$\pi$}{#1}[#2][#3][80pt][\smallNumber][0.125]
+}
+\DeclareDocumentCommand{\LILLYxFACULTYxPRAKTISCHEINFORMATIK}{ O{MudWhite} O{FacultyPraktischeInformatikxColor} O{} }{%
+    \LILLYxGENxFACULTY{Praktische Informatik}{\hspace*{-0.025em}\bfseries\faCode}{#1}[#2][#3][50pt][\smallNumber][0.125]
+}
+\DeclareDocumentCommand{\LILLYxFACULTYxTHEORETISCHEINFORMATIK}{ O{MudWhite} O{FacultyTheoretischeInformatikxColor} O{} }{%
+    \LILLYxGENxFACULTY{Theoretische Informatik}{\bfseries\hspace*{-0.1em}\faCogs}{#1}[#2][#3][45pt][\smallNumber][0.125]
+}
+\DeclareDocumentCommand{\LILLYxFACULTYxTECHNISCHEINFORMATIK}{ O{MudWhite} O{FacultyTechnischeInformatikxColor} O{} }{%
+    \LILLYxGENxFACULTY{Technische Informatik}{\hspace*{-0.025em}\begin{tikzpicture}\filldraw[rounded corners=4pt] (0,0) rectangle ++(1,1);%
+        \foreach \y in {1.117,-0.317} {%
+            \foreach \x in {0,0.18,...,0.9} {%% 
+                \filldraw[rounded corners=0.04] (\x,\y) rectangle ++(0.07,0.2); % TOP/BOT
+                \filldraw[rounded corners=0.04] (\y,\x) rectangle ++(0.2,0.07); % LEFT/RIGHT
+            }%
+        }%
+    \end{tikzpicture}}{#1}[#2][#3][50pt][\smallNumber][0.125][0.03]
+}
+
+\providecommand{\LILLYxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+\providecommand{\LILLYxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung}
+\ifnum\LILLYxSemester>0
+\input{\LILLYxTITLExSETTINGSxGENERAL}\input{\LILLYxTITLExSETTINGSxVORLESUNG}
+\fi
+\makeatletter
+%% Pfad zu den Einstellungen %% Pfad zur Grafik 
+\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
+\ifnum\LILLYxSemester>0
+\makeatletter
+    \begingroup
+    \clearpage\begin{titlepage} 
+        \newgeometry{margin = 0pt}
+        {\centering\par\vspace*{7em}\par
+            {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par}
+            \par\vspace*{11em}\par
+            \includegraphics[height=20em]{#1}
+            \par\vfill\vspace{2em}\par
+            {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\LILLY@Typ{} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
+            \vspace{0.5cm}
+            {\itshape\small Version vom: \\ \heute\par}}}
+        }
+        \hbox{}\vfill
+        \begin{tikzpicture}
+            %\node[above right] at (\LILLYxLeftsep,3.05) {\centering\fontsize{3pt}{2pt}\selectfont\centering Fassung vom \heute{} um \currenttime Uhr\par};
+            \draw[thick,\LILLYxFACULTYxCOLOR] (0,3.1) -- ++ (0.6\paperwidth-0.1,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.1,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
+            \draw[thin,\LILLYxFACULTYxCOLOR] (0,3.175) -- ++ (0.6\paperwidth-0.175,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.175,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
+            \filldraw[\LILLYxFACULTYxCOLOR] (0,0) -- ++(\paperwidth,0) -- ++(0,3) --  ++(-0.1\paperwidth,0) -- ++(-0.1\paperwidth,1) -- ++(-0.1\paperwidth,0) --  ++(-0.1\paperwidth,-1) -- ++(-0.6\paperwidth,0) -- cycle;
+            \begin{scope}[every node/.style={color=LightGray}]
+                \node at(0.75\paperwidth,2) {\LILLYxFACULTY};
+                \node[right] at(\LILLYxLeftsep,1.5) {\parbox{0.45\linewidth}{\footnotesize{\LILLYxFlavourText\par
+            }}};
+                \node[above left] at(\paperwidth,0.02) {\begingroup\hypersetup{urlcolor=MudWhite}\href{https://github.com/EagleoutIce/LILLY}{\usefont{U}{Konanur}{xl}{n}LILLY}\hypersetup{urlcolor=\LILLYxLINKSxUrlColor}\endgroup};
+                \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};
+            \end{scope}
+        \end{tikzpicture}
+    \end{titlepage}\endgroup\restoregeometry
+\fi
+}

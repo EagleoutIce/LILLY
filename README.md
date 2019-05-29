@@ -9,6 +9,9 @@ Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm betrieben,
 Wenn du mitarbeiten möchtest ist das super, melde dich einfach bei mir! Allgemein gilt zu beachten: 
 Dieses Repository akzeptiert nur signed Commits: https://help.github.com/en/articles/signing-commits
 
+Ein exemplarischer Wiki-Eintrag um die Frage "How to create a wiki?" zu beantworten, befindet sich hier:
+https://github.com/EagleoutIce/LILLY/wiki/Eine-Vorlesung-erstellen
+
 Wenn dir beim Schreiben ein To-Do einfällt, so markiere es einfach entsprechend mit `TODO` oder `@todo` im Code :D
 
 Die sich bisher in Arbeit befindende [Dokumentation](Dokumentation/LIMERENCE-Lilly-Dokumentation.doc.pdf) sollte noch mit
@@ -27,10 +30,10 @@ Bitte füge alle geplanten oder gewünschten Ziele hinzu!
 ## Wie es losgeht
 Da sich diese Readme noch im Aufbau befindet. Für alle Hinweise bezüglich der Installation nach dem Herunterladen des Repositories siehe:
 
-1. [Lilly/Jake/jake_source/README.md](Lilly/Jake/jake_source/README.md)
+1. [Jake/source/README.md](Jake/source/README.md)
    Für das Installieren und Dokumentieren von Jake (lilly_jake) 
 
-2. [Lilly/Jake/README.md](Lilly/Jake/README.md) 
+2. [Jake/README.md](Jake/README.md) 
    Für eine grundlegende Einführung in Jake und das Installieren von LILLY
 
 

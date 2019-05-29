@@ -1,0 +1,127 @@
+
+%%% TITEL TITLEPREFIX OPTIONAL-CONTROLLERS 
+
+
+\tcbset{LillyxBOXxDesignxAlternate/.style={enforce breakable,leftrule=5mm,lines before break=4,left=2mm,frame code={\path[tcb fill frame] (frame.south west)--(frame.north west)
+--([xshift=-5mm]frame.north east)--([yshift=-5mm]frame.north east)
+--([yshift=5mm]frame.south east)--([xshift=-5mm]frame.south east)--cycle; },
+interior code={\path[tcb fill interior] (interior.south west)--(interior.north west)
+--([xshift=-4.8mm]interior.north east)--([yshift=-4.8mm]interior.north east)
+--([yshift=4.8mm]interior.south east)--([xshift=-4.8mm]interior.south east)
+--cycle; },
+% code for the first part of a break sequence:
+skin first is subskin of={emptyfirst}{%
+frame code={\path[tcb fill frame] (frame.south west)--(frame.north west)
+--([xshift=-5mm]frame.north east)--([yshift=-5mm]frame.north east)
+--(frame.south east)--cycle;
+\path[fill=white] ([xshift=2.5mm,yshift=1mm]frame.south west) -- +(120:2mm)
+-- +(60:2mm)-- cycle; },
+interior code={\path[tcb fill interior] (interior.south west|-frame.south)
+--(interior.north west)--([xshift=-4.8mm]interior.north east)
+--([yshift=-4.8mm]interior.north east)--(interior.south east|-frame.south)
+--cycle; },
+},%
+% code for the middle part of a break sequence:
+skin middle is subskin of={emptymiddle}{%
+frame code={\path[tcb fill frame] (frame.south west)--(frame.north west)
+--(frame.north east)--(frame.south east)--cycle;
+\path[fill=white] ([xshift=2.5mm,yshift=-1mm]frame.north west) -- +(240:2mm)
+-- +(300:2mm) -- cycle;
+\path[fill=white] ([xshift=2.5mm,yshift=1mm]frame.south west) -- +(120:2mm)
+-- +(60:2mm) -- cycle;
+},
+interior code={\path[tcb fill interior] (interior.south west|-frame.south)
+--(interior.north west|-frame.north)--(interior.north east|-frame.north)
+--(interior.south east|-frame.south)--cycle; },
+},
+% code for the last part of a break sequence:
+skin last is subskin of={emptylast}{%
+frame code={\path[tcb fill frame] (frame.south west)--(frame.north west)
+--(frame.north east)--([yshift=5mm]frame.south east)
+--([xshift=-5mm]frame.south east)--cycle;
+\path[fill=white] ([xshift=2.5mm,yshift=-1mm]frame.north west) -- +(240:2mm)
+-- +(300:2mm) -- cycle;
+},
+interior code={\path[tcb fill interior] (interior.south west)
+--(interior.north west|-frame.north)--(interior.north east|-frame.north)
+--([yshift=4.8mm]interior.south east)--([xshift=-4.8mm]interior.south east)
+--cycle; },
+}}}
+
+%%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
+
+%%% Die Definition-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{} }{ empty, %
+frame style={fill,top color=\LILLYxColorxDefinition,bottom color=\LILLYxColorxDefinition,middle color=\LILLYxColorxDefinition},colback=\LILLYxColorxDefinition!15!white,  %
+LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2}~}}, %
+}
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{} }{ empty, %
+frame style={fill,top color=\LILLYxColorxDefinition,bottom color=\LILLYxColorxDefinition,middle color=\LILLYxColorxDefinition},colback=\LILLYxColorxDefinition!15!white,  %
+LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2}~}}, %
+}
+
+%%% Die Beispiel-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxBeispiel]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ empty, %
+frame style={fill,top color=\LILLYxColorxBeispiel,bottom color=\LILLYxColorxBeispiel,middle color=\LILLYxColorxBeispiel},colback=\LILLYxColorxBeispiel!15!white,  %
+LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxBeispiel}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxBeispiel}{#2}~}}, %
+}
+
+
+%%% Die Bemerkung-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxBemerkung]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ empty, %
+frame style={fill,top color=\LILLYxColorxBemerkung,bottom color=\LILLYxColorxBemerkung,middle color=\LILLYxColorxBemerkung},colback=\LILLYxColorxBemerkung!15!white,  %
+LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxBemerkung}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxBemerkung}{#2}~}}, %
+}
+
+
+%%% Die Satz-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxSatz]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{ empty, %
+frame style={fill,top color=\LILLYxColorxSatz,bottom color=\LILLYxColorxSatz,middle color=\LILLYxColorxSatz},colback=\LILLYxColorxSatz!15!white,  %
+LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxSatz}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxSatz}{#2}~}}, %
+}
+
+
+%%% Die Beweis-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxBeweis]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ empty, %
+frame style={fill,top color=\LILLYxColorxBeweis,bottom color=\LILLYxColorxBeweis,middle color=\LILLYxColorxBeweis},colback=\LILLYxColorxBeweis!15!white,  %
+LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxBeweis}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxBeweis}{#2}~}}, %
+}
+
+
+%%% Die Lemma-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{ empty, %
+frame style={fill,top color=\LILLYxColorxLemma,bottom color=\LILLYxColorxLemma,middle color=\LILLYxColorxLemma},colback=\LILLYxColorxLemma!15!white,  %
+LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxLemma}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxLemma}{#2}~}}, %
+}
+
+
+%%% Die Zusammenfassung-Box:
+\RenewTColorBox[use counter from=LILLYxBOXxZusammenfassung]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ empty, %
+frame style={fill,top color=\LILLYxColorxZusammenfassung,bottom color=\LILLYxColorxZusammenfassung,middle color=\LILLYxColorxZusammenfassung},colback=\LILLYxColorxZusammenfassung!15!white,  %
+LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxZusammenfassung}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxZusammenfassung}{#2}~}}, %
+}
+
+
+%title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}},
+
+\RenewTColorBox{LILLYxBOXxAufgabe}{ O{} O{} O{} }{enforce breakable, enhanced,skin=enhancedlast jigsaw, attach boxed title to top left={xshift=-4mm,yshift=-0.5mm},fonttitle=\bfseries\sffamily,varwidth boxed title=0.7\linewidth,colbacktitle=Charcoal!45!white,colframe=Charcoal!50!black,interior style={top color=gray!2!white,bottom color=gray!2!white},boxed title style={empty,arc=0pt,outer arc=0pt,boxrule=0pt},underlay boxed title={\fill[\Hcolor] (title.north west) -- (title.north east)-- +(\tcboxedtitleheight-1mm,-\tcboxedtitleheight+1mm)-- ([xshift=4mm,yshift=0.5mm]frame.north east) -- +(0mm,-1mm)-- (title.south west) -- cycle;\fill[Charcoal!45!white!50!black] ([yshift=-0.5mm]frame.north west)-- +(-0.4,0) -- +(0,-0.3) -- cycle;\fill[Charcoal!45!white!50!black] ([yshift=-0.5mm]frame.north east)-- +(0,-0.3) -- +(0.4,0) -- cycle;  },  #3,  title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}, %Aufgabe
+}
+
+
+
+\providecommand{\LILLYxBOXxIPOI}[3]{
+    ~\\[0.2cm]
+    \def\slctmp{#1}\ifx\slctmp\empty
+        \noindent{\textbf{#2}}
+    \else
+        \noindent{\textbf{#2 - #1}}\\
+    \fi
+        #3
+    \vspace{0.45cm}
+} 
+
+
+%%TODO: BREAKS ON DIFFERENT AMOUNT OF LINES FOR NORMAL AND ALTERNATE - FIXpo
+
+
+%%TODO: BREAKS ON DIFFERENT AMOUNT OF LINES FOR NORMAL AND ALTERNATE - FIXpo
