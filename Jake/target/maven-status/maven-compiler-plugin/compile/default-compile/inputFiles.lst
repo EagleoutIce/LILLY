@@ -1,0 +1,14 @@
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/core/Settings.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/util/enumerations/eSetting_Type.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/logging/JakeFormatter.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/util/Cloner.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/core/Definitions.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/util/blueprints/AbstractSettings.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/gepard/parser/TokenMatch.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/util/exceptions/MandatorySettingException.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/util/Setting_Deskriptor.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/gepard/parser/Tokenizer.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/Jake.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/util/enumerations/eProgress_State.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/util/interfaces/iRealCloneable.java
+/home/the-limerent/Uni/Studium/LILLY/Jake/src/main/java/de/eagle/lillyjakeframework/logging/JakeLogger.java

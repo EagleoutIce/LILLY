@@ -1,0 +1,14 @@
+de/eagle/lillyjakeframework/core/Definitions.class
+de/eagle/lillyjakeframework/util/Cloner.class
+de/eagle/lillyjakeframework/logging/JakeFormatter.class
+de/eagle/lillyjakeframework/util/interfaces/iRealCloneable.class
+de/eagle/gepard/parser/Tokenizer.class
+de/eagle/lillyjakeframework/Jake.class
+de/eagle/lillyjakeframework/util/blueprints/AbstractSettings.class
+de/eagle/lillyjakeframework/util/enumerations/eProgress_State.class
+de/eagle/lillyjakeframework/util/enumerations/eSetting_Type.class
+de/eagle/gepard/parser/TokenMatch.class
+de/eagle/lillyjakeframework/logging/JakeLogger.class
+de/eagle/lillyjakeframework/util/exceptions/MandatorySettingException.class
+de/eagle/lillyjakeframework/util/Setting_Deskriptor.class
+de/eagle/lillyjakeframework/core/Settings.class
