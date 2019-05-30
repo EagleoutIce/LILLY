@@ -44,7 +44,9 @@ lilly_jake
 *.kdev4
 *.vscode
 
+
 #Diverse Ordner
 docs
 test-OUT
 .DS_Store
+.idea

@@ -1,23 +1,19 @@
-Jake-compile vollständig
+Java Jake die Erste
 
 ============================================================================================
 :EagleoutIce for Lilly
 ============================================================================================
 
-DURCH ANGABE EINER DATEI ERSTELLT JAKE NUN KEIN MAKEFILE MEHR. UM DAS ALTER VERHALTEN ZU ERZEUGEN GENÜGT '-mk-use' ALLERDINGS UNTERSTÜTZT DIESE VARIANTE KEINE EXPANDABLES (WIE @[SELTEXF]).
-Einziger bisher erkannter Nachteil der Jake-version: Der Konsolen-log im multithreaded output ist... Überfüllt ^^
+DA JAKE MOMENTAN IN JAVA IMPLEMENTIERT WIRD IST DIESER BUILD NICHT WIRKLICH NUTZBAR
+(außer natürlich zur [weiter-]entwicklung!) WESWEGEN DIE DEFAULT BRANCH AUF MASTER
+GESETZT WURDE!
 
 
 JAKE:
 
-    + Es sind nun auch Klammern in Argumenten erlaubt :D
-
-    + Mit 'debug-filter' lässt sich ein unter umständen verboser Debug Filtern
-      Natürlich betrifft dieser Filter lediglich die Ausgabe in der Befehlszeile
-      Dies wird von den Global-Konfig parsern allderings noch ignoriert um
-      Fehler wie zum Beispiel ein falsch geladener Filter abzufangen
-
-    + Jake-compile funktioniert nun grundlegend
+    + Jake hat nun Settings Tokenizer und eine Grundstruktur für Java
+    
+    + Erste Tests implementiert!
 
 LILLY:
 
