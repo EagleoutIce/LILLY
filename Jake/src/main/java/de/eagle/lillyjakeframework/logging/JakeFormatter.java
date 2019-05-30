@@ -16,7 +16,7 @@ public class JakeFormatter extends Formatter {
         builder.append("[").append(record.getSourceClassName()).append(".");
         builder.append(record.getSourceMethodName()).append("] - ");
         builder.append("[").append(record.getLevel()).append("]")
-                .append(" ".repeat(9-record.getLevel().toString().length())).append("  ");
+                .append(" ".repeat(9 - record.getLevel().toString().length())).append("  ");
         builder.append(formatMessage(record));
         builder.append("\n");
         return builder.toString();

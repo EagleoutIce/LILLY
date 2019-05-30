@@ -1,13 +1,13 @@
 package de.eagle.lillyjakeframework.core;
 
-import de.eagle.lillyjakeframework.util.enumerations.eProgress_State;
+import de.eagle.util.enumerations.eProgress_State;
 
 /**
  * @author Florian Sihler
- *
- * Speichert alle Globalen Definitionen für Jake, die aus keiner Datei heraus erstellt werden
- * und mit der spezifischen Jake Version einhergehen.
- *
+ * <p>
+ * Speichert alle Globalen Definitionen für Jake, die aus keiner Datei
+ * heraus erstellt werden und mit der spezifischen Jake Version
+ * einhergehen.
  * @version 1.0.10
  * @since 1.0.10
  */
@@ -20,6 +20,9 @@ public class Definitions {
     /// Startsignatur eines versteckten Arguments
     public static final String HIDDEN_ARG = "_";
 
+    /// geschätzte Größe eines Blocks
+    public static final int EXPECTED_BLOCKSIZE = 100;
+
     /**
      * Aktueller Stand dieser Version
      *
@@ -29,6 +32,5 @@ public class Definitions {
 
     /// Die aktuelle Version als Zahl
     public static final int JAKE_VERSION_NUM = 10010;
-
 
 }
