@@ -43,10 +43,12 @@ lilly_jake
 *.kate-swp
 *.kdev4
 *.vscode
-
+*.idea
 
 #Diverse Ordner
 docs
 test-OUT
 .DS_Store
 .idea
+target
+

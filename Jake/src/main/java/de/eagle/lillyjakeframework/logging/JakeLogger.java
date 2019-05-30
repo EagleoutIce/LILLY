@@ -16,7 +16,7 @@ public class JakeLogger {
     /**
      * Initialisiert den Logger mit einer Temp-Datei
      */
-    static void initLogger(){
+    static void initLogger() {
         try {
             initLogger(File.createTempFile("lilly-temp-log", ".temp").getAbsolutePath());
         } catch (IOException e) {
@@ -26,9 +26,10 @@ public class JakeLogger {
 
     /**
      * Initialisiert den Logger auf einem Pfad
+     *
      * @param targetFilePath die Zieldatei
      */
-    public static void initLogger(String targetFilePath){
+    public static void initLogger(String targetFilePath) {
         LOGGER = Logger.getLogger("Main Jake Log");
         getLogger().setUseParentHandlers(false);
         try {
@@ -43,8 +44,8 @@ public class JakeLogger {
     /**
      * @return Erhalte die Loggerinstanz, erstelle im Zweifelsfall eine Neue (Singleton)
      */
-    public static Logger getLogger(){
-        if(LOGGER==null)
+    public static Logger getLogger() {
+        if (LOGGER == null)
             initLogger();
         return LOGGER;
     }

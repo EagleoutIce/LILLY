@@ -16,9 +16,9 @@ class DefinitionsTest {
      */
     @Test
     @Tag("Meta")
-    void testVersionNumberIntegrity(){
-        Assertions.assertEquals(Definitions.JAKE_VERSION.replaceAll("\\.",""),
-                                Integer.toString(Definitions.JAKE_VERSION_NUM));
+    void test_version_number_integrity() {
+        Assertions.assertEquals(Definitions.JAKE_VERSION.replaceAll("\\.", ""),
+                Integer.toString(Definitions.JAKE_VERSION_NUM));
     }
 
 }

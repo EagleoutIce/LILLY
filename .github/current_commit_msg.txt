@@ -1,4 +1,4 @@
-Java Jake die Erste
+Java Jake die Zweite
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -11,9 +11,11 @@ GESETZT WURDE!
 
 JAKE:
 
-    + Jake hat nun Settings Tokenizer und eine Grundstruktur für Java
-    
-    + Erste Tests implementiert!
+    + Jake unterstützt nun den Configurator und Teile des Generatorparsers
+
+    + Neue Tests für GePard
+
+    * Einige Verbesserungen an der integrität bestehender Implementation
 
 LILLY:
 
