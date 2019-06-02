@@ -1,12 +1,24 @@
+
+/**
+ * @file DefinitionsTest.java
+ * @author Florian Sihler
+ * @version 1.0.10
+ * 
+ * @brief Testet die Deifnitionen auf plausibilität
+ */
+
 import de.eagle.lillyjakeframework.core.Definitions;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
  * Testet die Definitionen auf plausibilität
  */
-@Tag("Description")
+@Tag("General")
+@Tag("Definitions")
+@DisplayName("Test der DefinitionsKlasse (validität der Einstellungen)")
 class DefinitionsTest {
 
     /**
@@ -16,7 +28,8 @@ class DefinitionsTest {
      */
     @Test
     @Tag("Meta")
-    void test_version_number_integrity() {
+    @DisplayName("[Definitions] Teste Validität der Versionseinstellung")
+    void _test_version_number_integrity() {
         Assertions.assertEquals(Definitions.JAKE_VERSION.replaceAll("\\.", ""),
                 Integer.toString(Definitions.JAKE_VERSION_NUM));
     }

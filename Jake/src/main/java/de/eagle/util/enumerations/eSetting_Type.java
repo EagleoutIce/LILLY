@@ -1,4 +1,13 @@
 package de.eagle.util.enumerations;
+/**
+ * @file eSettings_Type.java
+ * @author Florian Sihler
+ * @version 1.0.10
+ *
+ * @brief Hält die Typen für Einstellungen
+ * @see de.eagle.util.datatypes.Settings
+ * @see de.eagle.util.blueprints.AbstractSettings
+ */
 
 /**
  * Verwaltet die Typen die eine Einstellung haben kann

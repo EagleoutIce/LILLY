@@ -1,0 +1,5 @@
+BEGIN x:
+    name = TestBox
+    Inhalt += Box
+    Better = BetterBox
+END;
