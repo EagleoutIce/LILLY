@@ -1,4 +1,14 @@
+/**
+ * @file Definitions.java
+ * @author Florian Sihler
+ * @version 1.0.10
+ *
+ * @brief Definiert globale Variablen für alle Teile von Jake
+ * @see Jake
+ */
 package de.eagle.lillyjakeframework.core;
+
+ // TODO: insert LogLevel 
 
 import de.eagle.util.enumerations.eProgress_State;
 
@@ -18,10 +28,7 @@ public class Definitions {
     public static final String JAKE_VERSION = "1.00.10";
 
     /// Startsignatur eines versteckten Arguments
-    public static final String HIDDEN_ARG = "_";
-
-    /// geschätzte Größe eines Blocks
-    public static final int EXPECTED_BLOCKSIZE = 100;
+    public static final char HIDDEN_ARG = '_';
 
     /**
      * Aktueller Stand dieser Version

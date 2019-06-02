@@ -1,6 +1,17 @@
 package de.eagle.util.blueprints;
 
-import de.eagle.util.Setting_Deskriptor;
+/**
+ * @file AbstractSettings.java
+ * @author Florian Sihler
+ * @version 1.0.10
+ *
+ * @brief Grundlage für Einstellungen
+ * @see de.eagle.util.datatypes.Settings
+ * @see de.eagle.util.datatypes.SettingDeskriptor
+ */
+
+
+import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.interfaces.iRealCloneable;
 
@@ -8,6 +19,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Diese Klasse definiert alle notwendigen Eigenschaften von Einstellungen Es
@@ -20,14 +32,23 @@ import java.util.Map;
  * @since 1.0.10
  */
 public abstract class AbstractSettings<K extends Serializable, V extends Serializable> implements Serializable,
-        Iterable<HashMap.Entry<K, Setting_Deskriptor<V>>>, iRealCloneable<AbstractSettings<K, V>> {
+        Iterable<HashMap.Entry<K, SettingDeskriptor<V>>>, iRealCloneable<AbstractSettings<K, V>> {
     private static final long serialVersionUID = 3197356410145487933L;
     /// Bezeichner der Einstellungen
     private final String name;
     /// Ist es erlaubt unbekannte Einstellungen hinzuzufügen?
-    private final boolean add_unknown;
+    protected boolean add_unknown;
     /// Enthält die eigentlichen Einstellungen
-    protected HashMap<K, Setting_Deskriptor<V>> _settings;
+    protected HashMap<K, SettingDeskriptor<V>> _settings;
+
+    /**
+     * Konstruiert die Basis aller Einstellungen ohne irgendwelche Voreinstellungen
+     *
+     * @param name          Name der Einstellungen
+     */
+    public AbstractSettings(String name) {
+        this(name,true,null);
+    }
 
     /**
      * Konstruiert die Basis aller Einstellungen
@@ -37,10 +58,10 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
      *                      werden?
      * @param init_settings Start-Einstellungen
      */
-    public AbstractSettings(String name, boolean add_unknown, HashMap<K, Setting_Deskriptor<V>> init_settings) {
+    public AbstractSettings(String name, boolean add_unknown, HashMap<K, SettingDeskriptor<V>> init_settings) {
         this.name = name;
         this.add_unknown = add_unknown;
-        _settings = init_settings;
+        _settings = Objects.requireNonNullElseGet(init_settings, HashMap::new);
     }
 
     public abstract AbstractSettings<K, V> clone();
@@ -65,7 +86,7 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
      * @param key zu Suchender Key
      * @return das gefundene Value
      */
-    public Setting_Deskriptor<V> get(K key) {
+    public SettingDeskriptor<V> get(K key) {
         return _settings.get(key);
     }
 
@@ -87,7 +108,7 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
      * @param new_value Wert der Einstellung
      * @return die alte Einstellung
      */
-    public Setting_Deskriptor<V> put(K key, Setting_Deskriptor<V> new_value) {
+    public SettingDeskriptor<V> put(K key, SettingDeskriptor<V> new_value) {
         if (add_unknown || _settings.containsKey(key))
             return _settings.put(key, new_value.setName(key.toString()));
         return null;
@@ -98,18 +119,48 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
      *
      * @param key       Bezeichner der Einstellung
      * @param new_value Neuer Wert der Einstellung
+     * @return false, wenn die Einstellung gesperrt ist
      */
-    public void set(K key, V new_value) {
+    public boolean  set(K key, V new_value) {
         if (_settings.containsKey(key))
-            _settings.get(key).setValue(new_value);
-        else if (add_unknown) {
-            _settings.put(key, new Setting_Deskriptor<V>(key.toString(), "Unknown Setting", eSetting_Type.IS_TEXT,
+            return _settings.get(key).setValue(new_value);
+        if (add_unknown) {
+            _settings.put(key, SettingDeskriptor.create(key.toString(), "Unknown Setting", eSetting_Type.IS_TEXT,
                     false, new_value));
         }
+        return true;
     }
 
-    public Iterator<Map.Entry<K, Setting_Deskriptor<V>>> iterator() {
+
+    /**
+     * @return true, wenn der Wert in den Einstellungen als Schlüssel präsent ist
+     */
+    public boolean containsKey(K key){
+        return this._settings.containsKey(key);
+    }
+    /*
+     * @return true, wenn der Wert in den Einstellungen als Wert präsent ist
+     */
+    public boolean containsValue(V value){
+        return this._settings.containsValue(value);
+    }
+
+    public Iterator<Map.Entry<K, SettingDeskriptor<V>>> iterator() {
         return _settings.entrySet().iterator();
+    }
+
+    /**
+     * 
+     * Setzt ein neues Verfahren beim treffen auf unbekannte Einstellungen
+     * 
+     * @param newPolicy die neue Handhabung unbekannter Einstellungen
+     * 
+     * @return die Regel vor der Änderung 
+     */
+    public boolean setUnknownPolicy(boolean newPolicy) {
+        boolean old = getUnknownPolicy();
+        this.add_unknown = newPolicy;
+        return old;
     }
 
 }

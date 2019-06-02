@@ -1,4 +1,13 @@
-package de.eagle.lillyjakeframework.logging;
+package de.eagle.util.logging;
+
+/**
+ * @file JakeFormatter.java
+ * @author Florian Sihler
+ * @version 1.0.10
+ *
+ * @brief Übernimmt die Formatierung des Logs
+ * @see de.eagle.util.logging.JakeLogger
+ */
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,10 +22,10 @@ public class JakeFormatter extends Formatter {
     public String format(LogRecord record) {
         StringBuilder builder = new StringBuilder(1000);
         builder.append(df.format(new Date(record.getMillis()))).append(" - ");
-        builder.append("[").append(record.getSourceClassName()).append(".");
-        builder.append(record.getSourceMethodName()).append("] - ");
+        //builder.append("[")/*.append(record.getSourceClassName()).append(".")*/;
+        //builder.append(record.getSourceMethodName()).append("] ").append(" ".repeat(15-record.getSourceMethodName().length()));
         builder.append("[").append(record.getLevel()).append("]")
-                .append(" ".repeat(9 - record.getLevel().toString().length())).append("  ");
+                .append(" ".repeat(9 - record.getLevel().toString().length())).append(" ");
         builder.append(formatMessage(record));
         builder.append("\n");
         return builder.toString();

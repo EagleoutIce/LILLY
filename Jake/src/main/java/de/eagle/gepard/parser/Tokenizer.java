@@ -1,9 +1,22 @@
 package de.eagle.gepard.parser;
 
+/**
+ * @file Tokenizer.java
+ * @author Florian Sihler
+ * @version 1.0.10
+ * 
+ * @brief Grundlegender Parser - jedes weitere Modul greift auf ihn zurück
+ * 
+ * @see Configurator
+ * @see GeneratorParser
+ */
+
 import java.io.*;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static de.eagle.util.logging.JakeLogger.*;
 
 /**
  * Grundlegender Tokenizer für InputStreams
@@ -32,7 +45,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
     public Tokenizer(String input_path) throws FileNotFoundException {
         this(new FileInputStream(input_path),
                 Pattern.compile("^ *([a-zA-Z0-9_\\-äöüßÄÖÜ]+) *(=) *([a-zA-Z0-9_\\-äöüÄÖÜß ]+)$", Pattern.MULTILINE), 0,
-                Pattern.compile(Pattern.quote("![^!]*!")));
+                Pattern.compile("![^!]*!",Pattern.MULTILINE));
     }
 
     /**
@@ -44,7 +57,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
     public Tokenizer(InputStream inputStream) throws FileNotFoundException {
         this(inputStream,
                 Pattern.compile("^ *([a-zA-Z0-9_\\-äöüßÄÖÜ]+) *(=) *([a-zA-Z0-9_\\-äöüÄÖÜß ]+)$", Pattern.MULTILINE), 0,
-                Pattern.compile(Pattern.quote("![^!]*!")));
+                Pattern.compile("![^!]*!",Pattern.MULTILINE));
     }
 
     /**
@@ -55,7 +68,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      */
     Tokenizer(String input_path, Pattern pattern) throws FileNotFoundException {
-        this(new FileInputStream(input_path), pattern, 0, Pattern.compile(Pattern.quote("![^!]*!")));
+        this(new FileInputStream(input_path), pattern, 0, Pattern.compile("![^!]*!",Pattern.MULTILINE));
     }
 
     /**
@@ -66,7 +79,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      */
     Tokenizer(InputStream inputStream, Pattern pattern) {
-        this(inputStream, pattern, 0, Pattern.compile(Pattern.quote("![^!]*!")));
+        this(inputStream, pattern, 0, Pattern.compile("![^!]*!",Pattern.MULTILINE));
     }
 
     /**
@@ -134,6 +147,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      */
     public int loadNext() throws IOException {
         String line = "";
+        writeLoggerDebug1("Lade nächste Zeile für Verarbeitung","token");
         while (line.matches("^\\s*$")) {
             line = _input_reader.readLine();
             if (line == null)
@@ -150,6 +164,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
 
             _current_original = line;
             line = erase_comments(erase_tabs(line));
+            writeLoggerDebug2("Aktuelle Zeile: \"" + _current_original + "\" => \"" + line + "\"", "token");
         }
 
         this._current_line = line;
@@ -194,7 +209,8 @@ public class Tokenizer implements Iterable<TokenMatch> {
 
             @Override
             public TokenMatch next() {
-                return get();
+                TokenMatch next = get();
+                return (next == null)?new TokenMatch(new String[0], "", ""):next;
             }
         };
     }

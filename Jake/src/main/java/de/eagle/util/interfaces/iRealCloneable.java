@@ -1,5 +1,12 @@
 package de.eagle.util.interfaces;
-
+/**
+ * @file iRealCloneable.java
+ * @author Florian Sihler
+ * @version 1.0.10
+ *
+ * @brief Alternatives Cloneable Interface
+ * @see de.eagle.util.Cloner
+ */
 /**
  * Versuch zumindest die clone Methode zu fordern ^^
  *

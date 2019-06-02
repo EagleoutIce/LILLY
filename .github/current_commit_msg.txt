@@ -1,4 +1,4 @@
-Java Jake die Zweite
+Java Jake die Dritte
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -11,11 +11,15 @@ GESETZT WURDE!
 
 JAKE:
 
-    + Jake unterstützt nun den Configurator und Teile des Generatorparsers
-
-    + Neue Tests für GePard
-
-    * Einige Verbesserungen an der integrität bestehender Implementation
+    + Jake unterstützt nun den vollen GeneratorParser Kern (Gepard-Core)
+    
+    + Jake kann nun Kommandozeilenargumente verarbeiten
+    
+    + Neue Tests für SettingDeskriptorStringList, GePard und CommandLineParser
+    
+    + SettingDeskriptor wurde nun gekapselt (für Listen etc...)
+    
+    * Großes Doku-Update :D
 
 LILLY:
 

@@ -1,5 +1,13 @@
 package de.eagle.util.constants;
 
+/**
+ * @file ColorConstants.java
+ * @author Florian Sihler
+ * @version 1.0.10
+ *
+ * @brief Definiert Farben, die Jake für die Kommandozeilenausgabe verwendet
+ */
+
 public class ColorConstants {
     /// @brief Design-String zum Zurücksetzen der Farbe
     public static final String COL_RESET = "\033[0m";

@@ -1,5 +1,16 @@
 package de.eagle.util;
 
+/**
+ * @file Cloner.java
+ * @author Florian Sihler
+ * @version 1.0.10
+ *
+ * @brief Versucht jedes Objekt zu kopieren ;P (#DankeJava for broken 'Cloneable')
+ *
+ * @see de.eagle.util.interfaces.iRealCloneable
+ */
+
+
 import de.eagle.util.interfaces.iRealCloneable;
 
 import java.lang.reflect.InvocationTargetException;
