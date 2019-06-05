@@ -11,11 +11,16 @@ package de.eagle.util.datatypes;
  * @see de.eagle.util.blueprints.AbstractSettings
  */
 
+import de.eagle.gepard.parser.Configurator;
 import de.eagle.util.blueprints.AbstractSettings;
+import de.eagle.util.constants.ColorConstants;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
-import static de.eagle.util.logging.JakeLogger.writeLoggerDebug2;
+import static de.eagle.util.logging.JakeLogger.writeLoggerDebug1;
 import static de.eagle.util.logging.JakeLogger.writeLoggerDebug3;
 
 public class Settings extends AbstractSettings<String, String> {
@@ -81,6 +86,23 @@ public class Settings extends AbstractSettings<String, String> {
                     false, new_value,(new_value.isEmpty())?' ':new_value.charAt(new_value.length()-1)));
         }
         return true;
+    }
+
+    /**
+     * Gibt die Einstellungen als String Array zurück
+     *
+     * @return String array, gefüllt mit allen Einstellungen in Settings
+     * @throws IOException Wenn die angegebene Konfigurationsdatei nicht gefunden
+     */
+    public String[] dump() throws IOException {
+        List<String> stringList = new LinkedList<>();
+        if(this.get("file") != null && this.get("file").getValue().contains(".conf")){
+            writeLoggerDebug1("Da eine konfigurationsdatei angegeben wurde wird diese zuerst aufgelöst!","settings:dump");
+            Configurator configurator = new Configurator(this.getClass().getResourceAsStream(this.get("file").value));
+            configurator.parse_settings(this,true);
+        }
+        this._settings.forEach((key, value) -> stringList.add(String.format("  %-20s: " + ColorConstants.STY_PARAM + "[%s]", key, value.getValue())));
+        return stringList.toArray(new String[0]);
     }
 
     /**
