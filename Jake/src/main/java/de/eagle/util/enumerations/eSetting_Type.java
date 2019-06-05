@@ -20,7 +20,7 @@ public enum eSetting_Type {
     IS_REL_PATH("Einstellung ist ein relativer Pfad"),
     IS_ABS_PATH("Einstellung ist ein absoluter Pfad"),
     IS_FILE("Einstellung ist eine gültige Datei"),
-    IS_SWITCH("Einstellung ist ein boolscher Wert (true,false)"),
+    IS_SWITCH("Einstellung ist ein boolescher Wert (true,false)"),
     IS_TEXTLIST("Einstellung ist eine durch ':' getrennte Liste"),
     IS_NUM("Einstellung ist eine Zahl"),
     IS_VLS("Demo: Einstellung ist eine Vorlesung");

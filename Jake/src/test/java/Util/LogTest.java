@@ -1,6 +1,6 @@
-
+package Util;
 /**
- * @file LogTest.java
+ * @file Util.LogTest.java
  * @author Florian Sihler
  * @version 1.0.10
  * 
@@ -23,12 +23,12 @@ class LogTest {
     @Test
     @DisplayName("[Log] Teste Log-Zugriffe (wird nicht wirklich getestet^^)")
     void _test_logger() {
-        writeLoggerInfo("Info", "LogTest");
-        writeLoggerWarning("Warning", "LogTest");
-        writeLoggerError("Error", "LogTest");
-        writeLoggerDebug1("Debug1", "LogTest");
-        writeLoggerDebug2("Debug2", "LogTest");
-        writeLoggerDebug3("Debug3", "LogTest");
-        writeLogger("Generell", "LogTest", Level.ALL);
+        writeLoggerInfo("Info", "Util.LogTest");
+        writeLoggerWarning("Warning", "Util.LogTest");
+        writeLoggerError("Error", "Util.LogTest");
+        writeLoggerDebug1("Debug1", "Util.LogTest");
+        writeLoggerDebug2("Debug2", "Util.LogTest");
+        writeLoggerDebug3("Debug3", "Util.LogTest");
+        writeLogger("Generell", "Util.LogTest", Level.ALL);
     }
 }

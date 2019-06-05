@@ -56,7 +56,7 @@ public class CommandLineParser {
      * 
      * @param args die Kommandozeilenargumente
      * @param settings die Einstellungen - sie werden überschrieben. 
-     *                 Alle Einstellungen die hier gesetzt werden 
+     *                 Alle Einstellungen die hier gese tzt werden 
      *                 werden automatisch auf immutable gesetzt
      *                 und lassen sich somit nichtmehr überschreiben
      * 

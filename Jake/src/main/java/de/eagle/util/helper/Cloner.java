@@ -1,4 +1,4 @@
-package de.eagle.util;
+package de.eagle.util.helper;
 
 /**
  * @file Cloner.java

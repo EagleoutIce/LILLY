@@ -1,5 +1,5 @@
 \lstdefinelanguage{assembler}{
-        keywords={while,if,r,ld,st,sr,sl,beq,bnq,add,sub,and,or,not,xor,dec,inc,jmp,addi,sw,addui,add,sw,lw,slti,j,jal,div,mul,hi,lo, MOV},
+        keywords={while,if,r,ld,st,sr,sl,beq,bnq,add,sub,and,or,not,xor,dec,inc,jmp,addi,sw,addui,add,sw,lw,slti,j,jal,div,mul,hi,lo, mov, jne, tas, jne, swp, sei, cli},
         keywordstyle=\color{purple}\bfseries,
         ndkeywords={nop,X,acc},
         basicstyle=\LILLYxlstTypeWriter,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
@@ -10,6 +10,7 @@
         commentstyle=\color{gray},
         stringstyle=\color{mint},
         morestring=[b]',
+        sensitive=false,
         %literate={@}{{\textcolor{mint}{\$}}}2
         showstringspaces=true,  %Damit es keine Verwechslungen gibt
 } 

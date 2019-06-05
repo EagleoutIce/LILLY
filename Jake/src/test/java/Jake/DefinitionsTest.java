@@ -1,10 +1,10 @@
-
+package Jake;
 /**
- * @file DefinitionsTest.java
+ * @file Jake.DefinitionsTest.java
  * @author Florian Sihler
  * @version 1.0.10
  * 
- * @brief Testet die Deifnitionen auf plausibilität
+ * @brief Testet die Definitionen auf plausibilität
  */
 
 import de.eagle.lillyjakeframework.core.Definitions;
