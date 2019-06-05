@@ -1,7 +1,7 @@
 /**
  * @file GepardTest.java
  * @author Florian Sihler
- * @author Yellow
+ * @author Raphael Straub
  * 
  * @version 1.0.10
  * 
@@ -10,17 +10,12 @@
 
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.gepard.parser.GeneratorParser;
+import de.eagle.gepard.parser.GeneratorParser.JObject;
 import de.eagle.gepard.parser.TokenMatch;
 import de.eagle.gepard.parser.Tokenizer;
-import de.eagle.gepard.parser.GeneratorParser.JObject;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.util.HashMap;

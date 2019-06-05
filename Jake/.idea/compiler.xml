@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Jake" />
+        <module name="lilly-jake-framework" />
       </profile>
     </annotationProcessing>
   </component>
