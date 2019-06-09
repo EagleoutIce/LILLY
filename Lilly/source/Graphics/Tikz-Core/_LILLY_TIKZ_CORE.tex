@@ -11,7 +11,7 @@ matrix,scopes, shadows,patterns,mindmap}
 \RequirePackage{pgfplots}   
 \ifx\LILLYxEXTERNALIZE\true
 \usetikzlibrary{external}
-\tikzexternalize[up to date check=md5, optimize=false]
+\tikzexternalize%[up to date check=md5]
 \tikzsetfigurename{\LILLYxOUTPUTDIR/extimg/grafik_}
 \tikzexternaldisable
 \LILLYxDemandPackage{environ}{Ermöglicht spezifisches externalize} %% Package, Info

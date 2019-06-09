@@ -1,5 +1,9 @@
 %% Das normale Source-Code Paket für die Latex-Mitschriebe
-%\ifx\LILLYxMODE\LILLYxMODExPRINT
+\ifx\LILLYxMODE\LILLYxMODExPRINT
+    \providecommand{\LILLYxCODExKEYWORDSTYLE}{\color{DebianRed}\bfseries}
+\else
+    \providecommand{\LILLYxCODExKEYWORDSTYLE}{\color{DebianRed}}
+\fi
 %\else
 \providecommand{\LILLYxlstTypeWriter}{\fontfamily{AnonymousPro}\selectfont}
 %\fi
@@ -14,7 +18,7 @@
 %%%%% GDRA
     \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_MIPS}
 
-%%%%% Dokumentation - needfull shell 
+%%%%% Dokumentation - needfull shell
     \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_STYLE_bash}
     \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_STYLE_haskell}
     \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_STYLE_latex}
@@ -26,7 +30,7 @@
 
 \def\lst@PlaceNumber{\makebox[\dimexpr 1em+\lst@numbersep][l]{\normalfont
   \lst@numberstyle{\thelstnumber}}}%
-    
+
 \lstset{
     breaklines=true,
     backgroundcolor=\color{MudWhite},

@@ -65,6 +65,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="237" />
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
@@ -94,7 +97,7 @@
             <state relative-caret-position="649">
               <caret line="90" column="105" selection-start-line="90" selection-start-column="105" selection-end-line="90" selection-end-column="105" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -172,6 +175,7 @@
       <list>
         <option value="Enum" />
         <option value="module-info" />
+        <option value="Kotlin Class" />
         <option value="Class" />
       </list>
     </option>
@@ -240,11 +244,9 @@
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/Jake.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptorList.java" />
         <option value="$PROJECT_DIR$/src/test/java/GeneralTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/cmdline/CommandLineParser.java" />
         <option value="$PROJECT_DIR$/src/test/java/LogTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/DefinitionsTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/Definitions.java" />
         <option value="$PROJECT_DIR$/src/test/java/CloneTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/constants/ColorConstants.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java" />
@@ -285,6 +287,8 @@
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="importAutomatically" value="true" />
+        <option name="jdkForImporter" value="11" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
   </component>
@@ -503,11 +507,6 @@
               <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
               <item name="Jake" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="eagle" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-              <item name="logging" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
@@ -582,18 +581,7 @@
             <path>
               <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
               <item name="Jake" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="Gepard" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jake" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="Tokens" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -606,8 +594,13 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/resources/Tokenizer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -650,6 +643,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1559159391207</updated>
+      <workItem from="1559595339057" duration="26000" />
+      <workItem from="1559595382344" duration="861000" />
+      <workItem from="1559596261596" duration="966000" />
+      <workItem from="1559636207825" duration="265000" />
+      <workItem from="1559643721009" duration="7412000" />
+      <workItem from="1559665657369" duration="17415000" />
     </task>
     <servers />
   </component>
@@ -685,6 +684,18 @@
       <configuration name="BuildrulesTest._test_gepard_buildrules_rule" configurationId="JUnit" />
     </history-entry>
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="26945000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-1" width="1920" height="1081" extended-state="6" />
     <editor active="true" />
@@ -697,14 +708,15 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Team" order="7" sideWeight="0.42404228" side_tool="true" weight="0.21458998" />
+      <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49893504" weight="0.32977587" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733758" visible="true" weight="0.19210246" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.79126734" weight="0.3340448" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32921812" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.79126734" visible="true" weight="0.33402923" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2087327" side_tool="true" weight="0.2764141" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32977587" />
       <window_info anchor="bottom" id="TeamCity" order="10" />
@@ -720,37 +732,9 @@
       <window_info anchor="right" id="make" order="8" weight="0.32960597" />
       <window_info anchor="right" x="0" y="0" width="430" height="881" id="Documentation" order="9" sideWeight="0.23407644" side_tool="true" weight="0.357295" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5707965" visible="true" weight="0.16347177" />
-      <window_info id="Structure" order="1" sideWeight="0.42920354" side_tool="true" visible="true" weight="0.16347177" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Team" order="7" sideWeight="0.42404228" side_tool="true" weight="0.21458998" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49893504" weight="0.32977587" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733758" visible="true" weight="0.19210246" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.79126734" visible="true" weight="0.2764141" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2087327" side_tool="true" visible="true" weight="0.2764141" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="TeamCity" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49840257" weight="0.32977587" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24973376" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.1512247" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" weight="0.08626198" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="make" order="8" weight="0.32960597" />
-    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.tokens" />
@@ -758,6 +742,10 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Jake$GepardTest__test_configurator_working_example.ic" NAME="GepardTest._test_configurator_working_example Coverage Results" MODIFIED="1559651559372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Jake$GepardTest__test_configurator_comment_parse.ic" NAME="GepardTest._test_configurator_comment_parse Coverage Results" MODIFIED="1559651533567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/module-info.java" />
@@ -790,13 +778,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/Definitions.java">
+    <entry file="file://$PROJECT_DIR$/src/test/resources/Configs/TestError.conf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/Configs/TestComment.conf">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/Gepard/TestBoxSimple.gpd">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state>
+          <caret column="8" selection-start-column="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -942,6 +933,7 @@
         <state relative-caret-position="-74">
           <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding>
+            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>

@@ -30,6 +30,9 @@ public class Definitions {
     /// Startsignatur eines versteckten Arguments
     public static final char HIDDEN_ARG = '_';
 
+    /// Signatur einer Hinzufügenden Zuweisung
+    public static final String ASS_PATTERN = ":";
+
     /**
      * Aktueller Stand dieser Version
      *
