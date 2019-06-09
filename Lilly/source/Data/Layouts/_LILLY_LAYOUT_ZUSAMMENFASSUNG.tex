@@ -21,27 +21,41 @@
     \pagestyle{empty} %KOMA-FTW!
     \pagenumbering{gobble}
 }
-\LILLYcommand{\LILLYxLayoutxRestore}{ % 
-    \pagenumbering{arabic}   %
-    \pagestyle{scrheadings} %KOMA-FTW!
-    \renewcommand{\chapterpagestyle}{scrheadings} %Kein Ãœbungsblatt? => Mitschrieb => Konfiguriere Thema
-    \lofoot{\scriptsize{\silentHmark[Thema]{eagleTOC}\textnormal{\guilsinglright} \leftmark}} %
-    \lohead{\AUTHOR} %
-    \cofoot{} %
-    \cohead{\VORLESUNG} %
-    \rohead{\heute} %
-    %\lofoot{\tiny{{\rightmark} \(\rangle\){\leftmark}}}
+\LILLYcommand{\LILLYxLayoutxRestore}{ %
+\pagenumbering{arabic}
+\pagestyle{scrheadings} %KOMA-FTW!
+\ifx\LILLYxMODE\LILLYxMODExPRINT
+    \lehead{\textsf{$\mathbf{\arabic{TOPICS}}\mid\,$ \normalfont\textsf{\leftmark}}}
+    \rohead{\normalfont\textsf{\VORLESUNG}}
+    \cofoot{{\scriptsize{\AUTHOR}}}
+    \cefoot{{\scriptsize{\TITLE}}}
+    \ofoot{\normalfont\textbf{\thepage}}
+    \chead{}
+\else
+    \lohead{\AUTHOR}
+    \lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxLINKSxMainColor]\textnormal{\guilsinglright}\leftmark}
+    \cfoot{}
+    \chead{}
+    \rohead{\VORLESUNG}
     \ifx\LILLYxFOOTERxBUTTONS\true %
         \rofoot{\raisebox{0.75pt}{\eXButton{Find}{\tiny \faSearch} \text{ } \eXButton{GoBack}{\tiny \faUndo} \text{ } \eXButton{GoForward}{\tiny \faRepeat}\text{ } \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{0.75pt}{\eXButton{NextPage}{\(\RHD\)}}} %
     \else %
         \rofoot{\thepage/\pageref{LastPage}} %
     \fi %
+\fi
 }
 
 \providecommand{\LILLYxBOXxDefinitionxLock}{TRUE}
 
 \setlength{\parindent}{0pt}
 \newcounter{ctr_ADDONS}
+
+\newcommand{\startAppendix}{\clearpage\par%
+\addcontentsline{toc}{section}{Anhänge}\addcontentsline{TOPIC}{TOPICS}{Anhang}%
+\ifx\LILLYxMODE\LILLYxMODExPRINT\lehead{\textsf{$\mathbf{A}\mid\,$ \normalfont\textsf{Anhang}}}%
+\else\lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxLINKSxMainColor]\textnormal{\guilsinglright}Anhang}%
+\fi
+}
 
 \newcommand{\theTOPIC}{undefined}
 \newcommand{\listTOPICSname}{\leavevmode\\[-4.75cm]}
