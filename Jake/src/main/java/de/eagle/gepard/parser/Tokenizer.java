@@ -179,14 +179,13 @@ public class Tokenizer implements Iterable<TokenMatch> {
     public TokenMatch get() {
         String line = get_current_line();
         Matcher m = this._pattern.matcher(line);
-        if (m.matches()) {
+        if (m.find()) {
             String[] arr_m = new String[m.groupCount() + 1];
             for (int i = 0; i < arr_m.length; i++) {
-                arr_m[i] = m.group(i);
+                arr_m[i] = m.group(i).trim();
             }
             return new TokenMatch(arr_m, _current_original, line);
         }
-
         return null; // null means failure
     }
 

@@ -1,4 +1,4 @@
-/**
+package Jake.Core; /**
  * @file CoreFunctionsTest.java
  * @author Raphael Straub
  * @version 1.0.10

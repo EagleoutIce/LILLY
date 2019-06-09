@@ -171,6 +171,8 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
         if(type.equals(eSetting_Type.IS_TEXTLIST)){
             if(!(init instanceof String)) throw new IllegalArgumentException("der initiale Wert für eine Textlist muss ein String sein!");
             return (SettingDeskriptor<T>) new SettingDeskriptorStringList(name, brief, isMandatory, (String)init, separator);
+        } else if (type.equals(eSetting_Type.IS_LATEX)){
+            if(!(init instanceof String)) throw new IllegalArgumentException("Um Latex-Code sein zu können muss es sich um einen String handeln");
         }
         return new SettingDeskriptor<T>(name, brief, type, isMandatory, (T) init);
     }
@@ -199,11 +201,15 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
      * @return der Wert der Einstellung
      * @throws MandatorySettingException Wenn die mand. Einstellung nicht gesetzt ist!
      */
+    @SuppressWarnings("unchecked")
     public T getValue() {
         if (isMandatory && value == null)
             throw new MandatorySettingException(
                     "Die verpflichtende Einstellung: " + getName() 
                         + " wurde nicht mit einem Wert belegt!");
+        if(this.type.equals(eSetting_Type.IS_LATEX))
+            return (T)((String)value).replaceAll("\\\\", "\\\\\\\\");
+        else
         return value;
     }
 

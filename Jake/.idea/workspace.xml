@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/modules/Buildrules.java" line="43" />
+  </component>
   <component name="BuildServerSettings">
     <option name="LOGIN" value="" />
     <option name="SERVER_URL" value="http://buildserver" />
@@ -24,7 +27,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ac72391-212f-48fe-81ed-19547b6e72b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Dokumentation/Data/Boxen.doc.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../Dokumentation/Data/Boxen.doc.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/GeneratorParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/GeneratorParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/TokenMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/TokenMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Tokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/enumerations/eSetting_Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/enumerations/eSetting_Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/interfaces/iRealCloneable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/interfaces/iRealCloneable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CloneTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CommandLineParserTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CoreFunctionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Jake/Core/CoreFunctionsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/DefinitionsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GepardTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/LogTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SettingDeskriptorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/Tokens/TestSingleLine.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/Tokens/TestSingleLine.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lilly/Lilly.cls" beforeDir="false" afterPath="$PROJECT_DIR$/../Lilly/Lilly.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lilly/source/Controllers/_LILLY_BOX_CONTROLLER.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../Lilly/source/Controllers/_LILLY_BOX_CONTROLLER.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lilly/source/Listings/Languages/_LILLY_LANG_assembler.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../Lilly/source/Listings/Languages/_LILLY_LANG_assembler.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lilly/source/Maths/_LILLY_MATHS_SHORTCUTS.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../Lilly/source/Maths/_LILLY_MATHS_SHORTCUTS.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,105 +70,30 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/FunctionDeskriptor.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/enumerations/eSetting_Type.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/Definitions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/CoreFunctions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/GepardTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Tokenizer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="95" column="15" selection-start-line="95" selection-start-column="15" selection-end-line="95" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/ReturnStatus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="357">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/Jake/Core/CoreFunctionsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="26" column="69" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="4" column="53" lean-forward="true" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/FunctionCollector.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="3536">
+              <caret line="214" selection-start-line="214" selection-end-line="214" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/CoreFunctionsTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="53" column="76" selection-start-line="53" selection-start-column="76" selection-end-line="53" selection-end-column="76" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#663#664#0" expanded="true" />
-                <element signature="e#707#708#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -161,8 +113,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Java</find>
-      <find>INPUT.+=</find>
       <find>header_img</find>
       <find>doc_sour</find>
       <find>doc_source/</find>
@@ -184,7 +134,15 @@
       <find>,</find>
       <find>Identifizert</find>
       <find>@file</find>
-      <find>command</find>
+      <find>generat</find>
+      <find>Aktuelle Zeile</find>
+      <find>get</find>
+      <find>get_j</find>
+      <find>jO</find>
+      <find>jObject</find>
+      <find>/</find>
+      <find>zeile&quot;</find>
+      <find>System.out.println</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -192,7 +150,7 @@
       <replace>@throws FileNotFoundException Wenn die Datei nicht gefunden wurde</replace>
       <replace>carg</replace>
       <replace>Identifiziert</replace>
-      <replace>cmd</replace>
+      <replace>\/</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework</dir>
@@ -204,15 +162,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/util/interfaces/iRealCloneable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/util/Setting_Deskriptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/util/blueprints/AbstractSettings.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/Settings.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/util/enumerations/eSetting_Type.java" />
-        <option value="$PROJECT_DIR$/src/test/java/LogTests.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/Logging/CentralLog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/Logging/JakeFormatter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/Logging/JakeLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/module-info.java" />
         <option value="$PROJECT_DIR$/src/main/resources/Tokenizer/TestSingleLine.tokens" />
         <option value="$PROJECT_DIR$/src/test/resources/Tokenizer/TestSingleLine.tokens" />
@@ -223,38 +172,47 @@
         <option value="$PROJECT_DIR$/src/test/resources/Configs/WorkingExample.conf" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/Jake.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptorList.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/Gepard/TestBoxFilter.gpd" />
         <option value="$PROJECT_DIR$/src/test/java/GeneralTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/cmdline/CommandLineParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/GeneratorParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/TokenMatch.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Tokenizer.java" />
-        <option value="$PROJECT_DIR$/src/test/java/SettingDeskriptorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/LogTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/DefinitionsTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/CloneTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/constants/ColorConstants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptorStringList.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/enumerations/eProgress_State.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/enumerations/eSetting_Type.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/interfaces/iRealCloneable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeFormatter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/Cloner.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/exceptions/MandatorySettingException.java" />
         <option value="$PROJECT_DIR$/src/test/java/CommandLineParserTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java" />
+        <option value="$PROJECT_DIR$/src/test/java/SettingDeskriptorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/GepardTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/ReturnStatus.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/FunctionDeskriptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/FunctionCollector.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/Definitions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/CoreFunctions.java" />
-        <option value="$PROJECT_DIR$/src/test/java/CoreFunctionsTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GePard/Tokenizer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GePard/ConfiguratorTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GePard/TokenizerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GePard/GepardTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/GeneratorParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeFormatter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeLogger.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GePard/Parser/ConfiguratorTest.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/Gepard/TestBoxSimple.gpd" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/TokenMatch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/Tokens/TestSingleLine.tokens" />
+        <option value="$PROJECT_DIR$/src/test/java/GePard/Parser/TokenizerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Tokenizer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GePard/Parser/GepardTest.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/Gepard/TestBoxFilter.gpd" />
+        <option value="$PROJECT_DIR$/src/test/resources/Gepard/BuildruleSimple.gpd" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GePard/Modules/BuildrulesTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/CoreSettings.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/gepard/modules/Buildrules.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Jake/Core/DefinitionsTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Jake/Core/CoreSettingsTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/eagle/util/enumerations/eSetting_Type.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Jake/Core/CoreFunctionsTest.java" />
       </list>
     </option>
   </component>
@@ -313,7 +271,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -324,7 +282,131 @@
             <path>
               <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
               <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="GermanLanguageDict" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="lillyjakeframework" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="lillyjakeframework" type="462c0819:PsiDirectoryNode" />
+              <item name="cmdline" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="lillyjakeframework" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="blueprints" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="constants" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="datatypes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="enumerations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="eagle" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
@@ -344,6 +426,57 @@
               <item name="Jake" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="GePard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="GePard" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="GePard" type="462c0819:PsiDirectoryNode" />
+              <item name="Parser" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="Core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -357,13 +490,29 @@
             <path>
               <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
               <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="Gepard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="Tokens" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Jake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Jake" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="CatdeaLogs" />
     </panes>
   </component>
@@ -380,8 +529,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -391,6 +539,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Jake.Core" />
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -430,34 +579,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CoreFunctionsTest__test_Settings_dump_conf - 2019.06.05 at 14h 44m 18s.xml">
-      <configuration name="CoreFunctionsTest._test_Settings_dump_conf" configurationId="JUnit" />
+    <history-entry file="Tests - 2019.06.09 at 20h 58m 06s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CoreFunctionsTest__test_Settings_dump_conf - 2019.06.05 at 14h 44m 33s.xml">
-      <configuration name="CoreFunctionsTest._test_Settings_dump_conf" configurationId="JUnit" />
+    <history-entry file="Tests - 2019.06.09 at 23h 58m 54s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CoreFunctionsTest__test_Settings_dump_conf - 2019.06.05 at 14h 45m 01s.xml">
-      <configuration name="CoreFunctionsTest._test_Settings_dump_conf" configurationId="JUnit" />
+    <history-entry file="Tests - 2019.06.10 at 00h 01m 53s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CoreFunctionsTest__test_Settings_dump_conf - 2019.06.05 at 14h 45m 17s.xml">
-      <configuration name="CoreFunctionsTest._test_Settings_dump_conf" configurationId="JUnit" />
+    <history-entry file="Tests - 2019.06.10 at 00h 02m 15s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CoreFunctionsTest - 2019.06.05 at 14h 45m 23s.xml">
-      <configuration name="CoreFunctionsTest" configurationId="JUnit" />
+    <history-entry file="Tests - 2019.06.10 at 00h 15m 41s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CoreFunctionsTest__test_Settings_dump_default_(1) - 2019.06.05 at 15h 59m 13s.xml">
-      <configuration name="CoreFunctionsTest._test_Settings_dump_default (1)" configurationId="JUnit" />
+    <history-entry file="Tests - 2019.06.10 at 00h 16m 14s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CoreFunctionsTest - 2019.06.05 at 16h 01m 12s.xml">
-      <configuration name="CoreFunctionsTest" configurationId="JUnit" />
+    <history-entry file="Tests - 2019.06.10 at 00h 16m 38s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CoreFunctionsTest - 2019.06.05 at 16h 43m 58s.xml">
-      <configuration name="CoreFunctionsTest" configurationId="JUnit" />
+    <history-entry file="Tests - 2019.06.10 at 00h 18m 49s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CoreFunctionsTest - 2019.06.05 at 16h 46m 39s.xml">
-      <configuration name="CoreFunctionsTest" configurationId="JUnit" />
+    <history-entry file="Tests - 2019.06.10 at 00h 19m 23s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Tests - 2019.06.09 at 19h 34m 31s.xml">
+    <history-entry file="Tests - 2019.06.10 at 00h 20m 42s.xml">
       <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -477,8 +626,8 @@
     <frame x="1934" y="13" width="1892" height="1053" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5691358" visible="true" weight="0.15367965" />
-      <window_info id="Structure" order="1" sideWeight="0.43086419" side_tool="true" weight="0.17887668" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5707965" visible="true" weight="0.13906926" />
+      <window_info id="Structure" order="1" sideWeight="0.42920354" side_tool="true" weight="0.16347177" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -487,34 +636,27 @@
       <window_info id="Team" order="7" sideWeight="0.42404228" side_tool="true" weight="0.21458998" />
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49893504" weight="0.32921812" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733758" weight="0.22222222" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49893504" weight="0.32881" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733758" visible="true" weight="0.22129436" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32921812" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.79126734" visible="true" weight="0.33402923" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32881" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.79126734" weight="0.33402923" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2087327" side_tool="true" weight="0.2764141" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32921812" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32881" />
       <window_info anchor="bottom" id="TeamCity" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49840257" weight="0.32921812" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Dependency Viewer" order="14" weight="0.32921812" />
-      <window_info anchor="bottom" id="Inspection Results" order="15" weight="0.32921812" />
-      <window_info anchor="right" id="CodeStream" />
-      <window_info anchor="right" x="0" y="0" width="370" height="850" id="Documentation" order="0" side_tool="true" weight="0.32967034" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.24973376" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.1512247" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Maven" order="5" weight="0.1910867" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="make" order="9" weight="0.32960597" />
-      <window_info anchor="right" id="Database" order="10" />
-      <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.32967034" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49840257" weight="0.34029227" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24973376" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.1512247" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" sideWeight="0.76592356" weight="0.12193823" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="make" order="8" weight="0.32960597" />
+      <window_info anchor="right" x="0" y="0" width="430" height="881" id="Documentation" order="9" sideWeight="0.23407644" side_tool="true" weight="0.357295" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -532,25 +674,6 @@
     <SUITE FILE_PATH="coverage/Jake$GepardTest__test_configurator_comment_parse.ic" NAME="GepardTest._test_configurator_comment_parse Coverage Results" MODIFIED="1559651533567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/TokenMatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#516#517#0" expanded="true" />
-            <element signature="e#548#549#0" expanded="true" />
-            <element signature="e#583#584#0" expanded="true" />
-            <element signature="e#614#615#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-            <element signature="e#680#681#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/Tokenizer/TestMultiLine.tokens" />
-    <entry file="file://$PROJECT_DIR$/src/test/resources/Tokenizer/TestSingleLine.tokens" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/logging/JakeFormatter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/Setting_Deskriptor.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/Setting_DeskriptorTest.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/JakeExampleTest.java" />
     <entry file="file://$PROJECT_DIR$/.classpath">
@@ -573,17 +696,17 @@
     <entry file="file://$PROJECT_DIR$/src/test/resources/Configs/TestComment.conf">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/Gepard/TestBoxSimple.gpd">
+    <entry file="file://$PROJECT_DIR$/src/test/resources/Configs/WorkingExample.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
+        <state relative-caret-position="21">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/Gepard/TestBoxFilter.gpd">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="5" />
+        <state relative-caret-position="475">
+          <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -597,19 +720,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/cmdline/CommandLineParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
+        <state relative-caret-position="294">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8865#8866#0" expanded="true" />
-            <element signature="e#8899#8900#0" expanded="true" />
-            <element signature="e#9790#9791#0" expanded="true" />
-            <element signature="e#9817#9818#0" expanded="true" />
-            <element signature="e#10255#10256#0" expanded="true" />
-            <element signature="e#10276#10277#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/constants/ColorConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -630,13 +754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/enumerations/eSetting_Type.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/interfaces/iRealCloneable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -651,88 +768,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/LogTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/CloneTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeFormatter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeLogger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" selection-start-line="2" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/Cloner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="394">
+          <caret line="26" column="69" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/GeneratorParser.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/GePard/Modules.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/Util/LogTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/ReturnStatus.kt" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/lib/src.zip!/java.base/java/util/HashMap.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/lib/src.zip!/java.base/java/util/function/Function.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.4.2/junit-jupiter-api-5.4.2-sources.jar!/org/junit/jupiter/api/Test.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/lib/src.zip!/java.base/java/io/PrintStream.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/cmdline/CommandLineParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="64" column="22" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/DefinitionsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
+        <state relative-caret-position="315">
           <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#980#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/CommandLineParserTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/Util/CloneTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="67" column="86" selection-start-line="67" selection-start-column="86" selection-end-line="67" selection-end-column="86" />
+        <state relative-caret-position="315">
+          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/helper/Cloner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-74">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -740,49 +804,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Class.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1126">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="73">
+          <caret line="157" column="31" selection-start-line="157" selection-start-column="31" selection-end-line="157" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/Configs/WorkingExample.conf">
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="222">
+          <caret line="42" column="53" lean-forward="true" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/SettingDeskriptorTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/logging/JakeLogger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-645">
-          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="399">
+          <caret line="200" column="64" lean-forward="true" selection-start-line="200" selection-start-column="64" selection-end-line="200" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/constants/ColorConstants.java">
+    <entry file="jrt:///usr/lib/jvm/java-1.11.0-openjdk-amd64!/java.base/java/util/stream/ForEachOps.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/Gepard/TestBoxSimple.gpd">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="56" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="56" />
+        <state relative-caret-position="84">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
+        <state relative-caret-position="341">
+          <caret line="61" column="56" selection-start-line="61" selection-start-column="56" selection-end-line="61" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lilly-jake-framework.iml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/TokenMatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/GeneratorParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="104" column="41" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/Gepard/TestBoxFilter.gpd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Tokenizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1043">
+          <caret line="210" column="29" lean-forward="true" selection-start-line="210" selection-start-column="29" selection-end-line="210" selection-end-column="29" />
+          <folding>
+            <element signature="e#4326#4327#0" expanded="true" />
+            <element signature="e#4394#4395#0" expanded="true" />
+            <element signature="e#4492#4493#0" expanded="true" />
+            <element signature="e#4528#4529#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/Gepard/BuildruleSimple.gpd">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/Tokens/TestSingleLine.tokens">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GePard/Parser/TokenizerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GePard/Parser/GepardTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="96" selection-start-line="96" selection-end-line="97" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/FunctionDeskriptor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -792,7 +915,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/Definitions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="544">
           <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -810,29 +933,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/GepardTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Tokenizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="95" column="15" selection-start-line="95" selection-start-column="15" selection-end-line="95" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/ReturnStatus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GePard/Modules/BuildrulesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="66" column="60" lean-forward="true" selection-start-line="66" selection-start-column="60" selection-end-line="66" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -847,26 +963,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/CoreFunctionsTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/Util/SettingDeskriptorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="53" column="76" selection-start-line="53" selection-start-column="76" selection-end-line="53" selection-end-column="76" />
+        <state relative-caret-position="2137">
+          <caret line="131" column="9" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#663#664#0" expanded="true" />
-            <element signature="e#707#708#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/CoreSettings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="26" column="69" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
+        <state relative-caret-position="482">
+          <caret line="38" column="66" selection-start-line="38" selection-start-column="66" selection-end-line="38" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3536">
+          <caret line="214" selection-start-line="214" selection-end-line="214" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Jake/CommandLineParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="34" selection-start-line="34" selection-end-line="36" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GePard/Parser/ConfiguratorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-878">
+          <caret line="29" column="37" lean-forward="true" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/modules/Buildrules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="83" column="107" selection-start-line="83" selection-start-column="107" selection-end-line="83" selection-end-column="107" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Jake/DefinitionsTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/enumerations/eSetting_Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Jake/Core/DefinitionsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Jake/Core/CoreSettingsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Jake/Core/CoreFunctionsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="53" lean-forward="true" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -876,6 +1058,17 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="Copyright.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

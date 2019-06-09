@@ -1,0 +1,25 @@
+BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn nicht !
+
+    ! Das Einrücken _und_ die Leerfelder sind optional. !
+    ! Allerdings sollten erstmal nur Leerfelder verwendet werden !
+    ! Mit X sind Zuweisungen markiert die verpflichtend sein sollen (aber nicht sind) !
+
+!X!  name                   = default     ! buildrule name für lilly-modes !
+
+!X!  display-name           = Standard    ! Anzeigename (Standard-Version) !
+
+!X!  lilly-mode             = default     ! Welcher Modus soll an Lilly übergeben werden? !
+                                          ! Info: Diese können noch nicht frei konfiguriert werden !
+
+    complete                = false       ! Keine complete-Version !
+
+    complete-prefix         = c_          ! Bezeichner wenn complete !
+
+    nameprefix              = MY-DEFAULT- ! Weicht vom normalen default ab !
+
+    lilly-complete-prefix   = COMPLETE-   ! Namenszusatz wenn complete Version (Default: COMPLETE-)!
+
+    lilly-loader            = \\input{$(INPUTDIR)$(TEXFILE)}
+                    ! Diese Funktion ist advanced und beschreib die einbinde routine - einfach ignorieren !
+
+END; ! Semikolon wieder nicht nötig, aber ich mag es :D !
