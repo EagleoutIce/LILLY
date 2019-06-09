@@ -23,7 +23,9 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ac72391-212f-48fe-81ed-19547b6e72b5" name="Default Changelist" comment="" />
+    <list default="true" id="9ac72391-212f-48fe-81ed-19547b6e72b5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,8 +111,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="394">
+              <caret line="26" column="69" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -470,6 +475,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1934" y="13" width="1892" height="1053" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5691358" visible="true" weight="0.15367965" />
       <window_info id="Structure" order="1" sideWeight="0.43086419" side_tool="true" weight="0.17887668" />
@@ -856,8 +862,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="394">
+          <caret line="26" column="69" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -26,7 +26,6 @@ import static de.eagle.util.logging.JakeLogger.writeLoggerDebug3;
 public class Settings extends AbstractSettings<String, String> {
     private static final long serialVersionUID = 673856672235848508L;
 
-
     /**
      * Konstruiert die Einstellungen ohne irgendwelche Voreinstellungen
      *
