@@ -101,7 +101,7 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
     }
 
     /**
-     * Wenn add_uknown füge diese Einstellung neu hinzu sonst: versuche zu
+     * Wenn add_unknown füge diese Einstellung neu hinzu sonst: versuche zu
      * überschreiben
      *
      * @param key       Key der Einstellung
@@ -121,7 +121,7 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
      * @param new_value Neuer Wert der Einstellung
      * @return false, wenn die Einstellung gesperrt ist
      */
-    public boolean  set(K key, V new_value) {
+    public boolean set(K key, V new_value) {
         if (_settings.containsKey(key))
             return _settings.get(key).setValue(new_value);
         if (add_unknown) {
@@ -129,6 +129,44 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
                     false, new_value));
         }
         return true;
+    }
+
+    /**
+     * Fügt die newSettings mithilfe von {@link #put(Serializable, SettingDeskriptor)} diesem Einstellungsobjekt hinzu.
+     *
+     * @note Dies überschreibt die Metadaten!
+     *
+     * @implNote Beachte bezüglich der Elemente die Konfiguration von {@link #add_unknown}
+     *
+     * @param newSettings die neuen Einstellungen
+     * @return true, wenn {@link #put(Serializable, SettingDeskriptor)} nie null liefert.
+     */
+    public boolean hardJoin(AbstractSettings<K, V> newSettings){
+        boolean ret = true;
+        for(Map.Entry<K,SettingDeskriptor<V>> elem : newSettings){
+            if(this.put(elem.getKey(), elem.getValue()) == null)
+                ret = false;
+        }
+        return ret;
+    }
+
+    /**
+     * Fügt die newSettings mithilfe von {@link #set(Serializable, Serializable)} diesem Einstellungsobjekt hinzu.
+     *
+     * @note Dies überschreibt die Metadaten <b>nicht</b>!
+     *
+     * @implNote Beachte bezüglich der Elemente die Konfiguration von {@link #add_unknown}
+     *
+     * @param newSettings die neuen Einstellungen
+     * @return true, wenn {@link #set(Serializable, Serializable)} nie false liefert.
+     */
+    public boolean softJoin(AbstractSettings<K, V> newSettings){
+        boolean ret = true;
+        for(Map.Entry<K,SettingDeskriptor<V>> elem : newSettings){
+            if(!this.set(elem.getKey(), elem.getValue().getValue()))
+                ret = false;
+        }
+        return ret;
     }
 
 

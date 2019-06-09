@@ -10,6 +10,8 @@ package de.eagle.gepard.parser;
  * @see Tokenizer
  */
 
+import java.util.Arrays;
+
 /**
  * repräsentiert einen leicht zu handhabenden Regex-Match
  */
@@ -71,5 +73,14 @@ public class TokenMatch {
      */
     public boolean failure() {
         return this.stripped.isEmpty() || !isValid();
+    }
+
+    @Override
+    public String toString() {
+        return "TokenMatch{" +
+                "matchings=" + Arrays.toString(matchings) +
+                ", original='" + original + '\'' +
+                ", stripped='" + stripped + '\'' +
+                '}';
     }
 }
