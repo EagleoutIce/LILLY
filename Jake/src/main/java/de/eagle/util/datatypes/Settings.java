@@ -106,7 +106,7 @@ public class Settings extends AbstractSettings<String, String> {
     }
 
     /**
-     * Liefert den Wert einer gewissen Einstellung zurück - Kurzzschreibweise mit null check
+     * Liefert den Wert einer gewissen Einstellung zurück - Kurzschreibweise mit null check
      * 
      * @param key der zu suchende Key
      * @return der gefundene Wert, null wenn nicht gefunden

@@ -12,8 +12,8 @@
     keywordstyle = [3]{\color{Amber}}, %% PARAM
     keywordstyle = [4]{\color{DebianRed}}, %% FILES
     keywordstyle = [5]{\color{Orchid}\bfseries}, %% SHELLPRE
-    otherkeywords = {<<,>>,2>,<,|},
-    alsoletter={-,|,~,{,},_,.,>,:},
+    otherkeywords = {<<,>>,2>},
+    alsoletter={-,|,~,{,},_,.,>,<,:},
     comment=[l]{\#},
     keywordsprefix={\$},
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
@@ -24,15 +24,14 @@
     xrightmargin=3pt,
     %frameround=tttt, %% mag backgroundcolor nicht
     framerule=1pt,
-    escapeinside={*}{*}, 
+    escapeinside={*}{*},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     basicstyle=\LILLYxlstTypeWriter\color{black},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     numbers=none,           %Zeilennummern
     morekeywords = {bash},
-    morekeywords = [2]{mkdir,texhash,make,apt,>},
+    morekeywords = [2]{mkdir,texhash,make,apt,>,<,cd},
     morekeywords = [3]{-p, -dir, print, install},
-    morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake, ghci, ghc},
+    morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake, ghci, ghc,grep,ls,cp,find,man,tail,head},
     morekeywords = [5]{},
 }
 
-  

@@ -26,10 +26,15 @@
 \NewDocumentCommand{\getFileExecutionOutput}{ m } {Direkte Befehlsevaluation deaktiviert!}
 \fi
 
+\NewDocumentCommand{\bash}{ m }{%
+\begingroup
+\colorbox{MudWhite!93!black}{\lstinline[style=bash]{#1}}%
+\endgroup
+}
 
 \NewDocumentCommand{\previewBash}{ m } {%
 \begingroup
-\colorbox{MudWhite!90!black}{\lstinline[style=bash]{$ #1}}
+\colorbox{MudWhite!93!black}{\lstinline[style=bash]{$ #1}}
 \getFileExecutionOutput{#1}
 \endgroup
 }

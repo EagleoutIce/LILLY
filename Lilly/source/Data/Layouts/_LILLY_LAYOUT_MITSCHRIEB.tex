@@ -14,14 +14,14 @@
 \LILLYcommand{\leftmark}{} %% fix no chapter bug
 \LILLYcommand{\rightmark}{}
 
-\titleformat{\chapter}[display]%             
+\titleformat{\chapter}[display]%
         {\relax}
         {\vspace{-4\baselineskip}\raggedleft{\color{LightGray}\chapterNumber\thechapter} \\ }
         {0pt}%
-        {\vspace*{-4\baselineskip}\color{\LILLYxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here 
+        {\vspace*{-4\baselineskip}\color{\LILLYxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here
         [\normalcolor\normalsize\vspace*{-.7\baselineskip}\rule{\textwidth}{0.5pt}\vspace*{-1.7\baselineskip}]%
 
-\newcommand*{\TitleSUB}[1]{ 
+\newcommand*{\TitleSUB}[1]{
     \begingroup\vspace{-1.25\baselineskip}\textsc{\textcolor{\LILLYxTITLExCOLOR}{#1}}~\\[1\baselineskip]\endgroup
 }
 \newcommand{\LILLYxRIGHTMARK}{\faBookmark}
@@ -40,7 +40,7 @@
     \pagestyle{empty} %KOMA-FTW!
     \pagenumbering{gobble}
 }
-\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+\LILLYcommand{\LILLYxLayoutxRestore}{ %
     \pagenumbering{arabic}
     \pagestyle{scrheadings} %KOMA-FTW!
     \renewcommand{\chapterpagestyle}{scrheadings} %Kein Übungsblatt? => Mitschrieb => Konfiguriere Kapitel
@@ -59,7 +59,7 @@
         %\ihead{\hspace{-0.1cm}\raisebox{-2em}{\faCaretDown}}
     \else%% \LILLYxFACULTYxCOLOR
         %%\lohead{\hspace*{-1.83cm}\small{\tikz[baseline=1.215ex]{\filldraw[LightGray!50!white,draw, rounded corners=1pt] (0,0) -- ++(1.45,0) -- ++(0.25,0.25) -- ++ (-0.25,0.25) -- ++(-1.45,0) -- cycle (0.75,0.25) node[minimum height=\baselineskip, inner sep=1pt,\LILLYxLINKSxMainColor]{\silentHmark[Kapitel]{eagleTOC}[\LILLYxLINKSxMainColor]};} \leftmark}}
-        
+
         %\fi
         \lohead{\AUTHOR}
         \lofoot{\silentHmark[\small\textit{Kapitel}]{eagleTOC}[\LILLYxLINKSxMainColor]\textnormal{\guilsinglright}\leftmark}
@@ -107,7 +107,7 @@
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -0.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
-{\normalfont\small\sffamily\bfseries}}                        
+{\normalfont\small\sffamily\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
 {-2ex \@plus-.2ex \@minus .2ex}
 {.1ex}
