@@ -2,7 +2,7 @@ package de.eagle.lillyjakeframework.cmdline;
 
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.util.datatypes.SettingDeskriptor;
-import de.eagle.util.datatypes.Settings;
+import de.eagle.util.datatypes.*;
 import de.eagle.util.enumerations.eSetting_Type;
 
 import static de.eagle.util.logging.JakeLogger.*;

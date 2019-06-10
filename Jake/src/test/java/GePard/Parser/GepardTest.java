@@ -11,7 +11,6 @@ package GePard.Parser;
 
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.gepard.parser.GeneratorParser;
-import de.eagle.gepard.parser.TokenMatch;
 import de.eagle.gepard.parser.Tokenizer;
 import de.eagle.gepard.parser.GeneratorParser.JObject;
 import de.eagle.util.datatypes.SettingDeskriptor;
