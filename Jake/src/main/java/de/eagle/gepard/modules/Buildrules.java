@@ -1,14 +1,21 @@
 package de.eagle.gepard.modules;
 
 import de.eagle.gepard.parser.GeneratorParser;
+import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.util.blueprints.AbstractSettings;
+import de.eagle.util.blueprints.Translator;
+import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.SettingDeskriptor;
-import de.eagle.util.datatypes.Settings;
+import de.eagle.util.datatypes.*;
 import de.eagle.util.enumerations.eSetting_Type;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
+
+import static de.eagle.util.logging.JakeLogger.writeLoggerDebug1;
+import static de.eagle.util.logging.JakeLogger.writeLoggerDebug2;
 
 // Information:
 // Alle "Entspricht ..." Kommentare gilt es zu ändern!
@@ -51,43 +58,105 @@ public class Buildrules {
     private static Settings blueprint = null;
 
 
+    public static String createRuleFromData(Settings setting, Translator<String,String> ts,
+                                            String name, String mode, boolean complete){
+        return createRuleFromData(setting, ts,name, mode,
+                complete, "\\\\input{$(INPUTDIR)$(TEXFILE)}",
+                setting.requestValue(ts,"S_LILLY_NAMEPREFIX"),
+                setting.requestValue(ts,"S_LILLY_COMPLETE_NAME"),
+                "TODO");
+    }
     /**
      *  Erstellt eine Regel auf Basis der Metaeigenschaften. Die Funktion kann selbst autark vom Rest
      *  der Klasse benutzt werden, sollte aber nicht alleine getestet werden, da ein derartiges Verfahren
      *  sehr oft Änderungen unterliegt.
      *
+     * @param setting die zu beziehenden Einstellungen
+     * @param ts der zu verwendende Translator
      * @param name Der Name der Regel wie sie angezeigt werden soll
-     * @param rulenName Der Name der Regel innerhalb von jake (c_default etc.)
      * @param mode Der von Lilly zu verwenden Modus, es stehen
      * @param complete Soll die Option eine complete-option sein? Hierbei handelt es sich nur um eine Shortcut-version
-     * @param nameprefix Das Präfix, welches allen Bezeichnern voran gestellt werden soll
      * @param loaderSequence Sequenz über den die Datei geladen werden soll
+     * @param nameprefix Das Präfix, welches der Regel angehängt werden soll
      * @param completeName Der Name im Falle einer complete-option - spielt mit complete zusammen
      * @param namePattern Das zugrundeliegende Name-Pattern. Dieses kann überschrieben werden um so zum Beispiel
-     *                    eine ganz eigenen Benamung vorzunehmen
+     *                    eine ganz eigenen Benamung vorzunehmen TODO: EXPANDABLES
      * @return Die entsprechende Sequenz fürs Laden der Datei inklusive dem Setzen der relevanten Metatdaten
      */
-    public static String createRuleFromData(String name, String rulenName, String mode, boolean complete,
-                                            String nameprefix, String loaderSequence, String completeName,
+    public static String createRuleFromData(Settings setting, Translator<String,String> ts, String name, String mode, boolean complete,
+                                            String loaderSequence, String nameprefix, String completeName,
                                             String namePattern) {
         // Da JavaJake keine Makefile option mehr anbietet wird hier lediglich die "normale" Variante für
         // on-the-fly-compile generiert:
         StringBuilder ret_str = new StringBuilder();
-        //ret_str.append()
-
-        return "";
+        ret_str.append(setting.requestValue(ts, "S_LILLY_OUT")) // == Sektion: Name (meta)
+               .append(nameprefix)
+               .append((complete)?completeName:"")
+               .append("!"); // die einzelnen Sektionen werden mithilfe von "!" getrennt
+        ret_str.append("\\\\providecommand\\\\LILLYxMODE{") // == Sektion: Befehle
+               .append(mode)
+               .append("}\\\\providecommand\\\\LILLYxMODExEXTRA{")
+               .append(complete?"TRUE":"FALSE")
+               .append("}!"); //
+        ret_str.append(loaderSequence) // Ladesequenz
+               .append("!");
+        ret_str.append(ColorConstants.COL_GOLD)
+               .append("Generiere: ")
+               .append((complete) ? completeName : "")
+               .append(name)
+               .append(ColorConstants.COL_RESET);// output
+        return ret_str.toString();
     }
 
     /**
      * Entspricht get_default_buildrules
      *
-     * @see Buildrules#createRuleFromData(String, String, String, boolean, String, String, String, String)
+     * @see Buildrules#createRuleFromData(Settings, Translator, String, String, boolean)
+     * @see Buildrules#createRuleFromData(Settings, Translator, String, String, boolean, String, String, String, String)
      *
      * @return Standarteinstellungen
      */
     public static Settings getDefaults() {
+        Settings settings = new Settings("<Default> Buildrules", true, new HashMap<>());
 
-        return new Settings("<Default> Buildrules");
+        // Default
+        settings.emplace("default", "Standart-Buildrule ohne Boni :D",
+                eSetting_Type.IS_TEXT,
+                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(),
+                        "Standart","default",false)
+                );
+
+        // Print
+        settings.emplace("print", "Druck-Buildrule ohne Boni :D",
+                eSetting_Type.IS_TEXT,
+                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(),
+                        "Druck","print",false)
+        );
+
+        // Übungsblatt
+        settings.emplace("uebungsblatt", "Übungsblatt-Buildrule, erwartet Dokument ohne \\begin usw.",
+                eSetting_Type.IS_TEXT,
+                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(),
+                        "Übungsblatt","default",true,
+                            "\\\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}",
+                            "","","TODO"
+                        )
+        );
+
+        // Complete Default
+        settings.emplace("c_default", "Complete Standart-Buildrule",
+                eSetting_Type.IS_TEXT,
+                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(),
+                        "Standart","default",true)
+        );
+
+        // Complete Print
+        settings.emplace("c_print", "Complete Druck-Buildrule",
+                eSetting_Type.IS_TEXT,
+                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(),
+                        "Druck","print",true)
+        );
+        return settings;
     }
 
     /**
@@ -117,7 +186,7 @@ public class Buildrules {
      * @return Einstellungen die entsprechend der Boxen konfiguriert sind
      */
     public static Settings parseRules(GeneratorParser.JObject[] boxes, boolean complete) {
-        return new Settings("<Generated> Buildrules");
+        return new Settings("dummy");
     }
 
     /**
@@ -128,6 +197,30 @@ public class Buildrules {
      * @return null, wenn es keine buildrule-Box war, sonst die entsprechende Einstellung
      */
     public static Settings parseBox(GeneratorParser.JObject box, boolean complete){
-        return new Settings("<Generated> Buildrules");
+        writeLoggerDebug1("Bearbeite nun: " + box.toString(), "Buildrules");
+
+        Settings settings = new Settings(box.getName());
+
+        for (String s : new String[] {"display-name","complete","complete-prefix","name","nameprefix"}){
+            System.out.println(s + " : " + box.config.getValue(s));
+        }
+
+        settings.put(box.config.getValue("name"),
+                SettingDeskriptor.create("","Box-Deskriptor für Buildrule (Gepard)",
+                createRuleFromData(
+                CoreSettings.getSettings(),
+                CoreSettings.getTranslator(),
+                box.config.getValue("display-name")
+                        , box.config.getValue("lilly-mode"),
+                        box.config.getValue("complete").equals("true"),
+                box.config.getValue("lilly-loader"),
+                box.config.getValue("nameprefix"),
+                box.config.getValue("lilly-complete-prefix"),
+                box.config.getValue("name-pattern")
+                )));
+        System.out.println(settings);
+        writeLoggerDebug2("erhalten: " + settings.toString(),"Buildrules");
+
+        return settings;
     }
 }

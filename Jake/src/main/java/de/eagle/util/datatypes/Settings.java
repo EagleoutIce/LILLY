@@ -6,8 +6,8 @@ package de.eagle.util.datatypes;
  * @version 1.0.10
  *
  * @brief Die normalen Einstellungen für Jake und Co
- * @see de.eagle.util.datatypes.SettingDeskriptorStringList
- * @see de.eagle.util.datatypes.SettingDeskriptor
+ * @see de.eagle.util.datatypes.Settings.SettingDeskriptorStringList
+ * @see de.eagle.util.datatypes.Settings.SettingDeskriptor
  * @see de.eagle.util.blueprints.AbstractSettings
  */
 

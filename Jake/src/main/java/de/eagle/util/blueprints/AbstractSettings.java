@@ -6,7 +6,7 @@ package de.eagle.util.blueprints;
  * @version 1.0.10
  *
  * @brief Grundlage für Einstellungen
- * @see de.eagle.util.datatypes.Settings
+ * @see de.eagle.util.datatypes
  * @see de.eagle.util.datatypes.SettingDeskriptor
  */
 
@@ -115,6 +115,88 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
     }
 
     /**
+     * Platziert eine neue Einstellung mithilfe eines Translators
+     * @param translator der zu verwendende Translator
+     * @param key der entsprechende Schlüssel
+     * @param brief Erklärung zu Einstellung
+     * @param type Der Typ der Einstellung
+     * @param init Der initiale wert
+     *
+     * @see SettingDeskriptor#create(String, String, eSetting_Type, Serializable)
+     *
+     * @return das alte Objekt, wenn vorhanden
+     */
+    public <T> SettingDeskriptor<V> emplace(Translator<T,K> translator, T key, String brief, eSetting_Type type, V init){
+        K k  = translator.translate(key);
+        if(k == null)
+            throw new IllegalArgumentException("Der Key: " + key.toString() + " wird nicht vom Translator: " + translator.toString() + " unterstützt!");
+
+        if(add_unknown || _settings.containsKey(k)){
+            return _settings.put(k, SettingDeskriptor.create(k.toString(), brief, type,init));
+        }
+        return null;
+    }
+
+    /**
+     * Platziert eine neue Einstellung
+     * @param key der entsprechende Schlüssel
+     * @param brief Erklärung zu Einstellung
+     * @param type Der Typ der Einstellung
+     * @param init Der initiale wert
+     *
+     * @see SettingDeskriptor#create(String, String, eSetting_Type, Serializable)
+     *
+     * @return das alte Objekt, wenn vorhanden
+     */
+    public SettingDeskriptor<V> emplace(K key, String brief, eSetting_Type type, V init){
+        if(add_unknown || _settings.containsKey(key)){
+            return _settings.put(key, SettingDeskriptor.create(key.toString(), brief, type,init));
+        }
+        return null;
+    }
+
+
+    /**
+     * Platziert eine neue Einstellung mithilfe eines Translators
+     * @param translator der zu verwendende Translator
+     * @param key der entsprechende Schlüssel
+     * @param brief Erklärung zu Einstellung
+     * @param type Der Typ der Einstellung
+     * @param isMandatory ist das Argument verpflichtend?
+     *
+     * @see SettingDeskriptor#create(String, String, eSetting_Type, boolean)
+     *
+     * @return das alte Objekt, wenn vorhanden
+     */
+    public <T> SettingDeskriptor<V> emplace(Translator<T,K> translator, T key, String brief, eSetting_Type type, boolean isMandatory){
+        K k  = translator.translate(key);
+        if(k == null)
+            throw new IllegalArgumentException("Der Key: " + key.toString() + " wird nicht vom Translator: " + translator.toString() + " unterstützt!");
+        if(add_unknown || _settings.containsKey(k)){
+            return _settings.put(k, SettingDeskriptor.create(k.toString(), brief, type,isMandatory));
+        }
+        return null;
+    }
+
+    /**
+     * Platziert eine neue Einstellung
+     * @param key der entsprechende Schlüssel
+     * @param brief Erklärung zu Einstellung
+     * @param type Der Typ der Einstellung
+     * @param isMandatory ist das Argument verpflichtend?
+     *
+     * @see SettingDeskriptor#create(String, String, eSetting_Type, Serializable)
+     *
+     * @return das alte Objekt, wenn vorhanden
+     */
+    public SettingDeskriptor<V> emplace(K key, String brief, eSetting_Type type, boolean isMandatory){
+        if(add_unknown || _settings.containsKey(key)){
+            return _settings.put(key, SettingDeskriptor.create(key.toString(), brief, type, isMandatory));
+        }
+        return null;
+    }
+
+    /**
      * Setzt eine Einstellung
      *
      * @param key       Bezeichner der Einstellung
@@ -129,6 +211,10 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
                     false, new_value));
         }
         return true;
+    }
+
+    public <T> V requestValue(Translator<T,K> ts, T key){
+        return getValue(ts.translate(key));
     }
 
     /**

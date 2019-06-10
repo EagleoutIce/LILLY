@@ -67,7 +67,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @param pattern    Token-Pattern
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      */
-    Tokenizer(String input_path, Pattern pattern) throws FileNotFoundException {
+    public Tokenizer(String input_path, Pattern pattern) throws FileNotFoundException {
         this(new FileInputStream(input_path), pattern, 0, Pattern.compile("![^!]*!",Pattern.MULTILINE));
     }
 
@@ -78,7 +78,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @param pattern     Token-Pattern
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      */
-    Tokenizer(InputStream inputStream, Pattern pattern) {
+    public Tokenizer(InputStream inputStream, Pattern pattern) {
         this(inputStream, pattern, 0, Pattern.compile("![^!]*!",Pattern.MULTILINE));
     }
 
@@ -90,7 +90,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @param skip_lines  Wie viele Zeilen sollen zu Beginn übersprungen werden
      * @param skipper     Zeichen für einen Kommentar
      */
-    Tokenizer(InputStream inputStream, Pattern pattern, int skip_lines, Pattern skipper) {
+    private Tokenizer(InputStream inputStream, Pattern pattern, int skip_lines, Pattern skipper) {
         this._input_reader = new BufferedReader(new InputStreamReader(inputStream));
         this._pattern = pattern;
         this._skipper = skipper;

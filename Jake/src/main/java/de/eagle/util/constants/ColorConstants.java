@@ -17,4 +17,6 @@ public class ColorConstants {
     public static final String COL_SUCCESS = "\033[38;2;102;250;0m";
     /// @brief Design-String für Parameter
     public static final String STY_PARAM = "\033[2;3;51m";
+
+    public static final String COL_GOLD = "\033[38;2;255;191;0m";
 }

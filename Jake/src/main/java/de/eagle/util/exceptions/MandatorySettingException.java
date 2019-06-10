@@ -5,7 +5,7 @@ package de.eagle.util.exceptions;
  * @version 1.0.10
  *
  * @brief Fehler, der geworfen wird, wenn eine verpflichtende Einstellung nicht gesetzt ist
- * @see de.eagle.util.datatypes.SettingDeskriptor
+ * @see de.eagle.util.datatypes.Settings.SettingDeskriptor
  */
 
 /**

@@ -80,10 +80,8 @@ public class Configurator {
         writeLoggerInfo("Starte Parsen", "config");
         settings.setUnknownPolicy(add_unknown);
         for (TokenMatch m : this._tokenizer) {
-            writeLoggerInfo("zeile " + m.toString(), "b");
             if (m.failure())
                 continue;
-            writeLoggerInfo("zeile x","c");
             if (m.getMatchings().length == 4) {
                 String[] matchings = m.getMatchings();
                 if (settings.containsKey(matchings[LHS]) || add_unknown) { // Test ansich redundant da Settings policy
