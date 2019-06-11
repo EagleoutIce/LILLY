@@ -11,7 +11,7 @@
     \input{\LILLYxPATHxDATA/Titlepages/_LILLY_DEBUG_TITLEPAGE}
 \fi
 
-%% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten. 
+%% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten.
 
 
 %% TODO DEFINE DEFAULTS
@@ -43,7 +43,7 @@
 
     %%Generieren Inhaltsverzeichnis
 
-    \LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}} 
+    \LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}}
     \addto\captionsngerman{%
         \renewcommand{\contentsname}{\hbox{}\relax\hfill Inhaltsverzeichnis\hfill\hbox{}\relax}%
     }
@@ -56,7 +56,7 @@
         %%Niemand will irgendwas sehen beim TOC :D
         \newpage\addtocontents{toc}{\protect\pagestyle{empty}}
         \addtocontents{toc}{\protect\thispagestyle{empty}}
-        %%Sichergeh :D 
+        %%Sichergeh :D
         \thispagestyle{empty}
         \protect\pagestyle{empty}
         \elable{eagleTOC}
@@ -88,7 +88,7 @@
 \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_DOKUMENTATION}
 \input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
 
-\RequirePackage{marginnote} 
+\RequirePackage{marginnote}
 
 \let\originalmarginnote\marginnote
 \renewcommand{\marginnote}{%

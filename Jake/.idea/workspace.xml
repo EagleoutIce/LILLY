@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/modules/Buildrules.java" line="50" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/modules/Buildrules.java" line="59" />
   </component>
   <component name="BuildServerSettings">
     <option name="LOGIN" value="" />
@@ -27,25 +27,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ac72391-212f-48fe-81ed-19547b6e72b5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/translators/SettingsTranslator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/Translator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/translators/CoreSettings.trans" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Jake/Translators/SetttingsTranslatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/modules/Buildrules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/modules/Buildrules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/cmdline/CommandLineParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/cmdline/CommandLineParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/CoreSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/CoreSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/constants/ColorConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/constants/ColorConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/util/exceptions/MandatorySettingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/util/exceptions/MandatorySettingException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/GePard/Modules/BuildrulesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GePard/Modules/BuildrulesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GePard/Parser/GepardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GePard/Parser/GepardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Jake/Core/CoreFunctionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Jake/Core/CoreFunctionsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Jake/Core/CoreSettingsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Jake/Core/CoreSettingsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_CORE.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_CORE.tex" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -70,11 +56,11 @@
     <window id="1">
       <content type="file-editors">
         <state>
-          <leaf>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
             <file pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="272">
+                  <state relative-caret-position="2907">
                     <caret line="175" column="9" selection-start-line="175" selection-start-column="9" selection-end-line="175" selection-end-column="9" />
                     <folding>
                       <element signature="imports" expanded="true" />
@@ -86,7 +72,7 @@
             <file pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/main/resources/translators/CoreSettings.trans">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="266">
+                  <state relative-caret-position="119">
                     <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
                   </state>
                 </provider>
@@ -95,10 +81,12 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/CoreSettings.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="296">
-                    <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+                  <state relative-caret-position="180">
+                    <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
                     <folding>
                       <element signature="imports" expanded="true" />
+                      <element signature="e#4331#4332#0" expanded="true" />
+                      <element signature="e#4392#4393#0" expanded="true" />
                     </folding>
                   </state>
                 </provider>
@@ -114,11 +102,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/GePard/Modules/BuildrulesTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="85" column="102" selection-start-line="85" selection-start-column="102" selection-end-line="85" selection-end-column="102" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="462">
+              <caret line="90" column="87" selection-start-line="90" selection-start-column="87" selection-end-line="90" selection-end-column="87" />
             </state>
           </provider>
         </entry>
@@ -126,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/Jake/Core/CoreFunctionsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="62" column="56" lean-forward="true" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
+            <state relative-caret-position="952">
+              <caret line="62" column="56" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -135,14 +120,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/translators/SettingsTranslator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+            <state relative-caret-position="221">
+              <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#570#571#0" expanded="true" />
-                <element signature="e#597#598#0" expanded="true" />
-                <element signature="e#854#855#0" expanded="true" />
-                <element signature="e#881#882#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -151,8 +132,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/Jake/Translators/SetttingsTranslatorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+            <state relative-caret-position="136">
+              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -163,8 +144,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/modules/Buildrules.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="87" column="65" lean-forward="true" selection-start-line="87" selection-start-column="65" selection-end-line="87" selection-end-column="65" />
+            <state relative-caret-position="1394">
+              <caret line="97" column="65" selection-start-line="97" selection-start-column="65" selection-end-line="97" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -185,7 +166,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/resources/Gepard/BuildruleSimple.gpd">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="15" column="47" lean-forward="true" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
+              <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -193,8 +174,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
-              <caret line="106" column="81" lean-forward="true" selection-start-line="106" selection-start-column="81" selection-end-line="106" selection-end-column="81" />
+            <state relative-caret-position="1615">
+              <caret line="106" column="81" selection-start-line="106" selection-start-column="81" selection-end-line="106" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -205,8 +186,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/Translator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="70" column="6" lean-forward="true" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
+            <state relative-caret-position="969">
+              <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2910#2911#0" expanded="true" />
@@ -219,12 +200,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
+            <state relative-caret-position="2771">
               <caret line="181" column="38" selection-start-line="181" selection-start-column="38" selection-end-line="181" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5701#5702#0" expanded="true" />
-                <element signature="e#5733#5734#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -392,10 +371,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1934" />
+    <option name="x" value="966" />
     <option name="y" value="13" />
-    <option name="width" value="1161" />
-    <option name="height" value="683" />
+    <option name="width" value="940" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -405,8 +384,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -700,6 +677,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="CatdeaLogs" />
     </panes>
   </component>
@@ -767,9 +746,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Tests - 2019.06.10 at 15h 24m 06s.xml">
-      <configuration name="Tests" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Tests - 2019.06.10 at 15h 27m 27s.xml">
       <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
@@ -797,6 +773,9 @@
     <history-entry file="Tests - 2019.06.10 at 15h 48m 13s.xml">
       <configuration name="Tests" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Tests - 2019.06.11 at 21h 06m 17s.xml">
+      <configuration name="Tests" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="28255000" />
@@ -811,10 +790,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1934" y="13" width="1161" height="683" extended-state="0" />
+    <frame x="966" y="13" width="940" height="1055" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5707965" visible="true" weight="0.2014324" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5707965" visible="true" weight="0.20089285" />
       <window_info id="Structure" order="1" sideWeight="0.42920354" side_tool="true" weight="0.16347177" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -825,7 +804,7 @@
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49893504" weight="0.32881" />
-      <window_info anchor="bottom" x="1936" y="710" width="1157" height="353" id="Run" order="2" sideWeight="0.49733758" type="WINDOWED" visible="true" weight="0.39115646" />
+      <window_info active="true" anchor="bottom" x="16" y="559" width="936" height="505" id="Run" order="2" sideWeight="0.49733758" type="WINDOWED" visible="true" weight="0.39115646" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -834,8 +813,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2087327" side_tool="true" weight="0.2764141" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32881" />
       <window_info anchor="bottom" id="TeamCity" order="10" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.49840257" visible="true" weight="0.34013605" />
-      <window_info anchor="right" id="CodeStream" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49840257" weight="0.34013605" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24973376" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.15040286" />
@@ -846,6 +824,7 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="make" order="8" weight="0.32960597" />
       <window_info anchor="right" x="0" y="0" width="430" height="881" id="Documentation" order="9" sideWeight="0.23407644" side_tool="true" weight="0.357295" />
+      <window_info anchor="right" id="CodeStream" order="10" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1079,13 +1058,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/Translators.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/Translators.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/Util/SettingDeskriptorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1205,42 +1178,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/translators/SettingsTranslator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#570#571#0" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#881#882#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="175" column="9" selection-start-line="175" selection-start-column="9" selection-end-line="175" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/Translator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="70" column="6" lean-forward="true" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2910#2911#0" expanded="true" />
-            <element signature="e#2946#2947#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jrt:///usr/lib/jvm/java-1.11.0-openjdk-amd64!/java.base/java/util/HashMap.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1268,56 +1205,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/translators/CoreSettings.trans">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="181" column="38" selection-start-line="181" selection-start-column="38" selection-end-line="181" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5701#5702#0" expanded="true" />
-            <element signature="e#5733#5734#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="106" column="81" lean-forward="true" selection-start-line="106" selection-start-column="81" selection-end-line="106" selection-end-column="81" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/CoreSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/Jake/Core/CoreFunctionsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="62" column="56" lean-forward="true" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
+        <state relative-caret-position="952">
+          <caret line="62" column="56" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/translators/SettingsTranslator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/Jake/Translators/SetttingsTranslatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        <state relative-caret-position="136">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1326,18 +1234,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/modules/Buildrules.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="87" column="65" lean-forward="true" selection-start-line="87" selection-start-column="65" selection-end-line="87" selection-end-column="65" />
+        <state relative-caret-position="1394">
+          <caret line="97" column="65" selection-start-line="97" selection-start-column="65" selection-end-line="97" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/Gepard/BuildruleSimple.gpd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="47" lean-forward="true" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1348,13 +1249,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/GePard/Modules/BuildrulesTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/resources/Gepard/BuildruleSimple.gpd">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="85" column="102" selection-start-line="85" selection-start-column="102" selection-end-line="85" selection-end-column="102" />
+        <state relative-caret-position="255">
+          <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/gepard/parser/Configurator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="106" column="81" selection-start-line="106" selection-start-column="81" selection-end-line="106" selection-end-column="81" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/Translator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="70" column="6" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2910#2911#0" expanded="true" />
+            <element signature="e#2946#2947#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/blueprints/AbstractSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2771">
+          <caret line="181" column="38" selection-start-line="181" selection-start-column="38" selection-end-line="181" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/util/datatypes/SettingDeskriptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2907">
+          <caret line="175" column="9" selection-start-line="175" selection-start-column="9" selection-end-line="175" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/translators/CoreSettings.trans">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/core/CoreSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4331#4332#0" expanded="true" />
+            <element signature="e#4392#4393#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GePard/Modules/BuildrulesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="90" column="87" selection-start-line="90" selection-start-column="87" selection-end-line="90" selection-end-column="87" />
         </state>
       </provider>
     </entry>

@@ -3,6 +3,17 @@
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 \RequirePackage{relsize}
 
+\RequirePackage[german]{fancyref}
+\RequirePackage{lipsum} %% macht vieles einfacher
+
+
+\RequirePackage{float} %% for H
+
+\LILLYxLoadPackage{subcaption}{Für tolle Untertitel}
+                    {Dieses Paket ist oft nicht vorhanden, nicht schlimm, wird dann nicht benutzt!}
+                    {}
+                    {}{}
+
 \providecommand{\LILLYxBOXxDefinitionxLock}{TRUE}
 \providecommand{\LILLYxBOXxBeispielxLock}{TRUE}
 \providecommand{\LILLYxBOXxBemerkungxLock}{TRUE}
@@ -30,7 +41,7 @@
     \pagestyle{empty} %KOMA-FTW!
     \pagenumbering{gobble}
 }
-\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+\LILLYcommand{\LILLYxLayoutxRestore}{ %
     \pagenumbering{arabic}
     \pagestyle{scrheadings} %KOMA-FTW!
 
@@ -40,19 +51,25 @@
 }
 
 
-\providecommand{\ABSTRACT}{Hier könnte ihre Werbung stehen.}
-\providecommand{\TITLE}{Hier könnte ihre Werbung stehen1.}
-\providecommand{\BRIEF}{Hier könnte ihre Werbung stehen2.}
+\providecommand{\ABSTRACT}{Hier könnte ihre Werbung stehen. Ich mag Züge wirklich sehr immer mehr, immer mehr, dies ist das Abstract - oh - Abstract oh jäah! \textbf{Ändere diesen Text durch:
+{\T{\textbackslash providecommand\{\textbackslash ABSTRACT\}\{<Dein neuer Titel>\}}} vor {\T{\textbackslash documentclass[paper]\{LILLY\}.}}}}
+\providecommand{\TITLE}{Hier könnte ihre Werbung stehen1. (\T{\textbackslash TITLE})}
+\providecommand{\BRIEF}{Informatik Student,\\Universit\"{a}t Ulm -- \heute}
 
 \newcommand{\printHeader}{\setlength{\columnsep}{2em}{\twocolumn[
     \begin{@twocolumnfalse}
      {\centering \usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{\TITLE}\par~\newline}
      {\centering \AUTHOR,~\BRIEF\par}~\bigskip\newline
      \rule{\linewidth}{1pt}\vspace{3pt}\newline
-     \textbf{Abstract:}\quad {\ABSTRACT}
+     \textbf{Abstract:}\quad {\ABSTRACT}\par
      \rule{\linewidth}{1pt}\bigskip\newline
     \end{@twocolumnfalse}
  ]}}
+
+\newcommand{\printLILLY}{%
+\paragraph{Dokumenterstellung}
+Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbei handelt es sich um ein Framework für \LaTeX, welches Florian Sihler für seine Studiumsmitschriften (aktuell) entwickelt. Es ist Quelloffen und befindet sich auf GitHub: \url{https://github.com/EagleoutIce/LILLY}.
+}
 
 \AtBeginDocument{
     \LILLYxLayoutxRestore
@@ -119,7 +136,7 @@
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -0.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
-{\normalfont\small\bfseries}}                        
+{\normalfont\small\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
 {-2ex \@plus-.2ex \@minus .2ex}
 {.1ex}
