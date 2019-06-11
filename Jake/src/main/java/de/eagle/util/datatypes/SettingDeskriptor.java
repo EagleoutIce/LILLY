@@ -28,7 +28,7 @@ import java.io.Serializable;
  */
 public class SettingDeskriptor<T extends Serializable> implements Serializable {
     private static final long serialVersionUID = 7353042747573185893L;
-    
+
     /// Erklärung zur Einstellung
     public final String brief;
     /// Typ der Einstellung
@@ -202,7 +202,7 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
     public T getValue() {
         if (isMandatory && value == null)
             throw new MandatorySettingException(
-                    "Die verpflichtende Einstellung: " + getName() 
+                    "Die verpflichtende Einstellung: " + getName()
                         + " wurde nicht mit einem Wert belegt!");
         return value;
     }
@@ -251,8 +251,8 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
         if(obj==null) return false;
         if(obj.getClass() != this.getClass()) return false;
         SettingDeskriptor<T> t = (SettingDeskriptor<T>)obj;
-        if(this.getValue() == null) return t.getValue() == null; 
-        return (t.getName().equals(this.getName())) 
+        if(this.getValue() == null) return t.getValue() == null;
+        return (t.getName().equals(this.getName()))
                 && (t.isMandatory()==this.isMandatory())
                 && (t.getValue().equals(this.getValue()));
                 // Notiz: Es ist gestattet, dass es sich bei einer Einstellung um
@@ -276,7 +276,7 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
 
     @Override
     public String toString() {
-        return "SettingDeskriptor [brief=" + brief + ", isMandatory=" 
+        return "SettingDeskriptor [brief=" + brief + ", isMandatory="
                 + isMandatory + ", name=" + name + ", type="
                 + type + ", value=" + value + "]";
     }

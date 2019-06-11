@@ -40,12 +40,16 @@
 }
 
 
+\providecommand{\ABSTRACT}{Hier könnte ihre Werbung stehen.}
+\providecommand{\TITLE}{Hier könnte ihre Werbung stehen1.}
+\providecommand{\BRIEF}{Hier könnte ihre Werbung stehen2.}
+
 \newcommand{\printHeader}{\setlength{\columnsep}{2em}{\twocolumn[
     \begin{@twocolumnfalse}
      {\centering \usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{\TITLE}\par~\newline}
      {\centering \AUTHOR,~\BRIEF\par}~\bigskip\newline
      \rule{\linewidth}{1pt}\vspace{3pt}\newline
-     \textbf{Abstract:}\quad {\lipsum[2]}
+     \textbf{Abstract:}\quad {\ABSTRACT}
      \rule{\linewidth}{1pt}\bigskip\newline
     \end{@twocolumnfalse}
  ]}}
