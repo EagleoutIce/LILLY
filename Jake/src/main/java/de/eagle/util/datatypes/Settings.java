@@ -6,8 +6,8 @@ package de.eagle.util.datatypes;
  * @version 1.0.10
  *
  * @brief Die normalen Einstellungen für Jake und Co
- * @see de.eagle.util.datatypes.SettingDeskriptorStringList
- * @see de.eagle.util.datatypes.SettingDeskriptor
+ * @see de.eagle.util.datatypes.Settings.SettingDeskriptorStringList
+ * @see de.eagle.util.datatypes.Settings.SettingDeskriptor
  * @see de.eagle.util.blueprints.AbstractSettings
  */
 
@@ -25,7 +25,6 @@ import static de.eagle.util.logging.JakeLogger.writeLoggerDebug3;
 
 public class Settings extends AbstractSettings<String, String> {
     private static final long serialVersionUID = 673856672235848508L;
-
 
     /**
      * Konstruiert die Einstellungen ohne irgendwelche Voreinstellungen
@@ -106,7 +105,7 @@ public class Settings extends AbstractSettings<String, String> {
     }
 
     /**
-     * Liefert den Wert einer gewissen Einstellung zurück - Kurzzschreibweise mit null check
+     * Liefert den Wert einer gewissen Einstellung zurück - Kurzschreibweise mit null check
      * 
      * @param key der zu suchende Key
      * @return der gefundene Wert, null wenn nicht gefunden

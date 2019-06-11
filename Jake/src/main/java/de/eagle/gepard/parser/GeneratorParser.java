@@ -39,24 +39,25 @@ import static de.eagle.util.logging.JakeLogger.*;
  * @version 1.0.10
  * @since 1.0.10
  * 
- * @implNote GePard an sich befindet sich bezüglich seiner Funktionalität noch 
+ * @implNote GePard an sich befindet sich bezüglich seiner Funktionalität noch
  *           im Aufbau. Änderungen in der Philosophie sind ebenso möglich, wie
- *           Änderungen in den Akzeptierten Begriffen und Patterns.
- *           Etwaige große Änderungen bezüglich vorhergehender Version werde
- *           jeweils vermerkt.
+ *           Änderungen in den Akzeptierten Begriffen und Patterns. Etwaige
+ *           große Änderungen bezüglich vorhergehender Version werde jeweils
+ *           vermerkt.
  * 
  * @see Tokenizer
  * @see Configurator
  *      <p>
- *     
  * 
- * For testing see: Tests > java > GepardTest
+ * 
+ *      For testing see: Tests > java > GepardTest
  * 
  */
 public class GeneratorParser {
 
     /// Alle Pfade in denen nach Konfigurationen gesucht werden soll
     private String[] _op_paths;
+    /// Entspricht der Zeilenanzahl (fürs debugging)
     private int __lineCount;
 
     /**
@@ -80,7 +81,7 @@ public class GeneratorParser {
     /**
      * Setzt den Zeilenzähler zurück
      * 
-     * @returns den alten Wert des Zeilenzählers
+     * @return den alten Wert des Zeilenzählers
      */
     public int resetLineCount() {
         int old = __lineCount;
@@ -140,14 +141,14 @@ public class GeneratorParser {
         protected int line = 0;
 
         /// Expliziter leerer Konstruktor
-        public Box() { }
-
+        public Box() {
+        }
 
         /**
          * Konstruiert die Box entsprechend mit Namen und Inhalt
          * 
-         * @param name    Name der Box :D
-         * @param fileName Herkunft der Box
+         * @param name        Name der Box :D
+         * @param fileName    Herkunft der Box
          * @param lineOfBegin Zeile des BEGIN-Tags
          */
         public Box(String name, String fileName, int lineOfBegin) {
@@ -158,9 +159,9 @@ public class GeneratorParser {
         /**
          * Konstruiert die Box entsprechend mit Namen und Inhalt
          * 
-         * @param name    Name der Box :D
-         * @param content Inhalt der Box (Magie!!!!!)
-         * @param fileName Herkunft der Box
+         * @param name        Name der Box :D
+         * @param content     Inhalt der Box (Magie!!!!!)
+         * @param fileName    Herkunft der Box
          * @param lineOfBegin Zeile des BEGIN-Tags
          */
         public Box(String name, String content, String fileName, int lineOfBegin) {
@@ -198,9 +199,13 @@ public class GeneratorParser {
             return content;
         }
 
-        public String getFile() { return file; }
+        public String getFile() {
+            return file;
+        }
 
-        public int getLine() { return line; }
+        public int getLine() {
+            return line;
+        }
     }
 
     /**
@@ -225,10 +230,10 @@ public class GeneratorParser {
             writeLoggerInfo("GeneratorParser bearbeitet nun die Datei: \"" + path + "\"", "GePard");
             resetLineCount();
             for (;;) {
-                current_box = get_next_box(dataFile, identifier, path /*file path*/);
-                if(current_box.name.isEmpty()) {
+                current_box = get_next_box(dataFile, identifier, path /* file path */);
+                if (current_box.name.isEmpty()) {
                     writeLoggerDebug1("Keine weitere Box gefunden", "GePard");
-                    break; 
+                    break;
                 }
                 jobjects.push(current_box.get_JObject(blueprint, add_unknown));
                 writeLoggerDebug1("Box gefunden: " + jobjects.getFirst(), "GePard");
@@ -255,10 +260,6 @@ public class GeneratorParser {
         }
     }
 
-
-
-
-
     /**
      * liefert die nächste BEGIN X END Klausel wirft einen Fehler wenn Datei
      * Fehlerhaft
@@ -268,14 +269,15 @@ public class GeneratorParser {
      * 
      * @param filterName     Wenn nicht ="" wird die erste Box mit dem
      *                       entsprechenden Namen geliefert und "" wenn es keine
-     *                       mehr gibt. Der Filter wird als REGEX präsentiert
-     *                       dies ist bei der Verwendung von (ohnehin verbotenen)
+     *                       mehr gibt. Der Filter wird als REGEX präsentiert dies
+     *                       ist bei der Verwendung von (ohnehin verbotenen)
      *                       Kontrollsequenzen zu beachten!
      * 
-     * @param fileName       Der Name der Datei, aus der der bufferedReader seine Daten
-     *                       bezieht, auch diese Option hat lediglich aus Debug-Gründen
-     *                       Einzug erhalten. Namen wie "StringStream" oder einfach nichts
-     *                       sind ebenfalls möglich. Die Datei wird niemals nachverfolgt.
+     * @param fileName       Der Name der Datei, aus der der bufferedReader seine
+     *                       Daten bezieht, auch diese Option hat lediglich aus
+     *                       Debug-Gründen Einzug erhalten. Namen wie "StringStream"
+     *                       oder einfach nichts sind ebenfalls möglich. Die Datei
+     *                       wird niemals nachverfolgt.
      * 
      * @note bufs (size_t) wurde entfernt, da das tolle Java keine gute Möglichkeit
      *       für eine derartige Implementation zur Verfügung stellt!
@@ -288,27 +290,24 @@ public class GeneratorParser {
      * @return den unveränderten String zwischen BEGIN X und END
      */
     protected Box get_next_box(BufferedReader bufferedReader, String filterName, String fileName) throws IOException {
-        
-        String buffer = "";  // todo reserve
+
+        String buffer = ""; // todo reserve
 
         String current_line = "";
 
-        /* Notiz zur Gestaltung der Umgebungsbeschränker (tolles deutsches Wort ^^):
+        /*
+         * Notiz zur Gestaltung der Umgebungsbeschränker (tolles deutsches Wort ^^):
          * 
          * Es wurde absichtlich nur der Beginn der Zeile und _nicht_ das Ende gematcht
-         * Eine Deklaration wie: 
-         *  - BEGIN boxname:
-         * Ist also ebenso valide wie:
-         *  - BEGIN boxname Ich bin auch noch da in dieser Zeile
-         * Analog ergibt sich für END:
-         *  - END;
-         *  - END Hallo MAMA
-         * Als gültiger Terminator - Dies kann negativ betrachtet werden, eröffnet aber
-         * zukünftige Möglichkeiten für weiteren Optionen und oder Informationen....
+         * Eine Deklaration wie: - BEGIN boxname: Ist also ebenso valide wie: - BEGIN
+         * boxname Ich bin auch noch da in dieser Zeile Analog ergibt sich für END: -
+         * END; - END Hallo MAMA Als gültiger Terminator - Dies kann negativ betrachtet
+         * werden, eröffnet aber zukünftige Möglichkeiten für weiteren Optionen und oder
+         * Informationen....
          */
 
-        Pattern p_begin = Pattern.compile("^ *(BEGIN) *(?<boxname>[a-zA-ZäöüßÄÖÜ_]+)",Pattern.MULTILINE);
-        Pattern p_end = Pattern.compile("^ *(END)",Pattern.MULTILINE);
+        Pattern p_begin = Pattern.compile("^ *(BEGIN) *(?<boxname>[a-zA-ZäöüßÄÖÜ_]+)", Pattern.MULTILINE);
+        Pattern p_end = Pattern.compile("^ *(END)", Pattern.MULTILINE);
         Pattern p_boxname = Pattern.compile(filterName, Pattern.MULTILINE);
 
         boolean skipping = false;
@@ -317,16 +316,17 @@ public class GeneratorParser {
 
         Box return_box = null;
         Matcher current_matcher = null;
-        while((current_line = getLine(bufferedReader)) != null) {
-            writeLoggerDebug2("[Zeile: " + getLineCount() + "] GePard parsing: \"" + current_line + "\"","GePard");
-            current_line = current_line.replaceAll("![^!]*!",""); // remove comments => Method?
-            if((current_matcher = p_begin.matcher(current_line)).find()){
-                writeLoggerDebug1("Box mit dem Name: \"" + current_matcher.group("boxname") + "\" detektiert!","GePard");
+        while ((current_line = getLine(bufferedReader)) != null) {
+            writeLoggerDebug2("[Zeile: " + getLineCount() + "] GePard parsing: \"" + current_line + "\"", "GePard");
+            current_line = current_line.replaceAll("![^!]*!", ""); // remove comments => Method?
+            if ((current_matcher = p_begin.matcher(current_line)).find()) {
+                writeLoggerDebug1("Box mit dem Name: \"" + current_matcher.group("boxname") + "\" detektiert!",
+                        "GePard");
                 // Wird die aktuelle Box gesucht? GePard erlaubt es eine Datei
                 // Nur nach bestimmten Boxtypen zu durchfiltern, er wird die Boxen
                 // dennoch mit dem entsprechenden Namenbezeichner versehen,
                 // allerdings so eine gefilterte Sammlung gewährleisten.
-                // Ist die Sammlung aller Boxen gewünscht so lässt sich der Filter 
+                // Ist die Sammlung aller Boxen gewünscht so lässt sich der Filter
                 // einfach auf einen leeren String stellen. Da der Match weiter
                 // als regex::match durchgeführt wird ist es weiter möglich
                 // die suche auch über eine RegexExpression durchzuführen.
@@ -334,17 +334,20 @@ public class GeneratorParser {
                 // darauf zugreifen, die Option wird allerdings dennoch präsentiert,
                 // weil, naja, irgendwas muss ja die Java-Version können (neben der
                 // unabsprechbaren Fertigkeit mich zum Weinen zu bringen.)
-                if (!p_boxname.matcher(current_matcher.group("boxname")).matches() &&
-                        !filterName.isEmpty() /* explicit */ ) {
-                            writeLoggerDebug1("Die Box wird übersprungen, da sie nicht dem Filter (\"" + filterName + "\") entspricht","GePard");
-                            // Skipping
-                            skipping = true;
-                            continue; // Diese Box wollen wir nicht
-                        }
-                return_box = new Box(current_matcher.group("boxname"),"",fileName, getLineCount());
-                //Fülle content:
-                while((current_line = getLine(bufferedReader))!= null) {
-                    writeLoggerDebug2("[Zeile: " + getLineCount() + "] [BOX: \"" + return_box.getName() + "\"] GePard parsing: \"" + current_line + "\"","GePard");
+                if (!p_boxname.matcher(current_matcher.group("boxname")).matches()
+                        && !filterName.isEmpty() /* explicit */ ) {
+                    writeLoggerDebug1(
+                            "Die Box wird übersprungen, da sie nicht dem Filter (\"" + filterName + "\") entspricht",
+                            "GePard");
+                    // Skipping
+                    skipping = true;
+                    continue; // Diese Box wollen wir nicht
+                }
+                return_box = new Box(current_matcher.group("boxname"), "", fileName, getLineCount());
+                // Fülle content:
+                while ((current_line = getLine(bufferedReader)) != null) {
+                    writeLoggerDebug2("[Zeile: " + getLineCount() + "] [BOX: \"" + return_box.getName()
+                            + "\"] GePard parsing: \"" + current_line + "\"", "GePard");
                     current_line = current_line.replaceAll("![^!]*!", "");
 
                     // Ist hier ein verschachtelter Gruppen beginn?
@@ -352,10 +355,12 @@ public class GeneratorParser {
                     // Die verarbeitung interner Gruppenbezeichnungen obliegt lediglich
                     // des jeweiligen Boxtyps GePard macht in der Hinsicht nichts,
                     // außer mimimi
-                    if((current_matcher = p_begin.matcher(current_line)).find()) {
-                        throw new RuntimeException("[Zeile: " + getLineCount() + "] Box: " + return_box.name + " enthält ein weiteres BEGIN (\"" + current_line + "\" dies ist in Gepard explizit nicht gestattet !");
-                    } else if ((current_matcher = p_end.matcher(current_line)).find()) { 
-                        // In diesem Fall wurde ein END gefunden, dies wird selbstredend 
+                    if ((current_matcher = p_begin.matcher(current_line)).find()) {
+                        throw new RuntimeException("[Zeile: " + getLineCount() + "] Box: " + return_box.name
+                                + " enthält ein weiteres BEGIN (\"" + current_line
+                                + "\" dies ist in Gepard explizit nicht gestattet !");
+                    } else if ((current_matcher = p_end.matcher(current_line)).find()) {
+                        // In diesem Fall wurde ein END gefunden, dies wird selbstredend
                         // nur dann gestattet, wenn es sich auch um eine gültige BEGIN BOX
                         // ein fehlplaziertes END wird außerhalb abgegrast
 
@@ -365,28 +370,27 @@ public class GeneratorParser {
                         return return_box;
                     }
                     // Wenn wir hier sind handelt es sich um eine normale Zeile
-                    // Sie wird normal, inklusive der neuen Zeile hinzugefüt,
+                    // Sie wird normal, inklusive der neuen Zeile hinzugefügt,
                     // Die Information über die Ziele verfällt die Zeilennummer des
-                    // Begin-Tags für etwaige Debugging-Zwecke wird oben bereits 
+                    // Begin-Tags für etwaige Debugging-Zwecke wird oben bereits
                     // aufgesammelt
                     writeLoggerDebug2("Inhalt (\"" + current_line.trim() + "\") wurde der Box hinzugefügt.", "GePard");
                     box_content_buffer.append(current_line).append("\n");
-                    
 
                 }
-            } else if (p_end.matcher(current_line).find()){
+            } else if (p_end.matcher(current_line).find()) {
                 // Es ist nicht erlaubt ein herrenloses END zu erhalten!
-                if(skipping){
+                if (skipping) {
                     skipping = false;
-                    writeLoggerDebug2("[Zeile: " + getLineCount() + "] Box-Wurde übersprungen","GePard");
+                    writeLoggerDebug2("[Zeile: " + getLineCount() + "] Box-Wurde übersprungen", "GePard");
                 } else {
-                    throw new RuntimeException("[Zeile: " + getLineCount() + "] Es wurde ein END gefunden welches herrenlos in der Gegend umher schlawinert! Dies ist nicht gestattet!");
+                    throw new RuntimeException("[Zeile: " + getLineCount()
+                            + "] Es wurde ein END gefunden welches herrenlos in der Gegend umher schlawinert! Dies ist nicht gestattet!");
                 }
             }
         }
         writeLoggerWarning("Liefere eine leere Box zurück, da keine weitere gefunden wurde!", "GePard");
         return new Box(); // return {.name = ""} // Da ist nichts; ein wahrer Schocker :D
     }
-
 
 } // End Class :D

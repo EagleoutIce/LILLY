@@ -5,7 +5,7 @@ package de.eagle.util.interfaces;
  * @version 1.0.10
  *
  * @brief Alternatives Cloneable Interface
- * @see de.eagle.util.Cloner
+ * @see de.eagle.util.helper.Cloner
  */
 /**
  * Versuch zumindest die clone Methode zu fordern ^^

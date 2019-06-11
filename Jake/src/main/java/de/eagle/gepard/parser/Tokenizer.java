@@ -67,7 +67,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @param pattern    Token-Pattern
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      */
-    Tokenizer(String input_path, Pattern pattern) throws FileNotFoundException {
+    public Tokenizer(String input_path, Pattern pattern) throws FileNotFoundException {
         this(new FileInputStream(input_path), pattern, 0, Pattern.compile("![^!]*!",Pattern.MULTILINE));
     }
 
@@ -78,7 +78,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @param pattern     Token-Pattern
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      */
-    Tokenizer(InputStream inputStream, Pattern pattern) {
+    public Tokenizer(InputStream inputStream, Pattern pattern) {
         this(inputStream, pattern, 0, Pattern.compile("![^!]*!",Pattern.MULTILINE));
     }
 
@@ -90,7 +90,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @param skip_lines  Wie viele Zeilen sollen zu Beginn übersprungen werden
      * @param skipper     Zeichen für einen Kommentar
      */
-    Tokenizer(InputStream inputStream, Pattern pattern, int skip_lines, Pattern skipper) {
+    private Tokenizer(InputStream inputStream, Pattern pattern, int skip_lines, Pattern skipper) {
         this._input_reader = new BufferedReader(new InputStreamReader(inputStream));
         this._pattern = pattern;
         this._skipper = skipper;
@@ -179,14 +179,13 @@ public class Tokenizer implements Iterable<TokenMatch> {
     public TokenMatch get() {
         String line = get_current_line();
         Matcher m = this._pattern.matcher(line);
-        if (m.matches()) {
+        if (m.find()) {
             String[] arr_m = new String[m.groupCount() + 1];
             for (int i = 0; i < arr_m.length; i++) {
-                arr_m[i] = m.group(i);
+                arr_m[i] = m.group(i).trim();
             }
             return new TokenMatch(arr_m, _current_original, line);
         }
-
         return null; // null means failure
     }
 

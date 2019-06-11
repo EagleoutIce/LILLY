@@ -180,15 +180,19 @@ public class JakeLogger {
      * die letzte Zeile im Log (ausgenommen: Aufräumarbeiten)
      * Es ist prinzipiell nicht verboten mehrere Fehler ausgeben zu
      * lassen oder auch nach Fehlern weiterzuarbeiten,
-     * allerdings sollte dem Endnjutzer auch direkt ein solcher
+     * allerdings sollte dem Endnutzer auch direkt ein solcher
      * Fehler schmerzlich näher gebracht werden!
      * (Dies wird von writeLoggerError natürlich nicht übernommen)
-     * 
+     *
+     * @implNote Schreibt direkt an den Error OutputStream des Systems
+     *
      * @param message die Nachricht
      * @param sender wo brennts?
      * 
      */
     public static void writeLoggerError(String message, String sender){
+        // @Todo nicht machen wenn Terminal-Sync aktiv
+        // System.err.format("%-45s   ##   %-8s: %s", getCallerName(), sender, message);
         getLogger().log(Level.SEVERE, String.format("%-45s   ##   %-8s: %s", getCallerName(), sender, message));
     }
 
@@ -203,7 +207,15 @@ public class JakeLogger {
      * @param message die Nachricht
      * @param sender Nachrichtenschreiber
      * @param level Relevanz der Nachricht
-     * 
+     *
+     * Nutzer:
+     *     - {@link #writeLoggerDebug1(String, String)}
+     *     - {@link #writeLoggerDebug2(String, String)}
+     *     - {@link #writeLoggerDebug3(String, String)}
+     *     - {@link #writeLoggerInfo(String, String)}
+     *     - {@link #writeLoggerWarning(String, String)}
+     *     - {@link #writeLoggerError(String, String)}
+     *
      * @see JakeLogger
      */
     public static void writeLogger(String message, String sender, Level level){

@@ -1,20 +1,16 @@
 \RequirePackage{tikz}[remember picture,overlay]                 %tikz implementation
-\RequirePackage{tkz-euclide} 
+\RequirePackage{tkz-euclide}
 \RequirePackage[european]{circuitikz}                           %Schaltkreise, Standard: Europäisches Schaltkreislayout
 \usetikzlibrary{%
-arrows,automata,calc,intersections,%
-through,decorations.pathreplacing,%
-decorations.pathmorphing,backgrounds,%
-positioning,fit,shapes,shadings,chains,%
 matrix,scopes, shadows,patterns,mindmap}
 %%\usetikzlibrary{external}
-\RequirePackage{pgfplots}   
+\RequirePackage{pgfplots}
 \ifx\LILLYxEXTERNALIZE\true
 \usetikzlibrary{external}
 \tikzexternalize[up to date check=md5, optimize=false]
 \tikzsetfigurename{\LILLYxOUTPUTDIR/extimg/grafik_}
 \tikzexternaldisable
-\LILLYxDemandPackage{environ}{Ermöglicht spezifisches externalize} %% Package, Info
+\LILLYxDemandPackage{environ}{Erm�glicht spezifisches externalize} %% Package, Info
                     {Leider ist auch dieses Paket verpflichtend :/}%% Error-Text
                     {}%%Params
                     {}
