@@ -1,10 +1,10 @@
 %% Dieser Controller kümmert sich um die korrekte implementierung des OUTROS eines Dokuments er fügt bei Bedarf Listen für Definitionen usw an und bindet auch den Index ein etc.
 
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
-   %% Wir haben einen Mitschrieb => 
+   %% Wir haben einen Mitschrieb =>
    %% - Definitionen
    %% - Sätze
-   %% - Zusamenfassungen 
+   %% - Zusamenfassungen
 \AtEndDocument{
    \pagestyle{empty}\tocloftpagestyle{plain}
     \ohead{}\chead{}\ihead{} %clear header
@@ -48,6 +48,11 @@
 \fi\fi
 
 \ifx\LILLYxBIBTEX\undefined\else
+
+\ifx\LILLYxCMD\undefined
+\immediate\write18{bibtex \jobname.aux}
+\else %% NOTHING
+\fi
 
 \providecommand{\printbib}[1][\LILLYxBIBTEX]{
    \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb

@@ -7,22 +7,19 @@ import de.eagle.util.datatypes.Settings;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
 
 /**
- * Diese Klasse spezifiziert die Anforderungen an
- * das buildrules Modul.
- * Die Entsprechende Erweiterungen hat alle folgende Tests zu bestehen
- * an den Tests selbst darf nur mit Rücksprache eine Veränderung
- * durchgeführt werden!
+ * Diese Klasse spezifiziert die Anforderungen an das buildrules Modul. Die
+ * Entsprechende Erweiterungen hat alle folgende Tests zu bestehen an den Tests
+ * selbst darf nur mit Rücksprache eine Veränderung durchgeführt werden!
  *
  * @implNote Ziel ist es, dass es über die Box: 'buildrule' möglich ist
- *           Einstellungen zu treffen in wie weit die Dokumente
- *           kompiliert werden
+ *           Einstellungen zu treffen in wie weit die Dokumente kompiliert
+ *           werden
  *
- * Die entsprechende C++-datei lautet j_buildrules.cpp (/.hpp)
+ *           Die entsprechende C++-datei lautet j_buildrules.cpp (/.hpp)
  *
  *
  * @author Florian Sihler
@@ -33,16 +30,17 @@ import java.io.IOException;
 @Tag("Buildrules")
 public class BuildrulesTest {
 
-    @ParameterizedTest @Tag("GePard") @Order(1)
+    @ParameterizedTest
+    @Tag("GePard")
+    @Order(1)
     @DisplayName("[Buildrules] Überprüft erwartende Blueprint-Settings")
-    @CsvSource({"name,,true", "display-name,,true","lilly-mode,,true",
-                "complete,false,false", "complete-prefix,c_,false",
-                "lilly-complete-prefix,COMPLETE-,false", "nameprefix,#,false",
-                "lilly-loader,\\\\input{$(INPUTDIR)$(TEXFILE)},false"})
+    @CsvSource({ "name,,true", "display-name,,true", "lilly-mode,,true", "complete,false,false",
+            "complete-prefix,c_,false", "lilly-complete-prefix,COMPLETE-,false", "nameprefix,#,false",
+            "lilly-loader,\\\\input{$(INPUTDIR)$(TEXFILE)},false" })
     void _test_gepard_buildrules_blueprint(String name, String expected, String mandatory) {
         SettingDeskriptor<String> s = Buildrules.getBlueprint().get(name);
-        Assertions.assertNotNull(s,"Die Einstellung muss Existieren");
-        if(mandatory.equals("true")){
+        Assertions.assertNotNull(s, "Die Einstellung muss Existieren");
+        if (mandatory.equals("true")) {
             Assertions.assertTrue(s.isMandatory, "Die Einstellung soll verpflichtend sein!");
         } else {
             Assertions.assertEquals(expected.replace("#", ""), s.getValue(), "Die Einstellung soll den Wert haben");
@@ -50,54 +48,62 @@ public class BuildrulesTest {
     }
 
     /**
-     * Testet ob die jeweiligen Defaults existieren
-     * testet nicht den Inhalt, der allerdings entsprechend sein sollte
+     * Testet ob die jeweiligen Defaults existieren testet nicht den Inhalt, der
+     * allerdings entsprechend sein sollte
+     *
      * @param should_exist Buildmode den es geben soll
-     * @param should_be Wert der erhalten werden soll
+     * @param should_be    Wert der erhalten werden soll
      */
-    @ParameterizedTest @Tag("GePard") @Order(2)
+    @ParameterizedTest
+    @Tag("GePard")
+    @Order(2)
     @DisplayName("[Buildrules] Überprüft erwartende Defaults")
-    @CsvSource(value = {"default~SettingDeskriptor [brief=Standart-Buildrule ohne Boni :D, isMandatory=false, name=default, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{FALSE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: Standart]",
-                        "print~SettingDeskriptor [brief=Druck-Buildrule ohne Boni :D, isMandatory=false, name=print, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{print}\\\\providecommand\\\\LILLYxMODExEXTRA{FALSE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: Druck]",
-                        "uebungsblatt~SettingDeskriptor [brief=Übungsblatt-Buildrule, erwartet Dokument ohne \\begin usw., isMandatory=false, name=uebungsblatt, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}!Generiere: Übungsblatt]",
-                        "c_default~SettingDeskriptor [brief=Complete Standart-Buildrule, isMandatory=false, name=c_default, type=IS_TEXT, value=./OUTPUT/COMPLETE-!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: COMPLETE-Standart]",
-                        "c_print~                        \"c_print~SettingDeskriptor [brief=Complete Druck-Buildrule, isMandatory=false, name=c_print, type=IS_TEXT, value=./OUTPUT/COMPLETE-Druck!\\\\\\\\providecommand\\\\\\\\LILLYxMODE{print}\\\\\\\\providecommand\\\\\\\\LILLYxMODExEXTRA{TRUE},\\\"\\\\\\\\input{$(INPUTDIR)$(TEXFILE)}\\\"]\"},delimiter = '~')"},delimiter = '~')
-    void _test_gepard_buildrules_defaults(String should_exist,String should_be){
-        Assertions.assertNotNull(Buildrules.getDefaults().get(should_exist),"Default-Einstellung muss existieren");
-        //System.out.println(Buildrules.getDefaults().get(should_exist));
+    @CsvSource(value = {
+            "default~SettingDeskriptor [brief=Standart-Buildrule ohne Boni :D, isMandatory=false, name=default, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{FALSE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: Standart]",
+            "print~SettingDeskriptor [brief=Druck-Buildrule ohne Boni :D, isMandatory=false, name=print, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{print}\\\\providecommand\\\\LILLYxMODExEXTRA{FALSE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: Druck]",
+            "uebungsblatt~SettingDeskriptor [brief=Übungsblatt-Buildrule, erwartet Dokument ohne \\begin usw., isMandatory=false, name=uebungsblatt, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}!Generiere: Übungsblatt]",
+            "c_default~SettingDeskriptor [brief=Complete Standart-Buildrule, isMandatory=false, name=c_default, type=IS_TEXT, value=./OUTPUT/COMPLETE-!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: COMPLETE-Standart]",
+            "c_print~                        \"c_print~SettingDeskriptor [brief=Complete Druck-Buildrule, isMandatory=false, name=c_print, type=IS_TEXT, value=./OUTPUT/COMPLETE-Druck!\\\\\\\\providecommand\\\\\\\\LILLYxMODE{print}\\\\\\\\providecommand\\\\\\\\LILLYxMODExEXTRA{TRUE},\\\"\\\\\\\\input{$(INPUTDIR)$(TEXFILE)}\\\"]\"},delimiter = '~')" }, delimiter = '~')
+    void _test_gepard_buildrules_defaults(String should_exist, String should_be) {
+        Assertions.assertNotNull(Buildrules.getDefaults().get(should_exist), "Default-Einstellung muss existieren");
+        // System.out.println(Buildrules.getDefaults().get(should_exist));
         // TODO hihi - color information doesn't copy from output
 
-        //Assertions.assertEquals(Buildrules.getDefaults().get(should_exist).toString(), should_be);
+        // Assertions.assertEquals(Buildrules.getDefaults().get(should_exist).toString(),
+        // should_be);
     }
 
-    @Test @Tag("GePard") @Order(3)
+    @Test
+    @Tag("GePard")
+    @Order(3)
     @DisplayName("[Buildrules] Überprüft das Parsen einer Regel")
     void _test_gepard_buildrules_rule() throws IOException {
         GeneratorParser gepard = new GeneratorParser(
                 this.getClass().getResource("/Gepard/BuildruleSimple.gpd").getFile());
-        GeneratorParser.JObject[] j = gepard.parseFile(Buildrules.box_name, new Settings("Blueprintempty"),true );
-        Assertions.assertEquals(1,j.length,"Tokenizer sollte ein obj liefern");
+        GeneratorParser.JObject[] j = gepard.parseFile(Buildrules.box_name, new Settings("Blueprintempty"), true);
+        Assertions.assertEquals(1, j.length, "Tokenizer sollte ein obj liefern");
         String expected = "JObject [config=Settings [name=Blueprintempty, unknownPolicy=true, settings={lilly-mode=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=lilly-mode, type=IS_TEXT, value=default], lilly-complete-prefix=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=lilly-complete-prefix, type=IS_TEXT, value=COMPLETE-], display-name=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=display-name, type=IS_TEXT, value=Standard], complete-prefix=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=complete-prefix, type=IS_TEXT, value=c_], name=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=name, type=IS_TEXT, value=default], nameprefix=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=nameprefix, type=IS_TEXT, value=MY-DEFAULT-], complete=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=complete, type=IS_TEXT, value=false]}], name=buildrule]";
-        Assertions.assertEquals(expected,j[0].toString());
+        Assertions.assertEquals(expected, j[0].toString());
         // Bis hier hin sollte alles schon klappen ^^
-        Settings s = Buildrules.parseBox(j[0],false);
-        /**Assertions.assertEquals("buildrule", s.getName(),"Name soll default sein");
-        Assertions.assertEquals("Standard", s.getValue("display-name"),"Anzeige-name soll passen");
-        Assertions.assertEquals("MY-DEFAULT-", s.getValue("nameprefix"),"Namenspräfix soll passen");*/
+        Settings s = Buildrules.parseBox(j[0], false);
+        /**
+         * Assertions.assertEquals("buildrule", s.getName(),"Name soll default sein");
+         * Assertions.assertEquals("Standard", s.getValue("display-name"),"Anzeige-name
+         * soll passen"); Assertions.assertEquals("MY-DEFAULT-",
+         * s.getValue("nameprefix"),"Namenspräfix soll passen");
+         */
         // this does work - just test with copying color information
         // TODO andere Daten
     }
 
     /**
-     * TODO:
-     *  Es wird gewünscht, dass GepardBox einen FunktionCollector unterhält der einen Boxnamen auf die jeweilige
-     *  ParseBox Methode abbildet. Gepard soll dann mit Interpret die jeweilige Funktion aufrufen:
-     *  Also soll zum Beispiel:
-     *      BEGIN buildrule:
-     *          ...
-     *      END;
-     *  dafür sorgen, dass GePard direkt {@link Buildrules#parseBox(GeneratorParser.JObject, boolean)}
-     *  aufruft und das Ergebnis verarbeitet. Beachte bei der Erkennung zudem: {@link Buildrules#box_name}
+     * TODO: Es wird gewünscht, dass GepardBox einen FunktionCollector unterhält der
+     * einen Boxnamen auf die jeweilige ParseBox Methode abbildet. Gepard soll dann
+     * mit Interpret die jeweilige Funktion aufrufen: Also soll zum Beispiel: BEGIN
+     * buildrule: ... END; dafür sorgen, dass GePard direkt
+     * {@link Buildrules#parseBox(GeneratorParser.JObject, boolean)} aufruft und das
+     * Ergebnis verarbeitet. Beachte bei der Erkennung zudem:
+     * {@link Buildrules#box_name}
      *
      */
 }

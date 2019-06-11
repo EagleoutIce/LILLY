@@ -49,6 +49,7 @@ lilly_jake
 docs
 test-OUT
 .DS_Store
-.idea
+*.idea*
 target
 bin
+workspace.xml
