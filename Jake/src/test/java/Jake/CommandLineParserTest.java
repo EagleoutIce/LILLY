@@ -1,5 +1,5 @@
-/**
- * @file CommandLineParserTest.java
+package Jake; /**
+ * @file Jake.CommandLineParserTest.java
  * @author Florian Sihler
  * @version 1.0.10
  * 
@@ -41,7 +41,7 @@ class CommandLineParserTest {
     }
 
     /**
-     * Testet, das parsen von Kommandzeilenargumenten
+     * Testet, das parsen von Kommandozeilenargumenten
      *
      * @see de.eagle.lillyjakeframework.cmdline.CommandLineParser
      */

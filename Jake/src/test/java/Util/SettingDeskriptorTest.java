@@ -1,5 +1,5 @@
-/**
- * @file SettingDeskriptorTest.java
+package Util; /**
+ * @file Util.SettingDeskriptorTest.java
  * @author Florian Sihler
  * @version 1.0.10
  * 

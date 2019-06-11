@@ -1,5 +1,5 @@
-/**
- * @file CloneTest.java
+package Util; /**
+ * @file Util.CloneTest.java
  * @author Florian Sihler
  * @version 1.0.10
  * 

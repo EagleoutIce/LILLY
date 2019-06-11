@@ -1,6 +1,6 @@
 \lstdefinelanguage{assembler}{
         keywords={while,if,r,ld,st,sr,sl,beq,bnq,add,sub,and,or,not,xor,dec,inc,jmp,addi,sw,addui,add,sw,lw,slti,j,jal,div,mul,hi,lo, MOV},
-        keywordstyle=\color{purple}\bfseries,
+        keywordstyle=\LILLYxCODExKEYWORDSTYLE,
         ndkeywords={nop,X,acc},
         basicstyle=\LILLYxlstTypeWriter,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
         ndkeywordstyle=\color{tealblue!80!black}\bfseries,
@@ -10,6 +10,7 @@
         commentstyle=\color{gray},
         stringstyle=\color{mint},
         morestring=[b]',
+        sensitive=false,
         %literate={@}{{\textcolor{mint}{\$}}}2
         showstringspaces=true,  %Damit es keine Verwechslungen gibt
-} 
+}
