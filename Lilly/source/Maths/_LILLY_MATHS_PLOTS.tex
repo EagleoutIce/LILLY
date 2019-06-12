@@ -24,13 +24,14 @@
                     \gdef\@fb@afterHsHook{} %% currently not working as excepted :P
                  }}
 
+\newif\ifdonumbering
 \pgfkeys { %
     /lillyxPlot/.is family, /lillyxPlot,
     defaults/.style = { %
         scale=1, minX=-2, maxX=2,
         minY=0, maxY=4, offset=0.4,
         loffset=0.1, labelX=$x$, labelY=$y$,
-        samples=250,
+        samples=250, numXMin=0, numYMin=0
     },
     scale/.estore in = \lillyxPlotxScale,
     minX/.estore in = \lillyxPlotxMinX,
@@ -42,6 +43,11 @@
     labelX/.estore in = \lillyxPlotxLabelX,
     labelY/.estore in = \lillyxPlotxLabelY,
     samples/.estore in = \lillyxPlotxSamples,
+    numXMin/.estore in = \lillyxPlotxNumXMin,
+    numYMin/.estore in = \lillyxPlotxNumYMin,
+    numbering/.is if = donumbering,
+    numbering/.initial = false,
+    numbers/.style = {numbering=true}
 }
 
 \NewDocumentCommand{\plotline}{ O{Ao} O{\x} m }{\draw[domain=\lillyxPlotxMinX:\lillyxPlotxMaxX, smooth, variable=#2,#1] plot[samples=\lillyxPlotxSamples] ({#2}, {#3});}
@@ -53,14 +59,22 @@
 \DeclareDocumentEnvironment{graph}{ O{} O{}}{
 \pgfkeys{/lillyxPlot, defaults, #1} %% Hier köznnte graph wrapfigure support erhalten mit ifthenelse{\equal{#3}{}}{}{\wrapfigure{#3}{#4}} oder so
 \begingroup\begin{tikzpicture}[scale=\lillyxPlotxScale,#2]
-    \draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset) 
+    \draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset)
             grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
-            \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0) 
+            \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0)
             -- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
             node[right] {\lillyxPlotxLabelX};
-            \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset) 
+            \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset)
             -- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
             node[above] {\lillyxPlotxLabelY};
+        \ifdonumbering
+        \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumXMin))] in {\lillyxPlotxMinX,...,\lillyxPlotxMaxX} {
+            \node [below right, Charcoal!50!white] at (\i,0) {\footnotesize\ii};
+        }
+        \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumYMin))] in {\lillyxPlotxMinY,...,\lillyxPlotxMaxY} {
+            \node [above left, Charcoal!50!white] at (0,\i) {\!\footnotesize\ii};
+        }
+        \fi
         }{\end{tikzpicture}\endgroup}
 
 %% {POS}[PGFKEYS][TIKZKEYS][WIDTH][WRAPFIGOFF]
