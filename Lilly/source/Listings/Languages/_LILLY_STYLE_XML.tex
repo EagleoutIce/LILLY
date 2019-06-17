@@ -1,7 +1,6 @@
 %% Wird für die Dokumentation entsprechend erweitert
 
 \lstdefinestyle{XML}{
-    language=xml,
     breaklines=true,
     backgroundcolor=\color{MudWhite},
     rulecolor=\color{MudWhite},
@@ -12,7 +11,14 @@
     keywordstyle = [4]{\color{DatmouthGreen}\bfseries}, %% FILES
     keywordstyle = [5]{\color{Orchid}}, %% SHELLPRE
     keywordsprefix={@},
+    %% identifierstyle=\color{AppleGreen},
     alsoletter={?},
+    morestring=[b]",
+    morestring=[s]{>}{<},
+    morestring=[s]{"}{"},
+    morecomment=[s]{?}{?},
+    morecomment=[s]{!--}{--},
+    alsoletter={<,>},
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
     extendedchars=true,
     numberstyle=\small\color{gray},
@@ -26,10 +32,10 @@
     escapeinside={!*}{*!},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     basicstyle=\LILLYxlstTypeWriter\color{black},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
-    morekeywords = {},
-    morekeywords = [2]{?xml},
-    morekeywords = [3]{},
+    morekeywords = {DOCTYPE,!DOCTYPE,ELEMENT,!ELEMENT,ATTLIST,!ATTLIST},
+    morekeywords = [2]{<?xml},
+    morekeywords = [3]{SYSTEM,EMPTY,PCDATA,CDATA},
     morekeywords = [4]{},
-    morekeywords = [5]{},
+    morekeywords = [5]{xs:element,xs:namespace,xs:attribute,xs:simpleType,xs:minInclusive,xs:maxInclusive,xs:restriction,xs:enumeration,xs:union,xs:sequence,xs:complexType,xmlns,xmlns:xs,xs:schema},
 }
 
