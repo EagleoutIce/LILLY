@@ -16,7 +16,7 @@
     morestring=[b]",
     morestring=[s]{>}{<},
     morestring=[s]{"}{"},
-    morecomment=[s]{?}{?},
+    morecomment=[s]{<?}{?>},
     morecomment=[s]{!--}{--},
     alsoletter={<,>},
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
@@ -33,8 +33,8 @@
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     basicstyle=\LILLYxlstTypeWriter\color{black},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     morekeywords = {DOCTYPE,!DOCTYPE,ELEMENT,!ELEMENT,ATTLIST,!ATTLIST},
-    morekeywords = [2]{<?xml},
-    morekeywords = [3]{SYSTEM,EMPTY,PCDATA,CDATA},
+    morekeywords = [2]{<?xml,?xml,xml},
+    morekeywords = [3]{SYSTEM,PUBLIC,EMPTY,PCDATA,CDATA},
     morekeywords = [4]{},
     morekeywords = [5]{xs:element,xs:namespace,xs:attribute,xs:simpleType,xs:minInclusive,xs:maxInclusive,xs:restriction,xs:enumeration,xs:union,xs:sequence,xs:complexType,xmlns,xmlns:xs,xs:schema},
 }
