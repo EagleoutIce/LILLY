@@ -5,8 +5,9 @@
     keywordstyle = [2]\color{Azure}, %%KW
     keywordstyle = [3]{\color{Orchid}\bfseries}, %% PARAM
     keywordstyle = [4]{\color{AppleGreen}}, %% FILES
+    keywordstyle = [5]{\color{ChromeYellow}}, %% FILES
     otherkeywords = {;,<<,>>,2>,<,|},
-    alsoletter={-,|,~,{,},_,>,:},
+    alsoletter={_},
     comment=[l]{\#},
     breaklines=true,
     frame=none,
@@ -16,10 +17,11 @@
     identifierstyle=\color{black},
     sensitive=false,
     numberstyle=\footnotesize\color{gray},
-    morekeywords = {as},
-    morekeywords = [2]{KNeighborsClassifier,KMeans},
-    morekeywords = [3]{fit,predict},
-    morekeywords = [4]{n_clusters,n_samples,centers,cluster_std,random_state,n_neighbors,weights},
+    morekeywords = {as,self},
+    morekeywords = [2]{KNeighborsClassifier,KMeans,math},
+    morekeywords = [3]{Neuron,Point2D,Point},
+    morekeywords = [4]{fit,predict,__init__,accepts, get_accepting_neuron, get_mean_r,dist,mult_scalar,hypot, is_in,adapt,intersects,accepts,n_clusters,n_samples,centers,cluster_std,random_state,n_neighbors,weights},
+    morekeywords = [5]{True,False,None,gp,nc,nr,ir},
     commentstyle=\color{gray},
     stringstyle=\color{mint},
     morestring=[b]',
