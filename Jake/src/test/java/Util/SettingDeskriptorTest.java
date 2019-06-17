@@ -2,7 +2,7 @@ package Util; /**
  * @file Util.SettingDeskriptorTest.java
  * @author Florian Sihler
  * @version 1.0.10
- * 
+ *
  * @brief Teste den SettingDeskriptor auf Funktionalität
  */
 
@@ -84,7 +84,7 @@ class SettingDeskriptorTest {
     @Order(4) @DisplayName("[SettingDeskriptor] Testet verpflichtende Argumente ")
     void _test_is_mandatory() {
         SettingDeskriptor<Character> s = SettingDeskriptor.create("", "", IS_OPERATION, true);
-        
+
         // Expect Exception gibts auch, ja ist hier aber nervig :S
 
         try {
@@ -113,10 +113,10 @@ class SettingDeskriptorTest {
     @Order(5) @DisplayName("[SettingDeskriptor] Testet .lock()")
     void _test_is_locked() {
         SettingDeskriptor<Character> s = SettingDeskriptor.create("", "", IS_OPERATION, true);
-        
+
         Assertions.assertTrue(s.setValue('X'), "Das Setzen eines entsperrten Deskriptors muss funktionieren");
         Assertions.assertEquals('X',s.getValue(), "Der Wert sollte dem gesetzten Wert entsprechen");
-        
+
         //now with lock
         s.lock(); // .lockdown()? hihi
 
