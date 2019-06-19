@@ -112,6 +112,19 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
 }
 
 \newcommand{\intro}[1]{\smallskip\par\textit{#1}\smallskip\par}
+%% Pad Left:
+% \renewcommand{\sectionlinesformat}[4]{
+%     \begingroup%
+%         \def\st{#1}\nopagebreak%
+%         \ifx\st\LILLYxsection%
+%             \parskip=0pt\par%
+%             \getNum{#1}.~\parbox[t]{\linewidth-\widthof{\getNum{#1}}}{#4}%
+%         \else\ifx\st\LILLYxparagraph\else
+%             \normalsize\getNum{section}.\arabic{subsection} #4%
+%         \fi\fi%
+%         \par%
+%     \noindent\ignorespacesafterend\endgroup
+% }
 
 \renewcommand{\sectionlinesformat}[4]{
     \begingroup%
@@ -145,3 +158,4 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
 {\normalfont\bfseries}}
 
 \setlength{\parindent}{0pt}
+\usepackage{widetext}

@@ -138,19 +138,46 @@ public abstract class Translator<K,V> {
         return loadData(new FileInputStream(path));
     }
 
+    /**
+     * Liest die entsprechenden Daten aus einer Datei ein
+     *
+     *
+     * @param input Stream zu der Datei, aus der die Einstellungen gelesen werden
+     * @return true, wenn das Lesen der Daten fertiggestellt ist
+     *
+     * @implNote  Struktur der Eigenschaften:
+     *       Attribut = Wert
+     * @todo Capture Groups benennnen
+     * @implNote  Capture Groups(noch nicht imoplementiert):
+     *       ALL = "Attribut = Wert"
+     *       LHS = "Attribut"
+     *       OPT = "="
+     *       RHS = "Wert"
+     */
     protected boolean loadData(InputStream input) throws FileNotFoundException {
+
+        //Konstruiert einen Tokenizer aus dem Input Stream und einem Pattern dass der Syntax entspricht
         Tokenizer tknz = new Tokenizer(input,
                 Pattern.compile("^ *([a-zA-Z0-9_\\-äöüßÄÖÜ]+) *(=) *([a-zA-Z0-9_\\-äöüÄÖÜß ]+)$",
                         Pattern.MULTILINE));
+        //Iteriert über jeden TokenMatch des InputStreams des Tokenizer
         for(TokenMatch m : tknz){
+
+            //Überprüft ob der TokenMatch valide und nicht leer ist
             if(m.failure()) continue;
+            //Speichert alle Matchings ab
             String[] g = m.getMatchings();
+            //Überprüft ob die Zeile  fehlerhaft ist (Falls nicht alle Capture Groups gepasst haben, oder die 2. Capture Group nahelegt, dass es keine Operation ist)
             if(g.length != 4 || !g[OPT].equals("=")){
+                //Schreibt eine Fehlermeldung in den Log und beginnt den nächsten Schleifendurchlauf
                 writeLoggerWarning("Die Zeile: \"" + m.getOriginal() + "\" ist fehlerhaft und wird ignoriert!",
                         "Translator");
                 continue;
             }
+
+            //Erstellt einen Key auf Basis der Linken Seite der Operation
             K key = stringToKey(prepareData(g[LHS]));
+            //Überprüft ob diese Einstellung bereits zuvor gesetzt wurde, überschreibt sie, falls nötig
             if(this.map.containsKey(key)){
                 writeLoggerWarning("Die Einstellung: "+ prepareData(g[LHS]) + " wurde bereits gesetzt und wird überschrieben!",
                         "Translator");
@@ -160,6 +187,12 @@ public abstract class Translator<K,V> {
         return true;
     }
 
+    /**
+     *
+     * @param o Objekt, dass mit dem Translator verglichen werden soll
+     * @return false, falls o kein Translator ist oder die beiden map oder die beiden Namen nicht übereinstimmen
+     *         true, falls sie identisch sind
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -169,11 +202,19 @@ public abstract class Translator<K,V> {
                 Objects.equals(name, that.name);
     }
 
+    /**
+     *
+     * @return int, der aus map und name gehasht wurde
+     */
     @Override
     public int hashCode() {
         return Objects.hash(map, name);
     }
 
+    /**
+     *
+     * @return String String-Repräsentation des Translators
+     */
     @Override
     public String toString() {
         return "Translator{" +
