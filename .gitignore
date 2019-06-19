@@ -53,3 +53,5 @@ test-OUT
 target
 bin
 workspace.xml
+.idea/workspace.xml
+.classpath
