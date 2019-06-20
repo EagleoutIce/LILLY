@@ -12,6 +12,9 @@
 %% DEF: IfValueTF={#1}{title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$\\}}{title={$\vcenter{\hbox{#2}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$}}
 
 %%% Die Definition-Box:
+% \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={%
+%     if odd page or oneside*={borderline east={3pt}{0pt}{\LILLYxColorxDefinition}}{borderline west={3pt}{0pt}{\LILLYxColorxDefinition}}}}\else\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={}}\fi
+
 \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxDefinition}}}\else\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={}}\fi
 
 
