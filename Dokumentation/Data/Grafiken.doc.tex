@@ -32,9 +32,9 @@ Dieses Paket soll die ganzen Titelgrafiken der Mitschriften enthalten und zur Ve
 {\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN}}\vspace*{0.5\baselineskip}\par}
 \marginpar{\tiny Dieses Paket, eingabut mit Version \LILLYxBOXxVersion{1.0.2}, bedarf einer Überarbeitung. \textbf{TODO}}\reversemarginpar\par Auch wenn bereits Ti\textit{k}Z hierfür Optionen anbietet, wurde aus optischen Gründen dieses Paket hinzugefügt!
 Grundlegend wird für den Radius aller Polygone empfohlen \CMDpreview{POLYRAD} zu verwenden (Standardmäßig: \T{1.61cm}).\
-Weiter definiert diese Bibliothek etliche sogenannte \T{graphdot}s, welche alle nur in einer tikzpicture-Umgebung funktionieren(TODO: change - new environment), allen vorran der normale \CMDpreview[(5)]{graphdot}. Er nimmt 5 Argumente entgegen: Füll-Farbe, Position, Text, Node-Name, Rand-Farbe. 
+Weiter definiert diese Bibliothek etliche sogenannte \T{graphdot}s, welche alle nur in einer tikzpicture-Umgebung funktionieren(TODO: change - new environment), allen vorran der normale \CMDpreview[(5)]{graphdot}. Er nimmt 5 Argumente entgegen: Füll-Farbe, Position, Text, Node-Name, Rand-Farbe.
 Analog hierzu definiert sich der \CMDpreview[(5)]{tgraphdot}-Befehl, welcher im Unterschied hierzu das erste Argument zwar entgegennimmt, aber ignoriert, da er eine \verb|fill opacity| von 0 besitzt (TODO: selber Befehl mit optionalem Argument \verb|fill opacity|).\medskip\newline
-Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle: 
+Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle:
 \begin{itemize}[label=$\diamond$]\narrowitems
     \item \CMDpreview{oragraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\oragraphdot{(0,0)}{42}{a};}} \footnote{\T{\textbackslash tikz\{\CMDshow{oragraphdot}\{(0,0)\}\{42\}\{a\};\}} -- Zum E. d. Textzeile v. um \T{-0.35\textbackslash baselineskip} verschoben.})
     \item \CMDpreview{blugraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\blugraphdot{(0,0)}{42}{a};}} \footnote{\T{\textbackslash tikz\{\CMDshow{blugraphdot}\{(0,0)\}\{42\}\{a\};\}} -- Zum E. d. Textzeile v. um \T{-0.35\textbackslash baselineskip} verschoben.})
@@ -42,16 +42,16 @@ Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben gen
 Analog hierzu: \CMDpreview{gregraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\gregraphdot{(0,0)}{42}{a};}}), \CMDpreview{purgraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\purgraphdot{(0,0)}{42}{a};}}), \CMDpreview{golgraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\golgraphdot{(0,0)}{42}{a};}}), \CMDpreview{blagraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\blagraphdot{(0,0)}{42}{a};}}), \CMDpreview{norgraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\norgraphdot{(0,0)}{42}{a};}}), \CMDpreview{margraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\margraphdot{(0,0)}{42}{a};}}).\bigskip\newline
 Ist zudem \CMDpreview{LILLYxMODExEXTRA} auf \verb|\true| gesetzt, so wird \CMDpreview[(8)]{graphPOI} so konfiguriert, dass er die zugehörige Grafik anzeigt, ist dies nicht der Fall (in anderen Worten: \CMDshow{LILLYxMODExEXTRA}=\verb|\false|), so wird das Bild sowie zugehöriger Rahmen und Hyperlink nicht eingebracht. Grundlegend wurde dieser Befehl speziell für das Erstellen von Zeitleisten eingeführt und funktioniert nach folgendem Schemata (hier explizit mit Grafik):
 %%%% COMPAT CHEAT
-\LILLYcommand{\graphPOICOMPAT}[8]{    
+\LILLYcommand{\graphPOICOMPAT}[8]{
 \filldraw [thick,color=#2] #1 circle (1.45pt) node[align=left] {}   -- ++(0.5,0) node [right,color=#2] {\begin{minipage}{0.49\textwidth}\small{\textbf{#3}}\hfill #8\end{minipage}} ++(-0.3,-0.2) node[below right] {\begin{minipage}{0.5\textwidth}
-    \textbf{\textcolor{#2!80}{#4:}} \textcolor{#2!65}{#5} 
+    \textbf{\textcolor{#2!80}{#4:}} \textcolor{#2!65}{#5}
 \end{minipage} } ++(9cm,0.3) node [below right] {\begin{minipage}[c]{0.3\textwidth}
     \href{#7}{\fcolorbox{#2}{white}{\includegraphics[height=2cm]{\LILLYxPATH#6}}}
 \end{minipage}} ;}%%%%%%%%%%
 \[\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.45\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.55\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\tiny\begin{lstlisting}[style=latex,frame=none]
-\begin{tikzpicture}[scale=0.75, 
+    {\tiny\begin{lstlisting}[language=lLatex,frame=none]
+\begin{tikzpicture}[scale=0.75,
         every node/.style={transform shape}]
     \graphPOI{(0,0)}{purple}{1999 n.Chr.}
         {Florian Sihler}
@@ -60,7 +60,7 @@ Ist zudem \CMDpreview{LILLYxMODExEXTRA} auf \verb|\true| gesetzt, so wird \CMDpr
         {https://github.com/EagleoutIce/Quickblit}
         {Deutschland};
 \end{tikzpicture}
-    \end{lstlisting} }&  {\begin{tikzpicture}[scale=0.75, 
+    \end{lstlisting} }&  {\begin{tikzpicture}[scale=0.75,
         every node/.style={transform shape}]
         \graphPOICOMPAT{(0,0)}{purple}{1999 n.Chr.}{Florian Sihler}{Florian Sihler ist der Autor dieses Dokuments}{Data/2003.jpg}{https://github.com/EagleoutIce/Quickblit}{Deutschland};
     \end{tikzpicture}}\\
@@ -86,9 +86,9 @@ Diese Datei liefert nur den Befehl \CMDpreview[{[1](3)}]{rotateRPY} (roll, pitch
 }
 \[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.55\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\scriptsize\begin{lstlisting}[style=latex,frame=none,breaklines=true]
+    {\scriptsize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
 \begin{tikzpicture}
-    \examplecube    
+    \examplecube
     \rotateRPY[-2/2/2]{13}{171}{55} %% Rotate set
     \begin{scope}[draw=purple, text=purple,fill=purple,densely dashed,RPY]
         \examplecube
@@ -99,7 +99,7 @@ Diese Datei liefert nur den Befehl \CMDpreview[{[1](3)}]{rotateRPY} (roll, pitch
     \node[fill=white,fill opacity=0.7,text opacity=1] at (2.5,-3.5){RPY: 13,171,55};
 \end{tikzpicture}
     \end{lstlisting}} &  \begin{tikzpicture}
-        \examplecube    
+        \examplecube
         \rotateRPY[-2/2/2]{13}{171}{55}
         \begin{scope}[draw=purple, text=purple,fill=purple,densely dashed,RPY]
             \examplecube
@@ -119,13 +119,13 @@ Obwohl bereits Ti\textit{k}Z eine Bibliothek für das Generieren von Automaten z
     \item \CMDpreview[{[1](2)}]{loopTop} - Schleife oben
     \item \CMDpreview[{[1](2)}]{loopRight} - Schleife rechts
     \item \CMDpreview[{[1](2)}]{loopLeft} - Schleife links
-    \item \CMDpreview[{[1](2)}]{loopBot} - Schleife unten 
+    \item \CMDpreview[{[1](2)}]{loopBot} - Schleife unten
 \end{itemize}
 Für sie alle gelten nur noch die Argumente: \T{[looseness]\{node-name\}\{Text\}}.
 Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen Sinn ergeben es soll lediglich die Nutzung verdeutlicht werden):
 \[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.65\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\scriptsize\begin{lstlisting}[style=latex,frame=none,breaklines=true]
+    {\scriptsize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
 \begin{tikzpicture}[scale=1,
     every node/.style={minimum size=12pt,transform shape},
     state/.style={circle, !*\T{draw}*!, minimum size=20pt},
@@ -134,7 +134,7 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
 
     \node[initial,accepting,state] (1) at (180:1){\T{1}};
     \node[state] (2) at (  0:1){\T{2}};
-    
+
     \draw (1) to node[pos=0.5,above,sloped]{\T{0}} (2);
     \loopTop[4]{1}{\T{4}};
     \loopRight[4]{2}{\T{2}};
@@ -147,9 +147,9 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
         ]
         \node[initial,accepting,state] (1) at (180:1){\T{1}};
         \node[state]                   (2) at (  0:1){\T{2}};
-        
+
         \draw (1) to node[pos=0.5,above,sloped]{\T{0}} (2);
-        
+
         \loopTop[4]{1}{\T{4}};
         \loopRight[4]{2}{\T{2}};
 
@@ -158,7 +158,7 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
         \end{tabular}\]
 
 Natürlich soll dieses Erstellen noch weiter stark vereinfacht werden. Des Weiteren wird darüber nachgedacht, einen akzeptierten Endzustand klarer zu markieren (Linien dicker, mehr abstand etc). Der Traum wäre, dass das Erstellen eines Automaten wie folgt funktioniert:
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \begin{Automat}
     \STATE[1]{180:1}{1};
     \state[2]{0:1}{2};
@@ -169,17 +169,17 @@ Natürlich soll dieses Erstellen noch weiter stark vereinfacht werden. Des Weite
     \loopRight[4]{2}{\T{2}};
 \end{Automat}
 \end{lstlisting}
-Die Befehle \CMDshow[{[1]\{2\}}]{STATE} und \CMDshow[{[1]\{2\}}]{state} sollen hierbei automatisch hochzählen können - pro Automat - aber über das optionale Argument lesbar einer Zahl zugewiesen werden. Die Umgebung Automat soll hierbei zusätzlich auch handhaben, dass automatisch alle Nodes mithilfe von \T{\textbackslash T} geschrieben werden. Der entstehende Automat soll optisch identisch zum obigen sein. 
+Die Befehle \CMDshow[{[1]\{2\}}]{STATE} und \CMDshow[{[1]\{2\}}]{state} sollen hierbei automatisch hochzählen können - pro Automat - aber über das optionale Argument lesbar einer Zahl zugewiesen werden. Die Umgebung Automat soll hierbei zusätzlich auch handhaben, dass automatisch alle Nodes mithilfe von \T{\textbackslash T} geschrieben werden. Der entstehende Automat soll optisch identisch zum obigen sein.
 \normalmarginpar
 \subsection{Schaltkreise \LILLYxNOTExWarning{Ausstehend}}
 
 \subsection{Neuronen \LILLYxNOTExWarning{Work in Progress}}
 {\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Tikz-Core/\_LILLY\_TIKZ\_NEURONS}}\vspace*{0.5\baselineskip}\par}
 Da vor allem mit \fg der Wunsch danach aufkam, neuronale Netze schnell zu Texen, wurde dieses Paket entwickelt um das Paket mit den Schaltkreisen\marginpar{\tiny Das Schaltkreise-Paket ist ebenfalls noch nicht in LILLY integriert. Es befindet sich ebenfalls in einem Anfangsstadium und deswegen wird auch hierbei um Mithilfe bei der Weiterentwicklug gebeten.}
- so zu erweitern, dass es erlaubt Perzeptronen darin einzubauen, das  Paket an sich befindet sich ebenfalls im Work in Progress-Status.\par\reversemarginpar Es wurde bisher auch nur durch das Bereitstellen eines einzelnen Befehls implementiert: \CMDpreview[(4)]{neuronSquare}. Dieser funktioniert seinerseits lediglich in einer \emph{tikzpicture}-Umgebung und zeichnet nichtmal ein Neuron, sondern lediglich die 2-D Repräsentation eines booleschen Raums, der wiedergibt unter welchen Eingabevektoren das Perzeptron welchen Wert zurückliefert. Die 4 Parameter, die hierzu \T{\textbackslash neuronSquare} benötigt, entsprechen der jeweiligen Binärdarstellung der Eingabevektoren. Eine beispielhafte Anwendung ist hier zu finden: 
+ so zu erweitern, dass es erlaubt Perzeptronen darin einzubauen, das  Paket an sich befindet sich ebenfalls im Work in Progress-Status.\par\reversemarginpar Es wurde bisher auch nur durch das Bereitstellen eines einzelnen Befehls implementiert: \CMDpreview[(4)]{neuronSquare}. Dieser funktioniert seinerseits lediglich in einer \emph{tikzpicture}-Umgebung und zeichnet nichtmal ein Neuron, sondern lediglich die 2-D Repräsentation eines booleschen Raums, der wiedergibt unter welchen Eingabevektoren das Perzeptron welchen Wert zurückliefert. Die 4 Parameter, die hierzu \T{\textbackslash neuronSquare} benötigt, entsprechen der jeweiligen Binärdarstellung der Eingabevektoren. Eine beispielhafte Anwendung ist hier zu finden:
 \[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.65\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\scriptsize\begin{lstlisting}[style=latex,frame=none,breaklines=true]
+    {\scriptsize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
 \begin{tikzpicture}
     \neuronSquare{limegreen}{Awesome}{limegreen}{limegreen};
 \end{tikzpicture}

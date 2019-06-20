@@ -1,0 +1,17 @@
+\lstdefinelanguage{lProlog}{
+    language=prolog,
+    alsoletter={-,|,~,{,},_,.,>,<,=,:,\*,'},
+    % comment=[l]{--},
+    keywordsprefix={\$},
+    % morecomment=[s]{\{-}{-\}},
+    escapeinside={!!}{!!},
+    morekeywords = {:-},
+    morekeywords = [2]{<,>,->,=>,<-,>=},
+    morekeywords = [3]{True,False},
+    morekeywords = [4]{::=},
+    morekeywords = [5]{},
+}
+
+\lstnewenvironment{prolog}[1][]
+  {\lstset{language=lProlog,#1}}
+{}

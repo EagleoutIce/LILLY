@@ -26,16 +26,16 @@
 \begin{center}
     Für Versionen < 1.0.8 klicke hier: \jmark[klick mich]{jmp:oldInstallLinux}!
 \end{center}
-\LILLYxNOTExVersion{1.0.8}Da LILLY komplett auf einem Linux-Betriebsystem entwickelt wurde, gestaltet sich die Implementierung relativ einfach. 
-Hierzu nutzen wir das Hilfsprogramm \Jake welches selbst in C++ geschrieben wurde. 
-Im Folgendenen sind die Schritte kurz erklärt. 
+\LILLYxNOTExVersion{1.0.8}Da LILLY komplett auf einem Linux-Betriebsystem entwickelt wurde, gestaltet sich die Implementierung relativ einfach.
+Hierzu nutzen wir das Hilfsprogramm \Jake welches selbst in C++ geschrieben wurde.
+Im Folgendenen sind die Schritte kurz erklärt.
 \paragraph{Installation von \Jake:}Eine ausführliche Erklärung von \Jake selbst findest sich weiter hinten (\jmark[hier]{jmp:iJake}) in dieser Dokumentation:\smallskip
-\marginpar{\tiny Für ausführliche Informationen zur Installation konsultiere bitte die README-Datei in: 
+\marginpar{\tiny Für ausführliche Informationen zur Installation konsultiere bitte die README-Datei in:
 \url{../Lilly/Jake/jake_source/README.md}. \newline
 Für Informationen zur Nutzung konsultiere: \url{../Lilly/Jake/README.md}}
 \begin{enumerate}\setlength{\itemsep}{0.25\baselineskip}
     \item Navigiere mit dem Terminal in das Verzeichnis: \verb|Lilly/Jake/jake_source|
-    \item Führe nun \verb|make| aus um \Jake zu kompilieren. 
+    \item Führe nun \verb|make| aus um \Jake zu kompilieren.
           Es wird vermutlich kurz dauern, aber danach wird dir das Programm \LJake zur Verfügung stehen.
     \item Nun kannst du dein Terminal neu starten und von überall her \verb|lilly_jake install| aufrufen.
           Dies sollte den Installationsprozess in Gang setzen.\smallskip
@@ -45,22 +45,22 @@ Betrachte im Falle eines Fehlers bitte erst die Readme-Dateien und die bereits b
 auf Github (\href{https://github.com/EagleoutIce/LILLY/issues}{\faGithub}) bevor du einen neuen Fehler
 eröffnest oder mir eine Nachricht schreibst \Smiley.
 \paragraph{Erstellen eines Makefiles:}
-Nun möchtest du natürlich auch ausprobieren ob die Installation funktioniert hat. 
-Hierzu kannst du in das Testverzeichnis navigieren (\verb|Lilly/Jake/tests|). 
+Nun möchtest du natürlich auch ausprobieren ob die Installation funktioniert hat.
+Hierzu kannst du in das Testverzeichnis navigieren (\verb|Lilly/Jake/tests|).
 Hier befinden sich eine Menge Dateien die in dieser Dokumentation auch als Beispiele benutzt werden.
-Du gibst nun folgendes in die Konsole ein: 
-\begin{lstlisting}[style=bash]
+Du gibst nun folgendes in die Konsole ein:
+\begin{lstlisting}[language=lBash]
 lilly_jake test.tex
 \end{lstlisting}
 \Jake erstellt nun ein entsprechendes Makefile für dich, welches du nun ausführen kannst:
-\begin{lstlisting}[style=bash]
-make 
+\begin{lstlisting}[language=lBash]
+make
 \end{lstlisting}
 Im Standardmäßig konfigurierten Ausgabe-Ordner \verb|test-OUT| befindet sich nun eine entsprechende PDF
 Datei \Smiley.\smallskip
 \begin{bemerkung}[make]
     Logischerweise muss damit auch \T{make} auf dem System vorhanden sein:
-\begin{lstlisting}[style=bash]
+\begin{lstlisting}[language=lBash]
 sudo apt install "make"
 \end{lstlisting}
 \end{bemerkung}
@@ -70,15 +70,15 @@ sudo apt install "make"
 \begin{center}
     Entspricht, dank \Jake, der Linux-Installation.
 \end{center}
-Hierzu nutzen wir das Hilfsprogramm \Jake welches selbst in C++ geschrieben wurde. 
-Im Folgendenen sind die Schritte kurz erklärt. 
+Hierzu nutzen wir das Hilfsprogramm \Jake welches selbst in C++ geschrieben wurde.
+Im Folgendenen sind die Schritte kurz erklärt.
 \paragraph{Installation von \Jake:}Eine ausführliche Erklärung von \Jake selbst findest sich weiter hinten (TODO: LINK) in dieser Dokumentation:\smallskip
-\marginpar{\tiny Für ausführliche Informationen zur Installation konsultiere bitte die README-Datei in: 
+\marginpar{\tiny Für ausführliche Informationen zur Installation konsultiere bitte die README-Datei in:
 \url{../Lilly/Jake/jake_source/README.md}. \newline
 Für Informationen zur Nutzung konsultiere: \url{../Lilly/Jake/README.md}}
 \begin{enumerate}\setlength{\itemsep}{0.25\baselineskip}
     \item Navigiere mit dem Terminal in das Verzeichnis: \verb|Lilly/Jake/jake_source|
-    \item Führe nun \verb|make| aus um \Jake zu kompilieren. 
+    \item Führe nun \verb|make| aus um \Jake zu kompilieren.
           Es wird vermutlich kurz dauern, aber danach wird dir das Programm \LJake zur Verfügung stehen.
     \item Nun kannst du dein Terminal neu starten und von überall her \verb|lilly_jake install| aufrufen.
           Dies sollte den Installationsprozess in Gang setzen.\smallskip
@@ -88,22 +88,22 @@ Betrachte im Falle eines Fehlers bitte erst die Readme-Dateien und die bereits b
 auf Github (\href{https://github.com/EagleoutIce/LILLY/issues}{\faGithub}) bevor du einen neuen Fehler
 eröffnest oder mir eine Nachricht schreibst \Smiley.
 \paragraph{Erstellen eines Makefiles:}
-Nun möchtest du natürlich auch ausprobieren ob die Installation funktioniert hat. 
-Hierzu kannst du in das Testverzeichnis navigieren (\verb|Lilly/Jake/tests|). 
+Nun möchtest du natürlich auch ausprobieren ob die Installation funktioniert hat.
+Hierzu kannst du in das Testverzeichnis navigieren (\verb|Lilly/Jake/tests|).
 Hier befinden sich eine Menge Dateien die in dieser Dokumentation auch als Beispiele benutzt werden.
-Du gibst nun folgendes in die Konsole ein: 
-\begin{lstlisting}[style=bash]
+Du gibst nun folgendes in die Konsole ein:
+\begin{lstlisting}[language=lBash]
 lilly_jake test.tex
 \end{lstlisting}
 \Jake erstellt nun ein entsprechendes Makefile für dich, welches du nun ausführen kannst:
-\begin{lstlisting}[style=bash]
-make 
+\begin{lstlisting}[language=lBash]
+make
 \end{lstlisting}
 Im Standardmäßig konfigurierten Ausgabe-Ordner \verb|test-OUT| befindet sich nun eine entsprechende PDF
 Datei \Smiley.\smallskip
 \begin{bemerkung}[make]
     Logischerweise muss damit auch \T{make} auf dem System vorhanden sein:
-\begin{lstlisting}[style=bash]
+\begin{lstlisting}[language=lBash]
 sudo apt install "make"
 \end{lstlisting}
 \end{bemerkung}
@@ -117,8 +117,8 @@ Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu ko
 \section[Erstellen eines Dokuments mit Lilly]{Erstellen eines Dokuments mit Lilly \tiny\LILLYxBOXxVersion{1.0.5}}
 \subsection{Das Gerüst}
 Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine Dokumentklasse handelt, wird sie wie folgt eingebunden:
-\begin{lstlisting}[style=latex]
-\documentclass[Typ=Dokumentation]{Lilly} 
+\begin{lstlisting}[language=lLatex]
+\documentclass[Typ=Dokumentation]{Lilly}
 \end{lstlisting}
 \LILLYxNOTExVersion{1.0.7}Für den Typ gibt es hierfür 4 Optionen:
 \begin{multicols}{2}
@@ -131,7 +131,7 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
 \end{multicols}
 Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
 So benötigt \verb|Mitschrieb| noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester}\marginpar{\tiny  Semester ist Standardmäßig 1} gemäß:
-\begin{lstlisting}[style=latex,frame=none]
+\begin{lstlisting}[language=lLatex,frame=none]
 \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/
        \LILLYxVorlesung}
 \end{lstlisting}
@@ -148,11 +148,11 @@ Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semester} sowie noc
 Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert!
 
 \subsection[Wie funktionieren Boxen]{Die Böxli}
-Jede Box besteht als Environment und lässt sich wie folgt nutzen: 
+Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 \begin{multicols}{2}
 \begin{definition*}[Titel]
     Hallo Welt
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \begin{definition*}[Titel]
     Hallo welt
 \end{definition*}\end{lstlisting}
@@ -160,7 +160,7 @@ Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 
 \begin{definition}
     Hallo Welt
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \begin{definition}
     Hallo welt
 \end{definition}\end{lstlisting}
@@ -168,7 +168,7 @@ Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 
 \begin{satz}[Titel]
     Hallo Welt
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \begin{satz}[Titel]
     Hallo welt
 \end{satz}\end{lstlisting}
@@ -177,7 +177,7 @@ Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 
 \begin{aufgabe}[Titel][3]
     Hallo Welt
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \begin{aufgabe}[Titel][3]
     Hallo welt
 \end{aufgabe}\end{lstlisting}
@@ -187,7 +187,7 @@ Letztere ändert sich zum Beispiel mit dem Dokumenttyp, so wird die Aufgabenbox 
 \LILLYcommand{\LILLYxBOXxAufgabexBox}{TRUE}
 \begin{aufgabe}[Titel][3]
     Hallo Welt
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \begin{aufgabe}[Titel][3]
     Hallo welt
 \end{aufgabe}\end{lstlisting}
@@ -207,21 +207,21 @@ Hier eine Liste aller Boxen:
     \end{itemize}
 \end{multicols}
 Sie können alle mithilfe von:
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 %% Allgemein
 % \LILLYcommand{\LILLYxBOXx<FirstLetterUp-Name>xEnable}{FALSE}
 \LILLYcommand{\LILLYxBOXxDefinitionxEnable}{FALSE}
 \end{lstlisting}
 jeweils deaktiviert und damit aus dem Dokument entfernt werden (auch nur abschnittsweise, das Reaktivieren funktioniert analog mit \T{TRUE}). \newline
 Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeugen. \marginpar{\tiny  Die Bezeichnung der Listen sind bisher noch inkonsitent :/}Beispielhaft:
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \listofDEFINITIONS
 \end{lstlisting}
 \marginpar{\tiny  Natürlich sind die Linien nur zur Trennung eingfügt}erzeugt hierbei:\\
 \tocloftpagestyle{scrheadings}
 \rule{\linewidth}{1.2pt}\vspace{-0.75\baselineskip}
 \rule{\linewidth}{0.6pt}\vspace*{-1.5cm}
-\listofDEFINITIONS    
+\listofDEFINITIONS
 \rule{\linewidth}{0.6pt}\vspace{-0.7\baselineskip}
 \rule{\linewidth}{1.2pt}
 
@@ -234,11 +234,11 @@ Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeu
 
 \subsection{Hyperlinks}
 \LILLYxNOTExVersion{1.0.0}\elable{mrk:Hey}Eine Sprungmarke innerhalb eines Dokuments lässt sich mit:
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \elable{mrk:Hey} %% \elable{<Sprungmarke>}
 \end{lstlisting}
 erstellen. Referenziert werden kann sie mithilfe des Befehls \textbf{\T{jmark}}:
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \jmark[Klick mich]{mrk:Hey} %% \jmark[Text]{Sprungmarke}
 \end{lstlisting}
 der erzeugte Link: \jmark[Klick mich]{mrk:Hey}, passt sich zudem der Akzentfarbe der aktuellen Boxumgebung und dem Druckmodus an:\smallskip
@@ -246,10 +246,10 @@ der erzeugte Link: \jmark[Klick mich]{mrk:Hey}, passt sich zudem der Akzentfarbe
 Siehe hier: \jmark[Klick mich]{mrk:Hey} (Wenn Druck: \printmark[Klick mich]{mrk:Hey})
 \end{zusammenfassung}~\smallskip\newline
 \marginpar{\tiny \textbf{\T{jmark*}}, welcher die Akzentfarbe ignoriert, ist bereits geplant, wurde allerdings bisher nicht zwangsläufig benötigt }Der alternative Vertreter für \textbf{\T{jmark}} ist \textbf{\T{hmark}}, er ignoriert sämtliche Farbattribute:
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 \hmark[Klick mich]{mrk:Hey} %% \hmark[Text]{Sprungmarke}
 \end{lstlisting}
-und erzeugt damit: \hmark[Klick mich]{mrk:Hey}. 
+und erzeugt damit: \hmark[Klick mich]{mrk:Hey}.
 
 
 
@@ -259,7 +259,7 @@ und erzeugt damit: \hmark[Klick mich]{mrk:Hey}.
 \subsection{Aufgliedern eines Dokuments}
 \LILLYxNOTExVersion{1.0.4}Um Dokumente portabel kompilierbar zu machen, setzt das Makefile gemäß der Konfiguration \verb|\LILLYxPATH| (hier: \say{\T{\LILLYxPATH}}). Nun lässt sich mithilfe des Befehls \T{\textbf{\textbackslash linput}\{<Pfad>\}} eine Datei relativ zur Quelldatei angeben (beachte, dass absolute Pfade bei \T{\textbf{\textbackslash linput}} keinen Sinn machen. Hierfür solltest du weiterhin \verb|\input| verwenden).\newline
 Zudem lässt sich damit über \T{\textbf{\textbackslash LILLYxDOC\-UM\-ENTxSUB\-NAME}} der Name der zuletzt eingebundenen Datei (\T{\LILLYxDOCUMENTxSUBNAME}) abfragen.\newline
-\LILLYxNOTExVersion{1.0.7}Weiter gilt zu beachten, dass es \emph{nicht} möglich ist, das klassische \verb|\include| zu verwenden! Dieser Befehl wird aber von LILLY deswegen direkt entsprechend erneuert (hierzu wird das klassische Latex \verb|\input| im Zusammenspiel mit \verb|\clearpage| verwendet, nicht LILLYs \T{\textbf{\textbackslash linput}}!). Es ist also im Endeffekt doch möglich Dokumente mit \verb|\include| 
+\LILLYxNOTExVersion{1.0.7}Weiter gilt zu beachten, dass es \emph{nicht} möglich ist, das klassische \verb|\include| zu verwenden! Dieser Befehl wird aber von LILLY deswegen direkt entsprechend erneuert (hierzu wird das klassische Latex \verb|\input| im Zusammenspiel mit \verb|\clearpage| verwendet, nicht LILLYs \T{\textbf{\textbackslash linput}}!). Es ist also im Endeffekt doch möglich Dokumente mit \verb|\include|
 zu verwenden.
 
 
@@ -268,11 +268,11 @@ zu verwenden.
 
 \subsection{Übungsblätter}
 \marginpar{\tiny Aktuell wird daran gearbeitet eine \T{make}-Regel für Übungsblätter zu integrieren}Da es von Bedeutung war Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können,\marginpar{\tiny \vspace*{2em}\tiny Die Verwendung von \T{\textbackslash tcblower} ist noch in arbeit} gibt es hierfür eine einfache Möglichkeit:\marginpar{\vspace*{1em} \tiny Es gibt auch eine Umgebung mit * und gleichermaßen \T{\textbf{\textbackslash inputUBS}}. Diese setzen den Zähler für die Aufgaben \emph{nicht} zurück!}
-\begin{lstlisting}[style=latex]
+\begin{lstlisting}[language=lLatex]
 %% \inputUB{<Name>}{<Nummer>}{<Pfad - linput>}
-\inputUB{Mengen}{1}{Aufgaben_Data/Uebungsblatt_1.tex} 
+\inputUB{Mengen}{1}{Aufgaben_Data/Uebungsblatt_1.tex}
 
-%% Wird zu: 
+%% Wird zu:
 \clearpage
 \begin{uebungsblatt}[Mengen][1]
     \linput{Aufgaben_Data/Uebungsblatt_1.tex}

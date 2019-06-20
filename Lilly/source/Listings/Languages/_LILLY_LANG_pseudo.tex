@@ -1,4 +1,4 @@
-\lstdefinelanguage{pseudo}{
+\lstdefinelanguage{lPseudo}{
     keywords={INPUT,REPEAT,ELSE,UNTIL,OR,END,FOR,IF,END,TO,DO,THEN,TRUE,FALSE,END, print,println,goto,system,every},
     keywordstyle=\LILLYxCODExKEYWORDSTYLE,
     basicstyle=\LILLYxlstTypeWriter\color{Charcoal},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
@@ -12,3 +12,7 @@
     %literate={@}{{\textcolor{mint}{\$}}}2
     showstringspaces=false,  %Damit es keine Verwechslungen gibt
 }
+
+\lstnewenvironment{pseudo}[1][]
+  {\lstset{language=lPseudo,#1}}
+{}

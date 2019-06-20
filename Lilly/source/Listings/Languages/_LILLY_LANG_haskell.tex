@@ -1,0 +1,17 @@
+\lstdefinelanguage{lHaskell}{
+    language=haskell,
+    alsoletter={-,|,~,{,},_,.,>,<,=,:,\*,'},
+    comment=[l]{--},
+    keywordsprefix={\$},
+    morecomment=[s]{\{-}{-\}},
+    escapeinside={!!}{!!},
+    morekeywords = {:l,:cd,:q,:r,:t,String,Char,Bool,Show},
+    morekeywords = [2]{<,>,->,=>,<-,>=},
+    morekeywords = [3]{True,False},
+    morekeywords = [4]{::},
+    morekeywords = [5]{Prelude>,\*Main>},
+}
+
+\lstnewenvironment{haskell}[1][]
+  {\lstset{language=lHaskell,#1}}
+{}

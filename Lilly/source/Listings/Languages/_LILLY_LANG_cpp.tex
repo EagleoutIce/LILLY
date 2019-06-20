@@ -1,0 +1,18 @@
+\lstdefinelanguage{lCpp}{
+    language=C++,
+    otherkeywords = {;,<<,>>,2>,<,|},
+    alsoletter={-,|,~,{,},_,>,:},
+    comment=[l]{\#},
+    comment=[l]{//},
+    sensitive=false,
+    morekeywords = {},
+    morekeywords = [2]{Pos},
+    morekeywords = [4]{moveForward, main, printf, sin, cos},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]',
+}
+
+
+\lstnewenvironment{cpp}[1][]
+  {\lstset{language=lCpp,#1}}
+{}

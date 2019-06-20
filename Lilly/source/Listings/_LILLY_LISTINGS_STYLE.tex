@@ -22,13 +22,13 @@
 
 
 \providecommand{\LILLYxListingsxLang}{MAIN}
-\DeclareRobustCommand{\LILLYxwriteLst}[2][style=bash]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite, fill=MudWhite, centered]{\,\vphantom{I}\lstinline[#1]!#2!\,};}}
+\DeclareRobustCommand{\LILLYxwriteLst}[2][language=lBash]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite, fill=MudWhite, centered]{\,\vphantom{I}\lstinline[#1]!#2!\,};}}
 
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_\LILLYxListingsxLang}
 
 
-\DeclareRobustCommand{\python}[1]{\LILLYxwriteLst[language=Py]{#1}}
+\DeclareRobustCommand{\cpython}[1]{\LILLYxwriteLst[language=lPython]{#1}}
 
-\DeclareRobustCommand{\java}[1]{\LILLYxwriteLst[style=Java,morekeywords={System}]{#1}}
-\DeclareRobustCommand{\pseudo}[1]{\LILLYxwriteLst[style=bash,language=pseudo]{#1}}
+\DeclareRobustCommand{\cjava}[1]{\LILLYxwriteLst[language=lJava,morekeywords={System}]{#1}}
+\DeclareRobustCommand{\cpseudo}[1]{\LILLYxwriteLst[language=lBash,language=lPseudo]{#1}}
 

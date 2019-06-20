@@ -1,0 +1,22 @@
+%% Wird für die Dokumentation entsprechend erweitert
+
+\lstdefinelanguage{lBash}{
+    language=bash,
+    breaklines=true,
+    otherkeywords = {<<,>>,2>},
+    alsoletter={-,|,~,{,},_,.,>,<,:},
+    comment=[l]{\#},
+    keywordsprefix={\$},
+    escapeinside={*}{*},
+    showstringspaces=true,  %Damit es keine Verwechslungen gibt
+    %% numbers=none,           %Zeilennummern
+    morekeywords = {bash},
+    morekeywords = [2]{mkdir,texhash,make,apt,>,<,cd},
+    morekeywords = [3]{-p, -dir, print, install},
+    morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake, ghci, ghc,grep,ls,cp,find,man,tail,head},
+    morekeywords = [5]{},
+}
+
+\lstnewenvironment{bash}[1][]
+  {\lstset{language=lBash,#1}}
+{}
