@@ -55,10 +55,12 @@
 {\T{\textbackslash providecommand\{\textbackslash ABSTRACT\}\{<Dein neuer Titel>\}}} vor {\T{\textbackslash documentclass[paper]\{LILLY\}.}}}}
 \providecommand{\TITLE}{Hier könnte ihre Werbung stehen1. (\T{\textbackslash TITLE})}
 \providecommand{\BRIEF}{Informatik Student,\\Universit\"{a}t Ulm -- \heute}
+\providecommand{\LILLYxTITLExSTYLE}[1]{\usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{#1}\par}
+
 
 \newcommand{\printHeader}{\setlength{\columnsep}{2em}{\twocolumn[
     \begin{@twocolumnfalse}
-     {\centering \usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{\TITLE}\par~\newline}
+     {\centering \LILLYxTITLExSTYLE{\TITLE}~\newline}
      {\centering \AUTHOR,~\BRIEF\par}~\bigskip\newline
      \rule{\linewidth}{1pt}\vspace{3pt}\newline
      \textbf{Abstract:}\quad {\ABSTRACT}\par
@@ -97,14 +99,11 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
     \renewcommand{\tablename}{\textbf{Tbl.}~}
 }
 
-\providecommand{\LILLYxPAPERxNUM}{TRUE}
-
-\newcommand{\getNum}[1]{
-    \ifx\LILLYxPAPERxNUM\true\Roman{#1}\else\Alph{#1}\fi
-}
+\providecommand{\LILLYxPAPERxNUMxGET}[1]{\Roman{#1}} %% ALPH{#1}
+\providecommand{\LILLYxPAPERxNUM}{TRUE} %% ALPH{#1}
 
 \newcommand{\startAppendix}{
-    \grenewcommand{\LILLYxPAPERxNUM}{FALSE}
+    \grenewcommand{\LILLYxPAPERxNUMxGET}[1]{\Alph{##1}}
     \setcounter{section}{0}
     \section{Anhang}
     \printbib
@@ -131,9 +130,13 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
         \def\st{#1}\nopagebreak%
         \ifx\st\LILLYxsection%
             \parskip=0pt\par\centering%
-            \getNum{#1}.~%
+            \ifx\LILLYxPAPERxNUM\true%
+            \LILLYxPAPERxNUMxGET{#1}.~%
+            \fi
         \else\ifx\st\LILLYxparagraph\else
-            \normalsize\getNum{section}.\arabic{subsection}
+            \ifx\LILLYxPAPERxNUM\true%
+                \normalsize\LILLYxPAPERxNUMxGET{section}.\arabic{subsection}~%
+            \fi
         \fi\fi%
         #4%
         \par%
