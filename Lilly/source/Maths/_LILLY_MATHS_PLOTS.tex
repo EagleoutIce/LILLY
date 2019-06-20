@@ -49,7 +49,7 @@
     numbering/.is if = donumbering,
     numbering/.initial = false,
     numbers/.style = {numbering=true},
-    numbersize/.estore in = \lillyxPlotxNumSize
+    numbersize/.estore in = \lillyxPlotxNumSize,
     labelsize/.estore in = \lillyxPlotxLabelSize
 }
 
@@ -66,16 +66,16 @@
             grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
             \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0)
             -- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
-            node[right] {\fontsize{\lillyxPlotxLabelSize}\selectfont\lillyxPlotxLabelX};
+            node[right] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelX};
             \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset)
             -- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
-            node[above] {\fontsize{\lillyxPlotxLabelSize}\selectfont\lillyxPlotxLabelY};
+            node[above] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelY};
         \ifdonumbering
         \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumXMin))] in {\lillyxPlotxMinX,...,\lillyxPlotxMaxX} {
-            \node [below right, Charcoal!50!white] at (\i,0) {\fontsize{\lillyxPlotxNumSize}\selectfont\ii};
+            \node [below right, Charcoal!50!white] at (\i,0) {\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
         }
         \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumYMin))] in {\lillyxPlotxMinY,...,\lillyxPlotxMaxY} {
-            \node [above left, Charcoal!50!white] at (0,\i) {\!\fontsize{\lillyxPlotxNumSize}\selectfont\ii};
+            \node [above left, Charcoal!50!white] at (0,\i) {\!\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
         }
         \fi
         }{\end{tikzpicture}\endgroup}
