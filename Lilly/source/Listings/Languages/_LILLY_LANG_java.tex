@@ -1,0 +1,22 @@
+%% Wird für die Dokumentation entsprechend erweitert
+
+\lstdefinelanguage{lJava}{
+    language=java,
+    otherkeywords = {->,<,>},
+    alsoletter={@,_},
+    comment=[l]{//},
+    keywordsprefix={@},
+    %frameround=tttt, %% mag backgroundcolor nicht
+    escapeinside={!*}{*!},
+    morecomment=[s]{/*}{*/},
+    morekeywords = {String,System,Integer},
+    morekeywords = [2]{Stream,List,Queue,ArrayList,SingleLinkedList,SortedList,SortedSet,Set,HashMap,Tree,HashSet,FileReader,BufferedReader,InputStream,BufferedInputStream,BufferedOutputStream,OutputStream,FileInputStream,FileOutputStream,FileWriter,RandomAccessFile,ObjectOutputStream,ObjectInputStream,File,LocalDate,Node,NodeList},
+    morekeywords = [3]{contains,toUpperCase,println,push,pop,sort,get,iterator,spliterator,add,matches,Serializable,Cloneable,Iterable},
+    morekeywords = [4]{Files,Paths,Collectors,Collection,Iterable,Iterator,Object,EOFException,ClassNotFoundException,IOException},
+    morekeywords = [5]{filter,map,sorted,collect,toList,forEach,mapToInt,stream,sum,read,reduce},
+}
+
+
+\lstnewenvironment{java}[1][]
+  {\lstset{language=lJava,#1}}
+{}

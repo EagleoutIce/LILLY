@@ -13,31 +13,35 @@
 
 %%%%% Pseudo-Sprachen
     \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_pseudo}
-%%Compat-GrÃ¼nde
-    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_pseudo_nospace}
 %%%%% GDRA
-    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_MIPS}
+    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_mips}
 
 %%%%% Dokumentation - needfull shell
-    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_STYLE_bash}
-    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_STYLE_haskell}
-    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_STYLE_latex}
-    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_STYLE_gepard}
-    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_STYLE_Java}
-    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_STYLE_XML}
+    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_bash}
+    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_latex}
+    \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_gepard}
 
-\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_Cpp}
-\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_Python}
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_java}
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_xml}
+
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_prolog}
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_haskell}
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_cpp}
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_python}
+
+
+%% Die environments wurden bewusst spezifisch definiert und nicht über ein foreach realisiert
+
 
 \def\lst@PlaceNumber{\makebox[\dimexpr 1em+\lst@numbersep][l]{\normalfont
   \lst@numberstyle{\thelstnumber}}}%
 
-\lstset{
+\lstdefinestyle{MAIN}{
     breaklines=true,
     backgroundcolor=\color{MudWhite},
     rulecolor=\color{MudWhite},
     stringstyle=\color{mint},
-    keywordstyle = \color{DebianRed}\bfseries,
+    keywordstyle = \LILLYxCODExKEYWORDSTYLE\bfseries,
     keywordstyle = [2]\color{Azure}, %%KW
     keywordstyle = [3]{\color{AppleGreen}}, %% PARAM
     keywordstyle = [4]{\color{DatmouthGreen}\bfseries}, %% FILES
@@ -46,9 +50,11 @@
     alsoletter={@,_},
     comment=[l]{//},
     keywordsprefix={@},
+    basicstyle=\LILLYxlstTypeWriter\color{black},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
     extendedchars=true,
     numberstyle=\small\color{gray},
+    prebreak={\raisebox{0.4\baselineskip}{\rotatebox{270}{\fontsize{4pt}{3pt}\selectfont$\curvearrowright$}}},
     frame=single,
     xleftmargin=15pt,
     xrightmargin=3pt,
@@ -56,4 +62,21 @@
     numbersep=7pt,
     %frameround=tttt, %% mag backgroundcolor nicht
     framerule=1pt,
+}
+
+\lstnewenvironment{lstplain}[1][]
+  {\lstset{xleftmargin=0pt,xrightmargin=0pt,%
+  numbers=none,numbersep=0pt,%
+  rulecolor=\color{white}, backgroundcolor=\color{white}
+  ,#1}}
+{}
+
+\lstnewenvironment{lstnonum}[1][]
+  {\lstset{xleftmargin=0pt,xrightmargin=0pt,%
+  numbers=none,numbersep=0pt,%
+  ,#1}}
+{}
+
+\lstset{
+    style=MAIN
 }

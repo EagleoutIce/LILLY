@@ -1,16 +1,8 @@
 %% Wird für die Dokumentation entsprechend erweitert
 
-\lstdefinestyle{XML}{
-    breaklines=true,
-    backgroundcolor=\color{MudWhite},
-    rulecolor=\color{MudWhite},
-    stringstyle=\color{mint},
-    keywordstyle = \LILLYxCODExKEYWORDSTYLE,
-    keywordstyle = [2]\color{Azure}, %%KW
-    keywordstyle = [3]{\color{AppleGreen}}, %% PARAM
-    keywordstyle = [4]{\color{DatmouthGreen}\bfseries}, %% FILES
-    keywordstyle = [5]{\color{Orchid}}, %% SHELLPRE
+\lstdefinelanguage{lXml}{
     keywordsprefix={@},
+    language=xml,
     %% identifierstyle=\color{AppleGreen},
     alsoletter={?},
     morestring=[b]",
@@ -19,19 +11,9 @@
     morecomment=[s]{<?}{?>},
     morecomment=[s]{!--}{--},
     alsoletter={<,>},
-    commentstyle={\color{gray}\LILLYxlstTypeWriter},
-    extendedchars=true,
-    numberstyle=\small\color{gray},
-    frame=single,
-    xleftmargin=15pt,
-    xrightmargin=3pt,
-    numbers=left,
-    numbersep=7pt,
     %frameround=tttt, %% mag backgroundcolor nicht
-    framerule=1pt,
     escapeinside={!*}{*!},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
-    basicstyle=\LILLYxlstTypeWriter\color{black},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     morekeywords = {DOCTYPE,!DOCTYPE,ELEMENT,!ELEMENT,ATTLIST,!ATTLIST},
     morekeywords = [2]{<?xml,?xml,xml},
     morekeywords = [3]{SYSTEM,PUBLIC,EMPTY,PCDATA,CDATA},
@@ -39,3 +21,7 @@
     morekeywords = [5]{xs:element,xs:namespace,xs:attribute,xs:simpleType,xs:minInclusive,xs:maxInclusive,xs:restriction,xs:enumeration,xs:union,xs:sequence,xs:complexType,xmlns,xmlns:xs,xs:schema},
 }
 
+
+\lstnewenvironment{xml}[1][]
+  {\lstset{language=lXml,#1}}
+{}

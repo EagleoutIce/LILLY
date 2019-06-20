@@ -31,7 +31,8 @@
         scale=1, minX=-2, maxX=2,
         minY=0, maxY=4, offset=0.4,
         loffset=0.1, labelX=$x$, labelY=$y$,
-        samples=250, numXMin=0, numYMin=0
+        samples=250, numXMin=0, numYMin=0,
+        numbersize=5
     },
     scale/.estore in = \lillyxPlotxScale,
     minX/.estore in = \lillyxPlotxMinX,
@@ -47,7 +48,9 @@
     numYMin/.estore in = \lillyxPlotxNumYMin,
     numbering/.is if = donumbering,
     numbering/.initial = false,
-    numbers/.style = {numbering=true}
+    numbers/.style = {numbering=true},
+    numbersize/.estore in = \lillyxPlotxNumSize
+    labelsize/.estore in = \lillyxPlotxLabelSize
 }
 
 \NewDocumentCommand{\plotline}{ O{Ao} O{\x} m }{\draw[domain=\lillyxPlotxMinX:\lillyxPlotxMaxX, smooth, variable=#2,#1] plot[samples=\lillyxPlotxSamples] ({#2}, {#3});}
@@ -63,16 +66,16 @@
             grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
             \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0)
             -- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
-            node[right] {\lillyxPlotxLabelX};
+            node[right] {\fontsize{\lillyxPlotxLabelSize}\selectfont\lillyxPlotxLabelX};
             \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset)
             -- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
-            node[above] {\lillyxPlotxLabelY};
+            node[above] {\fontsize{\lillyxPlotxLabelSize}\selectfont\lillyxPlotxLabelY};
         \ifdonumbering
         \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumXMin))] in {\lillyxPlotxMinX,...,\lillyxPlotxMaxX} {
-            \node [below right, Charcoal!50!white] at (\i,0) {\footnotesize\ii};
+            \node [below right, Charcoal!50!white] at (\i,0) {\fontsize{\lillyxPlotxNumSize}\selectfont\ii};
         }
         \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumYMin))] in {\lillyxPlotxMinY,...,\lillyxPlotxMaxY} {
-            \node [above left, Charcoal!50!white] at (0,\i) {\!\footnotesize\ii};
+            \node [above left, Charcoal!50!white] at (0,\i) {\!\fontsize{\lillyxPlotxNumSize}\selectfont\ii};
         }
         \fi
         }{\end{tikzpicture}\endgroup}
