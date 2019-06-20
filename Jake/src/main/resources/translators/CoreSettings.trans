@@ -21,5 +21,9 @@ S_LILLY_AUTHOR          = lilly-author
 S_LILLY_AUTHORMAIL      = lilly-author-mail
 S_LILLY_SIGNATURE_COLOR = lilly-signatur-farbe
 S_LILLY_BIBTEX          = lilly-bibtex
+S_FILE                  = file
+S_ANSWER                = answer
+S_DOCTYPE               = lilly-doctype
+
 
 S_VERSION               = Version

@@ -54,10 +54,8 @@ target
 bin
 **/.idea/workspace.xml 
 **/.idea/tasks.xml
-
-.classpath
-
-
+**.classpath
+**workspace.xml
 
 
 # Created by https://www.gitignore.io/api/intellij

@@ -94,7 +94,7 @@ public class CoreSettings {
      *
      * @return das alte Objekt, wenn vorhanden
      */
-    public SettingDeskriptor<String> emplace(String key, String brief, eSetting_Type type, String init) {
+    public static SettingDeskriptor<String> emplace(String key, String brief, eSetting_Type type, String init) {
         return settings.emplace(translator, key, brief, type, init);
     }
 
@@ -110,7 +110,7 @@ public class CoreSettings {
      *
      * @return das alte Objekt, wenn vorhanden
      */
-    public SettingDeskriptor<String> emplace(String key, String brief, eSetting_Type type, boolean isMandatory) {
+    public static SettingDeskriptor<String> emplace(String key, String brief, eSetting_Type type, boolean isMandatory) {
         return settings.emplace(translator, key, brief, type, isMandatory);
     }
 
@@ -123,7 +123,7 @@ public class CoreSettings {
      * @param key der Key
      * @return den entsprechenden Wert
      */
-    public String requestValue(String key) {
+    public static String requestValue(String key) {
         return settings.requestValue(translator, key);
     }
 

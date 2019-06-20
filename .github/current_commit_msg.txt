@@ -1,47 +1,16 @@
-Listings update
+Java Jake - Start der Kompilierimplementation
 
 ============================================================================================
 :EagleoutIce for Lilly
 ============================================================================================
 
-ALLES IST NUN EINE SPRACHE (JAVA, MIPS, ETC), DIE BEZEICHNER LAUTEN 'lSprache' ALSO ZUM
-BEISPIEL:
-```TeX
-
-\begin{lstlisting}[language=lJava]
-
-\end{lstlisting}
-
-%% NEU:
-\begin{java}
-...
-\end{java}
-```
-
 JAKE:
 
+    + Grundstock für Compile
+
+    * Einige nicht als statisch markierte Methoden sind nun statisch!
+
 LILLY:
-
-    + Großes listing update
-
-        + 'lstplain' und 'lstnonum' als neue environments. Einmal komplett weiß ohne padding, einmal nur ohne Zeilennummern
-
-        + prolog wurde, entsprechend der neuen Benamungsstrategie für Sprachen in den Sprachsatz aufgenommen
-
-        * Sprachen jetzt 'lLang', alles ist eine Sprache
-
-        * MAIN ist nun endlich ein echter Stil
-
-        * \language wrapper sind nun \clanguage, also zum Beispiel \chaskell - Danke environments für dieses tolle feature - nicht
-
-    + Plots können nun label und number Schriftart einstellen
-
-    + Einige Grafiken des Proseminars hinzugefügt
-
-ALLGEMEINES:
-
-    * .gitignore wurde für intelliJ etc. angepasst
-
 
 ============================================================================================
 :
