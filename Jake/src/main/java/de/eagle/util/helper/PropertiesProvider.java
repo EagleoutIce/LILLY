@@ -36,28 +36,28 @@ public class PropertiesProvider {
     /**
      * @return Liefert das Home-Verzeichnis des Nutzers
      */
-    public String getHomeDirectory() {
+    public static String getHomeDirectory() {
         return System.getProperty("user.home");
     }
 
     /**
      * @return Liefert den Nutzernamen
      */
-    public String getUsername() {
+    public static String getUsername() {
         return System.getProperty("user.name");
     }
 
     /**
      * @return Liefert das aktuelle Arbeitsverzeichnis des Nutzers
      */
-    public String getWorkingDir(){
+    public static String getWorkingDir(){
         return System.getProperty("user.dir");
     }
 
     /**
      * @return Liefert den Datei-Separator ('/' auf Linux/Mac, '\' auf Windoof)
      */
-    public String getFileSeparator(){
+    public static String getFileSeparator(){
         return System.getProperty("file.separator");
     }
 
@@ -65,28 +65,28 @@ public class PropertiesProvider {
      * @todo use for lists etc.
      * @return Liefert den Pfad-Separator (':') kann für Lists verwendet werden
      */
-    public String getPathSeparator(){
+    public static String getPathSeparator(){
         return System.getProperty("path.separator");
     }
 
     /**
      * @return Liefert die Zeichen für den Start einer neuen Zeile (z.B. '\n' oder '\r\n')
      */
-    public String getLineSeparator(){
+    public static String getLineSeparator(){
         return System.getProperty("line.separator");
     }
 
     /**
      * @return Liefert die Java Version
      */
-    public String getJavaVersion(){
+    public static String getJavaVersion(){
         return System.getProperty("java.version");
     }
 
     /**
      * @return Liefert den Pfad zum temporären Verzeichnis (JakeLogger etc.)
      */
-    public String getTempPath(){
+    public static String getTempPath(){
         return System.getProperty("java.io.tmpdir");
     }
 }

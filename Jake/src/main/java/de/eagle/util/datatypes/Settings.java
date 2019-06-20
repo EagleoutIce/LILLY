@@ -14,6 +14,7 @@ package de.eagle.util.datatypes;
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.util.blueprints.AbstractSettings;
 import de.eagle.util.constants.ColorConstants;
+import de.eagle.util.enumerations.eSetting_Type;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -33,6 +34,24 @@ public class Settings extends AbstractSettings<String, String> {
      */
     public Settings(String name) {
         this(name,true,null);
+    }
+
+
+    /**
+     * Erstellt ein exemplarisches Einstellungsobjekt als Platzhalter, dieses Objket sollte und muss durch Implementationen
+     * ersetzt werden!!!
+     *
+     * @deprecated
+     *
+     * @param name Name der Einstellung
+     * @return eine neues Einstellungsobjekt mit entsprechendem namen
+     */
+    @Deprecated
+    public static Settings createDummy(String name){
+        Settings s = new Settings("TestSettings");
+        s.put("Hallo", SettingDeskriptor.create("Hallo", "Hallo Welt Einstellung"));
+        s.put("TestMandatory", SettingDeskriptor.create("TestMandatory", "Verpflichtende Einstellung", eSetting_Type.IS_PATH,true));
+        return s;
     }
 
     /**
