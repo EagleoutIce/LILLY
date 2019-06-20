@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{Lilly}[2019/02/24 EagleoutIce - Latex-Ultimate styling class with command-line support]
 
+
 \providecommand{\AUTHOR}{Florian Sihler}
 \providecommand{\AUTHORMAIL}{florian.sihler@web.de}
 \newcommand*{\LILLYxVERSION}{1.0.9}
@@ -175,6 +176,10 @@
     \RequirePackage{textcomp}
 
 \fi
+
+\PrerenderUnicode{ä}\PrerenderUnicode{ö}
+\PrerenderUnicode{ü}\PrerenderUnicode{ß}
+
 
 \input Konanur.fd
 
