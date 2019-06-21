@@ -1,5 +1,5 @@
 
-%%% TITEL TITLEPREFIX OPTIONAL-CONTROLLERS 
+%%% TITEL TITLEPREFIX OPTIONAL-CONTROLLERS
 
 
 \tcbset{LillyxBOXxDesignxAlternate/.style={enforce breakable,leftrule=5mm,lines before break=4,left=2mm,frame code={\path[tcb fill frame] (frame.south west)--(frame.north west)
@@ -57,7 +57,7 @@ LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\
 }
 \RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{} }{ empty, %
 frame style={fill,top color=\LILLYxColorxDefinition,bottom color=\LILLYxColorxDefinition,middle color=\LILLYxColorxDefinition},colback=\LILLYxColorxDefinition!15!white,  %
-LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2}~}}, %
+LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2}~}},bookmark={#2 -- #1}  %
 }
 
 %%% Die Beispiel-Box:
@@ -118,7 +118,7 @@ LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\
     \fi
         #3
     \vspace{0.45cm}
-} 
+}
 
 
 %%TODO: BREAKS ON DIFFERENT AMOUNT OF LINES FOR NORMAL AND ALTERNATE - FIXpo
