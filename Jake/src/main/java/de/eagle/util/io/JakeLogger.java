@@ -1,4 +1,4 @@
-package de.eagle.util.logging;
+package de.eagle.util.io;
 
 /**
  * @file JakeLogger.java
@@ -6,14 +6,12 @@ package de.eagle.util.logging;
  * @version 1.0.10
  *
  * @brief verwaltet einen globalen Log
- * @see de.eagle.util.logging.JakeFormatter
+ * @see de.eagle.util.io.JakeFormatter
  */
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 /**
  * Liefert den Logger (static)

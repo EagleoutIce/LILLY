@@ -59,14 +59,14 @@ public class BuildrulesTest {
     @Order(2)
     @DisplayName("[Buildrules] Überprüft erwartende Defaults")
     @CsvSource(value = {
-            "default~SettingDeskriptor [brief=Standart-Buildrule ohne Boni :D, isMandatory=false, name=default, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{FALSE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: Standart]",
+            "default~SettingDeskriptor [brief=Standard-Buildrule ohne Boni :D, isMandatory=false, name=default, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{FALSE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: Standard]",
             "print~SettingDeskriptor [brief=Druck-Buildrule ohne Boni :D, isMandatory=false, name=print, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{print}\\\\providecommand\\\\LILLYxMODExEXTRA{FALSE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: Druck]",
             "uebungsblatt~SettingDeskriptor [brief=Übungsblatt-Buildrule, erwartet Dokument ohne \\begin usw., isMandatory=false, name=uebungsblatt, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}!Generiere: Übungsblatt]",
-            "c_default~SettingDeskriptor [brief=Complete Standart-Buildrule, isMandatory=false, name=c_default, type=IS_TEXT, value=./OUTPUT/COMPLETE-!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: COMPLETE-Standart]",
+            "c_default~SettingDeskriptor [brief=Complete Standard-Buildrule, isMandatory=false, name=c_default, type=IS_TEXT, value=./OUTPUT/COMPLETE-!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: COMPLETE-Standard]",
             "c_print~                        \"c_print~SettingDeskriptor [brief=Complete Druck-Buildrule, isMandatory=false, name=c_print, type=IS_TEXT, value=./OUTPUT/COMPLETE-Druck!\\\\\\\\providecommand\\\\\\\\LILLYxMODE{print}\\\\\\\\providecommand\\\\\\\\LILLYxMODExEXTRA{TRUE},\\\"\\\\\\\\input{$(INPUTDIR)$(TEXFILE)}\\\"]\"},delimiter = '~')" }, delimiter = '~')
     void _test_gepard_buildrules_defaults(String should_exist, String should_be) {
         Assertions.assertNotNull(Buildrules.getDefaults().get(should_exist), "Default-Einstellung muss existieren");
-        // System.out.println(Buildrules.getDefaults().get(should_exist));
+        // JakeWriter.out.println(Buildrules.getDefaults().get(should_exist));
         // TODO hihi - color information doesn't copy from output
 
         // Assertions.assertEquals(Buildrules.getDefaults().get(should_exist).toString(),

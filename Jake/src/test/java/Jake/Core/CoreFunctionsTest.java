@@ -66,7 +66,7 @@ public class CoreFunctionsTest {
         CommandLineParser.parse_args(arg_arr, settings);
         String[] a = settings.dump();
         for (String b : a) {
-            // System.out.println(b);
+            // JakeWriter.out.println(b);
             /**
              * TODO @Yellow:
              * Change to {@link de.eagle.util.constants.ColorConstants#STY_PARAM}

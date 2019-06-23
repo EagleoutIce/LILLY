@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import static de.eagle.util.logging.JakeLogger.writeLoggerDebug1;
-import static de.eagle.util.logging.JakeLogger.writeLoggerDebug3;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug3;
 
 public class Settings extends AbstractSettings<String, String> {
     private static final long serialVersionUID = 673856672235848508L;

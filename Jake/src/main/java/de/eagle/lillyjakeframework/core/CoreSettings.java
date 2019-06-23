@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import static de.eagle.lillyjakeframework.core.Definitions.JAKE_VERSION;
-import static de.eagle.util.logging.JakeLogger.writeLoggerInfo;
+import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
 
 public class CoreSettings {
 
@@ -47,7 +47,7 @@ public class CoreSettings {
     }
 
     /**
-     * Initialisiert die Einstellungen mit den entsprechendne Standarts
+     * Initialisiert die Einstellungen mit den entsprechendne Standards
      *
      * @return true, wenn eine die Einstellungen generiert werden mussten.
      */
@@ -58,8 +58,7 @@ public class CoreSettings {
             return false;
         }
         writeLoggerInfo("Es werden neue Einstellungen für CoreSettings generiert (init)", "CoreS");
-        try {
-            SettingsTranslator st = new SettingsTranslator("CoreSettings");
+            SettingsTranslator st = getTranslator();
             settings = new Settings("<Jake> CoreSettings", true, new HashMap<>());
 
             settings.emplace(st, "S_VERSION", "Jake-Version", eSetting_Type.IS_TEXT, JAKE_VERSION);
@@ -69,13 +68,10 @@ public class CoreSettings {
 
             settings.emplace(st, "S_LILLY_OUT", "Ausgabeordner der PDF-DATEI", eSetting_Type.IS_PATH, "./OUTPUT/");
 
-            settings.emplace(st, "S_LILLY_NAMEPREFIX", "Standart-Namenspräfixs", eSetting_Type.IS_TEXT, "");
+            settings.emplace(st, "S_LILLY_NAMEPREFIX", "Standard-Namenspräfixs", eSetting_Type.IS_TEXT, "");
             settings.emplace(st, "S_LILLY_COMPLETE_NAME", "Präfix einer Complete-Version", eSetting_Type.IS_TEXT,
                     "COMPLETE-");
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+            settings.emplace(st, "S_DOCTYPE", "Dokumenttyp", eSetting_Type.IS_TEXT, "Mitschrieb");
 
         // -- Hier die anderen @SerpentSaviour
 
@@ -124,6 +120,7 @@ public class CoreSettings {
      * @return den entsprechenden Wert
      */
     public static String requestValue(String key) {
+        init();
         return settings.requestValue(translator, key);
     }
 

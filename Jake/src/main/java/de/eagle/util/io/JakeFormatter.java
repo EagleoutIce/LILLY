@@ -1,4 +1,4 @@
-package de.eagle.util.logging;
+package de.eagle.util.io;
 
 /**
  * @file JakeFormatter.java
@@ -6,15 +6,13 @@ package de.eagle.util.logging;
  * @version 1.0.10
  *
  * @brief Übernimmt die Formatierung des Logs
- * @see de.eagle.util.logging.JakeLogger
+ * @see de.eagle.util.io.JakeLogger
  */
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Formatter;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+import java.util.logging.*;
 
 public class JakeFormatter extends Formatter {
     private static final DateFormat df = new SimpleDateFormat("MM.dd.yyyy hh:mm:ss.SSSS");

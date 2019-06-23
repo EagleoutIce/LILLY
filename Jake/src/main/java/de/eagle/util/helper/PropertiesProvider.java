@@ -1,5 +1,8 @@
 package de.eagle.util.helper;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Liefert verschiedene System-Spezifische Einstellungen
  */
@@ -17,6 +20,10 @@ public class PropertiesProvider {
         OS(String... m){
             matchers = m;
         }
+    }
+
+    public static String getNow(){
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss.SSS"));
     }
 
     /**

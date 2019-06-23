@@ -52,7 +52,7 @@ public class Cloner<T> implements iRealCloneable<T> {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
             // Versuche normale zuweisung
-            // System.out.println("Cloner scheitert für: " + clone_data);
+            // JakeWriter.out.println("Cloner scheitert für: " + clone_data);
             try {
                 newT = (Cloner<T>) super.clone();
             } catch (CloneNotSupportedException ex) {
