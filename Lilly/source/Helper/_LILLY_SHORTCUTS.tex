@@ -1,6 +1,6 @@
 \providecommand{\T}[1]{{\text{\LILLYxlstTypeWriter #1}}}%Shortcut Schreibmaschine
 \providecommand\narrowitems{\setlength{\itemsep}{0pt}}
-\providecommand\closeritems{\setlength{\itemsep}{-4pt}} 
+\providecommand\closeritems{\setlength{\itemsep}{-4pt}}
 
 \providecommand\tab[1][1cm]{\hspace*{#1}} %find ich logischer so....
 \providecommand\lreqn[2]{\noindent\makebox[\textwidth]{\(\displaystyle\)#1\hfill#2}} %für coole Beweisboxen
@@ -37,8 +37,10 @@
 \def\bigcircle{(0:0cm) circle (1.5cm)}
 
 
+\newcommand{\note}[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
 
-\LILLYcommand{\LILLYxCOLORxRainbow}{%
+
+\LILLYcommand{\LILLYxCOLORxRainbow}{% who needs foreach
     \LILLYcoloredSQ{\LILLYxColorxDefinition}
     \LILLYcoloredSQ{\LILLYxColorxSatz}
     \LILLYcoloredSQ{\LILLYxColorxBeweis}
