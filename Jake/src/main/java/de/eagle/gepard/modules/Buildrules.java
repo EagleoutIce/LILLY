@@ -67,7 +67,7 @@ public class Buildrules {
 
     public static String createRuleFromData(Settings setting, Translator<String, String> ts, String name, String mode,
             boolean complete) {
-        return createRuleFromData(setting, ts, name, mode, complete, "\\\\input{$(INPUTDIR)$(TEXFILE)}",
+        return createRuleFromData(setting, ts, name, mode, complete, "\\input{$(INPUTDIR)$(TEXFILE)}",
                 setting.requestValue(ts, "S_LILLY_NAMEPREFIX"), setting.requestValue(ts, "S_LILLY_COMPLETE_NAME"),
                 "TODO");
     }
@@ -103,8 +103,8 @@ public class Buildrules {
                 .append(nameprefix).append((complete) ? completeName : "").append("!"); // die einzelnen Sektionen
                                                                                         // werden mithilfe von "!"
                                                                                         // getrennt
-        ret_str.append("\\\\providecommand\\\\LILLYxMODE{") // == Sektion: Befehle
-                .append(mode).append("}\\\\providecommand\\\\LILLYxMODExEXTRA{").append(complete ? "TRUE" : "FALSE")
+        ret_str.append("\\providecommand\\LILLYxMODE{") // == Sektion: Befehle
+                .append(mode).append("}\\providecommand\\LILLYxMODExEXTRA{").append(complete ? "TRUE" : "FALSE")
                 .append("}!"); //
         ret_str.append(loaderSequence) // Ladesequenz
                 .append("!");
@@ -184,7 +184,12 @@ public class Buildrules {
      * @return Einstellungen die entsprechend der Boxen konfiguriert sind
      */
     public static Settings parseRules(GeneratorParser.JObject[] boxes, boolean complete) {
-        return new Settings("dummy");
+        Settings ret = new Settings("Buildrule Settings");
+        ret.softJoin(getDefaults());
+        for (GeneratorParser.JObject box : boxes) {
+            ret.softJoin(parseBox(box, complete));
+        }
+        return ret;
     }
 
     /**
@@ -205,7 +210,7 @@ public class Buildrules {
                 SettingDeskriptor.create("", "Box-Deskriptor für Buildrule (Gepard)",
                         createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(),
                                 box.config.getValue("display-name"), box.config.getValue("lilly-mode"),
-                                box.config.getValue("complete").equals("true"), box.config.getValue("lilly-loader"),
+                                box.config.getValue("complete").equals(Definitions.S_TRUE), box.config.getValue("lilly-loader"),
                                 box.config.getValue("nameprefix"), box.config.getValue("lilly-complete-prefix"),
                                 box.config.getValue("name-pattern"))));
         writeLoggerDebug2("erhalten: " + settings.toString(), "Buildrules");

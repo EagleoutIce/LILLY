@@ -143,7 +143,8 @@ public class CoreSettings {
      */
     public static String requestValue(String key) {
         init();
-        return settings.requestValue(translator, key);
+        String s = settings.requestValue(translator, key);
+        return (s==null)?"":s;
     }
 
     /**

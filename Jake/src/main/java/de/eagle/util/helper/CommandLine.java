@@ -31,8 +31,8 @@ public class CommandLine {
      * @return Auswahl, die einer der gültigen Optionen entspricht. Diese sind nicht sensitiv
      */
     public static String get_answer(String prompt, String[] options){
-        String tmp;
-        if (!(tmp = CoreSettings.requestValue("S_ANSWER")).isEmpty())
+        String tmp= CoreSettings.requestValue("S_ANSWER");
+        if (tmp != null && !tmp.isEmpty())
             return tmp;
 
         tmp = "";

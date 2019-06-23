@@ -12,7 +12,9 @@ package de.eagle.util.datatypes;
  */
 
 import de.eagle.gepard.parser.Configurator;
+import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.util.blueprints.AbstractSettings;
+import de.eagle.util.blueprints.Translator;
 import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.enumerations.eSetting_Type;
 
@@ -20,7 +22,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
+import static de.eagle.lillyjakeframework.core.Definitions.S_TRUE;
 import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
 import static de.eagle.util.io.JakeLogger.writeLoggerDebug3;
 
@@ -41,12 +46,10 @@ public class Settings extends AbstractSettings<String, String> {
      * Erstellt ein exemplarisches Einstellungsobjekt als Platzhalter, dieses Objket sollte und muss durch Implementationen
      * ersetzt werden!!!
      *
-     * @deprecated
      *
      * @param name Name der Einstellung
      * @return eine neues Einstellungsobjekt mit entsprechendem namen
      */
-    @Deprecated
     public static Settings createDummy(String name){
         Settings s = new Settings("TestSettings");
         s.put("Hallo", SettingDeskriptor.create("Hallo", "Hallo Welt Einstellung"));
@@ -105,6 +108,29 @@ public class Settings extends AbstractSettings<String, String> {
         }
         return true;
     }
+
+    public <T> boolean requestSwitch(Translator<T,String> ts, T key){
+        return this.requestValue(ts, key).equals(S_TRUE);
+    }
+
+
+    /**
+     * Expandiert alle Einstellungen in dieser Zeichenfolge. Es wird gesucht nach:
+     * $<Settings> und dementsprechend expandiert. So wird zum Beispiel $Version zu
+     * {@value Definitions#JAKE_VERSION}
+     *
+     * @note Bitte erweitern: CoreSettingsTest>_test_expand_basics
+     *
+     * @param str der zu expandierende String
+     * @return der expandierte string
+     */
+    public String expand(String str) {
+        for (Map.Entry<String, SettingDeskriptor<String>> s : _settings.entrySet()) {
+            str = str.replaceAll("\\$" + Pattern.quote(s.getKey()), s.getValue().getValue());
+        }
+        return str;
+    }
+
 
     /**
      * Gibt die Einstellungen als String Array zurück

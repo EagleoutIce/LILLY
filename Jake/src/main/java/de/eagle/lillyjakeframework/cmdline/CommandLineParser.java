@@ -137,7 +137,7 @@ public class CommandLineParser {
                 // toggle:
                 if (sarg.getValue().equals("false")) {
                     settings.set(carg, "true");
-                } else if (sarg.getValue().equals("true")) {
+                } else if (sarg.getValue().equals(Definitions.S_TRUE)) {
                     settings.set(carg, "false");
                 } else {
                     writeLoggerWarning("Die boolesche Option: \"" + carg + "\" ist falsch konfiguriert (\""

@@ -2,6 +2,7 @@ package GePard.Modules;
 
 import de.eagle.gepard.modules.Buildrules;
 import de.eagle.gepard.parser.GeneratorParser;
+import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
 import org.junit.jupiter.api.*;
@@ -40,7 +41,7 @@ public class BuildrulesTest {
     void _test_gepard_buildrules_blueprint(String name, String expected, String mandatory) {
         SettingDeskriptor<String> s = Buildrules.getBlueprint().get(name);
         Assertions.assertNotNull(s, "Die Einstellung muss Existieren");
-        if (mandatory.equals("true")) {
+        if (mandatory.equals(Definitions.S_TRUE)) {
             Assertions.assertTrue(s.isMandatory, "Die Einstellung soll verpflichtend sein!");
         } else {
             Assertions.assertEquals(expected.replace("#", ""), s.getValue(), "Die Einstellung soll den Wert haben");
