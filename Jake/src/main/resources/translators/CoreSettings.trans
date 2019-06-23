@@ -17,6 +17,7 @@ S_LILLY_SHOW_BOX_NAME   = lilly-show-boxname
 S_GEPARDRULES_PATH      = gepardrule-path
 S_LILLY_LAYOUT_LOADER   = lilly-layout-loader
 S_LILLY_EXTERNAL        = lilly-external
+S_LILLY_EXTERNAL_OUT    = lilly-external-out
 S_LILLY_AUTHOR          = lilly-author
 S_LILLY_AUTHORMAIL      = lilly-author-mail
 S_LILLY_SIGNATURE_COLOR = lilly-signatur-farbe
@@ -24,6 +25,5 @@ S_LILLY_BIBTEX          = lilly-bibtex
 S_FILE                  = file
 S_ANSWER                = answer
 S_DOCTYPE               = lilly-doctype
-
 
 S_VERSION               = Version
