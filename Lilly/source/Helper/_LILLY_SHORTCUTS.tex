@@ -40,6 +40,9 @@
 
 \newcommand{\note}[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
 
+%%Smallnote
+\newcommand{\snote}[2][1]{\note[\scriptsize #1]{#2}}
+
 
 \LILLYcommand{\LILLYxCOLORxRainbow}{% who needs foreach
     \LILLYcoloredSQ{\LILLYxColorxDefinition}

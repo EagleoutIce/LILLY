@@ -136,7 +136,7 @@
 \RequirePackage{refcount}
 \keepXColumns
 
-\newlength{\LILLYxNegativeSkip}\setlength{\LILLYxNegativeSkip}{-1\baselineskip}
+\newlength{\LILLYxNegativeSkip}\setlength{\LILLYxNegativeSkip}{-1.5\baselineskip}
 \providecommand{\nskip}{\vspace{\LILLYxNegativeSkip}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grundlegende Pakete (Encoding etc.)                                                                                 %     %%%% ENCODINGS %%%%

@@ -1,5 +1,10 @@
 package de.eagle.lillyjakeframework;
 
+import de.eagle.lillyjakeframework.compiler.JakeCompile;
+import de.eagle.lillyjakeframework.core.CoreSettings;
+
+import java.io.IOException;
+
 import static de.eagle.util.io.JakeLogger.*;
 
 import static de.eagle.lillyjakeframework.core.Definitions.HIDDEN_ARG;
@@ -28,13 +33,12 @@ public class Jake {
     // Move to settings
     public static String program;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         writeLoggerInfo("\"" + PRG_BRIEF + "\" beginnt nun mit seiner Arbeit","Jake");
         if (args.length < 2 || args[1].charAt(0) == HIDDEN_ARG) {
             // setup log-Deskriptor & ld_config by configparser
         }
-        program = args[0];
-
+        JakeCompile.compile("");
         // load settings & interpret settings otherwise exit with failure
 
     }

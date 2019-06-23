@@ -7,6 +7,7 @@
     <groupId>de.eagle.lillyjakeframework</groupId>
     <artifactId>lilly-jake-framework</artifactId>
     <version>1.0.10-DEVELOPMENT</version>
+    <packaging>jar</packaging>
 
     <name>Jake</name>
 
@@ -15,6 +16,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
+
 
     <dependencies>
         <dependency>
@@ -43,6 +45,31 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <transformers>
+                                <transformer implementation=
+                                                     "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>de.eagle.lillyjakeframework.Jake</mainClass>
+                                </transformer>
+                            </transformers>
+                            <compilerArgs>
+                                <arg>--add-opens java.base/java.lang=ALL-UNNAMED</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

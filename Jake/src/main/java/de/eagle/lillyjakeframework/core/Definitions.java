@@ -33,6 +33,10 @@ public class Definitions {
     /// Signatur einer Hinzufügenden Zuweisung
     public static final String ASS_PATTERN = ":";
 
+    public static final String S_TRUE = "true";
+
+    public static final int MAX_SETTINGS_REC = 12;
+
     /**
      * Aktueller Stand dieser Version
      *
@@ -42,5 +46,10 @@ public class Definitions {
 
     /// Die aktuelle Version als Zahl
     public static final int JAKE_VERSION_NUM = 10010;
+
+    public static final int B_NAME = 0;
+    public static final int B_EXTRA = 1;
+    public static final int B_INPUT = 2;
+    public static final int B_TEXT = 3;
 
 }
