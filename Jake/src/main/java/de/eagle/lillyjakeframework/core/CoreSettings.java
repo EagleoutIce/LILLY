@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import static de.eagle.lillyjakeframework.core.Definitions.JAKE_VERSION;
+import static de.eagle.lillyjakeframework.core.Definitions.S_TRUE;
 import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
 
 public class CoreSettings {
@@ -53,25 +54,46 @@ public class CoreSettings {
      */
     public static boolean init() {
         if (settings != null) {
-            writeLoggerInfo("Es wurde unnötiger weise CoreSettings::Init aufgerufen!", "CoreS");
+            // writeLoggerInfo("Es wurde unnötiger weise CoreSettings::Init aufgerufen!", "CoreS");
             // Dies könnte nicht gewollt sein
             return false;
         }
         writeLoggerInfo("Es werden neue Einstellungen für CoreSettings generiert (init)", "CoreS");
-            SettingsTranslator st = getTranslator();
-            settings = new Settings("<Jake> CoreSettings", true, new HashMap<>());
+        SettingsTranslator st = getTranslator();
+        settings = new Settings("<Jake> CoreSettings", true, new HashMap<>());
 
-            settings.emplace(st, "S_VERSION", "Jake-Version", eSetting_Type.IS_TEXT, JAKE_VERSION);
+        settings.emplace(st, "S_VERSION", "Jake-Version", eSetting_Type.IS_TEXT, JAKE_VERSION);
 
-            // Hier wurden schon einemal die für Buildrues wichtigen Einstellungen
-            // eingefügt:
+        // Hier wurden schon einemal die für Buildrues wichtigen Einstellungen
+        // eingefügt:
 
-            settings.emplace(st, "S_LILLY_OUT", "Ausgabeordner der PDF-DATEI", eSetting_Type.IS_PATH, "./OUTPUT/");
+        settings.emplace(st, "S_LILLY_OUT", "Ausgabeordner der PDF-DATEI", eSetting_Type.IS_PATH, "./OUTPUT/");
 
-            settings.emplace(st, "S_LILLY_NAMEPREFIX", "Standard-Namenspräfixs", eSetting_Type.IS_TEXT, "");
-            settings.emplace(st, "S_LILLY_COMPLETE_NAME", "Präfix einer Complete-Version", eSetting_Type.IS_TEXT,
-                    "COMPLETE-");
-            settings.emplace(st, "S_DOCTYPE", "Dokumenttyp", eSetting_Type.IS_TEXT, "Mitschrieb");
+        settings.emplace(st, "S_LILLY_NAMEPREFIX", "Standard-Namenspräfixs", eSetting_Type.IS_TEXT, "");
+        settings.emplace(st, "S_LILLY_COMPLETE_NAME", "Präfix einer Complete-Version", eSetting_Type.IS_TEXT,
+                "COMPLETE-");
+        settings.emplace(st, "S_DOCTYPE", "Dokumenttyp", eSetting_Type.IS_TEXT, "Mitschrieb");
+        settings.emplace(st, "S_LILLY_EXTERNAL_OUT", "Output-Ordner für tikzternal", eSetting_Type.IS_PATH, "extimg");
+        settings.emplace(st, "S_LILLY_MODES", "Modi für den Kompiliervorgang", eSetting_Type.IS_TEXTLIST, "default");
+        settings.emplace(st, "S_LILLY_BOXES", "Boxen für den Kompiliervorgang", eSetting_Type.IS_TEXTLIST, "DEFAULT");
+
+        // S_LILLY_AUTOCLEAN
+        settings.emplace(st, "S_LILLY_AUTOCLEAN", "Sollen beim Arbeiten entstandene Dateien am Ende entfernt werden?", eSetting_Type.IS_SWITCH, "true");
+        // S_LILLY_CLEANS
+        settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?", eSetting_Type.IS_TEXTLIST, "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS");
+        // S_LILLY_EXTERNAL
+        settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?", eSetting_Type.IS_SWITCH, "false");
+        settings.emplace(st, "S_FILE", "Wie soll die Datei heißen?", eSetting_Type.IS_FILE, "dummy.tex");
+        settings.emplace(st, "S_LILLY_IN", "Input-Pfad für Dateien", eSetting_Type.IS_PATH, ".");
+        settings.emplace(st, "S_LILLY_COMPLETE", "Sollen die Varianten vollständig erstellt werden?", eSetting_Type.IS_SWITCH, "true");
+        // S_GEPARDRULES_PATH
+        settings.emplace(st, "S_GEPARDRULES_PATH", "Pfade für zusätzliche Regeln", eSetting_Type.IS_TEXT, ""); // TESTLIST? WITH ':' TODO!
+        // S_LILLY_COMPILETIMES
+        settings.emplace(st, "S_LILLY_COMPILETIMES", "Wie oft soll kompiliert werden", eSetting_Type.IS_NUM, "2"); // TESTLIST? WITH ':' TODO!
+        // TODO: wird mit analzye  automatisch erklärt
+
+        // S_LILLY_SHOW_BOX_NAME
+        settings.emplace(st, "S_LILLY_SHOW_BOX_NAME", "Soll der Boxname angezeigt werden?", eSetting_Type.IS_SWITCH, "true");
 
         // -- Hier die anderen @SerpentSaviour
 
@@ -136,10 +158,19 @@ public class CoreSettings {
      */
     public static String expand(String str) {
         init();
-        for (Map.Entry<String, SettingDeskriptor<String>> s : settings) {
-            str = str.replaceAll("\\$" + Pattern.quote(s.getKey()), s.getValue().getValue());
-        }
-        return str;
+        return settings.expand(str);
+    }
+
+    /**
+     * Fragt einen Switch auf Wert ab
+     * @param key der Name des Switches
+     *
+     * @implNote Wirft keinen fehler, wenn der Switch kein Switch ist!
+     * @return
+     */
+    public static boolean requestSwitch(String key){
+        init();
+        return settings.requestSwitch(getTranslator(), key);
     }
 
     /**
