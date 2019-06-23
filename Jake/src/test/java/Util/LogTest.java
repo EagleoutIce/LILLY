@@ -13,7 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static de.eagle.util.logging.JakeLogger.*;
+import static de.eagle.util.io.JakeLogger.*;
 
 import java.util.logging.Level;
 

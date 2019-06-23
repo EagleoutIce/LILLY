@@ -14,8 +14,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 
-import static de.eagle.util.logging.JakeLogger.writeLoggerDebug1;
-import static de.eagle.util.logging.JakeLogger.writeLoggerDebug2;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
 
 // Information:
 // Alle "Entspricht ..." Kommentare gilt es zu ändern!
@@ -121,14 +121,14 @@ public class Buildrules {
      * @see Buildrules#createRuleFromData(Settings, Translator, String, String,
      *      boolean, String, String, String, String)
      *
-     * @return Standarteinstellungen
+     * @return Standardeinstellungen
      */
     public static Settings getDefaults() {
         Settings settings = new Settings("<Default> Buildrules", true, new HashMap<>());
 
         // Default
-        settings.emplace("default", "Standart-Buildrule ohne Boni :D", eSetting_Type.IS_TEXT, createRuleFromData(
-                CoreSettings.getSettings(), CoreSettings.getTranslator(), "Standart", "default", false));
+        settings.emplace("default", "Standard-Buildrule ohne Boni :D", eSetting_Type.IS_TEXT, createRuleFromData(
+                CoreSettings.getSettings(), CoreSettings.getTranslator(), "Standard", "default", false));
 
         // Print
         settings.emplace("print", "Druck-Buildrule ohne Boni :D", eSetting_Type.IS_TEXT,
@@ -143,8 +143,8 @@ public class Buildrules {
                         "", "", "TODO"));
 
         // Complete Default
-        settings.emplace("c_default", "Complete Standart-Buildrule", eSetting_Type.IS_TEXT, createRuleFromData(
-                CoreSettings.getSettings(), CoreSettings.getTranslator(), "Standart", "default", true));
+        settings.emplace("c_default", "Complete Standard-Buildrule", eSetting_Type.IS_TEXT, createRuleFromData(
+                CoreSettings.getSettings(), CoreSettings.getTranslator(), "Standard", "default", true));
 
         // Complete Print
         settings.emplace("c_print", "Complete Druck-Buildrule", eSetting_Type.IS_TEXT,

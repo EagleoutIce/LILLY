@@ -10,12 +10,13 @@ package de.eagle.lillyjakeframework.core;
 
 import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
+import de.eagle.util.io.JakeWriter;
 import de.eagle.util.datatypes.FunctionCollector;
 
 import java.util.Comparator;
 import java.util.Map;
 
-import static de.eagle.util.logging.JakeLogger.*;
+import static de.eagle.util.io.JakeLogger.*;
 
 /**
  * Enthält viele Funktionen
@@ -67,10 +68,10 @@ public final class CoreFunctions {
         functions_t.entrySet().stream()
                 .filter(m -> m.getKey().length() > 0 && m.getKey().charAt(0) != Definitions.HIDDEN_ARG)
                 .sorted(Comparator.comparing(Map.Entry::getKey))
-                .forEach(m -> System.out.format("  %-15s: " + m.getValue().brief + "%n", m.getKey()));
-        System.out.println("\n[file]:\nAngabe gemäß \"xxx.tex\". Dies setzt die Operation automatisch auf file_compile und generiert damit \\" +
+                .forEach(m -> JakeWriter.out.format("  %-15s: " + m.getValue().brief + "%n", m.getKey()));
+        JakeWriter.out.println("\n[file]:\nAngabe gemäß \"xxx.tex\". Dies setzt die Operation automatisch auf file_compile und generiert damit \\" +
                 " ein generelles makefile für \"xxx.tex\".");
-        System.out.println("\nnote:\nAllgemeine Einstellungen können über \"-key"+ Definitions.ASS_PATTERN +"value\" gesetzt werden (\"-key\" für boolesche). " +
+        JakeWriter.out.println("\nnote:\nAllgemeine Einstellungen können über \"-key"+ Definitions.ASS_PATTERN +"value\" gesetzt werden (\"-key\" für boolesche). " +
                 "So setzt: \"-path"+ Definitions.ASS_PATTERN +"/es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: \"/es/gibt/kuchen\". " +
                 "Weiter ist es möglich mit '"+ Definitions.ASS_PATTERN +"' values hinzuzufügen.");
         return new ReturnStatus(0);

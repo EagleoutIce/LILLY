@@ -1,6 +1,7 @@
 package de.eagle.util.helper;
 
 import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.util.io.JakeWriter;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -35,7 +36,7 @@ public class CommandLine {
             return tmp;
 
         tmp = "";
-        Scanner s = new Scanner(System.in);
+        Scanner s = new Scanner(JakeWriter.in);
         while(!stringContainsItemFromList(tmp.toUpperCase(), options)){
             System.err.print(prompt);
             tmp = s.nextLine();

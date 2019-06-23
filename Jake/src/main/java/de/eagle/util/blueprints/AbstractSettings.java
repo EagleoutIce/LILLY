@@ -213,6 +213,13 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
         return true;
     }
 
+    /**
+     * @return Liefert die Größe der Einstellungen
+     */
+    public int size(){
+        return _settings.size();
+    }
+
     public <T> V requestValue(Translator<T,K> ts, T key){
         return getValue(ts.translate(key));
     }

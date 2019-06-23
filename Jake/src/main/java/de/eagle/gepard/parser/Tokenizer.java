@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static de.eagle.util.logging.JakeLogger.*;
+import static de.eagle.util.io.JakeLogger.*;
 
 /**
  * Grundlegender Tokenizer für InputStreams

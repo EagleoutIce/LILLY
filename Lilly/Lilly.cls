@@ -142,7 +142,7 @@
 % Grundlegende Pakete (Encoding etc.)                                                                                 %     %%%% ENCODINGS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifx\LILLYxEXCLUDExEncodings \undefined                   %%% Lade Standartkonfiguration für Encoding
+\ifx\LILLYxEXCLUDExEncodings \undefined                   %%% Lade Standardkonfiguration für Encoding
 
 %% \RequirePackage[utf8x]{inputenc}                        %unicode
     \LILLYxLoadPackage{inputenc}{Damit Eingaben auch brav codiert werden :D}

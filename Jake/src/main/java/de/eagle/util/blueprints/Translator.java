@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-import static de.eagle.util.logging.JakeLogger.writeLoggerWarning;
+import static de.eagle.util.io.JakeLogger.writeLoggerWarning;
 
 /**
  * Allgemeiner Übersetzer, der aus einer Datei seine Daten bezieht.

@@ -5,7 +5,7 @@ import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.*;
 import de.eagle.util.enumerations.eSetting_Type;
 
-import static de.eagle.util.logging.JakeLogger.*;
+import static de.eagle.util.io.JakeLogger.*;
 
 /**
  * @file CommandLineParser.java
@@ -63,7 +63,7 @@ public class CommandLineParser {
      */
     public static int parse_args(String[] args, Settings settings) {
         for (int current_arg = 0; current_arg < args.length; current_arg++) {
-            writeLoggerDebug1("Parsing: " + args[current_arg], "CmdLineP.");
+            writeLoggerDebug1("Parsing: " + args[current_arg], "CmdLP");
             current_arg = parse_next_arg(args, current_arg, settings);
         }
 
@@ -97,21 +97,21 @@ public class CommandLineParser {
         String carg = args[current_arg]; // current arg
         if (carg.charAt(0) != ARGUMENT_PATTERN) { // einzelnes Argument
             if (carg.contains(DOCUMENT_PATTERN)) { // ist Dokument
-                writeLoggerDebug2("Identifiziert: einzelnes Argument (Dokument)", "CmdLineP.");
+                writeLoggerDebug2("Identifiziert: einzelnes Argument (Dokument)", "CmdLP");
                 settings.set("operation", "file_compile");
                 settings.set("file", carg);
                 // TODO: teste auf Übungsblatt
             } else if (carg.contains(CONFIG_PATTERN)) { // Ist Konfigurationsdatei
-                writeLoggerDebug2("Identifiziert: einzelnes Argument (Konfiguration)", "CmdLineP.");
+                writeLoggerDebug2("Identifiziert: einzelnes Argument (Konfiguration)", "CmdLP");
                 settings.set("operation", "config");
                 settings.set("file", carg);
             } else { // normale operation
-                writeLoggerDebug2("Identifiziert: einzelnes Argument (normal: \"" + carg + "\")", "CmdLineP.");
+                writeLoggerDebug2("Identifiziert: einzelnes Argument (normal: \"" + carg + "\")", "CmdLP");
                 settings.set("operation", carg);
             }
         } else if (carg.contains(ASSIGNMENT_PATTERN)) { // Zuweisung
             carg = carg.substring(1); // '-'
-            writeLoggerDebug2("Identifiziert: Zuweisung (normal: \"" + carg + "\")", "CmdLineP.");
+            writeLoggerDebug2("Identifiziert: Zuweisung (normal: \"" + carg + "\")", "CmdLP");
 
             if (current_arg == args.length - 1) {
                 writeLoggerError("Die Option \"" + carg + "\" benötigt ein Argument! Dieses wurde nicht geliefert!",
@@ -121,17 +121,17 @@ public class CommandLineParser {
             if (carg.contains(ADD_ASSIGN_PATTERN)) { // Ist eine Addition
                 boolean b = settings.add(strip_modifications(carg), args[++current_arg]);
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" += \"" + args[current_arg]
-                        + "\" (feedback: " + b + ")", "CmdLineP.");
+                        + "\" (feedback: " + b + ")", "CmdLP");
             } else { // ist normale zuweisung
                 boolean b = settings.set(strip_modifications(carg), args[++current_arg]);
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" = \"" + args[current_arg]
-                        + "\" (feedback: " + b + ")", "CmdLineP.");
+                        + "\" (feedback: " + b + ")", "CmdLP");
             }
         } else { // Es handelt sich um einen Switch
             carg = carg.substring(1); // '-'
             if (settings.containsKey(carg)) {
                 SettingDeskriptor sarg = settings.get(carg);
-                writeLoggerDebug2("Toggle boolesche Funktion! (alter Wert: \"" + sarg.getValue() + "\"", "CmdLineP.");
+                writeLoggerDebug2("Toggle boolesche Funktion! (alter Wert: \"" + sarg.getValue() + "\"", "CmdLP");
                 if (!sarg.type.equals(eSetting_Type.IS_SWITCH))
                     throw new IllegalArgumentException("Es handelt sich hier um keine boolesche Funktion!");
                 // toggle:

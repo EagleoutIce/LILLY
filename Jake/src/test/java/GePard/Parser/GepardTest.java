@@ -111,8 +111,8 @@ public class GepardTest {
         // Filtere nach Yak
         jobj_arr = gepard.parseFile("Y.k" /* Boxen mit Y?k */, settings, true);
 
-        // System.out.println(jobj_arr[0]);
-        // System.out.println(jobj_arr[1]);
+        // JakeWriter.out.println(jobj_arr[0]);
+        // JakeWriter.out.println(jobj_arr[1]);
 
         Assertions.assertEquals(2, jobj_arr.length, "Es wird genau eine Box erwartet");
         Assertions.assertEquals("Yak", jobj_arr[1].getName(), "Der Name muss Yak lauten");

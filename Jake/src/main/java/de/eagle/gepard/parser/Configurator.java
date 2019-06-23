@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.regex.Pattern;
 
-import static de.eagle.util.logging.JakeLogger.*;
+import static de.eagle.util.io.JakeLogger.*;
 
 import static de.eagle.util.constants.ColorConstants.COL_ERROR;
 import static de.eagle.util.constants.ColorConstants.COL_RESET;

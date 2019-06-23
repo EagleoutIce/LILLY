@@ -1,6 +1,6 @@
 package de.eagle.lillyjakeframework;
 
-import static de.eagle.util.logging.JakeLogger.*;
+import static de.eagle.util.io.JakeLogger.*;
 
 import static de.eagle.lillyjakeframework.core.Definitions.HIDDEN_ARG;
 import static de.eagle.lillyjakeframework.core.Definitions.PRG_BRIEF;
