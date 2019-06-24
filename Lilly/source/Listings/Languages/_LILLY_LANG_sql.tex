@@ -1,0 +1,21 @@
+%% Wird für die Dokumentation entsprechend erweitert
+
+\lstdefinelanguage{lSQL}{
+    language=sql,
+    comment=[l]{--},
+    %alsoletter={\#,=,-},
+    %morecomment=[s]{!}{!},
+    escapeinside={!*}{*!},
+    showstringspaces=true,  %Damit es keine Verwechslungen gibt
+    morekeywords = [2]{},
+    morekeywords = [3]{},
+    morekeywords = [4]{},
+    morekeywords = [5]{},
+    morekeywords = [6]{}
+}
+
+\lstnewenvironment{sql}[1][]
+  {\lstset{language=lSQL,#1}}
+{}
+
+\DeclareRobustCommand{\csql}[1]{\LILLYxwriteLst[language=lSQL]{#1}}

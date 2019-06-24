@@ -1,4 +1,4 @@
-\lstdefinelanguage{Assembler}{
+\lstdefinelanguage{lAssembler}{
         keywords={while,if,r,ld,st,sr,sl,beq,bnq,add,sub,and,or,not,xor,dec,inc,jmp,addi,sw,addui,add,sw,lw,slti,j,jal,div,mul,hi,lo, MOV},
         ndkeywords={nop,X,acc},
         ndkeywordstyle=\color{tealblue!80!black}\bfseries,
@@ -12,5 +12,6 @@
 }
 
 \lstnewenvironment{assembler}[1][]
-  {\lstset{language=Assembler,#1}}
+  {\lstset{language=lAssembler,#1}}
 {}
+\DeclareRobustCommand{\cassembler}[1]{\LILLYxwriteLst[language=lAssembler]{#1}}

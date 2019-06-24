@@ -26,12 +26,7 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ac72391-212f-48fe-81ed-19547b6e72b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/OUTPUT/DEFAULT-dummy.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dummy.tex" beforeDir="false" afterPath="$PROJECT_DIR$/dummy.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/Jake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/Jake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/compiler/JakeCompile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/compiler/JakeCompile.java" afterDir="false" />
-    </list>
+    <list default="true" id="9ac72391-212f-48fe-81ed-19547b6e72b5" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/compiler/JakeCompile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="84" column="42" lean-forward="true" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
+            <state relative-caret-position="121">
+              <caret line="110" column="43" selection-start-line="110" selection-start-column="43" selection-end-line="110" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -616,7 +611,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="2888" y="13" width="936" height="534" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5707965" weight="0.31808037" />
       <window_info id="Structure" order="1" sideWeight="0.42920354" side_tool="true" weight="0.16347177" />
@@ -629,12 +623,12 @@
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49893504" weight="0.32881" />
-      <window_info anchor="bottom" x="1936" y="38" width="936" height="505" id="Run" order="2" sideWeight="0.49733758" type="WINDOWED" visible="true" weight="0.39115646" />
+      <window_info anchor="bottom" x="1936" y="38" width="936" height="505" id="Run" order="2" sideWeight="0.49733758" type="WINDOWED" weight="0.39115646" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39979124" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32881" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.79126734" visible="true" weight="0.1784897" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.79126734" visible="true" weight="0.409611" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2087327" side_tool="true" weight="0.2764141" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32881" />
       <window_info anchor="bottom" id="TeamCity" order="10" />
@@ -1195,8 +1189,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/eagle/lillyjakeframework/compiler/JakeCompile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="84" column="42" lean-forward="true" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
+        <state relative-caret-position="121">
+          <caret line="110" column="43" selection-start-line="110" selection-start-column="43" selection-end-line="110" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
