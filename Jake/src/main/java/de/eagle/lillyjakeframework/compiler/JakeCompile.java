@@ -178,7 +178,7 @@ public class JakeCompile {
         out.write("%% Version: " + Definitions.JAKE_VERSION + "  Author: Florian Sihler                    %%\n");
         out.write("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n");
 
-        switch (CoreSettings.requestValue("S_DOCTYPE")){
+        switch (CoreSettings.requestValue("S_LILLY_DOCTYPE")){
             default: // annahme: Mitschrieb
             case "Mitschrieb":
                 // CURRENT POINT OF TODO

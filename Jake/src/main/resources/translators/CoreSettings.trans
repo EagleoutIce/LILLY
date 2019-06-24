@@ -14,7 +14,6 @@ S_LILLY_VORLESUNG       = lilly-vorlesung
 S_LILLY_N               = lilly-n
 S_LILLY_SEMESTER        = lilly-semester
 S_LILLY_SHOW_BOX_NAME   = lilly-show-boxname
-S_GEPARDRULES_PATH      = gepardrule-path
 S_LILLY_LAYOUT_LOADER   = lilly-layout-loader
 S_LILLY_EXTERNAL        = lilly-external
 S_LILLY_EXTERNAL_OUT    = lilly-external-out
@@ -22,8 +21,20 @@ S_LILLY_AUTHOR          = lilly-author
 S_LILLY_AUTHORMAIL      = lilly-author-mail
 S_LILLY_SIGNATURE_COLOR = lilly-signatur-farbe
 S_LILLY_BIBTEX          = lilly-bibtex
+S_GEPARDRULES_PATH      = gepardrule-path
+S_LILLY_DOCTYPE         = lilly-doctype
+
 S_FILE                  = file
 S_ANSWER                = answer
-S_DOCTYPE               = lilly-doctype
-
 S_VERSION               = Version
+S_OPERATION             = operation
+S_DEBUG                 = debug
+S_DEBUG_FILTER          = debug-filter
+S_PATH                  = path
+S_WHAT                  = what
+S_INSTALL_PATH          = install-path
+
+S_JOBCOUNT              = jobcount
+S_MK_NAME               = mk-name
+S_MK_PATH               = mk-path
+S_MK_USE                = mk-use
