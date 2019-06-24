@@ -19,7 +19,7 @@
 %% {file} (coming soon: [input])
 \NewDocumentCommand{\getFileExecutionOutput}{ m } {%
 \immediate\write18{ #1 > \jobname.txt }
-\lstinputlisting[language=BashOutput]{\jobname.txt}
+\lstinputlisting[style=BashOutput,language=lBash]{\jobname.txt}
 \immediate\write18{ rm \jobname.txt }
 }
 \else
@@ -28,13 +28,13 @@
 
 \NewDocumentCommand{\cbash}{ m }{%
 \begingroup
-\colorbox{MudWhite!93!black}{\lstinline[language=bash]{#1}}%
+\colorbox{MudWhite!93!black}{\lstinline[language=lBash]{#1}}%
 \endgroup
 }
 
 \NewDocumentCommand{\previewBash}{ m } {%
 \begingroup
-\colorbox{MudWhite!93!black}{\lstinline[language=bash]{$ #1}}
+\colorbox{MudWhite!93!black}{\lstinline[language=lBash]{$ #1}}
 \getFileExecutionOutput{#1}
 \endgroup
 }
@@ -43,7 +43,7 @@
 
 \NewDocumentCommand{\previewBashFile}{ m } {
 \begingroup
-\lstinputlisting[language=bash, caption={Inhalt der Datei #1}]{#1}
+\lstinputlisting[language=lBash, caption={Inhalt der Datei #1}]{#1}
 \endgroup
 \previewBash{bash #1}
 }
