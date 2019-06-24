@@ -2,6 +2,7 @@ package de.eagle.lillyjakeframework;
 
 import de.eagle.lillyjakeframework.compiler.JakeCompile;
 import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.util.io.JakeWriter;
 
 import java.io.IOException;
 
@@ -38,6 +39,11 @@ public class Jake {
         if (args.length < 2 || args[1].charAt(0) == HIDDEN_ARG) {
             // setup log-Deskriptor & ld_config by configparser
         }
+
+        JakeWriter.out.println("Da es noch kein gescheites cmdline parsing gibt - grumpy - wird die datei dummy.tex hardgecoded.");
+        JakeWriter.out.println("Ab jetzt auch JakeWriter anstelle von System.out, System.err und System.in verwenden!");
+        JakeWriter.out.println("Dies ist dann für die GUI-Entwicklung nötig");
+        JakeWriter.out.println("Wenn der Dialog getestet werden soll, einfach die dummy.tex löschen!");
         JakeCompile.compile("");
         // load settings & interpret settings otherwise exit with failure
 
