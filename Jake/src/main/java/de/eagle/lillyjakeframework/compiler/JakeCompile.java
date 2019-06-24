@@ -84,6 +84,7 @@ public class JakeCompile {
         try{
             if(CoreSettings.requestSwitch("S_LILLY_EXTERNAL"))
             Files.createDirectories(Paths.get(CoreSettings.requestValue("S_LILLY_OUT"), CoreSettings.requestValue("S_LILLY_EXTERNAL_OUT")));
+            else Files.createDirectories(Paths.get(CoreSettings.requestValue("S_LILLY_OUT")));
         } catch (IOException ex){
             writeLoggerError("FileCreation failed!","compile");
         }
@@ -93,7 +94,6 @@ public class JakeCompile {
         Path lilly_log_out = Paths.get(CoreSettings.requestValue("S_LILLY_OUT") ,"LILLY_COMPILE.log");
         File f_lilly_log_out = lilly_log_out.toFile();
         writeLoggerDebug1("Create Logfile: \"" + lilly_log_out.toString() + "\"... ", "compile");
-
         PrintWriter llo = new PrintWriter(f_lilly_log_out);
         llo.println("LILLY_LOGFILE stamp: " + PropertiesProvider.getNow());
         llo.close();
