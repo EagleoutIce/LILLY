@@ -14,14 +14,14 @@
 \LILLYcommand{\leftmark}{} %% fix no chapter bug
 \LILLYcommand{\rightmark}{}
 
-\titleformat{\chapter}[display]%             
+\titleformat{\chapter}[display]%
         {\relax}
         {\vspace{-4\baselineskip}\raggedleft{\color{LightGray}\chapterNumber\thechapter} \\ }
         {0pt}%
-        {\vspace*{-4\baselineskip}\color{\LILLYxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here 
+        {\vspace*{-4\baselineskip}\color{\LILLYxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here
         [\normalcolor\normalsize\vspace*{-.7\baselineskip}\rule{\textwidth}{0.5pt}\vspace*{-1.7\baselineskip}]%
 
-\newcommand*{\TitleSUB}[1]{ 
+\newcommand*{\TitleSUB}[1]{
     \begingroup\vspace{-1.25\baselineskip}\textsc{\textcolor{\LILLYxTITLExCOLOR}{#1}}~\\[1\baselineskip]\endgroup
 }
 \newcommand{\LILLYxRIGHTMARK}{\faBookmark}
@@ -39,9 +39,10 @@
     \pagestyle{empty} %KOMA-FTW!
     \pagenumbering{gobble}
 }
-\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+\LILLYcommand{\LILLYxLayoutxRestore}{ %
     \chead{\LILLYxRIGHTMARK}
-    \pagestyle{scrheadings} %KOMA-FTW!
+    \pagestyle{plain} %KOMA-FTW!
+    \pagenumbering{gobble} 
 }
 
 \AtBeginDocument{
@@ -67,7 +68,7 @@
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -0.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
-{\normalfont\small\sffamily\bfseries}}                        
+{\normalfont\small\sffamily\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
 {-2ex \@plus-.2ex \@minus .2ex}
 {.1ex}
