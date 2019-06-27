@@ -109,7 +109,7 @@ public class CoreSettings {
 
         // besondere Lilly-Einstellungen
         settings.emplace(st, "S_LILLY_VORLESUNG", "Um welche Vorlesung handelt es sich", eSetting_Type.IS_VLS,"NONE" );
-        settings.emplace(st,"S_LILLY_N","Um das wievielte Übungsblatt handelt es sich", eSetting_Type.IS_NUM, "420");
+        settings.emplace(st,"S_LILLY_N","Um das wievielte Übungsblatt handelt es sich", eSetting_Type.IS_NUM, "42");
         settings.emplace(st,"S_LILLY_SEMESTER", "Das  wievielte Semester ist es", eSetting_Type.IS_NUM, "0");
         settings.emplace(st,"S_LILLY_EXTERNAL","Soll versucht werden tikzternal Grafiken auszulagern?",eSetting_Type.IS_SWITCH, "false");
         settings.emplace(st,"S_LILLY_LAYOUT_LOADER","Pfad über den Layouts geladen werden können", eSetting_Type.IS_PATH, "");
