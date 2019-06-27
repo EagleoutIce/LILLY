@@ -37,6 +37,8 @@
 \providecommand{\datum}{\heute}
 \providecommand{\resourcepath}{source/Beamer/Bilder/KIZ/}
 \providecommand{\titleimage}{startbild1}
+\providecommand{\titlewidth}{\paperwidth}
+
 \providecommand{\logoimage}{logo_100_Pant_RGB}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Farben %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -105,7 +107,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Aufzählungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Aufzählung die der Vorlage ähnelt, ohne itemize o.ä. zu modifizieren
-\newenvironment{bulletpoints} { \begin{itemize}
+\newenvironment{bulletpoints}[1][] { \begin{itemize}[#1]
   \setlength{\itemsep}{1.5ex}
   \setlength{\parskip}{0pt}
   \setlength{\parsep}{0pt}
@@ -125,10 +127,10 @@
       \maketitle\vspace*{-1.5cm}
       {\hspace*{5.7cm}\raisebox{0.35cm}{\IfFileExists{\resourcepath\logoimage}{%
         \includegraphics[height=\lenLogoHeight]{\resourcepath\logoimage}} {%
-          \includegraphics[height=\lenLogoHeight]{\resourcepath\logoimage}}%
+          \includegraphics[height=\lenLogoHeight]{\logoimage}}%
       }}
-      {\hspace*{-1.4cm}\IfFileExists{\resourcepath\titleimage}{\includegraphics[width=\paperwidth]%
-        {\resourcepath\titleimage}}{\includegraphics[width=\paperwidth]{\titleimage}}}
+      {\hspace*{-1.4cm}\centering \IfFileExists{\resourcepath\titleimage}{\parbox[c][5.6cm]{\paperwidth}{\vfill\centering\includegraphics[width=\titlewidth]%
+        {\resourcepath\titleimage}\vfill}}{\parbox[c][5.6cm]{\paperwidth}{\vfill\centering\includegraphics[width=\titlewidth]{\titleimage}\vfill}}}
       \hspace*{-1.2cm}\begin{minipage}[t]{0.44\paperwidth}
           \parbox[t][\lenTitleShort]{\linewidth}{%
             \vspace*{2.5\baselineskip}{\relax}~\\%
