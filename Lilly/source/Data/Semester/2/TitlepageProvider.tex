@@ -27,7 +27,13 @@
 \AtBeginDocument{
 \clearpage\begin{titlepage}
     {\centering\par
-    \par\vspace*{3em}\par
+        \par\vspace*{1em}\par
+        \begingroup
+            \ifnum\LILLY@n>0%
+                \parbox{\paperwidth}{\hbox{}\bfseries\usefont{U}{eur}{b}{n}\fontsize{80pt}{16pt}\selectfont\color{MudWhite}\LILLY@n\normalcolor}\vspace{-6em}%
+            \fi%
+        \endgroup\par
+        \par\vspace*{2em}\par
     {\tab[\LILLYxTITLExOffset] \raisebox{4.5em}{\parbox[0em]{0em}{\includegraphics[height=8em]{\LILLYxPATHxDATA/Semester/2/Graphics/titleimage\LILLYxVorlesung.pdf}}\tab[-\LILLYxTITLExOffset]}}
     {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
     \vspace{1.15cm}

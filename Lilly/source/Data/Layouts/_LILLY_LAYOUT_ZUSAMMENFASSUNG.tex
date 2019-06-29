@@ -51,7 +51,7 @@
 \newcounter{ctr_ADDONS}
 
 \newcommand{\startAppendix}{\clearpage\par%
-\addcontentsline{toc}{section}{Anhänge}\addcontentsline{TOPIC}{TOPICS}{Anhang}%
+\addcontentsline{toc}{section}{Anhï¿½nge}\addcontentsline{TOPIC}{TOPICS}{Anhang}%
 \ifx\LILLYxMODE\LILLYxMODExPRINT\lehead{\textsf{$\mathbf{A}\mid\,$ \normalfont\textsf{Anhang}}}%
 \else\lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxLINKSxMainColor]\textnormal{\guilsinglright}Anhang}%
 \fi
@@ -67,11 +67,18 @@
 }
 
 
+\newcommand{\aLink}[1]{%
+    \ifx\LILLYxMODE\LILLYxMODExPRINT%
+        \pageref{#1}%
+    \else%
+        \jmark[\faLeanpub]{#1}%
+    \fi%
+}
 
 
 \providecommand{\TOP}[3][top_default_jmpmrk]{
     \addcontentsline{DEFS}{chapter}{#2}\addcontentsline{toc}{section}{#2}
-    \phantomsection\TOPICS{#2}\elable{top:#1}\markleft{#2}
+    \phantomsection\TOPICS{#2}\elable{top:#1}\markleft{#2}\mbox{}
     \begin{minipage}{\textwidth} %%breakpatch
         \raggedright{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \arabic{TOPICS}) #2} \hfill\tiny #3\\
         \noindent\rule{\textwidth}{2pt}\\[0.4cm]
@@ -80,7 +87,7 @@
 }
 
 \providecommand{\TOPA}[3][top_default_jmpmrk]{
-\phantomsection\elable{top:#1}\refstepcounter{ctr_ADDONS}\addcontentsline{toc}{subsection}{#2}
+\phantomsection\elable{top:#1}\refstepcounter{ctr_ADDONS}\addcontentsline{toc}{subsection}{#2}\mbox{}
 \begin{minipage}{\textwidth} %%breakpatch
     \raggedright{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \alph{ctr_ADDONS}) #2} \hfill\tiny #3\\
     \noindent\rule{\textwidth}{2pt}\\[0.4cm]

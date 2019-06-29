@@ -33,6 +33,13 @@
                     {}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
+
+%% https://ctan.org/pkg/pgfplots
+\LILLYxDemandPackage{pgfplots}{Wir alle wollen plots!}%% Package, Info
+                    {dann keine plots :/ dann will ich aber auch nicht!}
+                    {} %% TODO: defaults
+                    {}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Optionale Pakete für Mathe                                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,11 +68,6 @@
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ARROWS}} %% TODO: defaults
                     {}{} % shortlabels
 
-%% https://ctan.org/pkg/pgfplots
-\LILLYxLoadPackage{pgfplots}{Wir alle wollen plots!}%% Package, Info
-                    {dann keine plots :/ die plot-erweiterung wird deaktiviert!}
-                    {} %% TODO: defaults
-                    {}{\input{\LILLYxPATHxMATHS/_LILLY_MATHS_PLOTS}\pgfplotsset{width=7cm,compat=newest}} % shortlabels
 
 
 
@@ -76,5 +78,6 @@
 \input{\LILLYxPATHxMATHS/_LILLY_MATHS_OPERATORS}
 \input{\LILLYxPATHxMATHS/_LILLY_MATHS_COMPATIBILITIES}
 \input{\LILLYxPATHxMATHS/_LILLY_MATHS_SHORTCUTS}
-
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_PLOTS}
+\pgfplotsset{width=7cm,compat=newest}
 \endinput
