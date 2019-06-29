@@ -12,9 +12,9 @@
 \providecommand{\LILLYxSemester}{1}
 \providecommand{\LILLYxVorlesung}{LAII}
 
-\input{source/Helper/_LILLY_PACKAGE_CTRL}
+\RequirePackage{source/Helper/LILLYxPACKAGExCTRL}
+\RequirePackage{source/Controllers/LILLYxCONTROLLERxCONTENT}
 
-\input{source/Controllers/_LILLY_CONTENT_CONTROLLER}
 
 %\LILLY%LoadPackage{lipsum42}{Gutes Paket}{MAUMAUMAU}{\def\MauMau{Hauihao}}
 %\LILLY%DemandPackage{lipsum42}{Super Paket}{HAUHAUHAU}{\def\MauMau{Raurau}}
@@ -313,8 +313,7 @@
 
 \providecommand{\LILLYxMathxMode}{normal}                %%% Niemand mag euler-mathfont
 
-
-\input{\LILLYxPATHxMATHS/_LILLY_MATHS_INCLUDES}
+\RequirePackage{\LILLYxPATHxMATHS/LILLYxMATHS}
 
 %\RequirePackage{kpfonts}
 

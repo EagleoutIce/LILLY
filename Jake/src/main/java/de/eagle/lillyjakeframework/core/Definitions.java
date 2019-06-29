@@ -20,7 +20,7 @@ import de.eagle.util.enumerations.eProgress_State;
  * heraus erstellt werden und mit der spezifischen Jake Version
  * einhergehen.
  * @version 1.0.10
- * @since 1.0.10
+ * @since 1.0.10asdasdasdasdasdas
  */
 public class Definitions {
     /// Kurzbeschreibung der Version
@@ -44,6 +44,10 @@ public class Definitions {
      * @see eProgress_State
      */
     public static final eProgress_State JAKE_STATE = eProgress_State.DEVELOPMENT;
+
+    // Pfad an dem Jake installiert ist. null wenn noch nicht installiert
+    public static final String JAKE_INSTALLED_PATH = System.getenv("JAKE_INSTALLATION_PATH");
+
 
     /// Die aktuelle Version als Zahl
     public static final int JAKE_VERSION_NUM = 10010;

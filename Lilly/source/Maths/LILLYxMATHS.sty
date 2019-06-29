@@ -1,0 +1,80 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxMATHS}[2019/06/29 Stellt die Mathe-Erweiterungen für LILLY zur Verfuegung]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Benötigte Pakete für Mathe                                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{source/Helper/LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
+\RequirePackage{source/Controllers/LILLYxCONTROLLERxCONTENT}
+
+
+%% https://www.ctan.org/pkg/amsmath
+\LILLYxDemandPackage{amsmath}{Was ist Mathe ohne dieses Paket?}%% Package, Info
+                    {Ohne dieses Paket kann man kein Mathe machen!}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://www.ctan.org/pkg/wasysym
+\LILLYxDemandPackage{wasysym}{Es ist eine tolle Sammlung an Schriftarten}%% Package, Info
+                    {Wir wollen Symbole}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://ctan.org/pkg/amsfonts
+\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
+                    {Wir wollen mehr Symbole}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://www.ctan.org/pkg/stmaryrd
+\LILLYxDemandPackage{stmaryrd}{The St Mary's Roadsymbolfont}%% Package, Info
+                    {Diese Symbole wurden als integral erkannt}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Optionale Pakete für Mathe                                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% https://www.ctan.org/pkg/enumerate
+\LILLYxLoadPackage{enumerate}{Wir wollen ja auch schรถne Auflistungen :D}
+                    {Wie, kein enumerate ?! Dann versuche ich das wohl zu simulieren}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}}
+                    {}{}
+
+%% https://www.ctan.org/pkg/enumitem?lang=en
+\LILLYxLoadPackage{enumitem}{Wir wollen ja noch schoenere Auflistungen :D}
+                    {Wie, kein enumitem?! Das könnte aua machen!}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}}
+                    {}{\setlist{nolistsep}\newenvironment{enumeratea}[1][,]{\begin{enumerate}[label=\alph*),##1]}{\end{enumerate}}} % shortlabels
+
+%% https://www.ctan.org/pkg/varwidth
+\LILLYxLoadPackage{varwidth}{Damit alles ein bisschen besser aussieht}
+                    {Dann wohl doofe Boxen :P}
+                    {} %% TODO: defaults
+                    {}{} % shortlabels
+
+%% https://www.ctan.org/pkg/extarrows
+\LILLYxLoadPackage{extarrows}{Für noch längere Pfeile :D}
+                    {dann keine coolen Pfeile :D}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ARROWS}} %% TODO: defaults
+                    {}{} % shortlabels
+
+%% https://ctan.org/pkg/pgfplots
+\LILLYxLoadPackage{pgfplots}{Wir alle wollen plots!}%% Package, Info
+                    {dann keine plots :/ die plot-erweiterung wird deaktiviert!}
+                    {} %% TODO: defaults
+                    {}{\input{\LILLYxPATHxMATHS/_LILLY_MATHS_PLOTS}\pgfplotsset{width=7cm,compat=newest}} % shortlabels
+
+
+
+\mathversion{\LILLYxMathxMode}                              % Welche Schriftart für Matheumgebung
+
+
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_SYMBOLS}
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_OPERATORS}
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_COMPATIBILITIES}
+\input{\LILLYxPATHxMATHS/_LILLY_MATHS_SHORTCUTS}
+
+\endinput

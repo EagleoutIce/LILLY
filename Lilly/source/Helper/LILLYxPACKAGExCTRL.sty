@@ -1,5 +1,9 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxPACKAGExCTRL}[2019/06/29 Core-Funktion, erlaubt es Lilly Pakete intelligent zu verwalten]
+
 %%%% ULTIMATIVES PACKETLADEGEDÖNS!
 %% JAKE SOLL DIE HIERRIN ENTHALTENEN DATEIEN DYNAMISCH LADEN KÖNNEN UND SO BEI DER INSTALLATION ODER BEI EINEM UPDATE DYNAMISCH NEUE PAKETE HINZUFÜGEN KÖNNEN
+
 
 \providecommand{\LILLYxWANNABExERROR}{\false} %% GENERAL WHOOPS
 
@@ -42,3 +46,5 @@
 \providecommand\LILLYxLoadPackage[6]{\ClassInfo{Lilly}{LILLYxLoadPackage: #2}\fi\relax\RequirePackage[#5]{#1}\relax\protect#6}%
 \providecommand\LILLYxDemandPackage[5]{\LILLXxLoadPackage{#1}{#2}{#3}{}{#4}{#5}}{}%
 }
+
+\endinput

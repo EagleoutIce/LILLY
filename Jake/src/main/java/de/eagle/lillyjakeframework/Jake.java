@@ -2,6 +2,8 @@ package de.eagle.lillyjakeframework;
 
 import de.eagle.lillyjakeframework.compiler.JakeCompile;
 import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.lillyjakeframework.core.Definitions;
+import de.eagle.lillyjakeframework.gui.core.InstallJake;
 import de.eagle.util.io.JakeWriter;
 
 import java.io.IOException;
@@ -34,7 +36,13 @@ public class Jake {
     // Move to settings
     public static String program;
 
+
     public static void main(String[] args) throws IOException {
+
+        if(Definitions.JAKE_INSTALLED_PATH == null){
+            InstallJake.main(args);
+        }
+
         writeLoggerInfo("\"" + PRG_BRIEF + "\" beginnt nun mit seiner Arbeit","Jake");
         if (args.length < 2 || args[1].charAt(0) == HIDDEN_ARG) {
             // setup log-Deskriptor & ld_config by configparser

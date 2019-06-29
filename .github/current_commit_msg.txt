@@ -1,4 +1,4 @@
-Java Jake - CoreFunctions, Autocomplete and some Shells
+Java Jake - It's GUI-TIMEs
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -6,25 +6,19 @@ Java Jake - CoreFunctions, Autocomplete and some Shells
 
 JAKE:
 
-    + Compile an sich lauffähig (multithreaded, noch ohne locks bei external)
-    
-    + Autocomplete
-    
-    + Ein paar CoreFunctions
-    
-    + Grundlegendes Grundlagengerüst für installer (TODO: implement)
-    
-    
-    * Ein paar Verbesserungen
-    
+    + Jake hat nun ein rudimentäres Setup um installiert werden zu können
+
+    * AutoInstaller - Schnittstelle für alle installer
+
+    ! FIX: No documenttyp supplied: 'dunno' error
 
 LILLY:
 
-    * Kleine Optimierungen
+    * Einzelne Lilly-Komponenten werden nun langsam in Pakete konvertiert,
+      wobei es sich hierbei lediglich um eine veränderung unter der Haube handelt
+      und alle Dokumente kompatibel bleiben sollten. Es erlaubt allerdings in Zukunft
+      nur einzelne Komponenten von Lilly in LaTeX-Dokumenten zu verwenden
+      und diese so auch gezielt auszutauschen.
 
-    
-    ! TODO: FULL CONTROL OF PRE-EVERYTHING - KEYSET (geometry etc.) AND POST-EVERYTHING
-      (after outro) as well as FULL INTRO AND OUTRO CONTROL
-    
 ============================================================================================
 :
