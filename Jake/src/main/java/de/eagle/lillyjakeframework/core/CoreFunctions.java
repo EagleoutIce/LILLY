@@ -8,11 +8,23 @@ package de.eagle.lillyjakeframework.core;
  * @brief Enthält viele Funktionen
  */
 
+import de.eagle.gepard.parser.Configurator;
+import de.eagle.gepard.parser.TokenMatch;
+import de.eagle.gepard.parser.Tokenizer;
+import de.eagle.lillyjakeframework.cmdline.Autocomplete;
+import de.eagle.lillyjakeframework.cmdline.CommandLineParser;
+import de.eagle.lillyjakeframework.compiler.JakeCompile;
+import de.eagle.lillyjakeframework.installer.LinuxInstaller;
+import de.eagle.lillyjakeframework.installer.MacOSInstaller;
+import de.eagle.lillyjakeframework.installer.WindowsInstaller;
 import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
+import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeWriter;
 import de.eagle.util.datatypes.FunctionCollector;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.Map;
 
@@ -31,15 +43,15 @@ public final class CoreFunctions {
 
     /// "Map"  für alle Funktionen der CoreFunctrions Klasse
     public static final FunctionCollector<String[], ReturnStatus> functions_t = new FunctionCollector<>(Map.ofEntries(
-            Map.entry("help", new FunctionDeskriptor<>("fkt_help","Zeigt diese Hilfe an", CoreFunctions::fkt_help)),
-            Map.entry("dump", new FunctionDeskriptor<>("fkt_dump","Zeigt alle settings und ihre Werte an", CoreFunctions::fkt_dump)),
-            Map.entry("file_compile", new FunctionDeskriptor<>("fkt_compile","Erstellt ein makefile für settings[\\\"file\\\"]", CoreFunctions::fkt_compile)),
-            Map.entry("install", new FunctionDeskriptor<>("fkt_install","Versucht LILLY zu installieren", CoreFunctions::fkt_install)),
-            Map.entry("tokentest", new FunctionDeskriptor<>("fkt_tokentest","Testet den Tokenizer auf seine Funktionalität", CoreFunctions::fkt_tokentest)),
-            Map.entry("config", new FunctionDeskriptor<>("fkt_config","Lädt die Einstellungen aus der Datei 'file'", CoreFunctions::fkt_config)),
-            Map.entry("get", new FunctionDeskriptor<>("fkt_get","Sucht nach Grafiken die settings[\\\"what\\\"] enthalten!", CoreFunctions::fkt_get)),
-            Map.entry("update", new FunctionDeskriptor<>("fkt_update","Versucht Lilly & Jake zu aktualisieren", CoreFunctions::fkt_update)),
-            Map.entry("_get", new FunctionDeskriptor<>("fkt_autoget","Interne Funktion, liefert Alles für die Autovervollständigung", CoreFunctions::fkt_autoget))
+            Map.entry("help", new FunctionDeskriptor<String[], ReturnStatus>("fkt_help","Zeigt diese Hilfe an", CoreFunctions::fkt_help)),
+            Map.entry("dump", new FunctionDeskriptor<String[], ReturnStatus>("fkt_dump","Zeigt alle settings und ihre Werte an", CoreFunctions::fkt_dump)),
+            Map.entry("file_compile", new FunctionDeskriptor<String[], ReturnStatus>("fkt_compile","Erstellt ein makefile für settings[\\\"file\\\"]", CoreFunctions::fkt_compile)),
+            Map.entry("install", new FunctionDeskriptor<String[], ReturnStatus>("fkt_install","Versucht LILLY zu installieren", CoreFunctions::fkt_install)),
+            Map.entry("tokentest",new FunctionDeskriptor<String[], ReturnStatus>("fkt_tokentest","Testet den Tokenizer auf seine Funktionalität", CoreFunctions::fkt_tokentest)),
+            Map.entry("config", new FunctionDeskriptor<String[], ReturnStatus>("fkt_config","Lädt die Einstellungen aus der Datei 'file'", CoreFunctions::fkt_config)),
+            Map.entry("get", new FunctionDeskriptor<String[], ReturnStatus>("fkt_get","Sucht nach Grafiken die settings[\\\"what\\\"] enthalten!", CoreFunctions::fkt_get)),
+            Map.entry("update", new FunctionDeskriptor<String[], ReturnStatus>("fkt_update","Versucht Lilly & Jake zu aktualisieren", CoreFunctions::fkt_update)),
+            Map.entry("_get", new FunctionDeskriptor<String[], ReturnStatus>("fkt_autoget","Interne Funktion, liefert Alles für die Autovervollständigung", CoreFunctions::fkt_autoget))
     ));
 
     /**
@@ -53,7 +65,7 @@ public final class CoreFunctions {
 
         /*  Placeholder  */
 
-        return new ReturnStatus(0);
+        return ReturnStatus.EXIT_SUCCESS;
     }
 
     /**
@@ -74,20 +86,75 @@ public final class CoreFunctions {
         JakeWriter.out.println("\nnote:\nAllgemeine Einstellungen können über \"-key"+ Definitions.ASS_PATTERN +"value\" gesetzt werden (\"-key\" für boolesche). " +
                 "So setzt: \"-path"+ Definitions.ASS_PATTERN +"/es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: \"/es/gibt/kuchen\". " +
                 "Weiter ist es möglich mit '"+ Definitions.ASS_PATTERN +"' values hinzuzufügen.");
-        return new ReturnStatus(0);
+        return ReturnStatus.EXIT_SUCCESS;
     }
 
-    public static ReturnStatus fkt_install(String[] cmd){/* Placeholder */ return new ReturnStatus(0);}
+    /**
+     *
+     * @param cmd
+     * @return
+     */
+    public static ReturnStatus fkt_install(String[] cmd){
+        switch (PropertiesProvider.getOS()){ // TODO: implement! :D
+            case LINUX:
+                new LinuxInstaller();
+                break;
+            case MAC:
+                new MacOSInstaller();
+                break;
+            case WINDOWS:
+                new WindowsInstaller();
+                break;
+        }
+        return ReturnStatus.EXIT_SUCCESS;
+    }
 
-    public static ReturnStatus fkt_compile(String[] cmd){/* Placeholder */ return new ReturnStatus(0);}
+    public static ReturnStatus fkt_compile(String[] cmd)  {
+        writeLoggerDebug3("jetzt in: fkt_compile","func");
+        try {
+            return JakeCompile.compile(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-    public static ReturnStatus fkt_tokentest(String[] cmd){/* Placeholder */ return new ReturnStatus(0);}
+    public static ReturnStatus fkt_tokentest(String[] cmd){
+        JakeWriter.out.println("Einzelne Gruppen werden mit \"~\" getrennt!");
+        try {
+            Tokenizer t = new Tokenizer(CoreSettings.requestValue("S_FILE"));
+            for(TokenMatch tm : t){
+                JakeWriter.out.format("%s#%n", String.join("~",tm.getMatchings()));
+            }
+        } catch (FileNotFoundException ignored) { }
 
-    public static ReturnStatus fkt_config(String[] cmd){/* Placeholder */ return new ReturnStatus(0);}
+        return ReturnStatus.EXIT_SUCCESS;
+    }
 
-    public static ReturnStatus fkt_get(String[] cmd){/* Placeholder */ return new ReturnStatus(0);}
+    public static ReturnStatus fkt_config(String[] cmd) {
+        writeLoggerDebug3("jetzt in: fkt_config","func");
+        if(RECURSIVE_CALLCOUNTER++ > Definitions.MAX_SETTINGS_REC) {
+            JakeWriter.err.format("Du hast das Limit an Konfigurationsaufrufen (%d) erreicht! Mehr erscheint wirklich nicht sinnvoll!", Definitions.MAX_SETTINGS_REC);
+            throw new RuntimeException("Maximum recursive Config-Call-Depth! Assert that you've overwritten operation!");
+        }
+        Configurator c = null;
+        try {
+            c = new Configurator(CoreSettings.requestValue("S_FILE"));
+            c.parse_settings(CoreSettings.settings, false);
+            return CommandLineParser.interpret_settings(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
 
-    public static ReturnStatus fkt_autoget(String[] cmd){/* Placeholder */ return new ReturnStatus(0);}
+    }
 
-    public static ReturnStatus fkt_update(String[] cmd){/* Placeholder */ return new ReturnStatus(0);}
+    public static ReturnStatus fkt_get(String[] cmd){/* Placeholder */ return ReturnStatus.EXIT_SUCCESS;}
+
+    public static ReturnStatus fkt_autoget(String[] cmd){
+        JakeWriter.out.println(Autocomplete.parse_cmd_autocomplete(cmd));
+        return new ReturnStatus((0));
+    }
+
+    public static ReturnStatus fkt_update(String[] cmd){/* Placeholder */ return ReturnStatus.EXIT_SUCCESS;}
 }

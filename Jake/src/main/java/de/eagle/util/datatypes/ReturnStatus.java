@@ -29,4 +29,9 @@ public class ReturnStatus {
     public ReturnStatus(int status){
         this.status = status;
     }
+
+    public static final ReturnStatus EXIT_SUCCESS = new ReturnStatus(0);
+    public static final ReturnStatus EXIT_FAILURE = new ReturnStatus(1);
+
+
 }

@@ -10,6 +10,7 @@ package de.eagle.lillyjakeframework.core;
 
  // TODO: insert LogLevel 
 
+import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.enumerations.eProgress_State;
 
 /**

@@ -44,7 +44,7 @@ public class Jake {
         JakeWriter.out.println("Ab jetzt auch JakeWriter anstelle von System.out, System.err und System.in verwenden!");
         JakeWriter.out.println("Dies ist dann für die GUI-Entwicklung nötig");
         JakeWriter.out.println("Wenn der Dialog getestet werden soll, einfach die dummy.tex löschen!");
-        JakeCompile.compile("");
+        JakeCompile.compile(new String[]{""});
         // load settings & interpret settings otherwise exit with failure
 
     }

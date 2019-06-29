@@ -61,13 +61,17 @@ public class CommandLineParser {
      *
      * @return 0 wenn alles gut gelaufen ist
      */
-    public static int parse_args(String[] args, Settings settings) {
+    public static ReturnStatus parse_args(String[] args, Settings settings) {
         for (int current_arg = 0; current_arg < args.length; current_arg++) {
             writeLoggerDebug1("Parsing: " + args[current_arg], "CmdLP");
             current_arg = parse_next_arg(args, current_arg, settings);
         }
 
-        return 0;
+        return ReturnStatus.EXIT_SUCCESS;
+    }
+
+    public static ReturnStatus interpret_settings(String[] args) {
+        throw new UnsupportedOperationException();
     }
 
     /**
