@@ -88,7 +88,7 @@
         </constraints>
         <properties>
           <font size="8"/>
-          <text value="Label"/>
+          <text value="0"/>
         </properties>
       </component>
       <component id="f5c39" class="javax.swing.JLabel" binding="installationText">
