@@ -97,7 +97,7 @@ public final class CoreFunctions {
     public static ReturnStatus fkt_install(String[] cmd){
         switch (PropertiesProvider.getOS()){ // TODO: implement! :D
             case LINUX:
-                new LinuxInstaller();
+                new LinuxInstaller().automatedInstall();
                 break;
             case MAC:
                 new MacOSInstaller();
