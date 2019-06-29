@@ -1,4 +1,4 @@
-Java Jake - Start der Kompilierimplementation
+Java Jake - CoreFunctions, Autocomplete and some Shells
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -6,11 +6,25 @@ Java Jake - Start der Kompilierimplementation
 
 JAKE:
 
-    + Grundstock für Compile
-
-    * Einige nicht als statisch markierte Methoden sind nun statisch!
+    + Compile an sich lauffähig (multithreaded, noch ohne locks bei external)
+    
+    + Autocomplete
+    
+    + Ein paar CoreFunctions
+    
+    + Grundlegendes Grundlagengerüst für installer (TODO: implement)
+    
+    
+    * Ein paar Verbesserungen
+    
 
 LILLY:
 
+    * Kleine Optimierungen
+
+    
+    ! TODO: FULL CONTROL OF PRE-EVERYTHING - KEYSET (geometry etc.) AND POST-EVERYTHING
+      (after outro) as well as FULL INTRO AND OUTRO CONTROL
+    
 ============================================================================================
 :

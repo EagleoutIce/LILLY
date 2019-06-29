@@ -32,4 +32,6 @@ public class FunctionCollector<K,V> extends HashMap<String, FunctionDeskriptor<K
     public FunctionCollector(Map<? extends String, ? extends FunctionDeskriptor<K, V>> m) {
         super(m);
     }
+
+
 }

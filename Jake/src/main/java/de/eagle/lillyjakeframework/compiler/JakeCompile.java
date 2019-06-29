@@ -47,7 +47,7 @@ public class JakeCompile {
      * @return 0 wenn alles gut verlaufen ist
      * @throws IOException Wenn es ein Problem beim schreiben einer Datei gibt
      */
-    public static ReturnStatus compile(String command) throws IOException {
+    public static ReturnStatus compile(String[] command) throws IOException {
         JakeLogger.writeLoggerDebug1("Jake versucht nun das Lilly-Dokument zu kompilieren", "compile");
         Settings expandables = Expandables.expandsCS();
 
@@ -60,7 +60,7 @@ public class JakeCompile {
                 default:
                 case "Y": generateDummyFile(targetFile); break;
                 case "N": JakeWriter.out.println("Jake wird so tun, als gäbe es die Datei und spielt heile Welt!"); break;
-                case "C": JakeWriter.out.println("Abbruch!"); return new ReturnStatus(1);
+                case "C": JakeWriter.out.println("Abbruch!"); return ReturnStatus.EXIT_FAILURE;
             }
         }
 
@@ -129,7 +129,7 @@ public class JakeCompile {
         }
 
         if(JakeCompile_Worker.failed){
-            return new ReturnStatus(1);
+            return ReturnStatus.EXIT_FAILURE;
         }
 
         // TODO: executePostHooks
@@ -150,7 +150,7 @@ public class JakeCompile {
 
         JakeWriter.out.println("Kompilieren abgeschlossen!");
 
-        return new ReturnStatus(0);
+        return ReturnStatus.EXIT_SUCCESS;
     }
 
     public static String getTargetFile() {
@@ -194,7 +194,7 @@ public class JakeCompile {
                 break;
         }
 
-        return new ReturnStatus(1); // ALWAYS FAIL
+        return ReturnStatus.EXIT_FAILURE; // ALWAYS FAIL
     }
 
     public static class JakeCompile_Worker extends Thread {
