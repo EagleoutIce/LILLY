@@ -48,6 +48,7 @@ public class Jake {
         }
 
         if(args.length > 0 && args[0].equals("GUI")){
+            Definitions.GUI = true;
             JOptionPane.showMessageDialog(new JFrame(), "Du bist im Gui - Modus, hier wird dich bald Jake begrüßen!", "INFO", JOptionPane.INFORMATION_MESSAGE);
             return;
         } // else no gui :D

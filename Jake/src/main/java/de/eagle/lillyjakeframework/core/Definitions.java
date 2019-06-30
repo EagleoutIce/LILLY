@@ -13,6 +13,8 @@ package de.eagle.lillyjakeframework.core;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.enumerations.eProgress_State;
 
+import java.util.LinkedList;
+
 /**
  * @author Florian Sihler
  * <p>
@@ -45,6 +47,8 @@ public class Definitions {
      */
     public static final eProgress_State JAKE_STATE = eProgress_State.DEVELOPMENT;
 
+    public static boolean GUI = false;
+
     // Pfad an dem Jake installiert ist. null wenn noch nicht installiert
     public static final String JAKE_INSTALLED_PATH = System.getenv("JAKE_INSTALLATION_PATH");
 
@@ -56,5 +60,6 @@ public class Definitions {
     public static final int B_EXTRA = 1;
     public static final int B_INPUT = 2;
     public static final int B_TEXT = 3;
+
 
 }
