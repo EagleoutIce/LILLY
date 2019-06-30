@@ -80,7 +80,7 @@ public class LinuxInstaller extends AutoInstaller {
     public static String[] fkt_generate_cmd_line_exec(String s) {
         try (PrintWriter pw = new PrintWriter(getCmdLinePath())) {
             pw.println("#!/bin/bash");
-            pw.println("java -jar " + PropertiesProvider.getThisPath() + "\"$@\"");
+            pw.println("java -jar " + PropertiesProvider.getThisPath() + " \"$@\"");
         } catch (Exception ignored) {
         }
         new File(getCmdLinePath()).setExecutable(true, false);
