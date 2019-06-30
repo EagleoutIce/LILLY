@@ -1,42 +1,47 @@
 package de.eagle.util.helper;
 
+import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import de.eagle.lillyjakeframework.installer.LinuxInstaller;
+import de.eagle.lillyjakeframework.installer.MacOSInstaller;
+import de.eagle.lillyjakeframework.installer.WindowsInstaller;
 
 /**
  * Liefert verschiedene System-Spezifische Einstellungen
  */
 public class PropertiesProvider {
     /**
-     * Spiegelt die Betriebssysteme dar, anhand derer eine unterschiedliche Behandlung nötig ist
+     * Spiegelt die Betriebssysteme dar, anhand derer eine unterschiedliche
+     * Behandlung nötig ist
      */
     public enum OS {
-        WINDOWS("win"),
-        LINUX("nix","nux","aix"),
-        SOLARIS("sunos"),
-        MAC("mac"),
-        OTHER("WAFFEL");
+        WINDOWS("win"), LINUX("nix", "nux", "aix"), SOLARIS("sunos"), MAC("mac"), OTHER("WAFFEL");
         String[] matchers;
-        OS(String... m){
+
+        OS(String... m) {
             matchers = m;
         }
     }
 
-    public static String getNow(){
+    public static String getNow() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss.SSS"));
     }
 
     /**
      * Liefert das entsprechende Betriebssystem als {@link PropertiesProvider.OS}
+     * 
      * @return Das entsprechende Betriebssystem
      */
-    public static OS getOS(){
-         String os = System.getProperty("os.name").toLowerCase();
-         for(OS o : OS.values()){
-             for(String s : o.matchers){
-                 if (os.contains(s)) return o;
-             }
-         }
+    public static OS getOS() {
+        String os = System.getProperty("os.name").toLowerCase();
+        for (OS o : OS.values()) {
+            for (String s : o.matchers) {
+                if (os.contains(s))
+                    return o;
+            }
+        }
         return OS.OTHER;
     }
 
@@ -57,14 +62,14 @@ public class PropertiesProvider {
     /**
      * @return Liefert das aktuelle Arbeitsverzeichnis des Nutzers
      */
-    public static String getWorkingDir(){
+    public static String getWorkingDir() {
         return System.getProperty("user.dir");
     }
 
     /**
      * @return Liefert den Datei-Separator ('/' auf Linux/Mac, '\' auf Windoof)
      */
-    public static String getFileSeparator(){
+    public static String getFileSeparator() {
         return System.getProperty("file.separator");
     }
 
@@ -72,28 +77,53 @@ public class PropertiesProvider {
      * @todo use for lists etc.
      * @return Liefert den Pfad-Separator (':') kann für Lists verwendet werden
      */
-    public static String getPathSeparator(){
+    public static String getPathSeparator() {
         return System.getProperty("path.separator");
     }
 
     /**
-     * @return Liefert die Zeichen für den Start einer neuen Zeile (z.B. '\n' oder '\r\n')
+     * @return Liefert die Zeichen für den Start einer neuen Zeile (z.B. '\n' oder
+     *         '\r\n')
      */
-    public static String getLineSeparator(){
+    public static String getLineSeparator() {
         return System.getProperty("line.separator");
     }
 
     /**
      * @return Liefert die Java Version
      */
-    public static String getJavaVersion(){
+    public static String getJavaVersion() {
         return System.getProperty("java.version");
     }
 
     /**
      * @return Liefert den Pfad zum temporären Verzeichnis (JakeLogger etc.)
      */
-    public static String getTempPath(){
+    public static String getTempPath() {
         return System.getProperty("java.io.tmpdir");
     }
+
+    public static String getThisPath() {
+        try {
+            return PropertiesProvider.class.getProtectionDomain().getCodeSource().getLocation().toURI().toString().replaceFirst("file:", "");
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return ".";
+    }
+
+    public static boolean isInstalled(){
+        switch(getOS()) {
+            case LINUX:
+                return new LinuxInstaller().validate();
+            case MAC:
+                return new MacOSInstaller().validate();
+            case WINDOWS:
+                return new WindowsInstaller().validate();
+            default: // we don't care
+                return true;
+        }
+    }
+
 }
