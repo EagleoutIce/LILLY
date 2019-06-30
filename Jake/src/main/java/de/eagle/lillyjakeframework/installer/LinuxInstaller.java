@@ -1,9 +1,6 @@
 package de.eagle.lillyjakeframework.installer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -14,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import de.eagle.lillyjakeframework.core.Definitions;
+import de.eagle.lillyjakeframework.gui.core.LinuxInstallPackages;
 import de.eagle.util.datatypes.FunctionCollector;
 import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.helper.PropertiesProvider;
@@ -22,12 +20,15 @@ import de.eagle.util.io.JakeLogger;
 // TODO: insert debbug-statements 
 
 public class LinuxInstaller extends AutoInstaller {
+    public static LinkedList<String[]> neededPrograms = new LinkedList<>(Arrays.asList(new String[]{"git","git"},new String[]{"pdflatex", "texlive-full"},
+            new String[]{"test-waffel", "waffel-test"}));
+
 
     public static final String HOME = PropertiesProvider.getHomeDirectory();
 
     public static LinkedList<String> shells = new LinkedList<>(
-            Arrays.asList(new String[] { Paths.get(HOME, ".zshrc").toString(), Paths.get(HOME, ".bashrc").toString(),
-                    Paths.get(HOME, ".bash_profile").toString(), Paths.get(HOME, ".kshrc").toString() }));
+            Arrays.asList(Paths.get(HOME, ".zshrc").toString(), Paths.get(HOME, ".bashrc").toString(),
+                    Paths.get(HOME, ".bash_profile").toString(), Paths.get(HOME, ".kshrc").toString()));
 
     public static String getDesktopPath() {
         return Paths.get(HOME, ".local", "share", "applications").toString() + PropertiesProvider.getFileSeparator()
@@ -113,7 +114,33 @@ public class LinuxInstaller extends AutoInstaller {
             }
         }
 
-        return new String[]{"END",null};
+        return new String[]{"vaildate_tools","Überprüfe auf verfügbare Pakete"};
+    }
+
+
+    public static String[] fkt_vaildate_tools(String s){
+        // testet ob die notwendigen Programme installiert sind
+        Process p = null;
+            LinkedList<String> needed = new LinkedList<>();
+            for(String[] prg : neededPrograms){
+                try {
+
+                    p = Runtime.getRuntime().exec("which " + prg[0]);
+                    BufferedReader bis = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    if(bis.readLine() == null) {
+                        needed.add(prg[1]);
+                    }
+                    p.waitFor();
+                } catch (Exception ingored) { needed.add(prg[1]); }
+
+            }
+            if(needed.size()>0){
+                LinuxInstallPackages dialog = new LinuxInstallPackages(needed.toArray(new String[]{}));
+                dialog.pack();
+                dialog.setVisible(true);
+            }
+
+        return new String[] {"END", null};
     }
 
     String next = "";
@@ -123,8 +150,8 @@ public class LinuxInstaller extends AutoInstaller {
         steps = new FunctionCollector<>(Map.ofEntries(
             Map.entry("generate_menu_entry", new FunctionDeskriptor<String, String[]>("fkt_generate_menu_entry","Generiert einen Menüeintrag", LinuxInstaller::fkt_generate_menu_entry)),
             Map.entry("generate_cmd_line_exec",  new FunctionDeskriptor<String, String[]>("fkt_generate_cmd_line_exec","Generiert den Kommandozeilenstarter", LinuxInstaller::fkt_generate_cmd_line_exec)),
-            Map.entry("inject_path_extend",  new FunctionDeskriptor<String, String[]>("fkt_inject_path_extend","Erweitere Path-Variable", LinuxInstaller::fkt_inject_path_extend))
-
+            Map.entry("inject_path_extend",  new FunctionDeskriptor<String, String[]>("fkt_inject_path_extend","Erweitere Path-Variable", LinuxInstaller::fkt_inject_path_extend)),
+            Map.entry("vaildate_tools",  new FunctionDeskriptor<String, String[]>("fkt_vaildate_tools","Teste installierte Pakete", LinuxInstaller::fkt_vaildate_tools))
         ));
 
         this.progress = 0; // TEMPORARY => CHANGE
