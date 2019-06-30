@@ -4,9 +4,13 @@ import de.eagle.lillyjakeframework.compiler.JakeCompile;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.InstallJake;
+import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeWriter;
 
 import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import static de.eagle.util.io.JakeLogger.*;
 
@@ -39,9 +43,14 @@ public class Jake {
 
     public static void main(String[] args) throws IOException {
 
-        if(Definitions.JAKE_INSTALLED_PATH == null){
+        if(!PropertiesProvider.isInstalled()) {
             InstallJake.main(args);
         }
+
+        if(args.length > 0 && args[0].equals("GUI")){
+            JOptionPane.showMessageDialog(new JFrame(), "Du bist im Gui - Modus, hier wird dich bald Jake begrüßen!", "INFO", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        } // else no gui :D
 
         writeLoggerInfo("\"" + PRG_BRIEF + "\" beginnt nun mit seiner Arbeit","Jake");
         if (args.length < 2 || args[1].charAt(0) == HIDDEN_ARG) {

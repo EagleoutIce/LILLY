@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class InstallJake extends JDialog {
+    private static final long serialVersionUID = -3168972755951250609L;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -114,7 +115,7 @@ public class InstallJake extends JDialog {
             installationText.setText(s);
             installationProgress.setValue(installer.getProgress());
         }
-        //dispose();
+        dispose();
     }
 
     private void onCancel() {

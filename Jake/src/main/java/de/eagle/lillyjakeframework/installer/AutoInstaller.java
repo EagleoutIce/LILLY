@@ -2,10 +2,14 @@ package de.eagle.lillyjakeframework.installer;
 
 import java.util.Iterator;
 
+import de.eagle.util.datatypes.FunctionCollector;
+
 /**
  * Legt fest, was ein Installer alles können muss
  */
 public abstract class AutoInstaller implements Iterable<String> {
+
+    public FunctionCollector<String, String[]> steps;
 
     String name;
 
@@ -37,7 +41,7 @@ public abstract class AutoInstaller implements Iterable<String> {
     public abstract String nextStep();
 
     public boolean finished() {
-        return this.getProgress() >= 100;
+        return this.getProgress() >= 100; // ok in margin of error
     }
 
     /**
