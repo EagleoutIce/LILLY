@@ -55,13 +55,15 @@ public class LinuxInstallPackages extends JDialog {
     }
 
     private void onOK() { // TODO: PropertiesProvider.getPackageManager... (pacman etc) => https://unix.stackexchange.com/questions/46081/identifying-the-system-package-manager
-            try {
-                String[] args = new String[] {"x-terminal-emulator", "-e", "sudo", "apt", "install", "a"};
-                Process p = new ProcessBuilder(args).start();
-                p.waitFor();
-            } catch (Exception e) { e.printStackTrace(); }
-            dispose();
+        try {
+            String[] args = new String[]{"x-terminal-emulator", "-e", "sudo", "apt", "install", "a"};
+            Process p = new ProcessBuilder(args).start();
+            p.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        dispose();
+    }
 
 
     private void onCancel() {
