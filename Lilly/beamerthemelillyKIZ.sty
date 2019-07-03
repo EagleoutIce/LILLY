@@ -115,7 +115,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Slides %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\NewEnviron{slide}[2][t]{ \refstepcounter{ctrSlide}\begin{frame}[#1]{#2} \BODY \end{frame} }
+\NewEnviron{slide}[2][t]{ \refstepcounter{ctrSlide}\addcontentsline{toc}{chapter}{#2}\begin{frame}[#1]{#2} \BODY \end{frame} }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Titelfolie %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

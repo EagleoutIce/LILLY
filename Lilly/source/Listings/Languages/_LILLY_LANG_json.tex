@@ -1,0 +1,23 @@
+\lstdefinelanguage{lJson}{
+    %% language=json,
+    otherkeywords = {},
+    alsoletter={},
+    comment=[l]{\#},
+    comment=[l]{//},
+    sensitive=false,
+    %alsoletter={\{,\},[,]},
+    morestring=[s]{"}{"},
+    morekeywords = {},
+    morekeywords = [2]{true,false,null},
+    %morekeywords = [4]{\{,\},[,]},
+    %morecomment=[s]{/*}{*/}, there is no String
+    morestring=[b]',
+    alsoother={\,}
+}
+
+
+\lstnewenvironment{json}[1][]
+  {\lstset{language=lJson,#1}}
+{}
+
+\DeclareRobustCommand{\cjson}[1]{\LILLYxwriteLst[language=lJson]{#1}}

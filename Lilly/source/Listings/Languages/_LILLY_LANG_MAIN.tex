@@ -24,12 +24,14 @@
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_java}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_xml}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_sql}
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_xsl}
 
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_prolog}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_haskell}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_cpp}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_python}
 
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_json}
 
 %% Die environments wurden bewusst spezifisch definiert und nicht über ein foreach realisiert
 
@@ -41,12 +43,13 @@
     breaklines=true,
     backgroundcolor=\color{MudWhite},
     rulecolor=\color{MudWhite},
-    stringstyle=\color{mint},
+    stringstyle=\color{DarkChromeYellow},
     keywordstyle = \LILLYxCODExKEYWORDSTYLE\bfseries,
     keywordstyle = [2]\color{Azure}, %%KW
     keywordstyle = [3]{\color{AppleGreen}}, %% PARAM
     keywordstyle = [4]{\color{DatmouthGreen}\bfseries}, %% FILES
     keywordstyle = [5]{\color{Orchid}}, %% SHELLPRE
+    keywordstyle = [6]{\itshape}, %% SHELLPRE
     otherkeywords = {->,<,>},
     alsoletter={@,_},
     comment=[l]{//},

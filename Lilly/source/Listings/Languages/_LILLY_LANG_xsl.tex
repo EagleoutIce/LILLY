@@ -1,0 +1,32 @@
+%% Wird fÃ¼r die Dokumentation entsprechend erweitert
+
+\lstdefinelanguage{lXsl}{
+    % language=xml,
+    %% identifierstyle=\color{AppleGreen},
+    alsoletter={?},
+    keywordsprefix={°},
+    morestring=[b]",
+    morestring=[b]',
+    %morestring=[s]{>}{<},
+    morestring=[s]{"}{"},
+    morecomment=[s]{<?}{?>},
+    morecomment=[s]{!--}{--},
+    alsoletter={:,/,-},
+    otherkeywords={/>,<,>},
+    %frameround=tttt, %% mag background color nicht
+    escapeinside={!*}{*!},
+    showstringspaces=true,  %Damit es keine Verwechslungen gibt
+    morekeywords = {},
+    morekeywords = [2]{xml},
+    morekeywords = [3]{SYSTEM,PUBLIC,EMPTY,PCDATA,CDATA},
+    morekeywords = [4]{},
+    morekeywords = [5]{collection,xsl:stylesheet,/xsl:stylesheet,xmlns:xsl,xmlns:xs,xmlns:fn,xsl:output,xsl:template,xsl:copy,/xsl:copy,/xsl:template,xsl:apply-templates,xsl:attribute,/xsl:attribute},% + xpath
+    morekeywords = [6]{name,version,encoding,targetNamespace,ref,type,memberTypes,itemType,base,value,default,method,indent,match,select},
+}
+
+
+\lstnewenvironment{xsl}[1][]
+  {\lstset{language=lXsl,#1}}
+{}
+
+\DeclareRobustCommand{\cxsl}[1]{\LILLYxwriteLst[language=lXsl]{#1}}

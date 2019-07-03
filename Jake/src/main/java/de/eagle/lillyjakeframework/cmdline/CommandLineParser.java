@@ -1,9 +1,13 @@
 package de.eagle.lillyjakeframework.cmdline;
 
+import de.eagle.lillyjakeframework.core.CoreFunctions;
+import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
+import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.*;
 import de.eagle.util.enumerations.eSetting_Type;
+import de.eagle.util.io.JakeWriter;
 
 import static de.eagle.util.io.JakeLogger.*;
 
@@ -71,7 +75,17 @@ public class CommandLineParser {
     }
 
     public static ReturnStatus interpret_settings(String[] args) {
-        throw new UnsupportedOperationException();
+        String op = CoreSettings.requestValue("S_OPERATION");
+        if(CoreFunctions.functions_t.containsKey(CoreSettings.requestValue("S_OPERATION"))){
+            // Operation ist valide
+            CoreFunctions.functions_t.get(op).function.apply(args);
+        } else {
+            JakeWriter.out.format("%sDie Operation (=%s) ist so nicht gültig, " +
+                    "schreibe \"%s help\" um Informationen über die Unterstützten Operationen zu erhalten!%s",
+                    ColorConstants.COL_ERROR, op, Definitions.PRG_NAME, ColorConstants.COL_RESET);
+            return ReturnStatus.EXIT_FAILURE;
+        }
+        return ReturnStatus.EXIT_SUCCESS;
     }
 
     /**

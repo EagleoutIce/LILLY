@@ -30,6 +30,8 @@ public class Definitions {
     /// Die Version als String
     public static final String JAKE_VERSION = "1.00.10";
 
+    public static final String PRG_NAME = "lilly_jake";
+
     /// Startsignatur eines versteckten Arguments
     public static final char HIDDEN_ARG = '_';
 
