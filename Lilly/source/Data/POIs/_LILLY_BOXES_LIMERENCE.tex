@@ -8,8 +8,8 @@
 \tcbset{tag/.style={after title=}}
 
 %%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
-%%OLD TITLEC: IfValueTF={#1}{title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}}{title={$\vcenter{\hbox{#2}}$}}
-%% DEF: IfValueTF={#1}{title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$\\}}{title={$\vcenter{\hbox{#2}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$}}
+%%OLD TITLEC: IfValueTF={#1}{title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\\}}{title={$\vcenter{#2\parbox{\linewidth-\widthof{#2}-1.75em}{}}$}}
+%% DEF: IfValueTF={#1}{title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}\hfill\!\vcenter{\parbox[t]{\linewidth}{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$\\}}{title={$\vcenter{#2\parbox{\linewidth-\widthof{#2}-1.75em}{}}\hfill\!\vcenter{\parbox[t]{\linewidth}{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$}}
 
 %%% Die Definition-Box:
 % \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={%
@@ -17,19 +17,18 @@
 
 \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxDefinition}}}\else\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={}}\fi
 
-
 \RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-3pt,   %
-LillyxBOXxDesignxLimerence, LILLYxBOXxDefinitionxBoxxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\ifx\LILLYxBOXxDefinitionxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
+LillyxBOXxDesignxLimerence, LILLYxBOXxDefinitionxBoxxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxDefinitionxBox\true\\[0.1pt]\else\\[-0.4\baselineskip]\fi}, %
 }
 \RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-3pt,   %
-LillyxBOXxDesignxLimerence,LILLYxBOXxDefinitionxBoxxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$\ifx\LILLYxBOXxDefinitionxBox\true\\\else\\[-0.4\baselineskip]\fi},bookmark*={color=\LILLYxColorxDefinition}{#2 -- #1} %
+LillyxBOXxDesignxLimerence,LILLYxBOXxDefinitionxBoxxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}\hfill\!\!\!\vcenter{\parbox[t]{1em}{\centering\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$\ifx\LILLYxBOXxDefinitionxBox\true\\[0.1pt]\else\\[-0.4\baselineskip]\fi},bookmark*={color=\LILLYxColorxDefinition}{#2 -- #1} %
 }
 
 %%% Die Beispiel-Box:
 \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBeispiel}}}\else\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={}}\fi
 
 \RenewTColorBox[use counter from=LILLYxBOXxBeispiel]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ enlarge left by=-3pt, LILLYxBOXxBeispielxBoxxLimerence,   %
-LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\ifx\LILLYxBOXxBeispielxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxBeispielxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
 }
 
 
@@ -38,7 +37,7 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{
 \ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBemerkung}}}\else\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={}}\fi
 
 \RenewTColorBox[use counter from=LILLYxBOXxBemerkung]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ enlarge left by=-3pt,LILLYxBOXxBemerkungxBoxxLimerence ,  %
-LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\ifx\LILLYxBOXxBemerkungxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxBemerkungxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
 }
 
 %% TODO gnewcommand for global new command to reissue foreach which has failed for boxdefaults TODO TODO TODO TODO TODO TODO
@@ -46,7 +45,7 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{
 
 %%% Die Satz-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxSatz]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxSatz},   %
-LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}, %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\\}, %
 }
 
 
@@ -54,20 +53,20 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{
 \ifx\LILLYxBOXxBeweisxBox\true\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBeweis}}}\else\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={}}\fi
 
 \RenewTColorBox[use counter from=LILLYxBOXxBeweis]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ enlarge left by=-3pt,LILLYxBOXxBeweisxBoxxLimerence ,  %
-LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\ifx\LILLYxBOXxBeweisxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxBeweisxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
 }
 
 
 %%% Die Lemma-Box:
 
 \RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxLemma} ,  %
-LillyxBOXxDesignxLimerence, #3, title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}$\\}, %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\\}, %
 }
 
 
 %%% Die Zusammenfassung-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxZusammenfassung]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxZusammenfassung},   %
-LillyxBOXxDesignxLimerence, #3, IfValueTF={#1}{title={$\vcenter{\hbox{#2\ifthenelse{\equal{#1}{}}{}{--~}#1}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}$\\}}{title={$\vcenter{\hbox{#2}}\hfill~\vcenter{\hbox{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}$}}, %
+LillyxBOXxDesignxLimerence, #3, IfValueTF={#1}{title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}\hfill\!\vcenter{\parbox[t]{\linewidth}{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}$\\}}{title={$\vcenter{#2\parbox{\linewidth-\widthof{#2}-1.75em}{}}\hfill\!\vcenter{\parbox[t]{\linewidth}{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}$}}, %
 }
 
 %title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}},
