@@ -7,11 +7,13 @@
     %morecomment=[s]{!}{!},
     escapeinside={!*}{*!},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
-    morekeywords = [2]{},
+    morekeywords = {WITH,IS, REFERENCES},
+    morekeywords = [2]{DOUBLE, REAL, BOOLEAN},
     morekeywords = [3]{},
     morekeywords = [4]{},
     morekeywords = [5]{},
-    morekeywords = [6]{}
+    morekeywords = [6]{},
+    morecomment=[s]{/*}{*/}
 }
 
 \lstnewenvironment{sql}[1][]
