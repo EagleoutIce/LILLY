@@ -12,9 +12,11 @@ public abstract class AutoInstaller implements Iterable<String> {
     public FunctionCollector<String, String[]> steps;
 
     String name;
+   public static boolean doGui;
 
-    public AutoInstaller(String name){
+    public AutoInstaller(String name, boolean gui){
         this.name = name;
+        this.doGui = gui;
     }
 
     /**

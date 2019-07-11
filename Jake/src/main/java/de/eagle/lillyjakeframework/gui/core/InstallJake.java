@@ -96,17 +96,17 @@ public class InstallJake extends JDialog {
         switch (PropertiesProvider.getOS()) {
             case LINUX:
                 installationText.setText("Identifziere Betriebssystem [LINUX]");
-                installer = new LinuxInstaller();
+                installer = new LinuxInstaller(true);
 
                 break;
             case MAC:
                 installationText.setText("Identifziere Betriebssystem [MACOS]");
-                installer = new MacOSInstaller();
+                installer = new MacOSInstaller(true);
                 break;
 
             case WINDOWS:
                 installationText.setText("Identifziere Betriebssystem [WINDOWS]");
-                installer = new WindowsInstaller();
+                installer = new WindowsInstaller(true);
                 break;
             default:
                 installationText.setText("Betriebssystem wurde nicht erkannt!");

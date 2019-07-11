@@ -24,12 +24,10 @@
 \ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
 \RequirePackage{imakeidx} %% HAS TO BE LOADED BEFORE HYPERREF (https://tex.stackexchange.com/questions/22012/hyperref-and-imakeidx-do-not-work-together#22014)
 \fi
-\input{\LILLYxPATHxDATA/Colors/_LILLY_DEFAULT_COLORPROFILE}
 
 \ifx\LILLYxMODE\LILLYxMODExDEFAULT
     \providecommand\LILLYxBOXxBeispielxBox{FALSE}
 \else\ifx\LILLYxMODE\LILLYxMODExPRINT
-    \input{\LILLYxPATHxDATA/Colors/_LILLY_PRINT_COLORPROFILE}
     \renewcommand{\LILLYxFOOTERxBUTTONS}{FALSE}
     \providecommand{\LILLYxHYPERLINK}{FALSE}
     \providecommand\LILLYxBOXxBemerkungxBox{FALSE}
@@ -37,7 +35,7 @@
     \providecommand\LILLYxBOXxBeispielxBox{FALSE}
     \providecommand\LILLYxBOXxLemmaxBox{FALSE}
     \raggedbottom  %%Prevent flushbottom from doubleside
-\fi\fi 
+\fi\fi
 
 %%%% Da tikz davor geladen wird, helfen wir hier nach und überschreiben die option nachträglich :D
 

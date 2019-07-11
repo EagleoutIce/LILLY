@@ -2,6 +2,7 @@ package de.eagle.lillyjakeframework.installer;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -14,6 +15,7 @@ import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.LinuxInstallPackages;
 import de.eagle.util.datatypes.FunctionCollector;
 import de.eagle.util.datatypes.FunctionDeskriptor;
+import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 
@@ -79,6 +81,9 @@ public class LinuxInstaller extends AutoInstaller {
     }
 
     public static String[] fkt_generate_cmd_line_exec(String s) {
+        // Erstelle command line path wenn noch nicht vorhanden:
+        new File(getCmdLinePath()).getParentFile().mkdirs();
+
         try (PrintWriter pw = new PrintWriter(getCmdLinePath())) {
             pw.println("#!/bin/bash");
             pw.println("java -jar " + PropertiesProvider.getThisPath() + " \"$@\"");
@@ -135,9 +140,27 @@ public class LinuxInstaller extends AutoInstaller {
 
             }
             if(needed.size()>0){
-                LinuxInstallPackages dialog = new LinuxInstallPackages(needed.toArray(new String[]{}));
-                dialog.pack();
-                dialog.setVisible(true);
+                if(doGui){
+                    LinuxInstallPackages dialog = new LinuxInstallPackages(needed.toArray(new String[]{}));
+                    dialog.pack();
+                    dialog.setVisible(true);
+                } else {
+                    String[] pkgs = needed.toArray(new String[]{});
+                    try {
+                        String tpath = Executer.getPath("/scripts/install/bash/linux_install.sh");
+
+                        String[] bargs = new String[]{"x-terminal-emulator", "-e", "bash", tpath}; // todo make method with LinuxInstallPackages and remove terminal if not neccssar
+                        String[] args = new String[pkgs.length + bargs.length];
+                        System.arraycopy(bargs, 0, args, 0, bargs.length);
+                        System.arraycopy(pkgs, 0, args, bargs.length, pkgs.length);
+                        System.out.println(Arrays.toString(args));
+                        Process tp = new ProcessBuilder(args).start();
+                        System.out.println(tp.waitFor()); // todo, retrieve correct return code to detect failures
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
             }
 
         return new String[] {"END", null};
@@ -145,8 +168,8 @@ public class LinuxInstaller extends AutoInstaller {
 
     String next = "";
 
-    public LinuxInstaller() {
-        super("Linux Installer");
+    public LinuxInstaller(boolean gui) {
+        super("Linux Installer",gui);
         steps = new FunctionCollector<>(Map.ofEntries(
             Map.entry("generate_menu_entry", new FunctionDeskriptor<String, String[]>("fkt_generate_menu_entry","Generiert einen Menüeintrag", LinuxInstaller::fkt_generate_menu_entry)),
             Map.entry("generate_cmd_line_exec",  new FunctionDeskriptor<String, String[]>("fkt_generate_cmd_line_exec","Generiert den Kommandozeilenstarter", LinuxInstaller::fkt_generate_cmd_line_exec)),

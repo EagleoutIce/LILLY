@@ -1,11 +1,15 @@
 
 %% Bessere Formatierungen mancher Formatierungen in der Matheumgebung
 
-\providecommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} %Anpassung overlapping GDRA
-
-\RequirePackage{letltxmacro}
 
 
+
+
+
+\providecommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} %Anpassung overlapping: GDRA
+
+
+\ifcsname LetLetLtxMacro\endcsname%
 \let\oldr@@t\r@@t
 \def\r@@t#1#2{%
 \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
@@ -13,7 +17,10 @@
 \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
 {\box0\lower0.4pt\box2}}
 \LetLtxMacro{\oldsqrt}{\sqrt}
-\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} }      %%Schönere Wurzel
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} }      %%Sch?nere Wurzel
+\else
+\newcommand{\oldsqrt}[2][\ ]{\sqrt[#1]{#2}}
+\fi
 
 \providecommand{\das}
     {\vcentcolon\nolinebreak\mkern-1mu\nolinebreak=}
