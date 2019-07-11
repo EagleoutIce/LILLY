@@ -1,8 +1,13 @@
 %% NUR ALIASSE, KEINE NEUEN BEFEHLE
 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxTRANSLATIONSxUNIVERSE}[2019/07/11 Stellt Alternative Befehlsnamen für LILLY zur Verfuegung]
+
+
 \ifLILLY@Universe
 \ClassInfo{Lilly}{Nutze Übersetzungen/Aliasse aus Universe}%
 \include{\LILLYxDATA/Aliasse/Universe/_LILLY_UNIVERSE_MATHS} %% Übersetzungen für Mathe
 \else
 \ClassInfo{Lilly}{Nutze keine Übersetzungen/Aliasse (Universe)}%
 \fi
+\endinput

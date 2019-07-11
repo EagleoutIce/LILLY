@@ -1,4 +1,4 @@
-Java Jake - It's GUI-TIMEs
+Lilly - Package the Package
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -6,19 +6,12 @@ Java Jake - It's GUI-TIMEs
 
 JAKE:
 
-    + Jake hat nun ein rudimentäres Setup um installiert werden zu können
-
-    * AutoInstaller - Schnittstelle für alle installer
-
-    ! FIX: No documenttyp supplied: 'dunno' error
+    + Der Installer wurde weiter ausgebaut, Installscripts (erstmal nur für Linux) wurden hinzugefügt
 
 LILLY:
 
-    * Einzelne Lilly-Komponenten werden nun langsam in Pakete konvertiert,
-      wobei es sich hierbei lediglich um eine veränderung unter der Haube handelt
-      und alle Dokumente kompatibel bleiben sollten. Es erlaubt allerdings in Zukunft
-      nur einzelne Komponenten von Lilly in LaTeX-Dokumenten zu verwenden
-      und diese so auch gezielt auszutauschen.
+    + Es gibt nun Farberweiterungen (VOID, PURPLE, GREEN)
 
+    * LILLYxCOLOR, sowie LILLYxFONTS und LILLYxTRANSLATIONxUNIVRÈRSE sind nun eigenee Pakete, neben LILLYXMATHS und LILLYxPACKAGExCTRL sowie LILLYxCONTROLLERxCONTENT, sie können also auch unabhängig verwendet werden (in arbeit!)
 ============================================================================================
 :

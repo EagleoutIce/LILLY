@@ -2,8 +2,8 @@ package de.eagle.lillyjakeframework.installer;
 
 public class WindowsInstaller extends AutoInstaller {
 
-    public WindowsInstaller() {
-        super("Windows Installer");
+    public WindowsInstaller(boolean gui) {
+        super("Windows Installer",gui);
         this.progress = 99; // TEMPORARY => CHANGE
     }
 

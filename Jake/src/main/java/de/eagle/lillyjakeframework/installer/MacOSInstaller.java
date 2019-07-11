@@ -2,8 +2,8 @@ package de.eagle.lillyjakeframework.installer;
 
 public class MacOSInstaller extends AutoInstaller {
 
-    public MacOSInstaller() {
-        super("macOS Installer");
+    public MacOSInstaller(boolean gui) {
+        super("macOS Installer",gui);
         this.progress = 99; // TEMPORARY => CHANGE
     }
 
