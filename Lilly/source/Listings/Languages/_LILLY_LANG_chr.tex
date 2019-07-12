@@ -1,0 +1,19 @@
+\lstdefinelanguage{lChr}{
+    % language=prolog,
+    alsoletter={-,|,~,{,},_,.,>,<,=,:,\*,',?},
+    comment=[l]{\%},
+    keywordsprefix={\$},
+    % morecomment=[s]{\{-}{-\}},
+    escapeinside={!!}{!!},
+    morekeywords = {==>,@,<=>,=:=,\\,|},
+    morekeywords = [2]{},
+    morekeywords = [3]{true,false},
+    morekeywords = [4]{::=},
+    morekeywords = [5]{},
+}
+
+\lstnewenvironment{chr}[1][]
+  {\lstset{language=lChr,#1}}
+{}
+
+\DeclareRobustCommand{\cchr}[1]{\LILLYxwriteLst[language=lChr]{#1}}
