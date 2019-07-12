@@ -1,23 +1,46 @@
+%%% For good practice: first define all the commands we will use later:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Declare Commands                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\enum}{}
+\newcommand{\liste}{}
+\newcommand{\xa}{}
+\newcommand{\xb}{}
+\newcommand{\xc}{}
+\newcommand{\rddots}{}
+\newcommand{\crossAT}{}
+\newcommand{\circAT}{}
+\newcommand{\bblock}{}
+\newcommand{\VRule}{}
+\newcommand{\trenner}{}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Implements Commands                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\enum}[1]{\begin{enumerate}\narrowitems  #1 \end{enumerate}  }
-\newcommand{\liste}[1]{\begin{enumerate}[label=\roman*)]\narrowitems  #1 \end{enumerate}  }
+\renewcommand{\enum}[1]{\begin{enumerate}\narrowitems  #1 \end{enumerate}  }
+\renewcommand{\liste}[1]{\begin{enumerate}[label=\roman*)]\narrowitems  #1 \end{enumerate}  }
 
-\def\rddots{\reflectbox{$\ddots$}}
+\renewcommand{\xa}{\overline{x_1}\tab[0.04cm]}
+\renewcommand{\xb}{\overline{x_2}\tab[0.04cm]}
+\renewcommand{\xc}{\overline{x_3}\tab[0.04cm]}
 
-\newcommand{\xa}{\overline{x_1}\tab[0.04cm]}
-\newcommand{\xb}{\overline{x_2}\tab[0.04cm]}
-\newcommand{\xc}{\overline{x_3}\tab[0.04cm]}
+\renewcommand{\rddots}{\reflectbox{$\ddots$}}
 
-\newcommand{\crossAT}[1]{\node at #1 {\large \ding{55}};}
-\newcommand{\circAT}[1]{\draw[thick] #1 circle (0.13);}
-\newcommand*\bblock[2]{\draw #1 [thin] rectangle ++(0.5,0.5) node [pos=.5] {\tiny{#2} }; }
+\renewcommand{\crossAT}[1]{\node at #1 {\large \ding{55}};}
+\renewcommand{\circAT}[1]{\draw[thick] #1 circle (0.13);}
 
-\newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
+\renewcommand*\bblock[2]{\draw #1 [thin] rectangle ++(0.5,0.5) node [pos=.5] {\tiny{#2} }; }
 
+\renewcommand{\VRule}[1][\arrayrulewidth]{\vrule width #1}
+
+\renewcommand{\trenner}{\ensuremath{\tab[0.05cm]\Big|\tab[0.05cm]}}
 
 %%Tabbing umgebung ohne Abstand - Veraltet
+% @Deprecated
 \newenvironment{nstabbing}{
         \setlength{\topsep}{-\parskip}%
         \setlength{\partopsep}{0pt}%
@@ -25,6 +48,7 @@
     } {\endtabbing}
 
 %%Center umgebung ohne Abstand
+% @Deprecated
 \newenvironment{centered}{%
     \setlength\topsep{0pt}
     \setlength\parskip{0pt}
@@ -32,6 +56,7 @@
     \end{center}
   }
 
+% @Deprecated
 \newenvironment{sqcases}{
     \begingroup\left.
     \def\arraystretch{1.2}%
@@ -48,7 +73,3 @@
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-
-
-%%MOVE TO COMPAT
-\newcommand{\trenner}{\ensuremath{\tab[0.05cm]\Big|\tab[0.05cm]}}

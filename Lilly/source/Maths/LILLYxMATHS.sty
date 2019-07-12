@@ -1,10 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxMATHS}[2019/06/29 Stellt die Mathe-Erweiterungen für LILLY zur Verfuegung]
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Benötigte Pakete für Mathe                                                                                              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \RequirePackage{source/Helper/LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
 \RequirePackage{source/Controllers/LILLYxCONTROLLERxCONTENT}
 
@@ -68,7 +64,11 @@
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ARROWS}} %% TODO: defaults
                     {}{} % shortlabels
 
-
+%% https://ctan.org/pkg/letltxmacro
+\LILLYxLoadPackage{letltxmacro}{Berücksichtige involvierte let Macros}%% Package, Info
+                    {Dieses Paket wird benötigt für die Definition der verbesserten squareroot}
+                    {} %% TODO: defaults
+                    {}{}
 
 
 \mathversion{\LILLYxMathxMode}                              % Welche Schriftart für Matheumgebung

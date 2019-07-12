@@ -4,12 +4,14 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.eagle.lillyjakeframework.core.Definitions;
+import de.eagle.util.helper.Executer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.Console;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class LinuxInstallPackages extends JDialog {
@@ -56,9 +58,16 @@ public class LinuxInstallPackages extends JDialog {
 
     private void onOK() { // TODO: PropertiesProvider.getPackageManager... (pacman etc) => https://unix.stackexchange.com/questions/46081/identifying-the-system-package-manager
         try {
-            String[] args = new String[]{"x-terminal-emulator", "-e", "sudo", "apt", "install", "a"};
+            String tpath = Executer.getPath("/scripts/install/bash/linux_install.sh");
+
+            String[] bargs = new String[]{"x-terminal-emulator", "-e", "bash", tpath};
+            String[] args = new String[pkgs.length + bargs.length];
+            System.arraycopy(bargs, 0, args, 0, bargs.length);
+            System.arraycopy(pkgs, 0, args, bargs.length, pkgs.length);
+            //System.out.println(Arrays.toString(args));
             Process p = new ProcessBuilder(args).start();
-            p.waitFor();
+            System.out.println(p.waitFor());
+
         } catch (Exception e) {
             e.printStackTrace();
         }

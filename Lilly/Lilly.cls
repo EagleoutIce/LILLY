@@ -207,7 +207,7 @@
 % Schriftarten                                                                                                        %     %%%% FONTS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{\LILLYxPATHxDATA/_LILLY_FONTS}
+\RequirePackage{\LILLYxPATHxDATA/LILLYxFONTS}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Shortcuts                                                                                                           %     %%%% SHORTCUTS %%%%
@@ -224,6 +224,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TiKz und andere Grafik freuden                                                                                      %     %%%% TIKZ-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{\LILLYxPATHxDATA/Colors/LILLYxCOLOR}
 
 \RequirePackage{tocloft}
 \RequirePackage{multirow}
@@ -323,6 +325,6 @@
 % Übersetzungen, alternativen, etc...                                                                                 %     %%%% TRANSLATIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{\LILLYxPATHxDATA/Aliasse/_LILLY_TRANSLATIONS_UNIVERSE}
+\RequirePackage{\LILLYxPATHxDATA/Aliasse/LILLYxTRANSLATIONSxUNIVERSE}
 
 \input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}
