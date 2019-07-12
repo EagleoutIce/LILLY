@@ -95,17 +95,7 @@ public final class CoreFunctions {
      * @return
      */
     public static ReturnStatus fkt_install(String[] cmd){
-        switch (PropertiesProvider.getOS()){ // TODO: implement! :D
-            case LINUX:
-                new LinuxInstaller().automatedInstall();
-                break;
-            case MAC:
-                new MacOSInstaller();
-                break;
-            case WINDOWS:
-                new WindowsInstaller();
-                break;
-        }
+        PropertiesProvider.getInstaller(false).automatedInstall();
         return ReturnStatus.EXIT_SUCCESS;
     }
 

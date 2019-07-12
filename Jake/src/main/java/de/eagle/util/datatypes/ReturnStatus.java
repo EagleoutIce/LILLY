@@ -10,10 +10,14 @@
 
 package de.eagle.util.datatypes;
 
+import java.util.Objects;
+
 /**
  * Grundlegenden Klasse für die rückgabe des Status
  *
  * @author Raphael Straub
+ * @author Florian Sihler
+ *
  * @version 1.0.10
  * @since 1.0.10
  */
@@ -30,8 +34,47 @@ public class ReturnStatus {
         this.status = status;
     }
 
+    /**
+     * Repräsentiert eine geglückte Aktion
+     */
     public static final ReturnStatus EXIT_SUCCESS = new ReturnStatus(0);
+    /**
+     * Repräsentiert eine gescheiterte Aktion
+     */
     public static final ReturnStatus EXIT_FAILURE = new ReturnStatus(1);
 
+    /**
+     * @return true wenn geglückt
+     */
+    public boolean success(){
+        return this.equals(EXIT_SUCCESS);
+    }
 
+    /**
+     * @return true, wenn kein erfolg
+     */
+    public boolean failure(){
+        return !success();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ReturnStatus)) return false;
+        ReturnStatus that = (ReturnStatus) o;
+        return status == that.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(status);
+    }
+
+    @Override
+    public String toString() {
+        return "ReturnStatus{" +
+                "status=" + status +
+                '}';
+    }
 }

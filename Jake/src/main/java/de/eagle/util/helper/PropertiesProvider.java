@@ -4,9 +4,12 @@ import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import de.eagle.lillyjakeframework.installer.AutoInstaller;
 import de.eagle.lillyjakeframework.installer.LinuxInstaller;
 import de.eagle.lillyjakeframework.installer.MacOSInstaller;
 import de.eagle.lillyjakeframework.installer.WindowsInstaller;
+
+import javax.swing.*;
 
 /**
  * Liefert verschiedene System-Spezifische Einstellungen
@@ -113,14 +116,27 @@ public class PropertiesProvider {
         return ".";
     }
 
+    public static AutoInstaller getInstaller(boolean gui) {
+        switch (PropertiesProvider.getOS()) {
+            case LINUX:
+                return new LinuxInstaller(gui);
+            case MAC:
+                return new MacOSInstaller(gui);
+            case WINDOWS:
+                return new WindowsInstaller(gui);
+            default:
+                throw new UnsupportedOperationException("Es existiert kein Installer für dieses Betriebssystem");
+        }
+    }
+
     public static boolean isInstalled(){
         switch(getOS()) {
             case LINUX:
-                return new LinuxInstaller().validate();
+                return new LinuxInstaller(false).validate();
             case MAC:
-                return new MacOSInstaller().validate();
+                return new MacOSInstaller(false).validate();
             case WINDOWS:
-                return new WindowsInstaller().validate();
+                return new WindowsInstaller(false ).validate();
             default: // we don't care
                 return true;
         }
