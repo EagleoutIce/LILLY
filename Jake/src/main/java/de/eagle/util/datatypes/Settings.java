@@ -1,5 +1,7 @@
 package de.eagle.util.datatypes;
 
+import de.eagle.gepard.modules.Expandables;
+
 /**
  * @file Settings.java
  * @author Florian Sihler
@@ -12,6 +14,7 @@ package de.eagle.util.datatypes;
  */
 
 import de.eagle.gepard.parser.Configurator;
+import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.util.blueprints.AbstractSettings;
 import de.eagle.util.blueprints.Translator;
@@ -145,7 +148,8 @@ public class Settings extends AbstractSettings<String, String> {
             Configurator configurator = new Configurator(this.getClass().getResourceAsStream(this.get("file").value));
             configurator.parse_settings(this,true);
         }
-        this._settings.forEach((key, value) -> stringList.add(String.format("  %-20s: " + ColorConstants.STY_PARAM + "[%s]", key, value.getValue())));
+        Settings set = Expandables.getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+        this._settings.forEach((key, value) -> stringList.add(String.format("%s  %-20s: %s [%s]%s%s",ColorConstants.COL_RESET,key, ColorConstants.STY_PARAM, value.getValue(), (!(Expandables.expand(set,value.getValue())).equals(value.getValue()))?" => " + Expandables.expand(set,value.getValue()):"",ColorConstants.COL_RESET)));
         return stringList.toArray(new String[0]);
     }
 

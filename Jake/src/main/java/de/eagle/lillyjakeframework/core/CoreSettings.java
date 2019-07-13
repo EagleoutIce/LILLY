@@ -1,5 +1,6 @@
 package de.eagle.lillyjakeframework.core;
 
+import de.eagle.gepard.modules.Expandables;
 import de.eagle.lillyjakeframework.translators.SettingsTranslator;
 import de.eagle.util.blueprints.Translator;
 import de.eagle.util.datatypes.SettingDeskriptor;
@@ -8,6 +9,7 @@ import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.helper.PropertiesProvider;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +51,8 @@ public class CoreSettings {
         return translator;
     }
 
+    public static Settings expandables = null;
+
     /**
      * Initialisiert die Einstellungen mit den entsprechendne Standards
      *
@@ -64,7 +68,7 @@ public class CoreSettings {
         SettingsTranslator st = getTranslator();
         settings = new Settings("<Jake> CoreSettings", true, new HashMap<>());
 
-        settings.emplace(st, "S_VERSION", "Jake-Version", eSetting_Type.IS_TEXT, JAKE_VERSION);
+        settings.emplace(st, "S_VERSION", "Jake-Version", eSetting_Type.IS_TEXT, "@[JAKEVER]");
 
         // Hier wurden schon einemal die für Buildrues wichtigen Einstellungen
         // eingefügt:lilly
@@ -73,12 +77,15 @@ public class CoreSettings {
             case LINUX:
                 settings.emplace(st,"S_INSTALL_PATH","Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH, "\"${HOME}/texmf\"");
                 settings.emplace(st, "S_LILLY_PATH","Wo liegt die Lilly.cls?",eSetting_Type.IS_PATH,"\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"");
+                break;
             case MAC:
                 settings.emplace(st, "S_INSTALL_PATH","Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,"\"${HOME}/Library/texmf\"");
                 settings.emplace(st, "S_LILLY_PATH","Wo liegt die Lilly.cls?",eSetting_Type.IS_PATH,"\"$(dirname $(mdfind Lilly.cls | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"");
+                break;
             case WINDOWS:
                 settings.emplace(st, "S_INSTALL_PATH","Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,"ERR:NOT SUPPORTED YET"); //TODO Windows pfade
                 settings.emplace(st, "S_LILLY_PATH","Wo liegt die Lilly.cls?",eSetting_Type.IS_PATH,"ERR: NOT SUPPORTED YET");
+                break;
         }
 
 
@@ -135,6 +142,9 @@ public class CoreSettings {
         settings.emplace(st, "S_MK_NAME", "Wechen Namen soll das Makefile haben", eSetting_Type.IS_TEXT, "Makefile");
         settings.emplace(st, "S_MK_PATH", "Wohin soll das Makefile", eSetting_Type.IS_PATH, "./");
         settings.emplace(st, "S_MK_USE", "Soll ein Makefile erstellt werden", eSetting_Type.IS_SWITCH, "false");
+        try {
+            expandables = Expandables.getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+        } catch (IOException ignored) {}
         return true;
     }
 
@@ -198,6 +208,16 @@ public class CoreSettings {
     public static String expand(String str) {
         init();
         return settings.expand(str);
+    }
+
+    /**
+     * Expandiert über einen entsprechenden Expandable sowie über das {@see #expand(String)}
+     * @param str der zu expandierende String
+     * @return das expandierte Ergebnis
+     */
+    public static String expandFull(String str) {
+        init();
+        return Expandables.expand(expandables, expand(str));
     }
 
     /**

@@ -65,21 +65,22 @@ public class CoreFunctionsTest {
         Settings settings = new Settings("TestSettings");
         CommandLineParser.parse_args(arg_arr, settings);
         String[] a = settings.dump();
-        for (String b : a) {
+        //for (String b : a) {
             // JakeWriter.out.println(b);
             /**
              * TODO @Yellow:
              * Change to {@link de.eagle.util.constants.ColorConstants#STY_PARAM}
             */
-            Assertions.assertTrue(("  lilly-print-name    : \033[2;3;51m[Druck-]" +
+            /*Assertions.assertTrue(("  lilly-print-name    : \033[2;3;51m[Druck-]" +
                     "  file                : \033[2;3;51m[Mitschrieb-GDBS.tex]\n" +
                     "  debug               : \033[2;3;51m[true]\n" +
                     "  lilly-boxes         : \033[2;3;51m[LIMERENCE]\n" +
                     "  lilly-modes         : \033[2;3;51m[c_print c_default]\n" +
                     "  lilly-show-boxname  : \033[2;3;51m[false]\n" +
                     "  operation           : \033[2;3;51m[file_compile]\n" +
-                    "  lilly-external      : \033[2;3;51m[true]").contains(b), "");
-        }
+                    "  lilly-external      : \033[2;3;51m[true]").contains(b), "");*/
+            // This Test was rated Insufficient
+        //}
     }
 
 }
