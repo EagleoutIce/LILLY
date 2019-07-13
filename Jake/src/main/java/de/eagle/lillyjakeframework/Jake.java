@@ -68,9 +68,10 @@ public class Jake {
             return;
         } // else no gui :D
         ReturnStatus rs ;
-        if((rs = CommandLineParser.parse_args(args, CoreSettings.settings)).success()) {
+        if((rs = CommandLineParser.parse_args(args, CoreSettings.getSettings())).success()) {
             CommandLineParser.interpret_settings(args);
             writeLoggerInfo("Die Arbeit wurde Abgeschlossen","Jake");
+            return;
         }
         writeLoggerError("Die Arbeit ist gescheitert. parse_args liefert: " + rs,"Jake");
 

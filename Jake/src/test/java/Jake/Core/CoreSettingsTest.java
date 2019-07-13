@@ -35,7 +35,7 @@ class CoreSettingsTest {
     @CsvSource({ "Unverändert, Unverändert", "$Version,"+JAKE_VERSION })
     void _test_expand_basics(String source, String expected) {
         Assertions.assertEquals(expected.replaceAll("#", ""),
-                CoreSettings.expand(source));
+                CoreSettings.expandFull(source));
     }
 
 }

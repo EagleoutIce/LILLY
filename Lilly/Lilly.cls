@@ -30,9 +30,8 @@
 
 \providecommand*{\LILLYxDummy}{dummy}                        %%% ONLY THING DEFINE HERE
 
-\input{\LILLYxPATHxHELPER/_LILLY_PATH} %% provides \linput as \LILLYxPATH based input
-
-\input{\LILLYxPATHxHELPER/_LILLY_BOOLEAN}
+\RequirePackage{\LILLYxPATHxHELPER/LILLYxPATH} %% provides \linput as \LILLYxPATH based input
+\RequirePackage{\LILLYxPATHxHELPER/LILLYxBOOLEAN} %% \true und \false
 
 \providecommand{\LILLYxDEBUG}{\false}                        %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
 
@@ -181,6 +180,7 @@
 \PrerenderUnicode{ü}\PrerenderUnicode{ß}
 
 
+
 \input Konanur.fd
 
 
@@ -237,8 +237,7 @@
 
 \RequirePackage{hhline}
 \ifx\LILLYxTIKZxenable \undefined
-    \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_CORE}
-    \tikzset{invclip/.style={clip,insert path={{[reset cm](-100pt,-100pt) rectangle (100pt,100pt)}}}} %Für die FG-Kreise, damit man clippings auch invertieren kann
+    \RequirePackage{\LILLYxPATHxGRAPHICS/Tikz-Core/LILLYxTIKZxCORE}
 \fi
 
 
@@ -303,8 +302,8 @@
 
 \input{\LILLYxPATHxCONTROLLERS/Intro/_LILLY_INTRO_CONTROLLER}
 
-\input{\LILLYxPATHxCONTROLLERS/_LILLY_BOX_CONTROLLER}
-\input{\LILLYxPATHxHELPER/_LILLY_BOX_COUNTER}
+\RequirePackage{\LILLYxPATHxCONTROLLERS/LILLYxBOXxCONTROLLER}
+\RequirePackage{\LILLYxPATHxHELPER/LILLYxBOXxCOUNTER}
 
 \input{\LILLYxPATHxCONTROLLERS/_LILLY_HYPHEN_CONTROLLER}
 

@@ -1,4 +1,4 @@
-Lilly - Package the Package
+Lilly - Package the Package II
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -6,12 +6,14 @@ Lilly - Package the Package
 
 JAKE:
 
-    + Der Installer wurde weiter ausgebaut, Installscripts (erstmal nur für Linux) wurden hinzugefügt
+    + Funktionen wie dump wurden etabliert, einige Verbesserungen am expandables System
+    
+    ! Fixed path resolving in CoreSettings
 
 LILLY:
 
-    + Es gibt nun Farberweiterungen (VOID, PURPLE, GREEN)
+    + Etliche Pakete werden nun als korrekte Pakete implementiert, in diesem Rahmen wurden
+      weitere Funktionalitäten hinzugefügt und entsprechend angepasst. 
 
-    * LILLYxCOLOR, sowie LILLYxFONTS und LILLYxTRANSLATIONxUNIVRÈRSE sind nun eigenee Pakete, neben LILLYXMATHS und LILLYxPACKAGExCTRL sowie LILLYxCONTROLLERxCONTENT, sie können also auch unabhängig verwendet werden (in arbeit!)
 ============================================================================================
 :
