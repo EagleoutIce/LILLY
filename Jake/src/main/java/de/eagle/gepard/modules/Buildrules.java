@@ -156,8 +156,7 @@ public class Buildrules {
     /**
      * Bearbeitet eine komplette Datei
      * 
-     * @param rulefiles die Liste der rulefiles (durch -TODO: settings- ':'
-     *                  getrennt)
+     * @param rulefiles die Liste der rulefiles
      * @param complete  Soll auch eine complete Variante erstellt werden?
      * @return Einstellungen die entsprechend der Boxen konfiguriert sind
      * @throws IOException Im Falle eines Fails von

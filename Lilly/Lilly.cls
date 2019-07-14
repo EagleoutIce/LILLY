@@ -1,12 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{Lilly}[2019/02/24 EagleoutIce - Latex-Ultimate styling class with command-line support]
+\ProvidesClass{Lilly}[2019/07/14 EagleoutIce - Latex-Ultimate styling class with command-line support]
 
 
 \providecommand{\AUTHOR}{Florian Sihler}
 \providecommand{\AUTHORMAIL}{florian.sihler@web.de}
-\newcommand*{\LILLYxVERSION}{1.0.9}
+\newcommand*{\LILLYxVERSION}{1.0.10}
 \newcommand*{\LILLYxSTATUS}{Work in Progress}
-\newcommand*{\LILLYxVERSIONxLONG}{1.0.9 - Jakes' Revolution}
+\newcommand*{\LILLYxVERSIONxLONG}{1.0.10 - Jake ist auch nur Java}
 
 
 \providecommand{\LILLYxSemester}{1}

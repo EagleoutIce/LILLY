@@ -46,38 +46,39 @@ public class Jake {
 
     public static void main(String[] args) throws IOException {
 
-        try {
-            CoreSettings.getSettings().joinConfigFile(Definitions.DEFAULT_CONFIG_STREAM);
-            if(Definitions.USER_CONFIG_PATH != null && !Definitions.USER_CONFIG_PATH.isEmpty())
-            CoreSettings.getSettings().joinConfigFile(Definitions.USER_CONFIG_PATH);
-        } catch (IOException what) {
-            writeLoggerError("Es gab einen Fehler beim Lesen der Default-Konfiguration", "Jake");
-        } 
-
         ReturnStatus rs = CommandLineParser.parse_args(args, CoreSettings.getSettings());
 
-        if(args.length > 0 && args[0].startsWith("DEI")) {
-            PropertiesProvider.getInstaller(false).uninstall();
-            return;
-        }
-
-        if(!PropertiesProvider.isInstalled() || (args.length > 0 && args[0].startsWith("REI"))) {
-            if(args.length > 0 && args[0].startsWith("GUI")) {
-                InstallJake.main(args);
-            } else { // commandline based:
-                for(String s : PropertiesProvider.getInstaller(false)){
-                    JakeWriter.out.println(s);
-                }
+        if(!CoreSettings.requestValue("S_OPERATION").startsWith(String.valueOf(Definitions.HIDDEN_ARG))) {
+            if(args.length > 0 && args[0].startsWith("DEI")) {
+                PropertiesProvider.getInstaller(false).uninstall();
                 return;
             }
-        }
 
-        writeLoggerInfo("\"" + PRG_BRIEF + "\" beginnt nun mit seiner Arbeit","Jake");
-        // if (args.length < 2 || args[1].charAt(0) == HIDDEN_ARG) {
-        //     // setup log-Deskriptor & ld_config by configparser
-        //     //if()
-        // }
+            if(!PropertiesProvider.isInstalled() || (args.length > 0 && args[0].startsWith("REI"))) {
+                if(args.length > 0 && args[0].startsWith("GUI")) {
+                    InstallJake.main(args);
+                } else { // commandline based:
+                    for(String s : PropertiesProvider.getInstaller(false)){
+                        JakeWriter.out.println(s);
+                    }
+                    return;
+                }
+            }
 
+            writeLoggerInfo("\"" + PRG_BRIEF + "\" beginnt nun mit seiner Arbeit","Jake");
+            // if (args.length < 2 || args[1].charAt(0) == HIDDEN_ARG) {
+            //     // setup log-Deskriptor & ld_config by configparser
+            //     //if()
+            // }
+
+            try {
+                CoreSettings.getSettings().joinConfigFile(Definitions.DEFAULT_CONFIG_STREAM);
+                if(Definitions.USER_CONFIG_PATH != null && !Definitions.USER_CONFIG_PATH.isEmpty())
+                CoreSettings.getSettings().joinConfigFile(Definitions.USER_CONFIG_PATH);
+            } catch (IOException what) {
+                writeLoggerError("Es gab einen Fehler beim Lesen der Default-Konfiguration", "Jake");
+            } 
+        } 
         if(args.length > 0 && args[0].equals("GUI")){
             Definitions.GUI = true;
             JOptionPane.showMessageDialog(new JFrame(), "Du bist im Gui - Modus, hier wird dich bald Jake begrüßen!", "INFO", JOptionPane.INFORMATION_MESSAGE);

@@ -163,7 +163,7 @@ public class LinuxInstaller extends AutoInstaller {
                     PrintWriter pw = new PrintWriter(new FileOutputStream(file)); //, true
                     for (String l : lines)
                         pw.println(l);
-                    pw.format("export PATH=$PATH:%s; %s%s # JAVA_JAKE%n",Paths.get(HOME, ".local", "bin").toString(),
+                    pw.format("export PATH=$PATH:%s; %s%s%s # JAVA_JAKE%n",Paths.get(HOME, ".local", "bin").toString(),
                     (!CoreSettings.requestValue("S_PATH").equals("./")?"export LILLY_JAKE_CONFIG_PATH=\"" + CoreSettings.requestValue("S_PATH") +"\";":""), // wenn angegeben, dann übernommen
                     (f.contains(".zshrc")?"autoload bashcompinit &>/dev/null; bashcompinit &>/dev/null;":""),
                     "source " + autocompletePath);
