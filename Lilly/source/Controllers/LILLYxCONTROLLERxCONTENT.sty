@@ -1,12 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
-% \ProvidesPackage{LILLYxCONTROLLERxCONTENT}[2019/06/29 Grundlegende Pfadverwaltung für Lilly]
+% \ProvidesPackage{LILLYxCONTROLLERxCONTENT}[2019/06/29 Grundlegende Pfadverwaltung fÃ¼r Lilly]
 %% TODO: bisher wird die automatische Pfaderkennung auf Windows NICHT aktiviert! => CHANGE
 
-%%% Verwaltet das laden SÄMTLICHER DATEN-Dateien
+%%% Verwaltet das laden SÃ„MTLICHER DATEN-Dateien
 %% Zu unterbinden
-
-\RequirePackage{source/Helper/LILLYxPACKAGExCTRL}
-
+\RequirePackage{LILLYxCOMMAND}
+\RequirePackage{LILLYxVANILLA}
+\RequirePackage{LILLYxPACKAGExCTRL}
 
 %% https://www.ctan.org/pkg/ifthen
 \LILLYxDemandPackage{ifthen}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
@@ -47,10 +47,11 @@
     \else
         \providecommand{\LILLYxDOCPATH}{./}
     \fi
-
 \fi
 
-
+%% FALLBACK ERASERS
+\providecommand{\LILLYxCLSPATH}{./}
+\providecommand{\LILLYxDOCPATH}{./}
 
 %%% MAIN LOCATIONS
 
@@ -63,10 +64,12 @@
 \providecommand{\LILLYxPATHxMATHS}{\LILLYxPATHxFILExROOT/Maths}
 \providecommand{\LILLYxPATHxBEAMER}{\LILLYxPATHxFILExROOT/Beamer}
 
+\providecommand{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}
+
 
 
 %%% Used userput-paths by LILLY - available for overwrite
-%% Bitte akzeptiere, dass die Systempfade nicht Überschrieben werden _dürfen_
+%% Bitte akzeptiere, dass die Systempfade nicht ï¿½berschrieben werden _dï¿½rfen_
 
 \IfFileExists{\LILLYxCLSPATH/Lilly.cls}{%
     \ClassInfo{Lilly}{Automatische Pfaderkennung erfolgreich, LILLY-Quellverzeichnis erfolgreich gefunden}%
@@ -105,7 +108,5 @@
     }%
 }%
 }
-\providecommand{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
-\providecommand{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}
 
 \endinput

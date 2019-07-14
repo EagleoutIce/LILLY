@@ -12,8 +12,8 @@
 \providecommand{\LILLYxSemester}{1}
 \providecommand{\LILLYxVorlesung}{LAII}
 
-\RequirePackage{source/Helper/LILLYxPACKAGExCTRL}
-\RequirePackage{source/Controllers/LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxPACKAGExCTRL}
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
 
 
 %\LILLY%LoadPackage{lipsum42}{Gutes Paket}{MAUMAUMAU}{\def\MauMau{Hauihao}}
@@ -191,17 +191,18 @@
 
 \RequirePackage{cancel}
 
-%%  \RequirePackage{expl3}
+%% https://www.ctan.org/pkg/expl3
 \LILLYxDemandPackage{expl3}{Da wir auch was von der tollen Latex3-Zukunft abhaben moegen :D}
                     {Leider kann LILLY aus diversen Gründen nicht ohne expl3 existieren :/}
                     {}{} %% keine Argumente
 
 
+%% https://www.ctan.org/pkg/xparse
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
                     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
                     {}{} %% keine Argumente
 
-\input{\LILLYxPATHxHELPER/_LILLY_COMMAND}
+\RequirePackage{LILLYxCOMMAND}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Schriftarten                                                                                                        %     %%%% FONTS %%%%
@@ -251,7 +252,7 @@
 
 \RequirePackage{multicol}
 
-\input{\LILLYxPATHxLISTINGS/_LILLY_LISTINGS_STYLE}
+\RequirePackage{\LILLYxPATHxLISTINGS/LILLYxLISTINGS}
 
 \input{\LILLYxPATHxLISTINGS/CommandLine/_LILLY_LISTINGS_CMDLINE}
 
@@ -311,8 +312,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Setup für mathematisches                                                                                            %     %%%% PACKAGE-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\providecommand{\LILLYxMathxMode}{normal}                %%% Niemand mag euler-mathfont
 
 \RequirePackage{\LILLYxPATHxMATHS/LILLYxMATHS}
 

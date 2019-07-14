@@ -1,3 +1,26 @@
+!                                                                                             !
+!                              JAKE 1.0.10 - Development Build                                !
+!                                                                                             !
+
+                                ! Author: Florian Sihler  !
+                                ! Version: 1.0.10-dev     !
+
+
+! Info: !
+! Diese Datei enthält die Standart-Konfigurationsdaten für den CoreSettings-Übersetzer, eine  !
+! Variation dieser Daten führt zu veränderten Kommandozeilen Argumenten und kann ohne         !
+! Redundanz alle soweit existierenden Konfigurationsdateien invalidieren. Zur                 !
+! Strukturerhaltung erlaubt es der Translator keiner externen Datei auf die linksseitigen     !
+! Bezeichner Einfluss zu nehmen. Das Übersetzen erfolt also Unidirektional.                   !
+
+! Wichtig: !
+! Die erzeugte Abbildung muss aus zwei disjunkten Teilmengen bestehen. Keine Übersetzung darf !
+! einen Kreisschluss bilden, da in diesem Fall stets die linksseitige Definition dominiert.   ! 
+
+! Fehlerbehandlung: !
+! Im Falle einer invalidierung dieser Konfigurationsdatei, so existiert eine Sicherung stets  !
+! im aktuellen Stable-Build: https://github.com/EagleoutIce/LILLY                             !
+
 S_LILLY_PATH            = lilly-path
 S_LILLY_OUT             = lilly-out
 S_LILLY_IN              = lilly-in
@@ -38,3 +61,5 @@ S_JOBCOUNT              = jobcount
 S_MK_NAME               = mk-name
 S_MK_PATH               = mk-path
 S_MK_USE                = mk-use
+
+! Translator Ende                                                                             !

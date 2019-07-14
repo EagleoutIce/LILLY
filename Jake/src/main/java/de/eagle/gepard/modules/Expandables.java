@@ -1,27 +1,29 @@
 package de.eagle.gepard.modules;
 
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug3;
+import static de.eagle.util.io.JakeLogger.writeLoggerWarning;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import de.eagle.gepard.parser.GeneratorParser;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.util.blueprints.AbstractSettings;
-import de.eagle.util.blueprints.Translator;
-import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeWriter;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static de.eagle.util.io.JakeLogger.*;
 
 // Information:
 // Alle "Entspricht ..." Kommentare gilt es zu ändern!
@@ -37,8 +39,7 @@ public class Expandables {
 
     public static String get_number(String str) {
         Matcher m = Pattern.compile("(?<num>[0-9]+)", Pattern.MULTILINE).matcher(str);
-
-        return (m.find())?m.group("name"):"42";
+        return (m.find())?m.group("num"):"42";
     }
 
     /**
@@ -67,8 +68,8 @@ public class Expandables {
 
         // Basics
         settings.emplace("TEXFILE", "Expandiert zur TEXDatei", eSetting_Type.IS_FILE, CoreSettings.requestValue("S_FILE"));
-        settings.emplace("BASENAME", "Expandiert zum Dateinamen", eSetting_Type.IS_FILE, new File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+$", ""));
-        settings.emplace("PDFFILE", "Expandiert zur PDFDatei", eSetting_Type.IS_FILE, new File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+$", "") + ".pdf");
+        settings.emplace("BASENAME", "Expandiert zum Dateinamen", eSetting_Type.IS_FILE, "!!"); // new File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+", "")
+        settings.emplace("PDFFILE", "Expandiert zur PDFDatei", eSetting_Type.IS_FILE, "!!"); //new File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+", "") + ".pdf"
         settings.emplace("LATEXARGS", "Zu verwendende LatexArgumente", eSetting_Type.IS_TEXT, "-shell-escape -enable-write18 -interaction=batchmode"); // LOCKED => TODO: CHANGE AND MAKE CUSTOMIZEABLE
         settings.emplace("OUTPUTDIR", "Expandiert zum Ausgabeordner", eSetting_Type.IS_PATH, CoreSettings.requestValue("S_LILLY_OUT") + "/");
         settings.emplace("INPUTDIR", "Expandiert zur Eingabeordner", eSetting_Type.IS_PATH, CoreSettings.requestValue("S_LILLY_IN") + "/");
@@ -96,7 +97,7 @@ public class Expandables {
                                                 + "}\\\\providecommand{\\\\AUTHORMAIL}{" + CoreSettings.requestValue("S_LILLY_AUTHORMAIL")
                                                 + "}\\\\providecommand{\\\\LILLYxSemester}{" + CoreSettings.requestValue("S_LILLY_SEMESTER")
                                                 + "}\\\\providecommand{\\\\LILLYxVorlesung}{" + CoreSettings.requestValue("S_LILLY_VORLESUNG")
-                                                + "}\\\\providecommvand{\\\\Hcolor}{" + CoreSettings.requestValue("S_LILLY_SIGNATURE_COLOR")
+                                                + "}\\\\providecommand{\\\\Hcolor}{" + CoreSettings.requestValue("S_LILLY_SIGNATURE_COLOR")
                                                 + "}" + ((!CoreSettings.requestValue("S_LILLY_BIBTEX").isEmpty())?("\\\\providecommand{\\\\LILLYxBIBTEX}{"
                                                 + CoreSettings.requestValue("S_LILLY_BIBTEX") + "}"):"")
                                                 + "\\\\providecommand{\\\\lillyPathLayout}{\\\\LILLYxPATHxDATA/Layouts"
@@ -104,7 +105,7 @@ public class Expandables {
                                                 + "\\\\providecommand{\\\\LILLYxEXTERNALIZE}{" + (CoreSettings.requestSwitch("S_LILLY_EXTERNAL")?"TRUE":"FALSE") + "}"
                 );
 
-        settings.emplace("_C", "Ein unverfängliches Komma ^^", eSetting_Type.IS_TEXT, CoreSettings.requestValue(","));
+        settings.emplace("_C", "Ein unverfängliches Komma ^^", eSetting_Type.IS_TEXT, ",");
 
         settings.emplace("HOME", "Das Home-Verzeichnis des Benutzers", eSetting_Type.IS_PATH, PropertiesProvider.getHomeDirectory());
 
@@ -208,14 +209,19 @@ public class Expandables {
 
     public static int rec_exp_calls = 0;
 
-    public static String replaceByPatern(String suffix, String string, Pattern p){
+    public static String replaceByPattern(String suffix, String string, Pattern p){
         String s;
         try {
-            s = Files.list(Paths.get(".")).filter(r -> r.toString().endsWith(suffix)).findFirst().toString();
+            Optional<Path> os = Files.list(Paths.get(".")).filter(r -> r.toString().endsWith(suffix)).findFirst();
+            if(os.isPresent()){
+                s = os.get().toFile().getName();
+            } else {
+                throw new RuntimeException("@[SELTEXF] oder ähnliche Vertreter benötigen auch eine Datei, die sie finden können!");
+            }
         } catch (IOException e) {
             s = "NONE";
         }
-        string = string.replaceAll(p.pattern(), s);
+        string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(s));
         return string;
     }
 
@@ -253,23 +259,32 @@ public class Expandables {
                     p = Pattern.compile("@\\[" + sd.getKey().substring(1) + "]", Pattern.MULTILINE);
                 else
                     p = Pattern.compile("\\$[{(]" + sd.getKey() + "[})]", Pattern.MULTILINE); // we don't care about unbalanced
-
-                if(p.matcher(string).find()){
-                    writeLoggerDebug3("Expanding in: " + string + " /w " + sd.getValue().getValue(),"expander");
+                Matcher m = p.matcher(string);
+                if(m.find()){
+                    writeLoggerDebug3("Expanding [" + m.group() + "] in: " + string + " /w " + sd.getValue().getValue(),"expander");
                     // here well select specific cases
                     switch (sd.getKey()){
                         case "@AUTONUM":
-                            string = get_number(expand(expandables, "$(TEXFILE)")); break;
+                            string = string.replaceAll("\\@\\[AUTONUM\\]", Matcher.quoteReplacement(get_number(expand(expandables, "$(TEXFILE)")))); break;
                         case "@SELTEXF":
-                            string = replaceByPatern(".tex", string, p); break;
+                            string = replaceByPattern(".tex", string, p); break;
                         case "@SELCONF":
-                            string = replaceByPatern(".conf", string, p); break;
+                            string = replaceByPattern(".conf", string, p); break;
+                        case "BASENAME": // could be a method, but who cares? :D
+                            string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(expand(expandables, "$(TEXFILE)").replaceFirst("[.][a-zA-Z0-9]{1,7}", "")));
+                            break;
+                        case "PDFFILE":
+                            string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(expand(expandables, "$(TEXFILE)").replaceFirst("[.][a-zA-Z0-9]{1,7}", "") + ".pdf"));
+                            break;
                         default:
                             if(string.startsWith("!!"))
                                 JakeWriter.err.println("unspported System based lazy eval! pls report this");
-                            else
-                                string = string.replaceAll(p.pattern(), sd.getValue().getValue());
+                            else {
+                                string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(sd.getValue().getValue()));
+                            }
                     }
+                    if(sd.getValue().getValue().equals("!!"))
+                        writeLoggerDebug3("  =>  Lazy expand to: \"" + string + "\"","expander");
                 }
             }
             counter++;
@@ -278,6 +293,7 @@ public class Expandables {
         if(counter == 8){
             JakeWriter.err.println("Recursive Expansion limit reached!");
         }
-        rec_exp_calls = 0; return string;
+        rec_exp_calls = 0; 
+        return string;
     }
 }

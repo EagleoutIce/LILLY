@@ -81,7 +81,7 @@ public class CommandLineParser {
             CoreFunctions.functions_t.get(op).function.apply(args);
         } else {
             JakeWriter.out.format("%sDie Operation (=%s) ist so nicht gültig, " +
-                    "schreibe \"%s help\" um Informationen über die Unterstützten Operationen zu erhalten!%s",
+                    "schreibe \"%s help\" um Informationen über die Unterstützten Operationen zu erhalten!%s%n",
                     ColorConstants.COL_ERROR, op, Definitions.PRG_NAME, ColorConstants.COL_RESET);
             return ReturnStatus.EXIT_FAILURE;
         }

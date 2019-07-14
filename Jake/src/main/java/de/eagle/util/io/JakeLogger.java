@@ -35,6 +35,8 @@ public class JakeLogger {
         }
     }
 
+    public static String target;
+
     /**
      * Initialisiert den Logger auf einem Pfad
      *
@@ -44,6 +46,7 @@ public class JakeLogger {
      */
     public static void initLogger(String targetFilePath, boolean output, Level level) {
         LOGGER = Logger.getLogger("Main Jake Log");
+        target = targetFilePath;
         getLogger().setUseParentHandlers(output);
         getLogger().setLevel(level);
         try {
@@ -219,6 +222,11 @@ public class JakeLogger {
     public static void writeLogger(String message, String sender, Level level){
         getLogger().log(Level.WARNING, String.format("%-45s   ~~   %-8s: %s", getCallerName(), sender, message));
     }
+
+    public static String getTarget() {
+        return target;
+    }
+
 
 
 }

@@ -20,8 +20,12 @@ import de.eagle.util.blueprints.AbstractSettings;
 import de.eagle.util.blueprints.Translator;
 import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.enumerations.eSetting_Type;
+import de.eagle.util.datatypes.ReturnStatus;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -145,7 +149,7 @@ public class Settings extends AbstractSettings<String, String> {
         List<String> stringList = new LinkedList<>();
         if(this.get("file") != null && this.get("file").getValue().contains(".conf")){
             writeLoggerDebug1("Da eine konfigurationsdatei angegeben wurde wird diese zuerst aufgelöst!","settings:dump");
-            Configurator configurator = new Configurator(this.getClass().getResourceAsStream(this.get("file").value));
+            Configurator configurator = new Configurator(this.getClass().getResourceAsStream(this.get("file").getValue()));
             configurator.parse_settings(this,true);
         }
         Settings set = Expandables.getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
@@ -185,6 +189,18 @@ public class Settings extends AbstractSettings<String, String> {
                     return false;
             }
             return true;
+    }
+
+    public ReturnStatus joinConfigFile(String path) throws FileNotFoundException, IOException {
+        return joinConfigFile(new FileInputStream(path));
+    }
+
+
+    public ReturnStatus joinConfigFile(InputStream configFile) throws IOException{
+        writeLoggerDebug1("Die Einstellung: \"" + this.getName() + "\" wird durch eine Konfigurationsdatei erweitert!", "Settings");
+        Configurator conf_loader = new Configurator(configFile);
+        conf_loader.parse_settings(this, false);
+        return new ReturnStatus(0);
     }
 
     /**

@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxMATHS}[2019/06/29 Stellt die Mathe-Erweiterungen fuer LILLY zur Verfuegung]
 
-\RequirePackage{source/Helper/LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
-\RequirePackage{source/Controllers/LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
 
 
 %% https://www.ctan.org/pkg/amsmath
@@ -29,12 +29,22 @@
                     {}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
+\LILLYxDemandPackage{tabularx}{Niemand würde es wagen, das glorreiche tabularx-Paket zu ersetzen!}
+                    {NEIN NEIN NEIN OHNE MACHE ICH GARNICHTS - Aber, ich brauch doch gar kein tabularx %
+                     - ABER ICH BIN EINE FLIESE.... ICH MEINE EIN DRUCKER... EINE BIENE... EIN STEIN? %
+                     AUF JEDEN FALL GEHT DAS NICHT! AAAAAAAAARGH}
+                    {}{}
 
 %% https://ctan.org/pkg/pgfplots
 \LILLYxDemandPackage{pgfplots}{Wir alle wollen plots!}%% Package, Info
                     {dann keine plots :/ dann will ich aber auch nicht!}
                     {} %% TODO: defaults
                     {}
+
+%% https://www.ctan.org/pkg/xparse
+\LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
+                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+                    {}{} %% keine Argumente
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Optionale Pakete für Mathe                                                                                              %
@@ -71,6 +81,7 @@
                     {}{}
 
 
+\providecommand{\LILLYxMathxMode}{normal}                %%% Niemand mag euler-mathfont
 \mathversion{\LILLYxMathxMode}                              % Welche Schriftart für Matheumgebung
 
 

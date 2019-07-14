@@ -1,4 +1,14 @@
- %% tex '\def' in latex style - überschreibe einen Befehl oder erzeuge ihn, wenn es ihn noch nicht gibt
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCOMMAND}[2019/07/14 Liefert den grundlegenden LILLYcommand]
+
+\RequirePackage{LILLYxPACKAGExCTRL}
+
+%% https://www.ctan.org/pkg/expl3
+\LILLYxDemandPackage{expl3}{Da wir auch was von der tollen Latex3-Zukunft abhaben moegen :D}
+                    {Leider kann LILLY aus diversen Gründen nicht ohne expl3 existieren :/}
+                    {}{} %% keine Argumente
+
+%% tex '\def' in latex style - überschreibe einen Befehl oder erzeuge ihn, wenn es ihn noch nicht gibt
 \ExplSyntaxOn
 \def\LILLYcommand{
     \@ifstar%
@@ -20,3 +30,5 @@
 \def\g@star@or@long#1{% 
   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
 \ExplSyntaxOff
+
+\endinput

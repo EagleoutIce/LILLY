@@ -1,0 +1,26 @@
+BEGIN Mama: ! Der Doppelpunkt is optional !
+
+!    BEGIN Hanna !
+
+!    END !
+    
+    Hallo = Welt
+    Gallo = Schelt    
+    
+    Rall      =       KALL !Isch bin an Kommentör!
+
+END
+
+BEGIN Mama
+
+    Hallo = Ballo
+
+    ! BEGIN Lama !
+
+
+    ! END !
+
+END
+
+! BEGIN Mama !
+

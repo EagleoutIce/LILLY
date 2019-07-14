@@ -21,6 +21,7 @@ import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeWriter;
+import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.FunctionCollector;
 
 import java.io.FileNotFoundException;
@@ -51,7 +52,7 @@ public final class CoreFunctions {
                             CoreFunctions::fkt_dump)),
             Map.entry("file_compile",
                     new FunctionDeskriptor<String[], ReturnStatus>("fkt_compile",
-                            "Erstellt ein makefile für settings[\\\"file\\\"]", CoreFunctions::fkt_compile)),
+                            "Erstellt ein makefile für settings[\"file\"]", CoreFunctions::fkt_compile)),
             Map.entry("install",
                     new FunctionDeskriptor<String[], ReturnStatus>("fkt_install", "Versucht LILLY zu installieren",
                             CoreFunctions::fkt_install)),
@@ -63,7 +64,7 @@ public final class CoreFunctions {
                             "Lädt die Einstellungen aus der Datei 'file'", CoreFunctions::fkt_config)),
             Map.entry("get",
                     new FunctionDeskriptor<String[], ReturnStatus>("fkt_get",
-                            "Sucht nach Grafiken die settings[\\\"what\\\"] enthalten!", CoreFunctions::fkt_get)),
+                            "Sucht nach Grafiken die settings[\"what\"] enthalten!", CoreFunctions::fkt_get)),
             Map.entry("update",
                     new FunctionDeskriptor<String[], ReturnStatus>("fkt_update",
                             "Versucht Lilly & Jake zu aktualisieren", CoreFunctions::fkt_update)),
@@ -101,17 +102,21 @@ public final class CoreFunctions {
      */
     public static ReturnStatus fkt_help(String[] cmd) {
         writeLoggerDebug1("Gebe die Hilfe aus (fkt_help)", "func");
-        writeLoggerInfo("Benutzung:\n\n!{program} [options=help] [file]\n\n[options]:\n", "func");
+        JakeWriter.out.format("Benutzung:%n%n%s%s [options=help] [file]%s%n%n[options]:%n", ColorConstants.COL_GOLD, Definitions.PRG_NAME, ColorConstants.COL_RESET);
         functions_t.entrySet().stream()
                 .filter(m -> m.getKey().length() > 0 && m.getKey().charAt(0) != Definitions.HIDDEN_ARG)
                 .sorted(Comparator.comparing(Map.Entry::getKey))
-                .forEach(m -> JakeWriter.out.format("  %-15s: " + m.getValue().brief + "%n", m.getKey()));
-        JakeWriter.out.println(
+                .forEach(m -> JakeWriter.out.format("  %-15s: %s%n", m.getKey(), m.getValue().brief));
+                //JakeWriter.out.println();
+                JakeWriter.out.format("  %-15s: %s%n", "GUI", "Startet Jake im GUI-Modus");
+                JakeWriter.out.format("  %-15s: %s%n", "REI", "Versucht Jake zu Reinstallieren (Entwicklerfunktion)");
+
+                JakeWriter.out.println(
                 "\n[file]:\nAngabe gemäß \"xxx.tex\". Dies setzt die Operation automatisch auf file_compile und generiert damit \\"
                         + " ein generelles makefile für \"xxx.tex\".");
         JakeWriter.out.println("\nnote:\nAllgemeine Einstellungen können über \"-key" + Definitions.ASS_PATTERN
                 + "value\" gesetzt werden (\"-key\" für boolesche). " + "So setzt: \"-path" + Definitions.ASS_PATTERN
-                + "/es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: \"/es/gibt/kuchen\". "
+                + " /es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: \"/es/gibt/kuchen\". "
                 + "Weiter ist es möglich mit '" + Definitions.ASS_PATTERN + "' values hinzuzufügen.");
         return ReturnStatus.EXIT_SUCCESS;
     }

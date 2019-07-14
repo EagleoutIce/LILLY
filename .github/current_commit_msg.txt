@@ -1,4 +1,4 @@
-Lilly - Package the Package II
+Jake - just getting ready
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -6,14 +6,31 @@ Lilly - Package the Package II
 
 JAKE:
 
-    + Funktionen wie dump wurden etabliert, einige Verbesserungen am expandables System
-    
-    ! Fixed path resolving in CoreSettings
+    + Jake kann nun Dateien kompilieren die er erhält wie der C++-Bruder,
+      Weiter wurden Module wir NameMaps portiert UND erweitert (String-sensitiv)
+
+    + Das Hooks-Modul wurde integriert
+
+    + Es wurden Tests für das NameMaps Modul hinzugefügt
+
+    + JavaJake hat nun auch Autocomplete (für alle gängigen Unixioden-Shells 
+      und, theoretisch, iTerm2/MacOS per se)
+
+    * Installation hat nun full-headless support
+
+    ! Das Buildrules-Modul wurde für den Druck-Version Fehler gefixt, weiter wurde die 
+      escape und typo-problematik wurden behoben. Weiter haben ÜB nun wieder
+      Nameprefix-Unterstützung
 
 LILLY:
 
-    + Etliche Pakete werden nun als korrekte Pakete implementiert, in diesem Rahmen wurden
-      weitere Funktionalitäten hinzugefügt und entsprechend angepasst. 
+    + Einige weitere Pakete sind nun Eigenständig
+
+    * Mathe-Paket ist nun gezeigt unabhängig von LILLY
+
+    * Beispiele Portiert
+
+    ! TODO: MAKE BOXxCONTROLLER standalone too
 
 ============================================================================================
 :

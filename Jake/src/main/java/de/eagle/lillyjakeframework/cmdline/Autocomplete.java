@@ -1,5 +1,11 @@
 package de.eagle.lillyjakeframework.cmdline;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Map;
+
 import de.eagle.lillyjakeframework.core.CoreFunctions;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
@@ -7,14 +13,6 @@ import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.enumerations.eSetting_Type;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Map;
 
 /**
  * Implementation der j_Autocomplete.cpp
@@ -34,11 +32,13 @@ public class Autocomplete {
      * @return true, wenn ja, sonst false
      */
     public static boolean was_there_what(String[] inside_here) {
-        for(Map.Entry<String,FunctionDeskriptor<String[], ReturnStatus>> fd : CoreFunctions.functions_t.entrySet()) {
+        for(var fd : CoreFunctions.functions_t.entrySet()) {
             if(!fd.getKey().startsWith(String.valueOf(Definitions.HIDDEN_ARG))) {
                 for (String s : inside_here) {
-                    if(fd.getKey().equals(s) || s.endsWith(".tex") || s.endsWith(".conf"))
-                        return true;
+                    for(String split : s.split("\\s+")){
+                        if(fd.getKey().equals(split) || split.endsWith(".tex") || split.endsWith(".conf"))
+                            return true;
+                        }
                 }
             }
         }
@@ -84,13 +84,14 @@ public class Autocomplete {
             // Gab es noch keine operation - so schlagen wir stehts optionen for
             str.append(print_options());
             try { // gibt alle tex und config dateien mit aus
-                str.append(String.join("\t",Files.list(Paths.get("."))
+                //Files.list(Paths.get("")).forEach(sss -> System.out.println("y" + sss));
+                str.append(String.join("\t",Files.list(Paths.get(""))
+                        .map(x -> x.toString())
                         .filter(x -> (x.endsWith(".tex") || x.endsWith(".conf")))
-                        .map(Path::toString)
                         .toArray(String[]::new))
                 );
             } catch (IOException ignored) {
-                // e.printStackTrace();
+                ignored.printStackTrace();
             }
             return str.toString();
         }
@@ -98,8 +99,11 @@ public class Autocomplete {
         // Erhalte typ des letzten Argument:
         // std::cout << strip_mod(a[a.size()-2].substr(1)) << std::endl; // kann nicht scheitern, da mind > 1
 
-        String arg = CommandLineParser.strip_modifications(cmd_line[cmd_line.length-1].substring(1));
-        if(cmd_line[cmd_line.length-1].contains(Definitions.ASS_PATTERN) &&
+        String[] ararg= cmd_line[cmd_line.length-1].split("\\s+");
+        String arg = ararg[ararg.length-1];
+        arg = CommandLineParser.strip_modifications(arg.substring(1));
+        // System.out.println("last: " + ararg[ararg.length-1] + " # " + arg);
+        if(ararg[ararg.length-1].contains(Definitions.ASS_PATTERN) &&
             CoreSettings.settings.containsKey(arg)) {
             SettingDeskriptor t = CoreSettings.settings.get(arg);
             switch (t.type){

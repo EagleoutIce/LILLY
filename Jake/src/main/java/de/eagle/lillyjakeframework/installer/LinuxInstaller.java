@@ -1,8 +1,13 @@
 package de.eagle.lillyjakeframework.installer;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -13,11 +18,14 @@ import javax.swing.JOptionPane;
 
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.LinuxInstallPackages;
+import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.FunctionCollector;
 import de.eagle.util.datatypes.FunctionDeskriptor;
+import de.eagle.util.helper.Cloner;
 import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
+import de.eagle.util.io.JakeWriter;
 
 // TODO: insert debbug-statements 
 
@@ -42,6 +50,14 @@ public class LinuxInstaller extends AutoInstaller {
                 + PropertiesProvider.getFileSeparator() + "jake";
     }
 
+
+    /**
+     * @return true, wenn das System ohne laufenden X-Server betrieben wird
+     */
+    public static boolean headless(){
+        return System.getenv("DISPLAY") == null;
+    }
+
     /**
      * Generiert den Menü eintrag
      * 
@@ -49,7 +65,19 @@ public class LinuxInstaller extends AutoInstaller {
      *         Funktion]
      */
     public static String[] fkt_generate_menu_entry(String s) {
+        try { // TODO: das kann man auslagern
+            Process p = Runtime.getRuntime().exec("which lilly_jake");
+            BufferedReader bis = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            if(bis.readLine() != null) {
+                JakeWriter.out.println("Wie es scheint, hast du bereits 'lilly_jake' installiert, das freut mich. Glückliche Nachricht: Die Installation von Java-Jake sollte ohne Probleme nebenher möglich sein, weiter noch ist sie mit allen bisherigen Einstellungen kompatibel und sollte sogar deine Nutzerkonfiguration akzeptieren! Da es sich bei Java-Jake allerdings immernoch um eine WIP-Version handelt, werden hier auch keine Anstalten gemacht, 'lilly_jake' zu deinstallieren!");
+            }
+            p.waitFor();
+        } catch(Exception ignored) {}
 
+        if(headless()){
+            return new String[] { "generate_cmd_line_exec", "Stelle Jake der Konsole zur Verfügung" };
+        }
+        
         try (PrintWriter pw = new PrintWriter(getDesktopPath())) {
 
             pw.println("[Desktop Entry]");
@@ -103,6 +131,19 @@ public class LinuxInstaller extends AutoInstaller {
 
     public static String[] fkt_inject_path_extend(String s) {
 
+        /*
+            Generate the autocomplete script
+        */
+        Paths.get(HOME, ".local", "bash_completition").toFile().mkdirs(); // Anlegen des Verzeichnisses
+        String autocompletePath = Paths.get(HOME, ".local", "bash_completition","_jake.complete").toString();
+        try {
+            Cloner.cloneFileRessource("/configs/jake_autocomplete.complete", autocompletePath);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    
+
+        // source $(shell pwd)/_jake_autocomplete
         for (String f : shells) {
             File file = new File(f);
             JakeLogger.writeLoggerDebug3("Checking: " + file.getAbsolutePath(),"LinuxIns");
@@ -113,7 +154,10 @@ public class LinuxInstaller extends AutoInstaller {
                     if(hasAlready) continue;
                     JakeLogger.writeLoggerInfo("Prepping: " + file.getAbsolutePath(),"LinuxIns");
                     PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
-                    pw.println("export PATH=$PATH:" + Paths.get(HOME, ".local", "bin").toString() + " # JAVA_JAKE");
+                    pw.format("export PATH=$PATH:%s; %s%s # JAVA_JAKE%n",Paths.get(HOME, ".local", "bin").toString(),
+                    /*"export LILLY_JAKE_CONFIG_PATH=\"${CONFIG}\";"*/ // noch nicht voll unterstützt TODO TODO TODO: JMP TODO 
+                    (f.contains(".zshrc")?"autoload bashcompinit &>/dev/null; bashcompinit &>/dev/null;":""),
+                    "source " + autocompletePath);
                     pw.close();
                 } catch (Exception ignored) {}
             }
@@ -145,20 +189,7 @@ public class LinuxInstaller extends AutoInstaller {
                     dialog.pack();
                     dialog.setVisible(true);
                 } else {
-                    String[] pkgs = needed.toArray(new String[]{});
-                    try {
-                        String tpath = Executer.getPath("/scripts/install/bash/linux_install.sh");
-
-                        String[] bargs = new String[]{"x-terminal-emulator", "-e", "bash", tpath}; // todo make method with LinuxInstallPackages and remove terminal if not neccssar
-                        String[] args = new String[pkgs.length + bargs.length];
-                        System.arraycopy(bargs, 0, args, 0, bargs.length);
-                        System.arraycopy(pkgs, 0, args, bargs.length, pkgs.length);
-                        System.out.println(Arrays.toString(args));
-                        Process tp = new ProcessBuilder(args).start();
-                        System.out.println(tp.waitFor()); // todo, retrieve correct return code to detect failures
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    installPackages(needed.toArray(new String[0]));
                 }
 
             }
@@ -166,10 +197,42 @@ public class LinuxInstaller extends AutoInstaller {
         return new String[] {"END", null};
     }
 
+    public static boolean installPackages(String... pkgs){
+        try {
+            // Überprüfe laufende X-Server Instanz:
+            if(headless()) {
+                JakeWriter.out.format("%sHeadless-Installation erkannt, insofern hier eine Liste der von Jake beziehungsweise LILLY benötigten Pakete, es obliegt dem Administrator diese Pakete entsprechend bereitzustellen. Jake vertraut auf die Macht eines anderen! :D%s%n", ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
+                for (String pkg : pkgs) {
+                    JakeWriter.out.format(" - %s%n", pkg);
+                }
+                return true; 
+            }
+
+            String tpath = Executer.getPath("/scripts/install/bash/linux_install.sh");
+
+            String[] bargs = new String[]{"x-terminal-emulator", "-e", "bash", tpath}; // todo make method with LinuxInstallPackages and remove terminal if not neccssar
+            String[] args = new String[pkgs.length + bargs.length];
+            System.arraycopy(bargs, 0, args, 0, bargs.length);
+            System.arraycopy(pkgs, 0, args, bargs.length, pkgs.length);
+            //System.out.println(Arrays.toString(args));
+            Process tp = new ProcessBuilder(args).start();
+            if(tp.waitFor() != Definitions.SUCCESS) {
+                JakeWriter.out.println("Die Installation scheint gescheitert/abgebrochen!"); 
+                throw new RuntimeException("Installation Cancelled");
+            }
+            //System.out.println(tp.waitFor()); // todo, retrieve correct return code to detect failures
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     String next = "";
 
     public LinuxInstaller(boolean gui) {
         super("Linux Installer",gui);
+        // test if lilly_jake is installed:
         steps = new FunctionCollector<>(Map.ofEntries(
             Map.entry("generate_menu_entry", new FunctionDeskriptor<String, String[]>("fkt_generate_menu_entry","Generiert einen Menüeintrag", LinuxInstaller::fkt_generate_menu_entry)),
             Map.entry("generate_cmd_line_exec",  new FunctionDeskriptor<String, String[]>("fkt_generate_cmd_line_exec","Generiert den Kommandozeilenstarter", LinuxInstaller::fkt_generate_cmd_line_exec)),
@@ -202,7 +265,7 @@ public class LinuxInstaller extends AutoInstaller {
      */
     @Override
     public boolean validate() {
-        return new File(getDesktopPath()).canRead() && new File(getCmdLinePath()).canExecute();
+        return (new File(getDesktopPath()).canRead() || headless()) && new File(getCmdLinePath()).canExecute();
     }
 
     /**

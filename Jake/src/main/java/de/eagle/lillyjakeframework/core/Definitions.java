@@ -13,6 +13,7 @@ package de.eagle.lillyjakeframework.core;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.enumerations.eProgress_State;
 
+import java.io.InputStream;
 import java.util.LinkedList;
 
 /**
@@ -30,7 +31,7 @@ public class Definitions {
     /// Die Version als String
     public static final String JAKE_VERSION = "1.00.10";
 
-    public static final String PRG_NAME = "lilly_jake";
+    public static final String PRG_NAME = "jake";
 
     /// Startsignatur eines versteckten Arguments
     public static final char HIDDEN_ARG = '_';
@@ -63,5 +64,13 @@ public class Definitions {
     public static final int B_INPUT = 2;
     public static final int B_TEXT = 3;
 
+    public static final InputStream DEFAULT_CONFIG_STREAM = Definitions.class.getResourceAsStream("/configs/jake_default.conf");
 
+    public static final String USER_CONFIG_PATH = System.getenv("LILLY_JAKE_CONFIG_PATH");
+
+    public static final boolean MIRROR_LOG = true;
+    public static final boolean MIRROR_CONSOLE = true;
+
+    public static final int SUCCESS = 0;
+    public static final int FAILURE = 1;
 }
