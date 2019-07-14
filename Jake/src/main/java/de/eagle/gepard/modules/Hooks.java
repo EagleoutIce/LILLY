@@ -91,7 +91,7 @@ public class Hooks {
             return getDefaults();
 
         GeneratorParser gp = new GeneratorParser(rulefiles);
-        return parseRules(gp.parseFile(NameMaps.box_name, NameMaps.getBlueprint(), false));
+        return parseRules(gp.parseFile(Hooks.box_name, Hooks.getBlueprint(), false));
     }
 
     /**
@@ -129,7 +129,7 @@ public class Hooks {
         // Teste, ob konfigurierter TYPE gültig ist:
         String t = box.config.getValue("type");
         if(! (t.equals("PRE") || t.equals("POST") || t.equals("ALL") || (t.startsWith("IN") && t.length() > 2))) {
-            throw new RuntimeException("Für eine Buildrule sind für \"type\" nur die konfigurationen 'IN#' (wobei # hier eine Zahl entsprechend des jeweiligen Kompilierdurchgangs ist), 'PRE', 'POST' und 'ALL' zulässig!");
+            throw new RuntimeException("Für eine Hook sind für \"type\" nur die konfigurationen 'IN#' (wobei # hier eine Zahl entsprechend des jeweiligen Kompilierdurchgangs ist), 'PRE', 'POST' und 'ALL' zulässig!");
         } 
 
         Settings settings = new Settings(box.getName());
