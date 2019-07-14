@@ -1,0 +1,88 @@
+\section{Version \small\LILLYxBOXxVersion{1.0.9}}
+\elable{jmp:oldInstallLinux1009}
+\section{Installieren von Lilly mit Cpp-Jake}
+\subsection{Linux}
+\begin{center}
+    Für Versionen < 1.0.8 klicke hier: \jmark[klick mich]{jmp:oldInstallLinux}!
+\end{center}
+\LILLYxNOTExVersion{1.0.8}Da LILLY komplett auf einem Linux-Betriebsystem entwickelt wurde, gestaltet sich die Implementierung relativ einfach.
+Hierzu nutzen wir das Hilfsprogramm \Jake welches selbst in C++ geschrieben wurde.
+Im Folgendenen sind die Schritte kurz erklärt.
+\paragraph{Installation von \Jake:}Eine ausführliche Erklärung von \Jake selbst findest sich weiter hinten (\jmark[hier]{jmp:iJake}) in dieser Dokumentation:\smallskip
+\marginpar{\tiny Für ausführliche Informationen zur Installation konsultiere bitte die README-Datei in:
+\url{../Lilly/Jake/jake_source/README.md}. \newline
+Für Informationen zur Nutzung konsultiere: \url{../Lilly/Jake/README.md}}
+\begin{enumerate}\setlength{\itemsep}{0.25\baselineskip}
+    \item Navigiere mit dem Terminal in das Verzeichnis: \verb|Lilly/Jake/jake_source|
+    \item Führe nun \verb|make| aus um \Jake zu kompilieren.
+          Es wird vermutlich kurz dauern, aber danach wird dir das Programm \LJake zur Verfügung stehen.
+    \item Nun kannst du dein Terminal neu starten und von überall her \verb|lilly_jake install| aufrufen.
+          Dies sollte den Installationsprozess in Gang setzen.\smallskip
+\end{enumerate}
+Sollte das Ganze fehlerfrei verlaufen sein, dann: Glückwunsch, du hast Lilly erfolgreich installiert!
+Betrachte im Falle eines Fehlers bitte erst die Readme-Dateien und die bereits beantworteten Fehler
+auf Github (\href{https://github.com/EagleoutIce/LILLY/issues}{\faGithub}) bevor du einen neuen Fehler
+eröffnest oder mir eine Nachricht schreibst \Smiley.
+\paragraph{Erstellen eines Makefiles:}
+Nun möchtest du natürlich auch ausprobieren ob die Installation funktioniert hat.
+Hierzu kannst du in das Testverzeichnis navigieren (\verb|Lilly/Jake/tests|).
+Hier befinden sich eine Menge Dateien die in dieser Dokumentation auch als Beispiele benutzt werden.
+Du gibst nun folgendes in die Konsole ein:
+\begin{lstlisting}[language=lBash]
+lilly_jake test.tex
+\end{lstlisting}
+\Jake erstellt nun ein entsprechendes Makefile für dich, welches du nun ausführen kannst:
+\begin{lstlisting}[language=lBash]
+make
+\end{lstlisting}
+Im Standardmäßig konfigurierten Ausgabe-Ordner \verb|test-OUT| befindet sich nun eine entsprechende PDF
+Datei \Smiley.\smallskip
+\begin{bemerkung}[make]
+    Logischerweise muss damit auch \T{make} auf dem System vorhanden sein:
+\begin{lstlisting}[language=lBash]
+sudo apt install "make"
+\end{lstlisting}
+\end{bemerkung}
+
+\subsection{Windows \LILLYxNOTExWarning{Ausstehend}}
+\subsection{MacOS}
+\begin{center}
+    Entspricht, dank \Jake, der Linux-Installation.
+\end{center}
+Hierzu nutzen wir das Hilfsprogramm \Jake welches selbst in C++ geschrieben wurde.
+Im Folgendenen sind die Schritte kurz erklärt.
+\paragraph{Installation von \Jake:}Eine ausführliche Erklärung von \Jake selbst findest sich weiter hinten (TODO: LINK) in dieser Dokumentation:\smallskip
+\marginpar{\tiny Für ausführliche Informationen zur Installation konsultiere bitte die README-Datei in:
+\url{../Lilly/Jake/jake_source/README.md}. \newline
+Für Informationen zur Nutzung konsultiere: \url{../Lilly/Jake/README.md}}
+\begin{enumerate}\setlength{\itemsep}{0.25\baselineskip}
+    \item Navigiere mit dem Terminal in das Verzeichnis: \verb|Lilly/Jake/jake_source|
+    \item Führe nun \verb|make| aus um \Jake zu kompilieren.
+          Es wird vermutlich kurz dauern, aber danach wird dir das Programm \LJake zur Verfügung stehen.
+    \item Nun kannst du dein Terminal neu starten und von überall her \verb|lilly_jake install| aufrufen.
+          Dies sollte den Installationsprozess in Gang setzen.\smallskip
+\end{enumerate}
+Sollte das Ganze fehlerfrei verlaufen sein, dann: Glückwunsch, du hast Lilly erfolgreich installiert!
+Betrachte im Falle eines Fehlers bitte erst die Readme-Dateien und die bereits beantworteten Fehler
+auf Github (\href{https://github.com/EagleoutIce/LILLY/issues}{\faGithub}) bevor du einen neuen Fehler
+eröffnest oder mir eine Nachricht schreibst \Smiley.
+\paragraph{Erstellen eines Makefiles:}
+Nun möchtest du natürlich auch ausprobieren ob die Installation funktioniert hat.
+Hierzu kannst du in das Testverzeichnis navigieren (\verb|Lilly/Jake/tests|).
+Hier befinden sich eine Menge Dateien die in dieser Dokumentation auch als Beispiele benutzt werden.
+Du gibst nun folgendes in die Konsole ein:
+\begin{lstlisting}[language=lBash]
+lilly_jake test.tex
+\end{lstlisting}
+\Jake erstellt nun ein entsprechendes Makefile für dich, welches du nun ausführen kannst:
+\begin{lstlisting}[language=lBash]
+make
+\end{lstlisting}
+Im Standardmäßig konfigurierten Ausgabe-Ordner \verb|test-OUT| befindet sich nun eine entsprechende PDF
+Datei \Smiley.\smallskip
+\begin{bemerkung}[make]
+    Logischerweise muss damit auch \T{make} auf dem System vorhanden sein:
+\begin{lstlisting}[language=lBash]
+sudo apt install "make"
+\end{lstlisting}
+\end{bemerkung}
