@@ -10,9 +10,14 @@ package de.eagle.util.helper;
  * @see de.eagle.util.interfaces.iRealCloneable
  */
 
-
 import de.eagle.util.interfaces.iRealCloneable;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -60,5 +65,22 @@ public class Cloner<T> implements iRealCloneable<T> {
             }
         }
         return newT.clone_data;
+    }
+
+    /**
+     * Diese Methode spiegelt eine Datei aus den Ressourcen ins richtige Dateisystem
+     * 
+     * @throws IOException
+     */
+    public static String cloneFileRessource(String res, String dst) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(Executer.class.getResourceAsStream(res)));
+        File outf = new File(dst);
+        BufferedWriter out = new BufferedWriter(new FileWriter(outf));
+        String s;
+        while((s = in.readLine()) != null){
+            out.write(s+"\n");
+        }
+        in.close();out.close();
+        return dst;
     }
 }

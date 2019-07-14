@@ -10,7 +10,6 @@ import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.*;
 import de.eagle.util.enumerations.eSetting_Type;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -43,7 +42,7 @@ public class Buildrules {
             blueprint.put("lilly-mode", SettingDeskriptor.create("lilly-mode", "Korrespondierender \\LILLYxMODE",
                     eSetting_Type.IS_TEXT, true));
 
-            // ---- optionals
+            // ---- Optionals
             blueprint.put("complete", SettingDeskriptor.create("complete",
                     "Soll eine vollständige Version erstellt werden?", eSetting_Type.IS_SWITCH, "false"));
             blueprint.put("complete-prefix", SettingDeskriptor.create("complete-prefix", "Präfix zur Unterscheidung",
@@ -53,7 +52,7 @@ public class Buildrules {
             blueprint.put("nameprefix",
                     SettingDeskriptor.create("nameprefix", "Allgemeines Präfix für Name", eSetting_Type.IS_TEXT, ""));
             blueprint.put("lilly-loader", SettingDeskriptor.create("lilly-loader", "Lader-Sequenz für Datei",
-                    eSetting_Type.IS_LATEX, "\\input{$(INPUTDIR)$(TEXFILE)}"));
+                    eSetting_Type.IS_LATEX, "\\ignorespaces\\noindent \\input{$(INPUTDIR)$(TEXFILE)}"));
             blueprint.put("name-pattern ", SettingDeskriptor.create("name-pattern", "Allgemeines Namens-Muster",
                     eSetting_Type.IS_TEXT, "$(TEXNAME)"));
         }
@@ -66,8 +65,8 @@ public class Buildrules {
     private static Settings blueprint = null;
 
     public static String createRuleFromData(Settings setting, Translator<String, String> ts, String name, String mode,
-            boolean complete) {
-        return createRuleFromData(setting, ts, name, mode, complete, "\\input{$(INPUTDIR)$(TEXFILE)}",
+            boolean complete, String mode_prefix) {
+        return createRuleFromData(setting, ts, name, mode, complete, "\\\\input{$(INPUTDIR)$(TEXFILE)}", mode_prefix +
                 setting.requestValue(ts, "S_LILLY_NAMEPREFIX"), setting.requestValue(ts, "S_LILLY_COMPLETE_NAME"),
                 "TODO");
     }
@@ -103,8 +102,8 @@ public class Buildrules {
                 .append(nameprefix).append((complete) ? completeName : "").append("!"); // die einzelnen Sektionen
                                                                                         // werden mithilfe von "!"
                                                                                         // getrennt
-        ret_str.append("\\providecommand\\LILLYxMODE{") // == Sektion: Befehle
-                .append(mode).append("}\\providecommand\\LILLYxMODExEXTRA{").append(complete ? "TRUE" : "FALSE")
+        ret_str.append("\\\\providecommand\\\\LILLYxMODE{") // == Sektion: Befehle
+                .append(mode).append("}\\\\providecommand\\\\LILLYxMODExEXTRA{").append(complete ? "TRUE" : "FALSE")
                 .append("}!"); //
         ret_str.append(loaderSequence) // Ladesequenz
                 .append("!");
@@ -128,11 +127,12 @@ public class Buildrules {
 
         // Default
         settings.emplace("default", "Standard-Buildrule ohne Boni :D", eSetting_Type.IS_TEXT, createRuleFromData(
-                CoreSettings.getSettings(), CoreSettings.getTranslator(), "Standard", "default", false));
+                CoreSettings.getSettings(), CoreSettings.getTranslator(), "Standard", "default", false, ""));
 
         // Print
         settings.emplace("print", "Druck-Buildrule ohne Boni :D", eSetting_Type.IS_TEXT,
-                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(), "Druck", "print", false));
+                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(), "Druck", "print", false, 
+                CoreSettings.requestValue("S_LILLY_PRINT_NAME")));
 
         // Übungsblatt
         settings.emplace("uebungsblatt", "Übungsblatt-Buildrule, erwartet Dokument ohne \\begin usw.",
@@ -140,15 +140,16 @@ public class Buildrules {
                 createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(), "Übungsblatt", "default",
                         true,
                         "\\\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}",
-                        "", "", "TODO"));
+                        CoreSettings.requestValue("S_LILLY_NAMEPREFIX"), "", "TODO"));
 
         // Complete Default
         settings.emplace("c_default", "Complete Standard-Buildrule", eSetting_Type.IS_TEXT, createRuleFromData(
-                CoreSettings.getSettings(), CoreSettings.getTranslator(), "Standard", "default", true));
+                CoreSettings.getSettings(), CoreSettings.getTranslator(), "Standard", "default", true,""));
 
         // Complete Print
         settings.emplace("c_print", "Complete Druck-Buildrule", eSetting_Type.IS_TEXT,
-                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(), "Druck", "print", true));
+                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(), "Druck", "print", true,
+                CoreSettings.requestValue("S_LILLY_PRINT_NAME")));
         return settings;
     }
 

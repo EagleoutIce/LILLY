@@ -4,6 +4,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.eagle.lillyjakeframework.core.Definitions;
+import de.eagle.lillyjakeframework.installer.LinuxInstaller;
 import de.eagle.util.helper.Executer;
 
 import javax.swing.*;
@@ -56,21 +57,8 @@ public class LinuxInstallPackages extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() { // TODO: PropertiesProvider.getPackageManager... (pacman etc) => https://unix.stackexchange.com/questions/46081/identifying-the-system-package-manager
-        try {
-            String tpath = Executer.getPath("/scripts/install/bash/linux_install.sh");
-
-            String[] bargs = new String[]{"x-terminal-emulator", "-e", "bash", tpath};
-            String[] args = new String[pkgs.length + bargs.length];
-            System.arraycopy(bargs, 0, args, 0, bargs.length);
-            System.arraycopy(pkgs, 0, args, bargs.length, pkgs.length);
-            //System.out.println(Arrays.toString(args));
-            Process p = new ProcessBuilder(args).start();
-            System.out.println(p.waitFor());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void onOK() {
+        LinuxInstaller.installPackages(pkgs);
         dispose();
     }
 

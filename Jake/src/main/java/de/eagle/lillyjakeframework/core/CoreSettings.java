@@ -1,24 +1,19 @@
 package de.eagle.lillyjakeframework.core;
 
-import de.eagle.gepard.modules.Expandables;
-import de.eagle.lillyjakeframework.translators.SettingsTranslator;
-import de.eagle.util.blueprints.Translator;
-import de.eagle.util.datatypes.SettingDeskriptor;
-import de.eagle.util.datatypes.*;
-import de.eagle.util.enumerations.eSetting_Type;
-import de.eagle.util.helper.PropertiesProvider;
+import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import java.util.regex.Pattern;
 
-import static de.eagle.lillyjakeframework.core.Definitions.JAKE_VERSION;
-import static de.eagle.lillyjakeframework.core.Definitions.S_TRUE;
-import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
+import de.eagle.gepard.modules.Expandables;
+import de.eagle.lillyjakeframework.translators.SettingsTranslator;
+import de.eagle.util.blueprints.Translator;
+import de.eagle.util.datatypes.SettingDeskriptor;
+import de.eagle.util.datatypes.Settings;
+import de.eagle.util.enumerations.eSetting_Type;
+import de.eagle.util.helper.PropertiesProvider;
 
 public class CoreSettings {
 
@@ -92,6 +87,7 @@ public class CoreSettings {
         settings.emplace(st, "S_LILLY_OUT", "Ausgabeordner der PDF-DATEI", eSetting_Type.IS_PATH, "./OUTPUT/");
         settings.emplace(st, "S_LILLY_NAMEPREFIX", "Standard-Namenspräfixs", eSetting_Type.IS_TEXT, "");
         settings.emplace(st, "S_LILLY_COMPLETE_NAME", "Präfix einer Complete-Version", eSetting_Type.IS_TEXT,"COMPLETE-");
+        settings.emplace(st, "S_LILLY_PRINT_NAME", "Präfix einer Druck-Version", eSetting_Type.IS_TEXT,"PRINT-");
         settings.emplace(st, "S_LILLY_DOCTYPE", "Dokumenttyp", eSetting_Type.IS_TEXT, "Mitschrieb");
         settings.emplace(st, "S_LILLY_EXTERNAL_OUT", "Output-Ordner für tikzternal", eSetting_Type.IS_PATH, "extimg");
         settings.emplace(st, "S_LILLY_MODES", "Modi für den Kompiliervorgang", eSetting_Type.IS_TEXTLIST, "default");
@@ -106,7 +102,7 @@ public class CoreSettings {
         settings.emplace(st, "S_LILLY_COMPLETE", "Sollen die Varianten vollständig erstellt werden?", eSetting_Type.IS_SWITCH, "true");
         // S_GEPARDRULES_PATH
         settings.emplace(st, "S_GEPARDRULES_PATH", "Pfade für zusätzliche Regeln", eSetting_Type.IS_TEXT, ""); // TESTLIST? WITH ':' TODO!
-        settings.emplace(st, "S_LILLY_IN", "Input-Pfad für Dateien", eSetting_Type.IS_PATH, ".");
+        settings.emplace(st, "S_LILLY_IN", "Input-Pfad für Dateien", eSetting_Type.IS_PATH, "./");
         // S_LILLY_COMPILETIMES
         settings.emplace(st, "S_LILLY_COMPILETIMES", "Wie oft soll kompiliert werden", eSetting_Type.IS_NUM, "2"); // TESTLIST? WITH ':' TODO!
         // TODO: wird mit analzye  automatisch erklärt

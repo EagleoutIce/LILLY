@@ -24,7 +24,8 @@ public enum eSetting_Type {
     IS_SWITCH("Einstellung ist ein boolescher Wert (true,false)"),
     IS_TEXTLIST("Einstellung ist eine durch ':' getrennte Liste"),
     IS_NUM("Einstellung ist eine Zahl"),
-    IS_VLS("Demo: Einstellung ist eine Vorlesung");
+    IS_VLS("Demo: Einstellung ist eine Vorlesung"),
+    IS_SPECIAL("Einstellung ist ein weiter zu verarbeitender Ausdruck");
 
     /// Kurzbeschreibung
     public String brief;

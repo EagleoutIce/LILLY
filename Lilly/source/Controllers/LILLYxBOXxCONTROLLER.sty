@@ -1,6 +1,18 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxBOXxCONTROLLER}[2019/07/13 Stellt die Box-Erweiterung fuer LILLY zur Verfuegung]
 
+\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxBOOLEAN}
+\RequirePackage{LILLYxCOLOR}
+
+
+%% https://www.ctan.org/pkg/tocloft
+\LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
+                    {Das ist wichtig!}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
 %%We will use the default POI-BOX if non provided
 
 %%TODO: make adapt if there is no chapter & if there is no chapter reset wanted remove chapter from naming
@@ -19,7 +31,10 @@
                     {}%%Params
                     {}
 
-
+\LILLYxDemandPackage{bookmark}{Fuer bookmarks eben} %% Package, Info
+                    {Dieses Paket ist für LILLY überlebenswichtig, ohne es gibt es keine Boxen, glaube ich!}%% Error-Text
+                    {}%%Params
+                    {}
 %%%DEFAULTS
 
 \providecommand{\LILLYxBOXxDefinitionxLock}{chapter}        \providecommand{\LILLYxBOXxDefinitionxEnable}{TRUE}         \providecommand{\LILLYxBOXxDefinitionxBox}{TRUE}

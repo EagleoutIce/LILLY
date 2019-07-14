@@ -17,6 +17,7 @@ public class Executer {
      */
     public static String getPath(String path) throws IOException {
         // Copy file to temp place
+        // @see Cloner#cloneFileRessource(String,String)
         BufferedReader in = new BufferedReader(new InputStreamReader(Executer.class.getResourceAsStream(path)));
         File outf = File.createTempFile("jake-tmp", ".sh");
         BufferedWriter out = new BufferedWriter(new FileWriter(outf));

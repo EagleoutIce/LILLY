@@ -2,6 +2,8 @@ package de.eagle.lillyjakeframework.compiler;
 
 import de.eagle.gepard.modules.Buildrules;
 import de.eagle.gepard.modules.Expandables;
+import de.eagle.gepard.modules.Hooks;
+import de.eagle.gepard.modules.NameMaps;
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
@@ -51,7 +53,10 @@ public class JakeCompile {
         JakeLogger.writeLoggerDebug1("Jake versucht nun das Lilly-Dokument zu kompilieren", "compile");
         Settings expandables = Expandables.expandsCS();
 
+
         String targetFile = getTargetFile();
+
+        JakeWriter.out.format("%sKompiliere Dokument: \"%s\" für: %s (%s)%s%n", ColorConstants.COL_GOLD, targetFile, CoreSettings.requestValue("S_LILLY_AUTHOR"),CoreSettings.requestValue("S_LILLY_AUTHORMAIL"), ColorConstants.COL_RESET);
 
         if (!new File(targetFile).canWrite()) { // check_file
             System.err.println("Die von dir angegebene Datei: " + targetFile
@@ -64,12 +69,14 @@ public class JakeCompile {
             }
         }
 
-        Settings update_config = new Settings("nmaps:what_trigger() TODO");
+        //System.out.println(CoreSettings.requestValue("S_FILE"));
+        Settings update_config = NameMaps.whatTrigger(NameMaps.getNameMaps(CoreSettings.requestValue("S_GEPARDRULES_PATH")), CoreSettings.requestValue("S_FILE"));
+
         if(update_config.size() > 0){
             JakeWriter.out.println("Information: Aufgrund des Name-Mappings werden deine Einstellungen angepasst. Die Regeln im Folgenden werden jeweils angezeigt und angwendet:");
             StringBuilder new_config = new StringBuilder();
             for(var sd : update_config){
-                System.out.format("    - %s%n", sd.getKey());
+                JakeWriter.out.format("    - %s (%s)%n", sd.getKey(), sd.getValue().getBrief());
                 new_config.append(sd.getValue().getValue()).append("\n");
             }
             Configurator config_update = new Configurator(new ByteArrayInputStream(new_config.toString().getBytes(Charset.defaultCharset())));
@@ -78,8 +85,8 @@ public class JakeCompile {
         }
         writeLoggerDebug1("Jake Footprint: " + Definitions.PRG_BRIEF + " (" + PropertiesProvider.getNow() + ")", "compile"); // TODO: change to real compile date
 
-        Settings all_hooks = new Settings ("getHooks(settings[S_GEPARDRULES_PATH])");
-        //TODO: expand_config(all_hooks) TODO TODO !!
+        Settings all_hooks = Hooks.getHooks(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+        Expandables.expandSettings(all_hooks);
 
         try{
             if(CoreSettings.requestSwitch("S_LILLY_EXTERNAL"))
@@ -89,7 +96,8 @@ public class JakeCompile {
             writeLoggerError("FileCreation failed!","compile");
         }
 
-        // TODO: executePreHooks
+        // execute PRE-Hooks
+        Hooks.executeHooks(all_hooks, "PRE");
 
         Path lilly_log_out = Paths.get(CoreSettings.requestValue("S_LILLY_OUT") ,"LILLY_COMPILE.log");
         File f_lilly_log_out = lilly_log_out.toFile();
@@ -125,14 +133,15 @@ public class JakeCompile {
                 writeLoggerError("Join of ID" + i + " failed!", "compile");
             }
             writeLoggerInfo("Completed ID" + i, "compile");
-            JakeWriter.out.format("Completed ID%d%n", i);
+            //JakeWriter.out.format("Completed ID%d%n", i); // Das muss doch niemand wissen :P
         }
 
         if(JakeCompile_Worker.failed){
             return ReturnStatus.EXIT_FAILURE;
         }
 
-        // TODO: executePostHooks
+        // execute POST Hooks
+        Hooks.executeHooks(all_hooks, "POST");
 
         // Autoclean ?
         if( CoreSettings.requestSwitch("S_LILLY_AUTOCLEAN")) {
@@ -200,6 +209,7 @@ public class JakeCompile {
     public static class JakeCompile_Worker extends Thread {
         public static boolean failed = false;
         public void run(){
+            long startTime = System.currentTimeMillis();
             writeLoggerInfo(b_data[B_TEXT].replace("\"\"", "")
                     + " -Version(" + CoreSettings.requestValue("S_LILLY_BOXES")
                     + ") der Latex-Datei: " + CoreSettings.requestValue("S_FILE")
@@ -240,27 +250,29 @@ public class JakeCompile {
 
                 int fb = 0;
                 for(int i = 0; i < Integer.parseInt(CoreSettings.requestValue("S_LILLY_COMPILETIMES")); i++) {
-                    //TODO: execute in-hooks
-                    writeLoggerInfo("Kreiere Latex-Datei...", tag);
+                    // execute IN-hooks
+                    Hooks.executeHooks(all_hooks, "IN" + i);
+                    writeLoggerInfo("Kreiere Latex-Datei (führe pdflatex aus)...", tag);
                     StringBuilder compileCommand = new StringBuilder();
                     compileCommand.append("pdflatex -jobname ").append(final_name)
-                                  .append("  $(LATEXARGS) ").append(b_data[B_EXTRA])
+                                  .append(" $(LATEXARGS) ").append(b_data[B_EXTRA])
                                   .append("${_LILLYARGS}")
-                                  .append("\\providecommand{\\LILLYxBOXxMODE}{")
+                                  .append("\\\\providecommand{\\\\LILLYxBOXxMODE}{")
                                   .append(boxmode).append("}");
-                    compileCommand.append("\\providecommand{\\LILLYxPDFNAME}{").append(final_name).append("}");
+                    compileCommand.append("\\\\providecommand{\\\\LILLYxPDFNAME}{").append(final_name).append("}");
                     compileCommand.append("").append(b_data[B_INPUT]);
 
                     String cc =Expandables.expand(expandables,compileCommand.toString());
-                    System.out.println(cc);
+                    //System.out.println(cc);
+                    JakeLogger.writeLoggerInfo(cc,"compile");
                     try {
-                        Process p = Runtime.getRuntime().exec(cc);
-                        p.waitFor();
-                        Path lilly_log_out = Paths.get(CoreSettings.requestValue("S_LILLY_OUT") ,"LILLY_COMPILE.log");
-                        PrintWriter llo = new PrintWriter(lilly_log_out.toFile());
-                        new BufferedReader( new InputStreamReader(p.getInputStream())).lines().forEachOrdered(llo::println);
-                        new BufferedReader( new InputStreamReader(p.getErrorStream())).lines().forEachOrdered(llo::println);
-                        llo.close();
+                        Process p = Runtime.getRuntime().exec(new String[] {"bash", "-c", cc});
+                        JakeLogger.writeLoggerDebug3("pdflatex returned: " + p.waitFor(),"compile");
+                        //Path lilly_log_out = Paths.get(CoreSettings.requestValue("S_LILLY_OUT") ,"LILLY_COMPILE.log");
+                        //PrintWriter llo = new PrintWriter(lilly_log_out.toFile());
+                        //new BufferedReader( new InputStreamReader(p.getInputStream())).lines().forEachOrdered(llo::println);
+                        //new BufferedReader( new InputStreamReader(p.getErrorStream())).lines().forEachOrdered(llo::println);
+                        //llo.close();
                     } catch (Exception e) {
                         failed = true;
                         JakeWriter.err.format("Das Kompilieren mit pdflatex und Jake ist in thread %d für %s fehlgeschlagen bitte sieh im entsprechenden Logfile nach!%n",id,b_data[B_TEXT]);
@@ -269,8 +281,7 @@ public class JakeCompile {
 
 
                 }
-                JakeWriter.out.format("%sGenerierung von \"%s\" (%s) abgeschlossen.%s%n", ColorConstants.COL_SUCCESS, final_name, boxmode,ColorConstants.COL_RESET);
-
+                JakeWriter.out.format("%sGenerierung von \"%s\" (%s) abgeschlossen. (Zeit: %ss)%s%n", ColorConstants.COL_SUCCESS, final_name, boxmode, (System.currentTimeMillis()-startTime)/1000.0, ColorConstants.COL_RESET);
             }
 
         }
