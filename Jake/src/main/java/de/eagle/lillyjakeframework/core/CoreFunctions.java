@@ -109,6 +109,7 @@ public final class CoreFunctions {
                 .forEach(m -> JakeWriter.out.format("  %-15s: %s%n", m.getKey(), m.getValue().brief));
                 //JakeWriter.out.println();
                 JakeWriter.out.format("  %-15s: %s%n", "GUI", "Startet Jake im GUI-Modus");
+                JakeWriter.out.format("  %-15s: %s%n", "DEI", "Versucht Jake zu Deinstallieren");
                 JakeWriter.out.format("  %-15s: %s%n", "REI", "Versucht Jake zu Reinstallieren (Entwicklerfunktion)");
 
                 JakeWriter.out.println(
@@ -127,7 +128,8 @@ public final class CoreFunctions {
      * @return
      */
     public static ReturnStatus fkt_install(String[] cmd) {
-        PropertiesProvider.getInstaller(false).automatedInstall();
+        //PropertiesProvider.getInstaller(false).automatedInstall();
+        // Hier wird nicht Jake sondern LILLY entsprechend installiert - JAY
         return ReturnStatus.EXIT_SUCCESS;
     }
 

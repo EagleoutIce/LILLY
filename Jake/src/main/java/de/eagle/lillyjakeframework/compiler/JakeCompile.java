@@ -76,7 +76,7 @@ public class JakeCompile {
             JakeWriter.out.println("Information: Aufgrund des Name-Mappings werden deine Einstellungen angepasst. Die Regeln im Folgenden werden jeweils angezeigt und angwendet:");
             StringBuilder new_config = new StringBuilder();
             for(var sd : update_config){
-                JakeWriter.out.format("    - %s (%s)%n", sd.getKey(), sd.getValue().getBrief());
+                JakeWriter.out.format("    - %s%n", sd.getKey());
                 new_config.append(sd.getValue().getValue()).append("\n");
             }
             Configurator config_update = new Configurator(new ByteArrayInputStream(new_config.toString().getBytes(Charset.defaultCharset())));
@@ -230,17 +230,17 @@ public class JakeCompile {
 
                 if(CoreSettings.requestSwitch("S_LILLY_EXTERNAL")){
                     writeLoggerInfo("Erstelle Ghost Dokument...", tag);
-                    Path go_p = Paths.get(CoreSettings.requestValue("S_LILLY_OUT"), (b_data[B_NAME]
-                            + ((CoreSettings.requestSwitch("S_LILLY_SHOW_BOXNAME"))?boxmode+"-":"")
+                    Path go_p = Paths.get(Expandables.expand(expandables,(b_data[B_NAME]
+                            + ((CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME"))?boxmode+"-":"")
                             + CoreSettings.requestValue("S_FILE")
-                            )
+                            ).replaceAll("\"",""))
                     );
                     try (PrintWriter go = new PrintWriter(go_p.toFile())){
-                        go.format("\\\\providecommand{\\\\LILLYxBOXxMODE}{%s}",boxmode);
-                        go.format("\\\\providecommand{\\\\LILLYxPDFNAME}{%s}", final_name); // TODO: better expand
-                        go.format("\\\\providecommand{\\\\LILLYxTHREADxID}{%d}", id);
-                        go.format("%s %s %s", b_data[B_EXTRA], Expandables.expand(expandables," ${_LILLYARGS} "),
-                                b_data[B_INPUT]);
+                        go.format("\\providecommand{\\LILLYxBOXxMODE}{%s}",boxmode);
+                        go.format("\\providecommand{\\LILLYxPDFNAME}{%s}", final_name); // TODO: better expand
+                        go.format("\\providecommand{\\LILLYxTHREADxID}{%d}", id);
+                        go.format("%s %s %s", b_data[B_EXTRA].replaceAll("\\\\\\\\","\\\\"), Expandables.expand(expandables," ${_LILLYARGS} ").replaceAll("\\\\\\\\","\\\\"),
+                        Expandables.expand(expandables,b_data[B_INPUT]).replaceAll("\\\\\\\\","\\\\"));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

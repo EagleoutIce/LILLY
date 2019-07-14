@@ -46,8 +46,23 @@ public class Jake {
 
     public static void main(String[] args) throws IOException {
 
-        if(!PropertiesProvider.isInstalled() || (args.length > 0 && args[0].equals("REI"))) {
-            if(args.length > 0 && args[0].equals("GUI")) {
+        try {
+            CoreSettings.getSettings().joinConfigFile(Definitions.DEFAULT_CONFIG_STREAM);
+            if(Definitions.USER_CONFIG_PATH != null && !Definitions.USER_CONFIG_PATH.isEmpty())
+            CoreSettings.getSettings().joinConfigFile(Definitions.USER_CONFIG_PATH);
+        } catch (IOException what) {
+            writeLoggerError("Es gab einen Fehler beim Lesen der Default-Konfiguration", "Jake");
+        } 
+
+        ReturnStatus rs = CommandLineParser.parse_args(args, CoreSettings.getSettings());
+
+        if(args.length > 0 && args[0].startsWith("DEI")) {
+            PropertiesProvider.getInstaller(false).uninstall();
+            return;
+        }
+
+        if(!PropertiesProvider.isInstalled() || (args.length > 0 && args[0].startsWith("REI"))) {
+            if(args.length > 0 && args[0].startsWith("GUI")) {
                 InstallJake.main(args);
             } else { // commandline based:
                 for(String s : PropertiesProvider.getInstaller(false)){
@@ -62,21 +77,13 @@ public class Jake {
         //     // setup log-Deskriptor & ld_config by configparser
         //     //if()
         // }
-        try {
-            CoreSettings.getSettings().joinConfigFile(Definitions.DEFAULT_CONFIG_STREAM);
-            if(Definitions.USER_CONFIG_PATH != null && !Definitions.USER_CONFIG_PATH.isEmpty())
-            CoreSettings.getSettings().joinConfigFile(Definitions.USER_CONFIG_PATH);
-        } catch (IOException what) {
-            writeLoggerError("Es gab einen Fehler beim Lesen der Default-Konfiguration", "Jake");
-        } 
 
         if(args.length > 0 && args[0].equals("GUI")){
             Definitions.GUI = true;
             JOptionPane.showMessageDialog(new JFrame(), "Du bist im Gui - Modus, hier wird dich bald Jake begrüßen!", "INFO", JOptionPane.INFORMATION_MESSAGE);
             return;
         } // else no gui :D
-        ReturnStatus rs ;
-        if((rs = CommandLineParser.parse_args(args, CoreSettings.getSettings())).success()) {
+        if(rs.success()) {
             CommandLineParser.interpret_settings(args);
             //if (args.length > 0 && args[1].charAt(0) != HIDDEN_ARG) 
                 //JakeWriter.out.println("Für diese Sitzung wurde diese Log-Datei verwendet: \"" + JakeLogger.getTarget() + "\"");

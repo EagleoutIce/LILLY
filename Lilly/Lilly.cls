@@ -30,8 +30,8 @@
 
 \providecommand*{\LILLYxDummy}{dummy}                        %%% ONLY THING DEFINE HERE
 
-\RequirePackage{\LILLYxPATHxHELPER/LILLYxPATH} %% provides \linput as \LILLYxPATH based input
-\RequirePackage{\LILLYxPATHxHELPER/LILLYxBOOLEAN} %% \true und \false
+\RequirePackage{LILLYxPATH} %% provides \linput as \LILLYxPATH based input
+\RequirePackage{LILLYxBOOLEAN} %% \true und \false
 
 \providecommand{\LILLYxDEBUG}{\false}                        %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
 
@@ -299,12 +299,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{\LILLYxPATHxCONTROLLERS/_LILLY_MODE_CONTROLLER}
-\input{\LILLYxPATHxCONTROLLERS/_LILLY_LINK_CONTROLLER}
+\RequirePackage{LILLYxCONTROLLERxLINK}
 
 \input{\LILLYxPATHxCONTROLLERS/Intro/_LILLY_INTRO_CONTROLLER}
 
 \RequirePackage{\LILLYxPATHxCONTROLLERS/LILLYxBOXxCONTROLLER}
-\RequirePackage{\LILLYxPATHxHELPER/LILLYxBOXxCOUNTER}
+\RequirePackage{LILLYxBOXxCOUNTER}
 
 \input{\LILLYxPATHxCONTROLLERS/_LILLY_HYPHEN_CONTROLLER}
 

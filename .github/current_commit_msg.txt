@@ -1,36 +1,46 @@
-Jake - just getting ready
+Jake - its the final kauntdaun
 
 ============================================================================================
 :EagleoutIce for Lilly
 ============================================================================================
 
+INFORMATION: Immer brav an Sicherungskopien denken!
+
+Allgemeine Performance Verbesserung um ~15% erreicht!
+
 JAKE:
 
-    + Jake kann nun Dateien kompilieren die er erhält wie der C++-Bruder,
-      Weiter wurden Module wir NameMaps portiert UND erweitert (String-sensitiv)
+    + Man kann nun Jake deinstallieren (Befehl: 'jake DEI')
 
-    + Das Hooks-Modul wurde integriert
+    + Man kann nun beim Installieren durch 
+      '-path: /absoluter/pfad/zur/nutzerkonfiguration.conf' Die User-conf angeben
 
-    + Es wurden Tests für das NameMaps Modul hinzugefügt
 
-    + JavaJake hat nun auch Autocomplete (für alle gängigen Unixioden-Shells 
-      und, theoretisch, iTerm2/MacOS per se)
+    * Jake überschreibt nun bei einer Neuinstallation ('jake REI') den entsprechendne 
+      build-tree, man kann also wechseln
 
-    * Installation hat nun full-headless support
+    * Autocomplete erkennt nun GUI, REI und DEI an
 
-    ! Das Buildrules-Modul wurde für den Druck-Version Fehler gefixt, weiter wurde die 
-      escape und typo-problematik wurden behoben. Weiter haben ÜB nun wieder
-      Nameprefix-Unterstützung
+
+    ! FIX: External funktioniert nun :D
 
 LILLY:
 
-    + Einige weitere Pakete sind nun Eigenständig
+    * Der LILLYxBOXxCONTROLLER unterstützt nun auch Dokumentklassen ohne Chapter
 
-    * Mathe-Paket ist nun gezeigt unabhängig von LILLY
+    * Auch Boxen und damit LILLYxBOXxCONTROLLER sind nun Standalone, d.h
+      folgendes Dokument, kompiliert wunderbar:
+      ```
+      \documentclass{book}
+      \usepackage{LILLYxBOXxCONTROLLER}
 
-    * Beispiele Portiert
+      \begin{document}
+      \begin{definition}[wau]
+      Hallo
+      \end{definition}
+      \end{document}
+      ```
 
-    ! TODO: MAKE BOXxCONTROLLER standalone too
 
 ============================================================================================
 :

@@ -1,8 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxLINK}[2019/07/14 Stellt die (Hyper-)Link-Erweiterungen fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxVANILLA}
+\RequirePackage{LILLYxPACKAGExCTRL}
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+
+\RequirePackage{LILLYxCOLOR}
+
+
+%% https://ctan.org/pkg/hyperref
+\LILLYxDemandPackage{hyperref}{Für tolle Verlinkungen und einen tollen Überblick}%% Package, Info
+                    {Das Paket hyperref ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://www.ctan.org/pkg/xparse
+\LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
+                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+                    {}{} %% keine Argumente
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grundelgendes setup von hyperref                                                                                    %     %%%% HYPERREF-BASICS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\RequirePackage{hyperref}
 
 \hypersetup{         %Niemand mag Rote Boxen um links
     colorlinks=true, %Das gelbe highlighting ist aber cool
@@ -28,9 +47,8 @@
 
 \providecommand{\LILLYxHYPERLINK}{TRUE}
 
-\LILLYcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}
 
-\providecommand*{\elable}[1]{\phantomsection\label{#1}\ignorespaces}  %\phantomsection % wenn gew�nscht das direkter sprung
+\providecommand*{\elable}[1]{\phantomsection\label{#1}\ignorespaces}  %\phantomsection % wenn gew�nscht das direkter sprung
 \ifx\LILLYxHYPERLINK\true
     \newcommand{\jmark}[2][Linkname]{{\hypersetup{linkcolor=\LILLYxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
     \newcommand{\hmark}[2][Linkname]{\hypersetup{linkcolor=black}\textbf{{\hyperref[#2]{#1}}}}

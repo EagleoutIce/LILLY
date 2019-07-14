@@ -12,10 +12,12 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.LinuxInstallPackages;
 import de.eagle.util.constants.ColorConstants;
@@ -26,6 +28,10 @@ import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
+
+import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
+import static de.eagle.util.io.JakeLogger.writeLoggerWarning;
+
 
 // TODO: insert debbug-statements 
 
@@ -150,12 +156,15 @@ public class LinuxInstaller extends AutoInstaller {
 
             if (file.canWrite()) {
                 try {
-                    boolean hasAlready = Files.lines(Paths.get(file.getAbsolutePath())).anyMatch(x -> x.contains("# JAVA_JAKE")); // contains '# Java_Jake'
-                    if(hasAlready) continue;
+                    String[] lines = Files.lines(Paths.get(file.getAbsolutePath())).filter(x -> !x.contains("# JAVA_JAKE")).toArray(String[]::new); // contains '# Java_Jake'
+                    //lines.forEachOrdered(x-> System.out.println(x)); 
+                    // Da die Datei überschrieben wird, scheitert die Stream-Operation danach
                     JakeLogger.writeLoggerInfo("Prepping: " + file.getAbsolutePath(),"LinuxIns");
-                    PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
+                    PrintWriter pw = new PrintWriter(new FileOutputStream(file)); //, true
+                    for (String l : lines)
+                        pw.println(l);
                     pw.format("export PATH=$PATH:%s; %s%s # JAVA_JAKE%n",Paths.get(HOME, ".local", "bin").toString(),
-                    /*"export LILLY_JAKE_CONFIG_PATH=\"${CONFIG}\";"*/ // noch nicht voll unterstützt TODO TODO TODO: JMP TODO 
+                    (!CoreSettings.requestValue("S_PATH").equals("./")?"export LILLY_JAKE_CONFIG_PATH=\"" + CoreSettings.requestValue("S_PATH") +"\";":""), // wenn angegeben, dann übernommen
                     (f.contains(".zshrc")?"autoload bashcompinit &>/dev/null; bashcompinit &>/dev/null;":""),
                     "source " + autocompletePath);
                     pw.close();
@@ -275,9 +284,61 @@ public class LinuxInstaller extends AutoInstaller {
      */
     @Override
     public boolean automatedInstall() {
-        return false;
+        for(String s: this){}
+        return true;
     }
 
+    /**
+     * Deinstalliert die Jake
+     */
+    @Override
+    public boolean uninstall() {
+        JakeLogger.writeLoggerInfo("Deinstalliere Jake (Linux)", "Uninst");
 
+        // Entferne Eintrag in Shellrc:
+        for (String f : shells) {
+            File file = new File(f);
+            JakeLogger.writeLoggerDebug3("Checking: " + file.getAbsolutePath(),"Uninst");
+
+            if (file.canWrite()) {
+                try {
+                    String[] lines = Files.lines(Paths.get(file.getAbsolutePath())).filter(x -> !x.contains("# JAVA_JAKE")).toArray(String[]::new); // contains '# Java_Jake'
+                    PrintWriter pw = new PrintWriter(new FileOutputStream(file));
+                    for (String l : lines)
+                        pw.println(l);
+                    pw.close();
+                    JakeLogger.writeLoggerDebug3("Removed injection","Uninst");
+                } catch (Exception ignored) {
+
+                }
+            }
+        }
+        // Entferne launch-skript
+        if(! new File(getCmdLinePath()).canRead()){
+            JakeLogger.writeLoggerWarning("Die Datei: " + getCmdLinePath() + " kann nicht gefunden werden", "Uninst");
+        } else {
+            new File(getCmdLinePath()).delete();
+            JakeLogger.writeLoggerInfo("Die Datei: " + getCmdLinePath() + " wurde entfernt", "Uninst");
+        }
+
+        // Entferne .desktop-Eintrag, das kann man besser machen ich weiß
+        if(! new File(getDesktopPath()).canRead()){
+            JakeLogger.writeLoggerWarning("Die Datei: " + getDesktopPath() + " kann nicht gefunden werden", "Uninst");
+        } else {
+            new File(getDesktopPath()).delete();
+            JakeLogger.writeLoggerInfo("Die Datei: " + getDesktopPath() + " wurde entfernt", "Uninst");
+        }
+
+        // Entferne complete-skript (bash), das kann man besser machen, aber copy paste ist lustig 
+        String ptp = Paths.get(HOME, ".local", "bash_completition","_jake.complete").toString();
+        if(! new File(ptp).canRead()){
+            JakeLogger.writeLoggerWarning("Die Datei: " + ptp + " kann nicht gefunden werden", "Uninst");
+        } else {
+            new File(ptp).delete();
+            JakeLogger.writeLoggerInfo("Die Datei: " + ptp + " wurde entfernt", "Uninst");
+        }
+        JakeWriter.out.println("Jake wurde deinstalliert, LOG-Datei dieser Sitzung: \"" + JakeLogger.getTarget() + "\"");
+        return true;
+    }
 
 }
