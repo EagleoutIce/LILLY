@@ -267,7 +267,13 @@ public class JakeCompile {
                     JakeLogger.writeLoggerInfo(cc,"compile");
                     try {
                         Process p = Runtime.getRuntime().exec(new String[] {"bash", "-c", cc});
-                        JakeLogger.writeLoggerDebug3("pdflatex returned: " + p.waitFor(),"compile");
+                        int ret = p.waitFor();
+                        JakeLogger.writeLoggerDebug3("pdflatex returned: " + ret,"compile");
+                        if(ret != 0) {
+                            failed = true;
+                            JakeWriter.err.format("%sDas Kompilieren mit pdflatex und Jake ist in thread %d für %s%s fehlgeschlagen bitte sieh im entsprechenden Logfile nach!%s%n",ColorConstants.COL_ERROR, id,b_data[B_TEXT],ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
+                            return;
+                        }
                         //Path lilly_log_out = Paths.get(CoreSettings.requestValue("S_LILLY_OUT") ,"LILLY_COMPILE.log");
                         //PrintWriter llo = new PrintWriter(lilly_log_out.toFile());
                         //new BufferedReader( new InputStreamReader(p.getInputStream())).lines().forEachOrdered(llo::println);
@@ -275,7 +281,7 @@ public class JakeCompile {
                         //llo.close();
                     } catch (Exception e) {
                         failed = true;
-                        JakeWriter.err.format("Das Kompilieren mit pdflatex und Jake ist in thread %d für %s fehlgeschlagen bitte sieh im entsprechenden Logfile nach!%n",id,b_data[B_TEXT]);
+                        JakeWriter.err.format("%sDas Kompilieren mit pdflatex und Jake ist in thread %d für %s%s fehlgeschlagen bitte sieh im entsprechenden Logfile nach!%s%n",ColorConstants.COL_ERROR, id,b_data[B_TEXT],ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
                         return;
                     }
 
