@@ -10,7 +10,12 @@
                     {remember picture, overlay}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
-\usetikzlibrary{matrix,scopes,shadows,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
+\usetikzlibrary{%
+arrows,automata,calc,intersections,%
+through,decorations.pathreplacing,%
+decorations.pathmorphing,backgrounds,%
+positioning,fit,shapes,shadings,%
+shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
 
 %% https://www.ctan.org/pkg/circuitikz
 \LILLYxDemandPackage{circuitikz}{Ach komm schon, das sind Schaltplaene, die mag jeder!}%% Package, Info

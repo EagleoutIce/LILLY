@@ -237,8 +237,8 @@
                     {}{} %% NO ARGS
 
 \RequirePackage{hhline}
-\ifx\LILLYxTIKZxenable \undefined
-    \RequirePackage{\LILLYxPATHxGRAPHICS/Tikz-Core/LILLYxTIKZxCORE}
+\ifx\LILLYxTIKZxenable\undefined
+    \RequirePackage{LILLYxTIKZxCORE}
 \fi
 
 
