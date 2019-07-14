@@ -8,13 +8,10 @@
  */
 package de.eagle.lillyjakeframework.core;
 
- // TODO: insert LogLevel 
+ import java.io.InputStream;
 
-import de.eagle.util.datatypes.ReturnStatus;
+import de.eagle.lillyjakeframework.Jake;
 import de.eagle.util.enumerations.eProgress_State;
-
-import java.io.InputStream;
-import java.util.LinkedList;
 
 /**
  * @author Florian Sihler

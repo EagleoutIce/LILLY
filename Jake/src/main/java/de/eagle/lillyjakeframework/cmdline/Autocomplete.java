@@ -29,13 +29,14 @@ public class Autocomplete {
      * @return true, wenn ja, sonst false
      */
     public static boolean was_there_what(String[] inside_here) {
-        for(var fd : CoreFunctions.functions_t.entrySet()) {
-            if(!fd.getKey().startsWith(String.valueOf(Definitions.HIDDEN_ARG))) {
-                for (String s : inside_here) {
-                    for(String split : s.split("\\s+")){
-                        if(fd.getKey().equals(split) || split.endsWith(".tex") || split.endsWith(".conf") || split.equals("REI")|| split.equals("DEI") || split.equals("GUI"))
+        for (String s : inside_here) {
+            for(String split : s.split("\\s+")){
+                if(split.endsWith(".tex") || split.endsWith(".conf") || split.equals("REI")|| split.equals("DEI") || split.equals("GUI"))
+                    return true;
+                for(var fd : CoreFunctions.functions_t.entrySet()) {
+                    String k = fd.getKey();
+                    if(k.charAt(0) != Definitions.HIDDEN_ARG && k.equals(split))
                             return true;
-                        }
                 }
             }
         }
@@ -69,6 +70,8 @@ public class Autocomplete {
         return str.toString();
     }
 
+    public static String cfiles,files; 
+
     /**
      * Liefert entsprechend der Eingaben alle möglichen Ausgaben.
      * Impliziert somit auch (zsh) Informationen für gewisse Argumente
@@ -76,20 +79,18 @@ public class Autocomplete {
      * @return String für das Autocomplete Skript
      */
     public static String parse_cmd_autocomplete(String[] cmd_line){
+        if(cfiles == null || files == null){
+                try {
+                 cfiles = String.join("\t",Files.list(Paths.get("")).map(x -> x.toString()).filter(x -> (x.endsWith(".tex") || x.endsWith(".conf"))).toArray(String[]::new));
+                 files = String.join("\t",Files.list(Paths.get(".")).filter(x -> (x.toFile().isFile())).map(Path::toString).toArray(String[]::new));
+                } catch(Exception ignored) {}
+        }
         StringBuilder str = new StringBuilder();
         if(cmd_line == null || cmd_line.length == 0 || !was_there_what(cmd_line)) {
             // Gab es noch keine operation - so schlagen wir stehts optionen for
-            str.append(print_options());
-            try { // gibt alle tex und config dateien mit aus
+            str.append(print_options()).append(cfiles);
+            // gibt alle tex und config dateien mit aus
                 //Files.list(Paths.get("")).forEach(sss -> System.out.println("y" + sss));
-                str.append(String.join("\t",Files.list(Paths.get(""))
-                        .map(x -> x.toString())
-                        .filter(x -> (x.endsWith(".tex") || x.endsWith(".conf")))
-                        .toArray(String[]::new))
-                );
-            } catch (IOException ignored) {
-                ignored.printStackTrace();
-            }
             return str.toString();
         }
 
@@ -105,12 +106,7 @@ public class Autocomplete {
             SettingDeskriptor t = CoreSettings.settings.get(arg);
             switch (t.type){
                 case IS_FILE:
-                    try {
-                        str.append(String.join("\t",Files.list(Paths.get("."))
-                                .filter(x -> (x.toFile().isFile()))
-                                .map(Path::toString)
-                                .toArray(String[]::new)));
-                    } catch (IOException ignored) { }
+                        str.append(files);
                     break;
                 case IS_NUM:
                     str.append("Erwarte: Zahl\tBitte gib eine Zahl ein!\t \tErklärung: ")
