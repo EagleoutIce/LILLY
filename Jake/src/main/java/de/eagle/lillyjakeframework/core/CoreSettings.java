@@ -107,7 +107,7 @@ public class CoreSettings {
         settings.emplace(st, "S_LILLY_COMPILETIMES", "Wie oft soll kompiliert werden", eSetting_Type.IS_NUM, "2"); // TESTLIST? WITH ':' TODO!
         // TODO: wird mit analzye  automatisch erklärt
 
-        // S_LILLY_SHOW_BOX_NAME
+        // S_LILLY_SHOW_BOX_NAME 
         settings.emplace(st, "S_LILLY_SHOW_BOX_NAME", "Soll der Boxname angezeigt werden?", eSetting_Type.IS_SWITCH, "true");
 
         // besondere Lilly-Einstellungen

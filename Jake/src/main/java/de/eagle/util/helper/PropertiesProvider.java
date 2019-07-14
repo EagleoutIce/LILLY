@@ -9,8 +9,6 @@ import de.eagle.lillyjakeframework.installer.LinuxInstaller;
 import de.eagle.lillyjakeframework.installer.MacOSInstaller;
 import de.eagle.lillyjakeframework.installer.WindowsInstaller;
 
-import javax.swing.*;
-
 /**
  * Liefert verschiedene System-Spezifische Einstellungen
  */

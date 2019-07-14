@@ -3,6 +3,7 @@ package de.eagle.lillyjakeframework.installer;
 import java.util.Iterator;
 
 import de.eagle.util.datatypes.FunctionCollector;
+import de.eagle.util.io.JakeWriter;
 
 /**
  * Legt fest, was ein Installer alles können muss
@@ -57,6 +58,15 @@ public abstract class AutoInstaller implements Iterable<String> {
      * @return Führt solange nextStep aus, bis die Rückgabe null ist
      */
     public abstract boolean automatedInstall();
+
+    public boolean uninstall(){
+        if(canUninstall()) {
+            throw new UnsupportedOperationException("Auf diesem Betriebssystem kann man wohl noch nicht deinastallieren");
+        } else {
+            JakeWriter.err.println("ERROR: Anscheinend kann man Jake nicht deinstallieren, bitte erstelle ein Issue: https://github.com/EagleoutIce/LILLY/issues/new/choose");
+            return false;
+        }
+    }
 
     public boolean canUninstall() {
         return true;

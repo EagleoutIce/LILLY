@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.17)  14 JUL 2019 05:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.17)  14 JUL 2019 15:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,20 +6,19 @@ entering extended mode
 (./test_box.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
-Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/bk10.clo
-File: bk10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
-\c@chapter=\count80
-\c@section=\count81
-\c@subsection=\count82
-\c@subsubsection=\count83
-\c@paragraph=\count84
-\c@subparagraph=\count85
-\c@figure=\count86
-\c@table=\count87
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
@@ -47,18 +46,18 @@ Package: expl3 2018/02/21 L3 programming layer (loader)
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
 Package: expl3 2018/02/21 L3 programming layer (code)
-\c_max_int=\count88
-\l_tmpa_int=\count89
-\l_tmpb_int=\count90
-\g_tmpa_int=\count91
-\g_tmpb_int=\count92
-\g__intarray_font_int=\count93
-\g__prg_map_int=\count94
-\c_log_iow=\count95
-\l_iow_line_count_int=\count96
-\l__iow_line_target_int=\count97
-\l__iow_one_indent_int=\count98
-\l__iow_indent_int=\count99
+\c_max_int=\count87
+\l_tmpa_int=\count88
+\l_tmpb_int=\count89
+\g_tmpa_int=\count90
+\g_tmpb_int=\count91
+\g__intarray_font_int=\count92
+\g__prg_map_int=\count93
+\c_log_iow=\count94
+\l_iow_line_count_int=\count95
+\l__iow_line_target_int=\count96
+\l__iow_one_indent_int=\count97
+\l__iow_indent_int=\count98
 \c_zero_dim=\dimen103
 \c_max_dim=\dimen104
 \l_tmpa_dim=\dimen105
@@ -77,77 +76,77 @@ Package: expl3 2018/02/21 L3 programming layer (code)
 \l_tmpb_muskip=\muskip13
 \g_tmpa_muskip=\muskip14
 \g_tmpb_muskip=\muskip15
-\l_keys_choice_int=\count100
-\c__fp_leading_shift_int=\count101
-\c__fp_middle_shift_int=\count102
-\c__fp_trailing_shift_int=\count103
-\c__fp_big_leading_shift_int=\count104
-\c__fp_big_middle_shift_int=\count105
-\c__fp_big_trailing_shift_int=\count106
-\c__fp_Bigg_leading_shift_int=\count107
-\c__fp_Bigg_middle_shift_int=\count108
-\c__fp_Bigg_trailing_shift_int=\count109
-\c__fp_rand_size_int=\count110
-\c__fp_rand_four_int=\count111
-\c__fp_rand_eight_int=\count112
-\l__sort_length_int=\count113
-\l__sort_min_int=\count114
-\l__sort_top_int=\count115
-\l__sort_max_int=\count116
-\l__sort_true_max_int=\count117
-\l__sort_block_int=\count118
-\l__sort_begin_int=\count119
-\l__sort_end_int=\count120
-\l__sort_A_int=\count121
-\l__sort_B_int=\count122
-\l__sort_C_int=\count123
-\l__tl_build_start_index_int=\count124
-\l__tl_build_index_int=\count125
-\l__tl_analysis_normal_int=\count126
-\l__tl_analysis_index_int=\count127
-\l__tl_analysis_nesting_int=\count128
-\l__tl_analysis_type_int=\count129
-\l__regex_internal_a_int=\count130
-\l__regex_internal_b_int=\count131
-\l__regex_internal_c_int=\count132
-\l__regex_balance_int=\count133
-\l__regex_group_level_int=\count134
-\l__regex_mode_int=\count135
-\c__regex_cs_in_class_mode_int=\count136
-\c__regex_cs_mode_int=\count137
-\l__regex_catcodes_int=\count138
-\l__regex_default_catcodes_int=\count139
-\c__regex_catcode_D_int=\count140
-\c__regex_catcode_S_int=\count141
-\c__regex_catcode_L_int=\count142
-\c__regex_catcode_O_int=\count143
-\c__regex_catcode_A_int=\count144
-\c__regex_all_catcodes_int=\count145
-\l__regex_show_lines_int=\count146
-\l__regex_min_state_int=\count147
-\l__regex_max_state_int=\count148
-\l__regex_left_state_int=\count149
-\l__regex_right_state_int=\count150
-\l__regex_capturing_group_int=\count151
-\l__regex_min_pos_int=\count152
-\l__regex_max_pos_int=\count153
-\l__regex_curr_pos_int=\count154
-\l__regex_start_pos_int=\count155
-\l__regex_success_pos_int=\count156
-\l__regex_curr_char_int=\count157
-\l__regex_curr_catcode_int=\count158
-\l__regex_last_char_int=\count159
-\l__regex_case_changed_char_int=\count160
-\l__regex_curr_state_int=\count161
-\l__regex_step_int=\count162
-\l__regex_min_active_int=\count163
-\l__regex_max_active_int=\count164
-\l__regex_replacement_csnames_int=\count165
-\l__regex_match_count_int=\count166
-\l__regex_min_submatch_int=\count167
-\l__regex_submatch_int=\count168
-\l__regex_zeroth_submatch_int=\count169
-\g__regex_trace_regex_int=\count170
+\l_keys_choice_int=\count99
+\c__fp_leading_shift_int=\count100
+\c__fp_middle_shift_int=\count101
+\c__fp_trailing_shift_int=\count102
+\c__fp_big_leading_shift_int=\count103
+\c__fp_big_middle_shift_int=\count104
+\c__fp_big_trailing_shift_int=\count105
+\c__fp_Bigg_leading_shift_int=\count106
+\c__fp_Bigg_middle_shift_int=\count107
+\c__fp_Bigg_trailing_shift_int=\count108
+\c__fp_rand_size_int=\count109
+\c__fp_rand_four_int=\count110
+\c__fp_rand_eight_int=\count111
+\l__sort_length_int=\count112
+\l__sort_min_int=\count113
+\l__sort_top_int=\count114
+\l__sort_max_int=\count115
+\l__sort_true_max_int=\count116
+\l__sort_block_int=\count117
+\l__sort_begin_int=\count118
+\l__sort_end_int=\count119
+\l__sort_A_int=\count120
+\l__sort_B_int=\count121
+\l__sort_C_int=\count122
+\l__tl_build_start_index_int=\count123
+\l__tl_build_index_int=\count124
+\l__tl_analysis_normal_int=\count125
+\l__tl_analysis_index_int=\count126
+\l__tl_analysis_nesting_int=\count127
+\l__tl_analysis_type_int=\count128
+\l__regex_internal_a_int=\count129
+\l__regex_internal_b_int=\count130
+\l__regex_internal_c_int=\count131
+\l__regex_balance_int=\count132
+\l__regex_group_level_int=\count133
+\l__regex_mode_int=\count134
+\c__regex_cs_in_class_mode_int=\count135
+\c__regex_cs_mode_int=\count136
+\l__regex_catcodes_int=\count137
+\l__regex_default_catcodes_int=\count138
+\c__regex_catcode_D_int=\count139
+\c__regex_catcode_S_int=\count140
+\c__regex_catcode_L_int=\count141
+\c__regex_catcode_O_int=\count142
+\c__regex_catcode_A_int=\count143
+\c__regex_all_catcodes_int=\count144
+\l__regex_show_lines_int=\count145
+\l__regex_min_state_int=\count146
+\l__regex_max_state_int=\count147
+\l__regex_left_state_int=\count148
+\l__regex_right_state_int=\count149
+\l__regex_capturing_group_int=\count150
+\l__regex_min_pos_int=\count151
+\l__regex_max_pos_int=\count152
+\l__regex_curr_pos_int=\count153
+\l__regex_start_pos_int=\count154
+\l__regex_success_pos_int=\count155
+\l__regex_curr_char_int=\count156
+\l__regex_curr_catcode_int=\count157
+\l__regex_last_char_int=\count158
+\l__regex_case_changed_char_int=\count159
+\l__regex_curr_state_int=\count160
+\l__regex_step_int=\count161
+\l__regex_min_active_int=\count162
+\l__regex_max_active_int=\count163
+\l__regex_replacement_csnames_int=\count164
+\l__regex_match_count_int=\count165
+\l__regex_min_submatch_int=\count166
+\l__regex_submatch_int=\count167
+\l__regex_zeroth_submatch_int=\count168
+\g__regex_trace_regex_int=\count169
 \c_empty_box=\box26
 \l_tmpa_box=\box27
 \l_tmpb_box=\box28
@@ -191,7 +190,7 @@ Package: expl3 2018/02/21 L3 programming layer (code)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 File: l3pdfmode.def 2017/03/18 v L3 Experimental driver: PDF mode
-\l__driver_color_stack_int=\count171
+\l__driver_color_stack_int=\count170
 \l__driver_tmp_box=\box41
 )))
 Class Lilly Info: LILLYxDemandPackage: Weil ich Faul bin braucht LILLY dieses P
@@ -360,10 +359,10 @@ ex
 \pgf@yc=\dimen145
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count172
-\c@pgf@countb=\count173
-\c@pgf@countc=\count174
-\c@pgf@countd=\count175
+\c@pgf@counta=\count171
+\c@pgf@countb=\count172
+\c@pgf@countc=\count173
+\c@pgf@countd=\count174
 \t@pgf@toka=\toks19
 \t@pgf@tokb=\toks20
 \t@pgf@tokc=\toks21
@@ -382,8 +381,8 @@ File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
 tex
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count176
-\pgfsyssoftpath@bigbuffer@items=\count177
+\pgfsyssoftpath@smallbuffer@items=\count175
+\pgfsyssoftpath@bigbuffer@items=\count176
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
 tex
@@ -397,7 +396,7 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen146
-\pgfmath@count=\count178
+\pgfmath@count=\count177
 \pgfmath@box=\box43
 \pgfmath@toks=\toks22
 \pgfmath@stack@operand=\toks23
@@ -421,7 +420,7 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
 thmetics.code.tex)))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count179
+\c@pgfmathroundto@lastzeros=\count178
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
 x
@@ -459,7 +458,7 @@ File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
 \pgfpic=\box44
 \pgf@hbox=\box45
 \pgf@layerbox@main=\box46
-\pgf@picture@serial@count=\count180
+\pgf@picture@serial@count=\count179
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
 ode.tex
@@ -492,7 +491,7 @@ File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
 \pgf@max=\dimen170
-\pgf@sys@shading@range@num=\count181
+\pgf@sys@shading@range@num=\count180
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
@@ -536,50 +535,195 @@ LE.tex)
 .tex)
 (/home/eagle/texmf/tex/latex/Lilly/source/Data/Colors/Extensions/_LILLY_COLOR_E
 XTENSION_VOID.tex))
-Class Lilly Info: LILLYxDemandPackage: Für Listen und so  on input line 14.
+(/home/eagle/texmf/tex/latex/Lilly/source/Controllers/LILLYxCONTROLLERxLINK.sty
+Package: LILLYxCONTROLLERxLINK 2019/07/14 Stellt die (Hyper-)Link-Erweiterungen
+ fuer LILLY zur Verfuegung
+Class Lilly Info: LILLYxDemandPackage: Für tolle Verlinkungen und einen tollen
+ Überblick  on input line 15.
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
 
-(/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package hobsub Info: Skipping package `etexcmds' (already loaded).
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen173
+\Hy@linkcounter=\count181
+\Hy@pagecounter=\count182
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count183
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4509.
+Package hyperref Info: Link nesting OFF on input line 4514.
+Package hyperref Info: Hyper index ON on input line 4517.
+Package hyperref Info: Plain pages OFF on input line 4524.
+Package hyperref Info: Backreferencing OFF on input line 4529.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4762.
+\c@Hy@tempcnt=\count184
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5115.
+\XeTeXLinkMargin=\dimen174
+\Fld@menulength=\count185
+\Field@Width=\dimen175
+\Fld@charsize=\dimen176
+Package hyperref Info: Hyper figures OFF on input line 6369.
+Package hyperref Info: Link nesting OFF on input line 6374.
+Package hyperref Info: Hyper index ON on input line 6377.
+Package hyperref Info: backreferencing OFF on input line 6384.
+Package hyperref Info: Link coloring OFF on input line 6389.
+Package hyperref Info: Link coloring with OCG OFF on input line 6394.
+Package hyperref Info: PDF/A mode OFF on input line 6399.
+LaTeX Info: Redefining \ref on input line 6439.
+LaTeX Info: Redefining \pageref on input line 6443.
+\Hy@abspage=\count186
+\c@Item=\count187
+\c@Hfootnote=\count188
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
+\Fld@listcount=\count189
+\c@bookmark@seq@number=\count190
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip49
+)
+Class Lilly Info: LILLYxDemandPackage: Damit es auch toll und einfach geht mehr
+ere optionale Argumente zu verwalten!  on input line 20.
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2018/02/21 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count191
+\g__xparse_grabber_int=\count192
+\l__xparse_m_args_int=\count193
+\l__xparse_mandatory_args_int=\count194
+\l__xparse_v_nesting_int=\count195
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 46.
+
+
+Package hyperref Warning: Option `hyperfootnotes' has already been used,
+(hyperref)                setting the option has no effect on input line 46.
+
+Package hyperref Info: Option `hypertexnames' set `true' on input line 46.
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 46.
+
+Package hyperref Info: Option `unicode' set `true' on input line 46.
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `pdftoolbar' set `false' on input line 46.
+Package hyperref Info: Option `pdfmenubar' set `false' on input line 46.
+Package hyperref Info: Option `pdffitwindow' set `true' on input line 46.
+
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 46.
+
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \silentHmark with sig. ' O{Linkname} m O{black} ' on line
+. 55.
+.................................................
+)
+Class Lilly Info: LILLYxDemandPackage: Für Listen und so  on input line 14.
+ (/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
-Package tocloft Info: The document has chapter divisions on input line 51.
-\cftparskip=\skip49
-\cftbeforetoctitleskip=\skip50
-\cftaftertoctitleskip=\skip51
-\cftbeforepartskip=\skip52
-\cftpartnumwidth=\skip53
-\cftpartindent=\skip54
-\cftbeforechapskip=\skip55
-\cftchapindent=\skip56
-\cftchapnumwidth=\skip57
-\cftbeforesecskip=\skip58
-\cftsecindent=\skip59
-\cftsecnumwidth=\skip60
-\cftbeforesubsecskip=\skip61
-\cftsubsecindent=\skip62
-\cftsubsecnumwidth=\skip63
-\cftbeforesubsubsecskip=\skip64
-\cftsubsubsecindent=\skip65
-\cftsubsubsecnumwidth=\skip66
-\cftbeforeparaskip=\skip67
-\cftparaindent=\skip68
-\cftparanumwidth=\skip69
-\cftbeforesubparaskip=\skip70
-\cftsubparaindent=\skip71
-\cftsubparanumwidth=\skip72
-\cftbeforeloftitleskip=\skip73
-\cftafterloftitleskip=\skip74
-\cftbeforefigskip=\skip75
-\cftfigindent=\skip76
-\cftfignumwidth=\skip77
-\c@lofdepth=\count182
-\c@lotdepth=\count183
-\cftbeforelottitleskip=\skip78
-\cftafterlottitleskip=\skip79
-\cftbeforetabskip=\skip80
-\cfttabindent=\skip81
-\cfttabnumwidth=\skip82
+Package tocloft Info: The document has section divisions on input line 51.
+\cftparskip=\skip50
+\cftbeforetoctitleskip=\skip51
+\cftaftertoctitleskip=\skip52
+\cftbeforepartskip=\skip53
+\cftpartnumwidth=\skip54
+\cftpartindent=\skip55
+\cftbeforesecskip=\skip56
+\cftsecindent=\skip57
+\cftsecnumwidth=\skip58
+\cftbeforesubsecskip=\skip59
+\cftsubsecindent=\skip60
+\cftsubsecnumwidth=\skip61
+\cftbeforesubsubsecskip=\skip62
+\cftsubsubsecindent=\skip63
+\cftsubsubsecnumwidth=\skip64
+\cftbeforeparaskip=\skip65
+\cftparaindent=\skip66
+\cftparanumwidth=\skip67
+\cftbeforesubparaskip=\skip68
+\cftsubparaindent=\skip69
+\cftsubparanumwidth=\skip70
+\cftbeforeloftitleskip=\skip71
+\cftafterloftitleskip=\skip72
+\cftbeforefigskip=\skip73
+\cftfigindent=\skip74
+\cftfignumwidth=\skip75
+\c@lofdepth=\count196
+\c@lotdepth=\count197
+\cftbeforelottitleskip=\skip76
+\cftafterlottitleskip=\skip77
+\cftbeforetabskip=\skip78
+\cfttabindent=\skip79
+\cfttabnumwidth=\skip80
 )
 Class Lilly Info: LILLYxDemandPackage: Fuer all die schoenen boexlis:D  on inpu
-t line 26.
+t line 20.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2018/01/12 version 4.12 text color boxes
@@ -600,15 +744,15 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count184
+\etb@tempcnta=\count198
 )
 \tcb@titlebox=\box49
 \tcb@upperbox=\box50
 \tcb@lowerbox=\box51
 \tcb@phantombox=\box52
-\c@tcbbreakpart=\count185
-\c@tcblayer=\count186
-\tcolorbox@number=\count187
+\c@tcbbreakpart=\count199
+\c@tcblayer=\count266
+\tcolorbox@number=\count267
 \tcb@temp=\box53
 \tcb@temp=\box54
 \tcb@temp=\box55
@@ -628,8 +772,8 @@ Library (tcolorbox): 'tcbskins.code.tex' version '4.12'
 Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen173
-\pgffor@skip=\dimen174
+\pgffor@iter=\dimen177
+\pgffor@skip=\dimen178
 \pgffor@stack=\toks28
 \pgffor@toks=\toks29
 ))
@@ -639,31 +783,31 @@ Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
 .code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count188
-\pgfplotmarksize=\dimen175
+\pgf@plot@mark@count=\count268
+\pgfplotmarksize=\dimen179
 )
-\tikz@lastx=\dimen176
-\tikz@lasty=\dimen177
-\tikz@lastxsaved=\dimen178
-\tikz@lastysaved=\dimen179
-\tikzleveldistance=\dimen180
-\tikzsiblingdistance=\dimen181
+\tikz@lastx=\dimen180
+\tikz@lasty=\dimen181
+\tikz@lastxsaved=\dimen182
+\tikz@lastysaved=\dimen183
+\tikzleveldistance=\dimen184
+\tikzsiblingdistance=\dimen185
 \tikz@figbox=\box57
 \tikz@figbox@bg=\box58
 \tikz@tempbox=\box59
 \tikz@tempbox@bg=\box60
-\tikztreelevel=\count189
-\tikznumberofchildren=\count190
-\tikznumberofcurrentchild=\count191
-\tikz@fig@count=\count192
+\tikztreelevel=\count269
+\tikznumberofchildren=\count270
+\tikznumberofcurrentchild=\count271
+\tikz@fig@count=\count272
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count193
-\pgfmatrixcurrentcolumn=\count194
-\pgf@matrix@numberofcolumns=\count195
+\pgfmatrixcurrentrow=\count273
+\pgfmatrixcurrentcolumn=\count274
+\pgf@matrix@numberofcolumns=\count275
 )
-\tikz@expandcount=\count196
+\tikz@expandcount=\count276
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex
@@ -675,9 +819,9 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '4.12'
 )) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '4.12'
-\c@tcbrastercolumn=\count197
-\c@tcbrasterrow=\count198
-\c@tcbraster=\count199
+\c@tcbrastercolumn=\count277
+\c@tcbrasterrow=\count278
+\c@tcbraster=\count279
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
 Library (tcolorbox): 'tcbbreakable.code.tex' version '4.12'
 \tcb@testbox=\box62
@@ -689,7 +833,7 @@ Library (tcolorbox): 'tcbhooks.code.tex' version '4.12'
 Library (tcolorbox): 'tcbtheorems.code.tex' version '4.12'
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2017/09/02 v2.17a AMS math features
-\@mathmargin=\skip83
+\@mathmargin=\skip81
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -698,69 +842,61 @@ Package: amstext 2000/06/29 v2.01 AMS text
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks30
-\ex@=\dimen182
+\ex@=\dimen186
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen183
+\pmbraise@=\dimen187
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count266
+\inf@bad=\count280
 LaTeX Info: Redefining \frac on input line 213.
-\uproot@=\count267
-\leftroot@=\count268
+\uproot@=\count281
+\leftroot@=\count282
 LaTeX Info: Redefining \overline on input line 375.
-\classnum@=\count269
-\DOTSCASE@=\count270
+\classnum@=\count283
+\DOTSCASE@=\count284
 LaTeX Info: Redefining \ldots on input line 472.
 LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box65
 \strutbox@=\box66
-\big@size=\dimen184
+\big@size=\dimen188
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
-\macc@depth=\count271
-\c@MaxMatrixCols=\count272
-\dotsspace@=\muskip16
-\c@parentequation=\count273
-\dspbrk@lvl=\count274
+\macc@depth=\count285
+\c@MaxMatrixCols=\count286
+\dotsspace@=\muskip17
+\c@parentequation=\count287
+\dspbrk@lvl=\count288
 \tag@help=\toks31
-\row@=\count275
-\column@=\count276
-\maxfields@=\count277
+\row@=\count289
+\column@=\count290
+\maxfields@=\count291
 \andhelp@=\toks32
-\eqnshift@=\dimen185
-\alignsep@=\dimen186
-\tagshift@=\dimen187
-\tagwidth@=\dimen188
-\totwidth@=\dimen189
-\lineht@=\dimen190
+\eqnshift@=\dimen189
+\alignsep@=\dimen190
+\tagshift@=\dimen191
+\tagwidth@=\dimen192
+\totwidth@=\dimen193
+\lineht@=\dimen194
 \@envbody=\toks33
-\multlinegap=\skip84
-\multlinetaggap=\skip85
+\multlinegap=\skip82
+\multlinetaggap=\skip83
 \mathdisplay@stack=\toks34
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '4.12'
-\tcbfitdim=\dimen191
-\tcb@lowerfitdim=\dimen192
-\tcb@upperfitdim=\dimen193
-\tcb@cur@hbadness=\count278
+\tcbfitdim=\dimen195
+\tcb@lowerfitdim=\dimen196
+\tcb@upperfitdim=\dimen197
+\tcb@cur@hbadness=\count292
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbxparse.code.tex
 Library (tcolorbox): 'tcbxparse.code.tex' version '4.12'
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2018/02/21 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count279
-\g__xparse_grabber_int=\count280
-\l__xparse_m_args_int=\count281
-\l__xparse_mandatory_args_int=\count282
-\l__xparse_v_nesting_int=\count283
-)
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
@@ -772,129 +908,36 @@ Package: xparse 2018/02/21 L3 Experimental document command parser
 . Defining command \tcbsidebyside with sig. ' +O{} +m +m ' on line 280.
 .................................................
 ))
-Class Lilly Info: LILLYxDemandPackage: Fuer bookmarks eben  on input line 37.
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bookmark.sty
+Class Lilly Info: LILLYxDemandPackage: Fuer bookmarks eben  on input line 32.
+ (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bookmark.sty
 Package: bookmark 2016/05/17 v1.26 PDF bookmarks (HO)
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdfescape.sty
-Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
-
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
-Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package hobsub Info: Skipping package `ltxcmds' (already loaded).
-Package hobsub Info: Skipping package `ifluatex' (already loaded).
-Package hobsub Info: Skipping package `ifvtex' (already loaded).
-Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
-Package hobsub Info: Skipping package `ifpdf' (already loaded).
-Package hobsub Info: Skipping package `etexcmds' (already loaded).
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
-Package hobsub Info: Skipping package `pdfescape' (already loaded).
-Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
-)
-Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
-Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
-)
-Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
-Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
-Package: xcolor-patch 2016/05/16 xcolor patch
-Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
-Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
-Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
-Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
-Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-)
-\@linkdim=\dimen194
-\Hy@linkcounter=\count284
-\Hy@pagecounter=\count285
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
-)
-\Hy@SavedSpaceFactor=\count286
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
-File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
-)
-Package hyperref Info: Hyper figures OFF on input line 4509.
-Package hyperref Info: Link nesting OFF on input line 4514.
-Package hyperref Info: Hyper index ON on input line 4517.
-Package hyperref Info: Plain pages OFF on input line 4524.
-Package hyperref Info: Backreferencing OFF on input line 4529.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4762.
-\c@Hy@tempcnt=\count287
-
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip17
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-LaTeX Info: Redefining \url on input line 5115.
-\XeTeXLinkMargin=\dimen195
-\Fld@menulength=\count288
-\Field@Width=\dimen196
-\Fld@charsize=\dimen197
-Package hyperref Info: Hyper figures OFF on input line 6369.
-Package hyperref Info: Link nesting OFF on input line 6374.
-Package hyperref Info: Hyper index ON on input line 6377.
-Package hyperref Info: backreferencing OFF on input line 6384.
-Package hyperref Info: Link coloring OFF on input line 6389.
-Package hyperref Info: Link coloring with OCG OFF on input line 6394.
-Package hyperref Info: PDF/A mode OFF on input line 6399.
-LaTeX Info: Redefining \ref on input line 6439.
-LaTeX Info: Redefining \pageref on input line 6443.
-\Hy@abspage=\count289
-\c@Item=\count290
-\c@Hfootnote=\count291
-)
-Package hyperref Info: Driver (autodetected): hpdftex.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
-\Fld@listcount=\count292
-\c@bookmark@seq@number=\count293
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
-Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-82.
-)
-\Hy@SectionHShift=\skip86
-)
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bkm-pdftex.def
 File: bkm-pdftex.def 2016/05/17 v1.26 bookmark driver for pdfTeX (HO)
-\BKM@id=\count294
+\BKM@id=\count293
 ))
-\c@ctr_TSK=\count295
-\c@ctr_EXE=\count296
+Class Lilly Info: LILLYxDemandPackage: Zur Berechnung der richtigen Masse  on i
+nput line 38.
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count294
+\calc@Bcount=\count295
+\calc@Adimen=\dimen198
+\calc@Bdimen=\dimen199
+\calc@Askip=\skip84
+\calc@Bskip=\skip85
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count296
+\calc@Cskip=\skip86
+)
+\c@ctr_TSK=\count297
+\c@ctr_EXE=\count298
 
 (/home/eagle/texmf/tex/latex/Lilly/source/Data/POIs/_LILLY_BOXES_DEFAULT(init).
 tex
-\c@tcb@cnt@LILLYxBOXxDefinition=\count297
+\c@tcb@cnt@LILLYxBOXxDefinition=\count299
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
@@ -907,42 +950,42 @@ tex
 . Defining environment 'LILLYxBOXxDefinition*' with sig. ' O{} O{Definition
 . \thetcbcounter ~} O{drop fuzzy shadow} ' on line 27.
 .................................................
-\c@tcb@cnt@LILLYxBOXxBeispiel=\count298
+\c@tcb@cnt@LILLYxBOXxBeispiel=\count300
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'LILLYxBOXxBeispiel' with sig. ' O{} O{Beispiel
 . \thetcbcounter ~} O{} ' on line 41.
 .................................................
-\c@tcb@cnt@LILLYxBOXxBemerkung=\count299
+\c@tcb@cnt@LILLYxBOXxBemerkung=\count301
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'LILLYxBOXxBemerkung' with sig. ' O{} O{Bemerkung
 . \thetcbcounter ~} O{} ' on line 55.
 .................................................
-\c@tcb@cnt@LILLYxBOXxSatz=\count300
+\c@tcb@cnt@LILLYxBOXxSatz=\count302
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'LILLYxBOXxSatz' with sig. ' O{} O{Satz \thetcbcounter
 . ~} O{} ' on line 69.
 .................................................
-\c@tcb@cnt@LILLYxBOXxBeweis=\count301
+\c@tcb@cnt@LILLYxBOXxBeweis=\count303
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'LILLYxBOXxBeweis' with sig. ' O{} O{Beweis
 . \thetcbcounter ~} O{} ' on line 83.
 .................................................
-\c@tcb@cnt@LILLYxBOXxLemma=\count302
+\c@tcb@cnt@LILLYxBOXxLemma=\count304
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'LILLYxBOXxLemma' with sig. ' O{} O{Lemma
 . \thetcbcounter ~} O{} ' on line 97.
 .................................................
-\c@tcb@cnt@LILLYxBOXxZusammenfassung=\count303
+\c@tcb@cnt@LILLYxBOXxZusammenfassung=\count305
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
@@ -1015,180 +1058,182 @@ Package: relsize 2013/03/29 ver 4.1
 . O{Zusammenfassung \thetcbcounter ~} O{} ' on line 70.
 .................................................
 )
-\c@DEFINITIONS=\count304
+\c@DEFINITIONS=\count306
 \cftbeforeDEFINITIONSskip=\skip87
 \cftDEFINITIONSindent=\skip88
 \cftDEFINITIONSnumwidth=\skip89
-\c@DEFSdepth=\count305
+\c@DEFSdepth=\count307
 \cftbeforeDEFStitleskip=\skip90
 \cftafterDEFStitleskip=\skip91
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'definition' with sig. 'O{}
-. O{LillyxBOXxDesignxDefinition}' on line 105.
+. O{LillyxBOXxDesignxDefinition}' on line 119.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'definition*' with sig. 'O{} O{}' on line 108.
+. Defining environment 'definition*' with sig. 'O{} O{}' on line 122.
 .................................................
-\c@BEMERKUNGEN=\count306
+\c@BEMERKUNGEN=\count308
 \cftbeforeBEMERKUNGENskip=\skip92
 \cftBEMERKUNGENindent=\skip93
 \cftBEMERKUNGENnumwidth=\skip94
-\c@BEMSdepth=\count307
+\c@BEMSdepth=\count309
 \cftbeforeBEMStitleskip=\skip95
 \cftafterBEMStitleskip=\skip96
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'bemerkung' with sig. 'O{}
-. O{LillyxBOXxDesignxBemerkung}' on line 139.
+. O{LillyxBOXxDesignxBemerkung}' on line 153.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'bemerkung*' with sig. 'O{}
-. O{LillyxBOXxDesignxBemerkung}' on line 140.
+. O{LillyxBOXxDesignxBemerkung}' on line 154.
 .................................................
-\c@BEISPIELE=\count308
+\c@BEISPIELE=\count310
 \cftbeforeBEISPIELEskip=\skip97
 \cftBEISPIELEindent=\skip98
 \cftBEISPIELEnumwidth=\skip99
-\c@BEISdepth=\count309
+\c@BEISdepth=\count311
 \cftbeforeBEIStitleskip=\skip100
 \cftafterBEIStitleskip=\skip101
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'beispiel' with sig. 'O{} O{LillyxBOXxDesignxBeispiel}'
-. on line 164.
+. on line 178.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'beispiel*' with sig. 'O{}
-. O{LillyxBOXxDesignxBeispiel}' on line 165.
+. O{LillyxBOXxDesignxBeispiel}' on line 179.
 .................................................
-\c@SATZ=\count310
+\c@SATZ=\count312
 \cftbeforeSATZskip=\skip102
 \cftSATZindent=\skip103
 \cftSATZnumwidth=\skip104
-\c@SATZEdepth=\count311
+\c@SATZEdepth=\count313
 \cftbeforeSATZEtitleskip=\skip105
 \cftafterSATZEtitleskip=\skip106
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'satz' with sig. 'O{} O{}' on line 191.
+. Defining environment 'satz' with sig. 'O{} O{}' on line 205.
 .................................................
-\c@BEWEISE=\count312
+\c@BEWEISE=\count314
 \cftbeforeBEWEISEskip=\skip107
 \cftBEWEISEindent=\skip108
 \cftBEWEISEnumwidth=\skip109
-\c@BEWSdepth=\count313
+\c@BEWSdepth=\count315
 \cftbeforeBEWStitleskip=\skip110
 \cftafterBEWStitleskip=\skip111
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'beweis' with sig. 'O{} O{LillyxBOXxDesignxBeweis}' on
-. line 213.
+. line 227.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
 . Defining environment 'beweis*' with sig. 'O{} O{LillyxBOXxDesignxBeweis}' on
-. line 214.
+. line 228.
 .................................................
-\c@LEMMAS=\count314
+\c@LEMMAS=\count316
 \cftbeforeLEMMASskip=\skip112
 \cftLEMMASindent=\skip113
 \cftLEMMASnumwidth=\skip114
-\c@LEMMEdepth=\count315
+\c@LEMMEdepth=\count317
 \cftbeforeLEMMEtitleskip=\skip115
 \cftafterLEMMEtitleskip=\skip116
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'lemma' with sig. 'O{} O{}' on line 240.
+. Defining environment 'lemma' with sig. 'O{} O{}' on line 254.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'lemma*' with sig. 'O{} O{}' on line 243.
+. Defining environment 'lemma*' with sig. 'O{} O{}' on line 257.
 .................................................
-\c@ZSMS=\count316
+\c@ZSMS=\count318
 \cftbeforeZSMSskip=\skip117
 \cftZSMSindent=\skip118
 \cftZSMSnumwidth=\skip119
-\c@ZSMdepth=\count317
+\c@ZSMdepth=\count319
 \cftbeforeZSMtitleskip=\skip120
 \cftafterZSMtitleskip=\skip121
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'zusammenfassung' with sig. 'O{} O{}' on line 268.
+. Defining environment 'zusammenfassung' with sig. 'O{} O{}' on line 282.
 .................................................
-\c@TSKS=\count318
+\c@TSKS=\count320
 \cftbeforeTSKSskip=\skip122
 \cftTSKSindent=\skip123
 \cftTSKSnumwidth=\skip124
-\c@TSKdepth=\count319
+\c@TSKdepth=\count321
 \cftbeforeTSKtitleskip=\skip125
 \cftafterTSKtitleskip=\skip126
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'aufgabe' with sig. 'O{} O{42} O{}' on line 313.
+. Defining environment 'aufgabe' with sig. 'O{} O{42} O{}' on line 327.
 .................................................
-\c@UBS=\count320
+\c@UBS=\count322
 \cftbeforeUBSskip=\skip127
 \cftUBSindent=\skip128
 \cftUBSnumwidth=\skip129
-\c@UBdepth=\count321
+\c@UBdepth=\count323
 \cftbeforeUBtitleskip=\skip130
 \cftafterUBtitleskip=\skip131
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'uebungsblatt' with sig. 'O{} O{42}' on line 324.
+. Defining environment 'uebungsblatt' with sig. 'O{} O{42}' on line 338.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'uebungsblatt*' with sig. 'O{} O{42}' on line 326.
+. Defining environment 'uebungsblatt*' with sig. 'O{} O{42}' on line 340.
 .................................................
 ) (./test_box.aux)
 \openout1 = `test_box.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count322
-\scratchdimen=\dimen198
+\scratchcounter=\count324
+\scratchdimen=\dimen256
 \scratchbox=\box67
-\nofMPsegments=\count323
-\nofMParguments=\count324
+\nofMPsegments=\count325
+\nofMParguments=\count326
 \everyMPshowfont=\toks35
-\MPscratchCnt=\count325
-\MPscratchDim=\dimen199
-\MPnumerator=\count326
-\makeMPintoPDFobject=\count327
+\MPscratchCnt=\count327
+\MPscratchDim=\dimen257
+\MPnumerator=\count328
+\makeMPintoPDFobject=\count329
 \everyMPtoPDFconversion=\toks36
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -1209,7 +1254,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box68
-Package hyperref Info: Link coloring OFF on input line 6.
+Package hyperref Info: Link coloring ON on input line 4.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1217,41 +1262,36 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count328
+\c@section@level=\count330
 )
-LaTeX Info: Redefining \ref on input line 6.
-LaTeX Info: Redefining \pageref on input line 6.
-LaTeX Info: Redefining \nameref on input line 6.
+LaTeX Info: Redefining \ref on input line 4.
+LaTeX Info: Redefining \pageref on input line 4.
+LaTeX Info: Redefining \nameref on input line 4.
 
+[1
 
-! LaTeX Error: \LILLYxLINKSxCurrentColor undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.8 \begin{definition}[wau]
-                           
-? 
-! Undefined control sequence.
-<argument> \linewidth -\widthof 
-                                {Definition \thetcbcounter ~}-1.75em
-l.8 \begin{definition}[wau]
-                           
-? X
- 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 8.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 8.
+ (./test_box.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 8.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 8.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 8.
+ ) 
 Here is how much of TeX's memory you used:
- 29047 strings out of 492982
- 596043 string characters out of 32384896
- 670276 words of memory out of 8000000
- 32230 multiletter control sequences out of 15000+600000
+ 32496 strings out of 492982
+ 640355 string characters out of 32384896
+ 696247 words of memory out of 8000000
+ 35668 multiletter control sequences out of 15000+600000
  533989 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 65i,5n,104p,10430b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
-No pages of output.
+ 65i,7n,104p,10430b,996s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on test_box.pdf (1 page, 21248 bytes).
 PDF statistics:
- 6 PDF objects out of 1000 (max. 8388607)
- 1 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 27 PDF objects out of 1000 (max. 8388607)
+ 21 compressed objects within 1 object stream
+ 5 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

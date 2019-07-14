@@ -4,13 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
 
 import de.eagle.lillyjakeframework.core.CoreFunctions;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
-import de.eagle.util.datatypes.FunctionDeskriptor;
-import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.enumerations.eSetting_Type;
 
@@ -36,7 +33,7 @@ public class Autocomplete {
             if(!fd.getKey().startsWith(String.valueOf(Definitions.HIDDEN_ARG))) {
                 for (String s : inside_here) {
                     for(String split : s.split("\\s+")){
-                        if(fd.getKey().equals(split) || split.endsWith(".tex") || split.endsWith(".conf"))
+                        if(fd.getKey().equals(split) || split.endsWith(".tex") || split.endsWith(".conf") || split.equals("REI")|| split.equals("DEI") || split.equals("GUI"))
                             return true;
                         }
                 }

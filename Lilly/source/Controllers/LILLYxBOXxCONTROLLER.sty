@@ -5,7 +5,7 @@
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxBOOLEAN}
 \RequirePackage{LILLYxCOLOR}
-
+\RequirePackage{LILLYxCONTROLLERxLINK}
 
 %% https://www.ctan.org/pkg/tocloft
 \LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
@@ -13,37 +13,50 @@
                     {}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
-%%We will use the default POI-BOX if non provided
-
-%%TODO: make adapt if there is no chapter & if there is no chapter reset wanted remove chapter from naming
-
-%%ja das einführen eines currentcolor - stacks hätte die Länge dieser Datei beschränkt, allerdings - wozu?
-
-%% \RequirePackage[skins,many]{tcolorbox}                          %Für tolle Kästen
+%% https://ctan.org/pkg/tcolorbox
 \LILLYxDemandPackage{tcolorbox}{Fuer all die schoenen boexlis:D} %% Package, Info
                     {Dieses Paket ist für LILLY überlebenswichtig, ohne es gibt es keine Boxen!}%% Error-Text
                     {skins,many}%%Params
                     {}
 
-%% \RequirePackage{environ}
+%% https://ctan.org/pkg/environ
 \LILLYxDemandPackage{environ}{Uebernimmt das leere environment ohne grosse Probleme} %% Package, Info
                     {Leider ist auch dieses Paket verpflichtend :/}%% Error-Text
                     {}%%Params
                     {}
 
+%% https://ctan.org/pkg/bookmark
 \LILLYxDemandPackage{bookmark}{Fuer bookmarks eben} %% Package, Info
                     {Dieses Paket ist für LILLY überlebenswichtig, ohne es gibt es keine Boxen, glaube ich!}%% Error-Text
                     {}%%Params
                     {}
+
+%% https://ctan.org/pkg/calc
+\LILLYxDemandPackage{calc}{Zur Berechnung der richtigen Masse} %% Package, Info
+                    {Es ist wichtig, dass die dimensionen übereinstimmen}%% Error-Text
+                    {}%%Params
+                    {}
 %%%DEFAULTS
 
-\providecommand{\LILLYxBOXxDefinitionxLock}{chapter}        \providecommand{\LILLYxBOXxDefinitionxEnable}{TRUE}         \providecommand{\LILLYxBOXxDefinitionxBox}{TRUE}
-\providecommand{\LILLYxBOXxBeispielxLock}{chapter}          \providecommand{\LILLYxBOXxBemerkungxEnable}{TRUE}          \providecommand{\LILLYxBOXxBemerkungxBox}{TRUE}
-\providecommand{\LILLYxBOXxBemerkungxLock}{chapter}         \providecommand{\LILLYxBOXxBeispielxEnable}{TRUE}           \providecommand{\LILLYxBOXxBeispielxBox}{TRUE}
-\providecommand{\LILLYxBOXxSatzxLock}{chapter}              \providecommand{\LILLYxBOXxSatzxEnable}{TRUE}
-\providecommand{\LILLYxBOXxBeweisxLock}{chapter}            \providecommand{\LILLYxBOXxBeweisxEnable}{TRUE}             \providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
-\providecommand{\LILLYxBOXxLemmaxLock}{chapter}             \providecommand{\LILLYxBOXxLemmaxEnable}{TRUE}
-\providecommand{\LILLYxBOXxZusammenfassungxLock}{chapter}   \providecommand{\LILLYxBOXxZusammenfassungxEnable}{TRUE}
+%% Hält, auch in verschactelten Systemen die entsprechend zu forcierende Farbe für Links oder anschmiegsame Farbgebung
+\LILLYcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}
+
+
+
+\ifcsname chapter\endcsname
+\providecommand{\LILLYxBOXxHIGHLIVELxLOCK}{chapter}
+\else\ifcsname section\endcsname
+\providecommand{\LILLYxBOXxHIGHLIVELxLOCK}{section}
+\else
+\providecommand{\LILLYxBOXxHIGHLIVELxLOCK}{TRUE}
+\fi\fi
+\providecommand{\LILLYxBOXxDefinitionxLock}{\LILLYxBOXxHIGHLIVELxLOCK}        \providecommand{\LILLYxBOXxDefinitionxEnable}{TRUE}         \providecommand{\LILLYxBOXxDefinitionxBox}{TRUE}
+\providecommand{\LILLYxBOXxBeispielxLock}{\LILLYxBOXxHIGHLIVELxLOCK}          \providecommand{\LILLYxBOXxBemerkungxEnable}{TRUE}          \providecommand{\LILLYxBOXxBemerkungxBox}{TRUE}
+\providecommand{\LILLYxBOXxBemerkungxLock}{\LILLYxBOXxHIGHLIVELxLOCK}         \providecommand{\LILLYxBOXxBeispielxEnable}{TRUE}           \providecommand{\LILLYxBOXxBeispielxBox}{TRUE}
+\providecommand{\LILLYxBOXxSatzxLock}{\LILLYxBOXxHIGHLIVELxLOCK}              \providecommand{\LILLYxBOXxSatzxEnable}{TRUE}
+\providecommand{\LILLYxBOXxBeweisxLock}{\LILLYxBOXxHIGHLIVELxLOCK}            \providecommand{\LILLYxBOXxBeweisxEnable}{TRUE}             \providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
+\providecommand{\LILLYxBOXxLemmaxLock}{\LILLYxBOXxHIGHLIVELxLOCK}             \providecommand{\LILLYxBOXxLemmaxEnable}{TRUE}
+\providecommand{\LILLYxBOXxZusammenfassungxLock}{\LILLYxBOXxHIGHLIVELxLOCK}   \providecommand{\LILLYxBOXxZusammenfassungxEnable}{TRUE}
 \providecommand{\LILLYxBOXxAufgabexLock}{}                  \providecommand{\LILLYxBOXxAufgabexEnable}{TRUE}           \providecommand{\LILLYxBOXxAufgabexBox}{TRUE}
 
 \providecommand{\LILLYxBOXxUebungsblattxEnable}{TRUE}       \providecommand{\LILLYxBOXxUebungsblattxBox}{TRUE}
@@ -52,10 +65,11 @@
 \newcounter{ctr_TSK} %% verwendet einen eigenen counter um im Zeifelsfall dynamisch die nummer zu ändern
 \newcounter{ctr_EXE} %% Übungsblatt Counter für Mitschriebe
 
+%%We will use the default POI-BOX if non provided
 \providecommand{\LILLYxBOXxMODExDEFAULT}{DEFAULT}
 \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT(init)}
 
-%\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT} % May the ones below do not cover all boxes - default will happily provide them
+%\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT} % May the ones below do not cover all boxes, thus default will be happy to provide them
 \ifx\LILLYxBOXxMODE\LILLYxBOXxMODExDEFAULT\else
 \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
 \fi
