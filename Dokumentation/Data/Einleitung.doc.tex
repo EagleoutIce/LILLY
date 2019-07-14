@@ -25,6 +25,16 @@
 \begin{center}
     Für Versionen < 1.0.10 klicke hier: \jmark[klick mich]{jmp:oldInstallLinux1009}!
 \end{center}
+Mit der Portierung von \Jake in die Programmiersprache Java hat sich die Installation von LILLY, immens vereinfacht.
+Da man hierfür allerdings \Jake benötigt, der sich dann um alles weitere kümmert, sei hier einmal nur kurz erklärt, wie man die \T{stable}-Version von Jake installiert, für mehr Infos siehe: \jmark[Jake Installieren]{mrk:InstallJake}.\newline
+Mit dem Bezug dieser Dokumentation sollte eine \T{jake.jar} Datei einhergegangen sein, die es nun gilt auzuführen. Natürlich wird hierfür Java benötigt, auf einem apt-Basierten Betriebsystem installiert man Java wie folgt: 
+\begin{bash}
+sudo apt install default-jdk
+\end{bash}
+Für alle anderen Derivate gilt es sich auf \url{https://www.oracle.com/de/java/} entsprechend zu informieren.
+Einmal installiert, genügt ein Ausführen der \T{.jar} Datei mithilfe von \cbash{java -jar jake.jar} oder durch
+einen Doppelklick, sofern die entsprechende \T{.jar} als Ausführbar markiert ist. Zieht man bunte Fenster der Kommandozeile vor, so ist man in der Lage mit \cbash{java -jar jake.jar GUI} eine grafische Unterstützung zu erhalten, die allerdings momentan noch in Arbeit und noch lange davon entfernt ist, dieselbe Mächtigkeit wie die Kommandozeile zu erreichen. 
+
 \subsection{Keine Installation}
 \begin{bemerkung}
     Von dieser Methode wird abgeraten
@@ -124,11 +134,11 @@ Hier eine Liste aller Boxen:
     \end{itemize}
 \end{multicols}
 Sie können alle mithilfe von:
-\begin{lstlisting}[language=lLatex]
+\begin{latex}
 %% Allgemein
 % \LILLYcommand{\LILLYxBOXx<FirstLetterUp-Name>xEnable}{FALSE}
 \LILLYcommand{\LILLYxBOXxDefinitionxEnable}{FALSE}
-\end{lstlisting}
+\end{latex}
 jeweils deaktiviert und damit aus dem Dokument entfernt werden (auch nur abschnittsweise, das Reaktivieren funktioniert analog mit \T{TRUE}). \newline
 Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeugen. \marginpar{\tiny  Die Bezeichnung der Listen sind bisher noch inkonsitent :/}Beispielhaft:
 \begin{lstlisting}[language=lLatex]
