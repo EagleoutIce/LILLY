@@ -1,8 +1,7 @@
-package de.eagle.lillyjakeframework.installer;
+package de.eagle.lillyjakeframework.installer.JakeInstaller;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,6 +18,7 @@ import javax.swing.JOptionPane;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.LinuxInstallPackages;
+import de.eagle.lillyjakeframework.installer.AutoInstaller;
 import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.FunctionCollector;
 import de.eagle.util.datatypes.FunctionDeskriptor;
@@ -29,18 +28,13 @@ import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
 
-import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
-import static de.eagle.util.io.JakeLogger.writeLoggerWarning;
 
+// TODO: insert debug-statements
 
-// TODO: insert debbug-statements 
-
-public class LinuxInstaller extends AutoInstaller {
+public class LinuxJakeInstaller extends AutoInstaller {
     public static LinkedList<String[]> neededPrograms = new LinkedList<>(Arrays.asList(new String[]{"git","git"},new String[]{"pdflatex", "texlive-full"},
             new String[]{"test-waffel", "waffel-test"}));
 
-
-    public static final String HOME = PropertiesProvider.getHomeDirectory();
 
     public static LinkedList<String> shells = new LinkedList<>(
             Arrays.asList(Paths.get(HOME, ".zshrc").toString(), Paths.get(HOME, ".bashrc").toString(),
@@ -54,14 +48,6 @@ public class LinuxInstaller extends AutoInstaller {
     public static String getCmdLinePath() {
         return PropertiesProvider.getFileSeparator() + Paths.get(HOME, ".local", "bin").toString()
                 + PropertiesProvider.getFileSeparator() + "jake";
-    }
-
-
-    /**
-     * @return true, wenn das System ohne laufenden X-Server betrieben wird
-     */
-    public static boolean headless(){
-        return System.getenv("DISPLAY") == null;
     }
 
     /**
@@ -203,7 +189,7 @@ public class LinuxInstaller extends AutoInstaller {
 
             }
 
-        return new String[] {"END", null};
+        return END;
     }
 
     public static boolean installPackages(String... pkgs){
@@ -237,35 +223,21 @@ public class LinuxInstaller extends AutoInstaller {
         return true;
     }
 
-    String next = "";
 
-    public LinuxInstaller(boolean gui) {
-        super("Linux Installer",gui);
+    public LinuxJakeInstaller(boolean gui) {
+        super("Linux Jake Installer",gui);
         // test if lilly_jake is installed:
         steps = new FunctionCollector<>(Map.ofEntries(
-            Map.entry("generate_menu_entry", new FunctionDeskriptor<String, String[]>("fkt_generate_menu_entry","Generiert einen Menüeintrag", LinuxInstaller::fkt_generate_menu_entry)),
-            Map.entry("generate_cmd_line_exec",  new FunctionDeskriptor<String, String[]>("fkt_generate_cmd_line_exec","Generiert den Kommandozeilenstarter", LinuxInstaller::fkt_generate_cmd_line_exec)),
-            Map.entry("inject_path_extend",  new FunctionDeskriptor<String, String[]>("fkt_inject_path_extend","Erweitere Path-Variable", LinuxInstaller::fkt_inject_path_extend)),
-            Map.entry("vaildate_tools",  new FunctionDeskriptor<String, String[]>("fkt_vaildate_tools","Teste installierte Pakete", LinuxInstaller::fkt_vaildate_tools))
+            Map.entry("generate_menu_entry", new FunctionDeskriptor<String, String[]>("fkt_generate_menu_entry","Generiert einen Menüeintrag", LinuxJakeInstaller::fkt_generate_menu_entry)),
+            Map.entry("generate_cmd_line_exec",  new FunctionDeskriptor<String, String[]>("fkt_generate_cmd_line_exec","Generiert den Kommandozeilenstarter", LinuxJakeInstaller::fkt_generate_cmd_line_exec)),
+            Map.entry("inject_path_extend",  new FunctionDeskriptor<String, String[]>("fkt_inject_path_extend","Erweitere Path-Variable", LinuxJakeInstaller::fkt_inject_path_extend)),
+            Map.entry("vaildate_tools",  new FunctionDeskriptor<String, String[]>("fkt_vaildate_tools","Teste installierte Pakete", LinuxJakeInstaller::fkt_vaildate_tools))
         ));
 
         this.progress = 0; // TEMPORARY => CHANGE
         next = "generate_menu_entry";
     }
 
-    /**
-     * Führt den nächsten nötigen Schritt aus
-     *
-     * @return Anzeige, für den *nächsten* Schritt, null wenn beendet
-     */
-    @Override
-    public String nextStep() {
-        String[] ret = steps.get(next).function.apply("");
-        progress += 100.0/steps.size();
-        next = ret[0];
-        if(ret[1] == null) progress = 100; // float kompensation
-        return ret[1];
-    }
 
     /**
      * Validiert, ob alles korrekt installiert wurde
@@ -277,16 +249,6 @@ public class LinuxInstaller extends AutoInstaller {
         return (new File(getDesktopPath()).canRead() || headless()) && new File(getCmdLinePath()).canExecute();
     }
 
-    /**
-     * Installiert das Programm automatisiert,
-     *
-     * @return Führt solange nextStep aus, bis die Rückgabe null ist
-     */
-    @Override
-    public boolean automatedInstall() {
-        for(String s: this){}
-        return true;
-    }
 
     /**
      * Deinstalliert die Jake

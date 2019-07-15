@@ -15,9 +15,12 @@
 \DeclareBoolOption[false]{beamer}
 \DeclareBoolOption[true]{beamerKiz}
 
-%% \DeclareOption{newcent}{
-%% \renewcommand{\@typeface}{\usepackage{newcent}}
-%% }
+\DeclareVoidOption{Mitschrieb}{\renewcommand{\LILLY@Typ}{Mitschrieb}}
+\DeclareVoidOption{Dokumentation}{\renewcommand{\LILLY@Typ}{Dokumentation}}
+\DeclareVoidOption{Zusammenfassung}{\renewcommand{\LILLY@Typ}{Zusammenfassung}}\DeclareVoidOption{zsfg}{\renewcommand{\LILLY@Typ}{Zusammenfassung}}
+\DeclareVoidOption{Uebungsblatt}{\renewcommand{\LILLY@Typ}{Uebungsblatt}}\DeclareVoidOption{ub}{\renewcommand{\LILLY@Typ}{Uebungsblatt}}
+
+\DeclareDefaultOption{\renewcommand{\LILLY@Typ}{PLAIN}}
 
 %%\DeclareBoolOption{Vorlesung}                               % Wir wollen einfache keys :D
 

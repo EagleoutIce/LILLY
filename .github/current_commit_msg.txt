@@ -1,4 +1,4 @@
-Jake - its the final kauntdaun
+Java Jake - watch him walk
 
 ============================================================================================
 :EagleoutIce for Lilly
@@ -6,41 +6,33 @@ Jake - its the final kauntdaun
 
 INFORMATION: Immer brav an Sicherungskopien denken!
 
-Allgemeine Performance Verbesserung um ~15% erreicht!
-
 JAKE:
 
-    + Man kann nun Jake deinstallieren (Befehl: 'jake DEI')
+    + Zum installieren mit einer GUI wurde ein shellscript
+      Hinzugefügt
 
-    + Man kann nun beim Installieren durch 
-      '-path: /absoluter/pfad/zur/nutzerkonfiguration.conf' Die User-conf angeben
+    + CommandLineParser hat nun einen OutOfBounds-Check
 
-
-    * Jake Ã¼berschreibt nun bei einer Neuinstallation ('jake REI') den entsprechendne 
-      build-tree, man kann also wechseln
-
-    * Autocomplete erkennt nun GUI, REI und DEI an
+    + Es existiert ein Linux Intaller für LILLY
 
 
-    ! FIX: External funktioniert nun :D
+    * Die Hilfe enthält nun ein Beispiel
+
+
+    ! FIX: Autocomplete List completion
 
 LILLY:
 
-    * Der LILLYxBOXxCONTROLLER unterstÃ¼tzt nun auch Dokumentklassen ohne Chapter
+    + Es werden in den Package-Options nun auch entsprechenden Shortcuts erlaubt
 
-    * Auch Boxen und damit LILLYxBOXxCONTROLLER sind nun Standalone, d.h
-      folgendes Dokument, kompiliert wunderbar:
-      ```
-      \documentclass{book}
-      \usepackage{LILLYxBOXxCONTROLLER}
 
-      \begin{document}
-      \begin{definition}[wau]
-      Hallo
-      \end{definition}
-      \end{document}
-      ```
+    * Kleine Verbesserungen
 
+    * Erweiterungen/Verbesserungen einiger Listing-Sprachen
+
+DOKUMENTATION:
+
+    * Einleitungsteil für 1.0.10 Überarbeitet
 
 ============================================================================================
 :

@@ -3,17 +3,11 @@ package de.eagle.lillyjakeframework.gui.core;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import de.eagle.lillyjakeframework.core.Definitions;
-import de.eagle.lillyjakeframework.installer.LinuxInstaller;
-import de.eagle.util.helper.Executer;
+import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.Console;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Arrays;
 
 public class LinuxInstallPackages extends JDialog {
     private JPanel contentPane;
@@ -58,7 +52,7 @@ public class LinuxInstallPackages extends JDialog {
     }
 
     private void onOK() {
-        LinuxInstaller.installPackages(pkgs);
+        LinuxJakeInstaller.installPackages(pkgs);
         dispose();
     }
 

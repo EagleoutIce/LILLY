@@ -59,7 +59,7 @@ public class JakeCompile {
         JakeWriter.out.format("%sKompiliere Dokument: \"%s\" für: %s (%s)%s%n", ColorConstants.COL_GOLD, targetFile, CoreSettings.requestValue("S_LILLY_AUTHOR"),CoreSettings.requestValue("S_LILLY_AUTHORMAIL"), ColorConstants.COL_RESET);
 
         if (!new File(targetFile).canWrite()) { // check_file
-            System.err.println("Die von dir angegebene Datei: " + targetFile
+            JakeWriter.err.println("Die von dir angegebene Datei: " + targetFile
                     + " konnte nicht gefunden werden! Soll Jake sie für dich erstellen?");
             switch (CommandLine.get_answer("[(y)es/(n)o/(c)ancel]> ", new String[] { "Y", "N", "C" })) {
                 default:

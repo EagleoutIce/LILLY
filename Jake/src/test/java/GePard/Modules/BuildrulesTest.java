@@ -1,6 +1,7 @@
 package GePard.Modules;
 
 import de.eagle.gepard.modules.Buildrules;
+import de.eagle.gepard.modules.Expandables;
 import de.eagle.gepard.parser.GeneratorParser;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.util.datatypes.SettingDeskriptor;

@@ -38,7 +38,7 @@ public class CommandLine {
         tmp = "";
         Scanner s = new Scanner(JakeWriter.in);
         while(!stringContainsItemFromList(tmp.toUpperCase(), options)){
-            System.err.print(prompt);
+            JakeWriter.err.print(prompt);
             tmp = s.nextLine();
         }
         return tmp.toUpperCase();
