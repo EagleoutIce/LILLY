@@ -1,9 +1,11 @@
-package de.eagle.lillyjakeframework.installer;
+package de.eagle.lillyjakeframework.installer.JakeInstaller;
 
-public class MacOSInstaller extends AutoInstaller {
+import de.eagle.lillyjakeframework.installer.AutoInstaller;
 
-    public MacOSInstaller(boolean gui) {
-        super("macOS Installer",gui);
+public class MacOSJakeInstaller extends AutoInstaller {
+
+    public MacOSJakeInstaller(boolean gui) {
+        super("macOS Jake Installer",gui);
         this.progress = 99; // TEMPORARY => CHANGE
     }
 

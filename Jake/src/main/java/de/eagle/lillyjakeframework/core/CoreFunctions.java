@@ -14,9 +14,6 @@ import de.eagle.gepard.parser.Tokenizer;
 import de.eagle.lillyjakeframework.cmdline.Autocomplete;
 import de.eagle.lillyjakeframework.cmdline.CommandLineParser;
 import de.eagle.lillyjakeframework.compiler.JakeCompile;
-import de.eagle.lillyjakeframework.installer.LinuxInstaller;
-import de.eagle.lillyjakeframework.installer.MacOSInstaller;
-import de.eagle.lillyjakeframework.installer.WindowsInstaller;
 import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.helper.PropertiesProvider;
@@ -119,6 +116,8 @@ public final class CoreFunctions {
                 + "value\" gesetzt werden (\"-key\" für boolesche). " + "So setzt: \"-path" + Definitions.ASS_PATTERN
                 + " /es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: \"/es/gibt/kuchen\". "
                 + "Weiter ist es möglich mit '" + Definitions.ASS_PATTERN + "' values hinzuzufügen.");
+
+        JakeWriter.out.println(("\nBeispiel:\n  jake test.tex -lilly-modes: default -lilly-author: \"Detlef Dieter\" -lilly-boxes+: LIMERENCE"));
         return ReturnStatus.EXIT_SUCCESS;
     }
 
@@ -128,7 +127,7 @@ public final class CoreFunctions {
      * @return
      */
     public static ReturnStatus fkt_install(String[] cmd) {
-        //PropertiesProvider.getInstaller(false).automatedInstall();
+        PropertiesProvider.getLillyInstaller(false).automatedInstall();
         // Hier wird nicht Jake sondern LILLY entsprechend installiert - JAY
         return ReturnStatus.EXIT_SUCCESS;
     }

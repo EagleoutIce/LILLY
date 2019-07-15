@@ -1,9 +1,11 @@
-package de.eagle.lillyjakeframework.installer;
+package de.eagle.lillyjakeframework.installer.JakeInstaller;
 
-public class WindowsInstaller extends AutoInstaller {
+import de.eagle.lillyjakeframework.installer.AutoInstaller;
 
-    public WindowsInstaller(boolean gui) {
-        super("Windows Installer",gui);
+public class WindowsJakeInstaller extends AutoInstaller {
+
+    public WindowsJakeInstaller(boolean gui) {
+        super("Windows Jake Installer",gui);
         this.progress = 99; // TEMPORARY => CHANGE
     }
 

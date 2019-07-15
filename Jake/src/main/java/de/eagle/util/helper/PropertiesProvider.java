@@ -5,9 +5,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import de.eagle.lillyjakeframework.installer.AutoInstaller;
-import de.eagle.lillyjakeframework.installer.LinuxInstaller;
-import de.eagle.lillyjakeframework.installer.MacOSInstaller;
-import de.eagle.lillyjakeframework.installer.WindowsInstaller;
+import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
+import de.eagle.lillyjakeframework.installer.JakeInstaller.MacOSJakeInstaller;
+import de.eagle.lillyjakeframework.installer.JakeInstaller.WindowsJakeInstaller;
+import de.eagle.lillyjakeframework.installer.LillyInstaller.LinuxLillyInstaller;
+
 
 /**
  * Liefert verschiedene System-Spezifische Einstellungen
@@ -114,14 +116,27 @@ public class PropertiesProvider {
         return ".";
     }
 
-    public static AutoInstaller getInstaller(boolean gui) {
+    public static AutoInstaller getJakeInstaller(boolean gui) {
         switch (PropertiesProvider.getOS()) {
             case LINUX:
-                return new LinuxInstaller(gui);
+                return new LinuxJakeInstaller(gui);
             case MAC:
-                return new MacOSInstaller(gui);
+                return new MacOSJakeInstaller(gui);
             case WINDOWS:
-                return new WindowsInstaller(gui);
+                return new WindowsJakeInstaller(gui);
+            default:
+                throw new UnsupportedOperationException("Es existiert kein Installer für dieses Betriebssystem");
+        }
+    }
+
+    public static AutoInstaller getLillyInstaller(boolean gui) {
+        switch (PropertiesProvider.getOS()) {
+            case LINUX:
+                return new LinuxLillyInstaller(gui);
+            case MAC:
+                return new MacOSJakeInstaller(gui);
+            case WINDOWS:
+                return new WindowsJakeInstaller(gui);
             default:
                 throw new UnsupportedOperationException("Es existiert kein Installer für dieses Betriebssystem");
         }
@@ -130,11 +145,11 @@ public class PropertiesProvider {
     public static boolean isInstalled(){
         switch(getOS()) {
             case LINUX:
-                return new LinuxInstaller(false).validate();
+                return new LinuxJakeInstaller(false).validate();
             case MAC:
-                return new MacOSInstaller(false).validate();
+                return new MacOSJakeInstaller(false).validate();
             case WINDOWS:
-                return new WindowsInstaller(false ).validate();
+                return new WindowsJakeInstaller(false ).validate();
             default: // we don't care
                 return true;
         }

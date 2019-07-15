@@ -50,7 +50,7 @@ public class Autocomplete {
                 str.append("-").append(s.getKey()).append("\t");
             } else {
                 str.append("-").append(s.getKey()).append(":\t");
-                if(s.getValue().type.equals(eSetting_Type.IS_SWITCH))
+                if(s.getValue().type.equals(eSetting_Type.IS_TEXTLIST))
                     str.append("-").append(s.getKey()).append("+:\t");
             }
         }

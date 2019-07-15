@@ -2,15 +2,16 @@
 
 \lstdefinelanguage{lGepard}{
     comment=[l]{\%},
-    alsoletter={\#,=,-},
+    alsoletter={\#,=,-,[,]},
     morecomment=[s]{!}{!},
     escapeinside={!*}{*!},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
+    morekeywords = [1]{@[SELTEXF],@[AUTONUM]},
     morekeywords = [2]{Lilly,Jake},
-    morekeywords = [3]{operation,file,debug},
+    morekeywords = [3]{operation,file,debug,lilly-show-boxname,lilly-nameprefix,lilly-modes,lilly-show-boxname,lilly-author,lilly-n,},
     morekeywords = [4]{true,false,file_compile},
     morekeywords = [5]{=},
-    morekeywords = [6]{lilly-show-boxname,lilly-nameprefix}
+    morekeywords = [6]{uebungsblatt}
 }
 
 \lstnewenvironment{gepard}[1][]

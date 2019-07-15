@@ -137,10 +137,14 @@ public class CommandLineParser {
                 writeLoggerInfo("[Argument-Brief]: " + settings.get(strip_modifications(carg)).getBrief(), "Parser");
             }
             if (carg.contains(ADD_ASSIGN_PATTERN)) { // Ist eine Addition
+                if(current_arg >= args.length-1)
+                    throw new RuntimeException("Der Parameter: '" + args[current_arg] + "' benötigt ein nachfolgendes Argument!");
                 boolean b = settings.add(strip_modifications(carg), args[++current_arg]);
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" += \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");
             } else { // ist normale zuweisung
+                if(current_arg >= args.length-1)
+                    throw new RuntimeException("Der Parameter: '" + args[current_arg] + "' benötigt ein nachfolgendes Argument!");
                 boolean b = settings.set(strip_modifications(carg), args[++current_arg]);
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" = \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");

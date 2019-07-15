@@ -72,7 +72,7 @@ public class Hooks {
     /* cSpell:disable */
     int max = Integer.parseInt(CoreSettings.requestValue("S_LILLY_COMPILETIMES"));
     for (int i = 0; i < max; i++) {
-        settings.emplace("IN" + i + ":compile-" + i, "IN-Hook für Iteration: " + i, eSetting_Type.IS_SPECIAL, "echo Kompiliere " + (i+1) + "/" + max + " für: $(PDFFILE)");
+        settings.emplace("IN" + i + ":compile-" + i, "IN-Hook für Iteration: " + i, eSetting_Type.IS_SPECIAL, "echo Kompiliere " + (i+1) + "/" + max + " für: $(TEXFILE)");
     }
     /* cSpell:enable */
         return settings;

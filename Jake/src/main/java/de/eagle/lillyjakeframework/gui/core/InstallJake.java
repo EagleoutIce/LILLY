@@ -3,12 +3,11 @@ package de.eagle.lillyjakeframework.gui.core;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import de.eagle.lillyjakeframework.core.CoreFunctions;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.installer.AutoInstaller;
-import de.eagle.lillyjakeframework.installer.LinuxInstaller;
-import de.eagle.lillyjakeframework.installer.MacOSInstaller;
-import de.eagle.lillyjakeframework.installer.WindowsInstaller;
+import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
+import de.eagle.lillyjakeframework.installer.JakeInstaller.MacOSJakeInstaller;
+import de.eagle.lillyjakeframework.installer.JakeInstaller.WindowsJakeInstaller;
 import de.eagle.util.helper.PropertiesProvider;
 
 import javax.swing.*;
@@ -96,17 +95,17 @@ public class InstallJake extends JDialog {
         switch (PropertiesProvider.getOS()) {
             case LINUX:
                 installationText.setText("Identifziere Betriebssystem [LINUX]");
-                installer = new LinuxInstaller(true);
+                installer = new LinuxJakeInstaller(true);
 
                 break;
             case MAC:
                 installationText.setText("Identifziere Betriebssystem [MACOS]");
-                installer = new MacOSInstaller(true);
+                installer = new MacOSJakeInstaller(true);
                 break;
 
             case WINDOWS:
                 installationText.setText("Identifziere Betriebssystem [WINDOWS]");
-                installer = new WindowsInstaller(true);
+                installer = new WindowsJakeInstaller(true);
                 break;
             default:
                 installationText.setText("Betriebssystem wurde nicht erkannt!");

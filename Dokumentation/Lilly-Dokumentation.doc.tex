@@ -1,7 +1,5 @@
 \providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
-\documentclass[Typ=Dokumentation]{Lilly}
-%% TODO Einbauen von simpleren Makros für nur: [Dokumentation]
-%\tcbuselibrary{documentation}
+\documentclass[Dokumentation]{Lilly}
 \usepackage[subject={TestTip},author={EagleoutIce},version=1]{pdfcomment}
 
 
@@ -48,7 +46,7 @@
 \robustify{\LILLYxNOTExVersion}
 
 \usepackage{aurical}
-\newcommand{\Jake}[1][~]{\begingroup\Fontauri Jake#1\endgroup}
+\newcommand{\Jake}[1][~]{\jmark[\begingroup\Fontauri Jake#1\endgroup]{mrk:JAKE}}
 \newcommand{\LJake}[1][~]{\begingroup\T|lilly\_jake|\endgroup#1}
 
 \LILLYcommand{\fg}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont For\-ma\-le Grund\-la\-gen}#1}

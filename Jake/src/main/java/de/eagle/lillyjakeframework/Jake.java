@@ -1,13 +1,11 @@
 package de.eagle.lillyjakeframework;
 
 import de.eagle.lillyjakeframework.cmdline.CommandLineParser;
-import de.eagle.lillyjakeframework.compiler.JakeCompile;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.InstallJake;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.helper.PropertiesProvider;
-import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
 
 import java.io.IOException;
@@ -17,7 +15,6 @@ import javax.swing.JOptionPane;
 
 import static de.eagle.util.io.JakeLogger.*;
 
-import static de.eagle.lillyjakeframework.core.Definitions.HIDDEN_ARG;
 import static de.eagle.lillyjakeframework.core.Definitions.PRG_BRIEF;
 
 /**
@@ -50,7 +47,7 @@ public class Jake {
 
         if(!CoreSettings.requestValue("S_OPERATION").startsWith(String.valueOf(Definitions.HIDDEN_ARG))) {
             if(args.length > 0 && args[0].startsWith("DEI")) {
-                PropertiesProvider.getInstaller(false).uninstall();
+                PropertiesProvider.getJakeInstaller(false).uninstall();
                 return;
             }
 
@@ -58,7 +55,7 @@ public class Jake {
                 if(args.length > 0 && args[0].startsWith("GUI")) {
                     InstallJake.main(args);
                 } else { // commandline based:
-                    for(String s : PropertiesProvider.getInstaller(false)){
+                    for(String s : PropertiesProvider.getJakeInstaller(false)){
                         JakeWriter.out.println(s);
                     }
                     return;

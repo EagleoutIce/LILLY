@@ -40,7 +40,10 @@ Nun genügt ein Ausführen von \cbash{jake install}, wobei mithilfe der Option \
 jake install -lilly-path: '/absoluter/Pfad/zum/Lilly/Ordner'
 \end{bash}
 Anschließend sollte es möglich sein Dokumente mit LILLY zu kompilieren. Gemeinsam mit LILLY werden eine Vielzahl an Beispieldokumenten ausgeliefert, die die Verwendung anschaulich machen sollen und somit auch als Test für eine erfolgreiche Installation verwendet werden können.
+Exemplarisch sei \T{test \& bonus/map\_tests/test.conf} genannt, welches auch die \T{getGraphics}-Schnittstelle etabliert.
 
+\subsection{Windows}
+\subsection{MacOS}
 
 \subsection{Keine Installation}
 \begin{bemerkung}
@@ -51,9 +54,9 @@ Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu ko
 \section[Erstellen eines Dokuments mit Lilly]{Erstellen eines Dokuments mit Lilly \tiny\LILLYxBOXxVersion{1.0.5}}
 \subsection{Das Gerüst}
 Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine Dokumentklasse handelt, wird sie wie folgt eingebunden:
-\begin{lstlisting}[language=lLatex]
+\begin{latex}
 \documentclass[Typ=Dokumentation]{Lilly}
-\end{lstlisting}
+\end{latex}
 \LILLYxNOTExVersion{1.0.7}Für den Typ gibt es hierfür 4 Optionen:
 \begin{multicols}{2}
     \begin{itemize}[label=$\diamond$]\narrowitems
@@ -63,12 +66,17 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
         \item Zusammenfassung
     \end{itemize}
 \end{multicols}
+Mit \LILLYxBOXxVersion{1.0.10} ist es möglich auch nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben. Die Definition für dieses Dokument lautet zum Beispiel:
+\begin{latex}
+\documentclass[Dokumentation]{Lilly}
+\end{latex}
+In Kombination mit \Jake ist es zudem noch möglich die Option \clatex{Jake} anzugeben, die es Jake gestattet die Dokumentspezifischen Parameter zu bestimmen.\newline %% TODO: NOTE 'ub' and 'zsfg', more shortcuts?
 Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
-So benötigt \verb|Mitschrieb| noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester}\marginpar{\tiny  Semester ist Standardmäßig 1} gemäß:
-\begin{lstlisting}[language=lLatex,frame=none]
+So benötigt \T{Mitschrieb} noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester}\marginpar{\tiny  Semester ist Standardmäßig 1} gemäß:
+\begin{latex}
 \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/
        \LILLYxVorlesung}
-\end{lstlisting}
+\end{latex}
 die für die jeweilige Vorlesung definierten Daten lädt.
 Erklärungen für die geladenen Daten befinden sich in den jeweiligen README-Dateien:
 \begin{description}
@@ -77,10 +85,9 @@ Erklärungen für die geladenen Daten befinden sich in den jeweiligen README-Dat
 \end{description}
 
 
-Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semester} sowie noch die optionale Option (tihihi) \T{n} die angibt, um das wievielte Übungsblatt es sich handelt. \\
-
-Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert!
-
+Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semester} sowie noch die optionale Option (tihihi) \T{n} die angibt, um das wievielte Übungsblatt es sich handelt. Darüber müssen wir uns aber in der Regel keine Gedanken machen. Trägt unser Übungsblatt einen Namen wie \T{uebungablatt-gdbs-42.tex}, so kann \Jake über sogenannte \jmark[NameMaps]{mrk:nmaps} entsprechend alles konfigurieren, in diesem Fall benötigt dein Übungsblatt auch kein \T{documentclass} mehr, es genügt das direkte Schreiben von Latex-Code, der Rest wird von Jake übernommen.\\
+Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert, dies gilt es zu beachten, wenn man vielleicht nur etwas testen möchte. In diesem Fall gibt es (wie später auch noch weiter aufgeführt) den sogenannten \emph{Bonustyp} \T{PLAIN}, welcher ein leeres Dokument erstellt! %% TODO: LINK
+\clearpage
 \subsection[Wie funktionieren Boxen]{Die Böxli}
 Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 \begin{multicols}{2}
@@ -151,7 +158,7 @@ Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeu
 \begin{lstlisting}[language=lLatex]
 \listofDEFINITIONS
 \end{lstlisting}
-\marginpar{\tiny  Natürlich sind die Linien nur zur Trennung eingfügt}erzeugt hierbei:\\
+\marginpar{\tiny  Natürlich sind die Linien nur zur Trennung eingfügt}erzeugt hierbei:\clearpage
 \tocloftpagestyle{scrheadings}
 \rule{\linewidth}{1.2pt}\vspace{-0.75\baselineskip}
 \rule{\linewidth}{0.6pt}\vspace*{-1.5cm}
@@ -159,7 +166,6 @@ Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeu
 \rule{\linewidth}{0.6pt}\vspace{-0.7\baselineskip}
 \rule{\linewidth}{1.2pt}
 
-\clearpage
 \newcommand{\printmark}[2][Linkname]{\ensuremath{\text{#1}^{\rightarrow~\text{\pageref{#2}}}}}
 
 
@@ -199,9 +205,9 @@ zu verwenden.
 
 
 
-
+\clearpage
 \subsection{Übungsblätter}
-\marginpar{\tiny Aktuell wird daran gearbeitet eine \T{make}-Regel für Übungsblätter zu integrieren}Da es von Bedeutung war Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können,\marginpar{\tiny \vspace*{2em}\tiny Die Verwendung von \T{\textbackslash tcblower} ist noch in arbeit} gibt es hierfür eine einfache Möglichkeit:\marginpar{\vspace*{1em} \tiny Es gibt auch eine Umgebung mit * und gleichermaßen \T{\textbf{\textbackslash inputUBS}}. Diese setzen den Zähler für die Aufgaben \emph{nicht} zurück!}
+\marginpar{\tiny Aktuell wird daran gearbeitet eine \T{make}-Regel für Übungsblätter zu integrieren}Da es von Bedeutung ist Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können,\marginpar{\tiny \vspace*{2em}\tiny Die Verwendung von \T{\textbackslash tcblower} ist noch in arbeit} gibt es hierfür eine einfache Möglichkeit:\marginpar{\vspace*{1em} \tiny Es gibt auch eine Umgebung mit * und gleichermaßen \T{\textbf{\textbackslash inputUBS}}. Diese setzen den Zähler für die Aufgaben \emph{nicht} zurück!}
 \begin{lstlisting}[language=lLatex]
 %% \inputUB{<Name>}{<Nummer>}{<Pfad - linput>}
 \inputUB{Mengen}{1}{Aufgaben_Data/Uebungsblatt_1.tex}
@@ -213,7 +219,45 @@ zu verwenden.
 \end{uebungsblatt}
 \newpage
 \end{lstlisting}
-Übungsblätter sind nur in \textbf{complete}-Varianten Verfügbar! TODO LINK
+Übungsblätter sind nur in \textbf{complete}-Varianten verfügbar, werden also sonst nicht eingebunden! \paragraph{Ein Übungsblatt erstellen}
+Doch wie erstellt man nun ein Fachgerechtes Übungsblatt. Nun, da es sich hier um die Schnelleinführung handelt, ein paar Vorgaben. Benenne dein Übungsblatt nach dem Schema: \begin{center}
+    \T{uebungsblatt-<VORLESUNG>-<BLATTNUMMER>.tex}
+\end{center}
+Die Reihenfolge spielt keine Rolle, ein beispielhafter Name könnte sein: \newline\T{gdbs-uebungsblatt-13.tex}. Nun erstelle dir eine \T{jake.conf}-Datei, wobei egal ist wie sie heißt, solange sei auf \T{.conf} endet (fürs Autocomplete \Smiley). In sie trägst du folgendes ein:
+\begin{gepard}
+file        = @[SELTEXF]
+operation   = file_compile
 
+lilly-modes = uebungsblatt
 
+lilly-show-boxname = false
+
+lilly-nameprefix = FlorianS-Partner-
+lilly-author = Florian Sihler, Mein Partner
+
+lilly-n = @[AUTONUM]
+\end{gepard}
+Natürlich kannst du die Namen entsprechend ändern. Das sieht jetzt aus wie viel, aber das musst du nur einmal machen, sofern du die Konfigurationsdatei immer in das Verzeichnis mitkopierst, indem sich die Übungsblatt-\T{.tex} und \textbf{nur} diese \T{.tex}-Datei befindet. Wir werden uns später %% TODO: LINK
+mit besseren Konfigurationen beschäftigen, die keinerlei Nachaufwand benötigen und galanter sind.
+In das Übungsblatt können wir nun unsere Aufgaben stecken. Hier ist der \emph{gesamte} Inhalt der oben genanten \TeX-Datei:
+\begin{latex}
+\begin{aufgabe}[Tolle Aufgabe][400] % 400 Punkte
+    Die Aufgabenbeschreibung, blah, blah, blah, \ldots
+    \begin{enumeratea}
+        \item Teilaufgabe a)
+        \item Teilaufgabe b)
+        \item \ldots
+    \end{enumeratea}
+\vSplitter
+    \begin{enumeratea}
+        \item Antwort zu Teilaufgabe a)
+        \item Antwort zu Teilaufgabe b)
+        \item \ldots
+    \end{enumeratea}
+\end{aufgabe}
+
+%% Weitere Aufgaben, wenn gewünscht
+\end{latex}
+
+Kompilieren kann man den Spaß nun mit: \cbash{jake jake.conf}. Und das wars, Boom \Smiley.
 \clearpage

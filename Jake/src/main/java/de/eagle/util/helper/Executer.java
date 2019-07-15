@@ -28,4 +28,29 @@ public class Executer {
         in.close();out.close();
         return outf.getAbsolutePath();
     }
+
+    public static BufferedReader runCommand(String cmd){
+        Process p = null;
+        try {
+            p = Runtime.getRuntime().exec(cmd);
+            return new BufferedReader(new InputStreamReader(p.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static BufferedReader runBatchCommand(String cmd){
+        return runCommand(new String[] {"bash", "-c", cmd});
+    }
+    public static BufferedReader runCommand(String[] cmd){
+        Process p = null;
+        try {
+            p = Runtime.getRuntime().exec(cmd);
+            return new BufferedReader(new InputStreamReader(p.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
