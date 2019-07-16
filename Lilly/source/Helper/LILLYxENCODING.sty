@@ -1,0 +1,45 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxENCODING}[2019/07/16 Stellt die Kodierungs-Erweiterungen fuer LILLY zur Verfuegung]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grundlegende Pakete (Encoding etc.)                                                                                 %     %%%% ENCODINGS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifx\LILLYxEXCLUDExEncodings \undefined                   %%% Lade Standardkonfiguration für Encoding
+
+%% \RequirePackage[utf8x]{inputenc}                        %unicode
+    \LILLYxLoadPackage{inputenc}{Damit Eingaben auch brav codiert werden :D}
+                      {Kein Inputencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
+                      {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                      {utf8x}{}
+    %% FIX COMPAT ISSUE
+
+%%    \RequirePackage[T1]{fontenc}                            %8-Bit encoding
+
+    \LILLYxLoadPackage{fontenc}{Damit Schriften auch brav codiert werden :D}
+                      {Kein Fontencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
+                      {\def\LILLYxDEMOxFONTENC{Ist nicht Da}} %% Heile heile Welt
+                      {T1}{\def\LILLYxDEMOxFONTENC{Ist Da}}
+
+
+%%   \RequirePackage{ngerman}                                %Deutsche Sprache
+
+    \LILLYxLoadPackage{ngerman}{Damit auch wirklich Deutsch gesprochen wird, ist zur Sicherheit da, redundant da babel!}
+                      {Keine Deutsche Sprache ist schade, aber da mach ich mal nix :D}
+                      {} %% Heile heile Welt
+                      {}{} %% NO ARGS
+
+%%  \RequirePackage{lmodern}
+
+    \LILLYxLoadPackage{lmodern}{Da die normale Computer Modern in PDFs pixelig wirkt: nimm Latin Modern}
+                      {Pffh dann behalte halt deine Pixel wenn es lmodern nicht gibt}
+                      {} %% Heile heile Welt
+                      {}{} %% NO ARGS
+
+    \RequirePackage{textcomp}
+
+\fi
+
+\PrerenderUnicode{ä}\PrerenderUnicode{ö}
+\PrerenderUnicode{ü}\PrerenderUnicode{ß}
