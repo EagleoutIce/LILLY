@@ -313,7 +313,7 @@
 % Setup für mathematisches                                                                                            %     %%%% PACKAGE-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{\LILLYxPATHxMATHS/LILLYxMATHS}
+\RequirePackage{LILLYxMATH}
 
 %\RequirePackage{kpfonts}
 

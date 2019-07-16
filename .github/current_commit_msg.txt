@@ -1,38 +1,44 @@
-Java Jake - watch him walk
+Java Jake - JavaJakie: Analyse!
 
-============================================================================================
+================================================================
 :EagleoutIce for Lilly
-============================================================================================
+================================================================
 
 INFORMATION: Immer brav an Sicherungskopien denken!
 
 JAKE:
 
-    + Zum installieren mit einer GUI wurde ein shellscript
-      Hinzugefügt
+    + Jake Analysiert nun den Log im Falle eines Fehlers.
+      TODO: Weitere Hinweise und AusfÃ¼hrliche Hilfe zum Fehler
 
-    + CommandLineParser hat nun einen OutOfBounds-Check
+    + Jake rÃ¤umt nun auch vor einem Kompiliervorgang auf (wenn
+      autoclean aktiv) um so zurÃ¼ckgebliebene Leichen zu
+      ignorieren/undead-Fehler zu vermeiden.
 
-    + Es existiert ein Linux Intaller für LILLY
+    + Es gibt nun noch das Expandable 'FINALNAME', welches fÃ¼r
+      In-Hooks den entsprechenden Namen des Dokuments enthÃ¤lt.
 
 
-    * Die Hilfe enthält nun ein Beispiel
+    * Hooks sind nun 'full-lazy'-expandet => compile-X hook
+      nun mit Dokumentname
 
-
-    ! FIX: Autocomplete List completion
 
 LILLY:
 
-    + Es werden in den Package-Options nun auch entsprechenden Shortcuts erlaubt
+    + beamerthemelillyKIZ wurde nun entsprechend verschoben
 
 
-    * Kleine Verbesserungen
+    * Verbesserte PDF-Signatur
 
-    * Erweiterungen/Verbesserungen einiger Listing-Sprachen
+    * Im Rahmen der Dokumentation wurden einige Befehle neu
+      sortiert
+
+    * Einige Listingssprachen wurden angepasst
 
 DOKUMENTATION:
 
-    * Einleitungsteil für 1.0.10 Überarbeitet
+    * Matheteil fÃ¼r 1.0.10 ist nun vollstÃ¤ndig Ã¼berarbeitet.
 
-============================================================================================
+
+================================================================
 :

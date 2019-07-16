@@ -9,31 +9,30 @@
 \providecommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} %Anpassung overlapping: GDRA
 
 
-\ifcsname LetLetLtxMacro\endcsname%
+\ifcsname LetLtxMacro\endcsname%
+\LetLtxMacro{\legsqrt}{\sqrt}
 \let\oldr@@t\r@@t
 \def\r@@t#1#2{%
 \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
 \advance\dimen0-0.2\ht0
 \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
 {\box0\lower0.4pt\box2}}
-\LetLtxMacro{\oldsqrt}{\sqrt}
-\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2} }      %%Sch?nere Wurzel
+\renewcommand*{\sqrt}[2][\ ]{\legsqrt[#1]{#2} }      %%Schönere Wurzel
+\newcommand{\oldsqrt}[2][\ ]{\oldr@@t#1{#2}}
 \else
-\newcommand{\oldsqrt}[2][\ ]{\sqrt[#1]{#2}}
+\newcommand{\oldsqrt}[2][\ ]{\sqrt[#1]{#2} }
 \fi
 
 \providecommand{\das}
-    {\vcentcolon\nolinebreak\mkern-1mu\nolinebreak=}
+    {\ensuremath{\vcentcolon\nolinebreak\mkern-1mu\nolinebreak=}}
 \providecommand{\daseq}
-    {\vcentcolon\nolinebreak\mkern-1mu\nolinebreak\Leftrightarrow}
+    {\ensuremath{\vcentcolon\nolinebreak\mkern-1mu\nolinebreak\Leftrightarrow}}
 \providecommand{\sad}
-    {=\nolinebreak\mkern-1mu\nolinebreak\vcentcolon}
+    {\ensuremath{=\nolinebreak\mkern-1mu\nolinebreak\vcentcolon}}
 \providecommand{\qesad}
-    {\Leftrightarrow\nolinebreak\mkern-1mu\nolinebreak\vcentcolon}
-\providecommand{\shouldeq}{\stackrel{!}{=}}
+    {\ensuremath{\Leftrightarrow\nolinebreak\mkern-1mu\nolinebreak\vcentcolon}}
+\providecommand{\shouldeq}{\ensuremath{\stackrel{!}{=}}}
 
-\providecommand{\crectat}[2]{\fill[#2] #1++(-0.2,-0.2) rectangle ++(0.4,0.4)}
-\providecommand{\rectat}[1]{\fill[candypink] #1++(-0.2,-0.2) rectangle ++(0.4,0.4)}
 \renewcommand{\det}{\text{det}~}
 \providecommand{\adj}{\text{adj}~}
 \providecommand{\inf}{\text{inf}~}
@@ -44,9 +43,6 @@
 
 \LILLYcommand{\emptyset}{\ensuremath{\o}}
 
-\providecommand\z{\ensuremath{z}~}
-\providecommand\x{\ensuremath{x}~}
-\providecommand\y{\ensuremath{y}~}
 \providecommand{\LH}{\ensuremath{{\cal LH}}}
 \providecommand{\eig}{\text{Eig}\tab[0.04cm]}
 \providecommand{\Dim}{{\text{dim}\tab[0.08cm]}}
@@ -66,6 +62,13 @@
 
 \providecommand{\abs}[1]{\ensuremath{\left|#1\right|}}
 
+
+\DeclareMathOperator{\val}{val}
+\DeclareMathOperator{\sch}{sch}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\grad}{Grad}
+
+\DeclareMathOperator{\arccot}{arccot}
 
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
 \hskip -\arraycolsep

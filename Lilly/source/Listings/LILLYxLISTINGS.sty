@@ -19,6 +19,7 @@
 }
 
 %% Konfigurere Sonderzeichen
+\providecommand{\LILLYxCODExRANGESTYLE}{\relax{}}
 \lstset{literate=
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
@@ -33,7 +34,9 @@
   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
-} %Damit die Umlaute in lstlistings auch gescheit formatiert werden. 
+  {:bs:}{{\color{Orchid}\textbackslash}}1 {:bmath:}{{\color{bondiBlue}\$}}1
+  {:emath:}{{\color{bondiBlue}\$}}1
+} %Damit die Umlaute in lstlistings auch gescheit formatiert werden.
 %% Entnommen der Dokumentation: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
 
 %% Es ist möglich über diesen Befehl das zu ladende Sprachpaket zu definieren

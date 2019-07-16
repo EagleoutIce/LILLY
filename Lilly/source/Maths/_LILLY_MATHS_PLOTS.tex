@@ -58,8 +58,8 @@
 %% color variable function max min circlesize
 \NewDocumentCommand{\plotseq}{ O{DebianRed} O{\x} m O{\lillyxPlotxMaxX} O{1} O{1pt}}{\foreach #2 in {#5,...,#4}{\pgfmathparse{#3}\filldraw[#1](#2,\pgfmathresult) circle (#6);}}
 
-\NewDocumentCommand{\xmark}{O{x} m O{0.15}}{\draw (#2,\lillyxPlotxMinX)++(0,#3) -- ++(0,-2*#3) node [below] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont #1};}
-\NewDocumentCommand{\ymark}{O{x} m O{0.15}}{\draw (\lillyxPlotxMinY,#2)++(#3,0) -- ++(-2*#3,0) node [left] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont #1};}
+\NewDocumentCommand{\xmark}{O{x} m O{0.15}}{\draw (#2,\lillyxPlotxMinY)++(0,#3) -- ++(0,-2*#3) node [below] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont #1};}
+\NewDocumentCommand{\ymark}{O{y} m O{0.15}}{\draw (\lillyxPlotxMinX,#2-\lillyxPlotxOffset)++(#3,0) -- ++(-2*#3,0) node [left] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont #1};}
 
 %%% [KEYS][TIKZPICTURE]
 \DeclareDocumentEnvironment{graph}{ O{} O{}}{
@@ -84,9 +84,9 @@
         }{\end{tikzpicture}\endgroup}
 
 %% {POS}[PGFKEYS][TIKZKEYS][WIDTH][WRAPFIGOFF]
-\DeclareDocumentEnvironment{wgraph}{ m O{} O{}  O{0pt} O{}} {%
-\wrapfigure{#1}{#4}% as \begin{wrapfigure} will enforce break
+\DeclareDocumentEnvironment{wgraph}{ m O{} O{}  O{} O{0pt}} {%
+\wrapfigure{#1}{#5}% as \begin{wrapfigure} will enforce break
     \begin{graph}[#2][#3]}{%
-    \end{graph}#5%
+    \end{graph}#4%
 \endwrapfigure%
 }
