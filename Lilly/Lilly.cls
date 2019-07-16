@@ -25,7 +25,7 @@
 
 %%%% LILLY - Lilly is a latex loveable yougurht
 %%%% - it doens't has to make any sense if it does look beautiful
-
+ 
 %%% lilly unterstütz die Verhaltenssteuerung über die Kommandozeile und erlaubt es so alle Paramter auch per '\def' zu setzen!
 
 \providecommand*{\LILLYxDummy}{dummy}                        %%% ONLY THING DEFINE HERE

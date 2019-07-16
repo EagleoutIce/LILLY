@@ -1,5 +1,27 @@
 package de.eagle.lillyjakeframework.compiler;
 
+import static de.eagle.lillyjakeframework.core.Definitions.B_EXTRA;
+import static de.eagle.lillyjakeframework.core.Definitions.B_INPUT;
+import static de.eagle.lillyjakeframework.core.Definitions.B_NAME;
+import static de.eagle.lillyjakeframework.core.Definitions.B_TEXT;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
+import static de.eagle.util.io.JakeLogger.writeLoggerError;
+import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
+import static de.eagle.util.io.JakeLogger.writeLoggerWarning;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import de.eagle.gepard.modules.Buildrules;
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.gepard.modules.Hooks;
@@ -14,19 +36,6 @@ import de.eagle.util.helper.CommandLine;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
-
-import java.io.*;
-import java.net.BindException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
-
-import static de.eagle.lillyjakeframework.core.Definitions.*;
-import static de.eagle.util.io.JakeLogger.*;
 
 /**
  * @class JakeCompile
@@ -303,72 +312,76 @@ public class JakeCompile {
                         int ret = p.waitFor();
                         JakeLogger.writeLoggerDebug3("pdflatex returned: " + ret, "compile");
                         if (ret != 0) {
-                            failed = true;
-                            JakeWriter.err.format(
-                                    "%sDas Kompilieren mit pdflatex und Jake ist in thread %d für %s%s fehlgeschlagen bitte sieh im entsprechenden Logfile nach!%s%n",
-                                    ColorConstants.COL_ERROR, id, b_data[B_TEXT], ColorConstants.COL_ERROR,
-                                    ColorConstants.COL_RESET);
-                            // Fake analyse until implemented:
-                            JakeWriter.out.println("Versuche die Probleme zu finden: ");
-                            int errmax = Integer.parseInt(CoreSettings.requestValue("S_ERRORCOUNT"));
-                            try {
-                                String[] lines = Files.lines(Paths.get(final_name + ".log")).toArray(String[]::new);
-
-                                int errCount = 0;
-                                for (int k = 0; k < lines.length; k++) {
-                                    String cur = lines[k];
-
-                                    if (cur.startsWith("!") || cur.toLowerCase().contains("improper alph")) {
-                                        JakeWriter.out.format("%n %3d. %s%n", ++errCount, cur);
-                                        // print all meta-lines
-                                        while (k < lines.length - 2) {
-                                            k++;
-                                            cur = lines[k];
-                                            // Highlight Line-Numbers
-                                            Matcher ln = Pattern.compile("l\\.\\d+").matcher(cur);
-                                            if (ln.find()) {
-                                                String rp = ln.group();
-                                                cur = cur.replaceAll(rp, Matcher.quoteReplacement(
-                                                        ColorConstants.COL_GOLD + rp + ColorConstants.COL_RESET));
-                                            }
-                                            if (cur.isBlank() && lines[k + 1].isBlank()
-                                                    || lines[k - 1].contains("X <return>  to quit.")) { // zwei
-                                                                                                        // leerzeilen
-                                                                                                        // oder letzte
-                                                                                                        // war das
-                                                                                                        // quit-Angebot
-                                                                                                        // => abbruch
-                                                JakeWriter.out.println();
-                                                break;
-                                            }
-
-                                            JakeWriter.out.format("       %s%n", cur);
-                                        }
-                                    }
-                                    if (errCount >= errmax) {
-                                        JakeWriter.out.format(
-                                                "%n%s------------------------------------ Erste %d Fehler ------------------------------------%s%n", // %2$s
-                                                ColorConstants.COL_ERROR, errmax, ColorConstants.COL_RESET);
-                                        break;
-                                    }
-                                    // )) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-                                    // (/usr/shar
-                                    // -------------------------------- Erste 5 Fehler
-                                    // --------------------------------
-                                }
-                            } catch (Exception ex) {
+                            synchronized (JakeWriter.err) {
+                                failed = true;
                                 JakeWriter.err.format(
-                                        "%sEs gab ein kleines Problem mit dem finden der Log-Datei, du musst wohl einen übermächtigen Magier finden, der dir hilft, den Drachen zu besiegen. Ich kann deine Prinzessin nicht retten :/%s",
-                                        ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
+                                        "%sDas Kompilieren mit pdflatex und Jake ist in thread %d für %s%s fehlgeschlagen bitte sieh im entsprechenden Logfile nach!%s%n",
+                                        ColorConstants.COL_ERROR, id, b_data[B_TEXT], ColorConstants.COL_ERROR,
+                                        ColorConstants.COL_RESET);
+                                // Fake analyse until implemented:
+                                JakeWriter.out.println("Versuche die Probleme zu finden: ");
+                                int errmax = Integer.parseInt(CoreSettings.requestValue("S_ERRORCOUNT"));
+                                try {
+                                    String[] lines = Files.lines(Paths.get(final_name + ".log")).toArray(String[]::new);
+
+                                    int errCount = 0;
+                                    for (int k = 0; k < lines.length; k++) {
+                                        String cur = lines[k];
+
+                                        if (cur.startsWith("!") || cur.toLowerCase().contains("improper alph")) {
+                                            JakeWriter.out.format("%n %3d. %s%n", ++errCount, cur);
+                                            // print all meta-lines
+                                            while (k < lines.length - 2) {
+                                                k++;
+                                                cur = lines[k];
+                                                // Highlight Line-Numbers
+                                                Matcher ln = Pattern.compile("l\\.\\d+").matcher(cur);
+                                                if (ln.find()) {
+                                                    String rp = ln.group();
+                                                    cur = cur.replaceAll(rp, Matcher.quoteReplacement(
+                                                            ColorConstants.COL_GOLD + rp + ColorConstants.COL_RESET));
+                                                }
+                                                if (cur.isBlank() && lines[k + 1].isBlank()
+                                                        || lines[k - 1].contains("X <return>  to quit.")) { // zwei
+                                                                                                            // leerzeilen
+                                                                                                            // oder
+                                                                                                            // letzte
+                                                                                                            // war das
+                                                                                                            // quit-Angebot
+                                                                                                            // =>
+                                                                                                            // abbruch
+                                                    JakeWriter.out.println();
+                                                    break;
+                                                }
+
+                                                JakeWriter.out.format("       %s%n", cur);
+                                            }
+                                        }
+                                        if (errCount >= errmax) {
+                                            JakeWriter.out.format(
+                                                    "%n%s------------------------------------ Erste %d Fehler ------------------------------------%s%n", // %2$s
+                                                    ColorConstants.COL_ERROR, errmax, ColorConstants.COL_RESET);
+                                            break;
+                                        }
+                                        // )) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+                                        // (/usr/shar
+                                        // -------------------------------- Erste 5 Fehler
+                                        // --------------------------------
+                                    }
+                                } catch (Exception ex) {
+                                    JakeWriter.err.format(
+                                            "%sEs gab ein kleines Problem mit dem finden der Log-Datei, du musst wohl einen übermächtigen Magier finden, der dir hilft, den Drachen zu besiegen. Ich kann deine Prinzessin nicht retten :/%s",
+                                            ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
+                                }
+                                // Ein, das war eine gute Idee relikt:
+                                /*
+                                 * Stream<String> lines = Files.lines(Paths.get(final_name + ".log")) .filter(x
+                                 * -> (x.startsWith("!") || x.toLowerCase().contains("improper alph") && (last =
+                                 * true)) || (last && !(last = false))); lines.forEachOrdered(x ->
+                                 * JakeWriter.out.format(" - %s%n", x));
+                                 */
+                                return;
                             }
-                            // Ein, das war eine gute Idee relikt:
-                            /*
-                             * Stream<String> lines = Files.lines(Paths.get(final_name + ".log")) .filter(x
-                             * -> (x.startsWith("!") || x.toLowerCase().contains("improper alph") && (last =
-                             * true)) || (last && !(last = false))); lines.forEachOrdered(x ->
-                             * JakeWriter.out.format(" - %s%n", x));
-                             */
-                            return;
                         }
                         // Path lilly_log_out = Paths.get(CoreSettings.requestValue("S_LILLY_OUT")
                         // ,"LILLY_COMPILE.log");

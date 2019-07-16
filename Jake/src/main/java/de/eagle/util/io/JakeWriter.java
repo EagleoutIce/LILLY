@@ -1,9 +1,7 @@
 package de.eagle.util.io;
 
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.Arrays;
 
 import de.eagle.lillyjakeframework.core.Definitions;

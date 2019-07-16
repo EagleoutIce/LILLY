@@ -136,7 +136,7 @@ Da der ach so wichtige Arkuskotangens erstaunlicherweise nicht standartmäßig d
 
 \subsection[Symbole \LILLYxBOXxVersion{\small 1.0.3}]{Symbole}
 Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
-%Weitere (nicht nennenswert und vermutlich \LILLYxNOTExWarning{Veraltet}) sind die Befehle: \CMDpreview{x} (\(\x\)), \CMDpreview{y} (\(\y\)) und \CMDpreview{z} (\(\z\))
+%Weitere (nicht nennenswert und vermutlich\cmdold) sind die Befehle: \CMDpreview{x} (\(\x\)), \CMDpreview{y} (\(\y\)) und \CMDpreview{z} (\(\z\))
 %\normalmarginpar
 \presentCommand[1.0.0]{N}[\cmdlist \textbackslash Z\cmdlist \textbackslash Q\cmdlist \textbackslash R\cmdlist \textbackslash C]
 Für die einzelnen Zahlenräume werden einige Befehle zur Verfügung gestellt, die alle über \verb|\ensuremath| abgesichert sind:
@@ -202,7 +202,7 @@ Für Ti\textit{k}Z gibt es noch die Befehle \blankcmd{crossAT\manArg{(PosX,PosY)
 %
 %
 %
-\presentEnvironment[1.0.2]{nstabbing}[\cmdlist \blankenv{centered}\cmdlist \blankenv{sqcases}  \LILLYxNOTExWarning{Veraltet}]
+\presentEnvironment[1.0.2]{nstabbing}[\cmdlist \blankenv{centered}\cmdlist \blankenv{sqcases} \cmdold]
 Weiter werden drei (mittlerweile obsolete) Umgebungen definiert: \begin{ditemize}\narrowitems
     \item \blankenv{nstabbing}:  \verb|tabbing|-Umgebung, ohne Abstände
     \item \blankenv{centered}: \verb|center|-Umgebung, ohne Abstände
@@ -232,7 +232,7 @@ Zudem definiert sich noch für Tabellen der Befehl \blankcmd{VRule\manArg{width}
 %
 %
 %
-\presentCommand[1.0.0]{trenner}[ \LILLYxNOTExWarning{Veraltet}]
+\presentCommand[1.0.0]{trenner}[\cmdold]
 Fügt einen großen senkrechten Strich ein: \blankcmd{trenner} ($\trenner$).
 
 \begin{bemerkung}[Tabellenspalten]
@@ -255,33 +255,66 @@ Fügt einen großen senkrechten Strich ein: \blankcmd{trenner} ($\trenner$).
 
 
 
+\subsection[Shortcuts \LILLYxBOXxVersion{\small 1.0.8}]{Shortcuts}
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SHORTCUTS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+Hier befinden sich einige abkürzende Befehle, die primär das Schreiben beschleunigen sollen. Sie werden auf Bedarf stetig erweitert.\medskip\newline
+%
+%
+%
+\presentCommand[1.0.7]{folge}[\optArg[a]{Folgenglied}]
+Setzt eine Folge, welche mit dem Index $n$ arbeitet: \blankcmd{folge} (\folge)\medskip\newline
+%
+%
+%
+\presentCommand[1.0.7]{reihe}[\optArg[a\_k]{Folgenglied}\optArg[0]{Start}]
+Setzt eine Reihe über die Glieder \emph{Folgenglied} an \emph{Start}: \blankcmd{reihe} (\reihe)\medskip\newline
+%
+%
+%
+\presentCommand[1.0.8]{obda}[\cmdlist \textbackslash Obda]
+Schreibt entsprechend \T{o.B.d.A} (\blankcmd{obda}) und \T{O.B.d.A.} (\blankcmd{Obda}) und beschleunigt damit das Tippen in Beweisen \Smiley.\medskip\newline
+%
+%
+%
+\presentCommand[1.0.7]{gdw}[\cmdlist \textbackslash limn\cmdlist \textbackslash sumn\cmdlist \textbackslash limk\cmdlist \textbackslash sumk]
+Setzt verschiedene mathematische Ausdrücke:
+\displayCommandList[3]{gdw,limn,sumn,limk,sumk}
+%
+%
+%
+\presentCommand[1.0.2]{x}[\optArg[$\sim$]{spacing}\cmdlist \textbackslash y\optArg[$\sim$]{spacing}\cmdlist \textbackslash z\optArg[$\sim$]{spacing} \cmdold]
+Setzt entsprechend: \x[], \y und \z
 
-\clearpage
+
+
+
+
 \section{Plots \tiny\LILLYxBOXxVersion{1.0.8}}
 \begin{center}
     Für die Spezifikationen siehe hier: \jmark[klick mich]{jmp:PLOTSSPEC}!
 \end{center}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_PLOTS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_PLOTS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip\newline
 %
 %
 %
-\presentCommand[1.0.8]{plotline}[\optArg[Ao]{farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}]
-Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Funktion (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar.\medskip
+\presentCommand[1.0.8]{plotline}[\optArg[Ao]{Farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}]
+Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Funktion (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar.\medskip\newline
 %
 %
 %
-\presentCommand[1.0.8]{plotseq}[\optArg[Ao]{farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}\optArg[maxX]{Obergrenze}\secline\optArg[1]{Untergrenze}\optArg[1pt]{Dicke}]
-Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Folge zwischen \emph{Unter-} und \emph{Obergrenze} mit Punkten der Größe \emph{Dicke} (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar.\medskip
+\presentCommand[1.0.8]{plotseq}[\optArg[Ao]{Farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}\optArg[maxX]{Obergrenze}\secline\optArg[1]{Untergrenze}\optArg[1pt]{Dicke}]
+Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Folge zwischen \emph{Unter-} und \emph{Obergrenze} mit Punkten der Größe \emph{Dicke} (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar.\medskip\newline
 %
 %
 %
 \presentCommand[1.0.10]{xmark}[\optArg[x]{text}\manArg{PosX}\optArg[0.15]{linelength}]
-Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip
+Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip\newline
 %
 %
 %
 \presentCommand[1.0.10]{ymark}[\optArg[xy]{text}\manArg{PosY}\optArg[0.15]{linelength}]
-Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip
+Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip\newline
+
 
 
 
