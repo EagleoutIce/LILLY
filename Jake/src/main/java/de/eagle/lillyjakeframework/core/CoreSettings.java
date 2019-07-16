@@ -55,7 +55,8 @@ public class CoreSettings {
      */
     public static boolean init() {
         if (settings != null) {
-            // writeLoggerInfo("Es wurde unnötiger weise CoreSettings::Init aufgerufen!", "CoreS");
+            // writeLoggerInfo("Es wurde unnötiger weise CoreSettings::Init aufgerufen!",
+            // "CoreS");
             // Dies könnte nicht gewollt sein
             return false;
         }
@@ -68,79 +69,107 @@ public class CoreSettings {
         // Hier wurden schon einemal die für Buildrues wichtigen Einstellungen
         // eingefügt:lilly
 
-        switch (PropertiesProvider.getOS()){
-            case LINUX:
-                settings.emplace(st,"S_INSTALL_PATH","Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH, "\"${HOME}/texmf\"");
-                settings.emplace(st, "S_LILLY_PATH","Wo liegt die Lilly.cls?",eSetting_Type.IS_PATH,"\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"");
-                break;
-            case MAC:
-                settings.emplace(st, "S_INSTALL_PATH","Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,"\"${HOME}/Library/texmf\"");
-                settings.emplace(st, "S_LILLY_PATH","Wo liegt die Lilly.cls?",eSetting_Type.IS_PATH,"\"$(dirname $(mdfind Lilly.cls | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"");
-                break;
-            case WINDOWS:
-                settings.emplace(st, "S_INSTALL_PATH","Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,"ERR:NOT SUPPORTED YET"); //TODO Windows pfade
-                settings.emplace(st, "S_LILLY_PATH","Wo liegt die Lilly.cls?",eSetting_Type.IS_PATH,"ERR: NOT SUPPORTED YET");
-                break;
+        switch (PropertiesProvider.getOS()) {
+        case LINUX:
+            settings.emplace(st, "S_INSTALL_PATH", "Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,
+                    "\"${HOME}/texmf\"");
+            settings.emplace(st, "S_LILLY_PATH", "Wo liegt die Lilly.cls?", eSetting_Type.IS_PATH,
+                    "\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"");
+            break;
+        case MAC:
+            settings.emplace(st, "S_INSTALL_PATH", "Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,
+                    "\"${HOME}/Library/texmf\"");
+            settings.emplace(st, "S_LILLY_PATH", "Wo liegt die Lilly.cls?", eSetting_Type.IS_PATH,
+                    "\"$(dirname $(mdfind Lilly.cls | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"");
+            break;
+        case WINDOWS:
+            settings.emplace(st, "S_INSTALL_PATH", "Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,
+                    "ERR:NOT SUPPORTED YET"); // TODO Windows pfade
+            settings.emplace(st, "S_LILLY_PATH", "Wo liegt die Lilly.cls?", eSetting_Type.IS_PATH,
+                    "ERR: NOT SUPPORTED YET");
+            break;
         }
-
 
         settings.emplace(st, "S_LILLY_OUT", "Ausgabeordner der PDF-DATEI", eSetting_Type.IS_PATH, "./OUTPUT/");
         settings.emplace(st, "S_LILLY_NAMEPREFIX", "Standard-Namenspräfixs", eSetting_Type.IS_TEXT, "");
-        settings.emplace(st, "S_LILLY_COMPLETE_NAME", "Präfix einer Complete-Version", eSetting_Type.IS_TEXT,"COMPLETE-");
-        settings.emplace(st, "S_LILLY_PRINT_NAME", "Präfix einer Druck-Version", eSetting_Type.IS_TEXT,"PRINT-");
+        settings.emplace(st, "S_LILLY_COMPLETE_NAME", "Präfix einer Complete-Version", eSetting_Type.IS_TEXT,
+                "COMPLETE-");
+        settings.emplace(st, "S_LILLY_PRINT_NAME", "Präfix einer Druck-Version", eSetting_Type.IS_TEXT, "PRINT-");
         settings.emplace(st, "S_LILLY_DOCTYPE", "Dokumenttyp", eSetting_Type.IS_TEXT, "Mitschrieb");
         settings.emplace(st, "S_LILLY_EXTERNAL_OUT", "Output-Ordner für tikzternal", eSetting_Type.IS_PATH, "extimg");
         settings.emplace(st, "S_LILLY_MODES", "Modi für den Kompiliervorgang", eSetting_Type.IS_TEXTLIST, "default");
         settings.emplace(st, "S_LILLY_BOXES", "Boxen für den Kompiliervorgang", eSetting_Type.IS_TEXTLIST, "DEFAULT");
 
         // S_LILLY_AUTOCLEAN
-        settings.emplace(st, "S_LILLY_AUTOCLEAN", "Sollen beim Arbeiten entstandene Dateien am Ende entfernt werden?", eSetting_Type.IS_SWITCH, "true");
+        settings.emplace(st, "S_LILLY_AUTOCLEAN", "Sollen beim Arbeiten entstandene Dateien am Ende entfernt werden?",
+                eSetting_Type.IS_SWITCH, "true");
         // S_LILLY_CLEANS
-        settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?", eSetting_Type.IS_TEXTLIST, "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS");
+        settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?",
+                eSetting_Type.IS_TEXTLIST,
+                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS");
         // S_LILLY_EXTERNAL
-        settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?", eSetting_Type.IS_SWITCH, "false");
-        settings.emplace(st, "S_LILLY_COMPLETE", "Sollen die Varianten vollständig erstellt werden?", eSetting_Type.IS_SWITCH, "true");
+        settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?",
+                eSetting_Type.IS_SWITCH, "false");
+        settings.emplace(st, "S_LILLY_COMPLETE", "Sollen die Varianten vollständig erstellt werden?",
+                eSetting_Type.IS_SWITCH, "true");
         // S_GEPARDRULES_PATH
-        settings.emplace(st, "S_GEPARDRULES_PATH", "Pfade für zusätzliche Regeln", eSetting_Type.IS_TEXT, ""); // TESTLIST? WITH ':' TODO!
+        settings.emplace(st, "S_GEPARDRULES_PATH", "Pfade für zusätzliche Regeln", eSetting_Type.IS_TEXT, ""); // TESTLIST?
+                                                                                                               // WITH
+                                                                                                               // ':'
+                                                                                                               // TODO!
         settings.emplace(st, "S_LILLY_IN", "Input-Pfad für Dateien", eSetting_Type.IS_PATH, "./");
         // S_LILLY_COMPILETIMES
-        settings.emplace(st, "S_LILLY_COMPILETIMES", "Wie oft soll kompiliert werden", eSetting_Type.IS_NUM, "2"); // TESTLIST? WITH ':' TODO!
-        // TODO: wird mit analzye  automatisch erklärt
+        settings.emplace(st, "S_LILLY_COMPILETIMES", "Wie oft soll kompiliert werden", eSetting_Type.IS_NUM, "2"); // TESTLIST?
+                                                                                                                   // WITH
+                                                                                                                   // ':'
+                                                                                                                   // TODO!
+        // TODO: wird mit analzye automatisch erklärt
 
-        // S_LILLY_SHOW_BOX_NAME 
-        settings.emplace(st, "S_LILLY_SHOW_BOX_NAME", "Soll der Boxname angezeigt werden?", eSetting_Type.IS_SWITCH, "true");
+        // S_LILLY_SHOW_BOX_NAME
+        settings.emplace(st, "S_LILLY_SHOW_BOX_NAME", "Soll der Boxname angezeigt werden?", eSetting_Type.IS_SWITCH,
+                "true");
 
         // besondere Lilly-Einstellungen
-        settings.emplace(st, "S_LILLY_VORLESUNG", "Um welche Vorlesung handelt es sich", eSetting_Type.IS_VLS,"NONE" );
-        settings.emplace(st,"S_LILLY_N","Um das wievielte Übungsblatt handelt es sich", eSetting_Type.IS_NUM, "42");
-        settings.emplace(st,"S_LILLY_SEMESTER", "Das  wievielte Semester ist es", eSetting_Type.IS_NUM, "0");
-        settings.emplace(st,"S_LILLY_EXTERNAL","Soll versucht werden tikzternal Grafiken auszulagern?",eSetting_Type.IS_SWITCH, "false");
-        settings.emplace(st,"S_LILLY_LAYOUT_LOADER","Pfad über den Layouts geladen werden können", eSetting_Type.IS_PATH, "");
-        settings.emplace(st,"S_LILLY_AUTHOR","Wer ist der Autor des Dokuments", eSetting_Type.IS_TEXT,"Florian Sihler");
-        settings.emplace(st,"S_LILLY_AUTHORMAIL","E-mail adresse des Autors",eSetting_Type.IS_TEXT,"florian.sihler@web.de");
-        settings.emplace(st,"S_LILLY_BIBTEX","Angabe der . bib Datei !OHNE ENDUNG!", eSetting_Type.IS_FILE,"");
-        settings.emplace(st, "S_LILLY_SIGNATURE_COLOR", "Welche Highlighting Farbe soll verwendet werden, per Hcolor (und HBcolor)", eSetting_Type.IS_NUM,"Leaf");
-
+        settings.emplace(st, "S_LILLY_VORLESUNG", "Um welche Vorlesung handelt es sich", eSetting_Type.IS_VLS, "NONE");
+        settings.emplace(st, "S_LILLY_N", "Um das wievielte Übungsblatt handelt es sich", eSetting_Type.IS_NUM, "42");
+        settings.emplace(st, "S_LILLY_SEMESTER", "Das  wievielte Semester ist es", eSetting_Type.IS_NUM, "0");
+        settings.emplace(st, "S_LILLY_EXTERNAL", "Soll versucht werden tikzternal Grafiken auszulagern?",
+                eSetting_Type.IS_SWITCH, "false");
+        settings.emplace(st, "S_LILLY_LAYOUT_LOADER", "Pfad über den Layouts geladen werden können",
+                eSetting_Type.IS_PATH, "");
+        settings.emplace(st, "S_LILLY_AUTHOR", "Wer ist der Autor des Dokuments", eSetting_Type.IS_TEXT,
+                "Florian Sihler");
+        settings.emplace(st, "S_LILLY_AUTHORMAIL", "E-mail adresse des Autors", eSetting_Type.IS_TEXT,
+                "florian.sihler@web.de");
+        settings.emplace(st, "S_LILLY_BIBTEX", "Angabe der . bib Datei !OHNE ENDUNG!", eSetting_Type.IS_FILE, "");
+        settings.emplace(st, "S_LILLY_SIGNATURE_COLOR",
+                "Welche Highlighting Farbe soll verwendet werden, per Hcolor (und HBcolor)", eSetting_Type.IS_NUM,
+                "Leaf");
 
         // Generelle Einstellungen
-        settings.emplace(st,"S_OPERATION", "Was soll getan werden?", eSetting_Type.IS_OPERATION, "help");
+        settings.emplace(st, "S_OPERATION", "Was soll getan werden?", eSetting_Type.IS_OPERATION, "help");
         settings.emplace(st, "S_FILE", "Wie soll die Datei heißen?", eSetting_Type.IS_FILE, "dummy.tex");
-        settings.emplace(st, "S_DEBUG", "Sollen Meldungen ausgegeben werden?",eSetting_Type.IS_SWITCH,"false");
-        settings.emplace(st, "S_DEBUG_FILTER","Regex-Expression welche Debug-Nachrichten anzuzeigen sind!",eSetting_Type.IS_TEXT,".*");
-        settings.emplace(st, "S_PATH","Zum Beispiel: Pfad zu LILLY",eSetting_Type.IS_PATH,"./");
-        settings.emplace(st,"S_WHAT","Spezifikator, um was gehts?", eSetting_Type.IS_TEXT, "Automat");
-        settings.emplace(st,"S_ANSWER","42", eSetting_Type.IS_TEXT, "");
+        settings.emplace(st, "S_DEBUG", "Sollen Meldungen ausgegeben werden?", eSetting_Type.IS_SWITCH, "false");
+        settings.emplace(st, "S_DEBUG_FILTER", "Regex-Expression welche Debug-Nachrichten anzuzeigen sind!",
+                eSetting_Type.IS_TEXT, ".*");
+        settings.emplace(st, "S_PATH", "Zum Beispiel: Pfad zu LILLY", eSetting_Type.IS_PATH, "./");
+        settings.emplace(st, "S_WHAT", "Spezifikator, um was gehts?", eSetting_Type.IS_TEXT, "Automat");
+        settings.emplace(st, "S_ANSWER", "42", eSetting_Type.IS_TEXT, "");
 
         // Makefile Regeln
-        settings.emplace(st, "S_JOBCOUNT","Wie viele Jobs für multithreaded-Kompilieren", eSetting_Type.IS_NUM, "2");
+        settings.emplace(st, "S_JOBCOUNT", "Wie viele Jobs für multithreaded-Kompilieren", eSetting_Type.IS_NUM, "2");
 
-        //Makefile Generierung
+        settings.emplace(st, "S_ERRORCOUNT", "Wie viele Fehler sollen maximal angezeigt werden?", eSetting_Type.IS_NUM,
+                "5");
+
+        // Makefile Generierung
         settings.emplace(st, "S_MK_NAME", "Wechen Namen soll das Makefile haben", eSetting_Type.IS_TEXT, "Makefile");
         settings.emplace(st, "S_MK_PATH", "Wohin soll das Makefile", eSetting_Type.IS_PATH, "./");
         settings.emplace(st, "S_MK_USE", "Soll ein Makefile erstellt werden", eSetting_Type.IS_SWITCH, "false");
         try {
             expandables = Expandables.getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
         return true;
     }
 
@@ -188,7 +217,7 @@ public class CoreSettings {
     public static String requestValue(String key) {
         init();
         String s = settings.requestValue(translator, key);
-        return (s==null)?"":s;
+        return (s == null) ? "" : s;
     }
 
     /**
@@ -207,7 +236,9 @@ public class CoreSettings {
     }
 
     /**
-     * Expandiert über einen entsprechenden Expandable sowie über das {@see #expand(String)}
+     * Expandiert über einen entsprechenden Expandable sowie über das
+     * {@see #expand(String)}
+     *
      * @param str der zu expandierende String
      * @return das expandierte Ergebnis
      */
@@ -218,12 +249,13 @@ public class CoreSettings {
 
     /**
      * Fragt einen Switch auf Wert ab
+     *
      * @param key der Name des Switches
      *
      * @implNote Wirft keinen fehler, wenn der Switch kein Switch ist!
      * @return
      */
-    public static boolean requestSwitch(String key){
+    public static boolean requestSwitch(String key) {
         init();
         return settings.requestSwitch(getTranslator(), key);
     }

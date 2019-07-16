@@ -11,11 +11,11 @@
 ! Variation dieser Daten führt zu veränderten Kommandozeilen Argumenten und kann ohne         !
 ! Redundanz alle soweit existierenden Konfigurationsdateien invalidieren. Zur                 !
 ! Strukturerhaltung erlaubt es der Translator keiner externen Datei auf die linksseitigen     !
-! Bezeichner Einfluss zu nehmen. Das Übersetzen erfolt also Unidirektional.                   !
+! Bezeichner Einfluss zu nehmen. Das Übersetzen erfolgt also Unidirektional.                  !
 
 ! Wichtig: !
 ! Die erzeugte Abbildung muss aus zwei disjunkten Teilmengen bestehen. Keine Übersetzung darf !
-! einen Kreisschluss bilden, da in diesem Fall stets die linksseitige Definition dominiert.   ! 
+! einen Kreisschluss bilden, da in diesem Fall stets die linksseitige Definition dominiert.   !
 
 ! Fehlerbehandlung: !
 ! Im Falle einer invalidierung dieser Konfigurationsdatei, so existiert eine Sicherung stets  !
@@ -58,6 +58,7 @@ S_WHAT                  = what
 S_INSTALL_PATH          = install-path
 
 S_JOBCOUNT              = jobcount
+S_ERRORCOUNT            = error-count
 S_MK_NAME               = mk-name
 S_MK_PATH               = mk-path
 S_MK_USE                = mk-use

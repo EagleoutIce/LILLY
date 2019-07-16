@@ -1,5 +1,6 @@
 \providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
-\documentclass[Dokumentation]{Lilly}
+\providecommand{\LILLYxColorxBemerkung}{Charcoal}
+\documentclass[Typ=Dokumentation]{Lilly}
 \usepackage[subject={TestTip},author={EagleoutIce},version=1]{pdfcomment}
 
 
@@ -41,6 +42,8 @@
 
 \newcommand{\LILLYxNOTExWarning}[1]{{\normalfont\tiny\raisebox{1.5pt}{\LILLYxBOXxWarning{\bfseries#1}}}}
 
+\newcommand{\LILLYxNOTExLibrary}[2][]{\LILLYxBOXxLibrary{\small #2}}
+\robustify{\LILLYxNOTExLibrary}
 
 \newcommand{\LILLYxNOTExVersion}[1]{\marginpar{\vspace*{0\baselineskip}\LILLYxBOXxVersion{\small #1}}}
 \robustify{\LILLYxNOTExVersion}
@@ -57,6 +60,31 @@
 \LILLYcommand{\pdp}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pa\-ra\-dig\-men der Pro\-gram\-mie\-rung}#1}
 \LILLYcommand{\gdbs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen der Be\-triebs\-sys\-tem\-e}#1}
 \LILLYcommand{\pvs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pro\-gram\-mier\-rung von Sys\-tem\-en}#1}
+
+
+
+\newcommand*{\blankcmd}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash #1}}
+\newcommand*{\blankenv}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@#1}}
+\newcommand*{\secline}{\newline\hbox{}\protect\qquad\quad}
+
+%% [Version][Tagname][Additionals]
+\DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}{\\\qquad#4}
+  \begingroup~\newline\elable{cmd:#3}%\IfValueTF{#3}{\elable{cmd:#3}}{\elable{cmd:#2}}%
+  \hspace*{-1cm}\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\tiny\T{v#1}}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
+\endgroup%
+}
+
+%% Since,
+\DeclareDocumentCommand{\presentCommand}{ O{1.0.0} m O{} } {%
+    \presentStuff[#1]{\blankcmd{#2#3}}[#2]
+}
+\DeclareDocumentCommand{\presentEnvironment}{ O{1.0.0} m O{} }{%
+    \presentStuff[#1]{\blankenv{#2#3}}[#2]
+}
+\newcommand*{\frmttxt}[1]{\begingroup\color{black}\emph{#1}\endgroup}
+\newcommand*{\cmdlist}{\begingroup\color{black},\;\endgroup}
+\newcommand*{\manArg}[1]{\{\frmttxt{#1}\}}
+\newcommand*{\optArg}[2][]{[\frmttxt{#2\ifthenelse{\equal{#1}{}}{}{=$\langle$#1$\rangle$}}]}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dokumentation                                                                                                       %     %%%% DOC %%%%
@@ -82,7 +110,7 @@
 \linput{Data/Aussicht.doc}
 \normalmarginpar\par
 \chapter{Anhang}
-\TitleSUB{Veraltete Dokumente, ZusÃ¤tzliches, Easter-Eggs, \ldots}
+\TitleSUB{Veraltete Dokumente, Zusätzliches, Easter-Eggs, \ldots}
 \linput{Data/Old/Ver10007.doc.old}
 \clearpage
 \linput{Data/Old/Ver10009.doc.old}

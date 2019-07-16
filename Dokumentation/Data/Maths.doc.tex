@@ -1,133 +1,321 @@
-\chapter[Mathe \LILLYxBOXxVersion{\small 1.0.0}]{Mathe}
-\TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 1.0.0}}
+\newcommand{\displayCommandList}[2][2]{%
+\begin{multicols}{#1}%
+    \begin{ditemize}\narrowitems%
+        \foreach \cmd in {#2}{%
+            \item \blankcmd{\cmd} (\ensuremath{\csname \cmd\endcsname})%
+        }%
+    \end{ditemize}%
+\end{multicols}%
+}
+
+\chapter[Mathe \LILLYxBOXxVersion{\small 1.0.10}]{Mathe}
+\TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 1.0.10}}
 \smallskip\renewcommand{\arraystretch}{1.5}
 \reversemarginpar\par
-An sich ändert LILLY nicht viel an der normalen Implementation der Matheumgebung. Die verwendete Matheumgebung lässt sich mithilfe des Befehls \CMDpreview{LILLYxMathxMode} frei einstellen. Standardmäßig wird dieser Wert auf \emph{normal} gesetzt.
+\elable{chp:MATH}An sich ändert LILLY nicht viel an der normalen Implementation der Mathewelt.\medskip
+%
+%
+%
+\presentCommand[1.0.3]{LILLYxMathxMode} %% Overbar
+Der verwendete Mathemodus lässt sich mithilfe des Befehls \clatex{:bs:LILLYxMathxMode} frei einstellen. Standardmäßig wird dieser Wert auf \emph{normal} gesetzt.
+\begin{bemerkung}[Standalone-Math]
+    Mit \LILLYxBOXxVersion{1.0.10} wurde die Mathe-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxMATH}) etabliert, welches sich auch eigenständig über \begin{latex}
+\usepackage{LILLYxMATH}
+        \end{latex}
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen.
+\end{bemerkung}
 
 \section{Weitere Befehle}
 
 \subsection[Operatoren \LILLYxBOXxVersion{\small 1.0.3}]{Operatoren}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_OPERATORS}}\vspace*{0.5\baselineskip}\par}
-Lilly liefert den Befehl \CMDpreview[(1)]{overbar} dieser wird auf Basis von \T{mkern} so definiert, dass er direkt Abstände zwischen den Overlines definiert. So ergibt sich:
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
-    \specialrule{1pt}{0pt}{0pt}
-    \T{\CMDshow{overbar}\{a\_1\} \CMDshow{overbar}\{a\_2\}} & \(\overbar{a_1}\overbar{a_2}\)\\\hline
-    \T{\CMDshow{overline}\{a\_1\} \CMDshow{overline}\{a\_2\}} & \(\overline{a_1}\overline{a_2}\)\\
-    \specialrule{1pt}{0pt}{0pt}
-\end{tabular}\]
-Für Definitionen gibt es die Befehle \CMDpreview{das} ($\das$), \CMDpreview{sad} ($\sad$), \CMDpreview{daseq} ($\daseq$), \CMDpreview{qesad} ($\qesad$) sowie \CMDpreview{shouldeq} ($\shouldeq$). All diese Befehle funktionieren lediglich in einer Matheumgebung und werden nicht mit \verb|\ensuremath| abgesichert!\par
-Bis auf den letzten werden zudem alle Befehle mithilfe von \verb|\vcentcolon| realisiert.\bigskip\newline
-Weiter wurde das Aussehen der Wurzel verändert, so liefert nun der Befehl \CMDpreview[{[1](1)}]{sqrt} folgendes:
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
-    \specialrule{1pt}{0pt}{0pt}
-    \T{\CMDshow{sqrt}[3]\{42\}} & \(\sqrt[3]{42}\)\\\hline
-    \T{\CMDshow{oldsqrt}[3]\{42\}} & \(\oldsqrt[3]{42}\)\\
-    \specialrule{1pt}{0pt}{0pt}
-\end{tabular}\smallskip\]
-Zudem gibt es einige Vereinfachungen für etliche typischen mathematischen Operatoren: \newline
-\CMDpreview{det} ($\det$), \CMDpreview{adj} ($\adj$), \CMDpreview{LH} ($\LH$), \CMDpreview{eig} ($\eig$), \CMDpreview{Dim} ($\Dim$), \CMDpreview{sel} ($\sel$), \CMDpreview{sign} ($\sign$), \CMDpreview{diag} ($\diag$), \CMDpreview{LK} ($\LK$), \CMDpreview{rg} ($\rg$), \CMDpreview{KER} ($\KER$), \CMDpreview{Eig} ($\Eig$), \CMDpreview{cd} {$\cd$}.
-Auch wurde das Aussehen von \verb|\mod|, \verb|\Im| und \verb|\Re| modifiziert:
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
-    \specialrule{1pt}{0pt}{0pt}
-    \(\mod\) & \(\Im\) & \(\Re\)\\\hline
-    \CMDshow{mod} & \CMDshow{Im} & \CMDshow{Re}\\
-    \specialrule{1pt}{0pt}{0pt}
-\end{tabular}\]
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_OPERATORS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+%
+%
+%
+\presentCommand[1.0.3]{overbar}[\manArg{text}] %% Overbar
+Lilly liefert den Befehl auf Basis von \T{mkern} so, dass er direkt Abstände zwischen den Overlines definiert, sodass kein manueller Abstand eingefügt werden muss. So ergibt sich:
+\begin{center}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+        \clatex{:bs:overbar\{a\_1\} :bs:overbar\{a\_2\}} & \(\overbar{a_1}\overbar{a_2}\)\\\hline
+        \clatex{:bs:overline\{a\_1\} :bs:overline\{a\_2\}} & \(\overline{a_1}\overline{a_2}\)\\
+        \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}
+\end{center}
+%
+%
+%
+\presentCommand[1.0.3]{das}[\cmdlist \textbackslash sad\cmdlist \textbackslash daseq\cmdlist \textbackslash qesad\cmdlist \textbackslash shouldeq]
+Für Definitionen gibt es die Befehle \blankcmd{das} ($\das$), \blankcmd{sad} ($\sad$), \blankcmd{daseq} ($\daseq$), \blankcmd{qesad} ($\qesad$) sowie \blankcmd{shouldeq} ($\shouldeq$). All diese Befehle funktionieren sowohl in einer Matheumgebung, das auch im normalen text, sie werden mit \verb|\ensuremath| abgesichert!\par
+Bis auf den letzten werden zudem alle Befehle mithilfe von \verb|\vcentcolon| realisiert.\medskip\newline
+%
+%
+%
+\presentCommand[1.0.3]{sqrt}[\optArg{n}\manArg{math-Ausdruck}]
+Weiter wurde das Aussehen der Wurzel verändert und die Möglichkeit hinzugefügt, über das optionale Argument \say{\T{n}} höhere Wurzeln zu Formulieren, wir erhalten folgendes:
+\begin{center}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+        \clatex{:bs:sqrt[3]\{42\}} & \(\sqrt[3]{42}\)\\\hline
+        \clatex{:bs:oldsqrt[3]\{42\}} & \(\oldsqrt[3]{42}\)\\
+        \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}\smallskip
+\end{center}
+%% todo error patterns:
+%% error, missing $, improper alphabetic constant, ! Too many }'s (in general, lines starting with '!')
+%
+%
+%
+\presentCommand[1.0.3]{det}[\cmdlist \textbackslash adj\cmdlist \textbackslash LH\cmdlist \textbackslash eig\cmdlist \textbackslash Dim\cmdlist \textbackslash sel\cmdlist \textbackslash sign\cmdlist \textbackslash diag\cmdlist \textbackslash LK\cmdlist \textbackslash rg\cmdlist \textbackslash KER\cmdlist \textbackslash Eig]
+Diese vereinfachenden Operatoren solles es ermöglichen Schneller verschiedene mathematische Operatoren zu setzen %% TODO: arccot
+\displayCommandList[3]{det,adj,LH,eig,Dim,sel,sign,diag,LK,rg,KER,Eig}
+%
+%
+%
+\presentCommand[1.0.2]{Im}[\cmdlist \textbackslash mod\cmdlist \textbackslash Re\cmdlist \textbackslash emptyset]
+Auch wurde das Aussehen von \verb|\mod|, \verb|\Im|, \verb|\Re| und \verb|\emptyset| modifiziert:
+\displayCommandList{mod,Im,Re,emptyset}
+%
+%
+%
+\presentCommand[1.0.6]{inf}[\cmdlist \textbackslash sup\cmdlist \textbackslash min\cmdlist \textbackslash max]
+Auch hierbei handelt es sich wieder um stupide Abbildungen im Operator-Style:
+\displayCommandList{inf,sup,min,max}
+%
+%
+%
+\presentCommand[1.0.9]{abs}[\manArg{math-Ausdruck}]
+Dieser Befehl vereinfacht das Schreiben von Betragsstrichen. Diese passen sich zudem automatisch an die vertikalen Dimensionen des Ausdrucks an:
+\begin{center}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{7cm}@{\hspace{1em}}|@{\hspace{1em}}C{2cm}@{\hspace{1em}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+        \clatex{:bmath::bs:abs\{:bs:frac\{:bs:pi-x^2\}\}\{:bs:log 3x\}:emath:} & \(\displaystyle\abs{\frac{\pi - x^2}{\log 3x}}\)\\\hline
+        \clatex{:bmath:|:bs:frac\{:bs:pi-x^2\}\{:bs:log 3x\}|:emath:} & \(\displaystyle|\frac{\pi - x^2}{\log 3x}|\)\\
+        \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}\smallskip
+\end{center}
+%
+%
+%
+\presentEnvironment[1.0.2]{matrix}[\optArg{Spaltendefinition}\cmdlist \blankenv{pmatrix}\optArg{Spaltendefinition}]
 Des Weiteren wurde noch die Matrixumgebung (\verb|\env@matrix|) so erweitert, dass sie als optionales Argument eine gültige Array-Spaltendefinition entgegennimmt:
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
-\specialrule{1pt}{0pt}{0pt}
-{\begin{lstlisting}[language=lLatex,frame=none]
-$\begin{pmatrix}[cc|c]
+\begin{center}\renewcommand{\arraystretch}{0.75}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{5.5cm}@{\hspace{1em}}|@{\hspace{1em}}C{2cm}@{\hspace{1em}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+        {\begin{latex}
+:bmath:\begin{pmatrix}[cc|c]
     1 & 2 & 3 \\
     4 & 5 & 6
-\end{pmatrix}$
-\end{lstlisting} }&  {$\begin{pmatrix}[cc|c]
-    1 & 2 & 3 \\
-    4 & 5 & 6
-\end{pmatrix}$}\\
-\specialrule{1pt}{0pt}{0pt}
-\end{tabular}\]
+\end{pmatrix}:emath:
+        \end{latex} }&  {$\begin{pmatrix}[cc|c]
+            1 & 2 & 3 \\
+            4 & 5 & 6
+        \end{pmatrix}$}\\
+        \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}
+\end{center}
+%
+%
+%
+\presentCommand[1.0.8]{val}[\cmdlist \textbackslash sch\cmdlist \textbackslash dom\cmdlist \textbackslash grad]
+Auch hier handelt es sich um weitere Mathe-Operatoren, die selbstredend implementiert werden:
+\displayCommandList{val,sch,dom,grad}
+%
+%
+%
+\presentCommand[1.0.8]{arccot}
+Da der ach so wichtige Arkuskotangens erstaunlicherweise nicht standartmäßig dabei ist, hier: \blankcmd{arccot} ($\arccot$).
+
+
+
+
+
+
+
+
 
 \subsection[Symbole \LILLYxBOXxVersion{\small 1.0.3}]{Symbole}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}}\vspace*{0.5\baselineskip}\par}
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
 %Weitere (nicht nennenswert und vermutlich \LILLYxNOTExWarning{Veraltet}) sind die Befehle: \CMDpreview{x} (\(\x\)), \CMDpreview{y} (\(\y\)) und \CMDpreview{z} (\(\z\))
 %\normalmarginpar
+\presentCommand[1.0.0]{N}[\cmdlist \textbackslash Z\cmdlist \textbackslash Q\cmdlist \textbackslash R\cmdlist \textbackslash C]
 Für die einzelnen Zahlenräume werden einige Befehle zur Verfügung gestellt, die alle über \verb|\ensuremath| abgesichert sind:
-\CMDpreview{N} ($\N$), \CMDpreview{Z} ($\Z$), \CMDpreview{Q} ($\Q$), \CMDpreview{R} ($\R$), \CMDpreview{C} ($\C$). Sie werden mithilfe von \verb|\mathbb| generiert. Auch die komplexe Einheit \i{} wird mit \CMDpreview{i} zur Verfügung gestellt. \medskip\newline
+\blankcmd{N} ($\N$), \blankcmd{Z} ($\Z$), \blankcmd{Q} ($\Q$), \blankcmd{R} ($\R$), \blankcmd{C} ($\C$). Sie werden mithilfe von \verb|\mathbb| generiert.\\
+%
+%
+%
+\presentCommand[1.0.1]{i}
+Auch die komplexe Einheit \i{} wird mit \blankcmd{i} zur Verfügung gestellt.\\
+%
+%
+%
+\presentCommand[1.0.3]{epsilon}[\cmdlist \textbackslash phi]
 Weiter wurden die griechischen Buchstaben Epsilon und Phi modifiziert:
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
-    \specialrule{1pt}{0pt}{0pt}
-    \T{\CMDshow{oldepsilon}} & \(\oldepsilon\) & \T{\CMDshow{epsilon}} & \(\epsilon\) \\\hline
-    \T{\CMDshow{oldphi}} & \(\oldphi\)& \T{\CMDshow{phi}} & \(\phi\) \\
-    \specialrule{1pt}{0pt}{0pt}
-\end{tabular}\]
-Zudem wird zum Beispiel die Menge der Binärzahlen über \CMDpreview{B} ($\B$), die Chromatische Zahl über \CMDpreview{X} ($\X$) und der generelle Körper mit \CMDpreview{K} ($\K$) zur Verfügung gestellt. Für die Potenzmenge liefert LILLY \CMDpreview{P} ($\P$), für die Menge der Funktionen \CMDpreview{F} ($\F$) und für die Groß-O-Notation \CMDpreview{O} ($\O$).\medskip\newline
-Weiter bindet LILLY das \T{\href{http://ctan.math.utah.edu/ctan/tex-archive/macros/latex/required/psnfss/psnfss2e.pdf}{pifont}} Paket ein und liefert so zum Beispiel \verb|\ding{51}| (\ding{51}) und \verb|\ding{55}| (\ding{55}).
+\begin{center}
+    \begin{tabular}{*{2}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+        \T{\CMDshow{oldepsilon}} & \(\oldepsilon\) & \T{\CMDshow{epsilon}} & \(\epsilon\) \\\hline
+        \T{\CMDshow{oldphi}} & \(\oldphi\)& \T{\CMDshow{phi}} & \(\phi\) \\
+        \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}
+\end{center}
+%
+%
+%
+\presentCommand[1.0.3]{B}[\cmdlist \textbackslash X\cmdlist \textbackslash K\cmdlist \textbackslash P\cmdlist \textbackslash F\cmdlist \textbackslash O]
+Zudem wird zum Beispiel die Menge der Binärzahlen über \blankcmd{B} ($\B$), die Chromatische Zahl über \blankcmd{X} ($\X$) und der generelle Körper mit \blankcmd{K} ($\K$) zur Verfügung gestellt. Für die Potenzmenge liefert LILLY \blankcmd{P} ($\P$), für die Menge der Funktionen \blankcmd{F} ($\F$) und für die Groß-O-Notation \blankcmd{O} ($\O$).\medskip\newline
+\presentCommand[1.0.10]{join}[\cmdlist \textbackslash leftouterjoin\cmdlist \textbackslash rightouterjoin\cmdlist \textbackslash fullouterjoin]
+Da auch die Relationenalgebra Teil der Mathematik ist, hier die entsprechenden Symbole für die Joins:
+\displayCommandList{join,leftouterjoin,rightouterjoin,fullouterjoin}
+%
+%
+%
+\begin{bemerkung}[Weitere Symbole]
+    Weiter bindet LILLY das \T{\href{http://ctan.math.utah.edu/ctan/tex-archive/macros/latex/required/psnfss/psnfss2e.pdf}{pifont}} Paket ein und liefert so zum Beispiel \verb|\ding{51}| (\ding{51}) und \verb|\ding{55}| (\ding{55}).
+\end{bemerkung}
+
+
+
+
+
+
+
+
 
 \subsection[Kompatibilität \LILLYxBOXxVersion{\small 1.0.3}]{Kompatibilität}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_COMPATIBILITIES}}\vspace*{0.5\baselineskip}\par}
-Hier werden einige Befehle eingerichtet, die entweder noch nicht zugeordnet wurden\({}^{\tiny \LILLYxBOXxVersion{\tiny 1.0.3}}\) oder während der Vorlesung (im Überlebenskampf :P) ins \T{eagleStudiPackage} eingebaut worden sind.
-Darunter vor allem für die \la kreierten: \CMDpreview[(1)]{enum} (\verb|enumerate| mit \CMDshow{narrowitems} (TODO: LINK)) und \CMDpreview[(1)]{liste} (\verb|enumerate| mit römischen Zahlen und \CMDshow{narrowitems}). \medskip\newline
-Weiter existieren die Befehle \CMDpreview{xa} ($\xa$), \CMDpreview{xb} ($\xb$), \CMDpreview{xc} ($\xc$). \medskip\newline
-Für Ti\textit{k}Z gibt es noch die Befehle \CMDpreview[(1)]{crossAT} (\raisebox{-0.35\baselineskip}{\tikz{\crossAT{(0,0)};}}\footnote{\T{\textbackslash tikz\{\CMDshow{crossAT}\{(0,0)\};\}} -- Zum Erhalt der Textzeile vertikal um \T{-0.35\textbackslash baselineskip} verschoben.}) und analog \CMDpreview[(1)]{circAT} (\tikz{\circAT{(0,0)};} \footnote{\T{\textbackslash tikz\{\CMDshow{circAT}\{(0,0)\};\}}}), sowie \CMDpreview[(2)]{bblock} (\raisebox{-0.2\baselineskip}{\tikz{\bblock{(0,0)}{42};}} \footnote{\T{\textbackslash tikz\{\CMDshow{bblock}\{(0,0)\}\{42\};\}} -- Wieder vertikal um \T{-0.2\textbackslash baselineskip} verschoben.}). Diese sollen auf jedenfall noch in ein geeignetes Ti\textit{k}Z-Dokument übertragen werden (TODO:)!\newline\marginpar{}\ENVpar{nstabbing}\ENVpar{centered}\ENVpar{sqcases}%%bufferpar
-Weiter werden drei (mittlerweile obsolete) Umgebungen definiert: \begin{itemize}[label=$\diamond$]\narrowitems
-    \item \T{nstabbing}:  \verb|tabbing|-Umgebung, ohne Abstände
-    \item \T{centered}: \verb|center|-Umgebung, ohne Abstände
-    \item \T{sqcases}: Ähnelt \verb|cases| - nur mit '\T{]}'.
-\end{itemize}
-Zudem definiert sich noch für Tabellen der Befehl \CMDpreview[{[1]}]{VRule}, welcher eine Spalte variabler Größe für Tabellen zur Verfügung stellt. Eine exemplarische Einbindung findet sich hier:
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
-\specialrule{1pt}{0pt}{0pt}
-{\begin{lstlisting}[language=lLatex,frame=none]
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_COMPATIBILITIES}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+
+Hier werden einige Befehle eingerichtet, die entweder noch nicht zugeordnet wurden\({}^{\tiny \LILLYxBOXxVersion{\tiny 1.0.10}}\) oder während der Vorlesung (im Überlebenskampf :P) ins \T{eagleStudiPackage} eingebaut worden sind.
+%
+%
+%
+\presentCommand[1.0.0]{enum}[\manArg{items}\cmdlist \textbackslash liste\manArg{items}]
+Hier befinden sich die für \la kreierten: \blankcmd{enum\manArg{items}} (\verb|enumerate| mit \newline\blankcmd{narrowitems}) und \blankcmd{liste\manArg{items}} (\verb|enumerate| mit römischen Zahlen und \newline\blankcmd{narrowitems}). \medskip\newline %% TODO: link narrowitems
+%
+%
+%
+\presentCommand[1.0.1]{xa}[\cmdlist \textbackslash xb\cmdlist \textbackslash xc]
+Weiter existieren die Befehle \blankcmd{xa} ($\xa$), \blankcmd{xb} ($\xb$), \blankcmd{xc} ($\xc$), welche einen etwas größeren Abstand für eine bessere Lesbarkeit einfügen. \medskip\newline
+\presentCommand[1.0.1]{crossAT}[\manArg{(PosX,PosY)}\cmdlist \textbackslash circAT\manArg{(PosX,PosY)}\cmdlist \textbackslash bblock\manArg{(PosX,PosY)}\manArg{text}]
+Für Ti\textit{k}Z gibt es noch die Befehle \blankcmd{crossAT\manArg{(PosX,PosY)}} (\raisebox{-0.35\baselineskip}{\tikz{\crossAT{(0,0)};}}\footnote{\T{\blankcmd{tikz}\{\blankcmd{crossAT}\{(0,0)\};\}} -- Zum Erhalt der Textzeile vertikal um \T{-0.35\textbackslash baselineskip} verschoben.}) und analog\newline \blankcmd{circAT\manArg{(PosX,PosY)}} (\tikz{\circAT{(0,0)};} \footnote{\T{\blankcmd{tikz}\{\blankcmd{circAT}\{(0,0)\};\}}}), sowie \blankcmd{bblock\manArg{(PosX,PosY)}\manArg{text}} (\raisebox{-0.2\baselineskip}{\tikz{\bblock{(0,0)}{42};}} \footnote{\T{\blankcmd{tikz}\{\blankcmd{bblock}\{(0,0)\}\{42\};\}} -- Wieder vertikal um \T{-0.2\textbackslash baselineskip} verschoben.}). Hier fragt man sich nun vielleicht, warum diese nicht in einem entsprechenden Ti\textit{k}Z-Paket sind. Im Rahmen der mit \LILLYxBOXxVersion{1.0.10} eingeführten Modularisierung hat sich diese Verteilung als günstig erwiesen. %% vielleicht doch verschieben?
+\newline
+%
+%
+%
+\presentEnvironment[1.0.2]{nstabbing}[\cmdlist \blankenv{centered}\cmdlist \blankenv{sqcases}  \LILLYxNOTExWarning{Veraltet}]
+Weiter werden drei (mittlerweile obsolete) Umgebungen definiert: \begin{ditemize}\narrowitems
+    \item \blankenv{nstabbing}:  \verb|tabbing|-Umgebung, ohne Abstände
+    \item \blankenv{centered}: \verb|center|-Umgebung, ohne Abstände
+    \item \blankenv{sqcases}: Ähnelt \verb|cases| - nur mit '\T{]}'.
+\end{ditemize}
+%
+%
+%
+\presentCommand[1.0.4]{VRule}[\manArg{width}]
+Zudem definiert sich noch für Tabellen der Befehl \blankcmd{VRule\manArg{width}}, welcher eine Spalte variabler Größe für Tabellen zur Verfügung stellt. Eine exemplarische Einbindung findet sich hier:
+\begin{center}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{8cm}@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+        {\begin{latex}
 \begin{tabular}{c!{\VRule[6pt]}c}
     \specialrule{2pt}{0pt}{0pt}
     You!*'*!re my & Wonder Wall\\
     \specialrule{2pt}{0pt}{0pt}
 \end{tabular}
-\end{lstlisting} }&  {\begin{tabular}{c!{\VRule[6pt]}c}
-    \specialrule{2pt}{0pt}{0pt}
-    You're my & Wonder Wall\\
-    \specialrule{2pt}{0pt}{0pt}\end{tabular}}\\
-\specialrule{1pt}{0pt}{0pt}
-\end{tabular}\]
-Weiter gibt es noch einige verschiedene Tabellen-Spalten, deren Kurzbezeichner den Anschein erwecken wild zusammengewürfelt zu sein: \begin{multicols}{3}
-    \begin{itemize}[label=$\diamond$]\narrowitems
-        \item \verb|b|: Fettgedruckt zentriert
-        \item \verb|u|: Mathematisch zentriert
-        \item \verb|g|: Fußnotengröße linksbündig
-        \item \verb|w|: Fußnotengröße linksbündig(X)
-        \item \verb|L|(1): Forciert links mit Breite \#1
-        \item \verb|C|(1): Forciert zentriert mit Breite \#1
-        \item \verb|R|(1): Forciert rechts mit Breite \#1
-    \end{itemize}
-\end{multicols}
-\normalmarginpar
+        \end{latex} }&  {\begin{tabular}{c!{\VRule[6pt]}c}
+            \specialrule{2pt}{0pt}{0pt}
+            You're my & Wonder Wall\\
+            \specialrule{2pt}{0pt}{0pt}\end{tabular}}\\
+        \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}
+\end{center}
+%
+%
+%
+\presentCommand[1.0.0]{trenner}[ \LILLYxNOTExWarning{Veraltet}]
+Fügt einen großen senkrechten Strich ein: \blankcmd{trenner} ($\trenner$).
+
+\begin{bemerkung}[Tabellenspalten]
+    Weiter gibt es noch einige verschiedene Tabellen-Spalten, deren Kurzbezeichner den Anschein erwecken wild zusammengewürfelt zu sein: \begin{multicols}{2}
+        \begin{ditemize}\narrowitems
+            \item \verb|b|: Fettgedruckt zentriert
+            \item \verb|u|: Mathematisch zentriert
+            \item \verb|g|: Fußnotengröße linksbündig
+            \item \verb|w|: Fußnotengröße linksbündig (X-Spalte)
+            \item \verb|L|\manArg{width}: Linksbündig mit Breite \emph{width}
+            \item \verb|C|\manArg{width}: Zentriert mit Breite \emph{width}
+            \item \verb|R|\manArg{width}: Rechtsbündig mit Breite \emph{width}
+        \end{ditemize}
+    \end{multicols}
+\end{bemerkung}
 
 
+
+
+
+
+
+
+\clearpage
 \section{Plots \tiny\LILLYxBOXxVersion{1.0.8}}
 \begin{center}
-    \framebox{Für die Spezifikationen siehe hier: \jmark[klick mich]{jmp:PLOTSSPEC}!}
+    Für die Spezifikationen siehe hier: \jmark[klick mich]{jmp:PLOTSSPEC}!
 \end{center}
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_PLOTS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+%
+%
+%
+\presentCommand[1.0.8]{plotline}[\optArg[Ao]{farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}]
+Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Funktion (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar.\medskip
+%
+%
+%
+\presentCommand[1.0.8]{plotseq}[\optArg[Ao]{farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}\optArg[maxX]{Obergrenze}\secline\optArg[1]{Untergrenze}\optArg[1pt]{Dicke}]
+Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Folge zwischen \emph{Unter-} und \emph{Obergrenze} mit Punkten der Größe \emph{Dicke} (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar.\medskip
+%
+%
+%
+\presentCommand[1.0.10]{xmark}[\optArg[x]{text}\manArg{PosX}\optArg[0.15]{linelength}]
+Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip
+%
+%
+%
+\presentCommand[1.0.10]{ymark}[\optArg[xy]{text}\manArg{PosY}\optArg[0.15]{linelength}]
+Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip
 
-\subsection{graph-Environment}
+
+
+
+
+\subsection{graph-Environment}\elable{env:graph}
+%
+%
+%
+\presentEnvironment[1.0.8]{graph}[\optArg{Konfigurationen}\optArg{Tikz-Argumente}]
 Es existiert die folgende Implementation der Graph-Umgebung:
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.45\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.45\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
-    \specialrule{1pt}{0pt}{0pt}
-    {\footnotesize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
-\begin{graph}[scale=1.25,maxY=3]
+\begin{center}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.45\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+        {\footnotesize\begin{latex}[breaklines=true]
+\begin{graph}[scale=1.25,maxY=3,numbers]
     \plotline[purple]{sqrt(\x+2.5)};
     \plotline[Ao][\y]{(\y*\y)/1.5};
+    \plotseq[Azure]
+        {sin(deg(\x))^2};
+    \xmark[\xi]{1.5}; \ymark[\psi]{1.5};
 \end{graph}
-    \end{lstlisting}} &  \begin{graph}[scale=1.25,maxY=3]
-        \plotline[purple]{sqrt(\x+2.5)};
-        \plotline[Ao][\y]{(\y*\y)/1.5};
-    \end{graph}\\
-    \specialrule{1pt}{0pt}{0pt}
-    \end{tabular}\]
-Die Signatur des Environments \ENVpar{graph} lautet: \T{[Argumente][tikz-Argumente]}.
-Letzere sind einfach zusätzliche Argumente die der unterliegenden \T{tikzpicture}
-beigefügt werden. Für die Argumente gibt es folgende Möglichkeiten:\newline
-\begin{center}
+        \end{latex}} &  \begin{graph}[scale=1.25,maxY=3,numbers]
+            \plotline[purple]{sqrt(\x+2.5)};
+            \plotline[Ao][\y]{(\y*\y)/1.5};
+            \plotseq[Azure]
+                {sin(deg(\x))^2};
+            \xmark[$\xi$]{1.5}; \ymark[$\psi$]{1.5};
+        \end{graph}\\
+        \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}
+\end{center}
+Für die \emph{Konfigurationen} gibt es folgende Möglichkeiten:
+\begin{center}% \begin{tabularx}{0.75\linewidth}
     \begin{tabular}{>{\LILLYxlstTypeWriter}l>{\em}lcl}
         \toprule
         Bezeichner & \normalfont Typ & Standard & Beschreibung\\\midrule
@@ -141,21 +329,24 @@ beigefügt werden. Für die Argumente gibt es folgende Möglichkeiten:\newline
         labelX & String & \$x\$ & Bezeichner X-Achse \\
         labelY & String & \$y\$ & Bezeichner Y-Achse \\
         samples & Zahl & 250 & Anzahl an Kalkulationen \\
+        numbers & <> & false & Zeigt Zahlen an \\
+        numXMin & Zahl & 0 & Nummernstart $x$ \\
+        numYMin & Zahl & 0 & Nummernstart $y$ \\
+        numbersize & Zahl & 5 & Schriftgröße Nummerierung \\
+        labelsize & Zahl & 10 & Schriftgröße Texte \\
         \bottomrule
     \end{tabular}
 \end{center}
 
-\subsection{wgraph-Environment}
-Um die Graph-Umgebung noch vielfälter zu Gestalten wurde \ENVpar{wgraph} geschaffen.
+\presentEnvironment[1.0.8]{wgraph}[\manArg{Ausrichtung}\optArg{Konfigurationen}\optArg{Tikz-Argumente}\secline\optArg{wrapfig-Zusatz}\optArg[0pt]{width}]
+Um die Graph-Umgebung noch vielfälter zu Gestalten wurde \blankenv{wgraph} geschaffen.
 Nach reichlicher Überlegung wurde ein neuer Befehl etabliert anstelle es in das
-normale \T{graph}-Environment einzubetten. Er funktioniert mit der Syntax:
+normale \jmark[graph]{env:graph}-Environment einzubetten. Er funktioniert mit der Syntax:
 \begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
-    \begin{wgraph}{l}[][][0pt][\caption{Wichtiger Graph}]
+    \begin{wgraph}{l}[][][\caption{Wichtiger Graph}][400pt]
         \plotline{\x*\x}
     \end{wgraph}
 \end{lstlisting}
-Die Signatur hierbei lautet: \T{\{ORIENTATION\}[Argumente][tikz-Argumente][width][wrapfig-zusatz]}.
-
 \section{3D-Plots \LILLYxNOTExWarning{Ausstehend}}
 Ich bin freier Platz :D
 \renewcommand{\arraystretch}{1}
