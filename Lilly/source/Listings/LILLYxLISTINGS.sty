@@ -3,6 +3,8 @@
 
 \RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxCOLOR}
+\RequirePackage{LILLYxENCODING}
 
 %%% Die Verwaltung der Listings verläuft auf verschiedene Highlighting-Module welche auch über die Kommandozeile definiert werden können
 
@@ -17,6 +19,24 @@
                     {Also mit irgendwas muss ich arbeiten.}
                     {}{}
 }
+
+%% maybe just load and check?
+%% https://ctan.org/pkg/amsfonts
+\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
+                    {Wir wollen mehr Symbole}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://www.ctan.org/pkg/xparse
+\LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
+                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+                    {}{} %% keine Argumente
+
+\LILLYxLoadPackage{graphicx}{Für tolle Grafiken}
+                    {Dieses Paket ist für includegraphics von nöten!}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}} %% Sloppy includegraphics draft
+                    {}{}
+
 %% https://tex.stackexchange.com/questions/34896/coloring-digits-with-the-listings-package/34952#34952
 \newcommand\digitstyle{\color{DarkMidnightBlue}}
 \makeatletter

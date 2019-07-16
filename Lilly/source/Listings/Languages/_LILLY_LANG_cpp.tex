@@ -1,13 +1,15 @@
 \lstdefinelanguage{lCpp}{
     language=C++,
-    otherkeywords = {;,<<,>>,2>,<,|},
-    alsoletter={-,|,~,{,},_,>,:},
+    otherkeywords = {;,<<,>>,2>,<,>,|,std::chrono::,std::},
+    alsoletter={-,|,~,{,},_},
     comment=[l]{\#},
     comment=[l]{//},
     sensitive=false,
     morekeywords = {},
     morekeywords = [2]{Pos},
+    morekeywords = [3]{cout,cin,endl,flush},
     morekeywords = [4]{moveForward, main, printf, sin, cos},
+    morekeywords = [5] {iostream, unistd.h},
     morecomment=[s]{/*}{*/},
     morestring=[b]',
 }

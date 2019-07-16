@@ -124,8 +124,13 @@ Auch hier handelt es sich um weitere Mathe-Operatoren, die selbstredend implemen
 %
 %
 \presentCommand[1.0.8]{arccot}
-Da der ach so wichtige Arkuskotangens erstaunlicherweise nicht standartmäßig dabei ist, hier: \blankcmd{arccot} ($\arccot$).
-
+Da der ach so wichtige Arkuskotangens erstaunlicherweise nicht standartmäßig dabei ist, hier: \blankcmd{arccot} ($\arccot$).\medskip\newline
+%
+%
+%
+\presentCommand[1.0.10]{dif}[\cmdlist \textbackslash dint\optArg[x]{Variable}]
+Auch hierbei handelt es sich wieder um stupide Abbildungen im Operator-Style für Integration und Differenzierung
+\displayCommandList{dif,dint}
 
 
 
@@ -327,17 +332,17 @@ Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem text \emph{text}. F
 \presentEnvironment[1.0.8]{graph}[\optArg{Konfigurationen}\optArg{Tikz-Argumente}]
 Es existiert die folgende Implementation der Graph-Umgebung:
 \begin{center}
-    \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.45\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
         {\footnotesize\begin{latex}[breaklines=true]
-\begin{graph}[scale=1.25,maxY=3,numbers]
+\begin{graph}[scale=1.15,maxY=3,numbers]
     \plotline[purple]{sqrt(\x+2.5)};
     \plotline[Ao][\y]{(\y*\y)/1.5};
     \plotseq[Azure]
         {sin(deg(\x))^2};
     \xmark[\xi]{1.5}; \ymark[\psi]{2.5};
 \end{graph}
-        \end{latex}} &  \begin{graph}[scale=1.25,maxY=3,numbers]
+        \end{latex}} &  \begin{graph}[scale=1.15,maxY=3,numbers]
             \plotline[purple]{sqrt(\x+2.5)};
             \plotline[Ao][\y]{(\y*\y)/1.5};
             \plotseq[Azure]
