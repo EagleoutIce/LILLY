@@ -59,7 +59,7 @@
 \NewDocumentCommand{\plotseq}{ O{DebianRed} O{\x} m O{\lillyxPlotxMaxX} O{1} O{1pt}}{\foreach #2 in {#5,...,#4}{\pgfmathparse{#3}\filldraw[#1](#2,\pgfmathresult) circle (#6);}}
 
 \NewDocumentCommand{\xmark}{O{x} m O{0.15}}{\draw (#2,\lillyxPlotxMinY)++(0,#3) -- ++(0,-2*#3) node [below] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont #1};}
-\NewDocumentCommand{\ymark}{O{y} m O{0.15}}{\draw (\lillyxPlotxMinX,#2-\lillyxPlotxOffset)++(#3,0) -- ++(-2*#3,0) node [left] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont #1};}
+\NewDocumentCommand{\ymark}{O{y} m O{0.15}}{\draw (0,#2-\lillyxPlotxOffset)++(#3,0) -- ++(-2*#3,0) node [left] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont #1};}
 
 %%% [KEYS][TIKZPICTURE]
 \DeclareDocumentEnvironment{graph}{ O{} O{}}{
