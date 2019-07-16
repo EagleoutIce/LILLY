@@ -268,6 +268,7 @@ public class JakeCompile {
                 String final_name = b_data[B_NAME]
                         + (CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME") ? boxmode + "-" : "")
                         + new File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+$", "");
+                final_name = final_name.replace("\"\"", "");
 
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL")) {
                     writeLoggerInfo("Erstelle Ghost Dokument...", tag);
@@ -342,12 +343,16 @@ public class JakeCompile {
                                                             ColorConstants.COL_GOLD + rp + ColorConstants.COL_RESET));
                                                 }
                                                 if (cur.isBlank() && lines[k + 1].isBlank()
-                                                        || lines[k - 1].contains("X <return>  to quit.")) { // zwei
+                                                        || lines[k - 1].contains("X <return>  to quit.")
+                                                        || lines[k+1].startsWith("!")) { // zwei
                                                                                                             // leerzeilen
                                                                                                             // oder
                                                                                                             // letzte
                                                                                                             // war das
                                                                                                             // quit-Angebot
+                                                                                                            // oder nächst 
+                                                                                                            // ist ein neuer
+                                                                                                            // fehler
                                                                                                             // =>
                                                                                                             // abbruch
                                                     JakeWriter.out.println();
@@ -369,6 +374,7 @@ public class JakeCompile {
                                         // --------------------------------
                                     }
                                 } catch (Exception ex) {
+                                    ex.printStackTrace();
                                     JakeWriter.err.format(
                                             "%sEs gab ein kleines Problem mit dem finden der Log-Datei, du musst wohl einen übermächtigen Magier finden, der dir hilft, den Drachen zu besiegen. Ich kann deine Prinzessin nicht retten :/%s",
                                             ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
