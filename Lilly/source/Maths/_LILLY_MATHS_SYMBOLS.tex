@@ -27,6 +27,6 @@
 \def\join{\ensuremath{\Join}}
 \DeclareRobustCommand{\ojoin}{\setbox0=\hbox{$\Join$}%
   \rule[.05ex]{.25em}{.4pt}\llap{\rule[1.05ex]{.25em}{.4pt}}}
-\def\leftouterjoin{\ensuremath{\mathbin{\ojoin\mkern-8.5mu\Join\phantom{\mkern-8.5mu\ojoin}}}}
-\def\rightouterjoin{\ensuremath{\mathbin{\phantom{\mkern-8.5mu\ojoin}\Join\mkern-8.5mu\ojoin}}}
-\def\fullouterjoin{\ensuremath{\mathbin{\ojoin\mkern-8.5mu\Join\mkern-8.5mu\ojoin}}}
+\DeclareRobustCommand{\leftouterjoin}{\ensuremath{\mathbin{\ojoin\mkern-8.5mu\Join\phantom{\mkern-8.5mu\ojoin}}}}
+\DeclareRobustCommand{\rightouterjoin}{\ensuremath{\mathbin{\phantom{\mkern-8.5mu\ojoin}\Join\mkern-8.5mu\ojoin}}}
+\DeclareRobustCommand{\fullouterjoin}{\ensuremath{\mathbin{\ojoin\mkern-8.5mu\Join\mkern-8.5mu\ojoin}}}
