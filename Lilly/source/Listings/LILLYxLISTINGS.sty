@@ -21,13 +21,38 @@
 \newcommand\digitstyle{\color{DarkMidnightBlue}}
 \makeatletter
 \newcommand{\ProcessDigit}[1]
-{%
+{\begingroup%
   \ifnum\lst@mode=\lst@Pmode\relax%
    {\digitstyle #1}%
   \else
     #1%
-  \fi
+  \fi\hbox{\relax{}}\endgroup%
 }
+\makeatother
+
+%% WS gobble fix for literate replacement - same code but with switching whitespacefalse to false
+\makeatletter
+\def\lst@Literate#1#2#3{%
+    \ifx\relax#2\@empty\else
+        \lst@CArgX #1\relax\lst@CDef
+            {}
+            {\let\lst@next\@empty
+             \lst@ifxliterate
+                \lst@ifmode \let\lst@next\lst@CArgEmpty \fi
+             \fi
+             \ifx\lst@next\@empty
+                 \ifx\lst@OutputBox\@gobble\else
+                   \lst@XPrintToken \let\lst@scanmode\lst@scan@m
+                   \lst@token{#2}\lst@length#3\relax
+                   \lst@XPrintToken
+                   \lst@whitespacefalse %!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                 \fi
+                 \let\lst@next\lst@CArgEmptyGobble
+             \fi
+             \lst@next}%
+            \@empty
+        \expandafter\lst@Literate
+    \fi}
 \makeatother
 
 %% Konfigurere Sonderzeichen
@@ -46,7 +71,12 @@
   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
   {:bs:}{{\color{Orchid}\textbackslash}}1 {:bmath:}{{\color{bondiBlue}\$}}1
-  {:emath:}{{{\color{bondiBlue}\$}}}1 {0}{{{\ProcessDigit{0}}}}1
+  {:emath:}{{{\color{bondiBlue}\$}}}1 %spaces
+  % {0 }{{{\ProcessDigit{0} }}}2
+  % {1 }{{{\ProcessDigit{1} }}}2 {2 }{{{\ProcessDigit{2} }}}2 {3 }{{{\ProcessDigit{3 }}}}2
+  % {4 }{{{\ProcessDigit{4} }}}2 {5 }{{{\ProcessDigit{5} }}}2 {6 }{{{\ProcessDigit{6 }}}}2
+  % {7 }{{{\ProcessDigit{7} }}}2 {8 }{{{\ProcessDigit{8} }}}2 {9 }{{{\ProcessDigit{9 }}}}2
+  {0}{{{\ProcessDigit{0}}}}1
   {1}{{{\ProcessDigit{1}}}}1 {2}{{{\ProcessDigit{2}}}}1 {3}{{{\ProcessDigit{3}}}}1
   {4}{{{\ProcessDigit{4}}}}1 {5}{{{\ProcessDigit{5}}}}1 {6}{{{\ProcessDigit{6}}}}1
   {7}{{{\ProcessDigit{7}}}}1 {8}{{{\ProcessDigit{8}}}}1 {9}{{{\ProcessDigit{9}}}}1
