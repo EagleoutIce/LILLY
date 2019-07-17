@@ -322,63 +322,16 @@ public class JakeCompile {
                                 // Fake analyse until implemented:
                                 JakeWriter.out.println("Versuche die Probleme zu finden: ");
                                 int errmax = Integer.parseInt(CoreSettings.requestValue("S_ERRORCOUNT"));
-                                try {
-                                    String[] lines = Files.lines(Paths.get(final_name + ".log")).toArray(String[]::new);
-
-                                    int errCount = 0;
-                                    for (int k = 0; k < lines.length; k++) {
-                                        String cur = lines[k];
-
-                                        if (cur.startsWith("!") || cur.toLowerCase().contains("improper alph")) {
-                                            JakeWriter.out.format("%n %3d. %s%n", ++errCount, cur);
-                                            // print all meta-lines
-                                            while (k < lines.length - 2) {
-                                                k++;
-                                                cur = lines[k];
-                                                // Highlight Line-Numbers
-                                                Matcher ln = Pattern.compile("l\\.\\d+").matcher(cur);
-                                                if (ln.find()) {
-                                                    String rp = ln.group();
-                                                    cur = cur.replaceAll(rp, Matcher.quoteReplacement(
-                                                            ColorConstants.COL_GOLD + rp + ColorConstants.COL_RESET));
-                                                }
-                                                if (cur.isBlank() && lines[k + 1].isBlank()
-                                                        || lines[k - 1].contains("X <return>  to quit.")
-                                                        || lines[k+1].startsWith("!")) { // zwei
-                                                                                                            // leerzeilen
-                                                                                                            // oder
-                                                                                                            // letzte
-                                                                                                            // war das
-                                                                                                            // quit-Angebot
-                                                                                                            // oder nächst 
-                                                                                                            // ist ein neuer
-                                                                                                            // fehler
-                                                                                                            // =>
-                                                                                                            // abbruch
-                                                    JakeWriter.out.println();
-                                                    break;
-                                                }
-
-                                                JakeWriter.out.format("       %s%n", cur);
-                                            }
-                                        }
-                                        if (errCount >= errmax) {
-                                            JakeWriter.out.format(
-                                                    "%n%s------------------------------------ Erste %d Fehler ------------------------------------%s%n", // %2$s
-                                                    ColorConstants.COL_ERROR, errmax, ColorConstants.COL_RESET);
-                                            break;
-                                        }
-                                        // )) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-                                        // (/usr/shar
-                                        // -------------------------------- Erste 5 Fehler
-                                        // --------------------------------
-                                    }
-                                } catch (Exception ex) {
-                                    ex.printStackTrace();
-                                    JakeWriter.err.format(
+                                Exception e = null;
+                                    for (Charset s: new Charset[] {Charset.defaultCharset(), Charset.forName("ISO8859_15")})
+                                        if((e = analyse(final_name, errmax,s)) == null)
+                                            break; 
+                                    if(e != null){
+                                        e.printStackTrace();
+                                        JakeWriter.err.format(
                                             "%sEs gab ein kleines Problem mit dem finden der Log-Datei, du musst wohl einen übermächtigen Magier finden, der dir hilft, den Drachen zu besiegen. Ich kann deine Prinzessin nicht retten :/%s",
                                             ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
-                                }
+                                    }
                                 // Ein, das war eine gute Idee relikt:
                                 /*
                                  * Stream<String> lines = Files.lines(Paths.get(final_name + ".log")) .filter(x
@@ -397,8 +350,9 @@ public class JakeCompile {
                         // new BufferedReader( new
                         // InputStreamReader(p.getErrorStream())).lines().forEachOrdered(llo::println);
                         // llo.close();
-                    } catch (Exception e) {
+                    } catch(Exception ex) {
                         failed = true;
+                        ex.printStackTrace();
                         JakeWriter.err.format(
                                 "%sDas Kompilieren mit pdflatex und Jake ist in thread %d für %s%s fehlgeschlagen bitte sieh im entsprechenden Logfile nach!%s%n",
                                 ColorConstants.COL_ERROR, id, b_data[B_TEXT], ColorConstants.COL_ERROR,
@@ -412,6 +366,65 @@ public class JakeCompile {
                         (System.currentTimeMillis() - startTime) / 1000.0, ColorConstants.COL_RESET);
             }
 
+        }
+
+        public static Exception analyse(String final_name, int errmax, Charset charset)  {
+            try {
+
+            String[] lines = Files.lines(Paths.get(final_name + ".log"), charset).toArray(String[]::new);
+
+            int errCount = 0;
+            for (int k = 0; k < lines.length; k++) {
+                String cur = lines[k];
+
+                if (cur.startsWith("!") || cur.toLowerCase().contains("improper alph")) {
+                    JakeWriter.out.format("%n %3d. %s%n", ++errCount, cur);
+                    // print all meta-lines
+                    while (k < lines.length - 2) {
+                        k++;
+                        cur = lines[k];
+                        // Highlight Line-Numbers
+                        Matcher ln = Pattern.compile("l\\.\\d+").matcher(cur);
+                        if (ln.find()) {
+                            String rp = ln.group();
+                            cur = cur.replaceAll(rp, Matcher.quoteReplacement(
+                                    ColorConstants.COL_GOLD + rp + ColorConstants.COL_RESET));
+                        }
+                        if (cur.isBlank() && lines[k + 1].isBlank()
+                                || lines[k - 1].contains("X <return>  to quit.")
+                                || lines[k+1].startsWith("!")) { // zwei
+                                                                                    // leerzeilen
+                                                                                    // oder
+                                                                                    // letzte
+                                                                                    // war das
+                                                                                    // quit-Angebot
+                                                                                    // oder nächst 
+                                                                                    // ist ein neuer
+                                                                                    // fehler
+                                                                                    // =>
+                                                                                    // abbruch
+                            JakeWriter.out.println();
+                            break;
+                        }
+
+                        JakeWriter.out.format("       %s%n", cur);
+                    }
+                }
+                if (errCount >= errmax) {
+                    JakeWriter.out.format(
+                            "%n%s------------------------------------ Erste %d Fehler ------------------------------------%s%n", // %2$s
+                            ColorConstants.COL_ERROR, errmax, ColorConstants.COL_RESET);
+                    break;
+                }
+                // )) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+                // (/usr/shar
+                // -------------------------------- Erste 5 Fehler
+                // --------------------------------
+            }
+            } catch (Exception e) {
+                return e;
+            }
+            return null;
         }
 
         int id;
