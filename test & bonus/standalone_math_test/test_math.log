@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.17)  14 JUL 2019 05:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.17)  17 JUL 2019 11:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -23,9 +23,9 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Maths/LILLYxMATHS.sty
-Package: LILLYxMATHS 2019/06/29 Stellt die Mathe-Erweiterungen fuer LILLY zur V
-erfuegung
+(/home/eagle/texmf/tex/latex/Lilly/source/Maths/LILLYxMATH.sty
+Package: LILLYxMATH 2019/06/29 Stellt die Mathe-Erweiterungen fuer LILLY zur Ve
+rfuegung
 
 (/home/eagle/texmf/tex/latex/Lilly/source/Helper/LILLYxPACKAGExCTRL.sty
 Package: LILLYxPACKAGExCTRL 2019/06/29 Core-Funktion, erlaubt es Lilly Pakete i
@@ -246,22 +246,9 @@ Package ifplatform Warning:
     shell escape is disabled, so I can only detect \ifwindows.
 
 )
-\res=\read1
-runsystem(printf "$(dirname "$(kpsewhich --progname=pdflatex Lilly.cls)")"> tes
-t_math.txt)...disabled (restricted).
-
-
-\LILLYxCLSPATH=
-runsystem(printf "$(dirname "$(find "$(pwd)" -name "test_math")")" > test_math.
-txt)...disabled (restricted).
-
-
-\LILLYxDOCPATH=
-runsystem(rm test_math.txt)...disabled (restricted).
-
 
 Class Lilly Warning: Automatische Pfaderkennung gescheitert. Fallback zu lokale
-m Verzeichnis! on input line 77.
+m Verzeichnis! on input line 79.
 
 )
 Class Lilly Info: LILLYxDemandPackage: Was ist Mathe ohne dieses Paket?  on inp
@@ -448,7 +435,7 @@ ex
 \pgf@xc=\dimen160
 \pgf@yc=\dimen161
 \w@pgf@writea=\write3
-\r@pgf@reada=\read2
+\r@pgf@reada=\read1
 \c@pgf@counta=\count184
 \c@pgf@countb=\count185
 \c@pgf@countc=\count186
@@ -941,7 +928,7 @@ Package: placeins 2005/04/18  v 2.2
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \ymark with sig. 'O{x} m O{0.15}' on line 62.
+. Defining command \ymark with sig. 'O{y} m O{0.15}' on line 62.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
@@ -951,7 +938,7 @@ Package: placeins 2005/04/18  v 2.2
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'wgraph' with sig. ' m O{} O{} O{0pt} O{}' on line 92.
+. Defining environment 'wgraph' with sig. ' m O{} O{} O{} O{0pt}' on line 92.
 .................................................
 ))
 (./test_math.aux)
@@ -1033,13 +1020,13 @@ LaTeX Font Info:    Try loading font information for U+stmry on input line 7.
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./test_math.aux) ) 
 Here is how much of TeX's memory you used:
- 31995 strings out of 492982
- 772555 string characters out of 32384896
- 896413 words of memory out of 8000000
- 35054 multiletter control sequences out of 15000+600000
+ 32011 strings out of 492982
+ 772717 string characters out of 32384896
+ 896525 words of memory out of 8000000
+ 35070 multiletter control sequences out of 15000+600000
  533914 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 81i,8n,130p,10401b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 81i,10n,130p,10401b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/
@@ -1047,7 +1034,7 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmsy7.pfb>
-Output written on test_math.pdf (1 page, 48395 bytes).
+Output written on test_math.pdf (1 page, 48413 bytes).
 PDF statistics:
  35 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream
