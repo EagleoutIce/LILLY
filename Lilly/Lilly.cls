@@ -14,6 +14,7 @@
 
 \RequirePackage{LILLYxPACKAGExCTRL}
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxLIST}
 
 
 %\LILLY%LoadPackage{lipsum42}{Gutes Paket}{MAUMAUMAU}{\def\MauMau{Hauihao}}
@@ -25,7 +26,7 @@
 
 %%%% LILLY - Lilly is a latex loveable yougurht
 %%%% - it doens't has to make any sense if it does look beautiful
- 
+
 %%% lilly unterstütz die Verhaltenssteuerung über die Kommandozeile und erlaubt es so alle Paramter auch per '\def' zu setzen!
 
 \providecommand*{\LILLYxDummy}{dummy}                        %%% ONLY THING DEFINE HERE
@@ -121,8 +122,8 @@
                     {}{}
 
 
-\LILLYxLoadPackage{graphicx}{Für tolle Grafiken}
-                    {Dieses Paket ist für includegraphics von nöten!}
+\LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
+                    {Dieses Paket ist für includegraphicsvon noeten!}
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}} %% Sloppy includegraphics draft
                     {}{}
 
@@ -212,9 +213,9 @@
 
 \RequirePackage{multicol}
 
-\RequirePackage{\LILLYxPATHxLISTINGS/LILLYxLISTINGS}
+\RequirePackage{LILLYxLISTINGS}
 
-\input{\LILLYxPATHxLISTINGS/CommandLine/_LILLY_LISTINGS_CMDLINE}
+\RequirePackage{LILLYxRUNTIMES}
 
 %\ExplSyntaxOn
 %\DeclareCaptionFont{black}{ \color{black} }

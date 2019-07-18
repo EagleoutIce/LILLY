@@ -64,5 +64,7 @@
 \lstnewenvironment{mips}[1][]
   {\lstset{language=lMips,#1}}
 {}
+\gdef\cmips#1{\LILLYxwriteLst[language=lMips]{#1}}
+\gdef\imips#1{\lstinputlisting[language=lMips]{#1}}
 
-\DeclareRobustCommand{\cmips}[1]{\LILLYxwriteLst[language=lMips]{#1}}
+\pushList{RegisteredLanguages}{mips/lMips}

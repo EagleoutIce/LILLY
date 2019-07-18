@@ -79,7 +79,8 @@ public final class CoreFunctions {
 
         try {
             JakeWriter.out.println("Settings Dump: ");
-            JakeWriter.out.println("Information: Die '[' ']' gehören jeweils nicht zum Wert, sie dienen lediglich der Übersicht! Durch '=>' gekennzeichnet ergibt sich die erweiterte Variante des Ausdrucks");
+            JakeWriter.out.println(
+                    "Information: Die '[' ']' gehören jeweils nicht zum Wert, sie dienen lediglich der Übersicht! Durch '=>' gekennzeichnet ergibt sich die erweiterte Variante des Ausdrucks");
             for (String s : CoreSettings.getSettings().dump()) {
                 JakeWriter.out.println(s);
             }
@@ -99,17 +100,18 @@ public final class CoreFunctions {
      */
     public static ReturnStatus fkt_help(String[] cmd) {
         writeLoggerDebug1("Gebe die Hilfe aus (fkt_help)", "func");
-        JakeWriter.out.format("Benutzung:%n%n%s%s [options=help] [file]%s%n%n[options]:%n", ColorConstants.COL_GOLD, Definitions.PRG_NAME, ColorConstants.COL_RESET);
+        JakeWriter.out.format("Benutzung:%n%n%s%s [options=help] [file]%s%n%n[options]:%n", ColorConstants.COL_GOLD,
+                Definitions.PRG_NAME, ColorConstants.COL_RESET);
         functions_t.entrySet().stream()
                 .filter(m -> m.getKey().length() > 0 && m.getKey().charAt(0) != Definitions.HIDDEN_ARG)
                 .sorted(Comparator.comparing(Map.Entry::getKey))
                 .forEach(m -> JakeWriter.out.format("  %-15s: %s%n", m.getKey(), m.getValue().brief));
-                //JakeWriter.out.println();
-                JakeWriter.out.format("  %-15s: %s%n", "GUI", "Startet Jake im GUI-Modus");
-                JakeWriter.out.format("  %-15s: %s%n", "DEI", "Versucht Jake zu Deinstallieren");
-                JakeWriter.out.format("  %-15s: %s%n", "REI", "Versucht Jake zu Reinstallieren (Entwicklerfunktion)");
+        // JakeWriter.out.println();
+        JakeWriter.out.format("  %-15s: %s%n", "GUI", "Startet Jake im GUI-Modus");
+        JakeWriter.out.format("  %-15s: %s%n", "DEI", "Versucht Jake zu Deinstallieren");
+        JakeWriter.out.format("  %-15s: %s%n", "REI", "Versucht Jake zu Reinstallieren (Entwicklerfunktion)");
 
-                JakeWriter.out.println(
+        JakeWriter.out.println(
                 "\n[file]:\nAngabe gemäß \"xxx.tex\". Dies setzt die Operation automatisch auf file_compile und generiert damit \\"
                         + " ein generelles makefile für \"xxx.tex\".");
         JakeWriter.out.println("\nnote:\nAllgemeine Einstellungen können über \"-key" + Definitions.ASS_PATTERN
@@ -117,7 +119,8 @@ public final class CoreFunctions {
                 + " /es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: \"/es/gibt/kuchen\". "
                 + "Weiter ist es möglich mit '" + Definitions.ASS_PATTERN + "' values hinzuzufügen.");
 
-        JakeWriter.out.println(("\nBeispiel:\n  jake test.tex -lilly-modes: default -lilly-author: \"Detlef Dieter\" -lilly-boxes+: LIMERENCE"));
+        JakeWriter.out.println(
+                ("\nBeispiel:\n  jake test.tex -lilly-modes: default -lilly-author: \"Detlef Dieter\" -lilly-boxes+: LIMERENCE"));
         return ReturnStatus.EXIT_SUCCESS;
     }
 

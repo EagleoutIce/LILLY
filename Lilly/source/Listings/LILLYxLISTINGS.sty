@@ -1,12 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{LILLYxLISTINGS}[2019/07/14 Stellt die Listings-Erweiterungen fuer LILLY zur Verfuegung]
+\ProvidesPackage{LILLYxLISTINGS}[2019/07/14 Stellt die Listings -Erweiterungen fuer LILLY zur Verfuegung]
 
 \RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxCOLOR}
 \RequirePackage{LILLYxENCODING}
 
-%%% Die Verwaltung der Listings verläuft auf verschiedene Highlighting-Module welche auch über die Kommandozeile definiert werden können
+%%% Die Verwaltung der Listings verläuft auf verschiedene Highlighting -Module welche auch über die Kommandozeile definiert werden können
 
 \LILLYxPoliteKnock{listingsutf8}{% wir wollen natürlich UTF8, wenns geht
 %% https://www.ctan.org/pkg/listingsutf8
@@ -23,7 +23,7 @@
 %% maybe just load and check?
 %% https://ctan.org/pkg/amsfonts
 \LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
-                    {Wir wollen mehr Symbole}%% Error-Text
+                    {Wir wollen mehr Symbole}%% Error -Text
                     {}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
@@ -32,12 +32,32 @@
                     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
                     {}{} %% keine Argumente
 
-\LILLYxLoadPackage{graphicx}{Für tolle Grafiken}
-                    {Dieses Paket ist für includegraphics von nöten!}
+\LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
+                    {Dieses Paket ist für includegraphicsvon noeten!}
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}} %% Sloppy includegraphics draft
                     {}{}
 
-%% https://tex.stackexchange.com/questions/34896/coloring-digits-with-the-listings-package/34952#34952
+\LILLYxDemandPackage{pgffor}{Fuer die Registrierung der Sprachen}
+                    {Ohne gehts nicht}
+                    {}{}
+
+\RequirePackage{LILLYxLIST}
+
+%% Alle Sprachen müssen sich hier registrieren, solange es nicht implementiert ist,
+%% kann man nachträglich keine entfernen tihihih
+\constructList[,]{RegisteredLanguages}
+
+%% Jede Sprache muss die Signatur besitzen: befehlspräfix/sprachenbezeichner.
+%% Also beispielhaft: 'cpp/lCpp'
+%% So können wir auch testen, ob eine Sprache registriert ist:
+%% '\isLanguageLoaded{cpp/lCpp}' => \true wenn ja, sonst \false
+
+
+%% Jede registrierte Sprache erhält am ende ihr environment, ihren \c-Befehl und ihren \i-Befehl
+%% Damit wird redundante Code-Generierung erspahrt.
+
+
+%% https://tex.stackexchange.com/questions/34896/coloring -digits -with -the -listings -package/34952#34952
 \newcommand\digitstyle{\color{DarkMidnightBlue}}
 \makeatletter
 \newcommand{\ProcessDigit}[1]
@@ -50,22 +70,38 @@
 }
 \makeatother
 
-%% WS gobble fix for literate replacement - same code but with switching whitespacefalse to false
+%% WS gobble fix for literate replacement  - same code but with switching whitespacefalse to false
 \makeatletter
+\def\set@char{}
+\def\set@hex{}
+\newif\ifinhexmode
+\newif\iffirstchar
+\def\@@crerpl{{ }}
+\def\@@crehex{{0x}}
 \def\lst@Literate#1#2#3{%
-    \ifx\relax#2\@empty\else
-        \lst@CArgX #1\relax\lst@CDef
-            {}
-            {\let\lst@next\@empty
-             \lst@ifxliterate
-                \lst@ifmode \let\lst@next\lst@CArgEmpty \fi
+    \ifx\relax#2\@empty\else%
+        \lst@CArgX #1\relax\lst@CDef%
+            {}%
+            {\let\lst@next\@empty%
+             \lst@ifxliterate%
+                \lst@ifmode \let\lst@next\lst@CArgEmpty \fi%
              \fi
-             \ifx\lst@next\@empty
-                 \ifx\lst@OutputBox\@gobble\else
-                   \lst@XPrintToken \let\lst@scanmode\lst@scan@m
-                   \lst@token{#2}\lst@length#3\relax
+             \ifx\lst@next\@empty%
+                 \ifx\lst@OutputBox\@gobble\else%
+                 %\def\@@repl{#2}\typeout{#2}
+                  %\ifx\@@repl\@@crerpl\inhexmodefalse\firstchartrue\else\iffirstchar%
+                  %% start of a word
+                  %\fi\firstcharfalse\fi% is space
+                  %\ifx\@@repl\@@crehex\inhexmodetrue\fi%
+                  %   \ifnum\lst@mode=\lst@Pmode\relax%
+                  %     {\digitstyle #2}
+                  %   \else #2\fi
+                  % \else
+                   \lst@XPrintToken \let\lst@scanmode\lst@scan@m%
+                   \lst@token{#2}\lst@length#3\relax%
                    \lst@XPrintToken
-                   \lst@whitespacefalse %!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                   %\fi%
+                   \lst@whitespacefalse%
                  \fi
                  \let\lst@next\lst@CArgEmptyGobble
              \fi
@@ -76,7 +112,9 @@
 \makeatother
 
 %% Konfigurere Sonderzeichen
-\lstset{literate=
+\lstset{literate=%
+  % Format simple chars
+  % {a}{{a\set@char\set@hex}}1 {b}{{b\set@char\set@hex}}1 {c}{{c\set@char\set@hex}}1 {d}{{d\set@char\set@hex}}1 {e}{{e\set@char\set@hex}}1 {f}{{f\set@char\set@hex}}1 {g}{{g\set@char}}1 {h}{{h\set@char}}1 {i}{{i\set@char}}1 {j}{{j\set@char}}1 {k}{{k\set@char}}1 {l}{{l\set@char}}1 {m}{{m\set@char}}1 {n}{{n\set@char}}1 {o}{{o\set@char}}1 {p}{{p\set@char}}1 {q}{{q\set@char}}1 {r}{{r\set@char}}1 {s}{{s\set@char}}1 {t}{{t\set@char}}1 {u}{{u\set@char}}1 {v}{{v\set@char}}1 {w}{{w\set@char}}1 {x}{{x\set@char}}1 {y}{{y\set@char}}1 {z}{{z\set@char}}1 {A}{{A\set@char\set@hex}}1 {B}{{B\set@char\set@hex}}1 {C}{{C\set@char\set@hex}}1 {D}{{D\set@char\set@hex}}1 {E}{{E\set@char\set@hex}}1 {F}{{F\set@char\set@hex}}1 {G}{{G\set@char\set@hex}}1 {H}{{H\set@char\set@hex}}1 {I}{{I\set@char\set@hex}}1 {J}{{J\set@char\set@hex}}1 {K}{{K\set@char\set@hex}}1 {L}{{L\set@char\set@hex}}1 {M}{{M\set@char\set@hex}}1 {N}{{N\set@char\set@hex}}1 {O}{{O\set@char\set@hex}}1 {P}{{P\set@char\set@hex}}1 {Q}{{Q\set@char\set@hex}}1 {R}{{R\set@char\set@hex}}1 {S}{{S\set@char\set@hex}}1 {T}{{T\set@char\set@hex}}1 {U}{{U\set@char\set@hex}}1 {V}{{V\set@char\set@hex}}1 {W}{{W\set@char\set@hex}}1 {X}{{X\set@char\set@hex}}1 {Y}{{Y\set@char\set@hex}}1 {Z}{{Z\set@char\set@hex}}1 {ä}{{ä\set@char}}1 {ö}{{ö\set@char}}1 {ü}{{ü\set@char}}1 {Ä}{{Ä\set@char}}1 {Ö}{{Ö\set@char}}1 {Ü}{{Ü\set@char}}1
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
@@ -100,8 +138,20 @@
   {1}{{{\ProcessDigit{1}}}}1 {2}{{{\ProcessDigit{2}}}}1 {3}{{{\ProcessDigit{3}}}}1
   {4}{{{\ProcessDigit{4}}}}1 {5}{{{\ProcessDigit{5}}}}1 {6}{{{\ProcessDigit{6}}}}1
   {7}{{{\ProcessDigit{7}}}}1 {8}{{{\ProcessDigit{8}}}}1 {9}{{{\ProcessDigit{9}}}}1
+  {.0}{{{\ProcessDigit{.0}}}}2
+  {.1}{{{\ProcessDigit{.1}}}}2 {.2}{{{\ProcessDigit{.2}}}}2 {.3}{{{\ProcessDigit{.3}}}}2
+  {.4}{{{\ProcessDigit{.4}}}}2 {.5}{{{\ProcessDigit{.5}}}}2 {.6}{{{\ProcessDigit{.6}}}}2
+  {.7}{{{\ProcessDigit{.7}}}}2 {.8}{{{\ProcessDigit{.8}}}}2 {.9}{{{\ProcessDigit{.9}}}}2
+  {+0}{{{\ProcessDigit{+0}}}}2
+  {+1}{{{\ProcessDigit{+1}}}}2 {+2}{{{\ProcessDigit{+2}}}}2 {+3}{{{\ProcessDigit{+3}}}}2
+  {+4}{{{\ProcessDigit{+4}}}}2 {+5}{{{\ProcessDigit{+5}}}}2 {+6}{{{\ProcessDigit{+6}}}}2
+  {+7}{{{\ProcessDigit{+7}}}}2 {+8}{{{\ProcessDigit{+8}}}}2 {+9}{{{\ProcessDigit{+9}}}}2
+  { -0}{{{\ProcessDigit{-0}}}}2
+  {-1}{{{\ProcessDigit{-1}}}}2 {-2}{{{\ProcessDigit{-2}}}}2 {-3}{{{\ProcessDigit{-3}}}}2
+  {-4}{{{\ProcessDigit{-4}}}}2 {-5}{{{\ProcessDigit{-5}}}}2 {-6}{{{\ProcessDigit{-6}}}}2
+  {-7}{{{\ProcessDigit{-7}}}}2 {-8}{{{\ProcessDigit{-8}}}}2 {-9}{{{\ProcessDigit{-9}}}}2
+  %{\ }{{ }}{1} %{0x}{{{0x}}}2
 } %Damit die Umlaute in lstlistings auch gescheit formatiert werden.
-%% Entnommen der Dokumentation: https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
 
 %% Es ist möglich über diesen Befehl das zu ladende Sprachpaket zu definieren
 \providecommand{\LILLYxListingsxPACK}{MAIN}
@@ -113,4 +163,31 @@
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_PACK_\LILLYxListingsxPACK}
 
 
+\getRegisteredLanguages%
+\foreach \clang/\llang in \lillyxlist {%
+\ifthenelse{\equal{\clang}{}}{}{
+\ifthenelse{\equal{\llang}{}}{}{
+\long\xdef\lfullexpand{\llang}
+\long\xdef\cfullexpand{\clang}
+%
+% \lstnewenvironment{latex}[1][]
+%  {\lstset{language=lLatex,#1}}
+%  {}
+%\global\expandafter\expandafter\lstnewenvironment{\cfullexpand}[1][]{\expandafter\lstset{language=\lfullexpand,##1}}
 
+%%\DeclareRobustCommand{\clatex}[1]{\LILLYxwriteLst[language=lLatex]{#1}}
+%% clatex
+%% extraction doesn't yield the correct language result
+% \expandafter\gdef\csname c\clang\endcsname##1{\expandafter\LILLYxwriteLst[language={\lfullexpand}]{##1}}
+%% ilatex:
+% \expandafter\gdef\csname i\clang\endcsname##1{\expandafter\lstinputlisting[language=\lfullexpand]{##1}}
+
+%% run command?
+
+\typeout{Registered: \clang (\llang)}
+}}
+}
+
+\newcommand{\isLanguageLoaded}[1]{
+  \containsList{RegisteredLanguages}{#1}
+}

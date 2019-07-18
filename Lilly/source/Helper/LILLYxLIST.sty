@@ -1,0 +1,52 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxLIST}[2019/07/13 Stellt die Grundlagen einer Liste fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCOMMAND}
+\RequirePackage{LILLYxBOOLEAN}
+
+\LILLYxDemandPackage{pgffor}{Fuer die Registrierung der Sprachen}
+                    {Ohne gehts nicht}
+                    {}{}
+
+%% the list operation allows it to append new elements (including optional separator)
+%% example process:
+%% \constructList[,]{Peter}
+%% \pushList{Peter}{2}    \pushList{Peter}{55}
+%% \thePeter
+
+\newcommand{\constructList}[2][]{%$ Definiere Liste BlahBlah
+\expandafter\def\csname lilly@list@seperator@#2\endcsname{#1}
+\expandafter\def\csname lilly@list@#2\endcsname{}%% Listendefinition lilly@list@BlahBlah
+\expandafter\def\csname the#2\endcsname{\csname lilly@list@#2\endcsname}%% Liste kann über \theBlahBlah abgefragt werden
+\expandafter\def\csname delete#2\endcsname{\let\csname lilly@list@#2\endcsname{}}%% delete the list
+
+\expandafter\def\csname get#2\endcsname{%
+    \xdef\lillyxlist{\csname lilly@list@#2\endcsname}
+}
+}
+
+
+\newcommand{\containsList}[2]{%
+    \csname get#1\endcsname%
+    \xdef\c@mp@re{#2}%
+    \let\c@nditi@n@l\false%
+    \foreach \d in \lillyxlist {%
+        \typeout{comparing: \d to \c@mp@re}%
+        \ifthenelse{\equal{\d}{\c@mp@re}}{%
+            \typeout{Matched}%
+            \global\let\c@nditi@n@l\true%
+        }{}%
+    }%
+    \c@nditi@n@l%
+}
+
+\newcommand{\pushList}[2]{%
+    \expandafter\edef\csname lilly@list@last@#1\endcsname{\csname lilly@list@#1\endcsname}
+    \expandafter\edef\csname lilly@list@#1\endcsname{\csname lilly@list@last@#1\endcsname#2\csname lilly@list@seperator@#1\endcsname}%
+}
+
+%% operation is work in progress
+\newcommand{\popList}[1]{%
+    \relax{\csname lilly@list@last@#1\endcsname}
+}
+\endinput

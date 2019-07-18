@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-% \ProvidesPackage{LILLYxCONTROLLERxCONTENT}[2019/06/29 Grundlegende Pfadverwaltung für Lilly]
+\ProvidesPackage{LILLYxCONTROLLERxCONTENT}[2019/06/29 Grundlegende Pfadverwaltung für Lilly]
 %% TODO: bisher wird die automatische Pfaderkennung auf Windows NICHT aktiviert! => CHANGE
 
 %%% Verwaltet das laden SÄMTLICHER DATEN-Dateien
@@ -16,7 +16,7 @@
 \LILLYxDemandPackage{ifplatform}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
                     {Um dieses Paket kommt LILLY nicht herum!}
                     {}{}
-
+\ifshellescape
 \ifwindows %% todo: determine compile - commands
     \providecommand{\LILLYxCLSPATH}{./}
     \providecommand{\LILLYxDOCPATH}{./}
@@ -48,7 +48,7 @@
         \providecommand{\LILLYxDOCPATH}{./}
     \fi
 \fi
-
+\fi
 %% FALLBACK ERASERS
 \providecommand{\LILLYxCLSPATH}{./}
 \providecommand{\LILLYxDOCPATH}{./}

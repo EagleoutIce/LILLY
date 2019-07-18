@@ -19,5 +19,7 @@
 \lstnewenvironment{json}[1][]
   {\lstset{language=lJson,#1}}
 {}
+\gdef\cjson#1{\LILLYxwriteLst[language=lJson]{#1}}
+\gdef\ijson#1{\lstinputlisting[language=lJson]{#1}}
 
-\DeclareRobustCommand{\cjson}[1]{\LILLYxwriteLst[language=lJson]{#1}}
+\pushList{RegisteredLanguages}{json/lJson}

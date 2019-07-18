@@ -1,4 +1,4 @@
-%% Wird f�r die Dokumentation entsprechend erweitert
+%% Wird für die Dokumentation entsprechend erweitert
 
 \lstdefinelanguage{lBash}{
     language=bash,
@@ -21,4 +21,7 @@
   {\lstset{language=lBash,#1}}
 {}
 
-\DeclareRobustCommand{\cBash}[1]{\LILLYxwriteLst[language=lBash]{#1}}
+\gdef\cbash#1{\LILLYxwriteLst[language=lBash]{#1}}
+\gdef\ibash#1{\lstinputlisting[language=lBash]{#1}}
+
+\pushList{RegisteredLanguages}{bash/lBash}

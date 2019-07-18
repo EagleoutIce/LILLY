@@ -17,5 +17,6 @@
 \lstnewenvironment{gepard}[1][]
   {\lstset{language=lGepard,#1}}
 {}
-
-\DeclareRobustCommand{\cgepard}[1]{\LILLYxwriteLst[language=lGepard]{#1}}
+\gdef\cgepard#1{\LILLYxwriteLst[language=lGepard]{#1}}
+\gdef\igepard#1{\lstinputlisting[language=lGepard]{#1}}
+\pushList{RegisteredLanguages}{gepard/lGepard}

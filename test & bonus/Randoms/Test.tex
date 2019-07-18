@@ -1,11 +1,23 @@
-%\def\LILLYxBOXxNoBoxBemerkung{TRUE} 
+%\def\LILLYxBOXxNoBoxBemerkung{TRUE}
 %\providecommand\LILLYxBOXxMODE{alternate}
-\documentclass[Typ=Mitschrieb,Vorlesung=LAII]{Lilly} 
-\usepackage{lipsum}  
+\documentclass[Typ=Mitschrieb,Vorlesung=LAII]{Lilly}
+\usepackage{lipsum}
 
-\begin{document}  
-    \chapter{Allgemeine Grundlagen ein sehr langes Kapitelnamen gedöns}\elable{jmp} 
+
+\begin{document}
+    \chapter{Allgemeine Grundlagen ein sehr langes Kapitelnamen gedöns}\elable{jmp}
     \TitleSUB{Dies ist ein sehr wichtiges Kapitel}
+    \constructList[,]{Peter}
+    \pushList{Peter}{2}\pushList{Peter}{55}\pushList{Peter}{3}\pushList{Peter}{26}
+    \thePeter\\
+    \popList{Peter}\\
+    \thePeter\\
+    \getPeter
+    \foreach \x in \lillyxlist {
+        X:\x Y
+    }
+    \constructList[, ]{Waffel}
+
 \section{IntroMintro}
         \begin{tabularx}{\linewidth}{lX}
             h & b \\
@@ -67,37 +79,37 @@
             \begin{tabularx}{\textwidth}{|>{\centering\vspace{0.14cm}\arraybackslash}X|>{\small\vspace{0.05cm}}X|>{\centering\vspace{0.14cm}\arraybackslash}X|>{\small\vspace{0.05cm}\arraybackslash}X|}
                 \hline
                 \begin{tikzpicture}
-                    \oragraphdot{(0,0)}{w}{a}; 
+                    \oragraphdot{(0,0)}{w}{a};
                     %\node at(0,-1) {};
                 \end{tikzpicture} & \ding{51}, da ein einzelner Knoten bereits ein gültiger Binärbaum ist.& \begin{tikzpicture}
-                    \oragraphdot{(0,0)}{a}{a}; 
-                    \oragraphdot{(-1,-1)}{b}{b}; 
+                    \oragraphdot{(0,0)}{a}{a};
+                    \oragraphdot{(-1,-1)}{b}{b};
                     \node at(1,-1) {};
                     \node at(0,0.75) {};
-                    \draw (a) -- (b); 
+                    \draw (a) -- (b);
                 \end{tikzpicture}\vspace{0.14cm} & \ding{55}, da jeder Knoten entweder \(2\) oder \(0\) Kindknoten haben muss. \\\hline
                 \begin{tikzpicture}
-                    \oragraphdot{(0,0)}{a}{a}; 
-                    \oragraphdot{(-1,-1)}{b}{b}; 
+                    \oragraphdot{(0,0)}{a}{a};
+                    \oragraphdot{(-1,-1)}{b}{b};
                     \oragraphdot{(1,-1)}{c}{c};
                     \node at(0,0.75) {};
-                    \draw (a) -- (b) (a) -- (c) (b) -- (c) ; 
+                    \draw (a) -- (b) (a) -- (c) (b) -- (c) ;
                 \end{tikzpicture}\vspace{0.14cm} & \ding{55}, da es keine \say{Ringe} geben darf. & \begin{tikzpicture}[scale=0.5, every node/.style={transform shape}]
-                    \oragraphdot{(0,0)}{a}{a}; 
-                    \oragraphdot{(-1,-1)}{b}{b}; 
+                    \oragraphdot{(0,0)}{a}{a};
+                    \oragraphdot{(-1,-1)}{b}{b};
                     \oragraphdot{(1,-1)}{c}{c};
-                    \oragraphdot{(0,-2)}{d}{d}; 
+                    \oragraphdot{(0,-2)}{d}{d};
                     \oragraphdot{(2,-2)}{e}{e};
-                    \draw (a) -- (b) (a) -- (c) (c) -- (d) (c) -- (e); 
-                \end{tikzpicture} & \ding{51}, da jeder Knoten \(0\) oder \(2\) Kindknoten besitzt\\\hline    
+                    \draw (a) -- (b) (a) -- (c) (c) -- (d) (c) -- (e);
+                \end{tikzpicture} & \ding{51}, da jeder Knoten \(0\) oder \(2\) Kindknoten besitzt\\\hline
             \end{tabularx}
         }
         \renewcommand{\tabularxcolumn}[1]{p{#1}}
         \begin{aufgabe}[Hallo Mama][1]
-            Diese Aufgabe ist wichtig !    
+            Diese Aufgabe ist wichtig !
         \end{aufgabe}
         \begin{aufgabe}[Hallo Mama][42]
             Diese ist noch viel wichtiger sie gibt 42 mal so viel Punkte!
         \end{aufgabe}
 
-\end{document}  
+\end{document}
