@@ -1,6 +1,6 @@
 %% Wird für die Dokumentation entsprechend erweitert
 
-\lstdefinelanguage{lSQL}{
+\lstdefinelanguage{lSql}{
     language=sql,
     comment=[l]{--},
     %alsoletter={\#,=,-},
@@ -17,7 +17,9 @@
 }
 
 \lstnewenvironment{sql}[1][]
-  {\lstset{language=lSQL,#1}}
+  {\lstset{language=lSql,#1}}
 {}
+\gdef\csql#1{\LILLYxwriteLst[language=lSql]{#1}}
+\gdef\isql#1{\lstinputlisting[language=lSql]{#1}}
 
-\DeclareRobustCommand{\csql}[1]{\LILLYxwriteLst[language=lSQL]{#1}}
+\pushList{RegisteredLanguages}{sql/lSql}

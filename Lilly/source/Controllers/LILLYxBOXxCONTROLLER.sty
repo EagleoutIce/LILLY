@@ -109,6 +109,22 @@
 
 \tcbset{LillyxBOXxDesignxPlain/.style={frame hidden, frame code={},leftrule=0mm, left=0pt, skin first is subskin of={emptyfirst}{frame code={},interior code={}}, skin middle is subskin of={emptymiddle}{frame code={},interior code={}},skin last is subskin of={emptylast}{frame code={},interior code={}}, colback=white,colframe=white,right=-2pt,top=0pt, fonttitle=\bfseries\color{black},attach title to upper={},enhanced,opacityfill=0}}
 
+
+%% Approach do generate a general Box provider
+
+%% {name}[initial Lock = TRUE]{ListName}{listtext}[stared-effekt]
+\DeclareDocumentCommand{\DeclareLillyBox}{ m O{TRUE} m m o }{%%
+    \newlistof{list@#3}{#3}{#4\\[-1.5cm]}
+    %% Ist keine Box gewünscht?
+    \ifx\csname LILLYxBOXx#1xBox\endcsname\false%
+        \tcbset{LillyxBOXxDesignx#1/.style={LillyxBOXxDesignxPlain}}%
+    \else%
+        \tcbset{LillyxBOXxDesignx#1/.style={}}%
+    \fi%
+}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definitionen                                                                                                        %     %%%% DEFS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -338,12 +354,14 @@
 
 \newenvironment{task}{\begin{aufgabe}}{\end{aufgabe}}
 
+\providecommand{\LILLYxSEENxUBS}{FALSE}
+
 \ifx\LILLYxBOXxUebungsblattxEnable\true
     \newlistof{UBS}{UB}{Alle Übungsblätter\\[-1.5cm]}
     %% TITEL NUMMER
-    \DeclareDocumentEnvironment{uebungsblatt}{O{} O{42}}{ %
+    \DeclareDocumentEnvironment{uebungsblatt}{O{} O{42}}{\grenewcommand{\LILLYxSEENxUBS}{TRUE}%
     \setcounter{ctr_EXE}{#2}\setcounter{ctr_TSK}{0}{\large \textbf{Übungsblatt} \arabic{ctr_EXE}\mdseries\hfill#1}\LILLYxBOXESxaddListElement[UBS]{UB}{\arabic{ctr_EXE}}{#1}{\TRUE}\elable{auto:UBS\arabic{ctr_EXE}}\\[0.2\baselineskip]\ignorespacesafterend}{}
-    \DeclareDocumentEnvironment{uebungsblatt*}{O{} O{42}}{ % - differs: does not change counter
+    \DeclareDocumentEnvironment{uebungsblatt*}{O{} O{42}}{\grenewcommand{\LILLYxSEENxUBS}{TRUE}% - differs: does not change counter
     {\large \textbf{Übungsaufgabe} #2\mdseries\hfill #1}\LILLYxBOXESxaddListElement[UBS]{UB}{#2}{#1}{\TRUE}\elable{auto:UBS#2}\\[0.2\baselineskip]\ignorespacesafterend}{}
 \else
     \NewEnviron{uebungsblatt}{}
@@ -354,8 +372,8 @@
 
 %%% Shortcut  TITLE NUMBER
 \ifx\LILLYxBOXxUebungsblattxEnable\true
-    \LILLYcommand{\inputUB}[3]{\LILLYxPolitePage\begin{uebungsblatt}[#1][#2]\linput{#3}\end{uebungsblatt}\LILLYxPolitePage}
-    \LILLYcommand{\inputUBS}[3]{\LILLYxPolitePage\begin{uebungsblatt*}[#1][#2]\linput{#3}\end{uebungsblatt*}\LILLYxPolitePage}
+    \LILLYcommand{\inputUB}[3]{\grenewcommand{\LILLYxSEENxUBS}{TRUE}\LILLYxPolitePage\begin{uebungsblatt}[#1][#2]\linput{#3}\end{uebungsblatt}\LILLYxPolitePage}
+    \LILLYcommand{\inputUBS}[3]{\grenewcommand{\LILLYxSEENxUBS}{TRUE}\LILLYxPolitePage\begin{uebungsblatt*}[#1][#2]\linput{#3}\end{uebungsblatt*}\LILLYxPolitePage}
 \else
     \LILLYcommand{\inputUB}[3]{\LILLYxPolitePage}
     \LILLYcommand{\inputUBS}[3]{\LILLYxPolitePage}

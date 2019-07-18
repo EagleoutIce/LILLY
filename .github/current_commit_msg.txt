@@ -1,39 +1,33 @@
-Java Jake - JavaJakie: Analyse!
+Lilly - kann jetzt auch auflisten
 
 ================================================================
 :EagleoutIce for Lilly
 ================================================================
 
-INFORMATION: Immer brav an Sicherungskopien denken!
-
 JAKE:
 
-    + Jake Analysiert nun den Log im Falle eines Fehlers.
-      TODO: Weitere Hinweise und Ausführliche Hilfe zum Fehler
+    + Compiler wurde gepolisht
 
-    + Jake räumt nun auch vor einem Kompiliervorgang auf (wenn
-      autoclean aktiv) um so zurückgebliebene Leichen zu
-      ignorieren/undead-Fehler zu vermeiden.
-
-    + Es gibt nun noch das Expandable 'FINALNAME', welches für
-      In-Hooks den entsprechenden Namen des Dokuments enthält.
-
-
-    * Hooks sind nun 'full-lazy'-expandet => compile-X hook
-      nun mit Dokumentname
+    + Geschwindigkeit des Autocomplete wurde leicht erhöht,
+      redundante Zugriffe entfernt
 
 
 LILLY:
 
-    + beamerthemelillyKIZ wurde nun entsprechend verschoben
+    + Es gibt nun Runtimes, welche entsprechend verwendet und
+      geladen werden können um Code auszuführen.
+
+    + Listings registriert sich nun in einer Liste, ebenso wie
+      Rumtimes: RegisteredLanguages, RegisteredRuntimes
+
+    + es gibt nun LILLYxLIST, welches es erlaubt listen zu
+      generieren
 
 
-    * Verbesserte PDF-Signatur
+    * Sprachen wurden angepasst
 
-    * Im Rahmen der Dokumentation wurden einige Befehle neu
-      sortiert
 
-    * Einige Listingssprachen wurden angepasst
+    ! Defaultboxen wurden gefixt
 
 DOKUMENTATION:
 

@@ -1,19 +1,23 @@
 \lstdefinelanguage{lProlog}{
     language=prolog,
-    alsoletter={-,|,~,{,},_,.,>,<,=,:,\*,',?},
+    alsoletter={-,|,~,_,.,>,<,=,:,\*,',?},
     comment=[l]{\%},
     keywordsprefix={\$},
     % morecomment=[s]{\{-}{-\}},
     escapeinside={!!}{!!},
-    morekeywords = {:-},
-    morekeywords = [2]{->,=>,<-,>=,=:=, =\=,=<,<,>},
+    deletekeywords= {true,false},
+    otherkeywords = {false,true},
+    morekeywords = {:-,is,true,false},
+    morekeywords = [2]{->,=>,<-,=,>=,=:=, =\\=,=<,<,>},
     morekeywords = [3]{True,False},
-    morekeywords = [4]{::=},
+    morekeywords = [4]{::=,read,get,get0,see,seen,write,writeq,tab,nl,put,tell,hold,fail,repeat,abort,assert,asserta,assertz,retract,abolish,clause,save,restore,listing,trace,notrace,spy P, nospy P,nospyall,debug,nodebug,atom,atomic,number,integer,float,var,nonvar},
     morekeywords = [5]{?-,?},
 }
 
 \lstnewenvironment{prolog}[1][]
   {\lstset{language=lProlog,#1}}
 {}
+\gdef\cprolog#1{\LILLYxwriteLst[language=lProlog]{#1}}
+\gdef\iprolog#1{\lstinputlisting[language=lProlog]{#1}}
 
-\DeclareRobustCommand{\cprolog}[1]{\LILLYxwriteLst[language=lProlog]{#1}}
+\pushList{RegisteredLanguages}{prolog/lProlog}

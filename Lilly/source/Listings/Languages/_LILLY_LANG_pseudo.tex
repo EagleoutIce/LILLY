@@ -16,5 +16,7 @@
 \lstnewenvironment{pseudo}[1][]
   {\lstset{language=lPseudo,#1}}
 {}
+\gdef\cpseudo#1{\LILLYxwriteLst[language=lPseudo]{#1}}
+\gdef\ipseudo#1{\lstinputlisting[language=lPseudo]{#1}}
 
-\DeclareRobustCommand{\cpseudo}[1]{\LILLYxwriteLst[language=lBash,language=lPseudo]{#1}}
+\pushList{RegisteredLanguages}{pseudo/lPseudo}

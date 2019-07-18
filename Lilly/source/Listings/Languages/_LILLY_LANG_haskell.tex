@@ -15,5 +15,7 @@
 \lstnewenvironment{haskell}[1][]
   {\lstset{language=lHaskell,#1}}
 {}
+\gdef\chaskell#1{\LILLYxwriteLst[language=lHaskell]{#1}}
+\gdef\ihaskell#1{\lstinputlisting[language=lHaskell]{#1}}
 
-\DeclareRobustCommand{\chaskell}[1]{\LILLYxwriteLst[language=lHaskell]{#1}}
+\pushList{RegisteredLanguages}{haskell/lHaskell}

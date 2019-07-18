@@ -4,7 +4,7 @@
     % language=xml,
     %% identifierstyle=\color{AppleGreen},
     alsoletter={?},
-    keywordsprefix={°},
+    keywordsprefix={ï¿½},
     morestring=[b]",
     morestring=[b]',
     %morestring=[s]{>}{<},
@@ -28,5 +28,7 @@
 \lstnewenvironment{xsl}[1][]
   {\lstset{language=lXsl,#1}}
 {}
+\gdef\cxsl#1{\LILLYxwriteLst[language=lXsl]{#1}}
+\gdef\ixsl#1{\lstinputlisting[language=lXsl]{#1}}
 
-\DeclareRobustCommand{\cxsl}[1]{\LILLYxwriteLst[language=lXsl]{#1}}
+\pushList{RegisteredLanguages}{xsl/lXsl}

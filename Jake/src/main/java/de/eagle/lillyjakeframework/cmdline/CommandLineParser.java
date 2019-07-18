@@ -76,12 +76,12 @@ public class CommandLineParser {
 
     public static ReturnStatus interpret_settings(String[] args) {
         String op = CoreSettings.requestValue("S_OPERATION");
-        if(CoreFunctions.functions_t.containsKey(CoreSettings.requestValue("S_OPERATION"))){
+        if (CoreFunctions.functions_t.containsKey(CoreSettings.requestValue("S_OPERATION"))) {
             // Operation ist valide
             CoreFunctions.functions_t.get(op).function.apply(args);
         } else {
-            JakeWriter.out.format("%sDie Operation (=%s) ist so nicht gültig, " +
-                    "schreibe \"%s help\" um Informationen über die unterstützten Operationen zu erhalten!%s%n",
+            JakeWriter.out.format("%sDie Operation (=%s) ist so nicht gültig, "
+                    + "schreibe \"%s help\" um Informationen über die unterstützten Operationen zu erhalten!%s%n",
                     ColorConstants.COL_ERROR, op, Definitions.PRG_NAME, ColorConstants.COL_RESET);
             return ReturnStatus.EXIT_FAILURE;
         }
@@ -137,14 +137,16 @@ public class CommandLineParser {
                 writeLoggerInfo("[Argument-Brief]: " + settings.get(strip_modifications(carg)).getBrief(), "Parser");
             }
             if (carg.contains(ADD_ASSIGN_PATTERN)) { // Ist eine Addition
-                if(current_arg >= args.length-1)
-                    throw new RuntimeException("Der Parameter: '" + args[current_arg] + "' benötigt ein nachfolgendes Argument!");
+                if (current_arg >= args.length - 1)
+                    throw new RuntimeException(
+                            "Der Parameter: '" + args[current_arg] + "' benötigt ein nachfolgendes Argument!");
                 boolean b = settings.add(strip_modifications(carg), args[++current_arg]);
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" += \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");
             } else { // ist normale zuweisung
-                if(current_arg >= args.length-1)
-                    throw new RuntimeException("Der Parameter: '" + args[current_arg] + "' benötigt ein nachfolgendes Argument!");
+                if (current_arg >= args.length - 1)
+                    throw new RuntimeException(
+                            "Der Parameter: '" + args[current_arg] + "' benötigt ein nachfolgendes Argument!");
                 boolean b = settings.set(strip_modifications(carg), args[++current_arg]);
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" = \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");
