@@ -3,8 +3,6 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{tabularx}
-<<<<<<< HEAD
-=======
 
 \newlength{\titlewidth}
 \setlength{\titlewidth}{100.05cm}
@@ -17,16 +15,9 @@
 
 \usepackage{LILLYxCOLOR}
 \usepackage{LILLYxLISTINGS}
->>>>>>> 11f7e113a5a1a6d624b766722de4f05b3c9e0cc1
 
 \usepackage{LILLYxLISTINGS}
 
-<<<<<<< HEAD
-\pgfplotsset{width=6.05cm,compat=newest}
-
-\usepackage{pgf}
-
-=======
 \lstset{
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     basicstyle=\ttfamily,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
@@ -84,7 +75,6 @@
     %literate={@}{{\textcolor{mint}{\$}}}2
     showstringspaces=false,  %Damit es keine Verwechslungen gibt
 }
->>>>>>> 11f7e113a5a1a6d624b766722de4f05b3c9e0cc1
 
 \begin{document}
 \begin{tikzpicture}
@@ -125,11 +115,7 @@
 % }
 % \end{lstlisting}}};
 %% ,draw
-<<<<<<< HEAD
-\node[rectangle, rounded corners=14pt, thick,inner sep=25pt] at (0,0) {{\begin{cpp}[numbers=none,backgroundcolor=white,rulecolor=white]
-=======
 \node[rectangle, rounded corners=14pt, thick,inner sep=25pt] at (0,0) {{\begin{lstlisting}[language=customCPP,linewidth=\titlewidth]
->>>>>>> 11f7e113a5a1a6d624b766722de4f05b3c9e0cc1
 void trig_rept_task() {
   #if EBOARD_NANO == 0x0|
     | defined(DOC) if (_pwm
