@@ -3,13 +3,88 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{tabularx}
+<<<<<<< HEAD
+=======
+
+\newlength{\titlewidth}
+\setlength{\titlewidth}{100.05cm}
+
+\pgfplotsset{width=\titlewidth,compat=newest}
+
+\usepackage{pgf}
+
+
+
+\usepackage{LILLYxCOLOR}
+\usepackage{LILLYxLISTINGS}
+>>>>>>> 11f7e113a5a1a6d624b766722de4f05b3c9e0cc1
 
 \usepackage{LILLYxLISTINGS}
 
+<<<<<<< HEAD
 \pgfplotsset{width=6.05cm,compat=newest}
 
 \usepackage{pgf}
 
+=======
+\lstset{
+    showstringspaces=true,  %Damit es keine Verwechslungen gibt
+    basicstyle=\ttfamily,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
+    numbers=none,           %Zeilennummern
+    escapeinside={!*}{*)},
+    backgroundcolor=\color{white},
+    rulecolor=\color{white},
+    frame=none,
+    language=C,
+    morekeywords = [2]{EBOARD_NANO,EBOARD_PWM_SPE,REPT_TASK,TCNT2,F_CPU},
+    morekeywords = [3]{ISR, TIMER_2_OVF_vect},
+    morekeywords = [4]{rept_task, trig_rept_task},
+    morekeywords = [5]{_0pwmValue,_pwmValue,timer_count,timer_ofl},
+    numberstyle=\small\color{gray},
+    xleftmargin=15pt,
+    alsoletter={\#,\_},
+    keywordsprefix={\#},
+    numbersep=5pt,
+    framexrightmargin=0pt,
+    framexleftmargin=0pt,
+    keywordstyle=\color{purple}\bfseries,       % keyword style
+    keywordstyle = [2]\color{Awesome}, %%KW
+    keywordstyle = [3]{\color{Orchid}\bfseries}, %% PARAM
+    keywordstyle = [4]{\color{AppleGreen}}, %% FILES
+    keywordstyle = [5]{\color{AuroMetalSaurus}}
+    commentstyle=\color{gray},    % comment style
+    stringstyle=\color{Amber},     % string literal style
+    extendedchars=true,
+}
+
+\lstdefinelanguage{customCPP}{
+    language=C++,
+    stringstyle = \color{black},
+    keywordstyle=\color{purple}\bfseries,       % keyword style
+    morekeywords = [2]{EBOARD_NANO,EBOARD_PWM_SPE,REPT_TASK,TCNT2,F_CPU,PIN_MOTOR_SPE,EBOARD,_PWM_SPE},
+    morekeywords = [3]{ISR, TIMER_2_OVF_vect,Soccerboard},
+    morekeywords = [4]{rept_task, trig_rept_task,defined, optVAL_t},
+    morekeywords = [5]{_OpwmValue,_pwmValue,timer_count,timer_ofl,\#if,\#else,\#endif},
+    otherkeywords = {;,<<,>>,2>,<,|},
+    alsoletter={-,|,~,{,},_,>,:,\#},
+    basicstyle=\ttfamily,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
+    identifierstyle=\color{black},
+    comment=[l]{//},
+    sensitive=false,
+    morekeywords = {},
+    keywordstyle=\color{purple}\bfseries,       % keyword style
+    keywordstyle = [2]\color{Awesome}, %%KW
+    keywordstyle = [3]{\color{Orchid}\bfseries}, %% PARAM
+    keywordstyle = [4]{\color{AppleGreen}}, %% FILES
+    keywordstyle = [5]{\color{Amber}}, %% FILES
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{gray},
+    stringstyle=\color{mint},
+    morestring=[b]',
+    %literate={@}{{\textcolor{mint}{\$}}}2
+    showstringspaces=false,  %Damit es keine Verwechslungen gibt
+}
+>>>>>>> 11f7e113a5a1a6d624b766722de4f05b3c9e0cc1
 
 \begin{document}
 \begin{tikzpicture}
@@ -50,7 +125,11 @@
 % }
 % \end{lstlisting}}};
 %% ,draw
+<<<<<<< HEAD
 \node[rectangle, rounded corners=14pt, thick,inner sep=25pt] at (0,0) {{\begin{cpp}[numbers=none,backgroundcolor=white,rulecolor=white]
+=======
+\node[rectangle, rounded corners=14pt, thick,inner sep=25pt] at (0,0) {{\begin{lstlisting}[language=customCPP,linewidth=\titlewidth]
+>>>>>>> 11f7e113a5a1a6d624b766722de4f05b3c9e0cc1
 void trig_rept_task() {
   #if EBOARD_NANO == 0x0|
     | defined(DOC) if (_pwm
