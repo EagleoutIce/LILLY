@@ -51,7 +51,7 @@
 \newcounter{ctr_ADDONS}
 
 \newcommand{\startAppendix}{\clearpage\par%
-\addcontentsline{toc}{section}{Anh�nge}\addcontentsline{TOPIC}{TOPICS}{Anhang}%
+\addcontentsline{toc}{section}{Anhänge}\addcontentsline{TOPIC}{TOPICS}{Anhang}%
 \ifx\LILLYxMODE\LILLYxMODExPRINT\lehead{\textsf{$\mathbf{A}\mid\,$ \normalfont\textsf{Anhang}}}%
 \else\lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxLINKSxMainColor]\textnormal{\guilsinglright}Anhang}%
 \fi
@@ -66,6 +66,7 @@
 \addcontentsline{TOPIC}{TOPICS}{#1}\par%
 }
 
+\def\compileidx{\makeindex[title=Stichwortverzeichnis,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{Stichwortverzeichnis}}
 
 \newcommand{\aLink}[1]{%
     \ifx\LILLYxMODE\LILLYxMODExPRINT%
@@ -99,6 +100,8 @@
 \DeclareRobustCommand{\kw}[1]{\textbf{#1}\index{#1}}
 \DeclareRobustCommand{\sw}[2][Gruppenname]{#2\index{#1!#2}}
 \DeclareRobustCommand{\sr}[3][Gruppenname]{#3\index{#1!#2!#3}}
+
+\compileidx
 
 \AtBeginDocument{
     \LILLYxLayoutxRestore

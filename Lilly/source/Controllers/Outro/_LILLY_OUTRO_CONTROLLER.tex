@@ -1,5 +1,8 @@
 %% Dieser Controller kümmert sich um die korrekte implementierung des OUTROS eines Dokuments er fügt bei Bedarf Listen für Definitionen usw an und bindet auch den Index ein etc.
 
+
+\def\LILLYxCLEARxHEADFOOT{\lohead{}\cohead{}\rohead{}\lofoot{}\cofoot{}\rofoot{}}
+
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
    %% Wir haben einen Mitschrieb =>
    %% - Definitionen
@@ -27,19 +30,18 @@
     \ifx\LILLYxBOXxUebungsblattxEnable\true\ifx\LILLYxSEENxUBS\true
    \phantomsection\addcontentsline{toc}{chapter}{Übungsblätter}
    \listofUBS\fi\fi
-   %% Gibt es Übungsaufgaben innerhalb des Mitschriebs? TODO: !!!
-   %% PRINT? => TODO: INDEX
 }
 \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
+
+\providecommand{\LILLYxINDExINTERMEDIATExFORMAT}{}
 
 \AtEndDocument {
 \addtocontents{DEFINITIONS}{\protect\thispagestyle{empty}}
 \protect\pagestyle{empty}\thispagestyle{empty}
-    \lohead{}\cohead{}\rohead{} %clear header
-    \lofoot{}\cofoot{}\rofoot{} %clear footer => fixes double page issue
-    \pagestyle{empty}
+\LILLYxCLEARxHEADFOOT\pagestyle{empty}
 \protect\pagestyle{empty}\TOPICS{Stichwortverzeichnis}
 \printindex
+\LILLYxINDExINTERMEDIATExFORMAT
 \ifx\LILLYxBOXxDefinitionxEnable\true
 \pagenumbering{gobble}\protect\pagestyle{empty}\phantomsection\addcontentsline{toc}{chapter}{Definitionen}\elable{mrk:DEFS}
 \listofDEFINITIONS\fi
@@ -57,12 +59,12 @@
 \providecommand{\printbib}[1][\LILLYxBIBTEX]{
    \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
    \protect\pagestyle{empty}\thispagestyle{empty}
-    \lohead{}\cohead{}\rohead{} %clear header
-    \lofoot{}\cofoot{}\rofoot{} %clear footer => fixes double page issue
-    \pagestyle{empty}
+   \LILLYxCLEARxHEADFOOT\pagestyle{empty}
    \fi
    \bibliographystyle{apalike}
    \bibliography{#1}
 }
 
 \fi
+
+%% TODO: dynamic outro
