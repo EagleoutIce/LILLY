@@ -383,9 +383,10 @@
     \newlistof{UBS}{UB}{Alle Übungsblätter\\[-1.5cm]}
     %% TITEL NUMMER
     \DeclareDocumentEnvironment{uebungsblatt}{O{} O{42}}{\grenewcommand{\LILLYxSEENxUBS}{TRUE}%
-    \setcounter{ctr_EXE}{#2}\setcounter{ctr_TSK}{0}{\large \textbf{Übungsblatt} \arabic{ctr_EXE}\mdseries\hfill#1}\LILLYxBOXESxaddListElement[UBS]{UB}{\arabic{ctr_EXE}}{#1}{\TRUE}\elable{auto:UBS\arabic{ctr_EXE}}\\[0.2\baselineskip]\ignorespacesafterend}{}
+
+    \setcounter{ctr_EXE}{#2}\setcounter{ctr_TSK}{0}{\leavevmode\\\large \textbf{Übungsblatt} \arabic{ctr_EXE}\mdseries\hfill#1}\LILLYxBOXESxaddListElement[UBS]{UB}{\arabic{ctr_EXE}}{#1}{\TRUE}\elable{auto:UBS\arabic{ctr_EXE}}\\[0.2\baselineskip]\ignorespacesafterend}{}
     \DeclareDocumentEnvironment{uebungsblatt*}{O{} O{42}}{\grenewcommand{\LILLYxSEENxUBS}{TRUE}% - differs: does not change counter
-    {\large \textbf{Übungsaufgabe} #2\mdseries\hfill #1}\LILLYxBOXESxaddListElement[UBS]{UB}{#2}{#1}{\TRUE}\elable{auto:UBS#2}\\[0.2\baselineskip]\ignorespacesafterend}{}
+    {\leavevmode\\\large \textbf{Übungsaufgabe} #2\mdseries\hfill #1}\LILLYxBOXESxaddListElement[UBS]{UB}{#2}{#1}{\TRUE}\elable{auto:UBS#2}\\[0.2\baselineskip]\ignorespacesafterend}{}
 \else
     \NewEnviron{uebungsblatt}{}
     \NewEnviron{uebungsblatt*}{}

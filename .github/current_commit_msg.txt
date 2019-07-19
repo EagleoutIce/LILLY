@@ -4,34 +4,27 @@ Lilly - kann jetzt auch auflisten
 :EagleoutIce for Lilly
 ================================================================
 
-JAKE:
-
-    + Compiler wurde gepolisht
-
-    + Geschwindigkeit des Autocomplete wurde leicht erhöht,
-      redundante Zugriffe entfernt
-
-
 LILLY:
 
-    + Es gibt nun Runtimes, welche entsprechend verwendet und
-      geladen werden können um Code auszuführen.
+    + list@iter hinzugefügt (inclusive cmd)
 
-    + Listings registriert sich nun in einer Liste, ebenso wie
-      Rumtimes: RegisteredLanguages, RegisteredRuntimes
+    + Mathe hat nun \ceil and \floor
 
-    + es gibt nun LILLYxLIST, welches es erlaubt listen zu
-      generieren
+    + Jeder \LILLYxPATHx... hat nun einen entsprechenden
+      \LILLYxABSPATHx als Bruder, der den absoluten Pfad hält
 
+    * Sprachen wurden aktualisiert
 
-    * Sprachen wurden angepasst
-
-
-    ! Defaultboxen wurden gefixt
 
 DOKUMENTATION:
 
-    * Matheteil für 1.0.10 ist nun vollständig überarbeitet.
+    + Neue Befehle der aktuellen Version erhalten eine rote
+      Versionsmarkierung
+
+
+    * Grafik-Teil für 1.0.10 wird überarbeitet
+
+    * Matheteil für 1.0.10 wurde überarbeitet
 
 
 ================================================================

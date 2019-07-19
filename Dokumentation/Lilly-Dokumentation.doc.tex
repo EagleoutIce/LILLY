@@ -67,12 +67,14 @@
 \newcommand*{\blankenv}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@#1}}
 \newcommand*{\secline}{\newline\hbox{}\protect\qquad\quad}
 
+\makeatletter
 %% [Version][Tagname][Additionals]
 \DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}{\\\qquad#4}
   \begingroup~\newline\elable{cmd:#3}%\IfValueTF{#3}{\elable{cmd:#3}}{\elable{cmd:#2}}%
-  \hspace*{-1cm}\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\tiny\T{v#1}}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
+  \hspace*{-1cm}\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
 \endgroup%
 }
+\makeatother
 
 %% Since,
 \DeclareDocumentCommand{\presentCommand}{ O{1.0.0} m O{} } {%

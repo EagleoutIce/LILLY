@@ -3,38 +3,70 @@
 \renewcommand{\arraystretch}{1.5}
 \chapter[Grafiken \LILLYxBOXxVersion{\small 1.0.0}]{Grafiken}
 \TitleSUB{Etliche Vereinfachungen und andere Freuden :D\hfill \LILLYxBOXxVersion{\small 1.0.2}}
-{\centering \framebox{Alle folgenden Pfade sind relativ zu \T{Data/Graphics/\ldots}}\vspace*{0.5\baselineskip}\par}
-\section{Grundlegende Symboliken}
-{\centering \framebox{All diese Pakete werden über \T{Tikz-Core/\_LILLY\_TIKZ\_SYMBOLS} eingebunden.}\vspace*{0.5\baselineskip}\par}
-\marginpar{\tiny Allein deswegen ist es von Relevanz, die bessere Integration von Ti\textit{k}Z - externalize und allgemein der Möglichkeit zur deaktivierung von Ti\textit{k}Z voranzutrieben. Hierzu wird das ganze hier auch nochmals als \textbf{TODO} markiert und es wird darum gebeten, sich damit zu beschäftigen \smiley}Dieses Paket liefert grundlegende, mal mehr und mal weniger, nützliche Tikz-Grafiken, welche zum Großteil aus denen in der Vorlesung verwendeten Grafiken entstanden sind. Alle diese Grafiken benötigen Ti\textit{k}Z.
-\reversemarginpar
+\elable{chp:GRAPHICS}Dieses Paket liegt hier: \begin{center}
+    \blankcmd{LILLYxPATHxGRAPHICS} = \T{\LILLYxPATHxGRAPHICS}
+\end{center}
+\begin{bemerkung}[Standalone-Graphics]
+    Mit \LILLYxBOXxVersion{1.0.10} wurde die Grafik-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxGRAPHICS}) etabliert, welches sich auch eigenständig über \begin{latex}
+\usepackage{LILLYxGRAPHICS}
+        \end{latex}
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen.
+\end{bemerkung}
+%
+%
+%
+\section{Grundlegende Symbole}
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Dieses Paket liefert grundlegende, mal mehr und mal weniger, nützliche Tikz-Grafiken, welche zum Großteil aus denen in der Vorlesung verwendeten Grafiken entstanden sind. Alle diese Grafiken benötigen Ti\textit{k}Z (\url{https://www.ctan.org/pkg/pgf}).
 \subsection{Die Ampeln}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Tikz-Core/\_LILLY\_TIKZ\_AMPELN}}\vspace*{0.5\baselineskip}\par}
-An sich handelt es sich hierbei um ein kleines Shortcut-Sammelsurium für Ampeln:
-\begin{itemize}[label=$\diamond$]\narrowitems
-    \item \CMDpreview{ampelG} (\!\!\ampelG)
-    \item \CMDpreview{ampelY} (\!\!\ampelY)
-    \item \CMDpreview{ampelR} (\!\!\ampelR)
-    \item \CMDpreview{ampelH} (\!\!\ampelH)
-\end{itemize}
-Explizit verwendet werden sie in zum Beispiel in den Erklärungen zum Moore-\&Mealy-Automaten auf Basis der Ampelschaltung (\!\ampelG\ampelY\ampelH).
+Diese Definitionen befinden sich in der Datei: {\ltt../Tikz-Core/\_LILLY\_TIKZ\_AMPELN}
+An sich handelt es sich hierbei um ein kleines Shortcut-Sammelsurium für Ampeln:\medskip
+%
+%
+%
+\presentCommand[1.0.2]{ampelG}[\cmdlist \textbackslash ampelY\cmdlist \textbackslash ampelR\cmdlist \textbackslash ampelH]
+Explizit verwendet werden diese Befehle in zum Beispiel in den Erklärungen zum Moore-\&Mealy-Automaten auf Basis der Ampelschaltung (\!\ampelG\ampelY\ampelH):
+\displayCommandList{ampelG,ampelY,ampelR,ampelH}
 
 \subsection{Emoticons  \LILLYxNOTExWarning{Ausstehend}}
-Dieses Paket soll weitere lustige Begleiter im Textgeschehen zur Verfügung stellen: \[\text{\LARGE\Ninja}\]
+Dieses Paket soll weitere lustige Begleiter im Textgeschehen zur Verfügung stellen:
+\displayCommandList[3]{Ninja,Smiley,Sadey,Xey,Innocey,Walley,dSadey,Fire,Autumntree}
 
 \subsection{Utility  \LILLYxNOTExWarning{Ausstehend}}
 Dieses Paket soll die bisher von FontAwesome verwendeten Symbolen ersetzen und durch eigens erstellte Grafiken ersetzen.
-
-\subsection{Titleimages  \LILLYxNOTExWarning{Ausstehend}}
-Dieses Paket soll die ganzen Titelgrafiken der Mitschriften enthalten und zur Verfügung stellen. Es soll mehr als Testpaket verstanden werden, Skripte werden dennoch die Grafik aus einer bereits generierten PDF beziehen.
-\normalmarginpar
+%
+%
+%
+%
+%
 \section{Diagramme \& Graphen}
 \subsection{Graphen}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN}}\vspace*{0.5\baselineskip}\par}
-\marginpar{\tiny Dieses Paket, eingabut mit Version \LILLYxBOXxVersion{1.0.2}, bedarf einer Überarbeitung. \textbf{TODO}}\reversemarginpar\par Auch wenn bereits Ti\textit{k}Z hierfür Optionen anbietet, wurde aus optischen Gründen dieses Paket hinzugefügt!
-Grundlegend wird für den Radius aller Polygone empfohlen \CMDpreview{POLYRAD} zu verwenden (Standardmäßig: \T{1.61cm}).\
-Weiter definiert diese Bibliothek etliche sogenannte \T{graphdot}s, welche alle nur in einer tikzpicture-Umgebung funktionieren(TODO: change - new environment), allen vorran der normale \CMDpreview[(5)]{graphdot}. Er nimmt 5 Argumente entgegen: Füll-Farbe, Position, Text, Node-Name, Rand-Farbe.
-Analog hierzu definiert sich der \CMDpreview[(5)]{tgraphdot}-Befehl, welcher im Unterschied hierzu das erste Argument zwar entgegennimmt, aber ignoriert, da er eine \verb|fill opacity| von 0 besitzt (TODO: selber Befehl mit optionalem Argument \verb|fill opacity|).\medskip\newline
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+\begin{bemerkung}[Motivation]
+Dieses Paket liefert grundlegende, mal mehr und mal weniger, nützliche Tikz-Grafiken, welche zum Großteil aus denen in der Vorlesung verwendeten Grafiken entstanden sind. Alle diese Grafiken benötigen Ti\textit{k}Z (\url{https://www.ctan.org/pkg/pgf}).
+\end{bemerkung}
+%
+%
+%
+\presentCommand[1.0.2]{POLYRAD}[~\tiny$\langle$length$\rangle$]
+Grundlegend wird für den Radius aller Polygone empfohlen \blankcmd{POLYRAD} zu verwenden (Standardmäßig: \T{1.61cm}).\medskip\newline
+Weiter definiert diese Bibliothek etliche sogenannte \T{graphdot}s, welche alle nur in einer tikzpicture-Umgebung funktionieren, allen vorran die Ur-Funktion:\medskip
+%
+%
+%
+\presentCommand[1.0.2]{graphdot}[\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}\cmdlist\newline\hbox{}~~\textbackslash tgraphdot\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}]
+Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargument ignoriert und entsprechend transparent (\T{fill opacity = 0})als Füllfarbe verwendet:
+\begin{center}\renewcommand{\arraystretch}{1.75}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\linewidth}@{\hspace{1em}}|@{\hspace{1em}}C{1cm}@{\hspace{1em}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+        \clatex{:bs:graphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}} &\raisebox{-0.375\baselineskip}{\tikz{\graphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
+        \clatex{:bs:tgraphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}} &\raisebox{-0.375\baselineskip}{\tikz{\tgraphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
+        \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}
+\end{center}
+\begin{center}
+    Aktueller Stand der Aufarbeitung
+\end{center}
 Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle:
 \begin{itemize}[label=$\diamond$]\narrowitems
     \item \CMDpreview{oragraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\oragraphdot{(0,0)}{42}{a};}} \footnote{\T{\textbackslash tikz\{\CMDshow{oragraphdot}\{(0,0)\}\{42\}\{a\};\}} -- Zum E. d. Textzeile v. um \T{-0.35\textbackslash baselineskip} verschoben.})

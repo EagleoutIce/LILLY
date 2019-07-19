@@ -6,12 +6,13 @@
     morecomment=[s]{/*}{*/},
     escapeinside={!!}{!!},
     deletekeywords= {true,false},
-    otherkeywords = {false,true},
-    morekeywords = {:-,is,true,false},
-    morekeywords = [2]{->,=>,<-,=,>=,=:=, =\\=,=<,<,>},
+    otherkeywords = {false,true,creep},
+    morekeywords = {:-,is,true,false,creep},
+    morekeywords = [2]{->,=>,<-,=,>=,=:=, ==,=\\=,=<,<,>},
     morekeywords = [3]{True,False},
-    morekeywords = [4]{::=,read,get,get0,see,seen,write,writeq,tab,nl,put,tell,hold,fail,repeat,abort,assert,asserta,assertz,retract,abolish,clause,save,restore,listing,trace,notrace,spy P, nospy P,nospyall,debug,nodebug,atom,atomic,number,integer,float,var,nonvar},
-    morekeywords = [5]{?-,?},
+    morekeywords = [4]{::=,read,get,get0,see,seen,write,writeq,tab,nl,put,tell,hold,fail,repeat,abort,assert,asserta,assertz,retract,abolish,clause,save,restore,listing,trace,notrace,spy P, nospy P,nospyall,debug,nodebug,atom,atomic,number,integer,float,var,nonvar,halt.,trace.,.,set_prolog_flag},
+    morekeywords = [5]{?-,?,swipl},
+    morekeywords = [6]{Exit:,Call:,Redo:},
 }
 
 \lstnewenvironment{prolog}[1][]

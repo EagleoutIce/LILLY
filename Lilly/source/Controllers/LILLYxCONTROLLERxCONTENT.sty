@@ -2,7 +2,7 @@
 \ProvidesPackage{LILLYxCONTROLLERxCONTENT}[2019/06/29 Grundlegende Pfadverwaltung fuer Lilly]
 %% TODO: bisher wird die automatische Pfaderkennung auf Windows NICHT aktiviert! => CHANGE
 
-%%% Verwaltet das laden SƒMTLICHER DATEN-Dateien
+%%% Verwaltet das laden SÔøΩMTLICHER DATEN-Dateien
 %% Zu unterbinden
 \RequirePackage{LILLYxCOMMAND}
 \RequirePackage{LILLYxVANILLA}
@@ -15,6 +15,11 @@
 %% https://www.ctan.org/pkg/ifplatform
 \LILLYxDemandPackage{ifplatform}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
                     {Um dieses Paket kommt LILLY nicht herum!}
+                    {}{}
+
+%% https://www.ctan.org/pkg/pgf
+\LILLYxDemandPackage{pgffor}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
+                    {Um dieses Paket kommen wir hier nicht mehr herum!}
                     {}{}
 \ifshellescape
 \ifwindows %% todo: determine compile - commands
@@ -53,16 +58,38 @@
 \providecommand{\LILLYxCLSPATH}{./}
 \providecommand{\LILLYxDOCPATH}{./}
 
+
+\providecommand{\LILLYxPATHxROOT}{.} %%% WILL BE DEFINITLY SET BY JAKE - TODO
+
+\providecommand{\LILLYxPATHxFILExROOT}{source}
+
 %%% MAIN LOCATIONS
 
-\providecommand{\LILLYxPATHxCONTROLLERS}{\LILLYxPATHxFILExROOT/Controllers}
-\providecommand{\LILLYxPATHxDATA}{\LILLYxPATHxFILExROOT/Data}
-\providecommand{\LILLYxPATHxGRAPHICS}{\LILLYxPATHxFILExROOT/Graphics}
-\providecommand{\LILLYxPATHxFALLBACKS}{\LILLYxPATHxFILExROOT/Fallbacks}
-\providecommand{\LILLYxPATHxHELPER}{\LILLYxPATHxFILExROOT/Helper}
-\providecommand{\LILLYxPATHxLISTINGS}{\LILLYxPATHxFILExROOT/Listings}
-\providecommand{\LILLYxPATHxMATHS}{\LILLYxPATHxFILExROOT/Maths}
-\providecommand{\LILLYxPATHxBEAMER}{\LILLYxPATHxFILExROOT/Beamer}
+\foreach \id/\lid in {CONTROLLERS/Controllers,
+                      DATA/Data,
+                      GRAPHICS/Graphics,
+                      FALLBACKS/Fallbacks,
+                      HELPER/Helper,
+                      LISTINGS/Listings,
+                      MATHS/Maths,
+                      BEAMER/Beamer} {
+\ifcsname LILLYxPATHx\id\endcsname\else
+    \expandafter\xdef\csname LILLYxPATHx\id\endcsname{\LILLYxPATHxFILExROOT/\lid}
+\fi
+\ifcsname LILLYxABSPATHx\id\endcsname\else
+    \expandafter\xdef\csname LILLYxABSPATHx\id\endcsname{\LILLYxCLSPATH/\lid}
+\fi
+}
+
+% \providecommand{\LILLYxPATHxCONTROLLERS}{\LILLYxPATHxFILExROOT/Controllers}
+% \providecommand{\LILLYxPATHxDATA}{\LILLYxPATHxFILExROOT/Data}
+% \providecommand{\LILLYxPATHxGRAPHICS}{\LILLYxPATHxFILExROOT/Graphics}
+% \providecommand{\LILLYxPATHxFALLBACKS}{\LILLYxPATHxFILExROOT/Fallbacks}
+% \providecommand{\LILLYxPATHxHELPER}{\LILLYxPATHxFILExROOT/Helper}
+% \providecommand{\LILLYxPATHxLISTINGS}{\LILLYxPATHxFILExROOT/Listings}
+% \providecommand{\LILLYxPATHxMATHS}{\LILLYxPATHxFILExROOT/Maths}
+% \providecommand{\LILLYxPATHxBEAMER}{\LILLYxPATHxFILExROOT/Beamer}
+
 
 \providecommand{\LILLYxPATHxINDEX}{\LILLYxCLSPATH/source/Data/Configs/IDX}
 
@@ -71,7 +98,7 @@
 
 
 %%% Used userput-paths by LILLY - available for overwrite
-%% Bitte akzeptiere, dass die Systempfade nicht ùberschrieben werden _dùrfen_
+%% Bitte akzeptiere, dass die Systempfade nicht ÔøΩberschrieben werden _dÔøΩrfen_
 
 \IfFileExists{\LILLYxCLSPATH/Lilly.cls}{%
     \ClassInfo{Lilly}{Automatische Pfaderkennung erfolgreich, LILLY-Quellverzeichnis erfolgreich gefunden}%
@@ -91,9 +118,7 @@
 
 
 
-\providecommand{\LILLYxPATHxROOT}{.} %%% WILL BE DEFINITLY SET BY JAKE - TODO
 
-\providecommand{\LILLYxPATHxFILExROOT}{source}
 
 
 %%% Wir respektieren unseren Nutzer als netten, aber oft unwissenden Menschen

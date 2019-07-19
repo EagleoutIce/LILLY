@@ -199,7 +199,7 @@
 
 \RequirePackage{hhline}
 \ifx\LILLYxTIKZxenable\undefined
-    \RequirePackage{LILLYxTIKZxCORE}
+    \RequirePackage{LILLYxGRAPHICS}
 \fi
 
 
@@ -214,7 +214,6 @@
 \RequirePackage{multicol}
 
 \RequirePackage{LILLYxLISTINGS}
-
 \RequirePackage{LILLYxRUNTIMES}
 
 %\ExplSyntaxOn

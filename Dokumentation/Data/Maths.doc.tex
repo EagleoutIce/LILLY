@@ -12,7 +12,9 @@
 \TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 1.0.10}}
 \smallskip\renewcommand{\arraystretch}{1.5}
 \reversemarginpar\par
-\elable{chp:MATH}An sich ändert LILLY nicht viel an der normalen Implementation der Mathewelt.\medskip
+\elable{chp:MATH}An sich ändert LILLY nicht viel an der normalen Implementation der Mathewelt. Dieses Paket liegt hier: \begin{center}
+    \blankcmd{LILLYxPATHxMATHS} = \T{\LILLYxPATHxMATHS}
+\end{center}
 %
 %
 %
@@ -288,10 +290,18 @@ Setzt verschiedene mathematische Ausdrücke:
 %
 %
 \presentCommand[1.0.2]{x}[\optArg[$\sim$]{spacing}\cmdlist \textbackslash y\optArg[$\sim$]{spacing}\cmdlist \textbackslash z\optArg[$\sim$]{spacing} \cmdold]
-Setzt entsprechend: \x[], \y und \z
-
-
-
+Setzt entsprechend: \x[], \y und \z\medskip\newline
+%
+%
+%
+\presentCommand[1.0.10]{ceil}[\optArg{math-Ausdruck}\cmdlist \textbackslash floor\optArg{math-Ausdruck}]
+Verkürzt das Schreiben von: \clatex{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \clatex{:bs:lceil}\&\clatex{:bs:rceil} entsprechend:
+\begin{multicols}{2}%
+    \begin{ditemize}
+        \item \blankcmd{ceil} (\ceil{\frac{a}{b}})%
+        \item \blankcmd{floor} (\floor{\frac{a}{b}})%
+    \end{ditemize}
+\end{multicols}
 
 
 \section{Plots \tiny\LILLYxBOXxVersion{1.0.8}}
@@ -385,6 +395,63 @@ normale \jmark[graph]{env:graph}-Environment einzubetten. Er funktioniert mit de
         \plotline{\x*\x}
     \end{wgraph}
 \end{lstlisting}
-\section{3D-Plots \LILLYxNOTExWarning{Ausstehend}}
-Ich bin freier Platz :D
+%
+%
+%
+%
+%
+%
+%
+%
+%
+\section{3D-Plots} % \LILLYxNOTExWarning{Ausstehend}
+Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Deswegen hier die exemplarische Definition eines 3D-Plots:
+\begin{center}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.7\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.3\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+        {\begin{latex}[breaklines=true]
+\begin{tikzternal}[scale=0.5]
+\begin{axis}[3d box=complete, colormap/bluered,
+             grid=major,view={60}{40},
+             z buffer=sort, data cs=polar]
+    :bcmd:addplot3:ecmd:[data cs=cart,surf,domain=-3:3,samples=20, opacity=0.5] {x+y};
+\end{axis}
+\end{tikzternal}
+        \end{latex}} &  \begin{tikzternal}[scale=0.6]
+            \begin{axis}[3d box=complete, colormap/bluered,grid=major,view={60}{40},z buffer=sort, data cs=polar]
+              \addplot3[data cs=cart,surf,domain=-3:3,samples=20, opacity=0.5] {x+y};
+            \end{axis}
+          \end{tikzternal}\\
+        \hline
+{\begin{latex}[breaklines=true]
+\begin{tikzternal}[scale=0.6]
+    \begin{axis}[3d box=complete, axis equal image, colormap/bluered,grid=major,view={60}{40},z buffer=sort,enlargelimits=0.2,scale=2.3]
+    :bcmd:addplot3:ecmd:[%
+        opacity = 0.5, surf,
+        samples = 21, variable = \u,
+        variable y = \v, domain = 0:180,
+        y domain = 0:360,
+    ]
+    ({cos(u)*sin(v)}, {sin(u)*sin(v)},
+     {cos(v)});
+    \end{axis}
+\end{tikzternal}
+\end{latex}} & \begin{tikzternal}[scale=0.6]
+    \begin{axis}[3d box=complete, axis equal image, colormap/bluered,grid=major,view={60}{40},z buffer=sort,enlargelimits=0.2,scale=2.3]
+    \addplot3[%
+        opacity = 0.5,
+        surf,
+        samples = 21,
+        variable = \u,
+        variable y = \v,
+        domain = 0:180,
+        y domain = 0:360,
+    ]
+    ({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
+    \end{axis}
+\end{tikzternal}\\
+\specialrule{1pt}{0pt}{0pt}
+    \end{tabular}
+\end{center}
+
 \renewcommand{\arraystretch}{1}
