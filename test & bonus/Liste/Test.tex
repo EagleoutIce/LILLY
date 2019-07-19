@@ -70,7 +70,37 @@ Listen werden also vereinigt und nicht durch einzelne Elemente separiert. Wir k�
 \containsList{Waffel}{410021}
 \end{latex}
 A: \containsList{Waffel}{A}\\
-410021: \containsList{Waffel}{410021}
+410021: \containsList{Waffel}{410021} \\
+
+\makeatletter
+
+\getPeter
+\expandafter\lilly@iter@commalist\lillyxlist!\\
+
+\lillyxlist\\
+%\expandafter\forlist\lillyxlist
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\iffalse
 \clearpage
 %\isLanguageLoaded{sql/lSql} \isLanguageLoaded{quatschopotl}
 Die erste Seite wurde wie folgt erstellt (jaay recursive Code:) )
@@ -132,7 +162,7 @@ Ergebnis: \getWaffel % erfrage Liste Peter in \lillyxlist
 \foreach \x in \lillyxlist {
     => \x
 }\newline
-Listen werden also vereinigt und nicht durch einzelne Elemente separiert. Wir können testen ob ein Element in einer Liste enthalten ist, mit:
+Listen werden also als ein Element eingefügt, ungeachtet des Separators. Um die Listen zu vereinigen, wird ein identischer Separator benötigt und eine weitere Expandierung. Wir können testen ob ein Element in einer Liste enthalten ist, mit:
 :bs:begin{latex}
 \containsList{Waffel}{A}
 \containsList{Waffel}{410021}
@@ -141,4 +171,4 @@ A: \containsList{Waffel}{A}\\
 410021: \containsList{Waffel}{410021}
 \end{document}
 \end{latex}
-\end{document}
+\fi
