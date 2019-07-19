@@ -14,8 +14,8 @@ LILLYxClean = echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m" && \
 
 #create all papers
 all:
-	@make --no-print-directory $(PAPERSPDF) CLEANTARGET=void -j $(JOBCOUNT) --output-sync=line
-	@make --no-print-directory clean
+	@$(MAKE) --no-print-directory $(PAPERSPDF) CLEANTARGET=void -j $(JOBCOUNT) --output-sync=line
+	@$(MAKE) --no-print-directory clean
 
 %.pdf: %.tex
 	pdflatex -jobname $(basename $@) \\input{$<} > ./LILLY_COMPILE.log 2>&1

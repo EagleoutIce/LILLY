@@ -1,11 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{LILLYxBOXxCONTROLLER}[2019/07/13 Stellt die Box-Erweiterung fuer LILLY zur Verfuegung]
+\ProvidesPackage{LILLYxCONTROLLERxBOX}[2019/07/13 Stellt die Box-Erweiterung fuer LILLY zur Verfuegung]
 
 \RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxBOOLEAN}
 \RequirePackage{LILLYxCOLOR}
 \RequirePackage{LILLYxCONTROLLERxLINK}
+\RequirePackage{LILLYxLIST}
 
 %% https://www.ctan.org/pkg/tocloft
 \LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
@@ -57,6 +58,28 @@
 \else
 \providecommand{\LILLYxBOXxHIGHLIVELxLOCK}{TRUE}
 \fi\fi
+
+
+\constructList[,]{RegisteredBoxes}
+\def\lilly@list@RegisteredBoxes{Definition,Beispiel,Bemerkung,Satz,Beweis,Lemma,Zusammenfassung,Aufgabe,uebungsblatt}
+
+\getRegisteredBoxes
+
+% \foreach \x in \lillyxlist {
+%     \foreach \l/\val in {Lock/\LILLYxBOXxHIGHLIVELxLOCK,Enable/TRUE,Box/TRUE} {
+%         %\typeout{\x XX \l XX \val}
+%         \ifcsname LILLYxBOXx\x x\l \endcsname\else
+%             \edef\v{\val}
+%             %\typeout{not defed}
+%             %\expandafter\xdef\csname LILLYxBOXx\x x\l\endcsname{\val}%
+%             \expandafter\gnewcommand\csname LILLYxBOXx\x x\l\endcsname{\v}
+%         \fi
+%     }
+% }
+
+
+
+
 \providecommand{\LILLYxBOXxDefinitionxLock}{\LILLYxBOXxHIGHLIVELxLOCK}        \providecommand{\LILLYxBOXxDefinitionxEnable}{TRUE}         \providecommand{\LILLYxBOXxDefinitionxBox}{TRUE}
 \providecommand{\LILLYxBOXxBeispielxLock}{\LILLYxBOXxHIGHLIVELxLOCK}          \providecommand{\LILLYxBOXxBemerkungxEnable}{TRUE}          \providecommand{\LILLYxBOXxBemerkungxBox}{TRUE}
 \providecommand{\LILLYxBOXxBemerkungxLock}{\LILLYxBOXxHIGHLIVELxLOCK}         \providecommand{\LILLYxBOXxBeispielxEnable}{TRUE}           \providecommand{\LILLYxBOXxBeispielxBox}{TRUE}

@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{LILLYxCONTROLLERxCONTENT}[2019/06/29 Grundlegende Pfadverwaltung f√ºr Lilly]
+\ProvidesPackage{LILLYxCONTROLLERxCONTENT}[2019/06/29 Grundlegende Pfadverwaltung fuer Lilly]
 %% TODO: bisher wird die automatische Pfaderkennung auf Windows NICHT aktiviert! => CHANGE
 
-%%% Verwaltet das laden S√ÑMTLICHER DATEN-Dateien
+%%% Verwaltet das laden SƒMTLICHER DATEN-Dateien
 %% Zu unterbinden
 \RequirePackage{LILLYxCOMMAND}
 \RequirePackage{LILLYxVANILLA}
@@ -64,12 +64,14 @@
 \providecommand{\LILLYxPATHxMATHS}{\LILLYxPATHxFILExROOT/Maths}
 \providecommand{\LILLYxPATHxBEAMER}{\LILLYxPATHxFILExROOT/Beamer}
 
+\providecommand{\LILLYxPATHxINDEX}{\LILLYxCLSPATH/source/Data/Configs/IDX}
+
 \providecommand{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}
 
 
 
 %%% Used userput-paths by LILLY - available for overwrite
-%% Bitte akzeptiere, dass die Systempfade nicht ÔøΩberschrieben werden _dÔøΩrfen_
+%% Bitte akzeptiere, dass die Systempfade nicht ùberschrieben werden _dùrfen_
 
 \IfFileExists{\LILLYxCLSPATH/Lilly.cls}{%
     \ClassInfo{Lilly}{Automatische Pfaderkennung erfolgreich, LILLY-Quellverzeichnis erfolgreich gefunden}%

@@ -1,0 +1,22 @@
+heading_prefix "\n\\noindent\\ {\\centering\\tikz{\\node at(-1,0) {};\\node at(2,0) {};\\draw[rounded corners=3pt,fill=black!03,thick] (0,0) rectangle ++(5,0.5) node[midway,centered]{\\textbf{"
+heading_suffix "}};}}\\par\\nopagebreak\n"
+headings_flag 1
+preamble "\\protect\\thispagestyle{empty}
+\\begin{theindex}\\protect\\thispagestyle{empty}
+  \\providecommand*\\indexgroup[1]{\\indexspace
+    \\item \\textbf{#1}\\nopagebreak}
+"
+postamble "\n\n\\end{theindex}\n"
+group_skip "  %\n  \\indexspace\n  %\n"
+numhead_positive "Numbers"
+numhead_negative "Numbers"
+symhead_positive "\\small Ä's Ö's Ü's"
+symhead_negative "\\small Ä's Ö's Ü's"
+delim_0 "\\pgfsetfillopacity{1.0}\\dotfill\\hypersetup{linkcolor=purple!75!black}\\iftrue\\rmfamily "
+delim_1 "\\pgfsetfillopacity{1.0}\\hypersetup{linkcolor=purple!75!black}\\iftrue\\rmfamily:~"
+delim_2 "\\pgfsetfillopacity{0.0}\\hypersetup{linkcolor=white}\\ttfamily{}\\iffalse"
+delim_t "\\pgfsetfillopacity{1.0}\\iftrue\\rmfamily "
+item_12 "\\pgfsetfillopacity{1.0}\%\n\\subsubitem\\footnotesize\\mbox{\\footnotesize\\pgfsetfillopacity{1.0}\\rmfamily}\\footnotesize "
+item_2  "\\footnotesize\\mbox{\\pgfsetfillopacity{1.0}\%\n\\footnotesize\\pgfsetfillopacity{1.0}\\rmfamily,} "
+encap_infix "{"
+encap_suffix "}\\fi\\normalsize"
