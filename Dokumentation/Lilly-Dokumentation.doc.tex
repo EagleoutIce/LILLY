@@ -89,6 +89,16 @@
 \newcommand*{\optArg}[2][]{[\frmttxt{#2\ifthenelse{\equal{#1}{}}{}{=$\langle$#1$\rangle$}}]}
 \newcommand*{\cmdold}{~\LILLYxNOTExWarning{Veraltet}}
 
+\newcommand{\displayCommandList}[2][2]{%
+\begin{multicols}{#1}%
+    \begin{ditemize}\narrowitems%
+        \foreach \cmd in {#2}{%
+            \item \blankcmd{\cmd} (\ensuremath{\csname \cmd\endcsname})%
+        }%
+    \end{ditemize}%
+\end{multicols}%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dokumentation                                                                                                       %     %%%% DOC %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

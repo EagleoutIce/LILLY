@@ -64,15 +64,21 @@ Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargu
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
-\begin{center}
-    Aktueller Stand der Aufarbeitung
-\end{center}
-Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle:
-\begin{itemize}[label=$\diamond$]\narrowitems
-    \item \CMDpreview{oragraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\oragraphdot{(0,0)}{42}{a};}} \footnote{\T{\textbackslash tikz\{\CMDshow{oragraphdot}\{(0,0)\}\{42\}\{a\};\}} -- Zum E. d. Textzeile v. um \T{-0.35\textbackslash baselineskip} verschoben.})
-    \item \CMDpreview{blugraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\blugraphdot{(0,0)}{42}{a};}} \footnote{\T{\textbackslash tikz\{\CMDshow{blugraphdot}\{(0,0)\}\{42\}\{a\};\}} -- Zum E. d. Textzeile v. um \T{-0.35\textbackslash baselineskip} verschoben.})
-\end{itemize}
-Analog hierzu: \CMDpreview{gregraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\gregraphdot{(0,0)}{42}{a};}}), \CMDpreview{purgraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\purgraphdot{(0,0)}{42}{a};}}), \CMDpreview{golgraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\golgraphdot{(0,0)}{42}{a};}}), \CMDpreview{blagraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\blagraphdot{(0,0)}{42}{a};}}), \CMDpreview{norgraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\norgraphdot{(0,0)}{42}{a};}}), \CMDpreview{margraphdot} (\raisebox{-0.35\baselineskip}{\tikz{\margraphdot{(0,0)}{42}{a};}}).\bigskip\newline
+\presentCommand[1.0.2]{oragraphdot}[\cmdlist \textbackslash blugraphdot\cmdlist \textbackslash gregraphdot\cmdlist\textbackslash purgraphdot\cmdlist\textbackslash golgraphdot\cmdlist\secline\textbackslash blagraphdot\cmdlist\textbackslash norgraphdot\cmdlist\textbackslash margraphdot]
+Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle:\vspace{-1em}
+\begin{multicols}{3}%
+    \begin{ditemize}\narrowitems%
+        \foreach \cmd in {ora,blu,gre,pur,gol,bla,nor,mar}{%
+    \item \blankcmd{\cmd graphdot} (\,\raisebox{-0.375\baselineskip}{\tikz{\csname\cmd graphdot\endcsname{(0,0)}{42}{a};}}\,)%
+        }%
+    \end{ditemize}%
+\end{multicols}%
+Zur Information, alle diese Befehle wurden wie folgt präsentiert:
+\begin{latex}
+:bs:tikz{:lan:graphdot:ran:{(0,0)}{42}{a};
+\end{latex}
+wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für den Textfluss noch die Boxposition angepasst, dies spielt allerdings für den Graphen keine Rolle. Mit \LILLYxBOXxVersion{1.0.10} wurden die Farben der Dots der neuen Palette %%TODO: link
+entsprechend portiert. 
 Ist zudem \CMDpreview{LILLYxMODExEXTRA} auf \verb|\true| gesetzt, so wird \CMDpreview[(8)]{graphPOI} so konfiguriert, dass er die zugehörige Grafik anzeigt, ist dies nicht der Fall (in anderen Worten: \CMDshow{LILLYxMODExEXTRA}=\verb|\false|), so wird das Bild sowie zugehöriger Rahmen und Hyperlink nicht eingebracht. Grundlegend wurde dieser Befehl speziell für das Erstellen von Zeitleisten eingeführt und funktioniert nach folgendem Schemata (hier explizit mit Grafik):
 %%%% COMPAT CHEAT
 \LILLYcommand{\graphPOICOMPAT}[8]{
