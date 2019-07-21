@@ -65,18 +65,22 @@
 
 \getRegisteredBoxes
 
-% \foreach \x in \lillyxlist {
+% \providecommand{\LILLYxBOXxUebungsblattxEnable}{TRUE}       \providecommand{\LILLYxBOXxUebungsblattxBox}{TRUE}
+
+% \foreach \elem in \lillyxlist {
 %     \foreach \l/\val in {Lock/\LILLYxBOXxHIGHLIVELxLOCK,Enable/TRUE,Box/TRUE} {
-%         %\typeout{\x XX \l XX \val}
-%         \ifcsname LILLYxBOXx\x x\l \endcsname\else
-%             \edef\v{\val}
+%         \typeout{\elem XX \l XX \val: LILLYxBOXx\elem x\l => \val }
+%         \ifcsname LILLYxBOXx\elem x\l \endcsname\else
+%             %\edef\v{\val}
 %             %\typeout{not defed}
-%             %\expandafter\xdef\csname LILLYxBOXx\x x\l\endcsname{\val}%
-%             \expandafter\gnewcommand\csname LILLYxBOXx\x x\l\endcsname{\v}
+%             \expandafter\expandafter\expandafter\xdef\csname LILLYxBOXx\elem x\l\endcsname{\val}%
+%             \expandafter\typeout{Expected: \val, got: \csname LILLYxBOXx\elem x\l\endcsname}
+%             %\expandafter\gnewcommand\csname LILLYxBOXx\x x\l\endcsname{\v}
 %         \fi
 %     }
 % }
 
+% \typeout{\LILLYxBOXxDefinitionxEnable}
 
 
 
@@ -345,18 +349,18 @@
 %%% TODO:
 %%%% BOXCONTROL \w: extra paramter [pin] - oder so lädt auf jedenfall nen tcbset style mit aftertitle = Pin .... - ist auf Definitionen gelockt - bezieht die Farbe nicht automatisch
 
-
+\typeout{checking \LILLYxBOXxAufgabexEnable with \true}
 \ifx\LILLYxBOXxAufgabexEnable\true
     \newlistof{TSKS}{TSK}{Alle Aufgaben\\[-1.5cm]}
 
 %% Splitter could issue a tcblower and then use startrecording to get the soluions extra?
 
     \ifx\LILLYxBOXxAufgabexBox\true
-        %\tcbset{LillyxBOXxDesignxAufgabe/.style={}}
+        \tcbset{LillyxBOXxDesignxAufgabe/.style={}}%\tcblower
         \LILLYcommand{\Splitter}{\vspace{0.1cm} {\color{black!50}\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]} %% Linie für tasks
         \LILLYcommand{\vSplitter}{\vspace{-1\baselineskip} \Splitter \nskip}
     \else
-        %\tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
+        \tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
         \LILLYcommand{\Splitter}{\vspace{0.1cm} {~\\[0.2cm]\textbf{Lösung:}\\}}
         \LILLYcommand{\vSplitter}{\vspace{-1\baselineskip} \Splitter \nskip}
     \fi
@@ -366,9 +370,9 @@
     \DeclareDocumentEnvironment{aufgabe}{O{} O{42} O{}}{ %
     \refstepcounter{ctr_TSK}
     \ifx\LILLYxBOXxAufgabexBox\true
-        \begin{LILLYxBOXxAufgabe}[#1][Aufgabe \arabic{ctr_TSK}][#3]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}{\TRUE}~\\[-.25\baselineskip]\ignorespacesafterend
+        \begin{LILLYxBOXxAufgabe}[#1][Aufgabe \arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe,#3]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}{\TRUE}~\\[-.25\baselineskip]\ignorespacesafterend
     \else
-        \begin{LILLYxBOXxAufgabexPlain}[#1][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][#3,LillyxBOXxDesignxPlain, after title={\hfill~\mdseries\emph{ #2 \ifnum#2=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}{\TRUE}~\\\ignorespacesafterend
+        \begin{LILLYxBOXxAufgabexPlain}[#1][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe, after title={\hfill~\mdseries\emph{ #2 \ifnum#2=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#3]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}{\TRUE}~\\\ignorespacesafterend
     \fi
     }{\ifx\LILLYxBOXxAufgabexBox\true\end{LILLYxBOXxAufgabe}\else\end{LILLYxBOXxAufgabexPlain}\fi}
 \else %% Keine Aufgabes

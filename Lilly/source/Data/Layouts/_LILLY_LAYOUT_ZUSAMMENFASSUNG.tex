@@ -67,7 +67,7 @@
 \newcommand{\TOPICS}[1]{%
 \renewcommand{\theTOPIC}{#1}%
 \refstepcounter{TOPICS}%
-\addcontentsline{TOPIC}{TOPICS}{#1}\par%
+\ifnum\value{TOPICS}>0\addcontentsline{TOPIC}{TOPICS}{#1}\fi\par%
 }
 
 \def\compileidx{\makeindex[title=Stichwortverzeichnis,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{Stichwortverzeichnis}}
@@ -84,7 +84,7 @@
 \providecommand{\TOP}[3][top_default_jmpmrk]{%
     \ifappendix%
     \refstepcounter{ctr_ADDONS}\addcontentsline{toc}{subsection}{#2}\else%
-    \addcontentsline{DEFS}{chapter}{#2}\addcontentsline{toc}{section}{#2}%
+    \ifnum\value{TOPICS}>0\addcontentsline{DEFS}{chapter}{#2}\fi\addcontentsline{toc}{section}{#2}%
     \TOPICS{#2}\markleft{#2}\fi\elable{top:#1}%
     \leavevmode\\%%breakpatch
     \parbox{\linewidth}{{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \ifappendix\arabic{ctr_ADDONS}\else\arabic{TOPICS}\fi) #2} \hfill{\tiny #3}}\vspace{-0.5\baselineskip}\newline%

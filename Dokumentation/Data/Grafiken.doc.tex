@@ -41,7 +41,7 @@ Dieses Paket soll die bisher von FontAwesome verwendeten Symbolen ersetzen und d
 %
 \section{Diagramme \& Graphen}
 \subsection{Graphen}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\newline
 \begin{bemerkung}[Motivation]
 Dieses Paket liefert grundlegende, mal mehr und mal weniger, nützliche Tikz-Grafiken, welche zum Großteil aus denen in der Vorlesung verwendeten Grafiken entstanden sind. Alle diese Grafiken benötigen Ti\textit{k}Z (\url{https://www.ctan.org/pkg/pgf}).
 \end{bemerkung}
@@ -64,6 +64,9 @@ Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargu
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
+%
+%
+%
 \presentCommand[1.0.2]{oragraphdot}[\cmdlist \textbackslash blugraphdot\cmdlist \textbackslash gregraphdot\cmdlist\textbackslash purgraphdot\cmdlist\textbackslash golgraphdot\cmdlist\secline\textbackslash blagraphdot\cmdlist\textbackslash norgraphdot\cmdlist\textbackslash margraphdot]
 Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle:\vspace{-1em}
 \begin{multicols}{3}%
@@ -75,41 +78,96 @@ Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben gen
 \end{multicols}%
 Zur Information, alle diese Befehle wurden wie folgt präsentiert:
 \begin{latex}
-:bs:tikz{:lan:graphdot:ran:{(0,0)}{42}{a};
+:bs:tikz{:bs::lan:graphdot:ran:{(0,0)}{42}{a}};
 \end{latex}
 wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für den Textfluss noch die Boxposition angepasst, dies spielt allerdings für den Graphen keine Rolle. Mit \LILLYxBOXxVersion{1.0.10} wurden die Farben der Dots der neuen Palette %%TODO: link
-entsprechend portiert. 
-Ist zudem \CMDpreview{LILLYxMODExEXTRA} auf \verb|\true| gesetzt, so wird \CMDpreview[(8)]{graphPOI} so konfiguriert, dass er die zugehörige Grafik anzeigt, ist dies nicht der Fall (in anderen Worten: \CMDshow{LILLYxMODExEXTRA}=\verb|\false|), so wird das Bild sowie zugehöriger Rahmen und Hyperlink nicht eingebracht. Grundlegend wurde dieser Befehl speziell für das Erstellen von Zeitleisten eingeführt und funktioniert nach folgendem Schemata (hier explizit mit Grafik):
+entsprechend portiert.\medskip
+%
+%
+%
+\presentCommand[1.0.4]{graphPOI}[\manArg{(PosX,PosY)}\manArg{accent-color}\manArg{year}\manArg{obj-name}\manArg{brief}\secline\manArg{img-path}\manArg{img-link}\manArg{extra}]
+Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen look für Timelines garantiert. Im Folgenden eine repräsentation, die den Wirrwarr an Optionen etwas übersichtlicher macht. Es gilt zu beachten, dass \clatex{:lan:extra:ran:} hier die Rolle des entsprechendes Landes einnimmt:\vspace{-1.15\baselineskip}
+%
 %%%% COMPAT CHEAT
 \LILLYcommand{\graphPOICOMPAT}[8]{
-\filldraw [thick,color=#2] #1 circle (1.45pt) node[align=left] {}   -- ++(0.5,0) node [right,color=#2] {\begin{minipage}{0.49\textwidth}\small{\textbf{#3}}\hfill #8\end{minipage}} ++(-0.3,-0.2) node[below right] {\begin{minipage}{0.5\textwidth}
+\filldraw [thick,color=#2] #1 circle (1.45pt) node[align=left] {}  -- ++(0.5,0) node [right,color=#2] {\begin{minipage}{0.49\textwidth}\small{\textbf{#3}}\hfill #8\end{minipage}} ++(-0.3,-0.2) node[below right] {\begin{minipage}{0.5\textwidth}
     \textbf{\textcolor{#2!80}{#4:}} \textcolor{#2!65}{#5}
 \end{minipage} } ++(9cm,0.3) node [below right] {\begin{minipage}[c]{0.3\textwidth}
     \href{#7}{\fcolorbox{#2}{white}{\includegraphics[height=2cm]{\LILLYxPATH#6}}}
 \end{minipage}} ;}%%%%%%%%%%
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.45\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.55\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
+\begin{center}%\renewcommand{\arraystretch}{0.25}
+\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.45\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.55\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\tiny\begin{lstlisting}[language=lLatex,frame=none]
-\begin{tikzpicture}[scale=0.75,
+    {\tiny\begin{latex}[numberstyle=\tiny\color{gray}]
+\begin{tikzternal}[scale=0.75,
         every node/.style={transform shape}]
     \graphPOI{(0,0)}{purple}{1999 n.Chr.}
-        {Florian Sihler}
-        {Florian Sihler ist der Autor dieses Dokuments}
-        {Data/2003.jpg}
-        {https://github.com/EagleoutIce/Quickblit}
-        {Deutschland};
-\end{tikzpicture}
-    \end{lstlisting} }&  {\begin{tikzpicture}[scale=0.75,
+      {Florian Sihler}
+      {Florian Sihler ist der Autor dieses Dokuments.}
+      {Data/2003.jpg}
+      {https://github.com/EagleoutIce/Quickblit}
+      {Deutschland};
+\end{tikzternal}
+    \end{latex}}&{%
+    \begin{tikzternal}[scale=0.75,
         every node/.style={transform shape}]
-        \graphPOICOMPAT{(0,0)}{purple}{1999 n.Chr.}{Florian Sihler}{Florian Sihler ist der Autor dieses Dokuments}{Data/2003.jpg}{https://github.com/EagleoutIce/Quickblit}{Deutschland};
-    \end{tikzpicture}}\\
+            \graphPOICOMPAT{(0,0)}{purple}{1999 n.Chr.}{Florian Sihler}{Florian Sihler ist der Autor dieses Dokuments.}{Data/2003.jpg}{https://github.com/EagleoutIce/Quickblit}{Deutschland};
+    \end{tikzternal}}\\
     \specialrule{1pt}{0pt}{0pt}
-    \end{tabular}\]
-Hier wurde aus Platzgründen die Größe angepasst.\clearpage
+    \end{tabular}
+\end{center}
+Hier wurde aus Platzgründen die Größe angepasst. Es gibt auch einen weiteren Befehl der es ermöglicht den \blankcmd{graphPOI}-Befehl einzuschränken:\medskip
+%
+%
+%
+\presentCommand[1.0.4]{LILLYxMODExEXTRA}
+Wir dieser Befehl auf \verb|\true| (\true) gesetzt, so wird \blankcmd{graphPOI} so konfiguriert, dass die zugehörige Grafik angezeigt wird. Ist dies nicht der Fall (in anderen Worten: \blankcmd{LILLYxMODExEXTRA}=\verb|\false|), so wird kein Bild angezeigt (auch der Link existiert dann nicht). Diese Version wurde erstellt um Urheberrechtsverletzungen zu vermeiden.\medskip
+%
+%
+%
+\presentCommand[1.0.10]{PgetXY}[\manArg{Point}\manArg{out:x-cord}\manArg{out:y-cord}\cmdlist\secline\textbackslash PgetX\manArg{out:x-cord}\cmdlist \textbackslash PgetY\manArg{out:y-cord}]
+Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da das Kreuzen von Koordinaten nervig ist, gibt es verschiedene Befehle die es erlauben, die entsprechenden Koordinaten zu speichern, wobei die letzteren beiden nur lesbarere Alternativen für die erste sind, sofern die entsprechend andere Koordinate nicht benötigt wird:\vspace{-1.15\baselineskip}
+\begin{center}%\renewcommand{\arraystretch}{0.25}
+    \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.4\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
+        \specialrule{1pt}{0pt}{0pt}
+{\begin{latex}
+\begin{tikzternal}
+  \node (A) at (1,2) {A};
+  \PgetXY{(A)}{\myX}{\myY};
+  % Befehle werden gebunden
+  \node (B) at (\myX,0) {B};
+  \PgetY{(B)}{\anotherY};
+  \node (C) at (1.5*\myY,\anotherY) {C};
+\end{tikzternal}
+\end{latex}} &
+\begin{tikzternal}
+    \draw[thin,xshift=0.5cm,yshift=0.5cm] (-1,-2) grid (3,2); %step=1.0
+    \node (A) at (1,2) {A};
+    \PgetXY{(A)}{\myX}{\myY};
+    \node (B) at (\myX,0) {B};
+    \PgetY{(B)}{\anotherY};
+    \node (C) at (1.5*\myY,\anotherY) {C};
+\end{tikzternal} \\
+    \specialrule{1pt}{0pt}{0pt}
+    \end{tabular}
+\end{center}
+Was hierbei auch interessant ist: die Skalierung von $X$- und $Y$-Koordinaten wird unabhängig voneinander getroffen, das heißt die $Y$-Koordinate eines Punktes als die $X$-Koordinate eines anderen zu verwenden funktioniert (meist) nicht ohne mathematische Operationen. Das Gitter wurde natürlich nachträglich hinzugefügt:%\newline
+\begin{latex}
+\draw[thin,xshift=0.5cm,yshift=0.5cm] (-1,-2) grid (3,2);
+\end{latex}
+%
+%
+%
+%
+%
+%
 \subsection{Rotation}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Tikz-Core/\_LILLY\_TIKZ\_ROTATION}}\vspace*{0.5\baselineskip}\par}
-Diese Datei liefert nur den Befehl \CMDpreview[{[1](3)}]{rotateRPY} (roll, pitch, yaw) und den Ti\textit{k}Z-Style \T{RPY}. Diese werden verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und dementsprechend anzupassen. Dieser Code entstammt der Feder von David Carlisle und Tom Bombadil\footnote{\url{https://tex.stackexchange.com/questions/67573/tikz-shift-and-rotate-in-3d}} und wird hier beispielhaft illustriert:
-%% TODO: Move as example into Rotate lib
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_ROTATION}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+%
+%
+%
+\presentCommand[1.0.10]{rotateRPY}[\optArg[0/0/0]{transform-point}\manArg{roll}\manArg{pitch}\manArg{yaw}]
+Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und dementsprechend anzupassen. Dieser Code entstammt der Feder von David Carlisle und Tom Bombadil\footnote{\url{https://tex.stackexchange.com/questions/67573/tikz-shift-and-rotate-in-3d}} und wird hier beispielhaft illustriert:
 \newcommand{\examplecube}%
 {   \coordinate (a) at (-2,-2,-2);
     \coordinate (b) at (-2,-2,2);
@@ -123,21 +181,23 @@ Diese Datei liefert nur den Befehl \CMDpreview[{[1](3)}]{rotateRPY} (roll, pitch
     \fill[Ao] (a) circle (0.1cm);
     \fill[tealblue] (d) ++(0.1cm,0.1cm) rectangle ++(-0.2cm,-0.2cm);
 }
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.55\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
+\begin{center}
+\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.55\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\scriptsize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
-\begin{tikzpicture}
+    {\tiny\begin{latex}[numberstyle=\tiny\color{gray}]
+\begin{tikzternal}
     \examplecube
     \rotateRPY[-2/2/2]{13}{171}{55} %% Rotate set
-    \begin{scope}[draw=purple, text=purple,fill=purple,densely dashed,RPY]
+    \begin{scope}[draw=purple, text=purple,
+                    fill=purple, densely dashed, RPY]
         \examplecube
     \end{scope}
     \draw[tealblue,ultra thick] (-2,2,2) -- (\savedx,2,2) -- (\savedx,\savedy,2) -- (\savedx,\savedy,\savedz) circle (0.25);
     \rotateRPY[-2/-2/-2]{13}{171}{55}
     \draw[Ao,ultra thick] (-2,-2,-2) -- (\savedx,-2,-2) -- (\savedx,\savedy,-2) -- (\savedx,\savedy,\savedz) circle (0.25);
-    \node[fill=white,fill opacity=0.7,text opacity=1] at (2.5,-3.5){RPY: 13,171,55};
-\end{tikzpicture}
-    \end{lstlisting}} &  \begin{tikzpicture}
+    \node at (2.5,-3.5){RPY: 13,171,55};
+\end{tikzternal}
+    \end{latex}} &  \begin{tikzternal}
         \examplecube
         \rotateRPY[-2/2/2]{13}{171}{55}
         \begin{scope}[draw=purple, text=purple,fill=purple,densely dashed,RPY]
@@ -146,26 +206,34 @@ Diese Datei liefert nur den Befehl \CMDpreview[{[1](3)}]{rotateRPY} (roll, pitch
         \draw[tealblue,ultra thick] (-2,2,2) -- (\savedx,2,2) -- (\savedx,\savedy,2) -- (\savedx,\savedy,\savedz) circle (0.25);
         \rotateRPY[-2/-2/-2]{13}{171}{55}
         \draw[Ao,ultra thick] (-2,-2,-2) -- (\savedx,-2,-2) -- (\savedx,\savedy,-2) -- (\savedx,\savedy,\savedz) circle (0.25);
-        \node[fill=white,fill opacity=0.7,text opacity=1] at (2.5,-3.5){RPY: 13,171,55};
-    \end{tikzpicture} \\
+        \node at (2.5,-3.5) {RPY: 13,171,55};
+    \end{tikzternal} \\
     \specialrule{1pt}{0pt}{0pt}
-    \end{tabular}\]
-\clearpage
+    \end{tabular}
+\end{center}
+%
+%
+%
+%
+%
 \subsection{Automaten \LILLYxNOTExWarning{Work in Progress}}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Tikz-Core/\_LILLY\_TIKZ\_AUTOMATEN}}\vspace*{0.5\baselineskip}\par}
-Obwohl bereits Ti\textit{k}Z eine Bibliothek für das Generieren von Automaten zur Verfügung stellt, wurde dieses (Work in Progress) Paket erstellt um darauf aufbauend schnell Automaten erstellen zu können. Der Grundbefehl \CMDpreview[{[1](4)}]{loopTo} erhält die Argumente: \T{[looseness]\{OerientierungsWinkel:360\}\{node-name\}\{Text\}\{Orientierung\}}. Die weiteren 4 Befehle vereinfachen nun die Nutzung dieses Befehls für die häufigsten Fälle:\marginpar{}\marginpar{\vspace*{-.25\baselineskip}}%Buffer
-\begin{itemize}[label=$\diamond$]\narrowitems
-    \item \CMDpreview[{[1](2)}]{loopTop} - Schleife oben
-    \item \CMDpreview[{[1](2)}]{loopRight} - Schleife rechts
-    \item \CMDpreview[{[1](2)}]{loopLeft} - Schleife links
-    \item \CMDpreview[{[1](2)}]{loopBot} - Schleife unten
-\end{itemize}
-Für sie alle gelten nur noch die Argumente: \T{[looseness]\{node-name\}\{Text\}}.
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_AUTOMATEN}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Obwohl bereits Ti\textit{k}Z eine Bibliothek für das Generieren von Automaten zur Verfügung stellt, wurde dieses (Work in Progress) Paket erstellt um darauf aufbauend schnell Automaten erstellen zu können. Der Grundbefehl lautet:\medskip
+%
+%
+%
+\presentCommand[1.0.3]{loopTo}[\optArg[1]{looseness}\manArg{arc}\manArg{node-name}\manArg{Text}\manArg{Orientierung}]
+Dieser Befehl setzt grundlegend einen Pfeil, der von einem Knoten aus wieder zu sich selbst führt. Im folgenden sind $4$ verschiedene Shortcuts, die für die klassischen Himmelsrichtungen die Pfeile vordefinieren:\medskip
+%
+%
+%
+\presentCommand[1.0.3]{loopTop}[\optArg[1]{looseness}\manArg{node-name}\manArg{Text}\cmdlist \textbackslash loopRight\optArg[1]{lsns}\secline\manArg{node-name}\manArg{Text}\cmdlist\textbackslash loopLeft\optArg[1]{lsns}\manArg{node-name}\manArg{Text}\cmdlist\secline\textbackslash loopBot\optArg[1]{lsns}\manArg{node-name}\manArg{Text}]
 Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen Sinn ergeben es soll lediglich die Nutzung verdeutlicht werden):
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.65\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
+\begin{center}
+\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.65\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\scriptsize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
-\begin{tikzpicture}[scale=1,
+    {\scriptsize\begin{latex}
+\begin{tikzternal}[scale=1,
     every node/.style={minimum size=12pt,transform shape},
     state/.style={circle, !*\T{draw}*!, minimum size=20pt},
     every path/.style={!*\T{draw}*!, -latex},
@@ -177,8 +245,8 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
     \draw (1) to node[pos=0.5,above,sloped]{\T{0}} (2);
     \loopTop[4]{1}{\T{4}};
     \loopRight[4]{2}{\T{2}};
-\end{tikzpicture}
-    \end{lstlisting}} &      \begin{tikzpicture}[scale=1,
+\end{tikzternal}
+    \end{latex}} &      \begin{tikzternal}[scale=1,
         every node/.style={minimum size=12pt,transform shape},
         state/.style={circle, draw, minimum size=20pt},
         every path/.style={draw, -latex},
@@ -192,9 +260,10 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
         \loopTop[4]{1}{\T{4}};
         \loopRight[4]{2}{\T{2}};
 
-        \end{tikzpicture} \\
+        \end{tikzternal} \\
         \specialrule{1pt}{0pt}{0pt}
-        \end{tabular}\]
+        \end{tabular}
+\end{center}
 
 Natürlich soll dieses Erstellen noch weiter stark vereinfacht werden. Des Weiteren wird darüber nachgedacht, einen akzeptierten Endzustand klarer zu markieren (Linien dicker, mehr abstand etc). Der Traum wäre, dass das Erstellen eines Automaten wie folgt funktioniert:
 \begin{lstlisting}[language=lLatex]
@@ -208,28 +277,30 @@ Natürlich soll dieses Erstellen noch weiter stark vereinfacht werden. Des Weite
     \loopRight[4]{2}{\T{2}};
 \end{Automat}
 \end{lstlisting}
-Die Befehle \CMDshow[{[1]\{2\}}]{STATE} und \CMDshow[{[1]\{2\}}]{state} sollen hierbei automatisch hochzählen können - pro Automat - aber über das optionale Argument lesbar einer Zahl zugewiesen werden. Die Umgebung Automat soll hierbei zusätzlich auch handhaben, dass automatisch alle Nodes mithilfe von \T{\textbackslash T} geschrieben werden. Der entstehende Automat soll optisch identisch zum obigen sein.
-\normalmarginpar
+Die Befehle \blankcmd{state} und \blankcmd{STATE} sollen hierbei automatisch hochzählen können - pro Automat - aber über das optionale Argument lesbar einer Zahl zugewiesen werden. Die Umgebung Automat soll hierbei zusätzlich auch handhaben, dass automatisch alle Nodes mithilfe von \T{\textbackslash T} geschrieben werden. Der entstehende Automat soll optisch identisch zum obigen sein, dies wird allerdings erst auf das Bedürfnis hin übernommen.
 \subsection{Schaltkreise \LILLYxNOTExWarning{Ausstehend}}
 
 \subsection{Neuronen \LILLYxNOTExWarning{Work in Progress}}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Tikz-Core/\_LILLY\_TIKZ\_NEURONS}}\vspace*{0.5\baselineskip}\par}
-Da vor allem mit \fg der Wunsch danach aufkam, neuronale Netze schnell zu Texen, wurde dieses Paket entwickelt um das Paket mit den Schaltkreisen\marginpar{\tiny Das Schaltkreise-Paket ist ebenfalls noch nicht in LILLY integriert. Es befindet sich ebenfalls in einem Anfangsstadium und deswegen wird auch hierbei um Mithilfe bei der Weiterentwicklug gebeten.}
- so zu erweitern, dass es erlaubt Perzeptronen darin einzubauen, das  Paket an sich befindet sich ebenfalls im Work in Progress-Status.\par\reversemarginpar Es wurde bisher auch nur durch das Bereitstellen eines einzelnen Befehls implementiert: \CMDpreview[(4)]{neuronSquare}. Dieser funktioniert seinerseits lediglich in einer \emph{tikzpicture}-Umgebung und zeichnet nichtmal ein Neuron, sondern lediglich die 2-D Repräsentation eines booleschen Raums, der wiedergibt unter welchen Eingabevektoren das Perzeptron welchen Wert zurückliefert. Die 4 Parameter, die hierzu \T{\textbackslash neuronSquare} benötigt, entsprechen der jeweiligen Binärdarstellung der Eingabevektoren. Eine beispielhafte Anwendung ist hier zu finden:
-\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.65\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_NEURONS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Da vor allem mit \fg der Wunsch danach aufkam, neuronale Netze schnell zu Texen, wurde dieses Paket entwickelt um das Paket mit den Schaltkreisen so zu erweitern, dass es erlaubt Perzeptronen darin einzubauen, das  Paket an sich befindet sich ebenfalls im Work in Progress-Status. \textit{Das Schaltkreise-Paket ist ebenfalls noch nicht in LILLY integriert. Es befindet sich ebenfalls in einem Anfangsstadium und deswegen wird auch hierbei um Mithilfe bei der Weiterentwicklung gebeten.}\medskip
+%
+%
+%
+\presentCommand[1.0.5]{neuronSquare}[\manArg{pos:00}\manArg{pos:01}\manArg{pos:10}\manArg{pos:11}]
+Es wurde bisher auch nur durch das Bereitstellen eines einzelnen Befehls implementiert: \blankcmd{neuronSquare}. Dieser funktioniert seinerseits lediglich in einer \emph{tikzpicture}/\emph{tikzternal} Umgebung und zeichnet nichtmal ein Neuron, sondern lediglich die 2-D Repräsentation eines booleschen Raums, der wiedergibt unter welchen Eingabevektoren das Perzeptron welchen Wert zurückliefert. Die 4 Parameter, die hierzu \blankcmd{neuronSquare} benötigt, entsprechen der jeweiligen Binärdarstellung der Eingabevektoren. Eine beispielhafte Anwendung ist hier zu finden:
+\[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.35\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.3\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
     {\scriptsize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
-\begin{tikzpicture}
-    \neuronSquare{limegreen}{Awesome}{limegreen}{limegreen};
-\end{tikzpicture}
-    \end{lstlisting}} & \begin{tikzpicture}
+\begin{tikzternal}
+    \neuronSquare{T}{F}{T}{T};
+\end{tikzternal}
+    \end{lstlisting}} & \begin{tikzternal}
         \node at(0,2.25) {};
-        \neuronSquare{limegreen}{Awesome}{limegreen}{limegreen};
-    \end{tikzpicture} \\
+        \neuronSquare{T}{F}{T}{T};
+    \end{tikzternal} \\
         \specialrule{1pt}{0pt}{0pt}
         \end{tabular}\]
-Geplant ist es, die Darstellung der Informationen so zu vereinfachen, dass es (für alle Umgebungen) mithilfe von \verb|tikzset| genügt zu schreiben: \verb|\neuronSquare{T}{F}{T}{T}|.
-Zudem sollte der Namen des Befehls abgeändert werden und auch für 1-, 3- und 4-dimensionale Räume eine Option anbieten (siehe für 4D: Titelgrafik \gdra), die dann über einen einfacheren Namen abgegriffen werden kann. Weiter sollen dann \fg und \gdra (boolesche Räume) diese Befehle nutzen anstelle der dafür eigens implementierten Grafiken. Weiter soll es über ein optionales Argument möglich sein die Position relativ zu bestimmen!
+Hierbei steht ein \T{T} (true) natürlich für einen akzeptierten, ein \T{F} (false) entsprechend für einen nicht akzeptierten Befehl. Aktuell ist geplant, dass der Befehl auch für 1-, 3- und 4-dimensionale Räume eine Option anbietet (siehe für 4D: Titelgrafik \gdra[]), die dann über einen einfacheren Namen abgegriffen werden kann. Weiter sollen dann \fg und \gdra (boolesche Räume) diese Befehle nutzen anstelle der dafür eigens implementierten Grafiken. Weiter soll es möglich sein über ein optionales Argument die Position (relativ) zu bestimmen!
 \normalmarginpar
 %%TODO: supertiny fontsize
 
