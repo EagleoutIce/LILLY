@@ -1,3 +1,5 @@
+%% https://tex.stackexchange.com/questions/67573/tikz-shift-and-rotate-in-3d
+
 \newcommand{\rotateRPY}[4][0/0/0]% point to be saved to \savedxyz, roll, pitch, yaw
 {   \pgfmathsetmacro{\rollangle}{#2}
     \pgfmathsetmacro{\pitchangle}{#3}
@@ -31,7 +33,7 @@
         \pgfmathsetmacro{\transformedz}{\x*\newxz+\y*\newyz+\z*\newzz}
         \xdef\savedx{\transformedx}
         \xdef\savedy{\transformedy}
-        \xdef\savedz{\transformedz}     
+        \xdef\savedz{\transformedz}
     }
 }
 

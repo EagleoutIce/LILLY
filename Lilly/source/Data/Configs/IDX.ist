@@ -20,3 +20,7 @@ item_12 "\\pgfsetfillopacity{1.0}\%\n\\subsubitem\\footnotesize\\mbox{\\footnote
 item_2  "\\footnotesize\\mbox{\\pgfsetfillopacity{1.0}\%\n\\footnotesize\\pgfsetfillopacity{1.0}\\rmfamily,} "
 encap_infix "{"
 encap_suffix "}\\fi\\normalsize"
+quote '~'
+
+indent_space ''
+indent_length 0

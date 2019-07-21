@@ -20,8 +20,6 @@
 
 \gdef\lilly@list@operation#1{!#1!}
 \gdef\lill@list@end!{}
-
-
 \gdef\lilly@iter@commalist#1,{\edef\@tmp{#1}\lilly@list@operation{\@tmp}\@ifnextchar!{\lill@list@end}{\expandafter\lilly@iter@commalist}}
 
 
