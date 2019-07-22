@@ -61,10 +61,10 @@
     \end{tikzpicture}}{#1}[#2][#3][50pt][\smallNumber][0.125][0.03]
 }
 
-\providecommand{\LILLYxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
-\providecommand{\LILLYxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung}
+\providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+\providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung}
 \ifnum\LILLYxSemester>0
-\input{\LILLYxTITLExSETTINGSxGENERAL}\input{\LILLYxTITLExSETTINGSxVORLESUNG}
+\input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
 \fi
 \makeatletter
 %% Pfad zu den Einstellungen %% Pfad zur Grafik 
@@ -93,7 +93,7 @@
                 \node at(0.75\paperwidth,2) {\LILLYxFACULTY};
                 \node[right] at(\LILLYxLeftsep,1.5) {\parbox{0.45\linewidth}{\footnotesize{\LILLYxFlavourText\par
             }}};
-                \node[above left] at(\paperwidth,0.02) {\begingroup\hypersetup{urlcolor=MudWhite}\href{https://github.com/EagleoutIce/LILLY}{\usefont{U}{Konanur}{xl}{n}LILLY}\hypersetup{urlcolor=\LILLYxLINKSxUrlColor}\endgroup};
+                \node[above left] at(\paperwidth,0.02) {\begingroup\hypersetup{urlcolor=MudWhite}\href{https://github.com/EagleoutIce/LILLY}{\usefont{U}{Konanur}{xl}{n}LILLY}\hypersetup{urlcolor=\LILLYxColorxLINKSxUrlColor}\endgroup};
                 \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};
             \end{scope}
         \end{tikzpicture}

@@ -18,12 +18,15 @@
 \def\LILLY@Typ@Dokumentation{Dokumentation}
 \def\LILLY@Typ@Zusammenfassung{Zusammenfassung}
 
+\RequirePackage{imakeidx} %% HAS TO BE LOADED BEFORE HYPERREF (https://tex.stackexchange.com/questions/22012/hyperref-and-imakeidx-do-not-work-together#22014)
+
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
     \providecommand{\LILLYxBOXxAufgabexBox}{FALSE}
 \fi
-\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
-\RequirePackage{imakeidx} %% HAS TO BE LOADED BEFORE HYPERREF (https://tex.stackexchange.com/questions/22012/hyperref-and-imakeidx-do-not-work-together#22014)
-\fi
+
+% \ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
+% \RequirePackage{imakeidx} %% HAS TO BE LOADED BEFORE HYPERREF (https://tex.stackexchange.com/questions/22012/hyperref-and-imakeidx-do-not-work-together#22014)
+% \fi
 
 \ifx\LILLYxMODE\LILLYxMODExDEFAULT
     \providecommand\LILLYxBOXxBeispielxBox{FALSE}
@@ -48,9 +51,9 @@
 \fi
 
 
-\ifx\LILLYxBOXxBeispielxBox\false\renewcommand{\LILLYxColorxBeispiel}{\LILLYxLINKSxMainColor}\fi
-\ifx\LILLYxBOXxBeweisxBox\false\renewcommand{\LILLYxColorxBeweis}{\LILLYxLINKSxMainColor}\fi
-\ifx\LILLYxBOXxBemerkungxBox\false\renewcommand{\LILLYxColorxBemerkung}{\LILLYxLINKSxMainColor}\fi
+\ifx\LILLYxBOXxBeispielxBox\false\renewcommand{\LILLYxColorxBeispiel}{\LILLYxColorxLINKSxMainColor}\fi
+\ifx\LILLYxBOXxBeweisxBox\false\renewcommand{\LILLYxColorxBeweis}{\LILLYxColorxLINKSxMainColor}\fi
+\ifx\LILLYxBOXxBemerkungxBox\false\renewcommand{\LILLYxColorxBemerkung}{\LILLYxColorxLINKSxMainColor}\fi
 %\ifx\LILLYxBOXxLemmaxBox\true\else\renewcommand{\LILLYxColorxLemma}{Charcoal}\fi
 
 

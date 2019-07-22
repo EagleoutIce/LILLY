@@ -55,6 +55,10 @@
     \c@nditi@n@l%
 }
 
+\newcommand{\setList}[2]{%
+    \expandafter\xdef\csname lilly@list@#1\endcsname{#2}
+}
+
 \newcommand{\pushList}[2]{%
     \expandafter\edef\csname lilly@list@last@#1\endcsname{\csname lilly@list@#1\endcsname}
     \expandafter\edef\csname lilly@list@#1\endcsname{\csname lilly@list@last@#1\endcsname{#2}\csname lilly@list@seperator@#1\endcsname}%

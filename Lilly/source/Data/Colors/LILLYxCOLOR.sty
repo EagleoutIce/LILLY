@@ -130,25 +130,54 @@
 % \providecommand{\LILLYxColorxUebungsaufgabe}{black}
 % \providecommand{\LILLYxColorxZusatzuebung}{black}
 
-% \providecommand{\LILLYxLINKSxMainColor}{black}
-% \providecommand{\LILLYxLINKSxMainColorDarker}{\LILLYxLINKSxMainColor!95!black}
+% \providecommand{\LILLYxColorxLINKSxMainColor}{black}
+% \providecommand{\LILLYxColorxLINKSxMainColorDarker}{\LILLYxColorxLINKSxMainColor!95!black}
 
-% \providecommand{\LILLYxLINKSxCiteColor}{black}
-% \providecommand{\LILLYxLINKSxUrlColor}{black}
+% \providecommand{\LILLYxColorxLINKSxCiteColor}{black}
+% \providecommand{\LILLYxColorxLINKSxUrlColor}{black}
 
-% \providecommand{\LILLYxTITLExCOLOR}{black}
+% \providecommand{\LILLYxColorxTITLExCOLOR}{black}
 
 % %% can be defined by Jake ahead
 % \providecommand{\Hcolor}{black}
 % \providecommand{\HBcolor}{black}
 
+\providecommand{\Hcolor}{Leaf}
+\providecommand{\HBcolor}{\Hcolor!7}
+
+
 %% Doese Farben werden nun durch Default entsprechend gesetzt:
+
+\gdef\setProfileColors#1{
+    %\globalcolorstrue %% colors, colors everywhere :D
+    \foreach \name/\col in #1 {
+        \ifthenelse{\equal{\name}{}}{}{
+            \typeout{Register Profile Color: LILLYxColorx\name} %\space based on \col}
+            \expandafter\xdef\csname LILLYxColorx\name\endcsname{\col}
+        }
+    }
+}
+
+
+\gdef\LillyxStorexCurrentColorProfile{%% store current colorprofile
+\global\let\lilly@oldcolors\LISTxProfileColors%
+}
+
+\gdef\LillyxRestorexCurrentColorProfile{%% restore current colorprofile
+    \setList{LillyProfileColors}{\lilly@oldcolors}
+    \storeLillyProfileColors{LISTxProfileColors}
+    \setProfileColors{\LISTxProfileColors}
+}
+\constructList[,]{LillyProfileColors}
+
 
 \input{\LILLYxPATHxDATA/Colors/_LILLY_DEFAULT_COLORPROFILE}%
 
 \ifx\LILLYxMODE\LILLYxMODExPRINT
     \input{\LILLYxPATHxDATA/Colors/_LILLY_PRINT_COLORPROFILE}%
 \fi
+
+\storeLillyProfileColors{LISTxProfileColors}
 
 %% Aktuell erlaubt Lilly nur Standartmäßig diese beiden Farprofile
 %% Allerings werden Farberweiterungen unterstützt:

@@ -2,7 +2,8 @@
 
 \chapter[Mathe \LILLYxBOXxVersion{\small 1.0.10}]{Mathe}
 \TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 1.0.10}}
-\smallskip\renewcommand{\arraystretch}{1.5}
+\bigskip\newline
+\renewcommand{\arraystretch}{1.5}
 \elable{chp:MATH}An sich ändert LILLY nicht viel an der normalen Implementation der Mathewelt. Dieses Paket liegt hier: \begin{center}
     \blankcmd{LILLYxPATHxMATHS} = \T{\LILLYxPATHxMATHS}
 \end{center}
@@ -38,7 +39,7 @@ Lilly liefert den Befehl auf Basis von \T{mkern} so, dass er direkt Abstände zw
 %
 %
 %
-\presentCommand[1.0.3]{das}[\cmdlist \textbackslash sad\cmdlist \textbackslash daseq\cmdlist \textbackslash qesad\cmdlist \textbackslash shouldeq]
+\presentCommand[1.0.3]{das}[\cmdlist \anothercmd[1.0.3]{sad}\cmdlist \textbackslash daseq\cmdlist \textbackslash qesad\cmdlist \textbackslash shouldeq]
 Für Definitionen gibt es die Befehle \blankcmd{das} ($\das$), \blankcmd{sad} ($\sad$), \blankcmd{daseq} ($\daseq$), \blankcmd{qesad} ($\qesad$) sowie \blankcmd{shouldeq} ($\shouldeq$). All diese Befehle funktionieren sowohl in einer Matheumgebung, das auch im normalen text, sie werden mit \verb|\ensuremath| abgesichert!\par
 Bis auf den letzten werden zudem alle Befehle mithilfe von \verb|\vcentcolon| realisiert.\medskip\newline
 %

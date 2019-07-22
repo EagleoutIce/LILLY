@@ -55,12 +55,12 @@
 {\T{\textbackslash providecommand\{\textbackslash ABSTRACT\}\{<Dein neuer Titel>\}}} vor {\T{\textbackslash documentclass[paper]\{LILLY\}.}}}}
 \providecommand{\TITLE}{Hier könnte ihre Werbung stehen1. (\T{\textbackslash TITLE})}
 \providecommand{\BRIEF}{Informatik Student,\\Universit\"{a}t Ulm -- \heute}
-\providecommand{\LILLYxTITLExSTYLE}[1]{\usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{#1}\par}
+\providecommand{\LILLYxColorxTITLExSTYLE}[1]{\usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{#1}\par}
 
 
 \newcommand{\printHeader}{\setlength{\columnsep}{2em}{\twocolumn[
     \begin{@twocolumnfalse}
-     {\centering \LILLYxTITLExSTYLE{\TITLE}~\newline}
+     {\centering \LILLYxColorxTITLExSTYLE{\TITLE}~\newline}
      {\centering \AUTHOR,~\BRIEF\par}~\bigskip\newline
      \rule{\linewidth}{1pt}\vspace{3pt}\newline
      \textbf{Abstract:}\quad {\ABSTRACT}\par
@@ -90,7 +90,7 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
 %\expandafter\expandafter\expandafter\widthof{\csname the#1 \endcsname}
 \makeatletter
 % \renewcommand\sectionlinesformat[4]{%
-% \def\st{#1}\ifx\st\LILLYxparagraph\else\marginnote[\csname XfszX#1\endcsname\hbox{}\hfill\sffamily\textcolor{\LILLYxTITLExCOLOR}{\ifx\st\LILLYxsection\else\vspace{-1.4\baselineskip}\fi\vspace{-0.02cm}\newline#3\vphantom{\normalsize I}}]{\csname XfszX#1\endcsname\sffamily\textcolor{\LILLYxTITLExCOLOR}{\ifx\st\LILLYxsection\else\vspace{-1.4\baselineskip}\fi\vspace{-0.02cm}\newline#3\vphantom{\normalsize I}}}\fi\phantomsection\ifx\st\LILLYxsection{\nobreak\tikz{\draw (0,0) |- ++(\linewidth,0.2) -- ++(0,-0.2);}}\vspace{-1.35\baselineskip}\newline\fi\begingroup\parskip=0pt\par\nopagebreak\centering#4\par\noindent\ignorespacesafterend\endgroup\ifx\st\LILLYxsection{\vspace{-1.55\baselineskip}\newline\nobreak\tikz{\draw (0,0) |- ++(\linewidth,-0.2) -- ++(0,0.2);}}\vspace{-0.5\baselineskip}\newline\else\vspace{-1.9\baselineskip}\newline\fi
+% \def\st{#1}\ifx\st\LILLYxparagraph\else\marginnote[\csname XfszX#1\endcsname\hbox{}\hfill\sffamily\textcolor{\LILLYxColorxTITLExCOLOR}{\ifx\st\LILLYxsection\else\vspace{-1.4\baselineskip}\fi\vspace{-0.02cm}\newline#3\vphantom{\normalsize I}}]{\csname XfszX#1\endcsname\sffamily\textcolor{\LILLYxColorxTITLExCOLOR}{\ifx\st\LILLYxsection\else\vspace{-1.4\baselineskip}\fi\vspace{-0.02cm}\newline#3\vphantom{\normalsize I}}}\fi\phantomsection\ifx\st\LILLYxsection{\nobreak\tikz{\draw (0,0) |- ++(\linewidth,0.2) -- ++(0,-0.2);}}\vspace{-1.35\baselineskip}\newline\fi\begingroup\parskip=0pt\par\nopagebreak\centering#4\par\noindent\ignorespacesafterend\endgroup\ifx\st\LILLYxsection{\vspace{-1.55\baselineskip}\newline\nobreak\tikz{\draw (0,0) |- ++(\linewidth,-0.2) -- ++(0,0.2);}}\vspace{-0.5\baselineskip}\newline\else\vspace{-1.9\baselineskip}\newline\fi
 % }
 \addto\captionsngerman{%
     \renewcommand{\listfigurename}{\vspace{-1.5\baselineskip}}%
