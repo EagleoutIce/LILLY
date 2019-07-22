@@ -4,27 +4,25 @@
 
 \ifx\LILLYxColorxInject \undefined
 
-\renewcommand{\LILLYxColorxDefinition}{DebianRed}
-\renewcommand{\LILLYxColorxSatz}{Charcoal}
-\renewcommand{\LILLYxColorxBeweis}{Charcoal} %%This box will be omitted
-\renewcommand{\LILLYxColorxLemma}{Charcoal}
-\renewcommand{\LILLYxColorxBemerkung}{Charcoal} %%This box will be omitted
-\renewcommand{\LILLYxColorxZusammenfassung}{ChromeYellow}
-\renewcommand{\LILLYxColorxBeispiel}{Charcoal} %% Kein Format sollte diese Box erlauben
-\renewcommand{\LILLYxColorxUebungsaufgabe}{Charcoal} %% Kein Format sollte diese Box erlauben
-\renewcommand{\LILLYxColorxZusatzuebung}{Charcoal} %% Kein Format sollte diese Box erlauben
+\pushList{LillyProfileColors}{Definition/DebianRed}
+\pushList{LillyProfileColors}{Satz/Charcoal}
+\pushList{LillyProfileColors}{Beweis/Charcoal} %%This box will be omitted
+\pushList{LillyProfileColors}{Lemma/Charcoal}
+\pushList{LillyProfileColors}{Bemerkung/Charcoal} %%This box will be omitted
+\pushList{LillyProfileColors}{Zusammenfassung/ChromeYellow}
+\pushList{LillyProfileColors}{Beispiel/Charcoal} %% Kein Format sollte diese Box erlauben
+\pushList{LillyProfileColors}{Uebungsaufgabe/Charcoal} %% Kein Format sollte diese Box erlauben
+\pushList{LillyProfileColors}{Zusatzuebung/Charcoal} %% Kein Format sollte diese Box erlauben
 
-\renewcommand{\LILLYxLINKSxMainColor}{Charcoal}
-\renewcommand{\LILLYxLINKSxMainColorDarker}{\LILLYxLINKSxMainColor!95!black}
-
-
-\renewcommand{\LILLYxLINKSxCiteColor}{Charcoal}
-\renewcommand{\LILLYxLINKSxUrlColor}{Charcoal}
-
-\renewcommand{\LILLYxTITLExCOLOR}{DebianRed}
-
-\renewcommand{\Hcolor}{DebianRed}
-\renewcommand{\HBcolor}{DebianRed!5}
+\pushList{LillyProfileColors}{LINKSxMainColor/Charcoal}
+\pushList{LillyProfileColors}{LINKSxMainColorDarker/Charcoal!90!black}
 
 
+\pushList{LillyProfileColors}{LINKSxCiteColor/Charcoal}
+\pushList{LillyProfileColors}{LINKSxUrlColor/Charcoal}
+
+\pushList{LillyProfileColors}{TITLExCOLOR/DebianRed}
+
+\storeLillyProfileColors{LISTxProfileColors}
+\setProfileColors{\LISTxProfileColors}
 \fi

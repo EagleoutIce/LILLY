@@ -26,10 +26,10 @@
 \hypersetup{         %Niemand mag Rote Boxen um links
     colorlinks=true, %Das gelbe highlighting ist aber cool
     linktoc=all,
-    linkcolor=\LILLYxLINKSxMainColor,
-    citecolor=\LILLYxLINKSxCiteColor,
+    linkcolor=\LILLYxColorxLINKSxMainColor,
+    citecolor=\LILLYxColorxLINKSxCiteColor,
     filecolor=black!75!black,
-    urlcolor=\LILLYxLINKSxUrlColor,
+    urlcolor=\LILLYxColorxLINKSxUrlColor,
     hyperfootnotes=true,
     hypertexnames,
     bookmarks=true,
@@ -49,7 +49,7 @@
 
 \providecommand*{\elable}[1]{\phantomsection\label{#1}\ignorespaces}  %\phantomsection % wenn gew�nscht das direkter sprung
 \ifx\LILLYxHYPERLINK\true
-    \newcommand{\jmark}[2][Linkname]{{\hypersetup{linkcolor=\LILLYxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
+    \newcommand{\jmark}[2][Linkname]{{\hypersetup{linkcolor=\LILLYxColorxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
     \newcommand{\hmark}[2][Linkname]{\hypersetup{linkcolor=black}\textbf{{\hyperref[#2]{#1}}}}
     \DeclareDocumentCommand{\silentHmark}{ O{Linkname} m O{black} }{\hypersetup{linkcolor=#3}\begingroup\normalfont\textbf{{\hyperref[#2]{#1}}}\endgroup}
 \else
@@ -58,4 +58,4 @@
     \DeclareDocumentCommand{\silentHmark}{ O{Linkname} m O{black} }{\begingroup\normalfont#1\endgroup}
 \fi
 
-\providecommand*{\eXButton}[2]{\Acrobatmenu{#1}{\textcolor{\LILLYxLINKSxMainColor}{#2}}}
+\providecommand*{\eXButton}[2]{\Acrobatmenu{#1}{\textcolor{\LILLYxColorxLINKSxMainColor}{#2}}}

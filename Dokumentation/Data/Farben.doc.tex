@@ -1,5 +1,6 @@
 \chapter[Farben \LILLYxBOXxVersion{\small 1.0.4}]{Farben}
 \TitleSUB{Viele viele bunte Farben \hfill \LILLYxBOXxVersion{\small 1.0.4}}
+\bigskip\newline
 \elable{chp:COLORS}Damit die verwendeten Farben, je nach Profil und Wunsch in Paletten gruppiert gesetzt werden können, wurde dieses Paket ins Leben gerufen. Es befindet sich hier:\begin{center}
     \blankcmd{LILLYxPATHxDATA}/Colors = \T{\LILLYxPATHxDATA/Colors}
 \end{center}
@@ -15,8 +16,8 @@ Im Folgenden wird beschrieben wie grundlegend die Einbettung eines neuen Farbpro
 \section{Die normalen Farbprofile}
 Mit \LILLYxBOXxVersion{1.0.10} werden die Hauptfarben generell mit diesem Paket zur Verfügung gestellt, während die Profile und Erweiterungen sich mit den Mappings befassen, dieser Prozess ist noch im Gange und natürlich wäre es Wünschenswert, wenn alle Farben über ein entsprechendes Mapping gesetzt werden. \newline
 Mit dem Paket \LILLYxNOTExLibrary{LILLYxLIST} in \LILLYxBOXxVersion{1.0.10}, wurden die zur Verfügung stehenden Farben in Listen Organisiert: \begin{ditemize}\narrowitems
-    \item \blankcmd{LISTxColors} (source: LillyColorList)
-    \item \blankcmd{LISTxCompatColors} (source: LillyCompatColorList)
+    \item \blankcmd{LISTxColors} (Quelle: \T{LillyColorList})
+    \item \blankcmd{LISTxCompatColors} (Quelle: \T{LillyCompatColorList})
 \end{ditemize}
 Sie halten die jeweiligen Farben nach dem Schema: \T{Name/R/G/B} und können so entsprechend auch manipuliert werden. 
 Die Farben können jeweils über folgenden Befehl Lilly gegenüber Registriert werden:\medskip
@@ -60,65 +61,61 @@ Hier eine Auflistung der Standartfarben in \blankcmd{LISTxColors}:
     Sie sollten nicht mehr verwendet werden!
     \end{bemerkung}
 
+\presentCommand[1.0.9]{Hcolor}[\cmdlist \textbackslash HBColor]
+Diese Farben können mithilfe von \Jake auch durch den Parameter \T{lilly-signatur-farbe} gesetzt werden, wobei \blankcmd{HBColor} immer eine etwas dunklere Variante der Farbe darstellt.\newline %% List Use Cases
+Standartmäßig ist diese Farbe Leaf (\csXshow{\Hcolor}). \medskip
+
+\presentCommand[1.0.10]{LillyxStorexCurrentColorProfile}[\cmdlist \textbackslash LillyxRestorexCurrentColorProfile]
+Diese Befehle speichern das aktuelle Farbprofil und Laden es entsprechend wieder. Diese Mechanik wurde zum Beispiel hier vewendet um dynamisch die entsprechenden Farbprofile (wie das \jmark[Druckprofil]{mrk:colorprintprofile}) anzuzeigen.
+
 \subsection{Das Standardfarbprofil}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Colors/\_LILLY\_DEFAULT\_COLORPROFILE}}\vspace*{0.5\baselineskip}\par}
-Dieses Farbprofil wird nur geladen, wenn die Variable \CMDpreview{LILLYxColorxInject} nicht definiert ist. Es selbst bindet die Pakete \T{xcolor} und \T{pgf} (?) mit ein und definiert seinerseits eine Menge Farben, die zum einen einfach gut aussehen \smiley{} und zum anderen von Einzelpersonen gewünscht wurden. Alle Farben, welche LILLY darüber zur Verfügung gestellt bekommt, werden im folgenden aufgelistet:  %% define colordefault preview:
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxDATA/Colors/\_LILLY\_DEFAULT\_COLORPROFILE}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+\presentCommand[1.0.1]{LILLYxColorxInject}
+Dieses Farbprofil wird nur geladen, wenn die Variable \blankcmd{LILLYxColorxInject} \textbf{nicht} definiert ist. 
 
-\newcommand{\csXcslave}[3][Color]{\T{#1x#2}${}^{~(#3)}$}
+\newcommand{\csXcslave}[2]{\T{\scriptsize#1}${}^{~(#2)}$}
+Dieses Farbprofile definiert die Farben, welche LILLY für Links, Boxen usw. verwenden soll. Alle diese Befehle sollten auch bei eigenen Implementationen und Erweiterungen angewendet werden, darum folgt hier eine Auflistung. Wichtig ist, dass mit \LILLYxBOXxVersion{1.0.10} auch hier alle Farben jeweils in eine Liste geladen werden. Diese trägt den Namen \T{LillyProfileColors} (der Zugriff erfolgt wieder über: \blankcmd{LISTxProfileColors}) und trägt die Verantwortung für die Konstruierten Farben. Lilly kümmert sich bisher noch nicht darum, dass nur gültige Farben in diese Liste gelangen, dies sollte allerdings nur eine untergerdnete Rolle spielen, da andere Farben schlicht ignoriert werden. Alle folgenden Farben werden durch das Präfix \T{LILLYxColorx} angführt. 
 
-Weiter definiert dieses Farbprofil die Farben, welche LILLY für Links, Boxen usw. verwenden soll. Alle diese Befehle sollten auch bei eigenen Implementationen und Erweiterungen angewendet werden, darum folgt hier eine Auflistung für die Boxen (alle Befehle beginnen mit \T{\textbackslash LILLYx}):
+\LillyxStorexCurrentColorProfile
+
+\begingroup % get default colors
+\input{\LILLYxPATHxDATA/Colors/_LILLY_DEFAULT_COLORPROFILE}%
 \begin{multicols}{2}
-    \begin{itemize}[label=$\diamond$]\narrowitems
-        \foreach \c/\l/\r in {Definition/DebianRed/Color,
-                           Satz/Ao/Color,
-                           Beweis/DarkMidnightBlue/Color,
-                           Lemma/DarkMidnightBlue/Color,
-                           Bemerkung/Charcoal/Color,
-                           Zusammenfassung/ChromeYellow/Color,
-                           Beispiel/Aureolin/Color,
-                           Uebungsaufgabe/Veronica/Color,
-                           Zusatzuebung/Veronica/Color,
-                           MainColor/DebianRed!85!black/LINKS,
-                           CiteColor/DarkMidnightBlue/LINKS,
-                           UrlColor/DarkMidnightBlue/LINKS,
-                           COLOR/DebianRed/TITLE%
-                           } {
-            \item[\csXshow{\l}] \csXcslave[\r]{\c}{\l}
+    \begin{ditemize}\narrowitems
+        \foreach \c/\l in  \LISTxProfileColors{%
+            \ifthenelse{\equal{\c}{}}{}{%
+            \item[\csXshow{\l}] \csXcslave{\c}{\l}%
+            }
         }
-    \end{itemize}
+    \end{ditemize}
 \end{multicols}
-Weiter gibt es noch die Farbe: \CMDshow{LILLYxLINKSxMainColorDarker} (\csXshow{\LILLYxLINKSxMainColorDarker}). Sie wird gemäß: \T{\textbackslash LILLYxLINKSxMainColor!90!black} generiert. \newline
-Beispielhaft lässt sich die Definitionsfarbe mit: \CMDshow{LILLYxColorxDefinition} abfragen (\csXshow{\LILLYxColorxDefinition})
+\endgroup
+Weiter gibt es noch die Farbe: \CMDshow{LILLYxColorxLINKSxMainColorDarker} (\csXshow{\LILLYxColorxLINKSxMainColorDarker}). Sie wird gemäß: \T{\textbackslash LILLYxColorxLINKSxMainColor!90!black} generiert. \newline
+Beispielhaft lässt sich die Definitionsfarbe mit: \CMDshow{LILLYxColorxDefinition} abfragen (\csXshow{\LILLYxColorxDefinition}). Aus Flexibiltätsgründen wurden alle diese Fabren als Befehle implementiert, um sie von den statischen Farben zu unterscheiden. 
 
 \subsection{Das Druckprofil}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Colors/\_LILLY\_PRINT\_COLORPROFILE}}\vspace*{0.5\baselineskip}\par}
-Auch dieses Profil definiert seine Farben nur, wenn \T{\textbackslash LILLYxColorxInject} nicht definiert ist!
-Aus Kompatibilitätsgründen zu Versionen vor \LILLYxBOXxVersion{\small 1.0.4} definiert dieses Profil grundlegend die gleichen Farben wie das Standardfarbprofil. Hier wird nur auf die alternativen LILLY-Farben eingegangen, da sich die Profile nur hierin unterscheiden:
+\elable{mrk:colorprintprofile}Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxDATA/Colors/\_LILLY\_PRINT\_COLORPROFILE}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} bereitgesetellt und durch das setzen des Druckmodus geladen.\medskip\newline
+Auch dieses Profil definiert seine Farben nur, wenn \blankcmd{LILLYxColorxInject} nicht definiert ist! Die Präsentation der Farben erfolgt wieder mithilfe von: \blankcmd{LISTxProfileColors}:
+\begingroup % get print colors
+\input{\LILLYxPATHxDATA/Colors/_LILLY_PRINT_COLORPROFILE}%
 \begin{multicols}{2}
-    \begin{itemize}[label=$\diamond$]\narrowitems
-        \foreach \c/\l/\r in {Definition/DebianRed/Color,
-                           Satz/Charcoal/Color,
-                           Beweis/Charcoal/Color,
-                           Lemma/Charcoal/Color,
-                           Bemerkung/Charcoal/Color,
-                           Zusammenfassung/ChromeYellow/Color,
-                           Beispiel/Charcoal/Color,
-                           Uebungsaufgabe/Charcoal/Color,
-                           Zusatzuebung/Charcoal/Color,
-                           MainColor/Charcoal/LINKS,
-                           CiteColor/Charcoal/LINKS,
-                           UrlColor/Charcoal/LINKS,
-                           COLOR/DebianRed/TITLE%
-                           } {
-            \item[\csXshow{\l}] \csXcslave[\r]{\c}{\l}
+    \begin{ditemize}\narrowitems
+        \foreach \c/\l in  \LISTxProfileColors{%
+            \ifthenelse{\equal{\c}{}}{}{%
+                \item[\csXshow{\l}] \csXcslave{\c}{\l}%
+            }
         }
-    \end{itemize}
+    \end{ditemize}
 \end{multicols}
-Die Farbe \CMDshow{LILLYxLINKSxMainColorDarker} (\csXshow{\LILLYxLINKSxMainColorDarker}) wird hier mithilfe von: \newline\T{\textbackslash LILLYxLINKSxMainColor!95!black} generiert.
+\endgroup
+Die Farbe \CMDshow{LILLYxColorxLINKSxMainColorDarker} (\csXshow{\LILLYxColorxLINKSxMainColorDarker}) wird hier mithilfe von: \newline\T{\textbackslash LILLYxColorxLINKSxMainColor!95!black} generiert.
+%% reset colorprofile to before
+
+\LillyxRestorexCurrentColorProfile
 
 \section{Weitere Planungen}
-\begin{itemize}[label=$\diamond$]\narrowitems
+\begin{ditemize}[label=$\diamond$]\narrowitems
     \item Elysium \LILLYxNOTExWarning{Ausstehend}
     \item Besseres Druckprofil \LILLYxNOTExWarning{Ausstehend}
     \item Weitere Farben \LILLYxNOTExWarning{Ausstehend} - Generische Farben wie \say{Rot} auch als Befehl - zudem Lösung für Druckversion, sodass nirgendwo steht - der \say{Rote Kreis} - wenn er dann eigentlich schwarz ist.
-\end{itemize}
+\end{ditemize}

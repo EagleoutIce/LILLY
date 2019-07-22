@@ -1,28 +1,29 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Default - L�dt und Konfiguriert Standardwerte und Farbe                                                             %     %%%% DEFAULT-OPTIONS %%%%
+% Default - Lädt und Konfiguriert Standardwerte und Farbe                                                             %     %%%% DEFAULT-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \ifx\LILLYxColorxInject\undefined
+\setList{LillyProfileColors}{} %% löschen aller etwaigen Elemenete
 
-\providecommand{\LILLYxColorxDefinition}{DebianRed}
-\providecommand{\LILLYxColorxSatz}{Ao}
-\providecommand{\LILLYxColorxBeweis}{DarkMidnightBlue}
-\providecommand{\LILLYxColorxLemma}{DarkMidnightBlue}
-\providecommand{\LILLYxColorxBemerkung}{Charcoal}
-\providecommand{\LILLYxColorxZusammenfassung}{ChromeYellow}
-\providecommand{\LILLYxColorxBeispiel}{Aureolin} %% Kein Format sollte diese Box erlauben
-\providecommand{\LILLYxColorxUebungsaufgabe}{Veronica} %% Kein Format sollte diese Box erlauben
-\providecommand{\LILLYxColorxZusatzuebung}{Veronica} %% Kein Format sollte diese Box erlauben
+\pushList{LillyProfileColors}{Definition/DebianRed}
+\pushList{LillyProfileColors}{Satz/Ao}
+\pushList{LillyProfileColors}{Beweis/DarkMidnightBlue}
+\pushList{LillyProfileColors}{Lemma/DarkMidnightBlue}
+\pushList{LillyProfileColors}{Bemerkung/Charcoal}
+\pushList{LillyProfileColors}{Zusammenfassung/ChromeYellow}
+\pushList{LillyProfileColors}{Beispiel/Aureolin} %% Kein Format sollte diese Box erlauben
+\pushList{LillyProfileColors}{Uebungsaufgabe/Veronica} %% Kein Format sollte diese Box erlauben
+\pushList{LillyProfileColors}{Zusatzuebung/Veronica} %% Kein Format sollte diese Box erlauben
 
-\providecommand{\LILLYxLINKSxMainColor}{DebianRed!85!black}
-\providecommand{\LILLYxLINKSxMainColorDarker}{\LILLYxLINKSxMainColor!90!black}
-\providecommand{\LILLYxLINKSxCiteColor}{DarkMidnightBlue}
-\providecommand{\LILLYxLINKSxUrlColor}{DarkMidnightBlue}
+\pushList{LillyProfileColors}{LINKSxMainColor/DebianRed!85!black}
+\pushList{LillyProfileColors}{LINKSxMainColorDarker/DebianRed!75!black}
+\pushList{LillyProfileColors}{LINKSxCiteColor/DarkMidnightBlue}
+\pushList{LillyProfileColors}{LINKSxUrlColor/DarkMidnightBlue}
 
-\providecommand{\LILLYxTITLExCOLOR}{DebianRed!85!black}
+\pushList{LillyProfileColors}{TITLExCOLOR/DebianRed!85!black}
 
-\providecommand{\Hcolor}{Leaf}
-\providecommand{\HBcolor}{\Hcolor!5}
-
+\storeLillyProfileColors{LISTxProfileColors}
+\setProfileColors{\LISTxProfileColors}
 \fi

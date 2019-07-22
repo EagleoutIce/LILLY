@@ -65,6 +65,8 @@
 
 \newcommand*{\blankcmd}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash #1}}
 \newcommand*{\blankenv}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@#1}}
+\newcommand*{\blankenvidx}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env~@#1}}
+
 \newcommand*{\secline}{\newline\hbox{}\protect\qquad\quad}
 
 \makeatletter
@@ -76,12 +78,33 @@
 }
 \makeatother
 
+
+
+% %%% Listen für Versionen der entsprechendne Befehle
+% \foreach \major in {1} { %% Construct Versions
+%     \foreach \minor in {0} {
+%         \foreach \iteration in {0,...,10} { 
+%             \newlistof{Version\major\minor\iteration}{\major.\minor.\iteration}{Version \major.\minor.\iteration}
+%         }
+%     }
+% }
+
+\DeclareDocumentCommand{\addcmd}{ O{1.0.0} m}{
+    \index{#2@{\blankcmd{#2}~~{\tiny\T{(v#1)}}}}%
+}
+\DeclareDocumentCommand{\addenv}{ O{1.0.0} m}{
+    \index{#2@{\blankenvidx{#2}~~{\tiny\T{(v#1)}}}}%
+}
+
+\DeclareDocumentCommand{\anothercmd}{ O{1.0.0} m}{\index{#2@{\blankcmd{#2}~~{\tiny\T{(v#1)}}}}\blankcmd{#2}}%
+\DeclareDocumentCommand{\anotherenv}{ O{1.0.0} m}{\index{#2@{\blankenvidx{#2}~~{\tiny\T{(v#1)}}}}\blankenv{#2}}%
+
 %% Since,
 \DeclareDocumentCommand{\presentCommand}{ O{1.0.0} m O{} } {%
-    \presentStuff[#1]{\blankcmd{#2#3}}[#2]
+    \presentStuff[#1]{\blankcmd{#2#3}}[#2]\addcmd[#1]{#2}%
 }
 \DeclareDocumentCommand{\presentEnvironment}{ O{1.0.0} m O{} }{%
-    \presentStuff[#1]{\blankenv{#2#3}}[#2]
+    \presentStuff[#1]{\blankenv{#2#3}}[#2]\addenv[#1]{#2}%
 }
 \newcommand*{\frmttxt}[1]{\begingroup\color{black}\emph{#1}\endgroup}
 \newcommand*{\cmdlist}{\begingroup\color{black},\;\endgroup}
@@ -99,9 +122,24 @@
 \end{multicols}%
 }
 
+\def\compileidx{\makeindex[title=Stichwortverzeichnis,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{Stichwortverzeichnis}}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dokumentation                                                                                                       %     %%%% DOC %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\indexname}{Befehle}
+\compileidx
+
+
+% BIG TODO: add all the other commands with \anothercmd, \anotherenv
+%
+% AND: TODO: change name of last chapter 
+%
+%
+%
+
+
 
 \begin{document}
 \LILLYxLayoutxClear
@@ -110,6 +148,7 @@
 \elable{eagleTOC}
 \listofTOPS\clearpage
 \LILLYxLayoutxRestore
+
 
 \linput{Data/Einleitung.doc}
 \linput{Data/Maths.doc}
@@ -127,5 +166,7 @@
 \linput{Data/Old/Ver10007.doc.old}
 \clearpage
 \linput{Data/Old/Ver10009.doc.old}
-
+\clearpage
+\thispagestyle{empty}
+\printindex
 \end{document}

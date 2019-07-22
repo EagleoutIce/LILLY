@@ -47,7 +47,7 @@
 %%%DEFAULTS
 
 %% Hält, auch in verschactelten Systemen die entsprechend zu forcierende Farbe für Links oder anschmiegsame Farbgebung
-\LILLYcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}
+\LILLYcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}
 
 
 
@@ -164,12 +164,12 @@
 
     \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LillyxBOXxDesignxDefinition/.style={}}\else\tcbset{LillyxBOXxDesignxDefinition/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{definition}{O{} O{LillyxBOXxDesignxDefinition}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}
+    \DeclareDocumentEnvironment{definition}{O{} O{LillyxBOXxDesignxDefinition}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}
         \begin{LILLYxBOXxDefinition}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxDefinition}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}\ignorespacesafterend}
-    \DeclareDocumentEnvironment{definition*}{O{} O{}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}%
+    }{\end{LILLYxBOXxDefinition}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+    \DeclareDocumentEnvironment{definition*}{O{} O{}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}%
     \begin{LILLYxBOXxDefinition*}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{\small\faThumbTack}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxDefinition*}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}\ignorespacesafterend}
+    }{\end{LILLYxBOXxDefinition*}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
 \else %% Keine Definitionen
     \NewEnviron{definition}{}
     \NewEnviron{definition*}{}
@@ -200,7 +200,7 @@
     %% TITEL OPTIONALE-ADDONS
     \ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LillyxBOXxDesignxBemerkung/.style={}}\else\tcbset{LillyxBOXxDesignxBemerkung/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxBemerkung}\fi\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}{\LILLYxBOXxBemerkungxLock}\elable{auto:BEM\thetcbcounter}~\\\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}\ignorespacesafterend}
+    \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBemerkung}\fi\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}{\LILLYxBOXxBemerkungxLock}\elable{auto:BEM\thetcbcounter}~\\\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
     \DeclareDocumentEnvironment{bemerkung*}{O{} O{LillyxBOXxDesignxBemerkung}}{\begin{bemerkung}[#1][#2]\nskip}{\end{bemerkung}}
 
 \else %% Keine Bemerkungen
@@ -225,7 +225,7 @@
     %% TITEL OPTIONALE-ADDONS
     \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeispiel/.style={}}\else\tcbset{LillyxBOXxDesignxBeispiel/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxBeispiel}\fi\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}{\LILLYxBOXxBeispielxLock}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}\ignorespacesafterend}
+    \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBeispiel}\fi\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}{\LILLYxBOXxBeispielxLock}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
     \DeclareDocumentEnvironment{beispiel*}{O{} O{LillyxBOXxDesignxBeispiel}}{\begin{beispiel}[#1][#2]\nskip}{\end{beispiel}}
 \else %% Keine Beispielen
     \NewEnviron{beispiel}{}
@@ -250,9 +250,9 @@
     \newlistof{SATZ}{SATZE}{Alle Sätze\\[-1.5cm]}
 
     %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{satz}{O{} O{}}{\grenewcommand{\LILLYxSEENxSATZ}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxSatz}%
+    \DeclareDocumentEnvironment{satz}{O{} O{}}{\grenewcommand{\LILLYxSEENxSATZ}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxSatz}%
         \begin{LILLYxBOXxSatz}[#1][Satz \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[SATZ]{SATZE}{\thetcbcounter}{#1}{\LILLYxBOXxSatzxLock}\elable{auto:SAT\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxSatz}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}\ignorespacesafterend}
+    }{\end{LILLYxBOXxSatz}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
 \else %% Keine Sätze
     \NewEnviron{satz}{}
 \fi
@@ -274,7 +274,7 @@
     %% TITEL OPTIONALE-ADDONS
     \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeweis/.style={}}\else\tcbset{LillyxBOXxDesignxBeweis/.style={LillyxBOXxDesignxPlain}}\fi
 
-    \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxBeweis}\fi\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}{\LILLYxBOXxBeweisxLock}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}\ignorespacesafterend}
+    \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBeweis}\fi\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}{\LILLYxBOXxBeweisxLock}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
     \DeclareDocumentEnvironment{beweis*}{O{} O{LillyxBOXxDesignxBeweis}}{\begin{beweis}[#1][#2]\nskip}{\end{beweis}}
 \else %% Keine Beweise
     \NewEnviron{beweis}{}
@@ -299,12 +299,12 @@
     \newlistof{LEMMAS}{LEMME}{Alle Lemmata\\[-1.5cm]}
 
     %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{lemma}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxLemma}%
+    \DeclareDocumentEnvironment{lemma}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLemma}%
         \begin{LILLYxBOXxLemma}[#1][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}\ignorespacesafterend}
-    \DeclareDocumentEnvironment{lemma*}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxLemma}%
+    }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+    \DeclareDocumentEnvironment{lemma*}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLemma}%
         \begin{LILLYxBOXxLemma}[#1~~\hbox{}\hfill\small\textcolor{\LILLYxColorxLemma}{\faStar}][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{\small\faStar}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}\ignorespacesafterend}
+    }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
 \else %% Keine Lemmas
     \NewEnviron{lemma}{}
     \NewEnviron{lemma*}{}
@@ -327,9 +327,9 @@
     \newlistof{ZSMS}{ZSM}{Alle Zusammenfassungen\\[-1.5cm]}
 
     %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{zusammenfassung}{O{} O{}}{\grenewcommand{\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxColorxZusammenfassung}%
+    \DeclareDocumentEnvironment{zusammenfassung}{O{} O{}}{\grenewcommand{\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxZusammenfassung}%
         \begin{LILLYxBOXxZusammenfassung}[#1][Zusammenfassung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[ZSMS]{ZSM}{\thetcbcounter}{#1}{\LILLYxBOXxZusammenfassungxLock}\elable{auto:ZSM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxZusammenfassung}\renewcommand{\LILLYxLINKSxCurrentColor}{\LILLYxLINKSxMainColor}\ignorespacesafterend}
+    }{\end{LILLYxBOXxZusammenfassung}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
 \else %% Keine Zusammenfassungs
     \NewEnviron{zusammenfassung}{}
 \fi
