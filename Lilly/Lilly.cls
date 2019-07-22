@@ -187,7 +187,7 @@
 % TiKz und andere Grafik freuden                                                                                      %     %%%% TIKZ-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{\LILLYxPATHxDATA/Colors/LILLYxCOLOR}
+\RequirePackage{LILLYxCOLOR}
 
 \RequirePackage{tocloft}
 \RequirePackage{multirow}
@@ -276,13 +276,13 @@
 \RequirePackage{LILLYxMATH}
 
 %\RequirePackage{kpfonts}
-
-\input{\LILLYxPATHxDATA/Graphics/_LILLY_GRAPHICS_PROVIDER}
+\RequirePackage{LILLYxGRAPHICSxPROVIDER}
+%%\input{\LILLYxPATHxDATA/Graphics/_LILLY_GRAPHICS_PROVIDER}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Übersetzungen, alternativen, etc...                                                                                 %     %%%% TRANSLATIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{\LILLYxPATHxDATA/Aliasse/LILLYxTRANSLATIONSxUNIVERSE}
+\RequirePackage{LILLYxTRANSLATIONSxUNIVERSE}
 
 \input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}

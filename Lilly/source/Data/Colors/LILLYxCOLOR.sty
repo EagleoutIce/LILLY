@@ -23,66 +23,98 @@
 %% Geladen welches Farbschema angwendet werden soll, es wird stehts der Standart geladen,
 %% Es ist möglich diesen zu überschreiben und entsprechend umzudefinieren.
 
+\RequirePackage{LILLYxLIST}
 
-\definecolor{Butter}{RGB}{255,247,155}          %%#fff79b
-\definecolor{Aureolin}{RGB}{253,238,0}          %%#FDEE00
-\definecolor{Amber}{RGB}{255,191,0}             %%#FFBF00
-\definecolor{ChromeYellow}{RGB}{255,167,0}      %%#FFa700
-\definecolor{DarkChromeYellow}{RGB}{255,140,0}  %%#FF8C00
-\definecolor{Coquelicot}{RGB}{255,56,0}         %%#FF3800
-\definecolor{Cinnabar}{RGB}{227,66,52}          %%#E34234
-\definecolor{BrightMaroon}{RGB}{195,33,72}      %%#C32148
-\definecolor{Cherry}{RGB}{222,49,99}            %%#DE3163
-\definecolor{AlizarinCrimson}{RGB}{227, 28, 54} %%#E32636
-\definecolor{Amaranth}{RGB}{229,43,80}          %%#E52B50
-\definecolor{AmericanRose}{RGB}{255,3,62}       %%#FF033E
-\definecolor{Awesome}{RGB}{255,32,82}           %%#FF2052
-\definecolor{BrightPink}{RGB}{255,0,127}        %%#FF007F
+\gdef\registerColors#1#2{
+    %\globalcolorstrue %% colors, colors everywhere :D
+    \foreach \name/\r/\g/\b in #1 {
+        \ifthenelse{\equal{\name}{}}{}{
+            \typeout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
+            \xglobal\providecolor{\name}{RGB}{\r,\g,\b}
+        }
+    }
+}
 
-\definecolor{DebianRed}{RGB}{215,10,83}         %%#D70A53
-\definecolor{Crimson}{RGB}{220,20,60}           %%#DC143C
+\gdef\updateColors#1#2{
+    %\globalcolorstrue %% colors, colors everywhere :D
+    \foreach \name/\r/\g/\b in #1 {
+        \ifthenelse{\equal{\name}{}}{}{
+            \typeout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
+            \xglobal\definecolor{\name}{RGB}{\r,\g,\b}
+        }
+    }
+}
 
-\definecolor{DarkMidnightBlue}{RGB}{0,74,148}   %%#004A94
-\definecolor{Azure}{RGB}{0,127,255}             %%#007FFF
-\definecolor{bondiBlue}{RGB}{0,149,182}         %%#0095B6
-\definecolor{antiVeg}{RGB}{190,238,239}         %%#BEEEEF
+\constructList[,]{LillyColorList}
+\pushList{LillyColorList}{Butter/255/247/155}          %%#fff79b
+\pushList{LillyColorList}{Aureolin/253/238/0}          %%#FDEE00
+\pushList{LillyColorList}{Amber/255/191/0}             %%#FFBF00
+\pushList{LillyColorList}{ChromeYellow/255/167/0}      %%#FFa700
+\pushList{LillyColorList}{DarkChromeYellow/255/140/0}  %%#FF8C00
+\pushList{LillyColorList}{Coquelicot/255/56/0}         %%#FF3800
+\pushList{LillyColorList}{Cinnabar/227/66/52}          %%#E34234
+\pushList{LillyColorList}{BrightMaroon/195/33/72}      %%#C32148
+\pushList{LillyColorList}{Cherry/222/49/99}            %%#DE3163
+\pushList{LillyColorList}{AlizarinCrimson/227/ 28/ 54} %%#E32636
+\pushList{LillyColorList}{Amaranth/229/43/80}          %%#E52B50
+\pushList{LillyColorList}{AmericanRose/255/3/62}       %%#FF033E
+\pushList{LillyColorList}{Awesome/255/32/82}           %%#FF2052
+\pushList{LillyColorList}{BrightPink/255/0/127}        %%#FF007F
+
+\pushList{LillyColorList}{DebianRed/215/10/83}         %%#D70A53
+\pushList{LillyColorList}{Crimson/220/20/60}           %%#DC143C
+
+\pushList{LillyColorList}{DarkMidnightBlue/0/74/148}   %%#004A94
+\pushList{LillyColorList}{Azure/0/127/255}             %%#007FFF
+\pushList{LillyColorList}{bondiBlue/0/149/182}         %%#0095B6
+\pushList{LillyColorList}{antiVeg/190/238/239}         %%#BEEEEF
 
 
-\definecolor{DarkOrchid}{RGB}{104,34,139}       %%#68228B
-\definecolor{Veronica}{RGB}{160,32,240}         %%#A020F0
-\definecolor{Orchid}{RGB}{180,82,205}           %%#B452CD
-\definecolor{Amethyst}{RGB}{153,102,204}        %%#9966CC
-\definecolor{AntiqueFuchsia}{RGB}{145,92,131}   %%#915C83
+\pushList{LillyColorList}{DarkOrchid/104/34/139}       %%#68228B
+\pushList{LillyColorList}{Veronica/160/32/240}         %%#A020F0
+\pushList{LillyColorList}{Orchid/180/82/205}           %%#B452CD
+\pushList{LillyColorList}{Amethyst/153/102/204}        %%#9966CC
+\pushList{LillyColorList}{AntiqueFuchsia/145/92/131}   %%#915C83
 
-\definecolor{BritishRacingGreen}{RGB}{0,66,37}  %%#004225
-\definecolor{DatmouthGreen}{RGB}{0,105,62}      %%#00693E
-\definecolor{Ao}{RGB}{0,128,0}                  %%#008000
-\definecolor{Leaf}{RGB}{44,171,63}              %%#2cab3f
-\definecolor{AppleGreen}{RGB}{141,182,0}        %%#8DB600
-\definecolor{BrightGreen}{RGB}{102,255,0}       %%#66FF00
+\pushList{LillyColorList}{BritishRacingGreen/0/66/37}  %%#004225
+\pushList{LillyColorList}{DatmouthGreen/0/105/62}      %%#00693E
+\pushList{LillyColorList}{Ao/0/128/0}                  %%#008000
+\pushList{LillyColorList}{Leaf/44/171/63}              %%#2cab3f
+\pushList{LillyColorList}{AppleGreen/141/182/0}        %%#8DB600
+\pushList{LillyColorList}{BrightGreen/102/255/0}       %%#66FF00
 
-\definecolor{MudWhite}{RGB}{245,245,243}        %%#F5F5F3
-\definecolor{LightGray}{RGB}{224,224,224}       %%#E0E0E0
-\definecolor{AuroMetalSaurus}{RGB}{110,127,128} %%#6E7F80
-\definecolor{Charcoal}{RGB}{54,69,79}           %%#36454F
+\pushList{LillyColorList}{MudWhite/245/245/243}        %%#F5F5F3
+\pushList{LillyColorList}{LightGray/224/224/224}       %%#E0E0E0
+\pushList{LillyColorList}{AuroMetalSaurus/110/127/128} %%#6E7F80
+\pushList{LillyColorList}{Charcoal/54/69/79}           %%#36454F
+
+\storeLillyColorList{LISTxColors}
+\registerColors{\LISTxColors}{}
 
 %% The old ones will still exists for compatibility-reasons
+\constructList[,]{LillyCompatColorList}
 
-\definecolor{thered}{RGB}{255, 47, 47}          %% #ff2f2f
-\definecolor{candypink}{RGB}{227,112,122}       %% #E3707A
-\definecolor{limegreen}{RGB}{51, 204, 51}       %% #33CC33
-\definecolor{superlightgray}{RGB}{240,240,240}  %% #F0F0F0
-\definecolor{skyblue}{RGB}{60, 179, 113}        %% #3CB371
-\definecolor{tealblue}{RGB}{51,153,255}         %% #3399FF
-\definecolor{mint}{RGB}{255, 128, 0}            %% #FF9000  %% this is clearly not mint, but it is how it is ._.
-\definecolor{gold}{RGB}{255,215,50}             %% #FFD732
+\pushList{LillyCompatColorList}{gold/255/215/50}             %% #FFD732
+\pushList{LillyCompatColorList}{dgold/232/177/38}            %% #e8b126
+\pushList{LillyCompatColorList}{mint/255/128/0}              %% #FF9000  %% this is clearly not mint, but it is how it is ._.
+\pushList{LillyCompatColorList}{dorange/255/102/0}           %% #FF6600
+\pushList{LillyCompatColorList}{thered/255/47/47}            %% #ff2f2f
+\pushList{LillyCompatColorList}{candypink/227/112/122}       %% #E3707A
 
-\colorlet{dgold}{gold!90!black}
+\pushList{LillyCompatColorList}{ddpurple/128/0/128}          %% #800080
+\pushList{LillyCompatColorList}{beauty/104/55/107}           %% #68376B
+\pushList{LillyCompatColorList}{dpurple/86/60/92}            %% #563C5C
 
-\definecolor{beauty}{RGB}{104, 55, 107}         %% #68376B
-\definecolor{dorange}{RGB}{255,102, 0}          %% #FF6600
-\definecolor{dpurple}{RGB}{86,60, 92}           %% #563C5C
-\definecolor{ddpurple}{RGB}{128,0, 128}         %% #800080
+\pushList{LillyCompatColorList}{limegreen/51/204/51}         %% #33CC33
+\pushList{LillyCompatColorList}{skyblue/60/179/113}          %% #3CB371
+
+\pushList{LillyCompatColorList}{tealblue/51/153/255}         %% #3399FF
+
+
+\pushList{LillyCompatColorList}{superlightgray/240/240/240}  %% #F0F0F0
+
+\storeLillyCompatColorList{LISTxCompatColors}
+\registerColors{\LISTxCompatColors}{Compat-}
 
 %% Hier eine Auflistung der verwendten Farb-Befehlen
 %% Die von Lilly für bestimmte Aufgaben verwendet werden, für die Grundfarben

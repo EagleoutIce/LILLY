@@ -68,7 +68,7 @@ Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargu
 %
 %
 \presentCommand[1.0.2]{oragraphdot}[\cmdlist \textbackslash blugraphdot\cmdlist \textbackslash gregraphdot\cmdlist\textbackslash purgraphdot\cmdlist\textbackslash golgraphdot\cmdlist\secline\textbackslash blagraphdot\cmdlist\textbackslash norgraphdot\cmdlist\textbackslash margraphdot]
-Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle:\vspace{-1em}
+Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle und besitzen die Signatur: \blankcmd{oragraphdot\manArg{(PosX,PosY)}\manArg{Text}\manArg{node-name}}:\vspace{-1em}
 \begin{multicols}{3}%
     \begin{ditemize}\narrowitems%
         \foreach \cmd in {ora,blu,gre,pur,gol,bla,nor,mar}{%
@@ -166,7 +166,7 @@ Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Co
 %
 %
 %
-\presentCommand[1.0.10]{rotateRPY}[\optArg[0/0/0]{transform-point}\manArg{roll}\manArg{pitch}\manArg{yaw}]
+\presentCommand[1.0.4]{rotateRPY}[\optArg[0/0/0]{transform-point}\manArg{roll}\manArg{pitch}\manArg{yaw}]
 Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und dementsprechend anzupassen. Dieser Code entstammt der Feder von David Carlisle und Tom Bombadil\footnote{\url{https://tex.stackexchange.com/questions/67573/tikz-shift-and-rotate-in-3d}} und wird hier beispielhaft illustriert:
 \newcommand{\examplecube}%
 {   \coordinate (a) at (-2,-2,-2);
@@ -303,5 +303,8 @@ Es wurde bisher auch nur durch das Bereitstellen eines einzelnen Befehls impleme
 Hierbei steht ein \T{T} (true) natürlich für einen akzeptierten, ein \T{F} (false) entsprechend für einen nicht akzeptierten Befehl. Aktuell ist geplant, dass der Befehl auch für 1-, 3- und 4-dimensionale Räume eine Option anbietet (siehe für 4D: Titelgrafik \gdra[]), die dann über einen einfacheren Namen abgegriffen werden kann. Weiter sollen dann \fg und \gdra (boolesche Räume) diese Befehle nutzen anstelle der dafür eigens implementierten Grafiken. Weiter soll es möglich sein über ein optionales Argument die Position (relativ) zu bestimmen!
 \normalmarginpar
 %%TODO: supertiny fontsize
+
+%% TODO: implements getGraphics into Grafiken
+
 
 \renewcommand{\arraystretch}{1}

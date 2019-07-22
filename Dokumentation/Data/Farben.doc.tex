@@ -1,78 +1,69 @@
 \chapter[Farben \LILLYxBOXxVersion{\small 1.0.4}]{Farben}
 \TitleSUB{Viele viele bunte Farben \hfill \LILLYxBOXxVersion{\small 1.0.4}}
-{\centering \framebox{Alle folgenden Pfade sind relativ zu \T{Data/\ldots}}\vspace*{0.5\baselineskip}\par}
-Im folgenden wird beschrieben wie grundlegend die Einbettung eines neuen Farbprofils ab \LILLYxBOXxVersion{\small 1.0.4} funktioniert. Bitte beachte, dass vor dieser Version ein Farbprofil noch alle Farben überschreiben und liefern musste, während seit dieser Version mit dem Überschreiben der Standard-Farben gearbeitet wird. Wichtig ist:\begin{center}
+\elable{chp:COLORS}Damit die verwendeten Farben, je nach Profil und Wunsch in Paletten gruppiert gesetzt werden können, wurde dieses Paket ins Leben gerufen. Es befindet sich hier:\begin{center}
+    \blankcmd{LILLYxPATHxDATA}/Colors = \T{\LILLYxPATHxDATA/Colors}
+\end{center}
+Im Folgenden wird beschrieben wie grundlegend die Einbettung eines neuen Farbprofils ab \LILLYxBOXxVersion{\small 1.0.4} funktioniert. Bitte beachte, dass vor dieser Version ein Farbprofil noch alle Farben überschreiben und liefern musste, während seit dieser Version mit dem Überschreiben der Standard-Farben gearbeitet wird. Wichtig ist:\begin{center}
     \small\bfseries Jedes Farbprofil kann eigene Farben hinzufügen - hiervon wird aber stark abgeraten, da somit nichtmehr die Design-Unabhängigkeit von LILLY garantiert ist!
 \end{center}
-\reversemarginpar
+\begin{bemerkung}[Standalone-Color]
+    Mit \LILLYxBOXxVersion{1.0.10} wurde die Farben-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxCOLOR}) etabliert, welches sich auch eigenständig über \begin{latex}
+\usepackage{LILLYxCOLOR}
+        \end{latex}
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen.
+\end{bemerkung}
 \section{Die normalen Farbprofile}
-\subsection{Das Standardfarbprofil}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Colors/\_LILLY\_DEFAULT\_COLORPROFILE}}\vspace*{0.5\baselineskip}\par}
-Dieses Farbprofil wird nur geladen, wenn die Variable \CMDpreview{LILLYxColorxInject} nicht definiert ist. Es selbst bindet die Pakete \T{xcolor} und \T{pgf} (?) mit ein und definiert seinerseits eine Menge Farben, die zum einen einfach gut aussehen \smiley{} und zum anderen von Einzelpersonen gewünscht wurden. Alle Farben, welche LILLY darüber zur Verfügung gestellt bekommt, werden im folgenden aufgelistet:  %% define colordefault preview:
+Mit \LILLYxBOXxVersion{1.0.10} werden die Hauptfarben generell mit diesem Paket zur Verfügung gestellt, während die Profile und Erweiterungen sich mit den Mappings befassen, dieser Prozess ist noch im Gange und natürlich wäre es Wünschenswert, wenn alle Farben über ein entsprechendes Mapping gesetzt werden. \newline
+Mit dem Paket \LILLYxNOTExLibrary{LILLYxLIST} in \LILLYxBOXxVersion{1.0.10}, wurden die zur Verfügung stehenden Farben in Listen Organisiert: \begin{ditemize}\narrowitems
+    \item \blankcmd{LISTxColors} (source: LillyColorList)
+    \item \blankcmd{LISTxCompatColors} (source: LillyCompatColorList)
+\end{ditemize}
+Sie halten die jeweiligen Farben nach dem Schema: \T{Name/R/G/B} und können so entsprechend auch manipuliert werden. 
+Die Farben können jeweils über folgenden Befehl Lilly gegenüber Registriert werden:\medskip
+% \registerColors{\LISTxCompatColors}{Compat-}
+%
+%
+%
+\presentCommand[1.0.10]{registerColors}[\manArg{Liste:n/r/g/b}\manArg{Name}\cmdlist \textbackslash updateColors\manArg{Liste:n/r/g/b}\manArg{Name}]
+Dieser Befehl definiert die neuen Farben einmal mittels \blankcmd{providecolor} (register) und mit \blankcmd{definecolor} (update). Da die Farben \say{nur} registriert werden, kann man sie von außerhalb überschreiben, was allerdigns zunichte gemacht wird, sofern man sie mittels \blankcmd{updateColors} innerhalb des Dokuments überschreibt. Bisher sieht Lilly eine derartige Verwendung des Befehls nicht vor, er wird also intern nirgendwo verwendet.\newline 
+In Lilly findet das registrieren der Farben wie folgt statt: 
+\begin{latex}
+\storeLillyColorList{LISTxColors}
+\registerColors{\LISTxColors}{}
+\storeLillyCompatColorList{LISTxCompatColors}
+\registerColors{\LISTxCompatColors}{Compat-}
+\end{latex}
+
+Hier eine Auflistung der Standartfarben in \blankcmd{LISTxColors}:
 \newcommand{\csXshow}[2][]{\tikz{\draw[fill=#2,#1] (0,0) circle (0.15);}}
 \newcommand{\csXcolor}[4]{#1\({}^{~(r:~#2,~g:~#3,~b:~#4)}\)}
 \begin{multicols}{2}
-    \begin{itemize}[label=$\diamond$]\narrowitems
-        \foreach \c/\r/\g/\b in {Aureolin/253/238/0,
-                                 Amber/255/191/0,
-                                 ChromeYellow/255/167/0,
-                                 Coquelicot/255/56/0,
-                                 Cinnabar/227/66/52,
-                                 BrightMaroon/195/33/72,
-                                 Cherry/222/49/99,
-                                 AlizarinCrimson/227/28/54,
-                                 Amaranth/229/43/80,
-                                 AmericanRose/255/3/62,
-                                 Awesome/255/32/82,
-                                 BrightPink/255/0/127,
-                                 DebianRed/215/10/83,
-                                 Crimson/220/20/60,
-                                 DarkMidnightBlue/0/51/102,
-                                 Azure/0/127/255,
-                                 bondiBlue/0/149/182,
-                                 antiVeg/190/238/239,
-                                 DarkOrchid/104/34/139,
-                                 Veronica/180/82/205,
-                                 Amethyst/153/102/204,
-                                 AntiqueFuchsia/145/92/131,
-                                 BritishRacingGreen/0/66/37,
-                                 DatmouthGreen/0/105/62,
-                                 Ao/0/128/0,
-                                 AppleGreen/141/82/0,
-                                 BrightGreen/102/255/0,
-                                 LightGray/224/224/224,
-                                 AuroMetalSaurus/110/127/128,
-                                 Charcoal/54/69/79} {
-            \item[\csXshow{\c}] \csXcolor{\c}{\r}{\g}{\b}
+    \begin{ditemize}\narrowitems
+        \foreach \c/\r/\g/\b in \LISTxColors {
+            \ifthenelse{\equal{\c}{}}{}{%
+            \item[\csXshow{\c}] \csXcolor{\c}{\r}{\g}{\b}}
         }
-    \end{itemize}
+    \end{ditemize}
 \end{multicols}
+
+
 \begin{bemerkung}[Kompatibilität]
-Weiter gibt es die folgenden Farben, welche aus Kompatibilitätsgründen aus dem \T{eagleStudiPackage} übernommen wurden:
+    Weiter gibt es die folgenden Farben, welche aus Kompatibilitätsgründen aus dem \T{eagleStudiPackage} übernommen wurden:
+    \begin{multicols}{2}
+        \begin{ditemize}\narrowitems
+            \foreach \c/\r/\g/\b in \LISTxCompatColors {
+                \ifthenelse{\equal{\c}{}}{}{%
+                \item[\csXshow{\c}] \csXcolor{\c}{\r}{\g}{\b}}
+            }
+        \end{ditemize}
+    \end{multicols}
+    Sie sollten nicht mehr verwendet werden!
+    \end{bemerkung}
 
-\begin{multicols}{2}
-    \begin{itemize}[label=$\diamond$]\narrowitems
-        \foreach \c/\r/\g/\b in {dpurple/86/60/92,
-                                 ddpurple/128/0/128,
-                                 beauty/104/55/107,
-                                 candypink/227/112/122,
-                                 thered/255/47/47,
-                                 dorange/255/102/0,
-                                 mint/255/128/0,
-                                 gold/255/215/50,
-                                 dgold/235/198/13,
-                                 limegreen/51/204/51,
-                                 skyblue/60/179/113,
-                                 tealblue/51/153/255,
-                                 superlightgray/240/240/240
-                                 } {
-            \item[\csXshow{\c}] \csXcolor{\c}{\r}{\g}{\b}
-        }
-    \end{itemize}
-\end{multicols}
+\subsection{Das Standardfarbprofil}
+{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Colors/\_LILLY\_DEFAULT\_COLORPROFILE}}\vspace*{0.5\baselineskip}\par}
+Dieses Farbprofil wird nur geladen, wenn die Variable \CMDpreview{LILLYxColorxInject} nicht definiert ist. Es selbst bindet die Pakete \T{xcolor} und \T{pgf} (?) mit ein und definiert seinerseits eine Menge Farben, die zum einen einfach gut aussehen \smiley{} und zum anderen von Einzelpersonen gewünscht wurden. Alle Farben, welche LILLY darüber zur Verfügung gestellt bekommt, werden im folgenden aufgelistet:  %% define colordefault preview:
 
-Sie sollten nicht mehr verwendet werden!
-\end{bemerkung}
 \newcommand{\csXcslave}[3][Color]{\T{#1x#2}${}^{~(#3)}$}
 
 Weiter definiert dieses Farbprofil die Farben, welche LILLY für Links, Boxen usw. verwenden soll. Alle diese Befehle sollten auch bei eigenen Implementationen und Erweiterungen angewendet werden, darum folgt hier eine Auflistung für die Boxen (alle Befehle beginnen mit \T{\textbackslash LILLYx}):
