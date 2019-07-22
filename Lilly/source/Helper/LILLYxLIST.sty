@@ -35,6 +35,9 @@
 \expandafter\def\csname get#2\endcsname{%
     \xdef\lillyxlist{\csname lilly@list@#2\endcsname}
 }
+\expandafter\def\csname store#2\endcsname##1{%
+    \expandafter\xdef\csname ##1\endcsname{\csname lilly@list@#2\endcsname}
+}
 }
 
 
