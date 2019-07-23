@@ -163,7 +163,7 @@
     %% TITEL OPTIONALE-ADDONS
 
     \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LillyxBOXxDesignxDefinition/.style={}}\else\tcbset{LillyxBOXxDesignxDefinition/.style={LillyxBOXxDesignxPlain}}\fi
-
+    % \IfValueF{#1}{\ClassInfo{Lilly}{LILLY WARNING, Definition ohne Namen!}
     \DeclareDocumentEnvironment{definition}{O{} O{LillyxBOXxDesignxDefinition}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}
         \begin{LILLYxBOXxDefinition}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
     }{\end{LILLYxBOXxDefinition}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
