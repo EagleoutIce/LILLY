@@ -24,9 +24,9 @@
 \renewcommand{\epsilon}{\ensuremath{\varepsilon}}
 \renewcommand{\phi}{\ensuremath{\varphi}}
 
-\def\join{\ensuremath{\Join}}
-\DeclareRobustCommand{\ojoin}{\setbox0=\hbox{$\Join$}%
-  \rule[.05ex]{.25em}{.4pt}\llap{\rule[1.05ex]{.25em}{.4pt}}}
-\DeclareRobustCommand{\leftouterjoin}{\ensuremath{\mathbin{\ojoin\mkern-8.5mu\Join\phantom{\mkern-8.5mu\ojoin}}}}
-\DeclareRobustCommand{\rightouterjoin}{\ensuremath{\mathbin{\phantom{\mkern-8.5mu\ojoin}\Join\mkern-8.5mu\ojoin}}}
-\DeclareRobustCommand{\fullouterjoin}{\ensuremath{\mathbin{\ojoin\mkern-8.5mu\Join\mkern-8.5mu\ojoin}}}
+\gdef\join{\ensuremath{\bowtie}}
+\gdef\ojoin{\setbox0=\hbox{$\bowtie$}%
+  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+\gdef\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+\gdef\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+\gdef\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}

@@ -24,6 +24,7 @@ import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeWriter;
+import de.eagle.util.io.JakeLogger;
 
 // Information:
 // Alle "Entspricht ..." Kommentare gilt es zu ändern!
@@ -75,6 +76,9 @@ public class Expandables {
                                                                                                 // "")
         settings.emplace("FINALNAME", "Expandiert zum endgültigen Namen der Datei, sofern bekannt und Kontextrelevant",
                 eSetting_Type.IS_TEXT, "!!");
+
+        settings.emplace("LOGFILE", "Expandiert zum Pfad zur Log-Datei", eSetting_Type.IS_FILE, "!!");
+
         settings.emplace("PDFFILE", "Expandiert zur PDFDatei", eSetting_Type.IS_FILE, "!!"); // new
                                                                                              // File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+",
                                                                                              // "") + ".pdf"
@@ -320,6 +324,9 @@ public class Expandables {
                         break;
                     case "FINALNAME":
                         string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(finalName));
+                        break;
+                    case "LOGFILE":
+                        string = string.replaceAll(p.pattern(), JakeLogger.target);
                         break;
                     default:
                         if (string.startsWith("!!"))

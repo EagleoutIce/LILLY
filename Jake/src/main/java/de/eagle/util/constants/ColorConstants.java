@@ -19,4 +19,6 @@ public class ColorConstants {
     public static final String STY_PARAM = "\033[2;3;51m";
 
     public static final String COL_GOLD = "\033[38;2;255;191;0m";
+    public static final String COL_CYAN = "\033[38;5;39m";
+
 }
