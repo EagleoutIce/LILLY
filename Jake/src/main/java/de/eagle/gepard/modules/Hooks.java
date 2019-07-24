@@ -10,6 +10,7 @@ import java.util.HashMap;
 import de.eagle.gepard.parser.GeneratorParser;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.util.blueprints.AbstractSettings;
+import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
@@ -81,6 +82,9 @@ public class Hooks {
             settings.emplace("IN" + i + ":compile-" + i, "IN-Hook für Iteration: " + i, eSetting_Type.IS_SPECIAL,
                     "echo Kompiliere " + (i + 1) + "/" + max + " für: $(FINALNAME)");
         }
+        if (CoreSettings.requestSwitch("S_DEBUG"))
+            settings.emplace("PRE:debug", "Debug-Hook, liefert verwendete Log-Datei", eSetting_Type.IS_SPECIAL,
+                    "echo Verwende die Log-Datei: $(LOGFILE)");
         /* cSpell:enable */
         return settings;
     }
@@ -217,8 +221,9 @@ public class Hooks {
                     writeLoggerDebug1(
                             "Führe die " + rtag + "-Hook: \"" + rnam + "\" mit Body: + \"" + sd.getValue() + "\" aus!",
                             "Hooks");
-                    writeLoggerDebug1("Execute: " + executeHook("echo \"Lilly " + rtag + "-Hook[" + rnam + "] für "
-                            + tag + " evaluiert zu: $(" + sd.getValue().getValue() + ")\""), "Hooks");
+                    writeLoggerDebug1("Execute: " + executeHook("echo \"" + ColorConstants.COL_CYAN + "Lilly " + rtag
+                            + "-Hook[" + rnam + "] für " + tag + " evaluiert zu: $(" + sd.getValue().getValue() + ")"
+                            + ColorConstants.COL_RESET + "\""), "Hooks");
                 }
             }
         }
