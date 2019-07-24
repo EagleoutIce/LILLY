@@ -221,7 +221,7 @@ public class Hooks {
                     writeLoggerDebug1(
                             "Führe die " + rtag + "-Hook: \"" + rnam + "\" mit Body: + \"" + sd.getValue() + "\" aus!",
                             "Hooks");
-                    writeLoggerDebug1("Execute: " + executeHook("echo \"" + ColorConstants.COL_CYAN + "Lilly " + rtag
+                    writeLoggerDebug1("Execute: " + executeHook("echo \"" + ColorConstants.STY_PARAM + "Lilly " + rtag
                             + "-Hook[" + rnam + "] für " + tag + " evaluiert zu: $(" + sd.getValue().getValue() + ")"
                             + ColorConstants.COL_RESET + "\""), "Hooks");
                 }
