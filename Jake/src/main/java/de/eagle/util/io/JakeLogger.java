@@ -86,8 +86,10 @@ public class JakeLogger {
 
     /**
      * Schreibt eine Debug Nachricht für Level 1 Eine solche Nachricht darf alles
-     * beinhaltet was einzelne Schritte eines Programms aufdeckt so zum Beispiel: -
-     * Neue Zeile geladen: ... - Datenverabeitung ergab: ...
+     * beinhaltet was einzelne Schritte eines Programms aufdeckt so zum Beispiel:
+     *
+     * - Neue Zeile geladen: ...
+     * - Datenverabeitung ergab: ...
      *
      * @param message die Nachricht
      * @param sender  wer möchte die Nachricht abgeben?
@@ -153,7 +155,7 @@ public class JakeLogger {
     /**
      * Tolle Funktion weil Java einfach super ist.. hahahahahahahaha.... haha ha...
      * nein
-     * 
+     *
      * @return CLASS.METHOD des aufrufers
      */
     public static String getCallerName() {
