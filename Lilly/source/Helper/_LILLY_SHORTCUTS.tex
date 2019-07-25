@@ -39,7 +39,6 @@
 \def\secondcircle{(330:0.5cm) circle (0.75cm)}
 \def\thirdcircle{(210:0.5cm) circle (0.75cm)}
 \def\bigcircle{(0:0cm) circle (1.5cm)}
-
 \newcommand{\dispnote}[2][]{\parbox[t]{5em}{#1\small#2}}
 
 \newcommand{\note}[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
