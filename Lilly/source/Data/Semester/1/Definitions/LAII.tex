@@ -6,7 +6,7 @@
 \providecommand{\TUTOR}{Patrick Geschwendtner}
 
 \providecommand{\TITLE}{Lineare Algebra für Inf. und Ing.}
-\providecommand{\SUBTITLE}{\PROFESSOR\\[-0.2cm]{\tiny{in: Das Schweigen der Lemma}}}    
+\providecommand{\SUBTITLE}{\PROFESSOR\\[-0.2cm]{\tiny{in: Das Schweigen der Lemma}}}
 
 
 \providecommand{\UEBUNGSHEADER}{\TITLE\\Übungsblatt \LILLY@n }
@@ -30,3 +30,6 @@
 
 \LILLYcommand{\LILLYxFACULTY}{\LILLYxFACULTYxMATHE}
 \LILLYcommand{\LILLYxFACULTYxCOLOR}{FacultyMathexColor}
+
+%% Verhindert verwechslung mit Exponent
+\renewcommand*{\thefootnote}{$\langle$\textbf{\arabic{footnote}}$\rangle$}
