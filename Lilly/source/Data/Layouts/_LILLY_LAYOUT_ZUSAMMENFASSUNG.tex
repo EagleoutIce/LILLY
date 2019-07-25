@@ -55,7 +55,7 @@
 \newcounter{ctr_ADDONS}
 
 \newcommand{\startAppendix}{\clearpage\par\phantomsection%
-\addcontentsline{toc}{section}{Anhänge}\addcontentsline{TOPIC}{TOPICS}{Anhang}\appendixtrue%
+\addcontentsline{toc}{section}{Anhang}\addcontentsline{TOPIC}{TOPICS}{Anhang}\addcontentsline{DEFS}{chapter}{Anhang}\appendixtrue%
 \ifx\LILLYxMODE\LILLYxMODExPRINT\lehead{\textsf{$\mathbf{A}\mid\,$ \normalfont\textsf{Anhang}}}%
 \else\lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}Anhang}%
 \fi
@@ -84,7 +84,7 @@
 \providecommand{\TOP}[3][top_default_jmpmrk]{%
     \ifappendix%
     \refstepcounter{ctr_ADDONS}\addcontentsline{toc}{subsection}{#2}\else%
-    \ifnum\value{TOPICS}>0\addcontentsline{DEFS}{chapter}{#2}\fi\addcontentsline{toc}{section}{#2}%
+    \ifnum\value{TOPICS}>-1\addcontentsline{DEFS}{chapter}{#2}\fi\addcontentsline{toc}{section}{#2}%
     \TOPICS{#2}\markleft{#2}\fi\elable{top:#1}%
     \leavevmode\\%%breakpatch
     \parbox{\linewidth}{{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \ifappendix\arabic{ctr_ADDONS}\else\arabic{TOPICS}\fi) #2} \hfill{\tiny #3}}\vspace{-0.5\baselineskip}\newline%
