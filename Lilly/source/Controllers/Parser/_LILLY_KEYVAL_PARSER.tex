@@ -15,12 +15,12 @@
 \DeclareBoolOption[false]{beamer}
 \DeclareBoolOption[true]{beamerKiz}
 
-\DeclareVoidOption{Mitschrieb}{\renewcommand{\LILLY@Typ}{Mitschrieb}}
-\DeclareVoidOption{Dokumentation}{\renewcommand{\LILLY@Typ}{Dokumentation}}
-\DeclareVoidOption{Zusammenfassung}{\renewcommand{\LILLY@Typ}{Zusammenfassung}}\DeclareVoidOption{zsfg}{\renewcommand{\LILLY@Typ}{Zusammenfassung}}
-\DeclareVoidOption{Uebungsblatt}{\renewcommand{\LILLY@Typ}{Uebungsblatt}}\DeclareVoidOption{ub}{\renewcommand{\LILLY@Typ}{Uebungsblatt}}
+\DeclareVoidOption{Mitschrieb}{\gdef\LILLY@Typ{Mitschrieb}}
+\DeclareVoidOption{Dokumentation}{\gdef\LILLY@Typ{Dokumentation}}
+\DeclareVoidOption{Zusammenfassung}{\gdef\LILLY@Typ{Zusammenfassung}}\DeclareVoidOption{zsfg}{\gdef\LILLY@Typ{Zusammenfassung}}
+\DeclareVoidOption{Uebungsblatt}{\gdef\LILLY@Typ{Uebungsblatt}}\DeclareVoidOption{ub}{\gdef\LILLY@Typ{Uebungsblatt}}
 
-\DeclareDefaultOption{\renewcommand{\LILLY@Typ}{PLAIN}}
+\DeclareDefaultOption{\gdef\LILLY@Typ{PLAIN}}
 
 %%\DeclareBoolOption{Vorlesung}                               % Wir wollen einfache keys :D
 

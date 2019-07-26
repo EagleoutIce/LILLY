@@ -304,8 +304,8 @@ Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_PLOTS}. 
 %
 %
 %
-\presentCommand[1.0.8]{plotline}[\optArg[Ao]{Farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}]
-Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Funktion (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar.\medskip\newline
+\presentCommand[1.0.8]{plotline}[\optArg[Ao]{Farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}\optArg[0]{offset}]
+Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Funktion (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar. Mit \emph{offset}${}^{\T{v1.0.10}}$ lässt sich die Funktion entsprechend verschieben.\medskip\newline
 %
 %
 %
@@ -356,10 +356,12 @@ Es existiert die folgende Implementation der Graph-Umgebung:
 \end{center}
 Für die \emph{Konfigurationen} gibt es folgende Möglichkeiten:
 \begin{center}% \begin{tabularx}{0.75\linewidth}
-    \begin{tabular}{>{\LILLYxlstTypeWriter}l>{\em}lcl}
+    \begin{tabularx}{0.7\linewidth}{>{\LILLYxlstTypeWriter}l>{\em}lcl}
         \toprule
         Bezeichner & \normalfont Typ & Standard & Beschreibung\\\midrule
         scale & Zahl & 1 & Skalierungsfaktor \\
+        xscale & Zahl & 1 & $x$-Skalierungsfaktor${}^{\T{v1.0.10}}$\\
+        yscale & Zahl & 1 & $y$-Skalierungsfaktor${}^{\T{v1.0.10}}$\\
         minX & Zahl & -2 & X-Achse Start \\
         maxX & Zahl & 2 & X-Achse Ende \\
         minY & Zahl & 0 & Y-Achse Start \\
@@ -375,8 +377,11 @@ Für die \emph{Konfigurationen} gibt es folgende Möglichkeiten:
         numbersize & Zahl & 5 & Schriftgröße Nummerierung \\
         labelsize & Zahl & 10 & Schriftgröße Texte \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{center}
+
+\presentEnvironment[1.0.10]{egraph}[\optArg{Konfigurationen}]
+Funktioniert analog zu \blankenv{egraph}, erlaubt allerdings keine weiteren \emph{Tikz-Argumente}, sondern macht von \blankenv{tikzternal} gebrauch, kann also ausgelagert werden. (TODO: LINK)\medskip
 
 \presentEnvironment[1.0.8]{wgraph}[\manArg{Ausrichtung}\optArg{Konfigurationen}\optArg{Tikz-Argumente}\secline\optArg{wrapfig-Zusatz}\optArg[0pt]{width}]
 Um die Graph-Umgebung noch vielfälter zu Gestalten wurde \blankenv{wgraph} geschaffen.
@@ -387,6 +392,7 @@ normale \jmark[graph]{env:graph}-Environment einzubetten. Er funktioniert mit de
         \plotline{\x*\x}
     \end{wgraph}
 \end{lstlisting}
+\clearpage
 %
 %
 %
