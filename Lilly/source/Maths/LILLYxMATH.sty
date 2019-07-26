@@ -75,11 +75,16 @@
                     {}{} % shortlabels
 
 %% https://ctan.org/pkg/letltxmacro
-\LILLYxLoadPackage{letltxmacro}{Berücksichtige involvierte let Macros}%% Package, Info
+\LILLYxLoadPackage{letltxmacro}{Beruecksichtige involvierte let Macros}%% Package, Info
                     {Dieses Paket wird benötigt für die Definition der verbesserten sqrt (Wurzel)}
                     {} %% TODO: defaults
                     {}{}
 
+%% https://ctan.org/pkg/letltxmacro
+\LILLYxLoadPackage{polynom}{Tolle Polynomdivisionen}%% Package, Info
+                    {Dieses Paket wird fuer Polynomdivisionen benoetigt}
+                    {\polyset{style=C,div=:,vars=xyz\lambda}}
+                    {}{}
 
 \providecommand{\LILLYxMathxMode}{normal}                %%% Niemand mag euler-mathfont
 \mathversion{\LILLYxMathxMode}                              % Welche Schriftart für Matheumgebung

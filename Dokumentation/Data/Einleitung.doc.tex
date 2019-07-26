@@ -154,7 +154,7 @@ Sie können alle mithilfe von:
 \LILLYcommand{\LILLYxBOXxDefinitionxEnable}{FALSE}
 \end{latex}
 jeweils deaktiviert und damit aus dem Dokument entfernt werden (auch nur abschnittsweise, das Reaktivieren funktioniert analog mit \T{TRUE}). \newline
-Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeugen. \marginpar{\tiny  Die Bezeichnung der Listen sind bisher noch inkonsitent :/}Beispielhaft:
+Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeugen. \marginpar{\tiny  Die Bezeichnung der Listen sind bisher noch inkonsistent :/}Beispielhaft:
 \begin{lstlisting}[language=lLatex]
 \listofDEFINITIONS
 \end{lstlisting}
@@ -177,7 +177,7 @@ Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeu
 \begin{lstlisting}[language=lLatex]
 \elable{mrk:Hey} %% \elable{<Sprungmarke>}
 \end{lstlisting}
-erstellen. Referenziert werden kann sie mithilfe des Befehls \textbf{\T{jmark}}:
+erstellen. Referenziert werden kann sie mithilfe des Befehls \blankcmd{jmark}:
 \begin{lstlisting}[language=lLatex]
 \jmark[Klick mich]{mrk:Hey} %% \jmark[Text]{Sprungmarke}
 \end{lstlisting}
@@ -185,7 +185,7 @@ der erzeugte Link: \jmark[Klick mich]{mrk:Hey}, passt sich zudem der Akzentfarbe
 \begin{zusammenfassung}[Testzusammenfassung]
 Siehe hier: \jmark[Klick mich]{mrk:Hey} (Wenn Druck: \printmark[Klick mich]{mrk:Hey})
 \end{zusammenfassung}~\smallskip\newline
-\marginpar{\tiny \textbf{\T{jmark*}}, welcher die Akzentfarbe ignoriert, ist bereits geplant, wurde allerdings bisher nicht zwangsläufig benötigt }Der alternative Vertreter für \textbf{\T{jmark}} ist \textbf{\T{hmark}}, er ignoriert sämtliche Farbattribute:
+\marginpar{\tiny \textbf{\T{jmark*}}, welcher die Akzentfarbe ignoriert, ist bereits geplant, wurde allerdings bisher nicht zwangsläufig benötigt }Der alternative Vertreter für \blankcmd{jmark} ist \blankcmd{hmark}, er ignoriert sämtliche Farbattribute:
 \begin{lstlisting}[language=lLatex]
 \hmark[Klick mich]{mrk:Hey} %% \hmark[Text]{Sprungmarke}
 \end{lstlisting}
