@@ -350,14 +350,16 @@
 %%%% BOXCONTROL \w: extra paramter [pin] - oder so lädt auf jedenfall nen tcbset style mit aftertitle = Pin .... - ist auf Definitionen gelockt - bezieht die Farbe nicht automatisch
 
 \typeout{checking \LILLYxBOXxAufgabexEnable with \true}
+
+\providecommand{\LILLYxSolutionsxShow}{TRUE}
 \ifx\LILLYxBOXxAufgabexEnable\true
     \newlistof{TSKS}{TSK}{Alle Aufgaben\\[-1.5cm]}
 
 %% Splitter could issue a tcblower and then use startrecording to get the soluions extra?
-
+    
     \ifx\LILLYxBOXxAufgabexBox\true
         \tcbset{LillyxBOXxDesignxAufgabe/.style={}}%\tcblower
-        \LILLYcommand{\Splitter}{\vspace{0.1cm} {\color{black!50}\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]} %% Linie für tasks
+        \LILLYcommand{\Splitter}{\ifx\LILLYxSolutionsxShow\true\vspace{0.1cm} {\color{black!50}\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]\else\smallskip\fi\tcblower} %% Linie für tasks
         \LILLYcommand{\vSplitter}{\vspace{-1\baselineskip} \Splitter \nskip}
     \else
         \tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
@@ -366,20 +368,29 @@
     \fi
 
 
-    %% TITEL PUNKTE OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{aufgabe}{O{} O{42} O{}}{ %
-    \refstepcounter{ctr_TSK}
-    \ifx\LILLYxBOXxAufgabexBox\true
-        \begin{LILLYxBOXxAufgabe}[#1][Aufgabe \arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe,#3]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}{\TRUE}~\\[-.25\baselineskip]\ignorespacesafterend
-    \else
-        \begin{LILLYxBOXxAufgabexPlain}[#1][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe, after title={\hfill~\mdseries\emph{ #2 \ifnum#2=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#3]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#1}{\TRUE}~\\\ignorespacesafterend
-    \fi
-    }{\ifx\LILLYxBOXxAufgabexBox\true\end{LILLYxBOXxAufgabe}\else\end{LILLYxBOXxAufgabexPlain}\fi}
+    %% [OPTIONALE-ADDONS]{TITEL}{PUNKTE}
+    \ifx\LILLYxBOXxAufgabexBox\true%
+    \NewEnviron{aufgabe}[3][]{% \scantokens{ %
+        \refstepcounter{ctr_TSK}%
+        \ifx\LILLYxSolutionsxShow\true\else\tcbset{LillyxBOXxDesignxAufgabe/.style={        lowerbox=ignored}}\fi%
+        \begin{LILLYxBOXxAufgabe}[#2][Aufgabe \arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe,%
+            %savedelimiter=aufgabe,savelowerto={ub/\arabic{ctr_TSK}.tex},
+        #1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\TRUE}~\\[-.25\baselineskip]\ignorespacesafterend\BODY%
+        \end{LILLYxBOXxAufgabe}
+    }% } %
+    \else%
+    \NewEnviron{aufgabe}[3][]{% \scantokens{ %
+        \refstepcounter{ctr_TSK}%
+        \begin{LILLYxBOXxAufgabexPlain}[#2][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe, after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\TRUE}~\\\ignorespacesafterend\BODY%
+        \end{LILLYxBOXxAufgabexPlain}
+    }% } %
+    \fi%
+    
 \else %% Keine Aufgabes
     \NewEnviron{aufgabe}{}
 \fi
 
-\newenvironment{task}{\begin{aufgabe}}{\end{aufgabe}}
+\NewEnviron{task}[3][]{\begin{aufgabe}[#1]{#2}{#3}\Body\end{aufgabe}}
 
 \providecommand{\LILLYxSEENxUBS}{FALSE}
 

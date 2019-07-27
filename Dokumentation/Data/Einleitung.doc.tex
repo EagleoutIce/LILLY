@@ -116,20 +116,20 @@ Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 \end{satz}
 \LILLYcommand{\LILLYxBOXxAufgabexBox}{FALSE}
 
-\begin{aufgabe}[Titel][3]
+\begin{aufgabe}{Titel}{3}
     Hallo Welt
 \begin{lstlisting}[language=lLatex]
-\begin{aufgabe}[Titel][3]
+\begin{aufgabe}{Titel}{3}
     Hallo welt
 \end{aufgabe}\end{lstlisting}
 \end{aufgabe}
 \end{multicols}
 Letztere ändert sich zum Beispiel mit dem Dokumenttyp, so wird die Aufgabenbox in einem Übungsblatt immernoch wie folgt veranschaulicht:
 \LILLYcommand{\LILLYxBOXxAufgabexBox}{TRUE}
-\begin{aufgabe}[Titel][3]
+\begin{aufgabe}{Titel}{3}
     Hallo Welt
 \begin{lstlisting}[language=lLatex]
-\begin{aufgabe}[Titel][3]
+\begin{aufgabe}{Titel}{3}
     Hallo welt
 \end{aufgabe}\end{lstlisting}
 \end{aufgabe}
@@ -241,7 +241,7 @@ Natürlich kannst du die Namen entsprechend ändern. Das sieht jetzt aus wie vie
 mit besseren Konfigurationen beschäftigen, die keinerlei Nachaufwand benötigen und galanter sind.
 In das Übungsblatt können wir nun unsere Aufgaben stecken. Hier ist der \emph{gesamte} Inhalt der oben genanten \TeX-Datei:
 \begin{latex}
-\begin{aufgabe}[Tolle Aufgabe][400] % 400 Punkte
+\begin{aufgabe}{Tolle Aufgabe}{400} % 400 Punkte
     Die Aufgabenbeschreibung, blah, blah, blah, \ldots
     \begin{enumeratea}
         \item Teilaufgabe a)
