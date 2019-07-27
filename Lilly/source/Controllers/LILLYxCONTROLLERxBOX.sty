@@ -358,8 +358,8 @@
 %% Splitter could issue a tcblower and then use startrecording to get the soluions extra?
     
     \ifx\LILLYxBOXxAufgabexBox\true
-        \tcbset{LillyxBOXxDesignxAufgabe/.style={}}%\tcblower
-        \LILLYcommand{\Splitter}{\ifx\LILLYxSolutionsxShow\true\vspace{0.1cm} {\color{black!50}\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]\else\smallskip\fi\tcblower} %% Linie für tasks
+        \tcbset{LillyxBOXxDesignxAufgabe/.style={lower separated=false}}%\tcblower
+        \LILLYcommand{\Splitter}{\ifx\LILLYxSolutionsxShow\true\vspace{0.1cm} {\color{black!50}\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]\else\smallskip\tcblower\fi} %% Linie für tasks
         \LILLYcommand{\vSplitter}{\vspace{-1\baselineskip} \Splitter \nskip}
     \else
         \tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
