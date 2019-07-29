@@ -171,6 +171,7 @@ public class JakeCompile {
         }
 
         if (JakeCompile_Worker.failed) {
+            System.exit(1); // report failure for Linux-Systems
             return ReturnStatus.EXIT_FAILURE;
         }
 
@@ -330,7 +331,7 @@ public class JakeCompile {
                                 if (e != null) {
                                     e.printStackTrace();
                                     JakeWriter.err.format(
-                                            "%sEs gab ein kleines Problem mit dem finden der Log-Datei, du musst wohl einen übermächtigen Magier finden, der dir hilft, den Drachen zu besiegen. Ich kann deine Prinzessin nicht retten :/%s",
+                                            "%sEs gab ein kleines Problem mit dem finden der Log-Datei, du musst wohl einen übermächtigen Magier finden, der dir hilft, den Drachen zu besiegen. Ich kann deine Prinzessin nicht retten :/%s%n",
                                             ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
                                 }
                                 // Ein, das war eine gute Idee relikt:
@@ -340,6 +341,7 @@ public class JakeCompile {
                                  * true)) || (last && !(last = false))); lines.forEachOrdered(x ->
                                  * JakeWriter.out.format(" - %s%n", x));
                                  */
+                                JakeWriter.err.format("%s > Kompilieren fehlgeschlagen %s%n",                                                   ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
                                 return;
                             }
                         }

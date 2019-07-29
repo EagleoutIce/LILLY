@@ -49,6 +49,7 @@
 %% Hält, auch in verschactelten Systemen die entsprechend zu forcierende Farbe für Links oder anschmiegsame Farbgebung
 \LILLYcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}
 
+\gdef\LILLYxBOXxCOLORxFRAME{black!50}
 
 
 \ifcsname chapter\endcsname
@@ -356,10 +357,10 @@
     \newlistof{TSKS}{TSK}{Alle Aufgaben\\[-1.5cm]}
 
 %% Splitter could issue a tcblower and then use startrecording to get the soluions extra?
-    
+
     \ifx\LILLYxBOXxAufgabexBox\true
         \tcbset{LillyxBOXxDesignxAufgabe/.style={lower separated=false}}%\tcblower
-        \LILLYcommand{\Splitter}{\ifx\LILLYxSolutionsxShow\true\vspace{0.1cm} {\color{black!50}\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]\else\smallskip\tcblower\fi} %% Linie für tasks
+        \LILLYcommand{\Splitter}{\ifx\LILLYxSolutionsxShow\true{\color{\LILLYxBOXxCOLORxFRAME}\leavevmode\\[-\baselineskip]\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]\else\smallskip\tcblower\fi} %% Linie für tasks
         \LILLYcommand{\vSplitter}{\vspace{-1\baselineskip} \Splitter \nskip}
     \else
         \tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
@@ -385,7 +386,7 @@
         \end{LILLYxBOXxAufgabexPlain}
     }% } %
     \fi%
-    
+
 \else %% Keine Aufgabes
     \NewEnviron{aufgabe}{}
 \fi
