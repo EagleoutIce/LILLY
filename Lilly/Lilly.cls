@@ -85,7 +85,11 @@
 
 
 %DEFAULT: \documentclass[a4paper,11pt,oneside]{scrbook}
-\LoadClass[\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,titlepage=firstiscover,\LILLYxDocumentxTYPExExtras,table,makeidx,\LILLYxPAPER]{\LILLYxDocumentxTYPE}
+\LoadClass[\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,titlepage=firstiscover,\LILLYxDocumentxTYPExExtras,\LILLYxPAPER]{\LILLYxDocumentxTYPE}
+
+%% Finde ich so generell schöner zum Lesen :D
+\renewcommand*{\thefootnote}{$\langle$\textbf{\alph{footnote}}$\rangle$}
+\renewcommand*{\thempfootnote}{$\langle$\textbf{\arabic{mpfootnote}}$\rangle$}
 
 %%\RequirePackage[\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight},top=1.25in,centering]{geometry}
 %top=1.5in,bottom=1.25in,textwidth=6.25in]{geometry}
