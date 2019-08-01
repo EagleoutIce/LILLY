@@ -1,0 +1,60 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxFORMATxCONTROL}[2019/08/01 Stellt eine Formatierungs-Erweiterungen fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCOLOR}
+
+%%% Information, die Iterationen ändern nur die gewünschten Formatierungen,
+%%% Alle anderen wie \itshape etc bleiben unverändert erhalten
+
+% \long %
+
+%% Einige Standartformatierungen die verwendet werden können - es ist ohne Probleme möglich eigene zu definieren,
+%% Oder die Befehle entsprechend zu ändern.
+\providecommand{\UpperCaseFormat}[1]{\MakeUppercase{#1}}
+\providecommand{\TextBfFormat}[1]{\textbf{#1}}
+\providecommand{\HighlightFormat}[1]{\textcolor{\Hcolor}{#1}}
+
+%% Einzelner Schritt in der Iteration
+\def\lilly@format@step#1#2{%
+    \expandafter#1\expandafter{\@car #2\@empty\@nil}% % car => (LISP) list head => \def\@car#1#2\@nil{#1}
+    \@cdr #2\@empty\@nil%                             % cdr => (LISP) list body => \def\@cdr#1#2\@nil{#2}
+}
+
+\long\def\lilly@jump@fi#1\fi{\fi#1}                   % Leaving the \if :D
+
+\def\LILLY@FORMATTER@CURRENT{\empty}
+
+\def\lilly@format@iter#1 #2\@nil{                     % Define Iteration
+    \lilly@format@step{\LILLY@FORMATTER@CURRENT}{#1}% % Format Call
+    \ifx\\#2\\%                                       % Handle Newline
+    \else%                                            % Otherwise
+    \lilly@jump@fi{%                                  % Emplace
+        \space%                                       % Keep Space between words
+        \lilly@format@iter#2\@nil%                    % Re-iter :D
+    }%
+    \fi%
+}
+
+%% Routine to highlight the First Character in Acronyms
+% \Acronym{Hallo Welt} will yield \textbf{H}allo \textbf{W}elt
+\def\Acronym#1{% Not Nested
+    \gdef\LILLY@FORMATTER@CURRENT{\TextBfFormat}%
+    \def\@Acronym{\lilly@format@iter#1 \@nil}{\@Acronym}%
+}
+
+
+%% Routine to highlight the First Character to Upper Case
+% \PoliteWords{hallo welt} will yield Hallo Welt (note the uppercase first letter)
+\def\PoliteWords#1{
+    \gdef\LILLY@FORMATTER@CURRENT{\UpperCaseFormat}%
+    \def\@PoliteWords{\lilly@format@iter#1 \@nil}{\@PoliteWords}%
+}
+
+%% Routine to highlight the First Character with a Color
+% \ColerfulWords{hallo welt} will yield \textcolor{\Hcolor}{H}allo \textcolor{\Hcolor}{W}elt
+\def\ColerfulWords#1{
+    \gdef\LILLY@FORMATTER@CURRENT{\HighlightFormat}%
+    \def\@ColerfulWords{\lilly@format@iter#1 \@nil}{\@ColerfulWords}%
+}
+
+\endinput
