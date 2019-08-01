@@ -3,15 +3,16 @@
 \usetikzlibrary{decorations.text}
 
 \input Konanur.fd
+\makeatletter
 
 %% Mathe
-\definecolor{FacultyMathexColor}{RGB}{086,170,028}
+\xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028}
 %% Praktische Informatik
-\definecolor{FacultyPraktischeInformatikxColor}{RGB}{221,101,015}
+\xglobal\definecolor{FacultyPraktischeInformatikxColor}{RGB}{221,101,015}
 %% Theoretische Informatik
-\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221}
+\xglobal\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221}
 %% Technische Informatik
-\definecolor{FacultyTechnischeInformatikxColor}{RGB}{177,2,221}
+\xglobal\definecolor{FacultyTechnischeInformatikxColor}{RGB}{177,2,221}
 
 \newlength{\LILLYxLeftsep}\setlength{\LILLYxLeftsep}{2cm}
 
@@ -23,7 +24,7 @@
        (-1.275-#8,0) arc [start angle=180, end angle=00, radius=1.275+#8];
        \draw(-1.5,0) node {{$\bullet$}} ++ (3,0) node {{$\bullet$}};
        \draw [decorate,decoration={text along path,text align=center,
-       text={|\footnotesize\normalNumber\color{#3}| ulm university  }}] 
+       text={|\footnotesize\normalNumber\color{#3}| ulm university  }}]
       (-1.6,0) arc [start angle=-180, end angle=00, radius=1.6];
        \draw[very thick, color=#3] (0,0) circle (1.25);
        \draw[thick, color=#3] (0,0) circle (1.75);
@@ -53,7 +54,7 @@
 \DeclareDocumentCommand{\LILLYxFACULTYxTECHNISCHEINFORMATIK}{ O{MudWhite} O{FacultyTechnischeInformatikxColor} O{} }{%
     \LILLYxGENxFACULTY{Technische Informatik}{\hspace*{-0.025em}\begin{tikzpicture}\filldraw[rounded corners=4pt] (0,0) rectangle ++(1,1);%
         \foreach \y in {1.117,-0.317} {%
-            \foreach \x in {0,0.18,...,0.9} {%% 
+            \foreach \x in {0,0.18,...,0.9} {%%
                 \filldraw[rounded corners=0.04] (\x,\y) rectangle ++(0.07,0.2); % TOP/BOT
                 \filldraw[rounded corners=0.04] (\y,\x) rectangle ++(0.2,0.07); % LEFT/RIGHT
             }%
@@ -66,14 +67,79 @@
 \ifnum\LILLYxSemester>0
 \input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
 \fi
-\makeatletter
-%% Pfad zu den Einstellungen %% Pfad zur Grafik 
-\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
-\ifnum\LILLYxSemester>0
-\makeatletter
-    \begingroup
-    \clearpage\begin{titlepage} 
-        \newgeometry{margin = 0pt}
+
+
+%%% Dieser Befehl malt die untere Leiste und setzt die entsprechenden Daten. Hierbei Kann, von der Höhe abgesehen, keine andere Metrik modifiziert werden.
+\DeclareDocumentCommand{\LILLYxPHILOSOPHERxBORDERBLOCK}{%
+    O{\LILLYxFACULTYxCOLOR} % SignaturFarbe
+    O{LightGray}            % Textfarbe
+    m%{3}                   % Baseheight
+    O{\LILLYxFlavourText}   % Textblahblah
+    O{\LILLYxFACULTY}       % Zu setzendes Symbol
+}{%
+\begin{tikzpicture}%
+    %\node[above right] at (\LILLYxLeftsep,3.05) {\centering\fontsize{3pt}{2pt}\selectfont\centering Fassung vom \heute{} um \currenttime Uhr\par};
+    \draw[thick,#1] (0,#3+0.1) -- ++ (0.6\paperwidth-0.1,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.1,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
+    \draw[thin,#1] (0,#3+0.175) -- ++ (0.6\paperwidth-0.175,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.175,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
+    \filldraw[#1] (0,0) -- ++(\paperwidth,0) -- ++(0,#3) --  ++(-0.1\paperwidth,0) -- ++(-0.1\paperwidth,1) -- ++(-0.1\paperwidth,0) --  ++(-0.1\paperwidth,-1) -- ++(-0.6\paperwidth,0) -- cycle;%
+    \begin{scope}[every node/.style={color=#2}]%
+        \node at(0.75\paperwidth,2) {#5}; %\resizebox{!}{#3cm}{
+        \node[right] at(\LILLYxLeftsep,1.5) {\parbox{0.45\linewidth}{\footnotesize{#4\par}}};
+        \node[above left] at(\paperwidth,0.02) {\begingroup\hypersetup{urlcolor=#2}\href{https://github.com/EagleoutIce/LILLY}{\usefont{U}{Konanur}{xl}{n}LILLY}\hypersetup{urlcolor=\LILLYxColorxLINKSxUrlColor}\endgroup};%
+        \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};%
+    \end{scope}%
+\end{tikzpicture}%
+}
+
+\gdef\LILLYxPHILOSOPHERxINIT{\newgeometry{margin = 0pt}}
+
+%% This variant prints an highlighted Bonus and include \LILLY@n/a number if wanted as an extra number to seperate Versions
+\DeclareDocumentCommand{\LILLYxTITLExBONUS}{%
+    O{\LILLYxFACULTYxCOLOR} % SignaturFarbe
+    O{MudWhite}             % Textfarbe
+    m                       % Main Matter => Bonus text upper left
+    O{\LILLYxFlavourText}   % Textblahblah
+    O{\LILLYxFACULTY}       % Zu setzendes Symbol
+    O{0.55\paperwidth}      % Scaling
+    O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf}
+                            % Titel Symbol
+}{%
+\begingroup\def\old@textwidth{0.75\paperwidth}%
+\clearpage\begin{titlepage}
+    \LILLYxPHILOSOPHERxINIT%
+    {\par\vspace*{6em}\par}%
+    {% Upper title Block. It can hold the denoted 'Main Matter'
+\begin{tikzpicture}
+    % Halo (3 confirmed hihi):
+    \fill[#1,opacity=0.5] (0,0) |- ++(#6+0.4,1.25) -- ++(-0.77,-1.35) -- cycle;
+    % Texture:
+    \filldraw[#1] (0,0) |- ++(#6,1.25) -- ++(-0.75,-1.25) -- cycle;
+    \node[right,#2] at (\LILLYxLeftsep,0.5) {\Huge\bfseries#3};
+    \begin{pgfinterruptboundingbox}
+    \node[left] at(\paperwidth-1.5cm,0.25) {\includegraphics[height=11em]{#7}};
+    \end{pgfinterruptboundingbox}
+\end{tikzpicture}
+    } {\par\vspace*{9em}\par}%
+    {\centering% Title:
+    {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par%
+    } {\par\vspace*{3em}\par}%
+    {\centering% Metadatame - hihih:
+    {\scshape\tiny{#3 von}\\\large\AUTHOR\par}
+	\vspace{0.5cm}
+    {\itshape\small Version vom:\\ \heute\par}
+    }\hbox{}\vfill\vspace{4em}
+    %{\listofTOPICS}
+    {\centering\parbox{\old@textwidth}{\let\textwidth\old@textwidth{}\POLITEINTRO}\par}
+    \hbox{}\vfill%
+    \LILLYxPHILOSOPHERxBORDERBLOCK[#1][#2]{3}[#4][#5] %% height
+\end{titlepage}%
+\endgroup\restoregeometry%
+}
+
+\DeclareDocumentCommand{\LILLYxTITLExRAW}{ o }{
+    \begingroup%
+    \clearpage\begin{titlepage}
+        \LILLYxPHILOSOPHERxINIT%
         {\centering\par\vspace*{7em}\par
             {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par}
             \par\vspace*{11em}\par
@@ -84,19 +150,11 @@
             {\itshape\small Version vom: \\ \heute\par}}}
         }
         \hbox{}\vfill
-        \begin{tikzpicture}
-            %\node[above right] at (\LILLYxLeftsep,3.05) {\centering\fontsize{3pt}{2pt}\selectfont\centering Fassung vom \heute{} um \currenttime Uhr\par};
-            \draw[thick,\LILLYxFACULTYxCOLOR] (0,3.1) -- ++ (0.6\paperwidth-0.1,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.1,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
-            \draw[thin,\LILLYxFACULTYxCOLOR] (0,3.175) -- ++ (0.6\paperwidth-0.175,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.175,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
-            \filldraw[\LILLYxFACULTYxCOLOR] (0,0) -- ++(\paperwidth,0) -- ++(0,3) --  ++(-0.1\paperwidth,0) -- ++(-0.1\paperwidth,1) -- ++(-0.1\paperwidth,0) --  ++(-0.1\paperwidth,-1) -- ++(-0.6\paperwidth,0) -- cycle;
-            \begin{scope}[every node/.style={color=LightGray}]
-                \node at(0.75\paperwidth,2) {\LILLYxFACULTY};
-                \node[right] at(\LILLYxLeftsep,1.5) {\parbox{0.45\linewidth}{\footnotesize{\LILLYxFlavourText\par
-            }}};
-                \node[above left] at(\paperwidth,0.02) {\begingroup\hypersetup{urlcolor=MudWhite}\href{https://github.com/EagleoutIce/LILLY}{\usefont{U}{Konanur}{xl}{n}LILLY}\hypersetup{urlcolor=\LILLYxColorxLINKSxUrlColor}\endgroup};
-                \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};
-            \end{scope}
-        \end{tikzpicture}
-    \end{titlepage}\endgroup\restoregeometry
-\fi
+        \LILLYxPHILOSOPHERxBORDERBLOCK{3} %% height
+    \end{titlepage}\endgroup\restoregeometry%
+}
+
+%% Pfad zu den Einstellungen %% Pfad zur Grafik
+\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
+    \ifnum\LILLYxSemester>0\LILLYxTITLExRAW[#1]\fi
 }

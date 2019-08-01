@@ -169,7 +169,9 @@
 % Schriftarten                                                                                                        %     %%%% FONTS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{\LILLYxPATHxDATA/LILLYxFONTS}
+\RequirePackage{LILLYxFONTS}
+
+\RequirePackage{LILLYxFORMATxCONTROL}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Shortcuts                                                                                                           %     %%%% SHORTCUTS %%%%

@@ -1,0 +1,36 @@
+%% Liefert einige besondere Boxen
+
+\newtcbox{\LILLYxBOXxLibrary}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
+  right=0mm,left=4mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dlg~}},
+  colframe=green!50!black,coltext=green!25!black,colback=green!10!white,
+  overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)
+    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {LIB} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
+
+\newtcbox{\LILLYxBOXxVersion}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
+ right=0mm,left=5.25mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dll~}},
+ colframe=Azure!50!black,coltext=Azure!25!black,colback=Azure!10!white,
+ overlay={\begin{tcbclipinterior}\fill[Azure!75!blue!50!white] (frame.south west)
+    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {VER} ([xshift=5.25mm]frame.north west);\end{tcbclipinterior}}}
+
+\newtcbox{\LILLYxBOXxWarning}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
+  right=0mm,left=5.25mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dll~}},
+  colframe=Aureolin!60!black,coltext=Aureolin!60!black,colback=Aureolin!10!white,
+  overlay={\begin{tcbclipinterior}\fill[Aureolin!75!blue!50!white] (frame.south west)
+    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {WAR} ([xshift=5.25mm]frame.north west);\end{tcbclipinterior}}}
+
+\robustify{\LILLYxBOXxWarning}
+\robustify{\LILLYxBOXxVersion}
+
+\newcommand{\LILLYxNOTExWarning}[1]{{\normalfont\tiny\raisebox{1.5pt}{\LILLYxBOXxWarning{\bfseries#1}}}}
+
+\newcommand{\LILLYxNOTExLibrary}[2][]{\LILLYxBOXxLibrary{\small #2}}
+\robustify{\LILLYxNOTExLibrary}
+
+\newcommand{\LILLYxNOTExVersion}[1]{\marginpar{\vspace*{0\baselineskip}\LILLYxBOXxVersion{\small #1}}}
+\robustify{\LILLYxNOTExVersion}
+
+
+
+
+\def\LILLYxLIBRARY#1{\LILLYxBOXxLibrary{\small #1}}
+\robustify{\LILLYxLIBRARY}

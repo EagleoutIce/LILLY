@@ -104,6 +104,10 @@
 \providecommand{\LILLYxBOXxMODExDEFAULT}{DEFAULT}
 \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT(init)}
 
+%% Specialboxes
+\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_SPECIAL}
+
+
 %\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT} % May the ones below do not cover all boxes, thus default will be happy to provide them
 \ifx\LILLYxBOXxMODE\LILLYxBOXxMODExDEFAULT\else
 \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
@@ -371,20 +375,18 @@
 
     %% [OPTIONALE-ADDONS]{TITEL}{PUNKTE}
     \ifx\LILLYxBOXxAufgabexBox\true%
-    \NewEnviron{aufgabe}[3][]{% \scantokens{ %
+    \DeclareDocumentEnvironment{aufgabe}{ O{} m m }{% \scantokens{ %
         \refstepcounter{ctr_TSK}%
         \ifx\LILLYxSolutionsxShow\true\else\tcbset{LillyxBOXxDesignxAufgabe/.style={        lowerbox=ignored}}\fi%
         \begin{LILLYxBOXxAufgabe}[#2][Aufgabe \arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe,%
             %savedelimiter=aufgabe,savelowerto={ub/\arabic{ctr_TSK}.tex},
-        #1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\TRUE}~\\[-.25\baselineskip]\ignorespacesafterend\BODY%
-        \end{LILLYxBOXxAufgabe}
-    }% } %
+        #1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\TRUE}~\\[-.25\baselineskip]\ignorespacesafterend%
+    }{\end{LILLYxBOXxAufgabe}}% } %
     \else%
-    \NewEnviron{aufgabe}[3][]{% \scantokens{ %
+    \DeclareDocumentEnvironment{aufgabe}{ O{} m m }{% \scantokens{ %
         \refstepcounter{ctr_TSK}%
-        \begin{LILLYxBOXxAufgabexPlain}[#2][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe, after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\TRUE}~\\\ignorespacesafterend\BODY%
-        \end{LILLYxBOXxAufgabexPlain}
-    }% } %
+        \begin{LILLYxBOXxAufgabexPlain}[#2][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe, after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\TRUE}~\\\ignorespacesafterend%
+    }{\end{LILLYxBOXxAufgabexPlain}}% } %
     \fi%
 
 \else %% Keine Aufgabes
