@@ -20,11 +20,19 @@ Ergibt:
 \begin{center}
     \Acronym{hallo, ich mag Züge, toll, Oder?}
 \end{center}
+Es ist weiter möglich durch das Anführen eines Wortes mit \blankcmd{NoFormatChar} (Momentan: \NoFormatChar) das Highlighting für dieses zu Unterbinden:
+\begin{latex}
+Hey (\Acronym{American Standard Code |for Information |Interch|ange}) na du?
+\end{latex}
+Ergibt:
+\begin{center}
+    Hey (\Acronym{American Standard Code |for Information |Interch|ange}) na du?
+\end{center}
 Definiert ist dieser Iterator sehr einfach durch:
 \begin{latex}
 \def!**!\Acronym!**!#1{%
     \gdef!**!\LILLY@FORMATTER@CURRENT{\TextBfFormat}%
-    \def!**!\@Acronym{\lilly@format@iter!**!#1 \@nil}{\@Acronym}%
+    \def!**!\@Acronym{\lilly@format@iter!**!#1 \@nil}{\ignorespaces!**!\@Acronym}%
 }
 \end{latex}
 Wobei \blankcmd{TextBfFormat} einfach nur eine Definition von \blankcmd{textbf} ist. Die Hauptarbeit übernimmt also:
@@ -39,11 +47,11 @@ Ergibt:
 \end{center}
 
 \begin{latex}
-\ColerfulWords{hallo, ich mag Züge, toll, Oder?}
+\ColorfulWords{hallo, ich mag Züge, toll, Oder?}
 \end{latex}
 Ergibt:
 \begin{center}
-    \ColerfulWords{hallo, ich mag Züge, toll, Oder?}
+    \ColorfulWords{hallo, ich mag Züge, toll, Oder?}
 \end{center}
 
 \clearpage

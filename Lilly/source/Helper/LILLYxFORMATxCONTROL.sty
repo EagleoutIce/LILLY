@@ -14,9 +14,14 @@
 \providecommand{\TextBfFormat}[1]{\textbf{#1}}
 \providecommand{\HighlightFormat}[1]{\textcolor{\Hcolor}{#1}}
 
+\def\NoFormatChar{|} % Disables Formatting for the next char, only recognized if first of Word
+\def\TossAway#1{}% Simply ignore input
+
 %% Einzelner Schritt in der Iteration
 \def\lilly@format@step#1#2{%
+    \xdef\tmp@lilly@first{\@car #2\@empty\@nil}\ifx\tmp@lilly@first\NoFormatChar\TossAway{\@car #2\@empty\@nil}\else%
     \expandafter#1\expandafter{\@car #2\@empty\@nil}% % car => (LISP) list head => \def\@car#1#2\@nil{#1}
+    \fi%
     \@cdr #2\@empty\@nil%                             % cdr => (LISP) list body => \def\@cdr#1#2\@nil{#2}
 }
 
@@ -36,25 +41,25 @@
 }
 
 %% Routine to highlight the First Character in Acronyms
-% \Acronym{Hallo Welt} will yield \textbf{H}allo \textbf{W}elt
+% \Acronym{Hallo Welt} will yield '\textbf{H}allo \textbf{W}elt'
 \def\Acronym#1{% Not Nested
     \gdef\LILLY@FORMATTER@CURRENT{\TextBfFormat}%
-    \def\@Acronym{\lilly@format@iter#1 \@nil}{\@Acronym}%
+    \def\@Acronym{\lilly@format@iter#1 \@nil}{\ignorespaces\@Acronym}%
 }
 
 
 %% Routine to highlight the First Character to Upper Case
-% \PoliteWords{hallo welt} will yield Hallo Welt (note the uppercase first letter)
+% \PoliteWords{hallo welt} will yield 'Hallo Welt' (note the uppercase first letter)
 \def\PoliteWords#1{
     \gdef\LILLY@FORMATTER@CURRENT{\UpperCaseFormat}%
-    \def\@PoliteWords{\lilly@format@iter#1 \@nil}{\@PoliteWords}%
+    \def\@PoliteWords{\lilly@format@iter#1 \@nil}{\ignorespaces\@PoliteWords}%
 }
 
 %% Routine to highlight the First Character with a Color
-% \ColerfulWords{hallo welt} will yield \textcolor{\Hcolor}{H}allo \textcolor{\Hcolor}{W}elt
-\def\ColerfulWords#1{
+% \ColorfulWords{hallo welt} will yield '\textcolor{\Hcolor}{H}allo \textcolor{\Hcolor}{W}elt'
+\def\ColorfulWords#1{
     \gdef\LILLY@FORMATTER@CURRENT{\HighlightFormat}%
-    \def\@ColerfulWords{\lilly@format@iter#1 \@nil}{\@ColerfulWords}%
+    \def\@ColorfulWords{\lilly@format@iter#1 \@nil}{\ignorespaces\@ColorfulWords}%
 }
 
 \endinput

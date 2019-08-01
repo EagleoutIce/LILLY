@@ -1,6 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxGRAPHICSxPROVIDER}[2019/07/21 Stellt die Grafik-Provider-Erweiterungen fuer LILLY zur Verfuegung]
 
+\RequirePackage{expl3}
+\RequirePackage{graphicx}
+
 \RequirePackage{LILLYxLIST}
 
 %% Alle zur Verfügung stehenden Grafiken sollen in der entsprechendne Liste
@@ -9,8 +12,15 @@
 
 \constructList[,]{RegisteredGraphics}
 
-%%% Stellt über getGraphics{1} eine Schnittstelle
+%%% Stellt über getGraphics{3} eine Schnittstelle
 %% für alle enthaltenen Grafiken zur Verfügung
+
+%% [width] {path} [height] width and height are mutually exclusive (to keep aspect ratio), if both given, width will Dominate by Design
+\ProvideDocumentCommand{\getGraphics}{ o m o }{%
+\IfValueTF{#1}{\resizebox{#1}{!}{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}}%
+{\IfValueTF{#3}{\resizebox{!}{#3}{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}}%
+{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}%
+}}
 
 \providecommand{\getGraphics}[1]{\input{\LILLYxPATHxDATA/Graphics/#1}%
 \LILLYxGRAPHICSxSHOW{}}
