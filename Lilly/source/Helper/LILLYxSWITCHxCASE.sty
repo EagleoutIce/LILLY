@@ -1,7 +1,10 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxSWITCHxCASE}[2019/08/02 Stellt ein switch-case fuer LILLY zur Verfuegung]
+
 % Switch implementation by https://tex.stackexchange.com/questions/64131/implementing-switch-cases
 
-
 \RequirePackage{ifthen}
+\RequirePackage{etoolbox}
 
 \newboolean{default}
 
@@ -14,3 +17,6 @@
         \setboolean{default}{false}##2}{}}%
     \renewcommand{\default}[1]{\ifthenelse{\boolean{default}}{##1}{}}
 }{}
+
+
+\endinput
