@@ -115,30 +115,17 @@
                     {Lilly ist sich ziemlich sicher, aber doch nicht ganz ob dieses Paket relevant ist}
                     {}{} %% keine Argumente
 
-
-%%% TODO: MOVE: MOVE ME PLS
-% \RequirePackage{tabularx} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL
-
-\LILLYxDemandPackage{tabularx}{Niemand würde es wagen, das glorreiche tabularx-Paket zu ersetzen!}
-                    {NEIN NEIN NEIN OHNE MACHE ICH GARNICHTS - Aber, ich brauch doch gar kein tabularx %
-                     - ABER ICH BIN EINE FLIESE.... ICH MEINE EIN DRUCKER... EINE BIENE... EIN STEIN? %
-                     AUF JEDEN FALL GEHT DAS NICHT! AAAAAAAAARGH}
-                    {}{}
-
-
 \LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
                     {Dieses Paket ist für includegraphicsvon noeten!}
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}} %% Sloppy includegraphics draft
                     {}{}
 
 \LILLYxLoadPackage{setspace}{Abstand Wapstand Lapstnd}
-                    {Dieses Paket ist für Lilly nicht Lebensnotwendig}
+                    {Dieses Paket ist für Lilly nicht lebensnotwendig}
                     {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
                     {}{}
 
-\RequirePackage{ltablex} %%FIX REDEFBUG OF TABULARX WIDTHCONTROL
 \RequirePackage{refcount}
-\keepXColumns
 
 \newlength{\LILLYxNegativeSkip}\setlength{\LILLYxNegativeSkip}{-1.5\baselineskip}
 \providecommand{\nskip}{\vspace{\LILLYxNegativeSkip}}
@@ -189,6 +176,8 @@
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_WRAPFIG}}
                     {}{} %% NO ARGS
 
+\RequirePackage{LILLYxTABLES}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TiKz und andere Grafik freuden                                                                                      %     %%%% TIKZ-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -196,12 +185,6 @@
 \RequirePackage{LILLYxCOLOR}
 
 \RequirePackage{tocloft}
-\RequirePackage{multirow}
-%% \RequirePackage{booktabs}
-\LILLYxLoadPackage{booktabs}{für noch tollerererererere Tabellen}
-                    {Ich finde es gut, dass du kein booktabs hast, ist ja auch zu fanatisch, aber irgendwie müssen wir damit jetzt wohl klarkommen ERROR}
-                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_BOOKTABS}}
-                    {}{} %% NO ARGS
 
 \RequirePackage{hhline}
 \ifx\LILLYxTIKZxenable\undefined
@@ -258,7 +241,7 @@
 \widowpenalty=10000
 
 
-\input{\LILLYxPATHxHELPER/_LILLY_SWITCH_CASE}
+\RequirePackage{LILLYxSWITCHxCASE}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generelle Controller                                                                                                %     %%%% General Controller %%%%
