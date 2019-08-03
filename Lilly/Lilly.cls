@@ -6,9 +6,10 @@
 \providecommand{\AUTHORMAIL}{florian.sihler@web.de}
 \newcommand*{\LILLYxVERSION}{1.0.10}
 \newcommand*{\LILLYxSTATUS}{Work in Progress}
+%% Maybe Change to LILLY 2.0 ? => it's new, it's betta :D
 \newcommand*{\LILLYxVERSIONxLONG}{1.0.10 - Jake ist auch nur Java}
 
-
+%% Sloppy Defaults if no Jake is used:
 \providecommand{\LILLYxSemester}{1}
 \providecommand{\LILLYxVorlesung}{LAII}
 
@@ -47,16 +48,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Setzen und Abfragen der Werte für das Dokument                                                                      %     %%%% PRE-DEFAULTS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifx\LILLYxGeneralxPaperformat \undefined
+\ifx\LILLYxGeneralxPaperformat\undefined
     \providecommand{\LILLYxGeneralxPaperformat}{a4paper}          %%% A4 Papier
 \fi
-\ifx\LILLYxGeneralxFontsize \undefined
+\ifx\LILLYxGeneralxFontsize\undefined
     \providecommand{\LILLYxGeneralxFontsize}{11pt}           %%% 11-Punkt-Schrift
 \fi
-\ifx\LILLYxDocumentxTYPE \undefined
+\ifx\LILLYxDocumentxTYPE\undefined
     \providecommand{\LILLYxDocumentxTYPE}{scrbook}           %%% Dokumentbasisklasse es Dokuments
 \fi
-\ifx\LILLYxDocumentxTYPExExtras \undefined
+\ifx\LILLYxDocumentxTYPExExtras\undefined
     \providecommand\LILLYxMODExPRINT{print}
     \ifx\LILLYxMODE\LILLYxMODExPRINT
         \providecommand{\LILLYxDocumentxTYPExExtras}{twoside}    %%% Weitere Zusätze für das Dokument
@@ -88,7 +89,7 @@
 \LoadClass[\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,titlepage=firstiscover,\LILLYxDocumentxTYPExExtras,\LILLYxPAPER]{\LILLYxDocumentxTYPE}
 
 %% Finde ich so generell schöner zum Lesen :D
-\renewcommand*{\thefootnote}{$\langle$\textbf{\alph{footnote}}$\rangle$}
+\renewcommand*{\thefootnote}{$\langle$\textbf{\doublealph{footnote}}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\textbf{\arabic{mpfootnote}}$\rangle$}
 
 %%\RequirePackage[\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight},top=1.25in,centering]{geometry}
@@ -111,7 +112,7 @@
 
 %% \RequirePackage{pgfkeys}
 
-\LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schlüssel-Wert-Spiel zur Verfuegung} %% IST DIES ÜBERHAUPT NÖTIG? TODO:
+\LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schlüssel-Wert-Spiel zur Verfuegung}
                     {Lilly ist sich ziemlich sicher, aber doch nicht ganz ob dieses Paket relevant ist}
                     {}{} %% keine Argumente
 
@@ -126,9 +127,6 @@
                     {}{}
 
 \RequirePackage{refcount}
-
-\newlength{\LILLYxNegativeSkip}\setlength{\LILLYxNegativeSkip}{-1.5\baselineskip}
-\providecommand{\nskip}{\vspace{\LILLYxNegativeSkip}}
 
 
 \RequirePackage{LILLYxENCODING}
@@ -169,7 +167,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{\LILLYxPATHxCONTROLLERS/_LILLY_ENVIRONMENT_CONTROLLER}
-\input{\LILLYxPATHxHELPER/_LILLY_SHORTCUTS}
+\RequirePackage{LILLYxSHORTCUTS}
 
 \LILLYxLoadPackage{wrapfig}{Um Figuren und Tabellen angenehmer einzubetten}
                     {Ich versuche nun von Hand die Umgebungen wrapfigure und wraptable notduerftig zu simulieren ERROR}
@@ -255,7 +253,7 @@
 \RequirePackage{LILLYxCONTROLLERxBOX}
 \RequirePackage{LILLYxBOXxCOUNTER}
 
-\input{\LILLYxPATHxCONTROLLERS/_LILLY_HYPHEN_CONTROLLER}
+\RequirePackage{LILLYxCONTROLLERxHYPHEN}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

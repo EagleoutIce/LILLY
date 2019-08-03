@@ -1,3 +1,10 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxSHORTCUTS}[2019/08/03 Stellt einige Shortcuts fuer LILLY zur Verfuegung]
+
+%% Dieses Paket fordert kein anderes, es wird davon ausgegangen, dass zu den Shortcuts die benötigten Pakete
+%% geladen werden/sind
+
+
 \providecommand{\T}[1]{{\text{\LILLYxlstTypeWriter #1}}}%Shortcut Schreibmaschine
 \gdef\ltt{\LILLYxlstTypeWriter}
 
@@ -47,6 +54,11 @@
 \newcommand{\snote}[2][1]{\note[\scriptsize #1]{#2}}
 
 
+
+\newlength{\LILLYxNegativeSkip}\setlength{\LILLYxNegativeSkip}{-1.5\baselineskip}
+\providecommand{\nskip}{\vspace{\LILLYxNegativeSkip}}
+
+
 \LILLYcommand{\LILLYxCOLORxRainbow}{% who needs foreach
     \LILLYcoloredSQ{\LILLYxColorxDefinition}
     \LILLYcoloredSQ{\LILLYxColorxSatz}
@@ -62,3 +74,5 @@
     \LILLYcoloredSQ{\LILLYxColorxLINKSxCiteColor}
     \LILLYcoloredSQ{\LILLYxColorxLINKSxUrlColor}
 }
+
+\endinput

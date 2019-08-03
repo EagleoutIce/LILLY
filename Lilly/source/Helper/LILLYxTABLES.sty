@@ -49,16 +49,27 @@
 
 \newcolumntype{t}{>{\LILLYxlstTypeWriter}l}
 
-\def\header{\setrow{\bfseries}}
+\def\headerrow{\setrow{\bfseries\arraybackslash}}
+\def\cheaderrow{\setrow{\bfseries\centering\arraybackslash\hspace{0pt}}}
 
+% \foreach \lilly@tmp in {small,footnotesize,scriptsize,tiny} {
+%     \xdef\lilly@@tmp{\lilly@tmp}
+%     \expandafter\gdef\csname \lilly@tmp row\endcsname{\expandafter\setrow{\expandafter\csname \lilly@@tmp \endcsname\lilly@@tmp\arraybackslash}}
+% }
+\def\normalrow{\setrow{\normalsize\arraybackslash}}
+\def\smallrow{\setrow{\small\arraybackslash}}
+\def\footenotesizerow{\setrow{\footnotesize\arraybackslash}}
+\def\scriptsizerow{\setrow{\scriptsize\arraybackslash}}
+\def\tinyrow{\setrow{\tiny\arraybackslash}}
 
 
 \def\setrow#1{\gdef\cur@row@style{#1}#1\ignorespaces}
 \def\clearrow{\global\let\cur@row@style\relax}
-\newcolumntype{+}{<{\clearrow}}
+\newcolumntype{+}{<{\clearrow\arraybackslash}}
 \newcolumntype{^}{>{\cur@row@style}}
 
 \newcolumntype{_}{@{\hspace{3em}}}
+\newcolumntype{~}{@{\hspace{1.5em}}}
 \clearrow
 
 \endinput
