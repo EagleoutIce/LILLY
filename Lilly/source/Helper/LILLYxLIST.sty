@@ -46,9 +46,9 @@
     \xdef\c@mp@re{#2}%
     \let\c@nditi@n@l\false%
     \foreach \d in \lillyxlist {%
-        \typeout{comparing: \d to \c@mp@re}%
+        %\typeout{comparing: \d to \c@mp@re}%
         \ifthenelse{\equal{\d}{\c@mp@re}}{%
-            \typeout{Matched}%
+            %\typeout{Matched}%
             \global\let\c@nditi@n@l\true%
         }{}%
     }%
