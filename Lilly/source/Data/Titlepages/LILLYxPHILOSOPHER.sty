@@ -1,4 +1,9 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxPHILOSOPHER}[2019/08/06 Stellt eine Titelseiten-Erweiterungen fuer LILLY zur Verfuegung]
 %% PHILOSOPHER ist ein Titlepageprovider der nach und nach die alten provider ersetzen soll
+
+\RequirePackage{LILLYxTIKZxCORE}
+\RequirePackage{LILLYxCONTROLLERxLINK}
 
 \usetikzlibrary{decorations.text}
 
@@ -65,7 +70,7 @@
 \providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
 \providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung}
 \ifnum\LILLYxSemester>0
-\input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
+    \input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
 \fi
 
 
@@ -77,7 +82,8 @@
     O{\LILLYxFlavourText}   % Textblahblah
     O{\LILLYxFACULTY}       % Zu setzendes Symbol
 }{%
-\begin{tikzpicture}%
+\resizebox{\paperwidth+1pt}{!}{% As it seems some pagedefinitions will alter paperwidth with a small offset
+\hspace*{-1pt}\begin{tikzpicture}%
     %\node[above right] at (\LILLYxLeftsep,3.05) {\centering\fontsize{3pt}{2pt}\selectfont\centering Fassung vom \heute{} um \currenttime Uhr\par};
     \draw[thick,#1] (0,#3+0.1) -- ++ (0.6\paperwidth-0.1,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.1,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
     \draw[thin,#1] (0,#3+0.175) -- ++ (0.6\paperwidth-0.175,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.175,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
@@ -89,9 +95,19 @@
         \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};%
     \end{scope}%
 \end{tikzpicture}%
+}%
 }
 
 \gdef\LILLYxPHILOSOPHERxINIT{\newgeometry{margin = 0pt}}
+
+\providecommand{\LILLYxPHILOSOPHERxMETADATA}{%
+    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\LILLY@Typ{} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
+    \vspace{0.5cm}%
+    {\itshape\small Version vom: \\ \heute\par}}}
+}
+
+%% title toc listname
+\providecommand{\LILLYxPHILOSOPHERxBONUSxTTOCxHEADER}{Themenübersicht}
 
 %% This variant prints an highlighted Bonus and include \LILLY@n/a number if wanted as an extra number to seperate Versions
 \DeclareDocumentCommand{\LILLYxTITLExBONUS}{%
@@ -104,11 +120,13 @@
     O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf}
                             % Titel Symbol
 }{%
-\begingroup\def\old@textwidth{0.75\paperwidth}%
-\clearpage\begin{titlepage}
-    \LILLYxPHILOSOPHERxINIT%
+\clearpage\thispagestyle{empty}%
+\LILLYxPHILOSOPHERxINIT\begingroup%
+\begin{titlepage}
+%\parbox[t][\paperheight]{\paperwidth}{%
+\def\old@textwidth{0.75\paperwidth}%
     {\par\vspace*{6em}\par}%
-    {% Upper title Block. It can hold the denoted 'Main Matter'
+    {% Upper title Block. It can hold the denoted 'Main Matter'%
 \begin{tikzternal}
     % Halo (3 confirmed hihi):
     \fill[#1,opacity=0.5] (0,0) |- ++(#6+0.4,1.25) -- ++(-0.77,-1.35) -- cycle;
@@ -122,17 +140,29 @@
     } {\par\vspace*{9em}\par}%
     {\centering% Title:
     {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par%
-    } {\par\vspace*{3em}\par}%
-    {\centering% Metadatame - hihih:
-    {\scshape\tiny{#3 von}\\\large\AUTHOR\par}
-	\vspace{0.5cm}
-    {\itshape\small Version vom:\\ \heute\par}
-    }\hbox{}\vfill\vspace{4em}
-    %{\listofTOPICS}
-    {\centering\parbox{\old@textwidth}{\let\textwidth\old@textwidth{}\POLITEINTRO}\par}
+    } {\par\vspace*{8em}\par}%
+    \hbox{}
+    \setLinkColor{Charcoal}%!75!darkgray}%
+    %{\def\linewidth{4cm} }{\listofTOPICS}
+    {\centering\let\textwidth\old@textwidth{}\parbox{\old@textwidth}{%
+    \par\phantomsection\elable{INHA}%
+    \ifx\LILLYxMODE\LILLYxMODExPRINT%
+    {\bfseries\Large \LILLYxPHILOSOPHERxBONUSxTTOCxHEADER}\\[-0.25cm]%
+    \else%
+    {\bfseries\Large \LILLYxPHILOSOPHERxBONUSxTTOCxHEADER\hfill\small\hyperref[mrk:DEFS]{DEF}}\\[-0.25cm]%
+    \fi%
+    \noindent\rule{\textwidth}{2pt}\\[-0.75\baselineskip]%
+    {\@starttoc{TOPIC}}}\par%
+    }
     \hbox{}\vfill%
+    \LILLYxPHILOSOPHERxMETADATA
+    {\par\vspace*{7.5em}\par}%
     \LILLYxPHILOSOPHERxBORDERBLOCK[#1][#2]{3}[#4][#5] %% height
-\end{titlepage}%
+    %\vspace{-3pt}% Compensate offset
+    %%
+%}
+\end{titlepage}
+\clearpage%
 \endgroup\restoregeometry%
 }
 
@@ -145,11 +175,10 @@
             \par\vspace*{11em}\par
             \includegraphics[height=20em]{#1}
             \par\vfill\vspace{2em}\par
-            {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\LILLY@Typ{} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
-            \vspace{0.5cm}
-            {\itshape\small Version vom: \\ \heute\par}}}
         }
         \hbox{}\vfill
+        \LILLYxPHILOSOPHERxMETADATA
+        {\par\vspace*{7.5em}\par}%
         \LILLYxPHILOSOPHERxBORDERBLOCK{3} %% height
     \end{titlepage}\endgroup\restoregeometry%
 }
@@ -158,3 +187,5 @@
 \DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
     \ifnum\LILLYxSemester>0\LILLYxTITLExRAW[#1]\fi
 }
+
+\endinput

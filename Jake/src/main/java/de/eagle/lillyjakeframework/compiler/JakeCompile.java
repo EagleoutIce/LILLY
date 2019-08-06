@@ -269,7 +269,7 @@ public class JakeCompile {
                 String final_name = b_data[B_NAME]
                         + (CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME") ? boxmode + "-" : "")
                         + new File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+$", "");
-                final_name = final_name.replace("\"\"", "");
+                final_name = final_name.replace("\"", "");
 
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL")) {
                     writeLoggerInfo("Erstelle Ghost Dokument...", tag);
@@ -341,7 +341,8 @@ public class JakeCompile {
                                  * true)) || (last && !(last = false))); lines.forEachOrdered(x ->
                                  * JakeWriter.out.format(" - %s%n", x));
                                  */
-                                JakeWriter.err.format("%s > Kompilieren fehlgeschlagen %s%n",                                                   ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
+                                JakeWriter.err.format("%s > Kompilieren fehlgeschlagen %s%n", ColorConstants.COL_ERROR,
+                                        ColorConstants.COL_RESET);
                                 return;
                             }
                         }
@@ -373,7 +374,6 @@ public class JakeCompile {
 
         public static Exception analyse(String final_name, int errmax, Charset charset) {
             try {
-
                 String[] lines = Files.lines(Paths.get(final_name + ".log"), charset).toArray(String[]::new);
 
                 int errCount = 0;

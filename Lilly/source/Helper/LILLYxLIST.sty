@@ -4,6 +4,8 @@
 \RequirePackage{LILLYxCOMMAND}
 \RequirePackage{LILLYxBOOLEAN}
 
+
+%% https://www.ctan.org/pkg/pgf
 \LILLYxDemandPackage{pgffor}{Fuer die Registrierung der Sprachen}
                     {Ohne gehts nicht}
                     {}{}
@@ -33,11 +35,37 @@
 \expandafter\gdef\csname iter#2\endcsname{\lilly@iter@list\csname lilly@list@seperator@#2\endcsname\csname get#2\endcsname}
 
 \expandafter\def\csname get#2\endcsname{%
-    \xdef\lillyxlist{\csname lilly@list@#2\endcsname}
+    \xdef\lillyxlist{\csname lilly@list@#2\endcsname}%
 }
 \expandafter\def\csname store#2\endcsname##1{%
-    \expandafter\xdef\csname ##1\endcsname{\csname lilly@list@#2\endcsname}
+    \expandafter\xdef\csname ##1\endcsname{\csname lilly@list@#2\endcsname}%
 }
+%% Evaluates to the length of an komma seperated List
+\@namedef{len#2}{%
+    \getListLength{\@nameuse{lilly@list@#2}}%
+}
+}
+
+\gdef\getListLength#1{%
+    \def\@tmpl{#1}%
+    \foreach \@tmp[count=\@@c@tmp] in \@tmpl {\xdef\@c@tmp{\@@c@tmp}}%
+    % length in @c@tmp
+    % \@c@tmp%
+}
+
+\def\typesetVoid#1{#1}%
+
+%% this will typeset a List in German List-Notation
+\newcommand{\typesetList}[2][typesetVoid]{%
+    \def\@tmpl{#2}%
+    \getListLength{#2}%
+    \foreach \x[count=\i] in \@tmpl {%
+        \ifnum\i=\@c@tmp%
+        ~und \else%
+        \ifnum\i>1, \fi%
+        \fi%
+        \@nameuse{#1}{\x}%
+    }\ignorespaces%
 }
 
 
@@ -68,4 +96,7 @@
 \newcommand{\popList}[1]{%
     \relax{\csname lilly@list@last@#1\endcsname}
 }
+
+\constructList{lillytmplist}
+
 \endinput

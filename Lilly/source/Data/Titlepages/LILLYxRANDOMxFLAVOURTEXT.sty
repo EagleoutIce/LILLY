@@ -1,0 +1,68 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxRANDOM}[2019/08/06 Liefert einen zufaelligen Flavour-Text]
+
+\RequirePackage{LILLYxRANDOM} %% init random
+
+\def\@@@flavourtext@cnt{5}
+
+\def\@flavourtext@author#1{%
+    \hbox{}\hfill {\tiny{\usefont{T1}{qzc}{m}{it}  Florian Sihler, #1}}\par%
+}
+
+\@namedef{@@@flavourtext@1}{% Ursprünglicher Text Semester %1
+    {and i promise you\ldots the time shall come and you will know\ldots\\
+    the \emph{darkness will rise} and it will shatter everything below.\\
+    you will know for the birds falling from the skies, \\
+    you will know for the flames, reflecting in your eyes\\
+    you will know there will be; no place to hide\\
+    because when the darkness rise'\\
+    It shall be the only thing alive.\@flavourtext@author{23.12.2018}}
+}
+\@namedef{@@@flavourtext@2}{% Ursprünglicher Text Semester %2
+    {Und da waren sie wieder und tanzten im Mondlicht,\\
+    Während um sie eine Welt voller Hohn ist,\\
+    Es waren die Schritte, die sie verführten,\\
+    Sie klammheimlich zueinander entführten\\
+    Und da schlugen ihre Herzen wie die Füße im Takt,\\
+    {\hspace*{3.5em}- ein Glück, dass das Eis gehalten hat -\@flavourtext@author{28.02.2019}}}
+}
+
+\@namedef{@@@flavourtext@3}{% Aus: Tagebuch
+    {{%
+    Zitternd greift er die Feder, mühsam das letzte Blatt. \\
+    Legt es auf den Einband aus Leder, mit dem alles begonnen hat.\medskip\\
+    Er beginnt sein Werk zu vollenden, an diesem schönen Sommertag. \\
+    Widmet die Worte den Enten, die er eben noch gesehen hat.}\\
+    \@flavourtext@author{04.08.2016}}
+}
+
+\@namedef{@@@flavourtext@4}{% Aus: Schattenspiele
+    {{%
+    Flucht. Atem gebrochen. \\
+    Fokus, das Ziel. Auf immer verflossen.\\
+    Leben im Eis. Leben als Schatten.\\
+    Leben in Freude, die wir niemals hatten.\\\medskip
+    Schattenspiele. Als Alltag aus Kristallen,\ldots}\\
+    \@flavourtext@author{22.12.2015}}
+}
+
+\@namedef{@@@flavourtext@5}{% Aus: Schattenspiele
+    {{\hspace*{-0.125cm}%
+    \parbox{4.95cm}{Rosafarben im Sonnenuntergang. \\
+    Erstrahlt eine Stadt im Licht.\\
+    Still steht sie Stundenlang,\\
+    Erwacht mit jedem Pinselstrich.}\parbox{4.85cm}{
+    Geboren als Strich aus Graphit,\\
+    Ein Grundstein gemalt auf Papier.\\
+    Eine Stadt die es gar nicht gibt,\\
+    Wurde als Zufluchtsort kreiert.}}\smallskip\\
+    \@flavourtext@author{15.08.2016}}
+}
+
+\def\RandomFlavourText{% Generate a Random Number between '1' and '\@@@flavourtext@cnt'
+    \pgfmathrandominteger{\lilly@rnd@tmp}{1}{\@@@flavourtext@cnt}%
+    \relax{\@nameuse{@@@flavourtext@\lilly@rnd@tmp}}%\lilly@rnd@tmp}s}%
+}
+
+
+\endinput

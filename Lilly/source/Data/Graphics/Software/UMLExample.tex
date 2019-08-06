@@ -1,0 +1,20 @@
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{%
+\begin{tikzternal}[scale=0.8, every node/.style={transform shape}]
+    \tikzumlset{fill class=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter
+    \umlclass[x=0,y=0,name=stud]{Student}{\umlstatic{+ stuierendenzahl : int}\\- name : String\\- matrikelnummer : int\\+ besuchtVorlesungen : String[5]}{Student (name : String, nummer : int)\\getName() : String \\getNummer() : int \\addVorlesung(String name) : void\\ getVorlesungen() : String[5] \\ removeVorlesung(String name) : void }
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-3.25,2) -- ++(0,-1.92) node [black,midway, above,rotate=90,yshift=0.75cm] {Attribute};
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-3.25,2-1.92) -- ++(0,-2.78) node [black,midway, above,rotate=90,yshift=0.75cm] {Methoden};
+    \node at(0,3) [above] (kln) {Klassenname};
+    \draw[-latex] (kln) -- ++(0,-0.75);
+    \node [right] at (3.35,1.82-1.54/2+0.9) {\parbox{9cm}{
+        (\textbf{--}) steht für ein \T{private}\\ (\textbf{+}) für ein \T{public}\\
+        (\textbf{\#}) für ein \T{protected} Attribut;\\
+        \T{static}-Komponenten werden unterstrichen.    }};
+    \draw [latex-] (3.3,1.85-1.3) -- ++(3,0) node[right] {\small bis zu 5 Vorlesungen};
+    \umlclass[x=9,y=-2,name=gang]{Studiengang}{- name : String\\- prof : String}{ Studiengang(name : String, prof : String)\\ getName() : String\\getProfessor() : String};
+    \umluniassoc[mult1=0..3,pos1=0.9, mult2=*, pos2=0.2]{Student}{Studiengang};
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (3.25,-3.75) -- ++(2.15,0) node [black,midway, below,yshift=-0.75cm] {\begin{minipage}{8cm}
+        \centering\scriptsize Ein Student kann bis zu 3 Studiengänge gleichzeitig besuchen, ein Studiengang kann von unendlich vielen Studenten besucht werden.
+    \end{minipage}};
+\end{tikzternal}
+}

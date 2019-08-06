@@ -14,12 +14,14 @@
 
 %%% Stellt über getGraphics{3} eine Schnittstelle
 %% für alle enthaltenen Grafiken zur Verfügung
-
+%
+%  Note: Collapse? \linewdith as width default
+%
 %% [width] {path} [height] width and height are mutually exclusive (to keep aspect ratio), if both given, width will Dominate by Design
 \ProvideDocumentCommand{\getGraphics}{ o m o }{%
 \IfValueTF{#1}{\resizebox{#1}{!}{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}}%
 {\IfValueTF{#3}{\resizebox{!}{#3}{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}}%
-{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}%
+{\resizebox{\linewidth}{!}{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}}%
 }}
 
 \providecommand{\getGraphics}[1]{\input{\LILLYxPATHxDATA/Graphics/#1}%

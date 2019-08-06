@@ -1,0 +1,18 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxRANDOM}[2019/08/06 Stellt eine einfach Zufallsintegration fuer LILLY zur Verfuegung]
+
+
+%% https://www.ctan.org/pkg/pgf
+\LILLYxDemandPackage{pgf}{bis expl3 :P}
+                    {Ohne gehts nicht}
+                    {}{}
+%% Init Random
+\pgfmathsetseed{\number\pdfrandomseed}
+
+\def\PickRandom#1{%
+    \pgfmathdeclarerandomlist{tmp@rnd@list}{#1}%
+    \pgfmathrandomitem{\tmp@rnd@item}{tmp@rnd@list}%
+    \relax{\tmp@rnd@item}%
+}
+
+\endinput
