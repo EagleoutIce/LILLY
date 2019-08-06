@@ -13,11 +13,14 @@
 
 %% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten.
 
-
 %% TODO DEFINE DEFAULTS
 
+\def\RequestConfig#1{%
+    \InputIfFileExists{#1}{}{}
+}
+
 \ifnum\LILLYxSemester>0
-    \InputIfFileExists{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}{}{}
+    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
 \fi
 
 \ifx\LILLYxBIBTEX\undefined
@@ -32,8 +35,6 @@
 \providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
 
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
-\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
-
 
     %%Lade gewünschtes Titelblatt => LILLYxTITLE
     % \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
@@ -62,12 +63,12 @@
         \elable{eagleTOC}
         \tableofcontents
         \ifx\LILLYxMODE\LILLYxMODExPRINT%
-        \newpage\hbox{}\relax%
-        \clearpairofpagestyles%
-        \cleardoublepage%
+            \newpage\hbox{}\relax%
+            \clearpairofpagestyles%
+            \cleardoublepage%
         \else %
-        \newpage%
-        \clearpairofpagestyles%
+            \newpage%
+            \clearpairofpagestyles%
         \fi%
     }
 
@@ -75,7 +76,6 @@
 
     \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_MITSCHRIEB}
 \else\ifx\LILLY@Typ\LILLY@Typ@Uebungsblatt
-\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
 
     \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
@@ -83,44 +83,34 @@
 
 \else\ifx\LILLY@Typ\LILLY@Typ@Dokumentation
 
-%% Wir setzen keine Definitionen und definieren ein Standard Layout
+    %% Wir setzen keine Definitionen und definieren ein Standard Layout
 
-\input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_DOKUMENTATION}
-\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
+    \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_DOKUMENTATION}
 
-\RequirePackage{marginnote}
+    \RequirePackage{marginnote}
 
-\let\originalmarginnote\marginnote
-\renewcommand{\marginnote}{%
-  \ifthispageodd{\normalmarginpar}{\reversemarginpar}\originalmarginnote
-}
+    \let\originalmarginnote\marginnote
+    \renewcommand{\marginnote}{%
+    \ifthispageodd{\normalmarginpar}{\reversemarginpar}\originalmarginnote
+    }
 
 \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
-\input{\LILLYxPATHxDATA/Titlepages/_LILLY_PHILOSOPHER}
 
-\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+    \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
-\input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_ZUSAMMENFASSUNG}
+    \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_ZUSAMMENFASSUNG}
 
-%% Work in Progress new Layout:
-
-% \AtBeginDocument{%
-% \ifnum\LILLY@n>0\LILLYxTITLExBONUS{Zusammenfassung \LILLY@n}\else%
-% \LILLYxTITLExBONUS{Zusammenfassung}%
-% \fi%
-% \par\phantomsection\elable{INHA}%
-% \ifx\LILLYxMODE\LILLYxMODExPRINT%
-% {\bfseries\Large Inhaltsübersicht}\\[-0.25cm]%
-% \else%
-% {\bfseries\Large Inhaltsübersicht\hfill\small\jmark[DEF]{mrk:DEFS}}\\[-0.25cm]%
-% \fi%
-% \noindent\rule{\textwidth}{2pt}\\[0.2cm]%
-% \listofTOPICS%
-% \par\vspace*{4.25em}\par%
-% }
-
-\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
+    %% Work in Progress new Layout:
+    \AtBeginDocument{%
+        \ifnum\LILLY@n>0%
+            \LILLYxTITLExBONUS{Zusammenfassung \LILLY@n}%
+        \else%
+            \LILLYxTITLExBONUS{Zusammenfassung}%
+        \fi%
+        \POLITEINTRO
+        %{\par\vspace*{4.25em}\par}%
+    }
 \else
-\userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
+    \userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
 \fi\fi\fi\fi
 

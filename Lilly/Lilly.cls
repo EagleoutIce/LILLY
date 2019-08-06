@@ -16,7 +16,8 @@
 \RequirePackage{LILLYxPACKAGExCTRL}
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxLIST}
-
+\RequirePackage{LILLYxRANDOM}
+\RequirePackage{LILLYxRANDOMxFLAVOURTEXT}
 
 %\LILLY%LoadPackage{lipsum42}{Gutes Paket}{MAUMAUMAU}{\def\MauMau{Hauihao}}
 %\LILLY%DemandPackage{lipsum42}{Super Paket}{HAUHAUHAU}{\def\MauMau{Raurau}}
@@ -34,6 +35,7 @@
 
 \RequirePackage{LILLYxPATH} %% provides \linput as \LILLYxPATH based input
 \RequirePackage{LILLYxBOOLEAN} %% \true und \false
+
 
 \providecommand{\LILLYxDEBUG}{\false}                        %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
 
@@ -182,7 +184,11 @@
 
 \RequirePackage{LILLYxCOLOR}
 
-\RequirePackage{tocloft}
+
+%% https://www.ctan.org/pkg/tocloft
+\LILLYxDemandPackage{tocloft}{custom lists und so}
+                    {Leider wird dieses Paket zu oft verwendet :/}
+                    {}{} %% keine Argumente
 
 \RequirePackage{hhline}
 \ifx\LILLYxTIKZxenable\undefined
@@ -244,6 +250,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generelle Controller                                                                                                %     %%%% General Controller %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{LILLYxPHILOSOPHER}
 
 \input{\LILLYxPATHxCONTROLLERS/_LILLY_MODE_CONTROLLER}
 \RequirePackage{LILLYxCONTROLLERxLINK}

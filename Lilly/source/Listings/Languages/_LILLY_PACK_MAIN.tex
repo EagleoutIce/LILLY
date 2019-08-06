@@ -36,6 +36,8 @@
 
 %% Die environments wurden bewusst spezifisch definiert und nicht über ein foreach realisiert
 
+\def\LILLYxLISTINGSxFONTSIZE{\normalsize\linespread{1}}
+\def\LILLYxLISTINGSxNUMxFONTSIZE{\small}
 
 \def\lst@PlaceNumber{\makebox[\dimexpr 1em+\lst@numbersep][l]{\normalfont
   \lst@numberstyle{\thelstnumber}}}%
@@ -55,10 +57,10 @@
     alsoletter={@,_},
     comment=[l]{//},
     keywordsprefix={@},
-    basicstyle=\LILLYxlstTypeWriter\color{black},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
+    basicstyle=\LILLYxlstTypeWriter\color{black}\LILLYxLISTINGSxFONTSIZE,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
     extendedchars=true,
-    numberstyle=\small\color{gray},
+    numberstyle=\color{gray}\LILLYxLISTINGSxNUMxFONTSIZE,
     prebreak={\raisebox{0.4\baselineskip}{\rotatebox{270}{\fontsize{4pt}{3pt}\selectfont$\curvearrowright$}}},
     frame=single,
     xleftmargin=15pt,

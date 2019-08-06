@@ -95,11 +95,64 @@
 \DeclareRobustCommand{\sw}[2][Gruppenname]{#2\index{#1!#2}}
 \DeclareRobustCommand{\sr}[3][Gruppenname]{#3\index{#1!#2!#3}}
 
+
+%% definitions
+
+\def\imp{\ensuremath{\prec}}
+\def\<{\ensuremath{\langle}}
+\def\>{\ensuremath{\rangle}}
+\def\mto{\ensuremath{\to}}
+%% Register
+\def\reg#1{\T{#1}}
+
+% registerIndex{2} ? \index{#1!#2}
+
+\gdef\customex#1{\begingroup\scriptsize\textit{#1}\normalsize\endgroup}
+
+\newlength{\askip}\setlength{\askip}{-0.9\baselineskip}
+\newlength{\bskip}\setlength{\bskip}{-0.275\baselineskip}
+\gdef\negaskip{\vspace*{\askip}}
+\gdef\negbskip{\vspace*{\bskip}}
+\gdef\TOPskip{\vspace*{-0.35cm}}
+
+\def\infot#1{\begingroup\tiny\itshape#1\endgroup}
+
+\newenvironment{smalldesc}{%
+\begingroup\negbskip\begin{description}\narrowitems\footnotesize}
+{\negbskip\end{description}\endgroup}
+%% Smaller variant of the ditemize environment
+\newenvironment{smalldite}{%
+\begingroup\negbskip\begin{ditemize}\narrowitems\footnotesize}
+{\negbskip\end{ditemize}\endgroup}
+
+\newlength{\showcaseXwidth}\setlength{\showcaseXwidth}{6cm}
+
+%% Will render a tikzternal as a nice info-box
+\DeclareDocumentCommand{\showcase}{%
+    O{Charcoal}         % Color
+    O{scale=1}          % TikZ-Commands
+    m                   % Name
+    m                   % Description
+    O{}                 % Bonusnote
+    O{}                 % Bottomtag
+}{%
+\begin{tikzternal}[every node/.style={transform shape,#1},#2]
+    \draw[thick,rounded corners=8pt,#1] (0,0.5) rectangle ++(\showcaseXwidth,-3.5);
+    \node[rectangle,fill=white,right] at (0.25cm,0.5) {\bfseries #3};
+    \node[rectangle,fill=white,left] at (\showcaseXwidth-0.25cm,0.5) {#5};
+    \node[below right] at (0.1,0.25) {\parbox[t][3cm]{\showcaseXwidth-0.5cm}{\parbox[t][2.75cm]{\showcaseXwidth-0.5cm}{\small
+        #4
+    }{\relax\hbox{}\hfill\tiny #6}}};
+\end{tikzternal} \tab[0.15cm]
+}
+
 \compileidx
 
 \AtBeginDocument{
     \LILLYxLayoutxRestore
 }
+
+
 
 
 %% TODO: make small arrow in limerence if page breaks
