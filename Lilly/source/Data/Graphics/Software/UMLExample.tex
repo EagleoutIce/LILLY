@@ -4,8 +4,8 @@
     \umlclass[x=0,y=0,name=stud]{Student}{\umlstatic{+ stuierendenzahl : int}\\- name : String\\- matrikelnummer : int\\+ besuchtVorlesungen : String[5]}{Student (name : String, nummer : int)\\getName() : String \\getNummer() : int \\addVorlesung(String name) : void\\ getVorlesungen() : String[5] \\ removeVorlesung(String name) : void }
     \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-3.25,2) -- ++(0,-1.92) node [black,midway, above,rotate=90,yshift=0.75cm] {Attribute};
     \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-3.25,2-1.92) -- ++(0,-2.78) node [black,midway, above,rotate=90,yshift=0.75cm] {Methoden};
-    \node at(0,3) [above] (kln) {Klassenname};
-    \draw[-latex] (kln) -- ++(0,-0.75);
+    \node at(0,3.25) [above] (kln) {Klassenname};
+    \draw[-latex] (kln) -- ++(0,-0.799);
     \node [right] at (3.35,1.82-1.54/2+0.9) {\parbox{9cm}{
         (\textbf{--}) steht für ein \T{private}\\ (\textbf{+}) für ein \T{public}\\
         (\textbf{\#}) für ein \T{protected} Attribut;\\

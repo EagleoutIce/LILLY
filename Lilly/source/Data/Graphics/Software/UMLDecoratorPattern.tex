@@ -1,0 +1,26 @@
+\def\GRAPHICSxUMLDecoratorPattern{\begin{tikzternal}[scale=0.75,every node/.style={transform shape}]
+    \tikzumlset{fill class=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter
+    \umlclass[x=0,y=0,name=concomp]{ConcreteComponent}%
+                    {}%
+                    {+ operation() : void};
+    \umlclass[x=8,y=0,name=decorator]{Decorator}%
+                    {}%
+                    {+ operation() : void};
+    \umlclass[x=5.5,y=-3,name=condecA]{ConcreteDecoratorA}%
+                    {}%
+                    {+ operation() : void\\%
+                     + betterOp(int) : String};
+    \umlclass[x=10.5,y=-3,name=condecB]{ConcreteDecoratorB}%
+                     {amazingAttribute}%
+                     {+ operation() : void\\%
+                      + betterOpHD() : boolean};
+    \umlinterface[x=4,y=3,name=component]{Component}%
+                      {}%
+                      {+ operation() : void};
+    \umluniaggreg[geometry=|-]{Decorator}{Component};
+    \umlimpl[geometry=-|]{ConcreteComponent}{Component};
+    \umlimpl[geometry=-|]{Decorator}{Component};
+    \umlVHVinherit{ConcreteDecoratorA}{Decorator};
+    \umlVHVinherit{ConcreteDecoratorB}{Decorator};
+\end{tikzternal}}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxUMLDecoratorPattern} %% new pattern maybe apply to all?

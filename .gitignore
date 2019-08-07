@@ -52,10 +52,11 @@ test-OUT
 *.idea*
 target
 bin
-**/.idea/workspace.xml 
+**/.idea/workspace.xml
 **/.idea/tasks.xml
 **.classpath
 **workspace.xml
+.aux
 
 
 # Created by https://www.gitignore.io/api/intellij
