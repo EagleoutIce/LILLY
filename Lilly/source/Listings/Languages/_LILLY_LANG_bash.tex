@@ -11,7 +11,7 @@
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     %% numbers=none,           %Zeilennummern
     morekeywords = {bash},
-    morekeywords = [2]{mkdir,texhash,make,apt,>,<,cd,java,git},
+    morekeywords = [2]{mkdir,texhash,make,apt,>,<,cd,java,git,pdflatex},
     morekeywords = [3]{-p, -dir, print, install,-jar,-lilly-path,-l,-m},
     morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake,jake,ghci,ghc,grep,ls,cp,find,man,tail,head,setfacl,getfacl,groups,ls},
     morekeywords = [5]{GUI},
@@ -22,7 +22,7 @@
   {\lstset{language=lBash,#1}}
 {}
 
-\gdef\cbash#1{\LILLYxwriteLst[language=lBash]{#1}}
-\gdef\ibash#1{\lstinputlisting[language=lBash]{#1}}
+
+
 
 \pushList{RegisteredLanguages}{bash/lBash}

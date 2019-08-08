@@ -10,16 +10,16 @@
     morestring=[s]{"}{"},
     morecomment=[s]{<?}{?>},
     morecomment=[s]{!--}{--},
-    alsoletter={:,/},
-    otherkeywords={/>,</,<,>},
+    alsoletter={:,\#,!},
+    otherkeywords={<,>,/},
     %frameround=tttt, %% mag background color nicht
     escapeinside={!*}{*!},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
-    morekeywords = {DOCTYPE,!DOCTYPE,ELEMENT,!ELEMENT,ATTLIST,!ATTLIST,/},
+    morekeywords = {!DOCTYPE,DOCTYPE,!ELEMENT,ELEMENT,!ATTLIST,ATTLIST,/},
     morekeywords = [2]{xml},
-    morekeywords = [3]{SYSTEM,PUBLIC,EMPTY,PCDATA,CDATA},
-    morekeywords = [4]{},
-    morekeywords = [5]{xs:element,xs:list,xs:namespace,xs:attribute,xs:simpleType,xs:minInclusive,xs:maxInclusive,xs:restriction,xs:enumeration,xs:union,xs:sequence,xs:complexType,xmlns,xmlns:xs,xmlns:xsi,xsi:schemaLocation,xs:schema,/xs:element,/xs:namespace,/xs:attribute,/xs:simpleType,/xs:minInclusive,/xs:maxInclusive,/xs:restriction,/xs:enumeration,/xs:union,/xs:sequence,/xs:complexType,/xs:list,/xs:schema,xs:integer,last()},% + xpath
+    morekeywords = [3]{SYSTEM,PUBLIC,EMPTY,\#PCDATA,\#IMPLIED,\#REQUIRED,\#FIXED,ANY},
+    morekeywords = [4]{CDATA,ID,ENTITY,IDREF,IDREFS,NOTATION},
+    morekeywords = [5]{xs:element,xs:list,xs:namespace,xs:attribute,xs:simpleType,xs:minInclusive,xs:maxInclusive,xs:restriction,xs:enumeration,xs:union,xs:sequence,xs:complexType,xmlns,xmlns:xs,xmlns:xsi,xsi:schemaLocation,xs:schema,xs:integer,last()},% + xpath
     morekeywords = [6]{name,maxOccurs,minOccurs,version,encoding,targetNamespace,ref,type,memberTypes,itemType,base,value,default},
 }
 
@@ -27,7 +27,7 @@
 \lstnewenvironment{xml}[1][]
   {\lstset{language=lXml,#1}}
 {}
-\gdef\cxml#1{\LILLYxwriteLst[language=lSql]{#1}}
-\gdef\ixml#1{\lstinputlisting[language=lSql]{#1}}
+
+
 
 \pushList{RegisteredLanguages}{xml/lXml}

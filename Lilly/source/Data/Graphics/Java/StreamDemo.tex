@@ -1,0 +1,13 @@
+\gdef\GRAPHICSxStreamDemo{%
+\begin{tikzternal}[scale=0.75, every node/.style={transform shape},sd/.style={rectangle,draw,minimum width = 1cm, minimum height=0.75cm}, t/.style={rectangle,draw, rounded corners=6pt, minimum width=1cm, minimum height=0.75cm,font=\LILLYxlstTypeWriter}]
+        \draw (-1.25,0) node [t,right,densely dashed] (entry) {\vphantom{Ip}Stream};
+        \draw[-latex] (entry) -- ++(1.25,0) node (filter) [right,t]{\vphantom{Ip}filter};
+        \draw[-latex] (filter) -- ++(1.25,0) node (map) [right,t]{\vphantom{Ip}map};
+        \draw[-latex] (map) -- ++(1.25,0) node (sorted) [right,sd] {\vphantom{Ip}sorted};
+        \draw[-latex] (sorted) -- ++(1.25,0) node[right,t,densely dashed] (collect) {collect};
+        \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (0.6,-0.5) -- ++(5.55,0) node [black,midway, below,yshift=-0.75cm] {\textit{intermediate Operations}};
+        \draw[latex-] (collect) -- ++(0.75,0.55) node[above] {\textit{terminal operation}};
+        \draw[latex-] (sorted) -- ++(-0.5,0.95) node[above] {\textit{stateful immediate operation}};
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxStreamDemo} %% new pattern maybe apply to all?

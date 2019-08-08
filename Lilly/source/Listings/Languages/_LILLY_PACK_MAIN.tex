@@ -36,11 +36,13 @@
 
 %% Die environments wurden bewusst spezifisch definiert und nicht über ein foreach realisiert
 
-\def\LILLYxLISTINGSxFONTSIZE{\normalsize\linespread{1}}
+\def\LILLYxLISTINGSxFONTSIZE{\linespread{1}}
 \def\LILLYxLISTINGSxNUMxFONTSIZE{\small}
 
 \def\lst@PlaceNumber{\makebox[\dimexpr 1em+\lst@numbersep][l]{\normalfont
   \lst@numberstyle{\thelstnumber}}}%
+
+
 
 \lstdefinestyle{MAIN}{
     breaklines=true,
@@ -55,13 +57,14 @@
     keywordstyle = [6]{\itshape}, %% SHELLPRE
     otherkeywords = {},
     alsoletter={@,_},
+    moredelim=**[is][\itshape]{|}{|},
     comment=[l]{//},
     keywordsprefix={@},
     basicstyle=\LILLYxlstTypeWriter\color{black}\LILLYxLISTINGSxFONTSIZE,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
     extendedchars=true,
     numberstyle=\color{gray}\LILLYxLISTINGSxNUMxFONTSIZE,
-    prebreak={\raisebox{0.4\baselineskip}{\rotatebox{270}{\fontsize{4pt}{3pt}\selectfont$\curvearrowright$}}},
+    prebreak={\raisebox{0.35\baselineskip}{\rotatebox{270}{\fontsize{6pt}{6pt}\selectfont$\curvearrowright$}}},
     frame=single,
     xleftmargin=15pt,
     xrightmargin=3pt,
@@ -72,11 +75,11 @@
 }
 
 \lstnewenvironment{lstplain}[1][]
-  {\lstset{xleftmargin=0pt,xrightmargin=0pt,%
+  {\def\lilly@lst@backcol{white}\lstset{xleftmargin=0pt,xrightmargin=0pt,%
   numbers=none,numbersep=0pt,frame=none,%
   rulecolor={},backgroundcolor={} %
   ,#1}}
-{}
+{\def\lilly@lst@backcol{MudWhite}}
 
 \lstnewenvironment{lstnonum}[1][]
   {\lstset{xleftmargin=0pt,xrightmargin=0pt,%
