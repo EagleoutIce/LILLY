@@ -5,6 +5,7 @@
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxCOLOR}
 \RequirePackage{LILLYxENCODING}
+\RequirePackage{LILLyxFONTS}
 
 %%% Die Verwaltung der Listings verläuft auf verschiedene Highlighting -Module welche auch über die Kommandozeile definiert werden können
 
@@ -41,6 +42,54 @@
                     {Ohne gehts nicht}
                     {}{}
 
+%% https://www.ctan.org/pkg/etoolbox
+\LILLYxDemandPackage{etoolbox}{Damit die Befehle robust sind}
+                    {Ohne gehts nicht - leider}
+                    {}{}
+
+%% NOTE: https://ctan.kako-dev.de/macros/latex/contrib/lstaddons/lstautogobble.pdf
+
+%%% mimimi workaround start:
+\makeatletter
+\let\old@lstKV@SwitchCases\lstKV@SwitchCases
+\def\lstKV@SwitchCases#1#2#3{}
+
+%% https://www.ctan.org/pkg/lstlinebgrd
+\LILLYxLoadPackage{lstlinebgrd}{Betta backgroundcolors}
+                    {Nicht schlimm, dann nix bunt :/}{} %% todo: fallbacks
+                    {}{}
+
+%% itsch scho naisch, schankch to: https://tex.stackexchange.com/questions/451532/recent-issues-with-lstlinebgrd-package-with-listings-after-the-latters-updates
+\let\lstKV@SwitchCases\old@lstKV@SwitchCases
+
+\lst@Key{numbers}{none}{%
+    \def\lst@PlaceNumber{\lst@linebgrd}%
+    \lstKV@SwitchCases{#1}%
+    {none:\\%
+     left:\def\lst@PlaceNumber{\llap{\normalfont
+                \lst@numberstyle{\thelstnumber}\kern\lst@numbersep}\lst@linebgrd}\\%
+     right:\def\lst@PlaceNumber{\rlap{\normalfont
+                \kern\linewidth \kern\lst@numbersep
+                \lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
+    }{\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
+\makeatother
+
+\def\lilly@lst@backcol{MudWhite}
+
+% Line Background macro => modified
+\long\def\lst@linebgrd{%
+    \ifx\lst@linebgrdcolor\empty\else
+    \rlap{%
+        \lst@basicstyle
+        \color{\lilly@lst@backcol}%% changed
+        \lst@linebgrdcolor{%
+        \kern-\dimexpr\lst@linebgrdsep\relax%
+        \lst@linebgrdcmd{\lst@linebgrdwidth}{\lst@linebgrdheight}{\lst@linebgrddepth}%
+        }%
+    }%
+    \fi
+}
+
 \RequirePackage{LILLYxLIST}
 
 %% Alle Sprachen müssen sich hier registrieren, solange es nicht implementiert ist,
@@ -53,8 +102,13 @@
 %% '\isLanguageLoaded{cpp/lCpp}' => \true wenn ja, sonst \false
 
 
-%% Jede registrierte Sprache erhält am ende ihr environment, ihren \c-Befehl und ihren \i-Befehl
+%% Jede registrierte Sprache erhält am ende ihr environment, ihren \c-Befehl,\b-Befehl und ihren \i-Befehl
 %% Damit wird redundante Code-Generierung erspahrt.
+
+
+\def\HLError#1{% sloppy
+  \ifnum\value{lstnumber}=#1\color{DebianRed!25}\else\color{\lilly@lst@backcol}\fi
+}
 
 
 %% https://tex.stackexchange.com/questions/34896/coloring -digits -with -the -listings -package/34952#34952
@@ -70,7 +124,7 @@
 }
 \makeatother
 
-%% WS gobble fix for literate replacement  - same code but with switching whitespacefalse to false
+%% WS gobble fix for literate replacement  - same code but with switching whitespace-switch to false
 \makeatletter
 \def\set@char{}
 \def\set@hex{}
@@ -131,8 +185,8 @@
   {:bs:}{{\color{Orchid}\textbackslash}}1 {:bmath:}{{\color{bondiBlue}\$}}1
   {:emath:}{{{\color{bondiBlue}\$}}}1 {:dollar:}{{{\color{bondiBlue}\$\normalcolor}}}1%spaces
   %% brace fix
-  {(}{{(}}1 {)}{{)}}1 {:space:}{{{ }}}1 {:ws:}{{{ }}}1
-  {:float:}{{{\color{bondiBlue}f\normalcolor}}}1 {:exp:}{{{\color{bondiBlue}e\normalcolor}}}1 {:yields:}{{{$\Rightarrow$}}}1%
+  {(}{{(}}1 {)}{{)}}1 {:space:}{{{ }}}1 {:ws:}{{{ }}}1 {:cdots:}{{{$\cdots$}}}1 {:cdot:}{{{$\cdot$}}}1 {:ldots:}{{{\ldots}}}1
+  {:float:}{{{\color{bondiBlue}f\normalcolor}}}1 {:exp:}{{{\color{bondiBlue}e\normalcolor}}}1 {:yields:}{{{$\rightarrow$}}}1%
   {:lan:}{{{$\langle\,$}}}1 {:ran:}{{{$\,\rangle$}}}1
   {:bcmd:}{\color{Orchid}\textbackslash}1 {:ecmd:}{\normalcolor}0
   % {0 }{{{\ProcessDigit{0} }}}2
@@ -164,34 +218,67 @@
 %% Grundlegender Befehl zum Schreiben von Code innerhalb einer zeile, löst nicht die Problematiken wie Sonderzeichen, aber mit irgendwas muss man arbeiten können
 \DeclareRobustCommand{\LILLYxwriteLst}[2][]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite, fill=MudWhite, centered]{\,\vphantom{I}\lstinline[#1]!#2!\,};}}
 
+\def\LillyXlstXsloppy{\makeatletter%
+  \tolerance 9999%
+  \emergencystretch 3em%
+  \hfuzz .5cm
+  \vfuzz\hfuzz\makeatother}
+\def\LillyXlstXfussy{\makeatletter%
+  \emergencystretch 0em
+  \tolerance 200%
+  \hfuzz .1pt
+  \vfuzz\hfuzz\makeatother}
+
+\gdef\LILLYxLSTINLINE#1#2{%
+  \begingroup\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\noexpand\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite, fill=MudWhite, centered]{\!\noexpand\vphantom{I}\lstinline[#1]`#2`\,};}\endgroup%
+}
+\gdef\LILLYxLSTBLANKINLINE#1#2{%
+  \begingroup\,\vphantom{I}\lstinline[#1]!#2!\,\endgroup%
+}
+
+\gdef\LILLYxLSTINPL#1#2{%
+  \begingroup\lstinputlisting[#1]{#2}\endgroup%
+}
 %% Lädt ein entsprechendes Sprachpaket
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_PACK_\LILLYxListingsxPACK}
 
 
 \getRegisteredLanguages%
+\typeout{Start Language Registration}
 \foreach \clang/\llang in \lillyxlist {%
-\ifthenelse{\equal{\clang}{}}{}{
-\ifthenelse{\equal{\llang}{}}{}{
-\long\xdef\lfullexpand{\llang}
-\long\xdef\cfullexpand{\clang}
-%
-% \lstnewenvironment{latex}[1][]
-%  {\lstset{language=lLatex,#1}}
-%  {}
-%\global\expandafter\expandafter\lstnewenvironment{\cfullexpand}[1][]{\expandafter\lstset{language=\lfullexpand,##1}}
+  \ifthenelse{\equal{\clang}{}}{}{
+  \ifthenelse{\equal{\llang}{}}{}{
+  \long\xdef\lfullexpand{\llang}
+  \long\xdef\cfullexpand{\clang}
 
-%%\DeclareRobustCommand{\clatex}[1]{\LILLYxwriteLst[language=lLatex]{#1}}
-%% clatex
-%% extraction doesn't yield the correct language result
-% \expandafter\gdef\csname c\clang\endcsname##1{\expandafter\LILLYxwriteLst[language={\lfullexpand}]{##1}}
-%% ilatex:
-% \expandafter\gdef\csname i\clang\endcsname##1{\expandafter\lstinputlisting[language=\lfullexpand]{##1}}
+  \expandafter\xdef\csname b\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTBLANKINLINE{language=\llang}{##1}}
+  \expandafter\robustify\csname b\clang\endcsname
+  \expandafter\xdef\csname c\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINLINE{language=\llang}{##1}}
+  \expandafter\robustify\csname c\clang\endcsname
+  \expandafter\xdef\csname i\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINPL{language=\llang}{##1}}
+  \expandafter\robustify\csname i\clang\endcsname
+  %
+  % \lstnewenvironment{latex}[1][]
+  %  {\lstset{language=lLatex,#1}}
+  %  {}
+  %\global\expandafter\expandafter\lstnewenvironment{\cfullexpand}[1][]{\expandafter\lstset{language=\lfullexpand,##1}}
 
-%% run command?
+  %%\DeclareRobustCommand{\clatex}[1]{\LILLYxwriteLst[language=lLatex]{#1}}
+  %% clatex
+  %% extraction doesn't yield the correct language result
+  % \expandafter\gdef\csname c\clang\endcsname##1{\expandafter\LILLYxwriteLst[language={\lfullexpand}]{##1}}
+  %% ilatex:
+  % \expandafter\gdef\csname i\clang\endcsname##1{\expandafter\lstinputlisting[language=\lfullexpand]{##1}}
 
-\typeout{Registered: \clang (\llang)}
+  %% run command?
+
+  \typeout{Registered: \clang (\llang)}
 }}
 }
+
+%%Embetter Break Control:
+\LillyXlstXsloppy
+
 
 \newcommand{\isLanguageLoaded}[1]{
   \containsList{RegisteredLanguages}{#1}

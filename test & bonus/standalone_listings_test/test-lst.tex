@@ -1,0 +1,75 @@
+\documentclass{article}
+
+\usepackage{LILLYxLISTINGS}
+\usepackage{LILLYxCONTROLLERxBOX}
+
+\begin{document}
+
+\begin{bemerkung}[Kompilierung]
+    Dieses Dokument wurde kompiliert durch: \begin{center}
+        \bbash{pdflatex test-lst.tex}
+    \end{center}
+\end{bemerkung}
+
+\section{Einfache Benutzung zum Code-Highlighting, etlicher Sprachen}
+Java:
+\begin{java}
+public static void main(String[] args) {
+    int i = 42*3;
+    System.out.println("Hallo Welt");
+}
+\end{java}
+C++:
+\begin{cpp}
+#include <iostream>
+public static int main(int argc, char** argv) {
+    std::cout << "Hallo Welt" << std::endl;
+    std::cout << "Die Äntwört ist: " << 21*2+14-(2*7) << std::endl;
+}
+\end{cpp}
+Die Existenz einer Sprache kann dank \LILLYxNOTExLibrary{LILLYxLIST} leicht geprüft werden:
+\begin{latex}
+\isLanguageLoaded{java/lJava}   % :yields: 'TRUE' (\true)
+\isLanguageLoaded{super/lSuper} % :yields: 'FALSE' (\false)
+\end{latex}
+\begin{bemerkung}[Notation]
+    Soll dies auf nur '\verb|java|' geändert werden?
+\end{bemerkung}
+Alle geladenen Sprachen finden sich in der Liste \verb|RegisteredLanguages|.
+\section{Besonderheiten}
+Durch die Syntax '\verb|:<Keyword>:|' können Sonderzeichen und andere tolle Features in listings eingeführt werden, so wurden die oberen Pfeile durch '\verb|:yields:|' erzeugt. Weiter interessant sind vielleicht noch '\verb|:lan:|' (left angle: '\bjava{:lan:}') und '\verb|:ran:|' (right angle: '\bjava{:ran:}')
+
+\section{Befehle}
+Für jede Sprache wie '\verb|Java|' existiert ein entsprechend kleingeschriebenes Environment\footnote{C++ ist 'cpp'} was das Highlighting übernimmt (hier: '\verb|java|'), soll die Sprache ohne Firlefanz gesetzt werden, so existiert \verb|lstplain|: \begin{latex}
+\begin{lstplain}[language=lJava]
+public static void main(String[] args) {
+    int i = 42*3;
+    System.out.println("Hallo Welt");
+}
+\end{lstplain}
+\end{latex}
+Ergibt:
+\begin{lstplain}[language=lJava]
+public static void main(String[] args) {
+    int i = 42*3;
+    System.out.println("Hallo Welt");
+}
+\end{lstplain}
+Für das inline-Code-Highlighting, existieren für jede Sprache \verb|c<Sprache>| (code) und \verb|b<Sprache>| (blank):
+\begin{latex}
+\cpython{print('hallo')}, \bpython{print('hallo')}
+\end{latex}
+\cpython{print("hallo")}, \bpython{print('hallo')}\newline
+Ersterer kann aufgrund der Implementation des Hintegrund nicht umgebrochen werden, Listings versucht sich allerdings in einem normalen Maße der bad-paragraph (überlauf Problematik) anzunehmen. Letzterer kann ganz normal umgebrochen werden. Hier ein Beispiel:\newline
+\cpython{print('hallo welt, na wie geht es dir? dies ist sehr langer Text, ein bisschen unangenehm oder? aber irgendwie muss ich die Zeile sprengen tut mir wirklich leid.')}\newline
+Dahingegegen:\newline
+\bpython{print('hallo welt, na wie geht es dir? dies ist sehr langer Text, ein bisschen unangenehm oder? aber irgendwie muss ich die Zeile sprengen tut mir wirklich leid.')}\medskip\newline
+Weiter existiert noch '\verb|i<Sprache>|', diesem Befehl kann eine Datei übergeben werden der diese dann in der jeweiligen Sprache hervorhebt. Beispiel mit diesem Dokument:
+\begin{latex}
+\ilatex{test-lst.tex}
+\end{latex}
+Da es sich hierbei auch um das Dokument handelt, findet sich das Ergebnis auf der nächsten Seite.
+\clearpage
+\section{Dokumentcode}
+\ilatex{test-lst.tex}
+\end{document}
