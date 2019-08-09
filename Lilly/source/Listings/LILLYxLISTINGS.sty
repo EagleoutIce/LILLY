@@ -5,7 +5,7 @@
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxCOLOR}
 \RequirePackage{LILLYxENCODING}
-\RequirePackage{LILLyxFONTS}
+\RequirePackage{LILLYxFONTS}
 
 %%% Die Verwaltung der Listings verläuft auf verschiedene Highlighting -Module welche auch über die Kommandozeile definiert werden können
 
@@ -71,7 +71,7 @@
      right:\def\lst@PlaceNumber{\rlap{\normalfont
                 \kern\linewidth \kern\lst@numbersep
                 \lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
-    }{\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
+    }{}}%\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
 \makeatother
 
 \def\lilly@lst@backcol{MudWhite}
