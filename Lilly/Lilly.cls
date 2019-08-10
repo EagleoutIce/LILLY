@@ -85,6 +85,8 @@
 %% TODO  MOVE PACKAGE
 \RequirePackage{colortbl}
 \RequirePackage{\LILLYxPATHxDATA/Semester/1/EIDI/tikz-uml}
+\tikzumlset{fill class=MudWhite, fill state=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter
+
 
 
 %DEFAULT: \documentclass[a4paper,11pt,oneside]{scrbook}

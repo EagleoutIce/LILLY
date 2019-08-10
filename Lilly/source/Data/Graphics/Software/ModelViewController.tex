@@ -1,0 +1,21 @@
+\gdef\GRAPHICSxModelViewController{%
+\begin{tikzternal}[every node/.style={font=\sffamily},%
+    rtmp/.style={midway,centered, rectangle, minimum width=2cm}]
+\draw (0,0) rectangle ++ (2,0.5) node [rtmp] (c) {Controller};
+
+\draw (-3,-1.5) rectangle ++ (2,0.5) node [rtmp] (m) {Model};
+\draw (3,-1.5) rectangle ++ (2,0.5) node [rtmp] (v) {View};
+
+\begin{scope}[every path/.style={-latex}]
+\draw (c) -- (m); \draw (c) -- (v); \draw (v.188) -- (m.-8);
+\draw[densely dashed] (m.8) -- (v.-188);
+\draw[densely dashed] (v) to[out=70, in=0] (c);
+\end{scope}
+\node[below right] at(5.75,0.25) {\parbox{3.75cm}{\scriptsize%
+\tikz[baseline=-0.6ex] {\draw[latex-] (0,0) -- ++(0.75cm,0);} direkte Verbindung \\
+\strut{}\qquad (Referenz) \\%
+\tikz[baseline=-0.6ex] {\draw[latex-,densely dashed] (0,0) -- ++(0.75cm,0);} indirekte Verbindung \\
+\strut{}\qquad (z.B: durch Observer)
+}};
+\end{tikzternal}}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxModelViewController} 

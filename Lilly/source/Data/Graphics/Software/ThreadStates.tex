@@ -1,0 +1,38 @@
+\gdef\GRAPHICSxThreadStates{%
+\begin{tikzternal}[every node/.style={font=\sffamily}]
+    \begin{umlstate}[x=0,y=0]{Runnable}
+        \umlstateinitial[x=0,y=2,width=2ex,name=Binit] 
+        \umlbasicstate[x=0, name=re]{Ready}
+        \umlbasicstate[x=6, name=ru]{Running} 
+        \umltrans{Binit}{re};
+
+        \draw[->,thick] (re.20) -- (ru.160) node[midway,above,sloped] {\scriptsize CPU zugewisen};
+        \draw[<-,thick] (re.-20) -- (ru.-160) node[midway,below,sloped] {\scriptsize CPU entzogen};
+    \end{umlstate}
+
+    \umlbasicstate[x=12, y=0.8, name=te]{Terminated}
+    \umlbasicstate[x=-6, y=0.8, name=bl]{Blocking}
+
+    \umlstateinitial[x=0,y=6,width=2ex,name=BinitMain] 
+    \umlbasicstate[x=3, y=5, name=ne]{New}
+
+    \umltrans[arg={start()},pos=0.5]{ne}{Runnable};
+
+    \umlbasicstate[x=10, y=-4, name=tw]{Timed\_Waiting}
+    \umlbasicstate[x=-4, y=-4, name=wa]{Waiting}
+
+    \umltrans{BinitMain}{ne};
+    \node[above,yshift=0.25cm] at(BinitMain) {Thread konstruiert};
+
+    \draw[->,thick] (Runnable) -- ++(7.8,0) node[midway,above,sloped] {\scriptsize Thread beendet};
+    \draw[->,thick] (bl.20) -- ++(3.4,0) node[midway,above,sloped] {\scriptsize Warten vor Monitor};
+    \draw[<-,thick] (bl.-20) -- ++(3.4,0) node[midway,above,sloped] {\scriptsize Monitor betreten};
+
+
+    \draw[<-,thick] (wa) -- ++(2.5,3) node[above,sloped,midway] {\scriptsize join(), wait()};
+    \draw[->,thick,rounded corners=6pt] (wa) -| ++(3,2.7);
+
+    \draw[<-,thick] (tw) -- ++(-2.5,3) node[above,sloped,midway] {\scriptsize join(ms), wait(ms)} node[below,sloped,midway] {\scriptsize sleep(ms)};
+    \draw[->,thick,rounded corners=6pt] (tw) -| ++(-3,2.7);
+\end{tikzternal}}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxThreadStates} 

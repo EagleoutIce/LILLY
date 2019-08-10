@@ -89,6 +89,8 @@ public class JakeCompile {
             }
         }
 
+        // TODO: show total errors
+
         // System.out.println(CoreSettings.requestValue("S_FILE"));
         Settings update_config = NameMaps.whatTrigger(
                 NameMaps.getNameMaps(CoreSettings.requestValue("S_GEPARDRULES_PATH")),
