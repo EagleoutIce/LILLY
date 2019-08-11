@@ -1,19 +1,24 @@
 import glob
 
 all = glob.glob("**/*.tex", recursive=True)
+all.sort()
 
+prefix = ""
+oprefix = ""
 with open("./all.tex",'w') as out:
     out.write("\\documentclass[PLAIN]{Lilly}\n");
-    out.write("\\begin{document}\n");
-    out.write("\\begin{latex}\n%%Einbindung erfolgt über:\n\\getGraphics{:lan:Pfad:ran:}\n \\end{latex}\n")
+    out.write("\\begin{document}\n\\pagenumbering{arabic}\n\\tableofcontents \\clearpage \n");
+    out.write("\\begin{lstplain}[language=lLatex]\n%%Einbindung erfolgt über:\n\\getGraphics{:lan:Pfad:ran:}\n \\end{lstplain}\n")
     out.write("\\begin{tabularx}{\\linewidth}{^m{0.5\\linewidth}^>{\\centering\\arraybackslash}X+}\n\\toprule\\headerrow Pfad & Ergebnis\\\\\n\\midrule\n")
     for x in all:
         if x != "all.tex" and "Eigene" not in x:
-            if "DreiSchichten" in x:
-                out.write("\\verb|{0}| & \\getGraphics[0.3\linewidth]{{{0}}}\\\\\n\\midrule".format(x))
-            else:
-                out.write("\\verb|{0}| & \\getGraphics{{{0}}}\\\\\n\\midrule".format(x))
-    out.write("\\bottomrule\n\\end{tabularx}\n\\clearpage\n Code für diese Datei:\n \\begingroup\\scriptsize\\ilatex{./all.tex}\\endgroup")
+            prefix = x[0:x.index("/")]
+            if prefix != oprefix:
+                out.write("\n\\addcontentsline{{toc}}{{chapter}}{{{0}}}\n".format(prefix))
+                oprefix = prefix
+            x = x.replace(".tex","")
+            out.write("\\addcontentsline{{toc}}{{section}}{{{1}}}\\verb|{0}| & \\getGraphics{{{0}}}\\\\\n\\midrule ".format(x,x[x.index("/")+1:]))
+    out.write("\\bottomrule\n\\end{tabularx}\n")
     out.write("\\end{document}")
 
 import os
