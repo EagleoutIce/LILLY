@@ -17,7 +17,6 @@
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxLIST}
 \RequirePackage{LILLYxRANDOM}
-\RequirePackage{LILLYxRANDOMxFLAVOURTEXT}
 
 %\LILLY%LoadPackage{lipsum42}{Gutes Paket}{MAUMAUMAU}{\def\MauMau{Hauihao}}
 %\LILLY%DemandPackage{lipsum42}{Super Paket}{HAUHAUHAU}{\def\MauMau{Raurau}}
@@ -157,6 +156,8 @@
                     {}{} %% keine Argumente
 
 \RequirePackage{LILLYxCOMMAND}
+
+\RequirePackage{LILLYxRANDOMxFLAVOURTEXT}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Schriftarten                                                                                                        %     %%%% FONTS %%%%
