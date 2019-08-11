@@ -1,0 +1,16 @@
+\gdef\GRAPHICSxDreixTorxRegister{%
+\begin{tikzternal}[scale=0.75, every node/.style={transform shape}]
+        \draw (-1.5,-0.25) -- ++(2,0);
+        \draw (-1.5,-1.75) -- ++(2,0);
+        \foreach \x in {-3,...,-1} {
+            \draw[-latex] (\x/2+0.5+\x/5+0.25,1) -- ++(0,-0.75);
+            \draw[fill=white] (\x/2+0.5+\x/5,0) -- ++(0.5,0.5) -- ++(0,-3) -- ++(-0.5,0.5) --cycle;
+        }
+        \foreach \y in {0,...,5}{
+            \draw (0.5,-\y/2) rectangle ++(3,0.5);
+        }
+        \draw (1,-2.5) -- ++(0,-0.5);
+        \draw (3,-2.5) -- ++(0,-0.5);
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxDreixTorxRegister} %% new pattern maybe apply to all?

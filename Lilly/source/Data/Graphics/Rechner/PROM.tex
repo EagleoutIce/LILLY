@@ -1,0 +1,19 @@
+\gdef\GRAPHICSxPROM{%
+\begin{tikzternal}[scale=0.65, every node/.style={transform shape}]
+        \draw (0,0) -- ++(1,1) -- ++(0,-5) -- ++(-1,1) --cycle  node[midway, rotate = 90, below] {Dekodierer};
+        \draw[latex-] (0,-1.5) -- ++(-0.5,0) node[rotate=90,above] {\footnotesize 1. Adresse};
+        \foreach\x in {1,4.5,8}{
+            \foreach \y in {-0.5,0,...,3.5}{
+                \draw (\x,-\y) -- ++(0.5,0);
+            }
+            \draw (\x,1)++(0.5,0) rectangle ++(3,-5) node [centered, midway] {Speicherzellen};
+            \foreach \i in {2,2.5,...,4} {
+                \draw (\i+\x-1,-4) --  ++(0,-0.5);
+            }
+        }
+        \draw (1.5,-4.5) -- ++(10,0) -- ++(-1,-1) -- ++(-8,0)  node[midway, above] {\text{Multiplexer}} --cycle;
+        \draw (6.5,-5.5) -- ++(0,-0.5)++(0,-1pt) circle (1pt);
+        \draw[latex-] (2,-5.0) -- ++(-0.5,0) node [above, rotate=90] {\footnotesize 2. Adresse};
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxPROM} %% new pattern maybe apply to all?

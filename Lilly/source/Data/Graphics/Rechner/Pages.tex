@@ -1,0 +1,40 @@
+\gdef\GRAPHICSxPages{%
+\begin{tikzternal}
+    \fill[purple,opacity=0.2] (4.5,5) rectangle ++(2,-1);
+    \fill[tealblue,opacity=0.2] (4.5,4) rectangle ++(2,-1.5);
+    \fill[dgold,opacity=0.2] (4.5,2.5) rectangle ++(2,-0.5);
+    \fill[purple,opacity=0.2] (4.5,2) rectangle ++(2,-0.5);
+    \fill[dgold,opacity=0.2] (4.5,1.5) rectangle ++(2,-0.5);
+    \fill[limegreen,opacity=0.2] (4.5,1) rectangle ++(2,-0.5);
+    \fill[purple,opacity=0.2] (4.5,0.5) rectangle ++(2,-0.5);
+
+    \fill[dgold,opacity=0.1] (0,5) rectangle ++(2,-1);
+    \fill[limegreen,opacity=0.1] (0,4) rectangle ++(2,-0.5);
+    \fill[purple,opacity=0.1] (0,3.5) rectangle ++(2,-2);
+    \fill[tealblue,opacity=0.1] (0,1.5) rectangle ++(2,-1.5);
+
+    \foreach \y in {4.5,4,...,0.5} {
+        \draw[densely dashed] (4.5,\y) -- ++(2,0);
+        \draw[densely dashed] (0,\y) -- ++(2,0);
+
+    }
+    \draw (0,0) rectangle ++(2,5);
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (0,0) -- ++(2,0) node [black,midway, below,yshift=-0.5cm] {Heile Welt};
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (2,0) -- ++(2.5,0) node [black,midway, below,yshift=-0.5cm] {MMU};
+
+
+    \draw[thick,dgold] (0,5) rectangle ++(2,-1) node[midway,centered] {1};
+    \draw[thick,limegreen] (0,4) rectangle ++(2,-0.5) node[midway,centered] {2};
+    \draw[thick,purple] (0,3.5) rectangle ++(2,-2) node[midway,centered] {3};
+    \draw[thick,tealblue] (0,1.5) rectangle ++(2,-1.5) node[midway,centered] {4};
+
+
+    \draw (4.5,0) rectangle ++(2,5);
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (4.5,0) -- ++(2,0) node [black,midway, below,yshift=-0.5cm] {Realität};
+
+    \foreach \i/\o/\c in {4.75/1.25/dgold, 4.25/2.25/dgold, 3.75/0.75/limegreen, 3.25/4.75/purple, 2.75/4.25/purple, 2.25/0.25/purple, 1.75/1.75/purple, 1.25/2.75/tealblue, 0.75/3.25/tealblue, 0.25/3.75/tealblue} {
+        \draw[-latex,\c] (2,\i) -- (4.5,\o);
+    }
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxPages} %% new pattern maybe apply to all?

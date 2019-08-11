@@ -1,0 +1,16 @@
+\gdef\GRAPHICSxMuxxShannon{%
+\begin{tikzternal}[scale=0.8, every node/.style={transform shape}]
+       \draw (0,0) -- ++(1.5,-0.75) -- ++(0,-3) -- ++(-1.5,-0.75) -- cycle;
+       \node[right] at(0,-0.5) {\tiny 000}; \draw (0,-0.5) -- ++(-1,0) node[left] {\small \(f(0,0,0)\)};
+       \node[right] at(0,-0.5-2/3) {\tiny 001}; \draw (0,-0.5-2/3) -- ++(-1,0) node[left] {\small \(f(0,0,1)\)};
+       \node[right] at(0,-4+2/3) {\tiny 110}; \draw (0,-4+2/3) -- ++(-1,0) node[left] {\small \(f(1,1,0)\)};
+       \node[right] at(0,-4) {\tiny 111}; \draw (0,-4) -- ++(-1,0) node[left] {\small \(f(1,1,1)\)};
+       \draw (1.5,-2.25) -- ++(1,0) node[right] {\small \(f(x_1,x_2,x_3)\)};
+       \draw (-1,-2.25) node[left] {\small \(\vdots\tab[0.52cm]\)};
+       \draw (0,-2.25) node[right] {\tiny \(\hphantom{0}\vdots\)};
+       \draw[-latex] (1/3-0.15,-4.75) node[below] {\small \(x_1\)} -- ++(0,0.35);
+       \draw[-latex] (2/3+0.075,-4.75) node[below] {\small \(x_2\)} -- ++(0,0.63);
+       \draw[-latex] (1+0.3,-4.75) node[below] {\small \(x_3\)} -- ++(0,0.905);
+   \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxMuxxShannon} %% new pattern maybe apply to all?
