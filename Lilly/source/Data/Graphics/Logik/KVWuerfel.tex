@@ -1,0 +1,59 @@
+\gdef\GRAPHICSxKVxWuerfel{%
+\begin{tikzternal}[scale=1, every node/.style={transform shape}]
+        \tikzstyle{dot}=[circle,inner sep = 1.2pt,draw]
+        \tikzstyle{b dot}=[circle,inner sep = 1.2pt,draw, thin]
+        \tikzstyle{lb dot}=[circle,inner sep = 1.2pt, draw,thin, fill=limegreen!50]
+        \tikzstyle{l dot}=[circle,inner sep = 1.2pt,draw, fill=limegreen!50]
+        \tikzstyle{tl dot}=[circle,inner sep = 1.2pt, draw, color=tealblue, fill=limegreen!50]
+
+        \tikzstyle{edge}=[]
+        \tikzstyle{o edge}=[color=mint,thick]
+        \tikzstyle{t edge}=[color=tealblue,thick]
+        \tikzstyle{b edge}=[thin, densely dashed]
+        \rotateRPY{0}{4}{-1.3}
+        \begin{scope}[RPY]
+
+        \node[b dot]  (a1)  at (0,0,0) {};
+        \node[dot]    (b1)  at (0,0,3) {};
+        \node[l dot]   (c1)  at (3,0,3) {};
+        \node[l dot]   (d1)  at (3,0,0) {};
+        \node[b dot]  (e1)  at (0,3,0) {};
+        \node[l dot]   (f1)  at (3,3,0) {};
+        \node[tl dot]    (g1)  at (0,3,3) {};
+        \node[tl dot]    (h1)  at (3,3,3) {};
+
+        \node[b dot]  (a2)  at (1,1,1) {};
+        \node[dot]   (b2)  at (1,1,2) {};
+        \node[l dot]   (c2)  at (2,1,2) {};
+        \node[l dot]    (d2)  at (2,1,1) {};
+        \node[b dot]  (e2)  at (1,2,1) {};
+        \node[l dot]    (f2)  at (2,2,1) {};
+        \node[tl dot]    (g2)  at (1,2,2) {};
+        \node[tl dot]    (h2)  at (2,2,2) {};
+        %\foreach \x in {1,2}{
+        %    \draw[edge] (g\x) -- (b\x) -- (c\x) -- (d\x) -- (f\x) -- (h\x) -- (g\x) (c\x) -- (h\x);
+        %    \draw[b edge] (d\x) -- (a\x) -- (b\x) (a\x) -- (e\x) -- (g\x) (e\x) -- (f\x);
+        %}
+        %\foreach \alph in {b,c,d,f,g,h} {
+        %    \draw[edge] (\alph2) -- (\alph1);
+        %}
+        %\foreach \alph in {a,e} {
+        %    \draw[b edge] (\alph2) -- (\alph1);
+        %}
+        \draw [edge] (b1) -- (b2);
+        \draw [b edge] (a1) -- (a2) (e1) -- (e2);
+        \foreach \x in {1,2}{
+            \draw[o edge] (c\x) -- (d\x) -- (f\x) -- (h\x) -- (c\x);
+            \draw[b edge] (d\x) -- (a\x) -- (b\x) (a\x) -- (e\x) -- (g\x) (e\x) -- (f\x);
+            \draw[edge] (g\x) -- (b\x) -- (c\x);
+        }
+
+        \foreach \x in {c,d,f,h}{
+            \draw[o edge] (\x1) -- (\x2);
+        }
+        \draw[t edge] (g1) --  (h1);
+        \draw [t edge] (g1) -- (g2) -- (h2);
+        \draw [t edge, densely dashed] (h2) -- (h1);
+        \end{scope}
+    \end{tikzternal}}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxKVxWuerfel} %% new pattern maybe apply to all?

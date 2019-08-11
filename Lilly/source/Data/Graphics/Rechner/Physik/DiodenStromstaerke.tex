@@ -1,0 +1,13 @@
+\gdef\GRAPHICSxDiodenxStromstaerke{%
+\begin{tikzternal}[scale=0.45, every node/.style={transform shape}]
+        \draw[help lines, color=gray!30, densely dashed] (-4.9,-4.9) grid (4.9,4.9);
+            \draw[-latex,thick] (-5,0)--(5,0) node[right]{$U$};
+            \draw[-latex,thick] (0,-5)--(0,5) node[above]{$I$};
+            \draw[very thick, scale=1,domain=0:1.19,smooth,variable=\x,candypink] plot ({\x},{\x*\x*\x*\x*\x*\x*\x*\x*\x});
+            \draw[very thick, color=candypink] (0,0) -- (-2,0);
+            \draw[very thick, scale=1,domain=1.2:3,smooth,variable=\x,candypink] plot ({\x-5},{-1.5*(3-\x)*(3-\x)});
+            \draw (0.63,0.2) -- ++ (0,-0.4) node [below] {\large 0.7 ev};
+            \node[above, candypink] at(2.5,5/4) {\(g\)};
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxDiodenxStromstaerke} %% new pattern maybe apply to all?

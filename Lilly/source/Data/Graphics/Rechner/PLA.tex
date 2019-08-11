@@ -1,0 +1,12 @@
+\gdef\GRAPHICSxPLA{%
+\begin{tikzternal}[scale=0.8,every node/.style={transform shape}]
+        \foreach \x in {1,...,7}{
+            \draw (\x/4,2) --(\x/4,2.4); \draw (\x/4+2.5,0) --(\x/4+2.5,-.4); %|
+            \draw (2,\x/4) -- (2.5,\x/4); %-
+        }
+        \draw[rounded corners = 1pt,color=purple,thick] (0,0) rectangle ++(2,2);
+        \draw[rounded corners = 1pt,color=purple,thick] (2.5,0) rectangle ++(2,2);
+        \node [color=purple,thick] at(1,1) {AND}; \node [color=purple,thick] at(3.5,1) {OR};
+    \end{tikzternal} 
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxPLA} %% new pattern maybe apply to all?

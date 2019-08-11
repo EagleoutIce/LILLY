@@ -1,0 +1,18 @@
+\gdef\GRAPHICSxMetastabil{%
+\begin{tikzternal}[scale=2]
+    \draw[-latex] (-0.1,0) -- ++(1.9,0) node[above] {\tiny \(U_{\overline{Q}}\)};
+    \draw[-latex] (0,-0.1) -- ++(0,1.4) node[right] {\tiny \(U_Q\)};
+    \draw[domain=-1:4.5,smooth,scale=0.25,variable=\x,gray,thin] plot ({\x+1},{-4.2*(e^((3*\x-6)))/(e^(3*\x-6)+1)+4.2}) -- ++(0.8,0);
+    \draw[domain=0:4,smooth,scale=0.25,variable=\x,gray,thin] (0,4) -- ++(0,0.2) plot ({-4.215*(e^((3*\x-6)))/(e^(3*\x-6)+1)*1.498+6.3},{\x});
+    \draw (.755,.505) circle (0.05);
+    \node at(1,0.75) {\begin{tikzternal}[scale=0.25]
+        \draw (0,0) circle (1);%😈
+        \fill[color=black] (-0.5,0.05) circle (0.2) (0.5,0.05) circle (0.2);
+        \draw (-0.5,-0.4) to[bend right] ++(1,0);
+        \draw (0.2,0.06) -- ++(0.4,0.3) (-0.2,0.06) -- ++(-0.4,0.3);
+        \filldraw (0.7,0.7) -- ++(0.2,0.6) -- ++(-0.5,-0.4) -- cycle;
+        \filldraw (-0.7,0.7) -- ++(-0.2,0.6) -- ++(0.5,-0.4) -- cycle;
+    \end{tikzternal}};
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxMetastabil} %% new pattern maybe apply to all?

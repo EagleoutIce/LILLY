@@ -1,0 +1,13 @@
+\gdef\GRAPHICSxShiftregister{%
+\begin{tikzternal}[scale=0.75,every node/.style={transform shape}]
+            \draw (1,-1.4) rectangle ++(1,1) node[midway,centered] {\Large 1};
+            \foreach \y in {1,...,4}{
+                \draw[-latex] (2,\y-0.5) -- ++(1,0);
+                \draw[latex-latex] (1.5,\y-1.4) -- ++(0,0.8);
+            \foreach \x in {1,3,4,5,6}{
+                \draw (\x,\y) rectangle ++(1,-1);
+            }
+        }
+        \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxShiftregister} %% new pattern maybe apply to all?

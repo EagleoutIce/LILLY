@@ -1,0 +1,72 @@
+\gdef\GRAPHICSxPLAxZuxAmpel{%
+\begin{tikzternal}[scale=0.7, every node/.style={transform shape}]
+    \foreach \x/\xi/\xii in {0/7/6,1/5/4,2/3/2,3/1/0}{
+        \draw (0,1.5*\x) -- ++(6,0) ++(1,0) -- ++(9.5,0);
+        \draw (0,1.5*\x+0.5) -- ++(6,0) ++(1,0) -- ++(9.5,0);
+        \node at(0,1.5*\x) [left] (z\x) {\(\delta_{\xi}\)};
+        \node at(0,1.5*\x+0.5) [left] (z\x) {\(\delta_{\xii}\)};
+    }
+    \draw (0.5,6) node[above] {\tiny \( h_0\)} -- ++(0,-7.5);
+    \bigRing{(0.5,-0.75)}; \ring{(1,-0.25)};
+    \draw (0.5,-0.75) -| ++(0.5,0.25) ++(-0.125,0) rectangle ++(0.25,0.25) node[midway, centered] {\tiny 1};
+    \draw[densely dashed] (1,-0.25) -- ++(0,6.25);
+    \node at(1,-0.75) [below,densely dashed] {\tiny \( \T{T} = 0\)};
+    \foreach \x in {0,...,3}{
+        \crossAT{(0.5,1.5*\x)}; \crossAT{(1,1.5*\x+0.5)};
+    }
+    \foreach \x in {0,1.5} {
+        \draw[ ] (\x+ 3,-0.5) -- ++(0,6.25);
+        \draw[densely dashed] (\x + 3.5,-0.5) -- ++ (0,6.25);
+        \draw (\x+3-0.15,-1.3) rectangle ++(0.8,0.8);
+        \filldraw (\x+3+0.65,-0.5)++(-0.3,-0.3) rectangle ++(0.3,0.3);
+        \node at(\x+2.987,-1.19)[rotate=90] {\(\rhd\)};
+    }
+    \foreach \x/\xla in {-3/{\(z_0'\)},-2/{\(z_1'\)},0.8/{\(t_2\)},1.8/{\(t_1\)},2.8/{\(t_0\)},4/{\(c_1\)},5/{\(c_0\)},8/{\ampelG},9/{\ampelY},10/{\ampelR},12/{\ampelG},13/{\ampelY},14/{\ampelR}} {
+        \draw[ ] (\x/2+ 9,-0.5) -- ++(0,6.25)++(-0.035,0) node[above] {\tiny \xla};
+    }
+    \draw (-3/2+9,0) -- ++(0,-1.55) -- ++(-4.0,0) -- ++(0,0.25)
+          (-2/2+9,0) -- ++(0,-2) -- ++(-3.0,0) -- ++(0,0.7);
+
+    \node[above] at(7.8,6.2) {Z'}; \node[above] at(10.125,6.2) {\T{T}}; \node[above] at(13.5,6.2) {NS}; \node[above] at(15.5,6.2) {WO};
+    \draw (6,-0.5) rectangle ++(1,6) node [midway, centered] {\Large \(\rhd\)};
+
+    % \crossAT{(3,5-\y/2-2)};
+    \foreach \x/\y in {5/5,4.5/4.5,4.5/3.5,5/3,5/2,4.5/1.5,4.5/0.5,5/0,3/3,3/2,3/1.5,3/0.5,3.5/0,3.5/3.5,3.5/4.5,3.5/5}{
+        \crossAT{(\x,\y)};
+    }
+
+    %\foreach \y in {0,1,6,7}{
+    %    \crossAT{(5,5-\y/2)}; \crossAT{(4.5,5-\y/2-1.5)};
+    %}
+    \draw (4,6.2) node [above] {Z} ++(1-0.25,-0.2) node {\tiny \(z_1\)} ++(-1.5,0)  node {\tiny \(z_0\)};
+    \draw (2.5,-2) node[left] {\tiny \(\langle CLK \rangle\)} to[o-] ++(2,0);
+    \bigRing{(2.98,-2)}; \bigRing{(4.48,-2)};
+    \draw(2.98,-2) -- ++(0,0.7) (4.48,-2) -- ++(0,0.7);
+    \draw (9.08,0.375-1.25) node [left] {\tiny \(\langle \overline{CLK} \rangle\)};
+
+    \draw (9.05,-1.25) rectangle ++(1.7,0.75) node[midway,centered] {Zähler} rectangle ++(0.5,-0.75) node[midway,centered] {L} rectangle ++(0.5,0.75) node[midway,centered] {\raisebox{-0.28cm}{\(-\)}};
+
+    \foreach \x/\y in {8/5,8/4.5,7.5/3.5,7.5/3,7.5/2,7.5/1.5,8/2,8/1.5, %folgezustand
+    13/5,13/4.5,13.5/3.5, 13.5/3, 14/2, 14/1.5, 14/0.5,14/0, 13.5/0.5,13.5/0, % NS
+    16/5,16/4.5,15.5/3.5, 15.5/3,16/3.5,16/3,15/2,15/1.5, 15.5/0.5,15.5/0, %WO
+    9.4/5,9.9/5,10.4/5,11/5,
+                       11.5/4.5,
+          9.9/3.5,       11/3.5,
+                       11.5/3,
+    9.4/2,9.9/2,10.4/2,11/2,
+                     11.5/1.5,
+        9.9/0.5,       11/0.5,
+        11.5/0%Zähler
+    }{
+        \circAT{(\x,\y)};
+    }
+
+    \foreach \x in {1,2,3}{
+        \draw (\x/2+8.9,-1.25) -- ++(0,-0.2);
+    }
+
+    \draw (0.3+8.9,-1.45) rectangle ++(1.4,-0.4) node[midway,centered] {\(\geq 1\) } (9.9,-1.85) -- ++(0,-0.75) -| ++(-9.4,1.1);
+    \node at(0,-2.7) {};
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxPLAxZuxAmpel} %% new pattern maybe apply to all?
