@@ -12,18 +12,20 @@ group_skip "  %\n  \\indexspace\n  %\n"numhead_positive "Numbers"
 numhead_negative "Numbers"
 symhead_positive "\\small Ä's Ö's Ü's"
 symhead_negative "\\small Ä's Ö's Ü's"
-delim_0 "\\pgfsetfillopacity{1.0}\\dotfill\\setLinkColor{\\\LILLYxColorxLINKSxCurrentColor}\\iftrue\\rmfamily \\lpage{\%"
-delim_1 "\\pgfsetfillopacity{1.0}\\setLinkColor{\\\LILLYxColorxLINKSxCurrentColor}\\iftrue\\rmfamily:~\\lpage{\%"
-delim_2 "\\pgfsetfillopacity{0.0}\\setLinkColor{white}\\iffalse\\lpage{\%"
+delim_0 "\\pgfsetfillopacity{1.0}\\dotfill\\setLinkColor{\\\LILLYxColorxLINKSxCurrentColor}\\iftrue\\rmfamily "
+delim_1 "\\pgfsetfillopacity{1.0}\\setLinkColor{\\\LILLYxColorxLINKSxCurrentColor}\\iftrue\\rmfamily:~"
+delim_2 "\\pgfsetfillopacity{0.0}\\setLinkColor{white}\\iffalse"
 item_12 "\\pgfsetfillopacity{1.0}\%\n\\subsubitem\\footnotesize\\mbox{\\footnotesize\\pgfsetfillopacity{1.0}\\rmfamily}\\footnotesize "
 item_2  "\\footnotesize\\mbox{\\pgfsetfillopacity{1.0}\%\n\\footnotesize\\pgfsetfillopacity{1.0}\\rmfamily,} "
 
-encap_prefix ':::'
-encap_suffix  ""
+encap_prefix "{\\"
+encap_infix "{"
+encap_suffix  "}"
 
 quote '~'
 
 delim_t "}\\fi\\pgfsetfillopacity{1.0}\\iftrue\\rmfamily\\normalsize "
+delim_n "}, "
 
 indent_space ''
 indent_length 0

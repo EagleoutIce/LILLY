@@ -1,4 +1,5 @@
-\ProvidesPackage{_LILLY_MODE_CONTROLLER}[4.3.2019 v1.0 Generelle Definitionen die verschiedene Modi zur Verfügung stellen]
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxMODE}[2019/08/13 Stellt die Modi-Kontroll-Erweiterungen fuer LILLY zur Verfuegung]
 %% Alle diese Modi lassen sich manuell mithilfe der Kommandozeile verändern und anpassen
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,8 +32,8 @@
 \ifx\LILLYxMODE\LILLYxMODExDEFAULT
     \providecommand\LILLYxBOXxBeispielxBox{FALSE}
 \else\ifx\LILLYxMODE\LILLYxMODExPRINT
-    \renewcommand{\LILLYxFOOTERxBUTTONS}{FALSE}
-    \providecommand{\LILLYxHYPERLINK}{FALSE}
+    \renewcommand\LILLYxFOOTERxBUTTONS{FALSE}
+    \providecommand\LILLYxHYPERLINK{FALSE}
     \providecommand\LILLYxBOXxBemerkungxBox{FALSE}
     \providecommand\LILLYxBOXxBeweisxBox{FALSE}
     \providecommand\LILLYxBOXxBeispielxBox{FALSE}

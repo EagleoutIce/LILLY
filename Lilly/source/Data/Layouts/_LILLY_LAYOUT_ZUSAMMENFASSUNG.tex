@@ -88,7 +88,7 @@
     \TOPICS{#2}\markleft{#2}\fi\elable{top:#1}%
     \leavevmode\\%%breakpatch
     \parbox{\linewidth}{{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \ifappendix\arabic{ctr_ADDONS}\else\arabic{TOPICS}\fi) #2} \hfill{\tiny #3}}\vspace{-0.5\baselineskip}\newline%
-    \rule{\textwidth}{2pt}\smallskip\\\ignorespaces%
+    \rule{\textwidth}{2pt}\smallskip\\\ignorespacesafterend%
 }
 
 \DeclareRobustCommand{\kw}[1]{\textbf{#1}\index{#1}}

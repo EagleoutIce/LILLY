@@ -3,6 +3,8 @@
 
 \RequirePackage{LILLYxVANILLA}
 \RequirePackage{LILLYxPACKAGExCTRL}
+
+\RequirePackage{LILLYxCONTROLLERxMODE}
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 
 \RequirePackage{LILLYxCOLOR}
@@ -40,11 +42,11 @@
     pdffitwindow=true,
     pdfsubject={Latex-Dokument},
     pdfauthor={\AUTHOR~(\AUTHORMAIL)},
-    pdfcreator={pdflatex on Linux (eagle) using the LILLY-Package by Florian Sihler (florian.sihler@uni-ulm.de)},
+    pdfcreator={pdflatex on Linux (eagle) using the LILLY-Package by Florian Sihler (florian.sihler@uni-ulm.de)}, %% TODO < OS einfügen
     bookmarks=true
 }
 
-\providecommand{\LILLYxHYPERLINK}{TRUE}
+\providecommand\LILLYxHYPERLINK{TRUE}
 
 \def\setLinkColor#1{%
     \hypersetup{linkcolor=#1}%
@@ -54,12 +56,14 @@
     \expandafter\hyperlink{page.#1}{#1}%
 }
 
-\providecommand*{\elable}[1]{\phantomsection\label{#1}\ignorespaces}  %\phantomsection % wenn gew�nscht das direkter sprung
+\providecommand*{\elable}[1]{\phantomsection\label{#1}\ignorespaces}  %\phantomsection % wenn gewünscht das direkter sprung
 \ifx\LILLYxHYPERLINK\true
+    \typeout{Normal link - mode}
     \newcommand{\jmark}[2][Linkname]{{\setLinkColor{\LILLYxColorxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
     \newcommand{\hmark}[2][Linkname]{\setLinkColor{black}\textbf{{\hyperref[#2]{#1}}}}
     \DeclareDocumentCommand{\silentHmark}{ O{Linkname} m O{black} }{\setLinkColor{#3}\begingroup\normalfont\textbf{{\hyperref[#2]{#1}}}\endgroup}
 \else
+    \typeout{Print link - mode}
     \newcommand{\jmark}[2][Linkname]{#1\ensuremath{{}^{\rightarrow~\text{\pageref{#2}}}}}
     \newcommand{\hmark}[2][Linkname]{\textbf{#1}\ensuremath{{}^{\rightarrow~\text{\pageref{#2}}}}}
     \DeclareDocumentCommand{\silentHmark}{ O{Linkname} m O{black} }{\begingroup\normalfont#1\endgroup}
