@@ -5,7 +5,7 @@
 Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm betrieben, um die Realisierung von Skripten und Mitschriften in Latex zu vereinfachen.
 
 ## Dokumentation
-Bist du auf der Suche nach der Dokumentation? Die findest du hier: [Dokumentation](Dokumentation/Lilly-Dokumentation.doc.pdf)
+Bist du auf der Suche nach der Dokumentation? Die findest du hier: [Dokumentation](Dokumentation/Lilly-Dokumentation.doc.pdf).
 
 ## Wichtig
 
