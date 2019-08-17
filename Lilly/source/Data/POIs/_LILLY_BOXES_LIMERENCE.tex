@@ -64,7 +64,7 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{-
 
 %%% Die Zusammenfassung-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxZusammenfassung]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxZusammenfassung},   %
-LillyxBOXxDesignxLimerence, #3, IfValueTF={#1}{title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-2em}{#1}}\hfill\!\vcenter{\parbox[t]{\linewidth-5em}{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}$\\}}{title={$\vcenter{#2\parbox{\linewidth-\widthof{#2}-2em}{}}\hfill\!\vcenter{\parbox[t]{\linewidth-5em}{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}$}}, %
+LillyxBOXxDesignxLimerence, #3, IfValueTF={#1}{title={#2\ifthenelse{\equal{#1}{}}{\parbox[t]{\linewidth-\widthof{#2}-2em}{#1}}{--~\parbox[t]{\linewidth-\widthof{#2}-0.25em-\widthof{--~}}{#1}}\parbox[t]{2em}{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}\\}}{title={#2\hbox{}\hfill\parbox[t]{2em}{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}}, %
 }
 
 %title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}},
