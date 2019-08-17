@@ -1,10 +1,10 @@
 package Jake; /**
- * @file Jake.CommandLineParserTest.java
- * @author Florian Sihler
- * @version 1.0.10
- * 
- * @brief Testet die Deifnitionen auf plausibilität
- */
+              * @file Jake.CommandLineParserTest.java
+              * @author Florian Sihler
+              * @version 2.0.0
+              *
+              * @brief Testet die Deifnitionen auf plausibilität
+              */
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

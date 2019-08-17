@@ -1,30 +1,30 @@
 /**
  * @file Definitions.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Definiert globale Variablen für alle Teile von Jake
  * @see Jake
  */
 package de.eagle.lillyjakeframework.core;
 
- import java.io.InputStream;
+import java.io.InputStream;
 
 import de.eagle.lillyjakeframework.Jake;
 import de.eagle.util.enumerations.eProgress_State;
 
 /**
  * @author Florian Sihler
- * <p>
- * Speichert alle Globalen Definitionen für Jake, die aus keiner Datei
- * heraus erstellt werden und mit der spezifischen Jake Version
- * einhergehen.
- * @version 1.0.10
- * @since 1.0.10asdasdasdasdasdas
+ *         <p>
+ *         Speichert alle Globalen Definitionen für Jake, die aus keiner Datei
+ *         heraus erstellt werden und mit der spezifischen Jake Version
+ *         einhergehen.
+ * @version 2.0.0
+ * @since 2.0.0asdasdasdasdasdas
  */
 public class Definitions {
     /// Kurzbeschreibung der Version
-    public static final String PRG_BRIEF = "Jake 1.0.10 - It's Java Time";
+    public static final String PRG_BRIEF = "Jake 2.0.0 - It's Java Time";
     /// Die Version als String
     public static final String JAKE_VERSION = "1.00.10";
 
@@ -52,7 +52,6 @@ public class Definitions {
     // Pfad an dem Jake installiert ist. null wenn noch nicht installiert
     public static final String JAKE_INSTALLED_PATH = System.getenv("JAKE_INSTALLATION_PATH");
 
-
     /// Die aktuelle Version als Zahl
     public static final int JAKE_VERSION_NUM = 10010;
 
@@ -61,7 +60,8 @@ public class Definitions {
     public static final int B_INPUT = 2;
     public static final int B_TEXT = 3;
 
-    public static final InputStream DEFAULT_CONFIG_STREAM = Definitions.class.getResourceAsStream("/configs/jake_default.conf");
+    public static final InputStream DEFAULT_CONFIG_STREAM = Definitions.class
+            .getResourceAsStream("/configs/jake_default.conf");
 
     public static final String USER_CONFIG_PATH = System.getenv("LILLY_JAKE_CONFIG_PATH");
 

@@ -2,7 +2,7 @@ package de.eagle.gepard.parser;
 /**
  * @file Configurator.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Verarbeitet die Konfigurationsdateien
  * @see Tokenizer

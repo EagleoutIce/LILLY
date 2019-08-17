@@ -1,10 +1,10 @@
 package Util; /**
- * @file Util.SettingDeskriptorTest.java
- * @author Florian Sihler
- * @version 1.0.10
- *
- * @brief Teste den SettingDeskriptor auf Funktionalität
- */
+              * @file Util.SettingDeskriptorTest.java
+              * @author Florian Sihler
+              * @version 2.0.0
+              *
+              * @brief Teste den SettingDeskriptor auf Funktionalität
+              */
 
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.SettingDeskriptorStringList;
@@ -31,7 +31,8 @@ class SettingDeskriptorTest {
      * Testet den 3-Argument Konstruktor
      */
     @Test
-    @Order(1) @DisplayName("[SettingDeskriptor] 3-Parameter Konstruktor")
+    @Order(1)
+    @DisplayName("[SettingDeskriptor] 3-Parameter Konstruktor")
     void _test_3_paramter_constructor() {
         SettingDeskriptor<Integer> s = SettingDeskriptor.create("TestDesk", "Testerklärung", IS_OPERATION);
 
@@ -46,7 +47,8 @@ class SettingDeskriptorTest {
      * Testet den 4-Argument Konstruktor
      */
     @Test
-    @Order(2) @DisplayName("[SettingDeskriptor] 4-Parameter Konstruktor")
+    @Order(2)
+    @DisplayName("[SettingDeskriptor] 4-Parameter Konstruktor")
     void _test_4_paramter_constructor() {
         SettingDeskriptor<Character> s = SettingDeskriptor.create("", "Sonnenschein", IS_OPERATION, true);
 
@@ -65,7 +67,8 @@ class SettingDeskriptorTest {
      * Testet den 5-Argument Konstruktor = maximaler
      */
     @Test
-    @Order(3) @DisplayName("[SettingDeskriptor] 5-Parameter Konstruktor")
+    @Order(3)
+    @DisplayName("[SettingDeskriptor] 5-Parameter Konstruktor")
     void _test_5_paramter_constructor() {
         SettingDeskriptor<String> s = SettingDeskriptor.create("Paul", "Rofll", IS_OPERATION, false,
                 "StartwertMartlehrt");
@@ -81,7 +84,8 @@ class SettingDeskriptorTest {
      * Testet ob die Verpflichtung von Argumenten funktioniert.
      */
     @Test
-    @Order(4) @DisplayName("[SettingDeskriptor] Testet verpflichtende Argumente ")
+    @Order(4)
+    @DisplayName("[SettingDeskriptor] Testet verpflichtende Argumente ")
     void _test_is_mandatory() {
         SettingDeskriptor<Character> s = SettingDeskriptor.create("", "", IS_OPERATION, true);
 
@@ -110,40 +114,44 @@ class SettingDeskriptorTest {
      * gefordert ist!
      */
     @Test
-    @Order(5) @DisplayName("[SettingDeskriptor] Testet .lock()")
+    @Order(5)
+    @DisplayName("[SettingDeskriptor] Testet .lock()")
     void _test_is_locked() {
         SettingDeskriptor<Character> s = SettingDeskriptor.create("", "", IS_OPERATION, true);
 
         Assertions.assertTrue(s.setValue('X'), "Das Setzen eines entsperrten Deskriptors muss funktionieren");
-        Assertions.assertEquals('X',s.getValue(), "Der Wert sollte dem gesetzten Wert entsprechen");
+        Assertions.assertEquals('X', s.getValue(), "Der Wert sollte dem gesetzten Wert entsprechen");
 
-        //now with lock
+        // now with lock
         s.lock(); // .lockdown()? hihi
 
-        Assertions.assertTrue(s.isLocked(),"Natürlich sollte eine gesperrte Einstellung sich so präsentieren");
+        Assertions.assertTrue(s.isLocked(), "Natürlich sollte eine gesperrte Einstellung sich so präsentieren");
         Assertions.assertFalse(s.setValue('Y'), "Das Setzen eines gesperrten Deskriptors muss scheitern");
-        Assertions.assertEquals('X',s.getValue(), "Der Wert sollte bei einem gesperrten Deskriptor unverändert bleiben");
+        Assertions.assertEquals('X', s.getValue(),
+                "Der Wert sollte bei einem gesperrten Deskriptor unverändert bleiben");
     }
+
     /**
      * Testet ob .create() funktioniert
      */
     @Test
-    @Order(6) @DisplayName("[SettingDeskriptor] Testet das erstellen von Listen über .create()")
+    @Order(6)
+    @DisplayName("[SettingDeskriptor] Testet das erstellen von Listen über .create()")
     void _test_create_list() {
-        SettingDeskriptor s =  SettingDeskriptor.create("", "", IS_TEXTLIST,"",':');
+        SettingDeskriptor s = SettingDeskriptor.create("", "", IS_TEXTLIST, "", ':');
 
         String defmsg = "Das Setzen eines entsperrten Deskriptors muss funktionieren";
         String addmsg = "Der Wert sollte dem gesetzten Wert auf Basis von Separator";
 
-        Assertions.assertTrue(((SettingDeskriptorStringList)s).addValue("X"), defmsg);
-        Assertions.assertEquals("X",s.getValue(), addmsg);
-        Assertions.assertTrue(((SettingDeskriptorStringList)s).addValue("Y"), defmsg);
-        Assertions.assertEquals("X:Y",s.getValue(), addmsg);
-        Assertions.assertTrue(((SettingDeskriptorStringList)s).addValue(":Y"), defmsg);
-        Assertions.assertEquals("X:Y:Y",s.getValue(), addmsg);
-        Assertions.assertTrue(((SettingDeskriptorStringList)s).addValue(":G:"), defmsg);
-        Assertions.assertEquals("X:Y:Y:G:",s.getValue(), addmsg);
-        Assertions.assertTrue(((SettingDeskriptorStringList)s).addValue(":Y"), defmsg);
-        Assertions.assertEquals("X:Y:Y:G:Y",s.getValue(), addmsg);
+        Assertions.assertTrue(((SettingDeskriptorStringList) s).addValue("X"), defmsg);
+        Assertions.assertEquals("X", s.getValue(), addmsg);
+        Assertions.assertTrue(((SettingDeskriptorStringList) s).addValue("Y"), defmsg);
+        Assertions.assertEquals("X:Y", s.getValue(), addmsg);
+        Assertions.assertTrue(((SettingDeskriptorStringList) s).addValue(":Y"), defmsg);
+        Assertions.assertEquals("X:Y:Y", s.getValue(), addmsg);
+        Assertions.assertTrue(((SettingDeskriptorStringList) s).addValue(":G:"), defmsg);
+        Assertions.assertEquals("X:Y:Y:G:", s.getValue(), addmsg);
+        Assertions.assertTrue(((SettingDeskriptorStringList) s).addValue(":Y"), defmsg);
+        Assertions.assertEquals("X:Y:Y:G:Y", s.getValue(), addmsg);
     }
 }

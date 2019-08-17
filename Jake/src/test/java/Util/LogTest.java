@@ -2,10 +2,10 @@ package Util;
 /**
  * @file Util.LogTest.java
  * @author Florian Sihler
- * @version 1.0.10
- * 
+ * @version 2.0.0
+ *
  * @brief Überprüft die Funktionalität des Loggers
- * 
+ *
  * @see JakeLogger
  */
 

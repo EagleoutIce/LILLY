@@ -3,7 +3,7 @@ package de.eagle.util.helper;
 /**
  * @file Cloner.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Versucht jedes Objekt zu kopieren ;P (#DankeJava for broken 'Cloneable')
  *
@@ -69,7 +69,7 @@ public class Cloner<T> implements iRealCloneable<T> {
 
     /**
      * Diese Methode spiegelt eine Datei aus den Ressourcen ins richtige Dateisystem
-     * 
+     *
      * @throws IOException
      */
     public static String cloneFileRessource(String res, String dst) throws IOException {
@@ -77,10 +77,11 @@ public class Cloner<T> implements iRealCloneable<T> {
         File outf = new File(dst);
         BufferedWriter out = new BufferedWriter(new FileWriter(outf));
         String s;
-        while((s = in.readLine()) != null){
-            out.write(s+"\n");
+        while ((s = in.readLine()) != null) {
+            out.write(s + "\n");
         }
-        in.close();out.close();
+        in.close();
+        out.close();
         return dst;
     }
 }

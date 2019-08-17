@@ -2,7 +2,7 @@ package de.eagle.util.enumerations;
 /**
  * @file eProgress_State.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Verwaltet den Stand der Entwicklung
  * @see de.eagle.lillyjakeframework.core.Definitions

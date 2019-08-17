@@ -2,12 +2,12 @@ package de.eagle.gepard.parser;
 /**
  * @file GeneratorParser.java
  * @author Florian Sihler
- * @version 1.0.10
- * 
+ * @version 2.0.0
+ *
  * @brief Die Grundlage von GePard - wird von allen weiteren BoxTypen erweitert
- * 
+ *
  * TODO: BOXTYPEN :D
- * 
+ *
  * @see Configurator
  * @see Tokenizer
  */
@@ -36,22 +36,22 @@ import static de.eagle.util.io.JakeLogger.*;
  * füllt und Jake dann entsprechend damit darbieten kann!
  *
  * @author Florian Sihler
- * @version 1.0.10
- * @since 1.0.10
- * 
+ * @version 2.0.0
+ * @since 2.0.0
+ *
  * @implNote GePard an sich befindet sich bezüglich seiner Funktionalität noch
  *           im Aufbau. Änderungen in der Philosophie sind ebenso möglich, wie
  *           Änderungen in den Akzeptierten Begriffen und Patterns. Etwaige
  *           große Änderungen bezüglich vorhergehender Version werde jeweils
  *           vermerkt.
- * 
+ *
  * @see Tokenizer
  * @see Configurator
  *      <p>
- * 
- * 
+ *
+ *
  *      For testing see: Tests > java > GepardTest
- * 
+ *
  */
 public class GeneratorParser {
 
@@ -80,7 +80,7 @@ public class GeneratorParser {
 
     /**
      * Setzt den Zeilenzähler zurück
-     * 
+     *
      * @return den alten Wert des Zeilenzählers
      */
     public int resetLineCount() {
@@ -103,7 +103,7 @@ public class GeneratorParser {
 
         /**
          * Konstruiert eine neues JObject
-         * 
+         *
          * @param name   Der Name des JObjects
          * @param config Die zugehörige Konfiguration
          */
@@ -146,7 +146,7 @@ public class GeneratorParser {
 
         /**
          * Konstruiert die Box entsprechend mit Namen und Inhalt
-         * 
+         *
          * @param name        Name der Box :D
          * @param fileName    Herkunft der Box
          * @param lineOfBegin Zeile des BEGIN-Tags
@@ -158,7 +158,7 @@ public class GeneratorParser {
 
         /**
          * Konstruiert die Box entsprechend mit Namen und Inhalt
-         * 
+         *
          * @param name        Name der Box :D
          * @param content     Inhalt der Box (Magie!!!!!)
          * @param fileName    Herkunft der Box
@@ -219,7 +219,7 @@ public class GeneratorParser {
      *
      * @return Alle gefundenen Objekte. Wird keins Gefunden so wird ein leerer
      *         Vektor zurück geben
-     * 
+     *
      * @throws IOException Im Falle eines Fehlers beim Verarbeiten des Streams
      */
     public JObject[] parseFile(String identifier, Settings blueprint, boolean add_unknown) throws IOException {
@@ -245,7 +245,7 @@ public class GeneratorParser {
 
     /**
      * Liest eine Zeile ein und erhöht die aktuelle LineCount
-     * 
+     *
      * @param reader Der Reader von dem gelesen werden soll
      * @return die gelesene Zeile, 'null' im Falle eines Fehlers
      */
@@ -266,22 +266,22 @@ public class GeneratorParser {
      *
      * @param bufferedReader Der BufferedReader auf dem gearbeitet werden soll. Es
      *                       liefert danach eine Zeile nach END
-     * 
+     *
      * @param filterName     Wenn nicht ="" wird die erste Box mit dem
      *                       entsprechenden Namen geliefert und "" wenn es keine
      *                       mehr gibt. Der Filter wird als REGEX präsentiert dies
      *                       ist bei der Verwendung von (ohnehin verbotenen)
      *                       Kontrollsequenzen zu beachten!
-     * 
+     *
      * @param fileName       Der Name der Datei, aus der der bufferedReader seine
      *                       Daten bezieht, auch diese Option hat lediglich aus
      *                       Debug-Gründen Einzug erhalten. Namen wie "StringStream"
      *                       oder einfach nichts sind ebenfalls möglich. Die Datei
      *                       wird niemals nachverfolgt.
-     * 
+     *
      * @note bufs (size_t) wurde entfernt, da das tolle Java keine gute Möglichkeit
      *       für eine derartige Implementation zur Verfügung stellt!
-     * 
+     *
      * @throws IOException Wirft die Ausnahme, wenn der Reader beschädigt ist.
      *
      * @note diese Funktion füttert parse_file und sollte sonst nicht verwendet
@@ -297,7 +297,7 @@ public class GeneratorParser {
 
         /*
          * Notiz zur Gestaltung der Umgebungsbeschränker (tolles deutsches Wort ^^):
-         * 
+         *
          * Es wurde absichtlich nur der Beginn der Zeile und _nicht_ das Ende gematcht
          * Eine Deklaration wie: - BEGIN boxname: Ist also ebenso valide wie: - BEGIN
          * boxname Ich bin auch noch da in dieser Zeile Analog ergibt sich für END: -

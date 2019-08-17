@@ -3,7 +3,7 @@ package de.eagle.util.datatypes;
 /**
  * @file SettingDeskriptor.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Beschreibt eine einzelne Einstellung
  * @see de.eagle.util.datatypes.Settings
@@ -22,9 +22,9 @@ import java.io.Serializable;
  * der Einstellung (type:eSetting_Type)
  *
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  * @see AbstractSettings
- * @since 1.0.10
+ * @since 2.0.0
  */
 public class SettingDeskriptor<T extends Serializable> implements Serializable {
     private static final long serialVersionUID = 7353042747573185893L;
@@ -46,118 +46,122 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
      * Konstruiert den entsprechenden Deskriptor inklusive Startwert
      *
      * @param name  der (interne) Name der Einstellung
-     * @param brief       Eine kurze Beschreibung der Einstellung
+     * @param brief Eine kurze Beschreibung der Einstellung
      */
-    public static  <T extends Serializable> SettingDeskriptor<T> create(String name, String brief){
-        return create(name, brief, eSetting_Type.IS_TEXT,false,null,' ');
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief) {
+        return create(name, brief, eSetting_Type.IS_TEXT, false, null, ' ');
     }
 
     /**
      * Konstruiert den entsprechenden ListDeskriptor inklusive Startwert
      *
-     * @param name  der (interne) Name der Einstellung
-     * @param brief       Eine kurze Beschreibung der Einstellung
+     * @param name      der (interne) Name der Einstellung
+     * @param brief     Eine kurze Beschreibung der Einstellung
      * @param separator Trenner für die Liste
      */
-    public static  <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, char separator){
-        return create(name, brief, eSetting_Type.IS_TEXTLIST,false,null, separator);
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, char separator) {
+        return create(name, brief, eSetting_Type.IS_TEXTLIST, false, null, separator);
     }
 
     /**
      * Konstruiert den entsprechenden Deskriptor inklusive Startwert
-     *
-     * @param name        der (interne) Name der Einstellung
-     * @param brief       Eine kurze Beschreibung der Einstellung
-     * @param init        Startwert
-     */
-    public static  <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, T init){
-        return create(name, brief, eSetting_Type.IS_TEXT,false,init,' ');
-    }
-
-    /**
-     * Konstruiert den entsprechenden Deskriptor inklusive Startwert
-     *
-     * @param name        der (interne) Name der Einstellung
-     * @param brief       Eine kurze Beschreibung der Einstellung
-     * @param separator   Trenner für die Liste
-     * @param init        Startwert
-     */
-    public static  <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, T init, char separator){
-        return create(name, brief, eSetting_Type.IS_TEXT,false,init,separator);
-    }
-
-    /**
-     * Konstruiert den entsprechenden Deskriptor inklusive Startwert
-     * Macht einen ListDeskriptor, wenn type == IS_TEXTLIST
      *
      * @param name  der (interne) Name der Einstellung
-     * @param brief       Eine kurze Beschreibung der Einstellung
-     * @param type        Der Typ der Einstellung
+     * @param brief Eine kurze Beschreibung der Einstellung
+     * @param init  Startwert
      */
-    public static  <T extends Serializable> SettingDeskriptor<T> create(String name, String brief,eSetting_Type type){
-        return create(name, brief, type,false,null,' ');
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, T init) {
+        return create(name, brief, eSetting_Type.IS_TEXT, false, init, ' ');
     }
 
     /**
      * Konstruiert den entsprechenden Deskriptor inklusive Startwert
-     * Macht einen ListDeskriptor, wenn type == IS_TEXTLIST
+     *
+     * @param name      der (interne) Name der Einstellung
+     * @param brief     Eine kurze Beschreibung der Einstellung
+     * @param separator Trenner für die Liste
+     * @param init      Startwert
+     */
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, T init,
+            char separator) {
+        return create(name, brief, eSetting_Type.IS_TEXT, false, init, separator);
+    }
+
+    /**
+     * Konstruiert den entsprechenden Deskriptor inklusive Startwert Macht einen
+     * ListDeskriptor, wenn type == IS_TEXTLIST
+     *
+     * @param name  der (interne) Name der Einstellung
+     * @param brief Eine kurze Beschreibung der Einstellung
+     * @param type  Der Typ der Einstellung
+     */
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, eSetting_Type type) {
+        return create(name, brief, type, false, null, ' ');
+    }
+
+    /**
+     * Konstruiert den entsprechenden Deskriptor inklusive Startwert Macht einen
+     * ListDeskriptor, wenn type == IS_TEXTLIST
+     *
+     * @param name  der (interne) Name der Einstellung
+     * @param brief Eine kurze Beschreibung der Einstellung
+     * @param type  Der Typ der Einstellung
+     * @param init  Startwert
+     */
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, eSetting_Type type,
+            T init) {
+        return create(name, brief, type, false, init, ' ');
+    }
+
+    /**
+     * Konstruiert den entsprechenden Deskriptor inklusive Startwert Macht einen
+     * ListDeskriptor, wenn type == IS_TEXTLIST
+     *
+     * @param name      der (interne) Name der Einstellung
+     * @param brief     Eine kurze Beschreibung der Einstellung
+     * @param type      Der Typ der Einstellung
+     * @param init      Startwert
+     * @param separator Der Trenner für Liste
+     */
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, eSetting_Type type,
+            T init, char separator) {
+        return create(name, brief, type, false, init, separator);
+    }
+
+    /**
+     * Konstruiert den entsprechenden Deskriptor inklusive Startwert Macht einen
+     * ListDeskriptor, wenn type == IS_TEXTLIST
      *
      * @param name        der (interne) Name der Einstellung
-     * @param brief       Eine kurze Beschreibung der Einstellung
-     * @param type        Der Typ der Einstellung
-     * @param init        Startwert
-     */
-    public static  <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, eSetting_Type type, T init){
-        return create(name, brief, type,false,init,' ');
-    }
-
-    /**
-     * Konstruiert den entsprechenden Deskriptor inklusive Startwert
-     * Macht einen ListDeskriptor, wenn type == IS_TEXTLIST
-     *
-     * @param name  der (interne) Name der Einstellung
-     * @param brief       Eine kurze Beschreibung der Einstellung
-     * @param type        Der Typ der Einstellung
-     * @param init        Startwert
-     * @param separator   Der Trenner für Liste
-     */
-    public static  <T extends Serializable> SettingDeskriptor<T> create(String name, String brief,eSetting_Type type, T init, char separator){
-        return create(name, brief, type,false,init,separator);
-    }
-
-
-    /**
-     * Konstruiert den entsprechenden Deskriptor inklusive Startwert
-     * Macht einen ListDeskriptor, wenn type == IS_TEXTLIST
-     *
-     * @param name  der (interne) Name der Einstellung
      * @param brief       Eine kurze Beschreibung der Einstellung
      * @param type        Der Typ der Einstellung
      * @param isMandatory Ist die Einstellung verpflichtend?
      * @param init        Startwert
      */
-    public static  <T extends Serializable> SettingDeskriptor<T> create(String name, String brief,eSetting_Type type, boolean isMandatory, T init){
-        return create(name, brief, type,isMandatory,init,' ');
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, eSetting_Type type,
+            boolean isMandatory, T init) {
+        return create(name, brief, type, isMandatory, init, ' ');
     }
 
     /**
-     * Konstruiert den entsprechenden Deskriptor inklusive Startwert
-     * Macht einen ListDeskriptor, wenn type == IS_TEXTLIST
+     * Konstruiert den entsprechenden Deskriptor inklusive Startwert Macht einen
+     * ListDeskriptor, wenn type == IS_TEXTLIST
      *
-     * @param name  der (interne) Name der Einstellung
+     * @param name        der (interne) Name der Einstellung
      * @param brief       Eine kurze Beschreibung der Einstellung
      * @param type        Der Typ der Einstellung
      * @param isMandatory Ist die Einstellung verpflichtend?
      */
-    public static  <T extends Serializable> SettingDeskriptor<T> create(String name, String brief,eSetting_Type type, boolean isMandatory){
-        return create(name, brief, type,isMandatory,null,' ');
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, eSetting_Type type,
+            boolean isMandatory) {
+        return create(name, brief, type, isMandatory, null, ' ');
     }
 
     /**
-     * Konstruiert den entsprechenden Deskriptor inklusive Startwert
-     * Macht einen ListDeskriptor, wenn type == IS_TEXTLIST
+     * Konstruiert den entsprechenden Deskriptor inklusive Startwert Macht einen
+     * ListDeskriptor, wenn type == IS_TEXTLIST
      *
-     * @param name  der (interne) Name der Einstellung
+     * @param name        der (interne) Name der Einstellung
      * @param brief       Eine kurze Beschreibung der Einstellung
      * @param type        Der Typ der Einstellung
      * @param isMandatory Ist die Einstellung verpflichtend?
@@ -167,12 +171,16 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
      * @throws IllegalArgumentException im Falle eines illegalen Arguments
      */
     @SuppressWarnings("unchecked")
-    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief,eSetting_Type type, boolean isMandatory, T init, char separator){
-        if(type.equals(eSetting_Type.IS_TEXTLIST)){
-            if(!(init instanceof String)) throw new IllegalArgumentException("der initiale Wert für eine Textlist muss ein String sein!");
-            return (SettingDeskriptor<T>) new SettingDeskriptorStringList(name, brief, isMandatory, (String)init, separator);
-        } else if (type.equals(eSetting_Type.IS_LATEX)){
-            if(!(init instanceof String)) throw new IllegalArgumentException("Um Latex-Code sein zu können muss es sich um einen String handeln");
+    public static <T extends Serializable> SettingDeskriptor<T> create(String name, String brief, eSetting_Type type,
+            boolean isMandatory, T init, char separator) {
+        if (type.equals(eSetting_Type.IS_TEXTLIST)) {
+            if (!(init instanceof String))
+                throw new IllegalArgumentException("der initiale Wert für eine Textlist muss ein String sein!");
+            return (SettingDeskriptor<T>) new SettingDeskriptorStringList(name, brief, isMandatory, (String) init,
+                    separator);
+        } else if (type.equals(eSetting_Type.IS_LATEX)) {
+            if (!(init instanceof String))
+                throw new IllegalArgumentException("Um Latex-Code sein zu können muss es sich um einen String handeln");
         }
         return new SettingDeskriptor<T>(name, brief, type, isMandatory, (T) init);
     }
@@ -180,14 +188,13 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
     /**
      * Konstruiert den entsprechenden Deskriptor inklusive Startwert
      *
-     * @param name  der (interne) Name der Einstellung
+     * @param name        der (interne) Name der Einstellung
      * @param brief       Eine kurze Beschreibung der Einstellung
      * @param type        Der Typ der Einstellung
      * @param isMandatory Ist die Einstellung verpflichtend?
      * @param init        Startwert
      */
-    protected SettingDeskriptor(String name, String brief,
-            eSetting_Type type, boolean isMandatory, T init) {
+    protected SettingDeskriptor(String name, String brief, eSetting_Type type, boolean isMandatory, T init) {
         this.brief = brief;
         this.type = type;
         this.value = init;
@@ -199,30 +206,31 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
      * Liefert den Wert der Einstellung zurück
      *
      * @return der Wert der Einstellung
-     * @throws MandatorySettingException Wenn die mand. Einstellung nicht gesetzt ist!
+     * @throws MandatorySettingException Wenn die mand. Einstellung nicht gesetzt
+     *                                   ist!
      */
     @SuppressWarnings("unchecked")
     public T getValue() {
         if (isMandatory && value == null)
             throw new MandatorySettingException(
-                    "Die verpflichtende Einstellung: " + getName()
-                        + " wurde nicht mit einem Wert belegt!");
-        if(this.type.equals(eSetting_Type.IS_LATEX))
-            return (T)((String)value).replaceAll("\\\\", "\\\\\\\\");
+                    "Die verpflichtende Einstellung: " + getName() + " wurde nicht mit einem Wert belegt!");
+        if (this.type.equals(eSetting_Type.IS_LATEX))
+            return (T) ((String) value).replaceAll("\\\\", "\\\\\\\\");
         else
-        return value;
+            return value;
     }
 
     /**
      * @return true, wenn die Einstellung gesperrt wurde
      */
-    public boolean isLocked(){
+    public boolean isLocked() {
         return this.isLocked;
     }
+
     /**
      * Sperrt die Einstellung
      */
-    public void lock(){
+    public void lock() {
         this.isLocked = true;
     }
 
@@ -233,7 +241,8 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
      * @return true, wenn die Operation geklappt hat, false wenn locked;
      */
     public boolean setValue(T value) {
-        if(isLocked) return false;
+        if (isLocked)
+            return false;
         this.value = value;
         return true;
     }
@@ -254,15 +263,17 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
-        if(obj==null) return false;
-        if(obj.getClass() != this.getClass()) return false;
-        SettingDeskriptor<T> t = (SettingDeskriptor<T>)obj;
-        if(this.getValue() == null) return t.getValue() == null;
-        return (t.getName().equals(this.getName()))
-                && (t.isMandatory()==this.isMandatory())
+        if (obj == null)
+            return false;
+        if (obj.getClass() != this.getClass())
+            return false;
+        SettingDeskriptor<T> t = (SettingDeskriptor<T>) obj;
+        if (this.getValue() == null)
+            return t.getValue() == null;
+        return (t.getName().equals(this.getName())) && (t.isMandatory() == this.isMandatory())
                 && (t.getValue().equals(this.getValue()));
-                // Notiz: Es ist gestattet, dass es sich bei einer Einstellung um
-                // eine gesperrte Handelt, während die andere Änderungen zulässt
+        // Notiz: Es ist gestattet, dass es sich bei einer Einstellung um
+        // eine gesperrte Handelt, während die andere Änderungen zulässt
     }
 
     /**
@@ -282,8 +293,7 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
 
     @Override
     public String toString() {
-        return "SettingDeskriptor [brief=" + brief + ", isMandatory="
-                + isMandatory + ", name=" + name + ", type="
+        return "SettingDeskriptor [brief=" + brief + ", isMandatory=" + isMandatory + ", name=" + name + ", type="
                 + type + ", value=" + value + "]";
     }
 

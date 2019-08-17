@@ -217,7 +217,7 @@
 \providecommand{\LILLYxListingsxPACK}{MAIN}
 
 %% Grundlegender Befehl zum Schreiben von Code innerhalb einer zeile, löst nicht die Problematiken wie Sonderzeichen, aber mit irgendwas muss man arbeiten können
-\DeclareRobustCommand{\LILLYxwriteLst}[2][]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite, fill=MudWhite, centered]{\,\vphantom{I}\lstinline[#1]!#2!\,};}}
+\DeclareRobustCommand{\LILLYxwriteLst}[2][]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite,fill=MudWhite, centered]{\,\vphantom{I}\lstinline[#1]!#2!\,};}}
 
 \def\LillyXlstXsloppy{\makeatletter%
   \tolerance 9999%
@@ -241,8 +241,11 @@
   \begingroup\lstinputlisting[#1]{#2}\endgroup%
 }
 %% Lädt ein entsprechendes Sprachpaket
-\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_PACK_\LILLYxListingsxPACK}
+\input{\LILLYxPATHxLISTINGS/Packages/_LILLY_PACK_\LILLYxListingsxPACK}
 
+
+%% Enthält lediglich den Namen der entsprechenden Sprache, für convenience :D
+\constructList[,]{RegisteredLanguageNames}
 
 \getRegisteredLanguages%
 \typeout{Start Language Registration}
@@ -258,6 +261,10 @@
   \expandafter\robustify\csname c\clang\endcsname
   \expandafter\xdef\csname i\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINPL{language=\llang}{##1}}
   \expandafter\robustify\csname i\clang\endcsname
+%
+  %% For more convenient Language-Control extract, there will be a SingleList
+  \pushList{RegisteredLanguageNames}{\clang}
+%
   %
   % \lstnewenvironment{latex}[1][]
   %  {\lstset{language=lLatex,#1}}
@@ -277,10 +284,19 @@
 }}
 }
 
+\storeRegisteredLanguages{LISTxRegisteredLanguages}
+\storeRegisteredLanguageNames{LISTxRegisteredLanguageNames}
+%% erlaubt es Den inhalt eines Befehls zu setzen
+\newcommand{\cmdshowcase}[2][]{\edef\@tmp@@b{\noexpand\lstinline[#1]!#2!}\@tmp@@b}
+
 %%Embetter Break Control:
 \LillyXlstXsloppy
 
 
 \newcommand{\isLanguageLoaded}[1]{
   \containsList{RegisteredLanguages}{#1}
+}
+% for more convenience
+\newcommand{\isLanguageNameLoaded}[1]{
+  \containsList{RegisteredLanguageNames}{#1}
 }

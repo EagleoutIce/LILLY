@@ -3,7 +3,7 @@ package de.eagle.util.datatypes;
 /**
  * @file FunctionCollector.java
  * @author Raphael Straub
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Mapped String auf FunctionDeskriptor
  * @see de.eagle.util.datatypes.FunctionDeskriptor
@@ -16,13 +16,13 @@ import java.util.Map;
  * Mapped String auf FunctionDeskriptor
  *
  * @author Raphael Straub
- * @version 1.0.10
- * @since 1.0.10
+ * @version 2.0.0
+ * @since 2.0.0
  *
  * @param <K> Parametertyp der Funktion
  * @param <V> Rückgabetyp der Funktion
  */
-public class FunctionCollector<K,V> extends HashMap<String, FunctionDeskriptor<K, V>> {
+public class FunctionCollector<K, V> extends HashMap<String, FunctionDeskriptor<K, V>> {
 
     /**
      * Konstruiert einen FunctionCollector aus einer bestehenden Map
@@ -32,6 +32,5 @@ public class FunctionCollector<K,V> extends HashMap<String, FunctionDeskriptor<K
     public FunctionCollector(Map<? extends String, ? extends FunctionDeskriptor<K, V>> m) {
         super(m);
     }
-
 
 }

@@ -44,6 +44,7 @@
 \@namedef{len#2}{%
     \getListLength{\@nameuse{lilly@list@#2}}%
 }
+
 }
 
 \gdef\getListLength#1{%
@@ -88,8 +89,8 @@
 }
 
 \newcommand{\pushList}[2]{%
-    \expandafter\edef\csname lilly@list@last@#1\endcsname{\csname lilly@list@#1\endcsname}
-    \expandafter\edef\csname lilly@list@#1\endcsname{\csname lilly@list@last@#1\endcsname{#2}\csname lilly@list@seperator@#1\endcsname}%
+    \expandafter\xdef\csname lilly@list@last@#1\endcsname{\csname lilly@list@#1\endcsname}
+    \expandafter\xdef\csname lilly@list@#1\endcsname{\csname lilly@list@last@#1\endcsname{#2}\csname lilly@list@seperator@#1\endcsname}%
 }
 
 %% operation is work in progress

@@ -2,7 +2,7 @@ package de.eagle.util.exceptions;
 /**
  * @file MandatorySettingException.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Fehler, der geworfen wird, wenn eine verpflichtende Einstellung nicht gesetzt ist
  * @see de.eagle.util.datatypes.Settings.SettingDeskriptor

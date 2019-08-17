@@ -3,10 +3,10 @@ package de.eagle.gepard.parser;
 /**
  * @file TokenMatch.java
  * @author Florian Sihler
- * @version 1.0.10
- * 
+ * @version 2.0.0
+ *
  * @brief Hilfsklasse für den Tokenizer - Repräsentiert einen Treffer
- * 
+ *
  * @see Tokenizer
  */
 
@@ -48,7 +48,7 @@ public class TokenMatch {
     }
 
     /**
-     * @return Liefert die von Kommentaren und anderem Firlefanz befreite 
+     * @return Liefert die von Kommentaren und anderem Firlefanz befreite
      *         Zeichenkette
      */
     public String getStripped() {
@@ -57,18 +57,22 @@ public class TokenMatch {
 
     // Note for empty check: StringUtils.isblank()
 
-
     /**
      * Testet den Match auf validität
-     * @return Liefert dann False, wenn stripped aber keine Matchings oder stripped und kein original angebgebn wurden
+     * 
+     * @return Liefert dann False, wenn stripped aber keine Matchings oder stripped
+     *         und kein original angebgebn wurden
      */
     public boolean isValid() {
-        return !((this.matchings.length==0 || this.original.isEmpty()) 
-                    && !stripped.isEmpty());  // stripped gefüllt aber keine matchings/kein Original
+        return !((this.matchings.length == 0 || this.original.isEmpty()) && !stripped.isEmpty()); // stripped gefüllt
+                                                                                                  // aber keine
+                                                                                                  // matchings/kein
+                                                                                                  // Original
     }
 
     /**
      * Testet ob ein Match besteht
+     * 
      * @return Dann False, wenn der Match entweder nicht Valide ist und oder Leer
      */
     public boolean failure() {
@@ -77,10 +81,7 @@ public class TokenMatch {
 
     @Override
     public String toString() {
-        return "TokenMatch{" +
-                "matchings=" + Arrays.toString(matchings) +
-                ", original='" + original + '\'' +
-                ", stripped='" + stripped + '\'' +
-                '}';
+        return "TokenMatch{" + "matchings=" + Arrays.toString(matchings) + ", original='" + original + '\''
+                + ", stripped='" + stripped + '\'' + '}';
     }
 }

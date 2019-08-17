@@ -1,7 +1,7 @@
 \chapter{Einleitung}
 \TitleSUB{Integrieren von LILLY -- Die Grundlagen von A-Z}
 \section{Installieren von Lilly}
-\LILLYxNOTExVersion{1.0.10}Aktuell kommt die Dokumentklasse ohne \T{.ins} oder \T{.dtx} Datei, dafür allerdings mit einem Installer für alle Debian (Linux) basierten Betriebsysteme, an einer Variante für MacOS und Windows wird momentan entwickelt.
+\LILLYxNOTExVersion{2.0.0}Aktuell kommt die Dokumentklasse ohne \T{.ins} oder \T{.dtx} Datei, dafür allerdings mit einem Installer für alle Debian (Linux) basierten Betriebsysteme, an einer Variante für MacOS und Windows wird momentan entwickelt.
 
 \begin{bemerkung}[Mithilfe]
     Wenn du dich mit \TeX{} oder \LaTeX{} auskennst, schreibe an folgende Email-Adresse \T{\AUTHORMAIL}.\smallskip\newline
@@ -23,7 +23,7 @@
 
 \subsection{Linux}
 \begin{center}
-    Für Versionen < 1.0.10 klicke hier: \jmark[klick mich]{jmp:oldInstallLinux1009}!
+    Für Versionen < 2.0.0 klicke hier: \jmark[klick mich]{jmp:oldInstallLinux1009}!
 \end{center}
 Mit der Portierung von \Jake in die Programmiersprache Java hat sich die Installation von LILLY, immens vereinfacht.
 Da man hierfür allerdings \Jake benötigt, der sich dann um alles weitere kümmert, sei hier einmal nur kurz erklärt, wie man die \T{stable}-Version von Jake installiert, für mehr Infos siehe: \jmark[Jake Installieren]{mrk:InstallJake}.\newline
@@ -51,7 +51,7 @@ Exemplarisch sei \T{test \& bonus/map\_tests/test.conf} genannt, welches auch di
 \end{bemerkung}
 Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu kompilierende Latex-Datei im selben Verzeichnis wie die Datei \T{Lilly.cls} liegen (also: \T{Lilly}). Natürlich kann dies bei mehreren Dateien, die auf Lilly zugreifen, unübersichtlich werden.
 \clearpage
-\section[Erstellen eines Dokuments mit Lilly]{Erstellen eines Dokuments mit Lilly \tiny\LILLYxBOXxVersion{1.0.10}}
+\section[Erstellen eines Dokuments mit Lilly]{Erstellen eines Dokuments mit Lilly \tiny\LILLYxBOXxVersion{2.0.0}}
 \subsection{Das Gerüst}
 Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine Dokumentklasse handelt, wird sie wie folgt eingebunden:
 \begin{latex}
@@ -66,7 +66,7 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
         \item Zusammenfassung
     \end{itemize}
 \end{multicols}
-Mit \LILLYxBOXxVersion{1.0.10} ist es möglich auch nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben. Die Definition für dieses Dokument lautet zum Beispiel:
+Mit \LILLYxBOXxVersion{2.0.0} ist es möglich auch nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben. Die Definition für dieses Dokument lautet zum Beispiel:
 \begin{latex}
 \documentclass[Dokumentation]{Lilly}
 \end{latex}
@@ -154,11 +154,11 @@ Sie können alle mithilfe von:
 \LILLYcommand{\LILLYxBOXxDefinitionxEnable}{FALSE}
 \end{latex}
 jeweils deaktiviert und damit aus dem Dokument entfernt werden (auch nur abschnittsweise, das Reaktivieren funktioniert analog mit \T{TRUE}). \newline
-Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeugen. \marginpar{\tiny  Die Bezeichnung der Listen sind bisher noch inkonsistent :/}Beispielhaft:
+Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeugen (\textit{Die Bezeichnung der Listen sind bisher noch inkonsistent :/}). Beispielhaft:
 \begin{lstlisting}[language=lLatex]
 \listofDEFINITIONS
 \end{lstlisting}
-\marginpar{\tiny  Natürlich sind die Linien nur zur Trennung eingfügt}erzeugt hierbei:\clearpage
+erzeugt hierbei (\textit{Natürlich sind die Linien nur zur Trennung eingefügt.}):\clearpage
 \tocloftpagestyle{scrheadings}
 \rule{\linewidth}{1.2pt}\vspace{-0.75\baselineskip}
 \rule{\linewidth}{0.6pt}\vspace*{-1.5cm}
@@ -243,21 +243,37 @@ In das Übungsblatt können wir nun unsere Aufgaben stecken. Hier ist der \emph{
 \begin{latex}
 \begin{aufgabe}{Tolle Aufgabe}{400} % 400 Punkte
     Die Aufgabenbeschreibung, blah, blah, blah, \ldots
-    \begin{enumeratea}
+    \begin{aufgaben}
         \item Teilaufgabe a)
         \item Teilaufgabe b)
         \item \ldots
-    \end{enumeratea}
+    \end{aufgaben}
 \vSplitter
-    \begin{enumeratea}
+    \begin{aufgaben}
         \item Antwort zu Teilaufgabe a)
         \item Antwort zu Teilaufgabe b)
         \item \ldots
-    \end{enumeratea}
+    \end{aufgaben}
 \end{aufgabe}
 
 %% Weitere Aufgaben, wenn gewünscht
 \end{latex}
 
-Kompilieren kann man den Spaß nun mit: \cbash{jake jake.conf}. Und das wars, Boom \Smiley.
+Kompilieren kann man den Spaß nun mit: \cbash{jake jake.conf}. Und das wars, Boom \Smiley:\\
+
+\begin{aufgabe}{Tolle Aufgabe}{400} % 400 Punkte
+    Die Aufgabenbeschreibung, blah, blah, blah, \ldots
+    \begin{aufgaben}
+        \item Teilaufgabe a)
+        \item Teilaufgabe b)
+        \item \ldots
+    \end{aufgaben}
+\vSplitter
+    \begin{aufgaben}
+        \item Antwort zu Teilaufgabe a)
+        \item Antwort zu Teilaufgabe b)
+        \item \ldots
+    \end{aufgaben}
+\end{aufgabe}
+
 \clearpage

@@ -1,8 +1,9 @@
 package de.eagle.util.interfaces;
+
 /**
  * @file iRealCloneable.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Alternatives Cloneable Interface
  * @see de.eagle.util.helper.Cloner
