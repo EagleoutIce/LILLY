@@ -17,10 +17,12 @@ import de.eagle.lillyjakeframework.compiler.JakeCompile;
 import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.helper.PropertiesProvider;
+import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
 import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.FunctionCollector;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Comparator;
@@ -135,8 +137,34 @@ public final class CoreFunctions {
         return ReturnStatus.EXIT_SUCCESS;
     }
 
+    public static boolean customLoadConfig(String[] cmd){
+        if(!_use_config && CoreSettings.requestSwitch("S_LILLY_AUTOCONF")) { // Automatically search and Pick a Config-File
+            JakeLogger.writeLoggerDebug1("Es wird automatisch eine Konfigurationsdatei gesucht, da Autoconf true ist", "func");
+            Configurator c = null;
+            try {
+                String p = "";
+                String t = CoreSettings.requestValue("S_FILE").replaceFirst("[.][a-zA-Z0-9]{1,7}", ".conf");
+                if(new File("./jake.conf").isFile())
+                    p = "./jake.conf";
+                else if(new File(t).isFile())
+                    p = t;
+                _use_config = true;
+                if(p.equals("")) return false;
+                JakeWriter.out.println("Nutze Konfigurationsdatei: " + p);
+                c = new Configurator(p);
+                return (c.parse_settings(CoreSettings.settings, false) == 0);
+                //return CommandLineParser.interpret_settings(cmd).success();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return false;
+    }
+
     public static ReturnStatus fkt_compile(String[] cmd) {
         writeLoggerDebug3("jetzt in: fkt_compile", "func");
+        customLoadConfig(cmd);
         try {
             return JakeCompile.compile(cmd);
         } catch (IOException e) {
@@ -158,8 +186,12 @@ public final class CoreFunctions {
         return ReturnStatus.EXIT_SUCCESS;
     }
 
+    /// @brief Markiert für die Übersicht, ob eine Konfigurationsdatei verwendet wird.
+    public static boolean _use_config = false;
+
     public static ReturnStatus fkt_config(String[] cmd) {
         writeLoggerDebug3("jetzt in: fkt_config", "func");
+        _use_config = true;
         if (RECURSIVE_CALLCOUNTER++ > Definitions.MAX_SETTINGS_REC) {
             JakeWriter.err.format(
                     "Du hast das Limit an Konfigurationsaufrufen (%d) erreicht! Mehr erscheint wirklich nicht sinnvoll!",

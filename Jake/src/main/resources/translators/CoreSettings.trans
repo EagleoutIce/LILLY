@@ -46,6 +46,7 @@ S_LILLY_SIGNATURE_COLOR = lilly-signatur-farbe
 S_LILLY_BIBTEX          = lilly-bibtex
 S_GEPARDRULES_PATH      = gepardrule-path
 S_LILLY_DOCTYPE         = lilly-doctype
+S_LILLY_AUTOCONF        = lilly-autoconf
 
 S_FILE                  = file
 S_ANSWER                = answer
