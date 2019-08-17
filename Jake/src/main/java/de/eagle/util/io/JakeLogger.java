@@ -3,7 +3,7 @@ package de.eagle.util.io;
 /**
  * @file JakeLogger.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief verwaltet einen globalen Log
  * @see de.eagle.util.io.JakeFormatter
@@ -88,8 +88,7 @@ public class JakeLogger {
      * Schreibt eine Debug Nachricht für Level 1 Eine solche Nachricht darf alles
      * beinhaltet was einzelne Schritte eines Programms aufdeckt so zum Beispiel:
      *
-     * - Neue Zeile geladen: ...
-     * - Datenverabeitung ergab: ...
+     * - Neue Zeile geladen: ... - Datenverabeitung ergab: ...
      *
      * @param message die Nachricht
      * @param sender  wer möchte die Nachricht abgeben?

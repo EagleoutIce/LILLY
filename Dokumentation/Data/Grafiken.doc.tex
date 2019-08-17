@@ -8,7 +8,7 @@
     \blankcmd{LILLYxPATHxGRAPHICS} = \T{\LILLYxPATHxGRAPHICS}
 \end{center}
 \begin{bemerkung}[Standalone-Graphics]
-    Mit \LILLYxBOXxVersion{1.0.10} wurde die Grafik-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxGRAPHICS}) etabliert, welches sich auch eigenständig über \begin{latex}
+    Mit \LILLYxBOXxVersion{2.0.0} wurde die Grafik-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxGRAPHICS}) etabliert, welches sich auch eigenständig über \begin{latex}
 \usepackage{LILLYxGRAPHICS}
         \end{latex}
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen.
@@ -17,7 +17,7 @@
 %
 %
 \section{Grundlegende Symbole}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
 Dieses Paket liefert grundlegende, mal mehr und mal weniger, nützliche Tikz-Grafiken, welche zum Großteil aus denen in der Vorlesung verwendeten Grafiken entstanden sind. Alle diese Grafiken benötigen Ti\textit{k}Z (\url{https://www.ctan.org/pkg/pgf}).
 \subsection{Die Ampeln}
 Diese Definitionen befinden sich in der Datei: {\ltt../Tikz-Core/\_LILLY\_TIKZ\_AMPELN}
@@ -42,7 +42,7 @@ Dieses Paket soll die bisher von FontAwesome verwendeten Symbolen ersetzen und d
 %
 \section{Diagramme \& Graphen}
 \subsection{Graphen}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\newline
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\newline
 \begin{bemerkung}[Motivation]
 Dieses Paket liefert grundlegende, mal mehr und mal weniger, nützliche Tikz-Grafiken, welche zum Großteil aus denen in der Vorlesung verwendeten Grafiken entstanden sind. Alle diese Grafiken benötigen Ti\textit{k}Z (\url{https://www.ctan.org/pkg/pgf}).
 \end{bemerkung}
@@ -81,7 +81,7 @@ Zur Information, alle diese Befehle wurden wie folgt präsentiert:
 \begin{latex}
 :bs:tikz{:bs::lan:graphdot:ran:{(0,0)}{42}{a}};
 \end{latex}
-wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für den Textfluss noch die Boxposition angepasst, dies spielt allerdings für den Graphen keine Rolle. Mit \LILLYxBOXxVersion{1.0.10} wurden die Farben der Dots der neuen Palette %%TODO: link
+wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für den Textfluss noch die Boxposition angepasst, dies spielt allerdings für den Graphen keine Rolle. Mit \LILLYxBOXxVersion{2.0.0} wurden die Farben der Dots der neuen Palette %%TODO: link
 entsprechend portiert.\medskip
 %
 %
@@ -126,7 +126,7 @@ Wir dieser Befehl auf \verb|\true| (\true) gesetzt, so wird \blankcmd{graphPOI} 
 %
 %
 %
-\presentCommand[1.0.10]{PgetXY}[\manArg{Point}\manArg{out:x-cord}\manArg{out:y-cord}\cmdlist\secline\textbackslash PgetX\manArg{out:x-cord}\cmdlist \textbackslash PgetY\manArg{out:y-cord}]
+\presentCommand[2.0.0]{PgetXY}[\manArg{Point}\manArg{out:x-cord}\manArg{out:y-cord}\cmdlist\secline\textbackslash PgetX\manArg{out:x-cord}\cmdlist \textbackslash PgetY\manArg{out:y-cord}]
 Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da das Kreuzen von Koordinaten nervig ist, gibt es verschiedene Befehle die es erlauben, die entsprechenden Koordinaten zu speichern, wobei die letzteren beiden nur lesbarere Alternativen für die erste sind, sofern die entsprechend andere Koordinate nicht benötigt wird:\vspace{-1.15\baselineskip}
 \begin{center}%\renewcommand{\arraystretch}{0.25}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.4\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
@@ -163,7 +163,7 @@ Was hierbei auch interessant ist: die Skalierung von $X$- und $Y$-Koordinaten wi
 %
 %
 \subsection{Rotation}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_ROTATION}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_ROTATION}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
 %
 %
 %
@@ -185,7 +185,7 @@ Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und d
 \begin{center}
 \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.55\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\tiny\begin{latex}[numberstyle=\tiny\color{gray}]
+    {\tiny\begin{lstplain}[language=lLatex,numberstyle=\tiny\color{gray}]
 \begin{tikzternal}
     \examplecube
     \rotateRPY[-2/2/2]{13}{171}{55} %% Rotate set
@@ -198,7 +198,7 @@ Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und d
     \draw[Ao,ultra thick] (-2,-2,-2) -- (\savedx,-2,-2) -- (\savedx,\savedy,-2) -- (\savedx,\savedy,\savedz) circle (0.25);
     \node at (2.5,-3.5){RPY: 13,171,55};
 \end{tikzternal}
-    \end{latex}} &  \begin{tikzternal}
+    \end{lstplain}} &  \begin{tikzternal}
         \examplecube
         \rotateRPY[-2/2/2]{13}{171}{55}
         \begin{scope}[draw=purple, text=purple,fill=purple,densely dashed,RPY]
@@ -218,7 +218,7 @@ Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und d
 %
 %
 \subsection{Automaten \LILLYxNOTExWarning{Work in Progress}}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_AUTOMATEN}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_AUTOMATEN}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
 Obwohl bereits Ti\textit{k}Z eine Bibliothek für das Generieren von Automaten zur Verfügung stellt, wurde dieses (Work in Progress) Paket erstellt um darauf aufbauend schnell Automaten erstellen zu können. Der Grundbefehl lautet:\medskip
 %
 %
@@ -282,7 +282,7 @@ Die Befehle \blankcmd{state} und \blankcmd{STATE} sollen hierbei automatisch hoc
 \subsection{Schaltkreise \LILLYxNOTExWarning{Ausstehend}}
 
 \subsection{Neuronen \LILLYxNOTExWarning{Work in Progress}}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_NEURONS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_NEURONS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
 Da vor allem mit \fg der Wunsch danach aufkam, neuronale Netze schnell zu Texen, wurde dieses Paket entwickelt um das Paket mit den Schaltkreisen so zu erweitern, dass es erlaubt Perzeptronen darin einzubauen, das  Paket an sich befindet sich ebenfalls im Work in Progress-Status. \textit{Das Schaltkreise-Paket ist ebenfalls noch nicht in LILLY integriert. Es befindet sich ebenfalls in einem Anfangsstadium und deswegen wird auch hierbei um Mithilfe bei der Weiterentwicklung gebeten.}\medskip
 %
 %

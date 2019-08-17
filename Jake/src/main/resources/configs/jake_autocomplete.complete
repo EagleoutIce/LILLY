@@ -1,4 +1,4 @@
-## JavaJake ver1.0.10
+## JavaJake ver2.0.0
 # Florian Sihler
 
 __seen_operation() { ## evaluiert zu 0 wenn noch kein Operation gefunden wurde
@@ -42,7 +42,7 @@ _javajake() {
         COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
     fi
 
-    # if [[ $(__test_in ${prev//-} ${sets}) != 0 ]]; then 
+    # if [[ $(__test_in ${prev//-} ${sets}) != 0 ]]; then
     # COMPREPLY=( $(compgen -W "Es gab ein wichtiges Update - Bitte installiere Jake erneut!" -- ${cur}) )
     #    return 0
     # fi

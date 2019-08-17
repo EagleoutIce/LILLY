@@ -2,8 +2,8 @@ package Jake.Core;
 /**
  * @file Jake.DefinitionsTest.java
  * @author Florian Sihler
- * @version 1.0.10
- * 
+ * @version 2.0.0
+ *
  * @brief Testet die Definitionen auf plausibilität
  */
 
@@ -32,10 +32,9 @@ class CoreSettingsTest {
     @ParameterizedTest
     @Tag("Meta")
     @DisplayName("[CoreSettings] Überprüfe Expandieren")
-    @CsvSource({ "Unverändert, Unverändert", "$Version,"+JAKE_VERSION })
+    @CsvSource({ "Unverändert, Unverändert", "$Version," + JAKE_VERSION })
     void _test_expand_basics(String source, String expected) {
-        Assertions.assertEquals(expected.replaceAll("#", ""),
-                CoreSettings.expandFull(source));
+        Assertions.assertEquals(expected.replaceAll("#", ""), CoreSettings.expandFull(source));
     }
 
 }

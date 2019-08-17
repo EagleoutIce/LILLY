@@ -3,7 +3,7 @@ package de.eagle.gepard.parser;
 /**
  * @file Tokenizer.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Grundlegender Parser - jedes weitere Modul greift auf ihn zurück
  *
@@ -22,8 +22,8 @@ import static de.eagle.util.io.JakeLogger.*;
  * Grundlegender Tokenizer für InputStreams
  *
  * @author Florian Sihler
- * @version 1.0.10
- * @since 1.0.10
+ * @version 2.0.0
+ * @since 2.0.0
  */
 public class Tokenizer implements Iterable<TokenMatch> {
 

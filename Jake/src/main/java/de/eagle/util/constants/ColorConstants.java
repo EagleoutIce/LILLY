@@ -3,7 +3,7 @@ package de.eagle.util.constants;
 /**
  * @file ColorConstants.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Definiert Farben, die Jake für die Kommandozeilenausgabe verwendet
  */

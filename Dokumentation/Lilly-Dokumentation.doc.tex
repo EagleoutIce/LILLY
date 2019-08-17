@@ -23,28 +23,19 @@
 \newcommand{\Jake}[1][~]{\jmark[\begingroup\Fontauri Jake#1\endgroup]{mrk:JAKE}}
 \newcommand{\LJake}[1][~]{\begingroup\T|lilly\_jake|\endgroup#1}
 
-\LILLYcommand{\fg}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont For\-ma\-le Grund\-la\-gen}#1}
-\LILLYcommand{\gdra}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen der Rech\-ner\-arch\-it\-ek\-tur}#1}
-\LILLYcommand{\eidi}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ein\-fÃ¼hr\-ung in die Inf\-or\-ma\-tik}#1}
-\LILLYcommand{\la}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Lin\-e\-a\-re Al\-ge\-bra}#1}
-\LILLYcommand{\anaI}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ana\-ly\-sis~1}#1}
-\LILLYcommand{\pdp}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pa\-ra\-dig\-men der Pro\-gram\-mie\-rung}#1}
-\LILLYcommand{\gdbs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen der Be\-triebs\-sys\-tem\-e}#1}
-\LILLYcommand{\pvs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pro\-gram\-mier\-rung von Sys\-tem\-en}#1}
-
-
-
 \newcommand*{\blankcmd}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash #1}}
 \newcommand*{\blankenv}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@#1}}
 \newcommand*{\blankenvidx}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env~@#1}}
 
 \newcommand*{\secline}{\newline\hbox{}\protect\qquad\quad}
 
+\def\typesetVersion#1{\text{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}}
+
 \makeatletter
 %% [Version][Tagname][Additionals]
 \DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}{\\\qquad#4}
   \begingroup~\newline\elable{cmd:#3}%\IfValueTF{#3}{\elable{cmd:#3}}{\elable{cmd:#2}}%
-  \hspace*{-1cm}\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
+  \hspace*{-1.5cm}$\diamond$~~\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\typesetVersion{#1}}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
 \endgroup%
 }
 \makeatother

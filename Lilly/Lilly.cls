@@ -4,10 +4,10 @@
 
 \providecommand{\AUTHOR}{Florian Sihler}
 \providecommand{\AUTHORMAIL}{florian.sihler@web.de}
-\newcommand*{\LILLYxVERSION}{1.0.10}
+\newcommand*{\LILLYxVERSION}{2.0.0}
 \newcommand*{\LILLYxSTATUS}{Work in Progress}
 %% Maybe Change to LILLY 2.0 ? => it's new, it's betta :D
-\newcommand*{\LILLYxVERSIONxLONG}{1.0.10 - Jake ist auch nur Java}
+\newcommand*{\LILLYxVERSIONxLONG}{2.0.0 - Jake ist auch nur Java}
 
 %% Sloppy Defaults if no Jake is used:
 \providecommand{\LILLYxSemester}{1}

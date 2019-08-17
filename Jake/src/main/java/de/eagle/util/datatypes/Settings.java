@@ -5,7 +5,7 @@ import de.eagle.gepard.modules.Expandables;
 /**
  * @file Settings.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Die normalen Einstellungen für Jake und Co
  * @see de.eagle.util.datatypes.Settings.SettingDeskriptorStringList
@@ -42,25 +42,25 @@ public class Settings extends AbstractSettings<String, String> {
     /**
      * Konstruiert die Einstellungen ohne irgendwelche Voreinstellungen
      *
-     * @param name          Name der Einstellungen
+     * @param name Name der Einstellungen
      */
     public Settings(String name) {
-        this(name,true,null);
+        this(name, true, null);
     }
 
-
     /**
-     * Erstellt ein exemplarisches Einstellungsobjekt als Platzhalter, dieses Objket sollte und muss durch Implementationen
-     * ersetzt werden!!!
+     * Erstellt ein exemplarisches Einstellungsobjekt als Platzhalter, dieses Objket
+     * sollte und muss durch Implementationen ersetzt werden!!!
      *
      *
      * @param name Name der Einstellung
      * @return eine neues Einstellungsobjekt mit entsprechendem namen
      */
-    public static Settings createDummy(String name){
+    public static Settings createDummy(String name) {
         Settings s = new Settings("TestSettings");
         s.put("Hallo", SettingDeskriptor.create("Hallo", "Hallo Welt Einstellung"));
-        s.put("TestMandatory", SettingDeskriptor.create("TestMandatory", "Verpflichtende Einstellung", eSetting_Type.IS_PATH,true));
+        s.put("TestMandatory",
+                SettingDeskriptor.create("TestMandatory", "Verpflichtende Einstellung", eSetting_Type.IS_PATH, true));
         return s;
     }
 
@@ -85,6 +85,7 @@ public class Settings extends AbstractSettings<String, String> {
 
     /**
      * Erstellt neue Einstellungen auf der Basis des bestehenden Objekts
+     * 
      * @return neue Einstellungen
      */
     @SuppressWarnings("unchecked")
@@ -96,30 +97,31 @@ public class Settings extends AbstractSettings<String, String> {
     /**
      * Erweiterte eine Einstellung, sofern sie eine Liste ist
      *
-     * @warning Im Falle eines nonexistenten Wertes wird das letzte Zeichen von new_value als separator gesetzt
+     * @warning Im Falle eines nonexistenten Wertes wird das letzte Zeichen von
+     *          new_value als separator gesetzt
      *
      * @param key       Bezeichner der Einstellung
      * @param new_value Neuer Wert der Einstellung
-     * @return false, wenn die Einstellung gesperrt ist, oder es sich nicht um eine Liste handelt
+     * @return false, wenn die Einstellung gesperrt ist, oder es sich nicht um eine
+     *         Liste handelt
      */
     public boolean add(String key, String new_value) {
-        if (_settings.containsKey(key)){
+        if (_settings.containsKey(key)) {
             SettingDeskriptor s = _settings.get(key);
-            writeLoggerDebug3("Einstellung geladen: " + s,"Settings");
-            if(! (s instanceof SettingDeskriptorStringList)) return false;
+            writeLoggerDebug3("Einstellung geladen: " + s, "Settings");
+            if (!(s instanceof SettingDeskriptorStringList))
+                return false;
             ((SettingDeskriptorStringList) s).addValue(new_value);
-        }
-        else if (add_unknown) {
-            _settings.put(key, new SettingDeskriptorStringList(key.toString(), "Unknown Setting",
-                    false, new_value,(new_value.isEmpty())?' ':new_value.charAt(new_value.length()-1)));
+        } else if (add_unknown) {
+            _settings.put(key, new SettingDeskriptorStringList(key.toString(), "Unknown Setting", false, new_value,
+                    (new_value.isEmpty()) ? ' ' : new_value.charAt(new_value.length() - 1)));
         }
         return true;
     }
 
-    public <T> boolean requestSwitch(Translator<T,String> ts, T key){
+    public <T> boolean requestSwitch(Translator<T, String> ts, T key) {
         return this.requestValue(ts, key).equals(S_TRUE);
     }
-
 
     /**
      * Expandiert alle Einstellungen in dieser Zeichenfolge. Es wird gesucht nach:
@@ -138,7 +140,6 @@ public class Settings extends AbstractSettings<String, String> {
         return str;
     }
 
-
     /**
      * Gibt die Einstellungen als String Array zurück
      *
@@ -147,19 +148,28 @@ public class Settings extends AbstractSettings<String, String> {
      */
     public String[] dump() throws IOException {
         List<String> stringList = new LinkedList<>();
-        if(this.get("file") != null && this.get("file").getValue().contains(".conf")){
-            writeLoggerDebug1("Da eine konfigurationsdatei angegeben wurde wird diese zuerst aufgelöst!","settings:dump");
-            Configurator configurator = new Configurator(this.getClass().getResourceAsStream(this.get("file").getValue()));
-            configurator.parse_settings(this,true);
+        if (this.get("file") != null && this.get("file").getValue().contains(".conf")) {
+            writeLoggerDebug1("Da eine konfigurationsdatei angegeben wurde wird diese zuerst aufgelöst!",
+                    "settings:dump");
+            Configurator configurator = new Configurator(
+                    this.getClass().getResourceAsStream(this.get("file").getValue()));
+            configurator.parse_settings(this, true);
         }
         Settings set = Expandables.getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
-        this._settings.forEach((key, value) -> stringList.add(String.format("%s  %-20s: %s [%s]%s%s",ColorConstants.COL_RESET,key, ColorConstants.STY_PARAM, value.getValue(), (!(Expandables.expand(set,value.getValue())).equals(value.getValue()))?" => " + Expandables.expand(set,value.getValue()):"",ColorConstants.COL_RESET)));
+        this._settings.forEach((key,
+                value) -> stringList.add(String.format("%s  %-20s: %s [%s]%s%s", ColorConstants.COL_RESET, key,
+                        ColorConstants.STY_PARAM, value.getValue(),
+                        (!(Expandables.expand(set, value.getValue())).equals(value.getValue()))
+                                ? " => " + Expandables.expand(set, value.getValue())
+                                : "",
+                        ColorConstants.COL_RESET)));
         return stringList.toArray(new String[0]);
     }
 
     /**
-     * Liefert den Wert einer gewissen Einstellung zurück - Kurzschreibweise mit null check
-     * 
+     * Liefert den Wert einer gewissen Einstellung zurück - Kurzschreibweise mit
+     * null check
+     *
      * @param key der zu suchende Key
      * @return der gefundene Wert, null wenn nicht gefunden
      */
@@ -168,36 +178,37 @@ public class Settings extends AbstractSettings<String, String> {
         SettingDeskriptor<String> val = get(key);
         if (val != null && val.getValue() == null) {
             return "";
-        } else if (val == null){
+        } else if (val == null) {
             return null;
         }
         return val.getValue();
     }
 
     /**
-     * Nachdem Java keine Methode anbietet um native zwei Hashmaps zu vergleichen hier der
-     * Good-Enough ansatz :D
-     * 
+     * Nachdem Java keine Methode anbietet um native zwei Hashmaps zu vergleichen
+     * hier der Good-Enough ansatz :D
+     *
      * @param set die zu vergleichende Einstellung
      * @return true wenn die Einstellungen identisch sind.
-     * 
+     *
      */
     protected boolean compareToSettings(HashMap<String, SettingDeskriptor<String>> set) {
-            for(String s : set.keySet()){
-                if(!this._settings.containsKey(s)) return false;
-                if(!this._settings.get(s).equals(set.get(s)))
-                    return false;
-            }
-            return true;
+        for (String s : set.keySet()) {
+            if (!this._settings.containsKey(s))
+                return false;
+            if (!this._settings.get(s).equals(set.get(s)))
+                return false;
+        }
+        return true;
     }
 
     public ReturnStatus joinConfigFile(String path) throws FileNotFoundException, IOException {
         return joinConfigFile(new FileInputStream(path));
     }
 
-
-    public ReturnStatus joinConfigFile(InputStream configFile) throws IOException{
-        writeLoggerDebug1("Die Einstellung: \"" + this.getName() + "\" wird durch eine Konfigurationsdatei erweitert!", "Settings");
+    public ReturnStatus joinConfigFile(InputStream configFile) throws IOException {
+        writeLoggerDebug1("Die Einstellung: \"" + this.getName() + "\" wird durch eine Konfigurationsdatei erweitert!",
+                "Settings");
         Configurator conf_loader = new Configurator(configFile);
         conf_loader.parse_settings(this, false);
         return new ReturnStatus(0);
@@ -205,26 +216,30 @@ public class Settings extends AbstractSettings<String, String> {
 
     /**
      * Klassischer Vergleich zwischen zwei Einstellungsobjekten
-     * 
+     *
      * @implNote wird meist nur fürs Debugging verwendet :D
-     * 
+     *
      * @return Gleichheit der Objekte basierend auf der Spezifikation
      */
     @Override
-    public boolean equals(Object obj){
-        if(this==obj) return true; if(obj==null) return false;
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj.getClass() != this.getClass()) return false;
+        if (obj.getClass() != this.getClass())
+            return false;
 
-        Settings set = (Settings)obj;
-        return set.getName().equals(this.getName())
-                && set.getUnknownPolicy() == this.getUnknownPolicy() 
+        Settings set = (Settings) obj;
+        return set.getName().equals(this.getName()) && set.getUnknownPolicy() == this.getUnknownPolicy()
                 && compareToSettings(set._settings);
     }
 
     @Override
     public String toString() {
-        return "Settings [name=" + getName() + ", unknownPolicy=" + getUnknownPolicy() + ", settings=" + _settings + "]"; 
+        return "Settings [name=" + getName() + ", unknownPolicy=" + getUnknownPolicy() + ", settings=" + _settings
+                + "]";
     }
 
 }

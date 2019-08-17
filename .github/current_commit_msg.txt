@@ -6,24 +6,26 @@ Jake - Erste Verbesserungen
 
 LILLY:
 
-    * Kleine Sprachupdates, HaskellTypen angepasst.
+    + Ein paar neue Befehle wurden hinzugefügt, sie sind der
+      Dokumentation beigelegt.
 
-    ! LAII-Fix, Politeintro nun hinzugefügt.
+    * Update der Versionsnummer auf korrektes Ziel 2.0.0
+
+    * Neue Farberweiterung Chess
+
+    ! Ein paar Fehler wurden behoben
 
 JAKE:
 
-    + Neue Einstellung: 'lilly-autoconf', wird momentan in
-      der default-Einstellung gesetzt und sucht beim Aufruf
-      einer '.tex'-Datei nach einer 'jake.conf' oder gleichnam-
-      igen Konfigurationsdatei die dann automatisch verwendet
-      wird. Das Überschreiben der 'operation'- oder 'file'-
-      Konfiguration ist in diesem Kontext nicht von Belang.
+    * .jar-Generierung für Development angepasst, nun auch mit
+      fixem Namen!
 
+    * Kleine wenige Optimierungen
 
-    * Jake Compile gibt nun auch die Gesamtzahl der Fehler aus.
-      Das heißt, auch wenn das Limit der visualisierten Fehler
-      geringer als die Gesamtanzahl ist, so werden die Fehler
-      dennoch angezeigt.
+DOKUMENTATION:
+
+    * Listings nun weitgehend überarbeitet, andere Kapitel
+      im Rahmen angepasst.
 
 ================================================================
 :

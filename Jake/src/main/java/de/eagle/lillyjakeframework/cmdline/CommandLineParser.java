@@ -14,7 +14,7 @@ import static de.eagle.util.io.JakeLogger.*;
 /**
  * @file CommandLineParser.java
  * @author Florian Sihler
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Verarbeitet Befehlszeilenargumente
  */
@@ -37,8 +37,8 @@ import static de.eagle.util.io.JakeLogger.*;
  *           so wird name = A übernommen!
  *
  * @author Florian Sihler
- * @version 1.0.10
- * @since 1.0.10
+ * @version 2.0.0
+ * @since 2.0.0
  *
  * @see Settings
  */

@@ -2,7 +2,7 @@
  * @file ReturnStatus.java
  * @author Raphael Straub
  *
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Enthält bis jetzt nur einen Integer, der den Status der Zurückgegeben werden soll darstellt
  * @see de.eagle.lillyjakeframework.core.CoreFunctions
@@ -18,8 +18,8 @@ import java.util.Objects;
  * @author Raphael Straub
  * @author Florian Sihler
  *
- * @version 1.0.10
- * @since 1.0.10
+ * @version 2.0.0
+ * @since 2.0.0
  */
 public class ReturnStatus {
     /// Enthält einen Wert, der den Zurückgegebene Status darstellt
@@ -30,7 +30,7 @@ public class ReturnStatus {
      *
      * @param status der Status, der Zurückgegeben werden soll
      */
-    public ReturnStatus(int status){
+    public ReturnStatus(int status) {
         this.status = status;
     }
 
@@ -46,22 +46,23 @@ public class ReturnStatus {
     /**
      * @return true wenn geglückt
      */
-    public boolean success(){
+    public boolean success() {
         return this.equals(EXIT_SUCCESS);
     }
 
     /**
      * @return true, wenn kein erfolg
      */
-    public boolean failure(){
+    public boolean failure() {
         return !success();
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ReturnStatus)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof ReturnStatus))
+            return false;
         ReturnStatus that = (ReturnStatus) o;
         return status == that.status;
     }
@@ -73,8 +74,6 @@ public class ReturnStatus {
 
     @Override
     public String toString() {
-        return "ReturnStatus{" +
-                "status=" + status +
-                '}';
+        return "ReturnStatus{" + "status=" + status + '}';
     }
 }

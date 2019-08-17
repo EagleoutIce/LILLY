@@ -1,7 +1,7 @@
 
 
-\chapter[Mathe \LILLYxBOXxVersion{\small 1.0.10}]{Mathe}
-\TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 1.0.10}}
+\chapter[Mathe \LILLYxBOXxVersion{\small 2.0.0}]{Mathe}
+\TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 2.0.0}}
 \bigskip\newline
 \renewcommand{\arraystretch}{1.5}
 \elable{chp:MATH}An sich ändert LILLY nicht viel an der normalen Implementation der Mathewelt. Dieses Paket liegt hier: \begin{center}
@@ -13,7 +13,7 @@
 \presentCommand[1.0.3]{LILLYxMathxMode} %% Overbar
 Der verwendete Mathemodus lässt sich mithilfe des Befehls \clatex{:bs:LILLYxMathxMode} frei einstellen. Standardmäßig wird dieser Wert auf \emph{normal} gesetzt.
 \begin{bemerkung}[Standalone-Math]
-    Mit \LILLYxBOXxVersion{1.0.10} wurde die Mathe-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxMATH}) etabliert, welches sich auch eigenständig über \begin{latex}
+    Mit \LILLYxBOXxVersion{2.0.0} wurde die Mathe-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxMATH}) etabliert, welches sich auch eigenständig über \begin{latex}
 \usepackage{LILLYxMATH}
         \end{latex}
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen.
@@ -22,7 +22,7 @@ Der verwendete Mathemodus lässt sich mithilfe des Befehls \clatex{:bs:LILLYxMat
 \section{Weitere Befehle}
 
 \subsection[Operatoren \LILLYxBOXxVersion{\small 1.0.3}]{Operatoren}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_OPERATORS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_OPERATORS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
 %
 %
 %
@@ -122,7 +122,7 @@ Da der ach so wichtige Arkuskotangens erstaunlicherweise nicht standartmäßig d
 %
 %
 %
-\presentCommand[1.0.10]{dif}[\cmdlist \textbackslash dint\optArg[x]{Variable}]
+\presentCommand[2.0.0]{dif}[\cmdlist \textbackslash dint\optArg[x]{Variable}]
 Auch hierbei handelt es sich wieder um stupide Abbildungen im Operator-Style für Integration und Differenzierung
 \displayCommandList{dif,dint}
 
@@ -134,7 +134,7 @@ Auch hierbei handelt es sich wieder um stupide Abbildungen im Operator-Style fü
 
 
 \subsection[Symbole \LILLYxBOXxVersion{\small 1.0.3}]{Symbole}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
 %Weitere (nicht nennenswert und vermutlich\cmdold) sind die Befehle: \CMDpreview{x} (\(\x\)), \CMDpreview{y} (\(\y\)) und \CMDpreview{z} (\(\z\))
 %\normalmarginpar
 \presentCommand[1.0.0]{N}[\cmdlist \textbackslash Z\cmdlist \textbackslash Q\cmdlist \textbackslash R\cmdlist \textbackslash C]
@@ -163,7 +163,7 @@ Weiter wurden die griechischen Buchstaben Epsilon und Phi modifiziert:
 %
 \presentCommand[1.0.3]{B}[\cmdlist \textbackslash X\cmdlist \textbackslash K\cmdlist \textbackslash P\cmdlist \textbackslash F\cmdlist \textbackslash O]
 Zudem wird zum Beispiel die Menge der Binärzahlen über \blankcmd{B} ($\B$), die Chromatische Zahl über \blankcmd{X} ($\X$) und der generelle Körper mit \blankcmd{K} ($\K$) zur Verfügung gestellt. Für die Potenzmenge liefert LILLY \blankcmd{P} ($\P$), für die Menge der Funktionen \blankcmd{F} ($\F$) und für die Groß-O-Notation \blankcmd{O} ($\O$).\medskip\newline
-\presentCommand[1.0.10]{join}[\cmdlist \textbackslash leftouterjoin\cmdlist \textbackslash rightouterjoin\cmdlist \textbackslash fullouterjoin]
+\presentCommand[2.0.0]{join}[\cmdlist \textbackslash leftouterjoin\cmdlist \textbackslash rightouterjoin\cmdlist \textbackslash fullouterjoin]
 Da auch die Relationenalgebra Teil der Mathematik ist, hier die entsprechenden Symbole für die Joins:
 \displayCommandList{join,leftouterjoin,rightouterjoin,fullouterjoin}
 %
@@ -182,9 +182,9 @@ Da auch die Relationenalgebra Teil der Mathematik ist, hier die entsprechenden S
 
 
 \subsection[Kompatibilität \LILLYxBOXxVersion{\small 1.0.3}]{Kompatibilität}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_COMPATIBILITIES}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_COMPATIBILITIES}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
 
-Hier werden einige Befehle eingerichtet, die entweder noch nicht zugeordnet wurden\({}^{\tiny \LILLYxBOXxVersion{\tiny 1.0.10}}\) oder während der Vorlesung (im Überlebenskampf :P) ins \T{eagleStudiPackage} eingebaut worden sind.
+Hier werden einige Befehle eingerichtet, die entweder noch nicht zugeordnet wurden\({}^{\tiny \LILLYxBOXxVersion{\tiny 2.0.0}}\) oder während der Vorlesung (im Überlebenskampf :P) ins \T{eagleStudiPackage} eingebaut worden sind.
 %
 %
 %
@@ -196,7 +196,7 @@ Hier befinden sich die für \la kreierten: \blankcmd{enum\manArg{items}} (\verb|
 \presentCommand[1.0.1]{xa}[\cmdlist \textbackslash xb\cmdlist \textbackslash xc]
 Weiter existieren die Befehle \blankcmd{xa} ($\xa$), \blankcmd{xb} ($\xb$), \blankcmd{xc} ($\xc$), welche einen etwas größeren Abstand für eine bessere Lesbarkeit einfügen. \medskip\newline
 \presentCommand[1.0.1]{crossAT}[\manArg{(PosX,PosY)}\cmdlist \textbackslash circAT\manArg{(PosX,PosY)}\cmdlist \textbackslash bblock\manArg{(PosX,PosY)}\manArg{text}]
-Für Ti\textit{k}Z gibt es noch die Befehle \blankcmd{crossAT\manArg{(PosX,PosY)}} (\raisebox{-0.35\baselineskip}{\tikz{\crossAT{(0,0)};}}\footnote{\T{\blankcmd{tikz}\{\blankcmd{crossAT}\{(0,0)\};\}} -- Zum Erhalt der Textzeile vertikal um \T{-0.35\textbackslash baselineskip} verschoben.}) und analog\newline \blankcmd{circAT\manArg{(PosX,PosY)}} (\tikz{\circAT{(0,0)};} \footnote{\T{\blankcmd{tikz}\{\blankcmd{circAT}\{(0,0)\};\}}}), sowie \blankcmd{bblock\manArg{(PosX,PosY)}\manArg{text}} (\raisebox{-0.2\baselineskip}{\tikz{\bblock{(0,0)}{42};}} \footnote{\T{\blankcmd{tikz}\{\blankcmd{bblock}\{(0,0)\}\{42\};\}} -- Wieder vertikal um \T{-0.2\textbackslash baselineskip} verschoben.}). Hier fragt man sich nun vielleicht, warum diese nicht in einem entsprechenden Ti\textit{k}Z-Paket sind. Im Rahmen der mit \LILLYxBOXxVersion{1.0.10} eingeführten Modularisierung hat sich diese Verteilung als günstig erwiesen. %% vielleicht doch verschieben?
+Für Ti\textit{k}Z gibt es noch die Befehle \blankcmd{crossAT\manArg{(PosX,PosY)}} (\raisebox{-0.35\baselineskip}{\tikz{\crossAT{(0,0)};}}\footnote{\T{\blankcmd{tikz}\{\blankcmd{crossAT}\{(0,0)\};\}} -- Zum Erhalt der Textzeile vertikal um \T{-0.35\textbackslash baselineskip} verschoben.}) und analog\newline \blankcmd{circAT\manArg{(PosX,PosY)}} (\tikz{\circAT{(0,0)};} \footnote{\T{\blankcmd{tikz}\{\blankcmd{circAT}\{(0,0)\};\}}}), sowie \blankcmd{bblock\manArg{(PosX,PosY)}\manArg{text}} (\raisebox{-0.2\baselineskip}{\tikz{\bblock{(0,0)}{42};}} \footnote{\T{\blankcmd{tikz}\{\blankcmd{bblock}\{(0,0)\}\{42\};\}} -- Wieder vertikal um \T{-0.2\textbackslash baselineskip} verschoben.}). Hier fragt man sich nun vielleicht, warum diese nicht in einem entsprechenden Ti\textit{k}Z-Paket sind. Im Rahmen der mit \LILLYxBOXxVersion{2.0.0} eingeführten Modularisierung hat sich diese Verteilung als günstig erwiesen. %% vielleicht doch verschieben?
 \newline
 %
 %
@@ -255,7 +255,7 @@ Fügt einen großen senkrechten Strich ein: \blankcmd{trenner} ($\trenner$).
 
 
 \subsection[Shortcuts \LILLYxBOXxVersion{\small 1.0.8}]{Shortcuts}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SHORTCUTS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SHORTCUTS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
 Hier befinden sich einige abkürzende Befehle, die primär das Schreiben beschleunigen sollen. Sie werden auf Bedarf stetig erweitert.\medskip\newline
 %
 %
@@ -286,7 +286,7 @@ Setzt entsprechend: \x[], \y und \z\medskip\newline
 %
 %
 %
-\presentCommand[1.0.10]{ceil}[\optArg{math-Ausdruck}\cmdlist \textbackslash floor\optArg{math-Ausdruck}]
+\presentCommand[2.0.0]{ceil}[\optArg{math-Ausdruck}\cmdlist \textbackslash floor\optArg{math-Ausdruck}]
 Verkürzt das Schreiben von: \clatex{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \clatex{:bs:lceil}\&\clatex{:bs:rceil} entsprechend:
 \begin{multicols}{2}%
     \begin{ditemize}
@@ -300,12 +300,12 @@ Verkürzt das Schreiben von: \clatex{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:
 \begin{center}
     Für die Spezifikationen siehe hier: \jmark[klick mich]{jmp:PLOTSSPEC}!
 \end{center}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_PLOTS}. Sie werden mit \LILLYxBOXxVersion{1.0.10} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_PLOTS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip\newline
 %
 %
 %
 \presentCommand[1.0.8]{plotline}[\optArg[Ao]{Farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}\optArg[0]{offset}]
-Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Funktion (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar. Mit \emph{offset}${}^{\T{v1.0.10}}$ lässt sich die Funktion entsprechend verschieben.\medskip\newline
+Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Funktion (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar. Mit \emph{offset}${}^{\T{v2.0.0}}$ lässt sich die Funktion entsprechend verschieben.\medskip\newline
 %
 %
 %
@@ -314,12 +314,12 @@ Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Folge zwischen \emph{Unt
 %
 %
 %
-\presentCommand[1.0.10]{xmark}[\optArg[x]{text}\manArg{PosX}\optArg[0.15]{linelength}]
+\presentCommand[2.0.0]{xmark}[\optArg[x]{text}\manArg{PosX}\optArg[0.15]{linelength}]
 Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip\newline
 %
 %
 %
-\presentCommand[1.0.10]{ymark}[\optArg[xy]{text}\manArg{PosY}\optArg[0.15]{linelength}]
+\presentCommand[2.0.0]{ymark}[\optArg[xy]{text}\manArg{PosY}\optArg[0.15]{linelength}]
 Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip\newline
 
 
@@ -356,12 +356,13 @@ Es existiert die folgende Implementation der Graph-Umgebung:
 \end{center}
 Für die \emph{Konfigurationen} gibt es folgende Möglichkeiten:
 \begin{center}% \begin{tabularx}{0.75\linewidth}
-    \begin{tabularx}{0.7\linewidth}{>{\LILLYxlstTypeWriter}l>{\em}lcl}
+    \begin{tabularx}{0.7\linewidth}{^t>{\em}^l^c^l+}
         \toprule
-        Bezeichner & \normalfont Typ & Standard & Beschreibung\\\midrule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
         scale & Zahl & 1 & Skalierungsfaktor \\
-        xscale & Zahl & 1 & $x$-Skalierungsfaktor${}^{\T{v1.0.10}}$\\
-        yscale & Zahl & 1 & $y$-Skalierungsfaktor${}^{\T{v1.0.10}}$\\
+        xscale & Zahl & 1 & $x$-Skalierungsfaktor${}^{\typesetVersion{2.0.0}}$\\
+        yscale & Zahl & 1 & $y$-Skalierungsfaktor${}^{\typesetVersion{2.0.0}}$\\
         minX & Zahl & -2 & X-Achse Start \\
         maxX & Zahl & 2 & X-Achse Ende \\
         minY & Zahl & 0 & Y-Achse Start \\
@@ -380,7 +381,7 @@ Für die \emph{Konfigurationen} gibt es folgende Möglichkeiten:
     \end{tabularx}
 \end{center}
 
-\presentEnvironment[1.0.10]{egraph}[\optArg{Konfigurationen}]
+\presentEnvironment[2.0.0]{egraph}[\optArg{Konfigurationen}]
 Funktioniert analog zu \blankenv{egraph}, erlaubt allerdings keine weiteren \emph{Tikz-Argumente}, sondern macht von \blankenv{tikzternal} gebrauch, kann also ausgelagert werden. (TODO: LINK)\medskip
 
 \presentEnvironment[1.0.8]{wgraph}[\manArg{Ausrichtung}\optArg{Konfigurationen}\optArg{Tikz-Argumente}\secline\optArg{wrapfig-Zusatz}\optArg[0pt]{width}]

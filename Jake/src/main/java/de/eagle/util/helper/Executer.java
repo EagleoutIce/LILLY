@@ -6,8 +6,8 @@ import java.io.*;
 
 /**
  * @author Florian Sihler
- * @since 1.0.10
- * @version 1.0.10
+ * @since 2.0.0
+ * @version 2.0.0
  */
 public class Executer {
     /**
@@ -22,14 +22,15 @@ public class Executer {
         File outf = File.createTempFile("jake-tmp", ".sh");
         BufferedWriter out = new BufferedWriter(new FileWriter(outf));
         String s;
-        while((s = in.readLine()) != null){
-            out.write(s+"\n");
+        while ((s = in.readLine()) != null) {
+            out.write(s + "\n");
         }
-        in.close();out.close();
+        in.close();
+        out.close();
         return outf.getAbsolutePath();
     }
 
-    public static BufferedReader runCommand(String cmd){
+    public static BufferedReader runCommand(String cmd) {
         Process p = null;
         try {
             p = Runtime.getRuntime().exec(cmd);
@@ -39,10 +40,12 @@ public class Executer {
         }
         return null;
     }
-    public static BufferedReader runBatchCommand(String cmd){
-        return runCommand(new String[] {"bash", "-c", cmd});
+
+    public static BufferedReader runBatchCommand(String cmd) {
+        return runCommand(new String[] { "bash", "-c", cmd });
     }
-    public static BufferedReader runCommand(String[] cmd){
+
+    public static BufferedReader runCommand(String[] cmd) {
         Process p = null;
         try {
             p = Runtime.getRuntime().exec(cmd);

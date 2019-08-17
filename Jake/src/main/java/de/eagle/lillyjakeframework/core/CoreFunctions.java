@@ -3,7 +3,7 @@ package de.eagle.lillyjakeframework.core;
 /**
  * @file CoreFunctions.java
  * @author Raphael Straub
- * @version 1.0.10
+ * @version 2.0.0
  *
  * @brief Enthält viele Funktionen
  */
@@ -34,8 +34,8 @@ import static de.eagle.util.io.JakeLogger.*;
  * Enthält viele Funktionen
  *
  * @author Raphael Straub
- * @version 1.0.10
- * @since 1.0.10
+ * @version 2.0.0
+ * @since 2.0.0
  */
 public final class CoreFunctions {
     /// Wird noch nicht genutzt
@@ -137,23 +137,26 @@ public final class CoreFunctions {
         return ReturnStatus.EXIT_SUCCESS;
     }
 
-    public static boolean customLoadConfig(String[] cmd){
-        if(!_use_config && CoreSettings.requestSwitch("S_LILLY_AUTOCONF")) { // Automatically search and Pick a Config-File
-            JakeLogger.writeLoggerDebug1("Es wird automatisch eine Konfigurationsdatei gesucht, da Autoconf true ist", "func");
+    public static boolean customLoadConfig(String[] cmd) {
+        if (!_use_config && CoreSettings.requestSwitch("S_LILLY_AUTOCONF")) { // Automatically search and Pick a
+                                                                              // Config-File
+            JakeLogger.writeLoggerDebug1("Es wird automatisch eine Konfigurationsdatei gesucht, da Autoconf true ist",
+                    "func");
             Configurator c = null;
             try {
                 String p = "";
                 String t = CoreSettings.requestValue("S_FILE").replaceFirst("[.][a-zA-Z0-9]{1,7}", ".conf");
-                if(new File("./jake.conf").isFile())
+                if (new File("./jake.conf").isFile())
                     p = "./jake.conf";
-                else if(new File(t).isFile())
+                else if (new File(t).isFile())
                     p = t;
                 _use_config = true;
-                if(p.equals("")) return false;
+                if (p.equals(""))
+                    return false;
                 JakeWriter.out.println("Nutze Konfigurationsdatei: " + p);
                 c = new Configurator(p);
                 return (c.parse_settings(CoreSettings.settings, false) == 0);
-                //return CommandLineParser.interpret_settings(cmd).success();
+                // return CommandLineParser.interpret_settings(cmd).success();
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;
@@ -186,7 +189,8 @@ public final class CoreFunctions {
         return ReturnStatus.EXIT_SUCCESS;
     }
 
-    /// @brief Markiert für die Übersicht, ob eine Konfigurationsdatei verwendet wird.
+    /// @brief Markiert für die Übersicht, ob eine Konfigurationsdatei verwendet
+    /// wird.
     public static boolean _use_config = false;
 
     public static ReturnStatus fkt_config(String[] cmd) {
