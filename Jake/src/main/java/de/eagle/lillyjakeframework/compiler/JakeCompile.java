@@ -159,7 +159,7 @@ public class JakeCompile {
             ctr++;
         }
 
-        // await completition
+        // await completion
         for (int i = 0; i < workers.length; i++) {
             try {
                 if (workers[i] != null)
@@ -374,6 +374,17 @@ public class JakeCompile {
 
         }
 
+        /**
+         * @brief test, ob es sich um einen Fehler handelt
+         *
+         * @param line Zeile die es zu testen gilt
+         *
+         * @returns true, im Falle eines Fehlers
+         */
+        public static boolean isErrorLine(String line) {
+            return line.startsWith("!") || line.toLowerCase().contains("improper alph");
+        }
+
         public static Exception analyse(String final_name, int errmax, Charset charset) {
             try {
                 String[] lines = Files.lines(Paths.get(final_name + ".log"), charset).toArray(String[]::new);
@@ -382,7 +393,7 @@ public class JakeCompile {
                 for (int k = 0; k < lines.length; k++) {
                     String cur = lines[k];
 
-                    if (cur.startsWith("!") || cur.toLowerCase().contains("improper alph")) {
+                    if (isErrorLine(cur)) {
                         JakeWriter.out.format("%n %3d. %s%n", ++errCount, cur);
                         // print all meta-lines
                         int meta_count = 0;
@@ -419,6 +430,11 @@ public class JakeCompile {
                         JakeWriter.out.format(
                                 "%n%s------------------------------------ Erste %d Fehler ------------------------------------%s%n", // %2$s
                                 ColorConstants.COL_ERROR, errmax, ColorConstants.COL_RESET);
+                        // Skip count other errors
+                        for (; k < lines.length; k++) {
+                            if (isErrorLine(lines[k]))
+                                errCount++;
+                        }
                         break;
                     }
                     // )) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
@@ -426,6 +442,8 @@ public class JakeCompile {
                     // -------------------------------- Erste 5 Fehler
                     // --------------------------------
                 }
+                JakeWriter.out.format("%n%sInsgesamt wurden %d Fehler registriert.%s%n", // %2$s
+                        ColorConstants.COL_CYAN, errCount, ColorConstants.COL_RESET);
             } catch (Exception e) {
                 return e;
             }

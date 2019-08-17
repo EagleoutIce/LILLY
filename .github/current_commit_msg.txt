@@ -1,4 +1,4 @@
-Lilly - kann jetzt auch auflisten
+Jake - Erste Verbesserungen
 
 ================================================================
 :EagleoutIce for Lilly
@@ -6,26 +6,24 @@ Lilly - kann jetzt auch auflisten
 
 LILLY:
 
-    + list@iter hinzugefügt (inclusive cmd)
+    * Kleine Sprachupdates, HaskellTypen angepasst.
 
-    + Mathe hat nun \ceil and \floor
+    ! LAII-Fix, Politeintro nun hinzugefügt.
 
-    + Jeder \LILLYxPATHx... hat nun einen entsprechenden
-      \LILLYxABSPATHx als Bruder, der den absoluten Pfad hält
+JAKE:
 
-    * Sprachen wurden aktualisiert
-
-
-DOKUMENTATION:
-
-    + Neue Befehle der aktuellen Version erhalten eine rote
-      Versionsmarkierung
+    + Neue Einstellung: 'lilly-autoconf', wird momentan in
+      der default-Einstellung gesetzt und sucht beim Aufruf
+      einer '.tex'-Datei nach einer 'jake.conf' oder gleichnam-
+      igen Konfigurationsdatei die dann automatisch verwendet
+      wird. Das Überschreiben der 'operation'- oder 'file'-
+      Konfiguration ist in diesem Kontext nicht von Belang.
 
 
-    * Grafik-Teil für 1.0.10 wird überarbeitet
-
-    * Matheteil für 1.0.10 wurde überarbeitet
-
+    * Jake Compile gibt nun auch die Gesamtzahl der Fehler aus.
+      Das heißt, auch wenn das Limit der visualisierten Fehler
+      geringer als die Gesamtanzahl ist, so werden die Fehler
+      dennoch angezeigt.
 
 ================================================================
 :

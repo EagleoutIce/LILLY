@@ -2,14 +2,15 @@
     language=haskell,
     alsoletter={-,|,~,{,},_,.,>,<,=,:,\*,'},
     comment=[l]{--},
+    deletekeywords={Maybe,Either,Maybe,Either,Nothing,Just,Left,Right,\$},
     %morestring=[b]',
-    keywordsprefix={\$},
+    %keywordsprefix={\$},
     morecomment=[s]{\{-}{-\}},
     escapeinside={!!}{!!},
     morekeywords = {:l,:cd,:q,:r,:t,String,Char,Bool,Show},
     morekeywords = [2]{<,>,->,=>,<-,>=},
-    morekeywords = [3]{True,False},
-    morekeywords = [4]{::},
+    morekeywords = [3]{True,False,Maybe,Either,Nothing,Just,Left,Right},
+    morekeywords = [4]{::,\$},
     morekeywords = [5]{Prelude>,\*Main>},
 }
 

@@ -103,6 +103,11 @@ public class CoreSettings {
         // S_LILLY_AUTOCLEAN
         settings.emplace(st, "S_LILLY_AUTOCLEAN", "Sollen beim Arbeiten entstandene Dateien am Ende entfernt werden?",
                 eSetting_Type.IS_SWITCH, "true");
+
+        // S_LILLY_AUTOCLEAN
+        settings.emplace(st, "S_LILLY_AUTOCONF", "Erlaubt es eine gleichnamige .conf Datei oder jake.conf zu verwenden sofern diese existiert.",
+                eSetting_Type.IS_SWITCH, "false");
+
         // S_LILLY_CLEANS
         settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?",
                 eSetting_Type.IS_TEXTLIST,
@@ -123,7 +128,7 @@ public class CoreSettings {
                                                                                                                    // WITH
                                                                                                                    // ':'
                                                                                                                    // TODO!
-        // TODO: wird mit analzye automatisch erklärt
+        // TODO: wird mit analyze automatisch erklärt
 
         // S_LILLY_SHOW_BOX_NAME
         settings.emplace(st, "S_LILLY_SHOW_BOX_NAME", "Soll der Boxname angezeigt werden?", eSetting_Type.IS_SWITCH,
