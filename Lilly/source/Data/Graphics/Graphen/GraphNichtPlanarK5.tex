@@ -1,0 +1,14 @@
+\gdef\GRAPHICSxGraphxNichtxPlanarxK5{%
+\begin{tikzternal}[scale=0.4,ever node/.style={transform shape}]
+        \def\ngon{5}
+        \node[regular polygon,regular polygon sides=\ngon,minimum size=2.5cm] (p) {};
+        \foreach\x in {1,...,\ngon}{\purgraphdot{(p.corner \x)}{}{p\x};}
+        \foreach\x in {1,...,\numexpr\ngon-1\relax}{
+          \foreach\y in {\x,...,\ngon}{
+            \draw[thick] (p\x) -- (p\y);
+          }
+        }
+        \node at(0,5) {\(K_{5}\)};
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxGraphxNichtxPlanarxK5} %% new pattern maybe apply to all?

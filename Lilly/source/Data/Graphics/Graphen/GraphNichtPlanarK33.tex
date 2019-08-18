@@ -1,0 +1,15 @@
+\gdef\GRAPHICSxGraphxNichtxPlanarxK33{%
+\begin{tikzternal}[scale=0.4,ever node/.style={transform shape}]
+        \foreach \x in {1,...,3}{
+            \purgraphdot{(3*\x,0)}{}{a\x};
+            \purgraphdot{(3*\x,3)}{}{b\x};
+        }
+        \draw[thick] (a1) -- (b3) -- (a3) -- (b1) -- (a1)
+              (b1) -- (a2) -- (b3)
+              (a1) -- (b2) -- (a3)
+              (a2) -- (b2);
+        \node at (0,-1.5) {};
+        \node at(6,6) {\(K_{3,3}\)};
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxGraphxNichtxPlanarxK33} %% new pattern maybe apply to all?
