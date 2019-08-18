@@ -1,24 +1,24 @@
-\gdef\GRAPHICSxCYKxBeispiel2{%
+\gdef\GRAPHICSxMinimalautomatxBeispiel3{%
 \begin{tikzternal}[scale=0.35,every node/.style={transform shape}]
-                %\def\blueCrosses{
-                %    {1,5},
-                %    {1,4}, {2,4},
-                %    {1,3}, {2,3}, {4,1}, {2,2},
-                %    {1,2}, {3,2}, {3,3}, {4,2},
-                %    {1,1}, {3,1}, {3,2}, {5,1}%
-                %}
+                \def\blueCrosses{
+                    {1,5},
+                           {2,4},
+                    {1,3},        {3,3},
+                           {2,2},        {4,2},
+                    {1,1},        {3,1},       {5,1}% dieser Kommentar ist wichtig
+                }
                 \foreach \a [count=\i, evaluate=\i as \io using \i+0.5] in {1,...,5} {
                     \draw (\io,1) node[below] {\vphantom{\large d}\a}; %spacing for dummies :d
                     \foreach \b [count=\ii] in {\a,...,5}{
                         \draw (\i,\ii) rectangle ++(1,1);
                     }
                 }
-                %\foreach \bc in \blueCrosses {
-                %    \draw (\bc)++(0.5,0.5) node[] {\Huge\textcolor{tealblue}{\ding{55}}%};
-                %}
+                \foreach \bc in \blueCrosses {
+                    \draw (\bc)++(0.5,0.5) node[] {\Huge\textcolor{tealblue}{0}};
+                }
                 \foreach \a [count=\i, evaluate=\i as \io using \i+0.5] in {6,...,2}{
                     \draw (1,\io) node[left] {\a\tab[0.05cm]};
                 }
             \end{tikzternal}
 }
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxCYKxBeispiel2} %% new pattern maybe apply to all?
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxMinimalautomatxBeispiel3} %% new pattern maybe apply to all?
