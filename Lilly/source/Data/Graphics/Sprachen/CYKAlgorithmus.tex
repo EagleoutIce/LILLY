@@ -1,0 +1,26 @@
+\gdef\GRAPHICSxCYKxAlgorithmus{%
+\begin{tikzternal}[scale=0.75, every node/.style={transform shape}]
+        \foreach \x/\l[count=\xi] in {a/A,b/B,c/C E,c/C E} {
+            \node [above] at (\xi+0.5,0.34) (n\xi) {\xi};
+            \node [above] at (\xi+0.5,0)  (a\xi) {\large \bfseries \x};
+            \draw (\xi+0.5,-0.5) node  {\large \(\l\)};
+            \foreach \y in {\xi,...,4} {
+                \draw (\xi,-4+\y) rectangle ++(1,-1);
+            }
+            \foreach \x/\y/\l in {
+                1.5/-1.5/D, 2.5/-1.5/-, 3.5/-1.5/E,
+                1.5/-2.5/S, 2.5/-2.5/-,
+                1.5/-3.5/S
+            } {
+                \draw (\x,\y) node {\(\l\)};
+                \draw[very thin,densely dashed] (\x,\y)++(0,0.35) -- ++(0,0.35)++(0.35,-0.35) -- ++(0.35,0.45);
+            }
+        }
+        \foreach \y in {1,...,4} {
+            \node [left] at (1,-\y+0.5) {\y};
+            \node at (0,-\y+0.5) [left] {T[\y,j]};
+
+        }
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxCYKxAlgorithmus} %% new pattern maybe apply to all?
