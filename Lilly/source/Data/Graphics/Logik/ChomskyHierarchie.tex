@@ -1,0 +1,27 @@
+\gdef\GRAPHICSxChomskyxHierarchie{%
+\begin{tikzternal}
+    \draw[rounded corners=14pt] (0,0) rectangle ++(2,-5) (1,-0.5) node (0) {Typ 0};
+    \draw[rounded corners=12pt] (0.125,-1+0.125) rectangle ++(1.75,-4) (1,-1.5) node (1) {Typ 1};
+    \draw[rounded corners=10pt] (0.25,-2+0.125) rectangle ++(1.5,-2.75-0.125) (1,-2.5) node (2) {Typ 2};
+    \draw[rounded corners=8pt] (0.25+0.125,-3+0.125) rectangle ++(1.25,-1.75) (1,-3.5) node (3) {Typ 3};
+
+    \draw (0) ++ (1.25,0) node[right] {\begin{minipage}{0.5\textwidth}
+        Jede Grammatik - Aber \textbf{nicht} jede Sprache (Beispiel: \(\pi\), alle irrationalen Zahlen)
+    \end{minipage}};
+    \draw (1) ++ (1.25,0) node[right] {\begin{minipage}{0.5\textwidth}
+        \textbf{Kontextsensitiv}:\\
+        \(|w_1| \leq |w_2|\quad \forall w_1 \rightarrow w_2 \in P\)
+    \end{minipage}};
+    \draw (2) ++ (1.25,0) node[right] {\begin{minipage}{0.5\textwidth}
+        \textbf{Kontextfrei}:\\
+        \(w_1 \in V\quad \forall w_1 \rightarrow w_2 \in P\)
+    \end{minipage}};
+    \draw (3) ++ (1.25,-0.25) node[right] {\begin{minipage}{0.5\textwidth}
+        \textbf{Regulär}:\\
+        \(w_2 \in \Sigma \cup \Sigma V\)\\
+        Kann von \jmark[NFA]{jmp:NFA} und \jmark[DFA]{jmp:DFA} realisiert werden.
+    \end{minipage}};
+    \draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (-0.125,-1+0.05) -- ++(0,-4+0.05) node [black,midway, above,rotate=90,yshift=0.5cm] {Entscheidbar};
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxChomskyxHierarchie} %% new pattern maybe apply to all?
