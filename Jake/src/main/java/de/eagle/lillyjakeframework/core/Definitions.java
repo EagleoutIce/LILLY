@@ -20,13 +20,13 @@ import de.eagle.util.enumerations.eProgress_State;
  *         heraus erstellt werden und mit der spezifischen Jake Version
  *         einhergehen.
  * @version 2.0.0
- * @since 2.0.0asdasdasdasdasdas
+ * @since 2.0.0
  */
 public class Definitions {
     /// Kurzbeschreibung der Version
     public static final String PRG_BRIEF = "Jake 2.0.0 - It's Java Time";
     /// Die Version als String
-    public static final String JAKE_VERSION = "1.00.10";
+    public static final String JAKE_VERSION = "2.00.00";
 
     public static final String PRG_NAME = "jake";
 
@@ -53,7 +53,7 @@ public class Definitions {
     public static final String JAKE_INSTALLED_PATH = System.getenv("JAKE_INSTALLATION_PATH");
 
     /// Die aktuelle Version als Zahl
-    public static final int JAKE_VERSION_NUM = 10010;
+    public static final int JAKE_VERSION_NUM = 20000;
 
     public static final int B_NAME = 0;
     public static final int B_EXTRA = 1;
