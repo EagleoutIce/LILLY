@@ -1,6 +1,9 @@
 \lstdefinelanguage{lProlog}{
     language=prolog,
     alsoletter={-|~_.><=:\*'?},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
     comment=[l]{\%},
     keywordsprefix={\$},
     morecomment=[s]{/*}{*/},

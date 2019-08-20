@@ -49,46 +49,8 @@
 
 %% NOTE: https://ctan.kako-dev.de/macros/latex/contrib/lstaddons/lstautogobble.pdf
 
-%%% mimimi workaround start:
-\makeatletter
-\let\old@lstKV@SwitchCases\lstKV@SwitchCases
-\def\lstKV@SwitchCases#1#2#3{}
+% %% itsch scho naisch, schankch to: https://tex.stackexchange.com/questions/451532/recent-issues-with-lstlinebgrd-package-with-listings-after-the-latters-updates
 
-%% https://www.ctan.org/pkg/lstlinebgrd
-\LILLYxLoadPackage{lstlinebgrd}{Betta backgroundcolors}
-                    {Nicht schlimm, dann nix bunt :/}{} %% todo: fallbacks
-                    {}{}
-
-%% itsch scho naisch, schankch to: https://tex.stackexchange.com/questions/451532/recent-issues-with-lstlinebgrd-package-with-listings-after-the-latters-updates
-\let\lstKV@SwitchCases\old@lstKV@SwitchCases
-
-\lst@Key{numbers}{none}{%
-    \def\lst@PlaceNumber{\lst@linebgrd}%
-    \lstKV@SwitchCases{#1}%
-    {none:\\%
-     left:\def\lst@PlaceNumber{\llap{\normalfont
-                \lst@numberstyle{\thelstnumber}\kern\lst@numbersep}\lst@linebgrd}\\%
-     right:\def\lst@PlaceNumber{\rlap{\normalfont
-                \kern\linewidth \kern\lst@numbersep
-                \lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
-    }{}}%\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
-\makeatother
-
-\def\lilly@lst@backcol{MudWhite}
-
-% Line Background macro => modified
-\long\def\lst@linebgrd{%
-    \ifx\lst@linebgrdcolor\empty\else
-    \rlap{%
-        \lst@basicstyle
-        \color{\lilly@lst@backcol}%% changed
-        \lst@linebgrdcolor{%
-        \kern-\dimexpr\lst@linebgrdsep\relax%
-        \lst@linebgrdcmd{\lst@linebgrdwidth}{\lst@linebgrdheight}{\lst@linebgrddepth}%
-        }%
-    }%
-    \fi
-}
 
 \RequirePackage{LILLYxLIST}
 
@@ -104,11 +66,6 @@
 
 %% Jede registrierte Sprache erhält am ende ihr environment, ihren \c-Befehl,\b-Befehl und ihren \i-Befehl
 %% Damit wird redundante Code-Generierung erspahrt.
-
-
-\def\HLError#1{% sloppy
-  \ifnum\value{lstnumber}=#1\color{DebianRed!25}\else\color{\lilly@lst@backcol}\fi
-}
 
 
 %% https://tex.stackexchange.com/questions/34896/coloring -digits -with -the -listings -package/34952#34952
@@ -300,3 +257,12 @@
 \newcommand{\isLanguageNameLoaded}[1]{
   \containsList{RegisteredLanguageNames}{#1}
 }
+
+
+\RequirePackage{LILLYxLISTINGSxHL}
+
+%% \RequirePackage{LILLYxLISTINGSxLINEBGRD}
+\def\HLError#1{% sloppy
+  % dummy
+}
+\endinput
