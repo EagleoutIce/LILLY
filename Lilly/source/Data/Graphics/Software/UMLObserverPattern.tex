@@ -15,9 +15,9 @@
 
     \umlclass[x=12,y=0,name=cs]{Subject}%
                         {- observerCollection : Collection}%
-                        {+ registerOvserver(observer : Observer) : void\\%
+                        {+ registerObserver(observer : Observer) : void\\%
                          + unregisterObserver(observer: Observer) : void\\%
                          + notifyObservers() : void};
     \umlnote[x=12,y=-3.5, width=7cm]{Subject}{\T{notifyObservers()} ruft für jeden \T{Observer} in der \T{observerCollection} einmal \T{notify()} auf.} 
 \end{tikzternal}}
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxUMLObsererPattern} %% new pattern maybe apply to all?
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxUMLObsererPattern} 
