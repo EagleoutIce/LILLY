@@ -3,6 +3,9 @@
 \lstdefinelanguage{lGepard}{
     comment=[l]{\%},
     alsoletter={\#=-[]},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
     morecomment=[s]{!}{!},
     morestring=[b]",
     escapeinside={!*}{*!},

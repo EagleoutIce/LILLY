@@ -1,6 +1,9 @@
 \lstdefinelanguage{lHaskell}{
     language=haskell,
     alsoletter={-|~{,}_.><=:\*'},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
     comment=[l]{--},
     deletekeywords={Maybe,Either,Maybe,Either,Nothing,Just,Left,Right,\$},
     %morestring=[b]',
