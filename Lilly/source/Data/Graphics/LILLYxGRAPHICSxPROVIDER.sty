@@ -22,9 +22,9 @@
 %
 %% [width] {path} [height] width and height are mutually exclusive (to keep aspect ratio), if both given, width will Dominate by Design
 \ProvideDocumentCommand{\getGraphics}{ o m o }{%
-\lillyXgraphicsXproviderXisresizeabletrue
-\input{\LILLYxPATHxDATA/Graphics/#2}
-\iflillyXgraphicsXproviderXisresizeable
+\lillyXgraphicsXproviderXisresizeabletrue%
+\input{\LILLYxPATHxDATA/Graphics/#2}%
+\iflillyXgraphicsXproviderXisresizeable%
 \IfValueTF{#1}{\resizebox{#1}{!}{\LILLYxGRAPHICSxSHOW}}%
 {\IfValueTF{#3}{\resizebox{!}{#3}{\LILLYxGRAPHICSxSHOW}}%
 {\resizebox{\linewidth}{!}{\LILLYxGRAPHICSxSHOW}}%

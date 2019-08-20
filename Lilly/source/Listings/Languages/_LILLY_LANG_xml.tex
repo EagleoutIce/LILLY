@@ -11,9 +11,11 @@
     morecomment=[s]{!--}{--},
     moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
     moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[il][{\lstHLError}]{|err|:},
     moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
-    alsoletter={:\#!-?},
-    otherkeywords={<,>,/},
+    moredelim=[is][{}]{|noh|}{|noh|},
+    alsoletter={:\#!-},
+    otherkeywords={<?,?>,<,>,/},
     %frameround=tttt, %% mag background color nicht
     escapeinside={!*}{*!},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt

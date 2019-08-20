@@ -1,0 +1,15 @@
+\gdef\GRAPHICSxSQLFields{%
+\begin{tikzternal}[scale=0.75, every node/.style={font=\sffamily, transform shape,Azure}]
+    \draw[Azure,fill=Azure!10] (0,0) circle (4);
+    \draw[Azure] (45:4) -- (225:4) (-45:4) -- (-225:4);
+
+    %% angle, label, signature
+    \foreach \a/\l/\s in {  0/Query/Q,
+                           90/Definition/D,
+                          180/Manipulation/M,
+                          270/Control/C} {
+        \node at(\a:2.25) {\parbox{2.75cm}{\small\centering Data \l\\ Language (D\s L)}};
+    }
+\end{tikzternal}%
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxSQLFields} 

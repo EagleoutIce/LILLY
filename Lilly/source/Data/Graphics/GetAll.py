@@ -53,6 +53,6 @@ with open("./all.tex",'w') as out:
     out.write("\\bottomrule\n\\end{tabularx}\n")
     out.write("\\end{document}")
 
-os.system("jake all.tex -lilly-nameprefix: \"\" -lilly-show-boxname: false");
+os.system("jake all.tex -lilly-nameprefix: \"\" -lilly-show-boxname: false -lilly-compiletimes: 2");
 os.system("xdg-open " + dir_path + "/all-OUT/all.pdf")
 
