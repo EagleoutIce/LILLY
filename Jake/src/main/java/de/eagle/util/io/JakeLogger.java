@@ -202,7 +202,7 @@ public class JakeLogger {
     }
 
     /**
-     * Nichtmehr so ultimatives Mind hinter allen anderen Logger Funktionen Schreibt
+     * Nicht mehr so ultimatives Mind hinter allen anderen Logger Funktionen Schreibt
      * eine Nachricht die Wirklich nirgendwo sonst reinpasst Diese Funktion sollte
      * so nicht verwendet werden! Kann aber
      *
