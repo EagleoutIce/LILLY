@@ -1,5 +1,7 @@
 package de.eagle.lillyjakeframework.core;
 
+import de.eagle.gepard.modules.Expandables;
+
 /**
  * @file CoreFunctions.java
  * @author Raphael Straub
@@ -16,6 +18,8 @@ import de.eagle.lillyjakeframework.cmdline.CommandLineParser;
 import de.eagle.lillyjakeframework.compiler.JakeCompile;
 import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
+import de.eagle.util.datatypes.Settings;
+import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
@@ -215,8 +219,24 @@ public final class CoreFunctions {
 
     }
 
+    // Probably won't work right now
     public static ReturnStatus fkt_get(String[] cmd) {
-        /* Placeholder */ return ReturnStatus.EXIT_SUCCESS;
+        JakeWriter.out.println("Filtere Grafiken, die über Lilly zur Verfügung stehen. Der Filterbegriff kann über '-what' mitgeliefert werden. Zugrunde liegt bisher ein Python-Skript, was eine vorhandene Python3-Installation bedingt!");
+        Settings expandables = new Settings("expandables");
+        try {
+            expandables = Expandables.expandsCS();
+        } catch (IOException e) {
+
+        }
+
+        // Multiplattform:
+        // Desktop.getDesktop().open(myFile);
+        String suff = "";
+        if(!CoreSettings.requestValue("S_WHAT").isEmpty())
+            suff = "\":" + CoreSettings.requestValue("S_WHAT") + "\"";
+        Executer.runBashCommand("python3 " + CoreSettings.requestValue("S_LILLY_PATH") + "/source/Data/Graphics/GetAll.py " + suff);
+        JakeWriter.out.println("Die Erzeugung erfolgt im Hintergrund, das Ergebnis wird dann nach der Fertigstellung präsentiert.");
+        return ReturnStatus.EXIT_SUCCESS;
     }
 
     public static ReturnStatus fkt_autoget(String[] cmd) {

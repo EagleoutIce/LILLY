@@ -158,7 +158,7 @@ public class CoreSettings {
         settings.emplace(st, "S_DEBUG_FILTER", "Regex-Expression welche Debug-Nachrichten anzuzeigen sind!",
                 eSetting_Type.IS_TEXT, ".*");
         settings.emplace(st, "S_PATH", "Zum Beispiel: Pfad zu LILLY", eSetting_Type.IS_PATH, "./");
-        settings.emplace(st, "S_WHAT", "Spezifikator, um was gehts?", eSetting_Type.IS_TEXT, "Automat");
+        settings.emplace(st, "S_WHAT", "Spezifikator, um was gehts?", eSetting_Type.IS_TEXT, "");
         settings.emplace(st, "S_ANSWER", "42", eSetting_Type.IS_TEXT, "");
 
         // Makefile Regeln

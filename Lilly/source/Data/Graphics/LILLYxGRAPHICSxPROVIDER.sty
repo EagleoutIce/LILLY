@@ -12,6 +12,9 @@
 
 \constructList[,]{RegisteredGraphics}
 
+
+\newif\iflillyXgraphicsXproviderXisresizeable
+
 %%% Stellt über getGraphics{3} eine Schnittstelle
 %% für alle enthaltenen Grafiken zur Verfügung
 %
@@ -19,10 +22,15 @@
 %
 %% [width] {path} [height] width and height are mutually exclusive (to keep aspect ratio), if both given, width will Dominate by Design
 \ProvideDocumentCommand{\getGraphics}{ o m o }{%
-\IfValueTF{#1}{\resizebox{#1}{!}{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}}%
-{\IfValueTF{#3}{\resizebox{!}{#3}{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}}%
-{\resizebox{\linewidth}{!}{\input{\LILLYxPATHxDATA/Graphics/#2}\LILLYxGRAPHICSxSHOW}}%
-}}
+\lillyXgraphicsXproviderXisresizeabletrue
+\input{\LILLYxPATHxDATA/Graphics/#2}
+\iflillyXgraphicsXproviderXisresizeable
+\IfValueTF{#1}{\resizebox{#1}{!}{\LILLYxGRAPHICSxSHOW}}%
+{\IfValueTF{#3}{\resizebox{!}{#3}{\LILLYxGRAPHICSxSHOW}}%
+{\resizebox{\linewidth}{!}{\LILLYxGRAPHICSxSHOW}}%
+}%
+\else\fi%
+}
 
 \providecommand{\getGraphics}[1]{\input{\LILLYxPATHxDATA/Graphics/#1}%
 \LILLYxGRAPHICSxSHOW{}}
