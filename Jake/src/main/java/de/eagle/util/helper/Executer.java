@@ -4,6 +4,8 @@ package de.eagle.util.helper;
 
 import java.io.*;
 
+import de.eagle.util.io.JakeLogger;
+
 /**
  * @author Florian Sihler
  * @since 2.0.0
@@ -41,7 +43,8 @@ public class Executer {
         return null;
     }
 
-    public static BufferedReader runBatchCommand(String cmd) {
+    public static BufferedReader runBashCommand(String cmd) {
+        JakeLogger.writeLoggerInfo("Executing Bash-Command (via bash -c ...): " + cmd, "exec");
         return runCommand(new String[] { "bash", "-c", cmd });
     }
 

@@ -77,7 +77,7 @@ public class LinuxLillyInstaller extends AutoInstaller {
         File f1 = null, f2 = null;
         String p = null;
         try {
-            p = Executer.runBatchCommand("echo -n " + Expandables.expand(exp, CoreSettings.requestValue("S_LILLY_PATH"))).readLine();
+            p = Executer.runBashCommand("echo -n " + Expandables.expand(exp, CoreSettings.requestValue("S_LILLY_PATH"))).readLine();
             f1 = Paths.get(p, "Lilly.cls").toFile();
             f2 = Paths.get(p).toFile();
         } catch (Exception ignored){}
@@ -95,12 +95,12 @@ public class LinuxLillyInstaller extends AutoInstaller {
             JakeWriter.out.format("Verlinke (%s=%s) nach (%s): %s%n",
                     CoreSettings.requestValue("S_LILLY_PATH"),
                     p, g,
-                    Arrays.toString(Executer.runBatchCommand("ln -sf " + CoreSettings.requestValue("S_LILLY_PATH") + " " + g).lines().toArray(String[]::new))
+                    Arrays.toString(Executer.runBashCommand("ln -sf " + CoreSettings.requestValue("S_LILLY_PATH") + " " + g).lines().toArray(String[]::new))
                     );
 
             // TODO: information über angabe des Pfades
             JakeWriter.out.format("Informiere TEX über (%s): %s%n",i,
-                    Arrays.toString(Executer.runBatchCommand("texhash " + i).lines().toArray(String[]::new)));
+                    Arrays.toString(Executer.runBashCommand("texhash " + i).lines().toArray(String[]::new)));
         }
         // TODO: As last step: search for packages
 
