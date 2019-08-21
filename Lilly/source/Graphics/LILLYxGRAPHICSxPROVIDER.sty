@@ -1,0 +1,61 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxGRAPHICSxPROVIDER}[2019/07/21 Stellt die Grafik-Provider-Erweiterungen fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxGRAPHICS}
+\RequirePackage{LILLYxPACKAGExCTRL}
+\RequirePackage{LILLYxLIST}
+
+%% https://www.ctan.org/pkg/expl3
+\LILLYxDemandPackage{expl3}{Fun with commands} %% Package, Info
+                    {Leider ist auch dieses Paket verpflichtend :/}%% Error-Text
+                    {}%%Params
+                    {}
+
+%% https://www.ctan.org/pkg/graphicx
+\LILLYxDemandPackage{graphicx}{Fuer tolle Grafiken}
+                    {Dieses Paket ist für includegraphicsvon noeten!}
+                    {}{}
+
+
+%% Alle zur Verfügung stehenden Grafiken sollen in der entsprechendne Liste
+%% registriert werden um auch so iterativ zugreifbar zu sein, die bennung der GRafiken sit hierbei erstmal zweitrangig, sofern sie dementsprechend eindeutig über den geladenen
+%% Grafikraum ist.
+
+\constructList[,]{RegisteredGraphics}
+
+
+\newif\iflillyXgraphicsXproviderXisresizeable
+
+
+%%% Stellt über getGraphics{3} eine Schnittstelle
+%% für alle enthaltenen Grafiken zur Verfügung
+%
+%  Note: Collapse? \linewdith as width default
+%
+%% [width] {path} [height] width and height are mutually exclusive (to keep aspect ratio), if both given, width will Dominate by Design
+\ProvideDocumentCommand{\getGraphics}{ o m o }{%
+\lillyXgraphicsXproviderXisresizeabletrue%
+\input{\getGraphicsPath{#2}}%
+\iflillyXgraphicsXproviderXisresizeable%
+\IfValueTF{#1}{\resizebox{#1}{!}{\LILLYxGRAPHICSxSHOW}}%
+{\IfValueTF{#3}{\resizebox{!}{#3}{\LILLYxGRAPHICSxSHOW}}%
+{\resizebox{\linewidth}{!}{\LILLYxGRAPHICSxSHOW}}%
+}%
+\else\fi%
+}
+
+\gdef\getGraphicsPath#1{\LILLYxPATHxDATA/Graphics/#1}
+
+% \providecommand{\getGraphics}[1]{\input{\LILLYxPATHxDATA/Graphics/#1}%
+% \LILLYxGRAPHICSxSHOW{}}
+
+%% erlaubt es direkt die PDF einzubinden - vermutlich oft um einiges schneller :D
+\ProvideDocumentCommand{\getPrerendered}{ o m o }{%
+\IfValueTF{#1}{\includegraphics[width=#1]{\getGraphicsPath{#2}}}%
+{\IfValueTF{#3}{\includegraphics[height=#3]{\getGraphicsPath{#2}}}%
+{\resizebox{\linewidth}{!}{\includegraphics[width=\linewidth]{\getGraphicsPath{#2}}}}%
+}%
+}
+% \providecommand{\getPrerendered}[1]{\includegraphics[width=\linewidth]{\getGraphicsPath{#1}}}
+
+\endinput

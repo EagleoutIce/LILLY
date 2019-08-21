@@ -4,9 +4,9 @@
 lines before break=4, before skip=0pt, boxrule = 0mm, toprule=0.5mm, %
 bottomtitle=0.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=0.2\baselineskip, enlarge bottom by=0.2\baselineskip, sharp corners=south, enforce breakable}}
 
-\providecommand{\LILLYxDEFAULTxTYPESETxTITLE}[2]{\!\relax{}\textbf{\textsc{{#2}}} \hfill \parbox[t]{0.75\linewidth}{\raggedleft\textbf{#1}}\vspace{-0.175cm}}
+\providecommand{\LILLYxDEFAULTxTYPESETxTITLE}[2]{\!\relax{}\textbf{\textsc{{#2}}} \hfill \parbox[t]{\linewidth-\widthof{#2}-5em}{\raggedleft\textbf{#1}}}
 
-%%Es scheint nicht m�glich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
+%%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
 
 %%% Die Definition-Box:
 \ifx\LILLYxBOXxDefinitionxLock\true

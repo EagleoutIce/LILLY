@@ -24,17 +24,29 @@ Die 3 Standard-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt:
 \\
     \specialrule{1pt}{0pt}{0pt}
     \end{tabularx}
-Auch wenn sie hier explizit forciert wurden ist es grundlegend möglich (und auch so gedacht) sie mithilfe des Makefiles konfiguerieren. Die allgemeine Syntax hierfür lautet:
-\begin{lstlisting}[language=lBash]
+Auch wenn sie hier explizit forciert wurden ist es grundlegend möglich (und auch so gedacht) sie mithilfe des Makefiles konfiguerieren. Die allgemeine Syntax bis \LILLYxBOXxVersion{1.7.0} hierfür lautet:
+\begin{bash}
 make "BOXMODE=<Name>"
-\end{lstlisting}
-\marginpar{\tiny LILLY lädt übrigens nicht DEFAULT sondern immer DEFAULT(init)!}wobei \T{<Name>} mit einem der oben stehenden Bezeichner ersetzt wird. Die Bezeichner werden vom weiter unten näher beschriebenem Box-Controller wie folgt aufgelöst:
-\begin{lstlisting}[language=lLatex,frame=none]
-\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
-\end{lstlisting}
-\marginpar{\tiny Natürlich wäre es schöner auch andere Verzeichnisse zuzulasen und hierbei dann den gesamten Pfad anzugeben - dies ist aber bisher auch TODO:}Über genau dieses Verfahren lassen sich auch beliebig die Box-Designs erweitern.
+\end{bash}
+Mit \LILLYxBOXxVersion{2.0.0} regelt \Jake die jeweilige Variante und erlaubt es sogar, mehrere Boxmodi gleichzeitig generieren zu lassen: 
+\begin{bash}
+jake :lan:Datei:ran: -lilly-boxes: ":lan:Namen:ran"
+\end{bash}
+Um eine Fassng für jede Box zu generieren entspräche das:
+\begin{bash}
+jake :lan:Datei:ran: -lilly-boxes: "DEFAULT ALTERNATE LIMERENCE"
+\end{bash}
+wobei \T{<Name>} mit einem der oben stehenden Bezeichner ersetzt wird. Die Bezeichner werden vom weiter unten näher beschriebenem Box-Controller wie folgt aufgelöst:
+\begin{latex}
+\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_!**!\LILLYxBOXxMODE}
+\end{latex}
+%\marginpar{\tiny Natürlich wäre es schöner auch andere Verzeichnisse zuzulasen und hierbei dann den gesamten Pfad anzugeben - dies ist aber bisher auch noch zu machen}
+Über genau dieses Verfahren lassen sich auch beliebig die Box-Designs erweitern.
 \subsection{Der Box-Controller}
-{\centering \framebox{Diese Definitionen befinden sich in der Datei: \T{Controllers/\_LILLY\_BOX\_CONTROLLER}}\vspace*{0.5\baselineskip}\par}\reversemarginpar
+Diese Definitionen befinden sich in der Datei: {\ltt Controllers/LILLYxCONTROLLERxBOX}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxCONTROLLERxBOX} geladen.\medskip\newline
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%
+% Current State                                                      %
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%
 Alle Box-Desings werden über den Box-Controller geladen, der über \CMDpreview{LILLYxBOXxMODE} die Möglichkeit zur Verfügung stellt die jeweilige \T{POI}-Datei zu laden (TODO: LINK). Er definiert ein gigantisches Paket an Befehlen (TODO: pgf foreach) die allerdings für jeden Boxtyp identisch sind. allgemein werden: \CMDpreview{LILLYxBOXx*xLock} und \CMDpreview{LILLYxBOXx*xEnable} für alle Boxen definiert. So kann man zum Beispiel durch das Setzen von \CMDshow{LILLYxBOXxDefinitionxEnable} auf \T{FALSE} das Anzeigen von Definitionsboxen deaktivieren (Information: Sie werden einfach entfernt, es wird kein adäquater Platzhalter als Ersatz eingefügt) und durch das Setzen von \CMDshow{LILLYxBOXxBeispielxLock} auf\T{section} das Nummerieren der Box auf die Sektionen festlegen (\T{TRUE} für ungebunden).
 Weiter definiert es die folgenden Box-Environments:
 %%PYSCRIPT:
@@ -140,10 +152,14 @@ Für bisher leider noch nicht alle Boxen wird zudem der Befehl: \CMDpreview{LILL
         \item Uebungsblatt
     \end{itemize}
 \end{multicols}
-Setzt man den Wert auf \T{FALSE} so wird das sogenannte \T{plain}-Design angewendet, welches jedes Design wieder selbst definieren kann! (TODO: custom Box counters).\newline
+Setzt man den Wert auf \T{FALSE} so wird das sogenannte \T{plain}-Design angewendet, welches jedes Design wieder selbst definieren kann!.\newline
 Zudem existieren aus Kompatibilitätsgründen auch noch die alten Befehle aus dem \T{eagleStudiPackage}: \CMDpreview[(2)]{DEF}, \CMDpreview[(2)]{BEM}, \ENVpar{task}\T{task},\ldots\medskip\newline
 Mit \LILLYxBOXxVersion{\small 1.0.3} wurden in LILLY zudem Kurzbefehle für das Einbinden von Übungsblättern integriert:
 \CMDpreview[(3)]{inputUB} (mit Signatur: \verb|{Name}{Nummer}{Pfad}|) und \CMDpreview[(3)]{inputUBS} (analog für \T{uebungsblatt*})\normalfont
+
+\begin{bemerkung}[zugriff auf die Boxzähler]
+    
+\end{bemerkung}
 
 \section{Die Boxmodi}
 \subsection{Default-Design}
