@@ -374,23 +374,27 @@
 
 
     %% [OPTIONALE-ADDONS]{TITEL}{PUNKTE}
-    \ifx\LILLYxBOXxAufgabexBox\true%
-    \DeclareDocumentEnvironment{aufgabe}{ O{} m m }{% \scantokens{ %
+    \DeclareDocumentEnvironment{aufgabeXdefault}{ O{} m m }{% \scantokens{ %
         \refstepcounter{ctr_TSK}%
         \ifx\LILLYxSolutionsxShow\true\else\tcbset{LillyxBOXxDesignxAufgabe/.style={        lowerbox=ignored}}\fi%
         \begin{LILLYxBOXxAufgabe}[#2][Aufgabe \arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe,%
             %savedelimiter=aufgabe,savelowerto={ub/\arabic{ctr_TSK}.tex},
         #1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\TRUE}~\\[-.25\baselineskip]\ignorespacesafterend%
     }{\end{LILLYxBOXxAufgabe}}% } %
-    \else%
-    \DeclareDocumentEnvironment{aufgabe}{ O{} m m }{% \scantokens{ %
+    \DeclareDocumentEnvironment{aufgabeXplain}{ O{} m m }{% \scantokens{ %
         \refstepcounter{ctr_TSK}%
-        \begin{LILLYxBOXxAufgabexPlain}[#2][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe, after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\TRUE}~\\\ignorespacesafterend%
+        \begin{LILLYxBOXxAufgabexPlain}[#2][Aufgabe \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxPlain,after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\TRUE}~\\\ignorespacesafterend%
     }{\end{LILLYxBOXxAufgabexPlain}}% } %
-    \fi%
+    %% Allows live Switching between styles in the same document
+    \DeclareDocumentEnvironment{aufgabe}{ O{} m m }{%
+        \ifx\LILLYxBOXxAufgabexBox\true\begin{aufgabeXdefault}[#1]{#2}{#3}%
+        \else\begin{aufgabeXplain}[#1]{#2}{#3}\fi%
+    }{%
+        \ifx\LILLYxBOXxAufgabexBox\true\end{aufgabeXdefault}\else\end{aufgabeXplain}\fi%
+    }
 
-\else %% Keine Aufgabes
-    \NewEnviron{aufgabe}{}
+\else %% Keine Aufgaben
+    \NewEnviron{aufgabe}[2][]{}
 \fi
 
 \NewEnviron{task}[3][]{\begin{aufgabe}[#1]{#2}{#3}\Body\end{aufgabe}}

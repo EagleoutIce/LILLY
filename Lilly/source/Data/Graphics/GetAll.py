@@ -10,10 +10,22 @@ all.remove(dir_path + '/all.tex') # this file
 def pdfwsamename(x):
     return os.path.isfile(x+ '.pdf')
 
-
+changewatcher = {}
+if os.path.isfile("./changes.log"):
+    lines = open("./changes.log").readlines()
+    for tl in lines:
+        if tl != "":
+            ba = tl.split(" T: ")
+            if len(ba) == 2:
+                changewatcher[ba[0]] = ba[1]
 
 def gt (x):
     return x, os.path.getmtime(x)
+
+def dumpChanges():
+    with open("./changes.log",'w') as clogOut:
+        for k,v in changewatcher.items():
+            clogOut.write("{0} T: {1}\n".format(k,v))
 
 if len(sys.argv) > 1:
     if sys.argv[1] == 'latest':
@@ -24,6 +36,32 @@ if len(sys.argv) > 1:
             if tmint > mint and tmin:
                 min, mint = tmin, tmint
         all = [min]
+    elif sys.argv[1]=="prerender":
+        for x in all:
+            if "Eigene" not in x and "-pdf" not in x: # sloppy
+                x = x.replace(dir_path + "/","")
+                if x not in changewatcher or float(changewatcher[x]) < os.path.getmtime(x):
+                    p = x.replace(".tex","-pdf.tex")
+                    with open(p,'w') as out:
+                        out.write("\\documentclass[tikz,preview]{article}\n\\usepackage[active,tightpage]{preview}\n\\usepackage{LILLYxGRAPHICS}\n\\usepackage{LILLYxLISTINGS}\n\\usepackage{LILLYxSHORTCUTS}\n\\usepackage{LILLYxMATH}\n\\usepackage{LILLYxTABLES}\n\\begin{document}\n\\tikzumlset{fill class=MudWhite, fill state=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter}%\n")
+                        out.write("\\begin{{preview}}\\getGraphics{{{0}}}\\end{{preview}}\n".format(x))
+                        out.write("\\end{document}")
+                        out.close()
+                    h,t = os.path.split(p);
+                    stmt = "jake {0} -lilly-nameprefix: \"\" -lilly-show-boxname: false -lilly-out: \"./{1}/\" -lilly-in: \"./{1}/\"".format(t,h)
+                    print(stmt)
+                    if os.system(stmt) != 0:
+                        print("Error, Exiting...")
+                        dumpChanges()
+                        sys.exit(0)
+                    os.remove(p)
+                else:
+                    print("[Passing (unchanged)] {0}".format(x))
+                changewatcher[x] = os.path.getmtime(x)
+        # write changes
+        dumpChanges()
+        sys.exit(0)
+
     elif sys.argv[1].startswith(":"):
         rep = re.compile(sys.argv[1][1:])
         all = list(filter(rep.search,all))

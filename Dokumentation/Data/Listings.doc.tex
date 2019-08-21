@@ -253,8 +253,8 @@ Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitt
 % \end{multicols}
 % Es werden keine Zeilennummern angezeigt.
 % \normalmarginpar
-
-\section{Literates}
+\section{Marker und weitere Befehle}
+\subsection{Literates}
 \elable{mrk:jmpLiterate}Im Kontext verschiedener Programmiersprachen kam bald der Wunsch auf verschiedene Symbole entsprechend einfach Setzen zu können. Bisher werden alle diese Ersetzungsregeln über das Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen und ermöglichen es, neben Umlauten auch Symbole einzubinden. Die Ersetzungsregeln werden nicht über eine Liste gehandhabt und sind ebenso vielfältig wie es die Bedürfnisse erfordern. Im Folgenden eine Auflistung aller in \LILLYxBOXxVersion{2.0.0} enthaltener Ersetzungsregeln:
 \begin{multicols}{4}
     \begin{description}
@@ -263,5 +263,31 @@ Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitt
         }
     \end{description}
 \end{multicols}
+\subsection{Marker}
+Mit \LILLYxBOXxVersion{2.0.0} im Anfangsstadium befinden sich die jeweiligen Marker die es erlauben Fehler oder ganz Allgemein Code-stellen zu markieren, oder von Highlighting zu befreien:
+\begin{java}
+|info|import java.util.ArrayList;|info|
+
+|plain|public class Example {|plain|
+    public static void main(String[] args) { 
+        System.out.|err|PrintLn|err|("Hallo Welt");
+        if(|warn|args==null|warn|)
+            System.out.println("wau");
+    }
+}
+\end{java}
+\begin{latex}
+\begin{java}
+|info|import java.util.ArrayList;|info|
+
+|plain|public class Example {|plain|
+    public static void main(String[] args) { 
+        System.out.|err|PrintLn|err|("Hallo Welt");
+        if(|warn|args==null|warn|)
+            System.out.println("wau");
+    }
+}
+\end{java}
+\end{latex}
 
 \renewcommand{\arraystretch}{1}

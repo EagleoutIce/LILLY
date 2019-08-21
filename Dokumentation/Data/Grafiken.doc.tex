@@ -302,10 +302,35 @@ Es wurde bisher auch nur durch das Bereitstellen eines einzelnen Befehls impleme
         \specialrule{1pt}{0pt}{0pt}
         \end{tabular}\]
 Hierbei steht ein \T{T} (true) natürlich für einen akzeptierten, ein \T{F} (false) entsprechend für einen nicht akzeptierten Befehl. Aktuell ist geplant, dass der Befehl auch für 1-, 3- und 4-dimensionale Räume eine Option anbietet (siehe für 4D: Titelgrafik \gdra[]), die dann über einen einfacheren Namen abgegriffen werden kann. Weiter sollen dann \fg und \gdra (boolesche Räume) diese Befehle nutzen anstelle der dafür eigens implementierten Grafiken. Weiter soll es möglich sein über ein optionales Argument die Position (relativ) zu bestimmen!
-\normalmarginpar
-%%TODO: supertiny fontsize
+%
+%
+%
+\section{Mitgelieferte Grafiken}
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxGRAPHICSxPROVIDER.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxGRAPHICSxPROVIDER} und hängt vom Mutterpaket ab. 
 
-%% TODO: implements getGraphics into Grafiken
+\presentCommand[2.0.0]{getGraphics}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
+Erlaubt den Zugriff auf zahlreiche Grafiken, die im Rahmen der Arbeit entstanden sind. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stets nur eine Dimension skaliert wird! Die bisher enthaltenen Grafiken können durch \cbash{jake get} abgerufen werden: \begin{center}
+    \begin{tabular}{C{0.45\linewidth}_C{0.45\linewidth}}
+        \getGraphics{Rechner/PLAAmpel} & \getGraphics{Software/ThreadStates} \\
+        \tiny \blatex{:bs:getGraphics\{Rechner/PLAAmpel\}} & \tiny\blatex{:bs:getGraphics\{Software/ThreadState\}}
+    \end{tabular}
+\end{center}
+Die Größe skaliert sich in der Regel automatisch, allerdings existieren auch Grafiken, die automatisch nicht skaliert werden, da sie Code oder andere nicht skalierfähige Elemente enthalten: \begin{center}
+    \getGraphics{Software/XMLUebersicht}
+    \blatex{:bs:getGraphics\{Software/XMLUebersicht\}}
+\end{center}
 
+\presentCommand[2.0.0]{getGraphicsPath}[\manArg{path}]
+Liefert den absoluten Pfad zu einer Grafik. Beispiel: \T{\blankcmd{getGraphicsPath}\{Software/XMLUebersicht\}} liefert:\newline \T{\getGraphicsPath{Software/XMLUebersicht}}. 
 
-\renewcommand{\arraystretch}{1}
+\presentCommand[2.0.0]{getPrerendered}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
+Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereits vorberechneten Grafiken. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stehts nur eine Dimension skaliert wird! Sie werden in der Grafiksammlung durch den Tag \T{pdf} gekennzeichnet (die Breite wurde im Beispiel angepasst, oder lassen sich durch das Anfügen eines \say{\T{-pdf}}-Suffix:
+\begin{center}
+    \begin{tabular}{C{0.45\linewidth}_C{0.45\linewidth}}
+        \getPrerendered{Eigene/Proseminar/Cluster/rolf-special} & \getPrerendered{Software/ThreadStates-pdf} \\
+        \tiny \blatex{:bs:getPrerendered\{Eigene/Proseminar/Cluster/rolf-special\}} & \tiny\blatex{:bs:getPrerendered\{Software/ThreadState-pdf\}}
+    \end{tabular}
+\end{center}
+%Weiter existiert der Befehl \blankcmd{lillyGraphicsUsePrerenderedtrue}, mit dem automatisch jeder \blankcmd{getGraphics}-Aufruf in einen entsprechenden \blankcmd{getPrerendered} Aufruf umgewandelt wird. 
+\emph{Es gilt zu beachten, dass die bereits vorgenerierten Grafiken von den manuell generierten abweichen können!}

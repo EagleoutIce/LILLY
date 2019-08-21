@@ -1,7 +1,7 @@
 \chapter{Einleitung}
 \TitleSUB{Integrieren von LILLY -- Die Grundlagen von A-Z}
 \section{Installieren von Lilly}
-\LILLYxNOTExVersion{2.0.0}Aktuell kommt die Dokumentklasse ohne \T{.ins} oder \T{.dtx} Datei, dafür allerdings mit einem Installer für alle Debian (Linux) basierten Betriebsysteme, an einer Variante für MacOS und Windows wird momentan entwickelt.
+\LILLYxNOTExVersion{2.0.0}Aktuell kommt die Dokumentklasse ohne \T{.ins} oder \T{.dtx} Datei, dafür allerdings mit einem Installer für alle Debian (Linux) basierten Betriebsysteme, an einer Variante für MacOS und Windows wird momentan gearbeitet.
 
 \begin{bemerkung}[Mithilfe]
     Wenn du dich mit \TeX{} oder \LaTeX{} auskennst, schreibe an folgende Email-Adresse \T{\AUTHORMAIL}.\smallskip\newline
@@ -33,7 +33,8 @@ sudo apt install default-jdk
 \end{bash}
 Für alle anderen Derivate gilt es sich auf \url{https://www.oracle.com/de/java/} entsprechend zu informieren.
 Einmal installiert, genügt ein Ausführen der \T{.jar} Datei mithilfe von \cbash{java -jar jake.jar} oder durch
-einen Doppelklick, sofern die entsprechende \T{.jar} als Ausführbar markiert ist. Zieht man bunte Fenster der Kommandozeile vor, so ist man in der Lage mit \newline\cbash{java -jar jake.jar GUI} eine grafische Unterstützung zu erhalten, die allerdings momentan noch in Arbeit und noch lange davon entfernt ist, dieselbe Mächtigkeit wie die Kommandozeile zu erreichen.
+einen Doppelklick, sofern die entsprechende \T{.jar} als ausführbar markiert ist. Zieht man bunte Fenster der Kommandozeile vor, so ist man in der Lage mit \newline\cbash{java -jar jake.jar GUI} eine grafische Unterstützung zu erhalten, die allerdings momentan noch in Arbeit und noch lange davon entfernt ist, dieselbe Mächtigkeit wie die Kommandozeile zu erreichen. Einmal installiert lässt sich \Jake einfach durch \cbash{jake} verwenden.
+
 \paragraph{Lilly mit Jake installieren}
 Nun genügt ein Ausführen von \cbash{jake install}, wobei mithilfe der Option \cbash{-lilly-path} der Pfad angegeben werden kann, an dem sich die LILLY.cls befindet:
 \begin{bash}
@@ -57,7 +58,7 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
 \begin{latex}
 \documentclass[Typ=Dokumentation]{Lilly}
 \end{latex}
-\LILLYxNOTExVersion{1.0.7}Für den Typ gibt es hierfür 4 Optionen:
+\LILLYxNOTExVersion{1.0.7}Für den Typ gibt es unter anderem $4$ Optionen:
 \begin{multicols}{2}
     \begin{itemize}[label=$\diamond$]\narrowitems
         \item Dokumentation
@@ -72,7 +73,7 @@ Mit \LILLYxBOXxVersion{2.0.0} ist es möglich auch nur \clatex{Dokumentation} an
 \end{latex}
 In Kombination mit \Jake ist es zudem noch möglich die Option \clatex{Jake} anzugeben, die es Jake gestattet die Dokumentspezifischen Parameter zu bestimmen.\newline %% TODO: NOTE 'ub' and 'zsfg', more shortcuts?
 Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
-So benötigt \T{Mitschrieb} noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester}\marginpar{\tiny  Semester ist Standardmäßig 1} gemäß:
+So benötigt \T{Mitschrieb} noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester} gemäß:
 \begin{latex}
 \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/
        \LILLYxVorlesung}
@@ -115,7 +116,6 @@ Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 \end{satz}\end{lstlisting}
 \end{satz}
 \LILLYcommand{\LILLYxBOXxAufgabexBox}{FALSE}
-
 \begin{aufgabe}{Titel}{3}
     Hallo Welt
 \begin{lstlisting}[language=lLatex]
@@ -185,7 +185,7 @@ der erzeugte Link: \jmark[Klick mich]{mrk:Hey}, passt sich zudem der Akzentfarbe
 \begin{zusammenfassung}[Testzusammenfassung]
 Siehe hier: \jmark[Klick mich]{mrk:Hey} (Wenn Druck: \printmark[Klick mich]{mrk:Hey})
 \end{zusammenfassung}~\smallskip\newline
-\marginpar{\tiny \textbf{\T{jmark*}}, welcher die Akzentfarbe ignoriert, ist bereits geplant, wurde allerdings bisher nicht zwangsläufig benötigt }Der alternative Vertreter für \blankcmd{jmark} ist \blankcmd{hmark}, er ignoriert sämtliche Farbattribute:
+Der alternative Vertreter für \blankcmd{jmark} ist \blankcmd{hmark}, er ignoriert sämtliche Farbattribute:
 \begin{lstlisting}[language=lLatex]
 \hmark[Klick mich]{mrk:Hey} %% \hmark[Text]{Sprungmarke}
 \end{lstlisting}
@@ -207,7 +207,7 @@ zu verwenden.
 
 \clearpage
 \subsection{Übungsblätter}
-\marginpar{\tiny Aktuell wird daran gearbeitet eine \T{make}-Regel für Übungsblätter zu integrieren}Da es von Bedeutung ist Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können,\marginpar{\tiny \vspace*{2em}\tiny Die Verwendung von \T{\textbackslash tcblower} ist noch in arbeit} gibt es hierfür eine einfache Möglichkeit:\marginpar{\vspace*{1em} \tiny Es gibt auch eine Umgebung mit * und gleichermaßen \T{\textbf{\textbackslash inputUBS}}. Diese setzen den Zähler für die Aufgaben \emph{nicht} zurück!}
+Da es von Bedeutung ist Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können, gibt es hierfür eine einfache Möglichkeit:
 \begin{lstlisting}[language=lLatex]
 %% \inputUB{<Name>}{<Nummer>}{<Pfad - linput>}
 \inputUB{Mengen}{1}{Aufgaben_Data/Uebungsblatt_1.tex}

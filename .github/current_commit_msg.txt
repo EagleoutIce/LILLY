@@ -1,4 +1,4 @@
-Jake - Erste Verbesserungen
+Eine (sinn-)bildliche Revolte
 
 ================================================================
 :EagleoutIce for Lilly
@@ -6,26 +6,32 @@ Jake - Erste Verbesserungen
 
 LILLY:
 
-    + Ein paar neue Befehle wurden hinzugefügt, sie sind der
-      Dokumentation beigelegt.
+    + Neue Grafiken
 
-    * Update der Versionsnummer auf korrektes Ziel 2.0.0
+    + Jede Grafik besitzt nun eine PDF 
+      (python3 GetAll.py prerender), wobei stets nur die 
+      geänderten neu kompiliert werden.
+    
+    + Neue Befehle und Modi die bereits dokumentiert sind.
 
-    * Neue Farberweiterung Chess
-
-    ! Ein paar Fehler wurden behoben
+    * Weitere Verbesserungen
 
 JAKE:
 
-    * .jar-Generierung für Development angepasst, nun auch mit
-      fixem Namen!
+    * updated jake.jar
 
-    * Kleine wenige Optimierungen
+    * Kleine, unbedeutende Änderungen
+
+    ! FIX: Kommandozeilenargumente halten nun ihren Status 
+      'lazy' d.h. sie werden nicht durch Konfigurationsdateien
+      überschrieben, können sich in der Kommandozeile aber
+      gegenseitig überschreiben
 
 DOKUMENTATION:
 
-    * Listings nun weitgehend überarbeitet, andere Kapitel
-      im Rahmen angepasst.
+    * Weitere Überarbeitung der Dokumentation, neue Komponenten
+      wurden integriert (beziehungweise genau: es wurde 
+      begonnen die Komponenten zu integrieren :D)
 
 ================================================================
 :
