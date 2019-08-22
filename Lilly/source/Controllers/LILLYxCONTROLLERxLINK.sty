@@ -46,7 +46,10 @@
     bookmarks=true
 }
 
-\providecommand\LILLYxHYPERLINK{TRUE}
+
+\ifcsname LILLYxHYPERLINK\endcsname\else
+    \gdef\LILLYxHYPERLINK{TRUE}
+\fi
 
 \def\setLinkColor#1{%
     \hypersetup{linkcolor=#1}%

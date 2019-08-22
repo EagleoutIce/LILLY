@@ -39,7 +39,9 @@ Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und ba
 \providecommand\LILLYxBOXxBemerkungxBox{FALSE}
 \providecommand\LILLYxBOXxBeispielxBox{FALSE}
 \providecommand\LILLYxBOXxBeweisxBox{FALSE}
-\providecommand{\LILLYxUBxSHOWTUTOR}{FALSE}
+\ifcsname LILLYxUBxSHOWTUTOR\endcsname\else
+    \gdef\LILLYxUBxSHOWTUTOR{FALSE}
+\fi
 
 %%NEW TITLE
 

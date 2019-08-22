@@ -1,4 +1,4 @@
-Eine (sinn-)bildliche Revolte
+Ein Herz für Boxen 
 
 ================================================================
 :EagleoutIce for Lilly
@@ -6,32 +6,19 @@ Eine (sinn-)bildliche Revolte
 
 LILLY:
 
-    + Neue Grafiken
-
-    + Jede Grafik besitzt nun eine PDF 
-      (python3 GetAll.py prerender), wobei stets nur die 
-      geänderten neu kompiliert werden.
+    * Massive Änderung am Boxcontroller (foreach - endlich),
+      RegisterBox, TransformBox,.... grade in der Doku.
+      Folgefehler möglich!
     
-    + Neue Befehle und Modi die bereits dokumentiert sind.
-
-    * Weitere Verbesserungen
+    * Weitere Verbesserungen - Fehlersuche erwünscht :D
 
 JAKE:
-
-    * updated jake.jar
-
-    * Kleine, unbedeutende Änderungen
-
-    ! FIX: Kommandozeilenargumente halten nun ihren Status 
-      'lazy' d.h. sie werden nicht durch Konfigurationsdateien
-      überschrieben, können sich in der Kommandozeile aber
-      gegenseitig überschreiben
 
 DOKUMENTATION:
 
     * Weitere Überarbeitung der Dokumentation, neue Komponenten
       wurden integriert (beziehungweise genau: es wurde 
-      begonnen die Komponenten zu integrieren :D)
+      begonnen die Komponenten zu integrieren :D).
 
 ================================================================
 :

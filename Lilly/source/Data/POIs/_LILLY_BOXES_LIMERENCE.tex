@@ -16,10 +16,10 @@
 \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxDefinition}}}\else\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={}}\fi
 
 \RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-3pt,   %
-LillyxBOXxDesignxLimerence, LILLYxBOXxDefinitionxBoxxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxDefinitionxBox\true\\[0.1pt]\else\\[-0.4\baselineskip]\fi}, %
+LillyxBOXxDesignxLimerence, LILLYxBOXxDefinitionxBoxxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-9.75em}{#1}}$\ifx\LILLYxBOXxDefinitionxBox\true\\[0.1pt]\else\\[-0.4\baselineskip]\fi}, %
 }
 \RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-3pt,   %
-LillyxBOXxDesignxLimerence,LILLYxBOXxDefinitionxBoxxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}\hfill\!\!\!\vcenter{\parbox[t]{1em}{\centering\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}}$\ifx\LILLYxBOXxDefinitionxBox\true\\[0.1pt]\else\\[-0.4\baselineskip]\fi},bookmark*={color=\LILLYxColorxDefinition}{#2 -- #1} %
+LillyxBOXxDesignxLimerence,LILLYxBOXxDefinitionxBoxxLimerence, #3, title={#2\ifthenelse{\equal{#1}{}}{\parbox[t]{\linewidth-\widthof{#2}-2em}{#1}}{--~\parbox[t]{\linewidth-\widthof{#2}-0.05em-\widthof{--~}}{#1}}\parbox[t]{2em}{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}\ifx\LILLYxBOXxDefinitionxBox\true\\[0.1pt]\else\\[-0.4\baselineskip]\fi},bookmark*={color=\LILLYxColorxDefinition}{#2 -- #1} %
 }
 
 %%% Die Beispiel-Box:
@@ -58,7 +58,7 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{-
 %%% Die Lemma-Box:
 
 \RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxLemma} ,  %
-LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\\}, %
+LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-0.3em}{#1}}$\\}, %
 }
 
 
