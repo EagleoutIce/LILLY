@@ -1,6 +1,6 @@
 \lstdefinelanguage{lHaskell}{
     language=haskell,
-    alsoletter={-|~{,}_.><=:\*'},
+    alsoletter={-|~_.><=:\*'},
     moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
     moredelim=**[is][{\lstHLError}]{|err|}{|err|},
     moredelim=**[il][{\lstHLError}]{|err|:},
@@ -11,7 +11,7 @@
     %morestring=[b]',
     %keywordsprefix={\$},
     morecomment=[s]{\{-}{-\}},
-    escapeinside={!!}{!!},
+    escapeinside={!*}{*!}, %% !! would collide with the '!!' List select operator
     morekeywords = {:l,:cd,:q,:r,:t,String,Char,Bool,Show},
     morekeywords = [2]{<,>,->,=>,<-,>=},
     morekeywords = [3]{True,False,Maybe,Either,Nothing,Just,Left,Right},
