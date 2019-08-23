@@ -1,11 +1,11 @@
 \gdef\GRAPHICSxTeufel{%
-\begin{tikzternal}[scale=0.25]
-        \draw (0,0) circle (1);%😈
-        \fill[color=black] (-0.5,0.05) circle (0.2) (0.5,0.05) circle (0.2);
-        \draw (-0.5,-0.4) to[bend right] ++(1,0);
-        \draw (0.2,0.06) -- ++(0.4,0.3) (-0.2,0.06) -- ++(-0.4,0.3);
-        \filldraw (0.7,0.7) -- ++(0.2,0.6) -- ++(-0.5,-0.4) -- cycle;
-        \filldraw (-0.7,0.7) -- ++(-0.2,0.6) -- ++(0.5,-0.4) -- cycle;
-    \end{tikzternal}
+\begin{tikzternal}%
+    \draw (0,0) circle (1);%😈
+    \fill[color=black] (-0.5,0.05) circle (0.2) (0.5,0.05) circle (0.2); % eyes
+    \draw (-0.5,-0.4) to[bend right] ++(1,0); % mouth
+    \draw (0.2,0.06) -- ++(0.4,0.3) (-0.2,0.06) -- ++(-0.4,0.3); % eyebrows
+    \filldraw (0.7,0.7) -- ++(0.2,0.6) -- ++(-0.5,-0.4) -- cycle; % right Horn
+    \filldraw (-0.7,0.7) -- ++(-0.2,0.6) -- ++(0.5,-0.4) -- cycle; % left Horn
+\end{tikzternal}%
 }
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxTeufel} %% new pattern maybe apply to all?
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxTeufel} 

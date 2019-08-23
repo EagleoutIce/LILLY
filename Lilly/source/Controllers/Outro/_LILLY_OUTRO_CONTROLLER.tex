@@ -12,24 +12,24 @@
    \pagestyle{empty}\tocloftpagestyle{plain}
     \ohead{}\chead{}\ihead{} %clear header
     \ofoot{}\cfoot{}\ifoot{} %clear footer => fixes double page issue
-   \pagestyle{empty}
-   \ifx\LILLYxBOXxDefinitionxEnable\true\ifx\LILLYxSEENxDEFINITION\true
+   \pagestyle{empty}% \typeout{REDNECK: \n@true\space \LILLYxSEENxDEFINITION}
+   \ifx\LILLYxBOXxDefinitionxEnable\true\ifthenelse{\equal{\LILLYxSEENxDEFINITION}{\n@true}}{%
    \clearpage\phantomsection\addcontentsline{toc}{chapter}{Definitionen}
    \listofDEFINITIONS
-   \clearpage\fi\fi
-   \ifx\LILLYxBOXxSatzxEnable\true\ifx\LILLYxSEENxSATZ\true
+   \clearpage}{}\fi
+   \ifx\LILLYxBOXxSatzxEnable\true\ifthenelse{\equal{\LILLYxSEENxSATZ}{\n@true}}{%
    \phantomsection\addcontentsline{toc}{chapter}{Sätze}
    \listofSATZ
-   \clearpage\fi\fi
-    \ifx\LILLYxBOXxLemmaxEnable\true\ifx\LILLYxSEENxLEMMA\true
+   \clearpage}{}\fi
+    \ifx\LILLYxBOXxLemmaxEnable\true\ifthenelse{\equal{\LILLYxSEENxLEMMA}{\n@true}}{%
    \phantomsection\addcontentsline{toc}{chapter}{Lemmata}
-   \listofLEMMAS\clearpage\fi\fi
-   \ifx\LILLYxBOXxZusammenfassungxEnable\true\ifx\LILLYxSEENxZUSAMMENFASSUNG\true
+   \listofLEMMAS\clearpage}{}\fi
+   \ifx\LILLYxBOXxZusammenfassungxEnable\true\ifthenelse{\equal{\LILLYxSEENxZUSAMMENFASSUNG}{\n@true}}{%
    \phantomsection\addcontentsline{toc}{chapter}{Zusammenfassungen}
-   \listofZSMS\clearpage\fi\fi
-    \ifx\LILLYxBOXxUebungsblattxEnable\true\ifx\LILLYxSEENxUBS\true
+   \listofZSMS\clearpage}{}\fi
+    \ifx\LILLYxBOXxUebungsblattxEnable\true\ifthenelse{\equal{\LILLYxSEENxUBS}{\n@true}}{%
    \phantomsection\addcontentsline{toc}{chapter}{Übungsblätter}
-   \listofUBS\fi\fi
+   \listofUBS}{}\fi
 }
 \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
 

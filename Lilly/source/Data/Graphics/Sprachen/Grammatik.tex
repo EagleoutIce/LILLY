@@ -1,0 +1,17 @@
+\gdef\GRAPHICSxGrammatik{%
+\begin{tikzternal}
+            \node at(0,0) (S) {S};
+            \node at(1.25,-0.75) (A) {b};
+            \node at(-1.25,-2.25) (a) {a};
+            \node at(2,-2.25) (b) {b};
+            \node at(0.25,-1.5) (C) {C};
+            \node at(0.25,-2.25) (c) {c};
+            \draw (S) -| (a) (S) -| (A) (A) -| (b) (A) -| (C) (C) -- (c);
+            \node at (-1.5,-2.5) [below right] {\tiny \begin{minipage}{\textwidth}
+                {\centering \(G(\{S,B,C\}, \{a,b,c\}, P, S)\)}\\
+                P: \(S \rightarrow aA,~ A \rightarrow Cb, ~ C \rightarrow c\)\\
+                \centering Ableitung; \(acb\)
+            \end{minipage}};
+            \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxGrammatik} 

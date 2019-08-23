@@ -11,6 +11,8 @@ import de.eagle.util.io.JakeWriter;
 
 import static de.eagle.util.io.JakeLogger.*;
 
+import java.util.ArrayList;
+
 /**
  * @file CommandLineParser.java
  * @author Florian Sihler
@@ -54,23 +56,28 @@ public class CommandLineParser {
     private static final String ASSIGNMENT_PATTERN = ":";
     private static final String ADD_ASSIGN_PATTERN = "+:";
 
+    private static ArrayList<String> lazylocks;
+
     /**
      * Lädt die Einstellungen auf Basis der Kommandozeilenargumente
      *
      * @param args     die Kommandozeilenargumente
      * @param settings die Einstellungen - sie werden überschrieben. Alle
      *                 Einstellungen die hier gesetzt werden werden automatisch auf
-     *                 immutable gesetzt und lassen sich somit nichtmehr
+     *                 immutable gesetzt und lassen sich somit nicht mehr
      *                 überschreiben
      *
      * @return 0 wenn alles gut gelaufen ist
      */
     public static ReturnStatus parse_args(String[] args, Settings settings) {
+        lazylocks = new ArrayList<>();
         for (int current_arg = 0; current_arg < args.length; current_arg++) {
             writeLoggerDebug1("Parsing: " + args[current_arg], "CmdLP");
             current_arg = parse_next_arg(args, current_arg, settings);
         }
-
+        writeLoggerInfo("Sperre nun alle in der Kommandozeile modifizierten Argumente, damit keine Konfigurationsdatei dazwischenpfuscht :D", "CmdLP");
+        for(String s : lazylocks)
+            settings.get(s).lock();
         return ReturnStatus.EXIT_SUCCESS;
     }
 
@@ -143,6 +150,8 @@ public class CommandLineParser {
                 boolean b = settings.add(strip_modifications(carg), args[++current_arg]);
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" += \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");
+                //settings.get(strip_modifications(carg)).lock();
+                lazylocks.add(strip_modifications(carg));
             } else { // ist normale zuweisung
                 if (current_arg >= args.length - 1)
                     throw new RuntimeException(
@@ -150,6 +159,8 @@ public class CommandLineParser {
                 boolean b = settings.set(strip_modifications(carg), args[++current_arg]);
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" = \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");
+                //settings.get(strip_modifications(carg)).lock();                
+                lazylocks.add(strip_modifications(carg));
             }
         } else { // Es handelt sich um einen Switch
             carg = carg.substring(1); // '-'
@@ -167,6 +178,9 @@ public class CommandLineParser {
                     writeLoggerWarning("Die boolesche Option: \"" + carg + "\" ist falsch konfiguriert (\""
                             + sarg.getValue() + "\") setzte auf \"false\"", "Parser");
                 }
+                //writeLoggerDebug1("Sperre Switch", "Parser");
+                //settings.get(carg).lock();
+                lazylocks.add(carg);
             }
         }
         return current_arg;

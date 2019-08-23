@@ -1,0 +1,18 @@
+\gdef\GRAPHICSxSQLFieldsDCL{%
+\begin{tikzternal}[every node/.style={font=\sffamily, transform shape,Azure}]
+    \draw[Azure,fill=Azure!10] (0,0) circle (2);
+    \draw[Azure] (45:2) -- (225:2) (-45:2) -- (-225:2);
+
+
+    %% angle, label, signature
+    \foreach \a/\s in {  0/Q,
+                           90/D,
+                          180/M,
+                          270/C} {
+        \node at(\a:1.25) {\small\centering D\s L};
+    }
+    \fill[Azure!85] (0,0) -- (270-45:2) arc (270-45:270+45:2) -- cycle;
+    \node[MudWhite] at(270:1.25) {\bfseries\centering DCL};
+\end{tikzternal}%
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxSQLFieldsDCL}

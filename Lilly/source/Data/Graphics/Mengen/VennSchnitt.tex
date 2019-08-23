@@ -1,0 +1,14 @@
+\gdef\GRAPHICSxVennxSchnitt{%
+\begin{tikzternal}[scale=0.8]
+            \tkzDefPoint(0,0){A} ;
+            \tkzDefPoint(1.5,0){B};
+            \begin{scope}
+                \tkzClipCircle(A,B) \tkzClipCircle(B,A);
+                \tkzFillCircle[color=mint!35!white](A,B) ;
+            \end{scope}
+            \node at (-1.1,0) {A}; \node at (2.6,0) {B};
+            \draw[thick] (0,0) circle (1.5);
+            \draw[thick] (1.5,0) circle (1.5);
+         \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxVennxSchnitt} 

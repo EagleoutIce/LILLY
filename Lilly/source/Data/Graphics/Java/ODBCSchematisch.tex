@@ -1,0 +1,19 @@
+\gdef\GRAPHICSxODBCSchematisch{%
+\begin{tikzternal}%[every node/.style={font=\sffamily}]
+    \foreach \l[count=\i] in {DB1,CSV-Datei,DB2,Oracle}{
+        \draw (4*\i,0) node (n\i) [below, fill=MudWhite,cylinder, shape border rotate=90, draw, minimum height=12mm, minimum width=12mm] {} ++(0,-0.69) node {\parbox{11mm}{\footnotesize\centering\l}};
+
+        \node[rectangle, draw, minimum width = 17mm, minimum height = 1em, rounded corners=2pt, fill=MudWhite] at(4*\i, 1.25) (c\i) {ODBC - Treiber};
+        \draw[latex-latex,thick] (n\i) -- (c\i);
+    }
+    \node[rectangle, draw, minimum width = 90mm, minimum height = 1em, rounded corners=2pt, fill=MudWhite] at(10, 3) (x) {ODBC - Treibermanager};
+    \draw[latex-latex,thick] (c2) -- ++(0,1.7-0.25); \draw[latex-latex,thick] (c3) -- ++(0,1.7-0.25);
+    \draw[latex-latex,thick] (c1) to[bend left,looseness=1.05] ++(1.5,1.7cm+0.25em);
+    \draw[latex-latex,thick] (c4) to[bend right,looseness=1.05] ++(-1.5,1.7cm+0.25em);
+    \node[rectangle, draw, minimum width = 30mm, minimum height = 1em, rounded corners=2pt, fill=MudWhite] at(10, 4.75) (x2) {ODBC};
+    \draw[latex-latex,thick] (x) -- (x2);
+    \node[rectangle, draw, minimum width = 25mm, minimum height = 3em, rounded corners=2pt, fill=MudWhite] at(10, 6.75) (x3) {Anfrage};
+    \draw[latex-latex,thick] (x2) -- (x3) node[midway,right] {CLI (\& Features)};
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxODBCSchematisch}

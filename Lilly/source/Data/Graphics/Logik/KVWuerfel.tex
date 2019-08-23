@@ -1,5 +1,5 @@
 \gdef\GRAPHICSxKVxWuerfel{%
-\begin{tikzternal}[scale=1, every node/.style={transform shape}]
+\begin{tikzternal}
         \tikzstyle{dot}=[circle,inner sep = 1.2pt,draw]
         \tikzstyle{b dot}=[circle,inner sep = 1.2pt,draw, thin]
         \tikzstyle{lb dot}=[circle,inner sep = 1.2pt, draw,thin, fill=limegreen!50]
@@ -10,8 +10,8 @@
         \tikzstyle{o edge}=[color=mint,thick]
         \tikzstyle{t edge}=[color=tealblue,thick]
         \tikzstyle{b edge}=[thin, densely dashed]
-        \rotateRPY{0}{4}{-1.3}
-        \begin{scope}[RPY]
+        %\rotateRPY{0}{4}{-1.3}
+        \begin{scope}%[RPY]
 
         \node[b dot]  (a1)  at (0,0,0) {};
         \node[dot]    (b1)  at (0,0,3) {};
@@ -50,10 +50,11 @@
 
         \foreach \x in {c,d,f,h}{
             \draw[o edge] (\x1) -- (\x2);
+            
         }
         \draw[t edge] (g1) --  (h1);
         \draw [t edge] (g1) -- (g2) -- (h2);
         \draw [t edge, densely dashed] (h2) -- (h1);
         \end{scope}
     \end{tikzternal}}
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxKVxWuerfel} %% new pattern maybe apply to all?
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxKVxWuerfel} 
