@@ -39,7 +39,7 @@ Auch wenn sie hier explizit forciert wurden ist es grundlegend möglich (und auc
 \begin{bash}
 make "BOXMODE=<Name>"
 \end{bash}
-Mit \LILLYxBOXxVersion{2.0.0} regelt \Jake die jeweilige Variante und erlaubt es sogar, mehrere Boxmodi gleichzeitig generieren zu lassen: 
+Mit \LILLYxBOXxVersion{2.0.0} regelt \Jake die jeweilige Variante und erlaubt es sogar, mehrere Boxmodi gleichzeitig generieren zu lassen:
 \begin{bash}
 jake :lan:Datei:ran: -lilly-boxes: ":lan:Namen:ran:"
 \end{bash}
@@ -176,7 +176,7 @@ Nicht richtig darstellbar aber weiter existiert:
 Ein aus dem \T{eagleStudiPackage} stammendes Relikt, welches nur aus Kompatibilitätsgründen gehalten wird. Ebenso:
 
 \presentCommand[1.0.0]{DEF}[\manArg{Title}\manArg{Content}\cmdlist \blankcmd{BEM}\manArg{Titel}\manArg{Content}\cmdlist \ldots\cmdold]
-Kompatibilitätsbefehle, der zur \T{eagleStudiPackage}-Zeit die Boxen gesetzt hat, nun allerdings die Daten an die jeweilige Umgebung weitergeben. 
+Kompatibilitätsbefehle, der zur \T{eagleStudiPackage}-Zeit die Boxen gesetzt hat, nun allerdings die Daten an die jeweilige Umgebung weitergeben.
 
 \presentCommand[1.0.3]{inputUB}[\manArg{Name}\manArg{Nummer}\manArg{Pfad}\cmdlist \blankcmd{inputUBS}\manArg{Name}\manArg{Bezeichner}\manArg{Pfad}]
 Binden eine Datei als Übungsblatt ein und erlaubt so, Übungsblätter in Mitschriften zu integrieren. Letzterer Befehl verwendet \clatex{uebungsblatt*}, verändert also nicht die Nummer, was bedeutet, dass auch Buchstaben oder anderes als Bezeichner möglich ist. \emph{Diese werden, entsprechend der Regel von \clatex{uebungsblatt} nur angezeigt, sofern \blankcmd{LILLYxMODExEXTRA} den Wert \T{\true} enthält.}
@@ -258,15 +258,15 @@ Die jeweils mit dem \T{S}-Suffix vermerkten Befehle stehen für die mit einem St
 % \end{bemerkung}
 % \TransformBoxBemerkung{bemerkung}{Bemerkung~}
 % \begin{bemerkung}[Günther?]
-%     \jmark[Hey guys]{mrk:XXX} eerythings fine    
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
 % \end{bemerkung}
 % \TransformBox[boxcol=AppleGreen]{bemerkung}{Bemerkung~}{bemerkung}
 % \begin{bemerkung}[Günther!]
-%     \jmark[Hey guys]{mrk:XXX} eerythings fine    
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
 % \end{bemerkung}
 % \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}{bemerkung}
 % \begin{bemerkung}[Thymiän, Böädriän:]
-%     \jmark[Hey guys]{mrk:XXX} eerythings fine    
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
 % \end{bemerkung}
 % \TransformBoxBemerkungS{bemerkung*}{Bemerkung~}
 % \begin{bemerkung*}[Thymiän, Böädriän: Sehr superlanger titel!]
@@ -284,10 +284,10 @@ Die jeweils mit dem \T{S}-Suffix vermerkten Befehle stehen für die mit einem St
 % \end{bemerkung}
 
 % \begin{waffel}[Hallo Welt]
-    
+
 % \end{waffel}
 % \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel}
-% Will fail as link gets destroyed: 
+% Will fail as link gets destroyed:
 % \begin{bemerkung}[Thymiän, Böädriän:]
 %     \begin{ditemize}
 %         \item Hallo
@@ -296,7 +296,7 @@ Die jeweils mit dem \T{S}-Suffix vermerkten Befehle stehen für die mit einem St
 % \end{bemerkung}
 
 % \begin{waffel}[Hallo Welt]
-    
+
 % \end{waffel}
 
 \section{Die Boxmodi}
@@ -319,7 +319,7 @@ Erzeugt durch den bekannten Aufruf:
 \end{slatex}
 Auf Basis des Pakets \T{tcolorbox} definiert LILLY das Design \T{LillyxBOXxDesignxDefault} mit folgender Implementation:
 \begin{slatex}
-\tcbset{LillyxBOXxDesignxDefault/.style={enhanced jigsaw, 
+\tcbset{LillyxBOXxDesignxDefault/.style={enhanced jigsaw,
     pad before break*=2mm, pad after break=2mm, %
     lines before break=4, before skip=0pt, boxrule = 0mm, %
     toprule=0.5mm, bottomtitle=0.5mm,bottomrule=1.2mm, %
