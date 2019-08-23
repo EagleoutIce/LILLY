@@ -175,7 +175,7 @@ Nicht richtig darstellbar aber weiter existiert:
 \presentEnvironment[1.0.0]{task}[\optArg{opt-Addons}\manArg{Titel}\manArg{Punkte}\cmdold]
 Ein aus dem \T{eagleStudiPackage} stammendes Relikt, welches nur aus Kompatibilitätsgründen gehalten wird. Ebenso:
 
-\presentCommand[1.0.0]{DEF}[\manArg{Title}\manArg{Content}\cmdlist \blankcmd{BEM}\manArg{Titel}\manArg{Content}\cmdold]
+\presentCommand[1.0.0]{DEF}[\manArg{Title}\manArg{Content}\cmdlist \blankcmd{BEM}\manArg{Titel}\manArg{Content}\cmdlist \ldots\cmdold]
 Kompatibilitätsbefehle, der zur \T{eagleStudiPackage}-Zeit die Boxen gesetzt hat, nun allerdings die Daten an die jeweilige Umgebung weitergeben. 
 
 \presentCommand[1.0.3]{inputUB}[\manArg{Name}\manArg{Nummer}\manArg{Pfad}\cmdlist \blankcmd{inputUBS}\manArg{Name}\manArg{Bezeichner}\manArg{Pfad}]
@@ -186,7 +186,7 @@ Binden eine Datei als Übungsblatt ein und erlaubt so, Übungsblätter in Mitsch
     Der Zugriff auf die von Lilly unterhaltenen Boxzähler ist sehr Umständlich (Beispiel: \blankcmd{thetcb@cnt@LILLYxBOXxDefinition}). Deswegen existiert das Hilfspaket \LILLYxNOTExLibrary{LILLYxBOXxCOUNTER}, welches hierfür Kurzbefehle definiert: \typesetList[blankcmd]{CTRxDEF,CTRxBEI,CTRxBEM,CTRxSAT,CTRxBEW,CTRxLEM,CTRxZSM}. So liefert \blatex{:bs:arabic\{:bs:CTRxDEF\}}: \T{\arabic{\CTRxDEF}}.
 \end{bemerkung}
 
-\presentCommand[2.0.0]{RegisterBox}[\optArg{Box-Keys}\optArg{Tikz-Keys}\manArg{Box-Name}\manArg{Title}\manArg{GroupID}]
+\presentCommand[2.0.0]{RegisterBox}[\optArg{Box-Keys}\optArg{Tikz-Keys}\manArg{Box-Name}\manArg{Title}\manArg{BoxID}]
 Registriert eine (neue) oder alte Box, die entsprechend Gesetzt werden kann. Die gezielte Verwendung dieses Befehls bedarf einiger Vorkenntnisse über das jeweilige Szenario. Es werden eine ganze Menge an \T{Box-Keys} gestattet, die auf einem anderen Verfahren persistiert werden (weswegen Box-gebundene Befehle mithilfe von \blankcmd{noexpand} abgesichert werden müssen!):
 \begin{center}
     \begin{tabularx}{0.96\linewidth}{^t>{\em}^l^c^l+}
@@ -208,11 +208,96 @@ Registriert eine (neue) oder alte Box, die entsprechend Gesetzt werden kann. Die
         listname & String & <name> & Name der Liste \\
         listtext & String & <name> & Titel der Liste\\
         listmen & String & NO & Mnemonic der Liste \\
-        numbersize & Zahl & 5 & Schriftgröße Nummerierung \\
-        labelsize & Zahl & 10 & Schriftgröße Texte \\
         \bottomrule
     \end{tabularx}
 \end{center}
+Mit dem Registrieren einer Box, werden die folgenden Befehle für die jeweilige \T{BoxID} registriert. Sie werden expandierd, weswegen eine Absicherung mithilfe von \blankcmd{noexpand} für übergebene Befehle erfolgen sollte. Im Folgenden wird \T{<BoxID>} für die Befehle als Platzhaler verwendet:
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xName}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xTitle}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xBoxCol}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xPreCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xInCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xOutCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xPostCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xUseStyle}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xEmblem}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xLock}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xListName}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xListText}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xListMen}\vspace{-\baselineskip}
+
+Sie speichern dne Wert der sich jeweils vermuten lässt. Weiter werden noch die beiden Booleschen Werte gespeichert, die entsprechend es Zustands \T{\true} und \T{\false}:
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xCreateList}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xCustomList}
+
+
+Die Modifikation dieser ermöglicht eine weitere manuelle Anpassung der Box, allerdings wird von einem direkten, modifizierendem Zugriff abgeraten. \blankcmd{RegisterBox} legt weiter auch noch die entsprechende Umgebung auf Basis des Namens an. Gilt es eine bestehende Box zu modifizieren, so gilt es folgenden Befehl zu nutzen:
+
+
+\presentCommand[2.0.0]{TransformBox}[\optArg{new-args}\optArg{bool-keep}\manArg{OldBoxID}\manArg{Box-title}\secline\optArg{new-name}\manArg{NewBoxID}]
+Dieser Befehl nimmt die Werte einer bereits bestehenden Box und Transformiert sie in eine neue Box. Sollte keine Box mit der entsprechenden ID existieren, so wird die \T{BoxID} als Name angenommen auf dessen Namen die Umbenennung geschieht. So lassen sich auch bereits bestehende Umgebungen, die bisher keine Box dargestellt haben, entsprechend modifizieren und als Box rekreiren. Wird \T{bool-keep} auf \blankcmd{BooleanTrue} gesetzt, so wird die alte Box nicht gelöscht, sondern lediglich eine neue Box kreiert. Mit \LILLYxBOXxVersion{2.0.0} wurden die Boxen noch nicht in das entsprechend neue Register-System übersetzt. Allerdings existieren die folgenden Kürzel, die bestmöglich versuchen die Gestalt der jeweiligen Box abzubilden. Da die \T{aufgabe}-Box eine andere Signatur besitzt, wird sie bisher separat implementiert:
+
+\presentCommand[2.0.0]{TransformBoxDefinition}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxDefinitionS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBemerkung}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBemerkungS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBeispiel}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBeispielS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxSatz}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBeweis}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBeweisS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxLemma}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxLemmaS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxZusammenfassung}[\optStar\optArg{new-args}\manArg{BoxID}\secline\manArg{Box-title}\optArg{NewBoxID}]~\smallskip\newline
+
+Die jeweils mit dem \T{S}-Suffix vermerkten Befehle stehen für die mit einem Sternchen versehene Umgebung, der optionale Stern entspricht \T{bool-keep} von \blankcmd{TransformBox}.
+
+% \elable{mrk:XXX}
+% \begin{bemerkung}[Josef!]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
+% \end{bemerkung}
+% \TransformBoxBemerkung{bemerkung}{Bemerkung~}
+% \begin{bemerkung}[Günther?]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine    
+% \end{bemerkung}
+% \TransformBox[boxcol=AppleGreen]{bemerkung}{Bemerkung~}{bemerkung}
+% \begin{bemerkung}[Günther!]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine    
+% \end{bemerkung}
+% \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}{bemerkung}
+% \begin{bemerkung}[Thymiän, Böädriän:]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine    
+% \end{bemerkung}
+% \TransformBoxBemerkungS{bemerkung*}{Bemerkung~}
+% \begin{bemerkung*}[Thymiän, Böädriän: Sehr superlanger titel!]
+%     \begin{ditemize}
+%         \item Hallo
+%         \item Welt
+%     \end{ditemize}
+% \end{bemerkung*}
+% \TransformBox[][\BooleanTrue]{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel}
+% \begin{bemerkung}[Thymiän, Böädriän:]
+%     \begin{ditemize}
+%         \item Hallo
+%         \item Welt
+%     \end{ditemize}
+% \end{bemerkung}
+
+% \begin{waffel}[Hallo Welt]
+    
+% \end{waffel}
+% \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel}
+% Will fail as link gets destroyed: 
+% \begin{bemerkung}[Thymiän, Böädriän:]
+%     \begin{ditemize}
+%         \item Hallo
+%         \item Welt
+%     \end{ditemize}
+% \end{bemerkung}
+
+% \begin{waffel}[Hallo Welt]
+    
+% \end{waffel}
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%
 % Current State                                                      %
@@ -270,12 +355,4 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
     fonttitle=\bfseries, #3,%
     title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}, %Aufgabe
 }
-\end{lstlisting}}
-Und die der Plain-Box:
-{\begin{lstlisting}[language=lLatex]
-\DeclareTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}} {%
-        enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm,%
-        colback=white,colframe=black!50,boxrule=0.2mm,fonttitle=\bfseries,%
-        #3,title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}%
-    }
 \end{lstlisting}}

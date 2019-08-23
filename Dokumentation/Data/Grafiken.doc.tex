@@ -317,12 +317,12 @@ Erlaubt den Zugriff auf zahlreiche Grafiken, die im Rahmen der Arbeit entstanden
     \end{tabular}
 \end{center}
 Die Größe skaliert sich in der Regel automatisch, allerdings existieren auch Grafiken, die automatisch nicht skaliert werden, da sie Code oder andere nicht skalierfähige Elemente enthalten: \begin{center}
-    \getGraphics{Software/XMLUebersicht}
-    \blatex{:bs:getGraphics\{Software/XMLUebersicht\}}
+    \getGraphics{Software/XML/XMLUebersicht}
+    \blatex{:bs:getGraphics\{Software/XML/XMLUebersicht\}}
 \end{center}
 
 \presentCommand[2.0.0]{getGraphicsPath}[\manArg{path}]
-Liefert den absoluten Pfad zu einer Grafik. Beispiel: \T{\blankcmd{getGraphicsPath}\{Software/XMLUebersicht\}} liefert:\newline \T{\getGraphicsPath{Software/XMLUebersicht}}. 
+Liefert den absoluten Pfad zu einer Grafik. Beispiel: \T{\blankcmd{getGraphicsPath}\{Software/XML/XMLUebersicht\}} liefert:\newline \T{\getGraphicsPath{Software/XML/XMLUebersicht}}. 
 
 \presentCommand[2.0.0]{getPrerendered}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
 Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereits vorberechneten Grafiken. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stehts nur eine Dimension skaliert wird! Sie werden in der Grafiksammlung durch den Tag \T{pdf} gekennzeichnet (die Breite wurde im Beispiel angepasst, oder lassen sich durch das Anfügen eines \say{\T{-pdf}}-Suffix:
