@@ -1,31 +1,52 @@
 import glob
-import sys
-import os
-import re # regex :D
+import sys, os, re
+import subprocess, platform
 dir_path = os.path.dirname(os.path.realpath(__file__))
 #print(dir_path+ "/**/*.tex")
 all = glob.glob(dir_path + '/**/*.tex', recursive=True)
 # print(all)
-all.remove(dir_path + '/all.tex') # this file
+for a in ["all","latest","filtered"]: # remove recursives :D
+    a = dir_path + "/" + a + ".tex"
+    if a in all:
+        all.remove(a);
+
+def view(path):
+    if platform.system() == 'Darwin':       # macOS?
+        subprocess.call(('open', path))
+    elif platform.system() == 'Windows':
+        os.startfile(path)
+    else:
+        subprocess.call(('xdg-open', path))
+
 def pdfwsamename(x):
     return os.path.isfile(x+ '.pdf')
 
 changewatcher = {}
-if os.path.isfile("./changes.log"):
-    lines = open("./changes.log").readlines()
-    for tl in lines:
-        if tl != "":
-            ba = tl.split(" T: ")
-            if len(ba) == 2:
-                changewatcher[ba[0]] = ba[1]
+
+def loadChanges(file):
+    if os.path.isfile(file):
+        lines = open(file).readlines()
+        for tl in lines:
+            if tl != "":
+                ba = tl.split(" T: ")
+                if len(ba) == 2:
+                    changewatcher[ba[0]] = ba[1]
+
+if len(sys.argv) > 1 and sys.argv[1] == "prerender":
+    loadChanges("./changes.log")
+else:
+    loadChanges("./ALLchanges.log")
 
 def gt (x):
     return x, os.path.getmtime(x)
 
-def dumpChanges():
-    with open("./changes.log",'w') as clogOut:
+def dumpChanges(file):
+    with open(file,'w') as clogOut:
         for k,v in changewatcher.items():
-            clogOut.write("{0} T: {1}\n".format(k,v))
+            if k != "":
+                clogOut.write("{0} T: {1}\n".format(k,v))
+
+outname = "all"
 
 if len(sys.argv) > 1:
     if sys.argv[1] == 'latest':
@@ -36,6 +57,7 @@ if len(sys.argv) > 1:
             if tmint > mint and tmin:
                 min, mint = tmin, tmint
         all = [min]
+        outname = "latest"
     elif sys.argv[1]=="prerender":
         for x in all:
             if "Eigene" not in x and "-pdf" not in x: # sloppy
@@ -52,26 +74,29 @@ if len(sys.argv) > 1:
                     print(stmt)
                     if os.system(stmt) != 0:
                         print("Error, Exiting...")
-                        dumpChanges()
+                        dumpChanges("./changes.log")
                         sys.exit(0)
                     os.remove(p)
                 else:
                     print("[Passing (unchanged)] {0}".format(x))
                 changewatcher[x] = os.path.getmtime(x)
         # write changes
-        dumpChanges()
+        dumpChanges("./changes.log")
         sys.exit(0)
 
     elif sys.argv[1].startswith(":"):
         rep = re.compile(sys.argv[1][1:])
         all = list(filter(rep.search,all))
+        outname = "filtered"
 # print(min + ": " + str(mint))
 all.sort()
 
-
+newchanges={}
 prefix = ""
 oprefix = ""
-with open("./all.tex",'w') as out:
+fname = outname + ".tex"
+update = False
+with open("./" + fname,'w') as out:
     out.write("\\documentclass[PLAIN]{Lilly}\n");
     out.write("\\begin{document}\n\\pagenumbering{arabic}\n\\tableofcontents \\clearpage \n");
     out.write("\\begin{lstplain}[language=lLatex]\n%%Einbindung erfolgt über:\n\\getGraphics{:lan:Pfad:ran:}\n \\end{lstplain}\n")
@@ -79,6 +104,10 @@ with open("./all.tex",'w') as out:
     for x in all:
         x = x.replace(dir_path + "/","")
         prefix = x[0:x.index("/")]
+        if x not in changewatcher or float(changewatcher[x]) < os.path.getmtime(x):
+            update = True
+            newchanges[x] = os.path.getmtime(x)
+            
         if prefix != oprefix:
             out.write("\n\\phantomsection \\addcontentsline{{toc}}{{chapter}}{{{0}}}\n".format(prefix))
             oprefix = prefix
@@ -90,7 +119,16 @@ with open("./all.tex",'w') as out:
             out.write("\\phantomsection \\addcontentsline{{toc}}{{section}}{{{1}}}\\verb|{0}| & \\getGraphics{{{0}}}\\\\\n\\midrule ".format(x,x[x.index("/")+1:]))
     out.write("\\bottomrule\n\\end{tabularx}\n")
     out.write("\\end{document}")
-
-os.system("jake all.tex -lilly-nameprefix: \"\" -lilly-show-boxname: false -lilly-compiletimes: 2");
-os.system("xdg-open " + dir_path + "/all-OUT/all.pdf")
-
+if update:
+    if os.system("jake " + fname + " -lilly-nameprefix: \"\" -lilly-show-boxname: false -lilly-compiletimes: 2")==0: # update timestamps if succesful
+        for k,v in newchanges.items():
+            changewatcher[k] = v
+        if outname == "all": ## don't dump for latest
+            dumpChanges("./ALLchanges.log")
+        view("{0}/{1}-OUT/{1}.pdf".format(dir_path,outname))
+    else:
+        print("Generation failed!")
+else:
+    print("Nothing has changed since last generation.... won't recompile. Delete 'ALLchanges.log' to force")
+#os.system("xdg-open " + dir_path + "/" + outname + "-OUT/" + outname + ".pdf")
+    view("{0}/{1}-OUT/{1}.pdf".format(dir_path,outname))

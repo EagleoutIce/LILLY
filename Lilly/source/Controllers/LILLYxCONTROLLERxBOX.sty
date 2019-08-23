@@ -171,8 +171,8 @@
     %% Persistence END
     \ifcreatelist\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\fi%
     %\expandafter\global\expandafter\newif\if
-    \global\DeclareDocumentEnvironment{\lillyxBoxxName}{O{}}{\ignorespaces% %%O{\theboxid}}{%
-        \edef\curboxid{#5}\@nameuse{lillyxBOXx\curboxid xPreCode}\begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2]%
+    \global\DeclareDocumentEnvironment{\lillyxBoxxName}{O{} O{}}{\ignorespaces% %%O{\theboxid}}{%
+        \edef\curboxid{#5}\@nameuse{lillyxBOXx\curboxid xPreCode}\begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,##2]%
             \@nameuse{lillyxBOXx\curboxid xInCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
             \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\typeout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName}}%
                 \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{XXNOEMBLEM}}{\typeout{\space>\space It will register without an Emblem/Addon!}%
@@ -180,39 +180,190 @@
             }{\typeout{\space>\space It will register with an Emblem/Addon!}%
                 \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
             }%
-            }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}\ignorespacesafterend\ignorespaces%
+            }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend\ignorespaces%
     }{\@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}%
 }
 
 \DeclareDocumentCommand{\TransformBox}{%
-    O{}    %% New Args
-    m      %% Old Name
-    m      %% Box Title
-    o      %% New Name (can be old Name)
-    m      %% BoxID
+    O{}                 %% New Args
+    O{\BooleanFalse}    %% If \BooleanTrue => Do not delete old
+    m                   %% Old BoxID
+    m                   %% Box Title
+    o                   %% New Name (can be old Name)
+    m                   %% BoxID
 }{%
-    \expandafter\let\csname #2\endcsname\@undefined%% delete old
-    \IfValueTF{#4}{\def\thecboxname{#4}}{\def\thecboxname{#2}}%% set names
-    %\IfValueTF{#5}{%
-    \RegisterBox[#1]{\thecboxname}{#3}{#5}%
+    \typeout{Transform Box: #1<>#2<>#3<>#4<>#5<>#6<>}%
+    \expandafter\ifcsname  lillyxBOXx#3xName\endcsname
+        \edef\oldboxname{\csname lillyxBOXx#3xName\endcsname}
+        \typeout{Registered Name from BoxID: #3}
+    \else%
+        \edef\oldboxname{#3}
+        \typeout{Registered Name from a new Box, as no Old exists: #3}
+    \fi%
+    \IfBooleanF{#2}{\expandafter\let\csname\oldboxname\endcsname\@undefined}%% delete old
+    %
+    \IfValueTF{#5}{\def\thecboxname{#5}}{\def\thecboxname{\oldboxname}}%% set names
+    %\IfValueTF{#5}{% % Here we will reload the old Values of 
+    % Check if there is an existing Box, and if, take the Configuration from it by the persisted Values of the old ID.
+    \expandafter\ifcsname lillyxBOXx#3xName\endcsname
+        \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xListMen\endcsname}{TRUE}}{\gdef\clisttmp{true}}{\gdef\clisttmp{false}}
+        %\typeout{Switch-Pregeneration for clisttmp: \clisttmp}
+        \RegisterBox[% Here we will reload the old Values of the Box, we won't erase them we'll just erase the environment-link in case of a renaming. Therefore it cann be still used as Base for another Box-Creation. We will (just for completeness) assign all commands:
+        name=\csname lillyxBOXx#3xName\endcsname,%
+        title=\csname lillyxBOXx#3xTitle\endcsname,%
+        boxcol=\csname lillyxBOXx#3xBoxCol\endcsname,%
+        preCode=\csname lillyxBOXx#3xPreCode\endcsname,%
+        inCode=\csname lillyxBOXx#3xInCode\endcsname,%
+        outCode=\csname lillyxBOXx#3xOutCode\endcsname,%
+        postCode=\csname lillyxBOXx#3xPostCode\endcsname,%
+        usestyle=\csname lillyxBOXx#3xUseStyle\endcsname,%
+        emblem=\csname lillyxBOXx#3xEmblem\endcsname,%
+        lock=\csname lillyxBOXx#3xLock\endcsname,%
+        listname=\csname lillyxBOXx#3xListName\endcsname,%
+        listtext=\csname lillyxBOXx#3xListText\endcsname,%
+        listmen=\csname lillyxBOXx#3xListMen\endcsname,%
+        createlist=false,% if it has been true we don't need to recreate it
+        customlist=\clisttmp, % sloppy :D
+        #1]{\thecboxname}{#4}{#6}
+    \else\RegisterBox[#1]{\thecboxname}{#4}{#6}\fi%
     %}{\RegisterBox[#1]{\thecboxname}{#3}}%
 }
 
 \DeclareDocumentCommand{\TransformBoxDefinition}{%
+    s   %% star for clone
     O{} %% Changed Args
     m   %% new Name
     m   %% new Title
+    o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxDefinition,customlist=true,listname=DEFINITIONS,listmen=DEFS,boxcol=\LILLYxColorxDefinition,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock,#1]{definition}{#3}[#2]{definition}%
+    \TransformBox[usestyle=LILLYxBOXxDefinition,customlist=true,listname=DEFINITIONS,listmen=DEFS,boxcol=\LILLYxColorxDefinition,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock,#2][#1]{definition}{#4}[#3]{\IfValueTF{#5}{#5}{definition}}%
 }
 
 \DeclareDocumentCommand{\TransformBoxDefinitionS}{%
+    s   %% star for clone
     O{} %% Changed Args
     m   %% new Name
     m   %% new Title
+    o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxDefinition*,customlist=true,listname=DEFINITIONS,listmen=DEFS,boxcol=\LILLYxColorxDefinition,emblem={\noexpand\small\noexpand\faThumbTack},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock,#1]{definition*}{#3}[#2]{definitionstarred}%
+    \TransformBox[usestyle=LILLYxBOXxDefinition*,customlist=true,listname=DEFINITIONS,listmen=DEFS,boxcol=\LILLYxColorxDefinition,emblem={\noexpand\small\noexpand\faThumbTack},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock,#2][#1]{definition*}{#4}[#3]{\IfValueTF{#5}{#5}{definitionstarred}}%
 }
+
+\DeclareDocumentCommand{\TransformBoxBemerkung}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxBemerkung,customlist=true,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={XXNOEMBLEM},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    lock=\LILLYxBOXxBemerkungxLock,#2][#1]{bemerkung}{#4}[#3]{\IfValueTF{#5}{#5}{bemerkung}}%
+}
+
+\DeclareDocumentCommand{\TransformBoxBemerkungS}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxBemerkung,customlist=true,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={XXNOEMBLEM},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    lock=\LILLYxBOXxBemerkungxLock,#2][#1]{bemerkung*}{#4}[#3]{\IfValueTF{#5}{#5}{bemerkungstarred}}%
+}
+
+\DeclareDocumentCommand{\TransformBoxBeispiel}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxBeispiel,customlist=true,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={XXNOEMBLEM},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    lock=\LILLYxBOXxBeispielxLock,#2][#1]{beispiel}{#4}[#3]{\IfValueTF{#5}{#5}{beispiel}}%
+}
+
+\DeclareDocumentCommand{\TransformBoxBeispielS}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxBeispiel,customlist=true,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={XXNOEMBLEM},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    lock=\LILLYxBOXxBeispielxLock,#2][#1]{beispiel*}{#4}[#3]{\IfValueTF{#5}{#5}{beispielstarred}}%
+}
+
+\DeclareDocumentCommand{\TransformBoxSatz}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxSatz,customlist=true,listname=SATZ,listmen=SATZE,boxcol=\LILLYxColorxSatz,emblem={XXNOEMBLEM},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxSATZ}{TRUE}},
+    lock=\LILLYxBOXxSatzxLock,#2][#1]{satz}{#4}[#3]{\IfValueTF{#5}{#5}{satz}}%
+}
+
+%% No Starred Satz
+
+
+\DeclareDocumentCommand{\TransformBoxBeweis}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxBeweis,customlist=true,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={XXNOEMBLEM},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    lock=\LILLYxBOXxBeweisxLock,#2][#1]{beweis}{#4}[#3]{\IfValueTF{#5}{#5}{beweis}}%
+}
+
+\DeclareDocumentCommand{\TransformBoxBeweisS}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxBeweis,customlist=true,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={XXNOEMBLEM},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    lock=\LILLYxBOXxBeweisxLock,#2][#1]{beweis*}{#4}[#3]{\IfValueTF{#5}{#5}{beweisstarred}}%
+}
+
+\DeclareDocumentCommand{\TransformBoxLemma}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxLemma,customlist=true,listname=LEMMAS,listmen=LEMME,boxcol=\LILLYxColorxLemma,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},
+    lock=\LILLYxBOXxLemmaxLock,#2][#1]{lemma}{#4}[#3]{\IfValueTF{#5}{#5}{lemma}}%
+}
+
+\DeclareDocumentCommand{\TransformBoxLemmaS}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxLemma,customlist=true,listname=LEMMAS,listmen=LEMS,boxcol=\LILLYxColorxLemma,emblem={\noexpand\small\noexpand\textcolor{\noexpand\LILLYxColorxLemma}{\noexpand\faStar}},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},
+    lock=\LILLYxBOXxLemmaxLock,#2][#1]{lemma*}{#4}[#3]{\IfValueTF{#5}{#5}{lemmastarred}}%
+}
+
+\DeclareDocumentCommand{\TransformBoxZusammenfassung}{%
+    s   %% star for clone
+    O{} %% Changed Args
+    m   %% new Name
+    m   %% new Title
+    o   %% new ID
+}{%
+    \TransformBox[usestyle=LILLYxBOXxZusammenfassung,customlist=true,listname=ZSMS,listmen=ZSM,boxcol=\LILLYxColorxZusammenfassung,emblem={XXNOEMBLEM},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}},
+    lock=\LILLYxBOXxZusammenfassungxLock,#2][#1]{zusammenfassung}{#4}[#3]{\IfValueTF{#5}{#5}{zusammenfassung}}%
+}
+
+%% No Starred Zsf
+
 
 %\RegisterBox[usestyle=LILLYxBOXxBemerkung,listname=Waffels,boxcol=AppleGreen]{Waffel}{Waffelbox~\noexpand\thetcbcounter~}
 

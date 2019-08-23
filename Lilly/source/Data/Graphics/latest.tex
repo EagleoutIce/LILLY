@@ -1,0 +1,17 @@
+\documentclass[PLAIN]{Lilly}
+\begin{document}
+\pagenumbering{arabic}
+\tableofcontents \clearpage 
+\begin{lstplain}[language=lLatex]
+%%Einbindung erfolgt über:
+\getGraphics{:lan:Pfad:ran:}
+ \end{lstplain}
+\begin{tabularx}{\linewidth}{^m{0.5\linewidth}^>{\centering\arraybackslash}X+}
+\toprule\headerrow Pfad & Ergebnis\\
+\midrule
+
+\phantomsection \addcontentsline{toc}{chapter}{Software}
+\phantomsection \addcontentsline{toc}{section}{UML/UMLFactoryPattern}\verb|Software/UML/UMLFactoryPattern| & \getGraphics{Software/UML/UMLFactoryPattern}\\
+\midrule \bottomrule
+\end{tabularx}
+\end{document}

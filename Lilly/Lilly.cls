@@ -211,6 +211,7 @@
 \RequirePackage{multicol}
 
 \RequirePackage{LILLYxLISTINGS}
+\RequirePackage{LILLYxLISTINGSxADVANCED}
 \RequirePackage{LILLYxRUNTIMES}
 
 %\ExplSyntaxOn
