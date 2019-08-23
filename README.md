@@ -4,6 +4,9 @@
 
 Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm betrieben, um die Realisierung von Skripten und Mitschriften in Latex zu vereinfachen.
 
+## Dokumentation
+Bist du auf der Suche nach der Dokumentation? Die findest du hier: [Dokumentation](Dokumentation/Lilly-Dokumentation.doc.pdf).
+
 ## Wichtig
 
 Wenn du mitarbeiten möchtest ist das super, melde dich einfach bei mir! Allgemein gilt zu beachten: 
@@ -14,7 +17,7 @@ https://github.com/EagleoutIce/LILLY/wiki/Eine-Vorlesung-erstellen
 
 Wenn dir beim Schreiben ein To-Do einfällt, so markiere es einfach entsprechend mit `TODO` oder `@todo` im Code :D
 
-Die sich bisher in Arbeit befindende [Dokumentation](Dokumentation/LIMERENCE-Lilly-Dokumentation.doc.pdf) sollte noch mit
+Die sich bisher in Arbeit befindende [Dokumentation](Dokumentation/Lilly-Dokumentation.doc.pdf) sollte noch mit
 vorsicht genossen werden :D Sie sollte dringend mal wieder aktualisiert werden :sweat_smile:!
 
 **Aktuelle Aufgabenfelder:**

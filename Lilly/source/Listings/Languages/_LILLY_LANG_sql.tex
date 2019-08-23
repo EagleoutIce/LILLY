@@ -3,9 +3,14 @@
 \lstdefinelanguage{lSql}{
     language=sql,
     comment=[l]{--},
-    %alsoletter={\#,=,-},
+    %alsoletter={\#=-},
     %morecomment=[s]{!}{!},
     escapeinside={!*}{*!},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[il][{\lstHLError}]{|err|:},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+    moredelim=[is][{}]{|plain|}{|plain|},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     morekeywords = {WITH,IS,REFERENCES,DEFERRED,OPTION,TO,START,WORK},
     morekeywords = [2]{DOUBLE,REAL,BOOLEAN,USE},

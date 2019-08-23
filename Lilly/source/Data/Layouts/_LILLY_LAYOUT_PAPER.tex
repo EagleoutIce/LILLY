@@ -100,7 +100,9 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
 }
 
 \providecommand{\LILLYxPAPERxNUMxGET}[1]{\Roman{#1}} %% ALPH{#1}
-\providecommand{\LILLYxPAPERxNUM}{TRUE} %% ALPH{#1}
+\ifcsname LILLYxPAPERxNUM\endcsname\else
+    \gdef\LILLYxPAPERxNUM{TRUE}
+\fi
 
 \newcommand{\startAppendix}{
     \grenewcommand{\LILLYxPAPERxNUMxGET}[1]{\Alph{##1}}

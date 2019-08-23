@@ -1,0 +1,112 @@
+%%% This Layout is meant to provide the Layout for an Beautiful Book. It will conform with the regular Lilly-Base
+
+\RequirePackage{microtype}
+
+%%% Set Fonts for the document :D
+% https://tug.org/FontCatalogue/lato/
+\RequirePackage[default]{lato}
+
+%% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
+\AtBeginDocument{%
+	\newgeometry{a4paper, ignoreheadfoot,
+				 left=3.4cm, right=2.6cm,
+				 top=3cm, bottom=3.5cm,
+				 nohead, marginparwidth=0cm,
+				 marginparsep=0mm}
+}
+
+
+%
+%
+%
+
+\setlength{\parskip}{1ex}\setlength{\parindent}{0ex}
+\setlength{\skip\footins}{0.75cm}\setlength{\footnotesep}{2mm}
+
+%% Define and set the Title:
+\RequirePackage{titlesec}
+
+% font sizes:
+\titleformat{\chapter}[display]
+	{\huge}{\chaptertitlename}
+	{21pt}{\fontsize{2cm}{1em}\selectfont\Large}%\chapterfont}
+\titleformat*{\section}{\Huge\Large}%\titlefont}
+\titleformat*{\subsection}{\huge}%\titlefont}
+\titleformat*{\subsubsection}{\LARGE}%\titlefont}
+
+% spacing:
+\titlespacing*{\chapter}{0mm}{50pt}{20pt}
+\titlespacing*{name=\chapter,numberless}{0pt}{20pt}{20pt} %starred
+\titlespacing*{\section}{0mm}{4mm}{3mm}
+\titlespacing*{\subsection}{0mm}{3mm}{2mm}
+\titlespacing*{\subsubsection}{0mm}{2mm}{1.5mm}
+
+Title number in margin
+\def\@seccntformat#1{%
+    \llap{\csname the#1\endcsname\hspace{3mm}}%
+}
+
+% Tableofcontents:
+\RequirePackage{titletoc}
+% current implementation with framed:
+\RequirePackage{framed}
+\RequirePackage{etoolbox}
+
+\renewenvironment{leftbar}{
+	\def\FrameCommand{
+		\hspace*{-.2\textwidth}
+		{\color{LightGray}\vrule width 2pt depth 6pt}\hspace{1em}
+	}
+	\MakeFramed{
+		\parshape 1 0cm \dimexpr\textwidth-.5\textwidth\relax\FrameRestore
+	}\vskip2pt%
+}{\endMakeFramed}
+% \titlecontents{chapter}[0em]{\vspace*{1\baselineskip}}{
+% 	\parbox{.1\textwidth}{\hfill\Huge\bfseries{\thecontentspage}}
+% 	\vspace*{-3\baselineskip}\leftbar{\large\chaptertitlename~\thecontentslabel}\\\Large
+% }{}{\endleftbar}
+
+% chapter - bound mini toc 
+\newcommand{\printMiniToc}{
+	\hfill\parbox[t]{.25\textwidth}{
+		{\mbox{}\\
+			\mbox{}\bfseries{\fontsize{7cm}{1ex}\selectfont\normalNumber\hfill\thechapter}}
+	}
+	\parbox[t]{.65\textwidth}{\vspace*{1.5cm}
+		\begin{flushright}
+			{\Large\textbf{Zusammenfassung}} \raisebox{-1.5mm}{\faList}
+		\end{flushright}
+		\vspace*{-3mm}
+		\begin{mdframed}[
+			skipabove=0mm,
+			skipbelow=0cm,
+			innertopmargin=1mm,
+			innerbottommargin=0mm,
+			innerleftmargin=2mm,
+			innerrightmargin=1.5mm,
+			leftmargin=0mm,
+			rightmargin=0mm,
+			leftline=true,
+			rightline=false,
+			topline=false,
+			bottomline=false,
+			linewidth=1mm,
+			linecolor=LightGray
+			]
+			\startcontents[chapters]
+			\hypersetup{linkcolor=black}
+			\begin{spacing}{1.2}
+				\printcontents[chapters]{p}{1}{\setcounter{tocdepth}{4}}
+			\end{spacing}
+			\vspace*{-1mm}
+		\end{mdframed}
+	}\hspace*{1cm}
+	\vfill
+	\newpage
+}
+
+\titlecontents{psection}[2.3em]
+{} {\contentslabel{2.3em}} {} {\titlerule*[1pc]{.}\contentspage}
+\titlecontents{psubsection}[5.5em]
+{} {\contentslabel{3.2em}} {} {\titlerule*[1pc]{.}\contentspage}
+

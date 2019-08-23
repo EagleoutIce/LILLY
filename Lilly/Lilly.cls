@@ -35,8 +35,9 @@
 \RequirePackage{LILLYxPATH} %% provides \linput as \LILLYxPATH based input
 \RequirePackage{LILLYxBOOLEAN} %% \true und \false
 
-
-\providecommand{\LILLYxDEBUG}{\false}                        %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
+\ifcsname LILLYxDEBUG\endcsname\else
+    \xdef\LILLYxDEBUG{\false}   %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
+\fi
 
 
 
@@ -134,12 +135,7 @@
 
 \RequirePackage{LILLYxENCODING}
 
-\input Konanur.fd
 
-
-\newcommand{\kfont}[1]{\begingroup\usefont{U}{Konanur}{xl}{n}#1\endgroup}
-
-\newcommand{\Lilly}{\kfont{Lilly}}
 \newcommand{\textLilly}{\raisebox{-0.125\baselineskip}{\kfont{Lilly}}}
 
 \RequirePackage{cancel}
@@ -210,6 +206,7 @@
 \RequirePackage{multicol}
 
 \RequirePackage{LILLYxLISTINGS}
+\RequirePackage{LILLYxLISTINGSxADVANCED}
 \RequirePackage{LILLYxRUNTIMES}
 
 %\ExplSyntaxOn

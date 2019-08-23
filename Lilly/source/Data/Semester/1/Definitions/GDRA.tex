@@ -31,7 +31,9 @@ Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und ba
 \providecommand\LILLYxBOXxBemerkungxBox{TRUE}
 \providecommand\LILLYxBOXxBeispielxBox{FALSE}
 \providecommand\LILLYxBOXxBeweisxBox{FALSE}
-\providecommand{\LILLYxUBxSHOWTUTOR}{TRUE}
+\ifcsname LILLYxUBxSHOWTUTOR\endcsname\else
+    \gdef\LILLYxUBxSHOWTUTOR{TRUE}
+\fi
 
 %% MIPS-Codes
 
@@ -41,6 +43,8 @@ Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und ba
 \providecommand{\cmdGreenRAW}[2][Linkname]{{\T{\textbf{\hypersetup{linkcolor=limegreen}{\hyperref[#2]{#1}}}}}}
 
 \RequirePackage{LILLYxMIPS}
+\RequirePackage{LILLYxCONVERTERxMAYA}
+\RequirePackage{LILLYxROTARYxENCODER}
 
 %%NEW TITLE
 

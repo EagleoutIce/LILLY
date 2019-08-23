@@ -1,4 +1,4 @@
-Jake - Erste Verbesserungen
+Dolly the box, new listings
 
 ================================================================
 :EagleoutIce for Lilly
@@ -6,26 +6,26 @@ Jake - Erste Verbesserungen
 
 LILLY:
 
-    + Ein paar neue Befehle wurden hinzugefügt, sie sind der
-      Dokumentation beigelegt.
+    * Massive Änderung am Boxcontroller (foreach - endlich),
+      RegisterBox, TransformBox,...
+      Folgefehler möglich! Prozess wurde fortgeführt.
+      
+    
+    * Weitere Verbesserungen - Fehlersuche erwünscht :D
 
-    * Update der Versionsnummer auf korrektes Ziel 2.0.0
-
-    * Neue Farberweiterung Chess
-
-    ! Ein paar Fehler wurden behoben
+    * Neue Grafiken, neue Listings, some fixes, 
+      it's too much :P
 
 JAKE:
 
-    * .jar-Generierung für Development angepasst, nun auch mit
-      fixem Namen!
-
-    * Kleine wenige Optimierungen
+    * Jake 'get' nun Funktional :D - finally :D
 
 DOKUMENTATION:
 
-    * Listings nun weitgehend überarbeitet, andere Kapitel
-      im Rahmen angepasst.
+    * Weitere Überarbeitung der Dokumentation, neue Komponenten
+      wurden integriert (beziehungweise genau: es wurde 
+      begonnen die Komponenten zu integrieren :D).
+      Zum Beispiel: LISTINGSxADVANCED, TransformBox, ...
 
 ================================================================
 :

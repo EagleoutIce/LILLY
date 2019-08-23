@@ -1,5 +1,5 @@
 \ifcsname NewEnviron\endcsname
-    \ifx\LILLYxEXTERNALIZE\true%
+    \ifthenelse{\equal{\LILLYxEXTERNALIZE}{\true}}{%
     %% Teste, ob Befehl überhaupt zur Verfügung steht:
     \usetikzlibrary{external}
     \tikzexternalize[up to date check=md5, optimize=false]
@@ -15,12 +15,12 @@
     \BODY%
     \end{tikzpicture}%
     \tikzexternaldisable%
-    }
-
+    }%
+%
     \tikzexternaldisable
-    \else
+    }{%
     \newenvironment{tikzternal}[1][]{\begin{tikzpicture}[#1]}{\end{tikzpicture}}
-    \fi
+    }
 \else
 \ClassWarning{Lilly}{Environ-Paket nicht gefunden, die tikzternal-Umgebung wird entsprechend simuliert.}%
 \newenvironment{tikzternal}[1][]{\begin{tikzpicture}[#1]}{\end{tikzpicture}}

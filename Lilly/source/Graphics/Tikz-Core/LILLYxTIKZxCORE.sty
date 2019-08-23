@@ -7,7 +7,7 @@
 %% https://www.ctan.org/pkg/tikz
 \LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
                     {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
-                    {remember picture, overlay}%%Params
+                    {}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
 \usetikzlibrary{%
@@ -77,5 +77,7 @@ shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_SYMBOLS}
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_ER}
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_DIRECTORY}
+
+\RequirePackage{\LILLYxPATHxDATA/Semester/1/EIDI/tikz-uml}
 
 \endinput

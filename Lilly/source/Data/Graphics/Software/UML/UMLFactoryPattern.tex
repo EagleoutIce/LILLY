@@ -1,0 +1,20 @@
+\gdef\GRAPHICSxUMLFactoryPattern{%
+\begin{tikzternal}[scale=0.8,every node/.style={transform shape}]
+    \tikzumlset{fill class=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter
+    \umlclass[x=0,y=0,name=p,anchor=north]{Product}%
+                    {}%
+                    {};
+    \umlclass[x=0,y=-3.5,name=cp]{ConcreteProduct}%
+                    {}%
+                    {};
+    \umlabstract[x=6,y=1,name=c,anchor=north]{Creator}%
+                    {}%
+                    {\umlvirt{+ creatorMethod()}\\+ someFunction()};
+    \umlclass[x=6,y=-3.5,name=cc]{ConcreteCreator}%
+                        {}%
+                        {+ creatorMethod()};
+    \umlVHVinherit[arm2=-1.6cm]{ConcreteProduct}{Product};
+    \umlVHVinherit[arm2=-1.6cm]{ConcreteCreator}{Creator};
+    \umlimpl{ConcreteCreator}{ConcreteProduct}
+\end{tikzternal}}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxUMLFactoryPattern} 

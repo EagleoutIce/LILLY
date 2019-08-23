@@ -4,114 +4,109 @@
 lines before break=4, before skip=0pt, boxrule = 0mm, toprule=0.5mm, %
 bottomtitle=0.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=0.2\baselineskip, enlarge bottom by=0.2\baselineskip, sharp corners=south, enforce breakable}}
 
-\providecommand{\LILLYxDEFAULTxTYPESETxTITLE}[2]{\!\relax{}\textbf{\textsc{{#2}}} \hfill \parbox[t]{0.75\linewidth}{\raggedleft\textbf{#1}}\vspace{-0.175cm}}
+\providecommand{\LILLYxDEFAULTxTYPESETxTITLE}[2]{\!\relax{}\textbf{\textsc{{#2}}} \hfill \parbox[t]{\linewidth-\widthof{#2}-5em}{\raggedleft\textbf{#1}}}
 
-%%Es scheint nicht m�glich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
+%%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
 
 %%% Die Definition-Box:
-\ifx\LILLYxBOXxDefinitionxLock\true
+\ifthenelse{\equal{\LILLYxBOXxDefinitionxLock}{\true}}{%
+%\typeout{unlocked}
 \DeclareTColorBox[auto counter]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxLock\true\\\else\\[-0.4\baselineskip]\fi} %
+title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxBox\true\\\else\\[-0.4\baselineskip]\fi} %
 }
 \DeclareTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxLock\true\\\else\\[-0.4\baselineskip]\fi}, bookmark={#2 -- #1} %
+title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxBox\true\\\else\\[-0.4\baselineskip]\fi}, bookmark={#2 -- #1} %
 }
-\else
+}{%
+%\typeout{locked}
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxDefinitionxLock]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxLock\true\\\else\\[-0.4\baselineskip]\fi} %
+title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxBox\true\\\else\\[-0.4\baselineskip]\fi} %
 }
 \DeclareTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
-title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxLock\true\\\else\\[-0.4\baselineskip]\fi} %
+title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxBox\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\fi
-
+}
 
 %%% Die Beispiel-Box:
-\ifx\LILLYxBOXxBeispielxLock\true
+\ifthenelse{\equal{\LILLYxBOXxBeispielxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBeispiel!5!white, colframe=\LILLYxColorxBeispiel, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBeispielxLock\true\\\else\\[-0.4\baselineskip]\fi}%
 }
-\else
+}{%
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxBeispielxLock]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBeispiel!5!white, colframe=\LILLYxColorxBeispiel, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBeispielxLock\true\\\else\\[-0.4\baselineskip]\fi}%
 }
-\fi
-
+}
 
 %%% Die Bemerkung-Box:
-\ifx\LILLYxBOXxBemerkungxLock\true
+\ifthenelse{\equal{\LILLYxBOXxBemerkungxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBemerkung!5!white, colframe=\LILLYxColorxBemerkung, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBemerkungxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\else
+}{%
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxBemerkungxLock]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBemerkung!5!white, colframe=\LILLYxColorxBemerkung, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBemerkungxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\fi
-
+}
 
 %%% Die Satz-Box:
-\ifx\LILLYxBOXxSatzxLock\true
+\ifthenelse{\equal{\LILLYxBOXxSatzxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxSatz!5!white, colframe=\LILLYxColorxSatz, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxSatzxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\else
+}{%
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxSatzxLock]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxSatz!5!white, colframe=\LILLYxColorxSatz, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxSatzxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\fi
-
+}
 
 %%% Die Beweis-Box:
-\ifx\LILLYxBOXxBeweisxLock\true
+\ifthenelse{\equal{\LILLYxBOXxBeweisxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxBeweis!5!white, colframe=\LILLYxColorxBeweis, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBeweisxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\else
+}{%
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxBeweisxLock]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxBeweis!5!white, colframe=\LILLYxColorxBeweis, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBeweisxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\fi
-
+}
 
 %%% Die Lemma-Box:
-\ifx\LILLYxBOXxLemmaxLock\true
+\ifthenelse{\equal{\LILLYxBOXxLemmaxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxLemma!5!white, colframe=\LILLYxColorxLemma, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxLemmaxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\else
+}{%
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxLemmaxLock]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxLemma!5!white, colframe=\LILLYxColorxLemma, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxLemmaxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\fi
-
+}
 %%% Die Zusammenfassung-Box:
-\ifx\LILLYxBOXxZusammenfassungxLock\true
+\ifthenelse{\equal{\LILLYxBOXxZusammenfassungxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxZusammenfassung!5!white, colframe=\LILLYxColorxZusammenfassung, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxZusammenfassungxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\else
+}{%
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxZusammenfassungxLock]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxZusammenfassung!5!white, colframe=\LILLYxColorxZusammenfassung, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxZusammenfassungxLock\true\\\else\\[-0.4\baselineskip]\fi} %
 }
-\fi
-
+}
 
 %%sloppy - fix => MAKE ALL BOXES ENVIRONMENTS AND PROVIDE OLD COMMAND STYLE AS COMPAT FEATURE TODO:
 \DeclareTColorBox{LILLYxBOXxAufgabe}{O{} O{} O{}}{enforce breakable, %enforce breakable für: Mehr Seiten

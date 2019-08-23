@@ -253,8 +253,8 @@ Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitt
 % \end{multicols}
 % Es werden keine Zeilennummern angezeigt.
 % \normalmarginpar
-
-\section{Literates}
+\section{Marker und weitere Befehle}
+\subsection{Literates}
 \elable{mrk:jmpLiterate}Im Kontext verschiedener Programmiersprachen kam bald der Wunsch auf verschiedene Symbole entsprechend einfach Setzen zu können. Bisher werden alle diese Ersetzungsregeln über das Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen und ermöglichen es, neben Umlauten auch Symbole einzubinden. Die Ersetzungsregeln werden nicht über eine Liste gehandhabt und sind ebenso vielfältig wie es die Bedürfnisse erfordern. Im Folgenden eine Auflistung aller in \LILLYxBOXxVersion{2.0.0} enthaltener Ersetzungsregeln:
 \begin{multicols}{4}
     \begin{description}
@@ -263,5 +263,90 @@ Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitt
         }
     \end{description}
 \end{multicols}
+\subsection{Marker}
+Mit \LILLYxBOXxVersion{2.0.0} im Anfangsstadium befinden sich die jeweiligen Marker die es erlauben Fehler oder ganz Allgemein Code-stellen zu markieren, oder von Highlighting zu befreien:
+\begin{java}
+|info|import java.util.ArrayList;|info|
 
-\renewcommand{\arraystretch}{1}
+|plain|public class Example {|plain|
+    public static void main(String[] args) { 
+        System.out.|err|PrintLn|err|("Hallo Welt");
+        if(|warn|args==null|warn|)
+            System.out.println("wau");
+    }
+}
+\end{java}
+\begin{latex}
+\begin{java}
+|info|import java.util.ArrayList;|info|
+
+|plain|public class Example {|plain|
+    public static void main(String[] args) { 
+        System.out.|err|PrintLn|err|("Hallo Welt");
+        if(|warn|args==null|warn|)
+            System.out.println("wau");
+    }
+}
+\end{java}
+\end{latex}
+
+\section{Advanced Listings}
+
+Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/LILLYxLISTINGSxADVANCED}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGSxADVANCED} geladen.
+
+\presentEnvironment[2.0.0]{presentlst}[\optArg{tcbaddons}\manArg{language}]
+Setzt Quellcode in einem modernen Design:
+\begin{latex}
+\begin{presentlst}{lJava}
+public static void main(String[] args) {
+    System.out.println("Hallo Welt");
+}
+\end{presentlst}
+\end{latex}
+Ergibt:
+\begin{presentlst}{lJava}
+public static void main(String[] args) {
+    System.out.println("Hallo Welt");
+}
+\end{presentlst}
+
+\presentCommand[2.0.0]{p<lang>}[\manArg{Code}]
+Setzt Analog zu \blankcmd{c<lang>} den Code in einer Zeile im entsprechend Design. Hier allerdings ebenfalls das neue, modernere Design: 
+\begin{latex}
+\pcpp{int main(int argc, char** argv)}
+\end{latex}
+Ergibt: \pcpp{int main(int argc, char** argv)}.
+% \begin{slatex}
+% \documentclass{article}
+
+% \usepackage{LILLYxLIST}
+
+% \def!**!\fun#1{#1}
+
+% \begin{document}
+%     Und alle mögen sie Gänse!**!\ldots oder waren es Gämse?
+% \end{document}
+% \end{slatex}
+
+% \begin{presentlst}{lJava}
+% public static void main(String[] args) {
+%     System.out.println("Hallo Welt");
+% }
+% \end{presentlst}
+
+
+% Es ist doch toll oder?: \pcpp{int main(int argc, char** argv)}
+% \begin{sjava}
+% public double calculatePI() {
+
+%     int acc = IntStream.range(0, ITERATIONS-1).map((x) -> {
+%         double a = Math.random();
+%         double b = Math.random();
+%             if (a*a + b*b <= 1.0) return 1;
+%             else                  return 0;
+%     }).sum();
+
+
+%     return (4.0 * acc) / ITERATIONS;
+% }
+% \end{sjava}

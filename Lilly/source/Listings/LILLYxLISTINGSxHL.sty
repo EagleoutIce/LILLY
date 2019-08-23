@@ -1,0 +1,48 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxLISTINGSxHL}[2019/08/20 Stellt eine Farb-Erweiterungen fuer LILLYs Listings zur Verfuegung]
+
+\RequirePackage{LILLYxLISTINGS}
+
+%% https://www.ctan.org/pkg/tikz
+\LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
+                    {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+
+%% thanks to: https://tex.stackexchange.com/questions/15237/highlight-text-in-code-listing-while-also-keeping-syntax-highlighting
+
+
+\newenvironment{lillyHighlight}[1][]
+{\begingroup\tikzset{lilly@Highlight@par/.style={#1}}\begin{lrbox}{\@tempboxa}}
+{\end{lrbox}\lilly@lsthighlight@box[lilly@Highlight@par]{\@tempboxa}\endgroup}
+
+\newcommand\@lillyLstHL[1][]{%
+  \begin{lillyHighlight}[#1]\bgroup\aftergroup\lilly@lsthighlight@endenv%
+}
+\def\lilly@lsthighlight@endenv{%
+  \end{lillyHighlight}%   
+  \egroup
+}
+\newcommand{\lilly@lsthighlight@box}[2][]{%
+  \tikz[#1]{%
+    \pgfpathrectangle{\pgfpoint{1pt}{0pt}}{\pgfpoint{\wd #2}{\ht #2}}%
+    \pgfusepath{use as bounding box}%
+    \node[anchor=base west, fill=ChromeYellow!30,outer sep=0pt,inner xsep=1pt, inner ysep=-1.105pt, rounded corners=2pt, minimum height=\ht\strutbox+1pt,#1]{\raisebox{1pt}{\strut}\strut\usebox{#2}};
+  }%
+}
+
+
+\providecommand{\lstHLWarning}{\@lillyLstHL[fill=ChromeYellow!30,draw=ChromeYellow]}
+\providecommand{\lstHLError}{\@lillyLstHL[fill=DebianRed!30,draw=DebianRed]}
+\providecommand{\lstHLInfo}{\@lillyLstHL[fill=AppleGreen!30,draw=AppleGreen]}
+
+\lstdefinestyle{LSTHI}{%
+  moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+  moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+  moredelim=**[il][{\lstHLError}]{|err|:},
+  moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+  moredelim=[is][{}]{|plain|}{|plain|},
+}
+
+\endinput
