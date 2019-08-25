@@ -10,7 +10,6 @@
     backgroundcolor={},
     rulecolor={},
     numberstyle=\color{gray}\LILLYxLISTINGSxNUMxFONTSIZE\sffamily,
-    frame=none,
     xleftmargin=12pt,
     xrightmargin=3pt,
     frame=l,
@@ -25,14 +24,14 @@
 \tcbset{
   lstpresenterstyle/.style={%
     colback=MudWhite!5,
-    boxrule=1pt, 
-    enhanced jigsaw, 
+    boxrule=1pt,
+    enhanced jigsaw,
     listing only,
     breakable=true,
     opacityback=0.9,
     arc is angular=5mm,
     fuzzy halo=0.1mm with MudWhite,
-    top=0.1mm,
+    top=0.11mm,
     bottom=0.11mm,
     colframe=Charcoal,
   }
@@ -48,7 +47,7 @@
   lstpresenterstyle,
   listing options={%
     language=#2,
-    style=LSTADVANCED}, 
+    style=LSTADVANCED},
   #1%
 }
 {}
@@ -58,7 +57,7 @@
 %         lstpresenterstyle,
 %         listing options={%
 %           language=#2,
-%           style=LSTADVANCED}, 
+%           style=LSTADVANCED},
 %         ##1%
 %       }
 % }
@@ -76,27 +75,31 @@
   }}
 }
 
-\DeclareTCBListing{sjava}{ O{} }{%
-    lstpresenterstyle,
-    listing options={%
-      language=lJava,
-      style=LSTADVANCED}, 
-    #1%
+\newtcblisting{sjava}[1][]{%
+  lstpresenterstyle,
+  listing options={%
+    language=lJava,
+    style=LSTADVANCED},
+  #1%
 }
+{}
 
-\DeclareTCBListing{slatex}{ O{} }{%
-    lstpresenterstyle,
-    listing options={%
-      language=lLatex,
-      style=LSTADVANCED}, 
-    #1%
+\newtcblisting{slatex}[1][]{%
+  lstpresenterstyle,
+  listing options={%
+    language=lLatex,
+    style=LSTADVANCED},
+  #1%
 }
+{}
 
-\DeclareTCBListing{scpp}{ O{} }{%
-    lstpresenterstyle,
-    listing options={%
-      language=lCpp,
-      style=LSTADVANCED}, 
-    #1%
+\newtcblisting{scpp}[1][]{%
+  lstpresenterstyle,
+  listing options={%
+    language=lCpp,
+    style=LSTADVANCED},
+  #1%
 }
+{}
+
 \endinput
