@@ -47,6 +47,7 @@ S_LILLY_BIBTEX          = lilly-bibtex
 S_GEPARDRULES_PATH      = gepardrule-path
 S_LILLY_DOCTYPE         = lilly-doctype
 S_LILLY_AUTOCONF        = lilly-autoconf
+S_LILLY_CONFIGS_PATH    = lilly-configs-path
 
 S_FILE                  = file
 S_ANSWER                = answer

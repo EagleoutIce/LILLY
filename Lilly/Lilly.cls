@@ -13,6 +13,7 @@
 \providecommand{\LILLYxSemester}{1}
 \providecommand{\LILLYxVorlesung}{LAII}
 
+\RequirePackage{LILLYxVANILLA}
 \RequirePackage{LILLYxPACKAGExCTRL}
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxLIST}
@@ -45,7 +46,9 @@
 % Key-Val-Optionen zum verarbeiten von Argumenten                                                                     %     %%%% PACKAGE-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{\LILLYxPATHxCONTROLLERS/Parser/_LILLY_KEYVAL_PARSER}
+%\input{\LILLYxPATHxCONTROLLERS/Parser/_LILLY_KEYVAL_PARSER}
+\RequirePackage{LILLYxKEYVALxPARSER}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Setzen und Abfragen der Werte für das Dokument                                                                      %     %%%% PRE-DEFAULTS %%%%
@@ -256,11 +259,10 @@
 \RequirePackage{LILLYxCONTROLLERxMODE}
 \RequirePackage{LILLYxCONTROLLERxLINK}
 
-\input{\LILLYxPATHxCONTROLLERS/Intro/_LILLY_INTRO_CONTROLLER}
+%\input{\LILLYxPATHxCONTROLLERS/Intro/_LILLY_INTRO_CONTROLLER}
 
-\RequirePackage{LILLYxCONTROLLERxBOX}
 \RequirePackage{LILLYxBOXxCOUNTER}
-
+\RequirePackage{LILLYxCONTROLLERxBOX}
 \RequirePackage{LILLYxCONTROLLERxHYPHEN}
 
 
@@ -280,4 +282,6 @@
 
 \RequirePackage{LILLYxTRANSLATIONSxUNIVERSE}
 
-\input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}
+%\input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}
+
+\RequirePackage{LILLYxCONTROLLERxLAYOUT}

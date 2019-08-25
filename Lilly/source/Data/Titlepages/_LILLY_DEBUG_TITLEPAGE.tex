@@ -1,34 +1,32 @@
 %%% Wird nur genutzt wenn die DEBUG-Flag gesetzt wurde
 
 \AtBeginDocument{
-\clearpage\begin{titlepage} 
+\clearpage\begin{titlepage}
+    \begin{minipage}{\textwidth}
     {\centering \LARGE\textbf{DEBUG-TITLEPAGE}\par}~\\
-    \renewcommand{\arraystretch}{1.3}
-    \textbf{Generelles}:
-    \[\begin{tabular}{|>{\bfseries}l<{:}|c|}
-        \hline
-        Lilly & \LILLYxVERSIONxLONG \\\hline
-        Datum & \heute\\\hline
-        Kompilier-Modus & \LILLYxMODE\\\hline
-        Farbprofil & \raisebox{-2pt}{\LILLYxCOLORxRainbow}\\\hline
+    {\centering\textbf{\large Allgemein:}\par}
+    \begin{description}\narrowitems
+        \foreach \cl/\r in {Lilly/LILLYxVERSIONxLONG,Datum/heute,Kompilier-Modus/LILLYxMODE,Box-Modus/LILLYxBOXxMODE,Farbprofil/LILLYxCOLORxRainbow} {
+            \item[{\cl}:] \T{\csname\r\endcsname}~\hfill\textcolor{Orchid}{\T{\textbackslash \r}}
+        }
+    \end{description}
 
-    \end{tabular}\]  
-    \textbf{PDF-Spezifisch:}
-    \[\begin{tabular}{|>{\bfseries}l<{:}|c|}
-        \hline
-        Author & \AUTHOR\\\hline
-        Dokument-Name & \LILLYxDOCUMENTNAME\\\hline    
-        PDF-Name & \LILLYxPDFNAME\\\hline
-    \end{tabular}\]   
+    {\centering\textbf{\large PDF-Spezifisch:}\par}
+    %% LILLYxLISTINGS
+        \begin{description}\narrowitems
+            \foreach \cl/\r in {Author/AUTHOR,Email/AUTHORMAIL,Dokumentname/LILLYxDOCUMENTNAME,PDF-Name/LILLYxPDFNAME,Output/LILLYxOUTPUTDIR,Input/LILLYxPATH,External/LILLYxEXTERNALIZE,Bibtex\footnote{No Value means bibtex was disabled.}/LILLYxBIBTEX} {
+                \item[{\cl}:] \T{\csname\r\endcsname}~\hfill\textcolor{Orchid}{\T{\textbackslash \r}}
+            }
+        \end{description}
     \renewcommand{\arraystretch}{1}
-    \textbf{TODOs:}
-    \begin{itemize}\setlength{\itemsep}{0pt}
-        \item Stichwortverzeichnis für Druckversion
-        \item Besseres externalize
-        \item Interne Dokumentparameter
-        \item Bessere Struktur => LILLY als bibliothek
-        \item Packet warnungen, infos, etc.
-    \end{itemize}
-\end{titlepage} 
+    {\centering\textbf{\large Jake:}\par}
+        \begin{description}\narrowitems
+            \foreach \cl/\r in {ThreadID\footnote{No Value means compilation wasn't parallelized.}/LILLYxTHREADxID,Semester/LILLYxSemester,Vorlesung/LILLYxVorlesung,Highlight-Color/Hcolor,Layout Path/lillyPathLayout} {
+                \item[{\cl}:] \T{\csname\r\endcsname}~\hfill\textcolor{Orchid}{\T{\textbackslash \r}}
+            }
+        \end{description}
+    \end{minipage}
+
+\end{titlepage}
 \newpage
 }

@@ -46,4 +46,11 @@
 \gdef\makerenewglobal{\global\let\@newenv\@global@newenv}
 \gdef\makerenewlocal{\global\let\@newenv\@local@newenv}
 
+\def\providedef#1#2{
+  \ifcsname #1 \endcsname\else
+  \expandafter\def\csname #1\endcsname{#2}
+  \fi
+}
+
+
 \endinput

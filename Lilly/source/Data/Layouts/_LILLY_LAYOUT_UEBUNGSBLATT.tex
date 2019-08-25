@@ -4,13 +4,20 @@
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 
 
+%% Vital configurations
+\RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General and Layoutkonfiguration                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \LILLYcommand{\TUTORBOX}{ %Tutorboxen für Blätter die analog abgegeben werden sollen => !Wird automatisch eingebunden. Siehe weiter unten. Komfort! Yay
     \begin{centered}
     \noindent\fbox{
         \begin{minipage}{\dimexpr0.8\textwidth-2\fboxsep-2\fboxrule\relax}
             \vspace{0.1cm}
         \begin{centered}
-            \textbf{Tutor}: \\ 
+            \textbf{Tutor}: \\
             \large{\TUTOR}
         \end{centered}
         \vspace{0.1cm}
@@ -25,7 +32,7 @@
     \pagenumbering{gobble}
 }
 
-\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+\LILLYcommand{\LILLYxLayoutxRestore}{ %
     \pagenumbering{arabic}
     \pagestyle{scrheadings} %KOMA-FTW!
     \lohead{\parbox[b][\headheight][b]{0.4\textwidth}{\AUTHOR}}
@@ -42,3 +49,9 @@
 \AtBeginDocument{
     \LILLYxLayoutxRestore
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outrokonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% None

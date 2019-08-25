@@ -1,6 +1,9 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxOUTRO}[2019/08/25 Stellt den Outro-Controller fuer LILLY zur Verfuegung]
+
 %% Dieser Controller kümmert sich um die korrekte implementierung des OUTROS eines Dokuments er fügt bei Bedarf Listen für Definitionen usw an und bindet auch den Index ein etc.
 
-
+% there is a clear command i know :P
 \def\LILLYxCLEARxHEADFOOT{\lohead{}\cohead{}\rohead{}\lofoot{}\cofoot{}\rofoot{}}
 
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
@@ -67,4 +70,5 @@
 
 \fi
 
-%% TODO: dynamic outro
+
+\endinput

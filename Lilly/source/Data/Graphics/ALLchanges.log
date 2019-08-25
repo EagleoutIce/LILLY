@@ -86,8 +86,7 @@ Graphen/GraphZyklus.tex T: 1566316653.2015078
 
 Haskell/HaskellTypen.tex T: 1566397490.26644
 
-Haskell/Listenoperationen.tex T: 1565630020.0
-
+Haskell/Listenoperationen.tex T: 1565630020.9191043
 Java/ODBCSchematisch.tex T: 1566316691.5493288
 
 Java/StreamDemo.tex T: 1566316653.1975079
@@ -192,8 +191,7 @@ Rechner/Stackmaschiene.tex T: 1566316653.2015078
 
 Rechner/StackmaschieneSimpler.tex T: 1566316653.2015078
 
-Schaltkreis/Addier-Subtrahierer.tex T: 1565104573.0
-
+Schaltkreis/Addier-Subtrahierer.tex T: 1565104573.533393
 Schaltkreis/Demultiplexer.tex T: 1566316653.2015078
 
 Schaltkreis/KomplexerSchaltkreis.tex T: 1566129224.3025746
@@ -202,12 +200,9 @@ Schaltkreis/SynchronzaehlerDFF.tex T: 1566316653.1975079
 
 Schaltkreis/SynchronzaehlerTFF.tex T: 1566316653.2015078
 
-Schaltkreis/Volladdierer.tex T: 1564666919.0
-
-Software/DreiSchichtenArchitektur.tex T: 1565104599.0
-
-Software/Meta/ProgrammierparadigmenUeberblick.tex T: 1565620465.0
-
+Schaltkreis/Volladdierer.tex T: 1564666919.4883823
+Software/DreiSchichtenArchitektur.tex T: 1565104599.545443
+Software/Meta/ProgrammierparadigmenUeberblick.tex T: 1565620465.918367
 Software/ModelViewController.tex T: 1565451322.765003
 
 Software/RegexExample.tex T: 1566316653.2055078
@@ -251,3 +246,4 @@ Sprachen/ChomskyHierarchie.tex T: 1566343731.0377374
 Sprachen/Grammatik.tex T: 1566316653.2015078
 
 Software/XML/XMLUebersicht.tex T: 1566309302.185538
+
