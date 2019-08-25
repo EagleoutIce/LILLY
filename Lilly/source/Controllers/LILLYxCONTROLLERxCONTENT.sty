@@ -125,13 +125,13 @@
 %%% {Datei}{Nutzerpfad}{Systempfad} -NO TRAILING '/'
 \providecommand{\userput}[3]{%
 \ifthenelse{\equal{#2}{#3}}{%
-    \input{#3/#1}%
+    \InputIfFileExists{#3/#1}{}{}%
 }{%
     \InputIfFileExists{#2/#1}{%
         \ClassInfo{Lilly}{Lilly hat die Nutzerdatei: #2/#1 respektiert}%
     }{%
         \ClassInfo{Lilly}{Lilly hat die Nutzerdatei: #2/#1 ignoriert, weil nicht gefunden}%
-        \input{#3/#1}%
+        \InputIfFileExists{#3/#1}{}{}%
     }%
 }%
 }

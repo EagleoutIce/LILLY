@@ -80,11 +80,10 @@
     \def\LILLYxBOXxUebungsblattxBox{TRUE}%
 \fi
 %\providecommand{\LILLYxBOXxUebungsblattxEnable}{TRUE}       \providecommand{\LILLYxBOXxUebungsblattxBox}{TRUE}
-
 \foreach \elem/\ignore in \lillyxlist {
     \foreach \l/\val in {Lock/\LILLYxBOXxHIGHLEVELxLOCK,Enable/\true,Box/\true} {
-        \typeout{\elem by \l\space using \val: LILLYxBOXx\elem x\l\space => \val }
-        \ifcsname LILLYxBOXx\elem x\l \endcsname\else
+        \typeout{\elem\space by \l\space using \val: LILLYxBOXx\elem x\l\space => \val }
+        \ifcsname LILLYxBOXx\elem x\l\endcsname\else
             %\edef\v{\val}
             \typeout{There was no Setting given => Generate default}
             \expandafter\expandafter\expandafter\xdef\csname LILLYxBOXx\elem x\l\endcsname{\val}%
@@ -203,7 +202,7 @@
     \IfBooleanF{#2}{\expandafter\let\csname\oldboxname\endcsname\@undefined}%% delete old
     %
     \IfValueTF{#5}{\def\thecboxname{#5}}{\def\thecboxname{\oldboxname}}%% set names
-    %\IfValueTF{#5}{% % Here we will reload the old Values of 
+    %\IfValueTF{#5}{% % Here we will reload the old Values of
     % Check if there is an existing Box, and if, take the Configuration from it by the persisted Values of the old ID.
     \expandafter\ifcsname lillyxBOXx#3xName\endcsname
         \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xListMen\endcsname}{TRUE}}{\gdef\clisttmp{true}}{\gdef\clisttmp{false}}

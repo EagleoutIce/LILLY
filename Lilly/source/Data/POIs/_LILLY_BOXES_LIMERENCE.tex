@@ -1,4 +1,3 @@
-
 %%% TITEL TITLEPREFIX OPTIONAL-CONTROLLERS
 
 \tcbset{LillyxBOXxDesignxLimerence/.style={ enforce breakable, lines before break=3, enhanced jigsaw,sharp corners, boxrule=0pt, fonttitle={\larger\bfseries}, coltitle={black}, attach title to upper, opacityfill=0.55, top=3pt, bottom=3pt, right=5pt, frame hidden,colback=LightGray!23!white,grow to right by=3pt}}
@@ -12,8 +11,9 @@
 %%% Die Definition-Box:
 % \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={%
 %     if odd page or oneside*={borderline east={3pt}{0pt}{\LILLYxColorxDefinition}}{borderline west={3pt}{0pt}{\LILLYxColorxDefinition}}}}\else\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={}}\fi
-
-\ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxDefinition}}}\else\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={}}\fi
+\AtBeginDocument{%
+    \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxDefinition}}}\else\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={}}\fi
+}
 
 \RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-3pt,   %
 LillyxBOXxDesignxLimerence, LILLYxBOXxDefinitionxBoxxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-9.75em}{#1}}$\ifx\LILLYxBOXxDefinitionxBox\true\\[0.1pt]\else\\[-0.4\baselineskip]\fi}, %
@@ -23,7 +23,9 @@ LillyxBOXxDesignxLimerence,LILLYxBOXxDefinitionxBoxxLimerence, #3, title={#2\ift
 }
 
 %%% Die Beispiel-Box:
-\ifx\LILLYxBOXxBeispielxBox\true\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBeispiel}}}\else\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={}}\fi
+\AtBeginDocument{%
+    \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBeispiel}}}\else\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={}}\fi
+}
 
 \RenewTColorBox[use counter from=LILLYxBOXxBeispiel]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ enlarge left by=-3pt, LILLYxBOXxBeispielxBoxxLimerence,   %
 LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxBeispielxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
@@ -32,14 +34,13 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{-
 
 %%% Die Bemerkung-Box:
 %% Da Borderline sich nicht einfach löschen lässt - hier über einen extra Marker
-\ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBemerkung}}}\else\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={}}\fi
+\AtBeginDocument{%
+    \ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBemerkung}}}\else\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={}}\fi
+}
 
 \RenewTColorBox[use counter from=LILLYxBOXxBemerkung]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ enlarge left by=-3pt,LILLYxBOXxBemerkungxBoxxLimerence ,  %
 LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxBemerkungxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
 }
-
-%% TODO gnewcommand for global new command to reissue foreach which has failed for boxdefaults TODO TODO TODO TODO TODO TODO
-%% TODO ^
 
 %%% Die Satz-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxSatz]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{ enlarge left by=-3pt, borderline west={3pt}{0pt}{\LILLYxColorxSatz},   %
@@ -48,8 +49,9 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{-
 
 
 %%% Die Beweis-Box:
-\ifx\LILLYxBOXxBeweisxBox\true\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBeweis}}}\else\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={}}\fi
-
+\AtBeginDocument{%
+    \ifx\LILLYxBOXxBeweisxBox\true\typeout{Beweis Box shown}\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={borderline west={3pt}{0pt}{\LILLYxColorxBeweis}}}\else\typeout{Beweis box hidden}\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={}}\fi
+}
 \RenewTColorBox[use counter from=LILLYxBOXxBeweis]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ enlarge left by=-3pt,LILLYxBOXxBeweisxBoxxLimerence ,  %
 LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxBeweisxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
 }
@@ -70,5 +72,3 @@ LillyxBOXxDesignxLimerence, #3, IfValueTF={#1}{title={#2\ifthenelse{\equal{#1}{}
 %title={\begin{minipage}[t][\baselineskip][l]{\textwidth} \textbf{\textsc{{#2}}} \hfill {\textbf{#1}}\end{minipage}},
 
 \RenewTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}}{enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm, colback=white,colframe=black!50,boxrule=0.0mm,lines before break=4,grow to left by=3pt, fonttitle=\bfseries, #3,title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}}
-
-

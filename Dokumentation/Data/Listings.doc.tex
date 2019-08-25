@@ -70,13 +70,13 @@ Prüft ob eine Sprache geladen ist. Als Argument wird hierbei die volle Sprache 
 \isLanguageNameLoaded{waffel} % :yields: FALSE
 \end{latex}
 
-\presentCommand[2.0.0]{cmdshowcase}[\manArg{command}]
+\presentCommand[2.0.0]{lstshowcmd}[\manArg{command}]
 Kleiner Shortcut um auch den Inhalt eines Befehls als Listing zu setzen. Betrachte folgendes Beispiel:
 \begin{latex}
 \begin{multicols}{3}
     \begin{ditemize}
         \foreach \x in {public,static,void} {
-            \item \cjava{\x} vs. \cmdshowcase[language=lJava]{\x}\newline
+            \item \cjava{\x} vs. \lstshowcmd[language=lJava]{\x}
         }
     \end{ditemize}
 \end{multicols}
@@ -85,7 +85,7 @@ Ergibt:
 \begin{multicols}{3}
     \begin{ditemize}
         \foreach \x in {public,static,void} {
-            \item \cjava{\x} vs. \cmdshowcase[language=lJava]{\x}
+            \item \cjava{\x} vs. \lstshowcmd[language=lJava]{\x}
         }
     \end{ditemize}
 \end{multicols}
@@ -259,7 +259,7 @@ Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitt
 \begin{multicols}{4}
     \begin{description}
         \foreach \x in {:bs:,:bmath:,:emath:,:dollar:,:space:,:ws:,:cdots:,:cdot:,:ldots:,:c:,:float:,:exp:,:yields:,:lan:,:ran:,:bcmd:} {
-            \item[{\T{\x}}] \say{\cmdshowcase{\x}}
+            \item[{\T{\x}}] \say{\lstshowcmd{\x}}
         }
     \end{description}
 \end{multicols}
@@ -269,7 +269,7 @@ Mit \LILLYxBOXxVersion{2.0.0} im Anfangsstadium befinden sich die jeweiligen Mar
 |info|import java.util.ArrayList;|info|
 
 |plain|public class Example {|plain|
-    public static void main(String[] args) { 
+    public static void main(String[] args) {
         System.out.|err|PrintLn|err|("Hallo Welt");
         if(|warn|args==null|warn|)
             System.out.println("wau");
@@ -281,7 +281,7 @@ Mit \LILLYxBOXxVersion{2.0.0} im Anfangsstadium befinden sich die jeweiligen Mar
 |info|import java.util.ArrayList;|info|
 
 |plain|public class Example {|plain|
-    public static void main(String[] args) { 
+    public static void main(String[] args) {
         System.out.|err|PrintLn|err|("Hallo Welt");
         if(|warn|args==null|warn|)
             System.out.println("wau");
@@ -311,7 +311,7 @@ public static void main(String[] args) {
 \end{presentlst}
 
 \presentCommand[2.0.0]{p<lang>}[\manArg{Code}]
-Setzt Analog zu \blankcmd{c<lang>} den Code in einer Zeile im entsprechend Design. Hier allerdings ebenfalls das neue, modernere Design: 
+Setzt Analog zu \blankcmd{c<lang>} den Code in einer Zeile im entsprechend Design. Hier allerdings ebenfalls das neue, modernere Design:
 \begin{latex}
 \pcpp{int main(int argc, char** argv)}
 \end{latex}

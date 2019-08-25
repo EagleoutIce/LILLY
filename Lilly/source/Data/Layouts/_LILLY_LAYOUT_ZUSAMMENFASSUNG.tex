@@ -3,6 +3,11 @@
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 \RequirePackage{titlesec}
 
+\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General and Layoutkonfiguration                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newif\ifappendix
 \appendixfalse
@@ -152,7 +157,37 @@
     \LILLYxLayoutxRestore
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introkonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+%% Work in Progress new Layout:
+\AtBeginDocument{%
+    \ifnum\LILLY@n>0%
+        \LILLYxTITLExBONUS{Zusammenfassung \LILLY@n}%
+    \else%
+        \LILLYxTITLExBONUS{Zusammenfassung}%
+    \fi%
+    \POLITEINTRO
+    %{\par\vspace*{4.25em}\par}%
+}
 
 %% TODO: make small arrow in limerence if page breaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outrokonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\providecommand{\LILLYxINDExINTERMEDIATExFORMAT}{\clearpage}
+
+\AtEndDocument {%
+    \addtocontents{DEFINITIONS}{\protect\thispagestyle{empty}}
+    \protect\pagestyle{empty}\thispagestyle{empty}
+    \LILLYxCLEARxHEADFOOT\pagestyle{empty}
+    \protect\pagestyle{empty}\TOPICS{Stichwortverzeichnis}
+    \printindex
+    \LILLYxINDExINTERMEDIATExFORMAT
+    \ifx\LILLYxBOXxDefinitionxEnable\true
+    \pagenumbering{gobble}\protect\pagestyle{empty}\phantomsection\addcontentsline{toc}{chapter}{Definitionen}\elable{mrk:DEFS}
+    \listofDEFINITIONS\fi
+}
