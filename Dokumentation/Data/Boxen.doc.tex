@@ -312,13 +312,13 @@ Mit \LILLYxBOXxVersion{\small 1.0.0} stellt dieses Design den Urvater dar. Bis \
     \end{zusammenfassung}
 \end{center}
 Erzeugt durch den bekannten Aufruf:
-\begin{slatex}
+\begin{presentlst}{lLatex}
 \begin{zusammenfassung}[Wichtige Box - Jeah]
     %% ....
 \end{zusammenfassung}
-\end{slatex}
+\end{presentlst}
 Auf Basis des Pakets \T{tcolorbox} definiert LILLY das Design \T{LillyxBOXxDesignxDefault} mit folgender Implementation:
-\begin{slatex}
+\begin{presentlst}{lLatex}
 \tcbset{LillyxBOXxDesignxDefault/.style={enhanced jigsaw,
     pad before break*=2mm, pad after break=2mm, %
     lines before break=4, before skip=0pt, boxrule = 0mm, %
@@ -327,9 +327,9 @@ Auf Basis des Pakets \T{tcolorbox} definiert LILLY das Design \T{LillyxBOXxDesig
     enlarge bottom by=0.2\baselineskip, %
     sharp corners=south, enforce breakable}%
 }
-\end{slatex}
+\end{presentlst}
 Auf Basis dessen werden nun die einzelnen Boxumgebungen generiert. Hier exemplarisch die obige Zusammenfassung:
-\begin{slatex}
+\begin{presentlst}{lLatex}
 \DeclareTColorBox[auto counter]%
         {LILLYxBOXxZusammenfassung}%
         { O{} %% Title
@@ -343,7 +343,7 @@ Auf Basis dessen werden nun die einzelnen Boxumgebungen generiert. Hier exemplar
         \ifx\LILLYxBOXxZusammenfassungxLock\true\\%
         \else\\[-0.4\baselineskip]\fi}% spacing
 }
-\end{slatex}
+\end{presentlst}
 Hierbei verwendet das ganze Paket den vermerkten \blankcmd{LILLYxDEFAULTxTYPESETxTITLE}, der selbst wie folgt konstruiert ist:
 
 Bisher definiert LILLY die Counter über die Einstellung \verb|auto counter| - dies soll aber bald auf das vom eagleStudiPackage Package verwendete \T{counter}-Verfahren umgestellt werden. Bis dato sieht eine exemplarische Definition einer Box wie folgt aus:
