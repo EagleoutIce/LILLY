@@ -31,15 +31,18 @@ Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und ba
 %% LAYOUT CONTROL
 
 
-\providecommand\LILLYxColorxTITLExOffset{10.3cm}
+\gdef\LILLYxColorxTITLExOffset{10.3cm}
 
-\providecommand\LILLYxBOXxDefinitionxLock{section}
-\providecommand\LILLYxBOXxSatzxLock{section}
+\gdef\LILLYxBOXxDefinitionxLock{section}
+\gdef\LILLYxBOXxSatzxLock{section}
 
-\providecommand\LILLYxBOXxBemerkungxBox{FALSE}
-\providecommand\LILLYxBOXxBeispielxBox{FALSE}
-\providecommand\LILLYxBOXxBeweisxBox{FALSE}
-\providecommand{\LILLYxUBxSHOWTUTOR}{FALSE}
+\gdef\LILLYxBOXxBemerkungxBox{FALSE}
+\gdef\LILLYxBOXxBeispielxBox{FALSE}
+\gdef\LILLYxBOXxBeweisxBox{FALSE}
+\typeout{Defined: \LILLYxBOXxBeweisxBox}
+\ifcsname LILLYxUBxSHOWTUTOR\endcsname\else
+    \gdef\LILLYxUBxSHOWTUTOR{FALSE}
+\fi
 
 %%NEW TITLE
 

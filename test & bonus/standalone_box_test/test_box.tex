@@ -2,7 +2,20 @@
 \usepackage{LILLYxCONTROLLERxBOX}
 
 \begin{document}
-\begin{definition}[wau]
+
+\getRegisteredBoxes
+\foreach \ignore/\bn in \lillyxlist {
+    \ifthenelse{\equal{\bn}{aufgabe} \OR \equal{\bn}{uebungsblatt}}{}{ %% differenz signarue
+    \begin{\bn}[wau]
+        Hallo Welt :D
+    \end{\bn}
+    }
+}
+
+\begin{definition*}[wau]
 Hallo
-\end{definition}
+\end{definition*}
+\begin{lemma*}[wau]
+Hallo
+\end{lemma*}
 \end{document}

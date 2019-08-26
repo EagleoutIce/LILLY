@@ -1,4 +1,4 @@
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{%
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{% maybe add '~'/nothing for package visibility, add modificators for methods.... include associations
 \begin{tikzternal}[scale=0.8, every node/.style={transform shape}]
     \tikzumlset{fill class=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter
     \umlclass[x=0,y=0,name=stud]{Student}{\umlstatic{+ studierendenzahl : int}\\- name : String\\- matrikelnummer : int\\+ besuchtVorlesungen : String[5]}{Student (name : String, nummer : int)\\getName() : String \\getNummer() : int \\addVorlesung(String name) : void\\ getVorlesungen() : String[5] \\ removeVorlesung(String name) : void }

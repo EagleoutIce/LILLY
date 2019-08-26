@@ -111,7 +111,7 @@ public class CoreSettings {
         // S_LILLY_CLEANS
         settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?",
                 eSetting_Type.IS_TEXTLIST,
-                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS");
+                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock ptc LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS");
         // S_LILLY_EXTERNAL
         settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?",
                 eSetting_Type.IS_SWITCH, "false");
@@ -136,6 +136,9 @@ public class CoreSettings {
 
         // besondere Lilly-Einstellungen
         settings.emplace(st, "S_LILLY_VORLESUNG", "Um welche Vorlesung handelt es sich", eSetting_Type.IS_VLS, "NONE");
+        settings.emplace("LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_PATH,
+        settings.emplace(st, "S_LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_VLS, "");
+
         settings.emplace(st, "S_LILLY_N", "Um das wievielte Übungsblatt handelt es sich", eSetting_Type.IS_NUM, "42");
         settings.emplace(st, "S_LILLY_SEMESTER", "Das  wievielte Semester ist es", eSetting_Type.IS_NUM, "0");
         settings.emplace(st, "S_LILLY_EXTERNAL", "Soll versucht werden tikzternal Grafiken auszulagern?",

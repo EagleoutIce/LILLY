@@ -21,7 +21,7 @@
   \begin{lillyHighlight}[#1]\bgroup\aftergroup\lilly@lsthighlight@endenv%
 }
 \def\lilly@lsthighlight@endenv{%
-  \end{lillyHighlight}%   
+  \end{lillyHighlight}%
   \egroup
 }
 \newcommand{\lilly@lsthighlight@box}[2][]{%
@@ -37,5 +37,12 @@
 \providecommand{\lstHLError}{\@lillyLstHL[fill=DebianRed!30,draw=DebianRed]}
 \providecommand{\lstHLInfo}{\@lillyLstHL[fill=AppleGreen!30,draw=AppleGreen]}
 
+\lstdefinestyle{LSTHI}{%
+  moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+  moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+  moredelim=**[il][{\lstHLError}]{|err|:},
+  moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+  moredelim=[is][{}]{|plain|}{|plain|},
+}
 
 \endinput

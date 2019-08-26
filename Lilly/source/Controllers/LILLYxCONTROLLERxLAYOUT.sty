@@ -1,0 +1,71 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxLAYOUT}[2019/08/25 Stellt den Layout-Controller fuer LILLY zur Verfuegung]
+
+% Hier wird endgültig die Intro- und Outro-Konfiguration über das jeweilige Layout gesetzt. De facto handelt es sich um eine Komposition des Intro- und des Outro- Controllers, die hier gemeinsam einen Platz finden :d
+
+
+
+%% Dieser Controller kümmert sich um die korrekte Implementierung des Beginn eines Dokuments durch die initiierung von AtBeginDocument-Zugriffen
+
+%%DEBUG wird immer die erste Seite sein, sofern dies gewünscht ist, alle anderen Pages werden sich zwangsläufig an diese Oositionierung orientieren müssen. Damit ist auch nicht gewährleistet, dass das Titelbild sicher die erste Seite der PDF-Datei erhält!!
+
+\ifx\LILLYxDEBUG\true
+    \errorcontextlines 10000
+    \input{\LILLYxPATHxDATA/Titlepages/_LILLY_DEBUG_TITLEPAGE} % Anzeigen relevanter Konfigurationen
+\fi
+
+
+
+%% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten.
+
+%% Access Konfiguration File :D This can be determined by the Semester, but in theory every valide tex-File kann
+\def\RequestConfig#1{%
+    \InputIfFileExists{#1}{}{}
+}
+
+%% Wenn ein Semester gesetz ist, dann versuchen wir eine entsprechende Einstellung zu laden.
+\ifnum\LILLYxSemester>0
+    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+\fi
+
+%% Lilly vertraut auf 'cite' wenn es darum geht Bibtex zu integrieren.
+%% Das Paket wird allerdings nur bei Bedarf eingebunden:
+\ifx\LILLYxBIBTEX\undefined%
+    \ClassInfo{Lilly}{Bibtex wird nicht verwendet!}
+\else%
+    \ClassInfo{Lilly}{Bibtex wird verwendet!}
+    \RequirePackage{cite}
+\fi
+
+%% Da Daten wichtig sind, hier ein handelsüblicher shortcut zur Datumsanzeige
+\RequirePackage[yyyymmdd,hhmmss]{datetime}
+% \heute => dd. MMMM YYYY [example: 25. August 2019]
+\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
+
+%% Für die klassischen Layouts gab es hier früher einige Anpassungen.
+%% Um die Struktur zu behalten, wir diese Aufgabe nun komplett dem entsprechenden Layout übergeben,
+%% Welches sich auch um das OUTRO-Handling kümmern wird.
+
+%% Load Layout:
+\userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
+
+%% Bibtex Control:
+\ifx\LILLYxBIBTEX\undefined\else
+
+\ifx\LILLYxCMD\undefined
+    \immediate\write18{bibtex \jobname.aux}
+\else %% NOTHING
+\fi
+
+\providecommand{\printbib}[1][\LILLYxBIBTEX]{%
+   \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
+   \protect\pagestyle{empty}\thispagestyle{empty}
+   \LILLYxCLEARxHEADFOOT\pagestyle{empty}
+   \fi
+   \bibliographystyle{apalike}
+   \bibliography{#1}
+}
+
+\fi
+
+\endinput

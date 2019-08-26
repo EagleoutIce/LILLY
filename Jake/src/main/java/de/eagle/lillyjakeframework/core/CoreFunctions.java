@@ -26,6 +26,7 @@ import de.eagle.util.io.JakeWriter;
 import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.FunctionCollector;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -221,21 +222,31 @@ public final class CoreFunctions {
 
     // Probably won't work right now
     public static ReturnStatus fkt_get(String[] cmd) {
-        JakeWriter.out.println("Filtere Grafiken, die über Lilly zur Verfügung stehen. Der Filterbegriff kann über '-what' mitgeliefert werden. Zugrunde liegt bisher ein Python-Skript, was eine vorhandene Python3-Installation bedingt!");
+        JakeWriter.out.println("Zeige alle Grafiken die mit Lilly zur Verfügung stehen.");
         Settings expandables = new Settings("expandables");
+        String lPath = "";
         try {
             expandables = Expandables.expandsCS();
+            lPath = Executer.runBashCommand("printf " + CoreSettings.requestValue("S_LILLY_PATH")).readLine();
         } catch (IOException e) {
 
         }
 
+        JakeWriter.out.println("Öffne: \"" + lPath + "/source/Data/Graphics/all-OUT/all.pdf\"");
+
         // Multiplattform:
         // Desktop.getDesktop().open(myFile);
-        String suff = "";
-        if(!CoreSettings.requestValue("S_WHAT").isEmpty())
-            suff = "\":" + CoreSettings.requestValue("S_WHAT") + "\"";
-        Executer.runBashCommand("python3 " + CoreSettings.requestValue("S_LILLY_PATH") + "/source/Data/Graphics/GetAll.py " + suff);
-        JakeWriter.out.println("Die Erzeugung erfolgt im Hintergrund, das Ergebnis wird dann nach der Fertigstellung präsentiert.");
+        try {
+            Desktop.getDesktop().open(
+                    new File(lPath + "/source/Data/Graphics/all-OUT/all.pdf"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // String suff = "";
+        // if(!CoreSettings.requestValue("S_WHAT").isEmpty())
+        //     suff = "\":" + CoreSettings.requestValue("S_WHAT") + "\"";
+        // Executer.runBashCommand("python3 " + CoreSettings.requestValue("S_LILLY_PATH") + "/source/Data/Graphics/GetAll.py " + suff);
+        // JakeWriter.out.println("Die Erzeugung erfolgt im Hintergrund, das Ergebnis wird dann nach der Fertigstellung präsentiert.");
         return ReturnStatus.EXIT_SUCCESS;
     }
 

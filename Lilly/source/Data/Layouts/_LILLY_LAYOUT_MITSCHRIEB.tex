@@ -3,6 +3,11 @@
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 \RequirePackage{relsize}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General and Layoutkonfiguration                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \renewcommand{\sectionmark}[1]{%
     \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
 }
@@ -74,24 +79,19 @@
     \fi
 }
 
-
-\AtBeginDocument{
-    \LILLYxLayoutxRestore
-}
-
 %\expandafter\expandafter\expandafter\widthof{\csname the#1 \endcsname}
 \makeatletter
 \renewcommand\sectionlinesformat[4]{%
-\phantomsection%%
-\protect\if@twoside%%% e.g. LILLYxMODEXPRINT
-\protect\ifodd\c@page%% oddpage -> rSide
-{#4\hfill\makebox[0pt][l]{\smaller\hspace{.75\marginparsep}#3}}%
-\else%
-{\makebox[0pt][r]{\smaller#3\hspace{\marginparsep}}#4}%
-\fi%
-\else %% is oneside
-{\makebox[0pt][r]{\textcolor{\LILLYxColorxTITLExCOLOR}{#3}\hspace{\marginparsep}}#4}%
-\fi%
+    \phantomsection%%
+    \protect\if@twoside%%% e.g. LILLYxMODEXPRINT
+    \protect\ifodd\c@page%% oddpage -> rSide
+    {#4\hfill\makebox[0pt][l]{\smaller\hspace{.75\marginparsep}#3}}%
+    \else%
+    {\makebox[0pt][r]{\smaller#3\hspace{\marginparsep}}#4}%
+    \fi%
+    \else %% is oneside
+    {\makebox[0pt][r]{\textcolor{\LILLYxColorxTITLExCOLOR}{#3}\hspace{\marginparsep}}#4}%
+    \fi%
 }
 
 \renewcommand{\@seccntformat}[1]{\textcolor{\LILLYxColorxTITLExCOLOR}{\csname the#1\endcsname}}
@@ -114,3 +114,89 @@
 {\normalfont\sffamily\bfseries}}
 
 \setlength{\parindent}{0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introkonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%Lade gewünschtes Titelblatt => LILLYxTITLE
+% \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+
+%%OLD: \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
+\AtBeginDocument{\LILLYxTITLE}
+
+%%Generieren Inhaltsverzeichnis
+
+\LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}}
+\addto\captionsngerman{%
+    \renewcommand{\contentsname}{\hbox{}\relax\hfill Inhaltsverzeichnis\hfill\hbox{}\relax}%
+}
+\LILLYcommand{\cftsubsecfont}{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!90!white}}
+%\renewcommand{\cftsecleader}{\hfill}
+\LILLYcommand{\cftsubsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
+\LILLYcommand{\cftsubsecpagefont}{\normalfont\scriptsize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!70!white}}
+
+\AtBeginDocument{
+    %%Niemand will irgendwas sehen beim TOC :D
+    \newpage\addtocontents{toc}{\protect\pagestyle{empty}}
+    \addtocontents{toc}{\protect\thispagestyle{empty}}
+    %%Sichergeh :D
+    \thispagestyle{empty}
+    \protect\pagestyle{empty}
+    \elable{eagleTOC}
+    \tableofcontents
+    \ifx\LILLYxMODE\LILLYxMODExPRINT%
+        \newpage\hbox{}\relax%
+        \clearpairofpagestyles%
+        \cleardoublepage%
+    \else %
+        \newpage%
+        \clearpairofpagestyles%
+    \fi%
+}
+
+
+
+\AtBeginDocument{
+    \LILLYxLayoutxRestore
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outrokonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Dieser Controller kümmert sich um die korrekte implementierung des OUTROS eines Dokuments er fügt bei Bedarf Listen für Definitionen usw an und bindet auch den Index ein etc.
+
+% there is a clear command i know :P
+\def\LILLYxCLEARxHEADFOOT{\lohead{}\cohead{}\rohead{}\lofoot{}\cofoot{}\rofoot{}}
+
+%% Wir haben einen Mitschrieb =>
+%% - Definitionen
+%% - Sätze
+%% - Lemmas
+%% - Zusamenfassungen
+%% - Übungsblätter
+\AtEndDocument{
+    \pagestyle{empty}\tocloftpagestyle{plain}
+     \ohead{}\chead{}\ihead{} %clear header
+     \ofoot{}\cfoot{}\ifoot{} %clear footer => fixes double page issue
+    \pagestyle{empty}% \typeout{REDNECK: \n@true\space \LILLYxSEENxDEFINITION}
+    \ifx\LILLYxBOXxDefinitionxEnable\true\ifthenelse{\equal{\LILLYxSEENxDEFINITION}{\n@true}}{%
+    \clearpage\phantomsection\addcontentsline{toc}{chapter}{Definitionen}
+    \listofDEFINITIONS
+    \clearpage}{}\fi
+    \ifx\LILLYxBOXxSatzxEnable\true\ifthenelse{\equal{\LILLYxSEENxSATZ}{\n@true}}{%
+    \phantomsection\addcontentsline{toc}{chapter}{Sätze}
+    \listofSATZ
+    \clearpage}{}\fi
+     \ifx\LILLYxBOXxLemmaxEnable\true\ifthenelse{\equal{\LILLYxSEENxLEMMA}{\n@true}}{%
+    \phantomsection\addcontentsline{toc}{chapter}{Lemmata}
+    \listofLEMMAS\clearpage}{}\fi
+    \ifx\LILLYxBOXxZusammenfassungxEnable\true\ifthenelse{\equal{\LILLYxSEENxZUSAMMENFASSUNG}{\n@true}}{%
+    \phantomsection\addcontentsline{toc}{chapter}{Zusammenfassungen}
+    \listofZSMS\clearpage}{}\fi
+     \ifx\LILLYxBOXxUebungsblattxEnable\true\ifthenelse{\equal{\LILLYxSEENxUBS}{\n@true}}{%
+    \phantomsection\addcontentsline{toc}{chapter}{Übungsblätter}
+    \listofUBS}{}\fi
+ }

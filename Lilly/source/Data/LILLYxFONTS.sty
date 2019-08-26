@@ -18,5 +18,12 @@
 \gdef\fsize{\dimexpr\f@size pt\relax}
 
 
+\input Konanur.fd
+
+
+\newcommand{\kfont}[1]{\begingroup\usefont{U}{Konanur}{xl}{n}#1\endgroup}
+
+\newcommand{\Lilly}{\kfont{Lilly}}
+
 %% Hier sollen natürlich alle von LILLY entsprechend verwendeten Schriften eingetragen werden
 \endinput

@@ -9,6 +9,8 @@
 
 \RequirePackage{LILLYxCOLOR}
 
+\RequirePackage{titletoc} %collission fun :D
+
 
 %% https://ctan.org/pkg/hyperref
 \LILLYxDemandPackage{hyperref}{Fuer tolle Verlinkungen und einen tollen Überblick}%% Package, Info
@@ -20,6 +22,12 @@
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
                     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
                     {}{} %% keine Argumente
+
+%% https://www.ctan.org/pkg/ifplatform
+\LILLYxDemandPackage{ifplatform}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
+                    {Um dieses Paket kommt LILLY nicht herum!}
+                    {}{}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grundelgendes setup von hyperref                                                                                    %     %%%% HYPERREF-BASICS %%%%
@@ -42,11 +50,14 @@
     pdffitwindow=true,
     pdfsubject={Latex-Dokument},
     pdfauthor={\AUTHOR~(\AUTHORMAIL)},
-    pdfcreator={pdflatex on Linux (eagle) using the LILLY-Package by Florian Sihler (florian.sihler@uni-ulm.de)}, %% TODO < OS einfügen
+    pdfcreator={pdflatex on \platformname\space using the LILLY-Package (v\LILLYxVERSION) by Florian Sihler (florian.sihler@uni-ulm.de)},
     bookmarks=true
 }
 
-\providecommand\LILLYxHYPERLINK{TRUE}
+
+\ifcsname LILLYxHYPERLINK\endcsname\else
+    \gdef\LILLYxHYPERLINK{TRUE}
+\fi
 
 \def\setLinkColor#1{%
     \hypersetup{linkcolor=#1}%
