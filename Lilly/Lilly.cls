@@ -13,6 +13,7 @@
 \providecommand{\LILLYxSemester}{1}
 \providecommand{\LILLYxVorlesung}{LAII}
 
+\RequirePackage{LILLYxVANILLA}
 \RequirePackage{LILLYxPACKAGExCTRL}
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxLIST}
@@ -35,8 +36,9 @@
 \RequirePackage{LILLYxPATH} %% provides \linput as \LILLYxPATH based input
 \RequirePackage{LILLYxBOOLEAN} %% \true und \false
 
-
-\providecommand{\LILLYxDEBUG}{\false}                        %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
+\ifcsname LILLYxDEBUG\endcsname\else
+    \xdef\LILLYxDEBUG{\false}   %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
+\fi
 
 
 
@@ -44,7 +46,9 @@
 % Key-Val-Optionen zum verarbeiten von Argumenten                                                                     %     %%%% PACKAGE-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{\LILLYxPATHxCONTROLLERS/Parser/_LILLY_KEYVAL_PARSER}
+%\input{\LILLYxPATHxCONTROLLERS/Parser/_LILLY_KEYVAL_PARSER}
+\RequirePackage{LILLYxKEYVALxPARSER}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Setzen und Abfragen der Werte für das Dokument                                                                      %     %%%% PRE-DEFAULTS %%%%
@@ -134,12 +138,7 @@
 
 \RequirePackage{LILLYxENCODING}
 
-\input Konanur.fd
 
-
-\newcommand{\kfont}[1]{\begingroup\usefont{U}{Konanur}{xl}{n}#1\endgroup}
-
-\newcommand{\Lilly}{\kfont{Lilly}}
 \newcommand{\textLilly}{\raisebox{-0.125\baselineskip}{\kfont{Lilly}}}
 
 \RequirePackage{cancel}
@@ -210,6 +209,7 @@
 \RequirePackage{multicol}
 
 \RequirePackage{LILLYxLISTINGS}
+\RequirePackage{LILLYxLISTINGSxADVANCED}
 \RequirePackage{LILLYxRUNTIMES}
 
 %\ExplSyntaxOn
@@ -259,11 +259,10 @@
 \RequirePackage{LILLYxCONTROLLERxMODE}
 \RequirePackage{LILLYxCONTROLLERxLINK}
 
-\input{\LILLYxPATHxCONTROLLERS/Intro/_LILLY_INTRO_CONTROLLER}
+%\input{\LILLYxPATHxCONTROLLERS/Intro/_LILLY_INTRO_CONTROLLER}
 
-\RequirePackage{LILLYxCONTROLLERxBOX}
 \RequirePackage{LILLYxBOXxCOUNTER}
-
+\RequirePackage{LILLYxCONTROLLERxBOX}
 \RequirePackage{LILLYxCONTROLLERxHYPHEN}
 
 
@@ -283,4 +282,6 @@
 
 \RequirePackage{LILLYxTRANSLATIONSxUNIVERSE}
 
-\input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}
+%\input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}
+
+\RequirePackage{LILLYxCONTROLLERxLAYOUT}

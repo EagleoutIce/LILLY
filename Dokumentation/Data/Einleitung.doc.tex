@@ -92,21 +92,21 @@ Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten 
 \subsection[Wie funktionieren Boxen]{Die Böxli}
 Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 \begin{multicols}{2}
-\begin{definition*}[Titel]
+\begin{definition}[Titel]
     Hallo Welt
 \begin{lstlisting}[language=lLatex]
-\begin{definition*}[Titel]
-    Hallo welt
-\end{definition*}\end{lstlisting}
-\end{definition*}
-
-\begin{definition}
-    Hallo Welt
-\begin{lstlisting}[language=lLatex]
-\begin{definition}
+\begin{definition}[Titel]
     Hallo welt
 \end{definition}\end{lstlisting}
 \end{definition}
+
+\begin{lemma}
+    Hallo Welt
+\begin{lstlisting}[language=lLatex]
+\begin{lemma}
+    Hallo welt
+\end{lemma}\end{lstlisting}
+\end{lemma}
 
 \begin{satz}[Titel]
     Hallo Welt
@@ -115,7 +115,7 @@ Jede Box besteht als Environment und lässt sich wie folgt nutzen:
     Hallo welt
 \end{satz}\end{lstlisting}
 \end{satz}
-\LILLYcommand{\LILLYxBOXxAufgabexBox}{FALSE}
+\def\LILLYxBOXxAufgabexBox{FALSE}
 \begin{aufgabe}{Titel}{3}
     Hallo Welt
 \begin{lstlisting}[language=lLatex]
@@ -125,7 +125,7 @@ Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 \end{aufgabe}
 \end{multicols}
 Letztere ändert sich zum Beispiel mit dem Dokumenttyp, so wird die Aufgabenbox in einem Übungsblatt immernoch wie folgt veranschaulicht:
-\LILLYcommand{\LILLYxBOXxAufgabexBox}{TRUE}
+\def\LILLYxBOXxAufgabexBox{TRUE}
 \begin{aufgabe}{Titel}{3}
     Hallo Welt
 \begin{lstlisting}[language=lLatex]
@@ -150,8 +150,8 @@ Hier eine Liste aller Boxen:
 Sie können alle mithilfe von:
 \begin{latex}
 %% Allgemein
-% \LILLYcommand{\LILLYxBOXx<FirstLetterUp-Name>xEnable}{FALSE}
-\LILLYcommand{\LILLYxBOXxDefinitionxEnable}{FALSE}
+% \def\LILLYxBOXx<FirstLetterUp-Name>xEnable{FALSE}
+\def!**!\LILLYxBOXxDefinitionxEnable{FALSE}
 \end{latex}
 jeweils deaktiviert und damit aus dem Dokument entfernt werden (auch nur abschnittsweise, das Reaktivieren funktioniert analog mit \T{TRUE}). \newline
 Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeugen (\textit{Die Bezeichnung der Listen sind bisher noch inkonsistent :/}). Beispielhaft:

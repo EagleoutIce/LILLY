@@ -35,4 +35,22 @@
   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
 \ExplSyntaxOff
 
+\makeatletter
+\let\@local@newenv\@newenv
+\long\def\@global@newenv#1#2#3#4{%
+  \@ifundefined{#1}{\global\expandafter\let\csname#1\expandafter\endcsname\csname end#1\endcsname}{\relax}
+  {\let\def\gdef\expandafter\new@command\csname #1\endcsname#2{#3}}%
+  \l@ngrel@x\expandafter\gdef\csname end#1\endcsname{#4}%
+}
+%% will render the environments in the globalspace for current group
+\gdef\makerenewglobal{\global\let\@newenv\@global@newenv}
+\gdef\makerenewlocal{\global\let\@newenv\@local@newenv}
+
+\def\providedef#1#2{
+  \ifcsname #1 \endcsname\else
+  \expandafter\def\csname #1\endcsname{#2}
+  \fi
+}
+
+
 \endinput

@@ -1,4 +1,4 @@
-Eine (sinn-)bildliche Revolte
+Restructuring Elegance
 
 ================================================================
 :EagleoutIce for Lilly
@@ -6,32 +6,15 @@ Eine (sinn-)bildliche Revolte
 
 LILLY:
 
-    + Neue Grafiken
+    + ELEGANT_BOOK Design added
 
-    + Jede Grafik besitzt nun eine PDF 
-      (python3 GetAll.py prerender), wobei stets nur die 
-      geänderten neu kompiliert werden.
-    
-    + Neue Befehle und Modi die bereits dokumentiert sind.
-
-    * Weitere Verbesserungen
+    * Restructured Layout komponent.
 
 JAKE:
 
-    * updated jake.jar
-
-    * Kleine, unbedeutende Änderungen
-
-    ! FIX: Kommandozeilenargumente halten nun ihren Status 
-      'lazy' d.h. sie werden nicht durch Konfigurationsdateien
-      überschrieben, können sich in der Kommandozeile aber
-      gegenseitig überschreiben
+    * Refactored config control and added new Setting
 
 DOKUMENTATION:
-
-    * Weitere Überarbeitung der Dokumentation, neue Komponenten
-      wurden integriert (beziehungweise genau: es wurde 
-      begonnen die Komponenten zu integrieren :D)
 
 ================================================================
 :

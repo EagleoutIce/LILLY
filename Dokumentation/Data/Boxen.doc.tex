@@ -3,7 +3,18 @@
 \TitleSUB{Boxes in Boxes in Boxes in Boxes\ldots \hfill \LILLYxBOXxVersion{\small 1.0.0}}
 \section{Grundlegendes}
 \subsection{Eine kleine Einführung}
-
+%
+% \TransformBoxDefinition{definition}{Waffelmaker~\noexpand\thetcbcounter~}
+%
+% \TransformBoxDefinitionS{definition*}{WaffelmakerX~\noexpand\thetcbcounter~}
+%
+% \elable{mrk:xxx}
+% \begin{definition}[Hallo Welt]
+%     Na du? \jmark[chap:Listings]{mrk:xxx}
+% \end{definition}
+%
+% \listofDEFINITIONS
+%
 Die 3 Standard-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt:
 \begin{tabularx}{\linewidth}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
@@ -28,9 +39,9 @@ Auch wenn sie hier explizit forciert wurden ist es grundlegend möglich (und auc
 \begin{bash}
 make "BOXMODE=<Name>"
 \end{bash}
-Mit \LILLYxBOXxVersion{2.0.0} regelt \Jake die jeweilige Variante und erlaubt es sogar, mehrere Boxmodi gleichzeitig generieren zu lassen: 
+Mit \LILLYxBOXxVersion{2.0.0} regelt \Jake die jeweilige Variante und erlaubt es sogar, mehrere Boxmodi gleichzeitig generieren zu lassen:
 \begin{bash}
-jake :lan:Datei:ran: -lilly-boxes: ":lan:Namen:ran"
+jake :lan:Datei:ran: -lilly-boxes: ":lan:Namen:ran:"
 \end{bash}
 Um eine Fassng für jede Box zu generieren entspräche das:
 \begin{bash}
@@ -44,11 +55,33 @@ wobei \T{<Name>} mit einem der oben stehenden Bezeichner ersetzt wird. Die Bezei
 Über genau dieses Verfahren lassen sich auch beliebig die Box-Designs erweitern.
 \subsection{Der Box-Controller}
 Diese Definitionen befinden sich in der Datei: {\ltt Controllers/LILLYxCONTROLLERxBOX}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxCONTROLLERxBOX} geladen.\medskip\newline
-%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%
-% Current State                                                      %
-%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%
-Alle Box-Desings werden über den Box-Controller geladen, der über \CMDpreview{LILLYxBOXxMODE} die Möglichkeit zur Verfügung stellt die jeweilige \T{POI}-Datei zu laden (TODO: LINK). Er definiert ein gigantisches Paket an Befehlen (TODO: pgf foreach) die allerdings für jeden Boxtyp identisch sind. allgemein werden: \CMDpreview{LILLYxBOXx*xLock} und \CMDpreview{LILLYxBOXx*xEnable} für alle Boxen definiert. So kann man zum Beispiel durch das Setzen von \CMDshow{LILLYxBOXxDefinitionxEnable} auf \T{FALSE} das Anzeigen von Definitionsboxen deaktivieren (Information: Sie werden einfach entfernt, es wird kein adäquater Platzhalter als Ersatz eingefügt) und durch das Setzen von \CMDshow{LILLYxBOXxBeispielxLock} auf\T{section} das Nummerieren der Box auf die Sektionen festlegen (\T{TRUE} für ungebunden).
-Weiter definiert es die folgenden Box-Environments:
+%
+%
+%
+\presentCommand[1.5.0]{LILLYxBOXxMODE}[]
+Hierrüber wird ausgewählt welcher der jeweiligen Boxmodi verwendet werden soll. Standardmäßig wird dieser Befehl von \Jake gesetzt, aber natürlich kann dieser Befehl auch überschreiben werden.
+
+\presentCommand[1.8.0]{LILLYxBOXx<Bezeichner>xLock}[]
+Enthält für die jeweilige Box, woran sich der Zähler orientieren soll. Enthält der Befehl \T{\true}, so wird ein Ungebundener Zähler verwendet. Wenn nicht definiert initialisiert durch:
+
+\presentCommand[1.8.0]{LILLYxBOXxHIGHLEVELxLOCK}[]
+Enthält je nach Dokumenttyp entweder die höchste Hierarchie, an die ein Zähler gebunden werden kann oder \T{\true}. So erzeugt \T{\true} zum Beispiel den Zähler \T{4} und \T{section} in einem Dokument mit \blankcmd{chapter}: \T{1.13.4}.
+
+\presentCommand[1.8.0]{LILLYxBOXx<Bezeichner>xEnable}[]
+Definiert, ob eine Box überhaupt angezeigt werden soll. Durch das Setzen auf \T{\false}, kann so eine Box aus dem Dokument genommen werden.
+
+\presentCommand[1.8.0]{LILLYxBOXx<Bezeichner>xBox}[]
+Dieser Befehl besitzt (Stand \LILLYxBOXxVersion{2.0.0}) nicht für alle Boxbezeichner einen Effekt, steuert aber für bereits implementierte Boxen, ob diese durch das jeweilige Layout gesetzt werden sollen, oder ob die Box ohne die Box angezeigt werden soll. Die genaue Optik bestimmt wieder der jeweilige Modi.
+
+\begin{bemerkung}[Box-Kontrolle]
+    Alle von Lilly generierten Boxen befinden sich mit \LILLYxBOXxVersion{2.0.0} in der Liste: \T{RegisteredBoxes} mit der Signatur \T{Name/Bezeichner}. So gehen die Konfigurationen wie folgt von statten:
+\begin{latex}
+\def!**!\LILLYxBOXxBeweisxBox{FALSE} % Deaktiviert Beweisboxen
+\end{latex}
+\end{bemerkung}
+
+Hier die definierten Umgebungen in ihrer freien Wildbahn und Gestalt:
+
 %%PYSCRIPT:
 %
 % b = ("definition", "definition*", "bemerkung", "beispiel", "satz", "beweis", "lemma", "zusammenfassung", "aufgabe")
@@ -60,7 +93,6 @@ Weiter definiert es die folgenden Box-Environments:
 %   print("\\end{%s}\\endgroup" % (a))
 %   print()
 
-{\begin{multicols}{2}
 \begingroup\begin{definition}[Titel]
 moin
 \begin{lstlisting}[language=lLatex]
@@ -101,7 +133,6 @@ moin
 \end{satz}\end{lstlisting}
 \end{satz}\endgroup
 
-\columnbreak
 
 \begingroup\begin{beweis}[Titel]
 moin
@@ -141,37 +172,180 @@ Nicht richtig darstellbar aber weiter existiert:
         moin
 \end{uebungsblatt}\end{lstlisting}
 
-\end{multicols}}
-Für bisher leider noch nicht alle Boxen wird zudem der Befehl: \CMDpreview{LILLYxBOXx*xBox} definiert. Bisher unterstützt werden:
-\begin{multicols}{3}
-    \begin{itemize}[label=$\diamond$]\narrowitems
-        \item Bemerkung
-        \item Beispiel
-        \item Beweis
-        \item Aufgabe
-        \item Uebungsblatt
-    \end{itemize}
-\end{multicols}
-Setzt man den Wert auf \T{FALSE} so wird das sogenannte \T{plain}-Design angewendet, welches jedes Design wieder selbst definieren kann!.\newline
-Zudem existieren aus Kompatibilitätsgründen auch noch die alten Befehle aus dem \T{eagleStudiPackage}: \CMDpreview[(2)]{DEF}, \CMDpreview[(2)]{BEM}, \ENVpar{task}\T{task},\ldots\medskip\newline
-Mit \LILLYxBOXxVersion{\small 1.0.3} wurden in LILLY zudem Kurzbefehle für das Einbinden von Übungsblättern integriert:
-\CMDpreview[(3)]{inputUB} (mit Signatur: \verb|{Name}{Nummer}{Pfad}|) und \CMDpreview[(3)]{inputUBS} (analog für \T{uebungsblatt*})\normalfont
+\presentEnvironment[1.0.0]{task}[\optArg{opt-Addons}\manArg{Titel}\manArg{Punkte}\cmdold]
+Ein aus dem \T{eagleStudiPackage} stammendes Relikt, welches nur aus Kompatibilitätsgründen gehalten wird. Ebenso:
 
-\begin{bemerkung}[zugriff auf die Boxzähler]
-    
+\presentCommand[1.0.0]{DEF}[\manArg{Title}\manArg{Content}\cmdlist \blankcmd{BEM}\manArg{Titel}\manArg{Content}\cmdlist \ldots\cmdold]
+Kompatibilitätsbefehle, der zur \T{eagleStudiPackage}-Zeit die Boxen gesetzt hat, nun allerdings die Daten an die jeweilige Umgebung weitergeben.
+
+\presentCommand[1.0.3]{inputUB}[\manArg{Name}\manArg{Nummer}\manArg{Pfad}\cmdlist \blankcmd{inputUBS}\manArg{Name}\manArg{Bezeichner}\manArg{Pfad}]
+Binden eine Datei als Übungsblatt ein und erlaubt so, Übungsblätter in Mitschriften zu integrieren. Letzterer Befehl verwendet \clatex{uebungsblatt*}, verändert also nicht die Nummer, was bedeutet, dass auch Buchstaben oder anderes als Bezeichner möglich ist. \emph{Diese werden, entsprechend der Regel von \clatex{uebungsblatt} nur angezeigt, sofern \blankcmd{LILLYxMODExEXTRA} den Wert \T{\true} enthält.}
+
+
+\begin{bemerkung}[Zugriff auf die Boxzähler]
+    Der Zugriff auf die von Lilly unterhaltenen Boxzähler ist sehr Umständlich (Beispiel: \blankcmd{thetcb@cnt@LILLYxBOXxDefinition}). Deswegen existiert das Hilfspaket \LILLYxNOTExLibrary{LILLYxBOXxCOUNTER}, welches hierfür Kurzbefehle definiert: \typesetList[blankcmd]{CTRxDEF,CTRxBEI,CTRxBEM,CTRxSAT,CTRxBEW,CTRxLEM,CTRxZSM}. So liefert \blatex{:bs:arabic\{:bs:CTRxDEF\}}: \T{\arabic{\CTRxDEF}}.
 \end{bemerkung}
 
+\presentCommand[2.0.0]{RegisterBox}[\optArg{Box-Keys}\optArg{Tikz-Keys}\manArg{Box-Name}\manArg{Title}\manArg{BoxID}]
+Registriert eine (neue) oder alte Box, die entsprechend Gesetzt werden kann. Die gezielte Verwendung dieses Befehls bedarf einiger Vorkenntnisse über das jeweilige Szenario. Es werden eine ganze Menge an \T{Box-Keys} gestattet, die auf einem anderen Verfahren persistiert werden (weswegen Box-gebundene Befehle mithilfe von \blankcmd{noexpand} abgesichert werden müssen!):
+\begin{center}
+    \begin{tabularx}{0.96\linewidth}{^t>{\em}^l^c^l+}
+        \toprule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
+        name & String & noname & Name der Box \\
+        title & String & <name> & Titel der Box \\
+        boxcol & Farbe & black & Farbe für Links \\
+        preCode & Code &  & Befehle, die vor der Box gesetzt werden \\
+        inCode & Code &  & Befehle, die zu Beginn der Box gesetzt werden \\
+        outCode & Code &  & Befehle, die zu Ende der Box gesetzt werden \\
+        postCode & Code &  & Befehle, die nach der Box gesetzt werden \\
+        usestyle & Box & <Def> & Basisbox \\
+        emblem & Code &  & Titelverzierer\\
+        createlist & Bool & false & Erstelle Liste \\
+        customlist & Bool & false & Trage Box in Liste ein \\
+        lock & Lock & TRUE & Setzt die Zählersperre \\
+        listname & String & <name> & Name der Liste \\
+        listtext & String & <name> & Titel der Liste\\
+        listmen & String & NO & Mnemonic der Liste \\
+        \bottomrule
+    \end{tabularx}
+\end{center}
+Mit dem Registrieren einer Box, werden die folgenden Befehle für die jeweilige \T{BoxID} registriert. Sie werden expandierd, weswegen eine Absicherung mithilfe von \blankcmd{noexpand} für übergebene Befehle erfolgen sollte. Im Folgenden wird \T{<BoxID>} für die Befehle als Platzhaler verwendet:
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xName}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xTitle}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xBoxCol}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xPreCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xInCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xOutCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xPostCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xUseStyle}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xEmblem}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xLock}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xListName}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xListText}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xListMen}\vspace{-\baselineskip}
+
+Sie speichern dne Wert der sich jeweils vermuten lässt. Weiter werden noch die beiden Booleschen Werte gespeichert, die entsprechend es Zustands \T{\true} und \T{\false}:
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xCreateList}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xCustomList}
+
+
+Die Modifikation dieser ermöglicht eine weitere manuelle Anpassung der Box, allerdings wird von einem direkten, modifizierendem Zugriff abgeraten. \blankcmd{RegisterBox} legt weiter auch noch die entsprechende Umgebung auf Basis des Namens an. Gilt es eine bestehende Box zu modifizieren, so gilt es folgenden Befehl zu nutzen:
+
+
+\presentCommand[2.0.0]{TransformBox}[\optArg{new-args}\optArg{bool-keep}\manArg{OldBoxID}\manArg{Box-title}\secline\optArg{new-name}\manArg{NewBoxID}]
+Dieser Befehl nimmt die Werte einer bereits bestehenden Box und Transformiert sie in eine neue Box. Sollte keine Box mit der entsprechenden ID existieren, so wird die \T{BoxID} als Name angenommen auf dessen Namen die Umbenennung geschieht. So lassen sich auch bereits bestehende Umgebungen, die bisher keine Box dargestellt haben, entsprechend modifizieren und als Box rekreiren. Wird \T{bool-keep} auf \blankcmd{BooleanTrue} gesetzt, so wird die alte Box nicht gelöscht, sondern lediglich eine neue Box kreiert. Mit \LILLYxBOXxVersion{2.0.0} wurden die Boxen noch nicht in das entsprechend neue Register-System übersetzt. Allerdings existieren die folgenden Kürzel, die bestmöglich versuchen die Gestalt der jeweiligen Box abzubilden. Da die \T{aufgabe}-Box eine andere Signatur besitzt, wird sie bisher separat implementiert:
+
+\presentCommand[2.0.0]{TransformBoxDefinition}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxDefinitionS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBemerkung}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBemerkungS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBeispiel}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBeispielS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxSatz}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBeweis}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxBeweisS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxLemma}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxLemmaS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
+\presentCommand[2.0.0]{TransformBoxZusammenfassung}[\optStar\optArg{new-args}\manArg{BoxID}\secline\manArg{Box-title}\optArg{NewBoxID}]~\smallskip\newline
+
+Die jeweils mit dem \T{S}-Suffix vermerkten Befehle stehen für die mit einem Sternchen versehene Umgebung, der optionale Stern entspricht \T{bool-keep} von \blankcmd{TransformBox}.
+
+% \elable{mrk:XXX}
+% \begin{bemerkung}[Josef!]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
+% \end{bemerkung}
+% \TransformBoxBemerkung{bemerkung}{Bemerkung~}
+% \begin{bemerkung}[Günther?]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
+% \end{bemerkung}
+% \TransformBox[boxcol=AppleGreen]{bemerkung}{Bemerkung~}{bemerkung}
+% \begin{bemerkung}[Günther!]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
+% \end{bemerkung}
+% \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}{bemerkung}
+% \begin{bemerkung}[Thymiän, Böädriän:]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
+% \end{bemerkung}
+% \TransformBoxBemerkungS{bemerkung*}{Bemerkung~}
+% \begin{bemerkung*}[Thymiän, Böädriän: Sehr superlanger titel!]
+%     \begin{ditemize}
+%         \item Hallo
+%         \item Welt
+%     \end{ditemize}
+% \end{bemerkung*}
+% \TransformBox[][\BooleanTrue]{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel}
+% \begin{bemerkung}[Thymiän, Böädriän:]
+%     \begin{ditemize}
+%         \item Hallo
+%         \item Welt
+%     \end{ditemize}
+% \end{bemerkung}
+
+% \begin{waffel}[Hallo Welt]
+
+% \end{waffel}
+% \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel}
+% Will fail as link gets destroyed:
+% \begin{bemerkung}[Thymiän, Böädriän:]
+%     \begin{ditemize}
+%         \item Hallo
+%         \item Welt
+%     \end{ditemize}
+% \end{bemerkung}
+
+% \begin{waffel}[Hallo Welt]
+
+% \end{waffel}
+
 \section{Die Boxmodi}
+Generell muss einer der unten aufgeführten Modi keine einzige Box definiern überladen oder modifizieren, das geladene Default-Paket wird jeweils für nicht überladene Boxen die Standartboxen zur Verfügung stellen. Folgende Boxbezeichner sind hierbei von Relevanz. Das Default-Design stellt hierbei mit \LILLYxNOTExLibrary{LILLYxLIST} die in der Liste \T{RegisteredBoxes} aufgeführten Boxen zur Verfügung. An einer Normierung der \T{aufgabe}-Box wird gearbeitet: %
+\getRegisteredBoxes%
+\def\mergel#1{\T{LILLYxBOXx#1}}\typesetList[mergel]{Definition,Beispiel,Bemerkung,Satz,Beweis,Lemma,Zusammenfassung,Aufgabe,AufgabexPLAIN,Uebungsblatt}. In der Regel wird weiter noch ein Design generiert, so setzt zum Beispiel das Default-Design: \T{\T{LillyxBOXxDesignxDefault}}.
+
 \subsection{Default-Design}
-Mit \LILLYxBOXxVersion{\small 1.0.0} stellt dieses Design den Urvater dar. Im Folgenden wird auf die genaue Implementation eingegangen:\newline
-Auf Basis des Pakets \T{tcolorbox} definiert LILLY das Design \T{LillyxBOXxDesignxDefault} - auf das Großschreiben von Lilly wurde hier bewusst verzichtet - mit folgender Implementation:
-{\begin{lstlisting}[language=lLatex]
-\tcbset{LillyxBOXxDesignxDefault/.style={enhanced jigsaw, pad before break*=2mm %
-    pad after break=2mm, lines before break=4, before skip=0pt, boxrule = 0mm, toprule=0.5mm,%
-    bottomtitle=0.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=\baselineskip,%
-    enlarge bottom by=\baselineskip, sharp corners=south, enforce breakable}%
+Mit \LILLYxBOXxVersion{\small 1.0.0} stellt dieses Design den Urvater dar. Bis \LILLYxBOXxVersion{1.0.6} überarbeitet hier die finale Form: \begin{center}
+    \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT}
+    \begin{zusammenfassung}[Wichtige Box - Jeah]
+        Wir haben schon viel gelernt, zum Beispiel, dass der Apfel nicht weit vom Stamm fällt. Das ist aber eigentlich dann auch schon so das Einzige, was es wirklich zu lernen gilt im Kontext dieser wundervollen Boxwelt!
+    \end{zusammenfassung}
+\end{center}
+Erzeugt durch den bekannten Aufruf:
+\begin{presentlst}{lLatex}
+\begin{zusammenfassung}[Wichtige Box - Jeah]
+    %% ....
+\end{zusammenfassung}
+\end{presentlst}
+Auf Basis des Pakets \T{tcolorbox} definiert LILLY das Design \T{LillyxBOXxDesignxDefault} mit folgender Implementation:
+\begin{presentlst}{lLatex}
+\tcbset{LillyxBOXxDesignxDefault/.style={enhanced jigsaw,
+    pad before break*=2mm, pad after break=2mm, %
+    lines before break=4, before skip=0pt, boxrule = 0mm, %
+    toprule=0.5mm, bottomtitle=0.5mm,bottomrule=1.2mm, %
+    after skip=0pt, enlarge top by=0.2\baselineskip, %
+    enlarge bottom by=0.2\baselineskip, %
+    sharp corners=south, enforce breakable}%
 }
-\end{lstlisting}}
+\end{presentlst}
+Auf Basis dessen werden nun die einzelnen Boxumgebungen generiert. Hier exemplarisch die obige Zusammenfassung:
+\begin{presentlst}{lLatex}
+\DeclareTColorBox[auto counter]%
+        {LILLYxBOXxZusammenfassung}%
+        { O{} %% Title
+          O{Zusammenfassung \thetcbcounter~} %% TitlePrefix
+          O{} %% tcb addonargs
+        }{%
+    LillyxBOXxDesignxDefault, %
+    colback=\LILLYxColorxZusammenfassung!5!white, %
+    colframe=\LILLYxColorxZusammenfassung, #3,%
+    title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}%
+        \ifx\LILLYxBOXxZusammenfassungxLock\true\\%
+        \else\\[-0.4\baselineskip]\fi}% spacing
+}
+\end{presentlst}
+Hierbei verwendet das ganze Paket den vermerkten \blankcmd{LILLYxDEFAULTxTYPESETxTITLE}, der selbst wie folgt konstruiert ist:
+
 Bisher definiert LILLY die Counter über die Einstellung \verb|auto counter| - dies soll aber bald auf das vom eagleStudiPackage Package verwendete \T{counter}-Verfahren umgestellt werden. Bis dato sieht eine exemplarische Definition einer Box wie folgt aus:
 {\begin{lstlisting}[language=lLatex]
 \DeclareTColorBox[auto counter]%
@@ -212,12 +386,4 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
     fonttitle=\bfseries, #3,%
     title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}, %Aufgabe
 }
-\end{lstlisting}}
-Und die der Plain-Box:
-{\begin{lstlisting}[language=lLatex]
-\DeclareTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}} {%
-        enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm,%
-        colback=white,colframe=black!50,boxrule=0.2mm,fonttitle=\bfseries,%
-        #3,title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}%
-    }
 \end{lstlisting}}

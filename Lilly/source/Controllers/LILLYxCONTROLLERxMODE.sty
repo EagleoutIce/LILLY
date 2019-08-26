@@ -12,7 +12,11 @@
 \providecommand\LILLYxMODExDUMMY{dummy}
 
 \providecommand{\LILLYxBOXxMODE}{DEFAULT}
-\providecommand{\LILLYxFOOTERxBUTTONS}{TRUE}
+
+\ifcsname LILLYxFOOTERxBUTTONS\endcsname\else
+    \gdef\LILLYxFOOTERxBUTTONS{TRUE}
+\fi
+
 
 \def\LILLY@Typ@Mitschrieb{Mitschrieb}
 \def\LILLY@Typ@Uebungsblatt{Uebungsblatt}
@@ -43,13 +47,13 @@
 
 %%%% Da tikz davor geladen wird, helfen wir hier nach und überschreiben die option nachträglich :D
 
-\ifx\LILLYxMODExEXTRA\true %% let's enable all the options
+\ifthenelse{\equal{\LILLYxMODExEXTRA}{\true}}{%% let's enable all the options
     \LILLYcommand{\LILLYxIMAGESxShow}{TRUE} %% this option doesn't work for graphPOI - tikz will be loaded earlier - which is great :D (not)
-    \LILLYcommand{\LILLYxBOXxUebungsblattxEnable}{TRUE}
-\else
+    \gdef\LILLYxBOXxUebungsblattxEnable{TRUE}
+}{%
     \LILLYcommand{\LILLYxIMAGESxShow}{FALSE}
-    \LILLYcommand{\LILLYxBOXxUebungsblattxEnable}{FALSE}
-\fi
+    \gdef\LILLYxBOXxUebungsblattxEnable{FALSE}
+}
 
 
 \ifx\LILLYxBOXxBeispielxBox\false\renewcommand{\LILLYxColorxBeispiel}{\LILLYxColorxLINKSxMainColor}\fi
@@ -59,5 +63,7 @@
 
 
 
+\endinput
+% %%% Intro- and Outro-Constroller Stuff :D
 
-
+% \RequirePackage{LILLYxCONTROLLERxINTRO}
