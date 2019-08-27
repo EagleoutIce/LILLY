@@ -1,20 +1,5 @@
 package de.eagle.lillyjakeframework.installer.JakeInstaller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Map;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.LinuxInstallPackages;
@@ -27,6 +12,14 @@ import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
+
+import javax.swing.*;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Map;
 
 
 // TODO: insert debug-statements
@@ -66,7 +59,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
             p.waitFor();
         } catch(Exception ignored) {}
 
-        if(headless()){
+        if(PropertiesProvider.isHeadless()){
             return new String[] { "generate_cmd_line_exec", "Stelle Jake der Konsole zur Verfügung" };
         }
         
@@ -195,7 +188,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
     public static boolean installPackages(String... pkgs){
         try {
             // Überprüfe laufende X-Server Instanz:
-            if(headless()) {
+            if(PropertiesProvider.isHeadless()) {
                 JakeWriter.out.format("%sHeadless-Installation erkannt, insofern hier eine Liste der von Jake beziehungsweise LILLY benötigten Pakete, es obliegt dem Administrator diese Pakete entsprechend bereitzustellen. Jake vertraut auf die Macht eines anderen! :D%s%n", ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
                 for (String pkg : pkgs) {
                     JakeWriter.out.format(" - %s%n", pkg);
@@ -246,7 +239,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
      */
     @Override
     public boolean validate() {
-        return (new File(getDesktopPath()).canRead() || headless()) && new File(getCmdLinePath()).canExecute();
+        return (new File(getDesktopPath()).canRead() || PropertiesProvider.isHeadless()) && new File(getCmdLinePath()).canExecute();
     }
 
 

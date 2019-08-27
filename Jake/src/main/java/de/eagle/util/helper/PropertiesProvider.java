@@ -1,14 +1,14 @@
 package de.eagle.util.helper;
 
-import java.net.URISyntaxException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import de.eagle.lillyjakeframework.installer.AutoInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.MacOSJakeInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.WindowsJakeInstaller;
 import de.eagle.lillyjakeframework.installer.LillyInstaller.LinuxLillyInstaller;
+
+import java.net.URISyntaxException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -46,6 +46,13 @@ public class PropertiesProvider {
             }
         }
         return OS.OTHER;
+    }
+
+    /**
+     * @return true, wenn das (Linux-) System ohne laufenden X-Server betrieben wird
+     */
+    public static boolean isHeadless(){
+        return System.getenv("DISPLAY") == null;
     }
 
     /**

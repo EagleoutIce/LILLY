@@ -5,7 +5,10 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.lillyjakeframework.gui.core.SubForms.CompileWatcher;
 import de.eagle.lillyjakeframework.gui.core.Tools.ConfigEditor;
+import de.eagle.util.datatypes.JakeDocument;
+import de.eagle.util.enumerations.eDocument_Type;
 import de.eagle.util.helper.PropertiesProvider;
 
 import javax.swing.*;
@@ -48,31 +51,33 @@ public class GUICompile extends JFrame {
     private JPanel ToolsGroup;
     private JButton btEditConfig;
 
-    String ConfPath = "";
+    JakeDocument loadedDoc = null;
 
     private boolean checkCompileable() {
         return cbFileCorrect.isSelected();
     }
 
 
-
-    public String[][] receiveDocumentData(File file) {
+    public String[][] receiveDocumentData(JakeDocument doc) {
         // First of all Detect if the File is a config or a tex file:
         ArrayList<String[]> ar = new ArrayList<>();
-        ConfPath = "";
-        if (file.getName().endsWith(".tex")) {
-            ar.add(new String[]{"File-Name:", file.getName()});
-            ar.add(new String[]{"File-Path:", file.getPath()});
-            ar.add(new String[]{"File-Size:", file.length() / 1024.0 + "Kb"});
-        } else if (file.getName().endsWith(".conf")) {
-            lbStatus.setText("Retrieving Status from Config-File");
-            ConfPath = file.getAbsolutePath();
+        switch (doc.getType()) {
+            case IS_TEX:
+                for (var l : doc.getMetadata().entrySet()) {
+                    ar.add(new String[]{l.getKey() + ":", l.getValue()});
+                }
+                break;
+            case IS_CONF:
+                lbStatus.setText("Retrieving Status from Config-File");
 
-            try {
-                ar = Configurator.parseConfigFile(ConfPath);
-            } catch (IOException e) {
-                lbStatus.setText("Retrieving Status from Config-File failed");
-            }
+                try {
+                    ar = Configurator.parseConfigFile(doc.getPath().getAbsolutePath());
+                } catch (Exception e) {
+                    lbStatus.setText("Retrieving Status from Config-File failed: " + e.getMessage());
+                }
+                break;
+            default:
+                break;
         }
         return ar.toArray(new String[][]{});
     }
@@ -112,16 +117,48 @@ public class GUICompile extends JFrame {
             @Override
             public void itemStateChanged(ItemEvent itemEvent) {
                 if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
-                    btCompile.setEnabled(checkCompileable());
+                    //btCompile.setEnabled(checkCompileable());
                     // Set correct Input and Output-Base as the File can be from another directory :D
-                    File f = new File(tfFMainFile.getText());
-                    CoreSettings.set("lilly-in", f.getParentFile().getAbsolutePath());
+                    JakeDocument jd = new JakeDocument(new File(tfFMainFile.getText()));
+                    CoreSettings.set(CoreSettings.getTranslator().translate("S_LILLY_IN"), jd.getPath().getParentFile().getAbsolutePath() + "/");
 
                     // If this is correct we can try to Examine the File Data
-                    String[][] data = receiveDocumentData(f);
+                    String[][] data = receiveDocumentData(jd);
                     DataTable.setModel(new DefaultTableModel(data, new String[]{"Key", "Value", "Expanded Value"}));
-
-                    btEditConfig.setEnabled(true);
+                    loadedDoc = jd;
+                    loadedDoc.addListener(new JakeDocument.iDocumentChangedListener() {
+                        @Override
+                        public void JakeDocument_Saved(String path) {
+                            System.out.println("Called Saved!");
+                            String[][] data = receiveDocumentData(jd);
+                            DataTable.setModel(new DefaultTableModel(data, new String[]{"Key", "Value", "Expanded Value"}));
+                            // Update when saved
+                        }
+                    });
+                    if (checkCompileable() && loadedDoc.isValid()) {
+                        switch (loadedDoc.getType()) {
+                            case IS_CONF:
+                                if (CoreSettings.requestValue("S_FILE").endsWith(".tex") && CoreSettings.requestValue("S_OPERATION").equals("file_compile")) {
+                                    btCompile.setEnabled(true);
+                                } else {
+                                    btCompile.setEnabled(false);
+                                    lbStatus.setText("<html>Information: Wrong Settings!<br>file: " + CoreSettings.requestValue("S_FILE") + " and operation: " + CoreSettings.requestValue("S_OPERATION") + "</html>");
+                                }
+                                break;
+                            case IS_TEX:
+                                btCompile.setEnabled(true);
+                                break;
+                            default:
+                                btCompile.setEnabled(false);
+                                lbStatus.setText("Information: The Document isn't valid (wrong doctype)!");
+                        }
+                    } else {
+                        btCompile.setEnabled(false);
+                        lbStatus.setText("Information: The Document isn't valid!");
+                    }
+                } else {
+                    loadedDoc = null; // No document loaded :D
+                    DataTable.setModel(new DefaultTableModel(new String[][]{}, new String[]{"Key", "Value", "Expanded Value"}));
                 }
             }
         });
@@ -154,12 +191,53 @@ public class GUICompile extends JFrame {
         btEditConfig.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ConfigEditor ce = new ConfigEditor(ConfPath);
-                ce.setModal(true); ce.setVisible(true);
-                // TODO: reread config file, further: disable Compile Button, when no File!
+                ConfigEditor ce = new ConfigEditor((loadedDoc == null || !loadedDoc.getType().equals(eDocument_Type.IS_CONF)) ? new JakeDocument(eDocument_Type.IS_CONF, "Unnamed Config") : loadedDoc);
+                ce.setModal(true);
+                ce.setVisible(true);
+                if (loadedDoc != null && loadedDoc.getType().equals(eDocument_Type.IS_CONF)) {
+                    //loadedDoc.load();
+                    String[][] data = receiveDocumentData(loadedDoc);
+                    DataTable.setModel(new DefaultTableModel(data, new String[]{"Key", "Value", "Expanded Value"}));
+                }
             }
         });
 
+        btCompile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (loadedDoc == null) return;
+                switch (loadedDoc.getType()) {
+                    case IS_TEX:
+                        CoreSettings.set(CoreSettings.getTranslator().translate("S_FILE"), loadedDoc.getPath().getName());
+                        lbStatus.setText("Compiling...");
+                        showCompileWatcher();
+                        lbStatus.setText("Compiling finished successfully!");
+
+                        break;
+                    case IS_CONF:
+                        // To be sure, wen wan't to rejoin the config-Settings with the CoreSettings
+                        try {
+                            Configurator cfg = new Configurator(loadedDoc.getPath().getAbsolutePath());
+                            cfg.parse_settings(CoreSettings.getSettings(), false);
+                            lbStatus.setText("Compiling...");
+                            //JakeCompile.compile(new String[]{});
+                            showCompileWatcher();
+                        } catch (IOException e) {
+                            lbStatus.setText(e.getMessage());
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+    }
+
+    public void showCompileWatcher() {
+        CompileWatcher cw = new CompileWatcher(new String[]{});
+        cw.setModal(true);
+        cw.setVisible(true); // here we must evaluate the feedback  Value :D
     }
 
     public static void main(String[] args) {

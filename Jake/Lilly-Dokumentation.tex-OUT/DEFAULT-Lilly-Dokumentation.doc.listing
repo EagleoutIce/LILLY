@@ -1,0 +1,13 @@
+\DeclareTColorBox[auto counter]%
+        {LILLYxBOXxZusammenfassung}%
+        { O{} %% Title
+          O{Zusammenfassung \thetcbcounter~} %% TitlePrefix
+          O{} %% tcb addonargs
+        }{%
+    LillyxBOXxDesignxDefault, %
+    colback=\LILLYxColorxZusammenfassung!5!white, %
+    colframe=\LILLYxColorxZusammenfassung, #3,%
+    title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}%
+        \ifx\LILLYxBOXxZusammenfassungxLock\true\\%
+        \else\\[-0.4\baselineskip]\fi}% spacing
+}

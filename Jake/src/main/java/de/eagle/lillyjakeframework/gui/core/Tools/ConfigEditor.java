@@ -6,10 +6,11 @@ import com.intellij.uiDesigner.core.Spacer;
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.lillyjakeframework.core.CoreSettings;
-import de.eagle.lillyjakeframework.core.Definitions;
+import de.eagle.util.datatypes.JakeDocument;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
-import de.eagle.util.enumerations.eSetting_Type;
+import de.eagle.util.enumerations.eDocument_Type;
+import de.eagle.util.io.JakeWriter;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -23,6 +24,7 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,7 +37,11 @@ public class ConfigEditor extends JDialog {
     private JTable DataTable;
     private JButton btSave;
     private JLabel lbInfo;
+    private JButton btCancel;
     private DefaultTableModel dtm = null;
+
+    private static final int KEY_COL = 0;
+    private static final int VAL_COL = 1;
 
     public boolean CheckRowBlank(int r) {
         for (int i = 0; i < 3; i++) {
@@ -45,39 +51,55 @@ public class ConfigEditor extends JDialog {
         return true;
     }
 
-    private String ConfigPath = "";
+    private JakeDocument document;
+
     Settings exps;
 
+    public ConfigEditor(JakeDocument doc) {
+        this.document = doc;
+        init();
+    }
+
     public ConfigEditor(String ConfigPath) {
+        if (ConfigPath.isEmpty()) {
+            document = new JakeDocument(eDocument_Type.IS_CONF, "unnamed document");
+        } else {
+            document = new JakeDocument(new File(ConfigPath));
+        }
+        init();
+    }
+
+    public void init() {
         setContentPane(MainPanel);
         setSize(550, 360);
-        this.ConfigPath = ConfigPath;
-        if (ConfigPath.isEmpty()) {
-            setTitle("Editing: Unnamed Configfile");
+        setTitle("Editing: " + document.getName());
+        try {
+            exps = Expandables.getInstance().expandsCS();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (document.isNew()) {
             dtm = new DefaultTableModel(new String[]{"Key", "Value", "Expanded Value"}, 1) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
-                    return column == 0 || (column == 1 && !DataTable.getValueAt(row, 0).toString().isBlank());
+                    return column == KEY_COL || (column == VAL_COL && !DataTable.getValueAt(row, KEY_COL).toString().isBlank());
                 }
             };
             DataTable.setModel(dtm);
         } else {
-            setTitle("Editing: " + ConfigPath);
             try {
-                String[][] data = Configurator.parseConfigFile(ConfigPath).toArray(new String[][]{});
+                String[][] data = Configurator.parseConfigFile(document.getPath().getAbsolutePath()).toArray(new String[][]{});
                 dtm = new DefaultTableModel(data, new String[]{"Key", "Value", "Expanded Value"}) {
                     @Override
                     public boolean isCellEditable(int row, int column) {
-                        return column == 0 || (column == 1 && !DataTable.getValueAt(row, 0).toString().isBlank());
+                        return column == KEY_COL || (column == VAL_COL && !DataTable.getValueAt(row, KEY_COL).toString().isBlank());
                     }
                 };
                 DataTable.setModel(dtm);
-                ;
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(MainPanel, e.getMessage());
             }
         }
-
         DataTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent tableModelEvent) {
@@ -100,7 +122,9 @@ public class ConfigEditor extends JDialog {
                         String eval = "";
                         try {
                             eval = Expandables.expand(exps, val);
-                        } catch(Exception e){eval = "[Error] Compiling failed: " + e.getMessage();}
+                        } catch (Exception e) {
+                            eval = "[Error] Compiling failed: " + e.getMessage();
+                        }
                         if (!val.equals(eval))
                             DataTable.setValueAt(eval, r, c + 1);
                         else DataTable.setValueAt("", r, c + 1);
@@ -113,9 +137,9 @@ public class ConfigEditor extends JDialog {
             }
         });
         //if (DataTable.getRowCount() == 0) {
-            dtm.addRow(new String[]{"", "", ""}); // do it always :P
+        dtm.addRow(new String[]{"", "", ""}); // do it always :P
         //}
-        setUpKeyColumn(DataTable, DataTable.getColumnModel().getColumn(0));
+        setUpKeyColumn(DataTable, DataTable.getColumnModel().getColumn(KEY_COL));
 
         DataTable.getTableHeader().setReorderingAllowed(false);
 
@@ -137,6 +161,15 @@ public class ConfigEditor extends JDialog {
             }
         });
 
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+
+        btCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setVisible(false);
+                dispose();
+            }
+        });
     }
 
     public boolean startsWithKey(ArrayList<String> ar, String k) {
@@ -149,17 +182,23 @@ public class ConfigEditor extends JDialog {
     public void save() {
         ArrayList<String> linesToSave = new ArrayList<>();
         for (int r = 0; r < DataTable.getRowCount(); r++) {
-            if (DataTable.getValueAt(r, 0) != null && DataTable.getValueAt(r, 1) != null) {
-                String k = DataTable.getValueAt(r, 0).toString().trim(), v = DataTable.getValueAt(r, 1).toString().trim();
+            if (DataTable.getValueAt(r, KEY_COL) != null && DataTable.getValueAt(r, VAL_COL) != null) {
+                String k = DataTable.getValueAt(r, KEY_COL).toString().trim(), v = DataTable.getValueAt(r, VAL_COL).toString().trim();
                 if (!k.isBlank() && !v.isBlank()) {
                     // Do first Check: boolean
-                    if (CoreSettings.getSettings().get(k).getType().equals(eSetting_Type.IS_SWITCH)) {
-                        String ev = Expandables.expand(exps, v);
-                        if (!(ev.equals(Definitions.S_TRUE) || ev.equals(Definitions.S_FALSE))) {
-                            JOptionPane.showMessageDialog(this, "A Switch (like: " + k + ") must get one of the values: " + Definitions.S_TRUE + ", " + Definitions.S_FALSE + ". Not: " + v, "(Semantic) wrong Value", JOptionPane.ERROR_MESSAGE);
+                    SettingDeskriptor sd = CoreSettings.getSettings().get(k);
+                    String ev = "";
+                    try {
+                        ev = Expandables.expand(exps, v);
+                        if (!sd.getType().isValid(ev)) {
+                            JOptionPane.showMessageDialog(this,
+                                    "The Value \"" + v + "\" (" + ev + ") of Key \"" + k + "\" doesn't hold up to: \"" + sd.getType().getBrief() + "\"", "Setting not Valid", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
+                    } catch (RuntimeException ex) {
+                        JakeWriter.err.println("Error, when trying to Expand expandable: " + ex.getMessage());
                     }
+
                     if (startsWithKey(linesToSave, k)) {
                         JOptionPane.showMessageDialog(this, "You've already assigned a Value to: " + k + " it will get overwritten!", "Doubled Value", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -171,22 +210,23 @@ public class ConfigEditor extends JDialog {
             JOptionPane.showMessageDialog(this, "No Lines to save. Fill in valid Information", "Nothing to Save!", JOptionPane.INFORMATION_MESSAGE);
         } else {
             File saveFile;
-            if (ConfigPath.isEmpty()) {
+            if (document.isNew()) {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setFileFilter(new FileNameExtensionFilter("Config File", "conf"));
                 if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
                     saveFile = fileChooser.getSelectedFile();
                     if (!saveFile.getName().endsWith(".conf"))
                         saveFile = new File(saveFile.getAbsolutePath() + ".conf");
-                    ConfigPath = saveFile.getAbsolutePath();
+                    document.setFileContents(linesToSave);
+                    document.setSaved(saveFile.getAbsolutePath());
                 } else {
                     JOptionPane.showMessageDialog(this, "No target selected. ABORT!", "No save-target!", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
             } else {
-                saveFile = new File(ConfigPath);
+                saveFile = document.getPath();
             }
-            setTitle("Editing: " + ConfigPath);
+            setTitle("Editing: " + document.getPath().getName());
 
             try {
                 PrintWriter pw = new PrintWriter(saveFile);
@@ -203,11 +243,13 @@ public class ConfigEditor extends JDialog {
     }
 
     public void updateInfo(int r) {
-        if (DataTable.getValueAt(r, 0) == null || DataTable.getValueAt(r, 0).toString().isBlank()) {
+        if (r < 0) return;
+        Object val = DataTable.getValueAt(r, KEY_COL);
+        if (val == null || val.toString().isBlank()) {
             lbInfo.setText("As no Key provided, this Line will be ignored while saving!");
             return;
         }
-        String s = DataTable.getValueAt(r, 0).toString();
+        String s = val.toString();
         if (s != null && !s.isBlank()) {
             SettingDeskriptor sd = CoreSettings.getSettings().get(s);
             lbInfo.setText("<html><p><b>" + sd.getName() + ":</b> (" + sd.getType() + ")<br>" + sd.getBrief() + "<br><b>Current Value:</b><br>" + sd.getValue() + "</p></html>");
@@ -260,24 +302,32 @@ public class ConfigEditor extends JDialog {
      */
     private void $$$setupUI$$$() {
         MainPanel = new JPanel();
-        MainPanel.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
+        MainPanel.setLayout(new GridLayoutManager(4, 4, new Insets(0, 0, 0, 0), -1, -1));
         btSave = new JButton();
         btSave.setBackground(new Color(-15100068));
         btSave.setForeground(new Color(-131585));
         btSave.setText("Save");
-        MainPanel.add(btSave, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        MainPanel.add(btSave, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        MainPanel.add(spacer1, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        MainPanel.add(spacer1, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        MainPanel.add(scrollPane1, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        scrollPane1.setOpaque(true);
+        MainPanel.add(scrollPane1, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         DataTable = new JTable();
         DataTable.setAutoCreateRowSorter(false);
         DataTable.setAutoResizeMode(2);
+        DataTable.setRowHeight(25);
         scrollPane1.setViewportView(DataTable);
+        btCancel = new JButton();
+        btCancel.setBackground(new Color(-1113988));
+        btCancel.setForeground(new Color(-197377));
+        btCancel.setMargin(new Insets(3, 3, 3, 3));
+        btCancel.setText("Cancel");
+        MainPanel.add(btCancel, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         lbInfo = new JLabel();
         lbInfo.setForeground(new Color(-10658463));
         lbInfo.setText("Information");
-        MainPanel.add(lbInfo, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 1, false));
+        MainPanel.add(lbInfo, new GridConstraints(1, 1, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 1, false));
     }
 
     /**

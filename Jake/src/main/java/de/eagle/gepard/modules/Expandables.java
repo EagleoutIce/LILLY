@@ -275,7 +275,8 @@ public class Expandables extends AbstractGepardModule{
                 throw new RuntimeException(
                         "@[SELTEXF] oder ähnliche Vertreter benötigen auch eine Datei, die sie finden können!");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
+            JakeWriter.err.println(e.getMessage());
             s = "NONE";
         }
         string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(s));
