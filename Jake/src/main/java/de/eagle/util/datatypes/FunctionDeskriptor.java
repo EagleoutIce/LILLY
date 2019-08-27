@@ -31,6 +31,10 @@ public class FunctionDeskriptor<K, V> {
     // Die gegebenen Funktion
     public Function<K, V> function;
 
+    public V apply(K args){
+        return function.apply(args);
+    }
+
     /**
      * Default Constructor
      *
@@ -42,5 +46,19 @@ public class FunctionDeskriptor<K, V> {
         this.name = name;
         this.brief = brief;
         this.function = function;
+    }
+
+    /**
+     * @return the Name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return the Brief
+     */
+    public String getBrief() {
+        return brief;
     }
 }

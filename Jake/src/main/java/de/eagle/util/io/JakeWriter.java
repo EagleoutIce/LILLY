@@ -1,13 +1,19 @@
 package de.eagle.util.io;
 
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.Arrays;
-
 import de.eagle.lillyjakeframework.core.Definitions;
 
+import java.io.InputStream;
+import java.util.Arrays;
+
 /**
+ * @class JakeWriter
+ *
  * Kapselt println format und print um auch für die GUI zu funktionieren
+ *
+ * @author Florian Sihler
+ *
+ * @since 2.0.0
+ * @version 1.0.0
  */
 public class JakeWriter {
     // This will output The text to wherever you want, AND pass through all needed
@@ -16,7 +22,15 @@ public class JakeWriter {
     public static class MirrorStream {
         private final boolean mirrorLog;
         private final boolean mirrorConsole;
-        PrintStream out = System.out;
+        AbstractConsoleWriter out = new ConsolePrintStream(System.out);
+
+        /**
+         * This will change the 'Console Output Stream' to the desired Target
+         * @param out OutputStream
+         */
+        public void reassignOut(AbstractConsoleWriter out){
+            this.out = out;
+        }
 
         public MirrorStream(){
             this(Definitions.MIRROR_LOG, Definitions.MIRROR_CONSOLE);
@@ -30,13 +44,13 @@ public class JakeWriter {
 
         public MirrorStream append(char c) {
             if(mirrorLog) JakeLogger.writeLoggerInfo("Appended: " + c, "WRITER");
-            if(mirrorConsole) out.append(c);
+            if(mirrorConsole) out.append(String.valueOf(c));
             return this;
         }
 
         public MirrorStream append(CharSequence c) {
             if(mirrorLog) JakeLogger.writeLoggerInfo("Appended: " + c, "WRITER");
-            if(mirrorConsole) out.append(c);
+            if(mirrorConsole) out.append(c.toString());
             return this;
         }
         public MirrorStream format(String format, Object... args) {

@@ -1,12 +1,5 @@
 package de.eagle.lillyjakeframework.core;
 
-import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.HashMap;
-
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.lillyjakeframework.translators.SettingsTranslator;
 import de.eagle.util.blueprints.Translator;
@@ -14,6 +7,13 @@ import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.helper.PropertiesProvider;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashMap;
+
+import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
 
 public class CoreSettings {
 
@@ -149,9 +149,9 @@ public class CoreSettings {
                 "Florian Sihler");
         settings.emplace(st, "S_LILLY_AUTHORMAIL", "E-mail adresse des Autors", eSetting_Type.IS_TEXT,
                 "florian.sihler@web.de");
-        settings.emplace(st, "S_LILLY_BIBTEX", "Angabe der . bib Datei !OHNE ENDUNG!", eSetting_Type.IS_FILE, "");
+        settings.emplace(st, "S_LILLY_BIBTEX", "Angabe der . bib Datei !OHNE ENDUNG!.", eSetting_Type.IS_TEXT, ""); // include check, if bibtex required
         settings.emplace(st, "S_LILLY_SIGNATURE_COLOR",
-                "Welche Highlighting Farbe soll verwendet werden, per Hcolor (und HBcolor)", eSetting_Type.IS_NUM,
+                "Welche Highlighting Farbe soll verwendet werden, per Hcolor (und HBcolor)", eSetting_Type.IS_LATEX,
                 "Leaf");
 
         // Generelle Einstellungen

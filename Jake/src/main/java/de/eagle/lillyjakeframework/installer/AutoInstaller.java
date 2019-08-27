@@ -1,14 +1,14 @@
 package de.eagle.lillyjakeframework.installer;
 
-import java.io.IOException;
-import java.util.Iterator;
-
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.util.datatypes.FunctionCollector;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeWriter;
+
+import java.io.IOException;
+import java.util.Iterator;
 
 /**
  * Legt fest, was ein Installer alles können muss
@@ -81,13 +81,6 @@ public abstract class AutoInstaller implements Iterable<String> {
     public boolean automatedInstall() {
         for(String s: this){}
         return true;
-    }
-
-    /**
-     * @return true, wenn das System ohne laufenden X-Server betrieben wird
-     */
-    public static boolean headless(){
-        return System.getenv("DISPLAY") == null;
     }
 
     public boolean uninstall(){
