@@ -72,7 +72,7 @@ public class Cloner<T> implements iRealCloneable<T> {
      *
      * @throws IOException
      */
-    public static String cloneFileRessource(String res, String dst) throws IOException {
+        public static String cloneFileRessource(String res, String dst) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(Executer.class.getResourceAsStream(res)));
         File outf = new File(dst);
         BufferedWriter out = new BufferedWriter(new FileWriter(outf));

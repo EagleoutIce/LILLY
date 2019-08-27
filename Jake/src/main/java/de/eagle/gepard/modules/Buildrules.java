@@ -22,16 +22,38 @@ import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
 /**
  * Bearbeitet Boxen mit dem Bezeichner {@value box_name}
  */
-public class Buildrules {
+public class Buildrules extends AbstractGepardModule{
     /**
      * Name der Buildrule-Box
      */
     public static final String box_name = "buildrule";
 
+    private static Buildrules tInstance = null;
+
+    public static Buildrules getInstance() {
+        if(tInstance == null)
+            tInstance = new Buildrules();
+        return tInstance;
+    }
+
+    /**
+     * Konstruiert das GepardModul
+     */
+    private Buildrules() {
+        super(box_name);
+    }
+
+    /**
+     * Gespeicherte Blaupause, die es ermöglicht, die entsprechende Blaupause nur einmal pro Klasse
+     * zu generieren.
+     */
+    protected static Settings blueprint = null;
+
     /**
      * @return die Blaupause für die Einstellungen
      */
-    public static Settings getBlueprint() {
+    @Override
+    public Settings getBlueprint() {
         if (blueprint == null) {
             blueprint = new Settings("<Blueprint> Buildrules");
             // ---- Mandatories
@@ -58,11 +80,6 @@ public class Buildrules {
         }
         return blueprint;
     }
-
-    /**
-     * Entspricht buildrule Settings Mandatory-Arguments starten leer
-     */
-    private static Settings blueprint = null;
 
     public static String createRuleFromData(Settings setting, Translator<String, String> ts, String name, String mode,
             boolean complete, String mode_prefix) {
@@ -97,32 +114,29 @@ public class Buildrules {
         // Da JavaJake keine Makefile option mehr anbietet wird hier lediglich die
         // "normale" Variante für
         // on-the-fly-compile generiert:
-        StringBuilder ret_str = new StringBuilder();
-        ret_str.append(setting.requestValue(ts, "S_LILLY_OUT")) // == Sektion: Name (meta)
-                .append(nameprefix).append((complete) ? completeName : "").append("!"); // die einzelnen Sektionen
-                                                                                        // werden mithilfe von "!"
-                                                                                        // getrennt
-        ret_str.append("\\\\providecommand\\\\LILLYxMODE{") // == Sektion: Befehle
-                .append(mode).append("}\\\\providecommand\\\\LILLYxMODExEXTRA{").append(complete ? "TRUE" : "FALSE")
-                .append("}!"); //
-        ret_str.append(loaderSequence) // Ladesequenz
-                .append("!");
-        ret_str.append(ColorConstants.COL_GOLD).append("Generiere: ").append((complete) ? completeName : "")
-                .append(name).append(ColorConstants.COL_RESET);// output
-        return ret_str.toString();
+        return setting.requestValue(ts, "S_LILLY_OUT") + // == Sektion: Name (meta)
+                nameprefix + ((complete) ? completeName : "") + "!" + // die einzelnen Sektionen
+                // werden mithilfe von "!"
+                // getrennt
+                "\\\\providecommand\\\\LILLYxMODE{" + // == Sektion: Befehle
+                mode + "}\\\\providecommand\\\\LILLYxMODExEXTRA{" + (complete ? "TRUE" : "FALSE") +
+                "}!" + //
+                loaderSequence + // Ladesequenz
+                "!" +
+                ColorConstants.COL_GOLD + "Generiere: " + ((complete) ? completeName : "") +
+                name + ColorConstants.COL_RESET;
     }
 
     /**
      * Entspricht get_default_buildrules
      *
-     * @see Buildrules#createRuleFromData(Settings, Translator, String, String,
-     *      boolean)
-     * @see Buildrules#createRuleFromData(Settings, Translator, String, String,
-     *      boolean, String, String, String, String)
+     * @see Buildrules#createRuleFromData(Settings, Translator, String, String, boolean, String)
+     * @see Buildrules#createRuleFromData(Settings, Translator, String, String, boolean, String, String, String, String)
      *
      * @return Standardeinstellungen
      */
-    public static Settings getDefaults() {
+    @Override
+    public Settings getDefaults() {
         Settings settings = new Settings("<Default> Buildrules", true, new HashMap<>());
 
         // Default
@@ -154,45 +168,6 @@ public class Buildrules {
     }
 
     /**
-     * Bearbeitet eine komplette Datei
-     * 
-     * @param rulefiles die Liste der rulefiles
-     * @param complete  Soll auch eine complete Variante erstellt werden?
-     * @return Einstellungen die entsprechend der Boxen konfiguriert sind
-     * @throws IOException Im Falle eines Fails von
-     *                     {@link GeneratorParser#parseFile(String, Settings, boolean)}
-     */
-    public static Settings parseRules(String rulefiles, boolean complete) throws IOException {
-        if (rulefiles.isEmpty())
-            return getDefaults();
-
-        GeneratorParser gp = new GeneratorParser(rulefiles);
-        return parseRules(gp.parseFile(Buildrules.box_name, Buildrules.getBlueprint(), false), complete);
-    }
-
-    /**
-     * Entspricht dem Parse Teil für Buildrules (foreach)
-     * 
-     * @param boxes    Array aller gefundenen Boxen
-     * @param complete Soll auch eine complete Variante erstellt werden?
-     *
-     * @implNote Die MetaInformationen sind jeweils in brief kodiert.
-     *
-     * @see de.eagle.util.blueprints.AbstractSettings#softJoin(AbstractSettings)
-     * @see de.eagle.util.blueprints.AbstractSettings#hardJoin(AbstractSettings)
-     *
-     * @return Einstellungen die entsprechend der Boxen konfiguriert sind
-     */
-    public static Settings parseRules(GeneratorParser.JObject[] boxes, boolean complete) {
-        Settings ret = new Settings("Buildrule Settings");
-        ret.softJoin(getDefaults());
-        for (GeneratorParser.JObject box : boxes) {
-            ret.softJoin(parseBox(box, complete));
-        }
-        return ret;
-    }
-
-    /**
      * Parst eine einzelne Box
      * 
      * @param box      die Box
@@ -201,7 +176,7 @@ public class Buildrules {
      * @return null, wenn es keine buildrule-Box war, sonst die entsprechende
      *         Einstellung
      */
-    public static Settings parseBox(GeneratorParser.JObject box, boolean complete) {
+    public Settings parseBox(GeneratorParser.JObject box, boolean complete) {
         writeLoggerDebug1("Bearbeite nun: " + box.toString(), "Buildrules");
 
         Settings settings = new Settings(box.getName());

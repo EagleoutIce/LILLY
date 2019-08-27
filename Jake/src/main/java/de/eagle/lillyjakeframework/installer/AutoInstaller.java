@@ -30,7 +30,7 @@ public abstract class AutoInstaller implements Iterable<String> {
         this.doGui = gui;
         try {
             if(exp == null)
-            exp = Expandables.getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+            exp = Expandables.getInstance().getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
         } catch (IOException ignored) {}
     }
     public static final String HOME = PropertiesProvider.getHomeDirectory();

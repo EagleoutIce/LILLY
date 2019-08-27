@@ -3,6 +3,7 @@ package de.eagle.lillyjakeframework;
 import de.eagle.lillyjakeframework.cmdline.CommandLineParser;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
+import de.eagle.lillyjakeframework.gui.core.GUICompile;
 import de.eagle.lillyjakeframework.gui.core.InstallJake;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.helper.PropertiesProvider;
@@ -10,12 +11,9 @@ import de.eagle.util.io.JakeWriter;
 
 import java.io.IOException;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import static de.eagle.util.io.JakeLogger.*;
-
 import static de.eagle.lillyjakeframework.core.Definitions.PRG_BRIEF;
+import static de.eagle.util.io.JakeLogger.writeLoggerError;
+import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
 
 /**
  * @author Florian Sihler
@@ -75,8 +73,9 @@ public class Jake {
         }
         if (args.length > 0 && args[0].equals("GUI")) {
             Definitions.GUI = true;
-            JOptionPane.showMessageDialog(new JFrame(), "Du bist im Gui - Modus, hier wird dich bald Jake begrüßen!",
-                    "INFO", JOptionPane.INFORMATION_MESSAGE);
+               // JOptionPane.showMessageDialog(new JFrame(), "Du bist im Gui - Modus, hier wird dich bald Jake begrüßen!",
+               //         "INFO", JOptionPane.INFORMATION_MESSAGE);
+            new GUICompile().setVisible(true);
             return;
         } // else no gui :D
         if (rs.success()) {

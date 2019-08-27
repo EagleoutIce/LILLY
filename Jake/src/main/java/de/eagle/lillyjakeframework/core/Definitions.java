@@ -37,6 +37,7 @@ public class Definitions {
     public static final String ASS_PATTERN = ":";
 
     public static final String S_TRUE = "true";
+    public static final String S_FALSE = "false";
 
     public static final int MAX_SETTINGS_REC = 12;
 

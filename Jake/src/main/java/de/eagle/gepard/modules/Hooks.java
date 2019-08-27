@@ -1,15 +1,7 @@
 package de.eagle.gepard.modules;
 
-import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-
 import de.eagle.gepard.parser.GeneratorParser;
 import de.eagle.lillyjakeframework.core.CoreSettings;
-import de.eagle.util.blueprints.AbstractSettings;
 import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.datatypes.SettingDeskriptor;
@@ -18,22 +10,44 @@ import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
+
 // Information:
 // Alle "Entspricht ..." Kommentare gilt es zu ändern!
 
 /**
  * Bearbeitet Boxen mit dem Bezeichner {@value box_name}
  */
-public class Hooks {
+public class Hooks extends AbstractGepardModule {
     /**
      * Name der NameMap-Box
      */
     public static final String box_name = "hook";
 
+    private static Hooks tInstance = null;
+
+    public static Hooks getInstance() {
+        if(tInstance == null)
+            tInstance = new Hooks();
+        return tInstance;
+    }
+
+    /**
+     * Konstruiert das GepardModul
+     */
+    private Hooks() {
+        super(box_name);
+    }
+
     /**
      * @return die Blaupause für die Einstellungen
      */
-    public static Settings getBlueprint() {
+    public Settings getBlueprint() {
         if (blueprint == null) {
             blueprint = new Settings("<Blueprint> Hooks", true, new HashMap<>());
             // ---- Mandatories
@@ -62,7 +76,7 @@ public class Hooks {
      *
      * @return Standardeinstellungen
      */
-    public static Settings getDefaults() {
+    public Settings getDefaults() {
         Settings settings = new Settings("<Default> Hooks", true, new HashMap<>());
 
         // Da Lilly nun in der Lage ist die Bibtex-Integration vollautomatisch zu
@@ -89,6 +103,7 @@ public class Hooks {
         return settings;
     }
 
+
     /**
      * Bearbeitet eine komplette Datei
      *
@@ -97,44 +112,24 @@ public class Hooks {
      * @throws IOException Im Falle eines Fails von
      *                     {@link GeneratorParser#parseFile(String, Settings, boolean)}
      */
-    public static Settings getHooks(String rulefiles) throws IOException {
+    public Settings getHooks(String rulefiles) throws IOException {
         if (rulefiles.isEmpty())
             return getDefaults();
 
         GeneratorParser gp = new GeneratorParser(rulefiles);
-        return parseRules(gp.parseFile(Hooks.box_name, Hooks.getBlueprint(), false));
-    }
-
-    /**
-     * Entspricht dem Parse Teil für NameMaps (foreach)
-     *
-     * @param boxes Array aller gefundenen Boxen
-     *
-     * @implNote Die MetaInformationen sind jeweils in brief kodiert.
-     *
-     * @see AbstractSettings#softJoin(AbstractSettings)
-     * @see AbstractSettings#hardJoin(AbstractSettings)
-     *
-     * @return Einstellungen der NameMaps konfiguriert sind
-     */
-    public static Settings parseRules(GeneratorParser.JObject[] boxes) {
-        Settings ret = new Settings("NameMaps Settings");
-        ret.softJoin(getDefaults());
-        for (GeneratorParser.JObject box : boxes) {
-            ret.softJoin(parseBox(box));
-        }
-        return ret;
+        return parseRules(gp.parseFile(Hooks.box_name, getBlueprint(), add_unknown), false);
     }
 
     /**
      * Parst eine einzelne Box
      *
      * @param box die Box
+     * @param ignored Wird hier ignoriert.
      *
      * @return null, wenn es keine NameMap-Box war, sonst die entsprechende
      *         Einstellung
      */
-    public static Settings parseBox(GeneratorParser.JObject box) {
+    public Settings parseBox(GeneratorParser.JObject box, boolean ignored) {
         writeLoggerDebug1("Bearbeite nun: " + box.toString(), "Hooks");
 
         // Teste, ob konfigurierter TYPE gültig ist:
@@ -159,7 +154,7 @@ public class Hooks {
         return settings;
     }
 
-    public static Settings getTagged(Settings rules, String tag) {
+    public Settings getTagged(Settings rules, String tag) {
         Settings settings = new Settings("Tagged Hooks-Settings");
         for (var s : rules) {
             String k = s.getKey();
@@ -182,7 +177,7 @@ public class Hooks {
      *
      * @return den entsprechenden ReturnStatus
      */
-    public static ReturnStatus executeHook(String hook) {
+    public ReturnStatus executeHook(String hook) {
         Process p;
         int ret = -1;
         try {
@@ -204,12 +199,12 @@ public class Hooks {
      * @param t_rules die Regeln auf deren Basis die hooks gesucht werden sollen
      * @param tag     der Tag der gesucht werden soll
      *
-     * @return {@link ReturnStatus.EXIT_FAILURE} wenn der Stream beschädigt ist.
+     * @return {@link ReturnStatus#EXIT_FAILURE} wenn der Stream beschädigt ist.
      */
-    public static ReturnStatus executeHooks(Settings t_rules, String tag) {
+    public ReturnStatus executeHooks(Settings t_rules, String tag) {
         Settings rules = t_rules.cloneSettings();
         try {
-            Expandables.expandSettings(rules);
+            Expandables.getInstance().expandSettings(rules);
         } catch (IOException ignored) {
         }
         for (var sd : rules) {

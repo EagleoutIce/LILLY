@@ -8,12 +8,19 @@ package Util; /**
 
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.SettingDeskriptorStringList;
+import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.exceptions.MandatorySettingException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static de.eagle.util.enumerations.eSetting_Type.IS_OPERATION;
 import static de.eagle.util.enumerations.eSetting_Type.IS_TEXTLIST;
@@ -153,5 +160,47 @@ class SettingDeskriptorTest {
         Assertions.assertEquals("X:Y:Y:G:", s.getValue(), addmsg);
         Assertions.assertTrue(((SettingDeskriptorStringList) s).addValue(":Y"), defmsg);
         Assertions.assertEquals("X:Y:Y:G:Y", s.getValue(), addmsg);
+    }
+
+
+    private static Stream<Arguments> _provider_test_equal(){
+        return Stream.of(
+                Arguments.of(SettingDeskriptor.create("1-Detlef", "Dieter"),SettingDeskriptor.create("1-Detlef", "Dieter"),true),
+                Arguments.of(SettingDeskriptor.create("2-Detlef", "Dieter"),SettingDeskriptor.create("2-Detlef", "Bieter"),true), // Beschreibungen haben keine Aussage auf Gleichheit der Einstellungen
+                Arguments.of(SettingDeskriptor.create("3-Detlef", "Dieter",42),SettingDeskriptor.create("3-Detlef", "Dieter",42),true),
+                Arguments.of(SettingDeskriptor.create("4-Detlef", "Dieter",42),SettingDeskriptor.create("4-Detlef", "Dieter",43),false),
+                Arguments.of(SettingDeskriptor.create("5-Detlef", "Dieter", eSetting_Type.IS_FILE),SettingDeskriptor.create("5-Detlef", "Dieter", eSetting_Type.IS_FILE),true),
+                Arguments.of(SettingDeskriptor.create("6-Detlef", "Dieter", eSetting_Type.IS_FILE),SettingDeskriptor.create("6-Detlef", "Dieter", eSetting_Type.IS_TEXT),false),
+                Arguments.of(SettingDeskriptor.create("7-Detlef", "Dieter", eSetting_Type.IS_FILE,42),SettingDeskriptor.create("7-Detlef", "Dieter", eSetting_Type.IS_FILE,42),true),
+                Arguments.of(SettingDeskriptor.create("8-Detlef", "Dieter", eSetting_Type.IS_FILE,43),SettingDeskriptor.create("8-Detlef", "Dieter", eSetting_Type.IS_FILE,42),false),
+                Arguments.of(SettingDeskriptor.create("9-Detlef", "Dieter", eSetting_Type.IS_PATH,true,"4"),SettingDeskriptor.create("9-Detlef", "Dieter", eSetting_Type.IS_PATH,true,"4"),true),
+                Arguments.of(SettingDeskriptor.create("10-Detlef", "Dieter", eSetting_Type.IS_PATH,false, "4"),SettingDeskriptor.create("10-Detlef", "Dieter", eSetting_Type.IS_PATH,true, "4"),false)
+        );
+    }
+
+    @Test
+    @Order(7)
+    @DisplayName("[SettingDeskriptor] Teste .get() und .set()")
+    void _test_get_and_set() {
+        SettingDeskriptor<String> sd = SettingDeskriptor.create("SDName", "SDBrief", eSetting_Type.IS_TEXT, true, "SDWert");
+        // -- get
+        Assertions.assertEquals("SDName", sd.getName());
+        Assertions.assertEquals("SDBrief", sd.getBrief());
+        Assertions.assertEquals("SDWert", sd.getValue());
+        Assertions.assertEquals(eSetting_Type.IS_TEXT, sd.getType());
+        Assertions.assertTrue(sd.isMandatory());
+        Assertions.assertFalse(sd.isLocked());
+        sd.setValue("42"); sd.setName("Dieter");
+        // -- set
+        Assertions.assertEquals("Dieter", sd.getName());
+        Assertions.assertEquals("42", sd.getValue());
+    }
+
+    @ParameterizedTest
+    @Order(8)
+    @DisplayName("[SettingDeskriptor] Testet Vergleiche durch .equals()")
+    @MethodSource("_provider_test_equal")
+    void _test_equal(SettingDeskriptor a, SettingDeskriptor b, boolean shouldBeEqual) {
+        Assertions.assertEquals(shouldBeEqual,a.equals((b)), a + " und " + b);
     }
 }

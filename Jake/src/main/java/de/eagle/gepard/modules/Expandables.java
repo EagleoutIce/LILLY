@@ -1,9 +1,15 @@
 package de.eagle.gepard.modules;
 
-import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
-import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
-import static de.eagle.util.io.JakeLogger.writeLoggerDebug3;
-import static de.eagle.util.io.JakeLogger.writeLoggerWarning;
+import de.eagle.gepard.parser.GeneratorParser;
+import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.lillyjakeframework.core.Definitions;
+import de.eagle.util.blueprints.AbstractSettings;
+import de.eagle.util.datatypes.SettingDeskriptor;
+import de.eagle.util.datatypes.Settings;
+import de.eagle.util.enumerations.eSetting_Type;
+import de.eagle.util.helper.PropertiesProvider;
+import de.eagle.util.io.JakeLogger;
+import de.eagle.util.io.JakeWriter;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,28 +21,31 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.eagle.gepard.parser.GeneratorParser;
-import de.eagle.lillyjakeframework.core.CoreSettings;
-import de.eagle.lillyjakeframework.core.Definitions;
-import de.eagle.util.blueprints.AbstractSettings;
-import de.eagle.util.datatypes.SettingDeskriptor;
-import de.eagle.util.datatypes.Settings;
-import de.eagle.util.enumerations.eSetting_Type;
-import de.eagle.util.helper.PropertiesProvider;
-import de.eagle.util.io.JakeWriter;
-import de.eagle.util.io.JakeLogger;
-
-// Information:
-// Alle "Entspricht ..." Kommentare gilt es zu ändern!
+import static de.eagle.util.io.JakeLogger.*;
 
 /**
  * Bearbeitet Boxen mit dem Bezeichner {@value box_name}
  */
-public class Expandables {
+public class Expandables extends AbstractGepardModule{
     /**
-     * Name der Buildrule-Box
+     * Name der Expandables-Box
      */
     public static final String box_name = "expandable";
+
+    private static Expandables tInstance = null;
+
+    public static Expandables getInstance() {
+        if(tInstance == null)
+            tInstance = new Expandables();
+        return tInstance;
+    }
+
+    /**
+     * Konstruiert das GepardModul
+     */
+    private Expandables() {
+        super(box_name,true);
+    }
 
     public static String finalName = "";
 
@@ -48,7 +57,8 @@ public class Expandables {
     /**
      * @return die Blaupause für die Einstellungen
      */
-    public static Settings getBlueprint() {
+    @Override
+    public Settings getBlueprint() {
         if (blueprint == null) {
             blueprint = new Settings("<Blueprint> Expandables", true, new HashMap<>());
         }
@@ -65,7 +75,8 @@ public class Expandables {
      *
      * @return Standardeinstellungen
      */
-    public static Settings getDefaults() {
+    @Override
+    public Settings getDefaults() {
         Settings settings = new Settings("<Default> Expandables", true, new HashMap<>());
 
         // Basics
@@ -111,7 +122,7 @@ public class Expandables {
                 CoreSettings.requestValue("S_LILLY_VORLESUNG"));
 
         settings.emplace("LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_PATH,
-                CoreSettings.requestValue("S_LILLY_CONFIGS_PATH"))
+                CoreSettings.requestValue("S_LILLY_CONFIGS_PATH"));
 
         settings.emplace("N", "Expandiert zur Nummer (wie z.B. Übungsblatt)", eSetting_Type.IS_NUM,
                 CoreSettings.requestValue("S_LILLY_N"));
@@ -150,6 +161,9 @@ public class Expandables {
         settings.emplace("TRUE", "Wird zu true", eSetting_Type.IS_TEXT, "true");
         settings.emplace("FALSE", "Wird zu false", eSetting_Type.IS_TEXT, "false");
 
+        settings.emplace("S_TRUE", "Wird zu " + Definitions.S_TRUE, eSetting_Type.IS_TEXT, Definitions.S_TRUE);
+        settings.emplace("S_FALSE", "Wird zu " + Definitions.S_FALSE, eSetting_Type.IS_TEXT, Definitions.S_FALSE);
+
         /// JAKE LAZYS
         settings.emplace("@JAKEVER", "Expandiert zur Jake Version", eSetting_Type.IS_TEXT, Definitions.JAKE_VERSION);
 
@@ -184,12 +198,12 @@ public class Expandables {
      * @throws IOException Im Falle eines Fails von
      *                     {@link GeneratorParser#parseFile(String, Settings, boolean)}
      */
-    public static Settings getExpandables(String rulefiles) throws IOException {
+    public Settings getExpandables(String rulefiles) throws IOException {
         if (rulefiles.isEmpty())
             return getDefaults();
 
         GeneratorParser gp = new GeneratorParser(rulefiles);
-        return parseRules(gp.parseFile(Expandables.box_name, Expandables.getBlueprint(), false));
+        return parseRules(gp.parseFile(Expandables.box_name, getBlueprint(), add_unknown), false);
     }
 
     /**
@@ -204,11 +218,12 @@ public class Expandables {
      *
      * @return Einstellungen die entsprechend der Boxen konfiguriert sind
      */
-    public static Settings parseRules(GeneratorParser.JObject[] boxes) {
+    @Override
+    public Settings parseRules(GeneratorParser.JObject[] boxes, boolean ignored) {
         Settings ret = new Settings("Expandables Settings");
         ret.softJoin(getDefaults());
         for (GeneratorParser.JObject box : boxes) {
-            ret.softJoin(parseBox(box));
+            ret.softJoin(parseBox(box, false));
         }
         return ret;
     }
@@ -221,7 +236,8 @@ public class Expandables {
      * @return null, wenn es keine Expandables-Box war, sonst die entsprechende
      *         Einstellung
      */
-    public static Settings parseBox(GeneratorParser.JObject box) {
+    @Override
+    public Settings parseBox(GeneratorParser.JObject box, boolean ignored) {
         writeLoggerDebug1("Bearbeite nun: " + box.toString(), "Expandables");
 
         Settings settings = new Settings(box.getName());
@@ -252,7 +268,7 @@ public class Expandables {
     public static String replaceByPattern(String suffix, String string, Pattern p) {
         String s;
         try {
-            Optional<Path> os = Files.list(Paths.get(".")).filter(r -> r.toString().endsWith(suffix)).findFirst();
+            Optional<Path> os = Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_IN"))).filter(r -> r.toString().endsWith(suffix)).findFirst();
             if (os.isPresent()) {
                 s = os.get().toFile().getName();
             } else {
@@ -266,19 +282,19 @@ public class Expandables {
         return string;
     }
 
-    public static Settings expandsCS() throws IOException {
+    public Settings expandsCS() throws IOException {
         Settings expandables = getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
         for (var n : CoreSettings.settings) {
-            n.setValue(SettingDeskriptor.create(n.getKey(), "Expanded Setting",
+            n.setValue(SettingDeskriptor.create(n.getKey(), n.getValue().getBrief(), n.getValue().getType(),
                     expand(expandables, n.getValue().getValue())));
         }
         return expandables;
     }
 
-    public static Settings expandSettings(Settings settings) throws IOException {
+    public Settings expandSettings(Settings settings) throws IOException {
         Settings expandables = getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
         for (var n : settings) {
-            n.setValue(SettingDeskriptor.create(n.getKey(), "Expanded Setting",
+            n.setValue(SettingDeskriptor.create(n.getKey(), n.getValue().getBrief(),n.getValue().getType(),
                     expand(expandables, n.getValue().getValue())));
         }
         return expandables;

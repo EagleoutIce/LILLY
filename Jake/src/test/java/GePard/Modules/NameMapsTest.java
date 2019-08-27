@@ -38,7 +38,7 @@ public class NameMapsTest {
     @DisplayName("[NameMaps] Überprüft erwartende Blueprint-Settings")
     @CsvSource({ "name,,true", "patterns,,true" })
     void _test_gepard_nmaps_blueprint(String name, String expected, String mandatory) {
-        SettingDeskriptor<String> s = NameMaps.getBlueprint().get(name);
+        SettingDeskriptor<String> s = NameMaps.getInstance().getBlueprint().get(name);
         Assertions.assertNotNull(s, "Die Einstellung muss Existieren");
         if (mandatory.equals(Definitions.S_TRUE)) {
             Assertions.assertTrue(s.isMandatory, "Die Einstellung soll verpflichtend sein!");
@@ -60,7 +60,7 @@ public class NameMapsTest {
     @DisplayName("[NameMaps] Überprüft erwartende Defaults")
     @CsvSource(value = {"PDP~#", "GDBS~#","ANA1~#","PVS~#","GDRA~#","EIDI~#","FG~#","LA~#"}, delimiter = '~')
     void _test_gepard_nmaps_defaults(String should_exist, String should_be) {
-        Assertions.assertNotNull(NameMaps.getDefaults().get(should_exist), "Default-Einstellung muss existieren");
+        Assertions.assertNotNull(NameMaps.getInstance().getDefaults().get(should_exist), "Default-Einstellung muss existieren");
         // JakeWriter.out.println(NameMaps.getDefaults().get(should_exist));
         // TODO hihi
 
@@ -83,7 +83,7 @@ public class NameMapsTest {
         Assertions.assertEquals(expected1, j[1].toString());
 
         // Bis hier hin sollte alles schon klappen ^^
-        Settings s = NameMaps.parseBox(j[0]);
+        Settings s = NameMaps.getInstance().parseBox(j[0],false);
         Assertions.assertEquals("nmap", s.getName(), "Boxname sollte nmap sein");
         Assertions.assertEquals("Mitschrieb:lilly-author=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=lilly-author, type=IS_TEXT, value=Knödelblödel]\nlilly-nameprefix=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=lilly-nameprefix, type=IS_TEXT, value=Waffel-]\n", s.getValue("Ich-bin-doof"), "Box sollte entsprechend passen!");
         

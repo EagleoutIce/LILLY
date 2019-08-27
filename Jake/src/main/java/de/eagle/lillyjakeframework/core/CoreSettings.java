@@ -136,7 +136,7 @@ public class CoreSettings {
 
         // besondere Lilly-Einstellungen
         settings.emplace(st, "S_LILLY_VORLESUNG", "Um welche Vorlesung handelt es sich", eSetting_Type.IS_VLS, "NONE");
-        settings.emplace("LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_PATH,
+        settings.emplace("LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_PATH,"");
         settings.emplace(st, "S_LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_VLS, "");
 
         settings.emplace(st, "S_LILLY_N", "Um das wievielte Übungsblatt handelt es sich", eSetting_Type.IS_NUM, "42");
@@ -175,7 +175,7 @@ public class CoreSettings {
         settings.emplace(st, "S_MK_PATH", "Wohin soll das Makefile", eSetting_Type.IS_PATH, "./");
         settings.emplace(st, "S_MK_USE", "Soll ein Makefile erstellt werden", eSetting_Type.IS_SWITCH, "false");
         try {
-            expandables = Expandables.getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+            expandables = Expandables.getInstance().getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
         } catch (IOException ignored) {
         }
         return true;
@@ -261,7 +261,7 @@ public class CoreSettings {
      * @param key der Name des Switches
      *
      * @implNote Wirft keinen fehler, wenn der Switch kein Switch ist!
-     * @return
+     * @return den booleschen Wert der jeweiligen Einstellung
      */
     public static boolean requestSwitch(String key) {
         init();
@@ -269,16 +269,39 @@ public class CoreSettings {
     }
 
     /**
+     * Liefert den Wert einer Einstellung
      *
+     * @param key Der Schlüssel desssen Wert geliefert werden soll
+     *            {@link Settings#getValue(String)}
+     *
+     * @return den Wert der entsprechenden Einstellung
      */
     public static String get(String key) {
         init();
         return settings.getValue(key);
     }
 
+    /**
+     * Setzt den Wert einer Einstellung
+     *
+     * @param key Der Schlüssel der Einstellung die es zu setzen gilt
+     * @param val Der neue Wert der Einstellung
+     * @return {@link de.eagle.util.blueprints.AbstractSettings#set(Serializable, Serializable)}
+     */
     public static boolean set(String key, String val) {
         init();
         return settings.set(key, val);
     }
 
+    /**
+     * Setzt den Wert einer Einstellung
+     *
+     * @param key Der Schlüssel der Einstellung die es zu setzen gilt
+     * @param val Der neue Wert der Einstellung
+     * @return {@link Settings#set(String, boolean)}
+     */
+    public static boolean set(String key, boolean val) {
+        init();
+        return settings.set(key, val);
+    }
 }

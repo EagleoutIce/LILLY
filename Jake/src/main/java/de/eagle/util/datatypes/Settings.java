@@ -22,10 +22,7 @@ import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.datatypes.ReturnStatus;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,6 +30,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import static de.eagle.lillyjakeframework.core.Definitions.S_TRUE;
+import static de.eagle.lillyjakeframework.core.Definitions.S_FALSE;
 import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
 import static de.eagle.util.io.JakeLogger.writeLoggerDebug3;
 
@@ -155,7 +153,7 @@ public class Settings extends AbstractSettings<String, String> {
                     this.getClass().getResourceAsStream(this.get("file").getValue()));
             configurator.parse_settings(this, true);
         }
-        Settings set = Expandables.getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+        Settings set = Expandables.getInstance().getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
         this._settings.forEach((key,
                 value) -> stringList.add(String.format("%s  %-20s: %s [%s]%s%s", ColorConstants.COL_RESET, key,
                         ColorConstants.STY_PARAM, value.getValue(),
@@ -202,16 +200,46 @@ public class Settings extends AbstractSettings<String, String> {
         return true;
     }
 
+    /**
+     * Fügt den Einstellungen die Daten einer Konfigurationsdatei hinzu.
+     *
+     * @see #joinConfigFile(InputStream)
+     *
+     * @param path Pfad zur Datei
+     * @return {@link ReturnStatus}
+     * @throws FileNotFoundException Wenn die Konfigurationsdatei nicht gefunden wurde.
+     * @throws IOException Wenn es einen Fehler mit der Konfigurationsdatei gibt.
+     */
     public ReturnStatus joinConfigFile(String path) throws FileNotFoundException, IOException {
         return joinConfigFile(new FileInputStream(path));
     }
 
+    /**
+     * Fügt den Einstellungen die Daten einer Konfigurationsdatei hinzu.
+     *
+     * Behandelt den Stream als Konfigurationsdatei und verarbeitet die Daten.
+     *
+     * @param configFile Die entsprechende Konfigurationsdatei.
+     * @return {@link ReturnStatus}
+     * @throws IOException Wenn es einen Fehler mit dem entsprechenden Stream gibt.
+     */
     public ReturnStatus joinConfigFile(InputStream configFile) throws IOException {
         writeLoggerDebug1("Die Einstellung: \"" + this.getName() + "\" wird durch eine Konfigurationsdatei erweitert!",
                 "Settings");
         Configurator conf_loader = new Configurator(configFile);
         conf_loader.parse_settings(this, false);
         return new ReturnStatus(0);
+    }
+
+    /**
+     * Setzt analog zu {@link AbstractSettings#set(Serializable, Serializable)} wobei Werte übersetzt werden.
+     *
+     * @param key Schlüssel
+     * @param val boolescher Wert
+     * @return {@link AbstractSettings#set(Serializable, Serializable)}
+     */
+    public boolean set(String key, boolean val) {
+        return set(key, (val)?S_TRUE:S_FALSE);
     }
 
     /**
@@ -236,6 +264,11 @@ public class Settings extends AbstractSettings<String, String> {
                 && compareToSettings(set._settings);
     }
 
+    /**
+     * Klassischer .toString() :D
+     *
+     * @return Die String-Repräsentation des Objekts.
+     */
     @Override
     public String toString() {
         return "Settings [name=" + getName() + ", unknownPolicy=" + getUnknownPolicy() + ", settings=" + _settings

@@ -149,8 +149,7 @@ public abstract class Translator<K, V> {
      * @return true, wenn das Lesen der Daten fertiggestellt ist
      *
      * @implNote Struktur der Eigenschaften: Attribut = Wert
-     * @todo Capture Groups benennnen
-     * @implNote Capture Groups(noch nicht imoplementiert): ALL = "Attribut = Wert"
+     * @implNote Capture Groups(noch nicht implementiert): ALL = "Attribut = Wert"
      *           LHS = "Attribut" OPT = "=" RHS = "Wert"
      */
     protected boolean loadData(InputStream input) throws FileNotFoundException {

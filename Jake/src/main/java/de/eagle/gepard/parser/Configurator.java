@@ -8,12 +8,17 @@ package de.eagle.gepard.parser;
  * @see Tokenizer
  */
 
+import de.eagle.gepard.modules.Expandables;
+import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import static de.eagle.util.io.JakeLogger.*;
@@ -65,6 +70,29 @@ public class Configurator {
                 "^ *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>/#(){}$\";@%|\\[\\]&'~*?\\\\]+(?:[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>/#(){}$\";@%|\\[\\]&'~*?\\\\]+)*) *(=|\\+=) *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>/#(){}$\";@%|\\[\\]&'~*?\\\\]+(?: +[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>/#(){}$\";@%|\\[\\]&'~*?\\\\]+)*)",
                 Pattern.MULTILINE));
     }
+
+    /**
+     * Will Parse a File and Return 3-Columns: KEY VALUE [if different:] EXPANDED VALUE
+     *
+     * @param filePath Path to Config File
+     * @return Parsed ArrayList
+     */
+    public static ArrayList<String[]> parseConfigFile(String filePath) throws IOException {
+        ArrayList<String[]> ar = new ArrayList<>();
+        Configurator configurator = new Configurator(filePath);
+        Settings config = new Settings("Configured");
+        configurator.parse_settings(config, true);
+        // Apply Settings:
+        CoreSettings.getSettings().softJoin(config);
+        Settings exps = Expandables.getInstance().expandsCS();
+        for (Map.Entry<String, SettingDeskriptor<String>> s : config) {
+            String val = s.getValue().getValue();
+            String eval = Expandables.expand(exps, val);
+            ar.add(new String[]{s.getKey(), val, (!val.equals(eval)) ? eval : ""});
+        }
+        return ar;
+    }
+
 
     /**
      * Verarbeitet Einstellungen auf Basis der zuvor geladenen Daten

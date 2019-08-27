@@ -1,0 +1,10 @@
+BEGIN expandable:
+    SUPERWAFFEL = Ist Wichtig
+    S_TRUE = FALSE ! Tihihihi !
+    S_FALSE = TRUE ! höhöhöhö !
+END;
+
+BEGIN expandable: ! The more complex ones :D !
+    SuperHome = ${HOME}/Tolle Welt/${TRUE}
+    LayoutConfig = @[CONFPATH]/Layout
+END;

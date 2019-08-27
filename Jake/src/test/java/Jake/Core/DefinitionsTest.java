@@ -33,4 +33,11 @@ class DefinitionsTest {
                 Integer.toString(Definitions.JAKE_VERSION_NUM));
     }
 
+    @Test
+    @Tag("Meta")
+    @DisplayName("[Definitions] Teste Validität von True und False")
+    void _test_true_false_integrity() {
+        Assertions.assertNotEquals(Definitions.S_TRUE, Definitions.S_FALSE, "Bei Gleichheit wären die Werte nicht mehr eindeutig identifizierbar.");
+
+    }
 }
