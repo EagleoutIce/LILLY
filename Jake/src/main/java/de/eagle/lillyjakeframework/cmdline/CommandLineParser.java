@@ -35,7 +35,7 @@ import java.util.ArrayList;
  * @implNote es gibt noch eine weitere Neuerung zum Cpp-Parser. während dieser
  *           CmdLine-Argumente durch Konfigurationen überschrieben hat so haben
  *           im Java modell die Kommandozeilen Argumente stets den Vorrang, sagt
- *           also die Befehlszeil name = A und eine Konfigurationsdatei name = B
+ *           also die Befehlszeile name = A und eine Konfigurationsdatei name = B
  *           so wird name = A übernommen!
  *
  * @author Florian Sihler

@@ -1,9 +1,12 @@
-package Jake.Core; /**
-                   * @file CoreFunctionsTest.java
-                   * @author Raphael Straub
-                   * @version 2.0.0
-                   * @brief Testet die Funktionen in CoreFunctions.java
-                   */
+package Jake.Core;
+/**
+ * @file CoreFunctionsTest.java
+ * @author Raphael Straub
+ * @author Florian Sihler
+ *
+ * @version 2.0.0
+ * @brief Testet die Funktionen in CoreFunctions.java
+*/
 
 import de.eagle.lillyjakeframework.cmdline.CommandLineParser;
 import de.eagle.lillyjakeframework.core.CoreFunctions;
@@ -13,35 +16,40 @@ import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 
+/**
+ * Die Funktionen {@link CoreFunctions#fkt_install(String[])}, {@link CoreFunctions#fkt_compile(String[])},
+ * {@link CoreFunctions#fkt_get} und {@link CoreFunctions#fkt_autoget(String[])} werden hier nicht getestet,
+ * da sie (in Teilen) auf andere Operationen zurückgreifen oder nur an diese Verweisen. Diese werden dann
+ * entsprechend separat getestet.
+ */
 @Tag("CoreFunctions")
 @DisplayName("Test der Funktionen in CoreFunctions")
 public class CoreFunctionsTest {
 
     /**
-     * Testet nicht wirklich etwas, aber deer Output von fkt_help ist sehr gut
-     *
      * @see CoreFunctions#fkt_help(String[])
-     *
-     * @note removed as no output in tests !
      */
     @Test
     @Order(1)
-    @DisplayName("Testet den fkt_help output")
+    @DisplayName("[CoreFunctions] Testet den fkt_help output")
     void _test_fkt_help() {
-        /* CoreFunctions.fkt_help(null); */
+        CoreFunctions.fkt_help(null);
+        Assertions.assertTrue(true, "Diese Funktion wird menschlich getestet und solange sie keinen Laufzeitfehler wirft als korrekt betrachtet.");
     }
 
     /**
      * Testet, ob Settings.dump() funktioniert, wenn keine .conf datei angegeben
      * wird
      *
+     * @see CoreFunctions#fkt_dump(String[])
+     *
      * @throws IOException Wird von settings.dump() verlangt, aber wird nie
      *                     geworfen, da keine .conf datei geöffnet wird
      */
     @Test
     @Order(2)
-    @DisplayName("Testet Settings.dump() ohne .conf datei")
-    void _test_Settings_dump_default() throws IOException {
+    @DisplayName("[CoreFunctions] Testet Settings.dump() ohne .conf datei")
+    void _test_fkt_dump() throws IOException {
         String[] arg_arr = "-name:#TollerName#waffel#-testtoggle".split("\\s*#\\s*");
         String[] exp_arr = "name#TollerName#operation#waffel#testtoggle#false".split("\\s*#\\s*");
         Settings settings = new Settings("TestSettings");
@@ -49,40 +57,29 @@ public class CoreFunctionsTest {
         String[] a = settings.dump();
         for (int i = 0; i < a.length; i++)
             Assertions.assertTrue(a[i].contains(exp_arr[2 * i + 1]));
-
+        CoreFunctions.fkt_dump(null);
+        Assertions.assertTrue(true, "Diese Funktion wird menschlich getestet und solange sie keinen Laufzeitfehler wirft als korrekt betrachtet.");
     }
 
     /**
-     * Testet, ob Settings.dump() funktioniert, wenn eine .conf datei angegeben wird
-     *
-     * @throws IOException Wenn die gegebene .conf datei nicht gefunden wird
+     * @see CoreFunctions#fkt_tokentest(String[])
      */
     @Test
     @Order(3)
-    @DisplayName("Testet Settings.dump() mit .conf datei")
-    void _test_Settings_dump_conf() throws IOException {
-        String[] arg_arr = "/Configs/WorkingExample.conf".split("\\s*#\\s*");
-        Settings settings = new Settings("TestSettings");
-        CommandLineParser.parse_args(arg_arr, settings);
-        String[] a = settings.dump();
-        // for (String b : a) {
-        // JakeWriter.out.println(b);
-        /**
-         * TODO @Yellow: Change to
-         * {@link de.eagle.util.constants.ColorConstants#STY_PARAM}
-         */
-        /*
-         * Assertions.assertTrue(("  lilly-print-name    : \033[2;3;51m[Druck-]" +
-         * "  file                : \033[2;3;51m[Mitschrieb-GDBS.tex]\n" +
-         * "  debug               : \033[2;3;51m[true]\n" +
-         * "  lilly-boxes         : \033[2;3;51m[LIMERENCE]\n" +
-         * "  lilly-modes         : \033[2;3;51m[c_print c_default]\n" +
-         * "  lilly-show-boxname  : \033[2;3;51m[false]\n" +
-         * "  operation           : \033[2;3;51m[file_compile]\n" +
-         * "  lilly-external      : \033[2;3;51m[true]").contains(b), "");
-         */
-        // This Test was rated Insufficient
-        // }
+    @DisplayName("[CoreFunctions] Teste fkt_tokentest")
+    void _test_fkt_tokentest() {
+        CoreFunctions.fkt_tokentest(null);
+        Assertions.assertTrue(true, "Diese Funktion wird menschlich getestet und solange sie keinen Laufzeitfehler wirft als korrekt betrachtet. Sie basiert auf der Funktionalität des Tokenizer");
     }
 
+    /**
+     * @see CoreFunctions#fkt_config(String[])
+     */
+    @Test
+    @Order(4)
+    @DisplayName("[CoreFunctions] Teste fkt_config")
+    void _test_fkt_config() {
+        // CoreFunctions.fkt_config(null);
+        Assertions.assertTrue(true, "Diese Funktion wird menschlich getestet. Sie basiert auf der Funktionalität des Configurator");
+    }
 }

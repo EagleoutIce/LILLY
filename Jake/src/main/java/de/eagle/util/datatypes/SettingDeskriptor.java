@@ -255,6 +255,11 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
     }
 
     /**
+     * @return Liefert den Typ der jeweiligen Einstellung
+     */
+    public eSetting_Type getType() { return this.type; }
+
+    /**
      * Klassisches .equals()
      *
      * @param obj zu vergleichendes Objekt
@@ -269,9 +274,9 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
             return false;
         SettingDeskriptor<T> t = (SettingDeskriptor<T>) obj;
         if (this.getValue() == null)
-            return t.getValue() == null;
+            return t.getValue() == null && t.getType() == this.getType();
         return (t.getName().equals(this.getName())) && (t.isMandatory() == this.isMandatory())
-                && (t.getValue().equals(this.getValue()));
+                && (t.getValue().equals(this.getValue())) && t.getType() == this.getType();
         // Notiz: Es ist gestattet, dass es sich bei einer Einstellung um
         // eine gesperrte Handelt, während die andere Änderungen zulässt
     }

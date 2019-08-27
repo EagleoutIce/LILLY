@@ -39,6 +39,8 @@ import static de.eagle.util.io.JakeLogger.*;
  * Enthält viele Funktionen
  *
  * @author Raphael Straub
+ * @author Florian Sihler
+ *
  * @version 2.0.0
  * @since 2.0.0
  */
@@ -226,7 +228,7 @@ public final class CoreFunctions {
         Settings expandables = new Settings("expandables");
         String lPath = "";
         try {
-            expandables = Expandables.expandsCS();
+            expandables = Expandables.getInstance().expandsCS();
             lPath = Executer.runBashCommand("printf " + CoreSettings.requestValue("S_LILLY_PATH")).readLine();
         } catch (IOException e) {
 
@@ -240,7 +242,9 @@ public final class CoreFunctions {
             Desktop.getDesktop().open(
                     new File(lPath + "/source/Data/Graphics/all-OUT/all.pdf"));
         } catch (IOException e) {
-            e.printStackTrace();
+            JakeWriter.err.println("Opening failed for some reason, trying to open with 'xdg-open'");
+            Executer.runBashCommand("xdg-open \"" + lPath + "/source/Data/Graphics/all-OUT/all.pdf" + "\"");
+            //e.printStackTrace();
         }
         // String suff = "";
         // if(!CoreSettings.requestValue("S_WHAT").isEmpty())

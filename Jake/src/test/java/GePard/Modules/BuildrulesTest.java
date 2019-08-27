@@ -40,7 +40,7 @@ public class BuildrulesTest {
             "complete-prefix,c_,false", "lilly-complete-prefix,COMPLETE-,false", "nameprefix,#,false",
             "lilly-loader,\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)},false" })
     void _test_gepard_buildrules_blueprint(String name, String expected, String mandatory) {
-        SettingDeskriptor<String> s = Buildrules.getBlueprint().get(name);
+        SettingDeskriptor<String> s = Buildrules.getInstance().getBlueprint().get(name);
         Assertions.assertNotNull(s, "Die Einstellung muss Existieren");
         if (mandatory.equals(Definitions.S_TRUE)) {
             Assertions.assertTrue(s.isMandatory, "Die Einstellung soll verpflichtend sein!");
@@ -67,7 +67,7 @@ public class BuildrulesTest {
             "c_default~SettingDeskriptor [brief=Complete Standard-Buildrule, isMandatory=false, name=c_default, type=IS_TEXT, value=./OUTPUT/COMPLETE-!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: COMPLETE-Standard]",
             "c_print~                        \"c_print~SettingDeskriptor [brief=Complete Druck-Buildrule, isMandatory=false, name=c_print, type=IS_TEXT, value=./OUTPUT/COMPLETE-Druck!\\\\\\\\providecommand\\\\\\\\LILLYxMODE{print}\\\\\\\\providecommand\\\\\\\\LILLYxMODExEXTRA{TRUE},\\\"\\\\\\\\input{$(INPUTDIR)$(TEXFILE)}\\\"]\"},delimiter = '~')" }, delimiter = '~')
     void _test_gepard_buildrules_defaults(String should_exist, String should_be) {
-        Assertions.assertNotNull(Buildrules.getDefaults().get(should_exist), "Default-Einstellung muss existieren");
+        Assertions.assertNotNull(Buildrules.getInstance().getDefaults().get(should_exist), "Default-Einstellung muss existieren");
         // JakeWriter.out.println(Buildrules.getDefaults().get(should_exist));
         // TODO hihi - color information doesn't copy from output
 
@@ -87,7 +87,7 @@ public class BuildrulesTest {
         String expected = "JObject [config=Settings [name=Blueprintempty, unknownPolicy=true, settings={lilly-mode=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=lilly-mode, type=IS_TEXT, value=default], lilly-complete-prefix=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=lilly-complete-prefix, type=IS_TEXT, value=COMPLETE-], display-name=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=display-name, type=IS_TEXT, value=Standard], complete-prefix=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=complete-prefix, type=IS_TEXT, value=c_], name=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=name, type=IS_TEXT, value=default], nameprefix=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=nameprefix, type=IS_TEXT, value=MY-DEFAULT-], complete=SettingDeskriptor [brief=Unknown Setting, isMandatory=false, name=complete, type=IS_TEXT, value=false]}], name=buildrule]";
         Assertions.assertEquals(expected, j[0].toString());
         // Bis hier hin sollte alles schon klappen ^^
-        Settings s = Buildrules.parseBox(j[0], false);
+        Settings s = Buildrules.getInstance().parseBox(j[0], false);
         /**
          * Assertions.assertEquals("buildrule", s.getName(),"Name soll default sein");
          * Assertions.assertEquals("Standard", s.getValue("display-name"),"Anzeige-name

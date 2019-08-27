@@ -53,8 +53,6 @@ import de.eagle.util.io.JakeWriter;
  */
 public class JakeCompile {
 
-    Settings expandables = new Settings("Expandables TODO");
-
     /**
      * Der eigentliche kompilierungsprozess - Jaiks
      *
@@ -64,7 +62,7 @@ public class JakeCompile {
      */
     public static ReturnStatus compile(String[] command) throws IOException {
         JakeLogger.writeLoggerDebug1("Jake versucht nun das Lilly-Dokument zu kompilieren", "compile");
-        Settings expandables = Expandables.expandsCS();
+        Settings expandables = Expandables.getInstance().expandsCS();
 
         String targetFile = getTargetFile();
 
@@ -93,7 +91,7 @@ public class JakeCompile {
 
         // System.out.println(CoreSettings.requestValue("S_FILE"));
         Settings update_config = NameMaps.whatTrigger(
-                NameMaps.getNameMaps(CoreSettings.requestValue("S_GEPARDRULES_PATH")),
+                NameMaps.getInstance().getNameMaps(CoreSettings.requestValue("S_GEPARDRULES_PATH")),
                 CoreSettings.requestValue("S_FILE"));
 
         if (update_config.size() > 0) {
@@ -107,12 +105,12 @@ public class JakeCompile {
             Configurator config_update = new Configurator(
                     new ByteArrayInputStream(new_config.toString().getBytes(Charset.defaultCharset())));
             config_update.parse_settings(CoreSettings.settings, false);
-            expandables = Expandables.expandsCS();
+            expandables = Expandables.getInstance().expandsCS();
         }
         writeLoggerDebug1("Jake Footprint: " + Definitions.PRG_BRIEF + " (" + PropertiesProvider.getNow() + ")",
                 "compile"); // TODO: change to real compile date
 
-        Settings all_hooks = Hooks.getHooks(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+        Settings all_hooks = Hooks.getInstance().getHooks(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
         // Expandables.expandSettings(all_hooks); // hooks will now be lazy-expanded
 
         try {
@@ -128,7 +126,7 @@ public class JakeCompile {
         RequestClean();
 
         // execute PRE-Hooks
-        Hooks.executeHooks(all_hooks, "PRE");
+        Hooks.getInstance().executeHooks(all_hooks, "PRE");
 
         Path lilly_log_out = Paths.get(CoreSettings.requestValue("S_LILLY_OUT"), "LILLY_COMPILE.log");
         File f_lilly_log_out = lilly_log_out.toFile();
@@ -138,7 +136,7 @@ public class JakeCompile {
         llo.close();
         writeLoggerDebug2("Write init sequence...", "compile");
 
-        Settings b_rules = Buildrules.parseRules(CoreSettings.requestValue("S_GEPARDRULES_PATH"),
+        Settings b_rules = Buildrules.getInstance().parseRules(CoreSettings.requestValue("S_GEPARDRULES_PATH"),
                 CoreSettings.requestSwitch("S_LILLY_COMPLETE"));
         String[] buildrules = CoreSettings.requestValue("S_LILLY_MODES").split(" +");
 
@@ -178,7 +176,7 @@ public class JakeCompile {
         }
 
         // execute POST Hooks
-        Hooks.executeHooks(all_hooks, "POST");
+        Hooks.getInstance().executeHooks(all_hooks, "POST");
 
         // Autoclean ?
         RequestClean();
@@ -296,9 +294,9 @@ public class JakeCompile {
                 int fb = 0;
                 for (int i = 0; i < Integer.parseInt(CoreSettings.requestValue("S_LILLY_COMPILETIMES")); i++) {
                     // execute IN-hooks
-                    synchronized (Expandables.finalName) {
+                    synchronized (Hooks.getInstance()) {
                         Expandables.finalName = final_name + ".pdf";
-                        Hooks.executeHooks(all_hooks, "IN" + i);
+                        Hooks.getInstance().executeHooks(all_hooks, "IN" + i);
                     }
                     writeLoggerInfo("Kreiere Latex-Datei (führe pdflatex aus)...", tag);
                     StringBuilder compileCommand = new StringBuilder();
@@ -408,17 +406,8 @@ public class JakeCompile {
                                         .quoteReplacement(ColorConstants.COL_GOLD + rp + ColorConstants.COL_RESET));
                             }
                             if (cur.isBlank() && lines[k + 1].isBlank() || lines[k - 1].contains("X <return>  to quit.")
-                                    || lines[k + 1].startsWith("!")) { // zwei
-                                                                       // leerzeilen
-                                                                       // oder
-                                                                       // letzte
-                                                                       // war das
-                                                                       // quit-Angebot
-                                                                       // oder nächst
-                                                                       // ist ein neuer
-                                                                       // fehler
-                                                                       // =>
-                                                                       // abbruch
+                                    || lines[k + 1].startsWith("!")) { // zwei  leerzeilen oder letzte war das quit-Angebot
+                                                                       // oder nächst ist ein neuer Fehler => abbruch
                                 JakeWriter.out.println();
                                 break;
                             }

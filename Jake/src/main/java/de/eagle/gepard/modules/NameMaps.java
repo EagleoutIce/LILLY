@@ -16,47 +16,62 @@ import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
 
-// Information:
-// Alle "Entspricht ..." Kommentare gilt es zu ändern!
-
 /**
  * Bearbeitet Boxen mit dem Bezeichner {@value box_name}
  */
-public class NameMaps {
+public class NameMaps extends AbstractGepardModule {
     /**
      * Name der NameMap-Box
      */
     public static final String box_name = "nmap";
 
     /**
+     * Konstruiert das GepardModul
+     */
+    private NameMaps() {
+        super(box_name, true);
+    }
+
+    private static NameMaps tInstance = null;
+
+    public static NameMaps getInstance() {
+        if(tInstance == null)
+            tInstance = new NameMaps();
+        return tInstance;
+    }
+
+
+    /**
+     * Gespeicherte Blaupause, die es ermöglicht, die entsprechende Blaupause nur einmal pro Klasse
+     * zu generieren.
+     */
+    protected static Settings blueprint = null;
+
+    /**
      * @return die Blaupause für die Einstellungen
      */
-    public static Settings getBlueprint() {
+    @Override
+    public Settings getBlueprint() {
         if (blueprint == null) {
             blueprint = new Settings("<Blueprint> NameMaps",true, new HashMap<>());
             // ---- Mandatories
             blueprint.put("name", SettingDeskriptor.create("name", "Interner Name des Mappings", eSetting_Type.IS_TEXT, true));
             blueprint.put("patterns", SettingDeskriptor.create("patterns", "Komma-separierte Liste der Patterns, Strings werden akzeptiert", eSetting_Type.IS_TEXT, true));
                 /* ZUDEM: ALLE in settings erlaubten Einstellungen können 
-     * angefügt werden. Sie werden dann gesetzt, wenn das 
-     * entsprechende Pattern anschlägt.
-     */
+                 * angefügt werden. Sie werden dann gesetzt, wenn das
+                 * entsprechende Pattern anschlägt.
+                 */
         }
         return blueprint;
     }
-
-    /**
-     * Entspricht expandables Settings
-     */
-    private static Settings blueprint = null;
-
 
     /**
      * Entspricht get_default_expandables
      *
      * @return Standardeinstellungen
      */
-    public static Settings getDefaults() {
+    @Override
+    public Settings getDefaults() {
         Settings settings = new Settings("<Default> NameMaps", true, new HashMap<>());
 
     /* cSpell:disable */
@@ -85,6 +100,7 @@ public class NameMaps {
         return settings;
     }
 
+
     /**
      * Bearbeitet eine komplette Datei
      *
@@ -93,33 +109,12 @@ public class NameMaps {
      * @throws IOException Im Falle eines Fails von
      *                     {@link GeneratorParser#parseFile(String, Settings, boolean)}
      */
-    public static Settings getNameMaps(String rulefiles) throws IOException {
+    public Settings getNameMaps(String rulefiles) throws IOException {
         if (rulefiles.isEmpty())
             return getDefaults();
 
         GeneratorParser gp = new GeneratorParser(rulefiles);
-        return parseRules(gp.parseFile(NameMaps.box_name, NameMaps.getBlueprint(), true));
-    }
-
-    /**
-     * Entspricht dem Parse Teil für NameMaps (foreach)
-     *
-     * @param boxes    Array aller gefundenen Boxen
-     *
-     * @implNote Die MetaInformationen sind jeweils in brief kodiert.
-     *
-     * @see AbstractSettings#softJoin(AbstractSettings)
-     * @see AbstractSettings#hardJoin(AbstractSettings)
-     *
-     * @return Einstellungen der NameMaps konfiguriert sind
-     */
-    public static Settings parseRules(GeneratorParser.JObject[] boxes) {
-        Settings ret = new Settings("NameMaps Settings");
-        ret.softJoin(getDefaults());
-        for (GeneratorParser.JObject box : boxes) {
-            ret.softJoin(parseBox(box));
-        }
-        return ret;
+        return parseRules(gp.parseFile(NameMaps.box_name, getBlueprint(), add_unknown), false);
     }
 
     /**
@@ -130,7 +125,7 @@ public class NameMaps {
      * @return null, wenn es keine NameMap-Box war, sonst die entsprechende
      *         Einstellung
      */
-    public static Settings parseBox(GeneratorParser.JObject box) {
+    public Settings parseBox(GeneratorParser.JObject box, boolean ignored) {
         writeLoggerDebug1("Bearbeite nun: " + box.toString(), "NameMaps");
 
         Settings settings = new Settings(box.getName());
