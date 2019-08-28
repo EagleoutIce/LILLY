@@ -28,7 +28,7 @@ public class JakeWriter {
          * This will change the 'Console Output Stream' to the desired Target
          * @param out OutputStream
          */
-        public void reassignOut(AbstractConsoleWriter out){
+        public void reassignConsole(AbstractConsoleWriter out){
             this.out = out;
         }
 
@@ -54,7 +54,7 @@ public class JakeWriter {
             return this;
         }
         public MirrorStream format(String format, Object... args) {
-            if(mirrorLog) JakeLogger.writeLoggerInfo("Fromatting: \"" + format + "\" with: \"" + Arrays.toString(args) + "\"", "WRITER");
+            if(mirrorLog) JakeLogger.writeLoggerInfo("Formatting: \"" + format + "\" with: \"" + Arrays.toString(args) + "\"", "WRITER");
             if(mirrorConsole) out.format(format,args);
             return this;
         }

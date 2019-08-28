@@ -1,13 +1,10 @@
 package Jake.Compiler;
-import org.junit.jupiter.api.Tag;
-
 import de.eagle.lillyjakeframework.compiler.JakeCompile;
 import de.eagle.util.helper.PropertiesProvider;
+import org.junit.jupiter.api.*;
 
 import java.io.File;
 import java.io.IOException;
-
-import org.junit.jupiter.api.*;
 
 @Tag("JakeCompiler")
 public class JakeCompilerTest {

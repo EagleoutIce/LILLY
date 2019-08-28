@@ -10,8 +10,10 @@ package Jake.Core;
 
 import de.eagle.lillyjakeframework.cmdline.CommandLineParser;
 import de.eagle.lillyjakeframework.core.CoreFunctions;
-
 import de.eagle.util.datatypes.Settings;
+import de.eagle.util.io.ConsolePrintStream;
+import de.eagle.util.io.JakeWriter;
+import de.eagle.util.io.VoidPrintStream;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -25,6 +27,18 @@ import java.io.IOException;
 @Tag("CoreFunctions")
 @DisplayName("Test der Funktionen in CoreFunctions")
 public class CoreFunctionsTest {
+
+    @BeforeAll
+    public static void silence_output(){
+        JakeWriter.out.reassignConsole(new VoidPrintStream());
+        JakeWriter.err.reassignConsole(new VoidPrintStream());
+    }
+
+    @AfterAll
+    public static void reenable_output(){
+        JakeWriter.out.reassignConsole(new ConsolePrintStream(System.out));
+        JakeWriter.err.reassignConsole(new ConsolePrintStream(System.err));
+    }
 
     /**
      * @see CoreFunctions#fkt_help(String[])

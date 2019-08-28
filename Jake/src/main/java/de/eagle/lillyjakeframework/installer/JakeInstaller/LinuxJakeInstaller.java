@@ -206,7 +206,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
                 return true; 
             }
 
-            String tpath = Executer.getPath("/scripts/install/bash/linux_install.sh");
+            String tpath = Executer.getSHPath("/scripts/install/bash/linux_install.sh");
 
             String[] bargs = new String[]{"x-terminal-emulator", "-e", "bash", tpath}; // todo make method with LinuxInstallPackages and remove terminal if not neccssar
             String[] args = new String[pkgs.length + bargs.length];

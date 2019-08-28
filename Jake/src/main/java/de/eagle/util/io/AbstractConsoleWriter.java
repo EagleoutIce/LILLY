@@ -18,6 +18,7 @@ package de.eagle.util.io;
  *
  * @see ConsolePrintStream
  * @see TextAreaConsoleStream
+ * @see VoidPrintStream
  *
  * @version 1.0.0
  * @since 2.0.0

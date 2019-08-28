@@ -133,9 +133,9 @@ public class GUICompile extends JFrame {
                     // Set correct Input and Output-Base as the File can be from another directory :D
                     JakeDocument jd = new JakeDocument(new File(tfFMainFile.getText()));
                     // We will try to assign the in and output file relative to the File location :D
-                    //JakeWriter.out.println("Setting user directory: " + PropertiesProvider.setUserDirectoy(jd.getPath().getParentFile().getAbsolutePath()));
+                    //JakeWriter.out.println("Setting user directory: " + PropertiesProvider.setUserDirectoy(jd.getSHPath().getParentFile().getAbsolutePath()));
                     Definitions.setRelativeWorkingDir(jd.getPath().getParentFile().getAbsolutePath());
-                    //CoreSettings.set(CoreSettings.getTranslator().translate("S_LILLY_IN"), jd.getPath().getParentFile().getAbsolutePath() + "/");
+                    //CoreSettings.set(CoreSettings.getTranslator().translate("S_LILLY_IN"), jd.getSHPath().getParentFile().getAbsolutePath() + "/");
 
                     if (!new File(CoreSettings.requestValue("S_LILLY_IN")).isAbsolute())
                         CoreSettings.assignValue("S_LILLY_IN", String.valueOf(Paths.get(Definitions.getRelativeWorkingDir(), CoreSettings.requestValue("S_LILLY_IN")) + "/"));

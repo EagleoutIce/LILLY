@@ -5,8 +5,11 @@ import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.GUICompile;
 import de.eagle.lillyjakeframework.gui.core.InstallJake;
+import de.eagle.lillyjakeframework.installer.LillyInstaller.LinuxLillyInstaller;
+import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.helper.PropertiesProvider;
+import de.eagle.util.helper.ResourceControl;
 import de.eagle.util.io.JakeWriter;
 
 import java.io.IOException;
@@ -70,6 +73,13 @@ public class Jake {
             } catch (IOException what) {
                 writeLoggerError("Es gab einen Fehler beim Lesen der Default-Konfiguration", "Jake");
             }
+            // Test, if there's an Update for the existing Lilly-Installation
+            if(PropertiesProvider.getOS().equals(PropertiesProvider.OS.LINUX) && ResourceControl.LillyInJarIsNewer()) {
+                // Installiere neue Version
+                writeLoggerInfo("Es wird die Lilly-Version aktualisiert: " + LinuxLillyInstaller.installIncluded(), "Jake");
+                JakeWriter.out.println(ColorConstants.COL_CYAN + "[Die Lilly-Installation wurde aktualisiert.]" + ColorConstants.COL_RESET);
+            }
+
         }
         if (args.length > 0 && args[0].equals("GUI")) {
             Definitions.GUI = true;

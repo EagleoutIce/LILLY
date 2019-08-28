@@ -24,15 +24,30 @@ import java.io.*;
  */
 public class Executer {
     /**
+     * Kopiert eine Datei aus dem Resource-Folder ins Temp-Verzeichnis
      *
+     * @see Cloner#cloneFileRessource(String,String)
      * @param path der Pfad im ressource folder
      * @return path im temp-verzeichnis
      */
-    public static String getPath(String path) throws IOException {
+    public static String getSHPath(String path) throws IOException {
         // Copy file to temp place
-        // @see Cloner#cloneFileRessource(String,String)
-        BufferedReader in = new BufferedReader(new InputStreamReader(Executer.class.getResourceAsStream(path)));
-        File outf = File.createTempFile("jake-tmp", ".sh");
+        return getPath(new InputStreamReader(Executer.class.getResourceAsStream(path)),".sh");
+    }
+
+    /**
+     * Kopiert die Daten eines InputStreamReaders ins Temp-Verzeichnis
+     *
+     * @see Cloner#cloneFileRessource(String,String)
+     *
+     * @param suffix Das Suffix der Datei
+     * @param inpr die einzulesenden Daten
+     * @return path im temp-verzeichnis
+     */
+    public static String getPath(InputStreamReader inpr, String suffix) throws IOException {
+        // Copy file to temp place
+        BufferedReader in = new BufferedReader(inpr);
+        File outf = File.createTempFile("jake-tmp", suffix);
         BufferedWriter out = new BufferedWriter(new FileWriter(outf));
         String s;
         while ((s = in.readLine()) != null) {

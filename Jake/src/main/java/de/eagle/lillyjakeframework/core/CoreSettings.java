@@ -167,7 +167,7 @@ public class CoreSettings {
 
         // Generelle Einstellungen
         settings.emplace(st, "S_OPERATION", "Was soll getan werden?", eSetting_Type.IS_OPERATION, "help");
-        settings.emplace(st, "S_FILE", "Wie soll die Datei heißen?", eSetting_Type.IS_FILE, "dummy.tex");
+        settings.emplace(st, "S_FILE", "Wie soll die Datei heißen?", eSetting_Type.IS_TEXT /* Da nicht wirklich existent, kann auch erstellt werden! */, "dummy.tex");
         settings.emplace(st, "S_DEBUG", "Sollen Meldungen ausgegeben werden?", eSetting_Type.IS_SWITCH, "false");
         settings.emplace(st, "S_DEBUG_FILTER", "Regex-Expression welche Debug-Nachrichten anzuzeigen sind!",
                 eSetting_Type.IS_TEXT, ".*");

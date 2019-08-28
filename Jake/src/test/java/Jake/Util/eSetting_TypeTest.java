@@ -1,5 +1,15 @@
 package Jake.Util;
 
+/**
+ * @file eSetting_TypeTest.java
+ *
+ * @author Florian Sihler
+ * @version 1.0.0
+ * @since 2.0.0
+ *
+ * Testet {@link de.eagle.util.enumerations.eSetting_Type} auf Integrität
+ */
+
 import de.eagle.lillyjakeframework.core.CoreFunctions;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
