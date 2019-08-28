@@ -77,7 +77,6 @@ public class ResourceControl {
         } catch (IOException ignored) { }
         // Check if Lilly is installed by jar (sloppy)
         if(!new File(out + "/Lilly.cls").isFile()){
-            System.err.println("Not installed :D");
             return false;
         }
         // Check if the Lilly.cls is newer:
