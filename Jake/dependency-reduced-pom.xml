@@ -6,6 +6,22 @@
   <name>Jake</name>
   <version>2.0.0-DEVELOPMENT</version>
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>../Lilly</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/main/resources</directory>
+      </testResource>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
     <finalName>development-jake</finalName>
     <plugins>
       <plugin>
@@ -21,15 +37,11 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <encoding>${project.build.sourceEncoding}</encoding>
               <transformers>
                 <transformer>
                   <mainClass>de.eagle.lillyjakeframework.Jake</mainClass>
                 </transformer>
               </transformers>
-              <compilerArgs>
-                <arg>--add-opens java.base/java.lang=ALL-UNNAMED</arg>
-              </compilerArgs>
             </configuration>
           </execution>
         </executions>

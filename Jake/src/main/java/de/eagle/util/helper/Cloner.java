@@ -12,13 +12,12 @@ package de.eagle.util.helper;
 
 import de.eagle.util.interfaces.iRealCloneable;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URISyntaxException;
+import java.nio.file.FileSystem;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 
 /**
  * Versucht mithilfe von Javas Reflection-Mechanismen ein Objekt zu Clonen, da
@@ -83,5 +82,40 @@ public class Cloner<T> implements iRealCloneable<T> {
         in.close();
         out.close();
         return dst;
+    }
+
+    /**
+     * Will copy a whole directory from the Jar to an external Directory
+     *
+     * Taken from: <a href="https://stackoverflow.com/questions/1386809/copy-directory-from-a-jar-file">Stackoverflow</a>
+     *
+     * @param source the resource path
+     * @param target the target Path
+     * @throws URISyntaxException In case of a malformed URI
+     * @throws IOException reading fails
+     */
+    public static void copyFromJar(String source, final Path target) throws URISyntaxException, IOException {
+        FileSystem fileSystem = ResourceControl.getFs();
+
+        final Path jarPath = fileSystem.getPath(source);
+
+        Files.walkFileTree(jarPath, new SimpleFileVisitor<Path>() {
+
+            private Path currentTarget;
+
+            @Override
+            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+                currentTarget = target.resolve(jarPath.relativize(dir).toString());
+                Files.createDirectories(currentTarget);
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                Files.copy(file, target.resolve(jarPath.relativize(file).toString()), StandardCopyOption.REPLACE_EXISTING);
+                return FileVisitResult.CONTINUE;
+            }
+
+        });
     }
 }

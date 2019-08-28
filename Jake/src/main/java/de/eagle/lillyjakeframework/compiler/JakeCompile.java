@@ -54,7 +54,7 @@ import static de.eagle.util.io.JakeLogger.*;
 public class JakeCompile {
 
     /**
-     * Der eigentliche kompilierungsprozess - Jaiks
+     * Der eigentliche Kompilierungsprozess - Jaiks
      *
      * @param command der Befehl aus der Kommandozeile
      * @return 0 wenn alles gut verlaufen ist

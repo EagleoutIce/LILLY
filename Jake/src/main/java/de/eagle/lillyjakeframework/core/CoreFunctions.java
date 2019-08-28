@@ -139,6 +139,11 @@ public final class CoreFunctions {
      * @return
      */
     public static ReturnStatus fkt_install(String[] cmd) {
+        try {
+            Expandables.getInstance().expandsCS();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         PropertiesProvider.getLillyInstaller(false).automatedInstall();
         // Hier wird nicht Jake sondern LILLY entsprechend installiert - JAY
         return ReturnStatus.EXIT_SUCCESS;

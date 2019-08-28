@@ -11,7 +11,6 @@ package de.eagle.util.datatypes;
  * @brief Repräsentiert ein von Jake handhabbares Dokument.
  */
 
-
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.lillyjakeframework.core.CoreSettings;
@@ -190,7 +189,8 @@ public class JakeDocument {
     }
 
     /**
-     * @return sets contents of the File
+     * sets contents of the File
+     * @param data the new Contens of the File
      */
     public void setFileContents(ArrayList<String> data){
         fileLines = data;
@@ -389,10 +389,12 @@ public class JakeDocument {
                 return false;
             }
         }
+        for (var l : listeners) l.JakeDocument_Loaded();
         return false;
     }
 
     public Map<String,String> getMetadata(){
+        if(getPath() == null) return null;
         HashMap<String,String> metadata = new HashMap<>();
         metadata.put("File-Name", path.getName());
         metadata.put("File-Path", path.getPath());

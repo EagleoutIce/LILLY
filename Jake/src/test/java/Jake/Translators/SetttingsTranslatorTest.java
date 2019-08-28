@@ -1,5 +1,16 @@
 package Jake.Translators;
 
+/**
+ * @file SettingsTranslatorTest.java
+ *
+ * @author Florian Sihler
+ * @version 1.0.0
+ * @since 2.0.0
+ *
+ * Testet {@link de.eagle.lillyjakeframework.translators.SettingsTranslator} auf Integrität
+ *
+ */
+
 import de.eagle.lillyjakeframework.translators.SettingsTranslator;
 import org.junit.jupiter.api.*;
 

@@ -80,7 +80,7 @@ public class ExpandablesTest {
     @DisplayName("[Expandables] Überprüft das Parsen einer Datei mit Boxen")
     void _test_gepard_expandables_parse() throws IOException {
         // Get the config file to a general Location
-        String path = Executer.getPath("/Gepard/ExpandablesSimple.gpd");
+        String path = Executer.getSHPath("/Gepard/ExpandablesSimple.gpd");
         Settings expandables = Expandables.getInstance().getExpandables(path);
 
         // The Defaults shall still exist/be altered:

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @class TextAreaConsoleStream
  *
  * This is a simple Class that makes it possible to attach an OutputStream to a TextArea.
- * Used in Combination with {@link de.eagle.util.io.JakeWriter.MirrorStream#reassignOut(AbstractConsoleWriter)}
+ * Used in Combination with {@link de.eagle.util.io.JakeWriter.MirrorStream#reassignConsole(AbstractConsoleWriter)}
  * to redirect the {@link JakeWriter}-Calls.
  *
  * @author Florian Sihler

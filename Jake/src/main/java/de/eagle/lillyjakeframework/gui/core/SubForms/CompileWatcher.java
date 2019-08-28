@@ -147,8 +147,8 @@ public class CompileWatcher extends JDialog {
             }
         }
         //AbstractConsoleWriter out = new TextAreaConsoleStream(taOutput);
-        //JakeWriter.out.reassignOut(out);
-        //JakeWriter.err.reassignOut(out);
+        //JakeWriter.out.reassignConsole(out);
+        //JakeWriter.err.reassignConsole(out);
 
         new AsyncLaunchCompile(args).start(); // Running Asynchronous for now as testing purpose this needs to change to a Future call :D
 
@@ -178,8 +178,8 @@ public class CompileWatcher extends JDialog {
     }
 
     public void onCancel() {
-        JakeWriter.out.reassignOut(new ConsolePrintStream(System.out));
-        JakeWriter.err.reassignOut(new ConsolePrintStream(System.err));
+        JakeWriter.out.reassignConsole(new ConsolePrintStream(System.out));
+        JakeWriter.err.reassignConsole(new ConsolePrintStream(System.err));
     }
 
     public static void main(String[] args) {

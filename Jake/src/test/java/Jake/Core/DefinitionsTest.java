@@ -38,6 +38,17 @@ class DefinitionsTest {
     @DisplayName("[Definitions] Teste Validität von True und False")
     void _test_true_false_integrity() {
         Assertions.assertNotEquals(Definitions.S_TRUE, Definitions.S_FALSE, "Bei Gleichheit wären die Werte nicht mehr eindeutig identifizierbar.");
+    }
+
+    @Test
+    @Tag("Meta")
+    @DisplayName("[Definitions] Teste Validität relativeWorkingDir")
+    void _test_set_and_get_relative_working_dir() {
+        Assertions.assertEquals(Definitions.getRelativeWorkingDir(), "", "We want to start with an empty relative dir");
+        Definitions.setRelativeWorkingDir("Hallo/Welt");
+        Assertions.assertEquals(Definitions.getRelativeWorkingDir(), "Hallo/Welt", "set sollte wie erwartet funktionieren");
+        Definitions.setRelativeWorkingDir("");
+        Assertions.assertEquals(Definitions.getRelativeWorkingDir(), "", "set sollte wie erwartet funktionieren");
 
     }
 }

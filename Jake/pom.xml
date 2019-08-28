@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XML/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         >
+    <!--xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"-->
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.eagle.lillyjakeframework</groupId>
@@ -10,6 +11,7 @@
     <packaging>jar</packaging>
 
     <name>Jake</name>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,6 +49,23 @@
 
     <build>
         <finalName>development-jake</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <!-- it will now include the current LILLY-BUILD -->
+                <directory>../Lilly</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/main/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -63,16 +82,12 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <encoding>${project.build.sourceEncoding}</encoding>
                             <transformers>
                                 <transformer implementation=
                                                      "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>de.eagle.lillyjakeframework.Jake</mainClass>
                                 </transformer>
                             </transformers>
-                            <compilerArgs>
-                                <arg>--add-opens java.base/java.lang=ALL-UNNAMED</arg>
-                            </compilerArgs>
                         </configuration>
                     </execution>
                 </executions>
