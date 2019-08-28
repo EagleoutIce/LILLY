@@ -1,5 +1,15 @@
 package de.eagle.util.helper;
 
+/**
+ * @file CommandLine.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Einige vereinfachende Befehle für die Verwendung in der Kommandozeile.
+ */
+
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.util.io.JakeWriter;
 

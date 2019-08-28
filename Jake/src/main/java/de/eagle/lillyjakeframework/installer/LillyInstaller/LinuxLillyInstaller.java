@@ -1,5 +1,15 @@
 package de.eagle.lillyjakeframework.installer.LillyInstaller;
 
+/**
+ * @file LinuxLillyInstaller.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Installiert Lilly auf einem Linuxioiden Betriebssystem
+ */
+
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.installer.AutoInstaller;

@@ -1,5 +1,16 @@
 package de.eagle.lillyjakeframework.core;
 
+/**
+ * @file CoreSettings.java
+ * @author Florian Sihler
+ * @version 1.0.9
+ *
+ * @since 2.0.0
+ *
+ * @brief enthält die Dokumentübergreifenden Einstellungen.
+ */
+
+
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.lillyjakeframework.translators.SettingsTranslator;
 import de.eagle.util.blueprints.Translator;
@@ -111,7 +122,7 @@ public class CoreSettings {
         // S_LILLY_CLEANS
         settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?",
                 eSetting_Type.IS_TEXTLIST,
-                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock ptc LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS");
+                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls ubp fdb_latexmk auxlock ptc LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS");
         // S_LILLY_EXTERNAL
         settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?",
                 eSetting_Type.IS_SWITCH, "false");
@@ -211,6 +222,17 @@ public class CoreSettings {
      */
     public static SettingDeskriptor<String> emplace(String key, String brief, eSetting_Type type, boolean isMandatory) {
         return settings.emplace(translator, key, brief, type, isMandatory);
+    }
+
+    /**
+     * Will take the Key and pass it through the Translator before assigning
+     *
+     * @param key the key (will be translated)
+     * @param value the value (won't be translated)
+     * @return {@link de.eagle.util.blueprints.AbstractSettings#set(Serializable, Serializable)}
+     */
+    public static boolean assignValue(String key, String value) {
+        return settings.set(getTranslator().translate(key), value);
     }
 
     /**

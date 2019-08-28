@@ -1,5 +1,15 @@
 package de.eagle.lillyjakeframework.installer.JakeInstaller;
 
+/**
+ * @file LinuxJakeInstaller.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Installiert Jake auf einem Linuxioiden Betriebssystem
+ */
+
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.LinuxInstallPackages;

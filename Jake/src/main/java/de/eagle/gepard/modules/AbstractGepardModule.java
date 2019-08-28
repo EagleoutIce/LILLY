@@ -1,5 +1,15 @@
 package de.eagle.gepard.modules;
 
+/**
+ * @file AbstractGepardModule.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ * @since 2.0.0
+ *
+ * @brief Stellt die Grundanforderungen an eine Gepardmodul
+ * @see de.eagle.gepard.parser.GeneratorParser
+ */
+
 import de.eagle.gepard.parser.GeneratorParser;
 import de.eagle.util.blueprints.AbstractSettings;
 import de.eagle.util.datatypes.Settings;

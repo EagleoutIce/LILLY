@@ -1,15 +1,26 @@
 package de.eagle.lillyjakeframework.cmdline;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
+/**
+ * @file Autocomplete.java
+ * @author Florian Sihler
+ * @version 1.0.4
+ *
+ * @since 2.0.0
+ *
+ * @brief Liefert die Vorschläge für die Autovervollständigung.
+ */
+
 
 import de.eagle.lillyjakeframework.core.CoreFunctions;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.enumerations.eSetting_Type;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 /**
  * Implementation der j_Autocomplete.cpp Stellt die Daten für eine

@@ -1,18 +1,6 @@
 package de.eagle.util.datatypes;
 
 import de.eagle.gepard.modules.Expandables;
-
-/**
- * @file Settings.java
- * @author Florian Sihler
- * @version 2.0.0
- *
- * @brief Die normalen Einstellungen für Jake und Co
- * @see de.eagle.util.datatypes.Settings.SettingDeskriptorStringList
- * @see de.eagle.util.datatypes.Settings.SettingDeskriptor
- * @see de.eagle.util.blueprints.AbstractSettings
- */
-
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
@@ -20,7 +8,6 @@ import de.eagle.util.blueprints.AbstractSettings;
 import de.eagle.util.blueprints.Translator;
 import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.enumerations.eSetting_Type;
-import de.eagle.util.datatypes.ReturnStatus;
 
 import java.io.*;
 import java.util.HashMap;
@@ -29,10 +16,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static de.eagle.lillyjakeframework.core.Definitions.S_TRUE;
 import static de.eagle.lillyjakeframework.core.Definitions.S_FALSE;
+import static de.eagle.lillyjakeframework.core.Definitions.S_TRUE;
 import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
 import static de.eagle.util.io.JakeLogger.writeLoggerDebug3;
+
+/**
+ * @file Settings.java
+ * @author Florian Sihler
+ * @version 2.0.0
+ * @brief Die normalen Einstellungen für Jake und Co
+ * @see Settings.SettingDeskriptorStringList
+ * @see Settings.SettingDeskriptor
+ * @see AbstractSettings
+ */
 
 public class Settings extends AbstractSettings<String, String> {
     private static final long serialVersionUID = 673856672235848508L;
@@ -247,7 +244,7 @@ public class Settings extends AbstractSettings<String, String> {
      *
      * @implNote wird meist nur fürs Debugging verwendet :D
      *
-     * @return Gleichheit der Objekte basierend auf der Spezifikation
+     * @return Gleichheit der Objekte basierend auf der \em Spezifikation
      */
     @Override
     public boolean equals(Object obj) {

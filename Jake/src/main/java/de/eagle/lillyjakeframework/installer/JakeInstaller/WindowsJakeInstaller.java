@@ -1,5 +1,15 @@
 package de.eagle.lillyjakeframework.installer.JakeInstaller;
 
+/**
+ * @file WindowsJakeInstaller.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Installiert Jake auf Windows.
+ */
+
 import de.eagle.lillyjakeframework.installer.AutoInstaller;
 
 public class WindowsJakeInstaller extends AutoInstaller {

@@ -1,5 +1,15 @@
 package de.eagle.lillyjakeframework.gui.core.Tools;
 
+/**
+ * @file ConfigEditor.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Erlaubt es im GUI-Modus, Konfigurationsdokumente zu editieren.
+ */
+
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;

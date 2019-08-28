@@ -1,5 +1,17 @@
 package de.eagle.util.datatypes;
 
+
+/**
+ * @file jakeDocument.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Repräsentiert ein von Jake handhabbares Dokument.
+ */
+
+
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.lillyjakeframework.core.CoreSettings;
