@@ -1,10 +1,21 @@
 package de.eagle.util.helper;
 
+/**
+ * @file Executer.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Erlaubt es Dokumente aus dem ResourceFolder auszuführen oder allgemein Konsolen-Befehle zu initiieren.
+ */
+
+
 // Allows to execute a shellscript from ressource folder
 
-import java.io.*;
-
 import de.eagle.util.io.JakeLogger;
+
+import java.io.*;
 
 /**
  * @author Florian Sihler

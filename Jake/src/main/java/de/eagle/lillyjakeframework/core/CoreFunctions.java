@@ -7,7 +7,7 @@ import de.eagle.gepard.modules.Expandables;
  * @author Raphael Straub
  * @version 2.0.0
  *
- * @brief Enthält viele Funktionen
+ * @brief Enthält die Funktionen der Kommandozeile
  */
 
 import de.eagle.gepard.parser.Configurator;

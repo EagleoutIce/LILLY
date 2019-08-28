@@ -1,5 +1,16 @@
 package de.eagle.gepard.modules;
 
+/**
+ * @file Analyse.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ * @since 2.0.0
+ *
+ * @brief Gepardmodul welches sich um die Analyse von Logfiles kümmert
+ * @see de.eagle.gepard.modules.AbstractGepardModule
+ * @see de.eagle.gepard.parser.GeneratorParser
+ */
+
 import de.eagle.gepard.parser.GeneratorParser;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.SettingDeskriptorStringList;

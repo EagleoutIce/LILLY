@@ -1,5 +1,16 @@
 package de.eagle.lillyjakeframework.gui.core.SubForms;
 
+/**
+ * @file CompileWatcher.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Überwacht den Kompiliervorgang im GUI-Modus
+ */
+
+
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import de.eagle.lillyjakeframework.compiler.JakeCompile;

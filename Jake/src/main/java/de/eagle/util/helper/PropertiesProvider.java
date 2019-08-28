@@ -1,11 +1,23 @@
 package de.eagle.util.helper;
 
+/**
+ * @file PropertiesProvider.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Liefert Eigenschaften über das Betriebssystem oder andere Meta-Basierte Informationen.
+ */
+
+
 import de.eagle.lillyjakeframework.installer.AutoInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.MacOSJakeInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.WindowsJakeInstaller;
 import de.eagle.lillyjakeframework.installer.LillyInstaller.LinuxLillyInstaller;
 
+import java.io.File;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -113,6 +125,9 @@ public class PropertiesProvider {
         return System.getProperty("java.io.tmpdir");
     }
 
+    /**
+     * @return Liefert den Pfad zur dieser Anwendung
+     */
     public static String getThisPath() {
         try {
             return PropertiesProvider.class.getProtectionDomain().getCodeSource().getLocation().toURI().toString().replaceFirst("file:", "");
@@ -123,6 +138,10 @@ public class PropertiesProvider {
         return ".";
     }
 
+    /**
+     * @param gui Soll der Installer mithilfe einer graphischen Oberfläche angezeigt werden.
+     * @return einen Installer für das entsprechende Betriebssystem
+     */
     public static AutoInstaller getJakeInstaller(boolean gui) {
         switch (PropertiesProvider.getOS()) {
             case LINUX:
@@ -136,6 +155,10 @@ public class PropertiesProvider {
         }
     }
 
+    /**
+     * @param gui Soll der Installer mithilfe einer graphischen Oberfläche angezeigt werden.
+     * @return einen Installer für Lilly, für das entsprechende Betriebssystem
+     */
     public static AutoInstaller getLillyInstaller(boolean gui) {
         switch (PropertiesProvider.getOS()) {
             case LINUX:
@@ -149,6 +172,11 @@ public class PropertiesProvider {
         }
     }
 
+    /**
+     * Überprüfe ob Jake installiert ist.
+     *
+     * @return true, wenn bereits installiert, sonst false.
+     */
     public static boolean isInstalled(){
         switch(getOS()) {
             case LINUX:
@@ -160,6 +188,19 @@ public class PropertiesProvider {
             default: // we don't care
                 return true;
         }
+    }
+
+    /**
+     * Set's the Working directory for the Program.
+     * @param dirname The new working directory
+     * @return false, if the operation failed (dir not exists etc.)
+     */
+    public static boolean setUserDirectoy(String dirname) {
+        File dir = new File(dirname).getAbsoluteFile();
+        if(dir.exists() || dir.mkdirs()) {
+            return System.setProperty("user.dir", dir.getAbsolutePath()) != null;
+        }
+        return false;
     }
 
 }

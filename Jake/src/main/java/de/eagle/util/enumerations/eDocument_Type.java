@@ -1,5 +1,15 @@
 package de.eagle.util.enumerations;
 
+/**
+ * @file eDocument_Type.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Typ eines ({@link de.eagle.util.datatypes.JakeDocument}) Dokuments
+ */
+
 import de.eagle.util.datatypes.JakeDocument;
 import de.eagle.util.datatypes.FunctionDeskriptor;
 

@@ -8,10 +8,9 @@
  */
 package de.eagle.lillyjakeframework.core;
 
-import java.io.InputStream;
-
-import de.eagle.lillyjakeframework.Jake;
 import de.eagle.util.enumerations.eProgress_State;
+
+import java.io.InputStream;
 
 /**
  * @author Florian Sihler
@@ -38,6 +37,23 @@ public class Definitions {
 
     public static final String S_TRUE = "true";
     public static final String S_FALSE = "false";
+
+    /**
+     * @return Returns the relative working directory
+     */
+    public static String getRelativeWorkingDir() {
+        return RELATIVE_WORKING_DIR;
+    }
+
+    /**
+     * @param relativeWorkingDir Sets the relative working dir
+     */
+    public static void setRelativeWorkingDir(String relativeWorkingDir) {
+        RELATIVE_WORKING_DIR = relativeWorkingDir;
+    }
+
+    public static String RELATIVE_WORKING_DIR = "";
+
 
     public static final int MAX_SETTINGS_REC = 12;
 

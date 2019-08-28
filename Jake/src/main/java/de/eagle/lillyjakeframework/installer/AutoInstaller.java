@@ -1,5 +1,15 @@
 package de.eagle.lillyjakeframework.installer;
 
+/**
+ * @file AutoInstaller.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Stellt die Anforderungen an einen Installer für Jake, damit dieser unabhängig vom zugrundeliegenden Betriebssystem aufgerufen werden kann.
+ */
+
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.util.datatypes.FunctionCollector;

@@ -1,8 +1,20 @@
 package de.eagle.gepard.modules;
 
-import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
-import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
-import static de.eagle.util.io.JakeLogger.writeLoggerDebug3;
+/**
+ * @file NameMaps.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ * @since 2.0.0
+ *
+ * @brief Gepardmodul welches NameMaps zur Verfügung stellt.
+ * @see de.eagle.gepard.modules.AbstractGepardModule
+ * @see de.eagle.gepard.parser.GeneratorParser
+ */
+
+import de.eagle.gepard.parser.GeneratorParser;
+import de.eagle.util.datatypes.SettingDeskriptor;
+import de.eagle.util.datatypes.Settings;
+import de.eagle.util.enumerations.eSetting_Type;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,11 +22,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.eagle.gepard.parser.GeneratorParser;
-import de.eagle.util.blueprints.AbstractSettings;
-import de.eagle.util.datatypes.SettingDeskriptor;
-import de.eagle.util.datatypes.Settings;
-import de.eagle.util.enumerations.eSetting_Type;
+import static de.eagle.util.io.JakeLogger.*;
 
 /**
  * Bearbeitet Boxen mit dem Bezeichner {@value box_name}

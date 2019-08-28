@@ -1,6 +1,6 @@
 package de.eagle.util.enumerations;
 /**
- * @file eSettings_Type.java
+ * @file eSetting_Type.java
  * @author Florian Sihler
  * @version 2.0.0
  *

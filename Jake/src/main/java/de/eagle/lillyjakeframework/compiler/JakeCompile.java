@@ -1,5 +1,16 @@
 package de.eagle.lillyjakeframework.compiler;
 
+/**
+ * @file JakeCompile.java
+ * @author Florian Sihler
+ * @version 1.0.9
+ *
+ * @since 2.0.0
+ *
+ * @brief Führt das Kompilieren eines Dokuments durch. Verwendet die Einstellungen aus {@link de.eagle.lillyjakeframework.core.CoreSettings}
+ *        und {@link de.eagle.lillyjakeframework.core.Definitions}
+ */
+
 import de.eagle.gepard.modules.Buildrules;
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.gepard.modules.Hooks;
@@ -29,11 +40,11 @@ import static de.eagle.util.io.JakeLogger.*;
 /**
  * @class JakeCompile
  *
- *        Diese Klasse verwaltet den Prozess einer kompilierung durch Jake
+ * @brief Diese Klasse verwaltet den Prozess einer kompilierung durch Jake
  *
- *        Diese Instanz ist der direkte Bruder von c_Jake.cpp aus Jake-Cpp und
- *        verwendet deswegen native Systemaufrufe, auch wenn diese in der Form
- *        nicht nötig wären!
+ * Diese Instanz ist der direkte Bruder von c_Jake.cpp aus Jake-Cpp und
+ * verwendet deswegen native Systemaufrufe, auch wenn diese in der Form
+ * nicht nötig wären!
  *
  * @author Florian Sihler
  * @version 2.0.0

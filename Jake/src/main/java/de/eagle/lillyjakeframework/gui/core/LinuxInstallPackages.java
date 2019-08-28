@@ -1,5 +1,15 @@
 package de.eagle.lillyjakeframework.gui.core;
 
+/**
+ * @file LinuxInstallPackages.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Erlaubt das Installieren zusätzlicher Pakete auf Linux im GUI-Modus.
+ */
+
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;

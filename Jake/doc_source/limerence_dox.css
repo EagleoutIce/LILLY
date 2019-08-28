@@ -189,7 +189,7 @@ ul {
   text-align: left;
   direction: ltr;
   overflow-x: auto; /*Fixed: fragment lines overlap floating elements*/
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 pre.fragment {
@@ -200,7 +200,7 @@ pre.fragment {
         overflow: auto;
         word-wrap: break-word;
         font-size:  9pt;
-        line-height: 125%;
+        line-height: 140%;
         font-family: "Roboto Mono";
         font-size: 105%;
 }
@@ -216,7 +216,7 @@ div.line {
 	font-family: "Roboto Mono";
         font-size: 13px;
 	min-height: 13px;
-	line-height: 1.0;
+	line-height: 1.35;
 	text-wrap: unrestricted;
 	white-space: -moz-pre-wrap; /* Moz */
 	white-space: -pre-wrap;     /* Opera 4-6 */
@@ -696,7 +696,7 @@ dl.reflist dd {
 	font-style: normal;
 }
 .paramname code {
-        line-height: 14px;
+        line-height: 24px;
 }
 
 .params, .retval, .exception, .tparams {

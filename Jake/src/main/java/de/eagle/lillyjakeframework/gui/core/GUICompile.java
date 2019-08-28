@@ -1,10 +1,21 @@
 package de.eagle.lillyjakeframework.gui.core;
 
+/**
+ * @file GUICompile.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Übernimmt die Auswahl des zu kompilierenden Dokuments.
+ */
+
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.SubForms.CompileWatcher;
 import de.eagle.lillyjakeframework.gui.core.Tools.ConfigEditor;
 import de.eagle.util.datatypes.JakeDocument;
@@ -23,6 +34,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -120,7 +132,16 @@ public class GUICompile extends JFrame {
                     //btCompile.setEnabled(checkCompileable());
                     // Set correct Input and Output-Base as the File can be from another directory :D
                     JakeDocument jd = new JakeDocument(new File(tfFMainFile.getText()));
-                    CoreSettings.set(CoreSettings.getTranslator().translate("S_LILLY_IN"), jd.getPath().getParentFile().getAbsolutePath() + "/");
+                    // We will try to assign the in and output file relative to the File location :D
+                    //JakeWriter.out.println("Setting user directory: " + PropertiesProvider.setUserDirectoy(jd.getPath().getParentFile().getAbsolutePath()));
+                    Definitions.setRelativeWorkingDir(jd.getPath().getParentFile().getAbsolutePath());
+                    //CoreSettings.set(CoreSettings.getTranslator().translate("S_LILLY_IN"), jd.getPath().getParentFile().getAbsolutePath() + "/");
+
+                    if (!new File(CoreSettings.requestValue("S_LILLY_IN")).isAbsolute())
+                        CoreSettings.assignValue("S_LILLY_IN", String.valueOf(Paths.get(Definitions.getRelativeWorkingDir(), CoreSettings.requestValue("S_LILLY_IN")) + "/"));
+                    if (!new File(CoreSettings.requestValue("S_LILLY_OUT")).isAbsolute())
+                        CoreSettings.assignValue("S_LILLY_OUT", String.valueOf(Paths.get(Definitions.getRelativeWorkingDir(), CoreSettings.requestValue("S_LILLY_OUT")) + "/"));
+
 
                     // If this is correct we can try to Examine the File Data
                     String[][] data = receiveDocumentData(jd);

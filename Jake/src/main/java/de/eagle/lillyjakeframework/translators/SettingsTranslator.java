@@ -1,5 +1,15 @@
 package de.eagle.lillyjakeframework.translators;
 
+/**
+ * @file SettingsTranslator.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ *
+ * @since 2.0.0
+ *
+ * @brief Ausprägung des {@link de.eagle.util.blueprints.Translator} für Einstellungen auf Basis von <String,String>.
+ */
+
 import de.eagle.util.blueprints.Translator;
 
 import java.io.FileNotFoundException;

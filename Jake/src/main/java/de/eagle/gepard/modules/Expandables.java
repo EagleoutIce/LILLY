@@ -1,5 +1,16 @@
 package de.eagle.gepard.modules;
 
+/**
+ * @file Expandables.java
+ * @author Florian Sihler
+ * @version 1.0.0
+ * @since 2.0.0
+ *
+ * @brief Gepardmodul welches expandierungen vornimmt.
+ * @see de.eagle.gepard.modules.AbstractGepardModule
+ * @see de.eagle.gepard.parser.GeneratorParser
+ */
+
 import de.eagle.gepard.parser.GeneratorParser;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
