@@ -91,7 +91,6 @@
 \tikzumlset{fill class=MudWhite, fill state=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter
 
 
-
 %DEFAULT: \documentclass[a4paper,11pt,oneside]{scrbook}
 \LoadClass[\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,titlepage=firstiscover,\LILLYxDocumentxTYPExExtras,\LILLYxPAPER]{\LILLYxDocumentxTYPE}
 

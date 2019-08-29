@@ -50,6 +50,18 @@
                     {wuhuu, dann niiiicht}%% Error-Text
                     {}%%Params
                     {}
+
+
+
+
+%%%%%%%%% Load Configs if applicable:
+\ifnum\LILLYxSemester>0
+    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung.tex}
+    \typeout{LOADING: \LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung.tex}
+\fi
+
+
 %%%DEFAULTS
 
 %% Hält, auch in verschactelten Systemen die entsprechend zu forcierende Farbe für Links oder anschmiegsame Farbgebung
@@ -79,6 +91,8 @@
 \ifcsname LILLYxBOXxUebungsblattxBox\endcsname\else%
     \def\LILLYxBOXxUebungsblattxBox{TRUE}%
 \fi
+
+
 %\providecommand{\LILLYxBOXxUebungsblattxEnable}{TRUE}       \providecommand{\LILLYxBOXxUebungsblattxBox}{TRUE}
 \foreach \elem/\ignore in \lillyxlist {
     \foreach \l/\val in {Lock/\LILLYxBOXxHIGHLEVELxLOCK,Enable/\true,Box/\true} {
@@ -87,9 +101,9 @@
             %\edef\v{\val}
             \typeout{There was no Setting given => Generate default}
             \expandafter\expandafter\expandafter\xdef\csname LILLYxBOXx\elem x\l\endcsname{\val}%
-            \expandafter\typeout{Expected: \val, got: \csname LILLYxBOXx\elem x\l\endcsname}
             %\expandafter\gnewcommand\csname LILLYxBOXx\x x\l\endcsname{\v}
         \fi
+        \expandafter\typeout{Expected: \val, got: \csname LILLYxBOXx\elem x\l\endcsname}
     }
 }
 

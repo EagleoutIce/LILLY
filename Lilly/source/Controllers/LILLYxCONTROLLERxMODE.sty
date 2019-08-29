@@ -26,7 +26,7 @@
 \RequirePackage{imakeidx} %% HAS TO BE LOADED BEFORE HYPERREF (https://tex.stackexchange.com/questions/22012/hyperref-and-imakeidx-do-not-work-together#22014)
 
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
-    \providecommand{\LILLYxBOXxAufgabexBox}{FALSE}
+    \gdef\LILLYxBOXxAufgabexBox{FALSE}
 \fi
 
 % \ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
@@ -34,14 +34,14 @@
 % \fi
 
 \ifx\LILLYxMODE\LILLYxMODExDEFAULT
-    \providecommand\LILLYxBOXxBeispielxBox{FALSE}
+    \gdef\LILLYxBOXxBeispielxBox{FALSE}
 \else\ifx\LILLYxMODE\LILLYxMODExPRINT
     \renewcommand\LILLYxFOOTERxBUTTONS{FALSE}
-    \providecommand\LILLYxHYPERLINK{FALSE}
-    \providecommand\LILLYxBOXxBemerkungxBox{FALSE}
-    \providecommand\LILLYxBOXxBeweisxBox{FALSE}
-    \providecommand\LILLYxBOXxBeispielxBox{FALSE}
-    \providecommand\LILLYxBOXxLemmaxBox{FALSE}
+    \gdef\LILLYxHYPERLINK{FALSE}
+    \gdef\LILLYxBOXxBemerkungxBox{FALSE}
+    \gdef\LILLYxBOXxBeweisxBox{FALSE}
+    \gdef\LILLYxBOXxBeispielxBox{FALSE}
+    \gdef\LILLYxBOXxLemmaxBox{FALSE}
     \raggedbottom  %%Prevent flushbottom from doubleside
 \fi\fi
 
