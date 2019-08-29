@@ -67,7 +67,22 @@
     \expandafter\hyperlink{page.#1}{#1}%
 }
 
-\providecommand*{\elable}[1]{\phantomsection\label{#1}\ignorespaces}  %\phantomsection % wenn gewünscht das direkter sprung
+\DeclareDocumentCommand{\elable}{ s m }{%
+    \IfBooleanTF{#1}{\phantomsection}{%
+        % To allow this command being flawlessly used in a Box-Environment it won't create a phantomsection
+        % You can enforce the creation with the star (\elable*)
+        \@ifundefined{curboxid}{\phantomsection% Not in box
+        }{}% In Box
+        \label{#2}\ignorespaces%
+    }%
+}
+
+\let\elabel\elable % to make this annoying typo history :D
+
+
+% \providecommand*{\elable}[1]{%
+%     \phantomsection\label{#1}\ignorespaces%
+% }%\phantomsection % wenn gewünscht das direkter sprung
 \ifx\LILLYxHYPERLINK\true
     \typeout{Normal link - mode}
     \newcommand{\jmark}[2][Linkname]{{\setLinkColor{\LILLYxColorxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}

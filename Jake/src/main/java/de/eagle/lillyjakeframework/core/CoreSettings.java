@@ -122,7 +122,7 @@ public class CoreSettings {
         // S_LILLY_CLEANS
         settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?",
                 eSetting_Type.IS_TEXTLIST,
-                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls ubp fdb_latexmk auxlock ptc LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS");
+                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls ubp fdb_latexmk auxlock ptc LEMME SATZE ZSM UB TOP listing upa ilg TOPIC DEFS BEMS");
         // S_LILLY_EXTERNAL
         settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?",
                 eSetting_Type.IS_SWITCH, "false");

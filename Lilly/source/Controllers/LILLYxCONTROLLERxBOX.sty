@@ -109,6 +109,7 @@
 
 \newif\ifcreatelist
 \newif\ifuselist
+\newif\iflillyboxenabled
 \pgfkeys {
     /lillyxBOX/.is family, /lillyxBOX,
     name/.estore in = \lillyxBoxxName,
@@ -123,6 +124,7 @@
     emblem/.store in = \lillyxBoxxEmblem,
     createlist/.is if = createlist,
     customlist/.is if = uselist,
+    boxenabled/.is if = lillyboxenabled,
     lock/.store in = \lillyxBoxxLock,
     listname/.store in = \lillyxBoxxListname,
     listtext/.store in =\lillyxBoxxListtext,
@@ -134,9 +136,51 @@
         emblem={XXNOEMBLEM}, listname={\noexpand\lillyxBoxxName}, createlist=false,%
         listtext={Alle \noexpand\lillyxBoxxName}, preCode={}, inCode={},%
         outCode={}, postCode={},lock={TRUE}, customlist=false,
-        listmen=NO%
+        listmen=NO, boxenabled=true%
     }
 }
+
+\NewEnviron{LILLYxSPECIALBOXxHIDDEN}{}
+
+%%% Todo-List:
+%% Boxes:
+%  - [\] Make \RegisterBox recognice Options like "useBox" and Locks... 
+        %    =>  Will be redirected to Creation as it can be changed with 'usestyle'
+%  - [X] Make NoBox work with 'void', so 'aufgabe' and rest cannot - or maybe don't, as nested won't work
+        %    => Done using 'LILLYxSPECIALBOXxHIDDEN
+%  - [X] Include the List-Addition into \RegisterBox
+        %    => This was easy as already done :D
+%  - [!] Make the 'lillyxBOXx' prefix changeable
+        %    => This would have broken the expansions and was rendered useless. Why would someone need that? 
+        %       Even if there is a name clash, if you change it after definitions it would break everything :D
+%  - [X] Include Label-Mechanic [tcolorbox-Manual Page 99] with nameref
+        %    => Included as needed, as the expansion is stupid, this won't include the full title of the Box :/
+%  - [X] Fix LabelBug so that the label will Jump Above the Box
+        %    => This will be fixed completely when using REgisterBox for all :D
+%  - [ ] Migrate all Boxes to \RegisterBox
+        % OH GOSH PLEASE NOOOOOOOOOO Currentl working on :D
+%  - [ ] Allow to add a symbol (outside, and inside of the Box)
+%  - [ ] Allow a Box to live in the Margin (with and without reference marker inside of the texxt)
+%  - [ ] Make Aufgaben-Box standart again (design-wise, maybe add a 'points' key or, more generic, 'addon'?)
+%  - [ ] add theorem-like customization-support
+%  - [ ] add a bookmark option
+%  - [ ] Change Box-Appearance with 'check odd page' + limerence: orientation bar [tcb manual page 46]
+%  - [ ] \tcblistof - check if it's better then the current listing implementation and if so, change
+%  - [ ] Make 'aufgaben'-Box allow to deperate it's solution to an different possition [tcb manual ~133]
+
+%  - [ ] Include Option: Frame Hidden
+%  - [ ] Maybe adapt style [tcb mnual page 153]
+
+%% Designs:
+%  - [ ] Limerence, make an Arrow on Page-Break
+
+%% Listings:
+%  - [ ] Make dynamic listing environment (showcase etc.)
+%  - [ ] Make a showcase listing which displays the output of the code on the right side 
+
+%% General
+%  - [ ] Add an easy option, to make a box a preview box, where it is possible to display differet stuff on one side of the box
+%  - [ ] Use the 'sidebyside adapt=right' key for tabular et others note 'sidebyside switch'
 
 \DeclareDocumentCommand{\RegisterBox}{%
     O{} %% Boxkeys
@@ -161,40 +205,60 @@
     %     postCode/.default=none%
     % }
     %\IfValueTF{#5}{\edef\theboxid{#5}}{\edef\theboxid{#3}}
-    \edef\theboxid{#5}%
+    \edef\theboxid{#5}\typeout{Registering Box: #5}%
     % \pgfkeys{/lillyxBox/#3, name=#3, title=#4}
     \pgfkeys{/lillyxBOX, defaults, #1, name=#3,title=#4}%
     %% We will now persist the values, please be patient, this is try 14 to fix ns eval failures:
-    \expandafter\xdef\csname lillyxBOXx\theboxid xName\endcsname{\lillyxBoxxName}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xTitle\endcsname{\lillyxBoxxTitle}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xBoxCol\endcsname{\lillyxBoxxColor}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xPreCode\endcsname{\lillyxBoxxPrecode}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xInCode\endcsname{\lillyxBoxxIncode}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xOutCode\endcsname{\lillyxBoxxOutcode}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xPostCode\endcsname{\lillyxBoxxPostcode}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xUseStyle\endcsname{\lillyxBoxxUsestyle}%
+    \expandafter\xdef\csname lillyxBOXx\theboxid xName\endcsname{\lillyxBoxxName}%                                  Name
+    \expandafter\xdef\csname lillyxBOXx\theboxid xTitle\endcsname{\lillyxBoxxTitle}%                                Title
+    \expandafter\xdef\csname lillyxBOXx\theboxid xBoxCol\endcsname{\lillyxBoxxColor}%                               Color
+    \expandafter\xdef\csname lillyxBOXx\theboxid xPreCode\endcsname{\lillyxBoxxPrecode}%                            PreCode
+    \expandafter\xdef\csname lillyxBOXx\theboxid xInCode\endcsname{\lillyxBoxxIncode}%                              InCode
+    \expandafter\xdef\csname lillyxBOXx\theboxid xOutCode\endcsname{\lillyxBoxxOutcode}%                            OutCode
+    \expandafter\xdef\csname lillyxBOXx\theboxid xPostCode\endcsname{\lillyxBoxxPostcode}%                          PostCode
+    \expandafter\xdef\csname lillyxBOXx\theboxid xUseStyle\endcsname{\lillyxBoxxUsestyle}%                          UseStyle
     %\expandafter\xdef\csname lillyxBOXx\theboxid xHasemblem\endcsname{\lillyxBoxxHasemblem}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xEmblem\endcsname{\lillyxBoxxEmblem}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xLock\endcsname{\lillyxBoxxLock}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xListName\endcsname{\lillyxBoxxListname}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xListText\endcsname{\lillyxBoxxListtext}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xListMen\endcsname{\lillyxBoxxListmen}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xCreateList\endcsname{\ifcreatelist TRUE\else FALSE\fi}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xCustomList\endcsname{\ifuselist TRUE\else FALSE\fi}%
+    \expandafter\xdef\csname lillyxBOXx\theboxid xEmblem\endcsname{\lillyxBoxxEmblem}%                              Emblem
+    \expandafter\xdef\csname lillyxBOXx\theboxid xLock\endcsname{\lillyxBoxxLock}%                                  Lock
+    \expandafter\xdef\csname lillyxBOXx\theboxid xListName\endcsname{\lillyxBoxxListname}%                          ListName
+    \expandafter\xdef\csname lillyxBOXx\theboxid xListText\endcsname{\lillyxBoxxListtext}%                          ListText
+    \expandafter\xdef\csname lillyxBOXx\theboxid xListMen\endcsname{\lillyxBoxxListmen}%                            ListMen
+    \expandafter\xdef\csname lillyxBOXx\theboxid xCreateList\endcsname{\ifcreatelist TRUE\else FALSE\fi}%           CreateList
+    \expandafter\xdef\csname lillyxBOXx\theboxid xCustomList\endcsname{\ifuselist TRUE\else FALSE\fi}%              CustomList
+    \expandafter\xdef\csname lillyxBOXx\theboxid xBoxEnabled\endcsname{\iflillyboxenabled TRUE\else FALSE\fi}%      BoxEnabled
     %% Persistence END
     \ifcreatelist\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\fi%
     %\expandafter\global\expandafter\newif\if
+    % #1 Title
+    % #2 Should be the tex-options
     \global\DeclareDocumentEnvironment{\lillyxBoxxName}{O{} O{}}{\ignorespaces% %%O{\theboxid}}{%
-        \edef\curboxid{#5}\@nameuse{lillyxBOXx\curboxid xPreCode}\begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,##2]%
-            \@nameuse{lillyxBOXx\curboxid xInCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
-            \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\typeout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName}}%
-                \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{XXNOEMBLEM}}{\typeout{\space>\space It will register without an Emblem/Addon!}%
-            \LILLYxBOXESxaddListElement[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xLock}}%
-            }{\typeout{\space>\space It will register with an Emblem/Addon!}%
-                \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
-            }%
-            }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend\ignorespaces%
-    }{\@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}%
+        \edef\curboxid{#5}\typeout{Currently in Box: \curboxid}%
+        %%% Here we will check if the Box should be really displayed, or if it's disabled. If it is, we'll eliminate it
+        %%% This will include Any Codes or other Options supplied with the Box
+        \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
+            \LILLYxSPECIALBOXxHIDDEN% This shall be silenced :P [we can't use latex-environments as they would automatically search for their ends]
+        }{%
+            %% IF not disabled, we will proceed as usual.
+            \@nameuse{lillyxBOXx\curboxid xPreCode}%
+            \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,phantomlabel={##1},nameref={##1},##2]%
+                \@nameuse{lillyxBOXx\curboxid xInCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
+                \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\typeout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName}}%
+                    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{XXNOEMBLEM}}{\typeout{\space>\space It will register without an Emblem/Addon!}%
+                \LILLYxBOXESxaddListElement[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xLock}}%
+                }{\typeout{\space>\space It will register with an Emblem/Addon!}%
+                    \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
+                }%
+                }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend\ignorespaces%
+        }%
+    }% SECOND PART
+    {% To ensure the Box is disabled we will do the same for the ending:
+        \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
+            \endLILLYxSPECIALBOXxHIDDEN% This shall be the end of silence :D
+        }{%
+            \@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend%
+        }%
+            
+    }
 }
 
 \DeclareDocumentCommand{\TransformBox}{%
@@ -220,6 +284,7 @@
     % Check if there is an existing Box, and if, take the Configuration from it by the persisted Values of the old ID.
     \expandafter\ifcsname lillyxBOXx#3xName\endcsname
         \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xListMen\endcsname}{TRUE}}{\gdef\clisttmp{true}}{\gdef\clisttmp{false}}
+        \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xBoxEnabled\endcsname}{TRUE}}{\gdef\cbentmp{true}}{\gdef\cbentmp{false}}
         %\typeout{Switch-Pregeneration for clisttmp: \clisttmp}
         \RegisterBox[% Here we will reload the old Values of the Box, we won't erase them we'll just erase the environment-link in case of a renaming. Therefore it cann be still used as Base for another Box-Creation. We will (just for completeness) assign all commands:
         name=\csname lillyxBOXx#3xName\endcsname,%
@@ -236,11 +301,20 @@
         listtext=\csname lillyxBOXx#3xListText\endcsname,%
         listmen=\csname lillyxBOXx#3xListMen\endcsname,%
         createlist=false,% if it has been true we don't need to recreate it
-        customlist=\clisttmp, % sloppy :D
+        customlist=\clisttmp,% sloppy :D
+        boxenabled=\cbentmp,% we want to preserve the current state
         #1]{\thecboxname}{#4}{#6}
     \else\RegisterBox[#1]{\thecboxname}{#4}{#6}\fi%
     %}{\RegisterBox[#1]{\thecboxname}{#3}}%
 }
+
+%% Register Definition Box :D For Now we will name it banana
+% \RegisterBox%
+%     [usestyle=LILLYxBOXxDefinition,customlist=true,createlist=true,listname=BANANAS,listmen=BANS,listtext={Alle Bananen},boxcol=\LILLYxColorxDefinition,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock]% Style definitions
+%     {banane}% Environ Name
+%     {Banane \noexpand\thetcbcounter{} -- }% The Title#
+%     {banane}% BoxID
+%% Highly work in progress stuff :D
 
 \DeclareDocumentCommand{\TransformBoxDefinition}{%
     s   %% star for clone
@@ -251,6 +325,8 @@
 }{%
     \TransformBox[usestyle=LILLYxBOXxDefinition,customlist=true,listname=DEFINITIONS,listmen=DEFS,boxcol=\LILLYxColorxDefinition,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock,#2][#1]{definition}{#4}[#3]{\IfValueTF{#5}{#5}{definition}}%
 }
+
+
 
 \DeclareDocumentCommand{\TransformBoxDefinitionS}{%
     s   %% star for clone

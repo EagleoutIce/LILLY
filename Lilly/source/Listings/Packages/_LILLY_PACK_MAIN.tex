@@ -42,12 +42,13 @@
 \def\lst@PlaceNumber{\makebox[\dimexpr 1em+\lst@numbersep][l]{\normalfont
   \lst@numberstyle{\thelstnumber}}}%
 
-
+\definecolor{lstmainbordercol}{HTML}{EAECF0}
+\definecolor{lstmainbackcol}{HTML}{F8F9FA}
 
 \lstdefinestyle{MAIN}{
     breaklines=true,
-    backgroundcolor=\color{MudWhite},
-    rulecolor=\color{MudWhite},
+    backgroundcolor=\color{lstmainbackcol},
+    rulecolor=\color{lstmainbordercol},
     stringstyle=\color{DarkChromeYellow},
     keywordstyle = \LILLYxCODExKEYWORDSTYLE\bfseries,
     keywordstyle = [2]\color{Azure}, %%KW

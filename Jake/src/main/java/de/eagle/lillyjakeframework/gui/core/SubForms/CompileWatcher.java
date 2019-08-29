@@ -146,9 +146,9 @@ public class CompileWatcher extends JDialog {
                 }
             }
         }
-        //AbstractConsoleWriter out = new TextAreaConsoleStream(taOutput);
-        //JakeWriter.out.reassignConsole(out);
-        //JakeWriter.err.reassignConsole(out);
+        AbstractConsoleWriter out = new TextAreaConsoleStream(taOutput);
+        JakeWriter.out.reassignConsole(out);
+        JakeWriter.err.reassignConsole(out);
 
         new AsyncLaunchCompile(args).start(); // Running Asynchronous for now as testing purpose this needs to change to a Future call :D
 
