@@ -5,7 +5,9 @@
 
 
 %% Vital configurations
-\RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+\ifnum\LILLYxSemester>0
+    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % General and Layoutkonfiguration                %

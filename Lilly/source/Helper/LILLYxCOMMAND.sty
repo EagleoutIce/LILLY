@@ -46,11 +46,31 @@
 \gdef\makerenewglobal{\global\let\@newenv\@global@newenv}
 \gdef\makerenewlocal{\global\let\@newenv\@local@newenv}
 
+\def\@xaldef#1{
+  \typeout{Current Value: #1}
+}
 \def\providedef#1#2{
-  \ifcsname #1 \endcsname\else
-  \expandafter\def\csname #1\endcsname{#2}
-  \fi
+  \typeout{Request to define #1}
+  \expandafter\@xaldef{\csname #1\endcsname}
+  \@ifundefined{#1}{
+    \typeout{Defining, as undefined before with: #2}
+    \expandafter\def\csname #1\endcsname{#2}
+  }{}
+  % \ifthenelse{\isundefined{#1}}{
+  %   \typeout{Defining, as undefined before with: #2}
+  %   \expandafter\def\csname #1\endcsname{#2}
+  % }{%
+  %   %
+  % }
+  % \expandafter\ifdefined\csname #1 \endcsname\expandafter\else
+  % \typeout{Defining, as undefined before with: #2}
+  % \expandafter\def\csname #1\endcsname{#2}
+  % \fi
 }
 
+%% Access Konfiguration File :D This can be determined by the Semester, but in theory every valide tex-File kann
+\def\RequestConfig#1{%
+    \InputIfFileExists{#1}{}{}
+}
 
 \endinput
