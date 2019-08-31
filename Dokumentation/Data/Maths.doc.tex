@@ -1,5 +1,3 @@
-
-
 \chapter[Mathe \LILLYxBOXxVersion{\small 2.0.0}]{Mathe}
 \TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 2.0.0}}
 \bigskip\newline
@@ -31,8 +29,8 @@ Lilly liefert den Befehl auf Basis von \T{mkern} so, dass er direkt Abstände zw
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \clatex{:bs:overbar\{a\_1\} :bs:overbar\{a\_2\}} & \(\overbar{a_1}\overbar{a_2}\)\\\hline
-        \clatex{:bs:overline\{a\_1\} :bs:overline\{a\_2\}} & \(\overline{a_1}\overline{a_2}\)\\
+        \blatex{:bs:overbar\{a\_1\} :bs:overbar\{a\_2\}} & \(\overbar{a_1}\overbar{a_2}\)\\\hline
+        \blatex{:bs:overline\{a\_1\} :bs:overline\{a\_2\}} & \(\overline{a_1}\overline{a_2}\)\\
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
@@ -50,8 +48,8 @@ Weiter wurde das Aussehen der Wurzel verändert und die Möglichkeit hinzugefüg
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \clatex{:bs:sqrt[3]\{42\}} & \(\sqrt[3]{42}\)\\\hline
-        \clatex{:bs:oldsqrt[3]\{42\}} & \(\oldsqrt[3]{42}\)\\
+        \blatex{:bs:sqrt[3]\{42\}} & \(\sqrt[3]{42}\)\\\hline
+        \blatex{:bs:oldsqrt[3]\{42\}} & \(\oldsqrt[3]{42}\)\\
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\smallskip
 \end{center}
@@ -83,8 +81,8 @@ Dieser Befehl vereinfacht das Schreiben von Betragsstrichen. Diese passen sich z
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{7cm}@{\hspace{1em}}|@{\hspace{1em}}C{2cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \clatex{:bmath::bs:abs\{:bs:frac\{:bs:pi-x^2\}\}\{:bs:log 3x\}:emath:} & \(\displaystyle\abs{\frac{\pi - x^2}{\log 3x}}\)\\\hline
-        \clatex{:bmath:|:bs:frac\{:bs:pi-x^2\}\{:bs:log 3x\}|:emath:} & \(\displaystyle|\frac{\pi - x^2}{\log 3x}|\)\\
+        \blatex{:bmath::bs:abs\{:bs:frac\{:bs:pi-x^2\}\}\{:bs:log 3x\}:emath:} & \(\displaystyle\abs{\frac{\pi - x^2}{\log 3x}}\)\\\hline
+        \blatex{:bmath:|:bs:frac\{:bs:pi-x^2\}\{:bs:log 3x\}|:emath:} & \(\displaystyle|\frac{\pi - x^2}{\log 3x}|\)\\
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\smallskip
 \end{center}
@@ -282,12 +280,12 @@ Setzt verschiedene mathematische Ausdrücke:
 %
 %
 \presentCommand[1.0.2]{x}[\optArg[$\sim$]{spacing}\cmdlist \textbackslash y\optArg[$\sim$]{spacing}\cmdlist \textbackslash z\optArg[$\sim$]{spacing} \cmdold]
-Setzt entsprechend: \x[], \y und \z\medskip\newline
+Setzt entsprechend: \x[], \y und \z[].\medskip\newline
 %
 %
 %
 \presentCommand[2.0.0]{ceil}[\optArg{math-Ausdruck}\cmdlist \textbackslash floor\optArg{math-Ausdruck}]
-Verkürzt das Schreiben von: \clatex{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \clatex{:bs:lceil}\&\clatex{:bs:rceil} entsprechend:
+Verkürzt das Schreiben von: \clatex{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \clatex{:bs:lceil} \& \clatex{:bs:rceil} entsprechend:
 \begin{multicols}{2}%
     \begin{ditemize}
         \item \blankcmd{ceil} (\ceil{\frac{a}{b}})%
@@ -388,11 +386,11 @@ Funktioniert analog zu \blankenv{egraph}, erlaubt allerdings keine weiteren \emp
 Um die Graph-Umgebung noch vielfälter zu Gestalten wurde \blankenv{wgraph} geschaffen.
 Nach reichlicher Überlegung wurde ein neuer Befehl etabliert anstelle es in das
 normale \jmark[graph]{env:graph}-Environment einzubetten. Er funktioniert mit der Syntax:
-\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
+\begin{latex}
     \begin{wgraph}{l}[][][\caption{Wichtiger Graph}][400pt]
         \plotline{\x*\x}
     \end{wgraph}
-\end{lstlisting}
+\end{latex}
 \clearpage
 %
 %

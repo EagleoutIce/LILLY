@@ -15,7 +15,7 @@
 % \listofDEFINITIONS
 
 Die 3 Standard-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt:
-\begin{tabularx}{\linewidth}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
+\begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
     \bfseries DEFAULT & \bfseries ALTERNATE & \bfseries LIMERENCE \\\hline %% Leider ist es nicht möglich zu mischen ^^
 {\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
@@ -30,10 +30,9 @@ Die 3 Standard-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt:
     \begin{satz}[Nice]
         Superwichtig
     \end{satz}
-\end{minipage}}
-\\
+\end{minipage}}\\
     \specialrule{1pt}{0pt}{0pt}
-    \end{tabularx}
+    \end{tabular}
 Auch wenn sie hier explizit forciert wurden ist es grundlegend möglich (und auch so gedacht) sie mithilfe des Makefiles konfiguerieren. Die allgemeine Syntax bis \LILLYxBOXxVersion{1.7.0} hierfür lautet:
 \begin{bash}
 make "BOXMODE=<Name>"
@@ -203,6 +202,8 @@ Registriert eine (neue) oder alte Box, die entsprechend Gesetzt werden kann. Die
         emblem & Code &  & Titelverzierer\\
         createlist & Bool & false & Erstelle Liste \\
         customlist & Bool & false & Trage Box in Liste ein \\
+        boxenabled & Bool & true & Soll die Box angezeigt werden? \\
+        usebox & Bool & true & Box (true) oder das Plaindesign (false)? \\
         lock & Lock & TRUE & Setzt die Zählersperre \\
         listname & String & <name> & Name der Liste \\
         listtext & String & <name> & Titel der Liste\\
@@ -219,13 +220,15 @@ Mit dem Registrieren einer Box, werden die folgenden Befehle für die jeweilige 
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xOutCode}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xPostCode}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xUseStyle}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xBoxEnabled}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxBOXx<BoxID>xUseBox}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xEmblem}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xLock}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xListName}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xListText}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xListMen}\vspace{-\baselineskip}
 
-Sie speichern dne Wert der sich jeweils vermuten lässt. Weiter werden noch die beiden Booleschen Werte gespeichert, die entsprechend es Zustands \T{\true} und \T{\false}:
+Sie speichern den Wert der sich jeweils vermuten lässt. Weiter werden noch die beiden Booleschen Werte gespeichert, die entsprechend es Zustands \T{\true} und \T{\false}:
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xCreateList}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxBOXx<BoxID>xCustomList}
 

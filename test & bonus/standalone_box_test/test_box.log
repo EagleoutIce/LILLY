@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.17)  22 AUG 2019 00:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.17)  31 AUG 2019 02:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -34,7 +34,11 @@ ntelligent zu verwalten
 (/home/eagle/texmf/tex/latex/Lilly/source/Fallbacks/LILLYxVANILLA.sty
 Package: LILLYxVANILLA 2019/07/14 Simuliert ein Starten durch JAKE um pdflatex 
 kompatibel zu bleiben
-))
+
+(/home/eagle/texmf/tex/latex/Lilly/source/Helper/LILLYxBOOLEAN.sty
+Package: LILLYxBOOLEAN 2019/07/13 Stellt die Grundlagen boolescher Ausdruecke f
+uer LILLY zur Verfuegung
+)))
 (/home/eagle/texmf/tex/latex/Lilly/source/Controllers/LILLYxCONTROLLERxCONTENT.
 sty
 Package: LILLYxCONTROLLERxCONTENT 2019/06/29 Grundlegende Pfadverwaltung fuer L
@@ -344,11 +348,7 @@ Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 Class Lilly Warning: Automatische Pfaderkennung gescheitert. Fallback zu lokale
 m Verzeichnis! on input line 108.
 
-) (/home/eagle/texmf/tex/latex/Lilly/source/Helper/LILLYxBOOLEAN.sty
-Package: LILLYxBOOLEAN 2019/07/13 Stellt die Grundlagen boolescher Ausdruecke f
-uer LILLY zur Verfuegung
-)
-(/home/eagle/texmf/tex/latex/Lilly/source/Data/Colors/LILLYxCOLOR.sty
+) (/home/eagle/texmf/tex/latex/Lilly/source/Data/Colors/LILLYxCOLOR.sty
 Package: LILLYxCOLOR 2019/07/11 Stellt die Farb-Erweiterungen fuer LILLY zur Ve
 rfuegung
 Class Lilly Info: LILLYxDemandPackage (xcolor): Ohne Farben mache ich GARNICHTS
@@ -735,8 +735,12 @@ Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
 \colbreak@box=\box74
 \mc@col@check@num=\count199
 )))
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty
+Package: titletoc 2011/12/15 v1.6 TOC entries
+\ttl@leftsep=\dimen192
+)
 Class Lilly Info: LILLYxDemandPackage (hyperref): Fuer tolle Verlinkungen und e
-inen tollen Ãœberblick  on input line 17.
+inen tollen Ãœberblick  on input line 19.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
@@ -781,7 +785,7 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
-\@linkdim=\dimen192
+\@linkdim=\dimen193
 \Hy@linkcounter=\count266
 \Hy@pagecounter=\count267
 
@@ -808,10 +812,10 @@ Package hyperref Info: Bookmarks ON on input line 4762.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5115.
-\XeTeXLinkMargin=\dimen193
+\XeTeXLinkMargin=\dimen194
 \Fld@menulength=\count270
-\Field@Width=\dimen194
-\Fld@charsize=\dimen195
+\Field@Width=\dimen195
+\Fld@charsize=\dimen196
 Package hyperref Info: Hyper figures OFF on input line 6369.
 Package hyperref Info: Link nesting OFF on input line 6374.
 Package hyperref Info: Hyper index ON on input line 6377.
@@ -839,35 +843,40 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip51
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 47.
+Package hyperref Info: Option `colorlinks' set `true' on input line 55.
 
 
 Package hyperref Warning: Option `hyperfootnotes' has already been used,
-(hyperref)                setting the option has no effect on input line 47.
+(hyperref)                setting the option has no effect on input line 55.
 
-Package hyperref Info: Option `hypertexnames' set `true' on input line 47.
+Package hyperref Info: Option `hypertexnames' set `true' on input line 55.
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 47.
+(hyperref)                setting the option has no effect on input line 55.
 
-Package hyperref Info: Option `unicode' set `true' on input line 47.
+Package hyperref Info: Option `unicode' set `true' on input line 55.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
 )
-Package hyperref Info: Option `pdftoolbar' set `false' on input line 47.
-Package hyperref Info: Option `pdfmenubar' set `false' on input line 47.
-Package hyperref Info: Option `pdffitwindow' set `true' on input line 47.
+Package hyperref Info: Option `pdftoolbar' set `false' on input line 55.
+Package hyperref Info: Option `pdfmenubar' set `false' on input line 55.
+Package hyperref Info: Option `pdffitwindow' set `true' on input line 55.
 
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 47.
+(hyperref)                setting the option has no effect on input line 55.
 
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \elable with sig. ' s m ' on line 78.
+.................................................
 Normal link - mode
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
 . Defining command \silentHmark with sig. ' O{Linkname} m O{black} ' on line
-. 67.
+. 90.
 .................................................
 ) (/home/eagle/texmf/tex/latex/Lilly/source/Data/LILLYxFONTS.sty
 Package: LILLYxFONTS 2019/07/11 Stellt die Schriften-Erweiterungen fuer LILLY z
@@ -886,49 +895,57 @@ tex))
 LaTeX Font Info:    Try loading font information for U+eur on input line 12.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueur.fd
 File: ueur.fd 2013/01/14 v3.01 Euler Roman
+)
+(/usr/share/texlive/texmf-dist/tex/latex/initials/Konanur.fd
+File: Konanur.fd 2003/04/02 Font definition file for U/Konanur
 ))
+(/home/eagle/texmf/tex/latex/Lilly/source/Helper/LILLYxSHORTCUTS.sty
+Package: LILLYxSHORTCUTS 2019/08/03 Stellt einige Shortcuts fuer LILLY zur Verf
+uegung
+\LILLYxNegativeSkip=\skip52
+)
 Class Lilly Info: LILLYxDemandPackage (tocloft): FÃ¼r Listen und so  on input l
-ine 21.
+ine 22.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has section divisions on input line 51.
-\cftparskip=\skip52
-\cftbeforetoctitleskip=\skip53
-\cftaftertoctitleskip=\skip54
-\cftbeforepartskip=\skip55
-\cftpartnumwidth=\skip56
-\cftpartindent=\skip57
-\cftbeforesecskip=\skip58
-\cftsecindent=\skip59
-\cftsecnumwidth=\skip60
-\cftbeforesubsecskip=\skip61
-\cftsubsecindent=\skip62
-\cftsubsecnumwidth=\skip63
-\cftbeforesubsubsecskip=\skip64
-\cftsubsubsecindent=\skip65
-\cftsubsubsecnumwidth=\skip66
-\cftbeforeparaskip=\skip67
-\cftparaindent=\skip68
-\cftparanumwidth=\skip69
-\cftbeforesubparaskip=\skip70
-\cftsubparaindent=\skip71
-\cftsubparanumwidth=\skip72
-\cftbeforeloftitleskip=\skip73
-\cftafterloftitleskip=\skip74
-\cftbeforefigskip=\skip75
-\cftfigindent=\skip76
-\cftfignumwidth=\skip77
+\cftparskip=\skip53
+\cftbeforetoctitleskip=\skip54
+\cftaftertoctitleskip=\skip55
+\cftbeforepartskip=\skip56
+\cftpartnumwidth=\skip57
+\cftpartindent=\skip58
+\cftbeforesecskip=\skip59
+\cftsecindent=\skip60
+\cftsecnumwidth=\skip61
+\cftbeforesubsecskip=\skip62
+\cftsubsecindent=\skip63
+\cftsubsecnumwidth=\skip64
+\cftbeforesubsubsecskip=\skip65
+\cftsubsubsecindent=\skip66
+\cftsubsubsecnumwidth=\skip67
+\cftbeforeparaskip=\skip68
+\cftparaindent=\skip69
+\cftparanumwidth=\skip70
+\cftbeforesubparaskip=\skip71
+\cftsubparaindent=\skip72
+\cftsubparanumwidth=\skip73
+\cftbeforeloftitleskip=\skip74
+\cftafterloftitleskip=\skip75
+\cftbeforefigskip=\skip76
+\cftfigindent=\skip77
+\cftfignumwidth=\skip78
 \c@lofdepth=\count276
 \c@lotdepth=\count277
-\cftbeforelottitleskip=\skip78
-\cftafterlottitleskip=\skip79
-\cftbeforetabskip=\skip80
-\cfttabindent=\skip81
-\cfttabnumwidth=\skip82
+\cftbeforelottitleskip=\skip79
+\cftafterlottitleskip=\skip80
+\cftbeforetabskip=\skip81
+\cfttabindent=\skip82
+\cfttabnumwidth=\skip83
 )
 Class Lilly Info: LILLYxDemandPackage (tcolorbox): Fuer all die schoenen boexli
-s:D  on input line 27.
+s:D  on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2018/01/12 version 4.12 text color boxes
@@ -975,14 +992,14 @@ Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 .code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
 \pgf@plot@mark@count=\count282
-\pgfplotmarksize=\dimen196
+\pgfplotmarksize=\dimen197
 )
-\tikz@lastx=\dimen197
-\tikz@lasty=\dimen198
-\tikz@lastxsaved=\dimen199
-\tikz@lastysaved=\dimen256
-\tikzleveldistance=\dimen257
-\tikzsiblingdistance=\dimen258
+\tikz@lastx=\dimen198
+\tikz@lasty=\dimen199
+\tikz@lastxsaved=\dimen256
+\tikz@lastysaved=\dimen257
+\tikzleveldistance=\dimen258
+\tikzsiblingdistance=\dimen259
 \tikz@figbox=\box83
 \tikz@figbox@bg=\box84
 \tikz@tempbox=\box85
@@ -1024,7 +1041,7 @@ Library (tcolorbox): 'tcbhooks.code.tex' version '4.12'
 Library (tcolorbox): 'tcbtheorems.code.tex' version '4.12'
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2017/09/02 v2.17a AMS math features
-\@mathmargin=\skip83
+\@mathmargin=\skip84
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -1033,11 +1050,11 @@ Package: amstext 2000/06/29 v2.01 AMS text
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks32
-\ex@=\dimen259
+\ex@=\dimen260
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen260
+\pmbraise@=\dimen261
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
@@ -1054,7 +1071,7 @@ LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box91
 \strutbox@=\box92
-\big@size=\dimen261
+\big@size=\dimen262
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count299
@@ -1067,24 +1084,24 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \column@=\count304
 \maxfields@=\count305
 \andhelp@=\toks34
-\eqnshift@=\dimen262
-\alignsep@=\dimen263
-\tagshift@=\dimen264
-\tagwidth@=\dimen265
-\totwidth@=\dimen266
-\lineht@=\dimen267
+\eqnshift@=\dimen263
+\alignsep@=\dimen264
+\tagshift@=\dimen265
+\tagwidth@=\dimen266
+\totwidth@=\dimen267
+\lineht@=\dimen268
 \@envbody=\toks35
-\multlinegap=\skip84
-\multlinetaggap=\skip85
+\multlinegap=\skip85
+\multlinetaggap=\skip86
 \mathdisplay@stack=\toks36
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '4.12'
-\tcbfitdim=\dimen268
-\tcb@lowerfitdim=\dimen269
-\tcb@upperfitdim=\dimen270
+\tcbfitdim=\dimen269
+\tcb@lowerfitdim=\dimen270
+\tcb@upperfitdim=\dimen271
 \tcb@cur@hbadness=\count306
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbxparse.code.tex
 Library (tcolorbox): 'tcbxparse.code.tex' version '4.12'
@@ -1100,7 +1117,7 @@ Library (tcolorbox): 'tcbxparse.code.tex' version '4.12'
 .................................................
 ))
 Class Lilly Info: LILLYxDemandPackage (bookmark): Fuer bookmarks eben  on input
- line 39.
+ line 40.
  (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bookmark.sty
 Package: bookmark 2016/05/17 v1.26 PDF bookmarks (HO)
 
@@ -1109,122 +1126,183 @@ File: bkm-pdftex.def 2016/05/17 v1.26 bookmark driver for pdfTeX (HO)
 \BKM@id=\count307
 ))
 Class Lilly Info: LILLYxDemandPackage (calc): Zur Berechnung der richtigen Mass
-e  on input line 45.
+e  on input line 46.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count308
 \calc@Bcount=\count309
-\calc@Adimen=\dimen271
-\calc@Bdimen=\dimen272
-\calc@Askip=\skip86
-\calc@Bskip=\skip87
+\calc@Adimen=\dimen272
+\calc@Bdimen=\dimen273
+\calc@Askip=\skip87
+\calc@Bskip=\skip88
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count310
-\calc@Cskip=\skip88
+\calc@Cskip=\skip89
 )
 Class Lilly Info: LILLYxDemandPackage (relsize): Machen wir alles ein bisschen 
-relativer  on input line 52.
+relativer  on input line 53.
 
 (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
-Definitionby Lock using section: LILLYxBOXxDefinitionxLock => section
-There was no Setting given => Generate default
-Expected: section, got: section
-Definitionby Enable using TRUE: LILLYxBOXxDefinitionxEnable => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Definitionby Box using TRUE: LILLYxBOXxDefinitionxBox => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Beispielby Lock using section: LILLYxBOXxBeispielxLock => section
-There was no Setting given => Generate default
-Expected: section, got: section
-Beispielby Enable using TRUE: LILLYxBOXxBeispielxEnable => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Beispielby Box using TRUE: LILLYxBOXxBeispielxBox => TRUE
-Bemerkungby Lock using section: LILLYxBOXxBemerkungxLock => section
-There was no Setting given => Generate default
-Expected: section, got: section
-Bemerkungby Enable using TRUE: LILLYxBOXxBemerkungxEnable => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Bemerkungby Box using TRUE: LILLYxBOXxBemerkungxBox => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Satzby Lock using section: LILLYxBOXxSatzxLock => section
-There was no Setting given => Generate default
-Expected: section, got: section
-Satzby Enable using TRUE: LILLYxBOXxSatzxEnable => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Satzby Box using TRUE: LILLYxBOXxSatzxBox => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Beweisby Lock using section: LILLYxBOXxBeweisxLock => section
-There was no Setting given => Generate default
-Expected: section, got: section
-Beweisby Enable using TRUE: LILLYxBOXxBeweisxEnable => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Beweisby Box using TRUE: LILLYxBOXxBeweisxBox => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Lemmaby Lock using section: LILLYxBOXxLemmaxLock => section
-There was no Setting given => Generate default
-Expected: section, got: section
-Lemmaby Enable using TRUE: LILLYxBOXxLemmaxEnable => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Lemmaby Box using TRUE: LILLYxBOXxLemmaxBox => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Zusammenfassungby Lock using section: LILLYxBOXxZusammenfassungxLock => section
+\LILLYxBOXxHIGHLEVELxOFFSET=\skip90
 
+Definition by Lock using section: LILLYxBOXxDefinitionxLock => section
 There was no Setting given => Generate default
 Expected: section, got: section
-Zusammenfassungby Enable using TRUE: LILLYxBOXxZusammenfassungxEnable => TRUE
+Definition by Enable using TRUE: LILLYxBOXxDefinitionxEnable => TRUE
 There was no Setting given => Generate default
 Expected: TRUE, got: TRUE
-Zusammenfassungby Box using TRUE: LILLYxBOXxZusammenfassungxBox => TRUE
+Definition by Box using TRUE: LILLYxBOXxDefinitionxBox => TRUE
 There was no Setting given => Generate default
 Expected: TRUE, got: TRUE
-Aufgabeby Lock using section: LILLYxBOXxAufgabexLock => section
+Beispiel by Lock using section: LILLYxBOXxBeispielxLock => section
 There was no Setting given => Generate default
 Expected: section, got: section
-Aufgabeby Enable using TRUE: LILLYxBOXxAufgabexEnable => TRUE
+Beispiel by Enable using TRUE: LILLYxBOXxBeispielxEnable => TRUE
 There was no Setting given => Generate default
 Expected: TRUE, got: TRUE
-Aufgabeby Box using TRUE: LILLYxBOXxAufgabexBox => TRUE
-There was no Setting given => Generate default
-Expected: TRUE, got: TRUE
-Uebungsblattby Lock using section: LILLYxBOXxUebungsblattxLock => section
+Beispiel by Box using TRUE: LILLYxBOXxBeispielxBox => TRUE
+Expected: TRUE, got: FALSE
+Bemerkung by Lock using section: LILLYxBOXxBemerkungxLock => section
 There was no Setting given => Generate default
 Expected: section, got: section
-Uebungsblattby Enable using TRUE: LILLYxBOXxUebungsblattxEnable => TRUE
-Uebungsblattby Box using TRUE: LILLYxBOXxUebungsblattxBox => TRUE
+Bemerkung by Enable using TRUE: LILLYxBOXxBemerkungxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Bemerkung by Box using TRUE: LILLYxBOXxBemerkungxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Satz by Lock using section: LILLYxBOXxSatzxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Satz by Enable using TRUE: LILLYxBOXxSatzxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Satz by Box using TRUE: LILLYxBOXxSatzxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Beweis by Lock using section: LILLYxBOXxBeweisxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Beweis by Enable using TRUE: LILLYxBOXxBeweisxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Beweis by Box using TRUE: LILLYxBOXxBeweisxBox => TRUE
+Expected: TRUE, got: FALSE
+Lemma by Lock using section: LILLYxBOXxLemmaxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Lemma by Enable using TRUE: LILLYxBOXxLemmaxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Lemma by Box using TRUE: LILLYxBOXxLemmaxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Zusammenfassung by Lock using section: LILLYxBOXxZusammenfassungxLock => sectio
+n
+There was no Setting given => Generate default
+Expected: section, got: section
+Zusammenfassung by Enable using TRUE: LILLYxBOXxZusammenfassungxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Zusammenfassung by Box using TRUE: LILLYxBOXxZusammenfassungxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Aufgabe by Lock using section: LILLYxBOXxAufgabexLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Aufgabe by Enable using TRUE: LILLYxBOXxAufgabexEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Aufgabe by Box using TRUE: LILLYxBOXxAufgabexBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Uebungsblatt by Lock using section: LILLYxBOXxUebungsblattxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Uebungsblatt by Enable using TRUE: LILLYxBOXxUebungsblattxEnable => TRUE
+Expected: TRUE, got: FALSE
+Uebungsblatt by Box using TRUE: LILLYxBOXxUebungsblattxBox => TRUE
+Expected: TRUE, got: TRUE
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \RegisterBox with sig. 'O{} O{} m m m ' on line 185.
+. Defining command \RegisterBox with sig. 'O{} O{} m m m ' on line 292.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \TransformBox with sig. 'O{} m m o m ' on line 199.
+. Defining command \TransformBox with sig. 'O{} O{\BooleanFalse } m m o m ' on
+. line 343.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \TransformBoxDefinition with sig. 'O{} m m ' on line 207.
+. Defining command \TransformBoxDefinition with sig. 's O{} m m o ' on line
+. 354.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \TransformBoxDefinitionS with sig. 'O{} m m ' on line 215.
+. Defining command \TransformBoxDefinitionS with sig. 's O{} m m o ' on line
+. 366.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxBemerkung with sig. 's O{} m m o ' on line
+. 377.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxBemerkungS with sig. 's O{} m m o ' on line
+. 388.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxBeispiel with sig. 's O{} m m o ' on line 399.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxBeispielS with sig. 's O{} m m o ' on line
+. 410.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxSatz with sig. 's O{} m m o ' on line 421.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxBeweis with sig. 's O{} m m o ' on line 435.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxBeweisS with sig. 's O{} m m o ' on line 446.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxLemma with sig. 's O{} m m o ' on line 457.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxLemmaS with sig. 's O{} m m o ' on line 468.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \TransformBoxZusammenfassung with sig. 's O{} m m o ' on
+. line 479.
 .................................................
 \c@ctr_TSK=\count311
 \c@ctr_EXE=\count312
@@ -1305,233 +1383,538 @@ tex
 . LaTeX info: "xparse/redefine-environment"
 . 
 . Redefining environment 'LILLYxBOXxDefinition' with sig. ' O{} O{Definition
-. \thetcbcounter ~} O{} ' on line 20.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-environment"
-. 
-. Redefining environment 'LILLYxBOXxDefinition*' with sig. ' O{} O{Definition
 . \thetcbcounter ~} O{} ' on line 23.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-environment"
 . 
+. Redefining environment 'LILLYxBOXxDefinition*' with sig. ' O{} O{Definition
+. \thetcbcounter ~} O{} ' on line 26.
+.................................................
+.................................................
+. LaTeX info: "xparse/redefine-environment"
+. 
 . Redefining environment 'LILLYxBOXxBeispiel' with sig. ' O{} O{Beispiel
-. \thetcbcounter ~} O{} ' on line 30.
+. \thetcbcounter ~} O{} ' on line 38.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-environment"
 . 
 . Redefining environment 'LILLYxBOXxBemerkung' with sig. ' O{} O{Bemerkung
-. \thetcbcounter ~} O{} ' on line 39.
+. \thetcbcounter ~} O{} ' on line 52.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-environment"
 . 
 . Redefining environment 'LILLYxBOXxSatz' with sig. ' O{} O{Satz
-. \thetcbcounter ~} O{} ' on line 47.
+. \thetcbcounter ~} O{} ' on line 57.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-environment"
 . 
 . Redefining environment 'LILLYxBOXxBeweis' with sig. ' O{} O{Beweis
-. \thetcbcounter ~} O{} ' on line 55.
+. \thetcbcounter ~} O{} ' on line 70.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-environment"
 . 
 . Redefining environment 'LILLYxBOXxLemma' with sig. ' O{} O{Lemma
-. \thetcbcounter ~} O{} ' on line 62.
+. \thetcbcounter ~} O{} ' on line 77.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-environment"
 . 
 . Redefining environment 'LILLYxBOXxZusammenfassung' with sig. ' O{}
-. O{Zusammenfassung \thetcbcounter ~} O{} ' on line 68.
+. O{Zusammenfassung \thetcbcounter ~} O{} ' on line 83.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-environment"
 . 
 . Redefining environment 'LILLYxBOXxAufgabexPlain' with sig. 'O{} O{} O{}' on
-. line 72.
+. line 87.
 .................................................
 )
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \DeclareLillyBox with sig. ' m O{TRUE} m m o ' on line 294.
+. Defining command \DeclareLillyBox with sig. ' m O{TRUE} m m o ' on line 542.
 .................................................
 \c@DEFINITIONS=\count320
-\cftbeforeDEFINITIONSskip=\skip89
-\cftDEFINITIONSindent=\skip90
-\cftDEFINITIONSnumwidth=\skip91
+\cftbeforeDEFINITIONSskip=\skip91
+\cftDEFINITIONSindent=\skip92
+\cftDEFINITIONSnumwidth=\skip93
 \c@DEFSdepth=\count321
-\cftbeforeDEFStitleskip=\skip92
-\cftafterDEFStitleskip=\skip93
+\cftbeforeDEFStitleskip=\skip94
+\cftafterDEFStitleskip=\skip95
+Registering Box: definition
+[definition:definition] Name: [definition]
+[definition:definition] Title: [Definition \thetcbcounter {}\nobreakspace {}]
+[definition:definition] Color: [DebianRed]
+[definition:definition] Precode: []
+[definition:definition] Incode: []
+[definition:definition] Outcode: []
+[definition:definition] Postcode: [\grenewcommand {\LILLYxSEENxDEFINITION }{TRU
+E}]
+[definition:definition] Usestyle: [LILLYxBOXxDefinition]
+[definition:definition] Emblem: []
+[definition:definition] Lock: [section]
+[definition:definition] Listname: [DEFINITIONS]
+[definition:definition] Listtext: [Alle Definitionen\\[\LILLYxBOXxHIGHLEVELxOFF
+SET ]]
+[definition:definition] Listmen: [DEFS]
+[definition:definition] CreateList: FALSE
+[definition:definition] CustomList: TRUE
+[definition:definition] BoxEnabled: TRUE
+[definition:definition] UseBox: TRUE
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'definition' with sig. 'O{}
-. O{LillyxBOXxDesignxDefinition}' on line 313.
+. Defining environment 'definition' with sig. 'O{} O{}' on line 583.
 .................................................
+Registering Box: definitionStarred
+[definitionStarred:definitionStarred] Name: [definition*]
+[definitionStarred:definitionStarred] Title: [Definition \thetcbcounter {}\nobr
+eakspace {}]
+[definitionStarred:definitionStarred] Color: [DebianRed]
+[definitionStarred:definitionStarred] Precode: []
+[definitionStarred:definitionStarred] Incode: []
+[definitionStarred:definitionStarred] Outcode: []
+[definitionStarred:definitionStarred] Postcode: [\grenewcommand {\LILLYxSEENxDE
+FINITION }{TRUE}]
+[definitionStarred:definitionStarred] Usestyle: [LILLYxBOXxDefinition*]
+[definitionStarred:definitionStarred] Emblem: [\small \faThumbTack ]
+[definitionStarred:definitionStarred] Lock: [section]
+[definitionStarred:definitionStarred] Listname: [DEFINITIONS]
+[definitionStarred:definitionStarred] Listtext: [Alle \lillyxBoxxName ]
+[definitionStarred:definitionStarred] Listmen: [DEFS]
+[definitionStarred:definitionStarred] CreateList: FALSE
+[definitionStarred:definitionStarred] CustomList: TRUE
+[definitionStarred:definitionStarred] BoxEnabled: TRUE
+[definitionStarred:definitionStarred] UseBox: TRUE
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'definition*' with sig. 'O{} O{}' on line 316.
+. Defining environment 'definition*' with sig. 'O{} O{}' on line 589.
 .................................................
 \c@BEMERKUNGEN=\count322
-\cftbeforeBEMERKUNGENskip=\skip94
-\cftBEMERKUNGENindent=\skip95
-\cftBEMERKUNGENnumwidth=\skip96
+\cftbeforeBEMERKUNGENskip=\skip96
+\cftBEMERKUNGENindent=\skip97
+\cftBEMERKUNGENnumwidth=\skip98
 \c@BEMSdepth=\count323
-\cftbeforeBEMStitleskip=\skip97
-\cftafterBEMStitleskip=\skip98
+\cftbeforeBEMStitleskip=\skip99
+\cftafterBEMStitleskip=\skip100
+Registering Box: bemerkung
+[bemerkung:bemerkung] Name: [bemerkung]
+[bemerkung:bemerkung] Title: [Bemerkung \thetcbcounter {}\nobreakspace {}]
+[bemerkung:bemerkung] Color: [Charcoal]
+[bemerkung:bemerkung] Precode: []
+[bemerkung:bemerkung] Incode: []
+[bemerkung:bemerkung] Outcode: []
+[bemerkung:bemerkung] Postcode: [\grenewcommand {\LILLYxSEENxBEMERKUNG }{TRUE}]
+
+[bemerkung:bemerkung] Usestyle: [LILLYxBOXxBemerkung]
+[bemerkung:bemerkung] Emblem: [XXNOEMBLEMXX]
+[bemerkung:bemerkung] Lock: [section]
+[bemerkung:bemerkung] Listname: [BEMERKUNGEN]
+[bemerkung:bemerkung] Listtext: [Alle Bemerkungen\\[\LILLYxBOXxHIGHLEVELxOFFSET
+ ]]
+[bemerkung:bemerkung] Listmen: [BEMS]
+[bemerkung:bemerkung] CreateList: FALSE
+[bemerkung:bemerkung] CustomList: TRUE
+[bemerkung:bemerkung] BoxEnabled: TRUE
+[bemerkung:bemerkung] UseBox: TRUE
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'bemerkung' with sig. 'O{}
-. O{LillyxBOXxDesignxBemerkung}' on line 348.
+. Defining environment 'bemerkung' with sig. 'O{} O{}' on line 639.
 .................................................
+Registering Box: bemerkungStarred
+[bemerkungStarred:bemerkungStarred] Name: [bemerkung*]
+[bemerkungStarred:bemerkungStarred] Title: [Bemerkung \thetcbcounter {}\nobreak
+space {}]
+[bemerkungStarred:bemerkungStarred] Color: [Charcoal]
+[bemerkungStarred:bemerkungStarred] Precode: []
+[bemerkungStarred:bemerkungStarred] Incode: [\nskip ]
+[bemerkungStarred:bemerkungStarred] Outcode: []
+[bemerkungStarred:bemerkungStarred] Postcode: [\grenewcommand {\LILLYxSEENxBEME
+RKUNG }{TRUE}]
+[bemerkungStarred:bemerkungStarred] Usestyle: [LILLYxBOXxBemerkung]
+[bemerkungStarred:bemerkungStarred] Emblem: [XXNOEMBLEMXX]
+[bemerkungStarred:bemerkungStarred] Lock: [section]
+[bemerkungStarred:bemerkungStarred] Listname: [BEMERKUNGEN]
+[bemerkungStarred:bemerkungStarred] Listtext: [Alle \lillyxBoxxName ]
+[bemerkungStarred:bemerkungStarred] Listmen: [BEMS]
+[bemerkungStarred:bemerkungStarred] CreateList: FALSE
+[bemerkungStarred:bemerkungStarred] CustomList: TRUE
+[bemerkungStarred:bemerkungStarred] BoxEnabled: TRUE
+[bemerkungStarred:bemerkungStarred] UseBox: TRUE
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'bemerkung*' with sig. 'O{}
-. O{LillyxBOXxDesignxBemerkung}' on line 349.
+. Defining environment 'bemerkung*' with sig. 'O{} O{}' on line 645.
 .................................................
 \c@BEISPIELE=\count324
-\cftbeforeBEISPIELEskip=\skip99
-\cftBEISPIELEindent=\skip100
-\cftBEISPIELEnumwidth=\skip101
+\cftbeforeBEISPIELEskip=\skip101
+\cftBEISPIELEindent=\skip102
+\cftBEISPIELEnumwidth=\skip103
 \c@BEISdepth=\count325
-\cftbeforeBEIStitleskip=\skip102
-\cftafterBEIStitleskip=\skip103
+\cftbeforeBEIStitleskip=\skip104
+\cftafterBEIStitleskip=\skip105
+Registering Box: beispiel
+[beispiel:beispiel] Name: [beispiel]
+[beispiel:beispiel] Title: [Beispiel \thetcbcounter {}\nobreakspace {}]
+[beispiel:beispiel] Color: [Charcoal]
+[beispiel:beispiel] Precode: []
+[beispiel:beispiel] Incode: []
+[beispiel:beispiel] Outcode: []
+[beispiel:beispiel] Postcode: [\grenewcommand {\LILLYxSEENxBEISPIEL }{TRUE}]
+[beispiel:beispiel] Usestyle: [LILLYxBOXxBeispiel]
+[beispiel:beispiel] Emblem: [XXNOEMBLEMXX]
+[beispiel:beispiel] Lock: [section]
+[beispiel:beispiel] Listname: [BEISPIELE]
+[beispiel:beispiel] Listtext: [Alle Beispiele\\[\LILLYxBOXxHIGHLEVELxOFFSET ]]
+[beispiel:beispiel] Listmen: [BEIS]
+[beispiel:beispiel] CreateList: FALSE
+[beispiel:beispiel] CustomList: TRUE
+[beispiel:beispiel] BoxEnabled: TRUE
+[beispiel:beispiel] UseBox: FALSE
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'beispiel' with sig. 'O{} O{LillyxBOXxDesignxBeispiel}'
-. on line 373.
+. Defining environment 'beispiel' with sig. 'O{} O{}' on line 682.
 .................................................
+Registering Box: beispielStarred
+[beispielStarred:beispielStarred] Name: [beispiel*]
+[beispielStarred:beispielStarred] Title: [Beispiel \thetcbcounter {}\nobreakspa
+ce {}]
+[beispielStarred:beispielStarred] Color: [Charcoal]
+[beispielStarred:beispielStarred] Precode: []
+[beispielStarred:beispielStarred] Incode: [\nskip ]
+[beispielStarred:beispielStarred] Outcode: []
+[beispielStarred:beispielStarred] Postcode: [\grenewcommand {\LILLYxSEENxBEISPI
+EL }{TRUE}]
+[beispielStarred:beispielStarred] Usestyle: [LILLYxBOXxBeispiel]
+[beispielStarred:beispielStarred] Emblem: [XXNOEMBLEMXX]
+[beispielStarred:beispielStarred] Lock: [section]
+[beispielStarred:beispielStarred] Listname: [BEISPIELE]
+[beispielStarred:beispielStarred] Listtext: [Alle \lillyxBoxxName ]
+[beispielStarred:beispielStarred] Listmen: [BEIS]
+[beispielStarred:beispielStarred] CreateList: FALSE
+[beispielStarred:beispielStarred] CustomList: TRUE
+[beispielStarred:beispielStarred] BoxEnabled: TRUE
+[beispielStarred:beispielStarred] UseBox: FALSE
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'beispiel*' with sig. 'O{}
-. O{LillyxBOXxDesignxBeispiel}' on line 374.
+. Defining environment 'beispiel*' with sig. 'O{} O{}' on line 688.
 .................................................
-\c@SATZ=\count326
-\cftbeforeSATZskip=\skip104
-\cftSATZindent=\skip105
-\cftSATZnumwidth=\skip106
-\c@SATZEdepth=\count327
-\cftbeforeSATZEtitleskip=\skip107
-\cftafterSATZEtitleskip=\skip108
+\c@SATZE=\count326
+\cftbeforeSATZEskip=\skip106
+\cftSATZEindent=\skip107
+\cftSATZEnumwidth=\skip108
+\c@SATSdepth=\count327
+\cftbeforeSATStitleskip=\skip109
+\cftafterSATStitleskip=\skip110
+Registering Box: satz
+[satz:satz] Name: [satz]
+[satz:satz] Title: [Satz \thetcbcounter {}\nobreakspace {}]
+[satz:satz] Color: [Charcoal]
+[satz:satz] Precode: []
+[satz:satz] Incode: []
+[satz:satz] Outcode: []
+[satz:satz] Postcode: [\grenewcommand {\LILLYxSEENxSATZ }{TRUE}]
+[satz:satz] Usestyle: [LILLYxBOXxSatz]
+[satz:satz] Emblem: [XXNOEMBLEMXX]
+[satz:satz] Lock: [section]
+[satz:satz] Listname: [SATZE]
+[satz:satz] Listtext: [Alle S\"{a}tze\\[\LILLYxBOXxHIGHLEVELxOFFSET ]]
+[satz:satz] Listmen: [SATS]
+[satz:satz] CreateList: FALSE
+[satz:satz] CustomList: TRUE
+[satz:satz] BoxEnabled: TRUE
+[satz:satz] UseBox: TRUE
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'satz' with sig. 'O{} O{}' on line 400.
+. Defining environment 'satz' with sig. 'O{} O{}' on line 727.
+.................................................
+Registering Box: satzStarred
+[satzStarred:satzStarred] Name: [satz*]
+[satzStarred:satzStarred] Title: [Satz \thetcbcounter {}\nobreakspace {}]
+[satzStarred:satzStarred] Color: [Charcoal]
+[satzStarred:satzStarred] Precode: []
+[satzStarred:satzStarred] Incode: [\nskip ]
+[satzStarred:satzStarred] Outcode: []
+[satzStarred:satzStarred] Postcode: [\grenewcommand {\LILLYxSEENxSATZ }{TRUE}]
+[satzStarred:satzStarred] Usestyle: [LILLYxBOXxSatz]
+[satzStarred:satzStarred] Emblem: [XXNOEMBLEMXX]
+[satzStarred:satzStarred] Lock: [section]
+[satzStarred:satzStarred] Listname: [SATZE]
+[satzStarred:satzStarred] Listtext: [Alle \lillyxBoxxName ]
+[satzStarred:satzStarred] Listmen: [SATS]
+[satzStarred:satzStarred] CreateList: FALSE
+[satzStarred:satzStarred] CustomList: TRUE
+[satzStarred:satzStarred] BoxEnabled: TRUE
+[satzStarred:satzStarred] UseBox: TRUE
+.................................................
+. LaTeX info: "xparse/define-environment"
+. 
+. Defining environment 'satz*' with sig. 'O{} O{}' on line 733.
 .................................................
 \c@BEWEISE=\count328
-\cftbeforeBEWEISEskip=\skip109
-\cftBEWEISEindent=\skip110
-\cftBEWEISEnumwidth=\skip111
+\cftbeforeBEWEISEskip=\skip111
+\cftBEWEISEindent=\skip112
+\cftBEWEISEnumwidth=\skip113
 \c@BEWSdepth=\count329
-\cftbeforeBEWStitleskip=\skip112
-\cftafterBEWStitleskip=\skip113
+\cftbeforeBEWStitleskip=\skip114
+\cftafterBEWStitleskip=\skip115
+Registering Box: beweis
+[beweis:beweis] Name: [beweis]
+[beweis:beweis] Title: [Beweis \thetcbcounter {}\nobreakspace {}]
+[beweis:beweis] Color: [Charcoal]
+[beweis:beweis] Precode: []
+[beweis:beweis] Incode: []
+[beweis:beweis] Outcode: []
+[beweis:beweis] Postcode: [\grenewcommand {\LILLYxSEENxBEWEIS }{TRUE}]
+[beweis:beweis] Usestyle: [LILLYxBOXxBeweis]
+[beweis:beweis] Emblem: [XXNOEMBLEMXX]
+[beweis:beweis] Lock: [section]
+[beweis:beweis] Listname: [BEWEISE]
+[beweis:beweis] Listtext: [Alle Beweise\\[\LILLYxBOXxHIGHLEVELxOFFSET ]]
+[beweis:beweis] Listmen: [BEWS]
+[beweis:beweis] CreateList: FALSE
+[beweis:beweis] CustomList: TRUE
+[beweis:beweis] BoxEnabled: TRUE
+[beweis:beweis] UseBox: FALSE
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'beweis' with sig. 'O{} O{LillyxBOXxDesignxBeweis}' on
-. line 422.
+. Defining environment 'beweis' with sig. 'O{} O{}' on line 769.
 .................................................
-.................................................
-. LaTeX info: "xparse/define-environment"
-. 
-. Defining environment 'beweis*' with sig. 'O{} O{LillyxBOXxDesignxBeweis}' on
-. line 423.
-.................................................
-\c@LEMMAS=\count330
-\cftbeforeLEMMASskip=\skip114
-\cftLEMMASindent=\skip115
-\cftLEMMASnumwidth=\skip116
-\c@LEMMEdepth=\count331
-\cftbeforeLEMMEtitleskip=\skip117
-\cftafterLEMMEtitleskip=\skip118
-.................................................
-. LaTeX info: "xparse/define-environment"
-. 
-. Defining environment 'lemma' with sig. 'O{} O{}' on line 449.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-environment"
-. 
-. Defining environment 'lemma*' with sig. 'O{} O{}' on line 452.
-.................................................
-\c@ZSMS=\count332
-\cftbeforeZSMSskip=\skip119
-\cftZSMSindent=\skip120
-\cftZSMSnumwidth=\skip121
-\c@ZSMdepth=\count333
-\cftbeforeZSMtitleskip=\skip122
-\cftafterZSMtitleskip=\skip123
+Registering Box: beweisStarred
+[beweisStarred:beweisStarred] Name: [beweis*]
+[beweisStarred:beweisStarred] Title: [Beweis \thetcbcounter {}\nobreakspace {}]
+
+[beweisStarred:beweisStarred] Color: [Charcoal]
+[beweisStarred:beweisStarred] Precode: []
+[beweisStarred:beweisStarred] Incode: [\nskip ]
+[beweisStarred:beweisStarred] Outcode: []
+[beweisStarred:beweisStarred] Postcode: [\grenewcommand {\LILLYxSEENxBEWEIS }{T
+RUE}]
+[beweisStarred:beweisStarred] Usestyle: [LILLYxBOXxBeweis]
+[beweisStarred:beweisStarred] Emblem: [XXNOEMBLEMXX]
+[beweisStarred:beweisStarred] Lock: [section]
+[beweisStarred:beweisStarred] Listname: [BEWEISE]
+[beweisStarred:beweisStarred] Listtext: [Alle \lillyxBoxxName ]
+[beweisStarred:beweisStarred] Listmen: [BEWS]
+[beweisStarred:beweisStarred] CreateList: FALSE
+[beweisStarred:beweisStarred] CustomList: TRUE
+[beweisStarred:beweisStarred] BoxEnabled: TRUE
+[beweisStarred:beweisStarred] UseBox: FALSE
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'zusammenfassung' with sig. 'O{} O{}' on line 477.
+. Defining environment 'beweis*' with sig. 'O{} O{}' on line 775.
+.................................................
+\c@LEMMATA=\count330
+\cftbeforeLEMMATAskip=\skip116
+\cftLEMMATAindent=\skip117
+\cftLEMMATAnumwidth=\skip118
+\c@LEMSdepth=\count331
+\cftbeforeLEMStitleskip=\skip119
+\cftafterLEMStitleskip=\skip120
+Registering Box: lemma
+[lemma:lemma] Name: [lemma]
+[lemma:lemma] Title: [Lemma \thetcbcounter {}\nobreakspace {}]
+[lemma:lemma] Color: [Charcoal]
+[lemma:lemma] Precode: []
+[lemma:lemma] Incode: []
+[lemma:lemma] Outcode: []
+[lemma:lemma] Postcode: [\grenewcommand {\LILLYxSEENxLEMMA }{TRUE}]
+[lemma:lemma] Usestyle: [LILLYxBOXxLemma]
+[lemma:lemma] Emblem: []
+[lemma:lemma] Lock: [section]
+[lemma:lemma] Listname: [LEMMATA]
+[lemma:lemma] Listtext: [Alle Lemmata\\[\LILLYxBOXxHIGHLEVELxOFFSET ]]
+[lemma:lemma] Listmen: [LEMS]
+[lemma:lemma] CreateList: FALSE
+[lemma:lemma] CustomList: TRUE
+[lemma:lemma] BoxEnabled: TRUE
+[lemma:lemma] UseBox: TRUE
+.................................................
+. LaTeX info: "xparse/define-environment"
+. 
+. Defining environment 'lemma' with sig. 'O{} O{}' on line 811.
+.................................................
+Registering Box: lemmaStarred
+[lemmaStarred:lemmaStarred] Name: [lemma*]
+[lemmaStarred:lemmaStarred] Title: [Lemma \thetcbcounter {}\nobreakspace {}]
+[lemmaStarred:lemmaStarred] Color: [Charcoal]
+[lemmaStarred:lemmaStarred] Precode: []
+[lemmaStarred:lemmaStarred] Incode: []
+[lemmaStarred:lemmaStarred] Outcode: []
+[lemmaStarred:lemmaStarred] Postcode: [\grenewcommand {\LILLYxSEENxLEMMA }{TRUE
+}]
+[lemmaStarred:lemmaStarred] Usestyle: [LILLYxBOXxLemma]
+[lemmaStarred:lemmaStarred] Emblem: [\small \textcolor {\LILLYxColorxLemma }{\f
+aStar }]
+[lemmaStarred:lemmaStarred] Lock: [section]
+[lemmaStarred:lemmaStarred] Listname: [LEMMATA]
+[lemmaStarred:lemmaStarred] Listtext: [Alle \lillyxBoxxName ]
+[lemmaStarred:lemmaStarred] Listmen: [LEMS]
+[lemmaStarred:lemmaStarred] CreateList: FALSE
+[lemmaStarred:lemmaStarred] CustomList: TRUE
+[lemmaStarred:lemmaStarred] BoxEnabled: TRUE
+[lemmaStarred:lemmaStarred] UseBox: TRUE
+.................................................
+. LaTeX info: "xparse/define-environment"
+. 
+. Defining environment 'lemma*' with sig. 'O{} O{}' on line 817.
+.................................................
+\c@ZUSAMMENFASSUNGEN=\count332
+\cftbeforeZUSAMMENFASSUNGENskip=\skip121
+\cftZUSAMMENFASSUNGENindent=\skip122
+\cftZUSAMMENFASSUNGENnumwidth=\skip123
+\c@ZSMSdepth=\count333
+\cftbeforeZSMStitleskip=\skip124
+\cftafterZSMStitleskip=\skip125
+Registering Box: zusammenfassung
+[zusammenfassung:zusammenfassung] Name: [zusammenfassung]
+[zusammenfassung:zusammenfassung] Title: [Zusammenfassung \thetcbcounter {}\nob
+reakspace {}]
+[zusammenfassung:zusammenfassung] Color: [ChromeYellow]
+[zusammenfassung:zusammenfassung] Precode: []
+[zusammenfassung:zusammenfassung] Incode: []
+[zusammenfassung:zusammenfassung] Outcode: []
+[zusammenfassung:zusammenfassung] Postcode: [\grenewcommand {\LILLYxSEENxZUSAMM
+ENFASSUNG }{TRUE}]
+[zusammenfassung:zusammenfassung] Usestyle: [LILLYxBOXxZusammenfassung]
+[zusammenfassung:zusammenfassung] Emblem: [XXNOEMBLEMXX]
+[zusammenfassung:zusammenfassung] Lock: [section]
+[zusammenfassung:zusammenfassung] Listname: [ZUSAMMENFASSUNGEN]
+[zusammenfassung:zusammenfassung] Listtext: [Alle Zusammenfassungen\\[\LILLYxBO
+XxHIGHLEVELxOFFSET ]]
+[zusammenfassung:zusammenfassung] Listmen: [ZSMS]
+[zusammenfassung:zusammenfassung] CreateList: FALSE
+[zusammenfassung:zusammenfassung] CustomList: TRUE
+[zusammenfassung:zusammenfassung] BoxEnabled: TRUE
+[zusammenfassung:zusammenfassung] UseBox: TRUE
+.................................................
+. LaTeX info: "xparse/define-environment"
+. 
+. Defining environment 'zusammenfassung' with sig. 'O{} O{}' on line 858.
+.................................................
+Registering Box: zusammenfassungStarred
+[zusammenfassungStarred:zusammenfassungStarred] Name: [zusammenfassung*]
+[zusammenfassungStarred:zusammenfassungStarred] Title: [Zusammenfassung \thetcb
+counter {}\nobreakspace {}]
+[zusammenfassungStarred:zusammenfassungStarred] Color: [ChromeYellow]
+[zusammenfassungStarred:zusammenfassungStarred] Precode: []
+[zusammenfassungStarred:zusammenfassungStarred] Incode: [\nskip ]
+[zusammenfassungStarred:zusammenfassungStarred] Outcode: []
+[zusammenfassungStarred:zusammenfassungStarred] Postcode: [\grenewcommand {\LIL
+LYxSEENxZUSAMMENFASSUNG }{TRUE}]
+[zusammenfassungStarred:zusammenfassungStarred] Usestyle: [LILLYxBOXxZusammenfa
+ssung]
+[zusammenfassungStarred:zusammenfassungStarred] Emblem: [XXNOEMBLEMXX]
+[zusammenfassungStarred:zusammenfassungStarred] Lock: [section]
+[zusammenfassungStarred:zusammenfassungStarred] Listname: [ZUSAMMENFASSUNGEN]
+[zusammenfassungStarred:zusammenfassungStarred] Listtext: [Alle \lillyxBoxxName
+ ]
+[zusammenfassungStarred:zusammenfassungStarred] Listmen: [ZSMS]
+[zusammenfassungStarred:zusammenfassungStarred] CreateList: FALSE
+[zusammenfassungStarred:zusammenfassungStarred] CustomList: TRUE
+[zusammenfassungStarred:zusammenfassungStarred] BoxEnabled: TRUE
+[zusammenfassungStarred:zusammenfassungStarred] UseBox: TRUE
+.................................................
+. LaTeX info: "xparse/define-environment"
+. 
+. Defining environment 'zusammenfassung*' with sig. 'O{} O{}' on line 864.
 .................................................
 \c@TSKS=\count334
-\cftbeforeTSKSskip=\skip124
-\cftTSKSindent=\skip125
-\cftTSKSnumwidth=\skip126
+\cftbeforeTSKSskip=\skip126
+\cftTSKSindent=\skip127
+\cftTSKSnumwidth=\skip128
 \c@TSKdepth=\count335
-\cftbeforeTSKtitleskip=\skip127
-\cftafterTSKtitleskip=\skip128
+\cftbeforeTSKtitleskip=\skip129
+\cftafterTSKtitleskip=\skip130
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'aufgabeXdefault' with sig. ' O{} m m ' on line 522.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-environment"
-. 
-. Defining environment 'aufgabeXplain' with sig. ' O{} m m ' on line 526.
+. Defining environment 'aufgabeXdefault' with sig. ' O{} m m ' on line 920.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'aufgabe' with sig. ' O{} m m ' on line 533.
+. Defining environment 'aufgabeXplain' with sig. ' O{} m m ' on line 924.
 .................................................
-) (./test_box.aux)
+.................................................
+. LaTeX info: "xparse/define-environment"
+. 
+. Defining environment 'aufgabe' with sig. ' O{} m m ' on line 931.
+.................................................
+)
+(/home/eagle/texmf/tex/latex/Lilly/source/Controllers/LILLYxCONTROLLERxENVIRONM
+ENT.sty
+Package: LILLYxCONTROLLERxENVIRONMENT 2019/08/30 Stellt die Umgebungs-Erweiteru
+ng fuer LILLY zur Verfuegung
+Class Lilly Info: LILLYxLoadPackage (enumerate): Wir wollen ja auch schÃ¶ne Auf
+listungen :D  on input line 12.
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks37
+)
+Class Lilly Info: LILLYxLoadPackage (enumitem): Wir wollen ja noch schoenere Au
+flistungen :D  on input line 34.
+
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip131
+\enit@outerparindent=\dimen274
+\enit@toks=\toks38
+\enit@inbox=\box93
+\enitdp@description=\count336
+)
+\enitdp@ditemize=\count337
+.................................................
+. LaTeX info: "xparse/define-environment"
+. 
+. Defining environment 'aufgaben' with sig. ' o O{} ' on line 34.
+.................................................
+)
+(./test_box.aux)
 \openout1 = `test_box.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
  ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count336
-\scratchdimen=\dimen273
-\scratchbox=\box93
-\nofMPsegments=\count337
-\nofMParguments=\count338
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count339
-\MPscratchDim=\dimen274
-\MPnumerator=\count340
-\makeMPintoPDFobject=\count341
-\everyMPtoPDFconversion=\toks38
+\scratchcounter=\count338
+\scratchdimen=\dimen275
+\scratchbox=\box94
+\nofMPsegments=\count339
+\nofMParguments=\count340
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count341
+\MPscratchDim=\dimen276
+\MPnumerator=\count342
+\makeMPintoPDFobject=\count343
+\everyMPtoPDFconversion=\toks40
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1549,8 +1932,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box94
-Package hyperref Info: Link coloring ON on input line 4.
+\AtBeginShipoutBox=\box95
+Package hyperref Info: Link coloring ON on input line 6.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1558,80 +1941,202 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count342
+\c@section@level=\count344
 )
-LaTeX Info: Redefining \ref on input line 4.
-LaTeX Info: Redefining \pageref on input line 4.
-LaTeX Info: Redefining \nameref on input line 4.
+LaTeX Info: Redefining \ref on input line 6.
+LaTeX Info: Redefining \pageref on input line 6.
+LaTeX Info: Redefining \nameref on input line 6.
 
-Overfull \hbox (2.69997pt too wide) in paragraph at lines 13--13
+Beweis box hidden
+Currently in Box: definition
+definition Box-Type will register itself to: DEFINITIONS using the Men: DEFS an
+d lock: section. The Content is: wau
+ > It will register with an Emblem/Addon!
+Currently in Box: beispiel
+beispiel Box-Type will register itself to: BEISPIELE using the Men: BEIS and lo
+ck: section. The Content is: wau
+ > It will register without an Emblem/Addon!
+Currently in Box: bemerkung
+bemerkung Box-Type will register itself to: BEMERKUNGEN using the Men: BEMS and
+ lock: section. The Content is: wau
+ > It will register without an Emblem/Addon!
+Currently in Box: satz
+satz Box-Type will register itself to: SATZE using the Men: SATS and lock: sect
+ion. The Content is: wau
+ > It will register without an Emblem/Addon!
+Currently in Box: beweis
+beweis Box-Type will register itself to: BEWEISE using the Men: BEWS and lock: 
+section. The Content is: wau
+ > It will register without an Emblem/Addon!
+Currently in Box: lemma
+
+Overfull \hbox (2.69997pt too wide) in paragraph at lines 15--15
 []\OT1/cmr/bx/n/12 Lemma 0.1 -- [] 
  []
 
+lemma Box-Type will register itself to: LEMMATA using the Men: LEMS and lock: s
+ection. The Content is: wau
+ > It will register with an Emblem/Addon!
+Currently in Box: zusammenfassung
 LaTeX Font Info:    Try loading font information for U+fontawesomeone on input 
-line 13.
+line 15.
 (/usr/share/texlive/texmf-dist/tex/latex/fontawesome/ufontawesomeone.fd
 File: ufontawesomeone.fd 2016/05/22 Font definitions for U/fontawesomeone.
 )
 
 LaTeX Font Warning: Font shape `U/fontawesomeone/bx/n' undefined
-(Font)              using `U/fontawesomeone/m/n' instead on input line 13.
+(Font)              using `U/fontawesomeone/m/n' instead on input line 15.
 
+zusammenfassung Box-Type will register itself to: ZUSAMMENFASSUNGEN using the M
+en: ZSMS and lock: section. The Content is: wau
+ > It will register without an Emblem/Addon!
 
-Overfull \hbox (19.125pt too wide) in paragraph at lines 13--13
+Overfull \hbox (19.125pt too wide) in paragraph at lines 15--15
 [][]\OT1/cmr/bx/n/12 Zusammenfassung 0.1 -- [][] 
  []
 
+Currently in Box: definitionStarred
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\unhbox' on input line 17.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\voidb@x' on input line 17.
+
 LaTeX Font Info:    Try loading font information for U+fontawesometwo on input 
-line 15.
+line 17.
 (/usr/share/texlive/texmf-dist/tex/latex/fontawesome/ufontawesometwo.fd
 File: ufontawesometwo.fd 2016/05/22 Font definitions for U/fontawesometwo.
 )
 
 LaTeX Font Warning: Font shape `U/fontawesometwo/bx/n' undefined
-(Font)              using `U/fontawesometwo/m/n' instead on input line 15.
+(Font)              using `U/fontawesometwo/m/n' instead on input line 17.
 
+definitionStarred Box-Type will register itself to: DEFINITIONS using the Men: 
+DEFS and lock: section. The Content is: wau
+ > It will register with an Emblem/Addon!
 
-Overfull \hbox (21.82497pt too wide) in paragraph at lines 15--17
+Overfull \hbox (21.82497pt too wide) in paragraph at lines 17--19
 [][]\OT1/cmr/bx/n/12 Definition 0.2 -- [][] 
  []
 
-LaTeX Font Info:    Try loading font information for U+fontawesomethree on inpu
-t line 18.
-(/usr/share/texlive/texmf-dist/tex/latex/fontawesome/ufontawesomethree.fd
-File: ufontawesomethree.fd 2016/05/22 Font definitions for U/fontawesomethree.
-)
+Currently in Box: lemmaStarred
 
-LaTeX Font Warning: Font shape `U/fontawesomethree/bx/n' undefined
-(Font)              using `U/fontawesomethree/m/n' instead on input line 18.
-
-
-Overfull \hbox (2.69997pt too wide) in paragraph at lines 18--18
+Overfull \hbox (2.69997pt too wide) in paragraph at lines 20--20
 []\OT1/cmr/bx/n/12 Lemma 0.2 -- [] 
  []
 
+lemmaStarred Box-Type will register itself to: LEMMATA using the Men: LEMS and 
+lock: section. The Content is: wau
+ > It will register with an Emblem/Addon!
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 21.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 21.
+Currently in Box: bemerkung
+bemerkung Box-Type will register itself to: BEMERKUNGEN using the Men: BEMS and
+ lock: section. The Content is: Josef!
+ > It will register without an Emblem/Addon!
+Currently in Box: bemerkung
+Missing character: There is no Ã in font cmbx12!
+Missing character: There is no ¼ in font cmbx12!
+bemerkung Box-Type will register itself to: BEMERKUNGEN using the Men: BEMS and
+ lock: section. The Content is: GÃ¼nther?
+ > It will register without an Emblem/Addon!
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--125
+
+ []
+
+(./test_box.DEFS)
+\tf@DEFS=\write6
+\openout6 = `test_box.DEFS'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 127--127
+
+ []
+
+(./test_box.BEMS
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¼ in font cmr10!
+)
+\tf@BEMS=\write7
+\openout7 = `test_box.BEMS'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--129
+
+ []
+
+(./test_box.BEIS)
+\tf@BEIS=\write8
+\openout8 = `test_box.BEIS'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 131--131
+
+ []
+
+(./test_box.SATS)
+\tf@SATS=\write9
+\openout9 = `test_box.SATS'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--133
+
+ []
+
+(./test_box.BEWS)
+\tf@BEWS=\write10
+\openout10 = `test_box.BEWS'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--135
+
+ []
+
+(./test_box.LEMS
+LaTeX Font Info:    Try loading font information for U+fontawesomethree on inpu
+t line 2.
+
+(/usr/share/texlive/texmf-dist/tex/latex/fontawesome/ufontawesomethree.fd
+File: ufontawesomethree.fd 2016/05/22 Font definitions for U/fontawesomethree.
+))
+\tf@LEMS=\write11
+\openout11 = `test_box.LEMS'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--137
+
+ []
+
+(./test_box.ZSMS)
+\tf@ZSMS=\write12
+\openout12 = `test_box.ZSMS'.
+
+ [2
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 141.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 141.
  (./test_box.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 21.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 21.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 141.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 141.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 21.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 141.
  ) 
 Here is how much of TeX's memory you used:
- 34746 strings out of 492982
- 674420 string characters out of 32384896
- 750942 words of memory out of 8000000
- 37829 multiletter control sequences out of 15000+600000
- 536703 words of font info for 45 fonts, out of 8000000 for 9000
+ 35643 strings out of 492982
+ 692145 string characters out of 32384896
+ 784363 words of memory out of 8000000
+ 38674 multiletter control sequences out of 15000+600000
+ 537616 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 65i,7n,104p,10430b,1060s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 65i,7n,104p,10471b,1090s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomethree.e
 nc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome/fontawesometwo.en
 c}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc
@@ -1639,10 +2144,10 @@ c}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on test_box.pdf (1 page, 53597 bytes).
+Output written on test_box.pdf (2 pages, 61485 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
- 35 named destinations out of 1000 (max. 500000)
+ 125 PDF objects out of 1000 (max. 8388607)
+ 115 compressed objects within 2 object streams
+ 46 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
