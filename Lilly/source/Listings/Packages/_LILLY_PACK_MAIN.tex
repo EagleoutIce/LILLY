@@ -42,9 +42,6 @@
 \def\lst@PlaceNumber{\makebox[\dimexpr 1em+\lst@numbersep][l]{\normalfont
   \lst@numberstyle{\thelstnumber}}}%
 
-\definecolor{lstmainbordercol}{HTML}{EAECF0}
-\definecolor{lstmainbackcol}{HTML}{F8F9FA}
-
 \lstdefinestyle{MAIN}{
     breaklines=true,
     backgroundcolor=\color{lstmainbackcol},
@@ -64,7 +61,7 @@
     basicstyle=\LILLYxlstTypeWriter\color{black}\LILLYxLISTINGSxFONTSIZE,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
     extendedchars=true,
-    numberstyle=\color{gray}\LILLYxLISTINGSxNUMxFONTSIZE,
+    numberstyle=\color{gray}\LILLYxLISTINGSxNUMxFONTSIZE\sffamily,
     prebreak={\raisebox{0.35\baselineskip}{\rotatebox{270}{\fontsize{6pt}{6pt}\selectfont$\curvearrowright$}}},
     frame=single,
     xleftmargin=15pt,

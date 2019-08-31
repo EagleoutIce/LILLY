@@ -52,6 +52,11 @@
 % %% itsch scho naisch, schankch to: https://tex.stackexchange.com/questions/451532/recent-issues-with-lstlinebgrd-package-with-listings-after-the-latters-updates
 
 
+%% Current Colors:
+\definecolor{lstmainbordercol}{HTML}{EAECF0}
+\definecolor{lstmainbackcol}{HTML}{F8F9FA}
+
+
 \RequirePackage{LILLYxLIST}
 
 %% Alle Sprachen müssen sich hier registrieren, solange es nicht implementiert ist,
@@ -188,7 +193,8 @@
   \vfuzz\hfuzz\makeatother}
 
 \gdef\LILLYxLSTINLINE#1#2{%
-  \begingroup\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\noexpand\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite, fill=MudWhite, centered]{\!\noexpand\vphantom{I}\lstinline[#1]`#2`\,};}\endgroup%
+  \begingroup\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\noexpand\baselineskip, inner xsep=2.4pt, inner ysep=2.1pt,draw, %rounded corners=4pt,
+  lstmainbordercol, fill=lstmainbackcol, centered]{\vphantom{I}\lstinline[#1]`#2`};}\endgroup%
 }
 \gdef\LILLYxLSTBLANKINLINE#1#2{%
   \begingroup\,\vphantom{I}\lstinline[#1]!#2!\,\endgroup%

@@ -334,3 +334,84 @@ Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereit
 \end{center}
 %Weiter existiert der Befehl \blankcmd{lillyGraphicsUsePrerenderedtrue}, mit dem automatisch jeder \blankcmd{getGraphics}-Aufruf in einen entsprechenden \blankcmd{getPrerendered} Aufruf umgewandelt wird. 
 \emph{Es gilt zu beachten, dass die bereits vorgenerierten Grafiken von den manuell generierten abweichen können!}
+%
+%
+%
+\section{Weiterführende Symbole}
+%
+%
+%
+\subsection{Embleme}
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxEMBLEMS.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxEMBLEMS} und hängt vom Mutterpaket ab. 
+
+%
+%
+%
+
+\presentCommand[2.0.0]{infoEmblem}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{warningEmblem}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{errorEmblem}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{mathEmblem}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{codeEmblem}\vspace{-\baselineskip}
+Hierbei handelt es sich um Shortcuts um einige Embleme direkt zu Setzen:\medskip
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \emblem [count=\ang] in {\infoEmblem,\warningEmblem,\errorEmblem,\mathEmblem,\codeEmblem} {
+            \node at(72*\ang+18:1cm) {\emblem};
+        }
+    \end{tikzpicture}
+\end{center}
+Hierbei bedienen sich die Befehle der Emblem-Definition \blankcmd{DefaultBaseEmblem}.
+
+\presentCommand[2.0.0]{NewEmblem}[\optArg{Emblem-Keys}\optArg{Tikz-Args}\manArg{name}]
+Definiert ein neues Emblem, wobei folgende Emblem-Keys zur Verfügung stehen, diese werden persistiert:
+\begin{center}
+    \begin{tabularx}{0.96\linewidth}{^t>{\em}^l^c^l+}
+        \toprule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
+        radius & length & $0.369cm$ & Radius des Symbols\\
+        shape & enum\footnote{Allowed: none, quadratic, round, hexagon, octagon} & \T{shape/hexagon} & Form des Hintergrunds \\
+        bgcolor & Farbe & DebianRed & Hintegrundsfarbe \\
+        bordercolor & Farbe & DebianRed & Rahmenfarbe \\
+        fgcolor & Farbe & MudWhite & Textfarb \\
+        font    & code & \blankcmd{bfseries}\blankcmd{large}\blankcmd{sffamily} & Schrift\\
+        \bottomrule
+    \end{tabularx}\nskip
+\end{center}
+So lassen sich relativ einfach GrundEmbleme definieren:
+\begin{latex}
+\NewEmblem[shape/none]{NoneEmblem}
+\NewEmblem[shape/quadratic]{QuadraticEmblem}
+\NewEmblem[shape/round]{RoundEmblem}
+\NewEmblem[shape/hexagon]{HexagonEmblem}
+\NewEmblem[shape/octagon]{OctagonEmblem}
+\end{latex}
+
+So ist es zum Beispiel möglich durch die jeweilige Form das aussehne der mitgelieferten Embleme zu modifizieren:
+\begin{center}
+        \hspace*{-1cm}\begin{tikzpicture}[scale=0.75,transform shape]
+            \foreach \defTar[count=\x] in {{shape/none},{shape/quadratic},{shape/round},{shape/hexagon},{shape/octagon}} {%
+                \node at(3.5*\x,0){\NewEmblem[\defTar][rotate=90]{DefaultBaseEmblem}\begin{tikzpicture}
+                    \foreach \emblem [count=\ang] in {\infoEmblem,\warningEmblem,\errorEmblem,\mathEmblem,\codeEmblem} {
+                        \node at(72*\ang+18:1cm) {\emblem};
+                    }
+                \end{tikzpicture}
+                };
+                \node at(3.5*\x+0.75,-2) [below] {\T{\defTar}};
+            }
+        \end{tikzpicture}%
+\end{center}
+Das Erzeugen eines neuen Emblems mithilfe von \blankcmd{NewEmblem} erzeugt einen neuen Befehl, entsprechend des Namens des Emblems. Der Befehl besitzt jeweils die folgende Signatur:
+\presentCommand[2.0.0]{<name>}[\optArg{Tikz-Keys}\manArg{text}]
+So liefert zum Beispiel: \T{\blankcmd{OctagonEmblem}\{Hu\}}: \OctagonEmblem{Hu}.\newline
+Oder: \T{\blankcmd{OctagonEmblem}\{\blankcmd{tiny} stop\}} \OctagonEmblem{\tiny Stop}.\medskip\newline
+Die Shortcuts von oben, wurden hierbei wie folgt definiert:
+\begin{latex}
+\gdef!**!\infoEmblem{\,\DefaultBaseEmblem[draw=Leaf,fill=Leaf!75]{i}\,}
+\gdef!**!\warningEmblem{\,\DefaultBaseEmblem[draw=ChromeYellow,fill=ChromeYellow!75]{!}\,}
+\gdef!**!\errorEmblem{\,\DefaultBaseEmblem[draw=DebianRed,fill=DebianRed!75]{\wasysymLightning}\,}
+\gdef!**!\mathEmblem{\,\DefaultBaseEmblem[draw=DarkMidnightBlue,fill=DarkMidnightBlue!75]{:bmath:\mathbf{\pi}:emath:}\,}
+\gdef!**!\codeEmblem{\,\DefaultBaseEmblem[draw=DarkOrchid,fill=DarkOrchid!75]{\faCode}\,}
+\end{latex}

@@ -169,7 +169,8 @@
 % Shortcuts                                                                                                           %     %%%% SHORTCUTS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{\LILLYxPATHxCONTROLLERS/_LILLY_ENVIRONMENT_CONTROLLER}
+%\input{\LILLYxPATHxCONTROLLERS/_LILLY_ENVIRONMENT_CONTROLLER}
+\RequirePackage{LILLYxCONTROLLERxENVIRONMENT}
 \RequirePackage{LILLYxSHORTCUTS}
 
 \LILLYxLoadPackage{wrapfig}{Um Figuren und Tabellen angenehmer einzubetten}

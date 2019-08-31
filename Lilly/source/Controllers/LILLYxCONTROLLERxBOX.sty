@@ -8,6 +8,7 @@
 \RequirePackage{LILLYxCONTROLLERxLINK}
 \RequirePackage{LILLYxLIST}
 \RequirePackage{LILLYxFONTS}
+\RequirePackage{LILLYxSHORTCUTS}
 
 %% \RequirePackage{pgfkeys}
 \LILLYxDemandPackage{pgfkeys}{Damit wir angenehme kv-pairs haben}
@@ -68,15 +69,21 @@
 \LILLYcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}
 
 \gdef\LILLYxBOXxCOLORxFRAME{black!50}
-
-\ifcsname LILLYxBOXxHIGHLEVELxLOCK\endcsname\else
-\ifcsname chapter\endcsname
-\def\LILLYxBOXxHIGHLEVELxLOCK{chapter}
-\else\ifcsname section\endcsname
-\def\LILLYxBOXxHIGHLEVELxLOCK{section}
-\else
-\def\LILLYxBOXxHIGHLEVELxLOCK{TRUE}
-\fi\fi\fi
+\newlength\LILLYxBOXxHIGHLEVELxOFFSET %% can be used to determine the offset for \listof-Titles
+\@ifundefined{LILLYxBOXxHIGHLEVELxLOCK}{%
+    \@ifundefined{chapter}{%
+        \@ifundefined{section}{%
+            \def\LILLYxBOXxHIGHLEVELxLOCK{TRUE}
+            \setlength{\LILLYxBOXxHIGHLEVELxOFFSET}{0cm}
+        }{%
+            \def\LILLYxBOXxHIGHLEVELxLOCK{section}
+            \setlength{\LILLYxBOXxHIGHLEVELxOFFSET}{-0.5cm}
+        }
+    }{%
+        \def\LILLYxBOXxHIGHLEVELxLOCK{chapter}
+        \setlength{\LILLYxBOXxHIGHLEVELxOFFSET}{-1.5cm}
+    }
+}{}
 \let\@@olock\LILLYxBOXxHIGHLEVELxLOCK
 \xdef\LILLYxBOXxHIGHLEVELxLOCK{\@@olock}
 
@@ -107,9 +114,12 @@
     }
 }
 
+\def\NoEmblem{XXNOEMBLEMXX}
+
 \newif\ifcreatelist
 \newif\ifuselist
 \newif\iflillyboxenabled
+\newif\iflillyboxusebox
 \pgfkeys {
     /lillyxBOX/.is family, /lillyxBOX,
     name/.estore in = \lillyxBoxxName,
@@ -125,6 +135,7 @@
     createlist/.is if = createlist,
     customlist/.is if = uselist,
     boxenabled/.is if = lillyboxenabled,
+    usebox/.is if = lillyboxusebox,
     lock/.store in = \lillyxBoxxLock,
     listname/.store in = \lillyxBoxxListname,
     listtext/.store in =\lillyxBoxxListtext,
@@ -133,10 +144,10 @@
         name=noname, title={\noexpand\lillyxBoxxName},%
         boxcol=black,%
         usestyle=LILLYxBOXxDefinition, %hasemblem=FALSE,%
-        emblem={XXNOEMBLEM}, listname={\noexpand\lillyxBoxxName}, createlist=false,%
+        emblem={\NoEmblem}, listname={\noexpand\lillyxBoxxName}, createlist=false,%
         listtext={Alle \noexpand\lillyxBoxxName}, preCode={}, inCode={},%
         outCode={}, postCode={},lock={TRUE}, customlist=false,
-        listmen=NO, boxenabled=true%
+        listmen=NO, boxenabled=true,usebox=true%
     }
 }
 
@@ -157,9 +168,11 @@
         %    => Included as needed, as the expansion is stupid, this won't include the full title of the Box :/
 %  - [X] Fix LabelBug so that the label will Jump Above the Box
         %    => This will be fixed completely when using REgisterBox for all :D
-%  - [ ] Migrate all Boxes to \RegisterBox
+%  - [X] Migrate all Boxes to \RegisterBox
+        %    => TODO: When using tranform on a different boxtype this will prevent the Boxlists from colelctiong. so the final list won't be of th requested Type bt of the transformed one, this doesn't make any sence so i will have to check this later. 
         % OH GOSH PLEASE NOOOOOOOOOO Currentl working on :D
-%  - [ ] Allow to add a symbol (outside, and inside of the Box)
+%  - [X] Allow to add a symbol (outside, and inside of the Box)
+        %    => DONE as LILLYxEMBLEMS
 %  - [ ] Allow a Box to live in the Margin (with and without reference marker inside of the texxt)
 %  - [ ] Make Aufgaben-Box standart again (design-wise, maybe add a 'points' key or, more generic, 'addon'?)
 %  - [ ] add theorem-like customization-support
@@ -167,6 +180,7 @@
 %  - [ ] Change Box-Appearance with 'check odd page' + limerence: orientation bar [tcb manual page 46]
 %  - [ ] \tcblistof - check if it's better then the current listing implementation and if so, change
 %  - [ ] Make 'aufgaben'-Box allow to deperate it's solution to an different possition [tcb manual ~133]
+%  - [ ] Option for own counter
 
 %  - [ ] Include Option: Frame Hidden
 %  - [ ] Maybe adapt style [tcb mnual page 153]
@@ -226,8 +240,18 @@
     \expandafter\xdef\csname lillyxBOXx\theboxid xCreateList\endcsname{\ifcreatelist TRUE\else FALSE\fi}%           CreateList
     \expandafter\xdef\csname lillyxBOXx\theboxid xCustomList\endcsname{\ifuselist TRUE\else FALSE\fi}%              CustomList
     \expandafter\xdef\csname lillyxBOXx\theboxid xBoxEnabled\endcsname{\iflillyboxenabled TRUE\else FALSE\fi}%      BoxEnabled
+    \expandafter\xdef\csname lillyxBOXx\theboxid xUseBox\endcsname{\iflillyboxusebox TRUE\else FALSE\fi}%           UuseBox
+    \foreach \x in {Name,Title,Color,Precode,Incode,Outcode,Postcode,Usestyle,Emblem,Lock,Listname,Listtext,Listmen} {
+        \typeout{[\theboxid :#5] \x: [\csname lillyxBoxx\x\endcsname]}
+    }
+    \typeout{[\theboxid :#5] CreateList: \@nameuse{lillyxBOXx\theboxid xCreateList}}
+    \typeout{[\theboxid :#5] CustomList: \@nameuse{lillyxBOXx\theboxid xCustomList}}
+    \typeout{[\theboxid :#5] BoxEnabled: \@nameuse{lillyxBOXx\theboxid xBoxEnabled}}
+    \typeout{[\theboxid :#5] UseBox: \@nameuse{lillyxBOXx\theboxid xUseBox}}
+
     %% Persistence END
-    \ifcreatelist\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\fi%
+    \ifcreatelist%
+    \typeout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of  \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\fi%
     %\expandafter\global\expandafter\newif\if
     % #1 Title
     % #2 Should be the tex-options
@@ -240,15 +264,22 @@
         }{%
             %% IF not disabled, we will proceed as usual.
             \@nameuse{lillyxBOXx\curboxid xPreCode}%
-            \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,phantomlabel={##1},nameref={##1},##2]%
+            % Check: Is the Box to be a plain box :D 
+            \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xUseBox}}{TRUE}}{%
+                \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={}}% No Modifications needed :D
+            }{%
+                \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain}}% Set Blank Box    
+            }%
+            \phantomsection% Here we will start the corresponding box
+            \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
                 \@nameuse{lillyxBOXx\curboxid xInCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
-                \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\typeout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName}}%
-                    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{XXNOEMBLEM}}{\typeout{\space>\space It will register without an Emblem/Addon!}%
+                \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\typeout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName} using the Men: \@nameuse{lillyxBOXx\curboxid xListMen} and lock: \@nameuse{lillyxBOXx\curboxid xLock}. The Content is: ##1}%
+                    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\NoEmblem}}{\typeout{\space>\space It will register without an Emblem/Addon!}%
                 \LILLYxBOXESxaddListElement[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xLock}}%
                 }{\typeout{\space>\space It will register with an Emblem/Addon!}%
                     \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
                 }%
-                }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend\ignorespaces%
+                }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\vspace*{-.5\baselineskip}\newline\ignorespacesafterend\ignorespaces%
         }%
     }% SECOND PART
     {% To ensure the Box is disabled we will do the same for the ending:
@@ -282,9 +313,12 @@
     \IfValueTF{#5}{\def\thecboxname{#5}}{\def\thecboxname{\oldboxname}}%% set names
     %\IfValueTF{#5}{% % Here we will reload the old Values of
     % Check if there is an existing Box, and if, take the Configuration from it by the persisted Values of the old ID.
-    \expandafter\ifcsname lillyxBOXx#3xName\endcsname
+    \@ifundefined{lillyxBOXx#3xName}{%
+        \RegisterBox[#1]{\thecboxname}{#4}{#6}%
+    }{%
         \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xListMen\endcsname}{TRUE}}{\gdef\clisttmp{true}}{\gdef\clisttmp{false}}
         \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xBoxEnabled\endcsname}{TRUE}}{\gdef\cbentmp{true}}{\gdef\cbentmp{false}}
+        \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xUseBox\endcsname}{TRUE}}{\gdef\cuboxtmp{true}}{\gdef\cuboxtmp{false}}
         %\typeout{Switch-Pregeneration for clisttmp: \clisttmp}
         \RegisterBox[% Here we will reload the old Values of the Box, we won't erase them we'll just erase the environment-link in case of a renaming. Therefore it cann be still used as Base for another Box-Creation. We will (just for completeness) assign all commands:
         name=\csname lillyxBOXx#3xName\endcsname,%
@@ -303,18 +337,12 @@
         createlist=false,% if it has been true we don't need to recreate it
         customlist=\clisttmp,% sloppy :D
         boxenabled=\cbentmp,% we want to preserve the current state
+        usebox=\cuboxtmp,
         #1]{\thecboxname}{#4}{#6}
-    \else\RegisterBox[#1]{\thecboxname}{#4}{#6}\fi%
+    }
     %}{\RegisterBox[#1]{\thecboxname}{#3}}%
 }
 
-%% Register Definition Box :D For Now we will name it banana
-% \RegisterBox%
-%     [usestyle=LILLYxBOXxDefinition,customlist=true,createlist=true,listname=BANANAS,listmen=BANS,listtext={Alle Bananen},boxcol=\LILLYxColorxDefinition,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock]% Style definitions
-%     {banane}% Environ Name
-%     {Banane \noexpand\thetcbcounter{} -- }% The Title#
-%     {banane}% BoxID
-%% Highly work in progress stuff :D
 
 \DeclareDocumentCommand{\TransformBoxDefinition}{%
     s   %% star for clone
@@ -345,7 +373,7 @@
     m   %% new Title
     o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxBemerkung,customlist=true,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={XXNOEMBLEM},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    \TransformBox[usestyle=LILLYxBOXxBemerkung,customlist=true,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={\NoEmblem},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
     lock=\LILLYxBOXxBemerkungxLock,#2][#1]{bemerkung}{#4}[#3]{\IfValueTF{#5}{#5}{bemerkung}}%
 }
 
@@ -356,7 +384,7 @@
     m   %% new Title
     o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxBemerkung,customlist=true,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={XXNOEMBLEM},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    \TransformBox[usestyle=LILLYxBOXxBemerkung,customlist=true,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={\NoEmblem},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
     lock=\LILLYxBOXxBemerkungxLock,#2][#1]{bemerkung*}{#4}[#3]{\IfValueTF{#5}{#5}{bemerkungstarred}}%
 }
 
@@ -367,7 +395,7 @@
     m   %% new Title
     o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxBeispiel,customlist=true,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={XXNOEMBLEM},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    \TransformBox[usestyle=LILLYxBOXxBeispiel,customlist=true,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={\NoEmblem},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
     lock=\LILLYxBOXxBeispielxLock,#2][#1]{beispiel}{#4}[#3]{\IfValueTF{#5}{#5}{beispiel}}%
 }
 
@@ -378,7 +406,7 @@
     m   %% new Title
     o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxBeispiel,customlist=true,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={XXNOEMBLEM},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    \TransformBox[usestyle=LILLYxBOXxBeispiel,customlist=true,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={\NoEmblem},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
     lock=\LILLYxBOXxBeispielxLock,#2][#1]{beispiel*}{#4}[#3]{\IfValueTF{#5}{#5}{beispielstarred}}%
 }
 
@@ -389,7 +417,7 @@
     m   %% new Title
     o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxSatz,customlist=true,listname=SATZ,listmen=SATZE,boxcol=\LILLYxColorxSatz,emblem={XXNOEMBLEM},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxSATZ}{TRUE}},
+    \TransformBox[usestyle=LILLYxBOXxSatz,customlist=true,listname=SATZ,listmen=SATZE,boxcol=\LILLYxColorxSatz,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxSATZ}{TRUE}},
     lock=\LILLYxBOXxSatzxLock,#2][#1]{satz}{#4}[#3]{\IfValueTF{#5}{#5}{satz}}%
 }
 
@@ -403,7 +431,7 @@
     m   %% new Title
     o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxBeweis,customlist=true,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={XXNOEMBLEM},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    \TransformBox[usestyle=LILLYxBOXxBeweis,customlist=true,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={\NoEmblem},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
     lock=\LILLYxBOXxBeweisxLock,#2][#1]{beweis}{#4}[#3]{\IfValueTF{#5}{#5}{beweis}}%
 }
 
@@ -414,7 +442,7 @@
     m   %% new Title
     o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxBeweis,customlist=true,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={XXNOEMBLEM},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
+    \TransformBox[usestyle=LILLYxBOXxBeweis,customlist=true,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={\NoEmblem},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
     lock=\LILLYxBOXxBeweisxLock,#2][#1]{beweis*}{#4}[#3]{\IfValueTF{#5}{#5}{beweisstarred}}%
 }
 
@@ -447,32 +475,13 @@
     m   %% new Title
     o   %% new ID
 }{%
-    \TransformBox[usestyle=LILLYxBOXxZusammenfassung,customlist=true,listname=ZSMS,listmen=ZSM,boxcol=\LILLYxColorxZusammenfassung,emblem={XXNOEMBLEM},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}},
+    \TransformBox[usestyle=LILLYxBOXxZusammenfassung,customlist=true,listname=ZSMS,listmen=ZSM,boxcol=\LILLYxColorxZusammenfassung,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}},
     lock=\LILLYxBOXxZusammenfassungxLock,#2][#1]{zusammenfassung}{#4}[#3]{\IfValueTF{#5}{#5}{zusammenfassung}}%
 }
-
-%% No Starred Zsf
-
 
 %\RegisterBox[usestyle=LILLYxBOXxBemerkung,listname=Waffels,boxcol=AppleGreen]{Waffel}{Waffelbox~\noexpand\thetcbcounter~}
 
 %\RegisterBox[usestyle=LILLYxBOXxDefinition,boxcol=\LILLYxColorxDefinition]{bemerkung}{Waffelbox~\noexpand\thetcbcounter~}
-
-
-% \long\def\RegisterNewBox
-
-
-
-% \providecommand{\LILLYxBOXxDefinitionxLock}{\LILLYxBOXxHIGHLEVELxLOCK}        \providecommand{\LILLYxBOXxDefinitionxEnable}{TRUE}         \providecommand{\LILLYxBOXxDefinitionxBox}{TRUE}
-% \providecommand{\LILLYxBOXxBeispielxLock}{\LILLYxBOXxHIGHLEVELxLOCK}          \providecommand{\LILLYxBOXxBemerkungxEnable}{TRUE}          \providecommand{\LILLYxBOXxBemerkungxBox}{TRUE}
-% \providecommand{\LILLYxBOXxBemerkungxLock}{\LILLYxBOXxHIGHLEVELxLOCK}         \providecommand{\LILLYxBOXxBeispielxEnable}{TRUE}           \providecommand{\LILLYxBOXxBeispielxBox}{TRUE}
-% \providecommand{\LILLYxBOXxSatzxLock}{\LILLYxBOXxHIGHLEVELxLOCK}              \providecommand{\LILLYxBOXxSatzxEnable}{TRUE}
-% \providecommand{\LILLYxBOXxBeweisxLock}{\LILLYxBOXxHIGHLEVELxLOCK}            \providecommand{\LILLYxBOXxBeweisxEnable}{TRUE}             \providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
-% \providecommand{\LILLYxBOXxLemmaxLock}{\LILLYxBOXxHIGHLEVELxLOCK}             \providecommand{\LILLYxBOXxLemmaxEnable}{TRUE}
-% \providecommand{\LILLYxBOXxZusammenfassungxLock}{\LILLYxBOXxHIGHLEVELxLOCK}   \providecommand{\LILLYxBOXxZusammenfassungxEnable}{TRUE}
-% \providecommand{\LILLYxBOXxAufgabexLock}{}                  \providecommand{\LILLYxBOXxAufgabexEnable}{TRUE}           \providecommand{\LILLYxBOXxAufgabexBox}{TRUE}
-
-% \providecommand{\LILLYxBOXxUebungsblattxEnable}{TRUE}       \providecommand{\LILLYxBOXxUebungsblattxBox}{TRUE}
 
 
 \newcounter{ctr_TSK} %% verwendet einen eigenen counter um im Zeifelsfall dynamisch die nummer zu ändern
@@ -488,7 +497,7 @@
 
 %\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT} % May the ones below do not cover all boxes, thus default will be happy to provide them
 \ifx\LILLYxBOXxMODE\LILLYxBOXxMODExDEFAULT\else
-\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
+    \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
 \fi
 
 
@@ -524,7 +533,7 @@
 
 %% {name}[initial Lock = TRUE]{ListName}{listtext}[stared-effekt]
 \DeclareDocumentCommand{\DeclareLillyBox}{ m O{TRUE} m m o }{%%
-    \newlistof{list@#3}{#3}{#4\\[-1.5cm]}
+    \newlistof{list@#3}{#3}{#4\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
     %% Ist keine Box gewünscht?
     \ifx\csname LILLYxBOXx#1xBox\endcsname\false%
         \tcbset{LillyxBOXxDesignx#1/.style={LillyxBOXxDesignxPlain}}%
@@ -534,6 +543,15 @@
 }
 
 
+%% Register Definition Box :D For Now we will name it apple
+% \RegisterBox%
+%     [usestyle=LILLYxBOXxDefinition,customlist=true,createlist=true,listname=APPLES,listmen=APPS,listtext={Alle \"{A}pfel},boxcol=\LILLYxColorxDefinition,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock]% Style definitions
+%     {apple}% Environ Name
+%     {Apple \noexpand\thetcbcounter{} -- }% The Title#
+%     {apple}% BoxID
+%% Highly work in progress stuff :D
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definitionen                                                                                                        %     %%%% DEFS %%%%
@@ -541,24 +559,55 @@
 
 \providecommand{\LILLYxSEENxDEFINITION}{FALSE}
 
-\ifx\LILLYxBOXxDefinitionxEnable\true
-    %\typeout{Definitions enabled}
-    \newlistof{DEFINITIONS}{DEFS}{Alle Definitionen\\[-1.5cm]}
-    %% TITEL OPTIONALE-ADDONS
+%% Definition Box
+\newlistof{DEFINITIONS}{DEFS}{\lillyxBOXxdefinitionxListText}
 
-    \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LillyxBOXxDesignxDefinition/.style={}}\else\tcbset{LillyxBOXxDesignxDefinition/.style={LillyxBOXxDesignxPlain}}\fi
-    % \IfValueF{#1}{\ClassInfo{Lilly}{LILLY WARNING, Definition ohne Namen!}
-    \DeclareDocumentEnvironment{definition}{O{} O{LillyxBOXxDesignxDefinition}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}
-        \begin{LILLYxBOXxDefinition}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxDefinition}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-    \DeclareDocumentEnvironment{definition*}{O{} O{}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}%
-    \begin{LILLYxBOXxDefinition*}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{\small\faThumbTack}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxDefinition*}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-\else %% Keine Definitionen
-    \typeout{Definitions disabled}
-    \NewEnviron{definition}{}
-    \NewEnviron{definition*}{}
-\fi
+%\ifx\LILLYYxBOXxDefinitionxBox\true
+
+%% TODO, register using the plain style :D
+
+\def\SetUseItAccordingly#1{%% Wow this is stupid :D
+    \edef\tmpMarker{\csname LILLYxBOXx#1xBox\endcsname}
+    \ifthenelse{\equal{\tmpMarker}{\true}}{%
+        \pgfset{/lillyxBOX/UseIt/.style={usebox=true}}%
+    }{%
+        \pgfset{/lillyxBOX/UseIt/.style={usebox=false}}%
+    }%
+}
+
+\SetUseItAccordingly{Definition}
+
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxDefinition,customlist=true,createlist=false,listname=DEFINITIONS,listmen=DEFS,boxcol=\LILLYxColorxDefinition,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock,listtext={Alle Definitionen\noexpand\\[\LILLYxBOXxHIGHLEVELxOFFSET]}]% Style definitions
+    {definition}% Environ Name
+    {Definition \noexpand\thetcbcounter{}~}% The Title#
+    {definition}% BoxID
+
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxDefinition*,customlist=true,createlist=false,listname=DEFINITIONS,listmen=DEFS,boxcol=\LILLYxColorxDefinition,emblem={\noexpand\small\noexpand\faThumbTack},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock]% Style definitions
+    {definition*}% Environ Name
+    {Definition \noexpand\thetcbcounter{}~}% The Title#
+    {definitionStarred}% BoxID
+
+
+% \ifx\LILLYxBOXxDefinitionxEnable\true
+%     %\typeout{Definitions enabled}
+%     \newlistof{DEFINITIONS}{DEFS}{Alle Definitionen\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+%     %% TITEL OPTIONALE-ADDONS
+
+%     \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LillyxBOXxDesignxDefinition/.style={}}\else\tcbset{LillyxBOXxDesignxDefinition/.style={LillyxBOXxDesignxPlain}}\fi
+%     % \IfValueF{#1}{\ClassInfo{Lilly}{LILLY WARNING, Definition ohne Namen!}
+%     \DeclareDocumentEnvironment{definition}{O{} O{LillyxBOXxDesignxDefinition}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}
+%         \begin{LILLYxBOXxDefinition}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+%     }{\end{LILLYxBOXxDefinition}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+%     \DeclareDocumentEnvironment{definition*}{O{} O{}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}%
+%     \begin{LILLYxBOXxDefinition*}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{\small\faThumbTack}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+%     }{\end{LILLYxBOXxDefinition*}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+% \else %% Keine Definitionen
+%     \typeout{Definitions disabled}
+%     \NewEnviron{definition}{}
+%     \NewEnviron{definition*}{}
+% \fi
 
 %%% Comaptibility environments
 \LILLYcommand{\DEF}[2]{ % Definition
@@ -578,20 +627,36 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bemerkungen                                                                                                         %     %%%% BEMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlistof{BEMERKUNGEN}{BEMS}{\lillyxBOXxbemerkungxListText}
 
-\ifx\LILLYxBOXxBemerkungxEnable\true
-    \newlistof{BEMERKUNGEN}{BEMS}{Alle Bemerkungen\\[-1.5cm]}
+\providecommand{\LILLYxSEENxBEMERKUNG}{FALSE}
 
-    %% TITEL OPTIONALE-ADDONS
-    \ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LillyxBOXxDesignxBemerkung/.style={}}\else\tcbset{LillyxBOXxDesignxBemerkung/.style={LillyxBOXxDesignxPlain}}\fi
+\SetUseItAccordingly{Bemerkung}
 
-    \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBemerkung}\fi\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}{\LILLYxBOXxBemerkungxLock}\elable{auto:BEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-    \DeclareDocumentEnvironment{bemerkung*}{O{} O{LillyxBOXxDesignxBemerkung}}{\begin{bemerkung}[#1][#2]\nskip}{\end{bemerkung}}
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxBemerkung,customlist=true,createlist=false,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxBEMERKUNG}{TRUE}},lock=\LILLYxBOXxBemerkungxLock,listtext={Alle Bemerkungen\noexpand\\[\LILLYxBOXxHIGHLEVELxOFFSET]}]% Style definitions
+    {bemerkung}% Environ Name
+    {Bemerkung \noexpand\thetcbcounter{}~}% The Title
+    {bemerkung}% BoxID
 
-\else %% Keine Bemerkungen
-    \NewEnviron{bemerkung}{}
-    \NewEnviron{bemerkung*}{}
-\fi
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxBemerkung,customlist=true,createlist=false,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={\NoEmblem},inCode={\noexpand\nskip},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxBEMERKUNG}{TRUE}},lock=\LILLYxBOXxBemerkungxLock]% Style definitions
+    {bemerkung*}% Environ Name
+    {Bemerkung \noexpand\thetcbcounter{}~}% The Title
+    {bemerkungStarred}% BoxID
+
+% \ifx\LILLYxBOXxBemerkungxEnable\true
+
+%     %% TITEL OPTIONALE-ADDONS
+%     \ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LillyxBOXxDesignxBemerkung/.style={}}\else\tcbset{LillyxBOXxDesignxBemerkung/.style={LillyxBOXxDesignxPlain}}\fi
+
+%     \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBemerkung}\fi\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}{\LILLYxBOXxBemerkungxLock}\elable{auto:BEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+%     \DeclareDocumentEnvironment{bemerkung*}{O{} O{LillyxBOXxDesignxBemerkung}}{\begin{bemerkung}[#1][#2]\nskip}{\end{bemerkung}}
+
+% \else %% Keine Bemerkungen
+%     \NewEnviron{bemerkung}{}
+%     \NewEnviron{bemerkung*}{}
+% \fi
 
 %%% Comaptibility environment
 \LILLYcommand{\BEM}[2]{ % Bemerkung
@@ -604,18 +669,39 @@
 % Beispiele                                                                                                           %     %%%% BEIS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifx\LILLYxBOXxBeispielxEnable\true
-    \newlistof{BEISPIELE}{BEIS}{Alle Beispiele\\[-1.5cm]}
 
-    %% TITEL OPTIONALE-ADDONS
-    \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeispiel/.style={}}\else\tcbset{LillyxBOXxDesignxBeispiel/.style={LillyxBOXxDesignxPlain}}\fi
+\newlistof{BEISPIELE}{BEIS}{\lillyxBOXxbeispielxListText}
 
-    \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBeispiel}\fi\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}{\LILLYxBOXxBeispielxLock}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-    \DeclareDocumentEnvironment{beispiel*}{O{} O{LillyxBOXxDesignxBeispiel}}{\begin{beispiel}[#1][#2]\nskip}{\end{beispiel}}
-\else %% Keine Beispielen
-    \NewEnviron{beispiel}{}
-    \NewEnviron{beispiel*}{}
-\fi
+\providecommand{\LILLYxSEENxBEISPIEL}{FALSE}
+
+\SetUseItAccordingly{Beispiel}
+
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxBeispiel,customlist=true,createlist=false,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxBEISPIEL}{TRUE}},lock=\LILLYxBOXxBeispielxLock,listtext={Alle Beispiele\noexpand\\[\LILLYxBOXxHIGHLEVELxOFFSET]}]% Style definitions
+    {beispiel}% Environ Name
+    {Beispiel \noexpand\thetcbcounter{}~}% The Title
+    {beispiel}% BoxID
+
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxBeispiel,customlist=true,createlist=false,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={\NoEmblem},inCode={\noexpand\nskip},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxBEISPIEL}{TRUE}},lock=\LILLYxBOXxBeispielxLock]% Style definitions
+    {beispiel*}% Environ Name
+    {Beispiel \noexpand\thetcbcounter{}~}% The Title
+    {beispielStarred}% BoxID
+
+
+
+% \ifx\LILLYxBOXxBeispielxEnable\true
+%     \newlistof{BEISPIELE}{BEIS}{Alle Beispiele\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+
+%     %% TITEL OPTIONALE-ADDONS
+%     \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeispiel/.style={}}\else\tcbset{LillyxBOXxDesignxBeispiel/.style={LillyxBOXxDesignxPlain}}\fi
+
+%     \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBeispiel}\fi\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}{\LILLYxBOXxBeispielxLock}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+%     \DeclareDocumentEnvironment{beispiel*}{O{} O{LillyxBOXxDesignxBeispiel}}{\begin{beispiel}[#1][#2]\nskip}{\end{beispiel}}
+% \else %% Keine Beispielen
+%     \NewEnviron{beispiel}{}
+%     \NewEnviron{beispiel*}{}
+% \fi
 
 
 %%% Comaptibility environment
@@ -629,18 +715,36 @@
 % Sätze                                                                                                               %     %%%% SATS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newlistof{SATZE}{SATS}{\lillyxBOXxsatzxListText}
+
 \providecommand{\LILLYxSEENxSATZ}{FALSE}
 
-\ifx\LILLYxBOXxSatzxEnable\true
-    \newlistof{SATZ}{SATZE}{Alle Sätze\\[-1.5cm]}
+\SetUseItAccordingly{Satz}
 
-    %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{satz}{O{} O{}}{\grenewcommand{\LILLYxSEENxSATZ}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxSatz}%
-        \begin{LILLYxBOXxSatz}[#1][Satz \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[SATZ]{SATZE}{\thetcbcounter}{#1}{\LILLYxBOXxSatzxLock}\elable{auto:SAT\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxSatz}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-\else %% Keine Sätze
-    \NewEnviron{satz}{}
-\fi
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxSatz,customlist=true,createlist=false,listname=SATZE,listmen=SATS,boxcol=\LILLYxColorxSatz,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxSATZ}{TRUE}},lock=\LILLYxBOXxSatzxLock,listtext={Alle S\"{a}tze\noexpand\\[\LILLYxBOXxHIGHLEVELxOFFSET]}]% Style definitions
+    {satz}% Environ Name
+    {Satz \noexpand\thetcbcounter{}~}% The Title
+    {satz}% BoxID
+
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxSatz,customlist=true,createlist=false,listname=SATZE,listmen=SATS,boxcol=\LILLYxColorxSatz,emblem={\NoEmblem},inCode={\noexpand\nskip},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxSATZ}{TRUE}},lock=\LILLYxBOXxSatzxLock]% Style definitions
+    {satz*}% Environ Name
+    {Satz \noexpand\thetcbcounter{}~}% The Title
+    {satzStarred}% BoxID
+
+% \providecommand{\LILLYxSEENxSATZ}{FALSE}
+
+% \ifx\LILLYxBOXxSatzxEnable\true
+%     \newlistof{SATZ}{SATZE}{Alle Sätze\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+
+%     %% TITEL OPTIONALE-ADDONS
+%     \DeclareDocumentEnvironment{satz}{O{} O{}}{\grenewcommand{\LILLYxSEENxSATZ}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxSatz}%
+%         \begin{LILLYxBOXxSatz}[#1][Satz \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[SATZ]{SATZE}{\thetcbcounter}{#1}{\LILLYxBOXxSatzxLock}\elable{auto:SAT\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+%     }{\end{LILLYxBOXxSatz}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+% \else %% Keine Sätze
+%     \NewEnviron{satz}{}
+% \fi
 
 %%% Comaptibility environment
 \LILLYcommand{\SAT}[2]{ % Satz
@@ -653,18 +757,36 @@
 % Beweis                                                                                                              %     %%%% BEWS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifx\LILLYxBOXxBeweisxEnable\true
-    \newlistof{BEWEISE}{BEWS}{Alle Beweise\\[-1.5cm]}
+\newlistof{BEWEISE}{BEWS}{\lillyxBOXxbeweisxListText}
 
-    %% TITEL OPTIONALE-ADDONS
-    \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeweis/.style={}}\else\tcbset{LillyxBOXxDesignxBeweis/.style={LillyxBOXxDesignxPlain}}\fi
+\providecommand{\LILLYxSEENxBEWEIS}{FALSE}
 
-    \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBeweis}\fi\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}{\LILLYxBOXxBeweisxLock}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-    \DeclareDocumentEnvironment{beweis*}{O{} O{LillyxBOXxDesignxBeweis}}{\begin{beweis}[#1][#2]\nskip}{\end{beweis}}
-\else %% Keine Beweise
-    \NewEnviron{beweis}{}
-    \NewEnviron{beweis*}{}
-\fi
+\SetUseItAccordingly{Beweis}
+
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxBeweis,customlist=true,createlist=false,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxBEWEIS}{TRUE}},lock=\LILLYxBOXxBeweisxLock,listtext={Alle Beweise\noexpand\\[\LILLYxBOXxHIGHLEVELxOFFSET]}]% Style definitions
+    {beweis}% Environ Name
+    {Beweis \noexpand\thetcbcounter{}~}% The Title
+    {beweis}% BoxID
+
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxBeweis,customlist=true,createlist=false,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={\NoEmblem},inCode={\noexpand\nskip},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxBEWEIS}{TRUE}},lock=\LILLYxBOXxBeweisxLock]% Style definitions
+    {beweis*}% Environ Name
+    {Beweis \noexpand\thetcbcounter{}~}% The Title
+    {beweisStarred}% BoxID
+
+% \ifx\LILLYxBOXxBeweisxEnable\true
+%     \newlistof{BEWEISE}{BEWS}{Alle Beweise\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+
+%     %% TITEL OPTIONALE-ADDONS
+%     \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeweis/.style={}}\else\tcbset{LillyxBOXxDesignxBeweis/.style={LillyxBOXxDesignxPlain}}\fi
+
+%     \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBeweis}\fi\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}{\LILLYxBOXxBeweisxLock}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+%     \DeclareDocumentEnvironment{beweis*}{O{} O{LillyxBOXxDesignxBeweis}}{\begin{beweis}[#1][#2]\nskip}{\end{beweis}}
+% \else %% Keine Beweise
+%     \NewEnviron{beweis}{}
+%     \NewEnviron{beweis*}{}
+% \fi
 
 %%% Comaptibility environment
 \LILLYcommand{\BEW}[2]{ % Beweis
@@ -677,23 +799,41 @@
 % Lemmas                                                                                                              %     %%%% LEMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newlistof{LEMMATA}{LEMS}{\lillyxBOXxlemmaxListText}
+
 \providecommand{\LILLYxSEENxLEMMA}{FALSE}
 
+\SetUseItAccordingly{Lemma}
 
-\ifx\LILLYxBOXxLemmaxEnable\true
-    \newlistof{LEMMAS}{LEMME}{Alle Lemmata\\[-1.5cm]}
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxLemma,customlist=true,createlist=false,listname=LEMMATA,listmen=LEMS,boxcol=\LILLYxColorxLemma,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},lock=\LILLYxBOXxLemmaxLock,listtext={Alle Lemmata\noexpand\\[\LILLYxBOXxHIGHLEVELxOFFSET]}]% Style definitions
+    {lemma}% Environ Name
+    {Lemma \noexpand\thetcbcounter{}~}% The Title
+    {lemma}% BoxID
 
-    %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{lemma}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLemma}%
-        \begin{LILLYxBOXxLemma}[#1][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-    \DeclareDocumentEnvironment{lemma*}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLemma}%
-        \begin{LILLYxBOXxLemma}[#1~~\hbox{}\hfill\small\textcolor{\LILLYxColorxLemma}{\faStar}][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{\small\faStar}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-\else %% Keine Lemmas
-    \NewEnviron{lemma}{}
-    \NewEnviron{lemma*}{}
-\fi
+\RegisterBox% maybe insert some 'aftertitle' code to allow the emblem to be shown?
+    [UseIt,usestyle=LILLYxBOXxLemma,customlist=true,createlist=false,listname=LEMMATA,listmen=LEMS,boxcol=\LILLYxColorxLemma,emblem={\noexpand\small\noexpand\textcolor{\noexpand\LILLYxColorxLemma}{\noexpand\faStar}},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},lock=\LILLYxBOXxLemmaxLock]% Style definitions
+    {lemma*}% Environ Name
+    {Lemma \noexpand\thetcbcounter{}~}% The Title
+    {lemmaStarred}% BoxID
+
+% \providecommand{\LILLYxSEENxLEMMA}{FALSE}
+
+
+% \ifx\LILLYxBOXxLemmaxEnable\true
+%     \newlistof{LEMMAS}{LEMME}{Alle Lemmata\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+
+%     %% TITEL OPTIONALE-ADDONS
+%     \DeclareDocumentEnvironment{lemma}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLemma}%
+%         \begin{LILLYxBOXxLemma}[#1][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+%     }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+%     \DeclareDocumentEnvironment{lemma*}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLemma}%
+%         \begin{LILLYxBOXxLemma}[#1~~\hbox{}\hfill\small\textcolor{\LILLYxColorxLemma}{\faStar}][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{\small\faStar}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+%     }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+% \else %% Keine Lemmas
+%     \NewEnviron{lemma}{}
+%     \NewEnviron{lemma*}{}
+% \fi
 
 %%% Comaptibility environment
 \LILLYcommand{\LEM}[2]{ % Lemma
@@ -706,18 +846,36 @@
 % Zusammenfassungen                                                                                                   %     %%%% ZSMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newlistof{ZUSAMMENFASSUNGEN}{ZSMS}{\lillyxBOXxzusammenfassungxListText}
+
 \providecommand{\LILLYxSEENxZUSAMMENFASSUNG}{FALSE}
 
-\ifx\LILLYxBOXxZusammenfassungxEnable\true
-    \newlistof{ZSMS}{ZSM}{Alle Zusammenfassungen\\[-1.5cm]}
+\SetUseItAccordingly{Zusammenfassung}
 
-    %% TITEL OPTIONALE-ADDONS
-    \DeclareDocumentEnvironment{zusammenfassung}{O{} O{}}{\grenewcommand{\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxZusammenfassung}%
-        \begin{LILLYxBOXxZusammenfassung}[#1][Zusammenfassung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[ZSMS]{ZSM}{\thetcbcounter}{#1}{\LILLYxBOXxZusammenfassungxLock}\elable{auto:ZSM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-    }{\end{LILLYxBOXxZusammenfassung}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-\else %% Keine Zusammenfassungs
-    \NewEnviron{zusammenfassung}{}
-\fi
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxZusammenfassung,customlist=true,createlist=false,listname=ZUSAMMENFASSUNGEN,listmen=ZSMS,boxcol=\LILLYxColorxZusammenfassung,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}},lock=\LILLYxBOXxZusammenfassungxLock,listtext={Alle Zusammenfassungen\noexpand\\[\LILLYxBOXxHIGHLEVELxOFFSET]}]% Style definitions
+    {zusammenfassung}% Environ Name
+    {Zusammenfassung \noexpand\thetcbcounter{}~}% The Title
+    {zusammenfassung}% BoxID
+
+\RegisterBox%
+    [UseIt,usestyle=LILLYxBOXxZusammenfassung,customlist=true,createlist=false,listname=ZUSAMMENFASSUNGEN,listmen=ZSMS,boxcol=\LILLYxColorxZusammenfassung,emblem={\NoEmblem},inCode={\noexpand\nskip},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}},lock=\LILLYxBOXxZusammenfassungxLock]% Style definitions
+    {zusammenfassung*}% Environ Name
+    {Zusammenfassung \noexpand\thetcbcounter{}~}% The Title
+    {zusammenfassungStarred}% BoxID
+
+% \providecommand{\LILLYxSEENxZUSAMMENFASSUNG}{FALSE}
+
+% \ifx\LILLYxBOXxZusammenfassungxEnable\true
+%     \newlistof{ZSMS}{ZSM}{Alle Zusammenfassungen\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+
+%     %% TITEL OPTIONALE-ADDONS
+%     \DeclareDocumentEnvironment{zusammenfassung}{O{} O{}}{\grenewcommand{\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxZusammenfassung}%
+%         \begin{LILLYxBOXxZusammenfassung}[#1][Zusammenfassung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[ZSMS]{ZSM}{\thetcbcounter}{#1}{\LILLYxBOXxZusammenfassungxLock}\elable{auto:ZSM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
+%     }{\end{LILLYxBOXxZusammenfassung}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
+% \else %% Keine Zusammenfassungs
+%     \NewEnviron{zusammenfassung}{}
+% \fi
 
 %%% Comaptibility environment
 \LILLYcommand{\ZSM}[2]{ % Zusammenfassung
@@ -738,7 +896,7 @@
     \def\LILLYxSolutionsxShow{TRUE}%
 \fi
 \ifx\LILLYxBOXxAufgabexEnable\true
-    \newlistof{TSKS}{TSK}{Alle Aufgaben\\[-1.5cm]}
+    \newlistof{TSKS}{TSK}{Alle Aufgaben\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
 
 %% Splitter could issue a tcblower and then use startrecording to get the soluions extra?
 
@@ -782,7 +940,7 @@
 \providecommand{\LILLYxSEENxUBS}{FALSE}
 
 \ifx\LILLYxBOXxUebungsblattxEnable\true
-    \newlistof{UBS}{UB}{Alle Übungsblätter\\[-1.5cm]}
+    \newlistof{UBS}{UB}{Alle Übungsblätter\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
     %% TITEL NUMMER
     \DeclareDocumentEnvironment{uebungsblatt}{O{} O{42}}{\grenewcommand{\LILLYxSEENxUBS}{TRUE}%
 
