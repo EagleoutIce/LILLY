@@ -11,10 +11,10 @@
 \presentCommand[1.0.3]{LILLYxMathxMode} %% Overbar
 Der verwendete Mathemodus lässt sich mithilfe des Befehls \clatex{:bs:LILLYxMathxMode} frei einstellen. Standardmäßig wird dieser Wert auf \emph{normal} gesetzt.
 \begin{bemerkung}[Standalone-Math]
-    Mit \LILLYxBOXxVersion{2.0.0} wurde die Mathe-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxMATH}) etabliert, welches sich auch eigenständig über \begin{latex}
+    Mit \LILLYxBOXxVersion{2.0.0} wurde die Mathe-Integration als eigenes Paket \LILLYxNOTExLibrary{LILLYxMATH} etabliert, welches sich eigenständig über \begin{latex}
 \usepackage{LILLYxMATH}
         \end{latex}
-        auch ohne das Verwenden der restlichen LILLY-Welt benutzen.
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
 
 \section{Weitere Befehle}
@@ -142,7 +142,7 @@ Für die einzelnen Zahlenräume werden einige Befehle zur Verfügung gestellt, d
 %
 %
 \presentCommand[1.0.1]{i}
-Auch die komplexe Einheit \i{} wird mit \blankcmd{i} zur Verfügung gestellt.\\
+Die komplexe Einheit \i{} wird mit \blankcmd{i} zur Verfügung gestellt.\\
 %
 %
 %
@@ -160,7 +160,7 @@ Weiter wurden die griechischen Buchstaben Epsilon und Phi modifiziert:
 %
 %
 \presentCommand[1.0.3]{B}[\cmdlist \textbackslash X\cmdlist \textbackslash K\cmdlist \textbackslash P\cmdlist \textbackslash F\cmdlist \textbackslash O]
-Zudem wird zum Beispiel die Menge der Binärzahlen über \blankcmd{B} ($\B$), die Chromatische Zahl über \blankcmd{X} ($\X$) und der generelle Körper mit \blankcmd{K} ($\K$) zur Verfügung gestellt. Für die Potenzmenge liefert LILLY \blankcmd{P} ($\P$), für die Menge der Funktionen \blankcmd{F} ($\F$) und für die Groß-O-Notation \blankcmd{O} ($\O$).\medskip\newline
+Zudem wird zum Beispiel die Menge der Binärzahlen über \blankcmd{B} ($\B$), die chromatische Zahl über \blankcmd{X} ($\X$) und der generelle Körper mit \blankcmd{K} ($\K$) zur Verfügung gestellt. Für die Potenzmenge liefert LILLY \blankcmd{P} ($\P$), für die Menge der Funktionen \blankcmd{F} ($\F$) und für die Groß-O-Notation \blankcmd{O} ($\O$).\medskip\newline
 \presentCommand[2.0.0]{join}[\cmdlist \textbackslash leftouterjoin\cmdlist \textbackslash rightouterjoin\cmdlist \textbackslash fullouterjoin]
 Da auch die Relationenalgebra Teil der Mathematik ist, hier die entsprechenden Symbole für die Joins:
 \displayCommandList{join,leftouterjoin,rightouterjoin,fullouterjoin}
@@ -209,7 +209,7 @@ Weiter werden drei (mittlerweile obsolete) Umgebungen definiert: \begin{ditemize
 %
 %
 \presentCommand[1.0.4]{VRule}[\manArg{width}]
-Zudem definiert sich noch für Tabellen der Befehl \blankcmd{VRule\manArg{width}}, welcher eine Spalte variabler Größe für Tabellen zur Verfügung stellt. Eine exemplarische Einbindung findet sich hier:
+Zudem definiert sich noch für Tabellen der Befehl \blankcmd{VRule\manArg{width}}, welcher eine Spalte variabler Größe für Tabellen zur Verfügung stellt. Eine exemplarische Verwendung findet sich hier:
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{8cm}@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
@@ -232,19 +232,20 @@ Zudem definiert sich noch für Tabellen der Befehl \blankcmd{VRule\manArg{width}
 \presentCommand[1.0.0]{trenner}[\cmdold]
 Fügt einen großen senkrechten Strich ein: \blankcmd{trenner} ($\trenner$).
 
-\begin{bemerkung}[Tabellenspalten]
-    Weiter gibt es noch einige verschiedene Tabellen-Spalten, deren Kurzbezeichner den Anschein erwecken wild zusammengewürfelt zu sein: \begin{multicols}{2}
-        \begin{ditemize}\narrowitems
-            \item \verb|b|: Fettgedruckt zentriert
-            \item \verb|u|: Mathematisch zentriert
-            \item \verb|g|: Fußnotengröße linksbündig
-            \item \verb|w|: Fußnotengröße linksbündig (X-Spalte)
-            \item \verb|L|\manArg{width}: Linksbündig mit Breite \emph{width}
-            \item \verb|C|\manArg{width}: Zentriert mit Breite \emph{width}
-            \item \verb|R|\manArg{width}: Rechtsbündig mit Breite \emph{width}
-        \end{ditemize}
-    \end{multicols}
-\end{bemerkung}
+%% MOVED TO LILLYxTABLES ! TODO
+% \begin{bemerkung}[Tabellenspalten]
+%     Weiter gibt es noch einige verschiedene Tabellen-Spalten, deren Kurzbezeichner den Anschein erwecken wild zusammengewürfelt zu sein: \begin{multicols}{2}
+%         \begin{ditemize}\narrowitems
+%             \item \verb|b|: Fettgedruckt zentriert
+%             \item \verb|u|: Mathematisch zentriert
+%             \item \verb|g|: Fußnotengröße linksbündig
+%             \item \verb|w|: Fußnotengröße linksbündig (X-Spalte)
+%             \item \verb|L|\manArg{width}: Linksbündig mit Breite \emph{width}
+%             \item \verb|C|\manArg{width}: Zentriert mit Breite \emph{width}
+%             \item \verb|R|\manArg{width}: Rechtsbündig mit Breite \emph{width}
+%         \end{ditemize}
+%     \end{multicols}
+% \end{bemerkung}
 
 
 
@@ -253,7 +254,7 @@ Fügt einen großen senkrechten Strich ein: \blankcmd{trenner} ($\trenner$).
 
 
 \subsection[Shortcuts \LILLYxBOXxVersion{\small 1.0.8}]{Shortcuts}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SHORTCUTS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SHORTCUTS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip\newline
 Hier befinden sich einige abkürzende Befehle, die primär das Schreiben beschleunigen sollen. Sie werden auf Bedarf stetig erweitert.\medskip\newline
 %
 %
@@ -269,7 +270,7 @@ Setzt eine Reihe über die Glieder \emph{Folgenglied} an \emph{Start}: \blankcmd
 %
 %
 \presentCommand[1.0.8]{obda}[\cmdlist \textbackslash Obda]
-Schreibt entsprechend \T{o.B.d.A} (\blankcmd{obda}) und \T{O.B.d.A.} (\blankcmd{Obda}) und beschleunigt damit das Tippen in Beweisen \Smiley.\medskip\newline
+Schreibt entsprechend \T{o.B.d.A} (\blankcmd{obda}) und \T{O.B.d.A.} (\blankcmd{Obda}) und beschleunigt damit das Tippen von Beweisen \Smiley.\medskip\newline
 %
 %
 %
@@ -352,7 +353,7 @@ Es existiert die folgende Implementation der Graph-Umgebung:
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
-Für die \emph{Konfigurationen} gibt es folgende Möglichkeiten:
+Für die \emph{Konfiguration} gibt es die folgenden Parameter:
 \begin{center}% \begin{tabularx}{0.75\linewidth}
     \begin{tabularx}{0.7\linewidth}{^t>{\em}^l^c^l+}
         \toprule

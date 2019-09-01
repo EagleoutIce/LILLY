@@ -94,7 +94,8 @@
     \expandafter\xdef\csname lillyxEMBLEMx#3xBorderColor\endcsname{\lillyxEmblemxbordercolor}%                        BorderColor
     \expandafter\xdef\csname lillyxEMBLEMx#3xFgColor\endcsname{\lillyxEmblemxfgcolor}%                                ForegroundColor
     \expandafter\xdef\csname lillyxEMBLEMx#3xDraw\endcsname{\lillyxEmblemxdraw}%                                      Draw-Routine
-    \expandafter\gdef\csname lillyxEMBLEMx#3xFont\endcsname{\lillyxEmblemxfont}%                                      Schriftart (won't be expanded)
+
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxEMBLEMx#3xFont\expandafter\expandafter\endcsname\expandafter{\lillyxEmblemxfont}%                                      Schriftart (won't be expanded)
     \foreach \x in {Radius,BgColor,BorderColor,FgColor,Draw,Font} {
         \typeout{[Emblem:#3] \x: [\csname lillyxEMBLEMx#3x\x\endcsname]}
     }
@@ -123,5 +124,12 @@
 \gdef\errorEmblem{\,\DefaultBaseEmblem[draw=DebianRed,fill=DebianRed!75]{\wasysymLightning}\,}
 \gdef\mathEmblem{\,\DefaultBaseEmblem[draw=DarkMidnightBlue,fill=DarkMidnightBlue!75]{$\mathbf{\pi}$}\,}
 \gdef\codeEmblem{\,\DefaultBaseEmblem[draw=DarkOrchid,fill=DarkOrchid!75]{\faCode}\,}
+
+\DeclareRobustCommand{\textEmblem}[1]{%
+    \mbox{\raisebox{2pt}{\resizebox{!}{0.62\baselineskip}{#1}}}%
+}
+\DeclareRobustCommand{\btextEmblem}[1]{%
+    \mbox{\raisebox{2pt}{\resizebox{!}{\baselineskip}{#1}}}%
+}
 
 \endinput

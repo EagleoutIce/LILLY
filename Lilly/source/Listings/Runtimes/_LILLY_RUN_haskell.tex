@@ -11,16 +11,16 @@
   frame=single,
   xleftmargin=3pt,
   xrightmargin=3pt,
-  backgroundcolor=\color{MudWhite},
-  rulecolor=\color{MudWhite}
+  backgroundcolor=\color{lstmainbackcol},
+  rulecolor=\color{lstmainbordercol}
 }
 
 \gdef\rhaskell{\@ifnextchar[{\rhaskell@opt}{\rhaskell@noopt}}
 \gdef\rhaskell@opt[#1]#2{
-  \chaskell{print (#2)}#1\newline%% TODO: configure layout with #1
+  \chaskell{print (#2)}~#1%% TODO: configure layout with #1
   \getHaskellFileExecutionOutput{echo 'main = print (#2)' > \jobname.hs && runhaskell \jobname.hs}
 }
-\gdef\rhaskell@noopt#1{\chaskell{print (#1)}:\getHaskellFileExecutionOutput{echo 'main = print (#1)' > \jobname.hs && runhaskell \jobname.hs}}
+\gdef\rhaskell@noopt#1{\chaskell{print (#1)}\,:\getHaskellFileExecutionOutput{echo 'main = print (#1)' > \jobname.hs && runhaskell \jobname.hs}}
 
 
 %% oldies are goldies :D

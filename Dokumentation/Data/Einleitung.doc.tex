@@ -41,7 +41,7 @@ Nun genügt ein Ausführen von \cbash{jake install}, wobei mithilfe der Option \
 jake install -lilly-path: '/absoluter/Pfad/zum/Lilly/Ordner'
 \end{bash}
 Anschließend sollte es möglich sein Dokumente mit LILLY zu kompilieren. Gemeinsam mit LILLY werden eine Vielzahl an Beispieldokumenten ausgeliefert, die die Verwendung anschaulich machen sollen und somit auch als Test für eine erfolgreiche Installation verwendet werden können.
-Exemplarisch sei \T{test \& bonus/map\_tests/test.conf} genannt, welches auch die \T{getGraphics}-Schnittstelle etabliert.
+Exemplarisch sei \T{test \& bonus/map\_tests/test.conf} genannt, welches auch die \blankcmd{getGraphics}-Schnittstelle etabliert.
 
 \subsection{Windows  \LILLYxNOTExWarning{Ausstehend}}
 \subsection{MacOS  \LILLYxNOTExWarning{Ausstehend}}
@@ -56,7 +56,7 @@ Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu ko
 \subsection{Das Gerüst}
 Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine Dokumentklasse handelt, wird sie wie folgt eingebunden:
 \begin{latex}
-\documentclass[Typ=Dokumentation]{Lilly}
+\documentclass[Dokumentation]{Lilly}
 \end{latex}
 \LILLYxNOTExVersion{1.0.7}Für den Typ gibt es unter anderem $4$ Optionen:
 \begin{multicols}{2}
@@ -67,11 +67,11 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
         \item Zusammenfassung
     \end{itemize}
 \end{multicols}
-Mit \LILLYxBOXxVersion{2.0.0} ist es möglich auch nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben. Die Definition für dieses Dokument lautet zum Beispiel:
+Mit \LILLYxBOXxVersion{2.0.0} ist es nötig nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben, da die explizite Zuweisung versucht, auf die entsprechende Datei zu referenzieren. Die Definition für dieses Dokument lautet zum Beispiel: %% TODO: Change who am i in texts
 \begin{latex}
 \documentclass[Dokumentation]{Lilly}
 \end{latex}
-In Kombination mit \Jake ist es zudem noch möglich die Option \clatex{Jake} anzugeben, die es Jake gestattet die Dokumentspezifischen Parameter zu bestimmen.\newline %% TODO: NOTE 'ub' and 'zsfg', more shortcuts?
+In Kombination mit \Jake ist es zudem noch möglich die Option \clatex{Jake} anzugeben, die es Jake gestattet die Dokumentspezifischen Parameter zu bestimmen.\newline
 Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
 So benötigt \T{Mitschrieb} noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester} gemäß:
 \begin{latex}
@@ -197,15 +197,13 @@ und erzeugt damit: \hmark[Klick mich]{mrk:Hey}.
 
 \section{Einbinden von weiteren Dokumenten}
 \subsection{Aufgliedern eines Dokuments}
-\LILLYxNOTExVersion{1.0.4}Um Dokumente portabel kompilierbar zu machen, setzt das Makefile gemäß der Konfiguration \verb|\LILLYxPATH| (hier: \say{\T{\LILLYxPATH}}). Nun lässt sich mithilfe des Befehls \T{\textbf{\textbackslash linput}\{<Pfad>\}} eine Datei relativ zur Quelldatei angeben (beachte, dass absolute Pfade bei \T{\textbf{\textbackslash linput}} keinen Sinn machen. Hierfür solltest du weiterhin \verb|\input| verwenden).\newline
-Zudem lässt sich damit über \T{\textbf{\textbackslash LILLYxDOC\-UM\-ENTxSUB\-NAME}} der Name der zuletzt eingebundenen Datei (\T{\LILLYxDOCUMENTxSUBNAME}) abfragen.\newline
-\LILLYxNOTExVersion{1.0.7}Weiter gilt zu beachten, dass es \emph{nicht} möglich ist, das klassische \verb|\include| zu verwenden! Dieser Befehl wird aber von LILLY deswegen direkt entsprechend erneuert (hierzu wird das klassische Latex \verb|\input| im Zusammenspiel mit \verb|\clearpage| verwendet, nicht LILLYs \T{\textbf{\textbackslash linput}}!). Es ist also im Endeffekt doch möglich Dokumente mit \verb|\include|
-zu verwenden.
+\LILLYxNOTExVersion{1.0.4}Um Dokumente portabel kompilierbar zu machen, setzt das Makefile gemäß der Konfiguration \blankcmd{LILLYxPATH} (hier: \say{\T{\LILLYxPATH}}). Nun lässt sich mithilfe des Befehls \T{\blankcmd{linput}\{<Pfad>\}} eine Datei relativ zur Quelldatei angeben (beachte, dass absolute Pfade bei \T{\blankcmd{linput}} keinen Sinn machen. Hierfür solltest du weiterhin \blankcmd{input} verwenden).\newline
+Zudem lässt sich damit über \blankcmd{LILLYxDOC\-UM\-ENTxSUB\-NAME} der Name der zuletzt eingebundenen Datei (\T{\LILLYxDOCUMENTxSUBNAME}) abfragen.\newline
+\LILLYxNOTExVersion{1.0.7}Weiter gilt zu beachten, dass es \emph{nicht} möglich ist, das klassische \blankcmd{include} zu verwenden! Dieser Befehl wird aber von LILLY deswegen direkt entsprechend erneuert (hierzu wird das klassische Latex \blankcmd{input} im Zusammenspiel mit \blankcmd{clearpage} verwendet, nicht LILLYs \blankcmd{linput}!). Es ist also im Endeffekt doch möglich Dokumente mit \blankcmd{include}  zu verwenden.
 
 
 
 
-\clearpage
 \subsection{Übungsblätter}
 Da es von Bedeutung ist Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können, gibt es hierfür eine einfache Möglichkeit:
 \begin{lstlisting}[language=lLatex]
@@ -220,7 +218,7 @@ Da es von Bedeutung ist Übungsblätter so zu erstellen, dass die Abgaben direkt
 \newpage
 \end{lstlisting}
 Übungsblätter sind nur in \textbf{complete}-Varianten verfügbar, werden also sonst nicht eingebunden! \paragraph{Ein Übungsblatt erstellen}
-Doch wie erstellt man nun ein Fachgerechtes Übungsblatt. Nun, da es sich hier um die Schnelleinführung handelt, ein paar Vorgaben. Benenne dein Übungsblatt nach dem Schema: \begin{center}
+Doch wie erstellt man nun ein fachgerechtes Übungsblatt? Nun, da es sich hier um die Schnelleinführung handelt, ein paar Vorgaben. Benenne dein Übungsblatt nach dem Schema: \begin{center}
     \T{uebungsblatt-<VORLESUNG>-<BLATTNUMMER>.tex}
 \end{center}
 Die Reihenfolge spielt keine Rolle, ein beispielhafter Name könnte sein: \newline\T{gdbs-uebungsblatt-13.tex}. Nun erstelle dir eine \T{jake.conf}-Datei, wobei egal ist wie sie heißt, solange sei auf \T{.conf} endet (fürs Autocomplete \Smiley). In sie trägst du folgendes ein:
@@ -237,7 +235,7 @@ lilly-author = Florian Sihler, Mein Partner
 
 lilly-n = @[AUTONUM]
 \end{gepard}
-Natürlich kannst du die Namen entsprechend ändern. Das sieht jetzt aus wie viel, aber das musst du nur einmal machen, sofern du die Konfigurationsdatei immer in das Verzeichnis mitkopierst, indem sich die Übungsblatt-\T{.tex} und \textbf{nur} diese \T{.tex}-Datei befindet. Wir werden uns später %% TODO: LINK
+Natürlich kannst du die Namen entsprechend ändern. Das sieht jetzt aus wie viel, aber das musst du nur einmal machen, sofern du die Konfigurationsdatei immer in das Verzeichnis mitkopierst, indem sich die Übungsblatt -\T{.tex} und \textbf{nur} diese \T{.tex}-Datei befindet. Wir werden uns später %% TODO: LINK
 mit besseren Konfigurationen beschäftigen, die keinerlei Nachaufwand benötigen und galanter sind.
 In das Übungsblatt können wir nun unsere Aufgaben stecken. Hier ist der \emph{gesamte} Inhalt der oben genanten \TeX-Datei:
 \begin{latex}

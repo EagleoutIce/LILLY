@@ -4,10 +4,11 @@
 \RequirePackage{LILLYxVANILLA}
 \RequirePackage{LILLYxPACKAGExCTRL}
 
+\RequirePackage{LILLYxCOLOR}
+
 \RequirePackage{LILLYxCONTROLLERxMODE}
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 
-\RequirePackage{LILLYxCOLOR}
 
 \RequirePackage{titletoc} %collission fun :D
 
@@ -94,6 +95,9 @@
     \newcommand{\hmark}[2][Linkname]{\textbf{#1}\ensuremath{{}^{\rightarrow~\text{\pageref{#2}}}}}
     \DeclareDocumentCommand{\silentHmark}{ O{Linkname} m O{black} }{\begingroup\normalfont#1\endgroup}
 \fi
+%% With sepcific color :D
+\newcommand{\cmark}[3][Linkname]{\setLinkColor{#3}\textbf{{\hyperref[#2]{#1}}}}
+
 
 \providecommand*{\eXButton}[2]{\Acrobatmenu{#1}{\textcolor{\LILLYxColorxLINKSxMainColor}{#2}}}
 

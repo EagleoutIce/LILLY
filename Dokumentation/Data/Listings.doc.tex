@@ -5,14 +5,14 @@
 \bigskip\newline
 \elable{chp:LISTINGS}Zum Setzen von Programmtexten innerhalb von Latexdokumenten stellt dieses Paket eine große Ansammlung verschiedener Sprachen und Dialekten zur Verfügung. Es befindet sich hier:
 \begin{center}
-    \blankcmd{LILLYxPATHxLISTINGS} = \T{\LILLYxPATHxDATA}
+    \blankcmd{LILLYxPATHxLISTINGS} = \T{\LILLYxPATHxLISTINGS}
 \end{center}
 
 \begin{bemerkung}[Standalone Listings]
-    Mit \LILLYxBOXxVersion{2.0.0} wurde die Listings-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxLISTINGS}) etabliert, welches sich auch eigenständig über \begin{latex}
+    Mit \LILLYxBOXxVersion{2.0.0} wurde die Listings-Integration als eigenes Paket \LILLYxNOTExLibrary{LILLYxLISTINGS} etabliert, welches sich eigenständig über \begin{latex}
 \usepackage{LILLYxLISTINGS}
         \end{latex}
-        auch ohne das Verwenden der restlichen LILLY-Welt benutzen.
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
 \textit{%
 Sei es nun \fg[], \eidi oder \gdra[], in jeder Vorlesungsreihe war es von Relevanz Quelltexte mit Syntax-Highlighting zu versehen. Hierfür verwendet LILLY die Bibliothek \T{listings} und fügt einige Styles und ein paar Sprachen hinzu, die ebenfalls frei gewählt werden können. Aktuell ist die Implementation an vielen Stellen noch weit weg von perfekt. So ist es in GDRA zum Beispiel immer noch vonnöten das Highlighting, von zum Beispiel \T{addiu}, mithilfe von \T{*\blankcmd{mipsADD}*}einzubinden. An einer Lösung hierfür wird aktuell gearbeitet, siehe weiter \jmark[unten]{jmp:lstCodeInject}.}
@@ -64,7 +64,7 @@ public class SuperKlass {
 Prüft ob eine Sprache geladen ist. Als Argument wird hierbei die volle Sprachsignatur erwartet (\T{Sprache/Sprachbezeichner}) um auch doppelten Bezeichnern vorzubeugen.
 
 \presentCommand[2.0.0]{isLanguageNameLoaded}[\manArg{LanguageName}]
-Prüft ob eine Sprache geladen ist. Als Argument wird hierbei die volle Sprache erwartet, was doppelte Bezeichner natürlich ausschließt, allerdings in den meisten Fällen auch einfacher ist:
+\elable{mrk:ilnl}Prüft ob eine Sprache geladen ist. Als Argument wird hierbei die volle Sprache erwartet, was doppelte Bezeichner natürlich ausschließt, allerdings in den meisten Fällen auch einfacher ist:
 \begin{latex}
 \isLanguageNameLoaded{java} % :yields: TRUE
 \isLanguageNameLoaded{waffel} % :yields: FALSE
@@ -350,3 +350,29 @@ Ergibt: \pcpp{int main(int argc, char** argv)}.
 %     return (4.0 * acc) / ITERATIONS;
 % }
 % \end{sjava}
+
+\section{Runtimes}
+Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/LILLYxRUNTIMES}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGSxADVANCED} geladen. Weiter existiert es als eigenständiges Paket \LILLYxNOTExLibrary{LILLYxRUNTIMES}.\medskip\newline
+Runtimes bieten die Möglichkeit Code einer Programmiersprache in Latex ausführen zu lassen und das Ergebnis ebenfalls im Latexdokument zu setzen. Hierfür wird eine bereits aufgesetzte Umgebung für die jeweilige Sprache benötigt, LILLY greift also auf einen bestehenden Compiler/Interpreter zurück. Alle mitgelieferten Runtimes befinden sich in der Liste \T{RegisteredRuntimes} und liefern:\newline
+%
+%
+%
+\presentCommand[2.0.0]{r<Runtime>}[\optArg{Mid-Text}\manArg{Code}]
+Führt den übergebenen Code in der jeweiligen Runtime aus und liefert das Ergebnis. So zum Beispiel mit \T{\blankcmd{rbash}\{ls . | tail -2\}}: \rbash{ls . | tail -2}
+\T{\blankcmd{rbash}[liefert:]\{ls . | tail -4\}}: \rbash[liefert:]{ls . | sort | tail -4}
+%
+%
+%
+\presentCommand[2.0.0]{isRuntimeLoaded}[\manArg{runtimeName}]
+Testet analog zu \jmark[\blankcmd{isLanguageNameLoaded}]{mrk:ilnl} ob eine entsprechende Runtime geladen ist:
+\begin{latex}
+\isRuntimeLoaded{bash}  % :yields: TRUE
+\isRuntimeLoaded{waffel} % :yields: FALSE
+\end{latex}
+% Won't use inline as this breaks color highlight :D
+%
+%
+%
+\begin{bemerkung}[Was es noch so gibt]
+    Die Runtimes liefern, bisher noch nicht normiert, auch noch Befehle wie: \blankcmd{previewBashFile}, die eine bestehende Datei ausführen und das Ergebnis ausgeben. An einer Normierung und Erweiterung wird gearbeitet.
+\end{bemerkung}

@@ -1,0 +1,74 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxMARGIN}[2019/07/13 Stellt die Margin-Kontrolle fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxVANILLA}
+\RequirePackage{LILLYxPACKAGExCTRL}
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+
+
+\RequirePackage{LILLYxCOLOR}
+\RequirePackage{LILLYxCONTROLLERxLINK}
+
+
+
+%% https://www.ctan.org/pkg/pgfkeys
+\LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schluessel-Wert-Spiel zur Verfuegung}
+                    {Hierfür zwangsläufig notwendig.}
+                    {}{} %% keine Argumente
+
+%% https://www.ctan.org/pkg/changepage
+\LILLYxDemandPackage{changepage}{Genaue identifikation der Seite}
+                    {Fuer die genaue identifikation der Seite noetig!}
+                    {}{} %% keine Argumente
+
+%% https://www.ctan.org/pkg/marginfix
+\LILLYxLoadPackage{marginfix}{Verhindern uebervoller margins}
+                    {Ohne machts einfach nur halb so viel spass, aber ok}
+                    {}{}{} %% keine Argumente
+
+%% Die globalen Konfigurationen für die Randkontroller 
+
+\gdef\lillymarginset#1{\pgfkeys{/lillyxMARGIN/.cd, #1}}
+
+\pgfkeys{%
+    /lillyxMARGIN/.is family, /lillyxMARGIN,
+    font/.code={\footnotesize},
+    alignment/.code = {\strictpagecheck\checkoddpage\ifoddpage\raggedright\else\raggedleft\fi}
+}
+
+
+\gdef\lillyxMarginxElement#1{%
+    \marginpar{%
+        \pgfkeys{/lillyxMARGIN/alignment}\pgfkeys{/lillyxMARGIN/font}%
+        #1
+    }\unskip\ignorespaces%
+}
+
+% #1 Color
+\def\lillyxMarginMark#1{%
+    {{\hypersetup{linkcolor=#1}\footnotemark}}%
+}
+
+% #1 Color
+% #2 Text
+\global\long\def\lillyxMarginxNote#1#2{%
+    \lillyxMarginMark{#1}%
+    \lillyxMarginxElement{%
+        \textcolor{#1}{\thefootnote}~\ignorespaces#2%
+    }%
+}
+
+\endinput
+
+%% Testing stuff:
+
+% \lipsum[2]
+% Hallo Welt\lillyxMarginxNote{DebianRed}{Hallo Welt, na wie geht es dir?}, na wie geht es dir?
+% \lipsum[2]
+% Hallo Welt\lillyxMarginxNote{DebianRed}{\begin{definition}[Hallo Welt]\end{definition}}, na wie geht es dir?
+% \lipsum[2]
+% Hallo Welt\abstractMarginBox{\faCode}{DebianRed}{\begin{definition}[Hallo Welt]\end{definition}}, na wie geht es dir?
+% \lipsum[2]
+% Hallo Welt\abstractMarginBox*{\faCode}{DebianRed}{\begin{definition}[Hallo Welt]\end{definition}}, na wie geht es dir?
+
+% \clearpage

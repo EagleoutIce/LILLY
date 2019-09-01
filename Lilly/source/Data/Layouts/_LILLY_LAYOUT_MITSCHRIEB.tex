@@ -3,6 +3,13 @@
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 \RequirePackage{relsize}
 
+
+%% https://www.ctan.org/pkg/changepage
+\LILLYxDemandPackage{changepage}{Genaue identifikation der Seite}
+                    {Fuer die genaue identifikation der Seite noetig!}
+                    {}{} %% keine Argumente
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % General and Layoutkonfiguration                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -84,7 +91,7 @@
 \renewcommand\sectionlinesformat[4]{%
     \phantomsection%%
     \protect\if@twoside%%% e.g. LILLYxMODEXPRINT
-    \protect\ifodd\c@page%% oddpage -> rSide
+    \strictpagecheck\checkoddpage\ifoddpage%\protect\ifodd\c@page%% oddpage -> rSide
     {#4\hfill\makebox[0pt][l]{\smaller\hspace{.75\marginparsep}#3}}%
     \else%
     {\makebox[0pt][r]{\smaller#3\hspace{\marginparsep}}#4}%
