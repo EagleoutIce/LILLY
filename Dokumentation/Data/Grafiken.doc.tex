@@ -8,10 +8,10 @@
     \blankcmd{LILLYxPATHxGRAPHICS} = \T{\LILLYxPATHxGRAPHICS}
 \end{center}
 \begin{bemerkung}[Standalone-Graphics]
-    Mit \LILLYxBOXxVersion{2.0.0} wurde die Grafik-Integration als eigenes Paket (\LILLYxNOTExLibrary{LILLYxGRAPHICS}) etabliert, welches sich auch eigenständig über \begin{latex}
+    Mit \LILLYxBOXxVersion{2.0.0} wurde die Grafik-Integration als eigenes Paket \LILLYxNOTExLibrary{LILLYxGRAPHICS} etabliert, welches sich eigenständig über \begin{latex}
 \usepackage{LILLYxGRAPHICS}
         \end{latex}
-        auch ohne das Verwenden der restlichen LILLY-Welt benutzen.
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
 %
 %
@@ -20,7 +20,7 @@
 Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
 Dieses Paket liefert grundlegende, mal mehr und mal weniger, nützliche Tikz-Grafiken, welche zum Großteil aus denen in der Vorlesung verwendeten Grafiken entstanden sind. Alle diese Grafiken benötigen Ti\textit{k}Z (\url{https://www.ctan.org/pkg/pgf}).
 \subsection{Die Ampeln}
-Diese Definitionen befinden sich in der Datei: {\ltt../Tikz-Core/\_LILLY\_TIKZ\_AMPELN}
+Diese Definitionen befinden sich in der Datei: {\ltt../Tikz-Core/\_LILLY\_TIKZ\_AMPELN}.
 An sich handelt es sich hierbei um ein kleines Shortcut-Sammelsurium für Ampeln:\medskip
 %
 %
@@ -56,12 +56,12 @@ Weiter definiert diese Bibliothek etliche sogenannte \T{graphdot}s, welche alle 
 %
 %
 \presentCommand[1.0.2]{graphdot}[\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}\cmdlist\newline\hbox{}~~\textbackslash tgraphdot\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}]
-Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargument ignoriert und entsprechend transparent (\T{fill opacity = 0})als Füllfarbe verwendet:
+Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargument ignoriert und entsprechend transparent (\T{fill opacity = 0}) als Füllfarbe verwendet:
 \begin{center}\renewcommand{\arraystretch}{1.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\linewidth}@{\hspace{1em}}|@{\hspace{1em}}C{1cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \clatex{:bs:graphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}} &\raisebox{-0.375\baselineskip}{\tikz{\graphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
-        \clatex{:bs:tgraphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}} &\raisebox{-0.375\baselineskip}{\tikz{\tgraphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
+        \blatex{:bs:graphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}} &\raisebox{-0.375\baselineskip}{\tikz{\graphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
+        \blatex{:bs:tgraphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}} &\raisebox{-0.375\baselineskip}{\tikz{\tgraphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
@@ -322,7 +322,11 @@ Die Größe skaliert sich in der Regel automatisch, allerdings existieren auch G
 \end{center}
 
 \presentCommand[2.0.0]{getGraphicsPath}[\manArg{path}]
-Liefert den absoluten Pfad zu einer Grafik. Beispiel: \T{\blankcmd{getGraphicsPath}\{Software/XML/XMLUebersicht\}} liefert:\newline \T{\getGraphicsPath{Software/XML/XMLUebersicht}}. 
+Liefert den absoluten Pfad zu einer Grafik. Beispiel:
+\begin{latex}
+\getGraphicsPath{Software/XML/XMLUebersicht}
+\end{latex}
+Liefert: \T{\getGraphicsPath{Software/XML/XMLUebersicht}}. 
 
 \presentCommand[2.0.0]{getPrerendered}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
 Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereits vorberechneten Grafiken. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stehts nur eine Dimension skaliert wird! Sie werden in der Grafiksammlung durch den Tag \T{pdf} gekennzeichnet (die Breite wurde im Beispiel angepasst, oder lassen sich durch das Anfügen eines \say{\T{-pdf}}-Suffix:
@@ -342,7 +346,7 @@ Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereit
 %
 %
 \subsection{Embleme}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxEMBLEMS.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxEMBLEMS.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
 Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxEMBLEMS} und hängt vom Mutterpaket ab. 
 
 %
@@ -371,12 +375,12 @@ Definiert ein neues Emblem, wobei folgende Emblem-Keys zur Verfügung stehen, di
         \toprule
             \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
         \midrule
-        radius & length & $0.369cm$ & Radius des Symbols\\
-        shape & enum\footnote{Allowed: none, quadratic, round, hexagon, octagon} & \T{shape/hexagon} & Form des Hintergrunds \\
+        radius & Length & $0.369cm$ & Radius des Symbols\\
+        shape & Enum\footnote{Allowed: none, quadratic, round, hexagon, octagon} & \T{shape/hexagon} & Form des Hintergrunds \\
         bgcolor & Farbe & DebianRed & Hintegrundsfarbe \\
         bordercolor & Farbe & DebianRed & Rahmenfarbe \\
-        fgcolor & Farbe & MudWhite & Textfarb \\
-        font    & code & \blankcmd{bfseries}\blankcmd{large}\blankcmd{sffamily} & Schrift\\
+        fgcolor & Farbe & MudWhite & Textfarbe \\
+        font    & Code & \blankcmd{bfseries}\blankcmd{large}\blankcmd{sffamily} & Schrift\\
         \bottomrule
     \end{tabularx}\nskip
 \end{center}
@@ -415,3 +419,11 @@ Die Shortcuts von oben, wurden hierbei wie folgt definiert:
 \gdef!**!\mathEmblem{\,\DefaultBaseEmblem[draw=DarkMidnightBlue,fill=DarkMidnightBlue!75]{:bmath:\mathbf{\pi}:emath:}\,}
 \gdef!**!\codeEmblem{\,\DefaultBaseEmblem[draw=DarkOrchid,fill=DarkOrchid!75]{\faCode}\,}
 \end{latex}
+
+\presentCommand[2.0.0]{textEmblem}[\manArg{Emblem}]
+Setzt ein Emblem für den Fließtext: \textEmblem\codeEmblem{} anstelle von \codeEmblem. Die Argumentklammern können Vernachläassigt werden, das Bedeutet Es genügt das Schreiben von \T{\blankcmd{textEmblem}\blankcmd{codeEmblem}}.
+%
+%
+%
+\presentCommand[2.0.0]{btextEmblem}[\manArg{Emblem}]
+Funktioniert identisch, setzt allerdings ein Emblem, welches die komplette Zeilenhöhe ausfüllt: \btextEmblem\infoEmblem{} anstelle von \infoEmblem.

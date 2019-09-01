@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{LILLYxCONTROLLERxBOX}[2019/07/13 Stellt die Box-Erweiterung fuer LILLY zur Verfuegung]
+\ProvidesPackage{LILLYxCONTROLLERxBOX}[2019/07/13 Stellt die klassische Box-Erweiterung fuer LILLY zur Verfuegung]
 
 \RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
@@ -173,11 +173,13 @@
         % OH GOSH PLEASE NOOOOOOOOOO Currentl working on :D
 %  - [X] Allow to add a symbol (outside, and inside of the Box)
         %    => DONE as LILLYxEMBLEMS
-%  - [ ] Allow a Box to live in the Margin (with and without reference marker inside of the texxt)
+%  - [X] Allow a Box to live in the Margin (with and without reference marker inside of the texxt)
+        %    => DONE as LILLYxMARGIN, LILLYxBOXxMARGIN and LILLYxBOXxINFOBOXES
 %  - [ ] Make Aufgaben-Box standart again (design-wise, maybe add a 'points' key or, more generic, 'addon'?)
 %  - [ ] add theorem-like customization-support
-%  - [ ] add a bookmark option
-%  - [ ] Change Box-Appearance with 'check odd page' + limerence: orientation bar [tcb manual page 46]
+%  - [ ] add a bookmark option0
+%  - [!] Change Box-Appearance with 'check odd page' + limerence: orientation bar [tcb manual page 46]
+        %    => Won't be done as testet with LILLYxBOXxINFOBOXES and it looks horrible :D
 %  - [ ] \tcblistof - check if it's better then the current listing implementation and if so, change
 %  - [ ] Make 'aufgaben'-Box allow to deperate it's solution to an different possition [tcb manual ~133]
 %  - [ ] Option for own counter
@@ -343,141 +345,6 @@
     %}{\RegisterBox[#1]{\thecboxname}{#3}}%
 }
 
-
-\DeclareDocumentCommand{\TransformBoxDefinition}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxDefinition,customlist=true,listname=DEFINITIONS,listmen=DEFS,boxcol=\LILLYxColorxDefinition,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock,#2][#1]{definition}{#4}[#3]{\IfValueTF{#5}{#5}{definition}}%
-}
-
-
-
-\DeclareDocumentCommand{\TransformBoxDefinitionS}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxDefinition*,customlist=true,listname=DEFINITIONS,listmen=DEFS,boxcol=\LILLYxColorxDefinition,emblem={\noexpand\small\noexpand\faThumbTack},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock,#2][#1]{definition*}{#4}[#3]{\IfValueTF{#5}{#5}{definitionstarred}}%
-}
-
-\DeclareDocumentCommand{\TransformBoxBemerkung}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxBemerkung,customlist=true,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={\NoEmblem},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
-    lock=\LILLYxBOXxBemerkungxLock,#2][#1]{bemerkung}{#4}[#3]{\IfValueTF{#5}{#5}{bemerkung}}%
-}
-
-\DeclareDocumentCommand{\TransformBoxBemerkungS}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxBemerkung,customlist=true,listname=BEMERKUNGEN,listmen=BEMS,boxcol=\LILLYxColorxBemerkung,emblem={\NoEmblem},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
-    lock=\LILLYxBOXxBemerkungxLock,#2][#1]{bemerkung*}{#4}[#3]{\IfValueTF{#5}{#5}{bemerkungstarred}}%
-}
-
-\DeclareDocumentCommand{\TransformBoxBeispiel}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxBeispiel,customlist=true,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={\NoEmblem},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
-    lock=\LILLYxBOXxBeispielxLock,#2][#1]{beispiel}{#4}[#3]{\IfValueTF{#5}{#5}{beispiel}}%
-}
-
-\DeclareDocumentCommand{\TransformBoxBeispielS}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxBeispiel,customlist=true,listname=BEISPIELE,listmen=BEIS,boxcol=\LILLYxColorxBeispiel,emblem={\NoEmblem},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
-    lock=\LILLYxBOXxBeispielxLock,#2][#1]{beispiel*}{#4}[#3]{\IfValueTF{#5}{#5}{beispielstarred}}%
-}
-
-\DeclareDocumentCommand{\TransformBoxSatz}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxSatz,customlist=true,listname=SATZ,listmen=SATZE,boxcol=\LILLYxColorxSatz,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxSATZ}{TRUE}},
-    lock=\LILLYxBOXxSatzxLock,#2][#1]{satz}{#4}[#3]{\IfValueTF{#5}{#5}{satz}}%
-}
-
-%% No Starred Satz
-
-
-\DeclareDocumentCommand{\TransformBoxBeweis}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxBeweis,customlist=true,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={\NoEmblem},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
-    lock=\LILLYxBOXxBeweisxLock,#2][#1]{beweis}{#4}[#3]{\IfValueTF{#5}{#5}{beweis}}%
-}
-
-\DeclareDocumentCommand{\TransformBoxBeweisS}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxBeweis,customlist=true,listname=BEWEISE,listmen=BEWS,boxcol=\LILLYxColorxBeweis,emblem={\NoEmblem},inCode={\noexpand\nskip},%postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},
-    lock=\LILLYxBOXxBeweisxLock,#2][#1]{beweis*}{#4}[#3]{\IfValueTF{#5}{#5}{beweisstarred}}%
-}
-
-\DeclareDocumentCommand{\TransformBoxLemma}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxLemma,customlist=true,listname=LEMMAS,listmen=LEMME,boxcol=\LILLYxColorxLemma,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},
-    lock=\LILLYxBOXxLemmaxLock,#2][#1]{lemma}{#4}[#3]{\IfValueTF{#5}{#5}{lemma}}%
-}
-
-\DeclareDocumentCommand{\TransformBoxLemmaS}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxLemma,customlist=true,listname=LEMMAS,listmen=LEMS,boxcol=\LILLYxColorxLemma,emblem={\noexpand\small\noexpand\textcolor{\noexpand\LILLYxColorxLemma}{\noexpand\faStar}},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},
-    lock=\LILLYxBOXxLemmaxLock,#2][#1]{lemma*}{#4}[#3]{\IfValueTF{#5}{#5}{lemmastarred}}%
-}
-
-\DeclareDocumentCommand{\TransformBoxZusammenfassung}{%
-    s   %% star for clone
-    O{} %% Changed Args
-    m   %% new Name
-    m   %% new Title
-    o   %% new ID
-}{%
-    \TransformBox[usestyle=LILLYxBOXxZusammenfassung,customlist=true,listname=ZSMS,listmen=ZSM,boxcol=\LILLYxColorxZusammenfassung,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}},
-    lock=\LILLYxBOXxZusammenfassungxLock,#2][#1]{zusammenfassung}{#4}[#3]{\IfValueTF{#5}{#5}{zusammenfassung}}%
-}
 
 %\RegisterBox[usestyle=LILLYxBOXxBemerkung,listname=Waffels,boxcol=AppleGreen]{Waffel}{Waffelbox~\noexpand\thetcbcounter~}
 

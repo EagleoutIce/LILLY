@@ -11,16 +11,16 @@
   frame=single,
   xleftmargin=3pt,
   xrightmargin=3pt,
-  backgroundcolor=\color{MudWhite},
-  rulecolor=\color{MudWhite}
+  backgroundcolor=\color{lstmainbackcol},
+  rulecolor=\color{lstmainbordercol}
 }
 
 \gdef\rbash{\@ifnextchar[{\rbash@opt}{\rbash@noopt}}
 \gdef\rbash@opt[#1]#2{
-  \cbash{#2}#1\newline%% TODO: configure layout with #1
+  \cbash{#2}~#1%% TODO: configure layout with #1
   \getBashFileExecutionOutput{#2}
 }
-\gdef\rbash@noopt#1{\cbash{#1}:\getBashFileExecutionOutput{#1}}
+\gdef\rbash@noopt#1{\cbash{#1}\,:\getBashFileExecutionOutput{#1}}
 
 
 %% oldies are goldies :D

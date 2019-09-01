@@ -1,6 +1,19 @@
 \renewcommand{\arraystretch}{1.5}
 \chapter[Boxen \LILLYxBOXxVersion{\small 1.0.0}]{Boxen}
 \TitleSUB{Boxes in Boxes in Boxes in Boxes\ldots \hfill \LILLYxBOXxVersion{\small 1.0.0}}
+\bigskip\newline
+\elable{chp:BOXES}Boxen aller Art werden durch dieses Paket generiert, welches verschiedene Optionen gibt:
+\begin{center}
+    \blankcmd{LILLYxPATHxCONTROLLERS} = \T{\LILLYxPATHxCONTROLLERS}
+\end{center}
+
+\begin{bemerkung}[Standalone Boxen]
+    Mit \LILLYxBOXxVersion{2.0.0} wurde die Listings-Integration als eigenes Paket \LILLYxNOTExLibrary{LILLYxBOXES} etabliert, welches sich eigenständig über \begin{latex}
+\usepackage{LILLYxBOXES}
+        \end{latex}
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
+\end{bemerkung}
+
 \section{Grundlegendes}
 \subsection{Eine kleine Einführung}
 % \TransformBoxDefinition{definition}{Waffelmaker~\noexpand\thetcbcounter~}
@@ -52,7 +65,7 @@ wobei \T{<Name>} mit einem der oben stehenden Bezeichner ersetzt wird. Die Bezei
 %\marginpar{\tiny Natürlich wäre es schöner auch andere Verzeichnisse zuzulasen und hierbei dann den gesamten Pfad anzugeben - dies ist aber bisher auch noch zu machen}
 Über genau dieses Verfahren lassen sich auch beliebig die Box-Designs erweitern.
 \subsection{Der Box-Controller}
-Diese Definitionen befinden sich in der Datei: {\ltt Controllers/LILLYxCONTROLLERxBOX}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxCONTROLLERxBOX} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: {\ltt Controllers/LILLYxCONTROLLERxBOX}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxBOXES} geladen. Sie befinden sich ebenfalls im eigenständigen Paket \LILLYxNOTExLibrary{LILLYxCONTROLLERxBOX}.\medskip\newline
 %
 %
 %
@@ -185,7 +198,7 @@ Binden eine Datei als Übungsblatt ein und erlaubt so, Übungsblätter in Mitsch
 \end{bemerkung}
 
 \presentCommand[2.0.0]{RegisterBox}[\optArg{Box-Keys}\optArg{Tikz-Keys}\manArg{Box-Name}\manArg{Title}\manArg{BoxID}]
-Registriert eine (neue) oder alte Box, die entsprechend Gesetzt werden kann. Die gezielte Verwendung dieses Befehls bedarf einiger Vorkenntnisse über das jeweilige Szenario. Es werden eine ganze Menge an \T{Box-Keys} gestattet, die auf einem anderen Verfahren persistiert werden (weswegen Box-gebundene Befehle mithilfe von \blankcmd{noexpand} abgesichert werden müssen!):
+Registriert eine (neue) oder alte Box, die entsprechend Gesetzt werden kann. Die gezielte Verwendung dieses Befehls bedarf einiger Vorkenntnisse über das jeweilige Szenario. Es werden eine ganze Menge an \T{Box-Keys} gestattet, die auf einem anderen Verfahren persistiert werden (weswegen Box-gebundene Befehle mithilfe von \blankcmd{noexpand} abgesichert werden müssen!). Alle so zur Verfügung stehenden Boxen werden durch \blankcmd{RegisterBox} definiert.
 \begin{center}
     \begin{tabularx}{0.96\linewidth}{^t>{\em}^l^c^l+}
         \toprule
@@ -237,211 +250,15 @@ Die Modifikation dieser ermöglicht eine weitere manuelle Anpassung der Box, all
 
 
 \presentCommand[2.0.0]{TransformBox}[\optArg{new-args}\optArg{bool-keep}\manArg{OldBoxID}\manArg{Box-title}\secline\optArg{new-name}\manArg{NewBoxID}]
-Dieser Befehl nimmt die Werte einer bereits bestehenden Box und Transformiert sie in eine neue Box. Sollte keine Box mit der entsprechenden ID existieren, so wird die \T{BoxID} als Name angenommen auf dessen Namen die Umbenennung geschieht. So lassen sich auch bereits bestehende Umgebungen, die bisher keine Box dargestellt haben, entsprechend modifizieren und als Box rekreiren. Wird \T{bool-keep} auf \blankcmd{BooleanTrue} gesetzt, so wird die alte Box nicht gelöscht, sondern lediglich eine neue Box kreiert. Mit \LILLYxBOXxVersion{2.0.0} wurden die Boxen noch nicht in das entsprechend neue Register-System übersetzt. Allerdings existieren die folgenden Kürzel, die bestmöglich versuchen die Gestalt der jeweiligen Box abzubilden. Da die \T{aufgabe}-Box eine andere Signatur besitzt, wird sie bisher separat implementiert:
+Dieser Befehl nimmt die Werte einer bereits bestehenden Box und Transformiert sie in eine neue Box. Sollte keine Box mit der entsprechenden ID existieren, so wird die \T{BoxID} als Name angenommen auf dessen Namen die Umbenennung geschieht. So lassen sich auch bereits bestehende Umgebungen, die bisher keine Box dargestellt haben, entsprechend modifizieren und als Box rekreiren. Wird \T{bool-keep} auf \blankcmd{BooleanTrue} gesetzt, so wird die alte Box nicht gelöscht, sondern lediglich eine neue Box kreiert.
 
-\presentCommand[2.0.0]{TransformBoxDefinition}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxDefinitionS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxBemerkung}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxBemerkungS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxBeispiel}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxBeispielS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxSatz}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxBeweis}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxBeweisS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxLemma}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxLemmaS}[\optStar\optArg{new-args}\manArg{BoxID}\manArg{Box-title}\optArg{NewBoxID}]\vspace{-\baselineskip}
-\presentCommand[2.0.0]{TransformBoxZusammenfassung}[\optStar\optArg{new-args}\manArg{BoxID}\secline\manArg{Box-title}\optArg{NewBoxID}]~\smallskip\newline
 
-Die jeweils mit dem \T{S}-Suffix vermerkten Befehle stehen für die mit einem Sternchen versehene Umgebung, der optionale Stern entspricht \T{bool-keep} von \blankcmd{TransformBox}.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\iffalse
-\elable{mrk:XXX}
-\begin{bemerkung}[Josef!]
-    \jmark[Hey guys]{mrk:XXX} eerythings fine
-\end{bemerkung}
-\TransformBoxBemerkung{bemerkung}{Bemerkung~}
-\begin{bemerkung}[Günther?]
-    \jmark[Hey guys]{mrk:XXX} eerythings fine
-\end{bemerkung}\elabel{mrk:HIER3}
-\TransformBox[boxcol=AppleGreen]{bemerkung}{Bemerkung~}{bemerkung}
-\begin{bemerkung}[Günther!]
-    \jmark[Hey guys]{mrk:XXX} eerythings fine
-\end{bemerkung}
-\TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}{bemerkung}
-\begin{bemerkung}[Thymiän, Böädriän:]
-    \jmark[Hey guys]{mrk:XXX} eerythings fine
-\end{bemerkung}
-\TransformBoxBemerkungS{bemerkung*}{Bemerkung~}
-\begin{bemerkung*}[Thymiän, Böädriän: Sehr superlanger titel!]
-    \begin{ditemize}
-        \item Hallo
-        \item Welt
-    \end{ditemize}
-\end{bemerkung*}
-\TransformBox[][\BooleanTrue]{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel}
-\begin{bemerkung}[Thymiän, Böädriän:]
-    \elabel{mrk:HER2}Hallo Welt
-    \begin{ditemize}
-        \item Hallo
-        \item Welt
-    \end{ditemize}
-\end{bemerkung}
-
-\begin{waffel}[Hallo Welt]
-    \elable{mrk:HIERHER}Hallo Welt
-\end{waffel}
-\TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel} %% All Links will no be listening to 'waffel'
-
-% Will fail as link gets destroyed:
-% \begin{bemerkung}[Thymiän, Böädriän:]
-%     \begin{ditemize}
-%         \item Hallo
-%         \item Welt
-%     \end{ditemize}
-% \end{bemerkung}
-
-\begin{waffel}[Hallo Welt]
-
-\end{waffel}
-
-%% Here we will disable the display of the Box
-\def\lillyxBOXxwaffelxBoxEnabled{FALSE}
-
-
-\begin{waffel}[Hallo Welt]
-    Ich bin unsichtbar!
-\end{waffel}
-
-
-\def\lillyxBOXxwaffelxBoxEnabled{TRUE}
-
-
-\begin{waffel}[Hallo Welt]
-    Ich bin nichtmehr unsichtbar!
-\end{waffel}
-
-Ich verlinke auf Günther? tihihi: \nameref{Günther?}
-
-
-Hier sind ein paar links: \begin{ditemize}
-    \item \jmark[Hierher]{mrk:HIERHER}
-    \item \jmark[Her2]{mrk:HER2}
-    \item \jmark[Hier3]{mrk:HIER3}
-\end{ditemize}
-
-%\lillyxBOXxbemerkungxTitle
-
-\begin{banane}[Ich bin eine Banane]
-    Ist das nicht toll?
-\end{banane}
-
-\begin{banane}[Ich bin eine Banane, die zweite]
-    Ist das nicht toll?
-\end{banane}
-
-\begin{banane}[Ich bin eine Banane, die dritte]
-    Ist das nicht toll?
-\end{banane}
-
-\begin{definition*}[Ich bin eine Definition]
-Und das hier ist toller Text, oder? ist das nicht super toller toller text?
-\end{definition*}
-\listofDEFINITIONS
-
-\listofBANANAS
-
-
-\fail
-
-\fi
-
-
-
-
-
-
-
-
-
-
-
-\section{Die Boxmodi}
+\subsection{Die Boxmodi}
 Generell muss einer der unten aufgeführten Modi keine einzige Box definiern überladen oder modifizieren, das geladene Default-Paket wird jeweils für nicht überladene Boxen die Standartboxen zur Verfügung stellen. Folgende Boxbezeichner sind hierbei von Relevanz. Das Default-Design stellt hierbei mit \LILLYxNOTExLibrary{LILLYxLIST} die in der Liste \T{RegisteredBoxes} aufgeführten Boxen zur Verfügung. An einer Normierung der \T{aufgabe}-Box wird gearbeitet: %
 \getRegisteredBoxes%
 \def\mergel#1{\T{LILLYxBOXx#1}}\typesetList[mergel]{Definition,Beispiel,Bemerkung,Satz,Beweis,Lemma,Zusammenfassung,Aufgabe,AufgabexPLAIN,Uebungsblatt}. In der Regel wird weiter noch ein Design generiert, so setzt zum Beispiel das Default-Design: \T{\T{LillyxBOXxDesignxDefault}}.
 
-\subsection{Default-Design}
+\paragraph{Default-Design}
 Mit \LILLYxBOXxVersion{\small 1.0.0} stellt dieses Design den Urvater dar. Bis \LILLYxBOXxVersion{1.0.6} überarbeitet hier die finale Form: \begin{center}
     \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT}
     \begin{zusammenfassung}[Wichtige Box - Jeah]
@@ -524,3 +341,117 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
     title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}, %Aufgabe
 }
 \end{lstlisting}}
+
+\section{Info-Boxes}
+Diese Definitionen befinden sich in der Datei: {\ltt Controllers/LILLYxCONTROLLERxBOX}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxBOXES} geladen. Sie befinden sich ebenfalls im eigenständigen Paket \LILLYxNOTExLibrary{LILLYxBOXxINFOBOXES}.\medskip\newline
+
+Dieses Paket liefert gemeinsam mit \LILLYxNOTExLibrary{LILLYxEMBLEMS} einige nützliche Boxen wie:
+\begin{infoBox}{Dies ist eine Info-Box}
+    Diese Info-Box kann ganz einfach mithilfe von folgendem Code erstellt werden:
+    \begin{latex}
+\begin{infoBox}
+    Diese Info-Box kann ganz einfach mithilfe von folgendem Code erstellt werden:
+    % ....    
+\end{infoBox}
+    \end{latex}
+\end{infoBox}
+Jeweils existiert auch noch eine mit einem Stern markierte Umgebung die sich entsprechend in die jeweilige Margin des Dokuments einnistet. Da die Dokumentation ohne große Margin für etwaige Paragraphen konzipiert wurde, lässt die Optik hier selbstredend zu Wünschen übrig.\begin{mathBox*}{Hi}
+    $E=mc^2$
+\end{mathBox*}% \dateBox{13.5.2019}.
+Diese Box (inklusive klickbarem Marker im Text) wurde generiert durch:
+\begin{latex}
+\begin{mathBox*}{Hi}
+    :bmath:E=mc^2:emath:
+\end{mathBox*}
+\end{latex}
+\subsection{Wie es funktioniert}
+Gemeinsam mit \LILLYxNOTExLibrary{LILLYxMARGIN} und \LILLYxNOTExLibrary{LILLYxBOXxMARGIN} werden die Boxen für den Rand generiert, wobei diese sich für zweiseitige Dokumente selbstredend auch anpassen. Für die Boxen im Text wird \T{tcolorbox} verwendet. Eine neue Info-Box (inklusive \say{gesternter}-Umgebung) definiert sich einfach durch folgenden Befehl:
+%
+%
+%
+\presentCommand[2.0.0]{NewInfoBox}[\optArg{InfoBox-Keys}\optArg{tcb-Keys}\manArg{Name}]
+Für die InfoBox Keys gibt es wieder eine ganze Liste an Feldern, die konfigurierbar sind. Sie werden persistiert, wobei das Präfix \say{\T{lillyxINFOBOXESx}} verwendet wird:\vspace{-\baselineskip}
+\begin{center}
+    \begin{tabularx}{\linewidth}{^t>{\em}^l^c^l+}
+        \toprule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
+        style & enum\footnote{Allowed: none, limerence, framed} & \T{style/limerence} & Design der Boxen \\
+        bgcolor & Farbe & MudWhite!75 & Hintegrundsfarbe \\
+        bordercolor & Farbe & DebianRed & Rahmenfarbe \\
+        fgcolor & Farbe & Charcoal & Textfarbe \\
+        titlefont    & Code & \blankcmd{normalfont}\blankcmd{bfseries} & Schrift des Titels\\
+        textfont    & Code & \blankcmd{normalfont} & Schrift des Textes\\
+        preCode & Code &  & Befehle, die vor der Box gesetzt werden \\
+        inCode & Code &  & Befehle, die zu Beginn der Box gesetzt werden \\
+        titleCode & Code &  <long>\footnote{\blankcmd{leavevmode}\blankcmd{smallskip}\blankcmd{newline}} & Befehle, die nach dem Titel gesetzt werden\\
+        outCode & Code &  & Befehle, die zu Ende der Box gesetzt werden \\
+        postCode & Code &  & Befehle, die nach der Box gesetzt werden \\
+        emblem & Code &  & Emblem, welches gesetzt werden soll \\
+        marker & Code & \T{\blankcmd{textbf}\{!\}} & Marker für Randnotiz \\
+        \bottomrule
+    \end{tabularx}\nskip
+\end{center}
+So wird zum Beispiel die \T{codeBox} wie folgt definiert:
+\begin{latex}
+\NewInfoBox[fgcolor={black},bgcolor={MudWhite!50},bordercolor={DarkOrchid},emblem={\btextEmblem!**!\codeEmblem~},marker={\textbf{\faCode}}]{codeBox}
+\end{latex}
+
+Es werden die folgenden Boxen vordefiniert: \T{infoBox*}\begin{infoBox*}{Hi}
+    Hallo Welt
+\end{infoBox*}, \T{warningBox*}\begin{warningBox*}{Hi}
+    Hallo Belt
+\end{warningBox*}, \T{errorBox*}\begin{errorBox*}{Hi}
+    Hallo Geld
+\end{errorBox*}, \T{mathBox*}\begin{mathBox*}{Hi}
+    Hallo Wält
+\end{mathBox*} und \T{codeBox*}\begin{codeBox*}{Hi}
+    Hello World
+\end{codeBox*}. Natürlich jeweils auch mit den normalen Umgebungen:
+\begin{infoBox}{Ich bin eine Information}
+    \lipsum[66]
+\end{infoBox}
+\begin{warningBox}{Ich bin eine Warnung}
+    \lipsum[66]
+\end{warningBox}
+\begin{errorBox}{Ich bin ein Error}
+    \lipsum[66]
+\end{errorBox}
+\begin{mathBox}{Ich bin eine Mathe-Box}
+    \lipsum[66]
+\end{mathBox}
+\begin{codeBox}{Ich bin eine Code-Box}
+    \lipsum[75]
+\end{codeBox}
+
+Weiter seien auch einmal die Stile veranschaulicht:\nskip
+\NewInfoBox[style/none,fgcolor={black},bgcolor={MudWhite!50},bordercolor={ChromeYellow},emblem={\btextEmblem\warningEmblem~},marker={\textbf{!}}]{warningBoxNone}
+\NewInfoBox[style/framed,fgcolor={black},bgcolor={MudWhite!50},bordercolor={ChromeYellow},emblem={\btextEmblem\warningEmblem~},marker={\textbf{!}}]{warningBoxFramed}
+\begin{center}
+    \begin{tabular}{*{3}{C{0.3\linewidth} }}
+        \begin{warningBoxNone}{Warnung}
+            Hallo Welt, na wie geht es dir? Ist super oder? Jaaaaa! Tihihi.
+        \end{warningBoxNone} & \begin{warningBoxFramed}{Warnung}
+            Hallo Welt, na wie geht es dir? Ist super oder? Jaaaaa! Tihihi.
+        \end{warningBoxFramed} & \begin{warningBox}{Warnung}
+            Hallo Welt, na wie geht es dir? Ist super oder? Jaaaaa! Tihihi.
+        \end{warningBox}\\[-2\baselineskip]
+        \T{style/none} & \T{style/framed} & \T{style/limerence}
+    \end{tabular}
+\end{center}
+Sowie: \begin{warningBoxNone*}{Hi}
+    Stups.
+\end{warningBoxNone*}, \begin{warningBoxFramed*}{Hi}
+    Stups.
+\end{warningBoxFramed*} und \begin{warningBox*}{Hi}
+    Stups.
+\end{warningBox*}.
+%
+%
+%
+\presentCommand[2.0.0]{dateBox}[\manArg{Datum/Text}]
+Dieser Befehl ist einfach nur exemplarisch entstanden um zu demonstrieren, wie die Boxen auch misshandelt werden können \Smiley. natürlich sollte eigentlich \blankcmd{lillyxMarginxElement} verwendet werden: \T{\blankcmd{dateBox}\{\blankcmd{heute}\}}\!\!\dateBox{\heute}. Wobei die Definition wie folg von statten geht:
+\begin{latex}
+\NewInfoBox[fgcolor={DarkMidnightBlue},bgcolor={MudWhite!0},bordercolor={DarkOrchid},emblem={\faCalendar~},marker={},style/none,titleCode={}]{@dateBox}
+\def!**!\dateBox#1{\begin{@dateBox*}{#1}\end{@dateBox*}}
+\end{latex}

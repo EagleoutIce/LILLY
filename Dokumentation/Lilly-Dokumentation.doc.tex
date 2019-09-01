@@ -1,8 +1,8 @@
-\providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
-\providecommand{\LILLYxColorxBemerkung}{Charcoal}
+\def\LILLYxBOXxBemerkungxLock{TRUE}
 \documentclass[Dokumentation]{Lilly}
 \usepackage[subject={TestTip},author={EagleoutIce},version=1]{pdfcomment}
 
+\usepackage{lipsum}
 
 %%TODO INCLUDE TITLE-Control in lilly
 
@@ -23,9 +23,9 @@
 \newcommand{\Jake}[1][~]{\jmark[\begingroup\Fontauri Jake#1\endgroup]{mrk:JAKE}}
 \newcommand{\LJake}[1][~]{\begingroup\T|lilly\_jake|\endgroup#1}
 
-\newcommand*{\blankcmd}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash #1}}
-\newcommand*{\blankenv}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@#1}}
-\newcommand*{\blankenvidx}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env~@#1}}
+\newcommand*{\blankcmd}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}}
+\newcommand*{\blankenv}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}}
+\newcommand*{\blankenvidx}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env~@\ignorespaces #1}}
 
 \newcommand*{\secline}{\newline\hbox{}\protect\qquad\quad}
 
@@ -114,7 +114,7 @@
 
 
 \linput{Data/Einleitung.doc}
-\linput{Data/Maths.doc}
+\linput{Data/Mathe.doc}
 \linput{Data/Grafiken.doc}
 \linput{Data/Farben.doc}
 \linput{Data/Listings.doc}
