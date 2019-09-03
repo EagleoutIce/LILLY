@@ -21,10 +21,10 @@
     morecomment=[s]{/*}{*/}
 }
 
-\lstnewenvironment{sql}[1][]
-  {\lstset{language=lSql,#1}}
-{}
+\RegisterLanguage{sql}{lSql}
 
+% \lstnewenvironment{sql}[1][]
+%   {\lstset{language=lSql,#1}}
+% {}
 
-
-\pushList{RegisteredLanguages}{sql/lSql}
+% \pushList{RegisteredLanguages}{sql/lSql}

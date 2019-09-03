@@ -19,10 +19,13 @@
     morekeywords = [5]{Prelude>,\*Main>},
 }
 
-\lstnewenvironment{haskell}[1][]
-  {\lstset{language=lHaskell,#1}}
-{}
+\RegisterLanguage{haskell}{lHaskell}
+
+
+% \lstnewenvironment{haskell}[1][]
+%   {\lstset{language=lHaskell,#1}}
+% {}
 
 
 
-\pushList{RegisteredLanguages}{haskell/lHaskell}
+% \pushList{RegisteredLanguages}{haskell/lHaskell}

@@ -29,7 +29,7 @@
     %\globalcolorstrue %% colors, colors everywhere :D
     \foreach \name/\r/\g/\b in #1 {
         \ifthenelse{\equal{\name}{}}{}{
-            \typeout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
+            \debugout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
             \xglobal\providecolor{\name}{RGB}{\r,\g,\b}
         }
     }
@@ -39,7 +39,7 @@
     %\globalcolorstrue %% colors, colors everywhere :D
     \foreach \name/\r/\g/\b in #1 {
         \ifthenelse{\equal{\name}{}}{}{
-            \typeout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
+            \debugout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
             \xglobal\definecolor{\name}{RGB}{\r,\g,\b}
         }
     }
@@ -152,7 +152,7 @@
     %\globalcolorstrue %% colors, colors everywhere :D
     \foreach \name/\col in #1 {
         \ifthenelse{\equal{\name}{}}{}{
-            \typeout{Register Profile Color: LILLYxColorx\name} %\space based on \col}
+            \debugout{Register Profile Color: LILLYxColorx\name} %\space based on \col}
             \expandafter\xdef\csname LILLYxColorx\name\endcsname{\col}
         }
     }

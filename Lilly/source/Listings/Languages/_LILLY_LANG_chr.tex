@@ -13,10 +13,12 @@
     morekeywords = [5]{write,writeq,read},
 }
 
-\lstnewenvironment{chr}[1][]
-  {\lstset{language=lChr,#1}}
-{}
+\RegisterLanguage{chr}{lChr}
+
+% \lstnewenvironment{chr}[1][]
+%   {\lstset{language=lChr,#1}}
+% {}
 
 
 
-\pushList{RegisteredLanguages}{chr/lChr}
+% \pushList{RegisteredLanguages}{chr/lChr}

@@ -1,10 +1,10 @@
 %% Liefert einige besondere Boxen
 
-\newtcbox{\LILLYxBOXxLibrary}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
+\newtcbox{\LILLYxBOXxLibrary}[1][]{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
   right=0mm,left=4mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dlg~}},
   colframe=green!50!black,coltext=green!25!black,colback=green!10!white,
   overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)
-    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {LIB} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
+    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {LIB} ([xshift=4mm]frame.north west);\end{tcbclipinterior}},#1}
 
 \newtcbox{\LILLYxBOXxVersion}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
  right=0mm,left=5.25mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dll~}},
@@ -23,7 +23,7 @@
 
 \newcommand{\LILLYxNOTExWarning}[1]{{\normalfont\tiny\raisebox{1.5pt}{\LILLYxBOXxWarning{\bfseries#1}}}}
 
-\newcommand{\LILLYxNOTExLibrary}[2][]{\LILLYxBOXxLibrary{\small\sffamily \raisebox{-1pt}{#2}}}
+\newcommand{\LILLYxNOTExLibrary}[2][]{\LILLYxBOXxLibrary[hyperlink=#2]{\small\sffamily \raisebox{-1pt}{#2}}}
 \robustify{\LILLYxNOTExLibrary}
 
 \newcommand{\LILLYxNOTExVersion}[1]{\marginpar{\vspace*{0\baselineskip}\LILLYxBOXxVersion{\small #1}}}

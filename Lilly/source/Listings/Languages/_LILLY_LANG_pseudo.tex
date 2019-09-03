@@ -18,10 +18,10 @@
     showstringspaces=false,  %Damit es keine Verwechslungen gibt
 }
 
-\lstnewenvironment{pseudo}[1][]
-  {\lstset{language=lPseudo,#1}}
-{}
+\RegisterLanguage{pseudo}{lPseudo}
 
+% \lstnewenvironment{pseudo}[1][]
+%   {\lstset{language=lPseudo,#1}}
+% {}
 
-
-\pushList{RegisteredLanguages}{pseudo/lPseudo}
+% \pushList{RegisteredLanguages}{pseudo/lPseudo}

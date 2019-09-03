@@ -1,5 +1,5 @@
 \def\LILLYxBOXxBemerkungxLock{TRUE}
-\documentclass[Dokumentation]{Lilly}
+\documentclass[Dokumentation]{Lilly}%debug for more information as additional argment => TOOD: document :D: doesn't seem to work. check?
 \usepackage[subject={TestTip},author={EagleoutIce},version=1]{pdfcomment}
 
 \usepackage{lipsum}
@@ -33,7 +33,7 @@
 
 \makeatletter
 %% [Version][Tagname][Additionals]
-\DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}{\\\qquad#4}
+\DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}:bs:\qquad#4}
   \begingroup~\newline\elable{cmd:#3}%\IfValueTF{#3}{\elable{cmd:#3}}{\elable{cmd:#2}}%
   \hspace*{-1.5cm}$\diamond$~~\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\typesetVersion{#1}}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
 \endgroup%
@@ -86,6 +86,11 @@
 }
 
 \def\compileidx{\makeindex[title=Stichwortverzeichnis,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{Stichwortverzeichnis}}
+%% lilly library
+% Libname
+% Version
+\def\lilib#1#2{\;\protect\textsuperscript{\protect\LILLYxNOTExLibrary{#1}\;\typesetVersion{#2}}}
+\robustify\lilib%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,7 +102,6 @@
 
 % BIG TODO: add all the other commands with \anothercmd, \anotherenv
 %
-% AND: TODO: change name of last chapter
 %
 %
 %
@@ -120,7 +124,9 @@
 \linput{Data/Listings.doc}
 \linput{Data/Boxen.doc}
 \linput{Data/Jake.doc}
-
+% Explain some libs like LILLYxLIST
+% Make debug package
+% so many todo
 
 \linput{Data/Aussicht.doc}
 \normalmarginpar\par

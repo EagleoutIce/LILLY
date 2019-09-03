@@ -1,14 +1,18 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCONTROLLERxBOX}[2019/08/30 Stellt einen Emblem-Generator fuer LILLY zur Verfuegung]
 
-%% Dieses Paket soll relativ einfach auf Basis von LILLYxCOLOR Embleme generieren. 
+%% Dieses Paket soll relativ einfach auf Basis von LILLYxCOLOR Embleme generieren.
 %% Ein Emblem ist an sich ein Befehl, der auf einen '\tikz'-Befehel zum Setzen zurückfällt.
 %% Dem jeweiligen Emblem-Befehl kann dann ein Zeichen übergeben werden, welches dann auf das Emblem gesetzt wird.
 %% Die jeweiligen Konfigurationen werden wieder für die Nutzung persistiert und können darüber modifiziert werden
 
 \RequirePackage{LILLYxVANILLA}
+\RequirePackage{LILLYxPACKAGExCTRL}
 \RequirePackage{LILLYxCOLOR}
 \RequirePackage{LILLYxGRAPHICS}
+
+%\RequirePackage{LILLYxCOLOR}
+%\RequirePackage{LILLYxGRAPHICS}
 
 %% https://ctan.org/pkg/wasysym
 \LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}%% Package, Info
@@ -64,7 +68,7 @@
     \node[regular polygon, regular polygon sides=8, draw, #1,fill=#2,#3,inner sep=#5/1.534, transform shape] at (#4) {};%
 }
 
-%% :: OptArgs -> Draw -> Radius -> BackgroundColor -> ForeGroundColor -> BorderColor -> Font -> Text 
+%% :: OptArgs -> Draw -> Radius -> BackgroundColor -> ForeGroundColor -> BorderColor -> Font -> Text
 \def\AbstractEmblemDrawer#1#2#3#4#5#6#7#8{%
     {\tikz[baseline=-0.6ex]{\csname EmblemDrawer#2\endcsname{#6}{#4}{#1}{0,0}{#3};\node at(0,0) {\textcolor{#5}{#7#8}};}}%
 % \ifcase#2%0, draw nothing, we will just typeset the symbol. #2 and ##1 as tikz args
@@ -102,7 +106,7 @@
 
     % #1 Optional Emblem-Keys
     % #2 Symbol (shold be one character with default sizes)
-    \global\expandafter\DeclareDocumentCommand\expandafter{\csname #3\endcsname}{O{} m}{\ignorespaces%
+    \expandafter\DeclareDocumentCommand\expandafter{\csname #3\endcsname}{O{} m}{\ignorespaces%
         \AbstractEmblemDrawer{#2,##1}{\@nameuse{lillyxEMBLEMx#3xDraw}}{\@nameuse{lillyxEMBLEMx#3xRadius}}{\@nameuse{lillyxEMBLEMx#3xBgColor}}{\@nameuse{lillyxEMBLEMx#3xFgColor}}{{\@nameuse{lillyxEMBLEMx#3xBorderColor}}}{\@nameuse{lillyxEMBLEMx#3xFont}}{##2}%
     }
 }

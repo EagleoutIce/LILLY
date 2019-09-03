@@ -36,10 +36,6 @@
 \RequirePackage{LILLYxPATH} %% provides \linput as \LILLYxPATH based input
 \RequirePackage{LILLYxBOOLEAN} %% \true und \false
 
-\ifcsname LILLYxDEBUG\endcsname\else
-    \xdef\LILLYxDEBUG{\false}   %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
-\fi
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -38,19 +38,11 @@
 }
 
 
-\DeclareTotalTCBox{\LILLYxLSTINLINExADVANCED}{ s m m }
-{verbatim,lstpresenterstyle,left=0.25mm,right=0.25mm}
-{\lstinline[language=#2]^#3^}
+\DeclareTotalTCBox{\LILLYxLSTINLINExADVANCED}{ s O{} m m }
+{verbatim,lstpresenterstyle,left=0.25mm,right=0.25mm,#2}
+{\lstinline[#3]^#4^}
 
 
-\newtcblisting{presentlst}[2][]{%
-  lstpresenterstyle,
-  listing options={%
-    language=#2,
-    style=LSTADVANCED},
-  #1%
-}
-{}
 
 % \def\ConstructEnv#1#2{
 % \global\DeclareTCBListing{#1}{ O{} }{%
@@ -62,44 +54,56 @@
 %       }
 % }
 
-\getRegisteredLanguages%
-\typeout{Start advanced Language Registration}
-\foreach \clang/\llang in \lillyxlist {%
-  \ifthenelse{\equal{\clang}{}}{}{
-    \ifthenelse{\equal{\llang}{}}{}{
-        \edef\fexpclang{s\clang}
-        \typeout{New Presenter for: \clang\space (\llang) with name: p\clang\space and for long: \fexpclang}
-        %\ConstructEnv{\fexpclang}{\llang}
-      \expandafter\xdef\csname p\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINLINExADVANCED{\llang}{##1}}
-      \expandafter\robustify\csname p\clang\endcsname
-  }}
-}
+%
+% Will be done with the Language-Registration Process
+%
 
-\newtcblisting{sjava}[1][]{%
-  lstpresenterstyle,
-  listing options={%
-    language=lJava,
-    style=LSTADVANCED},
-  #1%
-}
-{}
+% \getRegisteredLanguages%
+% \typeout{Start advanced Language Registration}
+% \foreach \clang/\llang in \lillyxlist {%
+%   \ifthenelse{\equal{\clang}{}}{}{
+%     \ifthenelse{\equal{\llang}{}}{}{
+%         \edef\fexpclang{s\clang}
+%         \typeout{New Presenter for: \clang\space (\llang) with name: p\clang\space and for long: \fexpclang}
+%         %\ConstructEnv{\fexpclang}{\llang}
+%       \expandafter\xdef\csname p\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINLINExADVANCED{\llang}{##1}}
+%       \expandafter\robustify\csname p\clang\endcsname
+%   }}
+% }
 
-\newtcblisting{slatex}[1][]{%
-  lstpresenterstyle,
-  listing options={%
-    language=lLatex,
-    style=LSTADVANCED},
-  #1%
-}
-{}
+% \foreach \x/\i in {sjava/lJava} {
+%   \globaldefs=1
+%   \newenvironment{\x}[1][]{%
+%   \tcblisting{lstpresenterstyle,listing options={language=\i,style=LSTADVANCED},##1}}%
+%   {\endtcblisting}
+% }
 
-\newtcblisting{scpp}[1][]{%
-  lstpresenterstyle,
-  listing options={%
-    language=lCpp,
-    style=LSTADVANCED},
-  #1%
-}
-{}
+
+
+% will be done by \RegisterLanguage :D
+
+% \newtcblisting{sjava}[1][]{%
+%   lstpresenterstyle,%
+%   listing options={%
+%     language=lJava,
+%     style=LSTADVANCED},#1%
+% }
+% {}
+
+
+% \DeclareDocumentEnvironment{slatex}{O{}}{
+%   \presentlst{lLatex}
+% }{\endpresentlst}
+
+% \newtcblisting{scpp}[1][]{%
+%   lstpresenterstyle,
+%   listing options={%
+%     language=lCpp,
+%     style=LSTADVANCED},
+%   #1%
+% }
+% {}
+
+
 
 \endinput

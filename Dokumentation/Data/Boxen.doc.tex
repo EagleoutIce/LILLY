@@ -194,7 +194,7 @@ Binden eine Datei als Übungsblatt ein und erlaubt so, Übungsblätter in Mitsch
 
 
 \begin{bemerkung}[Zugriff auf die Boxzähler]
-    Der Zugriff auf die von Lilly unterhaltenen Boxzähler ist sehr Umständlich (Beispiel: \blankcmd{thetcb@cnt@LILLYxBOXxDefinition}). Deswegen existiert das Hilfspaket \LILLYxNOTExLibrary{LILLYxBOXxCOUNTER}, welches hierfür Kurzbefehle definiert: \typesetList[blankcmd]{CTRxDEF,CTRxBEI,CTRxBEM,CTRxSAT,CTRxBEW,CTRxLEM,CTRxZSM}. So liefert \blatex{:bs:arabic\{:bs:CTRxDEF\}}: \T{\arabic{\CTRxDEF}}.
+    Der Zugriff auf die von Lilly unterhaltenen Boxzähler ist sehr Umständlich (Beispiel: \blankcmd{thetcb@cnt@LILLYxBOXxDefinition}). Deswegen existiert das Hilfspaket \LILLYxNOTExLibrary{LILLYxBOXxCOUNTER}, welches hierfür Kurzbefehle definiert: \typesetList[blankcmd]{CTRxDEF,CTRxBEI,CTRxBEM,CTRxSAT,CTRxBEW,CTRxLEM,CTRxZSM}. So liefert \blatex{:bs:arabic\:bs:CTRxDEF\}}: \T{\arabic{\CTRxDEF}}.
 \end{bemerkung}
 
 \presentCommand[2.0.0]{RegisterBox}[\optArg{Box-Keys}\optArg{Tikz-Keys}\manArg{Box-Name}\manArg{Title}\manArg{BoxID}]
@@ -351,7 +351,7 @@ Dieses Paket liefert gemeinsam mit \LILLYxNOTExLibrary{LILLYxEMBLEMS} einige nü
     \begin{latex}
 \begin{infoBox}
     Diese Info-Box kann ganz einfach mithilfe von folgendem Code erstellt werden:
-    % ....    
+    % ....
 \end{infoBox}
     \end{latex}
 \end{infoBox}
