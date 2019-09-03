@@ -1,10 +1,8 @@
-\normalmarginpar
-
 \renewcommand{\arraystretch}{1.5}
-\chapter[Grafiken \LILLYxBOXxVersion{\small 1.0.0}]{Grafiken}
+\chapter[Grafiken\lilib{LILLYxGRAPHICS}{1.0.0}]{Grafiken}
 \TitleSUB{Etliche Vereinfachungen und andere Freuden :D\hfill \LILLYxBOXxVersion{\small 1.0.2}}
 \bigskip\newline
-\elable{chp:GRAPHICS}Dieses Paket liegt hier: \begin{center}
+\elable{chp:GRAPHICS}\hypertarget{LILLYxGRAPHICS}Dieses Paket liegt hier: \begin{center}
     \blankcmd{LILLYxPATHxGRAPHICS} = \T{\LILLYxPATHxGRAPHICS}
 \end{center}
 \begin{bemerkung}[Standalone-Graphics]
@@ -60,8 +58,8 @@ Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargu
 \begin{center}\renewcommand{\arraystretch}{1.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\linewidth}@{\hspace{1em}}|@{\hspace{1em}}C{1cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \blatex{:bs:graphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}} &\raisebox{-0.375\baselineskip}{\tikz{\graphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
-        \blatex{:bs:tgraphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}} &\raisebox{-0.375\baselineskip}{\tikz{\tgraphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
+        {\blatex{:bs:graphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}}} &\raisebox{-0.375\baselineskip}{\tikz{\graphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
+        {\blatex{:bs:tgraphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}}} &\raisebox{-0.375\baselineskip}{\tikz{\tgraphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
@@ -79,7 +77,7 @@ Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben gen
 \end{multicols}%
 Zur Information, alle diese Befehle wurden wie folgt präsentiert:
 \begin{latex}
-:bs:tikz{:bs::lan:graphdot:ran:{(0,0)}{42}{a}};
+\\tikz:bs::lan:graphdot:ran:{(0,0)}{42}{a}};
 \end{latex}
 wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für den Textfluss noch die Boxposition angepasst, dies spielt allerdings für den Graphen keine Rolle. Mit \LILLYxBOXxVersion{2.0.0} wurden die Farben der Dots der neuen Palette %%TODO: link
 entsprechend portiert.\medskip
@@ -99,7 +97,7 @@ Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen loo
 \begin{center}%\renewcommand{\arraystretch}{0.25}
 \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.45\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.55\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\tiny\begin{latex}[numberstyle=\tiny\color{gray}]
+    {\tiny\begin{plainlatex}
 \begin{tikzternal}[scale=0.75,
         every node/.style={transform shape}]
     \graphPOI{(0,0)}{purple}{1999 n.Chr.}
@@ -109,7 +107,7 @@ Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen loo
       {https://github.com/EagleoutIce/Quickblit}
       {Deutschland};
 \end{tikzternal}
-    \end{latex}}&{%
+    \end{plainlatex}}&{%
     \begin{tikzternal}[scale=0.75,
         every node/.style={transform shape}]
             \graphPOICOMPAT{(0,0)}{purple}{1999 n.Chr.}{Florian Sihler}{Florian Sihler ist der Autor dieses Dokuments.}{Data/2003.jpg}{https://github.com/EagleoutIce/Quickblit}{Deutschland};
@@ -140,7 +138,8 @@ Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da d
   \PgetY{(B)}{\anotherY};
   \node (C) at (1.5*\myY,\anotherY) {C};
 \end{tikzternal}
-\end{latex}} &
+\end{latex}
+} &
 \begin{tikzternal}
     \draw[thin,xshift=0.5cm,yshift=0.5cm] (-1,-2) grid (3,2); %step=1.0
     \node (A) at (1,2) {A};
@@ -198,7 +197,8 @@ Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und d
     \draw[Ao,ultra thick] (-2,-2,-2) -- (\savedx,-2,-2) -- (\savedx,\savedy,-2) -- (\savedx,\savedy,\savedz) circle (0.25);
     \node at (2.5,-3.5){RPY: 13,171,55};
 \end{tikzternal}
-    \end{lstplain}} &  \begin{tikzternal}
+    \end{lstplain}
+    } &  \begin{tikzternal}
         \examplecube
         \rotateRPY[-2/2/2]{13}{171}{55}
         \begin{scope}[draw=purple, text=purple,fill=purple,densely dashed,RPY]
@@ -247,7 +247,8 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
     \loopTop[4]{1}{\T{4}};
     \loopRight[4]{2}{\T{2}};
 \end{tikzternal}
-    \end{latex}} &      \begin{tikzternal}[scale=1,
+    \end{latex}
+    } &      \begin{tikzternal}[scale=1,
         every node/.style={minimum size=12pt,transform shape},
         state/.style={circle, draw, minimum size=20pt},
         every path/.style={draw, -latex},
@@ -291,11 +292,12 @@ Da vor allem mit \fg der Wunsch danach aufkam, neuronale Netze schnell zu Texen,
 Es wurde bisher auch nur durch das Bereitstellen eines einzelnen Befehls implementiert: \blankcmd{neuronSquare}. Dieser funktioniert seinerseits lediglich in einer \emph{tikzpicture}/\emph{tikzternal} Umgebung und zeichnet nichtmal ein Neuron, sondern lediglich die 2-D Repräsentation eines booleschen Raums, der wiedergibt unter welchen Eingabevektoren das Perzeptron welchen Wert zurückliefert. Die 4 Parameter, die hierzu \blankcmd{neuronSquare} benötigt, entsprechen der jeweiligen Binärdarstellung der Eingabevektoren. Eine beispielhafte Anwendung ist hier zu finden:
 \[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.35\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.3\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\scriptsize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
+    {\scriptsize\begin{plainlatex}
 \begin{tikzternal}
     \neuronSquare{T}{F}{T}{T};
 \end{tikzternal}
-    \end{lstlisting}} & \begin{tikzternal}
+    \end{plainlatex}
+    } & \begin{tikzternal}
         \node at(0,2.25) {};
         \neuronSquare{T}{F}{T}{T};
     \end{tikzternal} \\
@@ -306,14 +308,14 @@ Hierbei steht ein \T{T} (true) natürlich für einen akzeptierten, ein \T{F} (fa
 %
 %
 \section{Mitgelieferte Grafiken}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxGRAPHICSxPROVIDER.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
-Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxGRAPHICSxPROVIDER} und hängt vom Mutterpaket ab. 
+\hypertarget{LILLYxGRAPHICSxPROVIDER}Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxGRAPHICSxPROVIDER.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxGRAPHICSxPROVIDER} und hängt vom Mutterpaket ab.
 
 \presentCommand[2.0.0]{getGraphics}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
 Erlaubt den Zugriff auf zahlreiche Grafiken, die im Rahmen der Arbeit entstanden sind. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stets nur eine Dimension skaliert wird! Die bisher enthaltenen Grafiken können durch \cbash{jake get} abgerufen werden: \begin{center}
     \begin{tabular}{C{0.45\linewidth}_C{0.45\linewidth}}
         \getGraphics{Rechner/PLAAmpel} & \getGraphics{Software/ThreadStates} \\
-        \tiny \blatex{:bs:getGraphics\{Rechner/PLAAmpel\}} & \tiny\blatex{:bs:getGraphics\{Software/ThreadState\}}
+        {\tiny \blatex{:bs:getGraphics\{Rechner/PLAAmpel\}}} & {\tiny\blatex{:bs:getGraphics\{Software/ThreadState\}}}
     \end{tabular}
 \end{center}
 Die Größe skaliert sich in der Regel automatisch, allerdings existieren auch Grafiken, die automatisch nicht skaliert werden, da sie Code oder andere nicht skalierfähige Elemente enthalten: \begin{center}
@@ -326,17 +328,17 @@ Liefert den absoluten Pfad zu einer Grafik. Beispiel:
 \begin{latex}
 \getGraphicsPath{Software/XML/XMLUebersicht}
 \end{latex}
-Liefert: \T{\getGraphicsPath{Software/XML/XMLUebersicht}}. 
+Liefert: \T{\getGraphicsPath{Software/XML/XMLUebersicht}}.
 
 \presentCommand[2.0.0]{getPrerendered}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
 Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereits vorberechneten Grafiken. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stehts nur eine Dimension skaliert wird! Sie werden in der Grafiksammlung durch den Tag \T{pdf} gekennzeichnet (die Breite wurde im Beispiel angepasst, oder lassen sich durch das Anfügen eines \say{\T{-pdf}}-Suffix:
 \begin{center}
     \begin{tabular}{C{0.45\linewidth}_C{0.45\linewidth}}
         \getPrerendered{Eigene/Proseminar/Cluster/rolf-special} & \getPrerendered{Software/ThreadStates-pdf} \\
-        \tiny \blatex{:bs:getPrerendered\{Eigene/Proseminar/Cluster/rolf-special\}} & \tiny\blatex{:bs:getPrerendered\{Software/ThreadState-pdf\}}
+        {\tiny \blatex{:bs:getPrerendered\{Eigene/Proseminar/Cluster/rolf-special\}}} & {\tiny\blatex{:bs:getPrerendered\{Software/ThreadState-pdf\}}}
     \end{tabular}
 \end{center}
-%Weiter existiert der Befehl \blankcmd{lillyGraphicsUsePrerenderedtrue}, mit dem automatisch jeder \blankcmd{getGraphics}-Aufruf in einen entsprechenden \blankcmd{getPrerendered} Aufruf umgewandelt wird. 
+%Weiter existiert der Befehl \blankcmd{lillyGraphicsUsePrerenderedtrue}, mit dem automatisch jeder \blankcmd{getGraphics}-Aufruf in einen entsprechenden \blankcmd{getPrerendered} Aufruf umgewandelt wird.
 \emph{Es gilt zu beachten, dass die bereits vorgenerierten Grafiken von den manuell generierten abweichen können!}
 %
 %
@@ -346,8 +348,8 @@ Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereit
 %
 %
 \subsection{Embleme}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxEMBLEMS.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
-Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxEMBLEMS} und hängt vom Mutterpaket ab. 
+\hypertarget{LILLYxEMBLEMS}Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxEMBLEMS.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxEMBLEMS} und hängt vom Mutterpaket ab.
 
 %
 %

@@ -1,9 +1,8 @@
-\renewcommand{\arraystretch}{1.5}
 \setlength\intextsep{0pt}
-\chapter[Listings \LILLYxBOXxVersion{\small 1.0.0}]{Listings}
+\chapter[Listings\lilib{LILLYxLISTINGS}{1.0.0}]{Listings}
 \TitleSUB{Ist this\ldots the Matrix? \hfill \LILLYxBOXxVersion{\small 1.0.0}}
 \bigskip\newline
-\elable{chp:LISTINGS}Zum Setzen von Programmtexten innerhalb von Latexdokumenten stellt dieses Paket eine große Ansammlung verschiedener Sprachen und Dialekten zur Verfügung. Es befindet sich hier:
+\elable{chp:LISTINGS}\hypertarget{LILLYxLISTINGS}Zum Setzen von Programmtexten innerhalb von Latexdokumenten stellt dieses Paket eine große Ansammlung verschiedener Sprachen und Dialekten zur Verfügung. Es befindet sich hier:
 \begin{center}
     \blankcmd{LILLYxPATHxLISTINGS} = \T{\LILLYxPATHxLISTINGS}
 \end{center}
@@ -20,31 +19,64 @@ Sei es nun \fg[], \eidi oder \gdra[], in jeder Vorlesungsreihe war es von Releva
 \section{Die grundlegenden Eigenschaften}
 \subsection{Grundlegendes Design}
 
-Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/LILLYxLISTINGS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen.
+Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/LILLYxLISTINGS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen.\medskip\newline
+Hier wird weiter von der Bibliothek \LILLYxNOTExLibrary{LILLYxLISTINGSxLANGUAGExCONTROL} gebrauch gemacht, die sich mittels \blankcmd{RegisterLanguage} um die Konstruktion der im Folgenden vermerkten Möglichkeiten kümmert!
 \begin{bemerkung}[Verwendetes Paket]
-    LILLY verwendet nicht das normale \verb|listings|-Paket, sondern greift auf das erweiterte Paket \verb|listingsutf8| zu, sofern dieses Vorhanden ist. Es werden weiter Definitionen für alle Umlaute gesetzt, sowie eine Reihe an weiteren Ersetzungsregeln. Darunter fällt übrigens auch das Markieren von Zahlen.
+    LILLY verwendet nicht das normale \verb|listings|-Paket, sondern greift auf das erweiterte Paket \verb|listingsutf8| zu, sofern dieses Vorhanden ist. Es werden weiter Definitionen für alle Umlaute gesetzt, sowie eine Reihe an weiteren Ersetzungsregeln. Darunter fällt übrigens auch das Markieren von Zahlen. \T{minted} wird nicht verwendet um die Portablilität zu gewährleisten. Allerdings erlaubt \blankcmd{RegisterLanguage} das Verwenden von \T{minted}.
 \end{bemerkung}
-Um dynamisch zu bleiben bindet LILLY nicht einfach verschiedene Stile ein, sondern Dateien, welche dann für sich definieren, welche Stile und Sprachen zusätzlich zur Verfügung stehen.%\marginpar{\tiny Bisher ist das Einbinden neuer Stile noch recht starr, da der Dateipfad bis auf das Suffix vorgegeben ist. Dies sollte geändert werden}\par\reversemarginpar
+Um dynamisch zu bleiben bindet LILLY nicht einfach verschiedene Stile ein, sondern Dateien, welche dann für sich definieren, welche Stile und Sprachen zusätzlich zur Verfügung stehen. %\marginpar{\tiny Bisher ist das Einbinden neuer Stile noch recht starr, da der Dateipfad bis auf das Suffix vorgegeben ist. Dies sollte geändert werden}\par\reversemarginpar
 Mithilfe von \blankcmd{LILLYxListingsxLang} kann man das jeweilige Paket auswählen. Dieses Paket wird über den klassischen \blankcmd{input\{\}}-Befehl eingebunden und zwar über folgende Anweisung:
 {\small\begin{latex}
 \input{\LILLYxPATHxLISTINGS/Packages/_LILLY_PACK_!**!\LILLYxListingsxPACK}
 \end{latex}}
 
-Standardmäßig wird so das \T{MAIN}-Paket geladen, welches alle hier definierten Sprachen mitliefert. Damit die zur Verfügung stehenden Sprachen auch verwaltet werden können, läuft die Verwaltung der Sprachen wieder über eine Liste. Die Liste \emph{RegisteredLanguages} verwaltet hierbei die Registrierten Sprachen (in der Signatur \T{Sprache/Sprachbezeichner}) und stellt für jede Sprache einen Shortcut zur Verfügung:\begin{ditemize}
-    \item \T{\blankcmd{c<Sprache>}\{<Code>\}} Setzt den Code mit grauem Hintegrund. Zeilenumbrüche werden hier zwar durchgeführt, allerdings in der Regel nicht optimal gesetzt. Beispiel: \begin{latex}
+Standardmäßig wird so das \T{MAIN}-Paket geladen, welches alle hier definierten Sprachen mitliefert. Damit die zur Verfügung stehenden Sprachen auch verwaltet werden können, läuft die Verwaltung der Sprachen wieder über eine Liste. Die Liste \emph{RegisteredLanguages} verwaltet hierbei die registrierten Sprachen (in der Signatur \T{Sprache/Sprachbezeichner}) und stellt für jede Sprache einen Shortcut zur Verfügung:\elable{mrk:reglangs}\\
+%
+%
+%
+\presentCommand[1.0.9]{c<Sprache>}[\optArg{Listing-Options}\manArg{Code}]
+Setzt den Code mit grauem Hintegrund. Zeilenumbrüche werden hier zwar durchgeführt, allerdings in der Regel nicht optimal gesetzt. Beispiel: \begin{latex}
 \cjava{public static void main(String[] args)}
-    \end{latex}
-    Liefert: \cjava{public static void main(String[] args)}
-    \item \T{\blankcmd{b<Sprache>}\{<Code>\}} Setzt den Code farbig auf dem vorhandenen Hintegrund. Beispiel: \begin{latex}
+\end{latex}
+Liefert: \cjava{public static void main(String[] args)}\\
+%
+%
+%
+\presentCommand[1.0.9]{b<Sprache>}[\optArg{Listing-Options}\manArg{Code}]
+Setzt den Code farbig auf dem vorhandenen Hintegrund. Beispiel: \begin{latex}
 \bjava{public static void main(String[] args)}
-    \end{latex}
-            Liefert: \bjava{public static void main(String[] args)}
-    \item \T{\blankcmd{i<Sprache>}\{<Datei>\}} Lädt und setzt den Programmcode aus der entsprechenden Datei.
-\end{ditemize}
-Ferner \emph{kann} eine Sprache eine gleichnamige Umgebung mitliefern, die das direkte Setzen des Codes innerhalb eines Textlaufes ermöglicht. Beispiel:
+\end{latex}
+Liefert: \bjava{public static void main(String[] args)}\\
+%
+%
+%
+\presentCommand[2.0.0]{p<Sprache>}[\optArg{Listing-Options}\manArg{Code}]
+Setzt den Code im Präsentationsstil. Beispiel: \begin{latex}
+\pjava{public static void main(String[] args)}
+\end{latex}
+Liefert: \pjava{public static void main(String[] args)}\\
+%
+%
+%
+\presentCommand[1.0.9]{i<Sprache>}[\optArg{Listing-Options}\manArg{Code}]
+Lädt und setzt den Programmcode aus der entsprechenden Datei. Beispiel: \begin{latex}
+\ilatex[firstline=5,lastline=10]{Data/Listings.doc.tex}
+\end{latex}
+Liefert: \ilatex[firstline=5,lastline=10]{Data/Listings.doc.tex}
+%
+%
+%
+\presentEnvironment[1.0.9]{<Sprache>}[\optArg{Listing-Options}]
+Erlaubt das setzen eines Textblocks in der jeweiligen Sprache, es ist die Kurzform von:
+\begin{latex}
+\begin{lstlisting}[style=\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style},language=<Sprache>]
+    Hier kann Code in der jeweiligen Sprache stehen.
+\end{lstlisting}
+\end{latex}
+Dieses Beispiel wurde zum Beispiel durch die Sprache \T{latex} gesetzt. Beispiel:
 \begin{latex}
 \begin{java}
-public class SuperKlass {
+public class SuperKlasse {
     public static void main(String[] args) {
         System.out.println("Hallo Welt");
     }
@@ -53,12 +85,56 @@ public class SuperKlass {
 \end{latex}
 Ergibt:
 \begin{java}
-public class SuperKlass {
+public class SuperKlasse {
     public static void main(String[] args) {
         System.out.println("Hallo Welt");
     }
 }
 \end{java}
+%
+%
+%
+\presentEnvironment[2.0.0]{plain<Sprache>}[\optArg{Listing-Options}]
+Setzt ein Listing ohne irgendwelche zusätzlichen graphischen Hervorhebungen, außer sie werden durch die Optionen angegeben. Beispiel:
+\begin{latex}
+\begin{plainjava}
+public class SuperKlasse {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt");
+    }
+}
+\end{plainjava}
+\end{latex}
+Ergibt:
+\begin{plainjava}
+public class SuperKlasse {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt");
+    }
+}
+\end{plainjava}
+%
+%
+%
+\presentEnvironment[2.0.0]{s<Sprache>}%[\optArg{Listing-Options}] currently they have no optionals
+Setzt ein Listing im Showcase-Design. Beispiel:
+\begin{latex}
+\begin{sjava}
+public class SuperKlasse {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt");
+    }
+}
+\end{sjava}
+\end{latex}
+Ergibt:
+\begin{sjava}
+public class SuperKlasse {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt");
+    }
+}
+\end{sjava}
 
 \presentCommand[2.0.0]{isLanguageLoaded}[\manArg{LanguageSignature}]
 Prüft ob eine Sprache geladen ist. Als Argument wird hierbei die volle Sprachsignatur erwartet (\T{Sprache/Sprachbezeichner}) um auch doppelten Bezeichnern vorzubeugen.
@@ -66,10 +142,12 @@ Prüft ob eine Sprache geladen ist. Als Argument wird hierbei die volle Sprachsi
 \presentCommand[2.0.0]{isLanguageNameLoaded}[\manArg{LanguageName}]
 \elable{mrk:ilnl}Prüft ob eine Sprache geladen ist. Als Argument wird hierbei die volle Sprache erwartet, was doppelte Bezeichner natürlich ausschließt, allerdings in den meisten Fällen auch einfacher ist:
 \begin{latex}
-\isLanguageNameLoaded{java} % :yields: TRUE
-\isLanguageNameLoaded{waffel} % :yields: FALSE
+\isLanguageNameLoaded{java} % :yields: !*\lstcomment{\isLanguageNameLoaded{java}}*!
+\isLanguageNameLoaded{waffel} % :yields: !*\lstcomment{\isLanguageNameLoaded{waffel}}*!
 \end{latex}
-
+%
+%
+%
 \presentCommand[2.0.0]{lstshowcmd}[\manArg{command}]
 Kleiner Shortcut um auch den Inhalt eines Befehls als Listing zu setzen. Betrachte folgendes Beispiel:
 \begin{latex}
@@ -97,16 +175,6 @@ Setzt Programmcode entsprechend veralteter Definitionen.
     Um keine Doppeldeutigkeit bezüglich der Sprachen zu erhalten werden alle LILLY-Sprachen durch das \say{\T{l}}-Prefix angeführt. So heißt es nicht \say{\T{java}} sondern \say{\T{lJava}}, sofern die Sprache manuell geladen werden soll.
 \end{bemerkung}
 
-
-
-% Um sich jeglicher Formatierung eines Pakets zu entziehen definiert \LILLYxNOTExLibrary{LILLYxLISTINGS} noch zwei weitere Umgebungen:
-% \presentEnvironment[2.0.0]{nstabbing}[\cmdlist \blankenv{centered}]
-
-\subsection{Das MAIN-Paket}
-Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/Packages/\_LILLY\_PACK\_MAIN}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen.
-
-
-Nebst der Sprach-Umgebungen werden hier zwei Umgebungen definiert, die dem Stil des Main-Pakets entgegenarbeiten:
 \presentEnvironment[1.0.9]{lstplain}[\optArg{lstArgs}\cmdlist \blankenv{lstnonum}\optArg{lstArgs}]
 Während erstere einfach nur Code ohne anderweitige Formatierungen setzt, entfernt letztere nur die Aufzählung entsprechender Zahlen:
 \begin{latex}
@@ -135,6 +203,57 @@ public static void main(String[] args) {
 }
 \end{lstnonum}
 
+Die allgemeine TypeWriter-Schriftart wird übgrigens mithilfe von \blankcmd{LILLYxlstTypeWriter} auf \T{AnonymousPro} gesetzt (\textit{Sie wird auch hier für die Dokumentation verwendet}).
+
+% Um sich jeglicher Formatierung eines Pakets zu entziehen definiert \LILLYxNOTExLibrary{LILLYxLISTINGS} noch zwei weitere Umgebungen:
+% \presentEnvironment[2.0.0]{nstabbing}[\cmdlist \blankenv{centered}]
+
+\subsection{Das MAIN-Paket}
+Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/Packages/\_LILLY\_PACK\_MAIN}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen.\medskip\newline
+Neben den geladenen Sprachen, liefert dieses Paket die Stildefinitionen die bereits in kleinen Teilen auch über PGF-Konfiguriert werden können. Dies wird aber wohl erst in zukünftigen Versionen sinnvoll konfigurierbar sein.\newline
+%
+%
+%
+\presentCommand[2.0.0]{lstcomment}[\manArg{text}\cmdlist \blankcmd{lststring}\manArg{text}\cmdlist \blankcmd{lstnumber}\manArg{text}]
+Setzt den Text so wie der Main-Stil den Code als Kommentar, String oder Zahl setzen würde. So kann auch durch \T{!* ... *!} gesetzter Code korrekt formatiert werden:
+\begin{latex}
+\begin{java}
+5 + 3 ergibt: :!:*\pgfmathparse{5+3}\pgfmathresult*:!:
+5 + 3 ergibt: :!:*\lstnumber{\pgfmathparse{5+3}\pgfmathresult}*:!:
+\isLanguageNameLoaded{java} // ::c:yields: :!:*\isLanguageNameLoaded{java}*:!:
+\isLanguageNameLoaded{java} // ::c:yields: :!:*\lstcomment{\isLanguageNameLoaded{java}}*:!:
+"Im :!:*\LILLYxDOCUMENTxSUBNAME*:!: :D"
+"Im :!:*\lststring{\LILLYxDOCUMENTxSUBNAME}*:!: :D"
+\end{java}
+\end{latex}
+Ergibt\footnote{Hier werden die Befehle nicht richtig markiert, da zum veranschaulichen von \blankcmd{lststring} eine Sprache nötig war, die Zeichenketten als Datentyp besitzt.}:
+\begin{java}
+5 + 3 ergibt: !*\pgfmathparse{5+3}\pgfmathresult*!
+5 + 3 ergibt: !*\lstnumber{\pgfmathparse{5+3}\pgfmathresult}*!
+\isLanguageNameLoaded{java} // :yields: !*\isLanguageNameLoaded{java}*!
+\isLanguageNameLoaded{java} // :yields: !*\lstcomment{\isLanguageNameLoaded{java}}*!
+"Im !*\LILLYxDOCUMENTxSUBNAME*! :D"
+"Im !*\lststring{\LILLYxDOCUMENTxSUBNAME}*! :D"
+\end{java}
+%
+%
+%
+\presentCommand[2.0.0]{lstkwone}[\manArg{text}\cmdlist \blankcmd{lstkwtwo}\manArg{text}\cmdlist\ldots \cmdlist \blankcmd{lstkwsix}\manArg{text}]
+Setzt den Text wie das enstprechende Keyword-Level:
+\begin{latex}
+\begin{java}
+:!:* Hallo *:!: :!:* \lstkwone{Hallo} *:!: :!:* \lstkwtwo{Hallo} *:!:
+:!:* \lstkwthree{Hallo} *:!: :!:* \lstkwfour{Hallo}* :!:
+:!:* \lstkwfive{Hallo} *:!: :!:* \lstkwsix{Hallo} *:!:
+\end{java}
+\end{latex}
+Ergibt:
+\begin{java}
+!* Hallo *! !* \lstkwone{Hallo} *! !* \lstkwtwo{Hallo} *!
+!* \lstkwthree{Hallo} *! !* \lstkwfour{Hallo}* !
+!* \lstkwfive{Hallo} *! !* \lstkwsix{Hallo} *!
+\end{java}
+
 \begin{bemerkung}[Geladene Sprachen]
     Hier eine Auflistung aller Sprachen, die über das Main-Paket geladen werden:\vspace{-0.5\baselineskip}
     \begin{multicols}{4}
@@ -144,8 +263,7 @@ public static void main(String[] args) {
     \end{multicols}
 \end{bemerkung}
 
-Widmen wir uns nun allerdings einmal den weiteren Definitionen des MAIN-Pakets:
-Die allgemeine TypeWriter-Schriftart wird mithilfe von \blankcmd{LILLYxlstTypeWriter} auf \T{AnonymousPro} gesetzt (\textit{Sie wird auch hier für die Dokumentation verwendet}). Zudem lädt \T{MAIN} noch das Paket \T{MIPS}, auf welches weiter unten noch weiter eingegangen wird. Weiter wird \verb|\lst@PlaceNumber| modifiziert und es werden einige grundlegende Einstellungen getätigt, welche sich in der linken Tabelle wiederfinden lassen. Im Folgenden werden die einzelnen hierrüber eingebundenen Sprachen nicht weiter beschrieben - hierzu gibt es eigene Sektionen weiter unten\ldots\smallskip\newline
+\T{MAIN} lädt noch das Paket \T{MIPS}, auf welches nun noch etwas weiter eingegangen wird\ldots\smallskip\newline
 
 \subsection{Das MIPS-Paket}
 Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/Languages/\_LILLY\_LANG\_MIPS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen.\newline
@@ -177,7 +295,7 @@ Weiter setzt es die Position der Zeilenummern auf die rechte Seite.
 Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitte.
 
 \begin{bemerkung}[MIPS]
-    Das gesamte Mipspaket ist seit \LILLYxBOXxVersion{1.8.0} überholt und bedarf einiger Aufarbeitung, dennoch tut es seinen Dienst für die bisher existenten MIPS-Codes allerdings stehen weitere besonderheiten wie zum Beispiel \jmark[Literates]{mrk:jmpLiterate} nebst der anfänglich implementierten nicht zur Verfügung\ldots
+    Das gesamte Mipspaket ist seit \LILLYxBOXxVersion{1.8.0} überholt und bedarf einiger Aufarbeitung, dennoch tut es seinen Dienst für die bisher existenten MIPS-Codes. Weitere Besonderheiten wie zum Beispiel \jmark[Literates]{mrk:jmpLiterate} nebst der anfänglich implementierten stehen \emph{nicht} zur Verfügung\ldots
 \end{bemerkung}
 
 % \section{Die mitgelieferten Erweiterungen}
@@ -253,6 +371,128 @@ Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitt
 % \end{multicols}
 % Es werden keine Zeilennummern angezeigt.
 % \normalmarginpar
+\subsection{Kontrolle der Sprachen}
+\hypertarget{LILLYxLISTINGSxLANGUAGExCONTROL}Mit \LILLYxBOXxVersion{2.0.0} läuft die Registrierung einer Sprache über das Sub-Paket \LILLYxNOTExLibrary{LILLYxLISTINGSxLANGUAGExCONTROL} ab. Dieses definiert eine Menge an Befehlen, im Kern ist allerdings nur folgender von Relevanz:\newline
+%
+%
+%
+\presentCommand[2.0.0]{RegisterLanguage}[\manArg{Sprache}\manArg{lst-language}\secline\optArg[RegisteredLanguages]{sig-list}\secline\optArg[RegisteredLanguageNames]{name-list}]
+Registriert eine \T{Sprache} wie \T{java} mit der entsprechenden Listing-Sprache \T{lst-language} wie \T{lJava}. Die Signatur der Sprache wird in die Liste \T{sig-list}, der ledigliche Name (wie \T{java}) in die Liste \T{name-list} eingetragen. Konstruiert werden die \jmark[weiter oben]{mrk:reglangs} beschriebenen Befehle für die Sprache. Erschaffen wir uns einmal die Sprache \T{rubberduck}:
+\begin{latex}
+\lstdefinelanguage{lRubberduck}{
+    comment=[l]{\#},
+    morekeywords = {Quack, new},
+    morekeywords = [2]{Duck}
+}
+\end{latex}
+\lstdefinelanguage{lRubberduck}{
+    comment=[l]{\#},
+    morekeywords = {Quack, new},
+    morekeywords = [2]{Duck}
+}
+Bisher haben wir damit noch keine Sprache geladen oder irgenetwas Lilly-Kompatibles erzeugt:
+\begin{latex}
+\isLanguageNameLoaded{rubberduck} % :yields: !*\lstcomment{\isLanguageNameLoaded{rubberduck}}*!
+\end{latex}
+Dies ändert sich durch folgenden Befehl:
+\begin{latex}
+\RegisterLanguage{rubberduck}{lRubberduck}
+\end{latex}
+\RegisterLanguage{rubberduck}{lRubberduck}%
+Nun gilt die Sprache als geladen:
+\begin{latex}
+\isLanguageNameLoaded{rubberduck} % :yields: !*\lstcomment{\isLanguageNameLoaded{rubberduck}}*!
+\end{latex}
+Und wir können sie im Code auch verwenden:
+\begin{latex}[morekeywords={[3]{rubberduck}}]
+\begin{rubberduck}
+Duck jens = new Duck(); # Eine neue Ente
+Quack jens ::{
+    Quack Quack, Quack Quack
+    Quack Quack. # Entisch, es ist so simpel
+}
+\end{rubberduck}
+\end{latex}
+Ergibt:
+\begin{rubberduck}
+Duck jens = new Duck(); # Eine neue Ente
+Quack jens ::{
+    Quack Quack, Quack Quack
+    Quack Quack. # Entisch, es ist so simpel
+}
+\end{rubberduck}
+Analog existieren auch die inline-Befehle:
+\begin{latex}[morekeywords={[5]{\\prubberduck}}]
+\prubberduck{Quack primus = new Quack();}
+\end{latex}
+Ergibt: \prubberduck{Duck primus = new Duck();}
+\medskip\newline
+Wie die einzelnen Umgebungen heißen und wie sie dargestellt werden sollen lässt sich relativ frei konfigurieren. Für die durch \blankcmd{lillylstset}-modifizierbaren Schlüssel (wie Präfix und Suffix des Befehls) steht die Dokumentation noch aus!\newline
+%
+%
+%
+\presentCommand[2.0.0]{LillyNewLstEnvironCore}[\manArg{Name}\manArg{Key}\manArg{In-Extra}\manArg{Out-Extra}\manArg{Language}]
+Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kann somit vom Nutzer modifziert/überschrieben werden um die Eigenschaften der durch \blankcmd{RegisterLanguage}-generierten Umgebungen zu modifizieren. Diese Befehl kümmert sich um die Standartumgebung wie \clatex[morekeywords={[5]{begin}}]{:bs:begin\{latex\}}. Er erhält die entsprechenden Informationen über die jeweiligen Argumente. Die Standartdefinition dieses Befehls lautet ganz einfach:
+\begin{latex}[morekeywords={[5]{\\LillyNewLstEnvironCore}}]
+\def!**!\LillyNewLstEnvironCore!**!#1#2#3#4#5{%
+    \lstnewenvironment{#1}[1][]{#3\lstset{##1}}{#4}
+}
+\end{latex}
+%
+%
+%
+\presentCommand[2.0.0]{LillyNewLstEnvironPlain}[\manArg{Name}\manArg{Key}\manArg{In-Extra}\secline\manArg{Out-Extra}\manArg{Language}]
+Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kann somit vom Nutzer modifziert/überschrieben werden um die Eigenschaften der durch \blankcmd{RegisterLanguage}-generierten Umgebungen zu modifizieren. Diese Befehl kümmert sich um die Plain-Umgebung wie \clatex[morekeywords={[5]{begin}}]{:bs:begin\{plainlatex\}}.
+Die Standartdefinition dieses Befehls lautet:
+\begin{latex}[morekeywords={[5]{\\LillyNewLstEnvironPlain}}]
+\def!**!\LillyNewLstEnvironPlain!**!#1#2#3#4#5{%
+    \lstnewenvironment{#1}[1][]{#3\lstset{xleftmargin=0pt,xrightmargin=0pt,%
+        numbers=none,numbersep=0pt,frame=none,%
+        rulecolor={},backgroundcolor={},##1}}{#4}
+}
+\end{latex}
+%
+%
+%
+\presentCommand[2.0.0]{LillyNewLstEnvironPresent}[\manArg{Name}\manArg{Key}\manArg{In-Extra}\secline\manArg{Out-Extra}\manArg{Language}]
+Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kann somit vom Nutzer modifziert/überschrieben werden um die Eigenschaften der durch \blankcmd{RegisterLanguage}-generierten Umgebungen zu modifizieren. Diese Befehl kümmert sich um die Presentation-Umgebung wie \clatex[morekeywords={[5]{begin}}]{:bs:begin\{slatex\}}.
+Die Standartdefinition dieses Befehls lautet:
+\begin{latex}[morekeywords={[5]{\\LillyNewLstEnvironPresent,\\presentlst,\\endpresentlst}}]
+\def!**!\LillyNewLstEnvironPresent!**!#1#2#3#4#5{%
+    \expandafter!**!\xdef!**!\csname#1!**!\endcsname{\noexpand!**!\leavevmode!**!\noexpand!**!\presentlst{#5}}
+    \expandafter!**!\xdef!**!\csname end#1!**!\endcsname{\noexpand!**!\endpresentlst}
+}
+\end{latex}
+%
+%
+%
+\presentEnvironment[2.0.0]{presentlst}[\optArg{lst-args}\manArg{language}\cmdlist\secline\blankenv{plainlst}\optArg{lst-args}\manArg{language}\cmdlist\secline\blankenv{defaultlst}\optArg{lst-args}\manArg{language}]
+Liefert die Listings-Umgebungen jeweils als \T{tcblisting}. Beispiel:
+\begin{latex}[morekeywords={[3]{plainlst,defaultlst}}]
+\begin{defaultlst}{lJava}
+System.out.println("Hallo Welt");
+\end{defaultlst}
+\begin{plainlst}{lJava}
+System.out.println("Hallo Welt");
+\end{plainlst}
+\begin{presentlst}{lJava}
+System.out.println("Hallo Welt");
+\end{presentlst}
+\end{latex}
+Ergibt:
+\begin{defaultlst}{lJava}
+System.out.println("Hallo Welt");
+\end{defaultlst}
+sowie:
+\begin{plainlst}{lJava}
+System.out.println("Hallo Welt");
+\end{plainlst}
+und:
+\begin{presentlst}{lJava}
+System.out.println("Hallo Welt");
+\end{presentlst}
+Letzere Box wird auch für den generierten Befehl verwendet. Die Inline-Befehle verwenden jeweils \blankcmd{LILLYxLSTINLINE}, \blankcmd{LILLYxLSTBLANKINLINE}, \blankcmd{LILLYxLSTINPL} und \blankcmd{LILLYxLSTINLINExADVANCED}.
+
 \section{Marker und weitere Befehle}
 \subsection{Literates}
 \elable{mrk:jmpLiterate}Im Kontext verschiedener Programmiersprachen kam bald der Wunsch auf verschiedene Symbole entsprechend einfach Setzen zu können. Bisher werden alle diese Ersetzungsregeln über das Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen und ermöglichen es, neben Umlauten auch Symbole einzubinden. Die Ersetzungsregeln werden nicht über eine Liste gehandhabt und sind ebenso vielfältig wie es die Bedürfnisse erfordern. Im Folgenden eine Auflistung aller in \LILLYxBOXxVersion{2.0.0} enthaltener Ersetzungsregeln:
@@ -265,17 +505,6 @@ Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitt
 \end{multicols}
 \subsection{Marker}
 Mit \LILLYxBOXxVersion{2.0.0} im Anfangsstadium befinden sich die jeweiligen Marker die es erlauben Fehler oder ganz Allgemein Code-stellen zu markieren, oder von Highlighting zu befreien:
-\begin{java}
-|info|import java.util.ArrayList;|info|
-
-|plain|public class Example {|plain|
-    public static void main(String[] args) {
-        System.out.|err|PrintLn|err|("Hallo Welt");
-        if(|warn|args==null|warn|)
-            System.out.println("wau");
-    }
-}
-\end{java}
 \begin{latex}
 \begin{java}
 |info|import java.util.ArrayList;|info|
@@ -289,6 +518,18 @@ Mit \LILLYxBOXxVersion{2.0.0} im Anfangsstadium befinden sich die jeweiligen Mar
 }
 \end{java}
 \end{latex}
+Ergibt:
+\begin{java}
+|info|import java.util.ArrayList;|info|
+
+|plain|public class Example {|plain|
+    public static void main(String[] args) {
+        System.out.|err|PrintLn|err|("Hallo Welt");
+        if(|warn|args==null|warn|)
+            System.out.println("wau");
+    }
+}
+\end{java}
 
 \section{Advanced Listings}
 

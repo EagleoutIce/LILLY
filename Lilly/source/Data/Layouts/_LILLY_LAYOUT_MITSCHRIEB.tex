@@ -38,15 +38,33 @@
 }
 \newcommand{\LILLYxRIGHTMARK}{\faBookmark}
 \let\defChapter\chapter
-\renewcommand*{\chapter}{
-    \@ifstar{\starchapter}{\@dblarg\nostarchapter}
+
+\DeclareDocumentCommand{\chapter}{
+    s   % starred
+    O{} % optional short
+    m   % name of chapter
+}{%
+    \IfBooleanTF{#1}{% starred
+        \defChapter*{#3}% no opt
+    }{% unstarred
+        \ifthenelse{\equal{#2}{}}%
+        {\defChapter{#3}\def\xchapname{#3}}% use same
+        {\defChapter[{#2}]{#3}\def\xchapname{#2}}%
+        \addcontentsline{SATZE}{chapter}{\xchapname}\addcontentsline{ZSM}{chapter}{\xchapname}\addcontentsline{UB}{chapter}{\xchapname}%
+        \addcontentsline{LEMME}{chapter}{\xchapname}\renewcommand{\leftmark}{{#2}}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}%
+    }%
 }
-\newcommand{\starchapter}[1]{
-    \defChapter*{#1}
-}
-\def\nostarchapter[#1]#2{\defChapter[{#1}]{#2}\addcontentsline{DEFS}{chapter}{#1}%
-\addcontentsline{SATZE}{chapter}{#1}\addcontentsline{ZSM}{chapter}{#1}\addcontentsline{UB}{chapter}{#1}%
-\addcontentsline{LEMME}{chapter}{#1}\renewcommand{\leftmark}{{#2}}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}}%
+
+% \let\defChapter\chapter
+% \renewcommand*{\chapter}{
+%     \@ifstar{\starchapter}{\@dblarg\nostarchapter}
+% }
+% \def\starchapter*#1{
+%     \defChapter*{#1}
+% }
+% \def\nostarchapter[#1]#2{\defChapter[{#1}]{#2}\addcontentsline{DEFS}{chapter}{#1}%
+% \addcontentsline{SATZE}{chapter}{#1}\addcontentsline{ZSM}{chapter}{#1}\addcontentsline{UB}{chapter}{#1}%
+% \addcontentsline{LEMME}{chapter}{#1}\renewcommand{\leftmark}{{#2}}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}}%
 
 \LILLYcommand{\LILLYxLayoutxClear}{ %
     \pagestyle{empty} %KOMA-FTW!

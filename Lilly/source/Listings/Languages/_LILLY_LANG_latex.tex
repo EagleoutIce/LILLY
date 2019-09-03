@@ -4,30 +4,32 @@
     language=[LaTeX]TeX,
     keywordstyle = [7]{\color{Azure}}, %%
     keywordstyle = [4]{\color{AppleGreen}},
-    comment=[l]{\%},
-    %%morecomment=[s][\color{bondiBlue}]{\$}{\$}, %% see :bmath: and :emath:
+    morecomment = [l]{\%},
+    %morecomment=[s][\color{bondiBlue}]{\$}{\$}, %% see :bmath: and :emath:
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
-    alsoletter={\#\\@\_*},
-    alsoother={!,\"},
-    columns=flexible,
+    alsoletter={\\@_*},
+    alsoother={!,"},
+    %deletekeywords=[5]{\\},
+    columns=[c]flexible,
     escapeinside={!*}{*!},
-    morekeywords = [2]{Lilly,Jake,book,lipsum,geometry,LILLYxMATH,LILLYxGRAPHICS,LILLYxCOLOR,LILLYxBOXES,LISTxCompatColors,LILLYxCONTROLLERxBOX,LILLYxLISTINGS,LILLYxLIST,LILLYxFORMATxCONTROL,LISTxColors,\\LISTxCompatColors,\\LISTxColors,\\def,\\gdef,\\@nil,\\\\,{\\,}},
+    morekeywords = [2]{Lilly,Jake,book,lipsum,geometry,LILLYxMATH,LILLYxGRAPHICS,LILLYxCOLOR,LILLYxBOXES,LISTxCompatColors,LILLYxCONTROLLERxBOX,LILLYxLISTINGS,LILLYxLISTINGSxADVANCED,LILLYxLIST,LILLYxFORMATxCONTROL,LISTxColors,\\LISTxCompatColors,\\LISTxColors,\\def,\\gdef,\\@nil,\\\\,\\DeclareDocumentCommand},
     morekeywords = [3]{\\LILLYxTITLE,\\LILLYcommand,\\LILLYxColorxDefinition,\\LILLYxVorlesung,\\LILLYxSemester,\\LILLYxFACULTYxMATHE,\\LILLYxFACULTYxTHEORETISCHEINFORMATIK,\\LILLYxFACULTYxPRAKTISCHEINFORMATIK,\\addcontentsline,\\LILLYxFACULTYxTECHNISCHEINFORMATIK,\\LILLYxPATHxDATA,\\LILLYxPATHxLISTINGS},
-    morekeywords = [5]{\\documentclass,documentclass,\\usepackage,\\begin,begin,end,\\end,\\input,\\caption,\\true,\\FALSE,\\elable,\\examplecube,\\rotateRPY,\\node,\\STATE,\\state,\\jmark,\\hmark,\\listofDEFS,\\clearpage,\\newpage,\\linput,\\include,\\linclude,\\inputUB,\\draw,\\plotline,\\plotseq,\\graphPOI,\\loopTop,\\loopRight,\\loopBot,\\loopLeft,\\tcbset,\\DeclareTColorBox,\\textbf,\\textsc,\\specialrule,\\hfill,\\textwidth,\\VRule,\\tcboxedtitleheight,\\ifthenelse,\\equal,\\bfseries,\\path,\\definecolor,\\toprule,\\hspace,\\midrule,\\bottomrule,\\linewidth,\\arraybackslash,\\centering,\\foreach,\\renewcommand,\\getGraphics,\\framebox,\\vSplitter,\\item,\\xmark,\\ymark,\\ldots,overbar,overline,daseq,qesad,shouldeq,sqrt,oldsqrt,abs,frac,log,pi,sin,cos,rad,deg,\\psi,\\xi,\\chi,\\listofDEFINITIONS,LILLYxMathxMode,\\constructList,\\pushList,\\popList,\\lillyxlist,\\clatex,\\igepard,\\newline,\\containsList,ceil,floor,lfloor,rfloor,lceil,rceil,\\left,right,left,\\addplot3,graphdot,tgraphdot,tikz,\\PgetXY,\\PgetY,\\PgetX,\\neuronSquare,\\registerColors,\\Acronym,\\PoliteWords,\\ColorfulWords,\\Acronym,\\@Acronym,\\lilly@format@iter,%
-    \\LILLY@FORMATTER@CURRENT,\\TextBfFormat,\\newcommand,\\blankcmd,\\textcolor,\\LILLYxlstTypeWriter,\\textbackslash,\\LILLYxlstTypeWriter\\textbackslash,\\LILLYxLIBRARY,\\baselineskip,\\paragraph,\\ilatex,\\ignorespaces,\\NoFormatChar,\\LILLYxTITLExBONUS,\\@Alph,\\def,\\typesetList,\\expandafter,\\isLanguageLoaded,\\cpython,\\bpython,\\ccpp,\\bcpp,\\verb,\\section,\\chapter,\\subsection,\\subsubsection,\\smallskip,\\medskip,\\bigskip,\\smallskip\\newline,\\medskip\\newline,\\bigskip\\newline,\\LILLYxListingsxLang,\\LILLYxListingsxPACK,\\cjava,\\bjava,getGraphics,%
-    \\getGraphicsPath,arabic,CTRxDEF,\\isLanguageNameLoaded,\\lstshowcmd,getPrerendered,\\LILLYxBOXxMODE,\\LILLYxBOXxDefinitionxEnable,\\pcpp,\\LILLYxBOXxBeweisxBox,\\NewEmblem,\\infoEmblem,\\NewInfoBox,\\dateBox,%
-    \\warningEmblem,\\errorEmblem,\\mathEmblem,\\codeEmblem,\\textEmblem,\\btextEmblem,\\DefaultBaseEmblem,\\mathbf,\\lipsum},
-    morekeywords = [4]{definition,bemerkung,definition*,beispiel,satz,beweis,lemma,zusammenfassung,aufgabe,uebungsblatt,uebungsblatt*,mrk,pmatrix,tabular,tikzpicture,graph,wgraph,plot,aufgaben,grid,scope,minipage,Automat,LILLYxBOXxDefinition,LILLYxBOXxAufgabe,enumeratea,document,latex,axis,align*,align,alignat,alignat*,tikzternal,center,lstplain,cpp,java,lstnonum,multicols,ditemize,presentlst,\\wasysymLightning,\\faCode,\\faCalendar,infoBox,warningBox,errorBox,mathBox,codeBox,infoBox*,warningBox*,errorBox*,mathBox*,codeBox*,\\isRuntimeLoaded},
+    morekeywords = [5]{\\documentclass,documentclass,\\usepackage,\\begin,\\end,\\input,\\caption,\\true,\\FALSE,\\elable,\\examplecube,\\rotateRPY,\\node,\\STATE,\\state,\\jmark,\\hmark,\\listofDEFS,\\clearpage,\\newpage,\\linput,\\include,\\linclude,\\inputUB,\\draw,\\plotline,\\plotseq,\\graphPOI,\\loopTop,\\loopRight,\\loopBot,\\loopLeft,\\tcbset,\\DeclareTColorBox,\\textbf,\\textsc,\\specialrule,\\hfill,\\textwidth,\\VRule,\\tcboxedtitleheight,\\ifthenelse,\\equal,\\bfseries,\\path,\\definecolor,\\toprule,\\hspace,\\midrule,\\bottomrule,\\linewidth,\\arraybackslash,\\centering,\\foreach,\\renewcommand,\\getGraphics,getGraphics,\\framebox,\\vSplitter,\\item,\\xmark,\\ymark,\\ldots,\\psi,\\xi,\\chi,\\listofDEFINITIONS,\\LILLYxMathxMode,\\constructList,\\pushList,\\popList,\\lillyxlist,\\clatex,\\igepard,\\newline,\\containsList,\\left,\\right,\\addplot3,\\PgetXY,\\PgetY,\\PgetX,\\neuronSquare,\\registerColors,\\Acronym,\\PoliteWords,\\ColorfulWords,\\Acronym,\\@Acronym,\\lilly@format@iter,\\LILLYxNOTExLibrary,\\lstdefinelanguage,\\lstset,\\lstnewenvironment,%
+    \\LILLY@FORMATTER@CURRENT,\\TextBfFormat,\\newcommand,\\blankcmd,\\textcolor,\\LILLYxlstTypeWriter,\\textbackslash,\\LILLYxlstTypeWriter\\textbackslash,\\LILLYxLIBRARY,\\baselineskip,\\paragraph,\\ilatex,\\ignorespaces,\\NoFormatChar,\\LILLYxTITLExBONUS,\\@Alph,\\def,\\edef,\\xdef,\\gdef,\\typesetList,\\expandafter,\\isLanguageLoaded,\\cpython,\\bpython,\\ccpp,\\bcpp,\\verb,\\section,\\chapter,\\subsection,\\subsubsection,\\smallskip,\\medskip,\\bigskip,\\smallskip\\newline,\\medskip\\newline,\\bigskip\\newline,\\LILLYxListingsxLang,\\LILLYxListingsxPACK,\\cjava,\\bjava,\\pjava,\\getGraphics,\\lstkwone,\\lstkwtwo,\\lstkwthree,\\lstkwfour,\\lstkwfive,\\lstkwsix,\\lststring,\\lstcomment,\\lstnumber,%
+    \\getGraphicsPath,\\arabic,\\CTRxDEF,\\isLanguageNameLoaded,\\lstshowcmd,\\getPrerendered,\\LILLYxBOXxMODE,\\LILLYxBOXxDefinitionxEnable,\\pcpp,\\LILLYxBOXxBeweisxBox,\\NewEmblem,\\infoEmblem,\\NewInfoBox,\\dateBox,%
+    \\warningEmblem,\\errorEmblem,\\mathEmblem,\\codeEmblem,\\textEmblem,\\btextEmblem,\\DefaultBaseEmblem,\\mathbf,\\lipsum,\\RegisterLanguage,\\hypertarget,\\T,\\pgfkeysvalueof,\\noexpand,\\leavevmode,\\csname,\\endcsname},
+    morekeywords = [4]{definition,bemerkung,definition*,beispiel,satz,beweis,lemma,zusammenfassung,aufgabe,uebungsblatt,uebungsblatt*,mrk,pmatrix,tabular,tikzpicture,graph,wgraph,plot,aufgaben,slatex,grid,scope,minipage,Automat,LILLYxBOXxDefinition,LILLYxBOXxAufgabe,enumeratea,document,latex,axis,align*,align,alignat,alignat*,lstlisting,plainjava,plainlatex,sjava,tikzternal,center,lstplain,cpp,java,lstnonum,multicols,ditemize,presentlst,\\wasysymLightning,\\faCode,\\faCalendar,infoBox,warningBox,errorBox,mathBox,codeBox,infoBox*,warningBox*,errorBox*,mathBox*,codeBox*,\\isRuntimeLoaded},
     morekeywords = [6]{Dokumentation,Mitschrieb,Uebungsblatt,Zusammenfassung,samples,opacity,\\storeLillyColorList,\\storeLillyCompatColorList,article,lJava,lLatex,lCpp},
     morekeywords = [7]{\#1,\#2,\#3,\#4,\#5,\#6,\#7,\#8,\#9,Typ,Vorlesung},
 }
 
-\lstnewenvironment{latex}[1][]
-  {\lstset{language=lLatex,#1}}
-{}
+\RegisterLanguage{latex}{lLatex}
+
+% \lstnewenvironment{latex}[1][]
+%   {\lstset{language=lLatex,#1}}
+% {}
 
 
+% %% \DeclareRobustCommand{\clatex}[1]{\LILLYxwriteLst[language=lLatex]{#1}}
 
-%% \DeclareRobustCommand{\clatex}[1]{\LILLYxwriteLst[language=lLatex]{#1}}
-
-\pushList{RegisteredLanguages}{latex/lLatex}
+% \pushList{RegisteredLanguages}{latex/lLatex}

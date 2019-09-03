@@ -67,7 +67,7 @@
 
     % Debug Output:
     \foreach \x in {Draw,BgColor,BorderColor,FgColor,TitleFont,TextFont,PreCode,InCode,TitleCode,OutCode,PostCode,Emblem,Marker} {% Maybe make a Persisting-Library? :D
-        \typeout{[InfoBox:#3] \x: [\csname lillyxINFOBOXESx#3x\x\endcsname]}
+        \debugout{[InfoBox:#3] \x: [\csname lillyxINFOBOXESx#3x\x\endcsname]}
     }
 
     % #1 Optional Arguments
@@ -84,8 +84,8 @@
 \tcbset{% :: titlefont -> backgroundcolor -> [ignored] -> [ignored] -> Title
     lillyxINFOBOXESxDesignsxNone/.style n args={5}{enforce breakable, lines before break=3, enhanced jigsaw,sharp corners, boxrule=0pt, attach title to upper, top=3pt, bottom=3pt, frame hidden,colback=#2,title={#1#5},grow to right by = 0pt, enlarge left by = 0pt,left=3pt,right=3pt},%
     % :: titlefont -> backgroundcolor -> [ignored] -> borderline color -> Title
-    lillyxINFOBOXESxDesignsxLimerence/.style n args={5}{enforce breakable, lines before break=3, enhanced jigsaw,sharp corners, boxrule=0pt, attach title to upper, top=3pt, bottom=3pt, frame hidden,colback=#2,toggle left and right, borderline west={3pt}{0pt}{#4},
-    grow to right by=3pt, enlarge left by=-3pt,right=6pt,title={#1#5},left=3pt},
+    lillyxINFOBOXESxDesignsxLimerence/.style n args={5}{enforce breakable, lines before break=3, enhanced jigsaw,sharp corners, boxrule=0pt, attach title to upper, top=3pt, bottom=3pt, frame hidden,colback=#2, borderline west={3pt}{0pt}{#4},
+    grow to right by=3pt, enlarge left by=-3pt,right=6pt,title={#1#5},left=7pt},
     % overlay={%
     %     \begin{tcbclipframe}
     %             \tcbifoddpage{\coordinate (BC) at ([xshift=-3pt]frame.east);}

@@ -103,14 +103,14 @@
 %\providecommand{\LILLYxBOXxUebungsblattxEnable}{TRUE}       \providecommand{\LILLYxBOXxUebungsblattxBox}{TRUE}
 \foreach \elem/\ignore in \lillyxlist {
     \foreach \l/\val in {Lock/\LILLYxBOXxHIGHLEVELxLOCK,Enable/\true,Box/\true} {
-        \typeout{\elem\space by \l\space using \val: LILLYxBOXx\elem x\l\space => \val }
+        \debugout{\elem\space by \l\space using \val: LILLYxBOXx\elem x\l\space => \val }
         \ifcsname LILLYxBOXx\elem x\l\endcsname\else
             %\edef\v{\val}
-            \typeout{There was no Setting given => Generate default}
+            \debugout{There was no Setting given => Generate default}
             \expandafter\expandafter\expandafter\xdef\csname LILLYxBOXx\elem x\l\endcsname{\val}%
             %\expandafter\gnewcommand\csname LILLYxBOXx\x x\l\endcsname{\v}
         \fi
-        \expandafter\typeout{Expected: \val, got: \csname LILLYxBOXx\elem x\l\endcsname}
+        \expandafter\debugout{Expected: \val, got: \csname LILLYxBOXx\elem x\l\endcsname}
     }
 }
 
@@ -154,7 +154,7 @@
 \NewEnviron{LILLYxSPECIALBOXxHIDDEN}{}
 
 %%% Todo-List:
-%% Boxes:
+%% Done Boxes:
 %  - [\] Make \RegisterBox recognice Options like "useBox" and Locks... 
         %    =>  Will be redirected to Creation as it can be changed with 'usestyle'
 %  - [X] Make NoBox work with 'void', so 'aufgabe' and rest cannot - or maybe don't, as nested won't work
@@ -175,28 +175,38 @@
         %    => DONE as LILLYxEMBLEMS
 %  - [X] Allow a Box to live in the Margin (with and without reference marker inside of the texxt)
         %    => DONE as LILLYxMARGIN, LILLYxBOXxMARGIN and LILLYxBOXxINFOBOXES
-%  - [ ] Make Aufgaben-Box standart again (design-wise, maybe add a 'points' key or, more generic, 'addon'?)
-%  - [ ] add theorem-like customization-support
-%  - [ ] add a bookmark option0
+%  - [!] Make Aufgaben-Box standart again (design-wise, maybe add a 'points' key or, more generic, 'addon'?)
+        %    => This should be done after seperating the answer from the main taks works
+%  - [X] add theorem-like customization-support
+        %    => Already done with \RegisterBox
+%  - [!] add a bookmark option
+        %    => Rendered useless because of \listof-Options
 %  - [!] Change Box-Appearance with 'check odd page' + limerence: orientation bar [tcb manual page 46]
         %    => Won't be done as testet with LILLYxBOXxINFOBOXES and it looks horrible :D
-%  - [ ] \tcblistof - check if it's better then the current listing implementation and if so, change
+%  - [X] \tcblistof - check if it's better then the current listing implementation and if so, change
+        %    => Would be easier to code but actually is not needed for custom list handling offers mor flexibilitys
+
+%% Current Boxes:
 %  - [ ] Make 'aufgaben'-Box allow to deperate it's solution to an different possition [tcb manual ~133]
 %  - [ ] Option for own counter
 
 %  - [ ] Include Option: Frame Hidden
-%  - [ ] Maybe adapt style [tcb mnual page 153]
+%  - [?] Maybe adapt style [tcb mnual page 153]
+        %    => Don't now wut i've meant the style looks horrible :P
 
 %% Designs:
-%  - [ ] Limerence, make an Arrow on Page-Break
+%  - [!] Limerence, make an Arrow on Page-Break
+        %    => doeasn't look good :D
 
 %% Listings:
 %  - [ ] Make dynamic listing environment (showcase etc.)
 %  - [ ] Make a showcase listing which displays the output of the code on the right side 
 
 %% General
+%  - [ ] Persist-Library
 %  - [ ] Add an easy option, to make a box a preview box, where it is possible to display differet stuff on one side of the box
 %  - [ ] Use the 'sidebyside adapt=right' key for tabular et others note 'sidebyside switch'
+
 
 \DeclareDocumentCommand{\RegisterBox}{%
     O{} %% Boxkeys
@@ -244,21 +254,21 @@
     \expandafter\xdef\csname lillyxBOXx\theboxid xBoxEnabled\endcsname{\iflillyboxenabled TRUE\else FALSE\fi}%      BoxEnabled
     \expandafter\xdef\csname lillyxBOXx\theboxid xUseBox\endcsname{\iflillyboxusebox TRUE\else FALSE\fi}%           UuseBox
     \foreach \x in {Name,Title,Color,Precode,Incode,Outcode,Postcode,Usestyle,Emblem,Lock,Listname,Listtext,Listmen} {
-        \typeout{[\theboxid :#5] \x: [\csname lillyxBoxx\x\endcsname]}
+        \debugout{[\theboxid :#5] \x: [\csname lillyxBoxx\x\endcsname]}
     }
-    \typeout{[\theboxid :#5] CreateList: \@nameuse{lillyxBOXx\theboxid xCreateList}}
-    \typeout{[\theboxid :#5] CustomList: \@nameuse{lillyxBOXx\theboxid xCustomList}}
-    \typeout{[\theboxid :#5] BoxEnabled: \@nameuse{lillyxBOXx\theboxid xBoxEnabled}}
-    \typeout{[\theboxid :#5] UseBox: \@nameuse{lillyxBOXx\theboxid xUseBox}}
+    \debugout{[\theboxid :#5] CreateList: \@nameuse{lillyxBOXx\theboxid xCreateList}}
+    \debugout{[\theboxid :#5] CustomList: \@nameuse{lillyxBOXx\theboxid xCustomList}}
+    \debugout{[\theboxid :#5] BoxEnabled: \@nameuse{lillyxBOXx\theboxid xBoxEnabled}}
+    \debugout{[\theboxid :#5] UseBox: \@nameuse{lillyxBOXx\theboxid xUseBox}}
 
     %% Persistence END
     \ifcreatelist%
-    \typeout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of  \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\fi%
+    \debugout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of  \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\fi%
     %\expandafter\global\expandafter\newif\if
     % #1 Title
     % #2 Should be the tex-options
     \global\DeclareDocumentEnvironment{\lillyxBoxxName}{O{} O{}}{\ignorespaces% %%O{\theboxid}}{%
-        \edef\curboxid{#5}\typeout{Currently in Box: \curboxid}%
+        \edef\curboxid{#5}\debugout{Currently in Box: \curboxid}%
         %%% Here we will check if the Box should be really displayed, or if it's disabled. If it is, we'll eliminate it
         %%% This will include Any Codes or other Options supplied with the Box
         \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
@@ -275,10 +285,10 @@
             \phantomsection% Here we will start the corresponding box
             \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
                 \@nameuse{lillyxBOXx\curboxid xInCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
-                \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\typeout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName} using the Men: \@nameuse{lillyxBOXx\curboxid xListMen} and lock: \@nameuse{lillyxBOXx\curboxid xLock}. The Content is: ##1}%
-                    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\NoEmblem}}{\typeout{\space>\space It will register without an Emblem/Addon!}%
+                \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\debugout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName} using the Men: \@nameuse{lillyxBOXx\curboxid xListMen} and lock: \@nameuse{lillyxBOXx\curboxid xLock}. The Content is: ##1}%
+                    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\NoEmblem}}{\debugout{\space>\space It will register without an Emblem/Addon!}%
                 \LILLYxBOXESxaddListElement[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xLock}}%
-                }{\typeout{\space>\space It will register with an Emblem/Addon!}%
+                }{\debugout{\space>\space It will register with an Emblem/Addon!}%
                     \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
                 }%
                 }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\vspace*{-.5\baselineskip}\newline\ignorespacesafterend\ignorespaces%
@@ -305,10 +315,10 @@
     \typeout{Transform Box: #1<>#2<>#3<>#4<>#5<>#6<>}%
     \expandafter\ifcsname  lillyxBOXx#3xName\endcsname
         \edef\oldboxname{\csname lillyxBOXx#3xName\endcsname}
-        \typeout{Registered Name from BoxID: #3}
+        \debugout{Registered Name from BoxID: #3}
     \else%
         \edef\oldboxname{#3}
-        \typeout{Registered Name from a new Box, as no Old exists: #3}
+        \debugout{Registered Name from a new Box, as no Old exists: #3}
     \fi%
     \IfBooleanF{#2}{\expandafter\let\csname\oldboxname\endcsname\@undefined}%% delete old
     %
@@ -321,7 +331,7 @@
         \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xListMen\endcsname}{TRUE}}{\gdef\clisttmp{true}}{\gdef\clisttmp{false}}
         \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xBoxEnabled\endcsname}{TRUE}}{\gdef\cbentmp{true}}{\gdef\cbentmp{false}}
         \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xUseBox\endcsname}{TRUE}}{\gdef\cuboxtmp{true}}{\gdef\cuboxtmp{false}}
-        %\typeout{Switch-Pregeneration for clisttmp: \clisttmp}
+        %\debugout{Switch-Pregeneration for clisttmp: \clisttmp}
         \RegisterBox[% Here we will reload the old Values of the Box, we won't erase them we'll just erase the environment-link in case of a renaming. Therefore it cann be still used as Base for another Box-Creation. We will (just for completeness) assign all commands:
         name=\csname lillyxBOXx#3xName\endcsname,%
         title=\csname lillyxBOXx#3xTitle\endcsname,%
@@ -458,7 +468,7 @@
 
 
 % \ifx\LILLYxBOXxDefinitionxEnable\true
-%     %\typeout{Definitions enabled}
+%     %\debugout{Definitions enabled}
 %     \newlistof{DEFINITIONS}{DEFS}{Alle Definitionen\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
 %     %% TITEL OPTIONALE-ADDONS
 
@@ -471,7 +481,7 @@
 %     \begin{LILLYxBOXxDefinition*}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{\small\faThumbTack}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
 %     }{\end{LILLYxBOXxDefinition*}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
 % \else %% Keine Definitionen
-%     \typeout{Definitions disabled}
+%     \debugout{Definitions disabled}
 %     \NewEnviron{definition}{}
 %     \NewEnviron{definition*}{}
 % \fi

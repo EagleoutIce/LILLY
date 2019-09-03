@@ -1,0 +1,13 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxDEBUG}[2019/09/04 Liefert Debug-Optionen fuer LILLY]
+
+\ifcsname LILLYxDEBUG\endcsname\else
+    \xdef\LILLYxDEBUG{\false}   %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
+\fi
+
+\def\debugout#1{
+    \ifx\LILLYxDEBUG\true\typeout{#1}\fi
+}
+
+
+\endinput

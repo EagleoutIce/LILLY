@@ -73,4 +73,9 @@
     \InputIfFileExists{#1}{}{}
 }
 
+\gdef\makeenvglobal#1{%
+  \global\expandafter\expandafter\let\csname #1\expandafter\endcsname\csname #1\endcsname
+  \global\expandafter\expandafter\let\csname end#1\expandafter\endcsname\csname end#1\endcsname
+}
+
 \endinput

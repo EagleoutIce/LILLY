@@ -1,15 +1,15 @@
-\chapter[Mathe \LILLYxBOXxVersion{\small 2.0.0}]{Mathe}
+\chapter[Mathe\lilib{LILLYxMATH}{1.0.0}]{Mathe}
 \TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 2.0.0}}
 \bigskip\newline
 \renewcommand{\arraystretch}{1.5}
-\elable{chp:MATH}An sich ändert LILLY nicht viel an der normalen Implementation der Mathewelt. Dieses Paket liegt hier: \begin{center}
+\elable{chp:MATH}\hypertarget{LILLYxMATH}An sich ändert LILLY nicht viel an der normalen Implementation der Mathewelt. Dieses Paket liegt hier: \begin{center}
     \blankcmd{LILLYxPATHxMATHS} = \T{\LILLYxPATHxMATHS}
 \end{center}
 %
 %
 %
 \presentCommand[1.0.3]{LILLYxMathxMode} %% Overbar
-Der verwendete Mathemodus lässt sich mithilfe des Befehls \clatex{:bs:LILLYxMathxMode} frei einstellen. Standardmäßig wird dieser Wert auf \emph{normal} gesetzt.
+Der verwendete Mathemodus lässt sich mithilfe des Befehls \clatex[morekeywords={[5]{LILLYxMathxMode}}]{:bs:LILLYxMathxMode} frei einstellen. Standardmäßig wird dieser Wert auf \emph{normal} gesetzt.
 \begin{bemerkung}[Standalone-Math]
     Mit \LILLYxBOXxVersion{2.0.0} wurde die Mathe-Integration als eigenes Paket \LILLYxNOTExLibrary{LILLYxMATH} etabliert, welches sich eigenständig über \begin{latex}
 \usepackage{LILLYxMATH}
@@ -29,8 +29,8 @@ Lilly liefert den Befehl auf Basis von \T{mkern} so, dass er direkt Abstände zw
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \blatex{:bs:overbar\{a\_1\} :bs:overbar\{a\_2\}} & \(\overbar{a_1}\overbar{a_2}\)\\\hline
-        \blatex{:bs:overline\{a\_1\} :bs:overline\{a\_2\}} & \(\overline{a_1}\overline{a_2}\)\\
+         {\blatex[morekeywords={[5]{overbar}}]{:bs:overbar\{a\_1\} :bs:overbar\{a\_2\}}} & \(\overbar{a_1}\overbar{a_2}\)\\\hline
+        {\blatex[morekeywords={[5]{overline}}]{:bs:overline\{a\_1\} :bs:overline\{a\_2\}}} & \(\overline{a_1}\overline{a_2}\)\\
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
@@ -48,8 +48,8 @@ Weiter wurde das Aussehen der Wurzel verändert und die Möglichkeit hinzugefüg
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \blatex{:bs:sqrt[3]\{42\}} & \(\sqrt[3]{42}\)\\\hline
-        \blatex{:bs:oldsqrt[3]\{42\}} & \(\oldsqrt[3]{42}\)\\
+        {\blatex[morekeywords={[5]{sqrt}}]{:bs:sqrt[3]\{42\}}} & \(\sqrt[3]{42}\)\\\hline
+        {\blatex[morekeywords={[5]{oldsqrt}}]{:bs:oldsqrt[3]\{42\}}} & \(\oldsqrt[3]{42}\)\\
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\smallskip
 \end{center}
@@ -81,8 +81,8 @@ Dieser Befehl vereinfacht das Schreiben von Betragsstrichen. Diese passen sich z
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{7cm}@{\hspace{1em}}|@{\hspace{1em}}C{2cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \blatex{:bmath::bs:abs\{:bs:frac\{:bs:pi-x^2\}\}\{:bs:log 3x\}:emath:} & \(\displaystyle\abs{\frac{\pi - x^2}{\log 3x}}\)\\\hline
-        \blatex{:bmath:|:bs:frac\{:bs:pi-x^2\}\{:bs:log 3x\}|:emath:} & \(\displaystyle|\frac{\pi - x^2}{\log 3x}|\)\\
+        {\blatex[morekeywords={[5]{abs,frac,log,pi}}]{:bmath::bs:abs\{:bs:frac\{:bs:pi-x^2\}\{:bs:log 3x\}\}:emath:}} & \(\displaystyle\abs{\frac{\pi - x^2}{\log 3x}}\)\\\hline
+        {\blatex[morekeywords={[5]{abs,frac,log,pi}}]{:bmath:|:bs:frac\{:bs:pi-x^2\}\{:bs:log 3x\}|:emath:}} & \(\displaystyle|\frac{\pi - x^2}{\log 3x}|\)\\
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\smallskip
 \end{center}
@@ -94,12 +94,13 @@ Des Weiteren wurde noch die Matrixumgebung (\verb|\env@matrix|) so erweitert, da
 \begin{center}\renewcommand{\arraystretch}{0.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{5.5cm}@{\hspace{1em}}|@{\hspace{1em}}C{2cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        {\begin{latex}
+{\begin{latex}
 :bmath:\begin{pmatrix}[cc|c]
     1 & 2 & 3 \\
     4 & 5 & 6
 \end{pmatrix}:emath:
-        \end{latex} }&  {$\begin{pmatrix}[cc|c]
+\end{latex}}
+&{$\begin{pmatrix}[cc|c]
             1 & 2 & 3 \\
             4 & 5 & 6
         \end{pmatrix}$}\\
@@ -219,10 +220,13 @@ Zudem definiert sich noch für Tabellen der Befehl \blankcmd{VRule\manArg{width}
     You!*'*!re my & Wonder Wall\\
     \specialrule{2pt}{0pt}{0pt}
 \end{tabular}
-        \end{latex} }&  {\begin{tabular}{c!{\VRule[6pt]}c}
+        \end{latex}
+}&  {
+            \begin{tabular}{c!{\VRule[6pt]}c}
             \specialrule{2pt}{0pt}{0pt}
             You're my & Wonder Wall\\
-            \specialrule{2pt}{0pt}{0pt}\end{tabular}}\\
+            \specialrule{2pt}{0pt}{0pt}\end{tabular}
+            }\\
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
@@ -286,7 +290,7 @@ Setzt entsprechend: \x[], \y und \z[].\medskip\newline
 %
 %
 \presentCommand[2.0.0]{ceil}[\optArg{math-Ausdruck}\cmdlist \textbackslash floor\optArg{math-Ausdruck}]
-Verkürzt das Schreiben von: \clatex{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \clatex{:bs:lceil} \& \clatex{:bs:rceil} entsprechend:
+Verkürzt das Schreiben von: \clatex[morekeywords={[5]{left,right,lfloor,rfloor}}]{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \clatex{:bs:lceil} \& \clatex{:bs:rceil} entsprechend:
 \begin{multicols}{2}%
     \begin{ditemize}
         \item \blankcmd{ceil} (\ceil{\frac{a}{b}})%
@@ -335,7 +339,7 @@ Es existiert die folgende Implementation der Graph-Umgebung:
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        {\footnotesize\begin{latex}[breaklines=true]
+{\begin{latex}[breaklines=true]
 \begin{graph}[scale=1.15,maxY=3,numbers]
     \plotline[purple]{sqrt(\x+2.5)};
     \plotline[Ao][\y]{(\y*\y)/1.5};
@@ -343,7 +347,9 @@ Es existiert die folgende Implementation der Graph-Umgebung:
         {sin(deg(\x))^2};
     \xmark[\xi]{1.5}; \ymark[\psi]{2.5};
 \end{graph}
-        \end{latex}} &  \begin{graph}[scale=1.15,maxY=3,numbers]
+\end{latex}}
+&
+        \begin{graph}[scale=1.15,maxY=3,numbers]
             \plotline[purple]{sqrt(\x+2.5)};
             \plotline[Ao][\y]{(\y*\y)/1.5};
             \plotseq[Azure]
@@ -415,7 +421,8 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
     :bcmd:addplot3:ecmd:[data cs=cart,surf,domain=-3:3,samples=20, opacity=0.5] {x+y};
 \end{axis}
 \end{tikzternal}
-        \end{latex}} &  \begin{tikzternal}[scale=0.6]
+        \end{latex}
+        } &  \begin{tikzternal}[scale=0.6]
             \begin{axis}[3d box=complete, colormap/bluered,grid=major,view={60}{40},z buffer=sort, data cs=polar]
               \addplot3[data cs=cart,surf,domain=-3:3,samples=20, opacity=0.5] {x+y};
             \end{axis}
@@ -434,7 +441,8 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
      {cos(v)});
     \end{axis}
 \end{tikzternal}
-\end{latex}} & \begin{tikzternal}[scale=0.6]
+\end{latex}
+} & \begin{tikzternal}[scale=0.6]
     \begin{axis}[3d box=complete, axis equal image, colormap/bluered,grid=major,view={60}{40},z buffer=sort,enlargelimits=0.2,scale=2.3]
     \addplot3[%
         opacity = 0.5,

@@ -21,9 +21,11 @@
     morekeywords = [6]{uebungsblatt}
 }
 
-\lstnewenvironment{gepard}[1][]
-  {\lstset{language=lGepard,#1}}
-{}
+\RegisterLanguage{gepard}{lGepard}
+
+% \lstnewenvironment{gepard}[1][]
+%   {\lstset{language=lGepard,#1}}
+% {}
 
 
-\pushList{RegisteredLanguages}{gepard/lGepard}
+% \pushList{RegisteredLanguages}{gepard/lGepard}

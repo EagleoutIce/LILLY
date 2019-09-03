@@ -1,12 +1,11 @@
 \errorcontextlines 10000
+
 \documentclass{article}
 
 %\usepackage{LILLYxLISTINGS}
 \usepackage{LILLYxLISTINGSxADVANCED}
 %\usepackage{LILLYxEMBLEMS}
 \usepackage{LILLYxCONTROLLERxBOX}
-\usepackage{LILLYxMATH}
-\usepackage{LILLYxTABLES}
 
 \DeclareDocumentCommand{\Hallo}{}{
     Hi
@@ -16,16 +15,6 @@
 % \cur%
 % }
 \begin{document}
-% \blatex[morekeywords={[5]{sqrt}}]{:bs:sqrt[3]\{42\}}
-\blatex[morekeywords={[5]{overbar}}]{:bs:overbar\{a\_1\} :bs:overbar\{a\_2\}}
-\begin{center}
-    \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
-        \specialrule{1pt}{0pt}{0pt}
-         {\blatex[morekeywords={[5]{overbar}}]{:bs:overbar\{a\_1\} :bs:overbar\{a\_2\}}} & \(\overbar{a_1}\overbar{a_2}\)\\\hline
-        {\blatex[morekeywords={[5]{overline}}]{:bs:overline\{a\_1\} :bs:overline\{a\_2\}}} & \(\overline{a_1}\overline{a_2}\)\\
-        \specialrule{1pt}{0pt}{0pt}
-    \end{tabular}
-\end{center}
 \begin{java}
 public class Example {
     public static void main(String[] args) {
