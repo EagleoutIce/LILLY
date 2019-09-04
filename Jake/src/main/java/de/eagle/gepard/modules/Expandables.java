@@ -135,6 +135,10 @@ public class Expandables extends AbstractGepardModule{
         settings.emplace("LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_PATH,
                 CoreSettings.requestValue("S_LILLY_CONFIGS_PATH"));
 
+        settings.emplace("LILLY_DATA_PATH", "Pfad zu den Daten", eSetting_Type.IS_PATH,
+                CoreSettings.requestValue("S_LILLY_DATA_PATH"));
+
+
         settings.emplace("N", "Expandiert zur Nummer (wie z.B. Übungsblatt)", eSetting_Type.IS_NUM,
                 CoreSettings.requestValue("S_LILLY_N"));
 
@@ -161,6 +165,7 @@ public class Expandables extends AbstractGepardModule{
                         + "\\\\providecommand{\\\\lillyPathLayout}{\\\\LILLYxPATHxDATA/Layouts"
                         + CoreSettings.requestValue("S_LILLY_LAYOUT_LOADER") + "}"
                         + "\\\\providecommand{\\\\lillyPathConfig}{" + CoreSettings.requestValue("S_LILLY_CONFIGS_PATH") + "}"
+                        + "\\\\providecommand{\\\\lillyPathData}{" + CoreSettings.requestValue("S_LILLY_DATA_PATH") + "}"
                         + "\\\\providecommand{\\\\LILLYxEXTERNALIZE}{"
                         + (CoreSettings.requestSwitch("S_LILLY_EXTERNAL") ? "TRUE" : "FALSE") + "}");
 

@@ -101,7 +101,7 @@ public class CoreSettings {
             break;
         }
 
-        settings.emplace(st, "S_LILLY_OUT", "Ausgabeordner der PDF-DATEI", eSetting_Type.IS_PATH, "./OUTPUT/");
+        settings.emplace(st, "S_LILLY_OUT", "Ausgabeordner der PDF-DATEI", eSetting_Type.IS_PATH, "./$(BASENAME)-OUT/");
         settings.emplace(st, "S_LILLY_NAMEPREFIX", "Standard-Namenspräfixs", eSetting_Type.IS_TEXT, "");
         settings.emplace(st, "S_LILLY_COMPLETE_NAME", "Präfix einer Complete-Version", eSetting_Type.IS_TEXT,
                 "COMPLETE-");
@@ -147,8 +147,9 @@ public class CoreSettings {
 
         // besondere Lilly-Einstellungen
         settings.emplace(st, "S_LILLY_VORLESUNG", "Um welche Vorlesung handelt es sich", eSetting_Type.IS_VLS, "NONE");
-        settings.emplace("LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_PATH,"");
-        settings.emplace(st, "S_LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_VLS, "");
+        
+        settings.emplace(st, "S_LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_PATH, "");
+        settings.emplace(st, "S_LILLY_DATA_PATH", "Pfad zu generellen Daten wie Boxen...", eSetting_Type.IS_PATH, "");
 
         settings.emplace(st, "S_LILLY_N", "Um das wievielte Übungsblatt handelt es sich", eSetting_Type.IS_NUM, "42");
         settings.emplace(st, "S_LILLY_SEMESTER", "Das  wievielte Semester ist es", eSetting_Type.IS_NUM, "0");
@@ -156,6 +157,7 @@ public class CoreSettings {
                 eSetting_Type.IS_SWITCH, "false");
         settings.emplace(st, "S_LILLY_LAYOUT_LOADER", "Pfad über den Layouts geladen werden können",
                 eSetting_Type.IS_PATH, "");
+                
         settings.emplace(st, "S_LILLY_AUTHOR", "Wer ist der Autor des Dokuments", eSetting_Type.IS_TEXT,
                 "Florian Sihler");
         settings.emplace(st, "S_LILLY_AUTHORMAIL", "E-mail adresse des Autors", eSetting_Type.IS_TEXT,

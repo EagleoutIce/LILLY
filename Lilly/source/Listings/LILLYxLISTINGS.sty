@@ -283,7 +283,10 @@
 \def\LILLYxLISTINGSxFONTSIZE{\linespread{1}}
 \def\LILLYxLISTINGSxNUMxFONTSIZE{\small}
 
-
+\lstdefinestyle{nonum}{
+    xleftmargin=3pt,xrightmargin=3pt,%will fix some overhead :D
+    numbers=none,numbersep=0pt,
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Environments - always wannahaves
@@ -297,8 +300,7 @@
 {\def\lilly@lst@backcol{MudWhite}}
 
 \lstnewenvironment{lstnonum}[1][]
-  {\lstset{xleftmargin=0pt,xrightmargin=0pt,%
-  numbers=none,numbersep=0pt,%
+  {\lstset{style=nonum%
   ,#1}}
 {}
 

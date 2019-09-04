@@ -222,7 +222,7 @@ public class ConfigEditor extends JDialog {
             File saveFile;
             if (document.isNew()) {
                 JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setFileFilter(new FileNameExtensionFilter("Config File", "conf"));
+                fileChooser.setFileFilter(new FileNameExtensionFilter("Config File (*.conf)", "conf"));
                 if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
                     saveFile = fileChooser.getSelectedFile();
                     if (!saveFile.getName().endsWith(".conf"))

@@ -14,6 +14,8 @@
 
 \gdef\lillylstset#1{\pgfkeys{/lillyxLISTINGS/.cd, #1}}
 
+%% Todo make commands like: 'on entry' which will define Actions at the beginning of the listing etc :D 
+
 \pgfkeys{/lillyxLISTINGS/.is family}
 %% Here we define globals, which are basically applied to every listing - like for example the initial style
 \pgfkeys{/lillyxLISTINGS/globals/.is family,%
@@ -34,6 +36,19 @@
       %draw environment/.initial={defaultlst}, % will hold the name of the corresponding environment. It must hold one optional Argument to accept listings-definitions
       constructor command/.initial={LillyNewLstEnvironCore}
 }
+
+\pgfkeys{/lillyxLISTINGS/nonumber/.is family,%
+    /lillyxLISTINGS/nonumber,
+      listing style/.initial = {\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style}},% Ensure main is loaded, maybe make flexible in future versions?
+      % % #1 language name (java, latex, ..-)
+      % % #2 lst language name (lJava, lLatex,...)
+      % command name/.code 2 args={#1}, % default will by constructed for '\begin{java}', '\begin{latex}' ....
+      command name prefix/.initial = {},%
+      command name suffix/.initial = {*},%
+      %draw environment/.initial={defaultlst}, % will hold the name of the corresponding environment. It must hold one optional Argument to accept listings-definitions
+      constructor command/.initial={LillyNewLstEnvironCoreStarred}
+}
+
 
 \pgfkeys{/lillyxLISTINGS/plain/.is family,%
     /lillyxLISTINGS/plain,
@@ -159,6 +174,15 @@
 % #3 In Extra
 % #4 Out Extra
 % #5 Language
+\def\LillyNewLstEnvironCoreStarred#1#2#3#4#5{%
+      \lstnewenvironment{#1}[1][]{#3\lstset{style=nonum,##1}}{#4}
+}
+
+% #1 Name
+% #2 Key
+% #3 In Extra
+% #4 Out Extra
+% #5 Language
 \def\LillyNewLstEnvironPlain#1#2#3#4#5{%
   \lstnewenvironment{#1}[1][]{#3\lstset{xleftmargin=0pt,xrightmargin=0pt,%
   numbers=none,numbersep=0pt,frame=none,%
@@ -223,7 +247,7 @@
   %   \presentlst{lLatex}
   % }{\endpresentlst}
 % This will allow us to construct the environments via foreach :D
-  \foreach \environName in {default,plain,presentation}{%
+  \foreach \environName in {default,nonumber,plain,presentation}{%
       \debugout{Register 'env \environName' for #1/#2}%
         \edef\environCurName{\pgfkeysvalueof{/lillyxLISTINGS/\environName/command name prefix}#1\pgfkeysvalueof{/lillyxLISTINGS/\environName/command name suffix}}% assign
         \debugout{\space > Environment Name: [\environCurName]}%

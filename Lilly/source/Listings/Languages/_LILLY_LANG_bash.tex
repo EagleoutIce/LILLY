@@ -2,9 +2,8 @@
 
 \lstdefinelanguage{lBash}{
     language=bash,
-    breaklines=true,
     otherkeywords = {<<,>>,2>},
-    alsoletter={-|~{,}_.><:},
+    alsoletter={-|~{,}_.><:+},
     moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
     moredelim=**[is][{\lstHLError}]{|err|}{|err|},
     moredelim=**[il][{\lstHLError}]{|err|:},
@@ -13,15 +12,13 @@
     comment=[l]{\#},
     keywordsprefix={\$},
     escapeinside={*}{*},
-    showstringspaces=true,  %Damit es keine Verwechslungen gibt
-    %% numbers=none,           %Zeilennummern
     morekeywords = {bash},
-    morekeywords = [2]{mkdir,texhash,make,apt,>,<,cd,java,git,pdflatex,mvn},
-    morekeywords = [3]{-p, -dir, print, install,-jar,-lilly-path,-l,-m},
-    morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake,jake,ghci,ghc,grep,ls,cp,sort,find,man,tail,head,setfacl,getfacl,groups,ls},
+    morekeywords = [2]{mkdir,texhash,make,apt,>,<,cd,git,pdflatex,mvn},
+    morekeywords = [3]{print,install,dump,config,tokentest,help,file_compile},
+    morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake,jake,java,ghci,ghc,grep,ls,cp,sort,find,man,tail,head,setfacl,getfacl,groups,ls},
     morekeywords = [5]{GUI},
-    morekeywords = [6]{javafx:compile,javafx:run},
-    morestring=[b]',
+    morekeywords = [6]{javafx:compile,javafx:run,-debug,-lilly-boxes:,-lilly-boxes+:,-lilly-path:,-file:,-jar,-lilly-author:,-l,-m,-p,-dir},
+    morestring=[b]'
 }
 
 \RegisterLanguage{bash}{lBash}

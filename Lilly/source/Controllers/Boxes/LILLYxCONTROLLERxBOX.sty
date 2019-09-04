@@ -263,7 +263,7 @@
 
     %% Persistence END
     \ifcreatelist%
-    \debugout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of  \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\fi%
+    \debugout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\fi%
     %\expandafter\global\expandafter\newif\if
     % #1 Title
     % #2 Should be the tex-options
@@ -280,10 +280,10 @@
             \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xUseBox}}{TRUE}}{%
                 \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={}}% No Modifications needed :D
             }{%
-                \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain}}% Set Blank Box    
+                \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain, after title app={\leavevmode\\[-0.75\baselineskip]\ignorespaces}}}% Set Blank Box    
             }%
             \phantomsection% Here we will start the corresponding box
-            \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
+            \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,before upper app={\ignorespacesafterend},##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
                 \@nameuse{lillyxBOXx\curboxid xInCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
                 \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\debugout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName} using the Men: \@nameuse{lillyxBOXx\curboxid xListMen} and lock: \@nameuse{lillyxBOXx\curboxid xLock}. The Content is: ##1}%
                     \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\NoEmblem}}{\debugout{\space>\space It will register without an Emblem/Addon!}%
@@ -291,8 +291,8 @@
                 }{\debugout{\space>\space It will register with an Emblem/Addon!}%
                     \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
                 }%
-                }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\vspace*{-.5\baselineskip}\newline\ignorespacesafterend\ignorespaces%
-        }%
+                }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\vspace*{-.5\baselineskip}\newline%
+        }\ignorespaces%
     }% SECOND PART
     {% To ensure the Box is disabled we will do the same for the ending:
         \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
@@ -305,8 +305,9 @@
 }
 
 \DeclareDocumentCommand{\TransformBox}{%
+    s % if starred,  don't delete old
     O{}                 %% New Args
-    O{\BooleanFalse}    %% If \BooleanTrue => Do not delete old
+    %O{\BooleanFalse}    %% If \BooleanTrue => Do not delete old
     m                   %% Old BoxID
     m                   %% Box Title
     o                   %% New Name (can be old Name)
@@ -320,13 +321,13 @@
         \edef\oldboxname{#3}
         \debugout{Registered Name from a new Box, as no Old exists: #3}
     \fi%
-    \IfBooleanF{#2}{\expandafter\let\csname\oldboxname\endcsname\@undefined}%% delete old
+    \IfBooleanF{#1}{\expandafter\let\csname\oldboxname\endcsname\@undefined}%% delete old
     %
     \IfValueTF{#5}{\def\thecboxname{#5}}{\def\thecboxname{\oldboxname}}%% set names
     %\IfValueTF{#5}{% % Here we will reload the old Values of
     % Check if there is an existing Box, and if, take the Configuration from it by the persisted Values of the old ID.
     \@ifundefined{lillyxBOXx#3xName}{%
-        \RegisterBox[#1]{\thecboxname}{#4}{#6}%
+        \RegisterBox[#2]{\thecboxname}{#4}{#6}%
     }{%
         \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xListMen\endcsname}{TRUE}}{\gdef\clisttmp{true}}{\gdef\clisttmp{false}}
         \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xBoxEnabled\endcsname}{TRUE}}{\gdef\cbentmp{true}}{\gdef\cbentmp{false}}
@@ -350,7 +351,7 @@
         customlist=\clisttmp,% sloppy :D
         boxenabled=\cbentmp,% we want to preserve the current state
         usebox=\cuboxtmp,
-        #1]{\thecboxname}{#4}{#6}
+        #2]{\thecboxname}{#4}{#6}
     }
     %}{\RegisterBox[#1]{\thecboxname}{#3}}%
 }
@@ -373,9 +374,13 @@
 
 
 %\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT} % May the ones below do not cover all boxes, thus default will be happy to provide them
-\ifx\LILLYxBOXxMODE\LILLYxBOXxMODExDEFAULT\else
-    \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
-\fi
+\def\LoadLillyBoxMode#1{%
+    \userput{_LILLY_BOXES_#1}{\lillyPathData}{\LILLYxPATHxDATA/POIs}
+}
+\LoadLillyBoxMode{\LILLYxBOXxMODE}
+%\ifx\LILLYxBOXxMODE\LILLYxBOXxMODExDEFAULT\else
+    %\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
+%\fi
 
 
 %%Liste typ counter name lock

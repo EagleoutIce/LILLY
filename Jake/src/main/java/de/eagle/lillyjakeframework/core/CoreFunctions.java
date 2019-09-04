@@ -265,6 +265,7 @@ public final class CoreFunctions {
     }
 
     public static ReturnStatus fkt_update(String[] cmd) {
+        JakeWriter.out.println("Bisher wird Lilly durch die aktualisierung von Jake automatisch aktualisiert. Eine neue Version von Jake kann über GitHub bezogen werdne: https://github.com/EagleoutIce/LILLY.");
         /* Placeholder */ return ReturnStatus.EXIT_SUCCESS;
     }
 }

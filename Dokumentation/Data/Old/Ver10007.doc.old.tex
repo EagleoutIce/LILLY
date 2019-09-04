@@ -43,7 +43,7 @@ Es soll ein graph-Environment existieren, was auf Basis von PGF das Erstellen fo
     \specialrule{1pt}{0pt}{0pt}
     \bfseries Aktuell &\bfseries Ergebnis &\bfseries Wunsch\\
     \specialrule{1pt}{0pt}{0pt}
-    {\footnotesize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
+    {\footnotesize\begin{latex}
 \begin{tikzpicture}[scale=0.6]
     \draw[help lines, color=gray!30,
           densely dashed] (-2.4,-0.4) grid (2.4,4.9);
@@ -55,7 +55,7 @@ Es soll ein graph-Environment existieren, was auf Basis von PGF das Erstellen fo
           smooth,variable=\x,purple]
           plot ({\x},{\x*\x});
 \end{tikzpicture}
-    \end{lstlisting}} &  \begin{tikzpicture}[scale=0.6]
+    \end{latex}} &  \begin{tikzpicture}[scale=0.6]
         \draw[help lines, color=gray!30,
               densely dashed] (-2.4,-0.4)
               grid (2.4,4.9);
@@ -66,11 +66,11 @@ Es soll ein graph-Environment existieren, was auf Basis von PGF das Erstellen fo
         \draw[scale=1,domain=-2:2,
               smooth,variable=\x,purple]
               plot ({\x},{\x*\x});
-    \end{tikzpicture} &    {\footnotesize\begin{lstlisting}[language=lLatex,frame=none,breaklines=true]
+    \end{tikzpicture} &    {\footnotesize\begin{latex}
 \begin{graph}[scale=0.6,domain=-2:2]
     \plotline[purple]{\x}{\x*\x};
 \end{graph}
-            \end{lstlisting}}\\
+            \end{latex}}\\
     \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\]
 Der Befehl \CMDshow{plotline} soll hierbei nur in der Umgebung verfügbar sein (TODO: gleiches geplant mit PLA etc.).
