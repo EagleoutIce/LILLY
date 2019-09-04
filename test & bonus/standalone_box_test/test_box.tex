@@ -1,10 +1,11 @@
-\documentclass{article}%% todo make work with article too
+\documentclass{article}
 \def\LILLYxBOXxBeweisxBox{FALSE}
-\usepackage{LILLYxCONTROLLERxBOX}
-\usepackage{LILLYxCONTROLLERxENVIRONMENT}
+%\def\lillyPathData{./}
+% \def\LILLYxBOXxMODE{quackbox}
+\usepackage{LILLYxBOXES}
 
 \begin{document}
-
+\LoadLillyBoxMode{quackbox}
 \getRegisteredBoxes
 \foreach \ignore/\bn in \lillyxlist {
     \ifthenelse{\equal{\bn}{aufgabe} \OR \equal{\bn}{uebungsblatt}}{}{ %% differenz signarue

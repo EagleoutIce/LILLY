@@ -49,7 +49,11 @@
 
 \newcolumntype{t}{^>{\LILLYxlstTypeWriter}l}
 
-\def\headerrow{\setrow{\bfseries\arraybackslash}}
+%% If stared, keep default column formatting (italic, math, ...)
+\DeclareDocumentCommand{\headerrow}{ s }{%
+    \setrow{\IfBooleanF{#1}{\normalfont}\bfseries\arraybackslash}
+}
+
 \def\cheaderrow{\setrow{\bfseries\centering\arraybackslash\hspace{0pt}}}
 
 % \foreach \lilly@tmp in {small,footnotesize,scriptsize,tiny} {

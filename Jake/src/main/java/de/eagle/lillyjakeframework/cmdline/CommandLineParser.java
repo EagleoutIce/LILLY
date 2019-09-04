@@ -151,7 +151,8 @@ public class CommandLineParser {
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" += \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");
                 //settings.get(strip_modifications(carg)).lock();
-                lazylocks.add(strip_modifications(carg));
+                if(!strip_modifications(carg).equals("file")) // this one has to be overwritten :D
+                    lazylocks.add(strip_modifications(carg));
             } else { // ist normale zuweisung
                 if (current_arg >= args.length - 1)
                     throw new RuntimeException(
@@ -159,7 +160,8 @@ public class CommandLineParser {
                 boolean b = settings.set(strip_modifications(carg), args[++current_arg]);
                 writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" = \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");
-                //settings.get(strip_modifications(carg)).lock();                
+                //settings.get(strip_modifications(carg)).lock();    
+                if(!strip_modifications(carg).equals("file")) // this one has to be overwritten :D            
                 lazylocks.add(strip_modifications(carg));
             }
         } else { // Es handelt sich um einen Switch

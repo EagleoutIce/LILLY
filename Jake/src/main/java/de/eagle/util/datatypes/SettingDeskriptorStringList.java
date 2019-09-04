@@ -25,6 +25,9 @@ import java.io.Serializable;
  */
 public class SettingDeskriptorStringList extends SettingDeskriptor<String> implements Serializable {
 
+    private static final long serialVersionUID = -60870803857976920L;
+
+    /// @brief Zeichen, welches die Elemente der Liste voneinander trennt
     private char separator;
 
     /**

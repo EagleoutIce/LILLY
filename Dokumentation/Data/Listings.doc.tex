@@ -8,9 +8,9 @@
 \end{center}
 
 \begin{bemerkung}[Standalone Listings]
-    Mit \LILLYxBOXxVersion{2.0.0} wurde die Listings-Integration als eigenes Paket \LILLYxNOTExLibrary{LILLYxLISTINGS} etabliert, welches sich eigenständig über \begin{latex}
+    Mit \LILLYxBOXxVersion{2.0.0} wurde die Listings-Integration als eigenes Paket \LILLYxNOTExLibrary{LILLYxLISTINGS} etabliert, welches sich eigenständig über \begin{latex*}
 \usepackage{LILLYxLISTINGS}
-        \end{latex}
+        \end{latex*}
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
 \textit{%
@@ -91,6 +91,28 @@ public class SuperKlasse {
     }
 }
 \end{java}
+%
+%
+%
+\presentEnvironment[1.0.9]{<Sprache>*}[\optArg{Listing-Options}]
+Entfernt die Zeilennummern eines sonst standardmäigen Listings:
+\begin{latex}
+\begin{java*}
+public class SuperKlasse {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt");
+    }
+}
+\end{java*}
+\end{latex}
+Ergibt:
+\begin{java*}
+public class SuperKlasse {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt");
+    }
+}
+\end{java*}
 %
 %
 %
@@ -295,7 +317,7 @@ Weiter setzt es die Position der Zeilenummern auf die rechte Seite.
 Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitte.
 
 \begin{bemerkung}[MIPS]
-    Das gesamte Mipspaket ist seit \LILLYxBOXxVersion{1.8.0} überholt und bedarf einiger Aufarbeitung, dennoch tut es seinen Dienst für die bisher existenten MIPS-Codes. Weitere Besonderheiten wie zum Beispiel \jmark[Literates]{mrk:jmpLiterate} nebst der anfänglich implementierten stehen \emph{nicht} zur Verfügung\ldots
+    Das gesamte Mipspaket ist seit \LILLYxBOXxVersion{1.0.8} überholt und bedarf einiger Aufarbeitung, dennoch tut es seinen Dienst für die bisher existenten MIPS-Codes. Weitere Besonderheiten wie zum Beispiel \jmark[Literates]{mrk:jmpLiterate} nebst der anfänglich implementierten stehen \emph{nicht} zur Verfügung\ldots
 \end{bemerkung}
 
 % \section{Die mitgelieferten Erweiterungen}

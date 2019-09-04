@@ -20,12 +20,12 @@ item_2  "\\footnotesize\\mbox{\\pgfsetfillopacity{1.0}\%\n\\footnotesize\\pgfset
 
 encap_prefix "{\\"
 encap_infix "{"
-encap_suffix  "}"
+encap_suffix "}"
 
 quote '~'
 
 delim_t "}\\fi\\pgfsetfillopacity{1.0}\\iftrue\\rmfamily\\normalsize "
-delim_n "}, "
+delim_n "}, \\hyperpage{"
 
-indent_space ''
-indent_length 0
+indent_space '\t'
+indent_length 4

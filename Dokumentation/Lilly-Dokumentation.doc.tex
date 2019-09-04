@@ -21,7 +21,7 @@
 
 \usepackage{aurical}
 \newcommand{\Jake}[1][~]{\jmark[\begingroup\Fontauri Jake#1\endgroup]{mrk:JAKE}}
-\newcommand{\LJake}[1][~]{\begingroup\T|lilly\_jake|\endgroup#1}
+\newcommand{\LJake}[1][~]{\begingroup\T{lilly\_jake}\endgroup#1}
 
 \newcommand*{\blankcmd}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}}
 \newcommand*{\blankenv}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}}
@@ -52,10 +52,10 @@
 % }
 
 \DeclareDocumentCommand{\addcmd}{ O{1.0.0} m}{
-    \index{#2@{\blankcmd{#2}~~{\tiny\T{(v#1)}}}}%
+    \index{#2@{\blankcmd{#2}\textsuperscript{\tiny\T{(v#1)}}}}%
 }
 \DeclareDocumentCommand{\addenv}{ O{1.0.0} m}{
-    \index{#2@{\blankenvidx{#2}~~{\tiny\T{(v#1)}}}}%
+    \index{#2@{\blankenvidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}%
 }
 
 \DeclareDocumentCommand{\anothercmd}{ O{1.0.0} m}{\index{#2@{\blankcmd{#2}~~{\tiny\T{(v#1)}}}}\blankcmd{#2}}%

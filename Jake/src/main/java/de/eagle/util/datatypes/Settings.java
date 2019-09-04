@@ -146,8 +146,7 @@ public class Settings extends AbstractSettings<String, String> {
         if (this.get("file") != null && this.get("file").getValue().contains(".conf")) {
             writeLoggerDebug1("Da eine konfigurationsdatei angegeben wurde wird diese zuerst aufgelöst!",
                     "settings:dump");
-            Configurator configurator = new Configurator(
-                    this.getClass().getResourceAsStream(this.get("file").getValue()));
+            Configurator configurator = new Configurator(this.get("file").getValue());
             configurator.parse_settings(this, true);
         }
         Settings set = Expandables.getInstance().getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
