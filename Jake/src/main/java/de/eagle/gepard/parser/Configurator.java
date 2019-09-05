@@ -53,12 +53,12 @@ public class Configurator {
      */
     public Configurator(InputStream inputStream) {
         this._tokenizer = new Tokenizer(inputStream, Pattern.compile(
-                "^ *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?]+(?:[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?]+)*) *(=|\\+=) *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?]+(?: +[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?]+)*)",
+                "^ *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?!\\\\]+(?:[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?!\\\\]+)*) *(=|\\+=) *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?!\\\\]+(?: +[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?!\\\\]+)*)",
                 Pattern.MULTILINE));
     }
 
     /**
-     * Kosntruiert einen neuen Konfigurator auf Basis eines Dateipfades
+     * Konstruiert einen neuen Konfigurator auf Basis eines Dateipfades
      *
      * @param input_path Der Pfad zur Datei
      * @throws FileNotFoundException Wenn die Datei ungültig/beschädigt/nonexistent
@@ -67,7 +67,7 @@ public class Configurator {
     public Configurator(String input_path) throws FileNotFoundException {
         writeLoggerDebug2("Arbeite nun auf Pfad: " + input_path, "config");
         this._tokenizer = new Tokenizer(input_path, Pattern.compile(
-                "^ *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>/#(){}$\";@%|\\[\\]&'~*?\\\\]+(?:[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>/#(){}$\";@%|\\[\\]&'~*?\\\\]+)*) *(=|\\+=) *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>/#(){}$\";@%|\\[\\]&'~*?\\\\]+(?: +[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>/#(){}$\";@%|\\[\\]&'~*?\\\\]+)*)",
+            "^ *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?!\\\\]+(?:[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?!\\\\]+)*) *(=|\\+=) *([a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?!\\\\]+(?: +[a-zA-Z0-9,\\-_ÄÖÜäöüß.:<>\\/#(){}$\";@%|\\[\\]&'~*?!\\\\]+)*)",
                 Pattern.MULTILINE));
     }
 

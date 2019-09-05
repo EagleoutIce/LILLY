@@ -38,6 +38,8 @@ public class Definitions {
     public static final String S_TRUE = "true";
     public static final String S_FALSE = "false";
 
+    public static final String DEFAULT_COMMENT_PATTERN = "![^!]*!";
+    
     /**
      * @return Returns the relative working directory
      */

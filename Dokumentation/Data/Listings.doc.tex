@@ -291,6 +291,11 @@ Ergibt:
 Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/Languages/\_LILLY\_LANG\_MIPS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen.\newline
 
 Dieses Paket wurde vor allem im Rahmen von \gdra erstellt und bindet das Paket \verb|caption| mit ein, um die Positionierung von Titeln zu vereinfachen.
+
+%
+%
+%
+
 \presentCommand{gitRAW}[\cmdlist \blankcmd{git}\cmdold]
 Fügen mithilfe von FontAwesome ein Github Symbol ein, welches auf ein Github-Repository verweist, indem sich alle in \gdra verwendeten Codes befinden (\url{https://www.github.com/EagleoutIce/MIPS_UniUlm_Examples/}: \git). Ursprünglich waren diese Definitionen nur für \gdra gedacht und sollten auch schleunigst wieder dorthin verschwinden (TODO!)!
 
@@ -520,7 +525,7 @@ Letzere Box wird auch für den generierten Befehl verwendet. Die Inline-Befehle 
 \elable{mrk:jmpLiterate}Im Kontext verschiedener Programmiersprachen kam bald der Wunsch auf verschiedene Symbole entsprechend einfach Setzen zu können. Bisher werden alle diese Ersetzungsregeln über das Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen und ermöglichen es, neben Umlauten auch Symbole einzubinden. Die Ersetzungsregeln werden nicht über eine Liste gehandhabt und sind ebenso vielfältig wie es die Bedürfnisse erfordern. Im Folgenden eine Auflistung aller in \LILLYxBOXxVersion{2.0.0} enthaltener Ersetzungsregeln:
 \begin{multicols}{4}
     \begin{description}
-        \foreach \x in {:bs:,:bmath:,:emath:,:dollar:,:space:,:ws:,:cdots:,:cdot:,:ldots:,:c:,:float:,:exp:,:yields:,:lan:,:ran:,:bcmd:} {
+        \foreach \x in {:bs:,:bmath:,:emath:,:dollar:,:space:,:ws:,:cdots:,:cdot:,:ldots:,:c:,:float:,:exp:,:yields:,:lan:,:ran:,:bcmd:,:star:} {
             \item[{\T{\x}}] \say{\lstshowcmd{\x}}
         }
     \end{description}
@@ -615,12 +620,12 @@ Ergibt: \pcpp{int main(int argc, char** argv)}.
 % \end{sjava}
 
 \section{Runtimes}
-Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/LILLYxRUNTIMES}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGSxADVANCED} geladen. Weiter existiert es als eigenständiges Paket \LILLYxNOTExLibrary{LILLYxRUNTIMES}.\medskip\newline
+\hypertarget{LILLYxRUNTIMES}Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/LILLYxRUNTIMES}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGSxADVANCED} geladen. Weiter existiert es als eigenständiges Paket \LILLYxNOTExLibrary{LILLYxRUNTIMES}.\medskip\newline
 Runtimes bieten die Möglichkeit Code einer Programmiersprache in Latex ausführen zu lassen und das Ergebnis ebenfalls im Latexdokument zu setzen. Hierfür wird eine bereits aufgesetzte Umgebung für die jeweilige Sprache benötigt, LILLY greift also auf einen bestehenden Compiler/Interpreter zurück. Alle mitgelieferten Runtimes befinden sich in der Liste \T{RegisteredRuntimes} und liefern:\newline
 %
 %
 %
-\presentCommand[2.0.0]{r<Runtime>}[\optArg{Mid-Text}\manArg{Code}]
+\presentCommand[2.0.0]{r<Runtime>}[\optArg[\textbackslash ,:]{Mid-Text}\manArg{Code}]
 Führt den übergebenen Code in der jeweiligen Runtime aus und liefert das Ergebnis. So zum Beispiel mit \T{\blankcmd{rbash}\{ls . | tail -2\}}: \rbash{ls . | tail -2}
 \T{\blankcmd{rbash}[liefert:]\{ls . | tail -4\}}: \rbash[liefert:]{ls . | sort | tail -4}
 %

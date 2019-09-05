@@ -55,17 +55,19 @@ Die 3 Standard-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt:\v
 % make "BOXMODE=<Name>"
 % \end{bash}
 Mit \LILLYxBOXxVersion{2.0.0} regelt \Jake die jeweilige Variante und erlaubt es sogar, mehrere Boxmodi gleichzeitig generieren zu lassen:
-\begin{bash}
+\begin{bash*}
 jake :lan:Datei:ran: -lilly-boxes: ":lan:Namen:ran:"
-\end{bash}
+\end{bash*}
 Um eine Fassng für jede Box zu generieren entspräche das:
-\begin{bash}
+\begin{bash*}
 jake :lan:Datei:ran: -lilly-boxes: "DEFAULT ALTERNATE LIMERENCE"
-\end{bash}
+\end{bash*}
 wobei \T{<Namen>} mit einem der oben stehenden Bezeichner ersetzt wird. Die Bezeichner werden vom weiter unten näher beschriebenem Box-Controller wie folgt aufgelöst:
-\begin{latex}
-\userput{_LILLY_BOXES_!**!\LILLYxBOXxMODE}{\lillyPathData}{\LILLYxPATHxDATA/POIs}
-\end{latex}
+\begin{latex*}
+\userput{_LILLY_BOXES_!**!\LILLYxBOXxMODE}% File
+    {\lillyPathData}% User Path
+    {\LILLYxPATHxDATA/POIs}% Lilly Path
+\end{latex*}
 %\marginpar{\tiny Natürlich wäre es schöner auch andere Verzeichnisse zuzulasen und hierbei dann den gesamten Pfad anzugeben - dies ist aber bisher auch noch zu machen}
 Über genau dieses Verfahren lassen sich auch beliebig die Box-Designs erweitern.
 \subsection{Der Box-Controller}
@@ -533,3 +535,23 @@ Dieser Befehl ist einfach nur exemplarisch entstanden um zu demonstrieren, wie d
 \NewInfoBox[fgcolor={DarkMidnightBlue},bgcolor={MudWhite!0},bordercolor={DarkOrchid},emblem={\faCalendar~},marker={},style/none,titleCode={}]{@dateBox}
 \def!**!\dateBox#1{\begin{@dateBox*}{#1}\end{@dateBox*}}
 \end{latex}
+
+%
+%
+%
+
+Wie bereits erwähnt, werden die Einstellungen für eine InfoBox persistiert. Hierzu werden folgende Befehle verwendet:
+
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xDraw}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xBgColor}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xFgColor}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xBorderColor}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xTitleFont}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xTextFont}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xPreCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xInCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xTitleCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xOutCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xPostCode}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xEmblem}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xMarker}

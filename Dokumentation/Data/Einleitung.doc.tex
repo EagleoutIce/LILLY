@@ -33,10 +33,11 @@ sudo apt install default-jdk
 \end{bash}
 Für alle anderen Derivate gilt es sich auf \url{https://www.oracle.com/de/java/} entsprechend zu informieren.
 Einmal installiert, genügt ein Ausführen der \T{.jar} Datei mithilfe von \cbash{java -jar jake.jar} oder durch
-einen Doppelklick, sofern die entsprechende \T{.jar} als ausführbar markiert ist. Zieht man bunte Fenster der Kommandozeile vor, so ist man in der Lage mit \newline\cbash{java -jar jake.jar GUI} eine grafische Unterstützung zu erhalten, die allerdings momentan noch in Arbeit und noch lange davon entfernt ist, dieselbe Mächtigkeit wie die Kommandozeile zu erreichen. Einmal installiert lässt sich \Jake einfach durch \cbash{jake} verwenden.
+einen Doppelklick, sofern die entsprechende \T{.jar} als ausführbar markiert ist. Bei der Installation gilt es die Angabe einer \jmark[Nutzerkonfiguration]{mrk:jdefconf} zu beachten.
+Zieht man bunte Fenster der Kommandozeile vor, so ist man in der Lage mit \newline\cbash{java -jar jake.jar GUI} eine grafische Unterstützung zu erhalten, die allerdings momentan noch in Arbeit und noch lange davon entfernt ist, dieselbe Mächtigkeit wie die Kommandozeile zu erreichen. Einmal installiert lässt sich \Jake einfach durch \cbash{jake} verwenden.
 
 \paragraph{Lilly mit Jake installieren}
-Nun genügt ein Ausführen von \cbash{jake install}, wobei mithilfe der Option \cbash{-lilly-path} der Pfad angegeben werden kann, an dem sich die LILLY.cls befindet:
+Nun genügt ein Ausführen von \cbash{jake install}, wobei mithilfe der Option \bbash{-lilly-path} der Pfad angegeben werden kann, an dem sich die LILLY.cls befindet:
 \begin{bash}
 jake install -lilly-path: '/absoluter/Pfad/zum/Lilly/Ordner'
 \end{bash}

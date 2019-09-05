@@ -20,6 +20,8 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import de.eagle.lillyjakeframework.core.CoreSettings;
+
 import static de.eagle.util.io.JakeLogger.*;
 
 /**
@@ -318,7 +320,7 @@ public class GeneratorParser {
         Matcher current_matcher = null;
         while ((current_line = getLine(bufferedReader)) != null) {
             writeLoggerDebug2("[Zeile: " + getLineCount() + "] GePard parsing: \"" + current_line + "\"", "GePard");
-            current_line = current_line.replaceAll("![^!]*!", ""); // remove comments => Method?
+            current_line = current_line.replaceAll(CoreSettings.requestValue("S_COMMENT_PATTERN"), ""); // remove comments => Method?
             if ((current_matcher = p_begin.matcher(current_line)).find()) {
                 writeLoggerDebug1("Box mit dem Name: \"" + current_matcher.group("boxname") + "\" detektiert!",
                         "GePard");
@@ -348,7 +350,7 @@ public class GeneratorParser {
                 while ((current_line = getLine(bufferedReader)) != null) {
                     writeLoggerDebug2("[Zeile: " + getLineCount() + "] [BOX: \"" + return_box.getName()
                             + "\"] GePard parsing: \"" + current_line + "\"", "GePard");
-                    current_line = current_line.replaceAll("![^!]*!", "");
+                    current_line = current_line.replaceAll(CoreSettings.requestValue("S_COMMENT_PATTERN"), "");
 
                     // Ist hier ein verschachtelter Gruppen beginn?
                     // Dies soll Gepard bewusst nicht unterstützen,
