@@ -85,7 +85,7 @@ public class CoreSettings {
             settings.emplace(st, "S_INSTALL_PATH", "Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,
                     "\"${HOME}/texmf\"");
             settings.emplace(st, "S_LILLY_PATH", "Wo liegt die Lilly.cls?", eSetting_Type.IS_PATH,
-                    "\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \".vim\" -i -e \"backup\" | head -1))\"");
+                    "\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \"classes\" -e \".vim\" -i -e \"backup\" | head -1))\"");
             break;
         case MAC:
             settings.emplace(st, "S_INSTALL_PATH", "Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,
@@ -115,13 +115,10 @@ public class CoreSettings {
         settings.emplace(st, "S_LILLY_AUTOCLEAN", "Sollen beim Arbeiten entstandene Dateien am Ende entfernt werden?",
                 eSetting_Type.IS_SWITCH, "true");
 
-        // S_LILLY_AUTOCLEAN
-        settings.emplace(st, "S_LILLY_AUTOCONF", "Erlaubt es eine gleichnamige .conf Datei oder jake.conf zu verwenden sofern diese existiert.",
-                eSetting_Type.IS_SWITCH, "false");
+        settings.emplace(st, "S_AUTOCONF", "Erlaubt es eine gleichnamige .conf Datei oder jake.conf zu verwenden sofern diese existiert.", eSetting_Type.IS_SWITCH, "false");
 
         // S_LILLY_CLEANS
-        settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?",
-                eSetting_Type.IS_TEXTLIST,
+        settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?", eSetting_Type.IS_TEXTLIST,
                 "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls ubp fdb_latexmk auxlock ptc UB TOP listing upa ilg TOPIC DEFS BEMS BEIS BEWS LEMS SATS ZSMS");
         // S_LILLY_EXTERNAL
         settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?",
@@ -130,9 +127,9 @@ public class CoreSettings {
                 eSetting_Type.IS_SWITCH, "true");
         // S_GEPARDRULES_PATH
         settings.emplace(st, "S_GEPARDRULES_PATH", "Pfade für zusätzliche Regeln", eSetting_Type.IS_TEXT, ""); // TESTLIST?
-                                                                                                               // WITH
-                                                                                                               // ':'
-                                                                                                               // TODO!
+
+        settings.emplace(st, "S_COMMENT_PATTERN", "Muster eines Kommentars", eSetting_Type.IS_TEXT, "![^!]*!");
+
         settings.emplace(st, "S_LILLY_IN", "Input-Pfad für Dateien", eSetting_Type.IS_PATH, "./");
         // S_LILLY_COMPILETIMES
         settings.emplace(st, "S_LILLY_COMPILETIMES", "Wie oft soll kompiliert werden", eSetting_Type.IS_NUM, "2"); // TESTLIST?

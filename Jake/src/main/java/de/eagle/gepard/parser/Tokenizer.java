@@ -16,6 +16,9 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.lillyjakeframework.core.Definitions;
+
 import static de.eagle.util.io.JakeLogger.*;
 
 /**
@@ -30,7 +33,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
     /// Markiert das Ende einer Zeile - auf ein Zeichen begrenzt!
     private String _current_line, _current_original;
     private BufferedReader _input_reader;
-    private Pattern _pattern, _skipper;
+    private Pattern _pattern;
 
     /* ========================================================================== */
     /* Konstruktoren */
@@ -44,8 +47,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      */
     public Tokenizer(String input_path) throws FileNotFoundException {
         this(new FileInputStream(input_path),
-                Pattern.compile("^ *([a-zA-Z0-9_\\-äöüßÄÖÜ]+) *(=) *([a-zA-Z0-9_\\-äöüÄÖÜß ]+)$", Pattern.MULTILINE), 0,
-                Pattern.compile("![^!]*!", Pattern.MULTILINE));
+                Pattern.compile("^ *([a-zA-Z0-9_\\-äöüßÄÖÜ!]+) *(=) *([a-zA-Z0-9_\\-äöüÄÖÜß! ]+)$", Pattern.MULTILINE), 0);
     }
 
     /**
@@ -56,8 +58,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      */
     public Tokenizer(InputStream inputStream) throws FileNotFoundException {
         this(inputStream,
-                Pattern.compile("^ *([a-zA-Z0-9_\\-äöüßÄÖÜ]+) *(=) *([a-zA-Z0-9_\\-äöüÄÖÜß ]+)$", Pattern.MULTILINE), 0,
-                Pattern.compile("![^!]*!", Pattern.MULTILINE));
+                Pattern.compile("^ *([a-zA-Z0-9_\\-äöüßÄÖÜ!]+) *(=) *([a-zA-Z0-9_\\-äöüÄÖÜß! ]+)$", Pattern.MULTILINE), 0);
     }
 
     /**
@@ -68,7 +69,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      */
     public Tokenizer(String input_path, Pattern pattern) throws FileNotFoundException {
-        this(new FileInputStream(input_path), pattern, 0, Pattern.compile("![^!]*!", Pattern.MULTILINE));
+        this(new FileInputStream(input_path), pattern, 0);
     }
 
     /**
@@ -79,7 +80,7 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      */
     public Tokenizer(InputStream inputStream, Pattern pattern) {
-        this(inputStream, pattern, 0, Pattern.compile("![^!]*!", Pattern.MULTILINE));
+        this(inputStream, pattern, 0);
     }
 
     /**
@@ -88,12 +89,10 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @param inputStream der zugrunde liegende Input Stream
      * @param pattern     Token-Selector
      * @param skip_lines  Wie viele Zeilen sollen zu Beginn übersprungen werden
-     * @param skipper     Zeichen für einen Kommentar
      */
-    private Tokenizer(InputStream inputStream, Pattern pattern, int skip_lines, Pattern skipper) {
+    public Tokenizer(InputStream inputStream, Pattern pattern, int skip_lines) {
         this._input_reader = new BufferedReader(new InputStreamReader(inputStream));
         this._pattern = pattern;
-        this._skipper = skipper;
         // Skip lines:
         for (int i = 0; i < skip_lines; i++) {
             try {
@@ -126,7 +125,10 @@ public class Tokenizer implements Iterable<TokenMatch> {
      * @return die Eingabe ohne Kommentare
      */
     public String erase_comments(String input) {
-        return input.replaceAll(this._skipper.pattern(), "");
+        if(CoreSettings.settings==null)
+            return input.replaceAll(Definitions.DEFAULT_COMMENT_PATTERN, ""); // As the Translator needs the Tokenizer zo resolve the Settings we have to set a Default Value
+        else
+            return input.replaceAll(CoreSettings.requestValue("S_COMMENT_PATTERN"), "");
     }
 
     /**

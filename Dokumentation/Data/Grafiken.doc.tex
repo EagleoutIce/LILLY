@@ -58,8 +58,8 @@ Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargu
 \begin{center}\renewcommand{\arraystretch}{1.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\linewidth}@{\hspace{1em}}|@{\hspace{1em}}C{1cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        {\blatex{:bs:graphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}}} &\raisebox{-0.375\baselineskip}{\tikz{\graphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
-        {\blatex{:bs:tgraphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}}} &\raisebox{-0.375\baselineskip}{\tikz{\tgraphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
+        {\blatex[morekeywords={[5]{graphdot}}]{:bs:graphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}}} &\raisebox{-0.375\baselineskip}{\tikz{\graphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
+        {\blatex[morekeywords={[5]{tgraphdot}}]{:bs:tgraphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}}} &\raisebox{-0.375\baselineskip}{\tikz{\tgraphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
@@ -76,8 +76,8 @@ Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben gen
     \end{ditemize}%
 \end{multicols}%
 Zur Information, alle diese Befehle wurden wie folgt präsentiert:
-\begin{latex}
-\\tikz:bs::lan:graphdot:ran:{(0,0)}{42}{a}};
+\begin{latex}[morekeywords={[5]{tikz}}]
+:bs:tikz:bs::lan:graphdot:ran:{(0,0)}{42}{a}};
 \end{latex}
 wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für den Textfluss noch die Boxposition angepasst, dies spielt allerdings für den Graphen keine Rolle. Mit \LILLYxBOXxVersion{2.0.0} wurden die Farben der Dots der neuen Palette %%TODO: link
 entsprechend portiert.\medskip
@@ -152,9 +152,9 @@ Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da d
     \end{tabular}
 \end{center}
 Was hierbei auch interessant ist: die Skalierung von $X$- und $Y$-Koordinaten wird unabhängig voneinander getroffen, das heißt die $Y$-Koordinate eines Punktes als die $X$-Koordinate eines anderen zu verwenden funktioniert (meist) nicht ohne mathematische Operationen. Das Gitter wurde natürlich nachträglich hinzugefügt:%\newline
-\begin{latex}
+\begin{latex*}
 \draw[thin,xshift=0.5cm,yshift=0.5cm] (-1,-2) grid (3,2);
-\end{latex}
+\end{latex*}
 %
 %
 %
@@ -325,9 +325,9 @@ Die Größe skaliert sich in der Regel automatisch, allerdings existieren auch G
 
 \presentCommand[2.0.0]{getGraphicsPath}[\manArg{path}]
 Liefert den absoluten Pfad zu einer Grafik. Beispiel:
-\begin{latex}
+\begin{latex*}
 \getGraphicsPath{Software/XML/XMLUebersicht}
-\end{latex}
+\end{latex*}
 Liefert: \T{\getGraphicsPath{Software/XML/XMLUebersicht}}.
 
 \presentCommand[2.0.0]{getPrerendered}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
@@ -359,7 +359,8 @@ Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LIL
 \presentCommand[2.0.0]{warningEmblem}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{errorEmblem}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{mathEmblem}\vspace{-\baselineskip}
-\presentCommand[2.0.0]{codeEmblem}\vspace{-\baselineskip}
+\presentCommand[2.0.0]{codeEmblem}
+
 Hierbei handelt es sich um Shortcuts um einige Embleme direkt zu Setzen:\medskip
 \begin{center}
     \begin{tikzpicture}
@@ -410,6 +411,11 @@ So ist es zum Beispiel möglich durch die jeweilige Form das aussehne der mitgel
         \end{tikzpicture}%
 \end{center}
 Das Erzeugen eines neuen Emblems mithilfe von \blankcmd{NewEmblem} erzeugt einen neuen Befehl, entsprechend des Namens des Emblems. Der Befehl besitzt jeweils die folgende Signatur:
+
+%
+%
+%
+
 \presentCommand[2.0.0]{<name>}[\optArg{Tikz-Keys}\manArg{text}]
 So liefert zum Beispiel: \T{\blankcmd{OctagonEmblem}\{Hu\}}: \OctagonEmblem{Hu}.\newline
 Oder: \T{\blankcmd{OctagonEmblem}\{\blankcmd{tiny} stop\}} \OctagonEmblem{\tiny Stop}.\medskip\newline
@@ -424,8 +430,10 @@ Die Shortcuts von oben, wurden hierbei wie folgt definiert:
 
 \presentCommand[2.0.0]{textEmblem}[\manArg{Emblem}]
 Setzt ein Emblem für den Fließtext: \textEmblem\codeEmblem{} anstelle von \codeEmblem. Die Argumentklammern können Vernachläassigt werden, das Bedeutet Es genügt das Schreiben von \T{\blankcmd{textEmblem}\blankcmd{codeEmblem}}.
+
 %
 %
 %
+
 \presentCommand[2.0.0]{btextEmblem}[\manArg{Emblem}]
 Funktioniert identisch, setzt allerdings ein Emblem, welches die komplette Zeilenhöhe ausfüllt: \btextEmblem\infoEmblem{} anstelle von \infoEmblem.

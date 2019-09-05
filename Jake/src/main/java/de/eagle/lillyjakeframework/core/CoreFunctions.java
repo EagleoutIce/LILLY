@@ -150,7 +150,7 @@ public final class CoreFunctions {
     }
 
     public static boolean customLoadConfig(String[] cmd) {
-        if (!_use_config && CoreSettings.requestSwitch("S_LILLY_AUTOCONF")) { // Automatically search and Pick a
+        if (!_use_config && CoreSettings.requestSwitch("S_AUTOCONF")) { // Automatically search and Pick a
                                                                               // Config-File
             JakeLogger.writeLoggerDebug1("Es wird automatisch eine Konfigurationsdatei gesucht, da Autoconf true ist",
                     "func");
