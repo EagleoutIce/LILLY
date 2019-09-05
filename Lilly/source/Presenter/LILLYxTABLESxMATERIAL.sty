@@ -1,0 +1,86 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxTABLESxMATERIAL}[2019/09/05 Zeigt das Material-Design fuer die LILLY-Tables]
+
+\RequirePackage{LILLYxVANILLA}
+\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxCOLOR}
+
+%% https://ctan.org/pkg/makecell
+\LILLYxDemandPackage{makecell}{Rotierte Zellen, Super Zellen, Enten, ...}%% Package, Info
+                    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://ctan.org/pkg/tabu
+\LILLYxDemandPackage{tabu}{Coole Tabellen}%% Package, Info
+                    {Das Paket tabu ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://ctan.org/pkg/longtable
+\LILLYxDemandPackage{longtable}{Coole, lange Tabellen}%% Package, Info
+                    {Das Paket longtable ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://www.ctan.org/pkg/xparse
+\LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
+                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+                    {}{} %% keine Argumente
+
+%% We will define the materialtabel 'mtable' and the long variant as 'mltable'
+%
+
+\colorlet{HeaderColor}{\Hcolor}
+\colorlet{NextHeaderColor}{HeaderColor}
+
+\def\MHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\color{white}}\rowcolor{HeaderColor}\Gape[0.5mm][0.5mm]{}}
+\def\MNHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\color{white}}\rowcolor{NextHeaderColor}\Gape[0.5mm][0.5mm]{}{\hspace*{-2.3em}\textcolor{MudWhite}{$\blacktriangledown$}}\hspace*{1.4em}\;}
+% Maybe set Arrow to right?
+\DeclareDocumentEnvironment{mtable}{%
+    s % starred has no header
+    O{\MHeaderRow} % Code for the headerrow
+    O{} % Code to be executed before the table, but after the other definitions
+    m   % Table Head Definitions 
+    O{MudWhite!10} % First Row
+    O{MudWhite!90} % Second Row
+}{%
+    \IfBooleanTF{#1}{\taburowcolors[2] {#5 .. #6}}
+        {\taburowcolors[2] 2{#5 .. #6}}
+    \everyrow{\tabucline[.4mm  white]{}}
+    \extrarowsep = 0.15mm
+    \tabulinesep = _2mm
+    #3\ignorespaces
+    \begin{tabu}{>{\;}#4<{\;}}
+        \IfBooleanTF{#1}{\rowcolor{#6}}{#2}\ignorespaces
+}{%
+    \end{tabu}
+}
+\DeclareDocumentEnvironment{mltable}{%
+    s
+    O{\MHeaderRow} % Code for the headerrow
+    O{} % Code to be executed before the table, but after the other definitions
+    m   % Table Head Definitions
+    o % Multipage header, will appear on every page if given 
+    O{MudWhite!10} % First Row
+    O{MudWhite!90} % Second Row
+    O{\MNHeaderRow} % How to color Headers on continued lines
+}{%
+    \IfBooleanTF{#1}{\taburowcolors[2] {#6 .. #7}}
+    {\taburowcolors[2] 2{#6 .. #7}}
+    \everyrow{\tabucline[.4mm  white]{}}
+    \tabulinesep = _2.25mm
+    #3\ignorespaces
+    \begin{longtabu}{>{\,}#4<{\,}}
+        \IfBooleanTF{#1}{\rowcolor{#6}}{#2\ignorespaces\IfValueT{#5}{%
+            #5\\\endfirsthead%
+            #8#5\\\endhead
+        }\ignorespaces}%
+}{%
+    \end{longtabu}
+}
+
+
+
+\endinput
