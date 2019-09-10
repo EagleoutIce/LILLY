@@ -1,72 +1,70 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.17)  31 AUG 2019 12:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.6.19)  3 SEP 2019 02:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **test_emblems.tex
 (./test_emblems.tex
-LaTeX2e <2017-04-15>
-Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+LaTeX2e <2018-12-01>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 )
-\c@part=\count79
-\c@section=\count80
-\c@subsection=\count81
-\c@subsubsection=\count82
-\c@paragraph=\count83
-\c@subparagraph=\count84
-\c@figure=\count85
-\c@table=\count86
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/LILLYxEMBLEMS.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/LILLYxEMBLEMS.sty
 
 LaTeX Warning: You have requested package `LILLYxEMBLEMS',
                but the package provides `LILLYxCONTROLLERxBOX'.
 
 Package: LILLYxCONTROLLERxBOX 2019/08/30 Stellt einen Emblem-Generator fuer LIL
 LY zur Verfuegung
-(/home/eagle/texmf/tex/latex/Lilly/source/Fallbacks/LILLYxVANILLA.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Fallbacks/LILLYxVANILLA.sty
 Package: LILLYxVANILLA 2019/07/14 Simuliert ein Starten durch JAKE um pdflatex 
 kompatibel zu bleiben
 
-(/home/eagle/texmf/tex/latex/Lilly/source/Helper/LILLYxBOOLEAN.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Helper/LILLYxBOOLEAN.sty
 Package: LILLYxBOOLEAN 2019/07/13 Stellt die Grundlagen boolescher Ausdruecke f
 uer LILLY zur Verfuegung
 ))
-(/home/eagle/texmf/tex/latex/Lilly/source/Data/Colors/LILLYxCOLOR.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Helper/LILLYxPACKAGExCTRL.sty
+Package: LILLYxPACKAGExCTRL 2019/06/29 Core-Funktion, erlaubt es Lilly Pakete i
+ntelligent zu verwalten
+) (/home/the-limerent/texmf/tex/latex/Lilly/source/Data/Colors/LILLYxCOLOR.sty
 Package: LILLYxCOLOR 2019/07/11 Stellt die Farb-Erweiterungen fuer LILLY zur Ve
 rfuegung
 
-(/home/eagle/texmf/tex/latex/Lilly/source/Helper/LILLYxPACKAGExCTRL.sty
-Package: LILLYxPACKAGExCTRL 2019/06/29 Core-Funktion, erlaubt es Lilly Pakete i
-ntelligent zu verwalten
-)
-(/home/eagle/texmf/tex/latex/Lilly/source/Controllers/LILLYxCONTROLLERxCONTENT.
-sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Controllers/LILLYxCONTROLLERxC
+ONTENT.sty
 Package: LILLYxCONTROLLERxCONTENT 2019/06/29 Grundlegende Pfadverwaltung fuer L
 illy
- (/home/eagle/texmf/tex/latex/Lilly/source/Helper/LILLYxCOMMAND.sty
+
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Helper/LILLYxCOMMAND.sty
 Package: LILLYxCOMMAND 2019/07/14 Liefert den grundlegenden LILLYcommand
 Class Lilly Info: LILLYxDemandPackage (expl3): Da wir auch was von der tollen L
 atex3-Zukunft abhaben moegen :D  on input line 9.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2018/02/21 L3 programming layer (loader) 
+Package: expl3 2019-02-15 L3 programming layer (loader) 
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2018/02/21 L3 programming layer (code)
-\c_max_int=\count87
-\l_tmpa_int=\count88
-\l_tmpb_int=\count89
-\g_tmpa_int=\count90
-\g_tmpb_int=\count91
-\g__intarray_font_int=\count92
-\g__prg_map_int=\count93
+Package: expl3 2019-02-15 L3 programming layer (code)
+\c_max_int=\count88
+\l_tmpa_int=\count89
+\l_tmpb_int=\count90
+\g_tmpa_int=\count91
+\g_tmpb_int=\count92
+\g__kernel_prg_map_int=\count93
 \c_log_iow=\count94
 \l_iow_line_count_int=\count95
 \l__iow_line_target_int=\count96
@@ -91,31 +89,32 @@ Package: expl3 2018/02/21 L3 programming layer (code)
 \g_tmpa_muskip=\muskip14
 \g_tmpb_muskip=\muskip15
 \l_keys_choice_int=\count99
-\c__fp_leading_shift_int=\count100
-\c__fp_middle_shift_int=\count101
-\c__fp_trailing_shift_int=\count102
-\c__fp_big_leading_shift_int=\count103
-\c__fp_big_middle_shift_int=\count104
-\c__fp_big_trailing_shift_int=\count105
-\c__fp_Bigg_leading_shift_int=\count106
-\c__fp_Bigg_middle_shift_int=\count107
-\c__fp_Bigg_trailing_shift_int=\count108
-\c__fp_rand_size_int=\count109
-\c__fp_rand_four_int=\count110
-\c__fp_rand_eight_int=\count111
-\l__sort_length_int=\count112
-\l__sort_min_int=\count113
-\l__sort_top_int=\count114
-\l__sort_max_int=\count115
-\l__sort_true_max_int=\count116
-\l__sort_block_int=\count117
-\l__sort_begin_int=\count118
-\l__sort_end_int=\count119
-\l__sort_A_int=\count120
-\l__sort_B_int=\count121
-\l__sort_C_int=\count122
-\l__tl_build_start_index_int=\count123
-\l__tl_build_index_int=\count124
+\l__intarray_loop_int=\count100
+\c__intarray_sp_dim=\dimen109
+\g__intarray_font_int=\count101
+\c__fp_leading_shift_int=\count102
+\c__fp_middle_shift_int=\count103
+\c__fp_trailing_shift_int=\count104
+\c__fp_big_leading_shift_int=\count105
+\c__fp_big_middle_shift_int=\count106
+\c__fp_big_trailing_shift_int=\count107
+\c__fp_Bigg_leading_shift_int=\count108
+\c__fp_Bigg_middle_shift_int=\count109
+\c__fp_Bigg_trailing_shift_int=\count110
+\c__kernel_randint_max_int=\count111
+\g__fp_array_int=\count112
+\l__fp_array_loop_int=\count113
+\l__sort_length_int=\count114
+\l__sort_min_int=\count115
+\l__sort_top_int=\count116
+\l__sort_max_int=\count117
+\l__sort_true_max_int=\count118
+\l__sort_block_int=\count119
+\l__sort_begin_int=\count120
+\l__sort_end_int=\count121
+\l__sort_A_int=\count122
+\l__sort_B_int=\count123
+\l__sort_C_int=\count124
 \l__tl_analysis_normal_int=\count125
 \l__tl_analysis_index_int=\count126
 \l__tl_analysis_nesting_int=\count127
@@ -161,62 +160,67 @@ Package: expl3 2018/02/21 L3 programming layer (code)
 \l__regex_submatch_int=\count167
 \l__regex_zeroth_submatch_int=\count168
 \g__regex_trace_regex_int=\count169
-\c_empty_box=\box26
-\l_tmpa_box=\box27
-\l_tmpb_box=\box28
-\g_tmpa_box=\box29
-\g_tmpb_box=\box30
-\l__box_top_dim=\dimen109
-\l__box_bottom_dim=\dimen110
-\l__box_left_dim=\dimen111
-\l__box_right_dim=\dimen112
-\l__box_top_new_dim=\dimen113
-\l__box_bottom_new_dim=\dimen114
-\l__box_left_new_dim=\dimen115
-\l__box_right_new_dim=\dimen116
-\l__box_internal_box=\box31
-\l__coffin_internal_box=\box32
-\l__coffin_internal_dim=\dimen117
-\l__coffin_offset_x_dim=\dimen118
-\l__coffin_offset_y_dim=\dimen119
-\l__coffin_x_dim=\dimen120
-\l__coffin_y_dim=\dimen121
-\l__coffin_x_prime_dim=\dimen122
-\l__coffin_y_prime_dim=\dimen123
-\c_empty_coffin=\box33
-\l__coffin_aligned_coffin=\box34
-\l__coffin_aligned_internal_coffin=\box35
-\l_tmpa_coffin=\box36
-\l_tmpb_coffin=\box37
-\l__coffin_display_coffin=\box38
-\l__coffin_display_coord_coffin=\box39
-\l__coffin_display_pole_coffin=\box40
-\l__coffin_display_offset_dim=\dimen124
-\l__coffin_display_x_dim=\dimen125
-\l__coffin_display_y_dim=\dimen126
-\l__coffin_bounding_shift_dim=\dimen127
-\l__coffin_left_corner_dim=\dimen128
-\l__coffin_right_corner_dim=\dimen129
-\l__coffin_bottom_corner_dim=\dimen130
-\l__coffin_top_corner_dim=\dimen131
-\l__coffin_scaled_total_height_dim=\dimen132
-\l__coffin_scaled_width_dim=\dimen133
+\c_empty_box=\box27
+\l_tmpa_box=\box28
+\l_tmpb_box=\box29
+\g_tmpa_box=\box30
+\g_tmpb_box=\box31
+\l__box_top_dim=\dimen110
+\l__box_bottom_dim=\dimen111
+\l__box_left_dim=\dimen112
+\l__box_right_dim=\dimen113
+\l__box_top_new_dim=\dimen114
+\l__box_bottom_new_dim=\dimen115
+\l__box_left_new_dim=\dimen116
+\l__box_right_new_dim=\dimen117
+\l__box_internal_box=\box32
+\l__coffin_internal_box=\box33
+\l__coffin_internal_dim=\dimen118
+\l__coffin_offset_x_dim=\dimen119
+\l__coffin_offset_y_dim=\dimen120
+\l__coffin_x_dim=\dimen121
+\l__coffin_y_dim=\dimen122
+\l__coffin_x_prime_dim=\dimen123
+\l__coffin_y_prime_dim=\dimen124
+\c_empty_coffin=\box34
+\l__coffin_aligned_coffin=\box35
+\l__coffin_aligned_internal_coffin=\box36
+\l_tmpa_coffin=\box37
+\l_tmpb_coffin=\box38
+\g_tmpa_coffin=\box39
+\g_tmpb_coffin=\box40
+\c__coffin_empty_coffin=\box41
+\l__coffin_display_coffin=\box42
+\l__coffin_display_coord_coffin=\box43
+\l__coffin_display_pole_coffin=\box44
+\l__coffin_display_offset_dim=\dimen125
+\l__coffin_display_x_dim=\dimen126
+\l__coffin_display_y_dim=\dimen127
+\g__file_internal_ior=\read1
+\l__coffin_bounding_shift_dim=\dimen128
+\l__coffin_left_corner_dim=\dimen129
+\l__coffin_right_corner_dim=\dimen130
+\l__coffin_bottom_corner_dim=\dimen131
+\l__coffin_top_corner_dim=\dimen132
+\l__coffin_scaled_total_height_dim=\dimen133
+\l__coffin_scaled_width_dim=\dimen134
+\l__seq_internal_a_int=\count170
+\l__seq_internal_b_int=\count171
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
-File: l3pdfmode.def 2017/03/18 v L3 Experimental driver: PDF mode
-\l__driver_color_stack_int=\count170
-\l__driver_tmp_box=\box41
+File: l3pdfmode.def 2019-02-15 v L3 Experimental driver: PDF mode
+\l__driver_color_stack_int=\count172
 ))
 Class Lilly Info: LILLYxDemandPackage (xparse): Damit es auch toll und einfach 
 geht mehrere optionale Argumente zu verwalten!  on input line 13.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2018/02/21 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count171
-\g__xparse_grabber_int=\count172
-\l__xparse_m_args_int=\count173
-\l__xparse_mandatory_args_int=\count174
-\l__xparse_v_nesting_int=\count175
+Package: xparse 2018-10-17 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count173
+\g__xparse_grabber_int=\count174
+\l__xparse_m_args_int=\count175
+\l__xparse_mandatory_args_int=\count176
+\l__xparse_v_nesting_int=\count177
 ))
 Class Lilly Info: LILLYxDemandPackage (ifthen): Weil ich Faul bin braucht LILLY
  dieses Paket unbedingt!  on input line 14.
@@ -235,7 +239,7 @@ Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
 Package shellesc Info: Restricted shell escape enabled on input line 69.
 )
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
 )
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
@@ -249,7 +253,7 @@ Package ifluatex Info: LuaTeX not detected.
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -261,10 +265,6 @@ Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
 ))
 
 Package ifplatform Warning: 
@@ -277,17 +277,18 @@ Class Lilly Info: LILLYxDemandPackage (pgffor): Weil ich Faul bin braucht LILLY
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks14
-\pgfutil@tempdima=\dimen134
-\pgfutil@tempdimb=\dimen135
+\pgfutil@tempdima=\dimen135
+\pgfutil@tempdimb=\dimen136
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
 ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box42
+\pgfutil@abb=\box45
 (/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2019/02/02 v3.1.1 (3.1.1)
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
@@ -301,23 +302,23 @@ ex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
-\pgf@x=\dimen136
-\pgf@xa=\dimen137
-\pgf@xb=\dimen138
-\pgf@xc=\dimen139
-\pgf@y=\dimen140
-\pgf@ya=\dimen141
-\pgf@yb=\dimen142
-\pgf@yc=\dimen143
-\c@pgf@counta=\count176
-\c@pgf@countb=\count177
-\c@pgf@countc=\count178
-\c@pgf@countd=\count179
+\pgf@x=\dimen137
+\pgf@xa=\dimen138
+\pgf@xb=\dimen139
+\pgf@xc=\dimen140
+\pgf@y=\dimen141
+\pgf@ya=\dimen142
+\pgf@yb=\dimen143
+\pgf@yc=\dimen144
+\c@pgf@counta=\count178
+\c@pgf@countb=\count179
+\c@pgf@countc=\count180
+\c@pgf@countd=\count181
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen144
-\pgfmath@count=\count180
-\pgfmath@box=\box43
+\pgfmath@dimen=\dimen145
+\pgfmath@count=\count182
+\pgfmath@box=\box46
 \pgfmath@toks=\toks18
 \pgfmath@stack@operand=\toks19
 \pgfmath@stack@operation=\toks20
@@ -340,14 +341,14 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
 thmetics.code.tex)))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count181
+\c@pgfmathroundto@lastzeros=\count183
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+Package: pgffor 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen145
-\pgffor@skip=\dimen146
+\pgffor@iter=\dimen146
+\pgffor@skip=\dimen147
 \pgffor@stack=\toks21
 \pgffor@toks=\toks22
 ))
@@ -383,7 +384,7 @@ Class Lilly Info: LILLYxDemandPackage (pgf): Ohne pgf mache ich GARNICHTS  on i
 nput line 20.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+Package: pgf 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -404,165 +405,169 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 )
-\Gin@req@height=\dimen147
-\Gin@req@width=\dimen148
+\Gin@req@height=\dimen148
+\Gin@req@width=\dimen149
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+Package: pgfsys 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
-\pgf@x=\dimen149
-\pgf@y=\dimen150
-\pgf@xa=\dimen151
-\pgf@ya=\dimen152
-\pgf@xb=\dimen153
-\pgf@yb=\dimen154
-\pgf@xc=\dimen155
-\pgf@yc=\dimen156
+\pgf@x=\dimen150
+\pgf@y=\dimen151
+\pgf@xa=\dimen152
+\pgf@ya=\dimen153
+\pgf@xb=\dimen154
+\pgf@yb=\dimen155
+\pgf@xc=\dimen156
+\pgf@yc=\dimen157
 \w@pgf@writea=\write3
-\r@pgf@reada=\read1
-\c@pgf@counta=\count182
-\c@pgf@countb=\count183
-\c@pgf@countc=\count184
-\c@pgf@countd=\count185
+\r@pgf@reada=\read2
+\c@pgf@counta=\count184
+\c@pgf@countb=\count185
+\c@pgf@countc=\count186
+\c@pgf@countd=\count187
 \t@pgf@toka=\toks24
 \t@pgf@tokb=\toks25
 \t@pgf@tokc=\toks26
+\pgf@sys@id@count=\count188
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
-File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+File: pgf.cfg 2019/02/02 v3.1.1 (3.1.1)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+File: pgfsys-pdftex.def 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
 f
-File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+File: pgfsys-common-pdf.def 2019/02/02 v3.1.1 (3.1.1)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
 tex
-File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count186
-\pgfsyssoftpath@bigbuffer@items=\count187
+File: pgfsyssoftpath.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfsyssoftpath@smallbuffer@items=\count189
+\pgfsyssoftpath@bigbuffer@items=\count190
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
 tex
-File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+File: pgfsysprotocol.code.tex 2019/02/02 v3.1.1 (3.1.1)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+Package: pgfcore 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
 x
-File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen157
-\pgf@picmaxx=\dimen158
-\pgf@picminy=\dimen159
-\pgf@picmaxy=\dimen160
-\pgf@pathminx=\dimen161
-\pgf@pathmaxx=\dimen162
-\pgf@pathminy=\dimen163
-\pgf@pathmaxy=\dimen164
-\pgf@xx=\dimen165
-\pgf@xy=\dimen166
-\pgf@yx=\dimen167
-\pgf@yy=\dimen168
-\pgf@zx=\dimen169
-\pgf@zy=\dimen170
+File: pgfcorepoints.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@picminx=\dimen158
+\pgf@picmaxx=\dimen159
+\pgf@picminy=\dimen160
+\pgf@picmaxy=\dimen161
+\pgf@pathminx=\dimen162
+\pgf@pathmaxx=\dimen163
+\pgf@pathminy=\dimen164
+\pgf@pathmaxy=\dimen165
+\pgf@xx=\dimen166
+\pgf@xy=\dimen167
+\pgf@yx=\dimen168
+\pgf@yy=\dimen169
+\pgf@zx=\dimen170
+\pgf@zy=\dimen171
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
 code.tex
-File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen171
-\pgf@path@lasty=\dimen172
+File: pgfcorepathconstruct.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@path@lastx=\dimen172
+\pgf@path@lasty=\dimen173
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
 .tex
-File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
-\pgf@shorten@end@additional=\dimen173
-\pgf@shorten@start@additional=\dimen174
+File: pgfcorepathusage.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@shorten@end@additional=\dimen174
+\pgf@shorten@start@additional=\dimen175
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
 x
-File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
-\pgfpic=\box44
-\pgf@hbox=\box45
-\pgf@layerbox@main=\box46
-\pgf@picture@serial@count=\count188
+File: pgfcorescopes.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfpic=\box47
+\pgf@hbox=\box48
+\pgf@layerbox@main=\box49
+\pgf@picture@serial@count=\count191
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
 ode.tex
-File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
-\pgflinewidth=\dimen175
+File: pgfcoregraphicstate.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgflinewidth=\dimen176
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
 s.code.tex
-File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
-\pgf@pt@x=\dimen176
-\pgf@pt@y=\dimen177
-\pgf@pt@temp=\dimen178
+File: pgfcoretransformations.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@pt@x=\dimen177
+\pgf@pt@y=\dimen178
+\pgf@pt@temp=\dimen179
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
-File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+File: pgfcorequick.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
 ex
-File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+File: pgfcoreobjects.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
 .code.tex
-File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+File: pgfcorepathprocessing.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
 x
-File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
-\pgfarrowsep=\dimen179
+File: pgfcorearrows.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfarrowsep=\dimen180
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen180
-\pgf@sys@shading@range@num=\count189
+File: pgfcoreshade.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@max=\dimen181
+\pgf@sys@shading@range@num=\count192
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+File: pgfcoreimage.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
 tex
-File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
-\pgfexternal@startupbox=\box47
+File: pgfcoreexternal.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfexternal@startupbox=\box50
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
 x
-File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+File: pgfcorelayers.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
 ode.tex
-File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+File: pgfcoretransparency.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
 tex
-File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+File: pgfcorepatterns.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box48
+File: pgfmoduleshapes.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfnodeparttextbox=\box51
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+File: pgfmoduleplot.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty
-Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen181
-\pgf@nodesepend=\dimen182
+Package: pgfcomp-version-0-65 2019/02/02 v3.1.1 (3.1.1)
+\pgf@nodesepstart=\dimen182
+\pgf@nodesepend=\dimen183
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
 .sty
-Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
-)) (/home/eagle/texmf/tex/latex/Lilly/source/Helper/LILLYxLIST.sty
+Package: pgfcomp-version-1-18 2019/02/02 v3.1.1 (3.1.1)
+)) (/home/the-limerent/texmf/tex/latex/Lilly/source/Helper/LILLYxLIST.sty
 Package: LILLYxLIST 2019/07/13 Stellt die Grundlagen einer Liste fuer LILLY zur
  Verfuegung
 )
@@ -615,8 +620,8 @@ Register Compat-Color: skyblue with R: 60, G: 179, B: 113
 Register Compat-Color: tealblue with R: 51, G: 153, B: 255
 Register Compat-Color: superlightgray with R: 240, G: 240, B: 240
 
-(/home/eagle/texmf/tex/latex/Lilly/source/Data/Colors/_LILLY_DEFAULT_COLORPROFI
-LE.tex
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Data/Colors/_LILLY_DEFAULT_COL
+ORPROFILE.tex
 Register Profile Color: LILLYxColorxDefinition
 Register Profile Color: LILLYxColorxSatz
 Register Profile Color: LILLYxColorxBeweis
@@ -632,8 +637,8 @@ Register Profile Color: LILLYxColorxLINKSxCiteColor
 Register Profile Color: LILLYxColorxLINKSxUrlColor
 Register Profile Color: LILLYxColorxTITLExCOLOR
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Data/Colors/_LILLY_PRINT_COLORPROFILE
-.tex
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Data/Colors/_LILLY_PRINT_COLOR
+PROFILE.tex
 Register Profile Color: LILLYxColorxDefinition
 Register Profile Color: LILLYxColorxSatz
 Register Profile Color: LILLYxColorxBeweis
@@ -663,100 +668,102 @@ Register Profile Color: LILLYxColorxLINKSxCiteColor
 Register Profile Color: LILLYxColorxLINKSxUrlColor
 Register Profile Color: LILLYxColorxTITLExCOLOR
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Data/Colors/Extensions/_LILLY_COLOR_E
-XTENSION_VOID.tex))
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/LILLYxGRAPHICS.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Data/Colors/Extensions/_LILLY_
+COLOR_EXTENSION_VOID.tex))
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/LILLYxGRAPHICS.sty
+
+LaTeX Warning: You have requested package `LILLyxGRAPHICS',
+               but the package provides `LILLYxGRAPHICS'.
+
 Package: LILLYxGRAPHICS 2019/07/20 Liefert die Grafik-Erweiterung fuer Lilly
 
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/LILLYxTIKZxCORE.st
-y
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/LILLYxTIKZx
+CORE.sty
 Package: LILLYxTIKZxCORE 2019/07/12 Stellt den Kern der Tikz-Schnittstelle fuer
  LILLY zur Verfuegung
-Class Lilly Info: LILLYxDemandPackage (tikz): Was wäre dieses Paket ohne Tikz?
-  on input line 11.
+Class Lilly Info: LILLYxDemandPackage (tikz): Was w\IeC {\"a}re dieses Paket oh
+ne Tikz?  on input line 11.
  (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+Package: tikz 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
 .code.tex
-File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count190
-\pgfplotmarksize=\dimen183
+File: pgflibraryplothandlers.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@plot@mark@count=\count193
+\pgfplotmarksize=\dimen184
 )
-\tikz@lastx=\dimen184
-\tikz@lasty=\dimen185
-\tikz@lastxsaved=\dimen186
-\tikz@lastysaved=\dimen187
-\tikzleveldistance=\dimen188
-\tikzsiblingdistance=\dimen189
-\tikz@figbox=\box49
-\tikz@figbox@bg=\box50
-\tikz@tempbox=\box51
-\tikz@tempbox@bg=\box52
-\tikztreelevel=\count191
-\tikznumberofchildren=\count192
-\tikznumberofcurrentchild=\count193
-\tikz@fig@count=\count194
+\tikz@lastx=\dimen185
+\tikz@lasty=\dimen186
+\tikz@lastxsaved=\dimen187
+\tikz@lastysaved=\dimen188
+\tikzleveldistance=\dimen189
+\tikzsiblingdistance=\dimen190
+\tikz@figbox=\box52
+\tikz@figbox@bg=\box53
+\tikz@tempbox=\box54
+\tikz@tempbox@bg=\box55
+\tikztreelevel=\count194
+\tikznumberofchildren=\count195
+\tikznumberofcurrentchild=\count196
+\tikz@fig@count=\count197
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count195
-\pgfmatrixcurrentcolumn=\count196
-\pgf@matrix@numberofcolumns=\count197
+File: pgfmodulematrix.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfmatrixcurrentrow=\count198
+\pgfmatrixcurrentcolumn=\count199
+\pgf@matrix@numberofcolumns=\count266
 )
-\tikz@expandcount=\count198
+\tikz@expandcount=\count267
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex
-File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+File: tikzlibrarytopaths.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryarrows.code.tex
-File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+File: tikzlibraryarrows.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
 tex
-File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen190
+File: pgflibraryarrows.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\arrowsize=\dimen191
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryautomata.code.tex
-File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.1a (rcs-revision 1.3)
+File: tikzlibraryautomata.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryshapes.multipart.code.tex
-File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
-)
+File: tikzlibraryshapes.multipart.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.multipart.code.tex
-File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
-
-\pgfnodepartlowerbox=\box53
-\pgfnodeparttwobox=\box54
-\pgfnodepartthreebox=\box55
-\pgfnodepartfourbox=\box56
-\pgfnodeparttwentybox=\box57
-\pgfnodepartnineteenbox=\box58
-\pgfnodeparteighteenbox=\box59
-\pgfnodepartseventeenbox=\box60
-\pgfnodepartsixteenbox=\box61
-\pgfnodepartfifteenbox=\box62
-\pgfnodepartfourteenbox=\box63
-\pgfnodepartthirteenbox=\box64
-\pgfnodeparttwelvebox=\box65
-\pgfnodepartelevenbox=\box66
-\pgfnodeparttenbox=\box67
-\pgfnodepartninebox=\box68
-\pgfnodeparteightbox=\box69
-\pgfnodepartsevenbox=\box70
-\pgfnodepartsixbox=\box71
-\pgfnodepartfivebox=\box72
+File: pgflibraryshapes.multipart.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfnodepartlowerbox=\box56
+\pgfnodeparttwobox=\box57
+\pgfnodepartthreebox=\box58
+\pgfnodepartfourbox=\box59
+\pgfnodeparttwentybox=\box60
+\pgfnodepartnineteenbox=\box61
+\pgfnodeparteighteenbox=\box62
+\pgfnodepartseventeenbox=\box63
+\pgfnodepartsixteenbox=\box64
+\pgfnodepartfifteenbox=\box65
+\pgfnodepartfourteenbox=\box66
+\pgfnodepartthirteenbox=\box67
+\pgfnodeparttwelvebox=\box68
+\pgfnodepartelevenbox=\box69
+\pgfnodeparttenbox=\box70
+\pgfnodepartninebox=\box71
+\pgfnodeparteightbox=\box72
+\pgfnodepartsevenbox=\box73
+\pgfnodepartsixbox=\box74
+\pgfnodepartfivebox=\box75
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarycalc.code.tex
-File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
+File: tikzlibrarycalc.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryintersections.code.tex
@@ -764,11 +771,11 @@ zlibraryintersections.code.tex
 s.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
 )
-\pgf@intersect@solutions=\count199
+\pgf@intersect@solutions=\count268
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarythrough.code.tex
-File: tikzlibrarythrough.code.tex 2008/02/03 v3.0.1a (rcs-revision 1.1)
+File: tikzlibrarythrough.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarydecorations.pathreplacing.code.tex
@@ -776,16 +783,16 @@ zlibrarydecorations.pathreplacing.code.tex
 zlibrarydecorations.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
 e.tex
-\pgfdecoratedcompleteddistance=\dimen191
-\pgfdecoratedremainingdistance=\dimen192
-\pgfdecoratedinputsegmentcompleteddistance=\dimen193
-\pgfdecoratedinputsegmentremainingdistance=\dimen194
-\pgf@decorate@distancetomove=\dimen195
-\pgf@decorate@repeatstate=\count266
-\pgfdecorationsegmentamplitude=\dimen196
-\pgfdecorationsegmentlength=\dimen197
+\pgfdecoratedcompleteddistance=\dimen192
+\pgfdecoratedremainingdistance=\dimen193
+\pgfdecoratedinputsegmentcompleteddistance=\dimen194
+\pgfdecoratedinputsegmentremainingdistance=\dimen195
+\pgf@decorate@distancetomove=\dimen196
+\pgf@decorate@repeatstate=\count269
+\pgfdecorationsegmentamplitude=\dimen197
+\pgfdecorationsegmentlength=\dimen198
 )
-\tikz@lib@dec@box=\box73
+\tikz@lib@dec@box=\box76
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
 decorations.pathreplacing.code.tex))
@@ -795,55 +802,53 @@ zlibrarydecorations.pathmorphing.code.tex
 decorations.pathmorphing.code.tex))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarybackgrounds.code.tex
-File: tikzlibrarybackgrounds.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.3)
-\pgf@layerbox@background=\box74
-\pgf@layerboxsaved@background=\box75
+File: tikzlibrarybackgrounds.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@layerbox@background=\box77
+\pgf@layerboxsaved@background=\box78
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarypositioning.code.tex
-File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
+File: tikzlibrarypositioning.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryfit.code.tex
-File: tikzlibraryfit.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.5)
+File: tikzlibraryfit.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryshapes.code.tex
-File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+File: tikzlibraryshapes.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryshapes.geometric.code.tex
-File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
-)
+File: tikzlibraryshapes.geometric.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.geometric.code.tex
-File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
-
+File: pgflibraryshapes.geometric.code.tex 2019/02/02 v3.1.1 (3.1.1)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryshapes.misc.code.tex
-File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+File: tikzlibraryshapes.misc.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.misc.code.tex
-File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
+File: pgflibraryshapes.misc.code.tex 2019/02/02 v3.1.1 (3.1.1)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryshapes.symbols.code.tex
-File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+File: tikzlibraryshapes.symbols.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.symbols.code.tex
-File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
+File: pgflibraryshapes.symbols.code.tex 2019/02/02 v3.1.1 (3.1.1)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryshapes.arrows.code.tex
-File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+File: tikzlibraryshapes.arrows.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
 s.arrows.code.tex
-File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+File: pgflibraryshapes.arrows.code.tex 2019/02/02 v3.1.1 (3.1.1)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryshapes.callouts.code.tex
@@ -851,47 +856,47 @@ zlibraryshapes.callouts.code.tex
 s.callouts.code.tex)))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryshadings.code.tex
-File: tikzlibraryshadings.code.tex 2008/10/29 v3.0.1a (rcs-revision 1.1)
+File: tikzlibraryshadings.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryshadings.cod
 e.tex
-File: pgflibraryshadings.code.tex 2008/10/29 v3.0.1a (rcs-revision 1.2)
+File: pgflibraryshadings.code.tex 2019/02/02 v3.1.1 (3.1.1)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryshadows.code.tex
-File: tikzlibraryshadows.code.tex 2008/01/13 v3.0.1a (rcs-revision 1.3)
+File: tikzlibraryshadows.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryfadings.code.tex
-File: tikzlibraryfadings.code.tex 2009/11/15 v3.0.1a (rcs-revision 1.2)
+File: tikzlibraryfadings.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code
 .tex
-File: pgflibraryfadings.code.tex 2008/02/07 v3.0.1a (rcs-revision 1.3)
+File: pgflibraryfadings.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarymatrix.code.tex
-File: tikzlibrarymatrix.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.4)
+File: tikzlibrarymatrix.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryscopes.code.tex
-File: tikzlibraryscopes.code.tex 2008/06/27 v3.0.1a (rcs-revision 1.2)
+File: tikzlibraryscopes.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarypatterns.code.tex
-File: tikzlibrarypatterns.code.tex 2008/01/15 v3.0.1a (rcs-revision 1.2)
+File: tikzlibrarypatterns.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.cod
 e.tex
-File: pgflibrarypatterns.code.tex 2008/03/03 v3.0.1a (rcs-revision 1.13)
+File: pgflibrarypatterns.code.tex 2019/02/02 v3.1.1 (3.1.1)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarymindmap.code.tex
-File: tikzlibrarymindmap.code.tex 2013/07/16 v3.0.1a (rcs-revision 1.10)
+File: tikzlibrarymindmap.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytrees.code.tex
-File: tikzlibrarytrees.code.tex 2008/02/24 v3.0.1a (rcs-revision 1.2)
+File: tikzlibrarytrees.code.tex 2019/02/02 v3.1.1 (3.1.1)
 ))
 Class Lilly Info: LILLYxDemandPackage (circuitikz): Ach komm schon, das sind Sc
 haltplaene, die mag jeder!  on input line 24.
@@ -901,16 +906,16 @@ Package: circuitikz 2017/05/28{} The CircuiTikz circuit drawing package version
  0.8.3
 
 (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcirc.defines.tex
-\pgf@circ@res@up=\dimen198
-\pgf@circ@res@down=\dimen199
-\pgf@circ@res@zero=\dimen256
-\pgf@circ@res@left=\dimen257
-\pgf@circ@res@right=\dimen258
-\pgf@circ@res@other=\dimen259
-\pgf@circ@res@step=\dimen260
-\pgf@circ@res@temp=\dimen261
-\pgfstartlinewidth=\dimen262
-\pgf@circ@Rlen=\dimen263
+\pgf@circ@res@up=\dimen199
+\pgf@circ@res@down=\dimen256
+\pgf@circ@res@zero=\dimen257
+\pgf@circ@res@left=\dimen258
+\pgf@circ@res@right=\dimen259
+\pgf@circ@res@other=\dimen260
+\pgf@circ@res@step=\dimen261
+\pgf@circ@res@temp=\dimen262
+\pgfstartlinewidth=\dimen263
+\pgf@circ@Rlen=\dimen264
 )
 (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcircutils.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/circuitikz/pgfcircshapes.tex)
@@ -928,16 +933,16 @@ fig benoetigt  on input line 31.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
-Package: pgfplots 2017/06/05 v1.15 Data Visualization (1.15)
+Package: pgfplots 2018/03/28 v1.16 Data Visualization (1.16)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
 \t@pgfplots@toka=\toks27
 \t@pgfplots@tokb=\toks28
 \t@pgfplots@tokc=\toks29
-\pgfplots@tmpa=\dimen264
-\c@pgfplots@coordindex=\count267
-\c@pgfplots@scanlineindex=\count268
+\pgfplots@tmpa=\dimen265
+\c@pgfplots@coordindex=\count270
+\c@pgfplots@scanlineindex=\count271
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code
 .tex))
@@ -951,7 +956,7 @@ Package pgfplots: loading complementary arithmetics for your pgf version...
 gfsupp_pgflibraryfpu.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
 gfsupp_pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count269
+\c@pgfmathroundto@lastzeros=\count272
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
@@ -960,13 +965,13 @@ tructure.code.tex)
 tructureext.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray
 .code.tex
-\c@pgfplotsarray@tmp=\count270
+\c@pgfplotsarray@tmp=\count273
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatri
 x.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshare
 d.code.tex
-\c@pgfplotstable@counta=\count271
+\c@pgfplotstable@counta=\count274
 \t@pgfplotstable@a=\toks30
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque
@@ -979,7 +984,7 @@ de.tex))
 .tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.sur
 fshading.code.tex
-\c@pgfplotslibrarysurf@no=\count272
+\c@pgfplotslibrarysurf@no=\count275
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surf
 shading.pgfsys-pdftex.def)))
@@ -1002,21 +1007,21 @@ e.tex)
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
-\pgfplots@numplots=\count273
-\pgfplots@xmin@reg=\dimen265
-\pgfplots@xmax@reg=\dimen266
-\pgfplots@ymin@reg=\dimen267
-\pgfplots@ymax@reg=\dimen268
-\pgfplots@zmin@reg=\dimen269
-\pgfplots@zmax@reg=\dimen270
+\pgfplots@numplots=\count276
+\pgfplots@xmin@reg=\dimen266
+\pgfplots@xmax@reg=\dimen267
+\pgfplots@ymin@reg=\dimen268
+\pgfplots@ymax@reg=\dimen269
+\pgfplots@zmin@reg=\dimen270
+\pgfplots@zmax@reg=\dimen271
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryplotmarks.code.tex
-File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+File: tikzlibraryplotmarks.code.tex 2019/02/02 v3.1.1 (3.1.1)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.co
 de.tex
-File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
+File: pgflibraryplotmarks.code.tex 2019/02/02 v3.1.1 (3.1.1)
 )))
 Class Lilly Info: LILLYxLoadPackage (tkz-euclide): Diese Erweiterung scheint no
 twendig?  on input line 41.
@@ -1024,19 +1029,8 @@ twendig?  on input line 41.
 Package: tkz-euclide 2011/06/01 1.16 c for plots 2d 
 
 (/usr/share/texlive/texmf-dist/tex/latex/tkz-base/tkz-base.sty
-Package: tkz-base 2011/06/01 1.16 c tkz-base
+Package: tkz-base 2018/09/19 1.16 d tkz-base
 
-(/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
-Package: etex 2016/08/01 v2.7 eTeX basic definition package (PEB,DPC)
-
-
-Package etex Warning: Extended allocation already in use.
-(etex)                etex.sty code will not be used.
-(etex)                To force etex package to load, add
-(etex)                \RequirePackage{etex}
-(etex)                at the start of the document.
-
-)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarydecorations.markings.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
@@ -1045,17 +1039,19 @@ decorations.markings.code.tex))
 Package: numprint 2012/08/20 v1.39 Print numbers (HH)
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
-Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
-\col@sep=\dimen271
-\extrarowheight=\dimen272
+Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
+\col@sep=\dimen272
+\ar@mcellbox=\box79
+\extrarowheight=\dimen273
 \NC@list=\toks31
 \extratabsurround=\skip49
 \backup@length=\skip50
+\ar@cellbox=\box80
 )
-\c@nprt@mantissa@digitsbefore=\count274
-\c@nprt@mantissa@digitsafter=\count275
-\c@nprt@exponent@digitsbefore=\count276
-\c@nprt@exponent@digitsafter=\count277
+\c@nprt@mantissa@digitsbefore=\count277
+\c@nprt@mantissa@digitsafter=\count278
+\c@nprt@exponent@digitsbefore=\count279
+\c@nprt@exponent@digitsafter=\count280
 \nprt@digitwidth=\skip51
 \nprt@sepwidth=\skip52
 \nprt@decimalwidth=\skip53
@@ -1063,12 +1059,12 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \nprt@digittoks=\toks32
 \nprt@pretoks=\toks33
 \nprt@posttoks=\toks34
-\nprt@thisdigit=\count278
-\nprt@curpos=\count279
-\nprt@rndpos=\count280
-\c@nprt@digitsfirstblock=\count281
-\c@nprt@blockcnt=\count282
-\c@nprt@cntprint=\count283
+\nprt@thisdigit=\count281
+\nprt@curpos=\count282
+\nprt@rndpos=\count283
+\c@nprt@digitsfirstblock=\count284
+\c@nprt@blockcnt=\count285
+\c@nprt@cntprint=\count286
 
 No configuration file `numprint.cfg' found.)
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp.sty
@@ -1077,19 +1073,19 @@ Package: fp 1995/04/02
 `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
 (/usr/share/texlive/texmf-dist/tex/latex/fp/defpattern.sty
 Package: defpattern 1994/10/12
-\actioncount=\count284
+\actioncount=\count287
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-basic.sty
 Package: fp-basic 1996/05/13
-\FP@xs=\count285
-\FP@xia=\count286
-\FP@xib=\count287
-\FP@xfa=\count288
-\FP@xfb=\count289
-\FP@rega=\count290
-\FP@regb=\count291
-\FP@regs=\count292
-\FP@times=\count293
+\FP@xs=\count288
+\FP@xia=\count289
+\FP@xib=\count290
+\FP@xfa=\count291
+\FP@xfb=\count292
+\FP@rega=\count293
+\FP@regb=\count294
+\FP@regs=\count295
+\FP@times=\count296
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-addons.sty
 Package: fp-addons 1995/03/15
@@ -1108,7 +1104,7 @@ Package: fp-pas 1994/08/29
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-random.sty
 Package: fp-random 1995/02/23
-\FPseed=\count294
+\FPseed=\count297
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eqn.sty
 Package: fp-eqn 1995/04/03
@@ -1119,21 +1115,21 @@ Package: fp-upn 1996/10/21
 (/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eval.sty
 Package: fp-eval 1995/04/03
 ))
-\tkzRadius=\dimen273
-\tkzLength=\dimen274
-\tkz@radi=\dimen275
-\tkz@ax=\dimen276
-\tkz@ay=\dimen277
-\tkz@bx=\dimen278
-\tkz@by=\dimen279
-\tkz@cx=\dimen280
-\tkz@cy=\dimen281
-\tkz@dx=\dimen282
-\tkz@dy=\dimen283
+\tkzRadius=\dimen274
+\tkzLength=\dimen275
+\tkz@radi=\dimen276
+\tkz@ax=\dimen277
+\tkz@ay=\dimen278
+\tkz@bx=\dimen279
+\tkz@by=\dimen280
+\tkz@cx=\dimen281
+\tkz@cy=\dimen282
+\tkz@dx=\dimen283
+\tkz@dy=\dimen284
 
 (/usr/share/texlive/texmf-dist/tex/latex/tkz-base/tkz-tools-utilities.tex)
 (/usr/share/texlive/texmf-dist/tex/latex/tkz-base/tkz-tools-arith.tex
-File: tkz-tool-arith.tex tkz-tool-arith 1.161 c
+File: tkz-tool-arith.tex tkz-tool-arith 1.161 d
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tkz-base/tkz-tools-base.tex)
 (/usr/share/texlive/texmf-dist/tex/latex/tkz-base/tkz-tools-misc.tex)
@@ -1141,7 +1137,7 @@ File: tkz-tool-arith.tex tkz-tool-arith 1.161 c
 (/usr/share/texlive/texmf-dist/tex/latex/tkz-base/tkz-obj-points.tex)
 (/usr/share/texlive/texmf-dist/tex/latex/tkz-base/tkz-obj-segments.tex)
 (/usr/share/texlive/texmf-dist/tex/latex/tkz-base/tkz-obj-marks.tex
-\tkz@cntmk=\count295
+\tkz@cntmk=\count298
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tkz-euclide/tkz-tools-intersections.te
 x)
@@ -1157,41 +1153,41 @@ wendig?  on input line 47.
 (/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/pgftree.sty
 (/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/pgfsubpic.sty
 (/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/pgfsubpic.tex
-\pgf@subpicminx=\dimen284
-\pgf@subpicminy=\dimen285
-\pgf@subpicmaxx=\dimen286
-\pgf@subpicmaxy=\dimen287
+\pgf@subpicminx=\dimen285
+\pgf@subpicminy=\dimen286
+\pgf@subpicmaxx=\dimen287
+\pgf@subpicmaxy=\dimen288
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/pgftree.tex
-\levelsep=\dimen288
-\subtreesep=\dimen289
-\smuggle@levelsep=\dimen290
-\smuggle@subtreesep=\dimen291
-\this@levelsep=\dimen292
-\this@subtreesep=\dimen293
-\pgftree@childx=\dimen294
-\pgftree@savechildx=\dimen295
-\pgftree@childy=\dimen296
-\pgftree@savechildy=\dimen297
-\pgftree@childi=\count296
-\pgftree@savechildi=\count297
-\pgftree@level=\count298
-\pgftree@depth=\dimen298
-\pgf@subpic@hbox@children=\box76
-\pgf@subpic@minx@children=\dimen299
-\pgf@subpic@miny@children=\dimen300
-\pgf@subpic@maxx@children=\dimen301
-\pgf@subpic@maxy@children=\dimen302
-\pgftree@lastchildx=\dimen303
-\pgftree@lastchildy=\dimen304
+\levelsep=\dimen289
+\subtreesep=\dimen290
+\smuggle@levelsep=\dimen291
+\smuggle@subtreesep=\dimen292
+\this@levelsep=\dimen293
+\this@subtreesep=\dimen294
+\pgftree@childx=\dimen295
+\pgftree@savechildx=\dimen296
+\pgftree@childy=\dimen297
+\pgftree@savechildy=\dimen298
+\pgftree@childi=\count299
+\pgftree@savechildi=\count300
+\pgftree@level=\count301
+\pgftree@depth=\dimen299
+\pgf@subpic@hbox@children=\box81
+\pgf@subpic@minx@children=\dimen300
+\pgf@subpic@miny@children=\dimen301
+\pgf@subpic@maxx@children=\dimen302
+\pgf@subpic@maxy@children=\dimen303
+\pgftree@lastchildx=\dimen304
+\pgftree@lastchildy=\dimen305
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.tex
 \@result=\toks35
 \child@list=\toks36
 \root@node=\toks37
 ))
-Class Lilly Info: LILLYxLoadPackage (environ): Ermöglicht spezifisches externa
-lize  on input line 63.
+Class Lilly Info: LILLYxLoadPackage (environ): Erm\IeC {\"o}glicht spezifisches
+ externalize  on input line 63.
 
 (/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
@@ -1201,585 +1197,46 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
 \@envbody=\toks38
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_EXTERN
-AL.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_AUTOMA
-TEN.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_GRAPHE
-N.tex
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_EXTERNAL.tex)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_AUTOMATEN.tex)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_GRAPHEN.tex
 \POLYRAD=\skip55
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_NEURON
-S.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_PLACEH
-OLDER.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_ROTATI
-ON.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_SYMBOL
-S.tex (/usr/share/texlive/texmf-dist/tex/latex/tikzsymbols/tikzsymbols.sty
-Package: tikzsymbols 2017/09/05 v4.07 Some symbols created using tikz and LaTeX
-3.
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_NEURONS.tex)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_PLACEHOLDER.tex)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_ROTATION.tex)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_SYMBOLS.tex
+(/usr/share/texlive/texmf-dist/tex/latex/tikzsymbols/tikzsymbols.sty
+Package: tikzsymbols 2019/02/08 v4.10c Some symbols created using tikz and LaTe
+X3.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-Package: l3keys2e 2018/02/21 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2018-10-17 LaTeX2e option processing using LaTeX3 keys
 )
-\l__tikzsymbols_Moai_thickness_dim=\dimen305
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Kochtopf with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Kochtopf}{1}}O{1}' on line 557.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Bratpfanne with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Bratpfanne}{1}}O{1}' on line 590.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Schneebesen with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Schneebesen}{1}}O{1}' on line 619.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Sieb with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Sieb}{1}}O{1}' on line 648.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Purierstab with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Purierstab}{1}}O{1}' on line 673.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Dreizack with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Dreizack}{1}}O{1}' on line 698.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Backblech with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Backblech}{1}}O{1}' on line 725.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Ofen with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Ofen}{1}}O{1}' on line 751.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Pfanne with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Pfanne}{1}}O{1}' on line 785.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Herd with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Herd}{1}}O{1}' on line 811.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Saftpresse with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Saftpresse}{1}}O{1}' on line 846.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Schussel with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Schussel}{1}}O{1}' on line 870.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Schaler with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Schaler}{1}}O{1}' on line 895.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Reibe with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Reibe}{1}}O{1}' on line 920.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Flasche with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Flasche}{1}}O{1}' on line 944.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Nudelholz with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Nudelholz}{1}}O{1}' on line 974.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Sadey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Sadey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 996.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dSadey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dSadey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 1018.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Changey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Changey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {white}}O{white}m' on line
-. 1048.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dChangey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dChangey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}m' on line
-. 1078.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \cChangey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {cChangey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {red}}O{red}>{\__tikzsymbols_if_empty:Tn
-. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {green}}O{green}m' on line
-. 1132.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dcChangey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dcChangey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {red}}O{red}>{\__tikzsymbols_if_empty:Tn
-. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {green}}O{green}m' on line
-. 1186.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Annoey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Annoey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1208.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dAnnoey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dAnnoey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 1230.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Smiley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Smiley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1255.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dSmiley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dSmiley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 1277.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Laughey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Laughey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1301.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dLaughey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dLaughey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {red}}O{red}' on line 1329.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Neutrey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Neutrey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1351.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dNeutrey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dNeutrey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 1373.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Winkey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Winkey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1395.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \oldWinkey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {oldWinkey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line
-. 1417.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dWinkey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dWinkey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 1439.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \olddWinkey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {olddWinkey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 1461.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Sey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Sey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1483.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dSey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dSey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1505.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Xey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Xey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1527.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dXey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dXey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1551.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Innocey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Innocey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line 1584.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \wInnocey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {wInnocey}{1}}O{1}' on line 1591.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dInnocey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dInnocey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 1622.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Cooley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Cooley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1648.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dCooley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dCooley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 1674.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Tongey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Tongey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1703.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dTongey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dTongey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn {red}}O{red}' on line 1732.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Nursey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Nursey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {}}O{}' on line 1763.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dNursey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dNursey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn
-. {white}}O{white}>{\__tikzsymbols_if_empty:Tn {red}}O{red}' on line 1799.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Vomey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Vomey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {opacity=0}}O{opacity=0}' on line
-. 1836.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dVomey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dVomey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn
-. {brown!10!olive}}O{brown!10!olive}' on line 1875.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Walley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Walley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1916.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \rWalley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {rWalley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {none}}O{none}' on line 1949.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dWalley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dWalley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 1986.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \drWalley with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {drWalley}{1}}O{1}>{\__tikzsymbols_if_empty:Tn {yellow}}O{yellow}' on line
-. 2019.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Cat with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Cat}{1}}O{1}' on line 2125.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \SchrodingersCat with sig.
-. '>{\__tikzsymbols_scale_if_empty:nTn {SchrodingersCat}{1}}O{1}m' on line
-. 2152.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Ninja with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Ninja}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {black}}O{black}>{\__tikzsymbols_if_empty:Tn
-. {red}}O{red}>{\__tikzsymbols_if_empty:Tn {white}}O{white}' on line 2207.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dNinja with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dNinja}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {black}}O{black}>{\__tikzsymbols_if_empty:Tn
-. {red}}O{red}>{\__tikzsymbols_if_empty:Tn {white}}O{white}' on line 2259.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Sleepey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Sleepey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn
-. {none}}O{none}>{\__tikzsymbols_if_empty:Tn {black}}O{black}' on line 2308.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dSleepey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {dSleepey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {yellow}}O{yellow}>{\__tikzsymbols_if_empty:Tn
-. {blue}}O{blue}>{\__tikzsymbols_if_empty:Tn {black}}O{black}' on line 2357.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \NiceReapey with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {NiceReapey}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {black!20!white}}O{black!20!white}' on line 2391.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Strichmaxerl with sig.
-. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Strichmaxerl}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {-22}}O{-22}>{\__tikzsymbols_if_empty:Tn
-. {22}}O{22}>{\__tikzsymbols_if_empty:Tn
-. {27}}O{27}>{\__tikzsymbols_if_empty:Tn {-27}}O{-27}' on line 2487.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Person with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Person}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {-22}}O{-22}>{\__tikzsymbols_if_empty:Tn
-. {22}}O{22}>{\__tikzsymbols_if_empty:Tn
-. {27}}O{27}>{\__tikzsymbols_if_empty:Tn {-27}}O{-27}' on line 2496.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Candle with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Candle}{1}}O{1}' on line 2522.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Fire with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Fire}{1}}O{1}' on line 2567.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Coffeecup with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Coffeecup}{1}}O{1}' on line 2602.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Chair with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Chair}{1}}O{1}' on line 2631.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Bed with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Bed}{1}}O{1}' on line 2657.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Tribar with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Tribar}{1}}O{1}>{\__tikzsymbols_if_empty:Tn
-. {opacity=0}}O{opacity=0}>{\__tikzsymbols_if_empty:Tn
-. {opacity=0}}O{opacity=0}>{\__tikzsymbols_if_empty:Tn
-. {opacity=0}}O{opacity=0}' on line 2692.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Moai with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Moai}{1}}O{1}' on line 2742.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Snowman with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Snowman}{1}}O{1}' on line 2794.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \BasicTree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {BasicTree}{1}}O{1}mmmm' on line 2815.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \WorstTree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {WorstTree}{1}}O{1}' on line 2851.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Springtree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Springtree}{1}}O{1}' on line 2860.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Summertree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Summertree}{1}}O{1}' on line 2869.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Autumntree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Autumntree}{1}}O{1}' on line 2878.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \Wintertree with sig. '>{\__tikzsymbols_scale_if_empty:nTn
-. {Wintertree}{1}}O{1}' on line 2887.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \tikzsymbolsuse with sig. 'm' on line 2908.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \tikzsymbolsset with sig. 'm' on line 2919.
-.................................................
+\l__tikzsymbols_Moai_thickness_dim=\dimen306
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_AMPELN
-.tex))
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_ER.tex
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \entity with sig. ' o m m ' on line 1.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \relation with sig. ' o m m O{1} O{0.5}' on line 3.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \attribute with sig. ' o m m ' on line 4.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \kattribute with sig. ' o m m ' on line 6.
-.................................................
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_AMPELN.tex))
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_ER.tex)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ
+_DIRECTORY.tex
+\dirtree@lvl=\count302
+\dirtree@plvl=\count303
+\dirtree@clvl=\count304
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/Tikz-Core/_LILLY_TIKZ_DIRECT
-ORY.tex
-\dirtree@lvl=\count299
-\dirtree@plvl=\count300
-\dirtree@clvl=\count301
-)
-(/home/eagle/texmf/tex/latex/Lilly/source/Data/Semester/1/EIDI/tikz-uml.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Data/Semester/1/EIDI/tikz-uml.
+sty
 
 LaTeX Warning: You have requested package `source/Data/Semester/1/EIDI/tikz-uml
 ',
@@ -1788,23 +1245,22 @@ LaTeX Warning: You have requested package `source/Data/Semester/1/EIDI/tikz-uml
 Package: tikz-uml 2011/01/26
 (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
 (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
-\@xs@message=\write4
-\integerpart=\count302
-\decimalpart=\count303
+\integerpart=\count305
+\decimalpart=\count306
 )
-Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
+Package: xstring 2019/02/06 v1.83 String manipulations (CT)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count304
-\calc@Bcount=\count305
-\calc@Adimen=\dimen306
-\calc@Bdimen=\dimen307
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count307
+\calc@Bcount=\count308
+\calc@Adimen=\dimen307
+\calc@Bdimen=\dimen308
 \calc@Askip=\skip56
 \calc@Bskip=\skip57
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count306
+\calc@Ccount=\count309
 \calc@Cskip=\skip58
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgfopts/pgfopts.sty
@@ -1812,88 +1268,88 @@ Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
 \pgfopts@list@add@a@toks=\toks39
 \pgfopts@list@add@b@toks=\toks40
 )
-\c@tikzumlPackageLayers=\count307
-\pgf@layerbox@package0=\box77
-\pgf@layerboxsaved@package0=\box78
-\pgf@layerbox@package1=\box79
-\pgf@layerboxsaved@package1=\box80
-\pgf@layerbox@package2=\box81
-\pgf@layerboxsaved@package2=\box82
-\pgf@layerbox@package3=\box83
-\pgf@layerboxsaved@package3=\box84
-\c@tikzumlFragmentLayers=\count308
-\pgf@layerbox@fragment0=\box85
-\pgf@layerboxsaved@fragment0=\box86
-\pgf@layerbox@fragment1=\box87
-\pgf@layerboxsaved@fragment1=\box88
-\pgf@layerbox@fragment2=\box89
-\pgf@layerboxsaved@fragment2=\box90
-\pgf@layerbox@fragment3=\box91
-\pgf@layerboxsaved@fragment3=\box92
-\c@tikzumlStateLayers=\count309
-\pgf@layerbox@state0=\box93
-\pgf@layerboxsaved@state0=\box94
-\pgf@layerbox@state1=\box95
-\pgf@layerboxsaved@state1=\box96
-\pgf@layerbox@state2=\box97
-\pgf@layerboxsaved@state2=\box98
-\pgf@layerbox@state3=\box99
-\pgf@layerboxsaved@state3=\box100
-\c@tikzumlComponentLayers=\count310
-\pgf@layerbox@component0=\box101
-\pgf@layerboxsaved@component0=\box102
-\pgf@layerbox@component1=\box103
-\pgf@layerboxsaved@component1=\box104
-\pgf@layerbox@component2=\box105
-\pgf@layerboxsaved@component2=\box106
-\pgf@layerbox@component3=\box107
-\pgf@layerboxsaved@component3=\box108
-\pgf@layerbox@lifelines=\box109
-\pgf@layerboxsaved@lifelines=\box110
-\pgf@layerbox@activity=\box111
-\pgf@layerboxsaved@activity=\box112
-\pgf@layerbox@connections=\box113
-\pgf@layerboxsaved@connections=\box114
-\c@tikzumlPackageClassNum=\count311
-\c@tikzumlPackageSubPackageNum=\count312
-\c@tikzumlRelationNum=\count313
-\c@tikzumlNoteNum=\count314
-\c@pos=\count315
-\c@posT=\count316
-\c@posStereo=\count317
-\c@tikzumlPackageLevel=\count318
-\tikzumlNestingSymbolSize=\dimen308
-\c@tikzumlSystemUseCaseNum=\count319
-\c@tikzumlSystemLevel=\count320
-\c@tikzumlUseCaseNum=\count321
-\c@tikzumlActorNum=\count322
-\c@tikzumlStateJoinNum=\count323
-\c@tikzumlStateDecisionNum=\count324
-\c@tikzumlStateInitialNum=\count325
-\c@tikzumlStateFinalNum=\count326
-\c@tikzumlStateEnterNum=\count327
-\c@tikzumlStateExitNum=\count328
-\c@tikzumlStateEndNum=\count329
-\c@tikzumlStateHistoryNum=\count330
-\c@tikzumlStateDeepHistoryNum=\count331
-\c@tikzumlStateLevel=\count332
-\c@tikzumlStateSubStateNum=\count333
-\c@tikzumlStateText=\count334
-\c@tikzumlObjectNum=\count335
-\c@tikzumlCallLevel=\count336
-\c@tikzumlCallNum=\count337
-\c@tikzumlFragmentLevel=\count338
-\c@tikzumlFragmentLevelNum=\count339
-\c@tikzumlFragmentNum=\count340
-\c@tikzumlFragmentPartNum=\count341
-\c@tikzumlCallStartFragmentNum=\count342
-\c@tikzumlCallEndFragmentNum=\count343
-\c@tikzumlSDNodeNum=\count344
+\c@tikzumlPackageLayers=\count310
+\pgf@layerbox@package0=\box82
+\pgf@layerboxsaved@package0=\box83
+\pgf@layerbox@package1=\box84
+\pgf@layerboxsaved@package1=\box85
+\pgf@layerbox@package2=\box86
+\pgf@layerboxsaved@package2=\box87
+\pgf@layerbox@package3=\box88
+\pgf@layerboxsaved@package3=\box89
+\c@tikzumlFragmentLayers=\count311
+\pgf@layerbox@fragment0=\box90
+\pgf@layerboxsaved@fragment0=\box91
+\pgf@layerbox@fragment1=\box92
+\pgf@layerboxsaved@fragment1=\box93
+\pgf@layerbox@fragment2=\box94
+\pgf@layerboxsaved@fragment2=\box95
+\pgf@layerbox@fragment3=\box96
+\pgf@layerboxsaved@fragment3=\box97
+\c@tikzumlStateLayers=\count312
+\pgf@layerbox@state0=\box98
+\pgf@layerboxsaved@state0=\box99
+\pgf@layerbox@state1=\box100
+\pgf@layerboxsaved@state1=\box101
+\pgf@layerbox@state2=\box102
+\pgf@layerboxsaved@state2=\box103
+\pgf@layerbox@state3=\box104
+\pgf@layerboxsaved@state3=\box105
+\c@tikzumlComponentLayers=\count313
+\pgf@layerbox@component0=\box106
+\pgf@layerboxsaved@component0=\box107
+\pgf@layerbox@component1=\box108
+\pgf@layerboxsaved@component1=\box109
+\pgf@layerbox@component2=\box110
+\pgf@layerboxsaved@component2=\box111
+\pgf@layerbox@component3=\box112
+\pgf@layerboxsaved@component3=\box113
+\pgf@layerbox@lifelines=\box114
+\pgf@layerboxsaved@lifelines=\box115
+\pgf@layerbox@activity=\box116
+\pgf@layerboxsaved@activity=\box117
+\pgf@layerbox@connections=\box118
+\pgf@layerboxsaved@connections=\box119
+\c@tikzumlPackageClassNum=\count314
+\c@tikzumlPackageSubPackageNum=\count315
+\c@tikzumlRelationNum=\count316
+\c@tikzumlNoteNum=\count317
+\c@pos=\count318
+\c@posT=\count319
+\c@posStereo=\count320
+\c@tikzumlPackageLevel=\count321
+\tikzumlNestingSymbolSize=\dimen309
+\c@tikzumlSystemUseCaseNum=\count322
+\c@tikzumlSystemLevel=\count323
+\c@tikzumlUseCaseNum=\count324
+\c@tikzumlActorNum=\count325
+\c@tikzumlStateJoinNum=\count326
+\c@tikzumlStateDecisionNum=\count327
+\c@tikzumlStateInitialNum=\count328
+\c@tikzumlStateFinalNum=\count329
+\c@tikzumlStateEnterNum=\count330
+\c@tikzumlStateExitNum=\count331
+\c@tikzumlStateEndNum=\count332
+\c@tikzumlStateHistoryNum=\count333
+\c@tikzumlStateDeepHistoryNum=\count334
+\c@tikzumlStateLevel=\count335
+\c@tikzumlStateSubStateNum=\count336
+\c@tikzumlStateText=\count337
+\c@tikzumlObjectNum=\count338
+\c@tikzumlCallLevel=\count339
+\c@tikzumlCallNum=\count340
+\c@tikzumlFragmentLevel=\count341
+\c@tikzumlFragmentLevelNum=\count342
+\c@tikzumlFragmentNum=\count343
+\c@tikzumlFragmentPartNum=\count344
+\c@tikzumlCallStartFragmentNum=\count345
+\c@tikzumlCallEndFragmentNum=\count346
+\c@tikzumlSDNodeNum=\count347
 \tikzumlCall@xa=\skip59
 \tikzumlCall@xb=\skip60
-\c@tikzumlComponentLevel=\count345
-\c@tikzumlComponentSubComponentNum=\count346
-\c@tikzumlConnectorNum=\count347
+\c@tikzumlComponentLevel=\count348
+\c@tikzumlComponentSubComponentNum=\count349
+\c@tikzumlConnectorNum=\count350
 \tikzuml@AC@xa=\skip61
 \tikzuml@AC@ya=\skip62
 \tikzuml@AC@xb=\skip63
@@ -1916,31 +1372,25 @@ Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
 \tikzuml@AC@ybrc=\skip80
 \tikzuml@AC@middleArm=\skip81
 ))
-(/home/eagle/texmf/tex/latex/Lilly/source/Graphics/LILLYxGRAPHICSxPROVIDER.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/LILLYxGRAPHICSxPROVID
+ER.sty
 Package: LILLYxGRAPHICSxPROVIDER 2019/07/21 Stellt die Grafik-Provider-Erweiter
 ungen fuer LILLY zur Verfuegung
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \getGraphics with sig. ' o m o ' on line 45.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \getPrerendered with sig. ' o m o ' on line 58.
-.................................................
-))
+
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Graphics/LILLYxGRAPHICS.sty
+Package: LILLYxGRAPHICS 2019/07/20 Liefert die Grafik-Erweiterung fuer Lilly
+)))
 Class Lilly Info: LILLYxLoadPackage (wasysym): Existenz des Blitzes :D  on inpu
-t line 16.
- (/usr/share/texlive/texmf-dist/tex/latex/wasysym/wasysym.sty
+t line 20.
+(/usr/share/texlive/texmf-dist/tex/latex/wasysym/wasysym.sty
 Package: wasysym 2003/10/30 v2.0 Wasy-2 symbol support package
 \symwasy=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
 )
-Class Lilly Info: LILLYxLoadPackage (fontawesome): Für coole Symbole - ist sie
- nicht da so wird versucht für alle Befehle die LILLY verwendet ein Wrapper zu
- finden :D  on input line 22.
+Class Lilly Info: LILLYxLoadPackage (fontawesome): F\IeC {\"u}r coole Symbole -
+ ist sie nicht da so wird versucht f\IeC {\"u}r alle Befehle die LILLY verwende
+t ein Wrapper zu finden :D  on input line 26.
 
 (/usr/share/texlive/texmf-dist/tex/latex/fontawesome/fontawesome.sty
 Package: fontawesome 2016/05/15 v4.6.3.1 font awesome icons
@@ -1952,12 +1402,6 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 .tex)
 (/usr/share/texlive/texmf-dist/tex/latex/fontawesome/fontawesomesymbols-pdftex.
 tex))
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \NewEmblem with sig. 'O{} O{} m ' on line 107.
-.................................................
-
 [Emblem:NoneEmblem] Radius: [0.396cm]
 [Emblem:NoneEmblem] BgColor: [DebianRed]
 [Emblem:NoneEmblem] BorderColor: [DebianRed]
@@ -1965,11 +1409,6 @@ tex))
 [Emblem:NoneEmblem] Draw: [None]
 [Emblem:NoneEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont \sffa
 mily ]
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \NoneEmblem with sig. 'O{} m' on line 113.
-.................................................
 [Emblem:QuadraticEmblem] Radius: [0.396cm]
 [Emblem:QuadraticEmblem] BgColor: [DebianRed]
 [Emblem:QuadraticEmblem] BorderColor: [DebianRed]
@@ -1977,11 +1416,6 @@ mily ]
 [Emblem:QuadraticEmblem] Draw: [Quadratic]
 [Emblem:QuadraticEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont 
 \sffamily ]
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \QuadraticEmblem with sig. 'O{} m' on line 114.
-.................................................
 [Emblem:RoundEmblem] Radius: [0.396cm]
 [Emblem:RoundEmblem] BgColor: [DebianRed]
 [Emblem:RoundEmblem] BorderColor: [DebianRed]
@@ -1989,11 +1423,6 @@ mily ]
 [Emblem:RoundEmblem] Draw: [Round]
 [Emblem:RoundEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont \sff
 amily ]
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \RoundEmblem with sig. 'O{} m' on line 115.
-.................................................
 [Emblem:HexagonEmblem] Radius: [0.396cm]
 [Emblem:HexagonEmblem] BgColor: [DebianRed]
 [Emblem:HexagonEmblem] BorderColor: [DebianRed]
@@ -2001,11 +1430,6 @@ amily ]
 [Emblem:HexagonEmblem] Draw: [Hexagon]
 [Emblem:HexagonEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont \s
 ffamily ]
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \HexagonEmblem with sig. 'O{} m' on line 116.
-.................................................
 [Emblem:OctagonEmblem] Radius: [0.396cm]
 [Emblem:OctagonEmblem] BgColor: [DebianRed]
 [Emblem:OctagonEmblem] BorderColor: [DebianRed]
@@ -2013,11 +1437,6 @@ ffamily ]
 [Emblem:OctagonEmblem] Draw: [Octagon]
 [Emblem:OctagonEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont \s
 ffamily ]
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \OctagonEmblem with sig. 'O{} m' on line 117.
-.................................................
 [Emblem:DefaultBaseEmblem] Radius: [0.396cm]
 [Emblem:DefaultBaseEmblem] BgColor: [Leaf!75]
 [Emblem:DefaultBaseEmblem] BorderColor: [Leaf]
@@ -2025,23 +1444,18 @@ ffamily ]
 [Emblem:DefaultBaseEmblem] Draw: [Hexagon]
 [Emblem:DefaultBaseEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfon
 t \sffamily ]
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \DefaultBaseEmblem with sig. 'O{} m' on line 119.
-.................................................
-) (/home/eagle/texmf/tex/latex/Lilly/source/Listings/LILLYxLISTINGS.sty
+) (/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/LILLYxLISTINGS.sty
 Package: LILLYxLISTINGS 2019/07/14 Stellt die Listings-Erweiterungen fuer LILLY
  zur Verfuegung
 
-(/home/eagle/texmf/tex/latex/Lilly/source/Helper/LILLYxENCODING.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Helper/LILLYxENCODING.sty
 Package: LILLYxENCODING 2019/07/16 Stellt die Kodierungs-Erweiterungen fuer LIL
 LY zur Verfuegung
 Class Lilly Info: LILLYxLoadPackage (inputenc): Damit Eingaben auch brav codier
 t werden :D  on input line 15.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2015/03/17 v1.2c Input encoding file
+Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks41
 \inpenc@posthook=\toks42
 
@@ -2054,7 +1468,7 @@ Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-global.def
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
-\uc@secondtry=\count348
+\uc@secondtry=\count351
 \uc@combtoks=\toks43
 \uc@combtoksb=\toks44
 \uc@temptokena=\toks45
@@ -2063,10 +1477,10 @@ Class Lilly Info: LILLYxLoadPackage (fontenc): Damit Schriften auch brav codier
 t werden :D  on input line 23.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
-File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
 Class Lilly Info: LILLYxLoadPackage (ngerman): Damit auch wirklich Deutsch gesp
@@ -2074,8 +1488,8 @@ rochen wird, ist zur Sicherheit da, redundant da babel!  on input line 31.
 
 (/usr/share/texlive/texmf-dist/tex/generic/german/ngerman.sty v2.5e 1998-07-08
 Package: ngerman 1998/07/08 v2.5e Support for writing german texts (br)
-\grmnU@D=\dimen309
-ngerman -- \language number for naustrian undefined, default 42 used.
+\grmnU@D=\dimen310
+ngerman -- \language number for naustrian undefined, default 3 used.
 )
 Class Lilly Info: LILLYxLoadPackage (lmodern): Da die normale Computer Modern i
 n PDFs pixelig wirkt: nimm Latin Modern  on input line 38.
@@ -2115,7 +1529,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
-Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
+Package: textcomp 2018/08/11 v2.0j Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
 (textcomp)               4 = 5 + \texteuro
@@ -2201,12 +1615,12 @@ Class Lilly Info: LILLYxLoadPackage (eurosym): Tolle Symbole  on input line 45.
 
 (/usr/share/texlive/texmf-dist/tex/latex/eurosym/eurosym.sty
 Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
-\@eurobox=\box115
+\@eurobox=\box120
 )
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 ))
-(/home/eagle/texmf/tex/latex/Lilly/source/Data/LILLYxFONTS.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Data/LILLYxFONTS.sty
 Package: LILLYxFONTS 2019/07/11 Stellt die Schriften-Erweiterungen fuer LILLY z
 ur Verfuegung
 LaTeX Font Info:    Try loading font information for U+eur on input line 12.
@@ -2224,29 +1638,29 @@ odes  on input line 22.
 Package: listingsutf8 2016/05/16 v1.3 Allow UTF-8 in listings input (HO)
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count349
-\lst@gtempboxa=\box116
+\lst@mode=\count352
+\lst@gtempboxa=\box121
 \lst@token=\toks46
-\lst@length=\count350
-\lst@currlwidth=\dimen310
-\lst@column=\count351
-\lst@pos=\count352
-\lst@lostspace=\dimen311
-\lst@width=\dimen312
-\lst@newlines=\count353
-\lst@lineno=\count354
-\lst@maxwidth=\dimen313
+\lst@length=\count353
+\lst@currlwidth=\dimen311
+\lst@column=\count354
+\lst@pos=\count355
+\lst@lostspace=\dimen312
+\lst@width=\dimen313
+\lst@newlines=\count356
+\lst@lineno=\count357
+\lst@maxwidth=\dimen314
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count355
-\lst@skipnumbers=\count356
-\lst@framebox=\box117
+File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
+\c@lstnumber=\count358
+\lst@skipnumbers=\count359
+\lst@framebox=\box122
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2015/06/04 1.6 listings configuration
+File: listings.cfg 2018/09/02 1.7 listings configuration
 ))
-Package: listings 2015/06/04 1.6 (Carsten Heinz)
+Package: listings 2018/09/02 1.7 (Carsten Heinz)
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/stringenc.sty
 Package: stringenc 2016/05/16 v1.11 Convert strings between diff. encodings (HO
@@ -2273,87 +1687,1255 @@ Class Lilly Info: LILLYxDemandPackage (etoolbox): Damit die Befehle robust sind
   on input line 48.
 
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count357
+Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count360
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Packages/_LILLY_PACK_MAIN.te
-x
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_assemb
-ler.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_pseudo
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/LILLYxLISTINGSxLANGUA
+GExCONTROL.sty
+Package: LILLYxLISTINGSxLANGUAGExCONTROL 2019/07/14 Verwaltet Sprachen fuer die
+ Listings-Erweiterungen von LILLY
+
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/LILLYxLISTINGSxADVANC
+ED.sty
+
+LaTeX Warning: You have requested package `LILLyxLISTINGSxADVANCED',
+               but the package provides `LILLYxLISTINGSxADVANCED'.
+
+Package: LILLYxLISTINGSxADVANCED 2019/08/23 Stellt eine Optik-Erweiterung fuer 
+LILLYxLISTINGS zur Verfuegung
+
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Controllers/Boxes/LILLYxCONTRO
+LLERxBOX.sty
+Package: LILLYxCONTROLLERxBOX 2019/07/13 Stellt die klassische Box-Erweiterung 
+fuer LILLY zur Verfuegung
+
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Controllers/LILLYxCONTROLLERxL
+INK.sty
+Package: LILLYxCONTROLLERxLINK 2019/07/14 Stellt die (Hyper-)Link-Erweiterungen
+ fuer LILLY zur Verfuegung
+
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Controllers/LILLYxCONTROLLERxM
+ODE.sty
+Package: LILLYxCONTROLLERxMODE 2019/08/13 Stellt die Modi-Kontroll-Erweiterunge
+n fuer LILLY zur Verfuegung
+ (/usr/share/texlive/texmf-dist/tex/latex/imakeidx/imakeidx.sty
+Package: imakeidx 2016/10/15 v1.3e Package for typesetting indices in a synchro
+nous mode
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks48
+\XKV@tempa@toks=\toks49
+)
+\XKV@depth=\count361
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2018/12/27 v1.8v multicolumn formatting (FMi)
+\c@tracingmulticols=\count362
+\mult@box=\box123
+\multicol@leftmargin=\dimen315
+\c@unbalance=\count363
+\c@collectmore=\count364
+\doublecol@number=\count365
+\multicoltolerance=\count366
+\multicolpretolerance=\count367
+\full@width=\dimen316
+\page@free=\dimen317
+\premulticols=\dimen318
+\postmulticols=\dimen319
+\multicolsep=\skip82
+\multicolbaselineskip=\skip83
+\partial@page=\box124
+\last@line=\box125
+\maxbalancingoverflow=\dimen320
+\mult@rightbox=\box126
+\mult@grightbox=\box127
+\mult@gfirstbox=\box128
+\mult@firstbox=\box129
+\@tempa=\box130
+\@tempa=\box131
+\@tempa=\box132
+\@tempa=\box133
+\@tempa=\box134
+\@tempa=\box135
+\@tempa=\box136
+\@tempa=\box137
+\@tempa=\box138
+\@tempa=\box139
+\@tempa=\box140
+\@tempa=\box141
+\@tempa=\box142
+\@tempa=\box143
+\@tempa=\box144
+\@tempa=\box145
+\@tempa=\box146
+\c@columnbadness=\count368
+\c@finalcolumnbadness=\count369
+\last@try=\dimen321
+\multicolovershoot=\dimen322
+\multicolundershoot=\dimen323
+\mult@nat@firstbox=\box147
+\colbreak@box=\box148
+\mc@col@check@num=\count370
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty
+Package: titletoc 2011/12/15 v1.6 TOC entries
+\ttl@leftsep=\dimen324
+)
+Class Lilly Info: LILLYxDemandPackage (hyperref): Fuer tolle Verlinkungen und e
+inen tollen \IeC {\"U}berblick  on input line 20.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2018/11/30 v6.88e Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package hobsub Info: Skipping package `etexcmds' (already loaded).
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
+Package hobsub Info: Skipping package `pdfescape' (already loaded).
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen325
+\Hy@linkcounter=\count371
+\Hy@pagecounter=\count372
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2018/11/30 v6.88e Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count373
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `pageanchor' set `true' on input line 4393.
+Package hyperref Info: Hyper figures OFF on input line 4519.
+Package hyperref Info: Link nesting OFF on input line 4524.
+Package hyperref Info: Hyper index ON on input line 4527.
+Package hyperref Info: Plain pages OFF on input line 4534.
+Package hyperref Info: Backreferencing OFF on input line 4539.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4772.
+\c@Hy@tempcnt=\count374
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5125.
+\XeTeXLinkMargin=\dimen326
+\Fld@menulength=\count375
+\Field@Width=\dimen327
+\Fld@charsize=\dimen328
+Package hyperref Info: Hyper figures OFF on input line 6380.
+Package hyperref Info: Link nesting OFF on input line 6385.
+Package hyperref Info: Hyper index ON on input line 6388.
+Package hyperref Info: backreferencing OFF on input line 6395.
+Package hyperref Info: Link coloring OFF on input line 6400.
+Package hyperref Info: Link coloring with OCG OFF on input line 6405.
+Package hyperref Info: PDF/A mode OFF on input line 6410.
+LaTeX Info: Redefining \ref on input line 6450.
+LaTeX Info: Redefining \pageref on input line 6454.
+\Hy@abspage=\count376
+\c@Item=\count377
+\c@Hfootnote=\count378
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2018/11/30 v6.88e Hyperref driver for pdfTeX
+\Fld@listcount=\count379
+\c@bookmark@seq@number=\count380
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip84
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 56.
+
+
+Package hyperref Warning: Option `hyperfootnotes' has already been used,
+(hyperref)                setting the option has no effect on input line 56.
+
+Package hyperref Info: Option `hypertexnames' set `true' on input line 56.
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 56.
+
+Package hyperref Info: Option `unicode' set `true' on input line 56.
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2018/11/30 v6.88e Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `pdftoolbar' set `false' on input line 56.
+Package hyperref Info: Option `pdfmenubar' set `false' on input line 56.
+Package hyperref Info: Option `pdffitwindow' set `true' on input line 56.
+
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 56.
+
+Normal link - mode
+) (/home/the-limerent/texmf/tex/latex/Lilly/source/Helper/LILLYxSHORTCUTS.sty
+Package: LILLYxSHORTCUTS 2019/08/03 Stellt einige Shortcuts fuer LILLY zur Verf
+uegung
+\LILLYxNegativeSkip=\skip85
+)
+Class Lilly Info: LILLYxDemandPackage (tocloft): F\IeC {\"u}r Listen und so  on
+ input line 22.
+
+(/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
+Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
+Package tocloft Info: The document has section divisions on input line 51.
+\cftparskip=\skip86
+\cftbeforetoctitleskip=\skip87
+\cftaftertoctitleskip=\skip88
+\cftbeforepartskip=\skip89
+\cftpartnumwidth=\skip90
+\cftpartindent=\skip91
+\cftbeforesecskip=\skip92
+\cftsecindent=\skip93
+\cftsecnumwidth=\skip94
+\cftbeforesubsecskip=\skip95
+\cftsubsecindent=\skip96
+\cftsubsecnumwidth=\skip97
+\cftbeforesubsubsecskip=\skip98
+\cftsubsubsecindent=\skip99
+\cftsubsubsecnumwidth=\skip100
+\cftbeforeparaskip=\skip101
+\cftparaindent=\skip102
+\cftparanumwidth=\skip103
+\cftbeforesubparaskip=\skip104
+\cftsubparaindent=\skip105
+\cftsubparanumwidth=\skip106
+\cftbeforeloftitleskip=\skip107
+\cftafterloftitleskip=\skip108
+\cftbeforefigskip=\skip109
+\cftfigindent=\skip110
+\cftfignumwidth=\skip111
+\c@lofdepth=\count381
+\c@lotdepth=\count382
+\cftbeforelottitleskip=\skip112
+\cftafterlottitleskip=\skip113
+\cftbeforetabskip=\skip114
+\cfttabindent=\skip115
+\cfttabnumwidth=\skip116
+)
+Class Lilly Info: LILLYxDemandPackage (tcolorbox): Fuer all die schoenen boexli
+s:D  on input line 28.
+
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2018/12/07 version 4.15 text color boxes
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks50
+\verbatim@line=\toks51
+\verbatim@in@stream=\read3
+)
+\tcb@titlebox=\box149
+\tcb@upperbox=\box150
+\tcb@lowerbox=\box151
+\tcb@phantombox=\box152
+\c@tcbbreakpart=\count383
+\c@tcblayer=\count384
+\tcolorbox@number=\count385
+\tcb@temp=\box153
+\tcb@temp=\box154
+\tcb@temp=\box155
+\tcb@temp=\box156
+\tcb@out=\write4
+\tcb@record@out=\write5
+
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '4.15'
+\tcb@waterbox=\box157
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '4.15'
+)) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
+Library (tcolorbox): 'tcbraster.code.tex' version '4.15'
+\c@tcbrastercolumn=\count386
+\c@tcbrasterrow=\count387
+\c@tcbraster=\count388
+) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '4.15'
+\tcb@testbox=\box158
+\tcb@totalupperbox=\box159
+\tcb@totallowerbox=\box160
+) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbhooks.code.tex
+Library (tcolorbox): 'tcbhooks.code.tex' version '4.15'
+) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
+Library (tcolorbox): 'tcbtheorems.code.tex' version '4.15'
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2018/12/01 v2.17b AMS math features
+\@mathmargin=\skip117
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks52
+\ex@=\dimen329
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen330
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count389
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count390
+\leftroot@=\count391
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count392
+\DOTSCASE@=\count393
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box161
+\strutbox@=\box162
+\big@size=\dimen331
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count394
+\c@MaxMatrixCols=\count395
+\dotsspace@=\muskip17
+\c@parentequation=\count396
+\dspbrk@lvl=\count397
+\tag@help=\toks53
+\row@=\count398
+\column@=\count399
+\maxfields@=\count400
+\andhelp@=\toks54
+\eqnshift@=\dimen332
+\alignsep@=\dimen333
+\tagshift@=\dimen334
+\tagwidth@=\dimen335
+\totwidth@=\dimen336
+\lineht@=\dimen337
+\@envbody=\toks55
+\multlinegap=\skip118
+\multlinetaggap=\skip119
+\mathdisplay@stack=\toks56
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
+Library (tcolorbox): 'tcbfitting.code.tex' version '4.15'
+\tcbfitdim=\dimen338
+\tcb@lowerfitdim=\dimen339
+\tcb@upperfitdim=\dimen340
+\tcb@cur@hbadness=\count401
+) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbxparse.code.tex
+Library (tcolorbox): 'tcbxparse.code.tex' version '4.15'
+))
+Class Lilly Info: LILLYxDemandPackage (bookmark): Fuer bookmarks eben  on input
+ line 40.
+ (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bookmark.sty
+Package: bookmark 2016/05/17 v1.26 PDF bookmarks (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bkm-pdftex.def
+File: bkm-pdftex.def 2016/05/17 v1.26 bookmark driver for pdfTeX (HO)
+\BKM@id=\count402
+))
+Class Lilly Info: LILLYxDemandPackage (relsize): Machen wir alles ein bisschen 
+relativer  on input line 53.
+
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\LILLYxBOXxHIGHLEVELxOFFSET=\skip120
+
+Definition by Lock using section: LILLYxBOXxDefinitionxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Definition by Enable using TRUE: LILLYxBOXxDefinitionxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Definition by Box using TRUE: LILLYxBOXxDefinitionxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Beispiel by Lock using section: LILLYxBOXxBeispielxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Beispiel by Enable using TRUE: LILLYxBOXxBeispielxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Beispiel by Box using TRUE: LILLYxBOXxBeispielxBox => TRUE
+Expected: TRUE, got: FALSE
+Bemerkung by Lock using section: LILLYxBOXxBemerkungxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Bemerkung by Enable using TRUE: LILLYxBOXxBemerkungxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Bemerkung by Box using TRUE: LILLYxBOXxBemerkungxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Satz by Lock using section: LILLYxBOXxSatzxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Satz by Enable using TRUE: LILLYxBOXxSatzxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Satz by Box using TRUE: LILLYxBOXxSatzxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Beweis by Lock using section: LILLYxBOXxBeweisxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Beweis by Enable using TRUE: LILLYxBOXxBeweisxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Beweis by Box using TRUE: LILLYxBOXxBeweisxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Lemma by Lock using section: LILLYxBOXxLemmaxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Lemma by Enable using TRUE: LILLYxBOXxLemmaxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Lemma by Box using TRUE: LILLYxBOXxLemmaxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Zusammenfassung by Lock using section: LILLYxBOXxZusammenfassungxLock => sectio
+n
+There was no Setting given => Generate default
+Expected: section, got: section
+Zusammenfassung by Enable using TRUE: LILLYxBOXxZusammenfassungxEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Zusammenfassung by Box using TRUE: LILLYxBOXxZusammenfassungxBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Aufgabe by Lock using section: LILLYxBOXxAufgabexLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Aufgabe by Enable using TRUE: LILLYxBOXxAufgabexEnable => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Aufgabe by Box using TRUE: LILLYxBOXxAufgabexBox => TRUE
+There was no Setting given => Generate default
+Expected: TRUE, got: TRUE
+Uebungsblatt by Lock using section: LILLYxBOXxUebungsblattxLock => section
+There was no Setting given => Generate default
+Expected: section, got: section
+Uebungsblatt by Enable using TRUE: LILLYxBOXxUebungsblattxEnable => TRUE
+Expected: TRUE, got: FALSE
+Uebungsblatt by Box using TRUE: LILLYxBOXxUebungsblattxBox => TRUE
+Expected: TRUE, got: TRUE
+\c@ctr_TSK=\count403
+\c@ctr_EXE=\count404
+
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Data/POIs/_LILLY_BOXES_DEFAULT
+(init).tex
+\c@tcb@cnt@LILLYxBOXxDefinition=\count405
+\c@tcb@cnt@LILLYxBOXxBeispiel=\count406
+\c@tcb@cnt@LILLYxBOXxBemerkung=\count407
+\c@tcb@cnt@LILLYxBOXxSatz=\count408
+\c@tcb@cnt@LILLYxBOXxBeweis=\count409
+\c@tcb@cnt@LILLYxBOXxLemma=\count410
+\c@tcb@cnt@LILLYxBOXxZusammenfassung=\count411
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Data/POIs/_LILLY_BOXES_SPECIAL
 .tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_mips.t
-ex (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Data/POIs/_LILLY_BOXES_LIMEREN
+CE.tex)
+\c@DEFINITIONS=\count412
+\cftbeforeDEFINITIONSskip=\skip121
+\cftDEFINITIONSindent=\skip122
+\cftDEFINITIONSnumwidth=\skip123
+\c@DEFSdepth=\count413
+\cftbeforeDEFStitleskip=\skip124
+\cftafterDEFStitleskip=\skip125
+
+Registering Box: definition
+[definition:definition] Name: [definition]
+[definition:definition] Title: [Definition \thetcbcounter {}\nobreakspace {}]
+[definition:definition] Color: [DebianRed]
+[definition:definition] Precode: []
+[definition:definition] Incode: []
+[definition:definition] Outcode: []
+[definition:definition] Postcode: [\grenewcommand {\LILLYxSEENxDEFINITION }{TRU
+E}]
+[definition:definition] Usestyle: [LILLYxBOXxDefinition]
+[definition:definition] Emblem: []
+[definition:definition] Lock: [section]
+[definition:definition] Listname: [DEFINITIONS]
+[definition:definition] Listtext: [Alle Definitionen\\[\LILLYxBOXxHIGHLEVELxOFF
+SET ]]
+[definition:definition] Listmen: [DEFS]
+[definition:definition] CreateList: FALSE
+[definition:definition] CustomList: TRUE
+[definition:definition] BoxEnabled: TRUE
+[definition:definition] UseBox: TRUE
+Registering Box: definitionStarred
+[definitionStarred:definitionStarred] Name: [definition*]
+[definitionStarred:definitionStarred] Title: [Definition \thetcbcounter {}\nobr
+eakspace {}]
+[definitionStarred:definitionStarred] Color: [DebianRed]
+[definitionStarred:definitionStarred] Precode: []
+[definitionStarred:definitionStarred] Incode: []
+[definitionStarred:definitionStarred] Outcode: []
+[definitionStarred:definitionStarred] Postcode: [\grenewcommand {\LILLYxSEENxDE
+FINITION }{TRUE}]
+[definitionStarred:definitionStarred] Usestyle: [LILLYxBOXxDefinition*]
+[definitionStarred:definitionStarred] Emblem: [\small \faThumbTack ]
+[definitionStarred:definitionStarred] Lock: [section]
+[definitionStarred:definitionStarred] Listname: [DEFINITIONS]
+[definitionStarred:definitionStarred] Listtext: [Alle \lillyxBoxxName ]
+[definitionStarred:definitionStarred] Listmen: [DEFS]
+[definitionStarred:definitionStarred] CreateList: FALSE
+[definitionStarred:definitionStarred] CustomList: TRUE
+[definitionStarred:definitionStarred] BoxEnabled: TRUE
+[definitionStarred:definitionStarred] UseBox: TRUE
+\c@BEMERKUNGEN=\count414
+\cftbeforeBEMERKUNGENskip=\skip126
+\cftBEMERKUNGENindent=\skip127
+\cftBEMERKUNGENnumwidth=\skip128
+\c@BEMSdepth=\count415
+\cftbeforeBEMStitleskip=\skip129
+\cftafterBEMStitleskip=\skip130
+Registering Box: bemerkung
+[bemerkung:bemerkung] Name: [bemerkung]
+[bemerkung:bemerkung] Title: [Bemerkung \thetcbcounter {}\nobreakspace {}]
+[bemerkung:bemerkung] Color: [Charcoal]
+[bemerkung:bemerkung] Precode: []
+[bemerkung:bemerkung] Incode: []
+[bemerkung:bemerkung] Outcode: []
+[bemerkung:bemerkung] Postcode: [\grenewcommand {\LILLYxSEENxBEMERKUNG }{TRUE}]
+
+[bemerkung:bemerkung] Usestyle: [LILLYxBOXxBemerkung]
+[bemerkung:bemerkung] Emblem: [XXNOEMBLEMXX]
+[bemerkung:bemerkung] Lock: [section]
+[bemerkung:bemerkung] Listname: [BEMERKUNGEN]
+[bemerkung:bemerkung] Listtext: [Alle Bemerkungen\\[\LILLYxBOXxHIGHLEVELxOFFSET
+ ]]
+[bemerkung:bemerkung] Listmen: [BEMS]
+[bemerkung:bemerkung] CreateList: FALSE
+[bemerkung:bemerkung] CustomList: TRUE
+[bemerkung:bemerkung] BoxEnabled: TRUE
+[bemerkung:bemerkung] UseBox: TRUE
+Registering Box: bemerkungStarred
+[bemerkungStarred:bemerkungStarred] Name: [bemerkung*]
+[bemerkungStarred:bemerkungStarred] Title: [Bemerkung \thetcbcounter {}\nobreak
+space {}]
+[bemerkungStarred:bemerkungStarred] Color: [Charcoal]
+[bemerkungStarred:bemerkungStarred] Precode: []
+[bemerkungStarred:bemerkungStarred] Incode: [\nskip ]
+[bemerkungStarred:bemerkungStarred] Outcode: []
+[bemerkungStarred:bemerkungStarred] Postcode: [\grenewcommand {\LILLYxSEENxBEME
+RKUNG }{TRUE}]
+[bemerkungStarred:bemerkungStarred] Usestyle: [LILLYxBOXxBemerkung]
+[bemerkungStarred:bemerkungStarred] Emblem: [XXNOEMBLEMXX]
+[bemerkungStarred:bemerkungStarred] Lock: [section]
+[bemerkungStarred:bemerkungStarred] Listname: [BEMERKUNGEN]
+[bemerkungStarred:bemerkungStarred] Listtext: [Alle \lillyxBoxxName ]
+[bemerkungStarred:bemerkungStarred] Listmen: [BEMS]
+[bemerkungStarred:bemerkungStarred] CreateList: FALSE
+[bemerkungStarred:bemerkungStarred] CustomList: TRUE
+[bemerkungStarred:bemerkungStarred] BoxEnabled: TRUE
+[bemerkungStarred:bemerkungStarred] UseBox: TRUE
+\c@BEISPIELE=\count416
+\cftbeforeBEISPIELEskip=\skip131
+\cftBEISPIELEindent=\skip132
+\cftBEISPIELEnumwidth=\skip133
+\c@BEISdepth=\count417
+\cftbeforeBEIStitleskip=\skip134
+\cftafterBEIStitleskip=\skip135
+Registering Box: beispiel
+[beispiel:beispiel] Name: [beispiel]
+[beispiel:beispiel] Title: [Beispiel \thetcbcounter {}\nobreakspace {}]
+[beispiel:beispiel] Color: [Charcoal]
+[beispiel:beispiel] Precode: []
+[beispiel:beispiel] Incode: []
+[beispiel:beispiel] Outcode: []
+[beispiel:beispiel] Postcode: [\grenewcommand {\LILLYxSEENxBEISPIEL }{TRUE}]
+[beispiel:beispiel] Usestyle: [LILLYxBOXxBeispiel]
+[beispiel:beispiel] Emblem: [XXNOEMBLEMXX]
+[beispiel:beispiel] Lock: [section]
+[beispiel:beispiel] Listname: [BEISPIELE]
+[beispiel:beispiel] Listtext: [Alle Beispiele\\[\LILLYxBOXxHIGHLEVELxOFFSET ]]
+[beispiel:beispiel] Listmen: [BEIS]
+[beispiel:beispiel] CreateList: FALSE
+[beispiel:beispiel] CustomList: TRUE
+[beispiel:beispiel] BoxEnabled: TRUE
+[beispiel:beispiel] UseBox: FALSE
+Registering Box: beispielStarred
+[beispielStarred:beispielStarred] Name: [beispiel*]
+[beispielStarred:beispielStarred] Title: [Beispiel \thetcbcounter {}\nobreakspa
+ce {}]
+[beispielStarred:beispielStarred] Color: [Charcoal]
+[beispielStarred:beispielStarred] Precode: []
+[beispielStarred:beispielStarred] Incode: [\nskip ]
+[beispielStarred:beispielStarred] Outcode: []
+[beispielStarred:beispielStarred] Postcode: [\grenewcommand {\LILLYxSEENxBEISPI
+EL }{TRUE}]
+[beispielStarred:beispielStarred] Usestyle: [LILLYxBOXxBeispiel]
+[beispielStarred:beispielStarred] Emblem: [XXNOEMBLEMXX]
+[beispielStarred:beispielStarred] Lock: [section]
+[beispielStarred:beispielStarred] Listname: [BEISPIELE]
+[beispielStarred:beispielStarred] Listtext: [Alle \lillyxBoxxName ]
+[beispielStarred:beispielStarred] Listmen: [BEIS]
+[beispielStarred:beispielStarred] CreateList: FALSE
+[beispielStarred:beispielStarred] CustomList: TRUE
+[beispielStarred:beispielStarred] BoxEnabled: TRUE
+[beispielStarred:beispielStarred] UseBox: FALSE
+\c@SATZE=\count418
+\cftbeforeSATZEskip=\skip136
+\cftSATZEindent=\skip137
+\cftSATZEnumwidth=\skip138
+\c@SATSdepth=\count419
+\cftbeforeSATStitleskip=\skip139
+\cftafterSATStitleskip=\skip140
+Registering Box: satz
+[satz:satz] Name: [satz]
+[satz:satz] Title: [Satz \thetcbcounter {}\nobreakspace {}]
+[satz:satz] Color: [Charcoal]
+[satz:satz] Precode: []
+[satz:satz] Incode: []
+[satz:satz] Outcode: []
+[satz:satz] Postcode: [\grenewcommand {\LILLYxSEENxSATZ }{TRUE}]
+[satz:satz] Usestyle: [LILLYxBOXxSatz]
+[satz:satz] Emblem: [XXNOEMBLEMXX]
+[satz:satz] Lock: [section]
+[satz:satz] Listname: [SATZE]
+[satz:satz] Listtext: [Alle S\"{a}tze\\[\LILLYxBOXxHIGHLEVELxOFFSET ]]
+[satz:satz] Listmen: [SATS]
+[satz:satz] CreateList: FALSE
+[satz:satz] CustomList: TRUE
+[satz:satz] BoxEnabled: TRUE
+[satz:satz] UseBox: TRUE
+Registering Box: satzStarred
+[satzStarred:satzStarred] Name: [satz*]
+[satzStarred:satzStarred] Title: [Satz \thetcbcounter {}\nobreakspace {}]
+[satzStarred:satzStarred] Color: [Charcoal]
+[satzStarred:satzStarred] Precode: []
+[satzStarred:satzStarred] Incode: [\nskip ]
+[satzStarred:satzStarred] Outcode: []
+[satzStarred:satzStarred] Postcode: [\grenewcommand {\LILLYxSEENxSATZ }{TRUE}]
+[satzStarred:satzStarred] Usestyle: [LILLYxBOXxSatz]
+[satzStarred:satzStarred] Emblem: [XXNOEMBLEMXX]
+[satzStarred:satzStarred] Lock: [section]
+[satzStarred:satzStarred] Listname: [SATZE]
+[satzStarred:satzStarred] Listtext: [Alle \lillyxBoxxName ]
+[satzStarred:satzStarred] Listmen: [SATS]
+[satzStarred:satzStarred] CreateList: FALSE
+[satzStarred:satzStarred] CustomList: TRUE
+[satzStarred:satzStarred] BoxEnabled: TRUE
+[satzStarred:satzStarred] UseBox: TRUE
+\c@BEWEISE=\count420
+\cftbeforeBEWEISEskip=\skip141
+\cftBEWEISEindent=\skip142
+\cftBEWEISEnumwidth=\skip143
+\c@BEWSdepth=\count421
+\cftbeforeBEWStitleskip=\skip144
+\cftafterBEWStitleskip=\skip145
+Registering Box: beweis
+[beweis:beweis] Name: [beweis]
+[beweis:beweis] Title: [Beweis \thetcbcounter {}\nobreakspace {}]
+[beweis:beweis] Color: [Charcoal]
+[beweis:beweis] Precode: []
+[beweis:beweis] Incode: []
+[beweis:beweis] Outcode: []
+[beweis:beweis] Postcode: [\grenewcommand {\LILLYxSEENxBEWEIS }{TRUE}]
+[beweis:beweis] Usestyle: [LILLYxBOXxBeweis]
+[beweis:beweis] Emblem: [XXNOEMBLEMXX]
+[beweis:beweis] Lock: [section]
+[beweis:beweis] Listname: [BEWEISE]
+[beweis:beweis] Listtext: [Alle Beweise\\[\LILLYxBOXxHIGHLEVELxOFFSET ]]
+[beweis:beweis] Listmen: [BEWS]
+[beweis:beweis] CreateList: FALSE
+[beweis:beweis] CustomList: TRUE
+[beweis:beweis] BoxEnabled: TRUE
+[beweis:beweis] UseBox: TRUE
+Registering Box: beweisStarred
+[beweisStarred:beweisStarred] Name: [beweis*]
+[beweisStarred:beweisStarred] Title: [Beweis \thetcbcounter {}\nobreakspace {}]
+
+[beweisStarred:beweisStarred] Color: [Charcoal]
+[beweisStarred:beweisStarred] Precode: []
+[beweisStarred:beweisStarred] Incode: [\nskip ]
+[beweisStarred:beweisStarred] Outcode: []
+[beweisStarred:beweisStarred] Postcode: [\grenewcommand {\LILLYxSEENxBEWEIS }{T
+RUE}]
+[beweisStarred:beweisStarred] Usestyle: [LILLYxBOXxBeweis]
+[beweisStarred:beweisStarred] Emblem: [XXNOEMBLEMXX]
+[beweisStarred:beweisStarred] Lock: [section]
+[beweisStarred:beweisStarred] Listname: [BEWEISE]
+[beweisStarred:beweisStarred] Listtext: [Alle \lillyxBoxxName ]
+[beweisStarred:beweisStarred] Listmen: [BEWS]
+[beweisStarred:beweisStarred] CreateList: FALSE
+[beweisStarred:beweisStarred] CustomList: TRUE
+[beweisStarred:beweisStarred] BoxEnabled: TRUE
+[beweisStarred:beweisStarred] UseBox: TRUE
+\c@LEMMATA=\count422
+\cftbeforeLEMMATAskip=\skip146
+\cftLEMMATAindent=\skip147
+\cftLEMMATAnumwidth=\skip148
+\c@LEMSdepth=\count423
+\cftbeforeLEMStitleskip=\skip149
+\cftafterLEMStitleskip=\skip150
+Registering Box: lemma
+[lemma:lemma] Name: [lemma]
+[lemma:lemma] Title: [Lemma \thetcbcounter {}\nobreakspace {}]
+[lemma:lemma] Color: [Charcoal]
+[lemma:lemma] Precode: []
+[lemma:lemma] Incode: []
+[lemma:lemma] Outcode: []
+[lemma:lemma] Postcode: [\grenewcommand {\LILLYxSEENxLEMMA }{TRUE}]
+[lemma:lemma] Usestyle: [LILLYxBOXxLemma]
+[lemma:lemma] Emblem: []
+[lemma:lemma] Lock: [section]
+[lemma:lemma] Listname: [LEMMATA]
+[lemma:lemma] Listtext: [Alle Lemmata\\[\LILLYxBOXxHIGHLEVELxOFFSET ]]
+[lemma:lemma] Listmen: [LEMS]
+[lemma:lemma] CreateList: FALSE
+[lemma:lemma] CustomList: TRUE
+[lemma:lemma] BoxEnabled: TRUE
+[lemma:lemma] UseBox: TRUE
+Registering Box: lemmaStarred
+[lemmaStarred:lemmaStarred] Name: [lemma*]
+[lemmaStarred:lemmaStarred] Title: [Lemma \thetcbcounter {}\nobreakspace {}]
+[lemmaStarred:lemmaStarred] Color: [Charcoal]
+[lemmaStarred:lemmaStarred] Precode: []
+[lemmaStarred:lemmaStarred] Incode: []
+[lemmaStarred:lemmaStarred] Outcode: []
+[lemmaStarred:lemmaStarred] Postcode: [\grenewcommand {\LILLYxSEENxLEMMA }{TRUE
+}]
+[lemmaStarred:lemmaStarred] Usestyle: [LILLYxBOXxLemma]
+[lemmaStarred:lemmaStarred] Emblem: [\small \textcolor {\LILLYxColorxLemma }{\f
+aStar }]
+[lemmaStarred:lemmaStarred] Lock: [section]
+[lemmaStarred:lemmaStarred] Listname: [LEMMATA]
+[lemmaStarred:lemmaStarred] Listtext: [Alle \lillyxBoxxName ]
+[lemmaStarred:lemmaStarred] Listmen: [LEMS]
+[lemmaStarred:lemmaStarred] CreateList: FALSE
+[lemmaStarred:lemmaStarred] CustomList: TRUE
+[lemmaStarred:lemmaStarred] BoxEnabled: TRUE
+[lemmaStarred:lemmaStarred] UseBox: TRUE
+\c@ZUSAMMENFASSUNGEN=\count424
+\cftbeforeZUSAMMENFASSUNGENskip=\skip151
+\cftZUSAMMENFASSUNGENindent=\skip152
+\cftZUSAMMENFASSUNGENnumwidth=\skip153
+\c@ZSMSdepth=\count425
+\cftbeforeZSMStitleskip=\skip154
+\cftafterZSMStitleskip=\skip155
+Registering Box: zusammenfassung
+[zusammenfassung:zusammenfassung] Name: [zusammenfassung]
+[zusammenfassung:zusammenfassung] Title: [Zusammenfassung \thetcbcounter {}\nob
+reakspace {}]
+[zusammenfassung:zusammenfassung] Color: [ChromeYellow]
+[zusammenfassung:zusammenfassung] Precode: []
+[zusammenfassung:zusammenfassung] Incode: []
+[zusammenfassung:zusammenfassung] Outcode: []
+[zusammenfassung:zusammenfassung] Postcode: [\grenewcommand {\LILLYxSEENxZUSAMM
+ENFASSUNG }{TRUE}]
+[zusammenfassung:zusammenfassung] Usestyle: [LILLYxBOXxZusammenfassung]
+[zusammenfassung:zusammenfassung] Emblem: [XXNOEMBLEMXX]
+[zusammenfassung:zusammenfassung] Lock: [section]
+[zusammenfassung:zusammenfassung] Listname: [ZUSAMMENFASSUNGEN]
+[zusammenfassung:zusammenfassung] Listtext: [Alle Zusammenfassungen\\[\LILLYxBO
+XxHIGHLEVELxOFFSET ]]
+[zusammenfassung:zusammenfassung] Listmen: [ZSMS]
+[zusammenfassung:zusammenfassung] CreateList: FALSE
+[zusammenfassung:zusammenfassung] CustomList: TRUE
+[zusammenfassung:zusammenfassung] BoxEnabled: TRUE
+[zusammenfassung:zusammenfassung] UseBox: TRUE
+Registering Box: zusammenfassungStarred
+[zusammenfassungStarred:zusammenfassungStarred] Name: [zusammenfassung*]
+[zusammenfassungStarred:zusammenfassungStarred] Title: [Zusammenfassung \thetcb
+counter {}\nobreakspace {}]
+[zusammenfassungStarred:zusammenfassungStarred] Color: [ChromeYellow]
+[zusammenfassungStarred:zusammenfassungStarred] Precode: []
+[zusammenfassungStarred:zusammenfassungStarred] Incode: [\nskip ]
+[zusammenfassungStarred:zusammenfassungStarred] Outcode: []
+[zusammenfassungStarred:zusammenfassungStarred] Postcode: [\grenewcommand {\LIL
+LYxSEENxZUSAMMENFASSUNG }{TRUE}]
+[zusammenfassungStarred:zusammenfassungStarred] Usestyle: [LILLYxBOXxZusammenfa
+ssung]
+[zusammenfassungStarred:zusammenfassungStarred] Emblem: [XXNOEMBLEMXX]
+[zusammenfassungStarred:zusammenfassungStarred] Lock: [section]
+[zusammenfassungStarred:zusammenfassungStarred] Listname: [ZUSAMMENFASSUNGEN]
+[zusammenfassungStarred:zusammenfassungStarred] Listtext: [Alle \lillyxBoxxName
+ ]
+[zusammenfassungStarred:zusammenfassungStarred] Listmen: [ZSMS]
+[zusammenfassungStarred:zusammenfassungStarred] CreateList: FALSE
+[zusammenfassungStarred:zusammenfassungStarred] CustomList: TRUE
+[zusammenfassungStarred:zusammenfassungStarred] BoxEnabled: TRUE
+[zusammenfassungStarred:zusammenfassungStarred] UseBox: TRUE
+\c@TSKS=\count426
+\cftbeforeTSKSskip=\skip156
+\cftTSKSindent=\skip157
+\cftTSKSnumwidth=\skip158
+\c@TSKdepth=\count427
+\cftbeforeTSKtitleskip=\skip159
+\cftafterTSKtitleskip=\skip160
+) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.tex
+Library (tcolorbox): 'tcblistingsutf8.code.tex' version '4.15'
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
+Library (tcolorbox): 'tcblistings.code.tex' version '4.15'
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcblistingscore.code.tex
+Library (tcolorbox): 'tcblistingscore.code.tex' version '4.15'
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
+Library (tcolorbox): 'tcbprocessing.code.tex' version '4.15'
+)
+\c@tcblisting=\count428
+)))))
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Packages/_LILLY_PACK_
+MAIN.tex
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_assembler.tex
+Register 'env default' for assembler/lAssembler
+ > Environment Name: [assembler]
+ > Style: [defaultlst]
+Register 'env plain' for assembler/lAssembler
+ > Environment Name: [plainassembler]
+ > Style: [plainlst]
+Register 'env presentation' for assembler/lAssembler
+ > Environment Name: [sassembler]
+ > Style: [presentlst]
+Register 'inline default' for assembler/lAssembler
+ > Command Name: [cassembler]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for assembler/lAssembler
+ > Command Name: [bassembler]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for assembler/lAssembler
+ > Command Name: [iassembler]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_pseudo.tex
+Register 'env default' for pseudo/lPseudo
+ > Environment Name: [pseudo]
+ > Style: [defaultlst]
+Register 'env plain' for pseudo/lPseudo
+ > Environment Name: [plainpseudo]
+ > Style: [plainlst]
+Register 'env presentation' for pseudo/lPseudo
+ > Environment Name: [spseudo]
+ > Style: [presentlst]
+Register 'inline default' for pseudo/lPseudo
+ > Command Name: [cpseudo]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for pseudo/lPseudo
+ > Command Name: [bpseudo]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for pseudo/lPseudo
+ > Command Name: [ipseudo]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_mips.tex (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen314
-\captionmargin@=\dimen315
-\captionwidth=\dimen316
-\caption@tempdima=\dimen317
-\caption@indent=\dimen318
-\caption@parindent=\dimen319
-\caption@hangindent=\dimen320
+Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen341
+\captionmargin@=\dimen342
+\captionwidth=\dimen343
+\caption@tempdima=\dimen344
+\caption@indent=\dimen345
+\caption@parindent=\dimen346
+\caption@hangindent=\dimen347
 )
-\c@ContinuedFloat=\count358
+\c@caption@flags=\count429
+\c@ContinuedFloat=\count430
+Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \mipsspecifier with sig. '' on line 26.
-.................................................
+Register 'env default' for mips/lMips
+ > Environment Name: [mips]
+ > Style: [defaultlst]
+Register 'env plain' for mips/lMips
+ > Environment Name: [plainmips]
+ > Style: [plainlst]
+Register 'env presentation' for mips/lMips
+ > Environment Name: [smips]
+ > Style: [presentlst]
+Register 'inline default' for mips/lMips
+ > Command Name: [cmips]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for mips/lMips
+ > Command Name: [bmips]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for mips/lMips
+ > Command Name: [imips]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
 )
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_bash.t
-ex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_latex.
-tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_gepard
-.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_java.t
-ex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_xml.te
-x)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_sql.te
-x)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_xsl.te
-x)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_chr.te
-x)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_prolog
-.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_haskel
-l.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_cpp.te
-x)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_python
-.tex)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG_json.t
-ex))
-Start Language Registration
-Registered: assembler(lAssembler)
-Registered: pseudo(lPseudo)
-Registered: mips(lMips)
-Registered: bash(lBash)
-Registered: latex(lLatex)
-Registered: gepard(lGepard)
-Registered: java(lJava)
-Registered: xml(lXml)
-Registered: sql(lSql)
-Registered: xsl(lXsl)
-Registered: chr(lChr)
-Registered: prolog(lProlog)
-Registered: haskell(lHaskell)
-Registered: cpp(lCpp)
-Registered: python(lPython)
-Registered: json(lJson)
-(/home/eagle/texmf/tex/latex/Lilly/source/Listings/LILLYxLISTINGSxHL.sty
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_bash.tex
+Register 'env default' for bash/lBash
+ > Environment Name: [bash]
+ > Style: [defaultlst]
+Register 'env plain' for bash/lBash
+ > Environment Name: [plainbash]
+ > Style: [plainlst]
+Register 'env presentation' for bash/lBash
+ > Environment Name: [sbash]
+ > Style: [presentlst]
+Register 'inline default' for bash/lBash
+ > Command Name: [cbash]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for bash/lBash
+ > Command Name: [bbash]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for bash/lBash
+ > Command Name: [ibash]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_latex.tex
+Register 'env default' for latex/lLatex
+ > Environment Name: [latex]
+ > Style: [defaultlst]
+Register 'env plain' for latex/lLatex
+ > Environment Name: [plainlatex]
+ > Style: [plainlst]
+Register 'env presentation' for latex/lLatex
+ > Environment Name: [slatex]
+ > Style: [presentlst]
+Register 'inline default' for latex/lLatex
+ > Command Name: [clatex]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for latex/lLatex
+ > Command Name: [blatex]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for latex/lLatex
+ > Command Name: [ilatex]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_gepard.tex
+Register 'env default' for gepard/lGepard
+ > Environment Name: [gepard]
+ > Style: [defaultlst]
+Register 'env plain' for gepard/lGepard
+ > Environment Name: [plaingepard]
+ > Style: [plainlst]
+Register 'env presentation' for gepard/lGepard
+ > Environment Name: [sgepard]
+ > Style: [presentlst]
+Register 'inline default' for gepard/lGepard
+ > Command Name: [cgepard]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for gepard/lGepard
+ > Command Name: [bgepard]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for gepard/lGepard
+ > Command Name: [igepard]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_java.tex
+Register 'env default' for java/lJava
+ > Environment Name: [java]
+ > Style: [defaultlst]
+Register 'env plain' for java/lJava
+ > Environment Name: [plainjava]
+ > Style: [plainlst]
+Register 'env presentation' for java/lJava
+ > Environment Name: [sjava]
+ > Style: [presentlst]
+Register 'inline default' for java/lJava
+ > Command Name: [cjava]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for java/lJava
+ > Command Name: [bjava]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for java/lJava
+ > Command Name: [ijava]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_xml.tex
+Register 'env default' for xml/lXml
+ > Environment Name: [xml]
+ > Style: [defaultlst]
+Register 'env plain' for xml/lXml
+ > Environment Name: [plainxml]
+ > Style: [plainlst]
+Register 'env presentation' for xml/lXml
+ > Environment Name: [sxml]
+ > Style: [presentlst]
+Register 'inline default' for xml/lXml
+ > Command Name: [cxml]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for xml/lXml
+ > Command Name: [bxml]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for xml/lXml
+ > Command Name: [ixml]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_sql.tex
+Register 'env default' for sql/lSql
+ > Environment Name: [sql]
+ > Style: [defaultlst]
+Register 'env plain' for sql/lSql
+ > Environment Name: [plainsql]
+ > Style: [plainlst]
+Register 'env presentation' for sql/lSql
+ > Environment Name: [ssql]
+ > Style: [presentlst]
+Register 'inline default' for sql/lSql
+ > Command Name: [csql]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for sql/lSql
+ > Command Name: [bsql]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for sql/lSql
+ > Command Name: [isql]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_xsl.tex
+Register 'env default' for xsl/lXsl
+ > Environment Name: [xsl]
+ > Style: [defaultlst]
+Register 'env plain' for xsl/lXsl
+ > Environment Name: [plainxsl]
+ > Style: [plainlst]
+Register 'env presentation' for xsl/lXsl
+ > Environment Name: [sxsl]
+ > Style: [presentlst]
+Register 'inline default' for xsl/lXsl
+ > Command Name: [cxsl]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for xsl/lXsl
+ > Command Name: [bxsl]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for xsl/lXsl
+ > Command Name: [ixsl]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_chr.tex
+Register 'env default' for chr/lChr
+ > Environment Name: [chr]
+ > Style: [defaultlst]
+Register 'env plain' for chr/lChr
+ > Environment Name: [plainchr]
+ > Style: [plainlst]
+Register 'env presentation' for chr/lChr
+ > Environment Name: [schr]
+ > Style: [presentlst]
+Register 'inline default' for chr/lChr
+ > Command Name: [cchr]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for chr/lChr
+ > Command Name: [bchr]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for chr/lChr
+ > Command Name: [ichr]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_prolog.tex
+Register 'env default' for prolog/lProlog
+ > Environment Name: [prolog]
+ > Style: [defaultlst]
+Register 'env plain' for prolog/lProlog
+ > Environment Name: [plainprolog]
+ > Style: [plainlst]
+Register 'env presentation' for prolog/lProlog
+ > Environment Name: [sprolog]
+ > Style: [presentlst]
+Register 'inline default' for prolog/lProlog
+ > Command Name: [cprolog]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for prolog/lProlog
+ > Command Name: [bprolog]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for prolog/lProlog
+ > Command Name: [iprolog]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_haskell.tex
+Register 'env default' for haskell/lHaskell
+ > Environment Name: [haskell]
+ > Style: [defaultlst]
+Register 'env plain' for haskell/lHaskell
+ > Environment Name: [plainhaskell]
+ > Style: [plainlst]
+Register 'env presentation' for haskell/lHaskell
+ > Environment Name: [shaskell]
+ > Style: [presentlst]
+Register 'inline default' for haskell/lHaskell
+ > Command Name: [chaskell]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for haskell/lHaskell
+ > Command Name: [bhaskell]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for haskell/lHaskell
+ > Command Name: [ihaskell]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_cpp.tex
+Register 'env default' for cpp/lCpp
+ > Environment Name: [cpp]
+ > Style: [defaultlst]
+Register 'env plain' for cpp/lCpp
+ > Environment Name: [plaincpp]
+ > Style: [plainlst]
+Register 'env presentation' for cpp/lCpp
+ > Environment Name: [scpp]
+ > Style: [presentlst]
+Register 'inline default' for cpp/lCpp
+ > Command Name: [ccpp]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for cpp/lCpp
+ > Command Name: [bcpp]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for cpp/lCpp
+ > Command Name: [icpp]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_python.tex
+Register 'env default' for python/lPython
+ > Environment Name: [python]
+ > Style: [defaultlst]
+Register 'env plain' for python/lPython
+ > Environment Name: [plainpython]
+ > Style: [plainlst]
+Register 'env presentation' for python/lPython
+ > Environment Name: [spython]
+ > Style: [presentlst]
+Register 'inline default' for python/lPython
+ > Command Name: [cpython]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for python/lPython
+ > Command Name: [bpython]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for python/lPython
+ > Command Name: [ipython]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+)
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/Languages/_LILLY_LANG
+_json.tex
+Register 'env default' for json/lJson
+ > Environment Name: [json]
+ > Style: [defaultlst]
+Register 'env plain' for json/lJson
+ > Environment Name: [plainjson]
+ > Style: [plainlst]
+Register 'env presentation' for json/lJson
+ > Environment Name: [sjson]
+ > Style: [presentlst]
+Register 'inline default' for json/lJson
+ > Command Name: [cjson]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINLINE]
+Register 'inline blank' for json/lJson
+ > Command Name: [bjson]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTBLANKINLINE]
+Register 'inline input' for json/lJson
+ > Command Name: [ijson]
+ > Style: [MAIN]
+ > Draw Command: [LILLYxLSTINPL]
+))
+(/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/LILLYxLISTINGSxHL.sty
 Package: LILLYxLISTINGSxHL 2019/08/20 Stellt eine Farb-Erweiterungen fuer LILLY
 s Listings zur Verfuegung
+) (/home/the-limerent/texmf/tex/latex/Lilly/source/Listings/LILLYxRUNTIMES.sty
+Package: LILLYxRUNTIMES 2019/07/14 Stellt die Runtimes-Erweiterungen fuer LILLY
+ zur Verfuegung
 ))
-(./test_emblems.aux)
+No file test_emblems.aux.
 \openout1 = `test_emblems.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
@@ -2370,9 +2952,13 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 6.
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 6.
 
@@ -2381,32 +2967,23 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count359
-\scratchdimen=\dimen321
-\scratchbox=\box118
-\nofMPsegments=\count360
-\nofMParguments=\count361
-\everyMPshowfont=\toks48
-\MPscratchCnt=\count362
-\MPscratchDim=\dimen322
-\MPnumerator=\count363
-\makeMPintoPDFobject=\count364
-\everyMPtoPDFconversion=\toks49
+\scratchcounter=\count431
+\scratchdimen=\dimen348
+\scratchbox=\box163
+\nofMPsegments=\count432
+\nofMParguments=\count433
+\everyMPshowfont=\toks57
+\MPscratchCnt=\count434
+\MPscratchDim=\dimen349
+\MPnumerator=\count435
+\makeMPintoPDFobject=\count436
+\everyMPtoPDFconversion=\toks58
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-))
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 38.
 Package grfext Info: Graphics extension search list:
@@ -2420,17 +2997,32 @@ e
 ))
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
-ick labels; missing features). Consider writing \pgfplotsset{compat=1.15} into 
+ick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into 
 your preamble.
  on input line 6.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
-\c@lstlisting=\count365
+\c@lstlisting=\count437
+\AtBeginShipoutBox=\box164
+Package hyperref Info: Link coloring ON on input line 6.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count438
+)
+LaTeX Info: Redefining \ref on input line 6.
+LaTeX Info: Redefining \pageref on input line 6.
+LaTeX Info: Redefining \nameref on input line 6.
+
+Beweis Box shown
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-
 [Emblem:NoneEmblem] Radius: [0.396cm]
 [Emblem:NoneEmblem] BgColor: [DebianRed]
 [Emblem:NoneEmblem] BorderColor: [DebianRed]
@@ -2438,11 +3030,6 @@ Package caption Info: End \AtBeginDocument code.
 [Emblem:NoneEmblem] Draw: [None]
 [Emblem:NoneEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont \sffa
 mily ]
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \NoneEmblem with sig. 'O{} m' on line 8.
-.................................................
 [Emblem:QuadraticEmblem] Radius: [0.396cm]
 [Emblem:QuadraticEmblem] BgColor: [DebianRed]
 [Emblem:QuadraticEmblem] BorderColor: [DebianRed]
@@ -2450,11 +3037,6 @@ mily ]
 [Emblem:QuadraticEmblem] Draw: [Quadratic]
 [Emblem:QuadraticEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont 
 \sffamily ]
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \QuadraticEmblem with sig. 'O{} m' on line 9.
-.................................................
 [Emblem:RoundEmblem] Radius: [0.396cm]
 [Emblem:RoundEmblem] BgColor: [DebianRed]
 [Emblem:RoundEmblem] BorderColor: [DebianRed]
@@ -2462,11 +3044,6 @@ mily ]
 [Emblem:RoundEmblem] Draw: [Round]
 [Emblem:RoundEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont \sff
 amily ]
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \RoundEmblem with sig. 'O{} m' on line 10.
-.................................................
 [Emblem:HexagonEmblem] Radius: [0.396cm]
 [Emblem:HexagonEmblem] BgColor: [DebianRed]
 [Emblem:HexagonEmblem] BorderColor: [DebianRed]
@@ -2474,11 +3051,6 @@ amily ]
 [Emblem:HexagonEmblem] Draw: [Hexagon]
 [Emblem:HexagonEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont \s
 ffamily ]
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \HexagonEmblem with sig. 'O{} m' on line 11.
-.................................................
 [Emblem:OctagonEmblem] Radius: [0.396cm]
 [Emblem:OctagonEmblem] BgColor: [DebianRed]
 [Emblem:OctagonEmblem] BorderColor: [DebianRed]
@@ -2486,11 +3058,6 @@ ffamily ]
 [Emblem:OctagonEmblem] Draw: [Octagon]
 [Emblem:OctagonEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont \s
 ffamily ]
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \OctagonEmblem with sig. 'O{} m' on line 12.
-.................................................
 [Emblem:ExampleEmblem] Radius: [1.1em]
 [Emblem:ExampleEmblem] BgColor: [DarkMidnightBlue!75]
 [Emblem:ExampleEmblem] BorderColor: [DarkMidnightBlue]
@@ -2498,11 +3065,6 @@ ffamily ]
 [Emblem:ExampleEmblem] Draw: [Hexagon]
 [Emblem:ExampleEmblem] Font: [\bfseries \relax \fontsize {12}{14}\selectfont \s
 ffamily ]
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \ExampleEmblem with sig. 'O{} m' on line 14.
-.................................................
 
 Underfull \hbox (badness 10000) in paragraph at lines 16--23
 
@@ -2573,63 +3135,72 @@ File: ufontawesometwo.fd 2016/05/22 Font definitions for U/fontawesometwo.
 LaTeX Font Warning: Font shape `U/fontawesometwo/bx/n' undefined
 (Font)              using `U/fontawesometwo/m/n' instead on input line 24.
 
+\openout4 = `test_emblems.listing'.
+
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
+File: lstlang1.sty 2018/09/02 1.7 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
-File: lstlang2.sty 2015/06/04 1.6 listings language file
+File: lstlang2.sty 2018/09/02 1.7 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
-File: lstlang3.sty 2015/06/04 1.6 listings language file
+File: lstlang3.sty 2018/09/02 1.7 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
+File: lstlang1.sty 2018/09/02 1.7 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
-File: lstlang2.sty 2015/06/04 1.6 listings language file
+File: lstlang2.sty 2018/09/02 1.7 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
-File: lstlang3.sty 2015/06/04 1.6 listings language file
+File: lstlang3.sty 2018/09/02 1.7 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
+File: lstlang1.sty 2018/09/02 1.7 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
-File: lstlang2.sty 2015/06/04 1.6 listings language file
+File: lstlang2.sty 2018/09/02 1.7 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
-File: lstlang3.sty 2015/06/04 1.6 listings language file
+File: lstlang3.sty 2018/09/02 1.7 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
 )
 LaTeX Font Info:    Try loading font information for T1+AnonymousPro on input l
-ine 28.
+ine 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/anonymouspro/t1anonymouspro.fd
 File: t1anonymouspro.fd 2014/03/22 Fontinst v1.933 font definitions for T1/Anon
 ymousPro.
 )
+(./test_emblems.listing
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 29.
+(Font)              <5> on input line 1.
+)
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+ [1
 
-[1
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 37.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 37.
+(./test_emblems.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 37.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 37.
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./test_emblems.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 53500 strings out of 492982
- 1262939 string characters out of 32384896
- 1679637 words of memory out of 8000000
- 56048 multiletter control sequences out of 15000+600000
- 580187 words of font info for 68 fonts, out of 8000000 for 9000
+ 68389 strings out of 492615
+ 1541688 string characters out of 3731390
+ 8193768 words of memory out of 17136818
+ 71119 multiletter control sequences out of 15000+200000
+ 582253 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,9n,111p,10463b,2843s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,10n,153p,1394b,3290s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/anonymouspro/AnonymousPro-01.e
 nc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dis
 t/fonts/enc/dvips/fontawesome/fontawesometwo.enc}{/usr/share/texmf/fonts/enc/dv
@@ -2639,10 +3210,10 @@ spro/AnonymousPro-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 ></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type
 1/public/lm/lmss9.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/wasy2-ps/wasyb10.pfb>
-Output written on test_emblems.pdf (1 page, 77127 bytes).
+Output written on test_emblems.pdf (1 page, 78276 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
+ 82 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
+ 4 named destinations out of 1000 (max. 500000)
  149 words of extra memory for PDF output out of 10000 (max. 10000000)
 

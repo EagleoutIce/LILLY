@@ -1,0 +1,204 @@
+\errorcontextlines 999999
+\documentclass[a4paper,landscape]{scrartcl}
+\usepackage[right=1cm, left=.2cm, top=1.5cm, bottom=1.5cm,noheadfoot]{geometry}
+
+\usepackage{LILLYxTIMETABLESxUNIVERSITY}
+\usepackage{LILLYxLISTINGS}
+
+\begin{document}
+
+% % IntToWeekday Test:\newline
+% % \foreach \x in {0,...,6}{
+% %     I\IntToWeekday{\x}Waffel
+% % }
+% % \bigskip\newline
+% % if day end time is not reachable in steps of two, it will be enlarged by one
+% \NewTimeTable[week end day=4, day start time=8]{MeinStundenplan}
+
+% % \theMeinStundenplan\bigskip\newline
+
+% \RawTimeTableEvent{MeinStundenplan}
+% \RawTimeTableEvent[title=Waffel,Tuesday,bgcolor=DebianRed!15]{MeinStundenplan}
+% \RawTimeTableEvent[Freitag,8 uhr]{MeinStundenplan}
+% \RawTimeTableEvent[Mittwoch,9 uhr]{MeinStundenplan}
+% \RawTimeTableEvent[Freitag,10 uhr,title={Wau}]{MeinStundenplan}
+% \RawTimeTableEvent[Mittwoch,11 uhr,title={Wau}]{MeinStundenplan}
+
+% \RawTimeTableEvent[title=Einführung in die Informatik,Do,bgcolor=DebianRed!15]{MeinStundenplan}
+
+
+% \hbox{}\vfill\begin{center}
+% \resizebox{0.75\textwidth}{!}{%
+%     \DrawTimeTable{MeinStundenplan}%
+% }
+% \end{center}
+% \vfill\hbox{}
+% \clearpage
+
+% \NewTimeTable[week end day=4, day start time=8]{testPlan}
+
+% \NewTimeTableEvent{eidi}%
+%     {Einführung in die Informatik}% Titel
+%     {ChromeYellow!25}% Farbe
+%     [Vorlesung] % Extra 1
+%     []  % Extra 2, kann überschrieben werden :D
+%     [Prof. Dr. Thom Frühwirth] % Extra 3
+
+% \neweidi[extra 2=H1]{testPlan}{Dienstag}{14 uhr}
+
+% \hbox{}\vfill\begin{center}
+%     \resizebox{0.75\textwidth}{!}{%
+%         \DrawTimeTable{testPlan}%
+%     }
+%     \end{center}
+%     \vfill\hbox{}
+
+% \clearpage
+
+
+
+
+
+
+
+
+% University check :D
+
+\NewLectureSeries[%
+    vl length = 2 hours, % default
+    vl where  = O28 - H22,
+    %
+    exercise instructor = Marcus Müller,
+    ub length = 2 hours, % default
+    ub where  = O28 - H22,
+    %
+    tutor = Lukas Schmid,
+    tu length = 2 hours,
+    tu where = N24 - 104/101
+]{anaI}{Analysis für Inf. und Ing.}{Dr. Liebezeit}
+
+\NewLectureSeries[%
+    short title=PvS,
+    vl length = 2 hours, % default
+    vl where  = O28 - H22,
+    %
+    exercise instructor = Stefan Götz,
+    ub enabled = false,
+    %
+    % No tutorium, we will ignore :D
+    tutor = Jakob Meyer-Hilberg,
+    tu length = 1 hour,
+    tu where = O28 - 1001
+]{pvs}{Programmierung von Systemen}{Prof. Dr. Tichy}
+
+\NewLectureSeries[%
+    short title=GdBS,
+    vl length = 2 hours, % default
+    vl where  = N25 - H4/5,
+    %
+    % We will set the übung to be the labor :d
+    exercise instructor = Dipl.-Ing Siedenburg,% David Mödinger,
+    ub length = 2 hours,
+    ub where = O27 - 2205,
+    ub title = Labor,
+    ub signature = lb, % will be lbgdbs not ubgdbs!
+    ub bgcolor = Veronica!25, % different bg color
+    %
+    % No tutorium, we will ignore :D
+    tutor = Der Vergessene,
+    tu length = 1 hour,
+    tu where = N25 - 2102
+]{gdbs}{Grundlagen der Betriebssysteme}{Prof. Dr.-Ing. Hauck}
+
+\NewLectureSeries[%
+    vl length = 2 hours, % default
+    vl where  = N25 - H4/5,
+    %
+    exercise instructor = Sabrina Böhm,
+    ub enabled = false,
+    %
+    % No tutorium, we will ignore :D
+    tutor = Pascal Weber,
+    tu length = 2 hours,
+    tu where = O27 - 2202
+]{pdp}{Paradigmen der Programmierung}{Dr. Raschke, Prof. Dr. Frühwirth}
+
+\NewLectureSeries[%
+    docent = Dr. Friedhelm Schwenker,
+    vl length = 2 hours, % default
+    vl where  = O27 - 429,
+    vl signature = ps, % command will be \psknn NOT \vlknn
+    vl bgcolor = DebianRed!25, % different color :D
+    vl title = Proseminar,
+    %
+    ub enabled = false,
+    tu enabled = false
+]{knn}{Künstliche Neuronale Netze}{}
+
+\NewTimeTable[title=Stundenplan SoSe 19/20]{stundenplan}
+
+% ANA
+\ubanaI{stundenplan}{Dienstag}{14 uhr}% day, starttime, length constructed above :D
+\vlanaI{stundenplan}{Donnerstag}{12 uhr}
+\vlanaI{stundenplan}{Freitag}{8 uhr}
+\tuanaI{stundenplan}{Freitag}{10 uhr}
+
+% PVS
+\vlpvs{stundenplan}{Montag}{14 uhr}
+\vlpvs{stundenplan}{Mittwoch}{12 uhr} % maybe add option for cct and ct?
+\tupvs{stundenplan}{Freitag}{13 uhr}
+
+% GDBS
+\vlgdbs{stundenplan}{Montag}{16 uhr}
+\vlgdbs[extra 2 = O28 - H22]{stundenplan}{Donnerstag}{16 uhr}
+\lbgdbs{stundenplan}{Montag}{12 uhr}
+%\tugdbs{stundenplan}{Freitag}{11 uhr}
+
+% PDP
+\vlpdp{stundenplan}{Dienstag}{16 uhr}
+\tupdp{stundenplan}{Donnerstag}{10 uhr}
+
+% Knn
+\psknn{stundenplan}{Mittwoch}{8 uhr}
+\PresentTimeTable{stundenplan}
+
+\clearpage
+\section{How To}
+How to create your own Timetable:
+\begin{latex}[style=LSTHI,morekeywords={[5]{\\ubanaI,\\vlanaI,\\tuanaI,\\vlpvs,\\tupvs,\\vlgdbs,\\lbgdbs,\\vlpdp,\\tupdp,\\psknn}}]
+% \documentclass[a4paper,landscape]{scrartcl}
+% \usepackage[right=1cm, left=.2cm, top=1.5cm, bottom=1.5cm,noheadfoot]{geometry}
+\usepackage{LILLYxTIMETABLESxUNIVERSITY} % University extension
+
+\NewTimeTable[title=Stundenplan SoSe 19]{stundenplan}
+% ANA
+\ubanaI{stundenplan}{Dienstag}{14 uhr}% Tuesday or Di
+\vlanaI{stundenplan}{Donnerstag}{12 uhr}
+\vlanaI{stundenplan}{Freitag}{8 uhr}% Friday or Fr
+\tuanaI{stundenplan}{Freitag}{10 uhr}
+% PVS
+\vlpvs{stundenplan}{Montag}{14 uhr}
+\vlpvs{stundenplan}{Mittwoch}{12 uhr}
+\tupvs{stundenplan}{Freitag}{13 uhr}
+% GDBS
+\vlgdbs{stundenplan}{Montag}{16 uhr}
+\vlgdbs[extra 2 = |plain|O28 - H22|plain|]{stundenplan}{Donnerstag}{16 uhr}
+\lbgdbs{stundenplan}{Montag}{12 uhr}
+% PDP
+\vlpdp{stundenplan}{Dienstag}{16 uhr}
+\tupdp{stundenplan}{Donnerstag}{10 uhr}
+% Knn
+\psknn{stundenplan}{Mittwoch}{8 uhr}
+
+\PresentTimeTable{stundenplan}
+\end{latex}
+The Lectures are defined as:
+\begin{latex}[style=LSTHI]
+\NewLectureSeries[%
+    vl length = 2 hours, % default
+    vl where  = |plain|O28 - H22|plain|,
+    % ...
+]{anaI}{Analysis für Inf. und Ing.}{Dr. Liebezeit}
+\end{latex}
+
+\end{document}

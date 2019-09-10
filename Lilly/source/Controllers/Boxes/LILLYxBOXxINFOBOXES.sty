@@ -5,8 +5,28 @@
 \RequirePackage{LILLYxBOXxMARGIN}
 \RequirePackage{LILLYxEMBLEMS}
 
+
+
+%%% Setting the Design for the Mini-TOCs. Its based on the presenter style
+% Dieses Design entstammt ursrünglich dem Elegant-Book sollte aber Global zur Verfüugung stehen :D
+\tcbset{%
+  presenterstyle/.style={%
+    colback=MudWhite!5,
+    boxrule=1pt,
+    enhanced jigsaw,
+    breakable=true,
+    opacityback=0.9,
+    arc is angular=5mm,
+    fuzzy halo=0.1mm with MudWhite,
+    top=0.1mm,
+    bottom=0.11mm,
+    colframe=Charcoal,
+  }
+}
+
+
 %% Info-Boxen ähneln den normalen Boxen für Definition und Bemerkung unterscheiden sich allerdings grundlegend darin, dass das
-%% Design statisch über pgfkeys gesetzt werden kann und sie dafür gedacht sind in Kombination mit LILLYxBOXxMARGIN und 
+%% Design statisch über pgfkeys gesetzt werden kann und sie dafür gedacht sind in Kombination mit LILLYxBOXxMARGIN und
 %% LILLYxEMBLEMS verwendet zu werden.
 
 \newcounter{CTRxLILLYxTOTALINFOBOXES}
@@ -19,7 +39,7 @@
     style/.is choice,
     style/none/.style={draw=None}, % No Background whatsoever :D
     style/limerence/.style={draw=Limerence}, % Limerence-Like Appearance
-    style/framed/.style={draw=Framed}, % Colored Frame (includes option for background) => TODO
+    style/framed/.style={draw=Framed}, % Colored Frame (includes option for background)
     bgcolor/.store in=\lillyxInfoboxesxbgcolor, % background color
     bordercolor/.store in=\lillyxInfoboxesxbordercolor, % bordercolor this will represent the boxcolor
     fgcolor/.store in=\lillyxInfoboxesxfgcolor, % foreground color
@@ -128,7 +148,7 @@
 % #1 The Id Of the Box it's not possible to transmit all persisted Values easily so this saves a lot of '#'-Symbols :D
 % #2 The Optional Arguments
 % #3 The Title
-\NewEnviron{AbstractInfoMarginBoxDrawer}[3]{% could be done with +b, but as this option is realtivley new, it might not work :D 
+\NewEnviron{AbstractInfoMarginBoxDrawer}[3]{% could be done with +b, but as this option is realtivley new, it might not work :D
         % Here the Marker Magic :D make with switch decideable
         \textsuperscript{\,\cmark[\@nameuse{lillyxINFOBOXESx#1xMarker}]{mrkibox:\theCTRxLILLYxTOTALINFOBOXES}{\@nameuse{lillyxINFOBOXESx#1xBorderColor}}}%
         \lillyxMarginxElement{\elable{mrkibox:\theCTRxLILLYxTOTALINFOBOXES}%

@@ -26,48 +26,48 @@ Hier wird weiter von der Bibliothek \LILLYxNOTExLibrary{LILLYxLISTINGSxLANGUAGEx
 \end{bemerkung}
 Um dynamisch zu bleiben bindet LILLY nicht einfach verschiedene Stile ein, sondern Dateien, welche dann für sich definieren, welche Stile und Sprachen zusätzlich zur Verfügung stehen. %\marginpar{\tiny Bisher ist das Einbinden neuer Stile noch recht starr, da der Dateipfad bis auf das Suffix vorgegeben ist. Dies sollte geändert werden}\par\reversemarginpar
 Mithilfe von \blankcmd{LILLYxListingsxLang} kann man das jeweilige Paket auswählen. Dieses Paket wird über den klassischen \blankcmd{input\{\}}-Befehl eingebunden und zwar über folgende Anweisung:
-{\small\begin{latex}
+{\small\begin{latex*}
 \input{\LILLYxPATHxLISTINGS/Packages/_LILLY_PACK_!**!\LILLYxListingsxPACK}
-\end{latex}}
+\end{latex*}}
 
 Standardmäßig wird so das \T{MAIN}-Paket geladen, welches alle hier definierten Sprachen mitliefert. Damit die zur Verfügung stehenden Sprachen auch verwaltet werden können, läuft die Verwaltung der Sprachen wieder über eine Liste. Die Liste \emph{RegisteredLanguages} verwaltet hierbei die registrierten Sprachen (in der Signatur \T{Sprache/Sprachbezeichner}) und stellt für jede Sprache einen Shortcut zur Verfügung:\elable{mrk:reglangs}\\
 %
 %
 %
 \presentCommand[1.0.9]{c<Sprache>}[\optArg{Listing-Options}\manArg{Code}]
-Setzt den Code mit grauem Hintegrund. Zeilenumbrüche werden hier zwar durchgeführt, allerdings in der Regel nicht optimal gesetzt. Beispiel: \begin{latex}
+Setzt den Code mit grauem Hintegrund. Zeilenumbrüche werden hier zwar durchgeführt, allerdings in der Regel nicht optimal gesetzt. Beispiel: \begin{latex*}
 \cjava{public static void main(String[] args)}
-\end{latex}
+\end{latex*}
 Liefert: \cjava{public static void main(String[] args)}\\
 %
 %
 %
 \presentCommand[1.0.9]{b<Sprache>}[\optArg{Listing-Options}\manArg{Code}]
-Setzt den Code farbig auf dem vorhandenen Hintegrund. Beispiel: \begin{latex}
+Setzt den Code farbig auf dem vorhandenen Hintegrund. Beispiel: \begin{latex*}
 \bjava{public static void main(String[] args)}
-\end{latex}
+\end{latex*}
 Liefert: \bjava{public static void main(String[] args)}\\
 %
 %
 %
 \presentCommand[2.0.0]{p<Sprache>}[\optArg{Listing-Options}\manArg{Code}]
-Setzt den Code im Präsentationsstil. Beispiel: \begin{latex}
+Setzt den Code im Präsentationsstil. Beispiel: \begin{latex*}
 \pjava{public static void main(String[] args)}
-\end{latex}
+\end{latex*}
 Liefert: \pjava{public static void main(String[] args)}\\
 %
 %
 %
 \presentCommand[1.0.9]{i<Sprache>}[\optArg{Listing-Options}\manArg{Code}]
-Lädt und setzt den Programmcode aus der entsprechenden Datei. Beispiel: \begin{latex}
+Lädt und setzt den Programmcode aus der entsprechenden Datei. Beispiel: \begin{latex*}
 \ilatex[firstline=5,lastline=10]{Data/Listings.doc.tex}
-\end{latex}
+\end{latex*}
 Liefert: \ilatex[firstline=5,lastline=10]{Data/Listings.doc.tex}
 %
 %
 %
 \presentEnvironment[1.0.9]{<Sprache>}[\optArg{Listing-Options}]
-Erlaubt das setzen eines Textblocks in der jeweiligen Sprache, es ist die Kurzform von:
+Erlaubt das Setzen eines Textblocks in der jeweiligen Sprache, es ist die Kurzform von:
 \begin{latex}
 \begin{lstlisting}[style=\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style},language=<Sprache>]
     Hier kann Code in der jeweiligen Sprache stehen.
@@ -418,18 +418,18 @@ Registriert eine \T{Sprache} wie \T{java} mit der entsprechenden Listing-Sprache
     morekeywords = [2]{Duck}
 }
 Bisher haben wir damit noch keine Sprache geladen oder irgenetwas Lilly-Kompatibles erzeugt:
-\begin{latex}
+\begin{latex*}
 \isLanguageNameLoaded{rubberduck} % :yields: !*\lstcomment{\isLanguageNameLoaded{rubberduck}}*!
-\end{latex}
+\end{latex*}
 Dies ändert sich durch folgenden Befehl:
-\begin{latex}
+\begin{latex*}
 \RegisterLanguage{rubberduck}{lRubberduck}
-\end{latex}
+\end{latex*}
 \RegisterLanguage{rubberduck}{lRubberduck}%
 Nun gilt die Sprache als geladen:
-\begin{latex}
+\begin{latex*}
 \isLanguageNameLoaded{rubberduck} % :yields: !*\lstcomment{\isLanguageNameLoaded{rubberduck}}*!
-\end{latex}
+\end{latex*}
 Und wir können sie im Code auch verwenden:
 \begin{latex}[morekeywords={[3]{rubberduck}}]
 \begin{rubberduck}
@@ -449,9 +449,9 @@ Quack jens ::{
 }
 \end{rubberduck}
 Analog existieren auch die inline-Befehle:
-\begin{latex}[morekeywords={[5]{\\prubberduck}}]
+\begin{latex*}[morekeywords={[5]{\\prubberduck}}]
 \prubberduck{Duck primus = new Duck();}
-\end{latex}
+\end{latex*}
 Ergibt: \prubberduck{Duck primus = new Duck();}
 \medskip\newline
 Wie die einzelnen Umgebungen heißen und wie sie dargestellt werden sollen lässt sich relativ frei konfigurieren. Für die durch \blankcmd{lillylstset}-modifizierbaren Schlüssel (wie Präfix und Suffix des Befehls) steht die Dokumentation noch aus!\newline

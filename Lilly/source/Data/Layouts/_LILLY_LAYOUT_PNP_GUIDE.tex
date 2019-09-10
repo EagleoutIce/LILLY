@@ -1,0 +1,193 @@
+%%% This Layout is meant to provide the Layout for Pen and Paper Guides
+% Its' currently work in Prgress :D
+
+
+
+\RequirePackage{LILLYxCONTROLLERxBOX}
+
+\RequirePackage{tocloft}
+
+%% General Packages needed for Typesetting
+
+%% https://www.ctan.org/pkg/scrlayer-scrpage
+\LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
+					{Verpflichtööönd}
+					{automark}{}
+
+%% https://www.ctan.org/pkg/framed
+\LILLYxDemandPackage{framed}{Erlaubt das nutzen von leftbar}
+                    {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}
+                    {}{}
+
+%% https://www.ctan.org/pkg/titletoc
+\LILLYxDemandPackage{titletoc}{Macht zusammen mit titlesec den toc}
+                    {Das sieht garnicht gut aus :P}
+					{}{}
+
+%% https://www.ctan.org/pkg/titlesec
+\LILLYxDemandPackage{titlesec}{Macht zusammen mit titletoc den toc}
+					{Das sieht garnicht gut aus :P}
+					{}{}
+
+% %%% Set Fonts for the document :D
+% % https://tug.org/FontCatalogue/lato/
+% \LILLYxLoadPackage{lato}{Scriftart für das (pdfLaTeX) Dokument}
+% 					{Naja, ohne ging schon, aber sieht halt doof aus.}
+%                     {\def{\normalfont}}
+%                     {default}{\def{\fontseries{l}\selectfont}}
+
+%% https://www.ctan.org/pkg/microtype
+\LILLYxLoadPackage{microtype}{Ausgeglichene Grauwerte}
+                    {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}
+                    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                    {}{}
+
+%% Setting up the predefined fonts we're going to use:
+\DeclareFixedFont{\tocFont}{U}{eur}{b}{n}{10}
+\DeclareFixedFont{\chpFont}{U}{eur}{b}{n}{24}
+% \DeclareFixedFont{\chpNumber}{U}{eur}{b}{n}{165} no chapter :D
+
+\LILLYcommand{\cftsubsecfont}{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!90!white}}
+%\renewcommand{\cftsecleader}{\hfill}
+%\LILLYcommand{\cftsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
+\LILLYcommand{\cftsubsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
+\LILLYcommand{\cftsubsecpagefont}{\normalfont\scriptsize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!70!white}}
+
+%% Set General style of the Page:
+\def\LILLYxRIGHTMARK{}
+
+\def\SetStyle{%
+	\pagenumbering{arabic}%
+	\pagestyle{scrheadings}%
+	\clearscrheadfoot%
+	\ofoot{\textbf{\thepage}}%
+	\lofoot{{\LILLYxRIGHTMARK}}%
+	\refoot{{\leftmark}}%
+}
+
+\def\rightmark{}
+
+%% Check Markers:
+\renewcommand{\sectionmark}[1]{%
+    \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
+}
+
+%% we have no header. (there is a koma-option for that, but its not that 'reliable')
+\setheadsepline{0pt}
+
+%% Set Hooks for the Beginning of the Document:
+%% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
+\AtBeginDocument{%
+    \SetStyle
+}
+
+%% General spacing stuff:
+\setlength{\parskip}{1ex}\setlength{\parindent}{0ex}
+\setlength{\skip\footins}{0.75cm}\setlength{\footnotesep}{2mm}
+
+%% Set lengths and Definitions to configure the leftbar environment:
+\newlength{\lbarsep}
+\setlength{\lbarsep}{3em}
+\def\lbarcol{AuroMetalSaurus}
+\def\lbarbackcol{}
+
+\renewenvironment{leftbar}{
+	\def\FrameCommand{
+		\hspace*{-\lbarsep}
+		{\color{\lbarcol}\vrule width 2.15pt depth 8.4pt}%\hspace*{-1em}
+		\lbarbackcol
+	}
+	\MakeFramed{
+		\parshape 1 0cm \dimexpr\textwidth-.3\textwidth\relax\FrameRestore
+	}\vskip2pt%
+}{\endMakeFramed}
+
+%% Styling the toc:
+%% Used with babel :D
+\addto\captionsngerman{%
+        \renewcommand{\contentsname}{\leavevmode\vspace*{-0.8\baselineskip}\newline\noindent\efont{Kurzübersicht}\hfill\hbox{}\vspace*{-0.3\baselineskip}}%
+}
+\providecommand{\idxtitle}{Kurz\"{u}bersicht}
+\def\compileidx{\makeindex[title=\idxtitle,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{\idxtitle}}
+\compileidx
+
+
+% \titlecontents{section}
+%   [0em]
+%   {\sffamily\contentslabel{3em}\contentslabel{}}{}{}
+%   {\hspace{0.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
+% \titlecontents{subsection}
+%   [0em]
+%   {\sffamily\contentslabel{3em}}{}{}
+%   {\hspace{0.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
+
+%% Set The Mini-TOCs
+
+
+
+
+
+\makeatletter
+
+\renewcommand\sectionlinesformat[4]{%
+	\phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
+	{{\smaller #3}\, #4}%
+}
+\renewcommand{\@seccntformat}[1]{\textcolor{\Hcolor}{\csname the#1\endcsname}}
+
+\setlength{\cftbeforesecskip}{2.3pt}
+
+
+\renewcommand{\section}{\@startsection{section}{1}{\z@}
+{-4ex \@plus -1ex \@minus -.4ex}
+{1ex \@plus.2ex }
+{\normalfont\LARGE\bfseries\useefont}}
+\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
+{-3ex \@plus -0.1ex \@minus -.4ex}
+{0.5ex \@plus.2ex }
+{\normalfont\normalsize\bfseries\useefont}}
+\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
+{-2ex \@plus -0.1ex \@minus -.2ex}
+{.2ex \@plus.2ex }
+{\normalfont\small\sffamily\bfseries}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+{-2ex \@plus-.2ex \@minus .2ex}
+{.1ex}
+{\normalfont\sffamily\bfseries}}
+
+\def\pnptoc{%
+{%
+\begin{center}
+	\hypersetup{linkcolor=black}%
+    \begin{tcolorbox}[presenterstyle,bottom=5.6pt]
+		\tableofcontents
+    \end{tcolorbox}
+\end{center}
+}
+\SetStyle%
+}
+
+
+
+\def\pnp@title{PnP - Regelwerk}
+\def\pnp@subtitle{Anleitung}
+\def\pnp@author{\LILLYxAUTHOR}
+
+\def\pnpsettitle#1{\gdef\pnp@title{#1}}
+\def\pnpsetsubtitle#1{\gdef\pnp@subtitle{#1}}
+\def\pnpsetauthor#1{\gdef\pnp@author{#1}}
+
+\def\pnptitle{%
+	\leavevmode{\begin{minipage}{17cm}
+		\begin{center}
+			{\Huge\efont{\pnp@title}}\\
+			\Large\pnp@subtitle\bigskip\\
+		\end{center}
+	\end{minipage}}\\
+}
+
+\DeclareDocumentEnvironment{abstract}{%
+	O{Abstract:} % Title
+}{%
+	\leavevmode\begin{minipage}{\linewidth}\efont{#1}\smallskip\newline\itshape\ignorespaces
+}{\end{minipage}}

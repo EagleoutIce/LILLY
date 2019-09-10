@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCONTROLLERxBOX}[2019/07/13 Stellt die klassische Box-Erweiterung fuer LILLY zur Verfuegung]
 
+\RequirePackage{LILLYxVANILLA}
 \RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxBOOLEAN}
@@ -155,21 +156,21 @@
 
 %%% Todo-List:
 %% Done Boxes:
-%  - [\] Make \RegisterBox recognice Options like "useBox" and Locks... 
+%  - [\] Make \RegisterBox recognice Options like "useBox" and Locks...
         %    =>  Will be redirected to Creation as it can be changed with 'usestyle'
 %  - [X] Make NoBox work with 'void', so 'aufgabe' and rest cannot - or maybe don't, as nested won't work
         %    => Done using 'LILLYxSPECIALBOXxHIDDEN
 %  - [X] Include the List-Addition into \RegisterBox
         %    => This was easy as already done :D
 %  - [!] Make the 'lillyxBOXx' prefix changeable
-        %    => This would have broken the expansions and was rendered useless. Why would someone need that? 
+        %    => This would have broken the expansions and was rendered useless. Why would someone need that?
         %       Even if there is a name clash, if you change it after definitions it would break everything :D
 %  - [X] Include Label-Mechanic [tcolorbox-Manual Page 99] with nameref
         %    => Included as needed, as the expansion is stupid, this won't include the full title of the Box :/
 %  - [X] Fix LabelBug so that the label will Jump Above the Box
         %    => This will be fixed completely when using REgisterBox for all :D
 %  - [X] Migrate all Boxes to \RegisterBox
-        %    => TODO: When using tranform on a different boxtype this will prevent the Boxlists from colelctiong. so the final list won't be of th requested Type bt of the transformed one, this doesn't make any sence so i will have to check this later. 
+        %    => TODO: When using tranform on a different boxtype this will prevent the Boxlists from colelctiong. so the final list won't be of th requested Type bt of the transformed one, this doesn't make any sence so i will have to check this later.
         % OH GOSH PLEASE NOOOOOOOOOO Currentl working on :D
 %  - [X] Allow to add a symbol (outside, and inside of the Box)
         %    => DONE as LILLYxEMBLEMS
@@ -200,7 +201,7 @@
 
 %% Listings:
 %  - [ ] Make dynamic listing environment (showcase etc.)
-%  - [ ] Make a showcase listing which displays the output of the code on the right side 
+%  - [ ] Make a showcase listing which displays the output of the code on the right side
 
 %% General
 %  - [ ] Persist-Library
@@ -276,11 +277,11 @@
         }{%
             %% IF not disabled, we will proceed as usual.
             \@nameuse{lillyxBOXx\curboxid xPreCode}%
-            % Check: Is the Box to be a plain box :D 
+            % Check: Is the Box to be a plain box :D
             \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xUseBox}}{TRUE}}{%
                 \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={}}% No Modifications needed :D
             }{%
-                \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain, after title app={\leavevmode\\[-0.75\baselineskip]\ignorespaces}}}% Set Blank Box    
+                \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain, after title app={\leavevmode\\[-0.75\baselineskip]\ignorespaces}}}% Set Blank Box
             }%
             \phantomsection% Here we will start the corresponding box
             \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,before upper app={\ignorespacesafterend},##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
@@ -300,7 +301,7 @@
         }{%
             \@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend%
         }%
-            
+
     }
 }
 

@@ -7,6 +7,14 @@
     \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
 }
 
+\addto\captionsngerman{%
+\renewcommand{\contentsname}{\hbox{}\relax\hfill Inhaltsverzeichnis\hfill\hbox{}\relax}%
+}
+\LILLYcommand{\cftsubsecfont}{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!90!white}}
+%\renewcommand{\cftsecleader}{\hfill}
+\LILLYcommand{\cftsubsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
+\LILLYcommand{\cftsubsecpagefont}{\normalfont\scriptsize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!70!white}}
+
 \RequirePackage{titlesec}
 % lines above and below, number right
 \renewcommand{\chaptermark}[1]{\markboth{\rmdefault #1}{\faBookmark}} %%Chaptermark fix inject

@@ -42,7 +42,7 @@
     s % starred has no header
     O{\MHeaderRow} % Code for the headerrow
     O{} % Code to be executed before the table, but after the other definitions
-    m   % Table Head Definitions 
+    m   % Table Head Definitions
     O{MudWhite!10} % First Row
     O{MudWhite!90} % Second Row
 }{%
@@ -58,11 +58,11 @@
     \end{tabu}
 }
 \DeclareDocumentEnvironment{mltable}{%
-    s
+    s % starred has no header
     O{\MHeaderRow} % Code for the headerrow
     O{} % Code to be executed before the table, but after the other definitions
-    m   % Table Head Definitions
-    o % Multipage header, will appear on every page if given 
+    m % Table Head Definitions
+    o % Multipage header, will appear on every page if given
     O{MudWhite!10} % First Row
     O{MudWhite!90} % Second Row
     O{\MNHeaderRow} % How to color Headers on continued lines

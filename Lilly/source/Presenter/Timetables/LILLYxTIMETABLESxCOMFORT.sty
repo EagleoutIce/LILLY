@@ -1,0 +1,45 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxTIMETABLESxCOMFORT}[2019/09/09 Stellt eine Komfort-Erweiterung fuer die Stundenplaene zur Verfuegung]
+
+\RequirePackage{LILLYxTIMETABLES}
+
+% Diese Befehle hier, erlauben es, die Koordinaten, sowie die Tage für die Positionierung eines Events lesbarer zu gestalten. Hierfür werden die PGF-Keys erweitert:
+
+\pgfkeys{%
+    /lillyxTIMETABLES/Event/.cd,
+    %% shortcuts for the day, /.link doesn't seem to work
+    Monday/.style={day=0},      Montag/.style={day=0},        Mo/.style={day=0},    % set day to monday :D
+    Tuesday/.style={day=1},     Dienstag/.style={day=1},      Di/.style={day=1},    % set day to tuesday :D
+    Wednesday/.style={day=2},   Mittwoch/.style={day=2},      Mi/.style={day=2},    % set day to wednesday :D
+    Thursday/.style={day=3},    Donnerstag/.style={day=3},    Do/.style={day=3},    % set day to thursday :D
+    Friday/.style={day=4},      Freitag/.style={day=4},       Fr/.style={day=4},    % set day to friday :D
+    Saturday/.style={day=5},    Samstag/.style={day=5},       Sa/.style={day=5},    % set day to saturday :D
+    Sunday/.style={day=6},      Sonntag/.style={day=6},       So/.style={day=6},    % set day to sunday :D
+    %% Shortcuts for the Time:
+    0 uhr/.style={y={-1.125-0.625*0+0.625*\@cttget{DayStartTime}}},
+    1 uhr/.style={y={-1.125-0.625*1+0.625*\@cttget{DayStartTime}}},
+    2 uhr/.style={y={-1.125-0.625*2+0.625*\@cttget{DayStartTime}}},
+    3 uhr/.style={y={-1.125-0.625*3+0.625*\@cttget{DayStartTime}}},
+    4 uhr/.style={y={-1.125-0.625*4+0.625*\@cttget{DayStartTime}}},
+    5 uhr/.style={y={-1.125-0.625*5+0.625*\@cttget{DayStartTime}}},
+    6 uhr/.style={y={-1.125-0.625*6+0.625*\@cttget{DayStartTime}}},
+    7 uhr/.style={y={-1.125-0.625*7+0.625*\@cttget{DayStartTime}}},
+    8 uhr/.style={y={-1.125-0.625*8+0.625*\@cttget{DayStartTime}}},
+    9 uhr/.style={y={-1.125-0.625*9+0.625*\@cttget{DayStartTime}}},
+    10 uhr/.style={y={-1.125-0.625*10+0.625*\@cttget{DayStartTime}}},
+    11 uhr/.style={y={-1.125-0.625*11+0.625*\@cttget{DayStartTime}}},
+    12 uhr/.style={y={-1.125-0.625*12+0.625*\@cttget{DayStartTime}}},
+    13 uhr/.style={y={-1.125-0.625*13+0.625*\@cttget{DayStartTime}}},
+    14 uhr/.style={y={-1.125-0.625*14+0.625*\@cttget{DayStartTime}}},
+    15 uhr/.style={y={-1.125-0.625*15+0.625*\@cttget{DayStartTime}}},
+    16 uhr/.style={y={-1.125-0.625*16+0.625*\@cttget{DayStartTime}}},
+    17 uhr/.style={y={-1.125-0.625*17+0.625*\@cttget{DayStartTime}}},
+    18 uhr/.style={y={-1.125-0.625*18+0.625*\@cttget{DayStartTime}}},
+    19 uhr/.style={y={-1.125-0.625*19+0.625*\@cttget{DayStartTime}}},
+    20 uhr/.style={y={-1.125-0.625*20+0.625*\@cttget{DayStartTime}}},
+    21 uhr/.style={y={-1.125-0.625*21+0.625*\@cttget{DayStartTime}}},
+    22 uhr/.style={y={-1.125-0.625*22+0.625*\@cttget{DayStartTime}}},
+    23 uhr/.style={y={-1.125-0.625*23+0.625*\@cttget{DayStartTime}}},
+}%% All those values will be persisted with 'lillyxINFOBOXESx'-Prefix :D
+
+\endinput
