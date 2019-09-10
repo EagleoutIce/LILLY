@@ -101,7 +101,7 @@
 
 \LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}%% Package, Info
                     {Dieses Paket ist für LILLY überlebenswichtig}%% Error-Text
-                    {\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering}%%Params
+                    {\LILLYxGeneralxPaperformat,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering,\LILLYxGeometryxExtras}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D - wenn er das dann mal kann
 
 

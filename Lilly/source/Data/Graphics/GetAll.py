@@ -107,7 +107,7 @@ with open("./" + fname,'w') as out:
         if x not in changewatcher or float(changewatcher[x]) < os.path.getmtime(x):
             update = True
             newchanges[x] = os.path.getmtime(x)
-            
+
         if prefix != oprefix:
             out.write("\n\\phantomsection \\addcontentsline{{toc}}{{chapter}}{{{0}}}\n".format(prefix))
             oprefix = prefix

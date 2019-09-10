@@ -15,6 +15,12 @@
 \DeclareFixedFont{\normalNumber}{U}{eur}{b}{n}{\f@size} %% Euler Font für die Kapitelnummern - ich finde die toll
 \DeclareFixedFont{\smallNumber}{U}{eur}{b}{n}{9} %% Euler Font für die Kapitelnummern - ich finde die toll
 
+%euler font
+\def\useefont{\usefont{U}{eur}{b}{n}}
+\def\efont#1{
+    \begingroup\useefont#1\endgroup
+}
+
 \gdef\fsize{\dimexpr\f@size pt\relax}
 
 

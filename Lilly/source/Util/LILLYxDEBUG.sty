@@ -1,12 +1,21 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxDEBUG}[2019/09/04 Liefert Debug-Optionen fuer LILLY]
 
-\ifcsname LILLYxDEBUG\endcsname\else
-    \xdef\LILLYxDEBUG{\false}   %% DOES NOETHING USEFULE @Time .... @LEAST I THINK - haha
-\fi
+\RequirePackage{LILLYxVANILLA}
+\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
 
-\def\debugout#1{
-    \ifx\LILLYxDEBUG\true\typeout{#1}\fi
+
+%% https://www.ctan.org/pkg/ifthen
+\LILLYxDemandPackage{ifthen}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
+                    {Um dieses Paket kommt LILLY nicht herum!}
+                    {}{}
+\providecommand{\LILLYxDEBUG}{FALSE}
+\typeout{LD: \LILLYxDEBUG}
+
+\newif\iflillydebug
+\ifthenelse{\equal{\LILLYxDEBUG}{TRUE}}{\lillydebugtrue}{\lillydebugfalse}
+\def\debugout#1{%
+    \iflillydebug\typeout{#1}\fi%
 }
 
 
