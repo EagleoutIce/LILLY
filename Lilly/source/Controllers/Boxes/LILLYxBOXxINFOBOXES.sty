@@ -1,0 +1,178 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxBOXxINFOBOXES}[2019/07/13 Stellt die InfoBoxes fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCONTROLLERxBOX}
+\RequirePackage{LILLYxBOXxMARGIN}
+\RequirePackage{LILLYxEMBLEMS}
+
+
+
+%%% Setting the Design for the Mini-TOCs. Its based on the presenter style
+% Dieses Design entstammt ursrünglich dem Elegant-Book sollte aber Global zur Verfüugung stehen :D
+\tcbset{%
+  presenterstyle/.style={%
+    colback=MudWhite!5,
+    boxrule=1pt,
+    enhanced jigsaw,
+    breakable=true,
+    opacityback=0.9,
+    arc is angular=5mm,
+    fuzzy halo=0.1mm with MudWhite,
+    top=0.1mm,
+    bottom=0.11mm,
+    colframe=Charcoal,
+  }
+}
+
+
+%% Info-Boxen ähneln den normalen Boxen für Definition und Bemerkung unterscheiden sich allerdings grundlegend darin, dass das
+%% Design statisch über pgfkeys gesetzt werden kann und sie dafür gedacht sind in Kombination mit LILLYxBOXxMARGIN und
+%% LILLYxEMBLEMS verwendet zu werden.
+
+\newcounter{CTRxLILLYxTOTALINFOBOXES}
+\setcounter{CTRxLILLYxTOTALINFOBOXES}{0}
+
+%% Die Werte werden wieder für jede InfoBox persistiert, damit das Design variiert werden kann, je nach Geschmack :D
+\pgfkeys{%
+    /lillyxINFOBOXES/.is family, /lillyxINFOBOXES,
+    draw/.store in=\lillyxInfoboxesxdraw, % shouldn't be set directly :D
+    style/.is choice,
+    style/none/.style={draw=None}, % No Background whatsoever :D
+    style/limerence/.style={draw=Limerence}, % Limerence-Like Appearance
+    style/framed/.style={draw=Framed}, % Colored Frame (includes option for background)
+    bgcolor/.store in=\lillyxInfoboxesxbgcolor, % background color
+    bordercolor/.store in=\lillyxInfoboxesxbordercolor, % bordercolor this will represent the boxcolor
+    fgcolor/.store in=\lillyxInfoboxesxfgcolor, % foreground color
+    titlefont/.store in=\lillyxInfoboxesxtitlefont,% font to be used for the title
+    textfont/.store in=\lillyxInfoboxesxtextfont,% font to be used for the text
+    preCode/.store in=\lillyxInfoboxesxprecode, % code to be executed before the box
+    inCode/.store in=\lillyxInfoboxesxincode, % code to be executed in the Box, before any content (but after title)
+    titleCode/.store in=\lillyxInfoboxesxtitlecode, % code to be executed in the Box, after the title (usually newline)
+    outCode/.store in=\lillyxInfoboxesxoutcode, % code to be executed in the box, after the content
+    postCode/.store in=\lillyxInfoboxesxpostcode, % code to be exectued after the box
+    emblem/.store in=\lillyxInfoboxesxemblem, % Emblem, which should be set inside of the Box
+    marker/.store in=\lillyxInfoboxesxmarker, % The FootnoteMarker which should be set in the Text. It will use bordercolor as highlight
+    defaults/.style={%
+        style/limerence, bgcolor={MudWhite!75}, fgcolor={Charcoal}, bordercolor={DebianRed},%
+        titlefont={\normalfont\bfseries}, textfont={\normalfont}, %
+        preCode={}, inCode={}, titleCode={\leavevmode\smallskip\newline}, outCode={}, postCode={}, %
+        emblem={}, marker={\textbf{!}} % they won't be marked as required as they aren't from an technical perspective, even if they should be theoreticall given for all Boxes :D
+    }
+}%% All those values will be persisted with 'lillyxINFOBOXESx'-Prefix :D
+
+\DeclareDocumentCommand{\NewInfoBox}{%
+    O{} %% List of Infobox-Keys
+    O{} %% Optional Arguments that should be passed to the InfoBox code (tikz)
+    m   %% Name of the InfoBox-environment it will be constructed taking 2 args. Furthermore there will be a starred version, which will be placed in the margin using LILLYxBOXxMARGIN
+}{%
+    \pgfkeys{/lillyxINFOBOXES, defaults, #1}%
+    %% We will now persist the Codes, the 'draw' command has to take 5 arguments :D
+    \expandafter\xdef\csname lillyxINFOBOXESx#3xDraw\endcsname{\lillyxInfoboxesxdraw}%                                      Draw-Routine
+    \expandafter\xdef\csname lillyxINFOBOXESx#3xBgColor\endcsname{\lillyxInfoboxesxbgcolor}%                                BackgroundColor
+    \expandafter\xdef\csname lillyxINFOBOXESx#3xFgColor\endcsname{\lillyxInfoboxesxfgcolor}%                                ForegroundColor
+    \expandafter\xdef\csname lillyxINFOBOXESx#3xBorderColor\endcsname{\lillyxInfoboxesxbordercolor}%                        BorderColor
+    % Defenitly make the persistence library, it's crucial to expand the arguments ONCE to get the values of the temporary commands and persist them
+    % Fonts
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxINFOBOXESx#3xTitleFont\expandafter\expandafter\endcsname\expandafter{\lillyxInfoboxesxtitlefont}%                            TitleFont (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxINFOBOXESx#3xTextFont\expandafter\expandafter\endcsname\expandafter{\lillyxInfoboxesxtextfont}%                              TextFont (unexpanded)
+    % Codes
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxINFOBOXESx#3xPreCode\expandafter\expandafter\endcsname\expandafter{\lillyxInfoboxesxprecode}%                                PreCode (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxINFOBOXESx#3xInCode\expandafter\expandafter\endcsname\expandafter{\lillyxInfoboxesxincode}%                                  InCode (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxINFOBOXESx#3xTitleCode\expandafter\expandafter\endcsname\expandafter{\lillyxInfoboxesxtitlecode}%                            TitleCode (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxINFOBOXESx#3xOutCode\expandafter\expandafter\endcsname\expandafter{\lillyxInfoboxesxoutcode}%                                OutCode (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxINFOBOXESx#3xPostCode\expandafter\expandafter\endcsname\expandafter{\lillyxInfoboxesxpostcode}%                              PostCode (unexpanded)
+    % Marking Stuff
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxINFOBOXESx#3xEmblem\expandafter\expandafter\endcsname\expandafter{\lillyxInfoboxesxemblem}%                                  Emblem (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxINFOBOXESx#3xMarker\expandafter\expandafter\endcsname\expandafter{\lillyxInfoboxesxmarker}%                                  Marker (unexpanded)
+
+    % Debug Output:
+    \foreach \x in {Draw,BgColor,BorderColor,FgColor,TitleFont,TextFont,PreCode,InCode,TitleCode,OutCode,PostCode,Emblem,Marker} {% Maybe make a Persisting-Library? :D
+        \debugout{[InfoBox:#3] \x: [\csname lillyxINFOBOXESx#3x\x\endcsname]}
+    }
+
+    % #1 Optional Arguments
+    % #2 Title
+    \global\DeclareDocumentEnvironment{#3}{O{} m}{\ignorespaces%
+        \begin{AbstractInfoBoxDrawer}{#3}{##1}{##2}
+        }{\end{AbstractInfoBoxDrawer}}
+    \global\DeclareDocumentEnvironment{#3*}{O{} m}{\ignorespaces%
+        \AbstractInfoMarginBoxDrawer{#3}{##1}{##2}
+        }{\endAbstractInfoMarginBoxDrawer}
+}
+
+%% Here we will set the TcolorBox-Styles for the drawing options :D
+\tcbset{% :: titlefont -> backgroundcolor -> [ignored] -> [ignored] -> Title
+    lillyxINFOBOXESxDesignsxNone/.style n args={5}{enforce breakable, lines before break=3, enhanced jigsaw,sharp corners, boxrule=0pt, attach title to upper, top=3pt, bottom=3pt, frame hidden,colback=#2,title={#1#5},grow to right by = 0pt, enlarge left by = 0pt,left=3pt,right=3pt},%
+    % :: titlefont -> backgroundcolor -> [ignored] -> borderline color -> Title
+    lillyxINFOBOXESxDesignsxLimerence/.style n args={5}{%
+    enforce breakable, lines before break=3, enhanced jigsaw,sharp corners, boxrule=0pt, attach title to upper, top=3pt, bottom=3pt, frame hidden,colback=#2, borderline west={3pt}{0pt}{#4},%
+    grow to right by=3pt, enlarge left by=-3pt,right=6pt,title={#1#5},left=7pt,% small arrows on break :D
+        extras first and middle={overlay={%
+            \begin{scope}[shift={(frame.south west)}]
+                    \path[fill=#4] (0pt,0) -- ++(3pt,0pt) --  ++(-1.5pt,-3pt) --cycle;
+            \end{scope}
+        }},%
+        extras middle and last={overlay={%
+            \begin{scope}[shift={(frame.north west)}]
+                    \path[fill=#4] (0pt,0) -- ++(3pt,0pt) --  ++(-1.5pt,3pt) --cycle;
+            \end{scope}
+        }}%
+    },
+    % overlay={%
+    %     \begin{tcbclipframe}
+    %             \tcbifoddpage{\coordinate (BC) at ([xshift=-3pt]frame.east);}
+    %                          {\coordinate (BC) at ([xshift=3pt]frame.west);}
+    %     \end{tcbclipframe}
+    % },
+    %leftrule=3pt,}
+    % :: titlefont -> backgroundcolor -> [ignored] -> border color -> Title
+    lillyxINFOBOXESxDesignsxFramed/.style n args={5}{enforce breakable, lines before break=3, enhanced jigsaw,sharp corners, boxrule=1.5pt, colframe=#4,attach title to upper, top=3pt, bottom=3pt,colback=#2,title={#1#5},grow to right by = 0pt, enlarge left by = 0pt,left=3pt,right=3pt}%
+}
+
+%% Allows easy access to the persisted values :D, because typing is for loosers ^^
+\def\@libo#1#2{\@nameuse{lillyxINFOBOXESx#1x#2}}
+
+% #1 The Id Of the Box it's not possible to transmit all persisted Values easily so this saves a lot of '#'-Symbols :D
+% #2 The Optional Arguments
+% #3 The Title
+\DeclareDocumentEnvironment{AbstractInfoBoxDrawer}{mmm}{
+    \@libo{#1}{PreCode}
+    \begin{tcolorbox}[lillyxINFOBOXESxDesignsx\@libo{#1}{Draw}={\color{\@libo{#1}{FgColor}}\@libo{#1}{TitleFont}}{\@libo{#1}{BgColor}}{}{\@libo{#1}{BorderColor}}{\@libo{#1}{Emblem}#3\@libo{#1}{TitleCode}}]\ignorespaces%
+        \@libo{#1}{InCode}\@libo{#1}{TextFont}\unskip\ignorespaces%
+        %lillyxINFOBOXESx#1xEmblem, which is: \csname lillyxINFOBOXESx#1xEmblem\endcsname
+}{%
+        \@libo{#1}{OutCode}
+    \end{tcolorbox}\@libo{#1}{PostCode}%
+}
+
+% #1 The Id Of the Box it's not possible to transmit all persisted Values easily so this saves a lot of '#'-Symbols :D
+% #2 The Optional Arguments
+% #3 The Title
+\NewEnviron{AbstractInfoMarginBoxDrawer}[3]{% could be done with +b, but as this option is realtivley new, it might not work :D
+        % Here the Marker Magic :D make with switch decideable
+        \textsuperscript{\,\cmark[\@nameuse{lillyxINFOBOXESx#1xMarker}]{mrkibox:\theCTRxLILLYxTOTALINFOBOXES}{\@nameuse{lillyxINFOBOXESx#1xBorderColor}}}%
+        \lillyxMarginxElement{\elable{mrkibox:\theCTRxLILLYxTOTALINFOBOXES}%
+            \begin{AbstractInfoBoxDrawer}{#1}{#2}{#3}
+                \BODY
+            \end{AbstractInfoBoxDrawer}
+        }\refstepcounter{CTRxLILLYxTOTALINFOBOXES}%
+}
+
+
+%% Now we want to create Some Info-Boxes for Happi-Using :D we will keep them similar to the Defaullt-Emblems:
+% \gdef\infoEmblem{\,\DefaultBaseEmblem[draw=Leaf,fill=Leaf!75]{i}\,}
+\NewInfoBox[fgcolor={black},bgcolor={MudWhite!50},bordercolor={Leaf},emblem={\btextEmblem\infoEmblem~},marker={\textbf{i}}]{infoBox}%% Classic :D
+% \gdef\warningEmblem{\,\DefaultBaseEmblem[draw=ChromeYellow,fill=ChromeYellow!75]{!}\,}
+\NewInfoBox[fgcolor={black},bgcolor={MudWhite!50},bordercolor={ChromeYellow},emblem={\btextEmblem\warningEmblem~},marker={\textbf{!}}]{warningBox}
+% \gdef\errorEmblem{\,\DefaultBaseEmblem[draw=DebianRed,fill=DebianRed!75]{\wasysymLightning}\,}
+\NewInfoBox[fgcolor={black},bgcolor={MudWhite!50},bordercolor={DebianRed},emblem={\btextEmblem\errorEmblem~},marker={\textbf{\wasysymLightning}}]{errorBox}
+% \gdef\mathEmblem{\,\DefaultBaseEmblem[draw=DarkMidnightBlue,fill=DarkMidnightBlue!75]{$\mathbf{\pi}$}\,}
+\NewInfoBox[fgcolor={black},bgcolor={MudWhite!50},bordercolor={DarkMidnightBlue},emblem={\btextEmblem\mathEmblem~},marker={$\mathbf{\pi}$}]{mathBox}
+% \gdef\codeEmblem{\,\DefaultBaseEmblem[draw=DarkOrchid,fill=DarkOrchid!75]{\faCode}\,}
+\NewInfoBox[fgcolor={black},bgcolor={MudWhite!50},bordercolor={DarkOrchid},emblem={\btextEmblem\codeEmblem~},marker={\textbf{\faCode}}]{codeBox}
+
+
+\NewInfoBox[fgcolor={DarkMidnightBlue},bgcolor={MudWhite!0},bordercolor={DarkOrchid},emblem={\faCalendar~},marker={},style/none,titleCode={}]{@dateBox}
+
+\def\dateBox#1{\begin{@dateBox*}{#1}\end{@dateBox*}}
+\endinput

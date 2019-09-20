@@ -1,0 +1,48 @@
+\gdef\GRAPHICSxKVxDiagramm{%
+\begin{tikzternal}
+        \node [below] at (1.5,0) {\(\overbar{c}\)};
+        \node [below] at (0.5,0) {\(\overbar{c}\)};
+        \node [below] at (3.5,-0.14) {\(c\)};
+        \node [below] at (2.5,-0.14) {\(c\)};
+        \node [left] at (0,0.5) {\(\overbar{b}\)};
+        \node [left] at (0,1.5) {\(b\vphantom{\overbar{b}}\)};
+        \node [left] at (0,2.5) {\(b\vphantom{\overbar{b}}\)};
+        \node [left] at (0,3.5) {\(\overbar{b}\)};
+        \node [right] at (4,0.5) {\(d\vphantom{\overbar{d}}\)};
+        \node [right] at (4,1.5) {\(d\vphantom{\overbar{d}}\)};
+        \node [right] at (4,2.5) {\(\overbar{d}\)};
+        \node [right] at (4,3.5) {\(\overbar{d}\)};
+        \node [above] at (1.5,4) {\(a\vphantom{\overbar{a}}\)};
+        \node [above] at (0.5,4) {\(\overbar{a}\)};
+        \node [above] at (3.5,4) {\(\overbar{a}\)};
+        \node [above] at (2.5,4) {\(a\vphantom{\overbar{a}}\)};
+        \draw[] (1,0) -- ++(0,4); \draw[] (2,0) -- ++(0,4);
+        \draw[] (3,0) -- ++(0,4); \draw[] (0,1) -- ++(4,0);
+        \draw[] (0,2) -- ++(4,0); \draw[] (0,3) -- ++(4,0);
+
+        \draw[rounded corners=4pt, color=mint, fill=mint , fill opacity=0.2] (0.08,1.08) rectangle ++(3.84,1.84);
+
+        \draw[rounded corners=4pt, color=tealblue, fill=tealblue , fill opacity=0.2](2.08,0.08) rectangle ++(1.84,1.84);
+
+        \draw (0,0) rectangle ++(4,4);
+
+        \node at (0.5,0.5) {0};
+        \node at (0.5,1.5) {1};
+        \node at (1.5,0.5) {0};
+        \node at (1.5,1.5) {1};
+        \node at (2.5,1.5) {1};
+        \node at (2.5,0.5) {1};
+        \node at (3.5,0.5) {1};
+        \node at (3.5,1.5) {1};
+
+        \node at (0.5,2.5) {1};
+        \node at (0.5,3.5) {0};
+        \node at (1.5,2.5) {1};
+        \node at (1.5,3.5) {0};
+        \node at (2.5,3.5) {0};
+        \node at (2.5,2.5) {1};
+        \node at (3.5,2.5) {1};
+        \node at (3.5,3.5) {0};
+
+    \end{tikzternal}}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxKVxDiagramm} 

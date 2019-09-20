@@ -1,0 +1,68 @@
+\documentclass[ElegantBook]{Lilly}
+
+%% Control the main color:
+\def\Hcolor{DebianRed}
+
+% Aus Test gründen
+\usepackage{lipsum}
+
+\begin{document}
+  % Titlepage oder so
+
+\TableOfContents
+
+\SetPartFlavour{\lipsum[2]}{Detlef Dieter}
+\part{Tolle Welt}
+
+
+\chapter{Da wo die Sonne scheint}
+  \printMiniToc
+
+
+\section{SectionA}
+  \lipsum[1-2]
+\subsection{SubsectionA}
+  \lipsum[2-4]
+  \clearpage
+\section{SectionB}
+  \lipsum[6-8]
+\section{SectionC}
+  \lipsum[1-2]
+\subsection{SubsectionB}
+  \lipsum[1]
+\subsection{SubsectionC}
+  \lipsum[2]
+
+\chapter{Da wo der Regen weint}
+  \printMiniToc
+
+\section{SectionA}
+  \lipsum[1-2]
+\subsection{SubsectionA}
+  \lipsum[2-4]
+\section{SectionB}
+  \lipsum[6-8]
+\section{SectionC}
+  \lipsum[1-2]
+\subsection{SubsectionB}
+  \lipsum[1]
+\subsection{SubsectionC}
+  \lipsum[2]
+
+
+\SetPartFlavour{\lipsum[3]}{Paul Korbierter}
+\part{Tolles Geld}
+
+
+\chapter{Da wo der Wuffel graint}
+    \printMiniToc
+
+\section{SectionA}
+\subsection{SubsectionA}
+\section{SectionB}
+\section{SectionC}
+\subsection{SubsectionB}
+\subsection{SubsectionC}
+
+
+\end{document}

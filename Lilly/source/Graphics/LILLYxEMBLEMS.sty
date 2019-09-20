@@ -1,0 +1,139 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxBOX}[2019/08/30 Stellt einen Emblem-Generator fuer LILLY zur Verfuegung]
+
+%% Dieses Paket soll relativ einfach auf Basis von LILLYxCOLOR Embleme generieren.
+%% Ein Emblem ist an sich ein Befehl, der auf einen '\tikz'-Befehel zum Setzen zurückfällt.
+%% Dem jeweiligen Emblem-Befehl kann dann ein Zeichen übergeben werden, welches dann auf das Emblem gesetzt wird.
+%% Die jeweiligen Konfigurationen werden wieder für die Nutzung persistiert und können darüber modifiziert werden
+
+\RequirePackage{LILLYxCORE}
+
+\RequirePackage{LILLYxCOLOR}
+\RequirePackage{LILLYxGRAPHICS}
+
+%\RequirePackage{LILLYxCOLOR}
+%\RequirePackage{LILLYxGRAPHICS}
+
+%% https://ctan.org/pkg/wasysym
+\LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}%% Package, Info
+                    {Sonst geht halt errorEmblem nicht xD}
+                    {}{nointegrals}{\let\wasysymLightning\lightning}%% otherwise this would collide with the amssymb :D
+
+%% https://www.ctan.org/pkg/fontawesome
+\LILLYxLoadPackage{fontawesome}{Für coole Symbole - ist sie nicht da so wird versucht für alle Befehle die LILLY verwendet ein Wrapper zu finden :D}
+                    {Damit codeEmblem funktioniert}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_FONTAWESOME}} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                    {}{}
+
+
+\pgfkeys{%
+    /lillyxEMBLEM/.is family, /lillyxEMBLEM,
+    radius/.store in=\lillyxEmblemxradius,
+    shape/.store in=\lillyxEmblemxshape
+    shape/.is choice,
+    shape/none/.style={draw=None},
+    shape/quadratic/.style={draw=Quadratic},
+    shape/round/.style={draw=Round},
+    shape/hexagon/.style={draw=Hexagon},
+    shape/octagon/.style={draw=Octagon},
+    %% draw :: borderColor -> bgColor -> optArgs -> center -> radius
+    % shape/quadratic/.style={/lillyxEmblem/draw/.code n args={5}{\draw[##1,fill=##2,##3] (##4) rectangle ++(##5,##5)}},
+    % shape/round/.style={/lillyxEmblem/draw/.code n args={5}{\draw[##1,fill=##2,##3]] (##4) circle (##5)}},
+    % shape/hexgon/.style={/lillyxEmblem/draw/.code n args={5}{\node[regular polygon, regular polygon sides=6, draw, ##1,fill=##2,##3inner sep=##5] at (##4) {}}}
+    bgcolor/.store in=\lillyxEmblemxbgcolor,
+    bordercolor/.store in=\lillyxEmblemxbordercolor,
+    fgcolor/.store in=\lillyxEmblemxfgcolor,
+    draw/.store in=\lillyxEmblemxdraw,
+    font/.store in=\lillyxEmblemxfont,
+    defaults/.style={%
+        radius=0.396cm,shape/hexagon,bgcolor={DebianRed},bordercolor={DebianRed},fgcolor={MudWhite},font={\bfseries\large\sffamily}%
+    }%
+}
+
+%% TODO: Change typeouts to a Debug-Command which will only output the stuff if in debug-Mode :D
+
+%% draw :: borderColor -> bgColor -> optArgs -> center -> radius
+
+\def\EmblemDrawerNothing#1#2#3#4#5{}
+\def\EmblemDrawerQuadratic#1#2#3#4#5{%
+    \draw[#1,fill=#2,#3] (#4)++(-#5,-#5) rectangle ++(#5*2,#5*2);% double as it is radius
+}
+\def\EmblemDrawerRound#1#2#3#4#5{%
+    \draw[#1,fill=#2,#3] (#4) circle (#5);%
+}
+\def\EmblemDrawerHexagon#1#2#3#4#5{%
+    \node[regular polygon, regular polygon sides=6, draw, #1,fill=#2,#3,inner sep=#5/1.635,transform shape] at (#4) {};%
+}
+\def\EmblemDrawerOctagon#1#2#3#4#5{%
+    \node[regular polygon, regular polygon sides=8, draw, #1,fill=#2,#3,inner sep=#5/1.534, transform shape] at (#4) {};%
+}
+
+%% :: OptArgs -> Draw -> Radius -> BackgroundColor -> ForeGroundColor -> BorderColor -> Font -> Text
+\def\AbstractEmblemDrawer#1#2#3#4#5#6#7#8{%
+    {\tikz[baseline=-0.6ex]{\csname EmblemDrawer#2\endcsname{#6}{#4}{#1}{0,0}{#3};\node at(0,0) {\textcolor{#5}{#7#8}};}}%
+% \ifcase#2%0, draw nothing, we will just typeset the symbol. #2 and ##1 as tikz args
+%     {\tikz[baseline=-0.6ex,#1]{\node at(0,0) {\textcolor{#5}{#7#8}};}}%
+% \or%1, draw quadratic:
+%     {\tikz[baseline=-0.6ex]{\EmblemDrawerQuadratic{#6}{#4}{#1}{0,0}{#3};\node at(0,0) {\textcolor{#5}{#7#8}};}}%
+% \or%2, draw round:
+%     {\tikz[baseline=-0.6ex]{\EmblemDrawerRound{#6}{#4}{#1}{0,0}{#3};\node at(0,0) {\textcolor{#5}{#7#8}};}}%
+% \or%3, draw hexagon:
+%     {\tikz[baseline=-0.6ex]{\EmblemDrawerHexagon{#6}{#4}{#1}{0,0}{#3};\node at(0,0) {\textcolor{#5}{#7#8}};}}%
+% \or%4, draw octagon:
+%     {\tikz[baseline=-0.6ex]{\EmblemDrawerOctagon{#6}{#4}{#1}{0,0}{#3};\node at(0,0) {\textcolor{#5}{#7#8}};}}%
+% \else%unknown:
+% \@ctrerr%
+% \fi%
+}
+
+\DeclareDocumentCommand{\NewEmblem}{%
+    O{} %% List of Emblem-Keys
+    O{} %% Optional Arguments that should be passed to the Emblem code
+    m   %% Name of the Emblem-Command it will be constructed taking 2 args
+}{%
+    \pgfkeys{/lillyxEMBLEM, defaults, #1}%
+    %% We will now persist the Codes, the 'draw' command has to take 5 arguments :D
+    \expandafter\xdef\csname lillyxEMBLEMx#3xRadius\endcsname{\lillyxEmblemxradius}%                                  Radius
+    \expandafter\xdef\csname lillyxEMBLEMx#3xBgColor\endcsname{\lillyxEmblemxbgcolor}%                                BackgroundColor
+    \expandafter\xdef\csname lillyxEMBLEMx#3xBorderColor\endcsname{\lillyxEmblemxbordercolor}%                        BorderColor
+    \expandafter\xdef\csname lillyxEMBLEMx#3xFgColor\endcsname{\lillyxEmblemxfgcolor}%                                ForegroundColor
+    \expandafter\xdef\csname lillyxEMBLEMx#3xDraw\endcsname{\lillyxEmblemxdraw}%                                      Draw-Routine
+
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxEMBLEMx#3xFont\expandafter\expandafter\endcsname\expandafter{\lillyxEmblemxfont}%                                      Schriftart (won't be expanded)
+    \foreach \x in {Radius,BgColor,BorderColor,FgColor,Draw,Font} {
+        \typeout{[Emblem:#3] \x: [\csname lillyxEMBLEMx#3x\x\endcsname]}
+    }
+
+    % #1 Optional Emblem-Keys
+    % #2 Symbol (shold be one character with default sizes)
+    \expandafter\DeclareDocumentCommand\expandafter{\csname #3\endcsname}{O{} m}{\ignorespaces%
+        \AbstractEmblemDrawer{#2,##1}{\@nameuse{lillyxEMBLEMx#3xDraw}}{\@nameuse{lillyxEMBLEMx#3xRadius}}{\@nameuse{lillyxEMBLEMx#3xBgColor}}{\@nameuse{lillyxEMBLEMx#3xFgColor}}{{\@nameuse{lillyxEMBLEMx#3xBorderColor}}}{\@nameuse{lillyxEMBLEMx#3xFont}}{##2}%
+    }
+}
+
+
+
+%% Here we have some emblems to work with :D
+
+\NewEmblem[shape/none]{NoneEmblem}
+\NewEmblem[shape/quadratic]{QuadraticEmblem}
+\NewEmblem[shape/round]{RoundEmblem}
+\NewEmblem[shape/hexagon]{HexagonEmblem}
+\NewEmblem[shape/octagon]{OctagonEmblem}
+\colorlet{EmblemColor}{\Hcolor} % will capsel other mixtures, if they exist
+\NewEmblem[shape/hexagon,bgcolor={EmblemColor!75},bordercolor={\Hcolor}][rotate=90,thick]{DefaultBaseEmblem}
+
+\gdef\infoEmblem{\,\DefaultBaseEmblem[draw=Leaf,fill=Leaf!75]{i}\,}
+\gdef\warningEmblem{\,\DefaultBaseEmblem[draw=ChromeYellow,fill=ChromeYellow!75]{!}\,}
+\gdef\errorEmblem{\,\DefaultBaseEmblem[draw=DebianRed,fill=DebianRed!75]{\wasysymLightning}\,}
+\gdef\mathEmblem{\,\DefaultBaseEmblem[draw=DarkMidnightBlue,fill=DarkMidnightBlue!75]{$\mathbf{\pi}$}\,}
+\gdef\codeEmblem{\,\DefaultBaseEmblem[draw=DarkOrchid,fill=DarkOrchid!75]{\faCode}\,}
+
+\DeclareRobustCommand{\textEmblem}[1]{%
+    \mbox{\raisebox{2pt}{\resizebox{!}{0.62\baselineskip}{#1}}}%
+}
+\DeclareRobustCommand{\btextEmblem}[1]{%
+    \mbox{\raisebox{2pt}{\resizebox{!}{\baselineskip}{#1}}}%
+}
+
+\endinput

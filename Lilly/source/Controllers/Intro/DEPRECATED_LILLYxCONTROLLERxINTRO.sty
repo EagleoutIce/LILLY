@@ -1,0 +1,132 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxINTRO}[2019/08/25 Stellt den Intro-Controller fuer LILLY zur Verfuegung]
+
+
+%% Dieser Controller kümmert sich um die korrekte Implementierung des Beginn eines Dokuments durch die initiierung von AtBeginDocument-Zugriffen
+
+%%DEBUG wird immer die erste Seite sein, sofern dies gewünscht ist, alle anderen Pages werden sich zwangsläufig an diese Positionierung orientieren müssen. Damit ist auch nicht gewährleistet, dass das Titelbild sicher die erste Seite der PDF-Datei erhält!!
+
+\ifx\LILLYxDEBUG\true
+    \errorcontextlines 10000
+    \input{\LILLYxPATHxDATA/Titlepages/_LILLY_DEBUG_TITLEPAGE} % Anzeigen relevanter Konfigurationen
+\fi
+
+
+
+%% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten.
+
+%% Access Konfiguration File :D This can be determined by the Semester, but in theory every valide tex-File kann
+\def\RequestConfig#1{%
+    \InputIfFileExists{#1}{}{}
+}
+
+%% Wenn ein Semester gesetz ist, dann versuchen wir eine entsprechende Einstellung zu laden.
+\ifnum\LILLYxSemester>0
+    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+\fi
+
+%% Lilly vertraut auf 'cite' wenn es darum geht Bibtex zu integrieren.
+%% Das Paket wird allerdings nur bei Bedarf eingebunden:
+\ifx\LILLYxBIBTEX\undefined%
+    \ClassInfo{Lilly}{Bibtex wird nicht verwendet!}
+\else%
+    \ClassInfo{Lilly}{Bibtex wird verwendet!}
+    \RequirePackage{cite}
+\fi
+
+%% Da Daten wichtig sind, hier ein handelsüblicher shortcut zur Datumsanzeige
+\RequirePackage[yyyymmdd,hhmmss]{datetime}
+% \heute => dd. MMMM YYYY [example: 25. August 2019]
+\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
+
+%% Für die klassischen Layouts gab es hier früher einige Anpassungen.
+%% Um die Struktur zu behalten, wir diese Aufgabe nun komplett dem entsprechenden Layout übergeben,
+%% Welches sich auch um das OUTRO-Handling kümmern wird.
+
+\userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
+
+
+\iffalse
+    \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
+
+        %%Lade gewünschtes Titelblatt => LILLYxTITLE
+        % \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+
+        %%OLD: \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
+        \AtBeginDocument{\LILLYxTITLE}
+
+        %%Generieren Inhaltsverzeichnis
+
+        \LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}}
+        \addto\captionsngerman{%
+            \renewcommand{\contentsname}{\hbox{}\relax\hfill Inhaltsverzeichnis\hfill\hbox{}\relax}%
+        }
+        \LILLYcommand{\cftsubsecfont}{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!90!white}}
+        %\renewcommand{\cftsecleader}{\hfill}
+        \LILLYcommand{\cftsubsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
+        \LILLYcommand{\cftsubsecpagefont}{\normalfont\scriptsize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!70!white}}
+
+        \AtBeginDocument{
+            %%Niemand will irgendwas sehen beim TOC :D
+            \newpage\addtocontents{toc}{\protect\pagestyle{empty}}
+            \addtocontents{toc}{\protect\thispagestyle{empty}}
+            %%Sichergeh :D
+            \thispagestyle{empty}
+            \protect\pagestyle{empty}
+            \elable{eagleTOC}
+            \tableofcontents
+            \ifx\LILLYxMODE\LILLYxMODExPRINT%
+                \newpage\hbox{}\relax%
+                \clearpairofpagestyles%
+                \cleardoublepage%
+            \else %
+                \newpage%
+                \clearpairofpagestyles%
+            \fi%
+        }
+
+        %% Layout für Mitschrieb
+
+        \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_MITSCHRIEB}
+    \else\ifx\LILLY@Typ\LILLY@Typ@Uebungsblatt
+
+        \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+
+        \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_UEBUNGSBLATT} %% Einleitung Übungsblatt
+
+    \else\ifx\LILLY@Typ\LILLY@Typ@Dokumentation
+
+        %% Wir setzen keine Definitionen und definieren ein Standard Layout
+
+        \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_DOKUMENTATION}
+
+        \RequirePackage{marginnote}
+
+        \let\originalmarginnote\marginnote
+        \renewcommand{\marginnote}{%
+        \ifthispageodd{\normalmarginpar}{\reversemarginpar}\originalmarginnote
+        }
+
+    \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
+
+        \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+
+        \input{\LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_ZUSAMMENFASSUNG}
+
+        %% Work in Progress new Layout:
+        \AtBeginDocument{%
+            \ifnum\LILLY@n>0%
+                \LILLYxTITLExBONUS{Zusammenfassung \LILLY@n}%
+            \else%
+                \LILLYxTITLExBONUS{Zusammenfassung}%
+            \fi%
+            \POLITEINTRO
+            %{\par\vspace*{4.25em}\par}%
+        }
+    \else
+        \userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
+    \fi\fi\fi\fi
+
+\fi
+
+\endinput

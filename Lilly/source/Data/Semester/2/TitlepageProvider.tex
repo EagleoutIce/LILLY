@@ -1,6 +1,6 @@
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
 \AtBeginDocument{
-\clearpage\begin{titlepage} 
+\clearpage\begin{titlepage}
     {\centering\par\vspace*{7em}\par
     {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
     \vspace{1cm}
@@ -16,8 +16,8 @@
         Während um sie eine Welt voller Hohn ist,\\
         Es waren die Schritte, die sie verführten,\\
         Sie klammheimlich zueinander entführten\\
-        Und nun schlugen ihre Herzen wie die Füße im Takt\\[0.1cm]
-        - ein Glück, dass das Eis gehalten hat -\par
+        Und nun schlugen ihre Herzen wie die Füße im Takt\smallskip\\
+        - ein Glück, dass das Eis gehalten hat -\\
     }
     {\raggedleft\tiny{\usefont{T1}{qzc}{m}{it}  Florian Sihler, 28.02.2019}\\[-1.2em]}
     \noindent\rule{\textwidth}{0.6pt}}
@@ -25,12 +25,18 @@
 }
 \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
 \AtBeginDocument{
-\clearpage\begin{titlepage} 
+\clearpage\begin{titlepage}
     {\centering\par
-    \par\vspace*{3em}\par
-    {\tab[\LILLYxTITLExOffset] \raisebox{4.5em}{\parbox[0em]{0em}{\includegraphics[height=8em]{\LILLYxPATHxDATA/Semester/2/Graphics/titleimage\LILLYxVorlesung.pdf}}\tab[-\LILLYxTITLExOffset]}}
+        \par\vspace*{1em}\par
+        \begingroup
+            \ifnum\LILLY@n>0%
+                \parbox{\paperwidth}{\hbox{}\bfseries\usefont{U}{eur}{b}{n}\fontsize{80pt}{16pt}\selectfont\color{MudWhite}\LILLY@n\normalcolor}\vspace{-6em}%
+            \fi%
+        \endgroup\par
+        \par\vspace*{2em}\par
+    {\tab[\LILLYxColorxTITLExOffset] \raisebox{4.5em}{\parbox[0em]{0em}{\includegraphics[height=8em]{\LILLYxPATHxDATA/Semester/2/Graphics/titleimage\LILLYxVorlesung.pdf}}\tab[-\LILLYxColorxTITLExOffset]}}
     {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
-    \vspace{1cm}
+    \vspace{1.15cm}
     {\scshape\tiny{Zusammenfassung von}\\\large\AUTHOR\par}
 	\vspace{0.5cm}
     {\itshape\small Version vom:\\ \heute\par}
@@ -38,13 +44,16 @@
 \pagestyle{empty}
 \addtocontents{TOPIC}{\protect\thispagestyle{empty}}
 {\par\vspace*{4.25em}\par\phantomsection\elable{INHA}
-
+\ifx\LILLYxMODE\LILLYxMODExPRINT
+{\bfseries\Large Inhaltsübersicht}\\[-0.25cm]
+\else
 {\bfseries\Large Inhaltsübersicht\hfill\small\jmark[DEF]{mrk:DEFS}}\\[-0.25cm]
+\fi
 \noindent\rule{\textwidth}{2pt}\\[0.2cm]
 \listofTOPICS
 \vfill
 \POLITEINTRO
 }
-\end{titlepage}
+\end{titlepage}\cleardoublepage
 }
 \fi\fi

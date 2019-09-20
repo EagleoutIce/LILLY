@@ -1,9 +1,8 @@
-\providecommand{\LILLYxBOXxBeweisxBox}{FALSE}
-\documentclass[Typ=Dokumentation]{Lilly} 
-%% TODO Einbauen von simpleren Makros für nur: [Dokumentation]
-%\tcbuselibrary{documentation}
+\def\LILLYxBOXxBemerkungxLock{TRUE}
+\documentclass[Dokumentation]{Lilly}%debug for more information as additional argment => TOOD: document :D: doesn't seem to work. check?
 \usepackage[subject={TestTip},author={EagleoutIce},version=1]{pdfcomment}
 
+\usepackage{lipsum}
 
 %%TODO INCLUDE TITLE-Control in lilly
 
@@ -12,7 +11,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Sonderboxen                                                                                                         %     %%%% EXTRAS %%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%taken and adaptet from tcolorbox
 \newcommand{\ENVpar}[1]{\marginpar{\raggedleft\raisebox{1pt}{\T{\tiny\ttfamily env: #1}}}}
@@ -20,40 +19,88 @@
 \newcommand{\CMDshow}[2][]{\T{\textbackslash #1#2}}
 
 
-\newtcbox{\LILLYxBOXxLibrary}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
-  right=0mm,left=4mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dlg~}},
-  colframe=green!50!black,coltext=green!25!black,colback=green!10!white,
-  overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)
-    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {LIB} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
-
-\newtcbox{\LILLYxBOXxVersion}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
- right=0mm,left=5.25mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dll~}},
- colframe=Azure!50!black,coltext=Azure!25!black,colback=Azure!10!white,
- overlay={\begin{tcbclipinterior}\fill[Azure!75!blue!50!white] (frame.south west)
-    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {VER} ([xshift=5.25mm]frame.north west);\end{tcbclipinterior}}}
-
-\newtcbox{\LILLYxBOXxWarning}{enhanced,nobeforeafter,tcbox raise base,boxrule=0.4pt,top=0mm,bottom=0mm,
-  right=0mm,left=5.25mm,arc=1pt,boxsep=2pt,before upper={\vphantom{dll~}},
-  colframe=Aureolin!60!black,coltext=Aureolin!60!black,colback=Aureolin!10!white,
-  overlay={\begin{tcbclipinterior}\fill[Aureolin!75!blue!50!white] (frame.south west)
-    rectangle node[text=white,font=\sffamily\bfseries\fontsize{5}{3}\selectfont] {WAR} ([xshift=5.25mm]frame.north west);\end{tcbclipinterior}}}
-
-\robustify{\LILLYxBOXxWarning}
-\robustify{\LILLYxBOXxVersion}
-
-\newcommand{\LILLYxNOTExWarning}[1]{{\normalfont\tiny\raisebox{1.5pt}{\LILLYxBOXxWarning{\bfseries#1}}}}
-
-
-\newcommand{\LILLYxNOTExVersion}[1]{\marginpar{\vspace*{0\baselineskip}\LILLYxBOXxVersion{\small #1}}}
-\robustify{\LILLYxNOTExVersion}
-
 \usepackage{aurical}
-\newcommand{\Jake}[1][~]{\begingroup\Fontauri Jake#1\endgroup}
-\newcommand{\LJake}[1][~]{\begingroup\T|lilly\_jake|\endgroup#1}
+\newcommand{\Jake}[1][~]{\jmark[\begingroup\Fontauri Jake#1\endgroup]{mrk:JAKE}}
+\newcommand{\LJake}[1][~]{\begingroup\T{lilly\_jake}\endgroup#1}
+
+\newcommand*{\blankcmd}[1]{\bgroup\setLinkColor{Orchid}\jmark[\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}]{cmd:#1}\egroup}
+\newcommand*{\blankcmdidx}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}}
+\newcommand*{\blankenv}[1]{\bgroup\setLinkColor{AppleGreen}\jmark[\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}]{cmd:#1}\egroup}
+\newcommand*{\blankenvidx}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}}
+
+\newcommand*{\secline}{\newline\hbox{}\protect\qquad\quad}
+
+\def\typesetVersion#1{\text{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}}
+
+\makeatletter
+%% [Version][Tagname][Additionals]
+\DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}:bs:\qquad#4}
+  \begingroup~\newline\elable{cmd:#3}%\IfValueTF{#3}{\elable{cmd:#3}}{\elable{cmd:#2}}%
+  \hspace*{-1.5cm}$\diamond$~~\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\typesetVersion{#1}}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
+\endgroup%
+}
+\makeatother
+
+
+
+% %%% Listen für Versionen der entsprechendne Befehle
+% \foreach \major in {1} { %% Construct Versions
+%     \foreach \minor in {0} {
+%         \foreach \iteration in {0,...,10} {
+%             \newlistof{Version\major\minor\iteration}{\major.\minor.\iteration}{Version \major.\minor.\iteration}
+%         }
+%     }
+% }
+
+\DeclareDocumentCommand{\addcmd}{ O{1.0.0} m}{%
+    \index{#2`{\blankcmdidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
+}
+\DeclareDocumentCommand{\addenv}{ O{1.0.0} m}{%
+    \index{#2`{\blankenvidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
+}
+
+
+\DeclareDocumentCommand{\anothercmd}{ s O{1.0.0} m}{\elable{cmd:#3}\addcmd[#2]{#3}\IfBooleanF{#1}{\blankcmdidx{#3}}}%
+\DeclareDocumentCommand{\anotherenv}{ s O{1.0.0} m}{\elable{cmd:#3}\addenv[#2]{#3}\IfBooleanF{#1}{\blankenvidx{#3}}}%
+
+%% Since,
+\DeclareDocumentCommand{\presentCommand}{ O{1.0.0} m O{} } {%
+    \presentStuff[#1]{\blankcmdidx{#2#3}}[#2]\addcmd[#1]{#2}\ignorespaces%
+}
+\DeclareDocumentCommand{\presentEnvironment}{ O{1.0.0} m O{} }{%
+    \presentStuff[#1]{\blankenvidx{#2#3}}[#2]\addenv[#1]{#2}\ignorespaces%
+}
+\newcommand*{\frmttxt}[1]{\begingroup\color{black}\emph{#1}\endgroup}
+\newcommand*{\cmdlist}{\begingroup\color{black},\;\endgroup}
+\newcommand*{\manArg}[1]{\{\frmttxt{#1}\}}
+\newcommand*{\optArg}[2][]{[\frmttxt{#2\ifthenelse{\equal{#1}{}}{}{=$\langle$#1$\rangle$}}]}
+\newcommand*{\optStar}{\optArg{*}}
+\newcommand*{\cmdold}{~\LILLYxNOTExWarning{Veraltet}}
+
+\newcommand{\displayCommandList}[2][2]{%
+\begin{multicols}{#1}%
+    \begin{ditemize}\narrowitems%
+        \foreach \cmd in {#2}{%
+            \item \blankcmd{\cmd} (\ensuremath{\csname \cmd\endcsname})%
+        }%
+    \end{ditemize}%
+\end{multicols}%
+}
+\def\docuidxname{Kurzübersicht}
+\def\compileidx{\makeindex[title=\docuidxname,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{\docuidxname}}
+%% lilly library
+% Libname
+% Version
+\def\lilib#1#2{\;\protect\textsuperscript{\protect\LILLYxNOTExLibrary{#1}\;\typesetVersion{#2}}}
+\robustify\lilib%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dokumentation                                                                                                       %     %%%% DOC %%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\indexname}{Befehle}
+\compileidx
+
 
 \begin{document}
 \LILLYxLayoutxClear
@@ -64,18 +111,33 @@
 \LILLYxLayoutxRestore
 
 \linput{Data/Einleitung.doc}
-\linput{Data/Maths.doc}
+\linput{Data/Mathe.doc}
 \linput{Data/Grafiken.doc}
 \linput{Data/Farben.doc}
 \linput{Data/Listings.doc}
 \linput{Data/Boxen.doc}
+\linput{Data/AllzwecknCore.doc}
+\linput{Data/Praesentatoren.doc}
+\linput{Data/Controller.doc}
 \linput{Data/Jake.doc}
+\linput{Data/Exkurse.doc}
 
+% Make the persitence library (2.1.0)
+%% FOR 2.1.0:
+% Dokumentiere das mitgelieferte Beamer-layout
+% Changelog
 
 \linput{Data/Aussicht.doc}
 \normalmarginpar\par
 \chapter{Anhang}
 \TitleSUB{Veraltete Dokumente, Zusätzliches, Easter-Eggs, \ldots}
 \linput{Data/Old/Ver10007.doc.old}
-
+\clearpage
+\linput{Data/Old/Ver10009.doc.old}
+\clearpage
+\thispagestyle{empty}
+\bgroup
+\def\idxfsize{\scriptsize}
+\printindex
+\egroup
 \end{document}

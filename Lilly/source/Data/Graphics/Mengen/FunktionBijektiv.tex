@@ -1,0 +1,18 @@
+\gdef\GRAPHICSxFunktionxBijektiv{%
+\begin{tikzternal}[scale=0.7]
+            \draw (0,0) ellipse (1 and 2.25);
+            \draw (4,0) ellipse (1 and 2.25);
+            \node[below] at(0,-2.35) {A};
+            \node[below] at(2,-2.35) {\small\(f: A \rightarrow B\)};
+            \node[below] at(4,-2.35) {B};
+            \foreach \l[count=\li] in {d,...,a} {
+                \node at (0,\li-2.5) (\li) {\l};
+            }
+            \foreach \l[count=\li] in {\alpha,\gamma,\beta,\alpha} {
+                \node at (4,\li-2.5) (b\li) {\(\l\)};
+            }
+            \draw[-latex] (1) -- (b3);  \draw[-latex] (2) -- (b1); \draw [-latex] (3) -- (b4); \draw[-latex]
+            (4) -- (b2);
+        \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxFunktionxBijektiv} 

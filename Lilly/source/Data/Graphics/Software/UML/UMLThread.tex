@@ -1,0 +1,22 @@
+\gdef\GRAPHICSxUMLThread{%
+\begin{tikzternal}
+    \umlclass[x=0,y=0]{Thread}{}{%
+                            + Thread() \\
+                            + Thread(name: String)\\
+                            + Thread(target: Runnable)\\
+                            + Thread(target: Runnable, name: String)\\
+                            + start() : void \\
+                            \umlstatic{+ sleep(millis: long) : void}\\
+                            \umlstatic{+ sleep(millis: long, nanos: int) : void}\\
+                            + join() : void \\
+                            + join(millis: long) : void \\
+                            + join(millis: long, nanos: int) : void\\
+                            + interrupt(): void \\
+                            \umlstatic{+ interrupted() : boolean}\\
+                            \umlstatic{+ yield : void}
+                            };
+    \umlinterface[x=8,y=0]{Runnable}{}{+ run() : void};
+
+    \umlimpl{Thread}{Runnable}
+\end{tikzternal}}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxUMLThread} 

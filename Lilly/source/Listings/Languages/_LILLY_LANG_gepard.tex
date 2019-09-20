@@ -1,0 +1,31 @@
+%% Wird f�r die Dokumentation entsprechend erweitert
+
+\lstdefinelanguage{lGepard}{
+    comment=[l]{\%},
+    alsoletter={\#=-[]\$\{\}+},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[il][{\lstHLError}]{|err|:},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+    moredelim=[is][{}]{|plain|}{|plain|},
+    morecomment=[s]{!}{!},
+    morestring=[b]",
+    escapeinside={!*}{*!},
+    showstringspaces=false,
+    otherkeywords={++\\},
+    morekeywords = [1]{@[SELTEXF],@[AUTONUM],BEGIN,END,@[CONFPATH]},
+    morekeywords = [2]{Lilly,Jake},
+    morekeywords = [3]{operation,file,debug,lilly-show-boxname,lilly-nameprefix,lilly-modes,lilly-show-boxname,lilly-author,lilly-n,lilly-semester,lilly-vorlesung,lilly-boxes,lilly-out,error-count,what,comment-pattern,answer,lilly-author-mail,name,display-name,lilly-mode,complete,complete-prefix,nameprefix,lilly-complete-prefix,lilly-loader,lilly-autoclean,lilly-bibtex,\${HOME},\${TRUE},type,body,on-failure,on-success,patterns},
+    morekeywords = [4]{true,false,file_compile},
+    morekeywords = [5]{+=,=,buildrule,expandable,hook,nmap},
+    morekeywords = [6]{uebungsblatt}
+}
+
+\RegisterLanguage{gepard}{lGepard}
+
+% \lstnewenvironment{gepard}[1][]
+%   {\lstset{language=lGepard,#1}}
+% {}
+
+
+% \pushList{RegisteredLanguages}{gepard/lGepard}

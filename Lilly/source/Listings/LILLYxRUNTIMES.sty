@@ -1,0 +1,46 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxRUNTIMES}[2019/07/14 Stellt die Runtimes-Erweiterungen fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxLISTINGS}
+\RequirePackage{LILLYxLIST}
+
+
+%% Wir definieren eine Reihe an unterstützten Spracherweiterungen, die unabhängig
+%% von den Listings sind (da es zum Beispiel keinen sinn macht XSD-code auszuführen und so)
+%% Die Ausführungen werden als Runtimes entsprechend verwaltet und sind selbst für ihre
+%% Funktionsweise verantwortlich.
+%% Allgmein liefern sie einen \r<Sprache>-Befehl, der einen Befehl ausführt.
+
+%% https://www.ctan.org/pkg/ifplatform
+\LILLYxDemandPackage{ifplatform}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
+                    {Um dieses Paket kommt LILLY nicht herum!}
+                    {}{}
+
+%% Alle Runtimes müssen sich hier registrieren, solange es nicht implementiert ist,
+%% kann man nachträglich keine entfernen tihihih
+\constructList[,]{RegisteredRuntimes}
+\pushList{RegisteredRuntimes}{bash}
+\pushList{RegisteredRuntimes}{haskell}
+
+\getRegisteredRuntimes%
+\ifshellescape
+\foreach \crun in \lillyxlist {%
+ \ifthenelse{\equal{\crun}{}}{}{%
+    \input{\LILLYxPATHxLISTINGS/Runtimes/_LILLY_RUN_\crun}
+    \typeout{Registered: \crun}
+  }
+}
+\else %% Definiere die Befehle mit einer entsprechenden Fehlermeldung
+\foreach \crun in \lillyxlist {%
+  \expandafter\xdef\csname r\crun\endcsname{Shell escape/write-18 ist nicht aktiv! Kann nichts anzeigen!}%
+}
+\fi
+
+
+\newcommand{\isRuntimeLoaded}[1]{%
+  \containsList{RegisteredRuntimes}{#1}%
+}
+
+
+\endinput

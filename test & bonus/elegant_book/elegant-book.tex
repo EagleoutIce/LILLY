@@ -1,0 +1,336 @@
+\renewcommand\LILLYxMODE{print}
+\documentclass[Typ=PLAIN,debug]{Lilly}
+
+
+\usepackage{framed}
+\usepackage{titletoc}
+\usepackage{titlesec}
+%\usepackage{minitoc}
+\usepackage{microtype}
+\usepackage{lipsum}
+\usepackage{needspace}
+
+\usepackage[automark]{scrlayer-scrpage}         %Header konfigurieren
+\setheadsepline{0pt}
+
+
+% \setcounter{minitocdepth}{1}
+% \mtcsetoffset{minitoc}{-9em}
+% \renewcommand{\mtctitle}{Inhalt}
+% \nomtcrule
+%%% \renewcommand{\stcfont}{\small\rm}
+%%% \renewcommand{\stcSSfont}{\small\bf}
+
+\tcbset{
+  presenterstyle/.style={%
+    colback=MudWhite!5,
+    boxrule=1pt,
+    enhanced jigsaw,
+    breakable=true,
+    opacityback=0.9,
+    arc is angular=5mm,
+    fuzzy halo=0.1mm with MudWhite,
+    top=0.1mm,
+    bottom=0.11mm,
+    colframe=Charcoal,
+  }
+}
+
+\def\lfseries{\fontseries{l}\selectfont}
+\renewcommand{\LILLYxRIGHTMARK}{Inhalts\"{u}bersicht}
+
+%%% Set Fonts for the document :D
+% https://tug.org/FontCatalogue/lato/
+\RequirePackage[default]{lato}
+
+\def\SetStyle{\pagenumbering{arabic}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ofoot{\textbf{\thepage}}
+\lofoot{\lfseries{\LILLYxRIGHTMARK}}
+\refoot{\lfseries{\leftmark}}}
+
+%% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
+\AtBeginDocument{%
+	\newgeometry{a4paper, ignoreheadfoot,
+				 left=3.4cm, right=2.6cm,
+				 top=3cm, bottom=3.5cm,
+				 nohead, marginparwidth=0cm,
+                 marginparsep=0mm}
+    \SetStyle
+    %\dominitoc
+}
+
+\LILLYcommand{\leftmark}{} %% fix no chapter bug
+\LILLYcommand{\rightmark}{}
+\renewcommand{\sectionmark}[1]{%
+    \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
+}
+\renewcommand{\chaptermark}[1]{\markboth{\rmdefault #1}{}} %%Chaptermark fix inject
+
+
+\DeclareFixedFont{\tocFont}{U}{eur}{b}{n}{10}
+\DeclareFixedFont{\chpFont}{U}{eur}{b}{n}{24}
+\DeclareFixedFont{\chpNumber}{U}{eur}{b}{n}{165}
+\newlength{\lbarsep}
+\setlength{\lbarsep}{3em}
+\def\lbarcol{AuroMetalSaurus}
+\addto\captionsngerman{%
+        \renewcommand{\contentsname}{\hbox{}\hfill\Huge{\lfseries Inhalts\"{u}bersicht\hbox{}\hfill\relax}}%
+}
+
+\renewenvironment{leftbar}{
+	\def\FrameCommand{
+		\hspace*{-\lbarsep}
+		{\color{\lbarcol}\vrule width 2pt depth 6pt}%\hspace*{-1em}
+	}
+	\MakeFramed{
+		\parshape 1 0cm \dimexpr\textwidth-.5\textwidth\relax\FrameRestore
+	}\vskip2pt%
+}{\endMakeFramed}
+
+\titlecontents{chapter}
+  [2.3em]{\vspace*{-0.125\baselineskip}}
+  {\def\lbarcol{AuroMetalSaurus}\setlength{\lbarsep}{6.5em}%
+    %\begin{minipage}{\textwidth}
+    %\needspace{2cm}
+    \parbox{.1\linewidth}{\hbox{}\hfill\Huge{\thecontentspage}}\nopagebreak%
+   \vspace*{-2.7\baselineskip}\leftbar{\vspace*{0.5em}\parbox{\linewidth}{\hspace*{-1.25em}
+   \tocFont\chaptername~\thecontentslabel}}\\\hspace*{-1.25em}%
+   \Large%
+  }
+  {%
+    %\begin{minipage}{\textwidth}
+    \parbox{0.1\linewidth}{\hfill\Huge\thecontentspage}%
+   \vspace{-2.85\baselineskip}\leftbar{}\\}
+  {\endleftbar%\end{minipage}
+    \nopagebreak}[\vskip2pt\nopagebreak]
+
+\titlecontents{part}[0em]{\vspace*{1\baselineskip}}
+{\def\lbarcol{DebianRed}\setlength{\lbarsep}{9.5em}%
+  \begin{minipage}{\textwidth}
+  \parbox{.1\linewidth}{\hbox{}\hfill\Huge\bfseries{\thecontentspage}}%
+  \vspace{-2.85\baselineskip}\leftbar\vspace*{0.5em}\hspace*{1em}{\tocFont\partname~\thepart}~\\\hspace*{1em}%
+  \Large
+}
+{\def\lbarcol{DebianRed}\setlength{\lbarsep}{9.5em}%
+\begin{minipage}{\textwidth}
+\parbox{.1\linewidth}{\hbox{}\hfill\Huge\bfseries{\thecontentspage}}%
+\vspace{-2.85\baselineskip}\leftbar\vspace*{0.5em}\hspace*{1em}{\tocFont\partname~\thepart}~\\\hspace*{1em}%
+\Large}
+{\endleftbar\end{minipage}
+  \nopagebreak}[\vskip2pt\nopagebreak]
+\titlecontents{section}
+  [0em]
+  {\sffamily\contentslabel{3em}\contentslabel{}}{}{}
+  {\hspace{0.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
+\titlecontents{subsection}
+  [0em]
+  {\sffamily\contentslabel{3em}}{}{}
+  {\hspace{0.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
+
+\makeatletter
+% \def\@seccntformat#1{\llap{\csname the#1\endcsname\hspace{3mm}}}\makeatletter
+\renewcommand\sectionlinesformat[4]{%
+\phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
+{{\smaller #3}\, #4}%
+}
+\makeatother
+
+
+
+%
+%
+%
+% \makeatletter
+% \let\@sec\section
+% \renewcommand{\section}[2][]{\ifthenelse{\equal{#1}{}}{\registerSectionToChapter{#2}}{\registerSectionToChapter{#1}}\@sec[#1]{#2}}
+
+
+\setlength{\parskip}{1ex}\setlength{\parindent}{0ex}
+\setlength{\skip\footins}{0.75cm}\setlength{\footnotesep}{2mm}
+
+% \gdef\registerSectionToChapter#1{%
+%   \typeout{Register for \thechapter\space in \thesection\space with #1}
+%   \expandafter\refstepcounter{chap\alph{chapter}}%
+%   \expandafter\addcontentsline{chap\alph{chapter}}{chap\alph{chapter}}{%
+%     \protect\numberline{\thesection}#1
+%   }\par%
+% }
+
+\gdef\PRTcurText{}
+\gdef\PRTcurAuth{}
+
+\gdef\SetPartFlavour#1#2{%
+  \gdef\PRTcurText{#1}%
+  \gdef\PRTcurAuth{#2}
+}
+
+%% Define and set the Title:
+\makeatletter
+\titleformat{\part}[display]
+  {\vspace*{3em}\hfill\parbox{0.75\linewidth}{\lfseries\raggedleft \PRTcurText}\hspace*{0.5em}\medskip\\\hbox{}\hfill {\mdseries \PRTcurAuth}\\\Huge\scshape\vfill}
+  {\Large\color{DebianRed}\partname~\thepart:}
+  {2pt}
+  {\SetPartFlavour{}{}}[\vspace*{4.5em}] %% Reset :D
+\makeatother
+
+
+\titleformat{\chapter}[display]
+	{}{\chpFont\chaptertitlename}
+    {29pt}{~\vspace{-4em}\newline\hbox{}\hfill{}\Huge%
+      %\newlistof{chap\alph{chapter}}{chap\alph{chapter}}{HeyMum}
+    }
+    %\chapterfont}
+\titleformat*{\section}{\Huge}%\titlefont}
+\titleformat*{\subsection}{\huge}%\titlefont}
+\titleformat*{\subsubsection}{\LARGE}%\titlefont}
+
+% spacing:
+\titlespacing*{\part}{0pt}{0pt}{20pt}
+\titlespacing*{\chapter}{0mm}{50pt}{20pt}
+\titlespacing*{name=\chapter,numberless}{0pt}{20pt}{20pt} %starred
+\titlespacing*{\section}{0mm}{4mm}{3mm}
+\titlespacing*{\subsection}{0mm}{3mm}{2mm}
+\titlespacing*{\subsubsection}{0mm}{2mm}{1.5mm}
+
+\makeatletter
+\newcommand{\printMiniToc}[1][Das haben wir gelernt]{\vspace{-3em}
+  \hfill\parbox[t]{.25\textwidth}{
+		{\mbox{}\\
+			\mbox{}\bfseries{\chpNumber\hfill\thechapter~~}}
+	}
+	\parbox[t]{.65\textwidth}{\vspace*{1.5cm}
+		\begin{flushright}
+			{\Large\textbf{Übersicht}}\quad \raisebox{0.25mm}{\faList}
+		\end{flushright}
+        \vspace*{-3mm}
+        \begin{tcolorbox}[presenterstyle]
+      \hypersetup{linkcolor=black}\lfseries{}
+            \startcontents[chapters]
+            \begin{spacing}{1.175}
+                %\makeatletter
+                %\expandafter\csname listofchap\alph{chapter}\endcsname
+                %\minitoc
+              \printcontents[chapters]{p}{1}{\setcounter{tocdepth}{4}}
+			\end{spacing}
+			\vspace*{-0.5mm}%
+        \end{tcolorbox}
+	}\hspace*{1cm}
+  %\bigskip
+  \hbox{}\vfill
+  \begin{center}
+      #1
+  \end{center}
+  \vfill\hbox{}\clearpage
+}
+\makeatother
+
+\titlecontents{psection}[2.3em]
+{} {\contentslabel{2.3em}} {} {\titlerule*[0.75pc]{.}{\contentspage}}
+\titlecontents{psubsection}[5.5em]
+{} {\contentslabel{3.2em}} {} {,\itshape\contentspage}
+
+
+
+
+
+\begin{document}
+\begin{titlepage}
+  \LillyLogo
+  \hbox{}\vfill
+    \begin{center}
+        {\Huge Demonstration des neuen Designs: }\\
+        \LARGE \T{elegant\_book}
+    \end{center}
+  \vfill\hbox{}
+\end{titlepage}
+
+{\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{0}
+\pagestyle{empty}
+\tableofcontents
+}
+\clearpage
+\SetStyle
+
+\SetPartFlavour{\lipsum[2]}{Detlef Dieter}
+\part{Tolle Welt}
+\chapter{Da wo die Sonne scheint}
+\printMiniToc
+\section{SectionA}
+\lipsum[1-2]
+\subsection{SubsectionA}
+\lipsum[2-4]
+\clearpage
+\section{SectionB}
+\lipsum[6-8]
+\section{SectionC}
+\lipsum[1-2]
+\subsection{SubsectionB}
+\lipsum[1]
+\subsection{SubsectionC}
+\lipsum[2]
+
+% \chapter{Da wo der Regen weint}
+% \printMiniToc
+% \section{SectionA}
+% \lipsum[1-2]
+% \subsection{SubsectionA}
+% \lipsum[2-4]
+% \section{SectionB}
+% \lipsum[6-8]
+% \section{SectionC}
+% \lipsum[1-2]
+% \subsection{SubsectionB}
+% \lipsum[1]
+% \subsection{SubsectionC}
+% \lipsum[2]
+
+% \SetPartFlavour{\lipsum[3]}{Paul Korbierter}
+% \part{Tolles Geld}
+% \chapter{Da wo der Wuffel graint}
+% \printMiniToc
+% \section{SectionA}
+% \subsection{SubsectionA}
+% \section{SectionB}
+% \section{SectionC}
+% \subsection{SubsectionB}
+% \subsection{SubsectionC}
+
+
+% \part{The World}
+% \chapter{Da wo der Huffel baint}
+% \printMiniToc
+% \section{SectionA}
+% \subsection{SubsectionA}
+% \section{SectionB}
+% \section{SectionC}
+% \subsection{SubsectionB}
+% \subsection{SubsectionC}
+
+% \chapter{Die leere Waffel}
+% \printMiniToc
+% \section{Oh Grauß}
+% \subsection{Oh Schreck!}
+% \section{Niemals!}
+% \section{Neues Kaufen!}
+% \subsection{RuckZuck}
+% \subsection{DaBUCKK}
+% \subsection{Schawuck}
+% \section{Ein Herz für Waffeln}
+% \section{Ein Herz für Waffeln II}
+% \section{Ein Herz für Waffeln III}
+% \section{Ein Herz für Waffeln IV}
+
+% \addtocontents{toc}{\protect\newpage}
+% \chapter{Die alte Schachtel}
+% \chapter{Die alte Schachtel I}
+% \chapter{Die alte Schachtel II}
+% \chapter{Die alte Schachtel III}
+% \part{The World II}
+% \chapter{Die alte Schachtel IV}
+% \chapter{Die alte Schachtel V}
+% \chapter{Die alte Schachtel VI}
+
+\end{document}

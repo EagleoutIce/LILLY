@@ -1,0 +1,32 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxHeapNStack}[2019/08/03 Stellt einige Shortcuts fuer Heap und Stacks mit LILLY zur Verfuegung]
+
+
+\newcommand*\hsElement[2]{\draw #1 [thin] rectangle ++(3,-0.5) node [pos=.5] {#2}; }
+\newcommand*\hsmElement[3]{\draw #1 [thin,color=#3] rectangle ++(3,-0.5) node [pos=.5] {#2}; }
+\newcommand*\hsfElement[3]{\draw #1 [thin,color=#3, fill=#3] rectangle ++(3,-0.5) node [pos=.5] {#2}; }
+
+\newcommand*\stackElement[2] {\hsElement{(0.5,#1)}{#2}}
+\newcommand*\stackmElement[2] {\hsmElement{(0.5,#1)}{#2}{candypink}}
+\newcommand*\heapElement[2] {\hsElement{(5.5,#1)}{#2}}
+\newcommand*\heapeElement[2] {\hsmElement{(5.5,#1)}{#2}{limegreen}}
+\newcommand*\heapclassElement[2] {\hsfElement{(5.5,#1)}{\textcolor{white}{\T{\textbf{\large{#2}}}}}{tealblue}}
+\newcommand*\heapclassChild[2] {\hsmElement{(5.5,#1)}{\textcolor{black}{\scriptsize{#2}}}{tealblue}}
+
+\providecommand{\infoTOP}[6][tealblue]{%%[color] pos:name:year:person:info
+\draw[#1] #2  ++(0,-0.2) node[right] {\tiny\textcolor{#1}{\tiny #4}}++(0,-0.05)  to[short] ++(0,2)++(0,0.06) circle (0.06) node[below right,scale=0.75] {\begin{minipage}{3.5cm}
+    \textcolor{#1}{\sr[Geschichtliches]{Ereignisse}{#3}}\hfill{\tiny\textcolor{#1!50}{#5}}\\[0.1cm]
+    \textcolor{#1!70}{\small #6}
+\end{minipage}};
+}
+\providecommand{\infoBOT}[6][tealblue]{%%[color] pos:name:year:person:info
+\draw[#1] #2  ++(0,0.2) node[right] {\tiny\textcolor{#1}{\tiny #4}}++(0,0.05)  to[short] ++(0,-2)++(0,-0.06) circle (0.06) node[above right,scale=0.75] {\begin{minipage}{3.5cm}
+\textcolor{#1!70}{\small #6}\\[0.1cm]
+\textcolor{#1}{\sr[Geschichtliches]{Ereignisse}{#3}}\hfill{\tiny\textcolor{#1!50}{#5}}
+\end{minipage}};
+}
+
+\tikzset{c/.append style={midway,centered}}
+\providecommand{\lstlinputlisting}[2][1]{\lstinputlisting[#1]{\LILLYxPATH#2}}
+
+\endinput

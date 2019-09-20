@@ -1,0 +1,24 @@
+\protect\thispagestyle{empty}
+\begin{theindex}\protect\thispagestyle{empty}
+  \providecommand*\indexgroup[1]{\indexspace
+    \item \textbf{#1}\nopagebreak}
+
+\providecommand{\idxfsize}{\normalsize}
+\noindent\ {\centering\tikz{\node at(-1,0) {};\node at(2,0) {};\draw[rounded corners=3pt,fill=black!03,thick] (0,0) rectangle ++(5,0.5) node[midway,centered]{\textbf{B}};}}\par\nopagebreak
+
+  \item\idxfsize{}Begriff\pgfsetfillopacity{1.0}\dotfill\setLinkColor{\LILLYxColorxLINKSxCurrentColor}\iftrue\rmfamily 
+		{\hyperpage{2}}\fi\pgfsetfillopacity{1.0}\iftrue\rmfamily\idxfsize{}
+    \subitem Super Begriff\pgfsetfillopacity{1.0}\setLinkColor{\LILLYxColorxLINKSxCurrentColor}\iftrue\rmfamily:~
+		{\hyperpage{3}}\fi\pgfsetfillopacity{1.0}\iftrue\rmfamily\idxfsize{}\pgfsetfillopacity{1.0}%
+\subsubitem\footnotesize\mbox{\footnotesize\pgfsetfillopacity{1.0}\rmfamily}\footnotesize Noch besserer Begriff\pgfsetfillopacity{0.0}\setLinkColor{white}\iffalse
+		{\hyperpage{3}}\fi\pgfsetfillopacity{1.0}\iftrue\rmfamily\idxfsize{}  %
+  \indexspace
+  %
+
+\providecommand{\idxfsize}{\normalsize}
+\noindent\ {\centering\tikz{\node at(-1,0) {};\node at(2,0) {};\draw[rounded corners=3pt,fill=black!03,thick] (0,0) rectangle ++(5,0.5) node[midway,centered]{\textbf{W}};}}\par\nopagebreak
+
+  \item\idxfsize{}wundervoll\pgfsetfillopacity{1.0}\dotfill\setLinkColor{\LILLYxColorxLINKSxCurrentColor}\iftrue\rmfamily 
+		{\hyperpage{3}}\fi\pgfsetfillopacity{1.0}\iftrue\rmfamily\idxfsize{}
+
+\end{theindex}

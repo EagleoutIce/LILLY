@@ -1,0 +1,18 @@
+\contentsline {part}{I\hspace {1em}Tolle Welt}{1}{part.1}% 
+\contentsline {chapter}{\numberline {1}Da wo die Sonne scheint}{3}{chapter.1}% 
+\contentsline {chapter}{\numberline {2}Da wo der Regen weint}{7}{chapter.2}% 
+\contentsline {part}{II\hspace {1em}Tolles Geld}{11}{part.2}% 
+\contentsline {chapter}{\numberline {3}Da wo der Wuffel graint}{13}{chapter.3}% 
+\contentsline {part}{III\hspace {1em}The World}{15}{part.3}% 
+\contentsline {chapter}{\numberline {4}Da wo der Huffel baint}{17}{chapter.4}% 
+\contentsline {chapter}{\numberline {5}Die leere Waffel}{19}{chapter.5}% 
+\newpage 
+\contentsline {chapter}{\numberline {6}Die alte Schachtel}{21}{chapter.6}% 
+\contentsline {chapter}{\numberline {7}Die alte Schachtel I}{23}{chapter.7}% 
+\contentsline {chapter}{\numberline {8}Die alte Schachtel II}{25}{chapter.8}% 
+\contentsline {chapter}{\numberline {9}Die alte Schachtel III}{27}{chapter.9}% 
+\contentsline {part}{IV\hspace {1em}The World II}{29}{part.4}% 
+\contentsline {chapter}{\numberline {10}Die alte Schachtel IV}{31}{chapter.10}% 
+\contentsline {chapter}{\numberline {11}Die alte Schachtel V}{33}{chapter.11}% 
+\contentsline {chapter}{\numberline {12}Die alte Schachtel VI}{35}{chapter.12}% 
+\contentsfinish 

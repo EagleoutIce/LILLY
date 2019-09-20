@@ -1,0 +1,341 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxTIMETABLES}[2019/09/09 Stellt eine Stundenplan-Erweiterung fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCORE}
+
+\RequirePackage{LILLYxFONTS}
+\RequirePackage{LILLYxTIKZxCORE}
+
+\RequirePackage{LILLYxTIMETABLESxCOMFORT}
+
+%% https://www.ctan.org/pkg/pgf
+\LILLYxDemandPackage{pgf}{bis expl3 :P}
+                    {Ohne gehts nicht}
+                    {}{}
+
+%% Kalender machen, also für Stundenpläne, tex^^ sie sollen mit einer Id slots hinzu gefügt bekommen und sich dann entsprechend zeichnen lassen über einen Befehl wie tableof. Daten sollen getreu:
+%% \setTable{meinStundenplan} % oder wie auch immer das auf englisch heißt ^^ auf jedenfall sollen alle Operationen ab jetzt auf diesem Stundenplan arbeiten.
+%% \addVorlesungsreihe{} % eine Vorlesung mit id usw hinzufügen da wird auch Dozent, Übungsleiter Tutor usw eingetragen. Auf Englisch übersetzen. Diese Operation kann auch global sein.
+
+\def\@lilly@ttables@currenttable{} % Set current ttable to empty, it will be used to allow pgfkeys etc. to resolve the correct data
+
+% Wandelt eine Zahl in den entsprechenden Wochentag um, 0 entspricht Montag, 6 dem Sonntag
+% #1 Number to convert
+\def\IntToWeekday#1{
+  \ifcase#1 Montag\or Dienstag\or Mittwoch\or Donnerstag\or Freitag\or Samstag\or Sonntag\else\@ctrerr\fi
+}
+
+\pgfkeys{%
+    /lillyxTIMETABLES/.is family, /lillyxTIMETABLES,
+    title/.store in=\lillyxTimetablesxtitle,                                % title
+    bordercolor/.store in=\lillyxTimetablesxbordercolor,                    % bordercolor
+    day start time/.store in=\lillyxTimetablesxdaystarttime,                % day start time
+    day end time/.store in=\lillyxTimetablesxdayendtime,                    % day end time
+    week start day/.store in=\lillyxTimetablesxweekstartday,                % week start day
+    week end day/.store in=\lillyxTimetablesxweekendday,                    % week end day
+    time formatter/.store in=\lillyxTimetablesxtimeformatter,               % time formatter
+    defaults/.style={%
+        bordercolor=black, day start time=8, % start 8 AM
+        day end time=20, % end 8 PM
+        week start day=0, % Monday
+        week end day=4, % Friday
+        title={Ich bin ein Titel, setzte 'title' um mich zu \"{a}ndern}, %maybe require?
+        time formatter={AtLineDistCompanion}
+    }
+}%% All those values will be persisted with 'lillyxINFOBOXESx'-Prefix :D
+
+%% Liefert einen Persistierten Timetable Wert :D
+% #1 Bezeichner des Timetable
+% #2 Bezeichner des Elements
+\def\@ttget#1#2{%
+    \csname lillyxTIMETABLESx#1x#2\endcsname%
+}
+
+%% Liefert einen Persistierten Timetable Wert des aktuellen tt :D
+% #2 Bezeichner des Elements
+\def\@cttget#1{%
+    \csname lillyxTIMETABLESx\@lilly@ttables@currenttable x#1\endcsname%
+}
+
+%%% Default Formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@Default#1{%
+    \scriptsize\rotatebox{90}{#1}~~~%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@Default@Sequence#1{%
+    \scriptsize\rotatebox{90}{#1~--~{\pgfmathparse{int(#1+2)}\pgfmathresult}}~~~%
+}
+
+%%% Revert Default formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@RevertDefault#1{%
+    \scriptsize\rotatebox{90}{#1}~~~%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@RevertDefault@Sequence#1{%
+    \scriptsize\rotatebox{90}{{\pgfmathparse{int(#1+2)}\pgfmathresult}~--~#1}~~~%
+}
+
+%%% AT Line Formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@AtLine#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{#1}%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@AtLine@Sequence#1{%
+    \scriptsize\hbox{}\raisebox{0.75cm}{#1}%
+}
+
+
+%%% AT Line Companion Formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@AtLineCompanion#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{#1}%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@AtLineCompanion@Sequence#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{\parbox{2ex}{\ifnum#1<10 ~~\fi#1\vspace*{-0.05cm}\newline\hbox{}~~{\fontsize{4.5pt}{3pt}\selectfont\pgfmathparse{int(#1+1)}\pgfmathresult}}}\,%
+}
+
+%%% AT Line Dist Companion Formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@AtLineDistCompanion#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{#1}%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@AtLineDistCompanion@Sequence#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{\parbox{2ex}{\ifnum#1<10 ~~\fi#1\vspace*{0.15cm}\newline\hbox{}~~{\fontsize{4.5pt}{3pt}\selectfont\pgfmathparse{int(#1+1)}\pgfmathresult}}}\,%
+}
+
+\DeclareDocumentCommand{\NewTimeTable}{%
+    O{} % Further Keys, to customize (like start and end-time and days to be listed)
+    m % Name of the timetable
+    % Here it should be possible to pass further information :D
+}{%
+    % Set the pgfkeys
+    \pgfkeys{/lillyxTIMETABLES, defaults, #1}%
+    % Persist them:
+    \expandafter\xdef\csname lillyxTIMETABLESx#2xTitle\endcsname{\lillyxTimetablesxtitle}%                                                  Title
+    \expandafter\xdef\csname lillyxTIMETABLESx#2xBorderColor\endcsname{\lillyxTimetablesxbordercolor}%                                      BorderColor
+    \expandafter\xdef\csname lillyxTIMETABLESx#2xDayStartTime\endcsname{\lillyxTimetablesxdaystarttime}%                                    DayStartTime
+    \expandafter\xdef\csname lillyxTIMETABLESx#2xDayEndTime\endcsname{\lillyxTimetablesxdayendtime}%                                        DayEndTime
+    \expandafter\xdef\csname lillyxTIMETABLESx#2xWeekStartDay\endcsname{\lillyxTimetablesxweekstartday}%                                    WeekStartDay
+    \expandafter\xdef\csname lillyxTIMETABLESx#2xWeekEndDay\endcsname{\lillyxTimetablesxweekendday}%                                        WeekEndDay
+    \expandafter\xdef\csname lillyxTIMETABLESx#2xTimeFormatter\endcsname{\lillyxTimetablesxtimeformatter}%                                  TimeFormatter
+    % Constructing the weekday-slot commands which will represent the events taking place at the hours.
+    % Every table will construct commands like \@<tablename>@event@<id> where the id is a constantly increasing number
+    % furthermore it will hold \@<tablename>@event@maxcount which will hold the maximum number of events
+    \newcounter{@#2@maxcount}% Setting the current event count to 0
+    %
+    % Constructing \the<name> to print the timetable
+    \expandafter\xdef\csname the#2\endcsname{%
+        \noexpand\DrawTimeTable{#2}%
+    }
+    % Constructing \present<name> to print the timetable fullpage
+    \expandafter\xdef\csname present#2\endcsname{%
+        \noexpand\PresentTimeTable{#2}%
+    }
+}
+
+\def\@@weekdwidth{3}% Width of day
+
+% Will draw the Table with the name #1
+\def\DrawTimeTable#1{
+    % Es wird sich nicht um den Start einer neuen Zeile gekümmert.
+    \begin{tikzpicture}[every node/.style={transform shape,font={\sffamily}}]
+        % Jeder Tag erhält eine Breite von \\@@weekdwidth cm, alle anderen Modifikationen lassen sich über Scale liefern
+        \def\@@lowest{0}% Lowest hour
+        \def\@@daydif{0}% day difference
+        \foreach \iday[count=\curi] in {\@ttget{#1}{WeekStartDay},...,\@ttget{#1}{WeekEndDay}}{%
+            \xdef\@@daydif{\curi}
+        }
+
+        % Draw the title
+        \node (titlenode) at (3*\@@daydif/2+1.5,1.5) {\LARGE{\@ttget{#1}{Title}}};
+
+        % Zeichne die Zeiten ein, sie werden links am Rand auf -1.5 gesetzt und von -1 an ins negative gerechnet.
+        \pgfmathsetmacro{\@@DayStep}{int(2+\@ttget{#1}{DayStartTime})}
+        % Es wird bisher eine automatische Zeiteinteilung vorgesehen
+        \foreach \itime[count=\curi] in {\@ttget{#1}{DayStartTime},\@@DayStep,...,\@ttget{#1}{DayEndTime}}{%
+            \ifnum\itime=\@ttget{#1}{DayEndTime}%
+                \node[left] at(1.5,-1.25*\curi+0.25) {\csname @@TimeFormatter@\@ttget{#1}{TimeFormatter}\endcsname{\itime}};
+                \xdef\@@lowest{-1.25*\curi+0.25} % handle overhang if not reachable
+            \else
+                \draw[] (0.65,-1.25*\curi-0.5) -- (\@@weekdwidth*\@@daydif+1.75,-1.25*\curi-0.5); % -------------
+                \node[left] at(1.5,-1.25*\curi+0.125) {\csname @@TimeFormatter@\@ttget{#1}{TimeFormatter}@Sequence\endcsname{\itime}};
+                % + draw mid hour line
+                \draw[very thin, densely dashed] (1.5,-1.25*\curi+0.125) -- (\@@weekdwidth*\@@daydif+1.75,-1.25*\curi+0.125); % -------------
+                \xdef\@@lowest{-1.25*\curi-0.45}
+            \fi
+        }
+        % Zeichen die besagten Events in die Tabelle ein
+        \foreach \ievent in {0,...,\value{@#1@maxcount}}{%
+            \csname @#1@event@\ievent\endcsname
+        }
+        % Draw a thicker line to seperate the weekdays
+        \draw[thick] (0.65,-0.5) -- (\@@weekdwidth*\@@daydif+1.75,-0.5);
+        % Draw a thicker line to seperate the hours
+        \draw[thick] (1.5,0.35) -- (1.5,\@@lowest-0.35);
+
+        % Vielleicht als optionales Argument tikzargs? oder automatisches resize?
+        % Zeichne die Tage:
+        \foreach \iday[count=\curi] in {\@ttget{#1}{WeekStartDay},...,\@ttget{#1}{WeekEndDay}}{%
+            % Zeichne den Wochentag:
+            \node[minimum width=\@@weekdwidth cm] (day\iday) at(\@@weekdwidth*\curi, 0) {\efont{\IntToWeekday{\iday}}};
+            \draw (\@@weekdwidth*\curi+1.5,0.35) -- (\@@weekdwidth*\curi+1.5,\@@lowest-0.35); % 0.45 hihi
+        }
+    \end{tikzpicture}
+}
+
+\def\@eventopacity{0.9}
+
+\pgfkeys{%
+    /lillyxTIMETABLES/Event/.is family, /lillyxTIMETABLES/Event,
+    title/.store in=\lillyxTimetablesEventxtitle,                                % title (Lineare Algebra)
+    short title/.store in=\lillyxTimetablesEventxshorttitle,                     % short title
+    bgcolor/.store in=\lillyxTimetablesEventxbgcolor,                            % bgcolor
+    day/.store in=\lillyxTimetablesEventxday,                                    % day, will be translated to x
+    y/.store in=\lillyxTimetablesEventxy,                                        % y
+    height/.store in=\lillyxTimetablesEventxheight,                              % height
+    preCode/.store in=\lillyxTimetablesEventxprecode,                            % precode
+    postCode/.store in=\lillyxTimetablesEventxpostcode,                          % postcode
+    extra 1/.store in=\lillyxTimetablesEventxextrafirst,                         % extra 1 (eg. what)
+    extra 2/.store in=\lillyxTimetablesEventxextrasecond,                        % extra 2 (eg. where)
+    extra 3/.store in=\lillyxTimetablesEventxextrathird,                         % extra 3 (eg. who)
+    defaults/.style={%
+        bgcolor=AppleGreen!15, day=0, y=-1.125, height=1.25,
+        title={bummelbahn}, %maybe require?
+        preCode={}, postCode={}, extra 1 = {Hamsterbacke}, extra 2={Waffeln},
+        extra 3 = {Günther Der coolere}, short title={}
+    }
+}%% All those values will be persisted with 'lillyxINFOBOXESx'-Prefix :D
+
+\def\@@IncM#1{%
+    \pgfmathparse{int(1+\csname @#1@maxcount\endcsname)}\pgfmathresult
+}
+
+% Maybe make a marker to set an emblem for 'vorlesungen' ?
+
+\DeclareDocumentCommand{\RawTimeTableEvent}{%
+    O{} % EventKeys :D
+    m % Table Name
+}{%
+    \xdef\@lilly@ttables@currenttable{#2}
+    % Set the pgfkeys
+    \pgfkeys{/lillyxTIMETABLES/Event, defaults, #1}%
+    % First of all increase the current event counter for the table:
+    \stepcounter{@#2@maxcount}
+    % create the new Event. It will expand the pgfkeys, to make persisting redundant
+    % First, we will check if the double-layer positioning does work, it needs at least 1.25 in height :d
+    \pgfmathparse{\lillyxTimetablesEventxheight>=1.25}
+    \ifnum\pgfmathresult=1% double sided layout :D
+        \expandafter\xdef\csname @#2@event@\arabic{@#2@maxcount}\endcsname{%
+            % execute precode:
+            \lillyxTimetablesEventxprecode%
+
+            % draw the colored background
+            \noexpand\draw[fill=\lillyxTimetablesEventxbgcolor,fill opacity=\@eventopacity] (\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth/2,\lillyxTimetablesEventxy+0.625) rectangle ++ (\@@weekdwidth,-\lillyxTimetablesEventxheight);
+
+            % Draw the title
+            \noexpand\node at(\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth,\lillyxTimetablesEventxy+0.33) {\noexpand\fontsize{6.5pt}{6.5pt}\noexpand\selectfont\noexpand\parbox{\@@weekdwidth cm-0.25cm}{\noexpand\centering\lillyxTimetablesEventxtitle}};
+
+            % Draw the first extra
+            \noexpand\node[right] at(\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth/2,\lillyxTimetablesEventxy-0.45) {\noexpand\fontsize{4pt}{3pt}\noexpand\selectfont\lillyxTimetablesEventxextrafirst};
+            % Draw the second extra
+            \noexpand\node[left] at(\@@weekdwidth*\lillyxTimetablesEventxday+1.5*\@@weekdwidth,\lillyxTimetablesEventxy-0.45) {\noexpand\fontsize{4pt}{3pt}\noexpand\selectfont\noexpand\scshape\lillyxTimetablesEventxextrasecond};
+            % Draw the third extra
+            \noexpand\node at(\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth,\lillyxTimetablesEventxy-0.02) {\noexpand\fontsize{4pt}{3pt}\noexpand\selectfont\noexpand\vphantom{Ig}\lillyxTimetablesEventxextrathird};
+
+            % execute postcode
+            \lillyxTimetablesEventxpostcode%
+        }%
+    \else
+        \expandafter\xdef\csname @#2@event@\arabic{@#2@maxcount}\endcsname{%
+            % execute precode:
+            \lillyxTimetablesEventxprecode%
+
+            % draw the colored background
+            \noexpand\draw[fill=\lillyxTimetablesEventxbgcolor,fill opacity=\@eventopacity] (\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth/2,\lillyxTimetablesEventxy+0.625) rectangle ++ (\@@weekdwidth,-\lillyxTimetablesEventxheight);
+
+            % Draw the title
+            \noexpand\node[right] at(\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth/2,\lillyxTimetablesEventxy+0.4) {\noexpand\fontsize{7pt}{5pt}\noexpand\selectfont\lillyxTimetablesEventxshorttitle};
+
+            % Draw the first extra
+            \noexpand\node[right] at(\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth/2,\lillyxTimetablesEventxy+0.15) {\noexpand\fontsize{4pt}{3pt}\noexpand\selectfont\lillyxTimetablesEventxextrafirst};
+            % Draw the second extra
+            \noexpand\node[left] at(\@@weekdwidth*\lillyxTimetablesEventxday+1.5*\@@weekdwidth,\lillyxTimetablesEventxy+0.15) {\noexpand\fontsize{4pt}{3pt}\noexpand\selectfont\noexpand\scshape\lillyxTimetablesEventxextrasecond};
+            % Draw the third extra
+            \noexpand\node[left] at(\@@weekdwidth*\lillyxTimetablesEventxday+1.5*\@@weekdwidth,\lillyxTimetablesEventxy+0.4) {\noexpand\fontsize{4pt}{3pt}\noexpand\selectfont\noexpand\vphantom{Ig}\lillyxTimetablesEventxextrathird};
+
+            % execute postcode
+            \lillyxTimetablesEventxpostcode%
+        }%
+    \fi
+}
+
+\RequirePackage{pdflscape}
+
+%% Draws a standalone timetable, including formatting on a full page
+\def\PresentTimeTable#1{
+    \clearpage\hbox{}\vfill\begin{center}
+        \resizebox{0.85\textwidth}{!}{%
+            \DrawTimeTable{#1}%
+        }
+    \end{center}
+    \vfill\hbox{}\clearpage
+}
+
+%% Here we will define the Events
+\DeclareDocumentCommand{\NewTimeTableEvent}{%
+    m       % ID of the Event
+    m       % Titel des Events
+    m       % Farbe des Events
+    O{}     % Extra 1
+    O{}     % Extra 2
+    O{}     % Extra 3
+    O{1.25} % Height of the Event/Lenght :d
+}{
+
+    % {%
+    %     O{} % Additional Keys for the tt
+    %     m   % The table
+    %     m   % The day,
+    %     m   % The hour
+    % }%
+    \expandafter\xdef\csname new#1\endcsname{\noexpand\protect\noexpand\@ifnextchar[{\expandafter\noexpand\csname @@hasopt@@new#1\endcsname}{\expandafter\noexpand\csname @@noopt@@new#1\endcsname}}
+
+    \expandafter\gdef\csname @@hasopt@@new#1\endcsname[##1]##2##3##4{%
+        \RawTimeTableEvent[%
+            title=#2, bgcolor=#3,%
+            extra 1=#4, extra 2=#5, extra 3=#6,%
+            height=#7,%
+            ##3,##4,##1%
+        ]{##2}%
+    }
+    \expandafter\gdef\csname @@noopt@@new#1\endcsname##1##2##3{%
+        \RawTimeTableEvent[%
+            title=#2, bgcolor=#3,%
+            extra 1=#4, extra 2=#5, extra 3=#6,%
+            height=#7,%
+            ##2,##3%
+        ]{##1}%
+    }
+}
+
+\endinput

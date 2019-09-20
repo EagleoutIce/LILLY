@@ -1,0 +1,144 @@
+\gdef\GRAPHICSxKomplexerSchaltkreis{%
+\begin{circuitikz}
+    %% some meta stuff
+    \definecolor{CA}{RGB}{0, 67, 255}
+    \definecolor{CE}{RGB}{155, 193, 255}
+    \definecolor{CL}{RGB}{248, 12, 255}
+    \definecolor{CD}{RGB}{239, 0, 59}
+    \definecolor{CB}{RGB}{255, 233, 0}
+    \definecolor{CF}{RGB}{114, 255, 0}
+    \definecolor{CJ}{RGB}{1, 122, 15}
+    \definecolor{CH}{RGB}{122, 82, 1}
+    \definecolor{RoyalBlue}{RGB}{96, 0, 11}
+    \definecolor{CG}{RGB}{0, 0, 0}
+    \definecolor{CK}{RGB}{255, 102, 0}
+    \definecolor{CC}{RGB}{114, 114, 114}
+    \definecolor{CM}{RGB}{255, 122, 122}
+    \def\xo{\overline{x_1}\tab[0.05cm]}
+    \def\xt{\overline{x_2}\tab[0.05cm]}
+    \def\xtr{\overline{x_3}\tab[0.05cm]}
+    \def\xf{\overline{x_4}\tab[0.05cm]}
+    \foreach \x in {1,...,4} {
+        \node [above] at (\x*1.2,0) {\(x_\x\)};
+        \draw (\x*1.2,0) -- ++(0,-6);
+        \bigRing{(\x*1.2,-0.3)};
+        \node [american not port,scale=0.35,rotate=-90] at (\x*1.2+.6,-.83) {};
+        \draw (\x*1.2,-.3) -- ++(0.6,0) -- ++(0,-0.3);
+        \draw (\x*1.2+.6,-1.02) -- (\x*1.2+.6,-6);
+        \node [above] at (\x*1.2+.6,0) {\(\overline{x_\x}\)};
+    }
+
+    \foreach \x in {1,1.5,3,3.5}{
+        \foreach \a in {0,...,1}{
+            \draw[thick] (\x*1.2,-1.2*\x-1.2*\a) -- (6.05,-1.2*\x-1.2*\a);
+            \bigRing{(\x*1.2,-1.2*\x-1.2*\a)};
+        }
+    }
+
+
+    \foreach \x in {1,3}{
+        \foreach \a in {0,1}{
+            \draw[thick] (\x*1.2+1.2,-1.2*\x-0.3-0.6*\a) -- (6.05,-1.2*\x-0.3-0.6*\a);
+            \bigRing{(\x*1.2+1.2,-1.2*\x-0.3-0.6*\a)};
+
+            \draw[thick] (\x*1.2+1.8,-1.2*\x-1.5-0.6*\a) -- (6.05,-1.2*\x-1.5-0.6*\a);
+            \bigRing{(\x*1.2+1.8,-1.2*\x-1.5-0.6*\a)};
+        }
+    }
+
+    \foreach \x in {1,...,8} {
+        %%Namen wird jetzt doch nicht genutz weil naja... ohne gings mit python besser ^^
+        \node [european and port,scale=0.545] at (6.8,-\x/1.667-.75) (r\x) {};
+    }
+
+    \node at(7.1,-1.25) {\tiny{\(x_1x_2\)}};
+    \node at(7.1,-1.84) {\tiny{\(\xo x_2\)}};
+    \node at(7.1,-2.44) {\tiny{\(x_1\xt\)}};
+    \node at(7.1,-3.04) {\tiny{\(\xo \xt\)}};
+    \node at(7.1,-3.64) {\tiny{\(x_3x_4\)}};
+    \node at(7.1,-4.23) {\tiny{\(\xtr x_4\)}};
+    \node at(7.1,-4.83) {\tiny{\(x_3 \xf\)}};
+    \node at(7.1,-5.42) {\tiny{\(\xtr \xf\)}};
+
+    \node [european and port,scale=0.345,color=magenta] at (11.25,-1.104) (n) {};
+    \node [european and port,scale=0.345,color=CA] at (11.25,-1.444) (a) {};
+    \node [european and port,scale=0.345,color=CB] at (11.25,-1.784) (b) {};
+    \node [european and port,scale=0.345,color=CC] at (11.25,-2.114) (c) {};
+    \node [european and port,scale=0.345,color=CD] at (11.25,-2.454) (d) {};
+    \node [european and port,scale=0.345,color=CE] at (11.25,-2.784) (e) {};
+    \node [european and port,scale=0.345,color=CF] at (11.25,-3.124) (f) {};
+    \node [european and port,scale=0.345,color=CG] at (11.25,-3.454) (g) {};
+    \node [european and port,scale=0.345,color=CH] at (11.25,-3.794) (h) {};
+    \node [european and port,scale=0.345,color=RoyalBlue] at (11.25,-4.124) (i) {};
+    \node [european and port,scale=0.345,color=CJ] at (11.25,-4.464) (j) {};
+    \node [european and port,scale=0.345,color=CK] at (11.25,-4.794) (k) {};
+    \node [european and port,scale=0.345,color=CL] at (11.25,-5.134) (l) {};
+    \node [european and port,scale=0.345,color=CM] at (11.25,-5.462) (m) {};
+
+    \draw[color=CA] (6.7,-1.35) -- ++(3.9,0) -- (a.in 1);
+    \draw[color=CA] (6.7,-3.75) -- ++(3.9,0) |- (a.in 2);
+    \draw[color=CB] (10.4,-1.35) |- (b.in 1);
+    \draw[color=CB] (6.7,-4.949) -- ++(3.7,0) |- (b.in 2);
+    \draw[color=CC] (10.15,-1.35) |- (c.in 1);
+    \draw[color=CC] (6.7,-4.35) -- ++(3.45,0) |- (c.in 2);
+    \draw[color=CD] (9.9,-1.35) |- (d.in 1);
+    \draw[color=CD] (6.7,-5.549) -- ++(3.2,0) |- (d.in 2);
+
+    \draw[color=CE] (6.7,-2.549) -- ++(2.95,0) |- (e.in 1);
+    \draw[color=CE] (9.65,-4.95) |- (e.in 2);
+
+    %\draw[color=CE] (6.7,-2.549) -- ++(1.25,0) |- (e.in 1);
+    \draw[color=CF] (9.4,-2.549) |- (f.in 1);
+    \draw[color=CF] (9.4,-4.35) |- (f.in 2);
+
+    \draw[color=CG] (9.15,-2.549) |- (g.in 1);
+    \draw[color=CG] (9.15,-5.549) |- (g.in 2);
+
+    \draw[color=CH] (8.9,-4.95) |- (h.in 2);
+    \draw[color=CH] (6.7,-1.95) -- ++(2.2,0) |- (h.in 1);
+
+    \draw[color=RoyalBlue] (8.75,-1.95) |- (i.in 1);
+    \draw[color=RoyalBlue] (8.75,-5.549) |- (i.in 2);
+
+    \draw[color=CJ] (6.7,-3.1495) -- ++(1.8,0) -- ++(0,-1.3) -| (j.in 1);
+    \draw[color=CJ] (8.4,-3.75) |- (j.in 2);
+
+    \draw[color=CK] (8.15,-3.1495) |- (k.in 1);
+    \draw[color=CK] (8.15,-4.949) |- (k.in 2);
+
+    \draw[color=CL] (7.9,-3.1495) |- (l.in 1);
+    \draw[color=CL] (7.65,-4.35) |- (l.in 2);
+
+    \draw[color=CM] (7.45,-3.1495) |- (m.in 1);
+    \draw[color=CM] (9.9,-5.549) -- (m.in 2);
+
+    \draw[color=magenta] (8.4,-1.95) |- (n.in 2);
+    \draw[color=magenta] (7.65,-4.35) |- (n.in 1);
+    \bigCRing[CB]{(10.4,-1.35)};
+    \bigCRing[CC]{(10.15,-1.35)};
+    \bigCRing[CD]{(9.9,-1.35)};
+    \bigCRing[CE]{(9.65,-4.949)};
+    \bigCRing[CF]{(9.4,-2.549)}; \bigCRing[CF]{(9.4,-4.35)};
+    \bigCRing[CG]{(9.15,-2.549)}; \bigCRing[CG]{(9.15,-5.549)};
+    \bigCRing[CH]{(8.9,-4.949)};
+    \bigCRing[RoyalBlue]{(8.75,-1.95)}; \bigCRing[RoyalBlue]{(8.75,-5.549)};
+    \bigCRing[CJ]{(8.4,-3.75)};
+    \bigCRing[CK]{(8.15,-3.1495)}; \bigCRing[CK]{(8.15,-4.949)};
+    \bigCRing[CL]{(7.9,-3.1495)}; \bigCRing[CL]{(7.65,-4.35)};
+    \bigCRing[CM]{(7.45,-3.1495)}; \bigCRing[CM]{(9.9,-5.549)};
+    \bigCRing[magenta]{(8.4,-1.95)};
+    \node [european or port,scale=0.35] at (13,-3.454) (x) {};
+
+    \draw (n.out) -- (x.in 1);
+    \draw (a.out) --(x.in 1) (b.out) --(x.in 1) (c.out) --(x.in 1) (d.out) --(x.in 1) (e.out) --(x.in 1) (f.out) --(x.in 1) (h.out) --(x.in 2) (i.out) --(x.in 2) (j.out) --(x.in 2) (k.out) --(x.in 2) (l.out) --(x.in 2) (m.out) --(x.in 2) (g.out) -- ++(1.2,0) ;
+    \draw (x.out) -- ++(0.2,0);
+    \node[rotate=90] at (13.445,-3.454) {\tiny{\(f(x_1,x_2,x_3)\)}};
+    %\foreach \x in {1,1.5,3,3.5}{
+    %    \foreach \a in {0,...,1}{
+    %        \draw (\x*1.2+1.2,-1.2*\x-1.2*\a-0.3) -- (6,-1.2*\x-1.2*\a-0.3);
+    %        \bigRing{(\x*1.2+1.2,-1.2*\x-1.2*\a-0.3)};
+    %    }
+    %}
+\end{circuitikz}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxKomplexerSchaltkreis}

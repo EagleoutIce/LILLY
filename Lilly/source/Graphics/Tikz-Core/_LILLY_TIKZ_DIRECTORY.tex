@@ -1,0 +1,81 @@
+%% https://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz#34268
+
+\makeatletter
+
+\newcount\dirtree@lvl
+\newcount\dirtree@plvl
+\newcount\dirtree@clvl
+\def\dirtree@growth{%
+  \ifnum\tikznumberofcurrentchild=1\relax
+  \global\advance\dirtree@plvl by 1
+  \expandafter\xdef\csname dirtree@p@\the\dirtree@plvl\endcsname{\the\dirtree@lvl}
+  \fi
+  \global\advance\dirtree@lvl by 1\relax
+  \dirtree@clvl=\dirtree@lvl
+  \advance\dirtree@clvl by -\csname dirtree@p@\the\dirtree@plvl\endcsname
+  \pgf@xa=1cm\relax
+  \pgf@ya=-1cm\relax
+  \pgf@ya=\dirtree@clvl\pgf@ya
+  \pgftransformshift{\pgfqpoint{\the\pgf@xa}{\the\pgf@ya}}%
+  \ifnum\tikznumberofcurrentchild=\tikznumberofchildren
+  \global\advance\dirtree@plvl by -1
+  \fi
+}
+
+\tikzset{
+  dirtree/.style={
+    growth function=\dirtree@growth,
+    every node/.style={anchor=north,font=\LILLYxlstTypeWriter,rectangle,draw,rounded corners=2.75pt,inner sep=3pt, minimum height=0.65cm, minimum width=2em, align=center,transform shape}, %% 3em
+    every child node/.style={anchor=west},
+    edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tikzchildanchor)}
+  }
+}
+
+\newenvironment{directory}[1][]{
+    \begin{tikzpicture}[dirtree, #1]
+    }{;\end{tikzpicture}}
+
+
+
+
+% %% currently based on
+% % https://tex.stackexchange.com/questions/5073/making-a-simple-directory-tree#270761
+% \RequirePackage{forest}
+
+% \definecolor{folderbg}{RGB}{124,166,198}
+% \definecolor{folderborder}{RGB}{110,144,169}
+
+% \def\Size{4pt}
+% \tikzset{
+%   folder/.pic={
+%     \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+%       (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);
+%     \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+%       (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
+%   }
+% }
+
+
+% \newenvironment{directory}[1][]{%
+% \begin{forest}
+%     for tree={
+%       font=\LILLYxlstTypeWriter,
+%       grow'=0,
+%       child anchor=west,
+%       parent anchor=south,
+%       anchor=west,
+%       calign=first,
+%       inner xsep=7pt,
+%       edge path={
+%         \noexpand\path [draw, \forestoption{edge}]
+%         (!u.south west) +(7.5pt,0) |- (.child anchor) pic {folder} \forestoption{edge label};
+%       },
+%       before typesetting nodes={
+%         if n=1
+%           {insert before={[,phantom]}}
+%           {}
+%       },
+%       fit=band,
+%       before computing xy={l=15pt},
+%     }
+% }{\end{forest}}

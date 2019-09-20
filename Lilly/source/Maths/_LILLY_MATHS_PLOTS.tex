@@ -1,6 +1,6 @@
 %%% Implementation des in der Dokumentation gewünschten LILLY-PLOT environments!
 
-%% Dieses Feature ist seinerseits mit dem Wechsel in Version 1.0.8 angsetzt
+\RequirePackage{LILLYxTIKZxCORE} % den hat man sowieso gebraucht :D
 
 %% \RequirePackage{pgfkeys}
 \LILLYxDemandPackage{pgfkeys}{Damit wir angenehme kv-pairs haben}
@@ -10,7 +10,6 @@
 \LILLYxDemandPackage{wrapfig}{Falls wir es floating haben möchten :D}
                     {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
                     {}{}
-
 \makeatletter
 \LILLYxLoadPackage{placeins}{Halte Floatings auf (sub)section level konsistent}
                     {Dieses Paket ist für Lilly nicht Lebensnotwendig}
@@ -24,15 +23,20 @@
                     \gdef\@fb@afterHsHook{} %% currently not working as excepted :P
                  }}
 
+\newif\ifdonumbering
 \pgfkeys { %
     /lillyxPlot/.is family, /lillyxPlot,
     defaults/.style = { %
         scale=1, minX=-2, maxX=2,
         minY=0, maxY=4, offset=0.4,
         loffset=0.1, labelX=$x$, labelY=$y$,
-        samples=250,
+        samples=250, numXMin=0, numYMin=0,
+        numbersize=5,labelsize=10,xscale=1,
+        yscale=1%
     },
     scale/.estore in = \lillyxPlotxScale,
+    xscale/.estore in = \lillyxPlotxXScale,
+    yscale/.estore in = \lillyxPlotxYScale,
     minX/.estore in = \lillyxPlotxMinX,
     maxX/.estore in = \lillyxPlotxMaxX,
     minY/.estore in = \lillyxPlotxMinY,
@@ -42,31 +46,73 @@
     labelX/.estore in = \lillyxPlotxLabelX,
     labelY/.estore in = \lillyxPlotxLabelY,
     samples/.estore in = \lillyxPlotxSamples,
+    numXMin/.estore in = \lillyxPlotxNumXMin,
+    numYMin/.estore in = \lillyxPlotxNumYMin,
+    numbering/.is if = donumbering,
+    numbering/.initial = false,
+    numbers/.style = {numbering=true},
+    numbersize/.estore in = \lillyxPlotxNumSize,
+    labelsize/.estore in = \lillyxPlotxLabelSize
 }
 
-\NewDocumentCommand{\plotline}{ O{Ao} O{\x} m }{\draw[domain=\lillyxPlotxMinX:\lillyxPlotxMaxX, smooth, variable=#2,#1] plot[samples=\lillyxPlotxSamples] ({#2}, {#3});}
+\NewDocumentCommand{\plotline}{ O{Ao} O{\x} m O{0}}{\draw[domain=\lillyxPlotxMinX:\lillyxPlotxMaxX, smooth, variable=#2,#1] plot[samples=\lillyxPlotxSamples] ({#2+#4}, {#3});}
 
 %% color variable function max min circlesize
 \NewDocumentCommand{\plotseq}{ O{DebianRed} O{\x} m O{\lillyxPlotxMaxX} O{1} O{1pt}}{\foreach #2 in {#5,...,#4}{\pgfmathparse{#3}\filldraw[#1](#2,\pgfmathresult) circle (#6);}}
 
+\NewDocumentCommand{\xmark}{O{x} m O{0.15}}{\draw (#2,\lillyxPlotxMinY)++(0,#3) -- ++(0,-2*#3) node [below] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont #1};}
+\NewDocumentCommand{\ymark}{O{y} m O{0.15}}{\draw (0,#2)++(#3,0) -- ++(-2*#3,0) node [left] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont #1};}
+
 %%% [KEYS][TIKZPICTURE]
 \DeclareDocumentEnvironment{graph}{ O{} O{}}{
-\pgfkeys{/lillyxPlot, defaults, #1} %% Hier köznnte graph wrapfigure support erhalten mit ifthenelse{\equal{#3}{}}{}{\wrapfigure{#3}{#4}} oder so
-\begingroup\begin{tikzpicture}[scale=\lillyxPlotxScale,#2]
-    \draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset) 
+\pgfkeys{/lillyxPlot, defaults, #1} %% Hier könnte graph wrapfigure support erhalten mit ifthenelse{\equal{#3}{}}{}{\wrapfigure{#3}{#4}} oder so
+\begingroup\begin{tikzpicture}[scale=\lillyxPlotxScale,xscale=\lillyxPlotxXScale,yscale=\lillyxPlotxYScale,#2]
+    \draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset)
             grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
-            \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0) 
+            \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0)
             -- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
-            node[right] {\lillyxPlotxLabelX};
-            \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset) 
+            node[right] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelX};
+            \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset)
             -- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
-            node[above] {\lillyxPlotxLabelY};
+            node[above] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelY};
+        \ifdonumbering
+        \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumXMin))] in {\lillyxPlotxMinX,...,\lillyxPlotxMaxX} {
+            \node [below right, Charcoal!50!white] at (\i,0) {\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
+        }
+        \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumYMin))] in {\lillyxPlotxMinY,...,\lillyxPlotxMaxY} {
+            \node [above left, Charcoal!50!white] at (0,\i) {\!\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
+        }
+        \fi
         }{\end{tikzpicture}\endgroup}
 
 %% {POS}[PGFKEYS][TIKZKEYS][WIDTH][WRAPFIGOFF]
-\DeclareDocumentEnvironment{wgraph}{ m O{} O{}  O{0pt} O{}} {%
-\wrapfigure{#1}{#4}% as \begin{wrapfigure} will enforce break
+\DeclareDocumentEnvironment{wgraph}{ m O{} O{}  O{} O{0pt}} {%
+\wrapfigure{#1}{#5}% as \begin{wrapfigure} will enforce break
     \begin{graph}[#2][#3]}{%
-    \end{graph}#5%
+    \end{graph}#4%
 \endwrapfigure%
+}
+
+%% ExternalGraph
+\NewEnviron{egraph}[1][] {
+\pgfkeys{/lillyxPlot, defaults, #1}
+\begingroup\begin{tikzternal}[scale=\lillyxPlotxScale,xscale=\lillyxPlotxXScale,yscale=\lillyxPlotxYScale]
+\draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset)
+    grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
+    \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0)
+    -- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
+    node[right] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelX};
+    \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset)
+    -- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
+    node[above] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelY};
+\ifdonumbering
+\foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumXMin))] in {\lillyxPlotxMinX,...,\lillyxPlotxMaxX} {
+    \node [below right, Charcoal!50!white] at (\i,0) {\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
+}
+\foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumYMin))] in {\lillyxPlotxMinY,...,\lillyxPlotxMaxY} {
+    \node [above left, Charcoal!50!white] at (0,\i) {\!\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
+}
+\fi
+\BODY
+\end{tikzternal}\endgroup
 }

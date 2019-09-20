@@ -1,0 +1,39 @@
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{%
+\begin{tikzternal}[rb/.style={fill=DebianRed!45}, every node/.style={font=\sffamily}, cen/.style={midway,centered}]
+\foreach \x in {0,...,3} {
+    \draw[fill=AppleGreen!25] (2*\x,0) rectangle ++(1,1);
+}
+\node[right] at (7,0.5) {Anwendungen};
+\draw[very thick] (0,-0.25) -- ++(7,0);
+
+\draw[fill=DebianRed!25] (0,-0.5) rectangle ++(7,-4);
+
+% \def\mwidth{6.5}
+% \pgfmathsetmacro\hoff{0}
+
+% \foreach \name/\bwidth/\bheight in {%
+%     {}/\mwidth/1.25,                %
+%     Kernel/\mwidth/1.25,            %
+%     Waffel/2/2,
+% }{%
+% \draw[rb] (0.25,-0.65-\hoff) rectangle ++ (\bwidth,-\bheight) node[midway,centered] {\Large\name \hoff};
+
+% \pgfmathtruncatemacro\hoff{\hoff - \bheight - 0.15}%
+
+% }
+
+\draw[rb] (0.25,-0.65) rectangle ++ (6.5,-0.25) node[right,xshift=0.25cm,yshift=0.1cm] {Systemaufrufschnittstelle};
+\draw[rb] (0.25,-1) rectangle ++ (6.5,-1.25) node[cen] {\Large Kernel};
+\draw[rb] (1.25,-2.35) rectangle ++ (4.5,-0.75) node[cen] {\Large E/A-Subsystem};
+\draw[rb] (0.25,-3.2) rectangle ++ (6.5,-0.25) node[right,xshift=0.25cm,yshift=0.1cm] {E/A-Treiberschnittstelle};
+\foreach \x/\l in {0/Disk,1/TTY,2/Tape} {
+    \draw[rb] (2.375*\x+0.25,-4.35) rectangle ++(1.75,0.8) node[cen] {\Large\l};
+    \foreach \sx in {0.4,1.35} {
+        \draw[thick,latex-latex] (2.375*\x+0.25+\sx,-4.35) -- ++(0,-0.75);
+    }
+}
+\node[right] at(7,-3.95) {Treiber};
+\draw[fill=Azure!25] (0,-5.1) rectangle ++(7,-0.5) node[cen] {Geräte};
+
+\end{tikzternal}
+}

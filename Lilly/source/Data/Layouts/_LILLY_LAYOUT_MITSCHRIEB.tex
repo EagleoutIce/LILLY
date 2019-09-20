@@ -1,7 +1,23 @@
-\RequirePackage[automark,headsepline]{scrlayer-scrpage}         %Header konfigurieren
+\RequirePackage[headsepline]{scrlayer-scrpage}         %Header konfigurieren
 \RequirePackage{caption}
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 \RequirePackage{relsize}
+
+
+%% https://www.ctan.org/pkg/changepage
+\LILLYxDemandPackage{changepage}{Genaue identifikation der Seite}
+                    {Fuer die genaue identifikation der Seite noetig!}
+                    {}{} %% keine Argumente
+
+%% https://ctan.org/pkg/wasysym
+\LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}%% Package, Info
+                    {Sonst geht halt errorEmblem nicht xD}
+                    {}{nointegrals}{\let\wasysymLightning\lightning}%% otherwise this would collide with the amssymb :D
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General and Layoutkonfiguration                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \renewcommand{\sectionmark}[1]{%
     \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
@@ -14,33 +30,54 @@
 \LILLYcommand{\leftmark}{} %% fix no chapter bug
 \LILLYcommand{\rightmark}{}
 
-\titleformat{\chapter}[display]%             
+\titleformat{\chapter}[display]%
         {\relax}
         {\vspace{-4\baselineskip}\raggedleft{\color{LightGray}\chapterNumber\thechapter} \\ }
         {0pt}%
-        {\vspace*{-4\baselineskip}\color{\LILLYxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here 
+        {\vspace*{-4\baselineskip}\color{\LILLYxColorxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here
         [\normalcolor\normalsize\vspace*{-.7\baselineskip}\rule{\textwidth}{0.5pt}\vspace*{-1.7\baselineskip}]%
 
-\newcommand*{\TitleSUB}[1]{ 
-    \begingroup\vspace{-1.25\baselineskip}\textsc{\textcolor{\LILLYxTITLExCOLOR}{#1}}~\\[1\baselineskip]\endgroup
+\newcommand*{\TitleSUB}[1]{
+    \begingroup\vspace{-1.25\baselineskip}\textsc{\textcolor{\LILLYxColorxTITLExCOLOR}{#1}}~\\[1\baselineskip]\endgroup
 }
 \newcommand{\LILLYxRIGHTMARK}{\faBookmark}
 \let\defChapter\chapter
-\renewcommand*{\chapter}{
-    \@ifstar{\starchapter}{\@dblarg\nostarchapter}
+
+\DeclareDocumentCommand{\chapter}{
+    s   % starred
+    O{} % optional short
+    m   % name of chapter
+}{%
+    \IfBooleanTF{#1}{% starred
+        \defChapter*{#3}% no opt
+    }{% unstarred
+        \ifthenelse{\equal{#2}{}}%
+        {\defChapter{#3}\def\xchapname{#3}}% use same
+        {\defChapter[{#2}]{#3}\def\xchapname{#2}}%
+        \getRegisteredBoxLists
+        \foreach \ctmplistname in \lillyxlist {%
+            \addcontentsline{\ctmplistname}{chapter}{\xchapname}%
+        }
+        \renewcommand{\leftmark}{\xchapname}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}%
+    }%
 }
-\newcommand{\starchapter}[1]{
-    \defChapter*{#1}
-}
-\def\nostarchapter[#1]#2{\defChapter[{#1}]{#2}\addcontentsline{DEFS}{chapter}{#1}%
-\addcontentsline{SATZE}{chapter}{#1}\addcontentsline{ZSM}{chapter}{#1}\addcontentsline{UB}{chapter}{#1}%
-\addcontentsline{LEMME}{chapter}{#1}\renewcommand{\leftmark}{{#2}}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}}%
+
+% \let\defChapter\chapter
+% \renewcommand*{\chapter}{
+%     \@ifstar{\starchapter}{\@dblarg\nostarchapter}
+% }
+% \def\starchapter*#1{
+%     \defChapter*{#1}
+% }
+% \def\nostarchapter[#1]#2{\defChapter[{#1}]{#2}\addcontentsline{DEFS}{chapter}{#1}%
+% \addcontentsline{SATZE}{chapter}{#1}\addcontentsline{ZSM}{chapter}{#1}\addcontentsline{UB}{chapter}{#1}%
+% \addcontentsline{LEMME}{chapter}{#1}\renewcommand{\leftmark}{{#2}}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}}%
 
 \LILLYcommand{\LILLYxLayoutxClear}{ %
     \pagestyle{empty} %KOMA-FTW!
     \pagenumbering{gobble}
 }
-\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+\LILLYcommand{\LILLYxLayoutxRestore}{ %
     \pagenumbering{arabic}
     \pagestyle{scrheadings} %KOMA-FTW!
     \renewcommand{\chapterpagestyle}{scrheadings} %Kein Übungsblatt? => Mitschrieb => Konfiguriere Kapitel
@@ -58,43 +95,46 @@
         \ofoot{\normalfont\textbf{\thepage}}
         %\ihead{\hspace{-0.1cm}\raisebox{-2em}{\faCaretDown}}
     \else%% \LILLYxFACULTYxCOLOR
-        %%\lohead{\hspace*{-1.83cm}\small{\tikz[baseline=1.215ex]{\filldraw[LightGray!50!white,draw, rounded corners=1pt] (0,0) -- ++(1.45,0) -- ++(0.25,0.25) -- ++ (-0.25,0.25) -- ++(-1.45,0) -- cycle (0.75,0.25) node[minimum height=\baselineskip, inner sep=1pt,\LILLYxLINKSxMainColor]{\silentHmark[Kapitel]{eagleTOC}[\LILLYxLINKSxMainColor]};} \leftmark}}
-        
+        %%\lohead{\hspace*{-1.83cm}\small{\tikz[baseline=1.215ex]{\filldraw[LightGray!50!white,draw, rounded corners=1pt] (0,0) -- ++(1.45,0) -- ++(0.25,0.25) -- ++ (-0.25,0.25) -- ++(-1.45,0) -- cycle (0.75,0.25) node[minimum height=\baselineskip, inner sep=1pt,\LILLYxColorxLINKSxMainColor]{\silentHmark[Kapitel]{eagleTOC}[\LILLYxColorxLINKSxMainColor]};} \leftmark}}
+
         %\fi
         \lohead{\AUTHOR}
-        \lofoot{\silentHmark[\small\textit{Kapitel}]{eagleTOC}[\LILLYxLINKSxMainColor]\textnormal{\guilsinglright}\leftmark}
+        \lofoot{\silentHmark[\small\textit{Kapitel}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}\leftmark}
         \cofoot{}
         \rohead{\heute}
         %\lofoot{\tiny{{\rightmark} \(\rangle\){\leftmark}}}
         \ifx\LILLYxFOOTERxBUTTONS\true
-            \rofoot{\raisebox{0.75pt}{\eXButton{Find}{\tiny \faSearch} \text{ } \eXButton{GoBack}{\tiny \faUndo} \text{ } \eXButton{GoForward}{\tiny \faRepeat}\text{ } \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{0.75pt}{\eXButton{NextPage}{\(\RHD\)}}}
+            \rofoot{\raisebox{0.75pt}{\eXButton{Find}{\tiny \faSearch} ~ \eXButton{GoBack}{\tiny \faUndo} ~ \eXButton{GoForward}{\tiny \faRepeat}~ \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{0.75pt}{\eXButton{NextPage}{\(\RHD\)}}}
         \else
             \rofoot{\thepage}
         \fi
     \fi
 }
 
-
-\AtBeginDocument{
-    \LILLYxLayoutxRestore
-}
-
 %\expandafter\expandafter\expandafter\widthof{\csname the#1 \endcsname}
 \makeatletter
+% As considered by the impracicability of the margin-layout this is no the use old and can be controlled by the if:
+\newif\iflilly@mitschrieb@sectionlines@useold@
+\lilly@mitschrieb@sectionlines@useold@false
 \renewcommand\sectionlinesformat[4]{%
-\phantomsection%%
-\protect\if@twoside%%% e.g. LILLYxMODEXPRINT
-\protect\ifodd\c@page%% oddpage -> rSide
-{#4\hfill\makebox[0pt][l]{\smaller\hspace{.75\marginparsep}#3}}%
-\else%
-{\makebox[0pt][r]{\smaller#3\hspace{\marginparsep}}#4}%
-\fi%
-\else %% is oneside
-{\makebox[0pt][r]{\textcolor{\LILLYxTITLExCOLOR}{#3}\hspace{\marginparsep}}#4}%
-\fi%
+    \iflilly@mitschrieb@sectionlines@useold@%
+        \phantomsection%%
+        \protect\if@twoside%%% e.g. LILLYxMODEXPRINT
+        \strictpagecheck\checkoddpage\ifoddpage%\protect\ifodd\c@page%% oddpage -> rSide
+        {#4\hfill\makebox[0pt][l]{\smaller\hspace{.75\marginparsep}#3}}%
+        \else%
+        {\makebox[0pt][r]{\smaller#3\hspace{\marginparsep}}#4}%
+        \fi%
+        \else %% is oneside
+        {\makebox[0pt][r]{\textcolor{\LILLYxColorxTITLExCOLOR}{#3}\hspace{\marginparsep}}#4}%
+        \fi%
+    \else%
+	    \phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
+	    {{\smaller #3} #4}%
+    \fi
 }
 
-\renewcommand{\@seccntformat}[1]{\textcolor{\LILLYxTITLExCOLOR}{\csname the#1\endcsname}}
+\renewcommand{\@seccntformat}[1]{\textcolor{\LILLYxColorxTITLExCOLOR}{\csname the#1\endcsname}}
 
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
 {-4ex \@plus -1ex \@minus -.4ex}
@@ -107,10 +147,97 @@
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -0.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
-{\normalfont\small\sffamily\bfseries}}                        
+{\normalfont\small\sffamily\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
 {-2ex \@plus-.2ex \@minus .2ex}
 {.1ex}
 {\normalfont\sffamily\bfseries}}
 
 \setlength{\parindent}{0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introkonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%Lade gewünschtes Titelblatt => LILLYxTITLE
+\ifnum\LILLYxSemester>0
+    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+\fi
+%%OLD: \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
+\AtBeginDocument{\LILLYxTITLE}
+
+%%Generieren Inhaltsverzeichnis
+
+\LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}}
+\addto\captionsngerman{%
+    \renewcommand{\contentsname}{\hbox{}\relax\hfill Inhaltsverzeichnis\hfill\hbox{}\relax}%
+}
+\LILLYcommand{\cftsubsecfont}{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!90!white}}
+%\renewcommand{\cftsecleader}{\hfill}
+\LILLYcommand{\cftsubsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
+\LILLYcommand{\cftsubsecpagefont}{\normalfont\scriptsize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!70!white}}
+
+\AtBeginDocument{
+    %%Niemand will irgendwas sehen beim TOC :D
+    \newpage\addtocontents{toc}{\protect\pagestyle{empty}}
+    \addtocontents{toc}{\protect\thispagestyle{empty}}
+    %%Sichergeh :D
+    \thispagestyle{empty}
+    \protect\pagestyle{empty}
+    \elable{eagleTOC}
+    \tableofcontents
+    \ifx\LILLYxMODE\LILLYxMODExPRINT%
+        \newpage\hbox{}\relax%
+        \clearpairofpagestyles%
+        \cleardoublepage%
+    \else %
+        \newpage%
+        \clearpairofpagestyles%
+    \fi%
+}
+
+
+
+\AtBeginDocument{
+    \LILLYxLayoutxRestore
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outrokonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Dieser Controller kümmert sich um die korrekte implementierung des OUTROS eines Dokuments er fügt bei Bedarf Listen für Definitionen usw an und bindet auch den Index ein etc.
+
+% there is a clear command i know :P
+\def\LILLYxCLEARxHEADFOOT{\lohead{}\cohead{}\rohead{}\lofoot{}\cofoot{}\rofoot{}}
+
+%% Wir haben einen Mitschrieb =>
+%% - Definitionen
+%% - Sätze
+%% - Lemmas
+%% - Zusamenfassungen
+%% - Übungsblätter
+\AtEndDocument{
+    \pagestyle{empty}\tocloftpagestyle{plain}
+     \ohead{}\chead{}\ihead{} %clear header
+     \ofoot{}\cfoot{}\ifoot{} %clear footer => fixes double page issue
+    \pagestyle{empty}% \typeout{REDNECK: \n@true\space \LILLYxSEENxDEFINITION}
+    \ifx\LILLYxBOXxDefinitionxEnable\true\ifthenelse{\equal{\LILLYxSEENxDEFINITION}{\n@true}}{%
+    \clearpage\phantomsection\addcontentsline{toc}{chapter}{Definitionen}
+    \listofDEFINITIONS
+    \clearpage}{}\fi
+    \ifx\LILLYxBOXxSatzxEnable\true\ifthenelse{\equal{\LILLYxSEENxSATZ}{\n@true}}{%
+    \phantomsection\addcontentsline{toc}{chapter}{Sätze}
+    \listofSATZE
+    \clearpage}{}\fi
+     \ifx\LILLYxBOXxLemmaxEnable\true\ifthenelse{\equal{\LILLYxSEENxLEMMA}{\n@true}}{%
+    \phantomsection\addcontentsline{toc}{chapter}{Lemmata}
+    \listofLEMMATA\clearpage}{}\fi
+    \ifx\LILLYxBOXxZusammenfassungxEnable\true\ifthenelse{\equal{\LILLYxSEENxZUSAMMENFASSUNG}{\n@true}}{%
+    \phantomsection\addcontentsline{toc}{chapter}{Zusammenfassungen}
+    \listofZUSAMMENFASSUNGEN\clearpage}{}\fi
+     \ifx\LILLYxBOXxUebungsblattxEnable\true\ifthenelse{\equal{\LILLYxSEENxUBS}{\n@true}}{%
+    \phantomsection\addcontentsline{toc}{chapter}{Übungsblätter}
+    \listofUBS}{}\fi
+ }

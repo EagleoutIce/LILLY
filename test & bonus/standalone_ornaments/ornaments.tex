@@ -1,0 +1,107 @@
+\errorcontextlines 100000
+
+\documentclass{article}
+
+\usepackage{LILLYxTABLES}
+\usepackage{LILLYxORNAMENTS}
+\usepackage{LILLYxLISTINGS}
+\usepackage{colortbl}
+\begin{document}
+
+\begin{mltable}{ll}
+    Hallo & Welt \\
+    \rowcolor{purple} Na wie & geht es \\
+    dir & denn
+\end{mltable}
+
+
+\begin{tabular}{lll}
+
+    Hi & Na du? \\
+    \rowcolor{purple} Na wie & geht es \\
+    dir & denn
+
+\end{tabular}
+\bigskip\newline
+% \begin{mtabular}{ll}
+%     Hi & Na du? \\
+%     Na wie & geht es \\
+%     Hi & Na du? \\
+%     Na wie & geht es \\
+%     Hi & Na du? \\
+%     Na wie & geht es \\
+%     Hi & Na du? \\
+%     Na wie & geht es \\
+%     dir & denn
+% \end{mtabular}
+
+\begin{longtable}{tl}
+    Bezeichner & Evaluiert zu\\ % On every Page
+    TEXFILE & Expandiert zum vollen Bezeichner TeX-Datei \\
+    BASENAME & Expandiert zum Namen der TeX-Datei ohne Endung \\
+    FINALNAME & Expandiert zum Namen nach der Generierung (nur sofern im Kontext klar vorhanden) \\
+    LOGFILE & Expandiert zum Pfad der Logdatei \\
+    PDFFILE & Expandiert zum Namen der PDF-Datei \\
+    LATEXARGS & Expandiert zu den Latex-Argumenten (\T{-shell-escape}, \ldots) \\
+    OUTPUTDIR & Expandiert zum Ausgabeordner \\
+    INPUTDIR & Expandiert zum Quellordner \\
+    BOXMODES & Expandiert zu den Boxmodi \\
+    CLEANTARGETS & Expandiert zu den zu löschenden Endungen \\
+    SIGNATURECOL & Expandiert zur Signaturfarbe \\
+    AUTHOR & Expandiert zum Author \\
+    AUTHORMAIL & Expandiert zur Email-Adresse des Autors \\
+    NAMEPREFIX & Expandiert zum Namenspräfix \\
+    SEMESTER & Expandiert zur Semesterzahl \\
+    VORLESUNG & Expandiert zur Vorlesung \\
+    LILLY\_CONFIGS\_PATH & Expandiert zum Pfad der Konfigurationen \\
+    LILLY\_DATA\_PATH & Expandiert zum Pfad der Daten \\
+    N & Expandiert zur Übungsblattnummer \\
+    JOBCOUNT & Expandiert zur Maximalen Jobanzahl \\
+    \_LILLYARGS & Expandiert zu den Argumenten für Lilly \\
+    \_C & Expandiert zu einem wundervollen Komma \\%\Smiley \\
+    HOME & Expandiert zum Homeverzeichnis \\
+    TRUE & Expandiert zu \say{\emph{true}} \\
+    FALSE & Expandiert zu \say{\emph{false}} \\
+    S\_TRUE & Expandiert zur Jake-Definition von \emph{true} (\say{\emph{true}}) \\
+    S\_FALSE & Expandiert zur Jake-Definition von \emph{false} (\say{\emph{false}})\\
+    PDFFILE & Expandiert zum Namen der PDF-Datei \\
+    LATEXARGS & Expandiert zu den Latex-Argumenten (\T{-shell-escape}, \ldots) \\
+    OUTPUTDIR & Expandiert zum Ausgabeordner \\
+    INPUTDIR & Expandiert zum Quellordner \\
+    BOXMODES & Expandiert zu den Boxmodi \\
+    CLEANTARGETS & Expandiert zu den zu löschenden Endungen \\
+    SIGNATURECOL & Expandiert zur Signaturfarbe \\
+    AUTHOR & Expandiert zum Author \\
+    AUTHORMAIL & Expandiert zur Email-Adresse des Autors \\
+    NAMEPREFIX & Expandiert zum Namenspräfix \\
+    SEMESTER & Expandiert zur Semesterzahl \\
+    VORLESUNG & Expandiert zur Vorlesung \\
+    LILLY\_CONFIGS\_PATH & Expandiert zum Pfad der Konfigurationen \\
+    LILLY\_DATA\_PATH & Expandiert zum Pfad der Daten \\
+    N & Expandiert zur Übungsblattnummer \\
+    JOBCOUNT & Expandiert zur Maximalen Jobanzahl \\
+    \_LILLYARGS & Expandiert zu den Argumenten für Lilly \\
+    \_C & Expandiert zu einem wundervollen Komma \\%\Smiley \\
+    HOME & Expandiert zum Homeverzeichnis \\
+    TRUE & Expandiert zu \say{\emph{true}} \\
+    FALSE & Expandiert zu \say{\emph{false}} \\
+    S\_TRUE & Expandiert zur Jake-Definition von \emph{true} (\say{\emph{true}}) \\
+    S\_FALSE & Expandiert zur Jake-Definition von \emph{false} (\say{\emph{false}})
+\end{longtable}
+
+
+
+\constructList[,]{Dieter}
+
+\pushList{Dieter}{Hallo}
+\theDieter
+\pushList{Dieter}{Hallo2}
+\theDieter
+\pushList{Dieter}{Hallo3}
+\pushList{Dieter}{Hallo4}
+\pushList{Dieter}{Hallo5}
+
+\theDieter
+
+
+\end{document}

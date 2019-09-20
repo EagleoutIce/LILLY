@@ -1,0 +1,83 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxTIKZxCORE}[2019/07/12 Stellt den Kern der Tikz-Schnittstelle fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCORE} %% DemandPackage und LoadPackage
+\RequirePackage{LILLYxCOLOR}
+
+%% https://www.ctan.org/pkg/tikz
+\LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
+                    {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+\usetikzlibrary{%
+arrows,automata,calc,intersections,%
+through,decorations.pathreplacing,%
+decorations.pathmorphing,backgrounds,%
+positioning,fit,shapes,shadings,%
+shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
+
+%% https://www.ctan.org/pkg/circuitikz
+\LILLYxDemandPackage{circuitikz}{Ach komm schon, das sind Schaltplaene, die mag jeder!}%% Package, Info
+                    {Ohne Schalplaene mache ich gar nichts}%% Error-Text
+                    {european}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+%Schaltkreise, Standard: Europäisches Schaltkreislayout
+
+%% https://www.ctan.org/pkg/pgfplots
+\LILLYxDemandPackage{pgfplots}{Diese Plots werden zwangslaeufig benoetigt}%% Package, Info
+                    {Ohne dieses Paket mache ich garnichts, das ist einfach so}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Optionale Pakete für den Tikz Core                                                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% https://www.ctan.org/pkg/tkz-euclide
+\LILLYxLoadPackage{tkz-euclide}{Diese Erweiterung scheint notwendig?}%% Package, Info
+                    {Es gilt zu ueberpruefen, ob dieses Paket wirklich Relevanz besitzt}%% Error-Text
+                    {}
+                    {}{}
+
+%% https://www.ctan.org/pkg/tkz-euclide
+\LILLYxLoadPackage{tikz-qtree}{Diese Erweiterung scheint notwendig?}%% Package, Info
+                    {Es gilt zu ueberpruefen, ob dieses Paket wirklich Relevanz besitzt}%% Error-Text
+                    {}
+                    {}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hypbrid Pakete für den Tikz Core: Tikzternal                                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\LILLYxEXTERNALIZE\true
+%% https://www.ctan.org/pkg/environ
+\LILLYxDemandPackage{environ}{Ermöglicht spezifisches externalize} %% Package, Info
+                    {Leider ist auch dieses Paket bei der Benutzung von Externalize verpflichtend :/}%% Error-Text
+                    {}%%Params
+                    {}
+\else
+%% https://www.ctan.org/pkg/environ
+\LILLYxLoadPackage{environ}{Ermöglicht spezifisches externalize} %% Package, Info
+                    {Dann keine coolen Environments}%% Error-Text
+                    {}
+                    {}{}
+\fi
+
+%%
+
+\tikzset{stretch/.initial=1,%
+         invclip/.style={clip,insert path={{[reset cm](-100pt,-100pt) rectangle (100pt,100pt)}}}} %Für die FG-Kreise, damit man clippings auch invertieren kann
+
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_EXTERNAL}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_AUTOMATEN}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_GRAPHEN}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_NEURONS}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_PLACEHOLDER}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_ROTATION}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_SYMBOLS}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_ER}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_DIRECTORY}
+
+\RequirePackage{\LILLYxPATHxDATA/Semester/1/EIDI/tikz-uml}
+
+\endinput

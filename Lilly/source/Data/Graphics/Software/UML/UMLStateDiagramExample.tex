@@ -1,0 +1,35 @@
+\gdef\GRAPHICSxUMLStateDiagramExample{%
+\begin{tikzternal}[every node/.style={font=\sffamily}]
+    \begin{umlstate}[width=14cm,x=0,y=0]{Leben}
+%%%%%%%%%%%%%%%%%%%%%
+        \umlstateinitial[x=0,y=-10,width=2ex,name=Binit2] 
+        \umlbasicstate[x=0,y=0, width=6.6cm,name=happi,entry={Beziehungsstatus = Vergeben},exit={Beziehungsstatus = Supersingle}]{Glücklich} 
+        \umlbasicstate[x=0,y=-8, width=6.6cm,name=sad,entry={Kaufe Kuschelteddy},exit={}]{Traurig} 
+        \umltrans{Binit2}{sad};
+        \umlbasicstate[x=7.25,y=-4, name=tollertyp]{Toller Typ}; 
+        \umltrans[recursive=-170|-110|2cm, pos=2, recursive direction=left to bottom]{tollertyp}{tollertyp} 
+        \draw[->,thick] (happi.-45) -| (sad.45) node[pos=0.75,above,sloped] (ft2) {macht Schluss [kein Geld]};
+        \draw[->,thick] (sad.135) -| (happi.225) node[pos=0.75,above,sloped] (ft1) {Freundin [hat Geld] / Endorphin};    
+    \end{umlstate}
+    
+%%%%%%%%%%%%%%%%%%%%%
+
+    \draw[densely dashed] (5cm,2.25) -- ++(0,-13);
+
+    \providecommand{\descNode}[4][above]{%
+        \draw ##2 node[##1]  {\parbox{5cm}{\textbf{##3}:\\\itshape ##4}};
+    }
+
+\begin{scope}[every path/.style={latex-}]
+    \descNode[above right]{(tollertyp) -- ++(2,2)}{Paralleler Zustand}{Egal was links passiert, man ist immer ein \say{Toller Typ}. Beachte die gestrichelte Linie.}
+    \descNode{(happi) -- ++(0,3)}{Zustand}{Beschreibt den Zustand \say{Glücklich}. Wird er Betreten/Verlassen wird der Beziehungsstatus entsprechend gesetzt}
+    \descNode{(Leben) -- ++(6,8)}{Zustand}{Beschreibt den Zustand \say{Leben}.}
+    \descNode[left]{(ft1) -- ++(-3,0)}{Transition}{Wenn man eine Freundin bekommt (Event), Geld hat (Guard) stößt man Endorphin aus (Action). Die Komponenten sind alle Optional}
+    \descNode[below]{(Binit2) -- ++(0.5,-1.5)}{Init}{Hier startet alles. Ich habe den Init-Zustand beim tollen Typ weggelassen}
+    \descNode[right]{(sad) -- ++(9.25,0)}{Verschachtelter Zustand}{Wie alle anderen ist \say{Traurig ein Subzustand von \say{Leben}, beim Eintreten kauft man einen Kuschelteddy. Beim Austreten geschieht nichts.}};
+
+    \descNode[right]{(ft2) -- ++(2.25,1.75)}{Transition}{Macht sie Schluss und man hat kein Geld, so wird man wieder Traurig}
+\end{scope}
+
+\end{tikzternal}}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxUMLStateDiagramExample} 

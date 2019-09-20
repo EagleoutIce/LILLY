@@ -1,0 +1,30 @@
+BEGIN Xylophon:
+    name = Xylophon
+    Inhalt += Box
+    Better = BetterBox
+END;
+
+BEGIN Yak:
+    name = Yak
+    Inhalt = Box.
+    Inhalt += Better
+    Inhalt += Box
+    ! Information: In diesem Fall wird das Ergebnis keine Liste, wie es zu erwarten wäre !
+    ! Da erst '=' verwendet wird, interpretiert Gepard den unbekannten Datentyp als Text !
+END;
+
+BEGIN Yök:
+    name = Yök
+    Inhalt += Box.
+    Inhalt += Wetter
+    Inhalt += Box
+    ! Information: hier wird eine Liste mit dem '.'-Separator erstellt. Bei unbekannten  !
+    ! Einstellungen ist es relevant den Trenner beim ersten += anzugeben (als letztes    !
+    ! Zeichen.                                                                           !
+END;
+
+BEGIN Yakal:
+    name = Peter
+    Inhalt = Box
+    Inhalt += LetterBox
+END;

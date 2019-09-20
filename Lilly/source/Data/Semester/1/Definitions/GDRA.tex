@@ -1,16 +1,16 @@
 %%% Diese Datei enthält alle notwendigen Definitionen
 
-\providecommand{\PROFESSOR}{Prof. Dr.-Ing. Frank Slomka}
+\def\PROFESSOR{Prof. Dr.-Ing. Frank Slomka}
 
-\providecommand{\UEBUNGSLEITER}{Marcel Rieß}
-\providecommand{\TUTOR}{Julia A.}
+\def\UEBUNGSLEITER{Marcel Rieß}
+\def\TUTOR{Julia A.}
 
-\providecommand{\TITLE}{Grundlagen der Rechnerarchitektur}
-\providecommand{\SUBTITLE}{\PROFESSOR}    
+\def\TITLE{Grundlagen der Rechnerarchitektur}
+\def\SUBTITLE{\PROFESSOR}
 
 
-\providecommand{\UEBUNGSHEADER}{\TITLE\\Übungsblatt \LILLY@n }
-\providecommand{\FULLTITLE}{ \TITLE \\\fontsize{18pt}{16pt}\selectfont{\SUBTITLE} }
+\def\UEBUNGSHEADER{\TITLE\\Übungsblatt \LILLY@n }
+\def\FULLTITLE{ \TITLE \\\fontsize{18pt}{16pt}\selectfont{\SUBTITLE} }
 
 \LILLYcommand{\VORLESUNG}{\gdra}
 
@@ -23,24 +23,24 @@ Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und ba
 }
 
 %% LAYOUT CONTROL
-\providecommand\LILLYxBOXxSatzxLock{TRUE}
-\providecommand\LILLYxBOXxDefinitionxLock{TRUE}
+\providedef{LILLYxBOXxSatzxLock}{TRUE}
+\providedef{LILLYxBOXxDefinitionxLock}{TRUE}
 
-\providecommand\LILLYxTITLExOffset{11.6cm}
+\providecommand\LILLYxColorxTITLExOffset{11.6cm}
 
-\providecommand\LILLYxBOXxBemerkungxBox{TRUE}
-\providecommand\LILLYxBOXxBeispielxBox{FALSE}
-\providecommand\LILLYxBOXxBeweisxBox{FALSE}
-\providecommand{\LILLYxUBxSHOWTUTOR}{TRUE}
+\providedef{LILLYxBOXxBemerkungxBox}{TRUE}
+\providedef{LILLYxBOXxBeispielxBox}{FALSE}
+\providedef{LILLYxBOXxBeweisxBox}{FALSE}
+\ifcsname LILLYxUBxSHOWTUTOR\endcsname\else
+    \gdef\LILLYxUBxSHOWTUTOR{TRUE}
+\fi
 
 %% MIPS-Codes
 
 % Special links
-\newcommand{\cmd}[2][Linkname]{\parbox{1cm}{\T{\textbf{\hypersetup{linkcolor=purple}{\hyperref[#2]{#1}}}}}}
-\newcommand{\cmdGreen}[2][Linkname]{\parbox{1.425cm}{\T{\textbf{\hypersetup{linkcolor=limegreen}{\hyperref[#2]{#1}}}}}}
-\newcommand{\cmdGreenRAW}[2][Linkname]{{\T{\textbf{\hypersetup{linkcolor=limegreen}{\hyperref[#2]{#1}}}}}}
-
-\input{\LILLYxPATHxDATA/Semester/1/GDRA/_LILLY_MIPS_CORE}
+\providecommand{\cmd}[2][Linkname]{\parbox{1cm}{\T{\textbf{\hypersetup{linkcolor=purple}{\hyperref[#2]{#1}}}}}}
+\providecommand{\cmdGreen}[2][Linkname]{\parbox{1.425cm}{\T{\textbf{\hypersetup{linkcolor=limegreen}{\hyperref[#2]{#1}}}}}}
+\providecommand{\cmdGreenRAW}[2][Linkname]{{\T{\textbf{\hypersetup{linkcolor=limegreen}{\hyperref[#2]{#1}}}}}}
 
 %%NEW TITLE
 

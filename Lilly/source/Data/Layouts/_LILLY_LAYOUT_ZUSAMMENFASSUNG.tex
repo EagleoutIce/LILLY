@@ -3,6 +3,15 @@
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 \RequirePackage{titlesec}
 
+\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General and Layoutkonfiguration                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newif\ifappendix
+\appendixfalse
+
 \LILLYcommand{\cftsubsecleader}{\hfill}
 \LILLYcommand{\cftsubsecfont}{\pgfsetfillopacity{1.0}\footnotesize}
 \LILLYcommand{\cftsecfont}{\pgfsetfillopacity{1.0}\small}
@@ -21,21 +30,28 @@
     \pagestyle{empty} %KOMA-FTW!
     \pagenumbering{gobble}
 }
-\LILLYcommand{\LILLYxLayoutxRestore}{ % 
-    \pagenumbering{arabic}   %
-    \pagestyle{scrheadings} %KOMA-FTW!
-    \renewcommand{\chapterpagestyle}{scrheadings} %Kein Übungsblatt? => Mitschrieb => Konfiguriere Thema
-    \lofoot{\scriptsize{\silentHmark[Thema]{eagleTOC}\textnormal{\guilsinglright} \leftmark}} %
-    \lohead{\AUTHOR} %
-    \cofoot{} %
-    \cohead{\VORLESUNG} %
-    \rohead{\heute} %
-    %\lofoot{\tiny{{\rightmark} \(\rangle\){\leftmark}}}
+\LILLYcommand{\LILLYxLayoutxRestore}{ %
+\pagenumbering{arabic}
+\pagestyle{scrheadings} %KOMA-FTW!
+\ifx\LILLYxMODE\LILLYxMODExPRINT
+    \lehead{\textsf{$\mathbf{\arabic{TOPICS}}\mid\,$ \normalfont\textsf{\leftmark}}}
+    \rohead{\normalfont\textsf{\VORLESUNG}}
+    \cofoot{{\scriptsize{\AUTHOR}}}
+    \cefoot{{\scriptsize{\TITLE}}}
+    \ofoot{\normalfont\textbf{\thepage}}
+    \chead{}
+\else
+    \lohead{\AUTHOR}
+    \lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}\leftmark}
+    \cfoot{}
+    \chead{}
+    \rohead{\VORLESUNG}
     \ifx\LILLYxFOOTERxBUTTONS\true %
         \rofoot{\raisebox{0.75pt}{\eXButton{Find}{\tiny \faSearch} \text{ } \eXButton{GoBack}{\tiny \faUndo} \text{ } \eXButton{GoForward}{\tiny \faRepeat}\text{ } \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{0.75pt}{\eXButton{NextPage}{\(\RHD\)}}} %
     \else %
         \rofoot{\thepage/\pageref{LastPage}} %
     \fi %
+\fi
 }
 
 \providecommand{\LILLYxBOXxDefinitionxLock}{TRUE}
@@ -43,44 +59,138 @@
 \setlength{\parindent}{0pt}
 \newcounter{ctr_ADDONS}
 
+\newcommand{\startAppendix}{\clearpage\par\phantomsection%
+\addcontentsline{toc}{section}{Anhang}\addcontentsline{TOPIC}{TOPICS}{Anhang}\addcontentsline{DEFS}{chapter}{Anhang}\appendixtrue%
+\ifx\LILLYxMODE\LILLYxMODExPRINT\lehead{\textsf{$\mathbf{A}\mid\,$ \normalfont\textsf{Anhang}}}%
+\else\lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}Anhang}%
+\fi
+}
+
 \newcommand{\theTOPIC}{undefined}
 \newcommand{\listTOPICSname}{\leavevmode\\[-4.75cm]}
 \newlistof{TOPICS}{TOPIC}{\listTOPICSname}
 \newcommand{\TOPICS}[1]{%
 \renewcommand{\theTOPIC}{#1}%
 \refstepcounter{TOPICS}%
-\addcontentsline{TOPIC}{TOPICS}{#1}\par%
+\ifnum\value{TOPICS}>0\addcontentsline{TOPIC}{TOPICS}{#1}\fi\par%
+}
+
+\def\compileidx{\makeindex[title=Stichwortverzeichnis,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{Stichwortverzeichnis}}
+
+\newcommand{\aLink}[1]{%
+    \ifx\LILLYxMODE\LILLYxMODExPRINT%
+        \pageref{#1}%
+    \else%
+        \jmark[\faLeanpub]{#1}%
+    \fi%
 }
 
 
-
-
-\providecommand{\TOP}[3][top_default_jmpmrk]{
-    \addcontentsline{DEFS}{chapter}{#2}\addcontentsline{toc}{section}{#2}
-    \phantomsection\TOPICS{#2}\elable{top:#1}\markleft{#2}
-    \begin{minipage}{\textwidth} %%breakpatch
-        \raggedright{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \arabic{TOPICS}) #2} \hfill\tiny #3\\
-        \noindent\rule{\textwidth}{2pt}\\[0.4cm]
-        \vspace*{0.15em}
-    \end{minipage}
+\providecommand{\TOP}[3][top_default_jmpmrk]{%
+    \ifappendix%
+    \refstepcounter{ctr_ADDONS}\addcontentsline{toc}{subsection}{#2}\else%
+    \ifnum\value{TOPICS}>-1\addcontentsline{DEFS}{chapter}{#2}\fi\addcontentsline{toc}{section}{#2}%
+    \TOPICS{#2}\markleft{#2}\fi\elable{top:#1}%
+    \leavevmode\\%%breakpatch
+    \parbox{\linewidth}{{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \ifappendix\arabic{ctr_ADDONS}\else\arabic{TOPICS}\fi) #2} \hfill{\tiny #3}}\vspace{-0.5\baselineskip}\newline%
+    \rule{\textwidth}{2pt}\smallskip\\\ignorespacesafterend%
 }
-
-\providecommand{\TOPA}[3][top_default_jmpmrk]{
-\phantomsection\elable{top:#1}\refstepcounter{ctr_ADDONS}\addcontentsline{toc}{subsection}{#2}
-\begin{minipage}{\textwidth} %%breakpatch
-    \raggedright{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \alph{ctr_ADDONS}) #2} \hfill\tiny #3\\
-    \noindent\rule{\textwidth}{2pt}\\[0.4cm]
-    \vspace*{0.15em}
-\end{minipage}
-}
-
 
 \DeclareRobustCommand{\kw}[1]{\textbf{#1}\index{#1}}
 \DeclareRobustCommand{\sw}[2][Gruppenname]{#2\index{#1!#2}}
 \DeclareRobustCommand{\sr}[3][Gruppenname]{#3\index{#1!#2!#3}}
 
+% \DeclareDocumentCommand{\idx}{%
+
+% }
+
+%% definitions
+
+\def\imp{\ensuremath{\prec}}
+\def\<{\ensuremath{\langle}}
+\def\>{\ensuremath{\rangle}}
+\def\mto{\ensuremath{\to}}
+%% Register
+\def\reg#1{\T{#1}}
+
+% registerIndex{2} ? \index{#1!#2}
+
+\gdef\customex#1{\begingroup\scriptsize\textit{#1}\normalsize\endgroup}
+
+\newlength{\askip}\setlength{\askip}{-0.9\baselineskip}
+\newlength{\bskip}\setlength{\bskip}{-0.275\baselineskip}
+\gdef\negaskip{\vspace*{\askip}}
+\gdef\negbskip{\vspace*{\bskip}}
+\gdef\TOPskip{\vspace*{-0.35cm}}
+
+\def\infot#1{\begingroup\tiny\itshape#1\endgroup}
+
+\newenvironment{smalldesc}{%
+\begingroup\negbskip\begin{description}\narrowitems\footnotesize}
+{\negbskip\end{description}\endgroup}
+%% Smaller variant of the ditemize environment
+\newenvironment{smalldite}{%
+\begingroup\negbskip\begin{ditemize}\narrowitems\footnotesize}
+{\negbskip\end{ditemize}\endgroup}
+
+\newlength{\showcaseXwidth}\setlength{\showcaseXwidth}{6cm}
+
+%% Will render a tikzternal as a nice info-box
+\DeclareDocumentCommand{\showcase}{%
+    O{Charcoal}         % Color
+    O{scale=1}          % TikZ-Commands
+    m                   % Name
+    +m                  % Description
+    o                   % Bonusnote
+    O{}                 % Bottomtag
+}{%
+\begin{tikzternal}[every node/.style={transform shape,#1},#2]
+    \draw[thick,rounded corners=8pt,#1] (0,0.5) rectangle ++(\showcaseXwidth,-3.5);
+    \node[rectangle,fill=white,right] at (0.25cm,0.5) {\bfseries #3};
+    \IfValueT{#5}{\node[rectangle,fill=white,left] at (\showcaseXwidth-0.25cm,0.5) {#5};}
+    \node[below right] at (0.1,0.25) {\parbox[t][3cm]{\showcaseXwidth-0.5cm}{\parbox[t][2.75cm]{\showcaseXwidth-0.5cm}{\small\ignorespaces%
+        #4
+    }{\relax\hbox{}\hfill\tiny #6}}};
+\end{tikzternal} \tab[0.15cm]
+}
+
+\compileidx
+
 \AtBeginDocument{
     \LILLYxLayoutxRestore
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introkonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% Work in Progress new Layout:
+\AtBeginDocument{%
+    \ifnum\LILLY@n>0%
+        \LILLYxTITLExBONUS{Zusammenfassung \LILLY@n}%
+    \else%
+        \LILLYxTITLExBONUS{Zusammenfassung}%
+    \fi%
+    \POLITEINTRO
+    %{\par\vspace*{4.25em}\par}%
+}
+
+%% TODO: make small arrow in limerence if page breaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outrokonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\providecommand{\LILLYxINDEXxINTERMEDIATExFORMAT}{\clearpage}
+
+\AtEndDocument{%
+    \addtocontents{DEFINITIONS}{\protect\thispagestyle{empty}}
+    \protect\pagestyle{empty}\thispagestyle{empty}
+    \LILLYxCLEARxHEADFOOT\pagestyle{empty}
+    \protect\pagestyle{empty}\TOPICS{Stichwortverzeichnis}
+    \printindex
+    \LILLYxINDEXxINTERMEDIATExFORMAT
+    \ifx\LILLYxBOXxDefinitionxEnable\true
+    \pagenumbering{gobble}\protect\pagestyle{empty}\phantomsection\addcontentsline{toc}{chapter}{Definitionen}\elable{mrk:DEFS}
+    \listofDEFINITIONS\fi
+}

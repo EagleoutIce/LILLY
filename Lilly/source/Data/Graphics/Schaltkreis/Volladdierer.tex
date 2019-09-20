@@ -1,0 +1,39 @@
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{
+\begin{tikzternal}[scale=0.8,every node/.style={transform shape}]
+    \newcommand\gate[2]{\node [rectangle,scale=1.5, minimum width =0.67cm, inner sep=0, minimum height = 0.67cm, draw] at ##1 {##2};}
+    \newcommand\gateAND[1]{\gate{##1}{\(\&\)}}
+    \newcommand\gateOR[1]{\gate{##1}{\(\geq 1\)}}
+    \newcommand\gateXOR[1]{\gate{##1}{\(=1\)}}
+
+    \node [] at (0,-0.305) {};
+    \node [] at (0,3.305) {};
+    \node  at (0,3) (x) {\(a_i\)};
+    \node  at (0,1) (y) {\(b_i\)};
+    \node  at (0,0) (u) {\(c_i\)};
+    \node[right] at (9.3,2.5) (s) {\(s\)};
+    \node[right] at (9.3,0.6) (u2) {\(c_{i+1}\)};
+
+    \draw (x) to ++(2,0); \gateXOR{(2.5,2.7)};
+    \draw (y) to ++(2,0); \gateAND{(2.5,1.3)};
+    \draw (x)++(1.3,0) -- ++(0,-1.4) -- ++(0.7,0);
+    \bigRing{(x)++(1.3,0)};
+    \draw (y)++(0.7,0) -- ++(0,1.4) -- ++(1.3,0);
+    \bigRing{(y)++(0.7,0)};
+    \draw (3,2.8) -- ++(2,0);
+    \draw (u) -- ++(5,0);
+    \bigRing{(4.3,0)};
+    \draw (4.3,0) -- ++(0,2.2) -- ++(0.7,0);
+    \gateXOR{(5.5,2.5)};
+    \bigRing{(3.7,2.8)};
+    \draw (3.7,2.8) -- ++(0,-2.2) -- ++(1.3,0);
+    \gateAND{(5.5,0.3)};
+    \draw (3,1.3) -- ++(3.3,0) -- ++(0,-0.4) -- ++(0.7,0);
+    \draw (6,2.5) -- ++(3,0);
+    \draw (6,0.3) -- ++(1,0);
+    \gateOR{(7.5,0.6)};
+    \draw (8,0.6) -- ++(1,0);
+    %\gateOR{(1,1)};
+    \draw [fill=\Hcolor!30, color=\Hcolor, fill opacity = 0.09,rounded corners = 1pt] (1.6,3.5) rectangle ++(1.9,-3.1);
+    \draw [fill=\Hcolor!30, color=\Hcolor, fill opacity = 0.09,rounded corners = 1pt] (4.6,1.45-1.85) rectangle ++(1.8,0.8+3.1);
+\end{tikzternal}
+}

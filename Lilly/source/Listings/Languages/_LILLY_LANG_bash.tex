@@ -1,0 +1,32 @@
+%% Wird für die Dokumentation entsprechend erweitert
+
+\lstdefinelanguage{lBash}{
+    language=bash,
+    otherkeywords = {<<,>>,2>},
+    alsoletter={-|~{,}_.><:+},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[il][{\lstHLError}]{|err|:},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+    moredelim=[is][{}]{|plain|}{|plain|},
+    comment=[l]{\#},
+    keywordsprefix={\$},
+    escapeinside={*}{*},
+    morekeywords = {bash},
+    morekeywords = [2]{mkdir,texhash,make,apt,>,<,cd,git,pdflatex,mvn},
+    morekeywords = [3]{print,install,get,dump,config,tokentest,clean,help,file_compile},
+    morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake,jake,java,ghci,ghc,grep,ls,cp,sort,find,man,tail,head,setfacl,getfacl,groups,ls,pdflatex},
+    morekeywords = [5]{GUI,REI,DEI},
+    morekeywords = [6]{javafx:compile,javafx:run,-debug,-lilly-boxes:,-lilly-boxes+:,-lilly-path:,-file:,-jar,-lilly-author:,-l,-m,-p,-dir,-path:,-shell-escape},
+    morestring=[b]'
+}
+
+\RegisterLanguage{bash}{lBash}
+
+
+% \lstnewenvironment{bash}[1][]
+%   {\lstset{language=lBash,#1}}
+% {}
+
+
+% \pushList{RegisteredLanguages}{bash/lBash}

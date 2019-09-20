@@ -1,0 +1,88 @@
+\documentclass{book}
+
+\usepackage{LILLYxBOXES}
+\usepackage{LILLYxLISTINGS} % Anzeige Dokumentcode
+
+\usepackage{lipsum}
+\usepackage[a4paper,total={116mm,257mm},left=20mm,top=20mm,marginparwidth=4.9cm,marginparsep=1.73em]{geometry}
+
+\begin{document}
+\dateBox{25.7.2019}
+\begin{infoBox}{Ich bin eine Information}
+    \lipsum[2]
+\end{infoBox}
+\begin{warningBox}{Ich bin eine Warnung}
+    \lipsum[2]
+\end{warningBox}
+\begin{errorBox}{Ich bin eine Error}
+    \lipsum[2]
+\end{errorBox}
+\begin{mathBox}{Ich bin eine Mathebox}
+    \lipsum[2]
+\end{mathBox}
+\begin{codeBox}{Ich bin eine Code Box}
+    \lipsum[2]
+\end{codeBox}
+\clearpage
+Alloe Boxen können auch als Randbemerkung eingefügt werden:
+Hallo Welt\begin{infoBox*}{Ich bin eine Information}
+    \lipsum[66]
+\end{infoBox*}, na wie,\begin{warningBox*}{Ich bin eine Warnung}
+    \lipsum[75]
+\end{warningBox*} gehts?
+\begin{errorBox*}{Ich bin eine Error}
+    \lipsum[66]
+\end{errorBox*}\lipsum[1-9]
+Wirklich gut\begin{mathBox*}{Ich bin eine Mathebox}
+    \lipsum[75]
+\end{mathBox*}, hoffe ich.\lipsum[1-3]\begin{codeBox*}{Ich bin eine Codebox}
+    \lipsum[66]
+\end{codeBox*}:D
+\lipsum[1-2]
+\clearpage
+\newgeometry{total={170mm,275mm},left=20mm,top=20mm}
+Dieses Dokument wurde erzeugt durch:
+\begin{latex}
+\documentclass{book}
+
+\usepackage{LILLYxBOXES}
+\usepackage{LILLYxLISTINGS} % Anzeige Dokumentcode
+
+\usepackage{lipsum}
+\usepackage[a4paper,total={116mm,257mm},left=20mm,top=20mm,marginparwidth=4.9cm,marginparsep=1.73em]{geometry}
+
+\begin{document}
+\begin{infoBox}{Ich bin eine Information}
+    \lipsum[2]
+\end{infoBox}
+\begin{warningBox}{Ich bin eine Warnung}
+    \lipsum[2]
+\end{warningBox}
+\begin{errorBox}{Ich bin eine Error}
+    \lipsum[2]
+\end{errorBox}
+\begin{mathBox}{Ich bin eine Mathebox}
+    \lipsum[2]
+\end{mathBox}
+\begin{codeBox}{Ich bin eine Code Box}
+    \lipsum[2]
+\end{codeBox}
+\clearpage
+Alloe Boxen können auch als Randbemerkung eingefügt werden:
+Hallo Welt!**!\begin{infoBox*}{Ich bin eine Information}
+    \lipsum[66]
+\end{infoBox*}, na wie,\begin{warningBox*}{Ich bin eine Warnung}
+    \lipsum[75]
+\end{warningBox*} gehts?
+\begin{errorBox*}{Ich bin eine Error}
+    \lipsum[66]
+\end{errorBox*}\lipsum[1-9]
+Wirklich gut!**!\begin{mathBox*}{Ich bin eine Mathebox}
+    \lipsum[75]
+\end{mathBox*}, hoffe ich.\lipsum[1-3]\begin{codeBox*}{Ich bin eine Codebox}
+    \lipsum[66]
+\end{codeBox*}:D
+\lipsum[1-2]
+\end{document}
+\end{latex}
+\end{document}

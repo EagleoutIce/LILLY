@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage[textwidth=19cm]{geometry}
+
+\usepackage{LILLYxCONTROLLERxBOX}
+\usepackage{LILLYxFORMATxCONTROL}
+\usepackage{LILLYxRUNTIMES}
+\usepackage{LILLYxLISTINGS}
+\usepackage{LILLYxLIST}
+
+
+\begin{document}
+\begin{bemerkung}[Jetzt Neu]
+    Ab jetzt ist es möglich in Deutsch korrekte Auflistungen zu setzen:
+    \begin{latex}
+\typesetList{Hallo Welt, na wie geht es dir?}
+    \end{latex}
+Ergibt: \typesetList{Hallo Welt, na wie geht es dir?}\newline
+Warum? möchte man sich nun fragen. Nun, in dieser Konstellation ist es recht einfach einen Befehl zu Konstruiere der auf jedes Element angewendet werden kann. Der Inhalt wird als ein Token eingelesen und kann entsprechend weiterverarbeitet werden:
+\begin{latex}
+\def!**!\tollercmd!**!#1{%
+    \expandafter!**!\Acronym{#1}%
+}
+\typesetList[tollercmd]{Hallo du,Welten sind super,Na Wie Gehts dir?}
+\end{latex}
+Ergibt: \def\tollercmd#1{%
+\expandafter\Acronym{#1}%
+}
+\typesetList[tollercmd]{Hallo du,Welten sind super,Na Wie Gehts dir?}
+\end{bemerkung}
+\noindent\previewBash{echo Hallo}
+\noindent\rbash{echo na du? | ls}
+\cbash{echo na du? | ls}
+
+\clatex{:bs:documentclass\{latex\}}
+
+\noindent\rhaskell{5+23}
+
+Konstruiere Liste Peter mit Separator Komma: \constructList[,]{Peter}
+\begin{latex}
+\constructList[,]{Peter}
+\end{latex}
+Füge Elemente hinzu: \pushList{Peter}{2}\pushList{Peter}{55}\pushList{Peter}{3}\pushList{Peter}{26}
+\begin{latex}
+\pushList{Peter}{2}\pushList{Peter}{55}
+\pushList{Peter}{3}\pushList{Peter}{26}
+\end{latex}
+Peter enthält nun: \thePeter
+\begin{latex}
+\thePeter
+\end{latex}
+Über eine Liste kann man iterieren:
+\begin{latex}
+\getPeter
+\foreach \x in \lillyxlist {
+    X:\x
+}
+\end{latex}
+Ergebnis: \getPeter % erfrage Liste Peter in \lillyxlist
+\foreach \x in \lillyxlist {
+    X:\x
+}\newline
+Konstruiere eine neue Liste '{Waffel}':
+\begin{latex}
+\constructList[, ]{Waffel}
+\end{latex}
+\constructList[, ]{Waffel}
+Füge Elemente hinzu:
+\begin{latex}
+\pushList{Waffel}{A}\pushList{Waffel}{\thePeter}
+\pushList{Waffel}{X}\pushList{Waffel}{21}
+\end{latex}
+\pushList{Waffel}{A}\pushList{Waffel}{\thePeter}
+\pushList{Waffel}{X}\pushList{Waffel}{21}
+Ausgabe von \clatex{:bs:theWaffel}: \theWaffel
+Weiter ergibt:
+\begin{latex}
+\getWaffel
+\foreach \x in \lillyxlist {
+    => \x
+}
+\end{latex}
+Ergebnis: \getWaffel % erfrage Liste Peter in \lillyxlist
+\foreach \x in \lillyxlist {
+    => \x
+}\newline
+Listen werden also vereinigt und nicht durch einzelne Elemente separiert. Wir können testen ob ein Element in einer Liste enthalten ist, mit:
+\begin{latex}
+\containsList{Waffel}{A}
+\containsList{Waffel}{410021}
+\end{latex}
+A: \containsList{Waffel}{A}\\
+410021: \containsList{Waffel}{410021} \\
+
+\makeatletter
+
+\getPeter
+\expandafter\lilly@iter@commalist\lillyxlist!\\
+
+
+\end{document}

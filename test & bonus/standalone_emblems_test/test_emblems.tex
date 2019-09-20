@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\usepackage{LILLYxEMBLEMS}
+\usepackage{LILLYxLISTINGS}
+
+\begin{document}
+
+\NewEmblem[shape/none]{NoneEmblem}
+\NewEmblem[shape/quadratic]{QuadraticEmblem}
+\NewEmblem[shape/round]{RoundEmblem}
+\NewEmblem[shape/hexagon]{HexagonEmblem}
+\NewEmblem[shape/octagon]{OctagonEmblem}
+
+\NewEmblem[shape/hexagon,bgcolor={DarkMidnightBlue!75},bordercolor={DarkMidnightBlue},radius=1.1em][rotate=90,thick]{ExampleEmblem}
+
+~\\
+% \NoneEmblem{$\mathbf{\pi}$}
+% \QuadraticEmblem{$\mathbf{\pi}$}
+% \RoundEmblem{$\mathbf{\pi}$}
+% \HexagonEmblem{$\mathbf{\pi}$}
+% \OctagonEmblem{$\mathbf{\pi}$}
+% \ExampleEmblem{$\mathbf{\pi}$}\\
+\begin{center}
+    \infoEmblem\warningEmblem\errorEmblem\mathEmblem\codeEmblem
+\end{center}
+Erstellt durch:
+
+\begin{latex}
+\infoEmblem!**!\warningEmblem!**!\errorEmblem!**!\mathEmblem!**!\codeEmblem
+\end{latex}
+
+Hallo Welt \infoEmblem, na wie geht es dir?\\
+Hallo Welt \textEmblem\infoEmblem, na wie geht es dir?\\
+Hallo Welt, na wie geht es dir?
+
+
+\end{document}

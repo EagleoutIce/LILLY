@@ -1,15 +1,24 @@
-\lstdefinelanguage{assembler}{
-        keywords={while,if,r,ld,st,sr,sl,beq,bnq,add,sub,and,or,not,xor,dec,inc,jmp,addi,sw,addui,add,sw,lw,slti,j,jal,div,mul,hi,lo, MOV},
-        keywordstyle=\color{purple}\bfseries,
-        ndkeywords={nop,X,acc},
-        basicstyle=\LILLYxlstTypeWriter,   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
-        ndkeywordstyle=\color{tealblue!80!black}\bfseries,
-        comment=[l]{//},
-        comment=[l]{\#},
-        morecomment=[s]{/*}{*/},
-        commentstyle=\color{gray},
-        stringstyle=\color{mint},
-        morestring=[b]',
-        %literate={@}{{\textcolor{mint}{\$}}}2
-        showstringspaces=true,  %Damit es keine Verwechslungen gibt
-} 
+\lstdefinelanguage{lAssembler}{
+    otherkeywords={R0,R1,R2},
+    morekeywords={while,if,ld,st,sr,sl,beq,bnq,add,sub,and,or,not,xor,dec,inc,jmp,addi,sw,addui,add,sw,lw,slti,j,jal,div,mul,hi,lo,MOV,RTI,TRP,JMP,ADD,SUB,MUL,MULT,JEQ,JNE,JLT,JGE,TAS,SWP,SEI,CLI},
+    morekeywords=[2]{nop,X,acc},
+    comment=[l]{//},
+    comment=[l]{\#},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[il][{\lstHLError}]{|err|:},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+    moredelim=[is][{}]{|plain|}{|plain|},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]',
+    sensitive=false,
+}
+
+\RegisterLanguage{assembler}{lAssembler}
+
+
+% \lstnewenvironment{assembler}[1][]
+%   {\lstset{language=lAssembler,#1}}
+% {}
+
+% \pushList{RegisteredLanguages}{assembler/lAssembler}

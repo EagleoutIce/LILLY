@@ -1,0 +1,6 @@
+\DeclareDocumentCommand{\entity}{ o m m }{\node[minimum width = 2.25cm, minimum height = 2em, rectangle, draw,fill=DebianRed!12] at #2 (\IfValueTF{#1}{#1}{#3}) {\parbox{2.25cm}{\centering #3}};}
+%\draw[rotate around={45:#2}] #2++(-0.6,-0.6) rectangle ++ (1.2,1.2);
+\DeclareDocumentCommand{\relation}{ o m m O{1} O{0.5}}{\draw[fill=Azure!12] #2++(-#4,0) -- ++(#4,#5) -- ++(#4,-#5) -- ++(-#4,-#5) -- ++(-#4,#5); \node[minimum height=1.985*#5cm] at #2 (\IfValueTF{#1}{#1}{#3}) {\pgfmathparse{1.73*#4}\parbox{\pgfmathresult cm}{\centering\small #3}};}
+\DeclareDocumentCommand{\attribute}{ o m m }{\node[minimum width = 1cm, minimum height = 2em, ellipse, draw, fill=AppleGreen!12] at #2 (\IfValueTF{#1}{#1}{#3}) {\parbox{1.1cm}{\centering\footnotesize #3}};}
+%% Key attribute
+\DeclareDocumentCommand{\kattribute}{ o m m }{\attribute[\IfValueTF{#1}{#1}{#3}]{#2}{\underline{#3}};}
