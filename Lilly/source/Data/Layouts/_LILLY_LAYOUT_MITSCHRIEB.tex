@@ -54,8 +54,11 @@
         \ifthenelse{\equal{#2}{}}%
         {\defChapter{#3}\def\xchapname{#3}}% use same
         {\defChapter[{#2}]{#3}\def\xchapname{#2}}%
-        \addcontentsline{SATZE}{chapter}{\xchapname}\addcontentsline{ZSM}{chapter}{\xchapname}\addcontentsline{UB}{chapter}{\xchapname}%
-        \addcontentsline{LEMME}{chapter}{\xchapname}\renewcommand{\leftmark}{\xchapname}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}%
+        \getRegisteredBoxLists
+        \foreach \ctmplistname in \lillyxlist {%
+            \addcontentsline{\ctmplistname}{chapter}{\xchapname}%
+        }
+        \renewcommand{\leftmark}{\xchapname}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}%
     }%
 }
 

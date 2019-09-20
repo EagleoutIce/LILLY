@@ -219,7 +219,7 @@ Ein aus dem \T{eagleStudiPackage} stammendes Relikt, welches nur aus Kompatibili
 Kompatibilitätsbefehle, der zur \T{eagleStudiPackage}-Zeit die Boxen gesetzt hat, nun allerdings die Daten an die jeweilige Umgebung weitergeben.
 
 \presentCommand[1.0.3]{inputUB}[\manArg{Name}\manArg{Nummer}\manArg{Pfad}\cmdlist \anothercmd[1.0.3]{inputUBS}\manArg{Name}\manArg{Bezeichner}\manArg{Pfad}]
-Binden eine Datei als Übungsblatt ein und erlaubt so, Übungsblätter in Mitschriften zu integrieren. Letzterer Befehl verwendet \clatex{uebungsblatt*}, verändert also nicht die Nummer, was bedeutet, dass auch Buchstaben oder anderes als Bezeichner möglich ist. \emph{Diese werden, entsprechend der Regel von \clatex{uebungsblatt} nur angezeigt, sofern \blankcmd{LILLYxMODExEXTRA} den Wert \T{\true} enthält.}
+Binden eine Datei als Übungsblatt ein und erlaubt so, Übungsblätter in Mitschriften zu integrieren. Letzterer Befehl verwendet \blankenv{uebungsblatt*}, verändert also nicht die Nummer, was bedeutet, dass auch Buchstaben oder anderes als Bezeichner möglich ist. \emph{Diese werden, entsprechend der Regel von \blankenv{uebungsblatt} nur angezeigt, sofern \blankcmd{LILLYxMODExEXTRA} den Wert \T{\true} enthält.}
 
 
 \begin{bemerkung}[Zugriff auf die Boxzähler]
@@ -420,6 +420,221 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
 }
 \end{beispiel}
 
+\subsection{Standart-Boxen}
+Das Paket \LILLYxNOTExLibrary{LILLYxCONTROLLERxBOX} definiert standardmäßig einige Boxen, die hier aufgeführt werden sollten, da sie in der Regel einfach so verwendet werden können:
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{definition}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Definitionsbox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{definition}[Hallo]
+   Hallo Welt!
+\end{definition}
+\end{latex} 
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{definition*}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine hervorgehobene Definitionsbox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{definition*}[Hallo]
+   Hallo Welt!
+\end{definition*}
+\end{latex}
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{bemerkung}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Bemerkungsbox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{bemerkung}[Hallo]
+   Hallo Welt!
+\end{bemerkung}
+\end{latex} 
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{bemerkung*}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Bemerkungsbox mit modifizierten Abständen (für Listen etc.) im entsprechenden Boxmodi:
+\begin{latex}
+\begin{bemerkung*}[Hallo]
+   \begin{itemize}
+       \item Hallo
+       \item Welt
+   \end{itemize}
+\end{bemerkung*}
+\end{latex}
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{beispiel}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Beispielbox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{beispiel}[Hallo]
+   Hallo Welt!
+\end{beispiel}
+\end{latex} 
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{beispiel*}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Beispielbox mit modifizierten Abständen (für Listen etc.) im entsprechenden Boxmodi:
+\begin{latex}
+\begin{beispiel*}[Hallo]
+   \begin{itemize}
+       \item Hallo
+       \item Welt
+   \end{itemize}
+\end{beispiel*}
+\end{latex}
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{satz}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Satzbox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{satz}[Hallo]
+   Hallo Welt!
+\end{satz}
+\end{latex} 
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{satz*}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Satzbox mit modifizierten Abständen (für Listen etc.) im entsprechenden Boxmodi:
+\begin{latex}
+\begin{satz*}[Hallo]
+   \begin{itemize}
+       \item Hallo
+       \item Welt
+   \end{itemize}
+\end{satz*}
+\end{latex}
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{beweis}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Beweisbox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{beweis}[Hallo]
+   Hallo Welt!
+\end{beweis}
+\end{latex} 
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{beweis*}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Beweisbox mit modifizierten Abständen (für Listen etc.) im entsprechenden Boxmodi:
+\begin{latex}
+\begin{beweis*}[Hallo]
+   \begin{itemize}
+       \item Hallo
+       \item Welt
+   \end{itemize}
+\end{beweis*}
+\end{latex}
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{lemma}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Lemmabox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{lemma}[Hallo]
+   Hallo Welt!
+\end{lemma}
+\end{latex} 
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{lemma*}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine hervorgehobene Lemmabox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{lemma*}[Hallo]
+   \begin{itemize}
+       \item Hallo
+       \item Welt
+   \end{itemize}
+\end{lemma*}
+\end{latex}
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{zusammenfassung}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Zusammenfassungsbox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{zusammenfassung}[Hallo]
+   Hallo Welt!
+\end{zusammenfassung}
+\end{latex} 
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{zusammenfassung*}[\optArg{Title}\optArg{\TikZ-options}]
+Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Zusammenfassungsbox mit modifizierten Abständen (für Listen etc.) im entsprechenden Boxmodi:
+\begin{latex}
+\begin{zusammenfassung*}[Hallo]
+   \begin{itemize}
+       \item Hallo
+       \item Welt
+   \end{itemize}
+\end{zusammenfassung*}
+\end{latex}
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{aufgabe}[\optArg{\TikZ-options}\manArg{Title}\manArg{Points}]
+Wird nicht durch \blankcmd{RegisterBox} erzeugt und setzt eine Aufgabenbox im entsprechenden Boxmodi:
+\begin{latex}
+\begin{aufgabe}{hallo}{42}
+   Hallo Welt!
+\end{aufgabe}
+\end{latex} 
+
+
+%
+%
+%
+
+\presentEnvironment[1.0.0]{uebungsblatt}[\optArg{Title}\optArg{Number}\cmdlist\anotherenv[1.0.1]{uebungsblatt*}\optArg{Title}\optArg{Number}]
+Wird nicht durch \blankcmd{RegisterBox} erzeugt und setzt ein Übungsblatt, die Variante mit Stern setzt den aktuellen Aufgabenzähler nicht zurück was eine durchgängige Nummerierung ermöglicht. Siehe auch \blankcmd{inputUB} und \blankcmd{inputUBS}.
+\begin{latex}
+\begin{uebungsblatt}[Hallo]
+   Hallo Welt!
+\end{uebungsblatt}
+\end{latex} 
+
+\clearpage
 \section{Info-Boxes}
 \hypertarget{LILLYxBOXxINFOBOXES}Diese Definitionen befinden sich in der Datei: {\ltt Controllers/LILLYxCONTROLLERxBOX}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxBOXES} geladen. Sie befinden sich ebenfalls im eigenständigen Paket \LILLYxNOTExLibrary{LILLYxBOXxINFOBOXES}.\medskip\newline
 

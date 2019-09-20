@@ -32,12 +32,14 @@
 
 \def\typesetVersion#1{\text{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}}
 
+\makeatletter
 %% [Version][Tagname][Additionals]
 \DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}:bs:\qquad#4}
   \begingroup~\newline\elable{cmd:#3}%\IfValueTF{#3}{\elable{cmd:#3}}{\elable{cmd:#2}}%
   \hspace*{-1.5cm}$\diamond$~~\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\typesetVersion{#1}}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
 \endgroup%
 }
+\makeatother
 
 
 
@@ -84,8 +86,8 @@
     \end{ditemize}%
 \end{multicols}%
 }
-
-\def\compileidx{\makeindex[title=Stichwortverzeichnis,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{Stichwortverzeichnis}}
+\def\docuidxname{Kurzübersicht}
+\def\compileidx{\makeindex[title=\docuidxname,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{\docuidxname}}
 %% lilly library
 % Libname
 % Version
@@ -121,10 +123,8 @@
 \linput{Data/Exkurse.doc}
 
 % Make the persitence library (2.1.0)
-% Infoboxes show a pdf snippet from another pdf :D
-
+%% FOR 2.1.0:
 % Dokumentiere das mitgelieferte Beamer-layout
-% add documentations for the boxes (aufgabe-box etc.....)
 % Changelog
 
 \linput{Data/Aussicht.doc}

@@ -52,6 +52,10 @@
         \ifthenelse{\equal{#2}{}}%
         {\defChapter{#3}\def\xchapname{#3}}% use same
         {\defChapter[{#2}]{#3}\def\xchapname{#3}}% different from Mitschrieb!
+        % \getRegisteredBoxLists
+        % \foreach \ctmplistname in \lillyxlist {%
+        %     \addcontentsline{\ctmplistname}{chapter}{\xchapname}%
+        % }
         \addcontentsline{TOP}{chapter}{\thechapter~\xchapname}\gdef\leftmark{\xchapname}%
     }%
 }

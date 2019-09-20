@@ -115,6 +115,9 @@
 
 \def\NoEmblem{XXNOEMBLEMXX}
 
+\constructList[,]{RegisteredBoxLists} % For adding of chapters :D
+
+
 \newif\ifcreatelist
 \newif\ifuselist
 \newif\iflillyboxenabled
@@ -262,7 +265,7 @@
 
     %% Persistence END
     \ifcreatelist%
-    \debugout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\fi%
+    \debugout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\pushList{RegisteredBoxLists}{\@nameuse{lillyxBOXx\theboxid xListMen}}\fi%
     %\expandafter\global\expandafter\newif\if
     % #1 Title
     % #2 Should be the tex-options
@@ -282,15 +285,18 @@
                 \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain, after title app={\leavevmode\\[-0.75\baselineskip]\ignorespaces}}}% Set Blank Box
             }%
             \phantomsection% Here we will start the corresponding box
-            \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,before upper app={\ignorespacesafterend},##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
-                \@nameuse{lillyxBOXx\curboxid xInCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
-                \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\debugout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName} using the Men: \@nameuse{lillyxBOXx\curboxid xListMen} and lock: \@nameuse{lillyxBOXx\curboxid xLock}. The Content is: ##1}%
+            % BOX:
+            \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,before upper app={\ignorespacesafterend},%
+                    before title pre={% REGISTER:
+                    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\debugout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName} using the Men: \@nameuse{lillyxBOXx\curboxid xListMen} and lock: \@nameuse{lillyxBOXx\curboxid xLock}. The Content is: ##1}%
                     \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\NoEmblem}}{\debugout{\space>\space It will register without an Emblem/Addon!}%
-                \LILLYxBOXESxaddListElement[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xLock}}%
-                }{\debugout{\space>\space It will register with an Emblem/Addon!}%
-                    \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
-                }%
-                }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\vspace*{-.5\baselineskip}\newline%
+                    \LILLYxBOXESxaddListElement[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xLock}}%
+                    }{\debugout{\space>\space It will register with an Emblem/Addon!}%
+                        \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
+                    }%
+                    }{}},##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
+                \@nameuse{lillyxBOXx\curboxid xInCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
+                \elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\vspace*{-.5\baselineskip}\newline%
         }\ignorespaces%
     }% SECOND PART
     {% To ensure the Box is disabled we will do the same for the ending:
@@ -442,6 +448,7 @@
 
 %% Definition Box
 \newlistof{DEFINITIONS}{DEFS}{\lillyxBOXxdefinitionxListText}
+\pushList{RegisteredBoxLists}{DEFS}
 
 %\ifx\LILLYYxBOXxDefinitionxBox\true
 
@@ -509,6 +516,7 @@
 % Bemerkungen                                                                                                         %     %%%% BEMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newlistof{BEMERKUNGEN}{BEMS}{\lillyxBOXxbemerkungxListText}
+\pushList{RegisteredBoxLists}{BEMS}
 
 \providecommand{\LILLYxSEENxBEMERKUNG}{FALSE}
 
@@ -552,6 +560,7 @@
 
 
 \newlistof{BEISPIELE}{BEIS}{\lillyxBOXxbeispielxListText}
+\pushList{RegisteredBoxLists}{BEIS}
 
 \providecommand{\LILLYxSEENxBEISPIEL}{FALSE}
 
@@ -597,6 +606,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newlistof{SATZE}{SATS}{\lillyxBOXxsatzxListText}
+\pushList{RegisteredBoxLists}{SATS}
 
 \providecommand{\LILLYxSEENxSATZ}{FALSE}
 
@@ -639,6 +649,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newlistof{BEWEISE}{BEWS}{\lillyxBOXxbeweisxListText}
+\pushList{RegisteredBoxLists}{BEWS}
 
 \providecommand{\LILLYxSEENxBEWEIS}{FALSE}
 
@@ -681,6 +692,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newlistof{LEMMATA}{LEMS}{\lillyxBOXxlemmaxListText}
+\pushList{RegisteredBoxLists}{LEMS}
 
 \providecommand{\LILLYxSEENxLEMMA}{FALSE}
 
@@ -693,7 +705,7 @@
     {lemma}% BoxID
 
 \RegisterBox% maybe insert some 'aftertitle' code to allow the emblem to be shown?
-    [UseIt,usestyle=LILLYxBOXxLemma,customlist=true,createlist=false,listname=LEMMATA,listmen=LEMS,boxcol=\LILLYxColorxLemma,emblem={\noexpand\small\noexpand\textcolor{\noexpand\LILLYxColorxLemma}{\noexpand\faStar}},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},lock=\LILLYxBOXxLemmaxLock]% Style definitions
+    [UseIt,usestyle=LILLYxBOXxLemma,customlist=true,createlist=false,listname=LEMMATA,listmen=LEMS,boxcol=\LILLYxColorxLemma,emblem={\noexpand\small\noexpand\textcolor{Charcoal}{\noexpand\faStar}},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},lock=\LILLYxBOXxLemmaxLock]% Style definitions
     {lemma*}% Environ Name
     {Lemma \noexpand\thetcbcounter{}~}% The Title
     {lemmaStarred}% BoxID
@@ -728,6 +740,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newlistof{ZUSAMMENFASSUNGEN}{ZSMS}{\lillyxBOXxzusammenfassungxListText}
+\pushList{RegisteredBoxLists}{ZSMS}
 
 \providecommand{\LILLYxSEENxZUSAMMENFASSUNG}{FALSE}
 
@@ -778,6 +791,7 @@
 \fi
 \ifx\LILLYxBOXxAufgabexEnable\true
     \newlistof{TSKS}{TSK}{Alle Aufgaben\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+    \pushList{RegisteredBoxLists}{TSK}
 
 %% Splitter could issue a tcblower and then use startrecording to get the soluions extra?
 
@@ -822,6 +836,8 @@
 
 \ifx\LILLYxBOXxUebungsblattxEnable\true
     \newlistof{UBS}{UB}{Alle Übungsblätter\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+    \pushList{RegisteredBoxLists}{UB}
+
     %% TITEL NUMMER
     \DeclareDocumentEnvironment{uebungsblatt}{O{} O{42}}{\grenewcommand{\LILLYxSEENxUBS}{TRUE}%
 
