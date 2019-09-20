@@ -1,10 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxMARGIN}[2019/07/13 Stellt die Margin-Kontrolle fuer LILLY zur Verfuegung]
 
-\RequirePackage{LILLYxVANILLA}
-\RequirePackage{LILLYxPACKAGExCTRL}
-\RequirePackage{LILLYxCONTROLLERxCONTENT}
-
+\RequirePackage{LILLYxCORE}
 
 \RequirePackage{LILLYxCOLOR}
 \RequirePackage{LILLYxCONTROLLERxLINK}
@@ -26,7 +23,7 @@
                     {Ohne machts einfach nur halb so viel spass, aber ok}
                     {}{}{} %% keine Argumente
 
-%% Die globalen Konfigurationen für die Randkontroller 
+%% Die globalen Konfigurationen für die Randkontroller
 
 \gdef\lillymarginset#1{\pgfkeys{/lillyxMARGIN/.cd, #1}}
 

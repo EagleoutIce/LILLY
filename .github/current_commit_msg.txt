@@ -1,4 +1,4 @@
-Restructuring Elegance
+SO MANY CHANGES DOT KOMM
 
 ================================================================
 :EagleoutIce for Lilly
@@ -6,15 +6,17 @@ Restructuring Elegance
 
 LILLY:
 
-    + ELEGANT_BOOK Design added
-
-    * Restructured Layout komponent.
+    + Lots of New Stuff, and fixes and.. well.. see yourself :D
 
 JAKE:
 
-    * Refactored config control and added new Setting
+    + somma new schduff
+
+    ! Some Fixes
 
 DOKUMENTATION:
+
+    + HUGE Update :D
 
 ================================================================
 :

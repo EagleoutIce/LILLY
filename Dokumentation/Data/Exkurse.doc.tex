@@ -1,0 +1,152 @@
+\renewcommand{\arraystretch}{1.5}
+\chapter{Exkurse}
+\TitleSUB{Ganz viele viele Erklärungen und Beispiele?}
+\elable{chp:EXKURSE}
+
+\section{Wie man sich eine eigene Vorlesung bastelt}
+\begin{bemerkung}[Disclaimer]
+    Aktuell kann jake Daten noch nicht wirklich dynamisch laden. Es ist zwar möglich Quellpfade zu ändern,
+    allerdings würde das bedeuten die komplette Ordnerstruktur zu reproduzieren und die notwendingen Standarts selbst zur Verfügung stellen zu müssen. Deswegen wird die Vorlesung direkt in Lilly integriert.
+\end{bemerkung}
+
+Der Datenordner, in dem sich die Vorlesung unter \blatex{Lilly/source/Data/Semester/:lan:Semester:ran:/Definitions/:lan:Vorlesung:ran:} befindet, besitzt eine relativ verpflichtende Struktur, die sich geplant mit \LILLYxBOXxVersion{2.1.0} ändern soll (das Prinzip eines Semesters soll abgeschafft und das Prinzip einer Vorlesung verallgemeinert werden). Hier die Übersicht der Ordnerstruktur ab \blatex{Lilly/source/Data/}:\par
+\begin{minipage}{0.35\linewidth}
+    \begin{directory}[scale=0.5]%Optimie the directory option :D
+        \node {Semester}
+        child { node {1}
+                child { node {Definitions}
+                    child { node {GENERAL.tex} }
+                    child { node {EIDI.tex} }
+                    child { node {FG.tex} }
+                    child { node {GDRA.tex} }
+                    child { node {LAII.tex} }
+                }
+                child { node {Graphics}
+                    child { node {titleimageEIDI.pdf} }
+                    child { node {titleimageFG.pdf} }
+                    child { node {titleimageGDRA.pdf} }
+                    child { node {titleimageLAII.pdf} }
+                }
+                child { node {Readme.md} }
+        }
+        child { node {2}
+                child { node {\ldots} }
+        };
+    \end{directory}
+\end{minipage}
+\begin{minipage}{0.65\linewidth}Die Verzeichnisse können weitere Ordner enthalten diese werden allerdings (wie die \T{Readme.md}) nicht von Lilly beachtet. Sie können allerdings weitere Informationen für Vorlesungen enthalten, die dann von diesen Eingebunden werden, sofern dies benötigt wird. Die Definition \T{GENERAL.tex}\footnote{Auch bezüglich der Benennung der Konfigurationen ist eine Änderung für \LILLYxBOXxVersion{2.1.0} geplant.}  wird immer geladen und kann so für das gesamte Semester Definitionen abgegen (so zum Beispiel das Setzen des \blankcmd{LILLYxFlavourText}). Alle anderen Konfigurationen tragen den Namen, der der \LILLYxNOTExLibrary{LILLYxKEYVALxPARSER}-Option \T{Vorlesung} oder der \Jake-\jmark[Einstellung]{mrk:jakesettings} \T{lilly-vorlesung} übergeben werden können. Ein \emph{mapping} dieser Bezeichner findet aktuell nicht statt.
+
+\paragraph{Die Vorlesungskonfiguration}
+Eine Vorlesungskonfiguration wie \T{EIDI.tex} kann eine Menge an Befehlen definieren, in der Regel werden allerdings die folgenden gesetzt, wobei die mit \T{default} markierten Optionen nicht gegeben werden müssen:
+\end{minipage}\\
+% We set the following commands to be registered here even if they aren't
+\foreach \x in {TITLE,PROFESSOR,UEBUNGSLEITER,TUTOR,SUBTITLE,FULLTITLE,UEBUNGSHEADER,VORLESUNG}{\anothercmd*[1.0.0]{\x}}
+\begin{center}
+    \begin{tabularx}{\linewidth}{^l^p{12em}^>{\ltt\scriptsize}p{12em}^r+}
+        \toprule
+            \headerrow Befehl         & Erklärung                    & \normalsize Beispiel                    & Notiz \\
+        \midrule
+            \blankcmd{TITLE}          & Name der Vorlesungsreihe     & Grundlagen der Schäferzucht & \\
+            \blankcmd{PROFESSOR}      & Name des Dozenten            & Prof. Dr. Dööst             & \\
+            \blankcmd{UEBUNGSLEITER}  & Name des Übungsleiters       & Max Mustermän               & \\
+            \blankcmd{TUTOR}          & Name des Tutors              & Herr Subertuter             & \\
+            \blankcmd{SUBTITLE}       & Untertitel                   & \blankcmd{PROFESSOR}        & Default\\
+            \blankcmd{FULLTITLE}      & Titel für die Titelseite     & \blankcmd{TITLE} \textbackslash\textbackslash\blankcmd{fontsize}\{18pt\}\{16pt\} \blankcmd{selectfont}\{\blankcmd{SUBTITLE}\}             & Default\\
+            \blankcmd{UEBUNGSHEADER}  & Kopfzeile eines Übungsblatts & \blankcmd{TITLE}\textbackslash\textbackslash Übungsblatt \blankcmd{LILLY@n} & Default\\
+            \blankcmd{VORLESUNG}      & Vorlesungs-Schriftzug        & \{ \blankcmd{bfseries} Roffledoffel \} & Default\\
+        \bottomrule
+    \end{tabularx}\nskip
+\end{center}
+Besonders sind die Befehle \blankcmd{UEBUNGSLEITER} und \blankcmd{TUTOR}, da diese erst dann gegeben werden \emph{müssen} wenn sie gebraucht werden (genau genommen gilt das für alle Befehle, allerdings werden die anderen in einem Mitschrieb benötigt, um zum Beispiel die Titelseite zu generieren).\newline
+Weiter ist es möglich, die beiden folgenden Befehle zu setzen, die eine besondere Bedeutung besitzen:%
+\foreach \x in {POLITEINTRO,LILLYxTITLExOffset}{\anothercmd*[1.0.0]{\x}}
+\begin{center}
+    \begin{tabular}{^l^p{12em}^>{\ltt\scriptsize}p{12em}+}
+        \toprule
+            \headerrow Befehl         & Erklärung                    & \normalsize Beispiel                    \\
+        \midrule
+            \blankcmd{POLITEINTRO}    & Einleitung für Zusammenfassungen     & Offensichtlich erhebt dieses Dokument keinen Anspruch\ldots \\
+            \blankcmd{LILLYxTITLExOffset}      & Setzt das horizontale Titelbildoffset bei der Zusammenfassung im Falle einer abweichenden Größe            & 11.6cm \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+Zur Definition weiterer Einschränkungen wie zum Beispiel der Sichtbarkeit von \LILLYxNOTExLibrary{LILLYxBOXES} sollten mit \blankcmd{providedef} getätigt werden, können allerdings auch anderweitig gesetzt werden, wenn es zum Beispiel nicht anders funktioniert.
+Hier ein Beispiel für die Vorlesung \T{ANA1}:
+\begin{latex}
+%%% Diese Datei enthält alle notwendigen Definitionen
+
+%%%%%%%%%%%%%%%%%%%%% General
+
+%% Setzt den Professor
+\def!**!\PROFESSOR{Dr. Supermann}
+%% Setzt den Übungsleiter
+\def!**!\UEBUNGSLEITER{Someone Günther}
+%% Setzt den Tutor
+\def!**!\TUTOR{Unbekannt}
+
+%% Setzt den Titel
+\def!**!\TITLE{Analysis 1 für Inf. und Ing.}
+%% Setzt den Untertitel (Standard)
+\def!**!\SUBTITLE{\PROFESSOR}
+%% Setzt den Titel für ein Übungsblatt (Standard)
+\def!**!\UEBUNGSHEADER{\TITLE!**!\\!**!Übungsblatt \LILLY@n }
+
+%% Setzt den Titel für die Titelseite (Standard)
+\def!**!\FULLTITLE{\TITLE!**!\\!**!\fontsize{18pt}{16pt}\selectfont{\SUBTITLE} }
+
+%% Setzt den Namen der Vorlesung als Text, siehe !*\blankcmd{anaI}*!
+\def!**!\VORLESUNG{\anaI}
+
+%% Setzt das Intro für eine Zusammenfassung
+\DeclareRobustCommand{\POLITEINTRO}{\setcounter{TOPICS}{-1}%
+    \TOP[disc]{Disclaimer}{Worte des Autors}
+    Offensichtlich erhebt %... Hier gekürzt
+    \end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%% Layout Control
+
+%% Setze den Abstand für das Titelbild
+\providedef{LILLYxColorxTITLExOffset}{10.3cm}
+%% Der Zähler für Definitionen wird mit jeder Sektion zurück gesetzt
+\providedef{LILLYxBOXxDefinitionxLock}{section}
+%% Der Zähler für jeden Satz wird mit jeder Sektion zurück gesetzt
+\providedef{LILLYxBOXxSatzxLock}{section}
+%% Bemerkungen sollen ohne Box angezeigt werden
+\providedef{LILLYxBOXxBemerkungxBox}{FALSE}
+%% Beispiele sollen ohne Box angezeigt werden
+\providedef{LILLYxBOXxBeispielxBox}{FALSE}
+%% Beweise sollen ohne Box angezeigt werden
+\providedef{LILLYxBOXxBeweisxBox}{FALSE}
+%% Auf Übungsblättern soll kein Tutorheader angezeigt werden
+%% (automatisches !*\blankcmd{TUTORBOX}*!) Dies empfiehlt sich für
+%% Übungsblätter mit Onlineabgabe, wenn sie gedruckt werden
+%% sollen, dann: TRUE
+\providedef{LILLYxUBxSHOWTUTOR}{FALSE}
+
+%%%%%%%%%%%%%%%%%%%%% Title Control
+
+%% Setze das Fakultätssymbol
+\def!**!\LILLYxFACULTY{\LILLYxFACULTYxMATHE}
+%% Setze die Fakultätsfarbe
+\def!**!\LILLYxFACULTYxCOLOR{FacultyMathexColor}
+
+%% Komplett optional, wurde für angenehmere Abstände hier eingefügt
+\setlength{\itemsep}{0.40\baselineskip}
+\end{latex}
+
+Das ist bezüglich der Konfigurationsdatei eigenlich auch schon alles was gemacht werden muss. Jetzt gilt es allerdings noch das dazugehörige Titelbild zu generieren:
+
+\paragraph{Ein Titelbild erstellen}
+An sich gibt es keine klare Regel, nach der ein Titelbild generiert werden muss. Es gibt lediglich dioe folgenden Anforderungen an die sie sich halten sollen:
+\begin{ditemize}
+    \item Der Name \emph{muss} \T{titelimage<Vorlesung>.pdf} entsprechen.
+    \item Ein Titelbild sollte völlig unabhängig von Lilly erstellt werden.
+    \item Ein titelbild muss komplett in \LaTeX{} erstellt werden. Externe Grafiken werden nicht gestattet.
+    \item Die zugehörige \T{.tex}-Datei \emph{muss} mitgeliefert werden.
+    \item Es muss ein \emph{Makefile} existieren welches alle Titelbilder eines Ordners auf einmal neu generiert, sofern eine Änderung vorliegt.
+    \item Derartige Titelbilder dürfen nur im \T{Graphics}-Ordner eines Semesters liegen.
+\end{ditemize}
+
+Übrigens: Der \T{TitlepageProvider} ist an sich veraltet und wurde komplett von \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} abgelöst.

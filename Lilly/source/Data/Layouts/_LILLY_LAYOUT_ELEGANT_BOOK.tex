@@ -15,7 +15,7 @@
 
 %% https://www.ctan.org/pkg/scrlayer-scrpage
 \LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
-					{Verpflichtööönd}
+					{Verpflichtoeoeoend}
 					{automark}{}
 
 %% https://www.ctan.org/pkg/framed
@@ -156,7 +156,7 @@
 
 %% Set The Mini-TOCs
 
-\newcommand{\printMiniToc}[1][Das haben wir gelernt]{\vspace{-3em}
+\newcommand{\printMiniToc}[1][]{\vspace{-3em}
   \hfill\parbox[t]{.25\textwidth}{
 		{\mbox{}\\
 			\mbox{}\bfseries{\chpNumber\hfill\thechapter~~}}
@@ -229,7 +229,6 @@
   {\Large\color{\Hcolor}\partname~\thepart:}
   {2pt}
   {\SetPartFlavour{}{}}[\vspace*{4.5em}] %% Reset :D
-\makeatother
 
 
 \titleformat{\chapter}[display]
@@ -238,9 +237,12 @@
       %\newlistof{chap\alph{chapter}}{chap\alph{chapter}}{HeyMum}
     }
     %\chapterfont}
-\titleformat*{\section}{\Huge}%\titlefont}
-\titleformat*{\subsection}{\huge}%\titlefont}
-\titleformat*{\subsubsection}{\LARGE}%\titlefont}
+% \titleformat*{\section}{\Huge}
+% %\titlefont}
+% \titleformat*{\subsection}{\huge}
+% %\titlefont}
+% \titleformat*{\subsubsection}{\LARGE}
+%\titlefont}
 
 % spacing:
 \titlespacing*{\part}{0pt}{0pt}{20pt}

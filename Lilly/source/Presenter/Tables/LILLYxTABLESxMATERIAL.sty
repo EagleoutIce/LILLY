@@ -1,0 +1,174 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxTABLESxMATERIAL}[2019/09/05 Zeigt das Material-Design fuer die LILLY-Tables]
+
+\RequirePackage{LILLYxCORE}
+
+\RequirePackage{LILLYxCOLOR}
+
+%% https://ctan.org/pkg/makecell
+\LILLYxDemandPackage{makecell}{Rotierte Zellen, Super Zellen, Enten, ...}%% Package, Info
+                    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://ctan.org/pkg/tabu
+\LILLYxDemandPackage{tabu}{Coole Tabellen}%% Package, Info
+                    {Das Paket tabu ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+\def\tabu@classz{%
+    %  \ifx\tabu@prepnext@tok\prepnext@tok% in tabu
+    %    \expandafter\tabu@classz@oldarray
+    %  \else
+    \tabu@classzORI
+    %  \fi
+}%
+\def\tabu@ignorehfil{\tabu@nohfil}
+
+%% https://ctan.org/pkg/longtable
+\LILLYxDemandPackage{longtable}{Coole, lange Tabellen}%% Package, Info
+                    {Das Paket longtable ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://www.ctan.org/pkg/xparse
+\LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
+                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+                    {}{} %% keine Argumente
+
+%% We will define the materialtabel 'mtable' and the long variant as 'mltable'
+%
+
+% As the tabu - version seems to be unstable
+% there will be mtabular and mltabular using the existing table-environments - everybody: do the jay!
+
+\def\MTBHeaderRow{%\rowfont{\normalfont\bfseries\leavevmode\color{white}}
+\rowcolor{HeaderColor}\Gape[0.5mm][0.25mm]{}\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
+\def\MNTBHeaderRow{%\rowfont{\normalfont\bfseries\leavevmode\color{white}}
+\rowcolor{NextHeaderColor}\Gape[0.5mm][0.25mm]{}{\hspace*{-2.3em}\textcolor{MudWhite}{$\blacktriangledown$}}\hspace*{1.4em}\;\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
+
+
+
+%Will patch the Arguments by adding '^' at the beginning to apply to the LILLYxTABLES FIX :D
+\def\@@tabularArgPatch#1{%
+    \@@tabularArgPatch@iter#1\@empty\@nil
+}
+
+
+\def\@@tabularArgPatch@iter#1#2\@nil{%                        % Define Iteration
+    \ifx#1\@empty%                                            % Handle Emptyarg
+    \else%                                                    % Otherwise
+        % \ifthenelse{\equal{#1}{<}}{#1}{%
+        %     \ifthenelse{\equal{#1}{>}}{#1}{%
+                ^#1%                                          % Set the Char if this is not '>' and '>
+        %     }
+        % }
+        \@@tabularArgPatch@iter#2\@empty\@nil%                % Re-iter with tail:D
+    %}%
+    \fi%
+}
+
+
+\DeclareDocumentEnvironment{mtabular}{%
+    s % starred has no header
+    O{\MTBHeaderRow} % Code for the headerrow
+    O{} % Code to be executed before the table, but after the other definitions
+    m   % Table Head Definitions
+    O{MudWhite!10} % First Row
+    O{MudWhite!90} % Second Row
+}{%
+    \IfBooleanTF{#1}{\rowcolors{0}{#5}{#6}}
+        {\rowcolors{2}{#6}{#5}}
+    #3\ignorespaces
+    %% Information:
+    % As there is no 'rowfont' command for the tabular environment we will fake it. We will use \@@tabularArgPatch and insert an '^' before every character. NOTE: This means its not possible to use '>' or '<' etc as they will be polluted with '^' in the process
+    % Therefore you will have to create a temporary column to use them - it would be theoretically possible to change that behaviour but it should be perfectly fine atm :) - hate the future moment
+    % Expand the header arguments:
+    \edef\@@tabular@init@{\noexpand\tabular{>{~\noexpand\parbox[c][1.5em]{0pt}{\noexpand\vphantom{I}}}\@@tabularArgPatch{#4}<{~\noexpand\clearrow\noexpand\vspace*{0.4mm}}}}\@@tabular@init@
+        \IfBooleanTF{#1}{\rowcolor{#6}}{#2}\ignorespaces
+}{%
+    \endtabular%
+}
+
+\DeclareDocumentEnvironment{mltabular}{%
+    s % starred has no header
+    O{\MTBHeaderRow} % Code for the headerrow
+    O{} % Code to be executed before the table, but after the other definitions
+    m   % Table Head Definitions
+    o % Multipage header, will appear on every page if given
+    O{MudWhite!10} % First Row
+    O{MudWhite!90} % Second Row
+    O{\MNTBHeaderRow} % How to color Headers on continued lines
+}{%
+    \IfBooleanTF{#1}{\rowcolors{0}{#6}{#7}}
+        {\rowcolors{2}{#6}{#7}}
+    #3\ignorespaces
+    %% Information:
+    % As there is no 'rowfont' command for the tabular environment we will fake it. We will use \@@tabularArgPatch and insert an '^' before every character. NOTE: This means its not possible to use '>' or '<' etc as they will be polluted with '^' in the process
+    % Therefore you will have to create a temporary column to use them - it would be theoretically possible to change that behaviour but it should be perfectly fine atm :) - hate the future moment
+    % Expand the header arguments:
+    \edef\@@tabular@init@{\noexpand\longtable{>{~\noexpand\parbox[c][1.5em]{0pt}{\noexpand\vphantom{I}}}\@@tabularArgPatch{#4}<{~\noexpand\clearrow\noexpand\vspace*{0.4mm}}}}\@@tabular@init@
+    \IfBooleanTF{#1}{\rowcolor{#6}}{#2\ignorespaces\IfValueT{#5}{%
+            #5\\\endfirsthead%
+            #8#5\\\endhead
+        }\ignorespaces}%
+}{%
+    \endlongtable%
+}
+
+
+
+
+\colorlet{HeaderColor}{\Hcolor}
+\colorlet{NextHeaderColor}{HeaderColor}
+
+\def\MHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\color{white}}\rowcolor{HeaderColor}\Gape[0.5mm][0.25mm]{}}
+\def\MNHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\color{white}}\rowcolor{NextHeaderColor}\Gape[0.5mm][0.25mm]{}{\hspace*{-2.3em}\textcolor{MudWhite}{$\blacktriangledown$}}\hspace*{1.4em}\;}
+% Maybe set Arrow to right?
+\DeclareDocumentEnvironment{mtable}{%
+    s % starred has no header
+    O{\MHeaderRow} % Code for the headerrow
+    O{} % Code to be executed before the table, but after the other definitions
+    m   % Table Head Definitions
+    O{MudWhite!10} % First Row
+    O{MudWhite!90} % Second Row
+}{%
+    \IfBooleanTF{#1}{\taburowcolors[2] {#5 .. #6}}
+        {\taburowcolors[2] 2{#5 .. #6}}
+    \everyrow{\tabucline[.4mm  white]{}}
+    \extrarowsep = 0.15mm
+    \tabulinesep = ^2mm_2mm
+    #3\ignorespaces
+    \begin{tabu}{>{~}#4<{~}}
+        \IfBooleanTF{#1}{\rowcolor{#6}}{#2}\ignorespaces
+}{%
+    \end{tabu}
+}
+\DeclareDocumentEnvironment{mltable}{%
+    s % starred has no header
+    O{\MHeaderRow} % Code for the headerrow
+    O{} % Code to be executed before the table, but after the other definitions
+    m % Table Head Definitions
+    o % Multipage header, will appear on every page if given
+    O{MudWhite!10} % First Row
+    O{MudWhite!90} % Second Row
+    O{\MNHeaderRow} % How to color Headers on continued lines
+}{%
+    \IfBooleanTF{#1}{\taburowcolors[2] {#6 .. #7}}
+    {\taburowcolors[2] 2{#6 .. #7}}
+    \everyrow{\tabucline[.4mm  white]{}}
+    \tabulinesep = ^2mm_2mm
+    #3\ignorespaces
+    \begin{longtabu}{>{~}#4<{~}}
+        \IfBooleanTF{#1}{\rowcolor{#6}}{#2\ignorespaces\IfValueT{#5}{%
+            #5\\\endfirsthead%
+            #8#5\\\endhead
+        }\ignorespaces}%
+}{%
+    \end{longtabu}
+}
+
+
+
+\endinput

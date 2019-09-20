@@ -11,19 +11,40 @@
         \end{latex*}
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
+\hypertarget{LILLYxTIKZxCORE}Dieses Paket basiert übrigens auf \LILLYxNOTExLibrary{LILLYxTIKZxCORE}, welche selbst nicht direkt sondern nur durch die hier verfügbaren Befehle dokumentiert ist und auch nicht frei verwendet werden sollte (ausgenommen natürlich, man weiß, wie \Smiley).
+
 %
 %
 %
+
 \section{Grundlegende Symbole}
 Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
 Dieses Paket liefert grundlegende, mal mehr und mal weniger, nützliche Tikz-Grafiken, welche zum Großteil aus denen in der Vorlesung verwendeten Grafiken entstanden sind. Alle diese Grafiken benötigen Ti\textit{k}Z (\url{https://www.ctan.org/pkg/pgf}).
+
+%
+%
+%
+
+\presentCommand[1.0.0]{rectat}[\manArg{point}\cmdlist\anothercmd[1.0.0]{crectat}\manArg{point}\manArg{color}]
+Ersterer Befehl setzt in einem \blankenv{tikzpicture} ein (rot-)farbiges Rechteck, der zweite erlaubt die Auswahl der jeweiligen Farbe:
+\begin{defaultlst}[][listing side text,righthand width=2cm]{lLatex}
+\begin{tikzpicture}
+    \rectat{(0,1)};
+    \crectat{(0,0)}{AppleGreen};
+\end{tikzpicture}
+\end{defaultlst}
+
+
+
 \subsection{Die Ampeln}
 Diese Definitionen befinden sich in der Datei: {\ltt../Tikz-Core/\_LILLY\_TIKZ\_AMPELN}.
 An sich handelt es sich hierbei um ein kleines Shortcut-Sammelsurium für Ampeln:\medskip
+
 %
 %
 %
-\presentCommand[1.0.2]{ampelG}[\cmdlist \textbackslash ampelY\cmdlist \textbackslash ampelR\cmdlist \textbackslash ampelH]
+
+\presentCommand[1.0.2]{ampelG}[\cmdlist \anothercmd[1.0.2]{ampelY}\cmdlist \anothercmd[1.0.2]{ampelR}\cmdlist \anothercmd[1.0.2]{ampelH}]
 Explizit verwendet werden diese Befehle in zum Beispiel in den Erklärungen zum Moore-\&Mealy-Automaten auf Basis der Ampelschaltung (\!\ampelG\ampelY\ampelH):
 \displayCommandList{ampelG,ampelY,ampelR,ampelH}
 
@@ -33,27 +54,33 @@ Dieses Paket soll weitere lustige Begleiter im Textgeschehen zur Verfügung stel
 
 \subsection{Utility  \LILLYxNOTExWarning{Ausstehend}}
 Dieses Paket soll die bisher von FontAwesome verwendeten Symbolen ersetzen und durch eigens erstellte Grafiken ersetzen.
+
 %
 %
 %
 %
 %
+
 \section{Diagramme \& Graphen}
 \subsection{Graphen}
 Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\newline
 \begin{bemerkung}[Motivation]
 Dieses Paket liefert grundlegende, mal mehr und mal weniger, nützliche Tikz-Grafiken, welche zum Großteil aus denen in der Vorlesung verwendeten Grafiken entstanden sind. Alle diese Grafiken benötigen Ti\textit{k}Z (\url{https://www.ctan.org/pkg/pgf}).
 \end{bemerkung}
+
 %
 %
 %
+
 \presentCommand[1.0.2]{POLYRAD}[~\tiny$\langle$length$\rangle$]
 Grundlegend wird für den Radius aller Polygone empfohlen \blankcmd{POLYRAD} zu verwenden (Standardmäßig: \T{1.61cm}).\medskip\newline
-Weiter definiert diese Bibliothek etliche sogenannte \T{graphdot}s, welche alle nur in einer tikzpicture-Umgebung funktionieren, allen vorran die Ur-Funktion:\medskip
+Weiter definiert diese Bibliothek etliche sogenannte \T{graphdot}s, welche alle nur in einer tikzpicture-Umgebung funktionieren, allen vorran die Ur-Funktion:
+
 %
 %
 %
-\presentCommand[1.0.2]{graphdot}[\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}\cmdlist\newline\hbox{}~~\textbackslash tgraphdot\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}]
+
+\presentCommand[1.0.2]{graphdot}[\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}\cmdlist\newline\hbox{}~~\anothercmd[1.0.2]{tgraphdot}\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}]
 Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargument ignoriert und entsprechend transparent (\T{fill opacity = 0}) als Füllfarbe verwendet:
 \begin{center}\renewcommand{\arraystretch}{1.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\linewidth}@{\hspace{1em}}|@{\hspace{1em}}C{1cm}@{\hspace{1em}}!{\VRule[1pt]}}
@@ -63,11 +90,13 @@ Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargu
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
+
 %
 %
 %
-\presentCommand[1.0.2]{oragraphdot}[\cmdlist \textbackslash blugraphdot\cmdlist \textbackslash gregraphdot\cmdlist\textbackslash purgraphdot\cmdlist\textbackslash golgraphdot\cmdlist\secline\textbackslash blagraphdot\cmdlist\textbackslash norgraphdot\cmdlist\textbackslash margraphdot]
-Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle und besitzen die Signatur: \blankcmd{oragraphdot\manArg{(PosX,PosY)}\manArg{Text}\manArg{node-name}}:\vspace{-1em}
+
+\presentCommand[1.0.2]{oragraphdot}[\cmdlist \anothercmd[1.0.2]{bluegraphdot}\cmdlist \anothercmd[1.0.2]{gregraphdot}\cmdlist\anothercmd[1.0.2]{purgraphdot}\cmdlist\secline\anothercmd[1.0.2]{golgraphdot}\cmdlist\anothercmd[1.0.2]{blagraphdot}\cmdlist\anothercmd[1.0.2]{norgraphdot}\cmdlist\anothercmd[1.0.2]{margraphdot}]
+Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben genannten Befehle und besitzen die Signatur: \T{\blankcmd{oragraphdot}\manArg{(PosX,PosY)}\manArg{Text}\manArg{node-name}}:
 \begin{multicols}{3}%
     \begin{ditemize}\narrowitems%
         \foreach \cmd in {ora,blu,gre,pur,gol,bla,nor,mar}{%
@@ -77,13 +106,15 @@ Alle weiteren graphdots sind nun nichts weiteres als Shortcuts für die eben gen
 \end{multicols}%
 Zur Information, alle diese Befehle wurden wie folgt präsentiert:
 \begin{latex}[morekeywords={[5]{tikz}}]
-:bs:tikz:bs::lan:graphdot:ran:{(0,0)}{42}{a}};
+:bs:tikz!**!\:lan:graphdot:ran:{(0,0)}{42}{a}};
 \end{latex}
 wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für den Textfluss noch die Boxposition angepasst, dies spielt allerdings für den Graphen keine Rolle. Mit \LILLYxBOXxVersion{2.0.0} wurden die Farben der Dots der neuen Palette %%TODO: link
-entsprechend portiert.\medskip
+entsprechend portiert.
+
 %
 %
 %
+
 \presentCommand[1.0.4]{graphPOI}[\manArg{(PosX,PosY)}\manArg{accent-color}\manArg{year}\manArg{obj-name}\manArg{brief}\secline\manArg{img-path}\manArg{img-link}\manArg{extra}]
 Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen look für Timelines garantiert. Im Folgenden eine repräsentation, die den Wirrwarr an Optionen etwas übersichtlicher macht. Es gilt zu beachten, dass \clatex{:lan:extra:ran:} hier die Rolle des entsprechendes Landes einnimmt:\vspace{-1.15\baselineskip}
 %
@@ -115,16 +146,14 @@ Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen loo
     \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
-Hier wurde aus Platzgründen die Größe angepasst. Es gibt auch einen weiteren Befehl der es ermöglicht den \blankcmd{graphPOI}-Befehl einzuschränken:\medskip
+Hier wurde aus Platzgründen die Größe angepasst. Es gibt auch noch \blankcmd{LILLYxMODExEXTRA} der es ermöglicht den \blankcmd{graphPOI}-Befehl einzuschränken.
+Wir dieser Befehl auf \verb|\true| (\true) gesetzt, so wird \blankcmd{graphPOI} so konfiguriert, dass die zugehörige Grafik angezeigt wird. Ist dies nicht der Fall (in anderen Worten: \blankcmd{LILLYxMODExEXTRA}=\verb|\false|), so wird kein Bild angezeigt (auch der Link existiert dann nicht). Diese Version wurde erstellt um Urheberrechtsverletzungen zu vermeiden.
+
 %
 %
 %
-\presentCommand[1.0.4]{LILLYxMODExEXTRA}
-Wir dieser Befehl auf \verb|\true| (\true) gesetzt, so wird \blankcmd{graphPOI} so konfiguriert, dass die zugehörige Grafik angezeigt wird. Ist dies nicht der Fall (in anderen Worten: \blankcmd{LILLYxMODExEXTRA}=\verb|\false|), so wird kein Bild angezeigt (auch der Link existiert dann nicht). Diese Version wurde erstellt um Urheberrechtsverletzungen zu vermeiden.\medskip
-%
-%
-%
-\presentCommand[2.0.0]{PgetXY}[\manArg{Point}\manArg{out:x-cord}\manArg{out:y-cord}\cmdlist\secline\textbackslash PgetX\manArg{out:x-cord}\cmdlist \textbackslash PgetY\manArg{out:y-cord}]
+
+\presentCommand[2.0.0]{PgetXY}[\manArg{Point}\manArg{out:x-cord}\manArg{out:y-cord}\cmdlist\secline\anothercmd[2.0.0]{PgetX}\manArg{out:x-cord}\cmdlist \anothercmd[2.0.0]{PgetY}\manArg{out:y-cord}]
 Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da das Kreuzen von Koordinaten nervig ist, gibt es verschiedene Befehle die es erlauben, die entsprechenden Koordinaten zu speichern, wobei die letzteren beiden nur lesbarere Alternativen für die erste sind, sofern die entsprechend andere Koordinate nicht benötigt wird:\vspace{-1.15\baselineskip}
 \begin{center}%\renewcommand{\arraystretch}{0.25}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.4\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
@@ -155,17 +184,21 @@ Was hierbei auch interessant ist: die Skalierung von $X$- und $Y$-Koordinaten wi
 \begin{latex*}
 \draw[thin,xshift=0.5cm,yshift=0.5cm] (-1,-2) grid (3,2);
 \end{latex*}
+
 %
 %
 %
 %
 %
 %
+
 \subsection{Rotation}
-Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_ROTATION}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_ROTATION}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.
+
 %
 %
 %
+
 \presentCommand[1.0.4]{rotateRPY}[\optArg[0/0/0]{transform-point}\manArg{roll}\manArg{pitch}\manArg{yaw}]
 Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und dementsprechend anzupassen. Dieser Code entstammt der Feder von David Carlisle und Tom Bombadil\footnote{\url{https://tex.stackexchange.com/questions/67573/tikz-shift-and-rotate-in-3d}} und wird hier beispielhaft illustriert:
 \newcommand{\examplecube}%
@@ -212,23 +245,29 @@ Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und d
     \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
+
 %
 %
 %
 %
 %
+
 \subsection{Automaten \LILLYxNOTExWarning{Work in Progress}}
 Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_AUTOMATEN}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
-Obwohl bereits Ti\textit{k}Z eine Bibliothek für das Generieren von Automaten zur Verfügung stellt, wurde dieses (Work in Progress) Paket erstellt um darauf aufbauend schnell Automaten erstellen zu können. Der Grundbefehl lautet:\medskip
+Obwohl bereits Ti\textit{k}Z eine Bibliothek für das Generieren von Automaten zur Verfügung stellt, wurde dieses (Work in Progress) Paket erstellt um darauf aufbauend schnell Automaten erstellen zu können. Der Grundbefehl lautet:
+
 %
 %
 %
+
 \presentCommand[1.0.3]{loopTo}[\optArg[1]{looseness}\manArg{arc}\manArg{node-name}\manArg{Text}\manArg{Orientierung}]
-Dieser Befehl setzt grundlegend einen Pfeil, der von einem Knoten aus wieder zu sich selbst führt. Im folgenden sind $4$ verschiedene Shortcuts, die für die klassischen Himmelsrichtungen die Pfeile vordefinieren:\medskip
+Dieser Befehl setzt grundlegend einen Pfeil, der von einem Knoten aus wieder zu sich selbst führt. Im folgenden sind $4$ verschiedene Shortcuts, die für die klassischen Himmelsrichtungen die Pfeile vordefinieren:
+
 %
 %
 %
-\presentCommand[1.0.3]{loopTop}[\optArg[1]{looseness}\manArg{node-name}\manArg{Text}\cmdlist \textbackslash loopRight\optArg[1]{lsns}\secline\manArg{node-name}\manArg{Text}\cmdlist\textbackslash loopLeft\optArg[1]{lsns}\manArg{node-name}\manArg{Text}\cmdlist\secline\textbackslash loopBot\optArg[1]{lsns}\manArg{node-name}\manArg{Text}]
+
+\presentCommand[1.0.3]{loopTop}[\optArg[1]{looseness}\manArg{node-name}\manArg{Text}\cmdlist \anothercmd[1.0.3]{loopRight}\optArg[1]{lsns}\secline\manArg{node-name}\manArg{Text}\cmdlist\anothercmd[1.0.3]{loopLeft}\optArg[1]{lsns}\manArg{node-name}\manArg{Text}\cmdlist\secline\anothercmd[1.0.3]{loopBot}\optArg[1]{lsns}\manArg{node-name}\manArg{Text}]
 Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen Sinn ergeben es soll lediglich die Nutzung verdeutlicht werden):
 \begin{center}
 \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.65\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
@@ -284,10 +323,12 @@ Die Befehle \blankcmd{state} und \blankcmd{STATE} sollen hierbei automatisch hoc
 
 \subsection{Neuronen \LILLYxNOTExWarning{Work in Progress}}
 Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_NEURONS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
-Da vor allem mit \fg der Wunsch danach aufkam, neuronale Netze schnell zu Texen, wurde dieses Paket entwickelt um das Paket mit den Schaltkreisen so zu erweitern, dass es erlaubt Perzeptronen darin einzubauen, das  Paket an sich befindet sich ebenfalls im Work in Progress-Status. \textit{Das Schaltkreise-Paket ist ebenfalls noch nicht in LILLY integriert. Es befindet sich ebenfalls in einem Anfangsstadium und deswegen wird auch hierbei um Mithilfe bei der Weiterentwicklung gebeten.}\medskip
+Da vor allem mit \fg der Wunsch danach aufkam, neuronale Netze schnell zu Texen, wurde dieses Paket entwickelt um das Paket mit den Schaltkreisen so zu erweitern, dass es erlaubt Perzeptronen darin einzubauen, das  Paket an sich befindet sich ebenfalls im Work in Progress-Status. \textit{Das Schaltkreise-Paket ist ebenfalls noch nicht in LILLY integriert. Es befindet sich ebenfalls in einem Anfangsstadium und deswegen wird auch hierbei um Mithilfe bei der Weiterentwicklung gebeten.}
+
 %
 %
 %
+
 \presentCommand[1.0.5]{neuronSquare}[\manArg{pos:00}\manArg{pos:01}\manArg{pos:10}\manArg{pos:11}]
 Es wurde bisher auch nur durch das Bereitstellen eines einzelnen Befehls implementiert: \blankcmd{neuronSquare}. Dieser funktioniert seinerseits lediglich in einer \emph{tikzpicture}/\emph{tikzternal} Umgebung und zeichnet nichtmal ein Neuron, sondern lediglich die 2-D Repräsentation eines booleschen Raums, der wiedergibt unter welchen Eingabevektoren das Perzeptron welchen Wert zurückliefert. Die 4 Parameter, die hierzu \blankcmd{neuronSquare} benötigt, entsprechen der jeweiligen Binärdarstellung der Eingabevektoren. Eine beispielhafte Anwendung ist hier zu finden:
 \[\begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.35\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.3\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
@@ -304,9 +345,148 @@ Es wurde bisher auch nur durch das Bereitstellen eines einzelnen Befehls impleme
         \specialrule{1pt}{0pt}{0pt}
         \end{tabular}\]
 Hierbei steht ein \T{T} (true) natürlich für einen akzeptierten, ein \T{F} (false) entsprechend für einen nicht akzeptierten Befehl. Aktuell ist geplant, dass der Befehl auch für 1-, 3- und 4-dimensionale Räume eine Option anbietet (siehe für 4D: Titelgrafik \gdra[]), die dann über einen einfacheren Namen abgegriffen werden kann. Weiter sollen dann \fg und \gdra (boolesche Räume) diese Befehle nutzen anstelle der dafür eigens implementierten Grafiken. Weiter soll es möglich sein über ein optionales Argument die Position (relativ) zu bestimmen!
+
 %
 %
 %
+
+\subsection{ER-Diagramme}
+Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_ER.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Ersteinmal ein Beispiel:
+\begin{center}
+    \begin{tikzternal}[scale=0.7,every node/.style={transform shape}]
+        \newcommand{\ttw}{3};\newcommand{\tth}{2} %% tth heightsteps ttw widthsteps
+        %% could be for each ^^ sorry
+        \entity{(2*\ttw,4*\tth)}{Teile};
+        \entity{(4*\ttw,4*\tth)}{Lieferanten}; \entity{(4*\ttw,2*\tth)}{Bestellungen};
+
+        \relation{(4*\ttw,3*\tth)}{erhielt};   \relation{(3*\ttw,4*\tth)}{liefert};
+
+        %% Teile
+        \attribute{(1.5*\ttw,3.5*\tth)}{Farbe}; \attribute{(1.5*\ttw,3*\tth)}{KKosten};
+        \attribute{(1.5*\ttw,2.5*\tth)}{Bestand}; \attribute{(1.5*\ttw,2*\tth)}{MinBest};
+        %%\draw(TeileNr)--(Teiletypen) -- (TeileName);
+        \draw (Farbe)++(-0.9\ttw,0) node[left]  {\scriptsize $\{0,1,2\}\ni$};
+        \draw (Farbe) -| (Teile) (KKosten) -| (Teile) (Bestand) -| (Teile) (MinBest) -| (Teile);
+
+        %% liefert
+        \attribute{(3*\ttw, 3.25*\tth)}{Preis};
+        \draw(liefert) -- (Preis);
+
+        %% Lieferanten
+        \kattribute{(3.5*\ttw,4.75*\tth)}{LiefNr}; \attribute[LiefName]{(4.5*\ttw,4.75*\tth)}{\tiny LiefName};
+        \attribute{(5*\ttw,4*\tth)}{LiefStadt}; \attribute{(5*\ttw,3.5*\tth)}{Bewert};
+        \draw(LiefNr)--(Lieferanten) -- (LiefName) (LiefStadt) -- (Lieferanten) -- (Bewert);
+
+        \draw (Bewert)++(0.35*\ttw,-0.1*\tth) node[right] (beweinsch) {\scriptsize $\in [-2,+2]$};
+
+        %% Bestellungen
+        \kattribute{(5*\ttw,2.25*\tth)}{BestNr}; \attribute{(5*\ttw,1.75*\tth)}{BDatum};
+        \draw(BestNr)--(Bestellungen) -- (BDatum);
+
+
+        %%kunden to Bestellpos
+        \draw (Teile) +(1.25,0) node[above right] {\small $0..*$} -- (liefert) -- (Lieferanten) +(-1.25,0) node[above left] {\small $0..*$} %
+        +(0,-0.377) node[below right] {\small $1$} -- (erhielt) -- (Bestellungen) +(0,0.377) node[above left] (bpkard)  {\small $0..*$};
+
+        \providecommand{\descNode}[4][above]{%
+            \draw #2 node[#1]  {\parbox{3cm}{\textbf{#3}:\\\itshape #4}};
+        }
+
+        \begin{scope}[every path/.style={latex-}]
+            \descNode{(Teile) -- ++(-0.75,0.75)}{Entität}{Identifizierbares Objekt};
+
+            \descNode{(liefert) -- ++(-0.75,1.75)}{Beziehung}{Verhältnis zwischen Entitäten};
+
+            \descNode{(LiefName) -- ++(0,0.75)}{Attribut}{Eigenschaften einer Entität};
+
+            \descNode{(beweinsch) -- ++(1.25,0.75)}{Einschränkung}{Schränkt mgl. Werte ein};
+
+            \descNode[right]{(BestNr) -- ++(1.5,0)}{Primärattribut}{Eindeutiger Attributwert};
+
+            \descNode[left]{(bpkard) -- ++(-1.25,0)}{Kardinalität}{Ein Liefr. erhält bel. viele Bestellungen};
+        \end{scope}
+    \end{tikzternal}
+\end{center}
+Erzeugt wurde dieses durch die folgenden Befehle:
+
+%
+%
+%
+
+\presentCommand[1.0.9]{entity}[\optArg{Node Name}\manArg{Point}\manArg{Text}]
+Setzt eine Entität im Kontext eines Entity-Relationship-Diagramms. Wird kein expliziter \T{Node Name} angegeben, so wird er gleich dem \T{Text} gesetzt. Da dies natürlich nicht immer geht, bietet die Option hierfür einen Ausweg:
+\begin{defaultlst}[][listing side text,righthand width=3cm]{lLatex}
+\begin{tikzpicture}
+    \entity{(0,0)}{Dieter};
+\end{tikzpicture}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[1.0.9]{relation}[\optArg{Node Name}\manArg{Point}\manArg{Text}\optArg[1]{Width}\optArg[0.5]{Height}]
+Setzt eine Relation im Kontext eines Entity-Relationship-Diagramms. Wird kein expliziter \T{Node Name} angegeben, so wird er gleich dem \T{Text} gesetzt. Da dies natürlich nicht immer geht, bietet die Option hierfür einen Ausweg:
+\begin{defaultlst}[][listing side text,righthand width=3cm]{lLatex}
+\begin{tikzpicture}
+    \relation{(0,0)}{Dieter};
+\end{tikzpicture}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[1.0.9]{attribute}[\optArg{Node Name}\manArg{Point}\manArg{Text}\cmdlist\secline\anothercmd[1.0.0]{kattribute}\optArg{Node Name}\manArg{Point}\manArg{Text}]
+Setzt ein Attribut beziehungsweise ein Schlüsselattribut im Kontext eines Entity-Relationship-Diagramms. Wird kein expliziter \T{Node Name} angegeben, so wird er gleich dem \T{Text} gesetzt. Da dies natürlich nicht immer geht, bietet die Option hierfür einen Ausweg:
+\begin{defaultlst}[][listing side text,righthand width=3cm]{lLatex}
+\begin{tikzpicture}
+    \attribute{(0,1)}{Dieter};
+    \kattribute{(0,0)}{Dieter};
+\end{tikzpicture}
+\end{defaultlst}
+
+
+%
+%
+%
+
+\subsection{Verzeichnis-Bäume \LILLYxNOTExWarning{Work in Progress}}
+Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_DIRECTORY.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Dieses Paket ist bisher nur provisorisch und basiert auf \url{https://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz#34268}, da \T{forest} noch ein paar Probleme macht.
+
+%
+%
+%
+
+\presentEnvironment[2.0.0]{directory}[\optArg{tikz args}]
+Setzt ein Verzeichnis, beziehungsweise allgemein liefert diese Umgebung eine Möglichkeit relativ einfach etwas \emph{Verzeichnisähnliches} zu setzen (ist ja, wie gesagt, noch in Arbeit \Smiley). Ein Beispiel:
+\begin{defaultlst}[][listing side text,righthand width=4.5cm]{lLatex}
+\begin{directory}[scale=0.5]
+\node{Toplevel}
+    child { node {Level 1}
+        child { node {Level 2}
+            child { node {Level 3} }
+            child { node {\ldots} }
+        }
+        child { node {Level 2}
+            child { node {Level 3} }
+            child { node {\ldots} }
+        }
+        child { node {Readme.md} }
+    }
+    child { node {Level 1}
+        child { node {Level 2} }
+    };
+\end{directory}
+\end{defaultlst}
+
+
+%
+%
+%
+
 \section{Mitgelieferte Grafiken}
 \hypertarget{LILLYxGRAPHICSxPROVIDER}Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxGRAPHICSxPROVIDER.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
 Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxGRAPHICSxPROVIDER} und hängt vom Mutterpaket ab.
@@ -330,6 +510,10 @@ Liefert den absoluten Pfad zu einer Grafik. Beispiel:
 \end{latex*}
 Liefert: \T{\getGraphicsPath{Software/XML/XMLUebersicht}}.
 
+%
+%
+%
+
 \presentCommand[2.0.0]{getPrerendered}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
 Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereits vorberechneten Grafiken. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stehts nur eine Dimension skaliert wird! Sie werden in der Grafiksammlung durch den Tag \T{pdf} gekennzeichnet (die Breite wurde im Beispiel angepasst, oder lassen sich durch das Anfügen eines \say{\T{-pdf}}-Suffix:
 \begin{center}
@@ -340,13 +524,54 @@ Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereit
 \end{center}
 %Weiter existiert der Befehl \blankcmd{lillyGraphicsUsePrerenderedtrue}, mit dem automatisch jeder \blankcmd{getGraphics}-Aufruf in einen entsprechenden \blankcmd{getPrerendered} Aufruf umgewandelt wird.
 \emph{Es gilt zu beachten, dass die bereits vorgenerierten Grafiken von den manuell generierten abweichen können!}
+
+
 %
 %
 %
+%
+%
+
+\section{Zusätzliche Optionen}
+
+%
+%
+%
+
+\subsection{Externalisierung}
+Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Auf Basis von \T{environ} und der \TikZ-Bibliothek \T{external} bietet diese Datei eine Möglichkeit Grafiken zu externalisieren. Wirklich aktiviert wird es allerdings nur auf Basis der \Jake-\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external} (genau genommen läuft die kontrolle über \blankcmd{LILLYxEXTERNALIZE}), lagert dann allerdings alle Grafiken die durch folgende Umgebung definiert werden aus:
+
+%
+%
+%
+
+\presentEnvironment[1.0.7]{tikzternal}[\optArg{tikz args}]
+Wenn die Externalisierung (\Jake-\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external}) aktiviert ist, wird die hierrin enthaltene Grafik automatisch externalisiert. Sonst fungiert die Umgebung als normales \blankenv{tikzpicture}.
+
+%
+%
+%
+
+\subsection{Platzhalter}
+Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_PLATZHALTER.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.
+
+%
+%
+%
+
+\presentCommand[1.0.1]{imgplaceholder}
+Ein Platzhalter, der da eingebaut werden kann, wo ein Bild hingehört, allerdings noch keins ist \Smiley. So liefert \blankcmd{imgplaceholder}:
+\imgplaceholder
+
+%
+%
+%
+%
+%
+
 \section{Weiterführende Symbole}
-%
-%
-%
+
 \subsection{Embleme}
 \hypertarget{LILLYxEMBLEMS}Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/LILLYxEMBLEMS.sty}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
 Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxEMBLEMS} und hängt vom Mutterpaket ab.
@@ -355,12 +580,7 @@ Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LIL
 %
 %
 
-\presentCommand[2.0.0]{infoEmblem}\vspace{-\baselineskip}
-\presentCommand[2.0.0]{warningEmblem}\vspace{-\baselineskip}
-\presentCommand[2.0.0]{errorEmblem}\vspace{-\baselineskip}
-\presentCommand[2.0.0]{mathEmblem}\vspace{-\baselineskip}
-\presentCommand[2.0.0]{codeEmblem}
-
+\presentCommand[2.0.0]{infoEmblem}[\cmdlist\anothercmd[2.0.0]{warningEmblem}\cmdlist\anothercmd[2.0.0]{errorEmblem}\cmdlist\anothercmd[2.0.0]{mathEmblem}\cmdlist\secline\anothercmd[2.0.0]{codeEmblem}]
 Hierbei handelt es sich um Shortcuts um einige Embleme direkt zu Setzen:\medskip
 \begin{center}
     \begin{tikzpicture}
@@ -370,6 +590,10 @@ Hierbei handelt es sich um Shortcuts um einige Embleme direkt zu Setzen:\medskip
     \end{tikzpicture}
 \end{center}
 Hierbei bedienen sich die Befehle der Emblem-Definition \blankcmd{DefaultBaseEmblem}.
+
+%
+%
+%
 
 \presentCommand[2.0.0]{NewEmblem}[\optArg{Emblem-Keys}\optArg{Tikz-Args}\manArg{name}]
 Definiert ein neues Emblem, wobei folgende Emblem-Keys zur Verfügung stehen, diese werden persistiert:
@@ -427,6 +651,10 @@ Die Shortcuts von oben, wurden hierbei wie folgt definiert:
 \gdef!**!\mathEmblem{\,\DefaultBaseEmblem[draw=DarkMidnightBlue,fill=DarkMidnightBlue!75]{:bmath:\mathbf{\pi}:emath:}\,}
 \gdef!**!\codeEmblem{\,\DefaultBaseEmblem[draw=DarkOrchid,fill=DarkOrchid!75]{\faCode}\,}
 \end{latex}
+
+%
+%
+%
 
 \presentCommand[2.0.0]{textEmblem}[\manArg{Emblem}]
 Setzt ein Emblem für den Fließtext: \textEmblem\codeEmblem{} anstelle von \codeEmblem. Die Argumentklammern können Vernachläassigt werden, das Bedeutet Es genügt das Schreiben von \T{\blankcmd{textEmblem}\blankcmd{codeEmblem}}.

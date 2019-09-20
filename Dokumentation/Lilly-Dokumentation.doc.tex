@@ -23,22 +23,21 @@
 \newcommand{\Jake}[1][~]{\jmark[\begingroup\Fontauri Jake#1\endgroup]{mrk:JAKE}}
 \newcommand{\LJake}[1][~]{\begingroup\T{lilly\_jake}\endgroup#1}
 
-\newcommand*{\blankcmd}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}}
-\newcommand*{\blankenv}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}}
-\newcommand*{\blankenvidx}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env~@\ignorespaces #1}}
+\newcommand*{\blankcmd}[1]{\bgroup\setLinkColor{Orchid}\jmark[\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}]{cmd:#1}\egroup}
+\newcommand*{\blankcmdidx}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}}
+\newcommand*{\blankenv}[1]{\bgroup\setLinkColor{AppleGreen}\jmark[\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}]{cmd:#1}\egroup}
+\newcommand*{\blankenvidx}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}}
 
 \newcommand*{\secline}{\newline\hbox{}\protect\qquad\quad}
 
 \def\typesetVersion#1{\text{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}}
 
-\makeatletter
 %% [Version][Tagname][Additionals]
 \DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}:bs:\qquad#4}
   \begingroup~\newline\elable{cmd:#3}%\IfValueTF{#3}{\elable{cmd:#3}}{\elable{cmd:#2}}%
   \hspace*{-1.5cm}$\diamond$~~\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\typesetVersion{#1}}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
 \endgroup%
 }
-\makeatother
 
 
 
@@ -51,22 +50,23 @@
 %     }
 % }
 
-\DeclareDocumentCommand{\addcmd}{ O{1.0.0} m}{
-    \index{#2@{\blankcmd{#2}\textsuperscript{\tiny\T{(v#1)}}}}%
+\DeclareDocumentCommand{\addcmd}{ O{1.0.0} m}{%
+    \index{#2`{\blankcmdidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
 }
-\DeclareDocumentCommand{\addenv}{ O{1.0.0} m}{
-    \index{#2@{\blankenvidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}%
+\DeclareDocumentCommand{\addenv}{ O{1.0.0} m}{%
+    \index{#2`{\blankenvidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
 }
 
-\DeclareDocumentCommand{\anothercmd}{ O{1.0.0} m}{\index{#2@{\blankcmd{#2}~~{\tiny\T{(v#1)}}}}\blankcmd{#2}}%
-\DeclareDocumentCommand{\anotherenv}{ O{1.0.0} m}{\index{#2@{\blankenvidx{#2}~~{\tiny\T{(v#1)}}}}\blankenv{#2}}%
+
+\DeclareDocumentCommand{\anothercmd}{ s O{1.0.0} m}{\elable{cmd:#3}\addcmd[#2]{#3}\IfBooleanF{#1}{\blankcmdidx{#3}}}%
+\DeclareDocumentCommand{\anotherenv}{ s O{1.0.0} m}{\elable{cmd:#3}\addenv[#2]{#3}\IfBooleanF{#1}{\blankenvidx{#3}}}%
 
 %% Since,
 \DeclareDocumentCommand{\presentCommand}{ O{1.0.0} m O{} } {%
-    \presentStuff[#1]{\blankcmd{#2#3}}[#2]\addcmd[#1]{#2}%
+    \presentStuff[#1]{\blankcmdidx{#2#3}}[#2]\addcmd[#1]{#2}\ignorespaces%
 }
 \DeclareDocumentCommand{\presentEnvironment}{ O{1.0.0} m O{} }{%
-    \presentStuff[#1]{\blankenv{#2#3}}[#2]\addenv[#1]{#2}%
+    \presentStuff[#1]{\blankenvidx{#2#3}}[#2]\addenv[#1]{#2}\ignorespaces%
 }
 \newcommand*{\frmttxt}[1]{\begingroup\color{black}\emph{#1}\endgroup}
 \newcommand*{\cmdlist}{\begingroup\color{black},\;\endgroup}
@@ -100,14 +100,6 @@
 \compileidx
 
 
-% BIG TODO: add all the other commands with \anothercmd, \anotherenv
-%
-%
-%
-%
-
-
-
 \begin{document}
 \LILLYxLayoutxClear
     \linput{Data/Title.doc}
@@ -116,23 +108,25 @@
 \listofTOPS\clearpage
 \LILLYxLayoutxRestore
 
-
 \linput{Data/Einleitung.doc}
 \linput{Data/Mathe.doc}
 \linput{Data/Grafiken.doc}
 \linput{Data/Farben.doc}
 \linput{Data/Listings.doc}
 \linput{Data/Boxen.doc}
+\linput{Data/AllzwecknCore.doc}
+\linput{Data/Praesentatoren.doc}
+\linput{Data/Controller.doc}
 \linput{Data/Jake.doc}
-% Explain some libs like LILLYxLIST
-% Make debug package <= FIX THIS
-% Explain the xTABLES and xTABLESxMATERIAL
-% Explain LAYOUT controller and how to make pages according to layout :D
-% MAke the persitence library (2.1.0)
-% Document the acronym package :D
-% so many todo
+\linput{Data/Exkurse.doc}
+
+% Make the persitence library (2.1.0)
 % Infoboxes show a pdf snippet from another pdf :D
-% Document the timetables
+
+% Dokumentiere das mitgelieferte Beamer-layout
+% add documentations for the boxes (aufgabe-box etc.....)
+% Changelog
+
 \linput{Data/Aussicht.doc}
 \normalmarginpar\par
 \chapter{Anhang}
@@ -142,5 +136,8 @@
 \linput{Data/Old/Ver10009.doc.old}
 \clearpage
 \thispagestyle{empty}
+\bgroup
+\def\idxfsize{\scriptsize}
 \printindex
+\egroup
 \end{document}

@@ -1,9 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxTIMETABLES}[2019/09/09 Stellt eine Stundenplan-Erweiterung fuer LILLY zur Verfuegung]
 
-\RequirePackage{LILLYxVANILLA}
-\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
-\RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxCORE}
+
 \RequirePackage{LILLYxFONTS}
 \RequirePackage{LILLYxTIKZxCORE}
 
@@ -34,12 +33,14 @@
     day end time/.store in=\lillyxTimetablesxdayendtime,                    % day end time
     week start day/.store in=\lillyxTimetablesxweekstartday,                % week start day
     week end day/.store in=\lillyxTimetablesxweekendday,                    % week end day
+    time formatter/.store in=\lillyxTimetablesxtimeformatter,               % time formatter
     defaults/.style={%
         bordercolor=black, day start time=8, % start 8 AM
         day end time=20, % end 8 PM
         week start day=0, % Monday
         week end day=4, % Friday
-        title={Ich bin ein Titel, setzte 'title' um mich zu \"{a}ndern} %maybe require?
+        title={Ich bin ein Titel, setzte 'title' um mich zu \"{a}ndern}, %maybe require?
+        time formatter={AtLineDistCompanion}
     }
 }%% All those values will be persisted with 'lillyxINFOBOXESx'-Prefix :D
 
@@ -56,6 +57,71 @@
     \csname lillyxTIMETABLESx\@lilly@ttables@currenttable x#1\endcsname%
 }
 
+%%% Default Formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@Default#1{%
+    \scriptsize\rotatebox{90}{#1}~~~%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@Default@Sequence#1{%
+    \scriptsize\rotatebox{90}{#1~--~{\pgfmathparse{int(#1+2)}\pgfmathresult}}~~~%
+}
+
+%%% Revert Default formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@RevertDefault#1{%
+    \scriptsize\rotatebox{90}{#1}~~~%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@RevertDefault@Sequence#1{%
+    \scriptsize\rotatebox{90}{{\pgfmathparse{int(#1+2)}\pgfmathresult}~--~#1}~~~%
+}
+
+%%% AT Line Formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@AtLine#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{#1}%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@AtLine@Sequence#1{%
+    \scriptsize\hbox{}\raisebox{0.75cm}{#1}%
+}
+
+
+%%% AT Line Companion Formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@AtLineCompanion#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{#1}%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@AtLineCompanion@Sequence#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{\parbox{2ex}{\ifnum#1<10 ~~\fi#1\vspace*{-0.05cm}\newline\hbox{}~~{\fontsize{4.5pt}{3pt}\selectfont\pgfmathparse{int(#1+1)}\pgfmathresult}}}\,%
+}
+
+%%% AT Line Dist Companion Formatter
+
+%% Formats the Time :D
+% #1 \itime
+\def\@@TimeFormatter@AtLineDistCompanion#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{#1}%
+}
+%% for (e.g) 2-3
+% #1 \itime
+\def\@@TimeFormatter@AtLineDistCompanion@Sequence#1{%
+    \scriptsize\hbox{}\raisebox{0.5cm}{\parbox{2ex}{\ifnum#1<10 ~~\fi#1\vspace*{0.15cm}\newline\hbox{}~~{\fontsize{4.5pt}{3pt}\selectfont\pgfmathparse{int(#1+1)}\pgfmathresult}}}\,%
+}
 
 \DeclareDocumentCommand{\NewTimeTable}{%
     O{} % Further Keys, to customize (like start and end-time and days to be listed)
@@ -71,6 +137,7 @@
     \expandafter\xdef\csname lillyxTIMETABLESx#2xDayEndTime\endcsname{\lillyxTimetablesxdayendtime}%                                        DayEndTime
     \expandafter\xdef\csname lillyxTIMETABLESx#2xWeekStartDay\endcsname{\lillyxTimetablesxweekstartday}%                                    WeekStartDay
     \expandafter\xdef\csname lillyxTIMETABLESx#2xWeekEndDay\endcsname{\lillyxTimetablesxweekendday}%                                        WeekEndDay
+    \expandafter\xdef\csname lillyxTIMETABLESx#2xTimeFormatter\endcsname{\lillyxTimetablesxtimeformatter}%                                  TimeFormatter
     % Constructing the weekday-slot commands which will represent the events taking place at the hours.
     % Every table will construct commands like \@<tablename>@event@<id> where the id is a constantly increasing number
     % furthermore it will hold \@<tablename>@event@maxcount which will hold the maximum number of events
@@ -107,11 +174,11 @@
         % Es wird bisher eine automatische Zeiteinteilung vorgesehen
         \foreach \itime[count=\curi] in {\@ttget{#1}{DayStartTime},\@@DayStep,...,\@ttget{#1}{DayEndTime}}{%
             \ifnum\itime=\@ttget{#1}{DayEndTime}%
-                \node[left] at(1.25,-1.25*\curi+0.25) {\scriptsize\rotatebox{90}{\itime}};
+                \node[left] at(1.5,-1.25*\curi+0.25) {\csname @@TimeFormatter@\@ttget{#1}{TimeFormatter}\endcsname{\itime}};
                 \xdef\@@lowest{-1.25*\curi+0.25} % handle overhang if not reachable
             \else
                 \draw[] (0.65,-1.25*\curi-0.5) -- (\@@weekdwidth*\@@daydif+1.75,-1.25*\curi-0.5); % -------------
-                \node[left] at(1.25,-1.25*\curi+0.125) {\scriptsize\rotatebox{90}{\itime~--~{\pgfmathparse{int(\itime+2)}\pgfmathresult}}};
+                \node[left] at(1.5,-1.25*\curi+0.125) {\csname @@TimeFormatter@\@ttget{#1}{TimeFormatter}@Sequence\endcsname{\itime}};
                 % + draw mid hour line
                 \draw[very thin, densely dashed] (1.5,-1.25*\curi+0.125) -- (\@@weekdwidth*\@@daydif+1.75,-1.25*\curi+0.125); % -------------
                 \xdef\@@lowest{-1.25*\curi-0.45}
@@ -186,7 +253,7 @@
             \noexpand\draw[fill=\lillyxTimetablesEventxbgcolor,fill opacity=\@eventopacity] (\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth/2,\lillyxTimetablesEventxy+0.625) rectangle ++ (\@@weekdwidth,-\lillyxTimetablesEventxheight);
 
             % Draw the title
-            \noexpand\node at(\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth,\lillyxTimetablesEventxy+0.35) {\noexpand\fontsize{6.5pt}{5pt}\noexpand\selectfont\noexpand\parbox{\@@weekdwidth cm-0.25cm}{\noexpand\centering\lillyxTimetablesEventxtitle}};
+            \noexpand\node at(\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth,\lillyxTimetablesEventxy+0.33) {\noexpand\fontsize{6.5pt}{6.5pt}\noexpand\selectfont\noexpand\parbox{\@@weekdwidth cm-0.25cm}{\noexpand\centering\lillyxTimetablesEventxtitle}};
 
             % Draw the first extra
             \noexpand\node[right] at(\@@weekdwidth*\lillyxTimetablesEventxday+\@@weekdwidth/2,\lillyxTimetablesEventxy-0.45) {\noexpand\fontsize{4pt}{3pt}\noexpand\selectfont\lillyxTimetablesEventxextrafirst};

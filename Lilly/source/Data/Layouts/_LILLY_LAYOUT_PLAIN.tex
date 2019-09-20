@@ -63,6 +63,10 @@
 \phantomsection%%
 #4}
 
+\renewcommand\sectionlinesformat[4]{%
+	    \phantomsection{{\smaller #3} #4}%
+}
+
 \renewcommand{\@seccntformat}[1]{\textcolor{\LILLYxColorxTITLExCOLOR}{\csname the#1\endcsname}}
 
 \renewcommand{\section}{\@startsection{section}{1}{\z@}

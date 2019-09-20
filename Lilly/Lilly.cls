@@ -13,9 +13,7 @@
 \providecommand{\LILLYxSemester}{1}
 \providecommand{\LILLYxVorlesung}{LAII}
 
-\RequirePackage{LILLYxVANILLA}
-\RequirePackage{LILLYxPACKAGExCTRL}
-\RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxCORE}
 \RequirePackage{LILLYxLIST}
 \RequirePackage{LILLYxRANDOM}
 
@@ -82,7 +80,6 @@
 
 
 %% TODO  MOVE PACKAGE
-\RequirePackage{colortbl}
 \RequirePackage{\LILLYxPATHxDATA/Semester/1/EIDI/tikz-uml}
 \tikzumlset{fill class=MudWhite, fill state=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter
 
@@ -159,8 +156,6 @@
 
 \RequirePackage{LILLYxFONTS}
 
-\RequirePackage{LILLYxFORMATxCONTROL}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Shortcuts                                                                                                           %     %%%% SHORTCUTS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -173,8 +168,6 @@
                     {Ich versuche nun von Hand die Umgebungen wrapfigure und wraptable notduerftig zu simulieren ERROR}
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_WRAPFIG}}
                     {}{} %% NO ARGS
-
-\RequirePackage{LILLYxTABLES}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TiKz und andere Grafik freuden                                                                                      %     %%%% TIKZ-OPTIONS %%%%
@@ -192,8 +185,6 @@
 \ifx\LILLYxTIKZxenable\undefined
     \RequirePackage{LILLYxGRAPHICS}
 \fi
-
-
 
 
 
@@ -278,5 +269,21 @@
 \RequirePackage{LILLYxTRANSLATIONSxUNIVERSE}
 
 %\input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Datendarstellungen, Presenter                                                                                       %     %%%% PRESENTER %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{LILLYxPRESENTER}
+
+
+% should be linked to gdra?
+\RequirePackage{LILLYxMIPS}
+\RequirePackage{LILLYxCONVERTERxMAYA}
+\RequirePackage{LILLYxROTARYxENCODER}
+
+% link to eidi?
+\RequirePackage{LILLYxHeapNStack}
 
 \RequirePackage{LILLYxCONTROLLERxLAYOUT}

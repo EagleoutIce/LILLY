@@ -1,0 +1,108 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxPOEMS}[2019/09/05 Liefert eine Gedicht-Erweiterung fuer LILLY]
+
+\RequirePackage{LILLYxCORE}
+
+\RequirePackage{LILLYxORNAMENTS}
+
+\def\poems@author{\AUTHOR}
+\def\poemssetauthor#1{\gdef\poems@author{#1}}
+
+%% https://www.ctan.org/pkg/tocloft
+\LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
+                    {Das ist wichtig!}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+\newcounter{ctrXpoems}\setcounter{ctrXpoems}{0} % counter for the poems
+\newlistof{POEMS}{POEM}{} % List of Poems
+%\addtocontents{POEM}{\protect\thispagestyle{scrheadings}}
+\newif\iflist@poems@seen\list@poems@seenfalse% No Poem appeared
+% NOTE: \ifs currently undocumented
+
+\newcounter{ctrXquotes}\setcounter{ctrXquotes}{0} % counter for the quotes
+\newlistof{QUOTES}{QUOTE}{} % List of Quotes - it will only register Quote-collections created by the 'quotes' environment :D
+%\addtocontents{QUOTE}{\protect\thispagestyle{scrheadings}}
+\newif\iflist@quotes@seen\list@quotes@seenfalse% No Quote appeared
+
+% basically works like \obeylines, but regarding blanklines
+
+% maybe include line codes which will count the current line and give a possibility to print it? This could be nice AND useful :D
+{\catcode `\^^M\active%
+	\gdef\subduelines{\catcode `\^^M\active\def^^M{\leavevmode\\}}
+}
+
+
+% The Poem wuhuuu :D
+\DeclareDocumentEnvironment{poem}{
+	+O{}				 % Comment, will be set below the poem
+	O{ornafeather}	 % Ornament upperleft
+	O{}				 % Ornament upperright
+	m 				 % Title of the Poem
+	m 				 % Date of the Poem
+	O{\poems@author} % Author of the Poem
+}{\clearpage\hbox{}\vfill\begin{poem*}[#1][#2][#3]{#4}{#5}[#6]}{\end{poem*}\vfill\hbox{}}
+
+% No Pagebreak:
+\DeclareDocumentEnvironment{poem*}{%
+	+O{}    		 % Comment, will be set below the poem
+	O{ornafeather}	 % Ornament upperleft
+	O{}				 % Ornament upperright
+	m 				 % Title of the Poem
+	m 				 % Date of the Poem
+	O{\poems@author} % Author of the Poem
+}{%
+    \leavevmode%\begin{minipage}{\linewidth}%
+        \refstepcounter{ctrXpoems}%
+		\addcontentsline{POEM}{section}{{\scriptsize\useefont\thectrXpoems}~#4}%
+		\list@poems@seentrue% Poem appeared
+		\OrnamentsUpper[#3][#2]{#4}\medskip\newline%
+		\begingroup\centering% Poem Mode
+		\subduelines\ignorespaces%
+}{%
+    \par\endgroup\leavevmode\bigskip\newline%
+	\ifthenelse{\equal{#1}{}}{}{% Comment set
+		\begin{center}
+			\parbox{0.65\linewidth}{%
+				\itshape\small\centering\ignorespaces#1%
+			}
+		\end{center}\smallskip
+	}%
+	\OrnamentsLower{\textbf{#6}\\#5}
+%\end{minipage}%
+\vfill}
+
+% Sets a set of quotes seperated by quote :D
+\DeclareDocumentEnvironment{quotes}{
+	O{Quotes} 			% Title, could be mandatory :D
+	O{\poems@author}	% Default Author
+}{%
+	% Register to the Poemlist, as one poem :D :D
+	\clearpage\refstepcounter{ctrXquotes}% TODO: Find better way to registrer them :D
+	\addcontentsline{QUOTE}{section}{{\scriptsize\useefont\thectrXquotes}~#1}%
+	\list@quotes@seentrue% Quote appeared
+	\leavevmode\hbox{}\hfill\pgfornament[height=1.5em,ydelta=-6pt]{77}\efont{\Large #1}\;\normalfont\pgfornament[height=1.5em,symmetry=v,ydelta=-6pt]{77}\hfill\hbox{}\leavevmode\vspace*{-0.75em}\newline%
+	\hbox{}\hfill\ornasimplebreak\hfill\hbox{}\smallskip\newline
+	\begin{quotes*}[#2]%
+}{\end{quotes*}\leavevmode\newline\hbox{}\hfill\ornawigglebreak\hfill\hbox{}\newline}
+
+% A quote itself won't register itself to any specified list. Even the quotes* won't register, this is up to for the 'quotes' environment :D
+\DeclareDocumentEnvironment{quotes*}{%
+	O{\poems@author}	% Global Author
+}{%
+	\long\def\singlequote##1{% Will hold a single quote without author denotation :D
+		\leavevmode\newline\centering%
+		\glqq{\subduelines\ignorespaces##1}\grqq\par\vspace*{-1\baselineskip}%
+	}%
+	% Create/Overwrite the '\quote' environment:
+	\RenewEnviron{quote}[1][]{%
+		\singlequote{\BODY}%
+		\hbox{}\hfill{}\tiny{\ifthenelse{\equal{#1}{}}{##1}{\textbf{#1}\ifthenelse{\equal{##1}{}}{}{~--~##1}}}%
+	}
+
+}{}
+
+
+
+%% set like in doku tikzrput
+\endinput

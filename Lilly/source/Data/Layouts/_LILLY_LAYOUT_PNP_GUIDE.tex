@@ -1,6 +1,4 @@
 %%% This Layout is meant to provide the Layout for Pen and Paper Guides
-% Its' currently work in Prgress :D
-
 
 
 \RequirePackage{LILLYxCONTROLLERxBOX}
@@ -11,7 +9,7 @@
 
 %% https://www.ctan.org/pkg/scrlayer-scrpage
 \LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
-					{Verpflichtööönd}
+					{Verpflichtoeoeoend}
 					{automark}{}
 
 %% https://www.ctan.org/pkg/framed
@@ -85,23 +83,6 @@
 \setlength{\parskip}{1ex}\setlength{\parindent}{0ex}
 \setlength{\skip\footins}{0.75cm}\setlength{\footnotesep}{2mm}
 
-%% Set lengths and Definitions to configure the leftbar environment:
-\newlength{\lbarsep}
-\setlength{\lbarsep}{3em}
-\def\lbarcol{AuroMetalSaurus}
-\def\lbarbackcol{}
-
-\renewenvironment{leftbar}{
-	\def\FrameCommand{
-		\hspace*{-\lbarsep}
-		{\color{\lbarcol}\vrule width 2.15pt depth 8.4pt}%\hspace*{-1em}
-		\lbarbackcol
-	}
-	\MakeFramed{
-		\parshape 1 0cm \dimexpr\textwidth-.3\textwidth\relax\FrameRestore
-	}\vskip2pt%
-}{\endMakeFramed}
-
 %% Styling the toc:
 %% Used with babel :D
 \addto\captionsngerman{%
@@ -110,24 +91,6 @@
 \providecommand{\idxtitle}{Kurz\"{u}bersicht}
 \def\compileidx{\makeindex[title=\idxtitle,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{\idxtitle}}
 \compileidx
-
-
-% \titlecontents{section}
-%   [0em]
-%   {\sffamily\contentslabel{3em}\contentslabel{}}{}{}
-%   {\hspace{0.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
-% \titlecontents{subsection}
-%   [0em]
-%   {\sffamily\contentslabel{3em}}{}{}
-%   {\hspace{0.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
-
-%% Set The Mini-TOCs
-
-
-
-
-
-\makeatletter
 
 \renewcommand\sectionlinesformat[4]{%
 	\phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
@@ -171,7 +134,7 @@
 
 \def\pnp@title{PnP - Regelwerk}
 \def\pnp@subtitle{Anleitung}
-\def\pnp@author{\LILLYxAUTHOR}
+\def\pnp@author{\AUTHOR}
 
 \def\pnpsettitle#1{\gdef\pnp@title{#1}}
 \def\pnpsetsubtitle#1{\gdef\pnp@subtitle{#1}}

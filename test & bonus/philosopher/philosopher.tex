@@ -5,6 +5,12 @@
         \renewcommand{\LILLYxVorlesung}{\vl}
         \renewcommand{\LILLYxSemester}{\se}
         \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+        \LILLYxTITLE
+    }
+    \foreach \vl/\se [count=\i] in {ANA1/2,PDP/2,PVS/2,GDBS/2,GDRA/1,FG/1,LAII/1,EIDI/1}{
+        \renewcommand{\LILLYxVorlesung}{\vl}
+        \renewcommand{\LILLYxSemester}{\se}
+        \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
         \LILLYxTITLExBONUS{\@Alph{\i}usammenfassung}%
     }
 

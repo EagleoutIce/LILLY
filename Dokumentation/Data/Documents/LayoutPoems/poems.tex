@@ -1,0 +1,38 @@
+\documentclass[Poems]{Lilly}
+
+\usepackage{lipsum}
+
+\def\info#1{\begingroup\itshape#1\endgroup}
+
+\poemssettitle{Gedichtsammlung}
+\poemssetsubtitle{Ein Auszug der Gedichte der Jahre $2006$\,--\,$2019$}
+\poemssetauthor{Florian Sihler}
+
+\begin{document}
+\poemstitle[ornaelephant][ornabird]
+
+\poemstoc
+
+% The Test Poem:
+\begin{poem}[Dieses Gedicht ist als Testgedicht entstanden um das Gedichtmodul zu überprüfen. Es bleibt hier, aus wichtigen Testgründen \Smiley.]{Hallo Welt}{10.09.2019}
+  Hallo Welt,
+  Wie geht es dir?
+  Du bist so fern,
+  und doch bei mir.
+  ich hab dich gern,
+  und bin doch hier.
+\end{poem}
+
+% Todo: Option für Sprüche?
+
+\foreach \poemID in {%
+  sie, pirsch, tanz, schattenspiele, %
+  herbstanfang, einoelgemaelde, vondenraben,%
+  tagebuch, wachsbilder, schweigen, dieraben,%
+  finsternis, herbst, winter,schlichtesgrau,%
+  sprueche1%
+} {%
+  \input{poems/\poemID.poem}%
+}
+
+\end{document}

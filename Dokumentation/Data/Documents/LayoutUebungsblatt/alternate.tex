@@ -1,0 +1,28 @@
+\def\LILLYxBOXxMODE{ALTERNATE}
+\documentclass[Uebungsblatt]{Lilly}
+
+\def\UEBUNGSHEADER{\textbf{Demoblatt}\\Übungsblatt Demo}
+
+\begin{document}
+\begin{aufgabe}{Grenzwertberechnung durch Mittelwertsatz}{5}
+    Man bestimme die folgenden Grenzwerte mithilfe der \jmark[Mittelwertsätze]{mrk:ZweiMit}:
+        \begin{aufgaben}[2]
+            \item \(\displaystyle \lim_{x \to \infty} x ( 1 - \cos (1/x))\)
+            \item \(\lim_{x \to a} \frac{x^\alpha - a^\alpha}{x^\beta - a^\beta}\) für \(a > 0, \beta \neq 0\)
+        \end{aufgaben}
+\vSplitter
+    \begin{aufgaben}
+        \item Dies lässt sich wieder, auf Basis des Hinweises aus (Aufgabe \jmark[43]{aufg:43}) wie folgt berechnen: \begin{alignat*}{2}
+            \lim_{x \to \infty} x(1 - \cos(1/x)) &= \lim_{x \to 0^+} \frac{1 - \cos(x)}{x} &&= \lim_{x \to 0^+} \frac{\cos (x) - \cos (0)}{x - 0}
+        \end{alignat*}
+        Nach dem Mittelwertsatz existiert ein \(\xi \in (0,x)\), mit \(\frac{\cos(x) - \cos(0)}{x - 0} = - \sin(x)\).
+        Mit \(x \to 0^+\) geht auch \(\xi \to 0^+\), damit folgt \begin{alignat*}{2}
+            \lim_{x \to 0^+} - \frac{\cos (x) - \cos (0)}{x - 0} &= \lim_{\xi \to 0} \sin(\xi) = 0
+        \end{alignat*}
+        \item Nach dem \jmark[zweiten Mittelwertsatz]{mrk:ZweiMit} existiert ein \(\xi \in (a,x)\) mit \(\frac{x^\alpha - a^\alpha}{x^\beta - \alpha^\beta} = \frac{\alpha\xi^{\alpha-1}}{\beta \xi^{\beta-1}}\). Wir berechnen also: \begin{align*}
+            \lim_{x \to a} \frac{x^\alpha - a^\alpha}{x^\beta - a^\beta} &= \lim_{\xi \to a} \frac{ \alpha \xi^{\alpha-1}}{\beta \xi^{\beta-1}} \\
+            &= \frac{\alpha}{\beta} a^{\alpha-\beta}
+        \end{align*}
+    \end{aufgaben}
+\end{aufgabe}
+\end{document}

@@ -127,8 +127,8 @@ public class Buildrules extends AbstractGepardModule{
                 nameprefix + ((complete) ? completeName : "") + "!" + // die einzelnen Sektionen
                 // werden mithilfe von "!"
                 // getrennt
-                "\\\\providecommand\\\\LILLYxMODE{" + // == Sektion: Befehle
-                mode + "}\\\\providecommand\\\\LILLYxMODExEXTRA{" + (complete ? "TRUE" : "FALSE") +
+                "\\\\providecommand{\\\\LILLYxMODE}{" + // == Sektion: Befehle
+                mode + "}\\\\providecommand{\\\\LILLYxMODExEXTRA}{" + (complete ? "TRUE" : "FALSE") +
                 "}!" + //
                 loaderSequence + // Ladesequenz
                 "!" +
@@ -162,7 +162,7 @@ public class Buildrules extends AbstractGepardModule{
                 eSetting_Type.IS_TEXT,
                 createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(), "Übungsblatt", "default",
                         true,
-                        "\\\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}",
+                        "\\\\documentclass[Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}",
                         CoreSettings.requestValue("S_LILLY_NAMEPREFIX"), "", "TODO"));
 
         // Complete Default

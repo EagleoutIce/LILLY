@@ -49,7 +49,7 @@ Die 3 Standard-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt:\v
     \end{tabular}
 \end{center}
 % Too outdated to mention :D
-% Auch wenn sie hier explizit forciert wurden ist es grundlegend möglich (und auch so gedacht) sie mithilfe von \Jake auszuwählen. 
+% Auch wenn sie hier explizit forciert wurden ist es grundlegend möglich (und auch so gedacht) sie mithilfe von \Jake auszuwählen.
 % Die allgemeine Syntax bis \LILLYxBOXxVersion{1.0.7} hierfür lautet:
 % \begin{bash}
 % make "BOXMODE=<Name>"
@@ -115,9 +115,9 @@ Dieser Befehl besitzt (Stand \LILLYxBOXxVersion{2.0.0}) nicht für alle Boxbezei
 
 \begin{bemerkung}[Box-Kontrolle]
     Alle von Lilly generierten Boxen befinden sich mit \LILLYxBOXxVersion{2.0.0} in der Liste: \T{RegisteredBoxes} mit der Signatur \T{Name/Bezeichner}. So gehen die Konfigurationen wie folgt von statten:
-\begin{latex}
+\begin{latex*}
 \def!**!\LILLYxBOXxBeweisxBox{FALSE} % Deaktiviert Beweisboxen
-\end{latex}
+\end{latex*}
 \end{bemerkung}
 
 Hier die definierten Umgebungen in ihrer freien Wildbahn und Gestalt:
@@ -215,10 +215,10 @@ Nicht richtig darstellbar aber weiter existiert:
 \presentEnvironment[1.0.0]{task}[\optArg{opt-Addons}\manArg{Titel}\manArg{Punkte}\cmdold]
 Ein aus dem \T{eagleStudiPackage} stammendes Relikt, welches nur aus Kompatibilitätsgründen gehalten wird. Ebenso:
 
-\presentCommand[1.0.0]{DEF}[\manArg{Title}\manArg{Content}\cmdlist \blankcmd{BEM}\manArg{Titel}\manArg{Content}\cmdlist \ldots\cmdold]
+\presentCommand[1.0.0]{DEF}[\manArg{Title}\manArg{Content}\cmdlist \anothercmd[1.0.0]{BEM}\manArg{Titel}\manArg{Content}\cmdlist \ldots\cmdold]
 Kompatibilitätsbefehle, der zur \T{eagleStudiPackage}-Zeit die Boxen gesetzt hat, nun allerdings die Daten an die jeweilige Umgebung weitergeben.
 
-\presentCommand[1.0.3]{inputUB}[\manArg{Name}\manArg{Nummer}\manArg{Pfad}\cmdlist \blankcmd{inputUBS}\manArg{Name}\manArg{Bezeichner}\manArg{Pfad}]
+\presentCommand[1.0.3]{inputUB}[\manArg{Name}\manArg{Nummer}\manArg{Pfad}\cmdlist \anothercmd[1.0.3]{inputUBS}\manArg{Name}\manArg{Bezeichner}\manArg{Pfad}]
 Binden eine Datei als Übungsblatt ein und erlaubt so, Übungsblätter in Mitschriften zu integrieren. Letzterer Befehl verwendet \clatex{uebungsblatt*}, verändert also nicht die Nummer, was bedeutet, dass auch Buchstaben oder anderes als Bezeichner möglich ist. \emph{Diese werden, entsprechend der Regel von \clatex{uebungsblatt} nur angezeigt, sofern \blankcmd{LILLYxMODExEXTRA} den Wert \T{\true} enthält.}
 
 
@@ -415,7 +415,7 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
     In beiden Fällen erzeugen wir die folgenden Boxen:
 {
     \begin{center}
-        \tcbincludepdf[blankest]{Data/Documents/Boxexample/boxexample.pdf}        
+        \tcbincludepdf[blankest]{Data/Documents/Boxexample/boxexample.pdf}
     \end{center}
 }
 \end{beispiel}
@@ -450,7 +450,7 @@ Gemeinsam mit \LILLYxNOTExLibrary{LILLYxMARGIN} und \LILLYxNOTExLibrary{LILLYxBO
 \presentCommand[2.0.0]{NewInfoBox}[\optArg{InfoBox-Keys}\optArg{tcb-Keys}\manArg{Name}]
 Für die InfoBox Keys gibt es wieder eine ganze Liste an Feldern, die konfigurierbar sind. Sie werden persistiert, wobei das Präfix \say{\T{lillyxINFOBOXESx}} verwendet wird:\vspace{-\baselineskip}
 \begin{center}
-    \begin{tabularx}{\linewidth}{^t>{\em}^l^c^l+}
+    \begin{tabularx}{\linewidth}{^t>{\em}^l^c^p{0.35\linewidth}+}
         \toprule
             \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
         \midrule

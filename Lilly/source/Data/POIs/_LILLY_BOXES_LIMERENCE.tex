@@ -88,8 +88,14 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{-
 
 
 %%% Die Lemma-Box:
+\ifx\@onlypreamble\@notprerr%
+    \ifx\LILLYxBOXxLemmaxBox\true\typeout{Lemma Box shown}\tcbset{LILLYxBOXxLemmaxBoxxLimerence/.style={LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxLemma}}\else\typeout{Lemma box hidden}\tcbset{LILLYxBOXxLemmaxBoxxLimerence/.style={opacityfill=0}}\fi
+\else%
+\AtBeginDocument{
+    \ifx\LILLYxBOXxLemmaxBox\true\typeout{Lemma Box shown}\tcbset{LILLYxBOXxLemmaxBoxxLimerence/.style={LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxLemma}}\else\typeout{Lemma box hidden}\tcbset{LILLYxBOXxLemmaxBoxxLimerence/.style={opacityfill=0}}\fi
+}\fi
 
-\RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{ enlarge left by=-3pt, LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxLemma ,  %
+\RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{ enlarge left by=-3pt, LILLYxBOXxLemmaxBoxxLimerence ,  %
 LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-0.3em}{#1}}$\\}, %
 }
 
@@ -103,4 +109,3 @@ LillyxBOXxDesignxLimerence, #3, IfValueTF={#1}{title={#2\ifthenelse{\equal{#1}{}
 
 \RenewTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}}{enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm, colback=white,colframe=black!50,boxrule=0.0mm,lines before break=4,grow to left by=3pt, fonttitle=\bfseries, #3,title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}}
 
-\makeatother

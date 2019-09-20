@@ -33,13 +33,13 @@
 }
 \else %% Definiere die Befehle mit einer entsprechenden Fehlermeldung
 \foreach \crun in \lillyxlist {%
-  \expandafter\xdef\csname r\crun\endcsname{Shell escape/write-18 ist nicht aktiv! Kann nichts anzeigen!}
+  \expandafter\xdef\csname r\crun\endcsname{Shell escape/write-18 ist nicht aktiv! Kann nichts anzeigen!}%
 }
 \fi
 
 
-\newcommand{\isRuntimeLoaded}[1]{
-  \containsList{RegisteredRuntimes}{#1}
+\newcommand{\isRuntimeLoaded}[1]{%
+  \containsList{RegisteredRuntimes}{#1}%
 }
 
 

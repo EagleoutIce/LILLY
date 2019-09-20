@@ -8,7 +8,7 @@ all = glob.glob(dir_path + '/**/*.tex', recursive=True)
 for a in ["all","latest","filtered"]: # remove recursives :D
     a = dir_path + "/" + a + ".tex"
     if a in all:
-        all.remove(a);
+        all.remove(a)
 
 def view(path):
     if platform.system() == 'Darwin':       # macOS?
@@ -33,9 +33,9 @@ def loadChanges(file):
                     changewatcher[ba[0]] = ba[1]
 
 if len(sys.argv) > 1 and sys.argv[1] == "prerender":
-    loadChanges("./changes.log")
+    loadChanges("./changes.save")
 else:
-    loadChanges("./ALLchanges.log")
+    loadChanges("./ALLchanges.save")
 
 def gt (x):
     return x, os.path.getmtime(x)
@@ -74,14 +74,14 @@ if len(sys.argv) > 1:
                     print(stmt)
                     if os.system(stmt) != 0:
                         print("Error, Exiting...")
-                        dumpChanges("./changes.log")
+                        dumpChanges("./changes.save")
                         sys.exit(0)
                     os.remove(p)
                 else:
                     print("[Passing (unchanged)] {0}".format(x))
                 changewatcher[x] = os.path.getmtime(x)
         # write changes
-        dumpChanges("./changes.log")
+        dumpChanges("./changes.save")
         sys.exit(0)
 
     elif sys.argv[1].startswith(":"):
@@ -100,7 +100,7 @@ with open("./" + fname,'w') as out:
     out.write("\\documentclass[PLAIN]{Lilly}\n");
     out.write("\\begin{document}\n\\pagenumbering{arabic}\n\\tableofcontents \\clearpage \n");
     out.write("\\begin{lstplain}[language=lLatex]\n%%Einbindung erfolgt über:\n\\getGraphics{:lan:Pfad:ran:}\n \\end{lstplain}\n")
-    out.write("\\begin{tabularx}{\\linewidth}{^m{0.5\\linewidth}^>{\\centering\\arraybackslash}X+}\n\\toprule\\headerrow Pfad & Ergebnis\\\\\n\\midrule\n")
+    out.write("\\begin{tabularx}{\\linewidth}{^m{0.5\\linewidth}^>{\\centering\\arraybackslash}m{0.5\\linewidth}+}\n\\toprule\\headerrow Pfad & Ergebnis\\\\\n\\midrule\n")
     for x in all:
         x = x.replace(dir_path + "/","")
         prefix = x[0:x.index("/")]
@@ -124,11 +124,11 @@ if update:
         for k,v in newchanges.items():
             changewatcher[k] = v
         if outname == "all": ## don't dump for latest
-            dumpChanges("./ALLchanges.log")
+            dumpChanges("./ALLchanges.save")
         view("{0}/{1}-OUT/{1}.pdf".format(dir_path,outname))
     else:
         print("Generation failed!")
 else:
-    print("Nothing has changed since last generation.... won't recompile. Delete 'ALLchanges.log' to force")
+    print("Nothing has changed since last generation.... won't recompile. Delete 'ALLchanges.save' to force")
 #os.system("xdg-open " + dir_path + "/" + outname + "-OUT/" + outname + ".pdf")
     view("{0}/{1}-OUT/{1}.pdf".format(dir_path,outname))

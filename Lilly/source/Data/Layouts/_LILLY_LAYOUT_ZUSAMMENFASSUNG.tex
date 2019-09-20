@@ -100,6 +100,9 @@
 \DeclareRobustCommand{\sw}[2][Gruppenname]{#2\index{#1!#2}}
 \DeclareRobustCommand{\sr}[3][Gruppenname]{#3\index{#1!#2!#3}}
 
+% \DeclareDocumentCommand{\idx}{%
+
+% }
 
 %% definitions
 
@@ -137,15 +140,15 @@
     O{Charcoal}         % Color
     O{scale=1}          % TikZ-Commands
     m                   % Name
-    m                   % Description
-    O{}                 % Bonusnote
+    +m                  % Description
+    o                   % Bonusnote
     O{}                 % Bottomtag
 }{%
 \begin{tikzternal}[every node/.style={transform shape,#1},#2]
     \draw[thick,rounded corners=8pt,#1] (0,0.5) rectangle ++(\showcaseXwidth,-3.5);
     \node[rectangle,fill=white,right] at (0.25cm,0.5) {\bfseries #3};
-    \node[rectangle,fill=white,left] at (\showcaseXwidth-0.25cm,0.5) {#5};
-    \node[below right] at (0.1,0.25) {\parbox[t][3cm]{\showcaseXwidth-0.5cm}{\parbox[t][2.75cm]{\showcaseXwidth-0.5cm}{\small
+    \IfValueT{#5}{\node[rectangle,fill=white,left] at (\showcaseXwidth-0.25cm,0.5) {#5};}
+    \node[below right] at (0.1,0.25) {\parbox[t][3cm]{\showcaseXwidth-0.5cm}{\parbox[t][2.75cm]{\showcaseXwidth-0.5cm}{\small\ignorespaces%
         #4
     }{\relax\hbox{}\hfill\tiny #6}}};
 \end{tikzternal} \tab[0.15cm]
@@ -178,15 +181,15 @@
 % Outrokonfiguration                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\providecommand{\LILLYxINDExINTERMEDIATExFORMAT}{\clearpage}
+\providecommand{\LILLYxINDEXxINTERMEDIATExFORMAT}{\clearpage}
 
-\AtEndDocument {%
+\AtEndDocument{%
     \addtocontents{DEFINITIONS}{\protect\thispagestyle{empty}}
     \protect\pagestyle{empty}\thispagestyle{empty}
     \LILLYxCLEARxHEADFOOT\pagestyle{empty}
     \protect\pagestyle{empty}\TOPICS{Stichwortverzeichnis}
     \printindex
-    \LILLYxINDExINTERMEDIATExFORMAT
+    \LILLYxINDEXxINTERMEDIATExFORMAT
     \ifx\LILLYxBOXxDefinitionxEnable\true
     \pagenumbering{gobble}\protect\pagestyle{empty}\phantomsection\addcontentsline{toc}{chapter}{Definitionen}\elable{mrk:DEFS}
     \listofDEFINITIONS\fi

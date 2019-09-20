@@ -7,7 +7,7 @@
 
 \usetikzlibrary{decorations.text}
 
-\input Konanur.fd
+\input{Konanur.fd}
 \makeatletter
 
 %% Mathe
@@ -21,29 +21,52 @@
 
 \newlength{\LILLYxLeftsep}\setlength{\LILLYxLeftsep}{2cm}
 
+\def\@@university@name{ulm university}
+
 %% Upper Text %% Symbol %% WHITE Color %% BACK Color %% Tikz %% Size %% FONTSIZE UPPER
-\DeclareDocumentCommand{\LILLYxGENxFACULTY} { m m m O{} O{} O{} O{} O{0.1} O{0.05}} {
+\DeclareDocumentCommand{\LILLYxGENxFACULTY} {%
+    m        % #1 Upper Text [Mathematik,...]
+    m        % #2 Symbol to be displayed [$\pi$], can be theoretically everything.
+    m        % #3 'White' Color, mainly the color of the outer Ring
+    O{black} % #4 Color of the Symbol
+    O{}      % #5 Tikz picture Arguments (main color)
+    O{80pt}  % #6 Fontsize of the Symbol
+    O{}      % #7 Extra font-options for the upper text
+    O{0.1}   % #8 Offset for the text radius
+    O{0.05}  % #9 Offset for the Shadow of the symbol #2
+    } {
     \begin{tikzpicture}[#5]
+        % Draw the upper Text in color #3 and extra formatting #7
+        \draw [decorate,decoration={text along path,text align=center,%
+                text={|\footnotesize\normalNumber\color{#3}#7|#1}}]% Upper text
+            (-1.275-#8,0) arc [start angle=180, end angle=00, radius=1.275+#8];% Offset #8
+
+        % Draw the two bullets in the main color of the tikzpicture
+        \draw(-1.5,0) node {{$\bullet$}} ++ (3,0) node {{$\bullet$}};
+        % Draw the lower text (\@@university@name) in color #3
         \draw [decorate,decoration={text along path,text align=center,
-        text={|\footnotesize\normalNumber\color{#3}#7|#1}}]
-       (-1.275-#8,0) arc [start angle=180, end angle=00, radius=1.275+#8];
-       \draw(-1.5,0) node {{$\bullet$}} ++ (3,0) node {{$\bullet$}};
-       \draw [decorate,decoration={text along path,text align=center,
-       text={|\footnotesize\normalNumber\color{#3}| ulm university  }}]
-      (-1.6,0) arc [start angle=-180, end angle=00, radius=1.6];
-       \draw[very thick, color=#3] (0,0) circle (1.25);
-       \draw[thick, color=#3] (0,0) circle (1.75);
-       \draw[thin, color=#3] circle (1.2);
-       \foreach \r in {0,20,...,360} {
-           \filldraw[#3] (\r:1.2) circle (0.01) node (\r) {};
-       }
-       \foreach \r in {0,20,...,360} {
-           \foreach \rr in {0,20,...,\r}{
-               \draw[very thin] (\r) -- (\rr);
-           }
-       }
-       \node[opacity=0.5] at(0.02+#9,-#9) {\fontsize{#6}{16pt}\selectfont#2};
-       \draw (0.02,0) node {\fontsize{#6}{16pt}\selectfont\color{#4}#2};
+                text={|\footnotesize\normalNumber\color{#3}|\@@university@name}}]
+            (-1.6,0) arc [start angle=-180, end angle=00, radius=1.6];
+        % Draw the inner thick circle in #3
+        \draw[very thick, color=#3] (0,0) circle (1.25);
+        % Draw the outer thick circle in #3
+        \draw[thick, color=#3] (0,0) circle (1.75);
+        % Draw the inner 'dot' circle in #3
+        \draw[thin, color=#3] circle (1.2);
+        % Draw the dots on the inner 'dot' circle in #3
+        \foreach \r in {0,20,...,360} {
+            \filldraw[#3] (\r:1.2) circle (0.01) node (\r) {};
+        }
+        % Draw the connection-lines in the main color of the tikzpicture
+        \foreach \r in {0,20,...,360}  {
+            \foreach \rr in {0,20,...,\r}{
+                \draw[very thin] (\r) -- (\rr);
+            }
+        }
+        % Draw the symbol #2 shading with an offset of #9 and a size of #6
+        \node[opacity=0.5] at(0.02+#9,-#9) {\fontsize{#6}{16pt}\selectfont#2};
+        % Draw the symbol #2 with size #6 (same as shadow), color of #4
+        \draw (0.02,0) node {\fontsize{#6}{16pt}\selectfont\color{#4}#2};
    \end{tikzpicture}
 }
 
@@ -120,6 +143,9 @@
     O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf}
                             % Titel Symbol
 }{%
+\ifnum\LILLYxSemester>0%
+    \input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}%
+\fi
 \clearpage\thispagestyle{empty}%
 \LILLYxPHILOSOPHERxINIT\begingroup%
 \begin{titlepage}
@@ -173,7 +199,7 @@
         {\centering\par\vspace*{7em}\par
             {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par}
             \par\vspace*{11em}\par
-            \includegraphics[height=20em]{#1}
+            \IfValueTF{#1}{\includegraphics[height=20em]{#1}}{\parbox[l][20em]{1em}{}}
             \par\vfill\vspace{2em}\par
         }
         \hbox{}\vfill
