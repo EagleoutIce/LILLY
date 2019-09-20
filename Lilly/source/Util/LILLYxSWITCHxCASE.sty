@@ -1,0 +1,22 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxSWITCHxCASE}[2019/08/02 Stellt ein switch-case fuer LILLY zur Verfuegung]
+
+% Switch implementation by https://tex.stackexchange.com/questions/64131/implementing-switch-cases
+
+\RequirePackage{ifthen}
+\RequirePackage{etoolbox}
+
+\newboolean{default}
+
+\newcommand{\case}{}
+\newcommand{\default}{}
+
+\newenvironment{switch}[1]{%
+    \setboolean{default}{true}%
+    \renewcommand{\case}[2]{\ifthenelse{\equal{#1}{##1}}{%
+        \setboolean{default}{false}\ignorespaces##2}{}\ignorespaces}%
+    \renewcommand{\default}[1]{\ifthenelse{\boolean{default}}{\ignorespaces##1}{}}\ignorespaces%
+}{}
+
+
+\endinput

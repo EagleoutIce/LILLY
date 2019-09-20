@@ -1,0 +1,870 @@
+\renewcommand{\arraystretch}{1.5}
+\chapter[Allzweckmodule\lilib{LILLYxUTIL}{1.0.0} und Kern\lilib{LILLYxCORE}{1.0.0}]{Allzweckmodule und Kern}
+\TitleSUB{Ein bunter Topf voll nützliches\hfill \LILLYxBOXxVersion{\small 2.0.0}}
+\bigskip\newline
+\section{Die Allzweckmodule}
+\elable{chp:UTIL}\hypertarget{LILLYxUTIL}Dieses Paket liegt hier: \begin{center}
+    \blankcmd{LILLYxPATHxUTIL} = \T{\LILLYxPATHxUTIL}
+\end{center}
+\begin{bemerkung}[Allzweckmodule standalone]
+    Mit \LILLYxBOXxVersion{2.0.0} wurden die Allzweckmodule als eigenes Paket \LILLYxNOTExLibrary{LILLYxUTIL} etabliert, welches sich eigenständig über \begin{latex*}
+\usepackage{LILLYxUTIL}
+        \end{latex*}
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
+\end{bemerkung}
+%
+%
+%
+\subsection{Lilly-Befehle}
+\hypertarget{LILLYxCOMMAND}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxCOMMAND} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen.\medskip\newline
+Die Befehle die hier zur Verfügung gestellt werden sollten nur dann verwendet werden, wenn es keine andere Möglichkeit gibt, das gewünschte Ergebnis zu erreichen.
+
+%
+%
+%
+
+\presentCommand[1.0.0]{LILLYcommand}[\optStar\manArg{csname}\optArg{arg-count}\optArg{defaultArg}\manArg{csdata}]
+Definiert einen Befehl analog zu \blankcmd{newcommand} und \blankcmd{renewcommand}, allerdings wird ignoriert, ob der Befehl davor bereits existiert. Es ähnelt damit einem \blankcmd{declarecommand}, bietet aber die Gefahr, dass Pakete nichtmehr funktionieren, da ihre Befehle nicht so funktionieren wie erhofft.
+
+%
+%
+%
+
+\presentCommand[1.0.4]{gnewcommand}[\optStar\manArg{csname}\optArg{arg-count}\optArg{defaultArg}\manArg{csdata}\cmdlist\secline \anothercmd[1.0.4]{grenewcommand}\optStar\manArg{csname}\optArg{arg-count}\optArg{defaultArg}\manArg{csdata}]
+Definiert die Befehle analog zu \blankcmd{long}\blankcmd{def}, macht also die definierten Befehle global verfügbar, behält aber jeweils die Eigenschaften von \blankcmd{newcommand} und \blankcmd{renewcommand} bei.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{makerenewglobal}[\cmdlist \anothercmd[2.0.0]{makerenewlocal}]
+Sorgen dafür, dass die zwischen den beiden Befehlen eingeschlossenen Environment-Definitionen global zur Verfügung gestellt werden. Ein Beispiel:
+\begin{latex}[morekeywords={[3]{Waffel}}]
+{
+    \makerenewglobal
+        \newenvironment{Waffel}{}{}
+    \makerenewlocal
+    \begin{Waffel}
+        Hi
+    \end{Waffel}
+}
+% Still available:
+\begin{Waffel}
+    Hi
+\end{Waffel}
+\end{latex}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{makeenvglobal}[\manArg{environment}]
+Konvertiert eine bestehende Umgebung in eine globale:
+\begin{latex}[morekeywords={[3]{Waffel}}]
+{
+    \newenvironment{Waffel}{}{}
+    \makeenvglobal{Waffel}
+    \begin{Waffel}
+        Hi
+    \end{Waffel}
+}
+% Still available:
+\begin{Waffel}
+    Hi
+\end{Waffel}
+\end{latex}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{providedef}[\manArg{Name}\manArg{Body}]
+Definiert den Befehl mit den Namen \T{Name}, sofern er noch nicht existiert mittels \blankcmd{def}. Bisher ist die Angabe von Argumenten nicht vorgehsehen.
+
+
+
+
+
+
+\subsection{Kodierung}
+\hypertarget{LILLYxENCODING}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxENCODING} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen.\medskip\newline
+
+Dieses Paket definiert und liefert keine zusätzlichen Befehle nebst denen der eingebundenen Pakete. Hier wird grundlegend nur alles geladen und so aufgesetzt wie es für ein Tex-Dokument gehört. Es werden die folgenden Pakete angefragt: \T{inputenc} (mit \T{utf8x}), \T{fontenc} (mit \T{T1}), \T{ngerman}, \T{textcomp}, \T{eurosym} und \T{microtype}. Weiter werden Umlaute für das Logfile gerendert. Das Paket kann auch dann geladen werden, wenn nicht alle diese, oder sogar gar keins dieser Pakete geladen ist, die erhoffte Wirkung bleibt allerdings aus.
+
+
+
+
+
+
+\subsection{Listen}
+\hypertarget{LILLYxLIST}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxLIST} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen.\medskip\newline
+
+Die durch diese Bibliothek bereitgestellten Listen sind bisher lediglich provisorisch und liefern die theoretischen Grundanforderungen die Lilly an eine Liste stellt.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{constructList}[\optArg{seperator}\manArg{ListName}]
+Erstellt eine neue Liste, mit dem Präfix \T{lilly@list@}, die durch \blankcmd{the<ListName>} abgefragt werden kann:
+
+\presentCommand[2.0.0]{the<ListName>}
+Liefert die entsprechende Liste.
+
+\presentCommand[2.0.0]{delete<ListName>}
+Löscht die Liste (löscht genau genommen nur die Inhalte der Liste).
+
+\presentCommand[2.0.0]{iter<ListName>}
+Initiiert den Iterator für die jeweilige Liste.
+
+\presentCommand[2.0.0]{get<ListName>}
+Speichert die Liste, vollexpandiert in \blankcmd{lillyxlist}
+
+\presentCommand[2.0.0]{store<ListName>}[\manArg{name}]
+Speichert die Liste vollexpandiert in \blankcmd{<name>}.
+
+\presentCommand[2.0.0]{len<ListName>}
+Liefert die Länge der Liste, sofern der Seperator ein Komma oder ein anderer von \blankcmd{foreach} anerkannter Separator.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{containsList}[\manArg{ListName}\manArg{search}]
+Vergleicht die vollexpandierten Werte einer \emph{kommaseparierten} Liste mit dem entsprechenden Suchbegriff und expandiert zu \blankcmd{true} (TRUE), wenn das Suchwort gefunden wird. Es ist geplant, dass dieser Ausdruck zu einem regulären TeX-\T{if} expandiert und in \blankcmd{iflistcontains} umgenannt wird.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{typesetList}[\optArg[typesetVoid]{command}\manArg{ListName}]
+Setzt die Liste in deutscher Listen-Notation, wobei auf jedes Element das entsprechend als \T{command} übergebene Makro angewendet wird, welches als ein Argument den zu setzenden Text entgegen nehmen sollte. Der Standardbefehl \T{typesetVoid}, liefert den Text einfach wieder zurück, allerdings lässt sich wie folgt relativ einfach eine Liste an Befehlen setzen, der Befehl \blankcmd{blankcmd} setzt den Text als Befehl in entsprechender Farbe (\T{\blankcmd{blankcmd}\{hallo\}}: \blankcmd{hallo}):
+\begin{latex*}
+\typesetList[blankcmd]{Ich, mag, züüüge, so viele züüge}.
+\end{latex*}
+Liefert: \typesetList[blankcmd]{Ich, mag, züüüge, so viele züüge}.
+Analog:
+\begin{latex*}[morekeywords={[5]{\\meinBefehl}}]
+\newcommand{\meinBefehl}[1]{Jeah (\textit{#1})}
+\typesetList[meinBefehl]{Ich, mag, züüüge, so viele züüge}.
+\end{latex*}\bgroup%
+\newcommand{\meinBefehl}[1]{Jeah (\textit{#1})}%
+Liefert: \typesetList[meinBefehl]{Ich, mag, züüüge, so viele züüge}.\egroup
+%
+%
+%
+
+\presentCommand[2.0.0]{setList}[\manArg{ListName}\manArg{Content}]
+Weißt der Liste \T{ListName} den Inhalt von \T{Content} zu.
+
+
+%
+%
+%
+
+\presentCommand[2.0.0]{pusList}[\manArg{ListName}\manArg{Content}]
+Fügt der Liste \T{ListName} den Inhalt von \T{Content} zu, der Trenner wird automatisch so angefügt, dass kein überflüssiges Element entsteht:
+\begin{latex}[morekeywords={[5]{\\theDieter}}]
+\constructList[,]{Dieter}
+\pushList{Dieter}{Hallo1}
+\theDieter  % :yields: !*\constructList[,]{Dieter}\pushList{Dieter}{Hallo1}\lstcomment{\theDieter}*!
+\pushList{Dieter}{Hallo2}
+\theDieter  % :yields: !*\constructList[,]{Dieter}\pushList{Dieter}{Hallo1}\pushList{Dieter}{Hallo2}\lstcomment{\theDieter}*!
+\pushList{Dieter}{Hallo3}
+\pushList{Dieter}{Hallo4}
+\pushList{Dieter}{Hallo5}
+\theDieter  % :yields: !*\constructList[,]{Dieter}\pushList{Dieter}{Hallo1}\pushList{Dieter}{Hallo2}\pushList{Dieter}{Hallo3}\pushList{Dieter}{Hallo4}\pushList{Dieter}{Hallo5}\lstcomment{\theDieter}*!
+\end{latex}
+
+
+
+
+\subsection{Zufall}
+\hypertarget{LILLYxRANDOM}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxRANDOM} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen.\medskip\newline
+
+Aktuell soll dieses Paket nur eine kleine Vereinfachung für alle mit dem Zufall im Verhältnis stehenden Operationen liefern.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{PickRandom}[\manArg{RndList}]
+Erstellt getreu der \T{pgf-randomlist}-Signatur eine Lite und wählt ein zufälliges Element:
+\begin{latex*}
+\PickRandom{{Rot}{Blau}{Grün}{Gelb}{Orange}} % :yields: !*\lstcomment{\PickRandom{{Rot}{Blau}{Grün}{Gelb}{Orange}}}*!
+\end{latex*}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{RandomInt}[\optArg[0]{LowerBound}\manArg{UpperBound}]
+Liefert eine zufällige Zahl zwischen \T{LowerBound} und \T{UpperBound} (jeweils inklusiv):
+\begin{latex*}
+\RandomInt{42} % :yields: !*\lstcomment{\RandomInt{42}}*!
+\RandomInt[-42]{-1} % :yields: !*\lstcomment{\RandomInt[-42]{-1}}*!
+\end{latex*}
+
+
+\subsection{Kurzbefehle}
+\hypertarget{LILLYxSHORTCUTS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxSHORTCUTS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen.\medskip\newline
+
+\begin{bemerkung}[Verwendung der Kurzbefehle]
+Die Kurzbefehle die hier definiert werden existieren, auch wenn das dafür notwendige Paket nicht geladen ist. In diesem Fall sorgt die Verwendung für einen Fehler.
+\end{bemerkung}
+
+\presentCommand[2.0.0]{lstfs}[\optArg{lineSpread}\manArg{fontsize}]
+Setzt die aktuelle Schriftgrößen Definition für \LILLYxNOTExLibrary{LILLYxLISTINGS}, genau genommen werden \blankcmd{LILLYxLISTINGSxFONTSIZE} sowie \blankcmd{LILLYxLISTINGSxNUMxFONTSIZE} entsprechend definiert.
+
+%
+%
+%
+
+\presentCommand[1.0.0]{T}[\manArg{Text}\cmdlist\anothercmd[2.0.0]{ltt}]
+Der wohl am häufigsten verendete Kurzbefehl, setzt einen Text im Stil von \blankcmd{LILLYxlstTypeWriter}. Analog hierzu setzt \blankcmd{ltt} die aktuelle Schriftart auf die in \blankcmd{LILLYxlstTypeWriter} definierte Schriftart.
+
+%
+%
+%
+
+\presentCommand[1.0.0]{narrowitems}[\cmdlist\anothercmd[1.0.3]{closeritems}]
+Manipulieren die Abstände in Listenumgebungen:
+\begin{center}
+    \parbox{0.33\linewidth}{%
+        {\centering Ohne \par}
+        {\begin{itemize}
+            \item Hallo
+            \item Welt
+            \item Wie geht es dir?
+        \end{itemize}}
+    }\parbox{0.33\linewidth}{%
+        {\centering \blankcmd{narrowitems} \par}
+        {\begin{itemize}\narrowitems
+            \item Hallo
+            \item Welt
+            \item Wie geht es dir?
+        \end{itemize}}
+    }\parbox{0.33\linewidth}{%
+        {\centering \blankcmd{closeritems} \par}
+        {\begin{itemize}\closeritems
+            \item Hallo
+            \item Welt
+            \item Wie geht es dir?
+        \end{itemize}}
+    }
+\end{center}
+
+%
+%
+%
+
+\presentCommand[1.0.0]{tab}[\optArg[1cm]{spacing}]
+An sich ein Wrapper für \blankcmd{hspace*}, fügt einen horizontalen \tab Abstand ein.
+
+%
+%
+%
+
+\presentCommand[1.0.0]{lreqn}[\manArg{PreText}\manArg{RightText}\cmdold]
+Setzt Text an den linken (\T{PreText}) und entsprechend rechten (\T{RightText}) Rand der Zeile:
+\begin{latex*}
+\lreqn{Hallo du da.}{Na wie gehts?}
+\end{latex*}
+Liefert:\newline\lreqn{Hallo du da.}{Na wie gehts?}\newline
+Dieser Text wird auch dann gesetzt, wenn es die eigentliche Zeilenbreite verletzt. \newline
+So zum Beispiel:\lreqn{Hallo du da.}{Na wie gehts?}
+
+%
+%
+%
+
+\presentCommand[1.0.1]{q}[\optArg[0]{Text}\cmdlist\anothercmd[1.0.1]{qq}\optArg[0]{Text}]
+Setzt den Text in einfachen (\blankcmd{q}) und doppelten (\blankcmd{qq}) Anführungszeichen: \q[hallo Welt] und \qq[Hallo Welt].
+
+%
+%
+%
+
+\presentCommand[1.0.0]{colvec}[\manArg{Vector}\cmdlist\anothercmd[1.0.0]{minicolvec}\manArg{Vector}]
+Setzt einen Vektor:
+\begin{plainlatex}
+:bmath:\colvec{1\\!**!3\\!**!42}:emath: % :yields: !*\lstcomment{$\colvec{1\\3\\42}$}*!
+:bmath:\minicolvec{1\\!**!3\\!**!42}:emath: % :yields: !*\lstcomment{$\minicolvec{1\\3\\42}$}*!
+\end{plainlatex}
+
+%
+%
+%
+
+\presentCommand[1.0.0]{qedsymbol}[]
+Setzt das Beweissymbol, sollte (um einfach geändert werden zu können) überall verwendet werden: \blankcmd{qedsymbol}: \qedsymbol\newline
+Wie zu sehen ist, wird das Symbol (standardmäßig) automatisch ganz nach rechts gesetzt.
+
+%
+%
+%
+
+\presentCommand[1.0.0]{say}[\manArg{Text}]% Maybe make a starred version which will set with french '>>' '<<'
+Setzt analog zu \blankcmd{qq} einen Text in Anführungszeichen:
+\begin{latex*}
+\say{Hallo Welt} % :yields: !*\lstcomment{\say{Hallo Welt}}*!
+\end{latex*}
+
+%
+%
+%
+
+\presentCommand[1.0.8]{engl}[\optArg{Surrounding}\manArg{Text}]
+Setzt ein Wort als englische Übersetzung:
+\begin{latex*}
+\engl{Hallo Welt} % :yields: !*\lstcomment{\engl{Hallo Welt}}*!
+\engl[x]{Hallo Welt} % :yields: !*\lstcomment{\engl[x]{Hallo Welt}}*!
+\end{latex*}
+
+%
+%
+%
+
+\presentCommand[1.0.9]{cd}[]
+Kurzschreibweise für \blankcmd{cdot}, funktioniert auch außerhalb von einer Matheumgebung: \blankcmd{cd} ergibt: \cd.
+
+%
+%
+%
+
+\presentCommand[1.0.0]{rom}[\manArg{Number}]
+Konvertiert die übergebene positive Dezimalzahl in großgeschriebene römische Literale:
+\begin{latex*}
+\rom{9} % :yields: !*\lstcomment{\rom{9}}*!
+\rom{-42} % :yields: !*\lstcomment{\rom{-42}}*! (fails, has to be positive!)
+\rom{4096} % :yields: !*\lstcomment{\rom{4096}}*!
+\end{latex*}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{fquad}[\cmdlist\anothercmd[2.0.0]{fqquad}]
+Setzt analog zu \blankcmd{quad} und \blankcmd{qquad} Abstände, allerdings mit einer angepassten Möglichkeit den Abstand dynamisch anzupassen.
+
+%
+%
+%
+
+\presentCommand[1.0.0]{ring}[\manArg{where}\cmdlist\anothercmd[1.0.0]{ringC}\optArg[limegreen]{Color}\manArg{where}\cmdlist\anothercmd[1.0.0]{bigRing}\manArg{where}\cmdlist\secline\anothercmd[1.0.0]{bigCRing}\optArg[limegreen]{Color}\manArg{where}]
+Diese Befehle funktionieren nur in einer \blankenv{tikzpicture}-entsprechenden Umgebung (wie \blankenv{tikzternal}) und setzten entsprechend Kreise, im Folgenden wurden sie jeweils durch \blankcmd{tikz} gesetzt: \vspace{-0.75\baselineskip}
+\begin{multicols}{2}% Maybe automate with {ditemize}[2] ?
+    \begin{ditemize}\narrowitems
+        \item \T{\blankcmd{ring}\manArg{(0,0)}}: \tikz{\ring{(0,0)}}
+        \item \T{\blankcmd{ringC}\manArg{(0,0)}}: \tikz{\ringC{(0,0)}}
+        \item \T{\blankcmd{bigRing}\manArg{(0,0)}}: \tikz{\bigRing{(0,0)}}
+        \item \T{\blankcmd{bigCRing}\manArg{(0,0)}}: \tikz{\bigCRing{(0,0)}}
+    \end{ditemize}
+\end{multicols}
+
+%
+%
+%
+
+\presentCommand[1.0.0]{firstcircle}[\cmdlist\anothercmd[1.0.0]{secondcircle}\cmdlist\anothercmd[1.0.0]{thirdcircle}\cmdlist\anothercmd[1.0.0]{bigcircle}\cmdold]
+Setzt, Überraschung, Kreise an vordefinierten Positionen:
+\begin{defaultlst}[][listing side text,righthand width=3cm]{lLatex}
+\begin{tikzpicture}[every node/.style={text=black,
+            opacity=1}]
+    \draw[fill=tealblue,fill opacity=0.2]
+        \firstcircle node[above] {\(A\)};
+    \draw[fill=limegreen,fill opacity=0.2]
+        \secondcircle node [below right] {\(B\)};
+    \draw[fill=candypink,fill opacity=0.2]
+        \thirdcircle node [below left] {\(C\)};
+    \draw \bigcircle node [yshift=-1.2cm] {\(D\)};
+\end{tikzpicture}
+\end{defaultlst}
+Übrigens, diese Anzeige wurde durch ein \blankenv{defaultlst} erzeugt, welches wie folgt eingerichtet wurde:
+\begin{latex}
+\begin{defaultlst}[][listing side text,righthand width=3cm]{lLatex}
+% ...
+\end{defaultlst}
+\end{latex}
+
+%
+%
+%
+
+\presentCommand[1.0.8]{dispnote}[\optArg{PreText}\manArg{Text}]
+Setzt eine \blankcmd{parbox}, wird vor allem von \blankcmd{note} und \blankcmd{snote} verwendet um die Randformatierung zu setzen:% Make Preview Latex Command :D
+\begin{defaultlst}[][listing side text,righthand width=3cm]{lLatex}
+\dispnote{Hallo Welt, na wie geht es dir?}
+\medskip\newline
+\dispnote[Die Sonne: ]%
+    {Hallo Welt, na wie geht es dir?}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[1.0.8]{note}[\optArg{PreText}\manArg{Text}\cmdlist\anothercmd[1.0.8]{snote}\optArg{Text}\manArg{PreText}]
+Setzen die jeweilige Notiz in den Rand mithilfe von \blankcmd{marginpar}, wobei \blankcmd{RHD} und \blankcmd{LHD} für die Pfeile verwendet werden. \blankcmd{snote} unterscheidet sich in sofern, dass der Text in \blankcmd{scriptsize} gesetzt wird:
+\begin{latex}
+\note[ABC]{Hallo Welt}
+\snote[ABC]{Hallo Welt}
+\end{latex}
+Gesetzt wurden sie hier \note[ABC]{Hallo Welt} und hier \snote[ABC]{Hallo Welt}.
+
+%
+%
+%
+
+\presentCommand[1.0.9]{nskip}
+Setzt den in der Länge \emph{LILLYxNegativeSkip} definierten Abstand, der Standartmäßig den Wert $-1.5\blankcmd{baselineskip}$ hält.
+
+%
+%
+%
+
+\presentCommand[1.0.6]{LILLYcoloredSQ}[\manArg{Color}]
+Zeigt die Farbe in einem formatierten Rechteck: \T{\blankcmd{LILLYcoloredSQ}\manArg{bondiBlue}} ergibt: \LILLYcoloredSQ{bondiBlue}.
+
+%
+%
+%
+
+\presentCommand[1.0.6]{LILLYxCOLORxRainbow}
+Zeigt alle Farben die im aktuellen Profil verwendet werden mithilfe von \blankcmd{LILLYcoloredSQ} an:
+\LILLYxCOLORxRainbow
+
+%
+%
+%
+
+\presentCommand[1.0.0]{fg}[\cmdlist\anothercmd[1.0.0]{gdra}\cmdlist\anothercmd[1.0.0]{eidi}\cmdlist\anothercmd[1.0.0]{la}\cmdlist\ldots]\anothercmd*[1.0.1]{anaI}\anothercmd*[1.0.1]{pdp}\anothercmd*[1.0.1]{gdbs}\anothercmd*[1.0.1]{pvs}\anothercmd*[1.0.1]{knn}
+Setzt die entsprechenden Vorlesungen: \vspace{-0.75\baselineskip} \begin{multicols}{2}
+    \begin{ditemize}\narrowitems
+        \foreach \x in {fg,gdra,eidi,la,anaI,pdp,gdbs,pvs,knn} {%
+            \item \blankcmd{\x}: \csname\x\endcsname
+        }
+    \end{ditemize}
+\end{multicols}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{setLillyAuthor}[\manArg{new Author}\cmdlist\anothercmd[2.0.0]{setLillyAuthormail}\manArg{new Authormail}]
+Setzt die entsprechenden Felder \blankcmd{AUTHOR} und \blankcmd{AUTHORMAIL}, die eigentlich von \Jake gesetzt werden neu.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{LillyLogo}[]
+Setzt das Lilly-Logo, welches sich auch in der Dokumentation wiederfindet:\smallskip\\
+\begin{minipage}{\linewidth}
+    \LillyLogo
+\end{minipage}\\
+Die Formatierung verwendet übrigens \emph{nicht} \blankcmd{Acronym}, da sie möglichst ohne weiteres Paket funktionieren sollte.
+
+%
+%
+%
+%
+%
+
+\subsection{Fallunterscheidungen}
+\hypertarget{LILLYxSWITCHxCASE}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxSWITCHxCASE} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen.\medskip\newline
+
+Information, der Kerngedanke dieser Implementation basiert auf \url{https://tex.stackexchange.com/questions/64131/implementing-switch-cases}.
+
+\presentCommand[1.0.2]{case}[\manArg{Item}\manArg{if-matched}\cmdlist\anothercmd[1.0.2]{default}\manArg{if-matched}]
+Funktionieren nur in der Umgebung \blankenv{switch} und definieren analog zu den in Sprachen wie Java und C++ bekannten switch-case Unterscheidungen die Falldefinitionen für \LaTeX.
+
+\presentEnvironment[1.0.2]{switch}[\manArg{value}]
+Erlaubt die Definition eine Switch-Case Anweisung. Hier ein Auszug, wie sie auch in \gdra verwendet wurde, um die Mnemonics aufzulösen:
+
+\begin{latex}[morekeywords={[5]{\\mnemonicDecode}}]
+\def!**!\mnemonicDecode!**!#1{%
+\begin{switch}{#1}
+    \case{addi}{add~immediate}
+    \case{addu}{add~unsigned}
+    \case{sub}{subtract}
+    \case{addiu}{add~immediate~unsigned}
+    \case{subu}{subtract~unsigned}
+    \case{mult}{multiplicate}
+    \case{multu}{multiplicate~unsigned}
+    % ....
+    \default{#1}% should be last
+\end{switch}
+}
+addi: \mnemonicDecode{addi}\\
+multu: \mnemonicDecode{multu}\\
+hallo: \mnemonicDecode{hallo}
+\end{latex}
+\def\mnemonicDecode#1{
+\begin{switch}{#1}
+    \case{addi}{add~immediate}
+    \case{addu}{add~unsigned}
+    \case{sub}{subtract}
+    \case{addiu}{add~immediate~unsigned}
+    \case{subu}{subtract~unsigned}
+    \case{mult}{multiplicate}
+    \case{multu}{multiplicate~unsigned}
+    \default{#1}
+\end{switch}
+}
+Liefert:\\
+addi: \mnemonicDecode{addi}\\
+multu: \mnemonicDecode{multu}\\
+hallo: \mnemonicDecode{hallo}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Der Kern}
+\elable{chp:CORE}\hypertarget{LILLYxCORE}Dieses Paket liegt hier: \begin{center}
+    \blankcmd{LILLYxPATHxCORE} = \T{\LILLYxPATHxCORE}
+\end{center}
+\begin{bemerkung}[Der Kern standalone]
+    Mit \LILLYxBOXxVersion{2.0.0} wurden der Kern als eigenes Paket \LILLYxNOTExLibrary{LILLYxCORE} etabliert, welches sich eigenständig über \begin{latex*}
+\usepackage{LILLYxCORE}
+        \end{latex*}
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
+\end{bemerkung}
+
+Der Kern selbst definiert alle Pakete und damit Befehle, die so ziemlich von jedem Lilly-Paket (und wenn nur indirekt) verwendet werden. Es wird davon abgeraten die hier beschriebenen Pakete einzeln einzubinden, da sie ohnehin gegenseitige Abhängigkeiten aufweisen und somit nict wirklich unabhängig voneinander sind! Weiter sind manche Pakete wirklich höchst minimalistisch, können allerdings in zukünftigen Versionen weiter ausgebaut werden!
+
+\presentCommand[1.0.0]{LILLYxVERSION}[\cmdlist\anothercmd[1.0.0]{LILLYxSTATUS}\cmdlist\anothercmd[1.0.0]{LILLYxVERSIONxLONG}]
+Setzt die aktuellen Daten zur Lilly-Version: \begin{ditemize}\narrowitems
+    \item \blankcmd{LILLYxVERSION}: \LILLYxVERSION
+    \item \blankcmd{LILLYxSTATUS}: \LILLYxSTATUS
+    \item \blankcmd{LILLYxVERSIONxLONG}: \LILLYxVERSIONxLONG
+\end{ditemize}
+
+%
+%
+%
+
+\subsection{Booleans und Debug}
+\hypertarget{LILLYxBOOLEAN}Diese Definitionen werden über die Bibliotheken \LILLYxNOTExLibrary{LILLYxBOOLEAN} und \LILLYxNOTExLibrary{LILLYxDEBUG} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.\medskip\newline
+\hypertarget{LILLYxDEBUG}Da die beiden Bibliotheken so klein sind, werden sie hier gesammelt vorgestellt, wobei zuerst die einizgen in \LILLYxNOTExLibrary{LILLYxBOOLEAN} definierten Befhle gezeigt werden:
+
+%
+%
+%
+
+\presentCommand[1.0.0]{true}[\cmdlist\anothercmd[1.0.0]{false}\cmdlist\anothercmd[1.0.4]{n@true}\cmdlist\anothercmd[1.0.4]{n@false}]
+Expandieren entsprechend zu \true{} und \false. Sie werden durch \blankcmd{def} erzeugt, die durch \blankcmd{newcommand*} generierten Pendants lauten \blankcmdidx{n@true} und \blankcmdidx{n@false}.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{LILLYxDEBUG}
+Wird dieser Befehl auf \blankcmd{true} gesetzt, aktiviert \LILLYxNOTExLibrary{LILLYxDEBUG} den folgenden Befehl:
+
+
+%
+%
+%
+
+\presentCommand[2.0.0]{debugout}[\manArg{Output}]
+Schreibt in den Log des Kompiliervorgangs, sofern der Debug aktiviert ist. Innerhalb des Dokuments kann dies durch \blankcmd{lillydebugtrue} und entsprechend \blankcmd{lillydebugfalse} aktiviert und wieder deaktiviert werden. Der Befehl \blankcmd{LILLYxDEBUG} setzt hierbei lediglich den Initialwert.
+
+%
+%
+%
+%
+%
+
+\subsection{Vanilla}
+\hypertarget{LILLYxVANILLA}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxVANILLA} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.\medskip\newline
+
+Dieses Paket definiert die wichtigsten, sonst von \Jake übernommenen befehle, wenn \Jake nicht aktiv sein sollte (\blankcmd{providecommand}) und ermöglicht damit die ganzen standalone-Kompiliervorgänge \Smiley. Manche können von anderen Paketen, sofern \T{write18} aktiviert ist, noch korrigiert werden. Weiter werden Befehle wie \blankcmd{LILLYxBOXxMODE} auf \T{LIMERENCE} und \blankcmd{LILLYxPAPER} leer gesetzt, um auch anderen Paketen eine normale Arbeit zu ermöglichen.
+
+%
+%
+%
+
+\presentCommand[1.0.4]{LILLYxCLSPATH}[\cmdlist\anothercmd[1.0.4]{LILLYxDOCPATH}]
+Geben an, wo die \T{Lilly.cls} und das zu kompilierende Dokument liegen. Werden, wenn unbekannt einfach auf \T{./} gesetzt. Für diese Dokumentation halten sie die Werte:
+\begin{ditemize}\narrowitems
+    \item \blankcmd{LILLYxCLSPATH}: \lstshowcmd{\LILLYxCLSPATH}
+    \item \blankcmd{LILLYxDOCPATH}: \lstshowcmd{\LILLYxDOCPATH}
+\end{ditemize}
+
+%
+%
+%
+
+\presentCommand[1.0.4]{LILLYxDOCUMENTNAME}
+Name des Dokuments. Hier: \LILLYxDOCUMENTNAME
+
+%
+%
+%
+
+\presentCommand[1.0.4]{AUTHOR}[\cmdlist\anothercmd[1.0.4]{AUTHORMAIL}]
+Autor des Dokuments, siehe \blankcmd{setLillyAuthor} und \blankcmd{setLillyAuthormail}, sie enthalten die Daten zum Autor:
+\begin{ditemize}\narrowitems
+    \item \blankcmd{AUTHOR}: \AUTHOR
+    \item \blankcmd{AUTHORMAIL}: \AUTHORMAIL
+\end{ditemize}
+
+%
+%
+%
+
+\presentCommand[1.0.9]{LILLYxEXTERNALIZE}[\cmdlist\anothercmd[1.0.4]{LILLYxMODExEXTRA}]
+Sollen Grafiken mit \blankenv{tikzternal} externalisiert werden, beziehungsweise: sollen Übungsblätter und weitere Extras angezeigt werden? Standartmäßig werden sie, wenn nicht angegeben, auf \false{} gesetzt:
+\begin{ditemize}\narrowitems
+    \item \blankcmd{LILLYxEXTERNALIZE}: \LILLYxEXTERNALIZE
+    \item \blankcmd{LILLYxMODExEXTRA}: \LILLYxMODExEXTRA
+\end{ditemize}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{lillyPathLayout}[\cmdlist\anothercmd[1.0.4]{lillyPathConfig}\cmdlist\anothercmd[1.0.4]{lillyPathData}]
+Enthalten jeweils die Pfade in denen nach weiteren Layouts, Konfigurationen oder Daten gesucht werden soll. Für ihre Auflösung wird \blankcmd{userput} verwendet, sie werden also bevorzugt behandelt. Werden sie nicht angegeben, so werden sie auf das lokale Verzeichnis (\T{./}) gesetzt:
+\begin{ditemize}\narrowitems
+    \item \blankcmd{lillyPathLayout}: \lstshowcmd{\lillyPathLayout}
+    \item \blankcmd{lillyPathConfig}: \lstshowcmd{\lillyPathConfig}
+    \item \blankcmd{lillyPathData}: \lstshowcmd{\lillyPathData}
+\end{ditemize}
+
+%
+%
+%
+
+\presentCommand[1.0.4]{LILLYxFlavourText}
+Hält einen eventuellen Flavour-Text. Dieser kann mit \LILLYxNOTExLibrary{LILLYxRANDOMxFLAVOURTEXT} auch generiert werden, ist aber sofern nicht gesetzt: \say{Kein Flavour-Text hinterlegt. Setze den Befehl LILLYxFlavourText entsprechend deines Wunsches.}
+
+%
+%
+%
+
+\presentCommand[1.0.0]{LILLYxSemester}
+Enthält das Semester, da nach der Vorlesung nicht gefragt ist, wenn es auf einem negativen Wert steht, wird es, sofern nicht angegeben, auf \T{-1} gesetzt\footnote{Damit kann auch mit \Jake unterschieden werden, der das Semester in diesem Fall bewusst auf \T{0} setzt.}: \LILLYxSemester.
+
+%
+%
+%
+%
+%
+
+\subsection{Paket-Kontrolle}
+\hypertarget{LILLYxPACKAGExCTRL}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPACKAGExCTRL} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.\medskip\newline
+Die hier definierten Befehle \blankcmd{LILLYxDemandPackage} und \blankcmd{LILLYxLoadPackage} Werden weiter von Jake analysiert und gesammltund können so
+
+%
+%
+%
+
+\presentCommand[1.0.7]{LILLYxWANNABExERROR}
+Ist \blankcmd{false}, wenn alle angeforderten Pakete geladen werden konnten. Etnthält sonst das letzte Paket, bei dem das gescheitert ist.
+
+%
+%
+%
+
+\presentCommand[1.0.7]{LILLYxUSure}[\optArg[Du hast mich ver\ldots]{errorText}\manArg{Paket}]
+Erwartet, dass das \T{Paket} geladen ist. Ist es das nicht, scheitert der Kompiliervorgang.
+
+%
+%
+%
+
+\presentCommand[1.0.7]{LILLYxPoliteKnock}[\optArg[.sty]{Endung}\manArg{Datei}\manArg{exists}\manArg{doesn't exist}]
+Bindet die \T{Datei} nur ein, wenn sie existiert. Führt im positiven Fall den \T{exists}-Teil, sonst den \T{doesn't exists}-Teil aus.
+
+%
+%
+%
+
+\presentCommand[1.0.7]{LILLYxDemandPackage}[\manArg{Paket}\manArg{Brief}\manArg{Error-Text}\manArg{Params}\manArg{Error}]
+Lädt das \T{Paket} mit dem Parametern \T{Params} und fügt die Beschreibung \T{Brief} hinzu. Wird es nicht gefunden, so wird der \T{Error-Text} ausgegeben und zusätzlich \T{Error} initiiert. Das Kompilieren scheitert, wenn das Paket nicht existiert.
+Beispiel:
+\begin{latex*}
+%% https://ctan.org/pkg/amsfonts
+\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
+    {Wir wollen mehr Symbole}%% Error-Text
+    {}%%Params
+    {}
+\end{latex*}
+
+%
+%
+%
+
+\presentCommand[1.0.7]{LILLYxLoadPackage}[\manArg{Paket}\manArg{Brief}\manArg{Error-Text}\manArg{Fallback}\manArg{Params}\manArg{Error}]
+Lädt das \T{Paket} mit dem Parametern \T{Params} und fügt die Beschreibung \T{Brief} hinzu. Wird es nicht gefunden, so wird der \T{Error-Text} ausgegeben und zusätzlich \T{Error} initiiert. Das Kompilieren scheitert nicht, wenn das Paket nicht existiert, allerdings wird der \T{Fallback}-Code zusätzlich ausgeführt um so Befehle zu emulieren.
+Beispiel:
+\begin{latex*}
+%% https://ctan.org/pkg/graphicx
+\LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
+    {Dieses Paket ist für includegraphics von noeten!}
+    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}}
+    {}{} %% Sloppy includegraphics draft
+\end{latex*}
+
+%
+%
+%
+%
+%
+
+\subsection{Pfadverwaltung}
+\hypertarget{LILLYxPATH}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPATH} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.
+
+%
+%
+%
+
+\presentCommand[1.0.5]{LILLYxDOCUMENTxSUBNAME}
+Enthält den Namen des aktuellen Dokuments. Es gilt zu beachten, dass bewusst \blankcmd{input} von dieser Regel ausgenommen ist. Ein anderweitig eingebundenes Dokument setzt diesen Befehl entsprechend. Aktuell trägt es den Wert: \LILLYxDOCUMENTxSUBNAME
+
+%
+%
+%
+
+\presentCommand[1.0.5]{linput}[\manArg{Dokument}\cmdlist\anothercmd[1.0.5]{include}\manArg{Dokument}\cmdlist\anothercmd[1.0.5]{linclude}\manArg{Dokument}]
+Binden die Dokumente entsprechend ein, wobei die durch \T{l}-angeführten Befehle vom definierten \blankcmd{LILLYxPATH} ausgehen.
+
+%
+%
+%
+%
+%
+
+\subsection{Inhaltskontrolle}
+\hypertarget{LILLYxCONTROLLERxCONTENT}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxCONTROLLERxCONTENT} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.\medskip\newline
+Dieses Paket versucht die korrekten Pfade für \blankcmd{LILLYxCLSPATH} und \blankcmd{LILLYxDOCPATH} zu identifizieren, bisher ist dies die nur auf nicht-Windows-Systemen mit aktiviertem \emph{write18} möglich. Allerdings kann durch das definieren folgenden Befehls die Pfadresolution deaktiviert werden, wenn sie sonst für Probleme sorgt. Der Befehl muss allerdings vor Lilly definiert werden:
+
+%
+%
+%
+
+\presentCommand[1.0.4]{LILLYxCMD}
+Ist dieser Befehl definiert, wird die automatische Pfadresolution von Lilly nicht durchgeführt!
+
+%
+%
+%
+
+\presentCommand[1.0.4]{LILLYxPATHxROOT}[\cmdlist\anothercmd[1.0.4]{LILLYxPATHxFILExROOT}]
+Setzt das Wurzelverzeichnis für alle Lilly-Zugriffe. Wird für Lilly-Interna auf das lokale Verzeichnis gesetzt. Die Datei-Wurzel wird auf \T{\LILLYxPATHxFILExROOT} gesetzt. Sie können beide von Jake modifiziert werden.
+
+%
+%
+%
+
+\presentCommand[1.0.4]{LILLYxPATHx<Module>}[\cmdlist\anothercmd[1.0.4]{LILLYxABSPATHx<Module>}]
+Setzt für alle folgenden Module die jeweiligen Pfade, wobei \T{ABSPATH} jeweils den Absoluten Pfad hält. Beispiel:
+\begin{ditemize}\narrowitems
+    \item \blankcmd{LILLYxPATHxGRAPHICS}: \newline\lstshowcmd{\LILLYxPATHxGRAPHICS}
+    \item \blankcmd{LILLYxABSPATHxGRAPHICS}: \newline\lstshowcmd{\LILLYxABSPATHxGRAPHICS}
+\end{ditemize}\def\stdloperation#1{\blankcmd{LILLYxPATHx#1} (\blankcmd{LILLYxABSPATHx#1})\anothercmd*[1.0.4]{LILLYxPATHx#1}\anothercmd*[1.0.4]{LILLYxABSPATHx#1}}
+Alle entsprechenden Befehle: \typesetList[stdloperation]{CONTROLLERS,DATA,GRAPHICS,FALLBACKS,HELPER,LISTINGS,MATHS,BEAMER,UTIL,CORE,PRESENTER}
+
+%
+%
+%
+
+\presentCommand[1.0.4]{LILLYxPATHxINDEX}
+Pfad zur Index-Datei, ist aus historischen Gründen noch separat.
+
+%
+%
+%
+
+\presentCommand[1.0.4]{lillyPathColorExtension}
+Pfad zu den Farberweiterungen, ist aus historischen Gründen noch separat.
+
+%
+%
+%
+
+\presentCommand[1.0.4]{dataInput}[\manArg{DataFile}]
+Lädt eine Datei aus dem Datenverzeichnis.
+
+%
+%
+%
+
+\presentCommand[1.0.4]{getSemester}[\manArg{Semester}\manArg{Vorlesung}]
+Erhält den Pfad zu den Daten der entsprechenden Vorlesung.
+
+%
+%
+%
+
+\presentCommand[1.0.4]{userput}[\manArg{File}\manArg{PriorityPath}\manArg{SecondaryPath}]
+Versucht die Datei \T{File} zu Laden, wobei erst geschaut wird ob sie im \T{PriorityPath} existiert und dann, ob sie im \T{SecondaryPath} existiert. Lässt sich die Datei in beiden Pfaden nicht auffinden wird das Kompilieren nicht abgebrochen (dies schließt natürlich aus, wenn danach auf Befehle der jeweiligen Datei zurück gegriffen wird)!
+
+%
+%
+%
+%
+%
+
+\section{Der Keyval-Parser}
+\hypertarget{LILLYxKEYVALxPARSER}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxKEYVALxPARSER} zur Verfügung gestellt und sind auch nur im Kontext der \T{Lilly.cls} gültig (oder genauer: sinnvoll).\medskip\newline
+Dieses Paket basiert auf dem Paket \T{kvoptions} und setzt alle folgenden Schlüssel in die Familie \T{LILLY} mit dem Präfix \T{LILLY@} (daher auch \blankcmd{LILLy@n} etc.). Ersteinmal wird mittels \blankcmd{userput} die Datei \clatex{_LILLY_KEYVAL_GENERAL.tex} in den Pfaden \blankcmd{lillyPathConfig} beziehungsweise \T{\blankcmd{LILLYxPATHxDATA}/Configs} geladen, die zusätzliche Optionen bereitstellen kann, die dann beim Laden von LILLY benutzt werden können. Die Standard-Version, die mit Lilly mitgeliefert wird, definiert die folgenden Optionen, primär für \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT}, mehrere Optionen mit gleichem Effekt sind durch ein Komma getrennt:
+\begin{center}
+    \begin{tabular}{^t^p{25em}+}
+        \toprule
+            \headerrow Option & Beschreibung \\
+        \midrule
+            debug & Aktiviert die Debug-Option für \LILLYxNOTExLibrary{LILLYxDEBUG}. \\
+            ElegantBook & Setzt das Design auf \jmark[ELEGANT\_BOOK]{mrk:layeb}. \\
+            PnP-Guide & Setzt das Design auf \jmark[PNP\_GUIDE]{mrk:laypnp}. \\
+            Poems & Setzt das Design auf \jmark[POEMS]{mrk:laypoem}. \\
+            Paper & Setzt das Design auf \jmark[PAPER]{mrk:laypaper}. \\
+            Mitschrieb & Setzt das Design auf \jmark[MITSCHRIEB]{mrk:laymit}. \\
+            Dokumentation & Setzt das Design auf Dokumentation (nicht dokumentiert bisher \Smiley).\\
+            Zusammenfassung, zsfg & Setzt das Design auf \jmark[ZUSAMMENFASSUNG]{mrk:layoutzsf}. \\
+            Uebungsblatt, ub & Setzt das Design auf \jmark[UEBUNGSBLATT]{mrk:layoutub}. \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+Wird keine der Optionen gewählt, so wählt LILLy das \jmark[PLAIN]{mrk:layoutplain}-Design. \smallskip\newline
+Natürlich gibt es noch eine ganze Menge an Möglichkeiten die, immer zur Verfügung stehen. Sie erwarten zum Teil ein zusätzliches Argument, dass bei nichtangabe einen Default-Wert erhält:\\
+\begin{minipage}{\linewidth}
+\begin{center}
+    \begin{tabular}{^t^i^t^p{12em}+}
+        \toprule
+            \headerrow Option & Typ & Standart & Beschreibung \\
+        \midrule
+            n & String & -1 & Das wievielte Übungsblatt? \\
+            Semester & String & 0 & Das wievielte Semester? \\
+            Vorlesung & String & GDRA & Bezeichner der Vorlesung. \\
+            Typ & String & PLAIN & Zu verwendendes Layout. \\
+            Jake & Boolean & false & \Jake-Unterstützung\footnote{In diesem Fall übernimmt \Jake das Setzen von \T{Vorlesung} und \T{Semester}.}. \\
+            Universe & Boolean & false & Platzhalter. \\
+            paper & Boolean & false & Veraltet. \\
+            beamer & Boolean & false & Platzhalter. \\
+            beamerKiz & Boolean & true & Platzhalter. \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+\end{minipage}\\
+Der Typ hat weiterhin die Möglichkeit eigene Hooks zur Verfügung zu stellen, die vor der eigentlichen Arbeit von Lilly ausgeführt werden und so in der Lage sind zum Beispiel das Dokumentformat zu ändern. Sie werden mittels \blankcmd{userput} einmal in \blankcmd{lillyPathConfig} und \T{\blankcmd{LILLYxPATHxDATA}/Layouts/KeyvalHooks} gesucht, wobei der Name der Form \blatex{_LILLY_KEYVAL_<Typ>.tex} folgen muss, also zum Beispiel \blatex{_LILLY_KEYVAL_EIDI.tex}.

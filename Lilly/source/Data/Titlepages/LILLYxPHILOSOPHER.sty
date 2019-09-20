@@ -1,0 +1,217 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxPHILOSOPHER}[2019/08/06 Stellt eine Titelseiten-Erweiterungen fuer LILLY zur Verfuegung]
+%% PHILOSOPHER ist ein Titlepageprovider der nach und nach die alten provider ersetzen soll
+
+\RequirePackage{LILLYxTIKZxCORE}
+\RequirePackage{LILLYxCONTROLLERxLINK}
+
+\usetikzlibrary{decorations.text}
+
+\input{Konanur.fd}
+\makeatletter
+
+%% Mathe
+\xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028}
+%% Praktische Informatik
+\xglobal\definecolor{FacultyPraktischeInformatikxColor}{RGB}{221,101,015}
+%% Theoretische Informatik
+\xglobal\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221}
+%% Technische Informatik
+\xglobal\definecolor{FacultyTechnischeInformatikxColor}{RGB}{177,2,221}
+
+\newlength{\LILLYxLeftsep}\setlength{\LILLYxLeftsep}{2cm}
+
+\def\@@university@name{ulm university}
+
+%% Upper Text %% Symbol %% WHITE Color %% BACK Color %% Tikz %% Size %% FONTSIZE UPPER
+\DeclareDocumentCommand{\LILLYxGENxFACULTY} {%
+    m        % #1 Upper Text [Mathematik,...]
+    m        % #2 Symbol to be displayed [$\pi$], can be theoretically everything.
+    m        % #3 'White' Color, mainly the color of the outer Ring
+    O{black} % #4 Color of the Symbol
+    O{}      % #5 Tikz picture Arguments (main color)
+    O{80pt}  % #6 Fontsize of the Symbol
+    O{}      % #7 Extra font-options for the upper text
+    O{0.1}   % #8 Offset for the text radius
+    O{0.05}  % #9 Offset for the Shadow of the symbol #2
+    } {
+    \begin{tikzpicture}[#5]
+        % Draw the upper Text in color #3 and extra formatting #7
+        \draw [decorate,decoration={text along path,text align=center,%
+                text={|\footnotesize\normalNumber\color{#3}#7|#1}}]% Upper text
+            (-1.275-#8,0) arc [start angle=180, end angle=00, radius=1.275+#8];% Offset #8
+
+        % Draw the two bullets in the main color of the tikzpicture
+        \draw(-1.5,0) node {{$\bullet$}} ++ (3,0) node {{$\bullet$}};
+        % Draw the lower text (\@@university@name) in color #3
+        \draw [decorate,decoration={text along path,text align=center,
+                text={|\footnotesize\normalNumber\color{#3}|\@@university@name}}]
+            (-1.6,0) arc [start angle=-180, end angle=00, radius=1.6];
+        % Draw the inner thick circle in #3
+        \draw[very thick, color=#3] (0,0) circle (1.25);
+        % Draw the outer thick circle in #3
+        \draw[thick, color=#3] (0,0) circle (1.75);
+        % Draw the inner 'dot' circle in #3
+        \draw[thin, color=#3] circle (1.2);
+        % Draw the dots on the inner 'dot' circle in #3
+        \foreach \r in {0,20,...,360} {
+            \filldraw[#3] (\r:1.2) circle (0.01) node (\r) {};
+        }
+        % Draw the connection-lines in the main color of the tikzpicture
+        \foreach \r in {0,20,...,360}  {
+            \foreach \rr in {0,20,...,\r}{
+                \draw[very thin] (\r) -- (\rr);
+            }
+        }
+        % Draw the symbol #2 shading with an offset of #9 and a size of #6
+        \node[opacity=0.5] at(0.02+#9,-#9) {\fontsize{#6}{16pt}\selectfont#2};
+        % Draw the symbol #2 with size #6 (same as shadow), color of #4
+        \draw (0.02,0) node {\fontsize{#6}{16pt}\selectfont\color{#4}#2};
+   \end{tikzpicture}
+}
+
+\DeclareDocumentCommand{\LILLYxFACULTYxMATHE}{ O{MudWhite} O{FacultyMathexColor} O{} }{%
+\LILLYxGENxFACULTY{Mathematik}{$\pi$}{#1}[#2][#3][80pt][\smallNumber][0.125]
+}
+\DeclareDocumentCommand{\LILLYxFACULTYxPRAKTISCHEINFORMATIK}{ O{MudWhite} O{FacultyPraktischeInformatikxColor} O{} }{%
+    \LILLYxGENxFACULTY{Praktische Informatik}{\hspace*{-0.025em}\bfseries\faCode}{#1}[#2][#3][50pt][\smallNumber][0.125]
+}
+\DeclareDocumentCommand{\LILLYxFACULTYxTHEORETISCHEINFORMATIK}{ O{MudWhite} O{FacultyTheoretischeInformatikxColor} O{} }{%
+    \LILLYxGENxFACULTY{Theoretische Informatik}{\bfseries\hspace*{-0.1em}\faCogs}{#1}[#2][#3][45pt][\smallNumber][0.125]
+}
+\DeclareDocumentCommand{\LILLYxFACULTYxTECHNISCHEINFORMATIK}{ O{MudWhite} O{FacultyTechnischeInformatikxColor} O{} }{%
+    \LILLYxGENxFACULTY{Technische Informatik}{\hspace*{-0.025em}\begin{tikzpicture}\filldraw[rounded corners=4pt] (0,0) rectangle ++(1,1);%
+        \foreach \y in {1.117,-0.317} {%
+            \foreach \x in {0,0.18,...,0.9} {%%
+                \filldraw[rounded corners=0.04] (\x,\y) rectangle ++(0.07,0.2); % TOP/BOT
+                \filldraw[rounded corners=0.04] (\y,\x) rectangle ++(0.2,0.07); % LEFT/RIGHT
+            }%
+        }%
+    \end{tikzpicture}}{#1}[#2][#3][50pt][\smallNumber][0.125][0.03]
+}
+
+\providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+\providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung}
+\ifnum\LILLYxSemester>0
+    \input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
+\fi
+
+
+%%% Dieser Befehl malt die untere Leiste und setzt die entsprechenden Daten. Hierbei Kann, von der Höhe abgesehen, keine andere Metrik modifiziert werden.
+\DeclareDocumentCommand{\LILLYxPHILOSOPHERxBORDERBLOCK}{%
+    O{\LILLYxFACULTYxCOLOR} % SignaturFarbe
+    O{LightGray}            % Textfarbe
+    m%{3}                   % Baseheight
+    O{\LILLYxFlavourText}   % Textblahblah
+    O{\LILLYxFACULTY}       % Zu setzendes Symbol
+}{%
+\resizebox{\paperwidth+1pt}{!}{% As it seems some pagedefinitions will alter paperwidth with a small offset
+\hspace*{-1pt}\begin{tikzpicture}%
+    %\node[above right] at (\LILLYxLeftsep,3.05) {\centering\fontsize{3pt}{2pt}\selectfont\centering Fassung vom \heute{} um \currenttime Uhr\par};
+    \draw[thick,#1] (0,#3+0.1) -- ++ (0.6\paperwidth-0.1,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.1,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
+    \draw[thin,#1] (0,#3+0.175) -- ++ (0.6\paperwidth-0.175,0) -- ++(0.1\paperwidth,1) -- ++(0.1\paperwidth+0.175,0) --  ++(0.1\paperwidth,-1) -- ++(0.1\paperwidth,0) ;
+    \filldraw[#1] (0,0) -- ++(\paperwidth,0) -- ++(0,#3) --  ++(-0.1\paperwidth,0) -- ++(-0.1\paperwidth,1) -- ++(-0.1\paperwidth,0) --  ++(-0.1\paperwidth,-1) -- ++(-0.6\paperwidth,0) -- cycle;%
+    \begin{scope}[every node/.style={color=#2}]%
+        \node at(0.75\paperwidth,2) {#5}; %\resizebox{!}{#3cm}{
+        \node[right] at(\LILLYxLeftsep,1.5) {\parbox{0.45\linewidth}{\footnotesize{#4\par}}};
+        \node[above left] at(\paperwidth,0.02) {\begingroup\hypersetup{urlcolor=#2}\href{https://github.com/EagleoutIce/LILLY}{\usefont{U}{Konanur}{xl}{n}LILLY}\hypersetup{urlcolor=\LILLYxColorxLINKSxUrlColor}\endgroup};%
+        \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};%
+    \end{scope}%
+\end{tikzpicture}%
+}%
+}
+
+\gdef\LILLYxPHILOSOPHERxINIT{\newgeometry{margin = 0pt}}
+
+\providecommand{\LILLYxPHILOSOPHERxMETADATA}{%
+    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\LILLY@Typ{} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
+    \vspace{0.5cm}%
+    {\itshape\small Version vom: \\ \heute\par}}}
+}
+
+%% title toc listname
+\providecommand{\LILLYxPHILOSOPHERxBONUSxTTOCxHEADER}{Themenübersicht}
+
+%% This variant prints an highlighted Bonus and include \LILLY@n/a number if wanted as an extra number to seperate Versions
+\DeclareDocumentCommand{\LILLYxTITLExBONUS}{%
+    O{\LILLYxFACULTYxCOLOR} % SignaturFarbe
+    O{MudWhite}             % Textfarbe
+    m                       % Main Matter => Bonus text upper left
+    O{\LILLYxFlavourText}   % Textblahblah
+    O{\LILLYxFACULTY}       % Zu setzendes Symbol
+    O{0.55\paperwidth}      % Scaling
+    O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf}
+                            % Titel Symbol
+}{%
+\ifnum\LILLYxSemester>0%
+    \input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}%
+\fi
+\clearpage\thispagestyle{empty}%
+\LILLYxPHILOSOPHERxINIT\begingroup%
+\begin{titlepage}
+%\parbox[t][\paperheight]{\paperwidth}{%
+\def\old@textwidth{0.75\paperwidth}%
+    {\par\vspace*{6em}\par}%
+    {% Upper title Block. It can hold the denoted 'Main Matter'%
+\begin{tikzternal}
+    % Halo (3 confirmed hihi):
+    \fill[#1,opacity=0.5] (0,0) |- ++(#6+0.4,1.25) -- ++(-0.77,-1.35) -- cycle;
+    % Texture:
+    \filldraw[#1] (0,0) |- ++(#6,1.25) -- ++(-0.75,-1.25) -- cycle;
+    \node[right,#2] at (\LILLYxLeftsep,0.5) {\Huge\bfseries#3};
+    \begin{pgfinterruptboundingbox}
+    \node[left] at(\paperwidth-1.5cm,0.45) {\includegraphics[height=11em]{#7}};
+    \end{pgfinterruptboundingbox}
+\end{tikzternal}
+    } {\par\vspace*{9em}\par}%
+    {\centering% Title:
+    {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par%
+    } {\par\vspace*{8em}\par}%
+    \hbox{}
+    \setLinkColor{Charcoal}%!75!darkgray}%
+    %{\def\linewidth{4cm} }{\listofTOPICS}
+    {\centering\let\textwidth\old@textwidth{}\parbox{\old@textwidth}{%
+    \par\phantomsection\elable{INHA}%
+    \ifx\LILLYxMODE\LILLYxMODExPRINT%
+    {\bfseries\Large \LILLYxPHILOSOPHERxBONUSxTTOCxHEADER}\\[-0.25cm]%
+    \else%
+    {\bfseries\Large \LILLYxPHILOSOPHERxBONUSxTTOCxHEADER\hfill\small\hyperref[mrk:DEFS]{DEF}}\\[-0.25cm]%
+    \fi%
+    \noindent\rule{\textwidth}{2pt}\\[-0.75\baselineskip]%
+    {\@starttoc{TOPIC}}}\par%
+    }
+    \hbox{}\vfill%
+    \LILLYxPHILOSOPHERxMETADATA
+    {\par\vspace*{7.5em}\par}%
+    \LILLYxPHILOSOPHERxBORDERBLOCK[#1][#2]{3}[#4][#5] %% height
+    %\vspace{-3pt}% Compensate offset
+    %%
+%}
+\end{titlepage}
+\clearpage%
+\endgroup\restoregeometry%
+}
+
+\DeclareDocumentCommand{\LILLYxTITLExRAW}{ o }{
+    \begingroup%
+    \clearpage\begin{titlepage}
+        \LILLYxPHILOSOPHERxINIT%
+        {\centering\par\vspace*{7em}\par
+            {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par}
+            \par\vspace*{11em}\par
+            \IfValueTF{#1}{\includegraphics[height=20em]{#1}}{\parbox[l][20em]{1em}{}}
+            \par\vfill\vspace{2em}\par
+        }
+        \hbox{}\vfill
+        \LILLYxPHILOSOPHERxMETADATA
+        {\par\vspace*{7.5em}\par}%
+        \LILLYxPHILOSOPHERxBORDERBLOCK{3} %% height
+    \end{titlepage}\endgroup\restoregeometry%
+}
+
+%% Pfad zu den Einstellungen %% Pfad zur Grafik
+\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
+    \ifnum\LILLYxSemester>0\LILLYxTITLExRAW[#1]\fi
+}
+
+\endinput

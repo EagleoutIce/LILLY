@@ -1,0 +1,27 @@
+%% \T{\^{}ab+[ef].?[\^{}g-i](ab $\vert$ ba)\{3\}\$}
+\gdef\GRAPHICSxRegexExample{%
+\begin{tikzternal}[every path/.style ={latex-}]
+    \node[right] at(0,0) {\T{\^{}\quad\color{AppleGreen} a\quad\color{Veronica} b+\quad\color{Azure} [ef] \quad\color{ChromeYellow} .?\quad\color{DarkMidnightBlue} [\^{}g-i]\quad\color{DebianRed} (ab $\vert$ ba)\{3\}\quad\normalcolor \$}};
+    \draw (0.175,0.25) -- ++(-0.25,0.25) node [above] {\footnotesize Anfang Text};
+    \draw (0.8,-0.25) -- ++(0,-0.25) node [below] {\footnotesize \say{\T{a}}};
+    \draw (1.5,0.25) -- ++(0,0.6) node [above] {\footnotesize $1 \text{ bis } \infty$ mal \say{\T{b}}};
+    \draw (2.5,-0.25) -- ++(0,-0.6) node [below] {\footnotesize \say{\T{e}} \emph{oder} \say{\T{f}}};
+    \draw (3.75,0.25) -- ++(0,0.25) node [above] {\footnotesize Bel. Zeichen $0-1$ mal };
+    \draw (5.05,-0.25) -- ++(0,-0.25) node [below] {\footnotesize Alles außer \say{\T{g,h,i}}};
+    \draw (6.9,0.25) -- ++(0,0.6) node [above] {\footnotesize \say{\T{ab}} \emph{oder} \say{\T{ba}}};
+    \draw (8.1,-0.25) -- ++(0,-0.6) node [below] {\footnotesize Letztes \emph{genau} $3$ mal};
+    \draw (9,0.25) -- ++(0.25,0.25) node [above] {\footnotesize Ende Text};
+    \node at (4.75,-2.5) {\parbox{8cm}{%
+        %
+        \begin{tabular}{^l~^l+}
+            \toprule
+            \headerrow Akzeptiert & Akzeptiert nicht \\
+            \midrule
+            \color{AppleGreen}a\color{Veronica}bbb\color{Azure}f\color{ChromeYellow}\#\color{DarkMidnightBlue}x\color{DebianRed}abbaba\normalcolor & \color{AppleGreen}a\color{Veronica}bbb\color{Azure}f\color{ChromeYellow}\#\normalcolor\textbf{g}\color{DebianRed}abbaba\normalcolor\\
+            \color{AppleGreen}a\color{Veronica}b\color{Azure}e\color{DarkMidnightBlue}A\color{DebianRed}bababa\normalcolor & \color{AppleGreen}a\color{Veronica}bbb\color{Azure}f\color{ChromeYellow}\#\color{DarkMidnightBlue}o\color{DebianRed}abbaba\normalcolor\textbf{X}\\
+            \bottomrule
+        \end{tabular}
+    }};
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxRegexExample} 

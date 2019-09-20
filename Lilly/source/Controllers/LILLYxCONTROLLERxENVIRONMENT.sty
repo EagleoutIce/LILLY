@@ -1,0 +1,46 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxENVIRONMENT}[2019/08/30 Stellt die Umgebungs-Erweiterung fuer LILLY zur Verfuegung]
+
+%%% Eigentlich kein Controller aber naja wo soll man es sonst machen :P
+%% Überschreibt normale environments sodass sie sich besser ans Dokument anpassen
+
+%% \RequirePackage{enumerate}
+
+\LILLYxLoadPackage{enumerate}{Wir wollen ja auch schöne Auflistungen :D}
+                    {Wie, kein enumerate ?! Dann versuche ich das wohl zu simulieren}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}}
+                    {}{}
+
+%% \RequirePackage{enumitem} %Anpassbare Enumerates/Itemizes
+
+\LILLYxLoadPackage{enumitem}{Wir wollen ja noch schoenere Auflistungen :D}
+                    {Wie, kein enumitem?! Das könnte aua machen!}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}}
+                    {}{ %% old
+                        \newenvironment{enumeratea}[1][,]{\begin{enumerate}[label=\textbf{\alph*)},##1]\setlength{\itemsep}{1pt}}{\end{enumerate}}
+                        \setlistdepth{9}
+                        \newlist{ditemize}{itemize}{4}
+                        \setlist[ditemize,1]{label=$\diamond$}
+                        \setlist[ditemize,2]{label=$\heartsuit$}
+                        \setlist[ditemize,3]{label=--} %$\spadesuit$
+                        \setlist[ditemize,4]{label=--} %$\clubsuit$
+                        \DeclareDocumentEnvironment{aufgaben}{ o O{} }{%
+                            \begingroup\IfValueT{##1}{\vspace{-0.15cm}\begin{multicols}{##1}}%
+                                \begin{enumerate}[label=\textbf{\alph*)},##2]\setlength{\itemsep}{1pt}%
+                        }{%
+                            \end{enumerate}%
+                            \IfValueT{##1}{\end{multicols}\vspace{-0.15cm}}%
+                        \endgroup}
+                    } % shortlabels
+
+
+% \newcommand{\enum}[1]{\begin{enumerate}\narrowitems  #1 \end{enumerate}  }
+% \newcommand{\liste}[1]{\begin{enumerate}[label=\roman*)]\narrowitems  #1 \end{enumerate}  }
+
+%\renewenvironment{enumerate}[1][,]{\begin{enumerate}[#1]\narrowitems}{\end{enumerate}}
+
+%\renewenvironment{itemize}[1][,]{\begin{itemize}[#1]\narrowitems}{\end{itemize}}
+
+%% \newenvironment{liste}[1][,]{\begin{enumerate}[label=\roman*),#1]}{\end{enumerate}}
+
+\endinput

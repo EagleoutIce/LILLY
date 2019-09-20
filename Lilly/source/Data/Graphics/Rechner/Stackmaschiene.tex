@@ -1,0 +1,61 @@
+\gdef\GRAPHICSxStackmaschiene{%
+\begin{tikzpicture}[scale=1,every node/.style={transform shape}] %Every path.. eeeehmm... pssst
+      \draw[candypink] (0,0) -- ++(3,0) -- ++(-0.5,-1) -- ++(-2,0) -- cycle;
+      \draw[limegreen] (0.7,-0.2) rectangle ++ (1.6,-0.6);
+      \draw[limegreen, thick] (-5,2) rectangle ++(13,1) node[midway,centered] {\textbf{Steuerwerk}};
+      %%%Linker Stack
+      \draw (-3,-3) rectangle ++ (2,1) (-2,-3) node[below] {\tiny op-Stack (opSt)} (-3,-2.5) rectangle ++(0.5,-0.5);
+      \draw[fill=black] (-3,-2) rectangle ++(0.5,-0.5) ;
+      \draw[] (-2.2,-2) rectangle ++(0.4,-1) node[midway,centered, rotate=270] {\T{OR}};
+      \draw[] (-1.8,-2) rectangle ++(0.4,-1) node[midway,centered, rotate=270] {\T{AND}};
+      \draw[] (-1.4,-2) rectangle ++(0.4,-1) node[midway,centered, rotate=270] {\T{ADD}};
+      \draw (-2.35,-2.5) node {\fontsize{3pt}{3pt}\selectfont \ldots};
+
+      \draw[-latex,limegreen] (-4.5,2) node [above] {b}-- ++(0,-4.75) -- ++(1.5,0);
+      \draw[-latex,limegreen] (-4,2) node [above] {c} -- ++(0,-4.25) -- ++(1,0);
+      \draw[-latex,limegreen] (-1.2,-2) -- ++(0,4) node[above] {d};
+      \draw[-latex,limegreen] (-0.55,2) node[above] {e} |- ++(0.55,-5.65);
+      \draw[-latex,limegreen] (-0.15,2) node[above] {x} -- ++(0,-4.15);
+
+
+      \draw[limegreen,-latex] (-1.2,-0.5) -- ++(1.95,0);
+      \bigCRing[limegreen]{(-1.2,-0.5)};
+      %%Rechter Stack
+      \draw (6.5,-3) rectangle ++ (-2,1) (5.5,-3) node[below] {\tiny data-Stack (dtaSt)} (6,-2.5) rectangle ++(0.5,-0.5);
+      \draw[fill=black] (6,-2) rectangle ++(0.5,-0.5) ;
+      \draw[-latex,limegreen] (8,2) node [above left] {h}-- ++(0,-4.75) -- ++(-1.5,0);
+      \draw[-latex,limegreen] (7.5,2) node [above] {g}-- ++(0,-4.25) -- ++(-1,0);
+
+      \draw[] (5.3,-2) rectangle ++(0.4,-1) node[midway,centered, rotate=90] {2};
+      \draw[] (4.9,-2) rectangle ++(0.4,-1) node[midway,centered, rotate=90] {42};
+      \draw[] (4.5,-2) rectangle ++(0.4,-1) node[midway,centered, rotate=90] {7};
+      \draw (5.85,-2.5) node {\fontsize{3pt}{3pt}\selectfont \ldots};
+
+      %%Leitungen ALU
+      \draw[-latex,candypink] (4.7,-2) |- ++(-2.55,2.5) -- ++(0,-0.5) ;
+      \draw[-latex,candypink] (5.1,-2) |- ++(-4.3,2.9) -- ++(0,-0.9) ;
+      \draw[-latex,candypink] (1.5,-1) |- ++(2,-1.25) ;
+      \bigCRing[candypink]{(1.5,-2.25)};
+      \draw [-latex, candypink] (1.5,-2.25) -- ++(-1.5,0);
+      \draw[candypink] (3.5,-2) -- ++(0,-1) -- ++(0.35,0.25) -- ++(0,0.5) -- cycle;
+      \node at (3.65,-2.5) {\fontsize{4pt}{3pt}\selectfont \parbox{0.2cm}{ \textcolor{limegreen}{00}\\[0.15cm]\textcolor{limegreen}{01}\\[0.15cm] \textcolor{limegreen}{10} }};
+      \draw[-latex] (-1,-2.625) -| ++(2.5,+0.125) -- ++(2,0);
+      \draw[-latex,candypink] (3.85,-2.5) -- ++(0.65,0);
+      \draw[latex-,limegreen] (3.65,-2.1) -- ++(0,4.1) node [above] {f};
+
+      %%MUX opST
+      \draw[limegreen] (0,-2) -- ++(0,-1) -- ++(-0.35,0.25) -- ++(0,0.5) -- cycle;
+      \node at (-0.075,-2.5) {\tiny \parbox{0.2cm}{\textcolor{limegreen}{0}\\[0.25cm] \textcolor{limegreen}{1} }};
+      \draw[-latex, limegreen] (-0.35,-2.5) -- ++(-0.65,0);
+
+      %%IO
+      \draw (0,-4) rectangle ++(2,0.5) node [midway, centered] {Tastatur};
+      \draw[-latex] (1,-3.5) |- ++(-1,0.75);
+      \bigCRing[black]{(1,-2.75)};
+      \draw[-latex] (1,-2.75) -- ++(2.5,0);
+      \draw[-latex,limegreen] (0,-3.85) -| ++(-5,5.85)  node [pos=0.2,below] {\small \(\langle T?\rangle\)} node[above right] {a};
+      \draw (3,-4) rectangle ++(2,0.5) node [midway, centered] {Ausgabe};
+      \draw[-latex] (4.5,-2.75) -| ++(-0.5,-0.75);
+  \end{tikzpicture}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxStackmaschiene} 

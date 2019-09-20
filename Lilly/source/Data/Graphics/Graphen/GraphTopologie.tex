@@ -1,0 +1,13 @@
+\gdef\GRAPHICSxGraphxTopologie{%
+\begin{tikzternal}
+        \foreach \x in {1,...,5}{
+            \norgraphdot{(\x,0)}{\(\x\)}{p\x};
+        }
+        \draw[-latex,thick] (p1) -- (p2); \draw[-latex,thick] (p1) -- ++(0,0.6) -| (p4);
+        \draw[-latex,thick] (p2) -- (p3); \draw[-latex,thick] (p2) -- ++(0,-0.6) -| (p5);
+        \draw[-latex,thick] (p3) -- (p4);
+        \draw[-latex,thick] (p4) -- (p5);
+        \node at(0,-1.15) {};
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxGraphxTopologie} 

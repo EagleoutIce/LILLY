@@ -1,0 +1,10 @@
+This is makeindex, version 2.15 [TeX Live 2019] (kpathsea + Thai support).
+Scanning style file /home/the-limerent/texmf/tex/latex/Lilly/source/Data/Configs/IDX.ist.........................
+** Input style error (file = /home/the-limerent/texmf/tex/latex/Lilly/source/Data/Configs/IDX.ist, line = 38):
+   -- No opening delimiter.
+.done (26 attributes redefined, 1 ignored).
+Scanning input file example-zsf.idx....done (4 entries accepted, 0 rejected).
+Sorting entries....done (9 comparisons).
+Generating output file example-zsf.ind....done (24 lines written, 0 warnings).
+Output written in example-zsf.ind.
+Transcript written in example-zsf.ilg.

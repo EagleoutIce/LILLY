@@ -1,7 +1,7 @@
 
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
 \AtBeginDocument{
-\clearpage\begin{titlepage} 
+\clearpage\begin{titlepage}
     {\centering\par\vspace*{7em}\par
     {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
     \vspace{1cm}
@@ -27,10 +27,10 @@
 }
 \else\ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
 \AtBeginDocument{
-\clearpage\begin{titlepage} 
+\clearpage\begin{titlepage}
     {\centering\par
     \par\vspace*{3em}\par
-    {\tab[\LILLYxTITLExOffset] \raisebox{4.5em}{\parbox[0em]{0em}{\includegraphics[height=8em]{\LILLYxPATHxDATA/Semester/1/Graphics/titleimage\LILLYxVorlesung.pdf}}\tab[-\LILLYxTITLExOffset]}}
+    {\tab[\LILLYxColorxTITLExOffset] \raisebox{4.5em}{\parbox[0em]{0em}{\includegraphics[height=8em]{\LILLYxPATHxDATA/Semester/1/Graphics/titleimage\LILLYxVorlesung.pdf}}\tab[-\LILLYxColorxTITLExOffset]}}
     {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{32pt}{16pt}\selectfont\FULLTITLE\par}
     \vspace{1cm}
     {\scshape\tiny{Zusammenfassung von}\\\large\AUTHOR\par}
@@ -41,12 +41,15 @@
 \addtocontents{TOPIC}{\protect\thispagestyle{empty}}
 {\par\vspace*{4.25em}\par\phantomsection\elable{INHA}
 
-{\bfseries\Large Inhaltsübersicht\hfill\small\jmark[DEF]{mrk:DEFS}}\\[-0.25cm]
-\noindent\rule{\textwidth}{2pt}\\[0.2cm]
+\ifx\LILLYxMODE\LILLYxMODExPRINT
+{\bfseries\Large Inhalts�bersicht}\\[-0.25cm]
+\else
+{\bfseries\Large Inhalts�bersicht\hfill\small\jmark[DEF]{mrk:DEFS}}\\[-0.25cm]
+\fi\noindent\rule{\textwidth}{2pt}\\[0.2cm]
 \listofTOPICS
 \vfill
 \POLITEINTRO
 }
-\end{titlepage}
+\end{titlepage}\cleardoublepage
 }
 \fi\fi

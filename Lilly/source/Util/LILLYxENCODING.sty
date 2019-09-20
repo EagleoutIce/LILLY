@@ -1,0 +1,56 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxENCODING}[2019/07/16 Stellt die Kodierungs-Erweiterungen fuer LILLY zur Verfuegung]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grundlegende Pakete (Encoding etc.)                                                                                 %     %%%% ENCODINGS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% https://www.ctan.org/pkg/inputenc
+\LILLYxLoadPackage{inputenc}{Damit Eingaben auch brav codiert werden :D}
+                    {Kein Inputencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
+                    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                    {utf8x}{}
+
+%% https://www.ctan.org/pkg/fontenc
+\LILLYxLoadPackage{fontenc}{Damit Schriften auch brav codiert werden :D}
+                    {Kein Fontencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
+                    {\def\LILLYxDEMOxFONTENC{Ist nicht Da}} %% Heile heile Welt
+                    {T1}{\def\LILLYxDEMOxFONTENC{Ist Da}}
+
+
+%% https://www.ctan.org/pkg/ngerman
+\LILLYxLoadPackage{ngerman}{Damit auch wirklich Deutsch gesprochen wird, ist zur Sicherheit da, redundant da babel!}
+                    {Keine Deutsche Sprache ist schade, aber da mach ich mal nix :D}
+                    {} %% Heile heile Welt
+                    {}{} %% NO ARGS
+
+%% https://www.ctan.org/tex-archive/info/lmodern
+\LILLYxLoadPackage{lmodern}{Da die normale Computer Modern in PDFs pixelig wirkt: nimm Latin Modern}
+                    {Pffh dann behalte halt deine Pixel wenn es lmodern nicht gibt}
+                    {} %% Heile heile Welt
+                    {}{} %% NO ARGS
+
+
+%% https://www.ctan.org/pkg/textcomp
+\LILLYxLoadPackage{textcomp}{Glyphen Kontrolle und so}
+                    {Pffh dann behalte halt deine alte Formatierung}
+                    {} %% Heile heile Welt
+                    {}{} %% NO ARGS
+
+%% https://www.ctan.org/pkg/eurosym
+\LILLYxLoadPackage{eurosym}{Tolle Symbole}
+                    {Euro Symbol}
+                    {} %% Heile heile Welt
+                    {}{} %% NO ARGS
+
+%% https://www.ctan.org/pkg/microtype
+\LILLYxLoadPackage{microtype}{Ausgeglichene Grauwerte}
+                    {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}
+                    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                    {}{}
+
+
+\PrerenderUnicode{ä}\PrerenderUnicode{ö}
+\PrerenderUnicode{ü}\PrerenderUnicode{ß}
+\PrerenderUnicode{Ä}\PrerenderUnicode{Ö}
+\PrerenderUnicode{Ü}

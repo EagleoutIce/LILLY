@@ -1,0 +1,29 @@
+\gdef\GRAPHICSxMinimalautomatxBeispiel1{%
+\begin{tikzternal}[%
+    x=1.45cm, y=1.45cm,baseline=1.75cm,scale=0.85,
+    every node/.style={inner sep=0pt, minimum size=8pt, font=\scriptsize,transform shape},
+    state/.style={circle, draw, minimum size=14pt},
+    every path/.style={draw, -latex},
+    every initial by arrow/.style={initial text=},
+    ]
+    \node[initial,accepting,state] (1) at (180:1){\textit{1}};
+    \node[state]                   (2) at (120:1){\textit{2}};
+    \node[accepting,state]         (3) at ( 60:1){\textit{3}};
+    \node[state]                   (4) at (  0:1){\textit{4}};
+    \node[accepting,state]         (5) at (300:1){\textit{5}};
+    \node[state]                   (6) at (240:1){\textit{6}};
+    \draw(1)to node[above,sloped]{\texttt{0}}(2);
+    \draw[bend right=15](1)to node[pos=0.8,above,sloped]{\texttt{1}}(3);
+    \draw[out=135,in=105,loop](2)to node[above]{\texttt{0}}(2);
+    \draw(2)to node[pos=0.8,below,sloped]{\texttt{1}}(5);
+    \draw(3)to node[pos=0.8,below,sloped]{\texttt{0}}(6);
+    \draw[out=85,in=55,loop](3)to node[above]{\texttt{1}}(3);
+    \draw(4)to node[pos=0.1,above,sloped]{\texttt{0}}(1);
+    \draw[loop right](4)to node[right]{\texttt{1}}(4);
+    \draw(5)to node[below,sloped]{\texttt{0}}(4);
+    \draw[bend left=15](5)to node[pos=0.2,above,sloped]{\texttt{1}}(3);
+    \draw[bend right=15](6)to node[pos=0.2,above,sloped]{\texttt{0}}(2);
+    \draw(6)to node[below,sloped]{\texttt{1}}(5);
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxMinimalautomatxBeispiel1} 

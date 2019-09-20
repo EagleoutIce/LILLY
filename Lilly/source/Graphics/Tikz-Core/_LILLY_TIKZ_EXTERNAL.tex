@@ -1,0 +1,27 @@
+\ifcsname NewEnviron\endcsname
+    \ifthenelse{\equal{\LILLYxEXTERNALIZE}{\true}}{%
+    %% Teste, ob Befehl überhaupt zur Verfügung steht:
+    \usetikzlibrary{external}
+    \tikzexternalize[up to date check=md5, optimize=false]
+    \tikzsetfigurename{\LILLYxOUTPUTDIR/extimg/grafik_}
+    \tikzexternaldisable
+
+    \tikzset{external/system call={pdflatex \tikzexternalcheckshellescape
+            -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"}
+            }
+    \NewEnviron{tikzternal}[1][]{%
+    \tikzexternalenable%
+    \begin{tikzpicture}[#1]%
+    \BODY%
+    \end{tikzpicture}%
+    \tikzexternaldisable%
+    }%
+%
+    \tikzexternaldisable
+    }{%
+    \newenvironment{tikzternal}[1][]{\begin{tikzpicture}[#1]}{\end{tikzpicture}}
+    }
+\else
+\ClassWarning{Lilly}{Environ-Paket nicht gefunden, die tikzternal-Umgebung wird entsprechend simuliert.}%
+\newenvironment{tikzternal}[1][]{\begin{tikzpicture}[#1]}{\end{tikzpicture}}
+\fi

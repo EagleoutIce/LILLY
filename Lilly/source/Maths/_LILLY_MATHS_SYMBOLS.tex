@@ -3,7 +3,7 @@
 \RequirePackage{centernot}
 \RequirePackage{mathtools}
 
-
+%% somehow make boldfont toggle if textbf (\newif\iflillybold\gdef\textbf#1{\lillyboldtrue#1\lillyboldfalse}... \iflillybold)
 \LILLYcommand\N{\ensuremath{\mathbb{N}}}
 \LILLYcommand\Z{\ensuremath{\mathbb{Z}}}
 \LILLYcommand\Q{\ensuremath{\mathbb{Q}}}
@@ -18,8 +18,19 @@
 \LILLYcommand\F{{\cal F}}
 \renewcommand\P{{\cal P}}
 
-\LILLYcommand\O{\ensuremath{{\cal O}}} %%Landau 
+\LILLYcommand\O{\ensuremath{{\cal O}}} %%Landau
 \let\oldepsilon\epsilon
 \let\oldphi\phi
 \renewcommand{\epsilon}{\ensuremath{\varepsilon}}
 \renewcommand{\phi}{\ensuremath{\varphi}}
+
+\gdef\join{\ensuremath{\bowtie}}
+\gdef\ojoin{\setbox0=\hbox{$\bowtie$}%
+  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+\gdef\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+\gdef\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+\gdef\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
+
+
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\blackdiamond}{\mathalpha}{extraup}{87}

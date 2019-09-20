@@ -4,9 +4,9 @@
     \foreach \x/\ii in {-3/0,-5/1,-7/2,-9/3} {
         \draw (\x,1)        -- ++(0,1.5)   node[above] {$a_{\ii}$}
                 (\x+0.5,1.95) -- ++(0,0.55)  node[above] {$b_{\ii}$}
-                (\x+1.1,1.95) -- ++(0,0.25); 
-        
-        \draw[rounded corners=5pt, fill=LightGray!25!white] 
+                (\x+1.1,1.95) -- ++(0,0.25);
+
+        \draw[rounded corners=5pt, fill=LightGray!25!white]
                 (\x+0.3,1.4) rectangle ++(1,0.55)
                 node[midway, centered] {$\bigoplus$};
         \draw (\x+0.8,1.4) -- ++(0,-0.4);

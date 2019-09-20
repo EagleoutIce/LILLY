@@ -1,0 +1,142 @@
+\documentclass{article}
+\def\LILLYxBOXxBeweisxBox{FALSE}
+%\def\lillyPathData{./}
+% \def\LILLYxBOXxMODE{quackbox}
+\usepackage{LILLYxBOXES}
+
+\begin{document}
+\LoadLillyBoxMode{quackbox}
+\getRegisteredBoxes
+\foreach \ignore/\bn in \lillyxlist {
+    \ifthenelse{\equal{\bn}{aufgabe} \OR \equal{\bn}{uebungsblatt}}{}{ %% differenz signarue
+    \begin{\bn}[wau]
+        Hallo Welt :D
+    \end{\bn}
+    }
+}
+
+\begin{definition*}[wau]
+Hallo
+\end{definition*}
+\begin{lemma*}[wau]
+Hallo
+\end{lemma*}
+
+
+\clearpage
+
+%% Testing the NewBox register mechanism includin the new way of transforming all the boxes with this measurement.
+
+
+\elable{mrk:XXX}
+\begin{bemerkung}[Josef!]
+    \jmark[Hey guys]{mrk:XXX} eerythings fine
+\end{bemerkung}
+%\TransformBoxBemerkung{bemerkung}{Bemerkung~}
+\begin{bemerkung}[Günther?]
+    \jmark[Hey guys]{mrk:XXX} eerythings fine
+\end{bemerkung}\elabel{mrk:HIER3}
+% \TransformBox[boxcol=AppleGreen]{bemerkung}{Bemerkung~}{bemerkung}
+% \begin{bemerkung}[Günther!]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
+% \end{bemerkung}
+% \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}{bemerkung}
+% \begin{bemerkung}[Thymiän, Böädriän:]
+%     \jmark[Hey guys]{mrk:XXX} eerythings fine
+% \end{bemerkung}
+% \TransformBoxBemerkungS{bemerkung*}{Bemerkung~}
+% \begin{bemerkung*}[Thymiän, Böädriän: Sehr superlanger titel!]
+%     \begin{ditemize}
+%         \item Hallo
+%         \item Welt
+%     \end{ditemize}
+% \end{bemerkung*}
+% \TransformBox[][\BooleanTrue]{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel}
+% \begin{bemerkung}[Thymiän, Böädriän:]
+%     \elabel{mrk:HER2}Hallo Welt
+%     \begin{ditemize}
+%         \item Hallo
+%         \item Welt
+%     \end{ditemize}
+% \end{bemerkung}
+
+% \begin{waffel}[Hallo Welt]
+%     \elable{mrk:HIERHER}Hallo Welt
+% \end{waffel}
+% \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel} %% All Links will no be listening to 'waffel'
+
+% % Will fail as link gets destroyed:
+% % \begin{bemerkung}[Thymiän, Böädriän:]
+% %     \begin{ditemize}
+% %         \item Hallo
+% %         \item Welt
+% %     \end{ditemize}
+% % \end{bemerkung}
+
+% \begin{waffel}[Hallo Welt]
+
+% \end{waffel}
+
+% %% Here we will disable the display of the Box
+% \def\lillyxBOXxwaffelxBoxEnabled{FALSE}
+
+
+% \begin{waffel}[Hallo Welt]
+%     Ich bin unsichtbar!
+% \end{waffel}
+
+
+% \def\lillyxBOXxwaffelxBoxEnabled{TRUE}
+
+
+% \begin{waffel}[Hallo Welt]
+%     Ich bin nichtmehr unsichtbar!
+% \end{waffel}
+
+% % Ich verlinke auf Günther? tihihi: \nameref{Günther?}
+
+
+% Hier sind ein paar links: \begin{ditemize}
+%     \item \jmark[Hierher]{mrk:HIERHER}
+%     \item \jmark[Her2]{mrk:HER2}
+%     \item \jmark[Hier3]{mrk:HIER3}
+% \end{ditemize}
+
+% % %\lillyxBOXxbemerkungxTitle
+
+% \begin{apple}[Ich bin ein apple]
+%     Ist das nicht toll?
+% \end{apple}
+
+% \begin{apple}[Ich bin ein apple, die zweite]
+%     Ist das nicht toll?
+% \end{apple}
+
+% \begin{apple}[Ich bin ein apple, die dritte]
+%     Ist das nicht toll?
+% \end{apple}
+
+% \begin{definition*}[Ich bin eine Definition]
+% Und das hier ist toller Text, oder? ist das nicht super toller toller text?
+% \end{definition*}
+%\listofDEFINITIONS
+
+%\listofBANANAS
+%\listofAPPLES
+\listofDEFINITIONS
+
+\listofBEMERKUNGEN
+
+\listofBEISPIELE
+
+\listofSATZE
+
+\listofBEWEISE
+
+\listofLEMMATA
+
+\listofZUSAMMENFASSUNGEN
+
+%\clearpage
+
+\end{document}

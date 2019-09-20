@@ -1,0 +1,32 @@
+\gdef\GRAPHICSxCSA{%
+\begin{tikzternal}[scale=1, every node/.style={transform shape}]
+    \node at (3.5,1.5) {CSA - 9-bit Carray-Select-Addierer};
+    \foreach \y/\yl/\yo in {-3/0/0.175,0/1/0}{
+        \foreach \x/\idx in {8/0,7/1,5/2,4/3,3/4,1/5,0/6,-1/7,-2/8} {
+            \draw (\x+\yo,\y) rectangle ++(1,-1) node[midway,centered] {\small \bfseries VA};
+            \draw (\x+0.2+\yo,\y) -- ++(0,1/3) node[above] {\scriptsize \(b_\idx\)};
+            \draw (\x+0.8+\yo,\y) -- ++(0,1/3) node[above] {\scriptsize \(a_\idx\)};
+            \draw[-latex] (\x+0.5+\yo,\y-1) -- (\x+0.5+\yo,-5) node[pos=0.2-\yl/9,right] {\tiny \(s_{\idx(\yl)}\)};
+        }
+        \foreach \yt in {9,6,2}{
+            \draw (\yt+\yo,\y-0.5) -- ++(0.25,0) node[midway,above] {\tiny c} node[right] {\tiny \yl};
+        }
+        \foreach \yt in {7,3,-2}{
+            \draw[-latex] (\yt+\yo,\y-0.5) -- ++(-0.25,0) -- (\yt+\yo-0.25,-5);
+        }
+    }
+    \foreach \x in {8,...,-3} {
+        \draw (\x+0.2,-5) -- ++(0.9,0) --++(-0.2,-0.25) -- ++(-0.5,0) --cycle;
+    }
+    \foreach \x/\idx in {8/0,7/1,5/2,4/3,3/4,1/5,0/6,-1/7,-2/8} {
+        \draw[-latex] (\x+0.65,-5.25) -- ++(0,-0.5) node[below] {\small \(s_{\idx}\)};
+        \draw[-latex,densely dashed] (\x+0.3,-5.125) -- ++(-0.3,0);
+    }
+    \foreach \x/\xl in {6/2,2/4} {
+        \draw[-latex] (\x+0.65,-5.25) |- ++(-0.63,-0.25) node[pos=0.75,below] {\tiny \(c_\xl\)} -- ++(0,0.4); %node[below] {\small \(s_{\idx}\)};
+    }
+    \draw[-latex] (-3+0.65,-5.25) |- ++(-0.63,-0.25) node[pos=0.75,below] {\tiny \(c_8\)}; %node[below] {\small \(s_{\idx}\)};
+    \draw[-latex] (9.425,-5.127) node[right] {\tiny \(c_0\)} -- ++(-0.43,0);
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxCSA} 

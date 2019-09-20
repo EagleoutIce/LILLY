@@ -1,0 +1,9 @@
+\gdef\GRAPHICSxSpeicherhierarchie{%
+\begin{tikzternal}[scale=1, every node/.style={transform shape}]
+        \draw[latex-latex, top color=limegreen, bottom color=purple] (0,0) node[above right] {\footnotesize schnell} node[below right] {\footnotesize teuer} -- ++(0,-3.5) node[above right] {\footnotesize langsam} node[below right] {\footnotesize billig};
+        \foreach \l[count=\y] in {Prozessor-Die Cache (L1\,L2), Cache (L3 - SRAM), Hauptspeicher (DRAM), Flash (z.B. EEPROM), Festplatte}{
+            \draw (-0.25,-\y/2-0.25) -- ++ (0.5,0) node[right] {\small \l};
+        }
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxSpeicherhierarchie}

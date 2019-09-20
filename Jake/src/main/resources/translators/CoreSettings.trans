@@ -1,0 +1,70 @@
+!                                                                                             !
+!                              JAKE 2.0.0 - Development Build                                 !
+!                                                                                             !
+
+                                ! Author: Florian Sihler  !
+                                ! Version: 2.0.0-dev      !
+
+
+! Info: !
+! Diese Datei enthält die Standart-Konfigurationsdaten für den CoreSettings-Übersetzer, eine  !
+! Variation dieser Daten führt zu veränderten Kommandozeilen Argumenten und kann ohne         !
+! Redundanz alle soweit existierenden Konfigurationsdateien invalidieren. Zur                 !
+! Strukturerhaltung erlaubt es der Translator keiner externen Datei auf die linksseitigen     !
+! Bezeichner Einfluss zu nehmen. Das Übersetzen erfolgt also Unidirektional.                  !
+
+! Wichtig: !
+! Die erzeugte Abbildung muss aus zwei disjunkten Teilmengen bestehen. Keine Übersetzung darf !
+! einen Kreisschluss bilden, da in diesem Fall stets die linksseitige Definition dominiert.   !
+
+! Fehlerbehandlung: !
+! Im Falle einer invalidierung dieser Konfigurationsdatei, so existiert eine Sicherung stets  !
+! im aktuellen Stable-Build: https://github.com/EagleoutIce/LILLY                             !
+
+S_LILLY_PATH            = lilly-path
+S_LILLY_OUT             = lilly-out
+S_LILLY_IN              = lilly-in
+S_LILLY_NAMEPREFIX      = lilly-nameprefix
+S_LILLY_BOXES           = lilly-boxes
+S_LILLY_MODES           = lilly-modes
+S_LILLY_COMPLETE        = lilly-complete
+S_LILLY_COMPLETE_NAME   = lilly-complete-name
+S_LILLY_PRINT_NAME      = lilly-print-name
+S_LILLY_CLEANS          = lilly-cleans
+S_LILLY_COMPILETIMES    = lilly-compiletimes
+S_LILLY_AUTOCLEAN       = lilly-autoclean
+S_LILLY_VORLESUNG       = lilly-vorlesung
+S_LILLY_N               = lilly-n
+S_LILLY_SEMESTER        = lilly-semester
+S_LILLY_SHOW_BOX_NAME   = lilly-show-boxname
+S_LILLY_LAYOUT_LOADER   = lilly-layout-loader
+S_LILLY_EXTERNAL        = lilly-external
+S_LILLY_EXTERNAL_OUT    = lilly-external-out
+S_LILLY_AUTHOR          = lilly-author
+S_LILLY_AUTHORMAIL      = lilly-author-mail
+S_LILLY_SIGNATURE_COLOR = lilly-signatur-farbe
+S_LILLY_BIBTEX          = lilly-bibtex
+S_GEPARDRULES_PATH      = gepardrule-path
+S_LILLY_DOCTYPE         = lilly-doctype
+S_LILLY_CONFIGS_PATH    = lilly-configs-path
+S_LILLY_DATA_PATH       = lilly-data-path
+
+S_FILE                  = file
+S_ANSWER                = answer
+S_VERSION               = Version
+S_OPERATION             = operation
+S_DEBUG                 = debug
+S_DEBUG_FILTER          = debug-filter
+S_PATH                  = path
+S_WHAT                  = what
+S_INSTALL_PATH          = install-path
+S_AUTOCONF              = autoconf
+S_COMMENT_PATTERN       = comment-pattern
+
+S_JOBCOUNT              = jobcount
+S_ERRORCOUNT            = error-count
+S_MK_NAME               = mk-name
+S_MK_PATH               = mk-path
+S_MK_USE                = mk-use
+
+! Translator Ende                                                                             !

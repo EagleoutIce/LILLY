@@ -1,0 +1,117 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxLINK}[2019/07/14 Stellt die (Hyper-)Link-Erweiterungen fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCORE}
+
+\RequirePackage{LILLYxCOLOR}
+
+\RequirePackage{LILLYxCONTROLLERxMODE}
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+
+
+%\RequirePackage{titletoc} %collission fun :D
+%% https://ctan.org/pkg/titletoc
+\LILLYxDemandPackage{titletoc}{Damit der tableofcountetns auch schön hübsch gemacht werden kann.}%% Package, Info
+                    {Das Paket titletoc ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://ctan.org/pkg/hyperref
+\LILLYxDemandPackage{hyperref}{Fuer tolle Verlinkungen und einen tollen Ueberblick}%% Package, Info
+                    {Das Paket hyperref ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {pageanchor}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://www.ctan.org/pkg/xparse
+\LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
+                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+                    {}{} %% keine Argumente
+
+%% https://www.ctan.org/pkg/ifplatform
+\LILLYxDemandPackage{ifplatform}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
+                    {Um dieses Paket kommt LILLY nicht herum!}
+                    {}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grundelgendes setup von hyperref                                                                                    %     %%%% HYPERREF-BASICS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypersetup{         %Niemand mag Rote Boxen um links
+    colorlinks=true, %Das gelbe highlighting ist aber cool
+    linktoc=all,
+    linkcolor=\LILLYxColorxLINKSxMainColor,
+    citecolor=\LILLYxColorxLINKSxCiteColor,
+    filecolor=black!75!black,
+    urlcolor=\LILLYxColorxLINKSxUrlColor,
+    hyperfootnotes=true,
+    hypertexnames,
+    bookmarks=true,
+    unicode=true,
+    pdftoolbar=false,
+    pdfpagemode=UseAttachments,
+    pdfmenubar=false,
+    pdffitwindow=true,
+    pdfsubject={Latex-Dokument},
+    pdfauthor={\AUTHOR~(\AUTHORMAIL)},
+    pdfcreator={pdflatex on \platformname\space using the LILLY-Package (v\LILLYxVERSION) by Florian Sihler (florian.sihler@uni-ulm.de)},
+    bookmarks=true
+}
+
+
+\ifcsname LILLYxHYPERLINK\endcsname\else
+    \gdef\LILLYxHYPERLINK{TRUE}
+\fi
+
+\def\setLinkColor#1{%
+    \hypersetup{linkcolor=#1}%
+}
+
+\def\lpage#1{%
+    \expandafter\hyperlink{page.#1}{#1}%
+}
+
+\DeclareDocumentCommand{\elable}{ s m }{%
+    \IfBooleanT{#1}{\phantomsection}%
+        % To allow this command being flawlessly used in a Box-Environment it won't create a phantomsection
+        % You can enforce the creation with the star (\elable*)
+        \@ifundefined{curboxid}{\phantomsection% Not in box
+        }{}% In Box
+        \label{#2}\ignorespaces%
+}
+
+\let\elabel\elable % to make this annoying typo history :D
+
+
+% \providecommand*{\elable}[1]{%
+%     \phantomsection\label{#1}\ignorespaces%
+% }%\phantomsection % wenn gewünscht das direkter sprung
+
+\def\@print@pageformat#1{%
+\,\textsuperscript{\smaller$\rightarrow$\;\pageref{#1}}
+}
+
+\newcommand{\@default@jmark}[2][Linkname]{{\setLinkColor{\LILLYxColorxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
+\newcommand{\@default@hmark}[2][Linkname]{\setLinkColor{black}\textbf{{\hyperref[#2]{#1}}}}
+\DeclareDocumentCommand{\@default@silentHmark}{ O{Linkname} m O{black} }{\setLinkColor{#3}\begingroup\normalfont\textbf{{\hyperref[#2]{#1}}}\endgroup}
+\newcommand{\@print@jmark}[2][Linkname]{#1\@print@pageformat{#2}}
+\newcommand{\@print@hmark}[2][Linkname]{\textbf{#1}\@print@pageformat{#2}}
+\DeclareDocumentCommand{\@print@silentHmark}{ O{Linkname} m O{black} }{\begingroup\normalfont#1\endgroup}
+\ifx\LILLYxHYPERLINK\true
+    \typeout{Normal link - mode}
+    \let\jmark\@default@jmark
+    \let\hmark\@default@hmark
+    \let\silentHmark\@default@silentHmark
+\else
+    \typeout{Print link - mode}
+    \let\jmark\@print@jmark
+    \let\hmark\@print@hmark
+    \let\silentHmark\@print@silentHmark
+\fi
+%% With sepcific color :D
+\newcommand{\cmark}[3][Linkname]{\setLinkColor{#3}\textbf{{\hyperref[#2]{#1}}}}
+
+
+\providecommand*{\eXButton}[2]{\Acrobatmenu{#1}{\textcolor{\LILLYxColorxLINKSxMainColor}{#2}}}
+
+\endinput

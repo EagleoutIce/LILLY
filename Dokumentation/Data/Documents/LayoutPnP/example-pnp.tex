@@ -1,0 +1,76 @@
+
+\documentclass[PnP-Guide]{Lilly}
+\def\Hcolor{black}
+
+%%%%%%%%%%%%%%%% Daten
+\def\LILLYxColorxLINKSxMainColor{black}
+%% Titel des PNP
+\pnpsettitle{Tales of a never ending night}
+%% Untertitel/Dokumenttitel
+\pnpsetsubtitle{Gottaktionen}
+
+%% setze text als Information :D
+\long\def\info#1{\begingroup\itshape#1\endgroup\leavevmode\newline}
+
+\DeclareDocumentEnvironment{option}{%
+    O{} % Extra (Gebot)
+    m % Name der Option (Ketzerei Erklären)
+    m % Punkte
+} {%
+    \index{0@#2 (#3p)}\leavevmode\newline\begin{minipage}{\linewidth}\noindent{\hspace*{-1.75em}{\footnotesize $\diamond$}\quad~\bfseries#2\ifthenelse{\equal{#1}{}}{}{~(#1)}\hbox{}\hfill{#3p}}\smallskip\newline
+    }{\leavevmode\end{minipage}\newline\unskip}
+
+\newcommand\simpleOption[3][]{%
+    \begin{option}[#1]{#2}{#3}
+    \end{option}\vspace*{-1.65\baselineskip}\newline
+}
+
+\begin{document}
+%%% Title
+\pnptitle
+%% Table of contents :D
+\pnptoc
+
+\begin{abstract}
+    Die folgenden Seiten liefern eine Übersicht über alle für Punkte erwerbbaren Aktionen. Die hierfür nötigen Punkte werden vom \emph{Spielleiter} vergeben und verfallen nicht, sofern sie gespart werden. Die Käufe gelten hierbei, sofern nicht anders vermerkt für nur \emph{genau eine} Provinz, Gottheit, Tierart, \ldots \newline
+    Im Zweifelsfall empfiehlt es sich die Ideen im Vorraus mit dem Spielleiter abzuklären und gegebenenfalls anzupassen.
+\end{abstract}
+
+
+
+\section{Gottaktionen für eigene Gläubige}
+
+\begin{option}[Gebot]{Ketzerei erklären}{1}
+    \info{Was wären Religionen ohne Regeln? Genau, LANGWEILIG! Verbiete deinen wahren Gläubigen Dinge und wer sich nicht daranhält, kann ausgestoßen werden. Gesellschaften sind schon super\ldots}
+
+    Sage dienen Gläubigen, was sie nicht zu tun haben, weil sie ansonsten dein Zorn trifft.
+\end{option}
+
+\begin{option}[Gebot]{Orthodoxie erklären}{1}
+    \info{Was wären Religionen ohne Vorschriften? Genau, LANGWEILIG! Also treibe deine wahren Gläubigen dazu, zu tun was DU WILLST.
+    Wen interessiert es, dass Pilze auf dem Kopf ungesund sind und wahrscheinlich Nährstoffe aus deinem Gehirn saugen? NIEMAND!! DENN GOTT WILL ES!}
+
+    Befehle deinen Untertanen, was sie zu tun haben und wann. (Gebot)
+\end{option}
+
+\begin{option}{Wunder vollbringen}{2}
+    \info{Zeige deinen Anhängern, dass sie dir etwas Wert sind. Hier eine Heilung da ein Ausrotten einer Krankheit. Dort 5000 Brote und ein paar Fische mehr im Wasser.}
+
+    Wie dieses Wunder aussieht entscheidest du, bespreche es aber bitte mit dem Spielleiter.
+\end{option}
+
+% ....
+
+\clearpage
+
+\section{Gottaktionen mit der Welt}
+
+\begin{option}{Naturwunder erschaffen}{2}
+    \info{\say{Uii, toooll} - Scar, König der Löwen}
+
+    Erschafft eine Stelle, an der die Welt einfach schöner ist wie dies aussieht bestimmst du selbst (beachte, dass sie zum Biom passen sollte)
+\end{option}
+
+% ...
+
+\end{document}

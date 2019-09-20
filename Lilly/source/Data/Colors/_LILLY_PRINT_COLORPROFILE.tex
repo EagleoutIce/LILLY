@@ -4,48 +4,25 @@
 
 \ifx\LILLYxColorxInject \undefined
 
-\RequirePackage{xcolor}
-\RequirePackage{pgf}
+\pushList{LillyProfileColors}{Definition/DebianRed}
+\pushList{LillyProfileColors}{Satz/Charcoal}
+\pushList{LillyProfileColors}{Beweis/Charcoal} %%This box will be omitted
+\pushList{LillyProfileColors}{Lemma/Charcoal}
+\pushList{LillyProfileColors}{Bemerkung/Charcoal} %%This box will be omitted
+\pushList{LillyProfileColors}{Zusammenfassung/ChromeYellow}
+\pushList{LillyProfileColors}{Beispiel/Charcoal} %% Kein Format sollte diese Box erlauben
+\pushList{LillyProfileColors}{Uebungsaufgabe/Charcoal} %% Kein Format sollte diese Box erlauben
+\pushList{LillyProfileColors}{Zusatzuebung/Charcoal} %% Kein Format sollte diese Box erlauben
 
-%% The old ones will still exists for compatibility-reasons
-
-\definecolor{thered}{RGB}{255, 47, 47} 
-\definecolor{candypink}{rgb}{0.89, 0.44, 0.48} 
-\definecolor{limegreen}{rgb}{0.2, 0.8, 0.2} 
-\definecolor{superlightgray}{RGB}{240,240,240}
-\definecolor{skyblue}{RGB}{60, 179, 113}
-\definecolor{tealblue}{RGB}{51,153,255}
-\definecolor{mint}{RGB}{255, 128, 0}
-\definecolor{gold}{RGB}{255,215,50}
-\definecolor{dgold}{RGB}{235,198,13}
-
-\definecolor{beauty}{RGB}{104, 55, 107}
-\definecolor{dorange}{RGB}{255,102, 0}
-\definecolor{dpurple}{RGB}{86,60, 92}
-\definecolor{ddpurple}{RGB}{128,0, 128}
+\pushList{LillyProfileColors}{LINKSxMainColor/Charcoal}
+\pushList{LillyProfileColors}{LINKSxMainColorDarker/Charcoal!90!black}
 
 
-\renewcommand{\LILLYxColorxDefinition}{DebianRed}
-\renewcommand{\LILLYxColorxSatz}{Charcoal}
-\renewcommand{\LILLYxColorxBeweis}{Charcoal} %%This box will be omitted
-\renewcommand{\LILLYxColorxLemma}{Charcoal} 
-\renewcommand{\LILLYxColorxBemerkung}{Charcoal} %%This box will be omitted
-\renewcommand{\LILLYxColorxZusammenfassung}{ChromeYellow}
-\renewcommand{\LILLYxColorxBeispiel}{Charcoal} %% Kein Format sollte diese Box erlauben
-\renewcommand{\LILLYxColorxUebungsaufgabe}{Charcoal} %% Kein Format sollte diese Box erlauben
-\renewcommand{\LILLYxColorxZusatzuebung}{Charcoal} %% Kein Format sollte diese Box erlauben
+\pushList{LillyProfileColors}{LINKSxCiteColor/Charcoal}
+\pushList{LillyProfileColors}{LINKSxUrlColor/Charcoal}
 
-\renewcommand{\LILLYxLINKSxMainColor}{Charcoal}
-\renewcommand{\LILLYxLINKSxMainColorDarker}{\LILLYxLINKSxMainColor!95!black}
+\pushList{LillyProfileColors}{TITLExCOLOR/DebianRed}
 
-
-\renewcommand{\LILLYxLINKSxCiteColor}{Charcoal}
-\renewcommand{\LILLYxLINKSxUrlColor}{Charcoal}
-
-\renewcommand{\LILLYxTITLExCOLOR}{DebianRed}
-
-\renewcommand{\Hcolor}{DebianRed}
-\renewcommand{\HBcolor}{DebianRed!5}
-
-
+\storeLillyProfileColors{LISTxProfileColors}
+\setProfileColors{\LISTxProfileColors}
 \fi

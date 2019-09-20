@@ -1,0 +1,18 @@
+\gdef\GRAPHICSxAmpelxPLA{%
+\begin{tikzternal}[scale=0.75,every node/.style={transform shape}]
+    \node at(0,0){
+    \begin{tabular}{>{\bfseries}c||ccc|cc||ccc|ccc|c}
+        & \multicolumn{3}{c|}{Zustand} & \multicolumn{2}{c||}{Folgez.} & \multicolumn{3}{c|}{NS} & \multicolumn{3}{c|}{WO} &\\
+        \(\delta\) & \(h_0\) & \(z_0\) & \(z_1\) & \(z_0'\) & \(z_1'\) & \ampelG & \ampelY & \ampelR & \ampelG & \ampelY & \ampelR & \T{T}\\\hline\hline
+        \(\delta_0\) & 0 & 0 & 0 & 0 & 1 & \ampelG & \ampelH & \ampelH & \ampelH & \ampelH & \ampelR & 7 \(\Rightarrow h_0' = 1\)\\
+        \(\delta_1\) & 1 & 0 & 1 & 0 & 1 & \ampelG & \ampelH & \ampelH & \ampelH & \ampelH & \ampelR & \(\T{T}-1\)\\\hline
+        \(\delta_3\) & 0 & 0 & 1 & 1 & 0 & \ampelH & \ampelY & \ampelH & \ampelH & \ampelY & \ampelR & 2 \(\Rightarrow h_0' = 1\)\\
+        \(\delta_4\) & 1 & 1 & 0 & 1 & 0 & \ampelH & \ampelY & \ampelH & \ampelH & \ampelY & \ampelR & \(\T{T}-1\)\\\hline
+        \(\delta_6\) & 0 & 1 & 0 & 1 & 1 & \ampelH & \ampelH & \ampelR & \ampelG & \ampelH & \ampelH & 7 \(\Rightarrow h_0' = 1\)\\
+        \(\delta_7\) & 1 & 1 & 1 & 1 & 1 & \ampelH & \ampelH & \ampelR & \ampelG & \ampelH & \ampelH & \(\T{T}-1\)\\\hline
+        \(\delta_9\) & 0 & 1 & 1 & 0 & 0 & \ampelH & \ampelY & \ampelR & \ampelH & \ampelY & \ampelH & 2 \(\Rightarrow h_0' = 1\)\\
+        \(\delta_{10}\) & 1 & 0 & 0 & 0 & 0 & \ampelH & \ampelY & \ampelR & \ampelH & \ampelY & \ampelH & \(\T{T}-1\)\\
+    \end{tabular}};
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxAmpelxPLA} 

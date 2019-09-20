@@ -1,0 +1,18 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxMIPS}[2019/06/29 Stellt ein MIPS-Paket fuer LILLY zur Verfuegung]
+
+\newcounter{ctr_MIP}
+\renewcommand{\lstlistingname}{MIPS-Programm}% Listing -> Algorithm
+\newcommand{\listMIPSname}{~\\[-1.75cm]}
+\newlistof{MIPS}{MIP}{\listMIPSname}
+\newcommand{\MIPS}[1]{%
+\refstepcounter{MIPS}
+\addcontentsline{MIP}{MIPS}
+{ #1}\par
+}
+
+\input{\LILLYxPATHxDATA/Semester/1/GDRA/_LILLY_MIPS_COMMANDS}
+\input{\LILLYxPATHxDATA/Semester/1/GDRA/_LILLY_MIPS_DESCRIPTION_ENVIRONMENT}
+\input{\LILLYxPATHxDATA/Semester/1/GDRA/_LILLY_MIPS_MNEMONIC_DECODE}
+
+\endinput

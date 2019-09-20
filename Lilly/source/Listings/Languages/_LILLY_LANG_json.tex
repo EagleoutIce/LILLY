@@ -1,0 +1,30 @@
+\lstdefinelanguage{lJson}{
+    %% language=json,
+    otherkeywords = {},
+    alsoletter={},
+    comment=[l]{\#},
+    comment=[l]{//},
+    sensitive=false,
+    %alsoletter={\{\}[]},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[il][{\lstHLError}]{|err|:},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+    moredelim=[is][{}]{|plain|}{|plain|},
+    morestring=[s]{"}{"},
+    morekeywords = {},
+    morekeywords = [2]{true,false,null},
+    %morekeywords = [4]{\{,\},[,]},
+    %morecomment=[s]{/*}{*/}, there is no String
+    morestring=[b]',
+    alsoother={\,}
+}
+
+\RegisterLanguage{json}{lJson}
+
+
+% \lstnewenvironment{json}[1][]
+%   {\lstset{language=lJson,#1}}
+% {}
+
+% \pushList{RegisteredLanguages}{json/lJson}

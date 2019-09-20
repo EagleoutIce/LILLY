@@ -2,6 +2,13 @@
 \RequirePackage{caption}
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 \RequirePackage{titlesec}
+\RequirePackage{marginnote}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General and Layoutkonfiguration                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \LILLYcommand{\cftsubsecleader}{\hfill}
 \LILLYcommand{\cftsubsecfont}{\pgfsetfillopacity{1.0}\footnotesize}
@@ -21,37 +28,58 @@
 \renewcommand{\chaptermark}[1]{\markboth{#1}{\faBookmark}} %%Chaptermark fix inject
 
 
-\titleformat{\chapter}[display]%             
+\titleformat{\chapter}[display]%
         {\relax}
         {\vspace{-4\baselineskip}\raggedleft{\color{LightGray}\chapterNumber\thechapter} \\ }
         {0pt}%
-        {\vspace*{-4\baselineskip}\color{\LILLYxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here 
+        {\vspace*{-4\baselineskip}\color{\LILLYxColorxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here
         [\normalcolor\normalsize\vspace*{-.7\baselineskip}\rule{\textwidth}{0.5pt}\vspace*{-1.7\baselineskip}]%
 
-\newcommand*{\TitleSUB}[1]{ 
-    \begingroup\vspace{-1.25\baselineskip}\textsc{\textcolor{\LILLYxTITLExCOLOR}{#1}}~\\\endgroup
+\newcommand*{\TitleSUB}[1]{
+    \begingroup\vspace{-1.25\baselineskip}\textsc{\textcolor{\LILLYxColorxTITLExCOLOR}{#1}}~\\\endgroup
 }
 
+
 \let\defChapter\chapter
-\renewcommand*{\chapter}{
-    \@ifstar{\starchapter}{\@dblarg\nostarchapter}
+\DeclareDocumentCommand{\chapter}{
+    s   % starred
+    O{} % optional short
+    m   % name of chapter
+}{%
+    \IfBooleanTF{#1}{% starred
+        \defChapter*{#3}% no opt
+    }{% unstarred
+        \ifthenelse{\equal{#2}{}}%
+        {\defChapter{#3}\def\xchapname{#3}}% use same
+        {\defChapter[{#2}]{#3}\def\xchapname{#3}}% different from Mitschrieb!
+        % \getRegisteredBoxLists
+        % \foreach \ctmplistname in \lillyxlist {%
+        %     \addcontentsline{\ctmplistname}{chapter}{\xchapname}%
+        % }
+        \addcontentsline{TOP}{chapter}{\thechapter~\xchapname}\gdef\leftmark{\xchapname}%
+    }%
 }
-\newcommand{\starchapter}[1]{
-    \defChapter*{#1}
-}
+
+% \let\defChapter\chapter
+% \renewcommand*{\chapter}{
+%     \@ifstar{\starchapter}{\@dblarg\nostarchapter}
+% }
+% \newcommand{\starchapter}[1]{
+%     \defChapter*{#1}
+% }
+%\def\nostarchapter[#1]#2{\defChapter[{#1}]{#2}\addcontentsline{TOP}{chapter}{\thechapter~#2}\renewcommand{\leftmark}{#2}}
 
 \newcommand{\LILLYxFormatxTitle}[2][]{~\\{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont #2\hfill{\normalfont\tiny #1}}\\[-0.3cm]
 \noindent\rule{\textwidth}{1.25pt}\\[0.15cm]}
 
 \newlistof{TOPS}{TOP}{\LILLYxFormatxTitle{Inhaltsverzeichnis}\vspace*{-2cm}}
 
-\def\nostarchapter[#1]#2{\defChapter[{#1}]{#2}\addcontentsline{TOP}{chapter}{\thechapter~#2}\renewcommand{\leftmark}{#2}}
 
 \LILLYcommand{\LILLYxLayoutxClear}{ %
     \pagestyle{empty} %KOMA-FTW!
     \pagenumbering{gobble}
 }
-\LILLYcommand{\LILLYxLayoutxRestore}{ % 
+\LILLYcommand{\LILLYxLayoutxRestore}{ %
     \pagenumbering{arabic}   %
     \pagestyle{scrheadings} %KOMA-FTW!
     \renewcommand{\chapterpagestyle}{scrheadings} %Kein Übungsblatt? => Mitschrieb => Konfiguriere Kapitel
@@ -73,7 +101,7 @@
 
 
 \makeatletter
-\renewcommand{\@seccntformat}[1]{\llap{\textcolor{\LILLYxColorxDefinition}{\csname the#1\endcsname}\hspace{1em}}}                    
+\renewcommand{\@seccntformat}[1]{\llap{\textcolor{\LILLYxColorxDefinition}{\csname the#1\endcsname}\hspace{1em}}}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
 {-4ex \@plus -1ex \@minus -.4ex}
 {1ex \@plus.2ex }
@@ -85,7 +113,7 @@
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -0.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
-{\normalfont\small\sffamily\bfseries}}                        
+{\normalfont\small\sffamily\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
 {-2ex \@plus-.2ex \@minus .2ex}
 {.1ex}
@@ -113,4 +141,19 @@
 \providecommand{\LILLYxBOXxDefinitionxLock}{TRUE}
 
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introkonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\let\originalmarginnote\marginnote
+\renewcommand{\marginnote}{%
+\ifthispageodd{\normalmarginpar}{\reversemarginpar}\originalmarginnote
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outrokonfiguration                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% None

@@ -1,0 +1,113 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxLIST}[2019/07/13 Stellt die Grundlagen einer Liste fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCORE}
+\RequirePackage{LILLYxCOMMAND}
+
+
+%% https://www.ctan.org/pkg/pgf
+\LILLYxDemandPackage{pgffor}{Fuer die Registrierung der Sprachen}
+                    {Ohne gehts nicht}
+                    {}{}
+
+%% the list operation allows it to append new elements (including optional separator)
+%% example process:
+%% \constructList[,]{Peter}
+%% \pushList{Peter}{2}    \pushList{Peter}{55}
+%% \thePeter
+
+% \gdef\lill@list@end!{}
+% \gdef\lilly@iter@commalist#1:#2,{\edef\@tmp{#2}\@ifnextchar!{\list@end}{\@tmp!!\expandafter\lilly@iter@commalist#1:}}
+
+
+\gdef\lilly@list@operation#1{!#1!}
+\gdef\lill@list@end!{}
+\gdef\lilly@iter@commalist#1,{\edef\@tmp{#1}\lilly@list@operation{\@tmp}\@ifnextchar!{\lill@list@end}{\expandafter\lilly@iter@commalist}}
+
+
+
+\newcommand{\constructList}[2][]{%$ Definiere Liste BlahBlah
+    \expandafter\def\csname lilly@list@seperator@#2\endcsname{#1}%
+    \expandafter\def\csname lilly@list@#2\endcsname{}%% Listendefinition lilly@list@BlahBlah
+    \expandafter\def\csname the#2\endcsname{\csname lilly@list@#2\endcsname}%% Liste kann über \theBlahBlah abgefragt werden
+    \expandafter\def\csname delete#2\endcsname{\let\csname lilly@list@#2\endcsname{}}%% delete the list
+    %% get an iterator for the list, it will use the specific iterator:
+    \expandafter\gdef\csname iter#2\endcsname{\lilly@iter@list\csname lilly@list@seperator@#2\endcsname\csname get#2\endcsname}%
+    %
+    \expandafter\def\csname get#2\endcsname{%
+        \xdef\lillyxlist{\csname lilly@list@#2\endcsname}%
+    }%
+    \expandafter\def\csname store#2\endcsname##1{%
+        \expandafter\xdef\csname ##1\endcsname{\csname lilly@list@#2\endcsname}%
+    }%
+    %% Evaluates to the length of an komma seperated List
+    \@namedef{len#2}{%
+        \getListLength{\@nameuse{lilly@list@#2}}%
+    }%
+}
+
+\gdef\getListLength#1{%
+    \def\@tmpl{#1}%
+    \foreach \@tmp[count=\@@c@tmp] in \@tmpl {\xdef\@c@tmp{\@@c@tmp}}%
+    % length in @c@tmp
+    % \@c@tmp%
+}
+
+\def\typesetVoid#1{#1}%
+
+\newcommand{\typesetList}[2][typesetVoid]{%
+    \edef\@@tmp{\noexpand\@@typesetList[\unexpanded{#1}]{#2}}\@@tmp%
+}
+
+%% this will typeset a List in German List-Notation
+\newcommand{\@@typesetList}[2][typesetVoid]{%
+    \def\@tmpl{#2}%
+    \getListLength{#2}%
+    \foreach \x[count=\i] in \@tmpl {%
+        \ifnum\i=\@c@tmp%
+        ~und \else%
+        \ifnum\i>1, \fi%
+        \fi%
+        \@nameuse{#1}{\x}%
+    }\ignorespaces%
+}
+
+
+\newcommand{\containsList}[2]{%
+    \csname get#1\endcsname%
+    \xdef\c@mp@re{#2}%
+    \let\c@nditi@n@l\false%
+    \foreach \d in \lillyxlist {%
+        %\typeout{comparing: \d to \c@mp@re}%
+        \ifthenelse{\equal{\d}{\c@mp@re}}{%
+            %\typeout{Matched}%
+            \global\let\c@nditi@n@l\true%
+        }{}%
+    }%
+    \c@nditi@n@l%
+}
+
+\newcommand{\setList}[2]{%
+    \expandafter\xdef\csname lilly@list@#1\endcsname{#2}
+}
+
+\newcommand{\pushList}[2]{%
+    %\typeout{push to: #1 with #2}
+    \expandafter\xdef\csname lilly@list@last@#1\endcsname{\csname lilly@list@#1\endcsname}%
+    %\typeout{last is: \csname lilly@list@last@#1\endcsname}
+    % Get current value, if its empty, set separator, else toss:
+    \ifthenelse{\equal{\csname lilly@list@#1\endcsname}{}}{% empty
+        \expandafter\xdef\csname lilly@list@#1\endcsname{\csname lilly@list@last@#1\endcsname{#2}}%
+    }{% Not empty
+        \expandafter\xdef\csname lilly@list@#1\endcsname{\csname lilly@list@last@#1\endcsname\csname lilly@list@seperator@#1\endcsname{#2}}%
+    }%
+}
+
+%% operation is work in progress
+\newcommand{\popList}[1]{%
+    \relax{\csname lilly@list@last@#1\endcsname}
+}
+
+\constructList{lillytmplist}
+
+\endinput

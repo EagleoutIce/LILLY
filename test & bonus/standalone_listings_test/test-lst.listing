@@ -1,0 +1,6 @@
+\begin{lstplain}[language=lJava]
+public static void main(String[] args) {
+    int i = 42*3;
+    System.out.println("Hallo Welt");
+}
+\end{lstplain}

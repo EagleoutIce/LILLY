@@ -1,0 +1,69 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxMODE}[2019/08/13 Stellt die Modi-Kontroll-Erweiterungen fuer LILLY zur Verfuegung]
+%% Alle diese Modi lassen sich manuell mithilfe der Kommandozeile verändern und anpassen
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Default - Lädt und Konfiguriert Standardwerte und Farbe                                                             %     %%%% DEFAULT-OPTIONS %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\providecommand{\LILLYxMODE}{default}
+\providecommand\LILLYxMODExDEFAULT{default}
+\providecommand\LILLYxMODExPRINT{print}
+
+\providecommand\LILLYxMODExDUMMY{dummy}
+
+\ifcsname LILLYxFOOTERxBUTTONS\endcsname\else
+    \gdef\LILLYxFOOTERxBUTTONS{TRUE}
+\fi
+
+
+\def\LILLY@Typ@Mitschrieb{MITSCHRIEB}
+\def\LILLY@Typ@Uebungsblatt{UEBUNGSBLATT}
+\def\LILLY@Typ@Dokumentation{DOKUMENTATION}
+\def\LILLY@Typ@Zusammenfassung{ZUSAMMENFASSUNG}
+
+\RequirePackage{imakeidx} %% HAS TO BE LOADED BEFORE HYPERREF (https://tex.stackexchange.com/questions/22012/hyperref-and-imakeidx-do-not-work-together#22014)
+
+\ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
+    \gdef\LILLYxBOXxAufgabexBox{FALSE}
+\fi
+
+% \ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
+% \RequirePackage{imakeidx} %% HAS TO BE LOADED BEFORE HYPERREF (https://tex.stackexchange.com/questions/22012/hyperref-and-imakeidx-do-not-work-together#22014)
+% \fi
+
+\ifx\LILLYxMODE\LILLYxMODExDEFAULT
+    \gdef\LILLYxBOXxBeispielxBox{FALSE}
+\else\ifx\LILLYxMODE\LILLYxMODExPRINT
+    \renewcommand\LILLYxFOOTERxBUTTONS{FALSE}
+    \gdef\LILLYxHYPERLINK{FALSE}
+    \gdef\LILLYxBOXxBemerkungxBox{FALSE}
+    \gdef\LILLYxBOXxBeweisxBox{FALSE}
+    \gdef\LILLYxBOXxBeispielxBox{FALSE}
+    \gdef\LILLYxBOXxLemmaxBox{FALSE}
+    \raggedbottom  %%Prevent flushbottom from doubleside
+\fi\fi
+
+%%%% Da tikz davor geladen wird, helfen wir hier nach und überschreiben die option nachträglich :D
+
+\ifthenelse{\equal{\LILLYxMODExEXTRA}{\true}}{%% let's enable all the options
+    \LILLYcommand{\LILLYxIMAGESxShow}{TRUE} %% this option doesn't work for graphPOI - tikz will be loaded earlier - which is great :D (not)
+    \gdef\LILLYxBOXxUebungsblattxEnable{TRUE}
+}{%
+    \LILLYcommand{\LILLYxIMAGESxShow}{FALSE}
+    \gdef\LILLYxBOXxUebungsblattxEnable{FALSE}
+}
+
+
+\ifx\LILLYxBOXxBeispielxBox\false\renewcommand{\LILLYxColorxBeispiel}{\LILLYxColorxLINKSxMainColor}\fi
+\ifx\LILLYxBOXxBeweisxBox\false\renewcommand{\LILLYxColorxBeweis}{\LILLYxColorxLINKSxMainColor}\fi
+\ifx\LILLYxBOXxBemerkungxBox\false\renewcommand{\LILLYxColorxBemerkung}{\LILLYxColorxLINKSxMainColor}\fi
+%\ifx\LILLYxBOXxLemmaxBox\true\else\renewcommand{\LILLYxColorxLemma}{Charcoal}\fi
+
+
+
+\endinput
+% %%% Intro- and Outro-Constroller Stuff :D
+
+% \RequirePackage{LILLYxCONTROLLERxINTRO}

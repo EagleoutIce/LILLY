@@ -1,0 +1,43 @@
+\gdef\GRAPHICSxHaskellTypen{%
+\begin{tikzternal}[scale=0.75,every node/.style={transform shape}]
+    \newcommand{\typklassendeskriptor}[4][Azure]{\draw[fill=##1,rounded corners = 5pt] ##2 rectangle ++ (2.25,2.25) node[midway,centered, minimum width=2.25cm, minimum height = 2.25cm, rectangle, rounded corners=5pt] (##3) {\centering\parbox{2.15cm}{\centering\textbf{\T{##3}}\\\tiny\LILLYxlstTypeWriter ##4\par}\par
+        }; }
+
+    \foreach \pos/\col/\nam/\brief in {%
+% First row Eq Show Read
+        (0,0)/\Hcolor/Eq/{(==), (/=)},%
+        (3,0)/white/Show/{show, \ldots},%
+        (6,0)/white/Read/{\ldots},%
+% Next row Ord Num Bounded
+        (0,-3.5)/\Hcolor/Ord/{(>), (<), (>=), (<=), min, max},%
+        (3,-3.5)/\Hcolor/Num/{(+), (-), (*), (signum), \ldots},%
+        (6,-3.5)/white/Bounded/{\ldots},%
+% Next row Enum Real \fractional
+        (0,-7)/white/Enum/{succ, pred},%
+        (3,-7)/white/Real/{\ldots},%
+        (6,-7)/white/Fractional/{(/), \ldots},%
+% Next row Integral RealFrac Floating
+        (0,-10.5)/\Hcolor/Integral/{div, mod, \ldots},%
+        (3,-10.5)/white/RealFrac/{round, ceiling, floor, \ldots},%
+        (6,-10.5)/\Hcolor/Floating/{pi, exp, log, sqrt},%
+        (4.5,-14)/white/RealFloat/{\ldots}%
+    } {%
+        \index{Haskell!Typklassen!\nam}
+        \typklassendeskriptor[\col!10!white]{\pos}{\nam}{\brief};
+    };
+    \begin{scope}[every path/.style={thick,-latex}]
+        \draw (Ord) -- (Eq); \draw (Real) -- (Ord);
+        \draw (Real) -- (Num); \draw (Fractional) -- (Num);
+        \draw (Integral) -- (Enum); \draw (Integral) -- (Real);
+        \draw (RealFrac) -- (Real); \draw (RealFrac) -- (Fractional);
+        \draw (Floating) -- (Fractional);
+        \draw (RealFloat) -- (RealFrac); \draw (RealFloat) -- (Floating);
+    \end{scope}
+    \draw (Enum)++(-1.5,0) node[left] {\small\sffamily\parbox{4cm}{Ermöglicht Listengenerierung getreu: \bhaskell{[a..b]}}};
+    \draw (Eq)++(-1.5,0) node[left] {\small\sffamily\parbox{4cm}{Ermöglicht Patternmatching}};
+    \draw (Read)++(1.5,0) node[right] {\small\sffamily\parbox{4cm}{Einlesen von Werten}};
+    \draw (Bounded)++(1.5,0) node[right] {\small\sffamily\parbox{4cm}{Es existieren minimum und Maximum}};
+    \draw (Show)++(0,1.5) node {\small\sffamily Anzeigen im \T{ghci}};
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxHaskellTypen}

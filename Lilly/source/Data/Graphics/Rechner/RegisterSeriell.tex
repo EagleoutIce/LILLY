@@ -1,0 +1,20 @@
+\gdef\GRAPHICSxRegisterxSeriell{%
+\begin{tikzternal}[scale=0.9,every node/.style={transform shape}]
+        \draw (-1,-1.25) node[left] {\tiny \(\langle\)CLK\(\rangle\)}-- ++(6,0);
+        \draw (-1,-0.25) node[left] {\tiny \(D_{in}\)};
+        \foreach \x in {0,...,2} {
+            \draw (2*\x,0) rectangle ++(1,-1);
+            \draw (2*\x,-0.65) -- ++(0.15,-0.125) node[right] {\tiny C} -- ++(-0.15,-0.125);
+            \node[right] at(2*\x,-0.25) {\tiny D};
+            \draw[-latex] (2*\x-1,-0.25) -- ++(1,0);
+            \draw (2*\x+1,-0.25) node[left] {\tiny Q};
+            \bigRing{(2*\x-0.25,-1.25)};
+            \draw (2*\x-0.25,-1.25) |- ++(0.25,0.72-0.25);
+            \bigRing{(2*\x+1.25,-0.25)};
+            \draw (2*\x+1.25,-0.25) -- ++(0,0.5) node[above] {\tiny \(d_\x\)};
+        }
+        \draw [-latex] (5,-0.25) -- ++(1,0) node[right] {\tiny \(D_{out}\)};
+        \node at(0,-1.5){};
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxRegisterxSeriell} 

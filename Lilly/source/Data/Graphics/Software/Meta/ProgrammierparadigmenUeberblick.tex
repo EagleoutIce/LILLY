@@ -1,0 +1,53 @@
+\gdef\GRAPHICSxProgrammierparadigmenUeberblick{%
+\begin{tikzternal}[scale=0.9, every node/.style={font=\mdseries}]
+    \node (a) at (0,0) {Programmieren};%
+
+    \node (1a) at (-3,-1) {{zustandsbasiert}};
+    \node (1b) at (3, -1) {{regelbasiert}};
+
+    \node (2a) at (-3,-2) {{imperativ}};
+    \node (2b) at(1.5,-2) {{funktional}};
+    \node (2c) at(4.5,-2) {{logisch}};
+
+    \node (3a) at (-3,-3) {{objektorientiert}};
+
+    %\begin{scope}[every path/.style={-latex}]
+    \draw (a) -- (1a) -- (2a) -- (3a) %
+          (a) -- (1b) -- (2b) %
+                 (1b) -- (2c);
+    %\end{scope}
+    \begin{scope}[every node/.style={font=\scriptsize\color{gray}}]
+        \draw (3a) ++ (-1.75,0.5) node [above left] (k0) {Klassen};
+        \draw (3a) ++ (-1.5,-0.5) node [below left] (k1) {Abstraktion};
+
+        \draw (3a) ++ (+1.25,-0.4) node [below right] (k2) {\parbox{3cm}{Problem:\\ Verifikation}};
+
+        \draw (2b) ++ (-0.75,0.4) node [above left] (k3) {Alles: Funktionen};
+        \draw (2b) ++ (-0.85,-0.35) node [below left] (k4) {$\lightning$ Variablen};
+
+        \draw (2c) ++ (+1.65,-0.4) node [below right] (k5) {\parbox{3cm}{Prädikate}};
+        \draw (2c) ++ (+1.45,0.2) node [right] (k6) {\parbox{3cm}{Logische\\Schlussfolgerungen}};
+
+        \draw (2c) ++ (-0.25,0.75) node [above right] (k7) {\parbox{3cm}{Backtracking}};
+    \end{scope}
+
+    \begin{scope}[every path/.style={densely dashed,gray}]
+        \draw (3a) -- (k0) (3a) -- (k1) (3a) -- (k2);
+        \draw (2b) -- (k3) (2b) -- (k4);
+        \draw (2c) -- (k5) (2c) -- (k6) (2c) -- (k7);
+    \end{scope}
+
+    %% TODO MAKE THIS A DAMMIT MACRO
+    \begin{scope}[rounded corners=3pt]
+        \draw[\Hcolor, fill=\Hcolor, fill opacity=0.1] (2a) ++(-1.5,0.25) rectangle ++(3,-1.5) ++(-1.5,0) node[below, fill opacity=1] {Java};
+
+        \draw[\Hcolor, fill=\Hcolor, fill opacity=0.1] (2b) ++(-1.25,0.25) rectangle ++(2.5,-0.5) ++(-1.25,0) node[below, fill opacity=1] {Haskell};
+
+        \draw[\Hcolor, fill=\Hcolor, fill opacity=0.1] (2c) ++(-1.25,0.25) rectangle ++(2.5,-0.5) ++(-1.25,0) node[below, fill opacity=1] {Prolog};
+    \end{scope}
+
+
+    %\draw [decorate,decoration={brace,amplitude=10pt,raise=4pt,mirror},yshift=0pt] (2b) ++ (-1.5,-0.75) -- ++(6,0) node [black,midway, below,yshift=-0.5cm] {Die behandeln wir.};
+\end{tikzternal}%
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxProgrammierparadigmenUeberblick}

@@ -1,0 +1,393 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxLISTINGS}[2019/07/14 Stellt die Listings-Erweiterungen fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxCOLOR}
+\RequirePackage{LILLYxENCODING}
+\RequirePackage{LILLYxFONTS}
+\RequirePackage{LILLYxLIST}
+\RequirePackage{LILLYxLISTINGSxLANGUAGExCONTROL}% \RegisterLanguage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Die Verwaltung der Listings verläuft auf verschiedene Highlighting -Module welche auch über die Kommandozeile definiert werden können
+
+\LILLYxPoliteKnock{listingsutf8}{% wir wollen natürlich UTF8, wenns geht
+%% https://www.ctan.org/pkg/listingsutf8
+\LILLYxDemandPackage{listingsutf8}{Tolle Umlaute in tollen Codes}
+                    {Also dieser Fehler sollte nun wirklich nicht vorkommen.}
+                    {}{}
+}{
+%% https://www.ctan.org/pkg/listings
+\LILLYxDemandPackage{listings}{Tolle Codes}
+                    {Also mit irgendwas muss ich arbeiten.}
+                    {}{}
+}
+
+%\lstloadaspects{tex}%strings,comments,escape,writefile,style,language,keywords,html,tex,emph,index,keywordcomments,labels}
+
+% Key patch from: https://tex.stackexchange.com/questions/149056/how-can-i-define-additional-literate-replacements-without-deleting-existing-ones
+\def\addToLiterate#1{\edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
+\lst@Key{add to literate}{}{\addToLiterate{#1}}
+
+%% maybe just load and check?
+%% https://ctan.org/pkg/amsfonts
+\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
+                    {Wir wollen mehr Symbole}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://www.ctan.org/pkg/xparse
+\LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
+                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+                    {}{} %% keine Argumente
+
+%% https://ctan.org/pkg/graphicx
+\LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
+                    {Dieses Paket ist für includegraphics von noeten!}
+                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}} %% Sloppy includegraphics draft
+                    {}{}
+
+\LILLYxDemandPackage{pgffor}{Fuer die Registrierung der Sprachen}
+                    {Ohne gehts nicht}
+                    {}{}
+
+%% https://www.ctan.org/pkg/etoolbox
+\LILLYxDemandPackage{etoolbox}{Damit die Befehle robust sind}
+                    {Ohne gehts nicht - leider}
+                    {}{}
+
+%% NOTE: https://ctan.kako-dev.de/macros/latex/contrib/lstaddons/lstautogobble.pdf
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Current Colors:
+\definecolor{lstmainbordercol}{HTML}{EAECF0}
+\definecolor{lstmainbackcol}{HTML}{F8F9FA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lists
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Alle Sprachen müssen sich hier registrieren, solange es nicht implementiert ist,
+%% kann man nachträglich keine entfernen tihihih
+\constructList[,]{RegisteredLanguages}
+
+%% Jede Sprache muss die Signatur besitzen: befehlspräfix/sprachenbezeichner.
+%% Also beispielhaft: 'cpp/lCpp'
+%% So können wir auch testen, ob eine Sprache registriert ist:
+%% '\isLanguageLoaded{cpp/lCpp}' => \true wenn ja, sonst \false
+%% Dies wird von \RegisterLanguage automatisch entsprechend gehandhabt :D
+
+
+%% Jede registrierte Sprache erhält automatisch ihre environments, ihren \c-Befehl,\b-Befehl und ihren \i-Befehl
+%% Damit wird redundante Code-Generierung erspahrt.
+
+%% Enthält lediglich den Namen der entsprechenden Sprache, für convenience :D
+\constructList[,]{RegisteredLanguageNames}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Handling of Number-Highlighting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newif\iflstlastwasacharacter% Will disable numberhl if true
+\lstlastwasacharacterfalse
+% \newif\iflstnumnohlmode% Will prevent h31 <- 3 to highlight as '3' would reset the hl behaviour
+% \lstnumnohlmodefalse
+
+\newcommand\digitstyle{\color{DarkMidnightBlue}}
+% Lilly process Digit
+\newcommand{\lpDigit}[1]
+{\begingroup%
+%\iflstnumnohlmode%
+  %#1\else
+  \iflstlastwasacharacter%\lstnumnohlmodetrue% was char => don't highlight, we won't check for hex right now
+  #1\else%
+    \ifnum\lst@mode=\lst@Pmode\relax% PMode: Not in any special Mode
+    {\digitstyle #1}%
+    \else%
+      #1%
+    \fi\hbox{\relax{}}%
+  \fi%
+  %\fi
+  \endgroup
+}
+
+
+% \newif\iflstinhexmode
+% \lstlastwasacharacterfalse
+
+% Overwrite routines do make em apply to the checks
+\def\lst@ProcessLetter{%
+  \lst@whitespacefalse\lstlastwasacharactertrue\lst@AppendLetter%
+}%
+\def\lst@ProcessOther{%
+  \lst@whitespacefalse\lstlastwasacharacterfalse\lst@AppendOther%
+}%
+\def\lst@whitespacetrue{\lstlastwasacharacterfalse\global\let\lst@ifwhitespace\iftrue}%
+\def\lst@whitespacefalse{\global\let\lst@ifwhitespace\iffalse}%
+
+\def\@nc{\lstlastwasacharacterfalse}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Literates - Routine
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% WS gobble fix for literate replacement  - same code but with switching whitespace-switch to false
+% \def\set@char{}
+% \def\set@hex{}
+% \newif\ifinhexmode
+% \newif\iffirstchar
+% \def\@@crerpl{{ }}
+% \def\@@crehex{{0x}}
+\def\lst@Literate#1#2#3{%
+    \ifx\relax#2\@empty\else%
+        \lst@CArgX #1\relax\lst@CDef%
+            {}%
+            {\let\lst@next\@empty%
+             \lst@ifxliterate%
+                \lst@ifmode \let\lst@next\lst@CArgEmpty \fi%
+             \fi
+             \ifx\lst@next\@empty%
+                 \ifx\lst@OutputBox\@gobble\else%
+                 %\def\@@repl{#2}\typeout{#2}
+                  %\ifx\@@repl\@@crerpl\inhexmodefalse\firstchartrue\else\iffirstchar%
+                  %% start of a word
+                  %\fi\firstcharfalse\fi% is space
+                  %\ifx\@@repl\@@crehex\inhexmodetrue\fi%
+                  %   \ifnum\lst@mode=\lst@Pmode\relax%
+                  %     {\digitstyle #2}
+                  %   \else #2\fi
+                  % \else
+                   \lst@XPrintToken \let\lst@scanmode\lst@scan@m%
+                   \lst@token{#2}\lst@length#3\relax%
+                   \lst@XPrintToken
+                   %\fi%
+                   \lst@whitespacefalse\@nc%
+                 \fi
+                 \let\lst@next\lst@CArgEmptyGobble
+             \fi
+             \lst@next}%
+            \@empty
+        \expandafter\lst@Literate
+    \fi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Literates - Definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Konfigurere Sonderzeichen
+\lstset{literate=%
+  % Format simple chars
+  % {a}{{a\set@char\set@hex}}1 {b}{{b\set@char\set@hex}}1 {c}{{c\set@char\set@hex}}1 {d}{{d\set@char\set@hex}}1 {e}{{e\set@char\set@hex}}1 {f}{{f\set@char\set@hex}}1 {g}{{g\set@char}}1 {h}{{h\set@char}}1 {i}{{i\set@char}}1 {j}{{j\set@char}}1 {k}{{k\set@char}}1 {l}{{l\set@char}}1 {m}{{m\set@char}}1 {n}{{n\set@char}}1 {o}{{o\set@char}}1 {p}{{p\set@char}}1 {q}{{q\set@char}}1 {r}{{r\set@char}}1 {s}{{s\set@char}}1 {t}{{t\set@char}}1 {u}{{u\set@char}}1 {v}{{v\set@char}}1 {w}{{w\set@char}}1 {x}{{x\set@char}}1 {y}{{y\set@char}}1 {z}{{z\set@char}}1 {A}{{A\set@char\set@hex}}1 {B}{{B\set@char\set@hex}}1 {C}{{C\set@char\set@hex}}1 {D}{{D\set@char\set@hex}}1 {E}{{E\set@char\set@hex}}1 {F}{{F\set@char\set@hex}}1 {G}{{G\set@char\set@hex}}1 {H}{{H\set@char\set@hex}}1 {I}{{I\set@char\set@hex}}1 {J}{{J\set@char\set@hex}}1 {K}{{K\set@char\set@hex}}1 {L}{{L\set@char\set@hex}}1 {M}{{M\set@char\set@hex}}1 {N}{{N\set@char\set@hex}}1 {O}{{O\set@char\set@hex}}1 {P}{{P\set@char\set@hex}}1 {Q}{{Q\set@char\set@hex}}1 {R}{{R\set@char\set@hex}}1 {S}{{S\set@char\set@hex}}1 {T}{{T\set@char\set@hex}}1 {U}{{U\set@char\set@hex}}1 {V}{{V\set@char\set@hex}}1 {W}{{W\set@char\set@hex}}1 {X}{{X\set@char\set@hex}}1 {Y}{{Y\set@char\set@hex}}1 {Z}{{Z\set@char\set@hex}}1 {ä}{{äl\set@char}}1 {ö}{{ö\set@char}}1 {ü}{{ü\set@char}}1 {Ä}{{Ä\set@char}}1 {Ö}{{Ö\set@char}}1 {Ü}{{Ü\set@char}}1
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+  {:bs:}{{\color{Orchid}\textbackslash}}1 {:bmath:}{{\color{bondiBlue}\$}}1
+  {:emath:}{{{\color{bondiBlue}\$}}}1 {:dollar:}{{{\color{bondiBlue}\$\normalcolor}}}1%spaces
+  %% brace fix
+  {(}{{(\@nc}}1 {)}{{)\@nc}}1 {:space:}{{{ }}}1 {:ws:}{{{ }}}1 {:cdots:}{{{$\cdots$}}}1 {:cdot:}{{{$\cdot$}}}1 {:ldots:}{{{\ldots}}}1 {:!:}{{{!}}}1
+  {:c:}{{{}}}0 {:star:}{{{*}}}1
+  {:float:}{{{\color{bondiBlue}f\normalcolor}}}1 {:exp:}{{{\color{bondiBlue}e\normalcolor}}}1 {:yields:}{{{$\rightarrow$}}}1%
+  {:lan:}{{{$\langle\,$}}}1 {:ran:}{{{$\,\rangle$}}}1
+  {:bcmd:}{\color{Orchid}\textbackslash}1 {:ecmd:}{\normalcolor}0
+  % {0 }{{{\lpDigit{0} }}}2
+  % {1 }{{{\lpDigit{1} }}}2 {2 }{{{\lpDigit{2} }}}2 {3 }{{{\lpDigit{3 }}}}2
+  % {4 }{{{\lpDigit{4} }}}2 {5 }{{{\lpDigit{5} }}}2 {6 }{{{\lpDigit{6 }}}}2
+  % {7 }{{{\lpDigit{7} }}}2 {8 }{{{\lpDigit{8} }}}2 {9 }{{{\lpDigit{9 }}}}2
+  {0}{{{\lpDigit{0}}}}1
+  {1}{{{\lpDigit{1}}}}1 {2}{{{\lpDigit{2}}}}1 {3}{{{\lpDigit{3}}}}1
+  {4}{{{\lpDigit{4}}}}1 {5}{{{\lpDigit{5}}}}1 {6}{{{\lpDigit{6}}}}1
+  {7}{{{\lpDigit{7}}}}1 {8}{{{\lpDigit{8}}}}1 {9}{{{\lpDigit{9}}}}1
+  {.0}{{{\lpDigit{.0}}}}2
+  {.1}{{{\lpDigit{.1}}}}2 {.2}{{{\lpDigit{.2}}}}2 {.3}{{{\lpDigit{.3}}}}2
+  {.4}{{{\lpDigit{.4}}}}2 {.5}{{{\lpDigit{.5}}}}2 {.6}{{{\lpDigit{.6}}}}2
+  {.7}{{{\lpDigit{.7}}}}2 {.8}{{{\lpDigit{.8}}}}2 {.9}{{{\lpDigit{.9}}}}2
+  %{^}{{{\char`\^}}}1 {+}{{{+}}}1 {-}{{{-}}}1 {*}{{{*}}}1 {=}{{{=}}}1 %{/}{{{/}}}1 % don by other
+  % {+0}{{{\lpDigit{+0}}}}2
+  % {+1}{{{\lpDigit{+1}}}}2 {+2}{{{\lpDigit{+2}}}}2 {+3}{{{\lpDigit{+3}}}}2
+  % {+4}{{{\lpDigit{+4}}}}2 {+5}{{{\lpDigit{+5}}}}2 {+6}{{{\lpDigit{+6}}}}2
+  % {+7}{{{\lpDigit{+7}}}}2 {+8}{{{\lpDigit{+8}}}}2 {+9}{{{\lpDigit{+9}}}}2
+  % { -0}{{{\lpDigit{-0}}}}2
+  % {-1}{{{\lpDigit{-1}}}}2 {-2}{{{\lpDigit{-2}}}}2 {-3}{{{\lpDigit{-3}}}}2
+  % {-4}{{{\lpDigit{-4}}}}2 {-5}{{{\lpDigit{-5}}}}2 {-6}{{{\lpDigit{-6}}}}2
+  % {-7}{{{\lpDigit{-7}}}}2 {-8}{{{\lpDigit{-8}}}}2 {-9}{{{\lpDigit{-9}}}}2
+  % {*1}{{{\lpDigit{*1}}}}2 {*2}{{{\lpDigit{*2}}}}2 {*3}{{{\lpDigit{*3}}}}2
+  % {*4}{{{\lpDigit{*4}}}}2 {*5}{{{\lpDigit{*5}}}}2 {*6}{{{\lpDigit{*6}}}}2
+  % {*7}{{{\lpDigit{*7}}}}2 {*8}{{{\lpDigit{*8}}}}2 {*9}{{{\lpDigit{*9}}}}2
+  % {/1}{{{\lpDigit{/1}}}}2 {/2}{{{\lpDigit{/2}}}}2 {/3}{{{\lpDigit{/3}}}}2
+  % {/4}{{{\lpDigit{/4}}}}2 {/5}{{{\lpDigit{/5}}}}2 {/6}{{{\lpDigit{/6}}}}2
+  % {/7}{{{\lpDigit{/7}}}}2 {/8}{{{\lpDigit{/8}}}}2 {/9}{{{\lpDigit{/9}}}}2
+  % {^1}{{{\lpDigit{\char`\^1}}}}2 {^2}{{{\lpDigit{\char`\^2}}}}2 {^3}{{{\lpDigit{\char`\^3}}}}2
+  % {^4}{{{\lpDigit{\char`\^4}}}}2 {^5}{{{\lpDigit{\char`\^5}}}}2 {^6}{{{\lpDigit{\char`\^6}}}}2
+  % {^7}{{{\lpDigit{\char`\^7}}}}2 {^8}{{{\lpDigit{\char`\^8}}}}2 {^9}{{{\lpDigit{\char`\^9}}}}2
+  %
+  %{\ }{{ }}{1} %{0x}{{{0x}}}2
+} %Damit die Umlaute in lstlistings auch korrekt formatiert werden.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Core-Commands for Highlighting of Inline-Snippes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Grundlegender Befehl zum Schreiben von Code innerhalb einer zeile, löst nicht die Problematiken wie Sonderzeichen, aber mit irgendwas muss man arbeiten können
+\DeclareRobustCommand{\LILLYxwriteLst}[2][]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite,fill=MudWhite, centered]{\,\vphantom{I}\lstinline[#1]!#2!\,};}}
+
+\gdef\LILLYxLSTINLINE#1#2{%
+  \begingroup\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\noexpand\baselineskip, inner xsep=2.4pt, inner ysep=2.1pt,draw, %rounded corners=4pt,
+  lstmainbordercol, fill=lstmainbackcol, centered]{\vphantom{I}\lstinline[#1]`#2`};}\endgroup%
+}
+\gdef\LILLYxLSTBLANKINLINE#1#2{%
+  \begingroup\,\vphantom{I}\lstinline[#1]`#2`\,\endgroup%
+}
+
+\gdef\LILLYxLSTINPL#1#2{%
+  \begingroup\lstinputlisting[#1]{#2}\endgroup%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Listing - Command specific patches
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\lst@PlaceNumber{\makebox[\dimexpr 1em+\lst@numbersep][l]{\normalfont
+  \lst@numberstyle{\thelstnumber}}}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Utility Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\LillyXlstXsloppy{\makeatletter%
+  \tolerance 9999%
+  \emergencystretch 3em%
+  \hfuzz .5cm%
+  \vfuzz\hfuzz\makeatother}%
+
+\def\LillyXlstXfussy{\makeatletter%
+  \emergencystretch 0em
+  \tolerance 200%
+  \hfuzz .1pt%
+  \vfuzz\hfuzz\makeatother}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definitions, could be done via pgfkeys?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\LILLYxLISTINGSxFONTSIZE{\linespread{1}}
+\def\LILLYxLISTINGSxNUMxFONTSIZE{\small}
+
+\lstdefinestyle{nonum}{
+    xleftmargin=3pt,xrightmargin=3pt,%will fix some overhead :D
+    numbers=none,numbersep=0pt,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Environments - always wannahaves
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstnewenvironment{lstplain}[1][]
+  {\def\lillyst@backcol{white}\lstset{xleftmargin=0pt,xrightmargin=0pt,%
+  numbers=none,numbersep=0pt,frame=none,%
+  rulecolor={},backgroundcolor={} %
+  ,#1}}
+{\def\lilly@lst@backcol{MudWhite}}
+
+\lstnewenvironment{lstnonum}[1][]
+  {\lstset{style=nonum%
+  ,#1}}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Package-Control
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Es ist möglich über diesen Befehl das zu ladende Sprachpaket zu definieren
+\providecommand{\LILLYxListingsxPACK}{MAIN}
+
+%% Lädt ein entsprechendes Sprachpaket
+\input{\LILLYxPATHxLISTINGS/Packages/_LILLY_PACK_\LILLYxListingsxPACK}
+
+
+% Will be done by \RegisterLanguage :D
+% TODO => CHANGE TO REGISTER LANGUAGE :D
+
+% \getRegisteredLanguages%
+% \typeout{Start Language Registration}
+% \foreach \clang/\llang in \lillyxlist {%
+%   \ifthenelse{\equal{\clang}{}}{}{
+%   \ifthenelse{\equal{\llang}{}}{}{
+%   \long\xdef\lfullexpand{\llang}
+%   \long\xdef\cfullexpand{\clang}
+
+%   \expandafter\xdef\csname b\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTBLANKINLINE{language=\llang}{##1}}
+%   \expandafter\robustify\csname b\clang\endcsname
+%   \expandafter\xdef\csname c\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINLINE{language=\llang}{##1}}
+%   \expandafter\robustify\csname c\clang\endcsname
+%   \expandafter\xdef\csname i\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINPL{language=\llang}{##1}}
+%   \expandafter\robustify\csname i\clang\endcsname
+% %
+%   %% For more convenient Language-Control extract, there will be a SingleList
+%   \pushList{RegisteredLanguageNames}{\clang}
+% %
+%   %
+%   % \lstnewenvironment{latex}[1][]
+%   %  {\lstset{language=lLatex,#1}}
+%   %  {}
+%   %\global\expandafter\expandafter\lstnewenvironment{\cfullexpand}[1][]{\expandafter\lstset{language=\lfullexpand,##1}}
+
+%   %%\DeclareRobustCommand{\clatex}[1]{\LILLYxwriteLst[language=lLatex]{#1}}
+%   %% clatex
+%   %% extraction doesn't yield the correct language result
+%   % \expandafter\gdef\csname c\clang\endcsname##1{\expandafter\LILLYxwriteLst[language={\lfullexpand}]{##1}}
+%   %% ilatex:
+%   % \expandafter\gdef\csname i\clang\endcsname##1{\expandafter\lstinputlisting[language=\lfullexpand]{##1}}
+
+%   %% run command?
+
+%   \typeout{Registered: \clang (\llang)}
+% }}
+% }
+
+\storeRegisteredLanguages{LISTxRegisteredLanguages}
+\storeRegisteredLanguageNames{LISTxRegisteredLanguageNames}
+%% erlaubt es Den inhalt eines Befehls zu setzen
+\newcommand{\lstshowcmd}[2][]{\edef\@tmp@@b{\noexpand\lstinline[#1]!#2!}\@tmp@@b}
+
+%%Embetter Break Control:
+\LillyXlstXsloppy
+
+
+\newcommand{\isLanguageLoaded}[1]{%
+  \containsList{RegisteredLanguages}{#1}%
+}%
+
+% for more convenience
+\newcommand{\isLanguageNameLoaded}[1]{%
+  \containsList{RegisteredLanguageNames}{#1}%
+}%
+
+
+\RequirePackage{LILLYxLISTINGSxHL}
+
+%% \RequirePackage{LILLYxLISTINGSxLINEBGRD}
+\def\HLError#1{% sloppy
+  % dummy
+}
+
+\RequirePackage{LILLYxRUNTIMES}
+
+\endinput

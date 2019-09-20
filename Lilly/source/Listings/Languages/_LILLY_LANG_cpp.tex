@@ -1,0 +1,30 @@
+\lstdefinelanguage{lCpp}{
+    language=C++,
+    otherkeywords = {;,<<,>>,2>,<,>,|,std::chrono::,std::},
+    alsoletter={-|~{,}_\#},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[il][{\lstHLError}]{|err|:},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+    moredelim=[is][{}]{|plain|}{|plain|},
+    %comment=[l]{\#},
+    comment=[l]{//},
+    sensitive=false,
+    morekeywords = {},
+    morekeywords = [2]{Pos},
+    morekeywords = [3]{cout,cin,endl,flush,ssize_t,size_t,uint8_t,uint16_t,int8_t,int16_t,int_least8_t,int_fast8_t},
+    morekeywords = [4]{moveForward, main, printf, sin, cos,strlen,copy_to_user,file_operations,strcmp},
+    morekeywords = [5]{iostream, unistd.h},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]',
+}
+
+\RegisterLanguage{cpp}{lCpp}
+
+
+% \lstnewenvironment{cpp}[1][]
+%   {\lstset{language=lCpp,#1}}
+% {}
+
+
+% \pushList{RegisteredLanguages}{cpp/lCpp}

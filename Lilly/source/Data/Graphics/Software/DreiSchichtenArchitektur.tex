@@ -1,0 +1,14 @@
+% Make dynamic, load once on need and then use special named cmd
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{%
+\begin{tikzternal}
+    \draw[Azure, fill=Azure, fill opacity=0.1] (0,-1.5) rectangle ++(3,1) node[midway,centered,Azure,opacity=1] {Logik};
+    \draw[Crimson, fill=Crimson, fill opacity=0.1] (0,-3) rectangle ++(3,1) node[midway,centered,Crimson,opacity=1] {Datenbank};
+    \draw[AppleGreen, fill=AppleGreen, fill opacity=0.1] (0,0) rectangle ++(3,1) node[midway,centered,AppleGreen,opacity=1] {GUI};
+    \begin{scope}[every path/.style={-latex}]
+        \foreach \y in {0,-1.5}{
+            \draw (0.5,\y) -- ++(0,-0.5);
+            \draw (2.5,\y-0.5) -- ++(0,0.5);
+        }
+    \end{scope}
+\end{tikzternal}
+}

@@ -1,0 +1,86 @@
+\documentclass[Paper]{Lilly}
+
+\usepackage{blindtext} % Naja... warum wohl?
+
+\begin{filecontents}{books.bib}
+@book{Buch,
+    author      = { Sihler, F },
+    title       = { Toiletten und ihre tiefgründige Bedeutung für die Gesellschaft },
+    year        = { 2019 },
+    address     = { Ulm, Deutschland }
+}
+\end{filecontents}
+
+\def\TITLE{Klopapier, (nur) ein Paper?}
+\def\BRIEF{Informatik Student,\\Universit\"{a}t Ulm -- \heute}
+\def\ABSTRACT{In dieser Ausarbeitung werden verschiedene Toilettenpapiere auf- und gegeneinander abgewogen. Es wird sich modernster Verfahren der Klopapieranalysie bedient, was sich im Kontext der unabstreibtaren Relevanz dieses Themas auch nicht vermeiden lässt.}
+
+\begin{document}
+
+\printHeader
+
+
+\section{Motivation}
+\intro{Dieser erste Abschnitt zeigt nicht nur den Entstehungsgrund auf, sondern geht auch auf das Ziel der Ausarbeitung ein.}
+\subsection{Das Warum}
+Diese Ausarbeitung wurde im Anschluss des Buches \cite{Buch} getätigt und versucht die hier fundierten Thesen weiter auszubauen.
+
+\subsection{Das Ziel}
+Am Ende soll dem Leser ein tiefgreifender Ein-, Aus- und Durchblick vermittelt worden sein, was es mit dem Klopapier denn so alles auf sich hat und ob es wirklich nur ein Paper ist, wie jedes andere auch\ldots
+
+\section{Grundlagen}
+\intro{Dieser Abschnitt bereitet die mathematischen Grundlagen auf und erklärt einige Bezeichner, die in den folgenden Abschnitten von Bedeutung sind.}
+\subsection{Bezeichner}
+Auch wenn einige Bezeichner redundant erklärt werden, hier eine Auflistung der wichtigsten Bezeichner:
+\begin{table}[H]
+  \centering\begin{tabular}{^c^l+}
+    \toprule
+        \headerrow Bezeichner & Bedeutung\\
+    \midrule
+      \(T\) & Menge von Toiletten\\
+      \(D\) & Menge aller Datenpunkte \(d\)\\
+      \(G\) & Menge aller Toilettengänger\\
+      \(dist(a,b)\) & Abstand zweier Toiletten\\
+    \bottomrule
+  \end{tabular}\par
+  \caption{Verwendete Bezeichner}
+\end{table}
+\blindmathtrue
+\blindtext
+
+\subsection{Wichtig!}
+\blindtext
+
+\section{Kloanalyse}
+\intro{Dieser Abschnitt behandelt einfache Algorithmen zur Kloanalyse und vergleicht ihre Vor- und Nachteile sowie eine exemplarische Präsentation in Python (2.7.16) mithilfe von \T{Scikit-Learn} (0.20.2) (\url{https://scikit-learn.org/stable/index.html}).}
+
+\subsection{Der Klospüler}
+Erst ein Algorithmus der relativ einfach zu verstehen ist:
+\begin{python}
+def spuelen():
+    print "swuuuush"
+
+spuelen()
+\end{python}
+\blindtext
+
+\subsection{Die Klotarantel}
+\blindtext
+
+\subsection{Fazit}
+Hier noch ein tolles Fazit:
+
+\getGraphics[7cm]{Automat/AutomatDFA}
+
+\Blindtext
+
+
+\medskip\startAppendix
+% \subsection{Abbildungsverzeichnis}
+% \listoffigures
+\subsection{Tabellenverzeichnis}
+\listoftables
+\subsection{Sonstiges}
+\Blindtext
+
+\end{document}

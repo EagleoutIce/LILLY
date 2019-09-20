@@ -1,0 +1,15 @@
+\gdef\GRAPHICSxALU{%
+\begin{tikzternal}[scale=0.75,every node/.style={transform shape}]
+        \draw[] (0,0) -- ++(3,0) -- ++(-0.5,-1) -- ++(-2,0) -- cycle;
+        \draw (0.7,-0.2) rectangle ++ (1.6,-0.6);
+        \draw [-latex] (0.25,0.75) -- ++(0,-0.75); \draw [-latex] (2.75,0.75) -- ++(0,-0.75);
+        \draw (0,1.25) rectangle ++(0.5,-0.5) node[midway,centered] {\(\epsilon\)};
+        \draw (2.5,1.25) rectangle ++(0.5,-0.5) node[midway,centered] {\(\epsilon\)};
+
+        \draw (-1,-0.25) rectangle ++(0.5,-0.5) node[midway,centered] {\(\epsilon\)};
+        \draw[-latex] (-0.5,-0.5) -- ++(1.75,0);
+        \draw[-latex] (1.5,-1) -- ++(0,-0.5);
+        \draw (1.25,-1.5) rectangle ++(0.5,-0.5) node[midway,centered] {A};
+    \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxALU} 

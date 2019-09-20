@@ -1,0 +1,52 @@
+
+%% Diese Datei liefert einen Befehl mit folgenden Eigenschaften:
+% Laden einer Shell-Datei
+% Ausführen dieser Shell-Datei mit einem angebenen Interpreter
+% Evaluation zu Ergebnis der Ausführung
+
+\lstdefinestyle{BashOutput}{
+  basicstyle=\small\LILLYxlstTypeWriter,
+  frame=tblr,
+  numbers=none,
+  frame=single,
+  xleftmargin=3pt,
+  xrightmargin=3pt,
+  backgroundcolor=\color{lstmainbackcol},
+  rulecolor=\color{lstmainbordercol}
+}
+
+\gdef\rbash{\@ifnextchar[{\rbash@opt}{\rbash@noopt}}
+\gdef\rbash@opt[#1]#2{
+  \cbash{#2}~#1%% TODO: configure layout with #1
+  \getBashFileExecutionOutput{#2}
+}
+\gdef\rbash@noopt#1{\cbash{#1}\,:\getBashFileExecutionOutput{#1}}
+
+
+%% oldies are goldies :D
+\ifx\LILLYxCMD\undefined
+%% {file} (coming soon: [input])
+\gdef\getBashFileExecutionOutput#1{%
+\immediate\write18{ #1 > \jobname.txt }
+\lstinputlisting[style=BashOutput,language=lBash]{\jobname.txt}
+\immediate\write18{ rm \jobname.txt }
+}
+\else
+\gdef\getBashFileExecutionOutput#1{Direkte Befehlsevaluation deaktiviert!}
+\fi
+
+\gdef\previewBash#1{%
+\begingroup
+\colorbox{MudWhite!93!black}{\lstinline[language=lBash]{$ #1}}
+\getBashFileExecutionOutput{#1}
+\endgroup
+}
+
+
+
+\NewDocumentCommand{\previewBashFile}{ m } {
+\begingroup
+\lstinputlisting[language=lBash, caption={Inhalt der Datei #1}]{#1}
+\endgroup
+\previewBash{bash #1}
+}

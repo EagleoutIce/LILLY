@@ -1,25 +1,22 @@
-Jake-compile vollständig
+SO MANY CHANGES DOT KOMM
 
-============================================================================================
+================================================================
 :EagleoutIce for Lilly
-============================================================================================
-
-DURCH ANGABE EINER DATEI ERSTELLT JAKE NUN KEIN MAKEFILE MEHR. UM DAS ALTER VERHALTEN ZU ERZEUGEN GENÜGT '-mk-use' ALLERDINGS UNTERSTÜTZT DIESE VARIANTE KEINE EXPANDABLES (WIE @[SELTEXF]).
-Einziger bisher erkannter Nachteil der Jake-version: Der Konsolen-log im multithreaded output ist... Überfüllt ^^
-
-
-JAKE:
-
-    + Es sind nun auch Klammern in Argumenten erlaubt :D
-
-    + Mit 'debug-filter' lässt sich ein unter umständen verboser Debug Filtern
-      Natürlich betrifft dieser Filter lediglich die Ausgabe in der Befehlszeile
-      Dies wird von den Global-Konfig parsern allderings noch ignoriert um
-      Fehler wie zum Beispiel ein falsch geladener Filter abzufangen
-
-    + Jake-compile funktioniert nun grundlegend
+================================================================
 
 LILLY:
 
-============================================================================================
+    + Lots of New Stuff, and fixes and.. well.. see yourself :D
+
+JAKE:
+
+    + somma new schduff
+
+    ! Some Fixes
+
+DOKUMENTATION:
+
+    + HUGE Update :D
+
+================================================================
 :

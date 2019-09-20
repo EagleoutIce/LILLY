@@ -1,16 +1,16 @@
 %%% Diese Datei enthält alle notwendigen Definitionen
 
-\providecommand{\PROFESSOR}{Dr. Jan-Willem Liebezeit}
+\def\PROFESSOR{Dr. Jan-Willem Liebezeit}
 
-\providecommand{\UEBUNGSLEITER}{Marcus Müller}
-\providecommand{\TUTOR}{Unbekannt}
+\def\UEBUNGSLEITER{Marcus Müller}
+\def\TUTOR{Unbekannt}
 
-\providecommand{\TITLE}{Analysis 1 für Inf. und Ing.}
-\providecommand{\SUBTITLE}{\PROFESSOR}
+\def\TITLE{Analysis 1 für Inf. und Ing.}
+\def\SUBTITLE{\PROFESSOR}
 
 
-\providecommand{\UEBUNGSHEADER}{\TITLE\\Übungsblatt \LILLY@n }
-\providecommand{\FULLTITLE}{ \TITLE \\\fontsize{18pt}{16pt}\selectfont{\SUBTITLE} }
+\def\UEBUNGSHEADER{\TITLE\\Übungsblatt \LILLY@n }
+\def\FULLTITLE{ \TITLE \\\fontsize{18pt}{16pt}\selectfont{\SUBTITLE} }
 
 \setlength{\itemsep}{0.40\baselineskip}
 
@@ -19,11 +19,11 @@
 
 \DeclareRobustCommand{\POLITEINTRO}{\setcounter{TOPICS}{-1}
 \TOP[disc]{Disclaimer}{Worte des Autors}
-Offensichtlich erhebt dieses Dokument keinen Anspruch auf vollständige Richtigkeit. 
-Es wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien erstellt und ist eher als unverbindliche Hilfe zu verstehen. 
-Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesungsvorlage dort durchbrochen wurde, wo eine andere Gruppierung angenehmer oder passender erschien. 
+Offensichtlich erhebt dieses Dokument keinen Anspruch auf vollständige Richtigkeit.
+Es wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien erstellt und ist eher als unverbindliche Hilfe zu verstehen.
+Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesungsvorlage dort durchbrochen wurde, wo eine andere Gruppierung angenehmer oder passender erschien.
 Bei Anregungen oder Verbesserungsvorschlägen einfach melden!\\
-Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und basieren zum Teil auf denen des Vorlesungsmaterials. Das Layout wurde Florian Sihlers' Lilly-Framework realisiert (\url{https://github.com/EagleoutIce/LILLY}).{}\hfill {\tiny Florian Sihler}\\\begin{center}
+Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und basieren zum Teil auf denen des Vorlesungsmaterials. Das Layout wurde mithilfe von Florian Sihlers' Lilly-Framework realisiert (\url{https://github.com/EagleoutIce/LILLY}).{}\hfill {\tiny Florian Sihler}\\\begin{center}
     \say{Viel Spaß beim Lernen!}
 \end{center}
 }
@@ -31,17 +31,16 @@ Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und ba
 %% LAYOUT CONTROL
 
 
-\providecommand\LILLYxTITLExOffset{10.3cm}
-
-\providecommand\LILLYxBOXxDefinitionxLock{section}
-\providecommand\LILLYxBOXxSatzxLock{section}
-
-\providecommand\LILLYxBOXxBemerkungxBox{FALSE}
-\providecommand\LILLYxBOXxBeispielxBox{FALSE}
-\providecommand\LILLYxBOXxBeweisxBox{FALSE}
-\providecommand{\LILLYxUBxSHOWTUTOR}{FALSE}
+\providedef{LILLYxColorxTITLExOffset}{10.3cm}
+\providedef{LILLYxBOXxDefinitionxLock}{section}
+\providedef{LILLYxBOXxSatzxLock}{section}
+\providedef{LILLYxBOXxBemerkungxBox}{FALSE}
+\providedef{LILLYxBOXxBeispielxBox}{FALSE}
+\providedef{LILLYxBOXxBeweisxBox}{FALSE}
+\providedef{LILLYxUBxSHOWTUTOR}{FALSE}
 
 %%NEW TITLE
 
 \LILLYcommand{\LILLYxFACULTY}{\LILLYxFACULTYxMATHE}
 \LILLYcommand{\LILLYxFACULTYxCOLOR}{FacultyMathexColor}
+
