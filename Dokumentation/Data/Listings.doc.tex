@@ -25,7 +25,7 @@ Hier wird weiter von der Bibliothek \LILLYxNOTExLibrary{LILLYxLISTINGSxLANGUAGEx
     LILLY verwendet nicht das normale \verb|listings|-Paket, sondern greift auf das erweiterte Paket \verb|listingsutf8| zu, sofern dieses Vorhanden ist. Es werden weiter Definitionen für alle Umlaute gesetzt, sowie eine Reihe an weiteren Ersetzungsregeln. Darunter fällt übrigens auch das Markieren von Zahlen. \T{minted} wird nicht verwendet um die Portablilität zu gewährleisten. Allerdings erlaubt \blankcmd{RegisterLanguage} das Verwenden von \T{minted}.
 \end{bemerkung}
 Um dynamisch zu bleiben bindet LILLY nicht einfach verschiedene Stile ein, sondern Dateien, welche dann für sich definieren, welche Stile und Sprachen zusätzlich zur Verfügung stehen. %\marginpar{\tiny Bisher ist das Einbinden neuer Stile noch recht starr, da der Dateipfad bis auf das Suffix vorgegeben ist. Dies sollte geändert werden}\par\reversemarginpar
-Mithilfe von \blankcmd{LILLYxListingsxLang} kann man das jeweilige Paket auswählen. Dieses Paket wird über den klassischen \blankcmd{input\{\}}-Befehl eingebunden und zwar über folgende Anweisung:
+Mithilfe von \blankcmd{LILLYxListingsxLang} kann man das jeweilige Paket auswählen. Dieses Paket wird über den klassischen \T{\blankcmd{input}\{\}}-Befehl eingebunden und zwar über folgende Anweisung:
 {\small\begin{latex*}
 \input{\LILLYxPATHxLISTINGS/Packages/_LILLY_PACK_!**!\LILLYxListingsxPACK}
 \end{latex*}}
@@ -225,10 +225,15 @@ public static void main(String[] args) {
 }
 \end{lstnonum}
 
-Die allgemeine TypeWriter-Schriftart wird übgrigens mithilfe von \blankcmd{LILLYxlstTypeWriter} auf \T{AnonymousPro} gesetzt (\textit{Sie wird auch hier für die Dokumentation verwendet}).
+\presentCommand[1.0.0]{LILLYxlstTypeWriter}
+Die allgemeine TypeWriter-Schriftart wird mithilfe von \blankcmd{LILLYxlstTypeWriter} auf \T{AnonymousPro} gesetzt (\textit{Sie wird auch hier für die Dokumentation verwendet}).
 
-% Um sich jeglicher Formatierung eines Pakets zu entziehen definiert \LILLYxNOTExLibrary{LILLYxLISTINGS} noch zwei weitere Umgebungen:
-% \presentEnvironment[2.0.0]{nstabbing}[\cmdlist \blankenv{centered}]
+%
+%
+%
+
+\presentCommand[2.0.0]{LILLYxLISTINGSxFONTSIZE}[\cmdlist\anothercmd[2.0.0]{LILLYxLISTINGSxNUMxFONTSIZE}]
+Setzen entsprechend die Schriftdaten für den Text und die Schriftdaten für die Zeilennummern in einer von \LILLYxNOTExLibrary{LILLYxLISTINGS}-Umgebung.
 
 \subsection{Das MAIN-Paket}
 Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/Packages/\_LILLY\_PACK\_MAIN}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen.\medskip\newline
@@ -236,7 +241,7 @@ Neben den geladenen Sprachen, liefert dieses Paket die Stildefinitionen die bere
 %
 %
 %
-\presentCommand[2.0.0]{lstcomment}[\manArg{text}\cmdlist \blankcmd{lststring}\manArg{text}\cmdlist \blankcmd{lstnumber}\manArg{text}]
+\presentCommand[2.0.0]{lstcomment}[\manArg{text}\cmdlist \anothercmd[2.0.0]{lststring}\manArg{text}\cmdlist \anothercmd[2.0.0]{lstnumber}\manArg{text}]
 Setzt den Text so wie der Main-Stil den Code als Kommentar, String oder Zahl setzen würde. So kann auch durch \T{!* ... *!} gesetzter Code korrekt formatiert werden:
 \begin{latex}
 \begin{java}
@@ -260,7 +265,7 @@ Ergibt\footnote{Hier werden die Befehle nicht richtig markiert, da zum veranscha
 %
 %
 %
-\presentCommand[2.0.0]{lstkwone}[\manArg{text}\cmdlist \blankcmd{lstkwtwo}\manArg{text}\cmdlist\ldots \cmdlist \blankcmd{lstkwsix}\manArg{text}]
+\presentCommand[2.0.0]{lstkwone}[\manArg{text}\cmdlist \anothercmd[2.0.0]{lstkwtwo}\manArg{text}\cmdlist\ldots \cmdlist \anothercmd[2.0.0]{lstkwsix}\manArg{text}]\addcmd[2.0.0]{lstkwthree}\addcmd[2.0.0]{lstkwfour}\addcmd[2.0.0]{lstkwfive}\addcmd[2.0.0]{lstkwsix}
 Setzt den Text wie das enstprechende Keyword-Level:
 \begin{latex}
 \begin{java}
@@ -296,7 +301,7 @@ Dieses Paket wurde vor allem im Rahmen von \gdra erstellt und bindet das Paket \
 %
 %
 
-\presentCommand{gitRAW}[\cmdlist \blankcmd{git}\cmdold]
+\presentCommand{gitRAW}[\cmdlist \anothercmd[1.0.0]{git}\cmdold]
 Fügen mithilfe von FontAwesome ein Github Symbol ein, welches auf ein Github-Repository verweist, indem sich alle in \gdra verwendeten Codes befinden (\url{https://www.github.com/EagleoutIce/MIPS_UniUlm_Examples/}: \git). Ursprünglich waren diese Definitionen nur für \gdra gedacht und sollten auch schleunigst wieder dorthin verschwinden (TODO!)!
 
 Es werden einige weitere Stile definiert:
@@ -486,14 +491,14 @@ Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kan
 Die Standartdefinition dieses Befehls lautet:
 \begin{latex}[morekeywords={[5]{\\LillyNewLstEnvironPresent,\\presentlst,\\endpresentlst}}]
 \def!**!\LillyNewLstEnvironPresent!**!#1#2#3#4#5{%
-    \expandafter!**!\xdef!**!\csname#1!**!\endcsname{\noexpand!**!\leavevmode!**!\noexpand!**!\presentlst{#5}}
+    \expandafter!**!\xdef!**!\csname!**!#1!**!\endcsname{\noexpand!**!\leavevmode!**!\noexpand!**!\presentlst{#5}}
     \expandafter!**!\xdef!**!\csname end#1!**!\endcsname{\noexpand!**!\endpresentlst}
 }
 \end{latex}
 %
 %
 %
-\presentEnvironment[2.0.0]{presentlst}[\optArg{lst-args}\manArg{language}\cmdlist\secline\blankenv{plainlst}\optArg{lst-args}\manArg{language}\cmdlist\secline\blankenv{defaultlst}\optArg{lst-args}\manArg{language}]
+\presentEnvironment[2.0.0]{presentlst}[\optArg{lst-args}\optArg{tcb-args}\manArg{language}\cmdlist\secline\anotherenv[2.0.0]{plainlst}\optArg{lst-args}\optArg{tcb-args}\manArg{language}\cmdlist\secline\anotherenv[2.0.0]{defaultlst}\optArg{lst-args}\optArg{tcb-args}\manArg{language}]
 Liefert die Listings-Umgebungen jeweils als \T{tcblisting}. Beispiel:
 \begin{latex}[morekeywords={[3]{plainlst,defaultlst}}]
 \begin{defaultlst}{lJava}
@@ -562,22 +567,6 @@ Ergibt:
 
 Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/LILLYxLISTINGSxADVANCED}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGSxADVANCED} geladen.
 
-\presentEnvironment[2.0.0]{presentlst}[\optArg{tcbaddons}\manArg{language}]
-Setzt Quellcode in einem modernen Design:
-\begin{latex}
-\begin{presentlst}{lJava}
-public static void main(String[] args) {
-    System.out.println("Hallo Welt");
-}
-\end{presentlst}
-\end{latex}
-Ergibt:
-\begin{presentlst}{lJava}
-public static void main(String[] args) {
-    System.out.println("Hallo Welt");
-}
-\end{presentlst}
-
 \presentCommand[2.0.0]{p<lang>}[\manArg{Code}]
 Setzt Analog zu \blankcmd{c<lang>} den Code in einer Zeile im entsprechend Design. Hier allerdings ebenfalls das neue, modernere Design:
 \begin{latex}
@@ -634,8 +623,8 @@ Führt den übergebenen Code in der jeweiligen Runtime aus und liefert das Ergeb
 \presentCommand[2.0.0]{isRuntimeLoaded}[\manArg{runtimeName}]
 Testet analog zu \jmark[\blankcmd{isLanguageNameLoaded}]{mrk:ilnl} ob eine entsprechende Runtime geladen ist:
 \begin{latex}
-\isRuntimeLoaded{bash}  % :yields: TRUE
-\isRuntimeLoaded{waffel} % :yields: FALSE
+\isRuntimeLoaded{bash}  % :yields: !*\lstcomment{\isRuntimeLoaded{bash}}*!
+\isRuntimeLoaded{waffel} % :yields: !*\lstcomment{\isRuntimeLoaded{waffel}}*!
 \end{latex}
 % Won't use inline as this breaks color highlight :D
 %

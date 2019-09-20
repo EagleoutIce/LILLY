@@ -25,20 +25,20 @@
 \tikzset{
   dirtree/.style={
     growth function=\dirtree@growth,
-    every node/.style={anchor=north,font=\LILLYxlstTypeWriter,rectangle,draw,rounded corners=4pt,inner sep=3pt, minimum height=0.65cm, minimum width=2em,transform shape}, %% 3em
+    every node/.style={anchor=north,font=\LILLYxlstTypeWriter,rectangle,draw,rounded corners=2.75pt,inner sep=3pt, minimum height=0.65cm, minimum width=2em, align=center,transform shape}, %% 3em
     every child node/.style={anchor=west},
     edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tikzchildanchor)}
   }
 }
 
 \newenvironment{directory}[1][]{
-    \begin{tikzpicture}[dirtree, #1]        
+    \begin{tikzpicture}[dirtree, #1]
     }{;\end{tikzpicture}}
 
 
 
 
-% %% currently based on 
+% %% currently based on
 % % https://tex.stackexchange.com/questions/5073/making-a-simple-directory-tree#270761
 % \RequirePackage{forest}
 
@@ -49,7 +49,7 @@
 % \tikzset{
 %   folder/.pic={
 %     \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
-%       (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);  
+%       (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);
 %     \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
 %       (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
 %   }
@@ -77,5 +77,5 @@
 %       },
 %       fit=band,
 %       before computing xy={l=15pt},
-%     }  
+%     }
 % }{\end{forest}}

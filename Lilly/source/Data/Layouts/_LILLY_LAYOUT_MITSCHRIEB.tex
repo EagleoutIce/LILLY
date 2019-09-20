@@ -9,6 +9,10 @@
                     {Fuer die genaue identifikation der Seite noetig!}
                     {}{} %% keine Argumente
 
+%% https://ctan.org/pkg/wasysym
+\LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}%% Package, Info
+                    {Sonst geht halt errorEmblem nicht xD}
+                    {}{nointegrals}{\let\wasysymLightning\lightning}%% otherwise this would collide with the amssymb :D
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % General and Layoutkonfiguration                %
@@ -51,7 +55,7 @@
         {\defChapter{#3}\def\xchapname{#3}}% use same
         {\defChapter[{#2}]{#3}\def\xchapname{#2}}%
         \addcontentsline{SATZE}{chapter}{\xchapname}\addcontentsline{ZSM}{chapter}{\xchapname}\addcontentsline{UB}{chapter}{\xchapname}%
-        \addcontentsline{LEMME}{chapter}{\xchapname}\renewcommand{\leftmark}{{#2}}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}%
+        \addcontentsline{LEMME}{chapter}{\xchapname}\renewcommand{\leftmark}{\xchapname}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}%
     }%
 }
 
@@ -97,7 +101,7 @@
         \rohead{\heute}
         %\lofoot{\tiny{{\rightmark} \(\rangle\){\leftmark}}}
         \ifx\LILLYxFOOTERxBUTTONS\true
-            \rofoot{\raisebox{0.75pt}{\eXButton{Find}{\tiny \faSearch} \text{ } \eXButton{GoBack}{\tiny \faUndo} \text{ } \eXButton{GoForward}{\tiny \faRepeat}\text{ } \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{0.75pt}{\eXButton{NextPage}{\(\RHD\)}}}
+            \rofoot{\raisebox{0.75pt}{\eXButton{Find}{\tiny \faSearch} ~ \eXButton{GoBack}{\tiny \faUndo} ~ \eXButton{GoForward}{\tiny \faRepeat}~ \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{0.75pt}{\eXButton{NextPage}{\(\RHD\)}}}
         \else
             \rofoot{\thepage}
         \fi
@@ -106,17 +110,25 @@
 
 %\expandafter\expandafter\expandafter\widthof{\csname the#1 \endcsname}
 \makeatletter
+% As considered by the impracicability of the margin-layout this is no the use old and can be controlled by the if:
+\newif\iflilly@mitschrieb@sectionlines@useold@
+\lilly@mitschrieb@sectionlines@useold@false
 \renewcommand\sectionlinesformat[4]{%
-    \phantomsection%%
-    \protect\if@twoside%%% e.g. LILLYxMODEXPRINT
-    \strictpagecheck\checkoddpage\ifoddpage%\protect\ifodd\c@page%% oddpage -> rSide
-    {#4\hfill\makebox[0pt][l]{\smaller\hspace{.75\marginparsep}#3}}%
+    \iflilly@mitschrieb@sectionlines@useold@%
+        \phantomsection%%
+        \protect\if@twoside%%% e.g. LILLYxMODEXPRINT
+        \strictpagecheck\checkoddpage\ifoddpage%\protect\ifodd\c@page%% oddpage -> rSide
+        {#4\hfill\makebox[0pt][l]{\smaller\hspace{.75\marginparsep}#3}}%
+        \else%
+        {\makebox[0pt][r]{\smaller#3\hspace{\marginparsep}}#4}%
+        \fi%
+        \else %% is oneside
+        {\makebox[0pt][r]{\textcolor{\LILLYxColorxTITLExCOLOR}{#3}\hspace{\marginparsep}}#4}%
+        \fi%
     \else%
-    {\makebox[0pt][r]{\smaller#3\hspace{\marginparsep}}#4}%
-    \fi%
-    \else %% is oneside
-    {\makebox[0pt][r]{\textcolor{\LILLYxColorxTITLExCOLOR}{#3}\hspace{\marginparsep}}#4}%
-    \fi%
+	    \phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
+	    {{\smaller #3} #4}%
+    \fi
 }
 
 \renewcommand{\@seccntformat}[1]{\textcolor{\LILLYxColorxTITLExCOLOR}{\csname the#1\endcsname}}

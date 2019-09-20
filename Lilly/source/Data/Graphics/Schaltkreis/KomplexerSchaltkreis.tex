@@ -40,7 +40,7 @@
         \foreach \a in {0,1}{
             \draw[thick] (\x*1.2+1.2,-1.2*\x-0.3-0.6*\a) -- (6.05,-1.2*\x-0.3-0.6*\a);
             \bigRing{(\x*1.2+1.2,-1.2*\x-0.3-0.6*\a)};
-            
+
             \draw[thick] (\x*1.2+1.8,-1.2*\x-1.5-0.6*\a) -- (6.05,-1.2*\x-1.5-0.6*\a);
             \bigRing{(\x*1.2+1.8,-1.2*\x-1.5-0.6*\a)};
         }
@@ -124,13 +124,13 @@
     \bigCRing[RoyalBlue]{(8.75,-1.95)}; \bigCRing[RoyalBlue]{(8.75,-5.549)};
     \bigCRing[CJ]{(8.4,-3.75)};
     \bigCRing[CK]{(8.15,-3.1495)}; \bigCRing[CK]{(8.15,-4.949)};
-    \bigCRing[CL]{(7.9,-3.1495)}; \bigCRing[CL]{(7.65,-4.35)}; 
-    \bigCRing[CM]{(7.45,-3.1495)}; \bigCRing[CM]{(9.9,-5.549)}; 
+    \bigCRing[CL]{(7.9,-3.1495)}; \bigCRing[CL]{(7.65,-4.35)};
+    \bigCRing[CM]{(7.45,-3.1495)}; \bigCRing[CM]{(9.9,-5.549)};
     \bigCRing[magenta]{(8.4,-1.95)};
     \node [european or port,scale=0.35] at (13,-3.454) (x) {};
 
     \draw (n.out) -- (x.in 1);
-    \draw (a.out) --(x.in) (b.out) --(x.in) (c.out) --(x.in) (d.out) --(x.in) (e.out) --(x.in) (f.out) --(x.in) (h.out) --(x.in 2) (i.out) --(x.in 2) (j.out) --(x.in 2) (k.out) --(x.in 2) (l.out) --(x.in 2) (m.out) --(x.in 2) (g.out) -- ++(1.2,0) ;
+    \draw (a.out) --(x.in 1) (b.out) --(x.in 1) (c.out) --(x.in 1) (d.out) --(x.in 1) (e.out) --(x.in 1) (f.out) --(x.in 1) (h.out) --(x.in 2) (i.out) --(x.in 2) (j.out) --(x.in 2) (k.out) --(x.in 2) (l.out) --(x.in 2) (m.out) --(x.in 2) (g.out) -- ++(1.2,0) ;
     \draw (x.out) -- ++(0.2,0);
     \node[rotate=90] at (13.445,-3.454) {\tiny{\(f(x_1,x_2,x_3)\)}};
     %\foreach \x in {1,1.5,3,3.5}{

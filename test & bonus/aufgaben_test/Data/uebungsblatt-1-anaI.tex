@@ -1,0 +1,162 @@
+\begin{aufgabe}{Beweisen}{4}\elable{mrk:UB1}
+    Es seien \(a,b \in \R\). Zeigen Sie folgende Aussagen:
+    \begin{aufgaben}
+        \item \(\abs{\frac{a}{b} + \frac{b}{a}} \geq 2\)\quad(\(a,b \neq 0\)),
+        \item \(\frac{\abs{a+b}}{1 + \abs{a + b}} \leq \frac{|a|}{1 + |a|} + \frac{|b|}{1 + |b|}\),
+        \item \(\max\{a,b\} = \frac{a+b+\abs{a-b}}{2}\),
+        \item \(\min\{a,b\} = \frac{a+b-\abs{a-b}}{2}\).
+    \end{aufgaben}\vspace{-1\baselineskip}
+\Splitter
+\nskip
+    \begin{aufgaben}
+        \item Wir führen hier eine Fallunterscheidung durch: \begin{description}
+        \item[Fall 1: ] Es gilt: $a, b > 0$:  \begin{alignat*}{3}
+            \left|\frac{a}{b} + \frac{b}{a}\right|  &= \frac{a}{b} + \frac{b}{a } &&\geq 2 \qquad && \mid \cdot ab\\
+            &\Leftrightarrow \frac{a^2 \centernot b}{\centernot b} + \frac{\centernot a b^2}{\centernot a} &&\geq 2 ab \quad &&\\
+            &\Leftrightarrow a^2 + b^2 &&\geq 2 ab &&\mid -2 ab \\
+            &\Leftrightarrow a^2 - 2ab + b^2 &&\geq 0 \\
+            &\Leftrightarrow (a-b)^2 &&\geq 0 && \text{\ding{51}}
+        \end{alignat*}
+        \item[Fall 2: ] Es gilt: $a > 0, b < 0$: \begin{alignat*}{3}
+            \left|\frac{a}{b} + \frac{b}{a}\right|  &= -\left(\frac{a}{b} + \frac{b}{a}\right) &&\geq 2 \qquad && {} \\
+            &\Leftrightarrow \frac{a}{b} + \frac{b}{a} &&\leq -2  && \mid \cdot ab \quad (< 0)\\
+            &\Leftrightarrow a^2 + b^2 &&\geq -2 ab \quad &&\mid +2 ab \\
+            &\Leftrightarrow a^2 + 2ab + b^2 &&\geq 0 \\
+            &\Leftrightarrow (a+b)^2 &&\geq 0&& \text{\ding{51}}
+        \end{alignat*}
+        \end{description}
+        Da die anderen Fälle analog ablaufen ist somit die Ungleichung gezeigt. \hfill \qedsymbol
+        \item Dies lässt sich durch stupides Ausrechnen lösen: \begin{alignat*}{2}
+            & \frac{|a + b |}{1 + |a+b|} && \leq \frac{|a|}{1 + |a|} + \frac{|b|}{1 + |b|} \\
+            \Leftrightarrow& |a+b|(1+|a|)(1+|b|) &&\leq |a|(1+|a+b|)(1+|b|) + |b|(1+|a+b|)(1+|a|) \\
+            \Leftrightarrow& |a+b| + |a+b||a| &&  \leq |a| + |a| |a+b| + |a||b| + |a||a+b||b|  \\
+            & \quad + |a+b||b| + |a+b||a||b| && \phantom{{}\leq{}}\quad + |b| + |b| |a+b| + |b||a| + |b| |a| |a+b| \\
+            \Leftrightarrow& |a+b| &&\leq |a| +|b| + 2|a||b| + |a||b||a+b|
+        \end{alignat*}
+        Auf Basis der Dreiecksungleichung ist auch diese Gleichung bewiesen!\hfill \qedsymbol
+        \item Wir machen hier eine Fallunterscheidung für die Fälle: \begin{description}
+            \item[Fall 1: ] $a > b$: $\frac{a+b+|a-b|}{2} = \frac{a+b+a-b}{2} = \frac{2a}{2} = a$
+            \item[Fall 2: ] $a = b$: $\frac{a+b}{2} = \frac{\centernot{2}a}{\centernot{2}} = a$
+            \item[Fall 3: ] $a < b$: $\frac{a+b + |a-b|}{2} = \frac{a+b - (a-b)}{2} = \frac{a+b - a +b}{2} = \frac{2b}{b} = b$
+        \end{description}
+        Durch das Abdecken aller Fälle ist auch diese Aussage somit korrekt! \hfill \qedsymbol
+        \item Diese Lösung verläuft analog zur c).
+    \end{aufgaben}
+\end{aufgabe}
+
+\begin{aufgabe}{Komplexe Zahlen}{4}
+Für eine \jmark[komplexe Zahl]{mrk:c} ist der Betrag von \(z\) definiert durch: \(|z| = \sqrt{z \overline{z}}\), wobei \(\overline{z}\) die zu \(z\) konjugierte Zahl bezeichnet:
+\begin{aufgaben}
+    \item Berechnen sie für \(z = \frac{12 + 5\i}{2 + 3\i}\):
+          \[\overline{z}, |z|, \Re{z}, \Im{z}, \Re(\frac{1}{z}) \text{ und } \Im(\frac{1}{z}).\]
+    \item Es seien \(z,w \in \C\). Zeigen Sie die Parallelogrammidentität: \[|z + w|^2 + |z-w|^2 = 2(|z|^2 + |w|^2).\]
+    \item Zeigen Sie, dass \(|zw| = |z||w|\) für alle \(z,w \in \C\) gilt.
+\end{aufgaben}\vspace{-1\baselineskip}
+\Splitter\nskip
+\begin{aufgaben}
+    \item Als Vorarbeit bringen wir $z$ in eine schöne Darstellung: \begin{align*}
+        z &= \frac{12 + 5\i}{2 + 3\i} = \frac{(12 + 5 \i)(2-3\i)}{(2+3\i)(2-3\i)} = \frac{24 - 36\i + 10\i -15\i^2}{4- \centernot{6\i} + \centernot{6\i} -9\i^2} \\
+        &= \frac{39-26\i}{13} = 3-2\i
+    \end{align*}
+    Auf Basis der Umformung erhalten wir durch Ablesen: $\Re(z) = 3$, $\Im(z) = -2$:
+    \begin{itemize}[label=$\diamond$]
+    \item $|z| = \sqrt{z \cdot \overline{z}} = \underbrace{\sqrt{(3-2\i)(3+2\i)}}_{\sqrt{3^2 - (2\i)^2}} = \sqrt{9+4} = \sqrt{13}$
+    \item $\frac{1}{z} = \frac{\overline{z}}{\underbrace{z \cdot \overline{z}}_{|z|^2}} = \frac{3+2\i}{13} = \frac{3}{13} + \frac{2}{13}\i$. Damit ergibt sich: $\Re(\frac{1}{z}) = \frac{3}{13}$, $\Im(\frac{1}{z}) =  \frac{2}{13}$
+    \end{itemize}
+
+    \item Mit $z, w \in \C$ erhalten wir: \begin{align*}
+        |z+w|^2 + |z-w|^2 &= 2(|z|^2 + |w|^2) \\
+            &= (z+w)\overline{(z+w)} + (z-w)\overline{(z-w)} \\
+            &= z \overline{z} + z \overline{w} + w \overline{z} + w \overline{w} + z \overline{z} - z \overline{w} - w \overline{z} + w \overline{w}\\
+            &= 2 z \overline{z} + 2 w \overline{w}\\
+            &= 2 (|z|^2 + |w|^2)
+    \end{align*}
+    \item Durch simples Rechnen erhalten wir: \begin{align*}
+        |zw| &= \sqrt{(zw)\overline{(zw)}} = \sqrt{(z \overline{z})(w \overline{w})} \\
+             &= \sqrt{z \overline{z}} \sqrt{w \overline{w}} \\
+             &= |z||w|
+    \end{align*}
+\end{aufgaben}
+\end{aufgabe}
+
+\begin{aufgabe}{Funktionen}{4}
+Es seien \(f : X \rightarrow Y, g: Y \rightarrow Z\) \jmark[Abbildungen]{mrk:Funktion} zwischen Mengen \(X,Y,Z\). Zeigen Sie folgenden Aussagen: \begin{aufgaben}
+    \item \(f\) und \(g\) sind injektiv \(\Rightarrow g \circ f\) ist injektiv.
+    \item \(f\) und \(g\) sind surjektiv \(\Rightarrow g \circ f\) ist surjektiv.
+    \item Die Inverse von \(g \circ f\) ist gegeben durch \((g \circ f)^{-1} = f^{-1} \circ g^{-1}\).
+\end{aufgaben}\vspace{-1\baselineskip}
+\Splitter\nskip
+\begin{aufgaben}
+    \item Hier gilt es zu zeigen, dass: $(g \circ f)(x_1) = (g \circ f)(x_2) \rightarrow x_1 = x_2$. Wir zeigen dies wie folgt: \begin{alignat*}{2}
+        && (g \circ f)(x_1) &= (g \circ f) (x_2) \\
+        \Leftrightarrow && g(f(x_1)) &= g(f(x_2)) \\
+        \overset{g~\text{inj}}{\Rightarrow}&& f(x_1) &= f(x_2) \\
+        \overset{f~\text{inj}}{\Rightarrow} && x_1 & = x_2
+    \end{alignat*}
+    \item Hierfür wählen wir uns ein \emph{beliebiges} $z \in Z$: \begin{align*}
+        g~\text{surj} &\Rightarrow \exists y \in Y : g(y) = z \\
+        f~\text{surj} &\Rightarrow \exists x \in X : f(x) = y
+    \end{align*}
+    Aus diesen Ergebnissen können wir folgern: \[\Rightarrow z = g(y) = g(f(x)) = (g\circ f)(x)\]
+    \item Wir wollen $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$ gilt: \begin{align*}
+        (g \circ f)^{-1} \circ (g \circ f) &= (f^{-1} \circ g^{-1}) \circ (g \circ f) \\
+        &= f^{-1} \circ \underbrace{g^{-1} \circ g}_{id} \circ f\\
+        &= \underbrace{f^{-1} \circ f}_{id} \\
+        &= id \qquad \text{ \ding{51}}
+    \end{align*}
+    Damit ist auch dies gezeigt! \hfill\qedsymbol
+\end{aufgaben}
+\end{aufgabe}
+
+\begin{aufgabe}{Mini- und Maxima}{3}
+    Untersuchen Sie die folgenden Mengen auf \jmark[Beschränktheit]{mrk:folgebeschränkt} und geben Sie ihr Minimum, Maximum, Infimum und Supremum an (sofern sie existieren):
+    \begin{multicols}{2}
+        \begin{enumerate}[label=\textbf{\Alph*:} ]
+            \item \(A = \left\{x \in \R \mid x^2 - 10x \leq 24\right\}\),
+            \item \(B = \left\{\frac{|x|}{1 + |x|}\right\} \mid x \in \R\),
+            \item \(C = \left\{\frac{m+n}{m \cdot n}\right\} \mid m,n \in \N\).
+        \end{enumerate}
+    \end{multicols}\vspace{-1\baselineskip}
+\Splitter\nskip
+\begin{enumerate}[label=\textbf{\Alph*:} ]
+    \item Durch Rechnen erhalten wir: \begin{alignat*}{2}
+        && x^{2} - 10x &\leq 24 \\
+        \Leftrightarrow && x^2 - 10x - 24 &\leq 0 \\
+    \end{alignat*}
+    $\Rightarrow x_{1,2} = 5 \pm \sqrt{25 + 24} = 5 \pm 7$: \newline
+    Damit erhalten wir: $x_1 = -2, x_2 = 12$. Nun überprüfen wir noch ob die $0$ enthalten ist: $0^2 - 10 \cdot 0 \leq 24 \quad \text{ \ding{51}}$. Damit erhalten wir für $A$ eine adäquate Intervallschreibweise: $A = [-2, 12]$ und können somit ablesen: \begin{itemize}[label=$\diamond$]
+        \item $\max A = \sup A = 12$
+        \item $\min A = \inf A = -2$
+    \end{itemize}
+    \item Durch Rechnen ergibt sich wieder: \begin{align*}
+        \frac{\overbrace{|x|}^{\geq 0}}{\underbrace{1 + |x|}_{\geq 0}} &\geq 0 \\
+        \frac{0}{1 + 0} &= 0
+    \end{align*}
+    Daraus folgern wir: $\min B = \inf B = 0$. \\
+    Für das Maximum wollen wir Zeigen, dass: $\frac{|x|}{1 + |x|} < 1$. Dies beweisen wir durch Widerspruch. Angenommen es würde eine obere Schranke $S \leq 1$ existieren, so müsste gelten: \begin{alignat*}{3}
+        && \frac{|x|}{1 + |x|} & < S  \qquad\qquad &&\\
+        \Leftrightarrow && |x| &< S (1 + |x|) \\
+        \Leftrightarrow && |x| &< S + S|x| && \mid -S|x| \\
+        \Leftrightarrow && |x| - S|x| & < S &&\mid \div(1 - S)\\
+        \Leftrightarrow && |x| &\leq \frac{S}{1 - S} && \text{\ding{55}}
+    \end{alignat*}
+    $\sup B = 1$, wie zu zeigen war besitzt $B$ kein Maximum!
+    \item $\frac{1+1}{1\cdot 1} = 2$. Wir berechnen:
+     \begin{alignat*}{3}
+        && \frac{m+n}{mn} & \leq 2  \qquad\qquad &&\\
+        \Leftrightarrow && m+n &\leq 2mn\\
+        \Leftrightarrow && 0 &\leq 2mn - m - n\\
+        \Leftrightarrow && 0 &\leq mn -m + mn -n\\
+        \Leftrightarrow && 0 &\leq  \underbrace{m}_{\geq 0} \underbrace{(n-1)}_{\geq 0} + \underbrace{n}_{\geq 0} \underbrace{(m - 1)}_{\geq 0} && \text{ \ding{51}}\\
+    \end{alignat*}
+    Damit gilt: $\max C = \sup C = 2$. Für das Infimum treffen wir die Annahme: $\frac{\overbrace{m+n}^{> 0}}{\underbrace{m\cdot n}_{> 0}} > 0$. Nun wollen wir auf dieser Basis die Annahme Zeigen: $\inf C = 0$. \\
+    Analog wie bereits zuvor beginnen wir mit der Annahme, dass es eine untere Schranke $s > 0$ gibt: \begin{alignat*}{3}
+        && \frac{m+n}{mn} & > s  \qquad\qquad &&\\
+        \Leftrightarrow && m+n &> smn \\
+        \Leftrightarrow && 1 & > s \cdot \frac{mn}{m+n}\\
+        \Leftrightarrow && \frac{1}{s} & > \frac{mn}{m+n} && \forall m,n \in \N\\
+    \end{alignat*}
+    Wählen wir $m = n$ so ergibt sich: $\frac{1}{s} > \frac{m^2}{2m} = \frac{m}{2} \Leftrightarrow \frac{2}{s} > m$ $\forall m \in \N$ $\lightning$. \newline
+    Damit folgt: $\inf C = 0$, das Minimum von $C$ existiert nicht!
+\end{enumerate}
+\end{aufgabe}

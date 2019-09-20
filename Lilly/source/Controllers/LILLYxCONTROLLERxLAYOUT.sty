@@ -3,13 +3,26 @@
 
 % Hier wird endgültig die Intro- und Outro-Konfiguration über das jeweilige Layout gesetzt. De facto handelt es sich um eine Komposition des Intro- und des Outro- Controllers, die hier gemeinsam einen Platz finden :d
 
+\RequirePackage{LILLYxCORE}
+\RequirePackage{LILLYxFONTS}
+\RequirePackage{LILLYxPHILOSOPHER}
 
+%% https://www.ctan.org/pkg/babel
+\LILLYxDemandPackage{babel}{Dieses Paket brauchen wir für Sprachen, weil sie toll sind}
+                    {Um dieses Paket kommt LILLY nicht herum!}
+                    {english,ngerman}{}
+
+%% https://www.ctan.org/pkg/tocloft
+\LILLYxDemandPackage{tocloft}{custom lists und so}
+                    {Leider wird dieses Paket zu oft verwendet :/}
+                    {}{} %% keine Argumente
 
 %% Dieser Controller kümmert sich um die korrekte Implementierung des Beginn eines Dokuments durch die initiierung von AtBeginDocument-Zugriffen
 
 %%DEBUG wird immer die erste Seite sein, sofern dies gewünscht ist, alle anderen Pages werden sich zwangsläufig an diese Oositionierung orientieren müssen. Damit ist auch nicht gewährleistet, dass das Titelbild sicher die erste Seite der PDF-Datei erhält!!
 
 \ifx\LILLYxDEBUG\true
+    \RequirePackage{LILLYxDEBUG}
     \errorcontextlines 10000
     \input{\LILLYxPATHxDATA/Titlepages/_LILLY_DEBUG_TITLEPAGE} % Anzeigen relevanter Konfigurationen
 \fi

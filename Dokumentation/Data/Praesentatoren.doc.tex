@@ -1,0 +1,886 @@
+\renewcommand{\arraystretch}{1.5}
+\chapter[Präsentatoren\lilib{LILLYxPRESENTER}{1.0.0}]{Präsentatoren}
+\TitleSUB{Alles daran setzen, die Dinge hübsch aussehen zu lassen.\hfill \LILLYxBOXxVersion{\small 2.0.0}}
+\bigskip\newline
+\elable{chp:PRESENTER}\hypertarget{LILLYxPRESENTER}Dieses Paket liegt hier: \begin{center}
+    \blankcmd{LILLYxPATHxPRESENTER} = \T{\LILLYxPATHxPRESENTER}
+\end{center}
+\begin{bemerkung}[Präsentatoren standalone]
+    Mit \LILLYxBOXxVersion{2.0.0} wurden die Präsentatoren als eigenes Paket \LILLYxNOTExLibrary{LILLYxPRESENTER} etabliert, welches sich eigenständig über \begin{latex*}
+\usepackage{LILLYxPRESENTER}
+        \end{latex*}
+        auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
+\end{bemerkung}
+
+%
+%
+%
+%
+%
+
+\section{Formatierungen}
+\hypertarget{LILLYxFORMATxCONTROL}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxFORMATxCONTROL} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{NoFormatChar}
+Definiert das Zeichen, welches im Folgenden Befehl verwendet werden kann um eine spezifishe Formtierung zu deaktivieren. Standartmäßig ist dies das Zeichen \T{|} (ein senkrechter Strich/Pipe-Symbol), lässt sich aber jederzeit ändern.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{lilly@format@iter}[\frmttxt{Value} \blankcmd{@nil}]
+Liefert einen normalen Iterator, der über die durch Leerfelder getrennten Tokens eines Satzes iteriert. Für jedes Wort wird \blankcmd{lilly@format@step} mit dem aktuell in \blankcmd{LILLY@FORMATTER@CURRENT} gespeicherten Befehl aufgerufen. Dieser Aufruf separiert das jeweilige Wort mit dem ersten Buchstaben und überprüft die Anwendung des Befehls auf \blankcmd{NoFormatChar}.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{Acronym}[\manArg{Sentence}]
+Formatiert den übergebenen Text so, dass jeder erste Buchstabe eines Wortes fett gedruckt wird. Hierbei wird der Befehl \blankcmd{TextBfFormat} verwendet, der hier nicht dokumentiert ist, weil er an sich nur auf \blankcmd{textbf} verweist und aus Lesbarkeitsgründen umbenannt wurde.
+\begin{latex*}
+\Acronym{x Wie geht |es ||dir?} % :yields: !*\lstcomment{\Acronym{x Wie geht |es ||dir?}}*!
+\end{latex*}
+Die Definition von \blankcmd{Acronym} zeigt weiter, wie sich leicht durch die mitgelieferten Befehle ein ähnlicher Befehl definieren lässt:
+\begin{latex}[morekeywords={[5]{\\LILLY@FORMATTER@CURRENT,\\lilly@format@iter,\\@Acronym}}]
+\def!**!\Acronym!**!#1{% Not Nested
+  \gdef!**!\LILLY@FORMATTER@CURRENT{\TextBfFormat}%
+  \def!**!\@Acronym{\lilly@format@iter!**!#1 \@nil}{\ignorespaces!**!\@Acronym}%
+}
+\end{latex}
+Allgemein genügt das Abändern von \blankcmd{TextBfFormat} zu einem beliebigen anderen Befehl, der ein Argument akzeptiert. Dieser erhält dann jeweils das erste Zeichen des Wortes und kann es so formatieren wie es gewünscht ist.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{PoliteWords}[\manArg{Sentence}]
+Formatiert den übergebenen Text so, dass jeder erste Buchstabe eines Wortes groß gedruckt wird. Hierbei wird der Befehl \blankcmd{UpperCaseFormat} verwendet, der hier nicht dokumentiert ist, weil er an sich nur auf \blankcmd{MakeUppercase} verweist und aus Lesbarkeitsgründen umbenannt wurde.
+\begin{latex*}
+\PoliteWords{x Wie geht |es ||dir?} % :yields: !*\lstcomment{\PoliteWords{x Wie geht |es ||dir?}}*!
+\end{latex*}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{ColorfulWords}[\manArg{Sentence}]
+Formatiert den übergebenen Text so, dass jeder erste Buchstabe eines Wortes farbig gedruckt wird. Hierbei wird der Befehl \blankcmd{HighlightFormat} verwendet, der hier nicht dokumentiert ist, weil er an sich nur auf \T{\blankcmd{textcolor}\manArg{\blankcmd{Hcolor}}\manArg{\#1}} verweist und aus Lesbarkeitsgründen umbenannt wurde.
+\begin{latex*}
+\ColorfulWords{x Wie geht |es ||dir?} % :yields: !*\lstcomment{\ColorfulWords{x Wie geht |es ||dir?}}*!
+\end{latex*}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{doublealph}[\manArg{counter}]
+Während das durch \LaTeX\ definierte \blankcmd{alph} nur für Werte $1$--$26$ definierte ist, definiert dieser Befehl die \blankcmd{ifcase}-Anweisung für die Werte $1$--$702$:
+\bgroup\newcounter{einzähler}%
+\begin{latex}
+\newcounter{einzähler}
+\setcounter{einzähler}{1}
+\doublealph{einzähler}      % :yields: !*\lstcomment{\setcounter{einzähler}{1}\doublealph{einzähler}}*!
+\setcounter{einzähler}{42}
+\doublealph{einzähler}      % :yields: !*\lstcomment{\setcounter{einzähler}{42}\doublealph{einzähler}}*!
+\setcounter{einzähler}{702}
+\doublealph{einzähler}      % :yields: !*\lstcomment{\setcounter{einzähler}{702}\doublealph{einzähler}}*!
+\doublealph{section}        % :yields: !*\lstcomment{\doublealph{section}}*!
+\doublealph{page}           % :yields: !*\lstcomment{\doublealph{page}}*!
+\end{latex}
+\egroup
+
+%
+%
+%
+%
+%
+
+\section{Ornamente}
+\hypertarget{LILLYxORNAMENTS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxORNAMENTS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.\medskip\newline
+Das folgende Paket definiert eine unglaubliche Anzahl an Befehlen, die nicht alle im Index aufgeführt werden.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{@@CreateOrnamentCommand}[\manArg{Number}\manArg{Name}\manArg{Defaultargs}]
+Konstruiert einen Neuen Befehl der Struktur \blankcmd{orna<Name>}, der auf das \blankcmd{pgfornament} mit der entsprechenden \T{Number} abbildet. Weiter werden die \T{Defaultargs} übergeben, die ab da bei jedem Aufruf des Befehls Standartmäßig übergeben werden. Weiter registriert sich das Ornament in der durch \LILLYxNOTExLibrary{LILLYxLIST} bereitgestellten Liste \T{RegisteredOrnaments}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{orna<Name>}[\optArg{ornaargs}]
+Setzt das zuvor mit \blankcmd{@@CreateOrnamentCommand} definierte Ornament. So zum Beispiel: \blankcmd{ornalion} liefert \ornalion.\newline
+Hier eine Auflistung aller Ornamente:
+\getRegisteredOrnaments%
+%\edef\xdoctmp{\noexpand\typesetList{\lillyxlist}}\xdoctmp
+\expandafter\typesetList[T]{\lillyxlist}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{OrnamentsBoxTitle}[\optArg{tikzargs}\manArg{Title}\optArg{width}]
+Setzt eine Ornamentbox um den \T{Title}, wobei die Breite automatisch auf Basis der Länge des Titels generiert wird, sofern sie nicht durch \T{width} explizit angegeben wird.
+\begin{defaultlst}[][listing side text,righthand width=7cm]{lLatex}
+\begin{center}
+    \OrnamentsBoxTitle{Hallo}
+\end{center}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{OrnamentsUpper}[\optArg{Ornament Right}\optArg[ornafeather]{Ornament Left}\secline\optArg{tikz args}\manArg{Title}\cmdlist\anothercmd[2.0.0]{OrnamentsLower}\optArg{tikz args}\manArg{TextRight}]
+Setzt obere und untere Begrenzer, die auch in \LILLYxNOTExLibrary{LILLYxPOEMS} verwendet werden.
+\begin{defaultlst}{lLatex}
+\OrnamentsUpper{Meldung}
+
+\OrnamentsLower{Wichtig!}
+\end{defaultlst}
+Ergibt:\\
+\OrnamentsUpper{Meldung}
+
+\OrnamentsLower{Wichtig!}
+Information: Die Breite dieser Begrenzer passt sich an die aktuelle Zeilenbreite an, ist allerdings(bezüglich Liniendicke) auf Seiten im \T{DIN A4}-Format optimiert.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{PresentAllOrnaments}
+Erzeugt mithilfe von \LILLYxNOTExLibrary{LILLYxTABLESxFOREACH} eine tabellarische Auflistung aller Ornamente:
+\begin{tcbraster}[raster columns=4, blankest,colback=white]
+    \tcbincludepdf{Data/Documents/AllOrnaments/ornaments.pdf}
+\end{tcbraster}
+Die unterschiedlichen Höhen entstammen hierbei der Tatsache, dass dieser Befehl alle Ornamente (zur besseren Übersicht) mit derselben Breite setzt.
+
+%
+%
+%
+%
+%
+
+\section{Tabellen}
+\hypertarget{LILLYxTABLES}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxTABLES} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.\medskip\newline
+
+In diesem Paket werden einige neue Spaltentypen definiert, die Problemlos in so ziemlich jeder Tabelle verwendet werden können:
+\begingroup\footnotesize
+\begin{multicols}{2}
+    \begin{description}
+        \foreach \c/\brief in {%
+            b/Fettgedruckt (l),%
+            u/Mathematisch (c),%
+            g/Fußnotengröße (l),%
+            w/Fußnotengröße (X),%
+            i/Kursiv (l),%
+            L\{\#\}/linskbündige m-Spalte der Breite \#,%
+            R\{\#\}/rechtsbündige m-Spalte der Breite \#,%
+            C\{\#\}/zentrierte m-Spalte der Breite \#,%
+            t/Spalte mit \blankcmd{LILLYxlstTypeWriter} (l),%
+            T\{\#\}/linksbündige p-Spalte der Breite \# in \blankcmd{LILLYxlstTypeWriter}-Schrift,%
+            \_/Abstand von $3em$,%
+            \textasciitilde/Abstand von $1.5em$,%
+            ./Spaltenabstand von $1.5em$%
+        }{%
+            \item[\c] \brief
+        }
+    \end{description}
+\end{multicols}
+\endgroup
+
+%
+%
+%
+
+\presentCommand[2.0.0]{setrow}[\manArg{Commands}]
+Setzt Befehle, die in dieser Zeile jeder Zelle vorangesetzt werden soll. Dieser Befehl lässt sich allerdings nicht einfach so verwenden, da ein derartiges Verhalten in Umgebungen wie \blankenv{tabular} nicht vorgesehen ist. Jede Spalte auf die ein derartiger Effekt angewendet werden soll muss in der Definition mit einem \T{\^{}} angeführt, die Spaltendefinition an sich wiederrum mit einem \T{+} abgeschlossen werden. Im Folgenden ein Beispiel:
+\begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
+\begin{tabular}{^l^c^r+}
+    Wir & sind & normal \\
+    \setrow{\itshape} Wir & sind & kursiv \\
+    Wir & sind & normal \\
+    \setrow{\bfseries} Wir & sind & fett
+\end{tabular}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{clearrow}
+Löscht den durch \blankcmd{setrow} erzeugten Zeilenmodifikator:
+\begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
+\begin{tabular}{^l^c^r+}
+    Wir & sind & normal \\
+    \setrow{\itshape} Wir & sind & kursiv \\
+    Wir & sind & normal \\
+    \setrow{\bfseries} Wir & sind \clearrow& fett
+\end{tabular}
+\end{defaultlst}
+Dies wird durch \T{+} automatisch am Ende der Zeile angefügt.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{headerrow}[\optStar]
+Setzt mithilfe von \blankcmd{setrow} eine Kopfzeile, der Stern behält die Grundlegende Formatierung der jeweiligen Zeile bei, sonst werden etwaige Formatierungen entfernt:
+\begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
+\begin{tabular}{^i^t^r+}
+    \headerrow  Wir   & sind  & normal \\
+    \headerrow* Eine  & tolle & Zeile \\
+                Super & tolle & Zeile
+\end{tabular}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{cheaderrow}[\cmdlist\anothercmd[2.0.0]{normalrow}\cmdlist\anothercmd[2.0.0]{smallrow}\cmdlist\anothercmd[2.0.0]{footnotesizerow}\cmdlist\anothercmd[2.0.0]{scriptsizerow}\cmdlist\secline\anothercmd[2.0.0]{tinyrow}]
+Setzt mithilfe von \blankcmd{setrow} entsprechend formatierte Zeilen:
+\begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
+\begin{tabular}{^i^c^r+}
+    \cheaderrow  Eine & tolle & Zeile \\
+    \normalrow   Eine & tolle & Zeile \\
+    \smallrow    Eine & tolle & Zeile \\
+    \footnotesizerow    Eine  & tolle & Zeile \\
+    \scriptsizerow      Eine  & tolle & Zeile \\
+    \tinyrow     Eine & tolle & Zeile
+\end{tabular}
+\end{defaultlst}
+
+%
+%
+%
+%
+%
+
+\subsection{Iterationen}
+\hypertarget{LILLYxTABLESxFOREACH}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxTABLESxFOREACH} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{tabadd}[\manArg{tokens}\cmdlist\anothercmd[2.0.0]{etabadd}\manArg{tokens}]
+Fügt die \T{tokens} dem aktuellen Speicher (\blankcmd{@@tabular@tokens}) hinzu. Zu beachten ist, dass \blankcmd{etabadd} die \T{Tokens} mittels \blankcmd{edef} expandiert.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{tabreset}
+Leert den durch \blankcmd{tabadd}/\blankcmd{etabadd} erzeugten Speicher. Sollte, um sicher zu gehen, vor jeder neuen Iteration getätigt werden.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{tabprint}
+Gibt die aktuellen Tokens aus. Hier ein Beispiel:
+\begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
+\tabreset%
+\foreach \i in {1,...,5} {%
+    \etabadd{Zeile \i}%
+    \tabadd{ & Hallo Welt \\}%
+}%
+\begin{tabular}{ll}
+    \tabprint
+\end{tabular}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{tabforeach}[\manArg{Var}\manArg{Elements}\manArg{Body}]
+Vereinfachte Möglichkeit um eine Tabelle so zu generieren.
+\begin{defaultlst}[morekeywords={[5]{\\amp}}][listing side text,righthand width=3.5cm]{lLatex}
+\tabforeach{\i}{1,...,5}{%
+    \etabadd{Zeile \i \amp Hallo Welt}
+}
+\begin{tabular}{ll}
+    \tabprint
+\end{tabular}
+\end{defaultlst}
+Der Befehl \blankcmd{amp} steht nur innerhalb von \blankcmd{tabforeach} zur Verfügung und erlaubt so das setzen von einem \T{\&} innerhalb von \blankcmd{etabadd}, was es hier ermöglicht den weiteren Aufruf zu \blankcmd{tabadd} einspahrt. Das Zeilenende wird automatisch am Ende jeder Iteration angefügt, \blankcmd{tabreset} wird automatisch aufgerufen.
+
+%
+%
+%
+%
+%
+\clearpage % For Pagebreak @ mltable:D
+\subsection{Weitere Designs}
+\hypertarget{LILLYxTABLESxMATERIAL}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxTABLESxMATERIAL} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.
+
+\begin{bemerkung}[Das tabu-Paket und seine Leiden]
+    Die Bibliothek \LILLYxNOTExLibrary{LILLYxTABLESxMATERIAL} wurde erst auf Basis des tabu-Pakets (\url{https://www.ctan.org/pkg/tabu}), da das Paket seit $2011$ nichtmehr aktiv entwickelt wird unktuell ohne Maintainer vor sich hin vegetiert, ist es möglich, dass die durch Lilly etablierten Fixes und Variationen dennoch nicht funktionieren, was manche der folgenden Tabellen nicht \say{gut} aussehen lässt oder sogar unbrauchbar macht.
+\end{bemerkung}
+
+%
+%
+%
+
+\presentEnvironment[2.0.0]{mtable}[\optStar\optArg[\blankcmdidx{MHeaderRow}]{Headerrow}\optArg{PreCode}\manArg{Header}\secline\optArg[MudWhite!10]{FirstRow}\optArg[MudWhite!90]{Second Row}]
+Setzt eine Tabelle in einem an das Material-Design des Editor Atom angelehnten Design:
+\begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
+\begin{mtable}{ll}
+    Hallo & Welt \\
+    Na & Wie \\
+    geht & es \\
+    dir & denn?
+\end{mtable}
+\end{defaultlst}
+Die Variante mit einem Stern, besitzt keine explizite Formatierung der Kopfzeile.
+
+\presentEnvironment[2.0.0]{mltable}[\optStar\optArg[\blankcmdidx{MHeaderRow}]{Headerrow}\optArg{PreCode}\manArg{Header}\secline\optArg{Mulitpage Header}\optArg[MudWhite!10]{FirstRow}\secline\optArg[MudWhite!90]{Second Row}\optArg[\blankcmdidx{MNHeaderRow}]{Next Headerrow}]
+Setzt eine Tabelle, die gut und gerne über mehere Seiten gehen kann. Die Kopf-Zeile(n) die auf allen Seiten oben stehen soll(en), werden nach den Spaltendefinitionen als optionales Argument angenommen:
+\begin{mltable}{llr}[Spalte 1 & Super & Hey]
+    Hallo & Welt & Na \\
+    Wie & geht & es \\
+    dir & denn? & Ich \\
+    mag & Züge & ! \\
+    Und & Ich & bin \\
+    eine & echt & lange \\
+    Tabelle & findest & du \\
+    nicht & auch & ? \\
+    Shubi & dubi & duuu \\
+    Das ist doch & Wirklich super & tolle dolle \\
+    Mir fehlen & die Worte & Ich horte \\
+    Die Tabelle & sehr lange & oh bange!
+\end{mltable}
+
+Ich habe den Code hier einmal separiert, um auch wirklich einen Zeilenumbruch an der Stelle zu forcieren können:
+
+\begin{latex}
+\begin{mltable}{llr}[Spalte 1 & Super & Hey]
+    Hallo & Welt & Na \\
+    Wie & geht & es \\
+    dir & denn? & Ich \\
+    mag & Züge & ! \\
+    Und & Ich & bin \\
+    eine & echt & lange \\
+    Tabelle & findest & du \\
+    nicht & auch & ?
+\end{mltable}
+\end{latex}
+Der zugehörige kleine Pfeil in den fortgeführten Kopfzeilen definiert der Befehl \blankcmd{MNHeaderRow}. In der Regel sollte man annehmen, dass die Verwendung von \blankenv{mltable} einen zweiten Kompiliervorgang erfordert.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{MHeaderRow}[\cmdlist\anothercmd[2.0.0]{MNHeaderRow}]
+Definieren die Gestalt der Kopfzeilen, wobei \blankcmd{MNHeaderRow} speziell nach Seitenumbrüchen angewandt wird. Hier gilt zu beachten, dass die Umgebungen \blankenv{mtable} und \blankenv{mltable} diese nur als Standardeinstellung nutzen und somit auch die Verwendung der Befehle für einzelne Argumente ausgeschaltet werden kann. Standardmäßig unterscheiden sich die beiden Befehle übrigens nur in der Hinsicht, dass \blankcmd{MNHeaderRow} noch ein kleines Dreieck an die linke Tabellenseite setzt. Sie verwenden die Farben \emph{HeaderColor} sowie \emph{NextHeaderColor}, die initial beide auf \blankcmd{Hcolor} gesetzt werden, aber jederzeit überschreibbar sind. \medskip
+
+\begin{bemerkung}[Der versuchte Ersatz \Smiley]
+    Um den Problemen von \T{tabu} entgegenzuwirken liefert \LILLYxNOTExLibrary{LILLYxTABLESxMATERIAL} noch zwei provisorische Umgebungen. Diese verwenden \blankcmd{@@tabularArgPatch@iter}, welches automatisch die für \blankcmd{setrow} benötigten Konfigurationen \T{\^{}} und \T{+} einfügt (allerdings auch vor Befehlen und anderen Zeichen was bedeutet, dass wirklich nur Spalten akzeptiert werden. Dies hat den Nachteil, dass neue Spalten erstellt werden müssen, wenn verschiedene Befehle gewünscht sind!).
+\end{bemerkung}
+
+%
+%
+%
+
+\presentEnvironment[2.0.0]{mtabular}[\optStar\optArg[\blankcmdidx{MTBHeaderRow}]{Headerrow}\optArg{PreCode}\manArg{Header}\secline\optArg[MudWhite!10]{FirstRow}\optArg[MudWhite!90]{Second Row}]
+Setzt eine Tabelle in einem an das Material-Design des Editor Atom angelehnten Design:
+\begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
+\begin{mtabular}{ll}
+    Hallo & Welt \\
+    Na & Wie \\
+    geht & es \\
+    dir & denn?
+\end{mtabular}
+\end{defaultlst}
+Die Variante mit einem Stern, besitzt keine explizite Formatierung der Kopfzeile.
+Es gilt zu beachten, das Lilly für diese Tabellen eine eigene Version des Pakets \T{xcolor} (\url{https://www.ctan.org/pkg/xcolor}) mitführt, um auch ältere Latex-Versionen zu unterstützen! Sollte dieses Verhalten zu Problemen führen, so kann dies durch die Definition von \blankcmd{LILLYxUSEREGXCOLOR} vor dem Einbinden von Lilly deaktiviert werden!
+
+
+%
+%
+%
+
+\presentEnvironment[2.0.0]{mltabular}[\optStar\optArg[\blankcmdidx{MTBHeaderRow}]{Headerrow}\optArg{PreCode}\manArg{Header}\secline\optArg{Mulitpage Header}\optArg[MudWhite!10]{FirstRow}\secline\optArg[MudWhite!90]{Second Row}\optArg[\blankcmdidx{MNTBHeaderRow}]{Next Headerrow}]
+Setzt eine Tabelle in einem an das Material-Design des Editor Atom angelehnten Design:
+\begin{mltable}{llr}[Spalte 1 & Super & Hey]
+    Hallo & Welt & Na \\
+    Wie & geht & es \\
+    dir & denn? & Ich
+    % ...
+\end{mltable}
+Und hier der Code:
+\begin{latex}
+\begin{mltable}{llr}[Spalte 1 & Super & Hey]
+    Hallo & Welt & Na \\
+    Wie & geht & es \\
+    dir & denn? & Ich
+    % ...
+\end{mltable}
+\end{latex}
+Für die Realisierung wird \T{longtable} verwendet!
+
+%
+%
+%
+
+\presentCommand[2.0.0]{MTBHeaderRow}[\cmdlist\anothercmd[2.0.0]{MNTBHeaderRow}]
+Diese Befehle funktionieren analog zu \blankcmd{MHeaderRow} und \blankcmd{MNHeaderRow}, wobei sie die Befehle so abändern, dass sie in den Kompatibiltitätsumgebungen \blankenv{mtabular} und \blankenv{mltabular} funktionieren!
+
+%
+%
+%
+%
+%
+
+\section{Gedichte}
+\hypertarget{LILLYxPOEMS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPOEMS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen. Dieses Modul macht von \LILLYxNOTExLibrary{LILLYxORNAMENTS} gebrauch!
+
+%
+%
+%
+
+\presentCommand[2.0.0]{poemssetauthor}[\manArg{Author}]
+Setzt den Autor, der standardmäig auf \blankcmd{AUTHOR} gesetzt ist und so als Standardautor für alle folgenden Gedichte verwendet wird.
+
+%
+%
+%
+
+\presentEnvironment[2.0.0]{poem}[\optArg{Comment}\optArg{Left Ornament}\optArg{Right Ornament}\secline\manArg{Name}\manArg{Date}\optArg[\blankcmdidx{poems@author}]{Author}]
+Setzt ein Gedicht mit dem Namen \T{Name} geschrieben am \T{Date}. Der Autor kann durch \blankcmd{poemssetauthor} geändert, oder gezielt durch \T{Author} angegeben werden. Diese umgebung unterscheidet sich von \blankenv{poems*}, dass sie noch einen Seitenumbruch einfügt und das Gedicht auch vertikal zentriert. Allein deswegen wird zum Beibehalt der Dokumentationskonsistenz dort ein entsprechendens Beispiel gezeigt, da sich die Umgebungen sonst gleichen.
+
+%
+%
+%
+
+\presentEnvironment[2.0.0]{poem*}[\optArg{Comment}\optArg{Left Ornament}\optArg{Right Ornament}\secline\manArg{Name}\manArg{Date}\optArg[\blankcmdidx{poems@author}]{Author}]
+Für eine genaue Erklärung siehe \blankenv{poem}. Hier ein Beispiel:
+\begin{latex}
+\begin{poem*}{Hallo Welt}{10.09.2019}[Florian Sihler]
+    Hallo Welt,
+    Wie geht es dir?
+    Du bist so fern,
+    und doch bei mir.
+    ich hab dich gern,
+    und bin doch hier.
+\end{poem*}
+\end{latex}
+\begin{poem*}{Hallo Welt}{10.09.2019}[Florian Sihler]
+    Hallo Welt,
+    Wie geht es dir?
+    Du bist so fern,
+    und doch bei mir.
+    ich hab dich gern,
+    und bin doch hier.
+\end{poem*}
+
+\presentCommand[2.0.0]{subduelines}
+Wie am Beispiel für \blankenv{poem*} zu sehen ist, müssen keine Zeilenenden oder ähnliches angegeben werden. Dies mag die Verwendung von \blankcmd{obeylines} vermuten lassen, allerdings hätte dieser Befehl den Nachteil, dass die Strophen nicht durch eine Leerzeile getrennt werden könnten, da diese von \blankcmd{obeylines} geschluckt werden. Deswegen stellt dieser Befehl eine Variante dar, die sowohl in zentrierten als auch nicht zentrierten Umgebungen funktioniert:
+%Make this preview Latex command :D
+\begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
+Mit \blankcmd{subduelines}:
+{
+    \subduelines
+    Hallo Welt,
+
+    Na wie,
+    geht
+
+    es dir?
+}
+
+\textbf{Zum Vergleich: }\\
+Mit \blankcmd{obeylines}:
+
+{
+    \obeylines
+    Hallo Welt,
+
+    Na wie,
+    geht
+
+    es dir?
+}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentEnvironment[2.0.0]{quotes}[\optArg[Quotes]{Title}\optArg[\blankcmdidx{poems@author}]{Author}]
+Läutet eine Umgebung ein, in der verschiedene, durch \blankcmd{singlequote} oder \blankenv{quote} eingeläutete Zitate definiert werden können. Im Gegensatz zu \blankenv{quotes*}, setzt \blankenv{quotes} einen Rahmen umd die Zitate:
+\begin{latex}
+\begin{quotes}
+    \begin{quote}
+        Ein Dieter kommt selten zu zweit.
+    \end{quote}
+    \begin{quote}[14.42.2422]
+        Niemand hat die Absicht die Erde zu sprengen!
+    \end{quote}
+\end{quotes}
+\end{latex}
+Ergibt (der Seitenumbruch wird erzwungen \Smiley):
+\begin{quotes}[Testzitate]
+    \begin{quote}
+        Ein Dieter kommt selten zu zweit.
+    \end{quote}
+    \begin{quote}[14.42.2422]
+        Niemand hat die Absicht die Erde zu sprengen!
+    \end{quote}
+\end{quotes}
+
+%
+%
+%
+
+\presentEnvironment[2.0.0]{quotes*}[\optArg[\blankcmdidx{poems@author}]{Author}]
+Definiert eine Umgebung in der der Befehl \blankcmd{singlequote} und die Umgebung \blankenv{quote}. Diese Umgebung wird von \blankenv{quotes} intern verwendet.
+
+\begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
+\begin{quotes*}
+    \singlequote{Hallo}
+    \singlequote{Welt}
+\end{quotes*}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{singlequote}[\manArg{quote}]
+Setzt innerhalb einer \blankenv{quotes*}-Umgebung ein einzelnes Zitat, ohne gesonderte Autor oder Datumsangabe, so können mehrere Zitate mit gleichen Metadaten hübsch gesetzt werden:
+
+%
+%
+%
+
+\presentEnvironment[2.0.0]{quote}[\optArg{Date}]
+Setzt unter der Verwendung von \blankcmd{singlequote} ein Zitat mit Autor und optionales Datumsangabe.
+\elable{mrk:hidu}
+\begin{bemerkung}[Auflistung der Gedichte und Zitate]
+    Alle Gedichte können mit \blankcmd{listofPOEMS}, alle Zitate mit \blankcmd{listofQUOTES} gelistet werden.
+\end{bemerkung}
+
+%
+%
+%
+%
+%
+
+\section{Stundenpläne}
+\hypertarget{LILLYxTIMETABLES}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPLILLYxTIMETABLESOEMS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{NewTimeTable}[\optArg{tt keys}\manArg{Name}]
+Erzeugt einen neuen Stundenplan, dessen Werte mittels \blankcmd{xdef} persistiert werden (Präfix: \T{lillyxTIMETABLESx}). Neben dem Zähler \T{@<Name>@maxcount} werden die beiden Befehle \blankcmd{the<Name>} und \blankcmd{present<Name>} erzeugt.
+
+Es gibt eine ganze Reihe möglicher \T{tt keys} die übergeben werden können und das endgültige Aussehen des Stundenplans konfigurieren.
+\begin{center}
+    \begin{tabularx}{\linewidth}{^t>{\em}^l^c^p{0.35\linewidth}+}
+        \toprule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
+        title & String & \T{Ich bin ein\ldots} & Titel des Stundenplans \\
+        bordercolor & Farbe & black & Rahmenfarbe \\
+        day start time & Zahl (0-23) & 8 & Tagesstartzeit \\
+        day end time & Zahl (0-23) & 20 & Tagesendzeit \\
+        week start day & Zahl (0-6) & 0 & Starttag (Montag)\\
+        week end day & Zahl (0-6) & 4 & Endtag (Freitag)\\
+        time formatter & enum (siehe unten) & AtLineDistCompanion & Formatierung der Zeit \\
+        \bottomrule
+    \end{tabularx}\nskip
+\end{center}
+Der \T{time formatter} ist in sofern besonders, dass er zwei Makros fordert, die der Syntax \T{@@TimeFormatter@<Bezeichner>} und \T{@@TimeFormatter@<Bezeichner>@Sequence} folgen und so definieren wie die Zeiten am linken Rand formatiert werden sollen. Die folgenden Werte sind bereits vordefiniert: \typesetList[T]{Default,RevertDefault,AtLine,AtLineCompanion,AtLineDistCompanion}.
+Betrachten wir einmal ein Beispiel:
+\begin{latex}[morekeywords={[5]{\\theTimeTable}}]
+\NewTimeTable[%
+    title = Hallo Welt,
+    day start time = 12, % Start 12 uhr
+    day end time = 16,   % Ende 16 uhr
+    week start day = 5,  % Samstag und
+    week end day = 6,    % Sonntag
+    time formatter = Default
+]{TimeTable}
+\begin{center}
+    \theTimeTable
+\end{center}
+\end{latex}
+\bgroup%
+\NewTimeTable[%
+    title = Hallo Welt,
+    day start time = 12, % Start 12 uhr
+    day end time = 16,   % Ende 16 uhr
+    week start day = 5,  % Samstag und
+    week end day = 6,    % Sonntag
+    time formatter = Default
+]{TimeTable}
+\begin{center}
+    \theTimeTable
+\end{center}
+\egroup%
+Ein weiteres Beispiel:
+\begin{latex}[morekeywords={[5]{\\theAnotherTimeTable}}]
+\NewTimeTable{AnotherTimeTable}
+\begin{center}
+    \theAnotherTimeTable
+\end{center}
+\end{latex}
+\NewTimeTable{AnotherTimeTable}
+\begin{center}
+    \theAnotherTimeTable
+\end{center}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{the<Name>}[\cmdlist\anothercmd[2.0.0]{present<Name>}]
+Rufen jeweils \blankcmd{DrawTimeTable} beziehungsweise \blankcmd{PresentTimeTable} mit dem entsprechenden Namen als Argument auf.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{DrawTimeTable}[\manArg{TimeTable}]
+Zeichnet den entsprechenden Stundenplan innerhalb einer \blankenv{tikzpicture}-Umgebung.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{PresentTimeTable}[\manArg{TimeTable}]
+Setzt den Stundenplan auf eine neue Seite und setzt die Abstände entsprechend. Intern wird auf \blankcmd{DrawTimeTable} zurückgegriffen.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{RawTimeTableEvent}[\optArg{tt event keys}\manArg{TimeTable}]
+Generiert ein Event im Timetable, wobei automatisch zwei verschiedene Stile je nach Länge des Events angewedet werden.
+\begin{center}
+    \begin{tabularx}{\linewidth}{^t>{\em}^l^c^p{0.35\linewidth}+}
+        \toprule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
+        title & String & bummelbahn & Titel des Events \\
+        short title & String & & Kurzer Titel des Events \\
+        bgcolor & Farbe & AppleGreen!15 & Rahmenfarbe \\
+        day & Zahl (0-6) & 0 & Tag des Events \\
+        y & Zahl & -1.125 & Vertikale Position des Events \\
+        height & Zahl & 1.25 & Länge des Events \\
+        preCode & Code & & Code vor dem Event \\
+        postCode & Code & & Code nach dem Event \\
+        extra 1 & String & Hamsterbacke & Text links unten \\
+        extra 2 & String & Waffeln & Text rechts unten \\
+        extra 3 & String & Günther der\ldots & Text mitte \\
+        \bottomrule
+    \end{tabularx}\nskip
+\end{center}
+Die Erzeugung eines solchen Events generiert einen neuen Befehl mit dem Bezeichner \blankcmd{@<TimeTable>@event@id}, wobei die \T{id} ein hochzählender Wert ist.\newline
+Wie leicht ersichtlich ist, ist dieser Befehl zwar öffentlich, aber nicht sehr angenehm direkt benutzt zu werden. Deswegen:
+
+%
+%
+%
+
+\presentCommand[2.0.0]{NewTimeTableEvent}[\manArg{EventID}\manArg{Titel}\manArg{Farbe}\optArg{Extra 1}\optArg{Extra 2}\secline\optArg{Extra 3}\optArg[1.25]{Length}]
+Erzeugt den Befehl \blankcmd{new<EventID>}, wobei dieser an die Konstruktion von \blankcmd{RawTimeTableEvent}, die definierten Einstellungen als Standart übernimmt:
+\begin{latex}[morekeywords={[5]{\\theTestTable,\\newEinEvent}}]
+\NewTimeTable[title=Hi,week end day=1, day end time=12]{TestTable}
+
+\NewTimeTableEvent{EinEvent}{Hallo Welt}{bondiBlue!25}
+
+\newEinEvent{TestTable}{Dienstag}{8 uhr}
+
+\begin{center}
+    \theTestTable
+\end{center}
+\end{latex}
+Information: Die Notation mit \T{Dienstag} und \T{8 uhr} entstammt der standardmäig ebenfalls eingebundenen Bibliothek \LILLYxNOTExLibrary{LILLYxTIMETABLESxCOMFORT}, die weiter unten beschrieben wird.
+\bgroup%
+\NewTimeTable[title=Hi,week end day=1, day end time=11]{TestTable}
+
+\NewTimeTableEvent{EinEvent}{Hallo Welt}{bondiBlue!15}
+
+\newEinEvent{TestTable}{Dienstag}{8 uhr}
+
+\begin{center}
+    \theTestTable
+\end{center}
+\egroup%
+%
+%
+%
+
+\presentCommand[2.0.0]{new<EventID>}[\optArg{tt keys}\manArg{TimeTable}\manArg{Day}\manArg{Hour}]
+Registriert ein neues Event mittels \blankcmd{RawTimeTableEvent} im \T{TimeTable} am \T{Day} um \T{Hour}.
+
+%
+%
+%
+%
+%
+
+\subsection{Komfort}
+\hypertarget{LILLYxTIMETABLESxCOMFORT}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxTIMETABLESxCOMFORT} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen und basieren auf \LILLYxNOTExLibrary{LILLYxTIMETABLES}.\medskip\newline
+
+Dieses Paket erweitert die Definition von einem Event durch \blankcmd{NewTimeTable} oder vergleichbaren Befehlen in sofern, dass sie für den Tag die Bezeichner \T{Monday, Tuesday, \ldots, Sunday}, \T{Montag, Dienstag, \ldots, Sonntag} und \T{Mo, Di, \ldots, So} zulassen und für die Zeit die Bezeichner \T{0 uhr, 1 uhr, \ldots, 23 uhr} akzeptiert, die jeweils in entsprechende Werte für \T{day} und \T{y} übersetzt werden.
+
+%
+%
+%
+%
+%
+
+\subsection{Universitäts Stundenpläne}
+\hypertarget{LILLYxTIMETABLESxUNIVERSITY}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxTIMETABLESxUNIVERSITY} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen und basieren auf \LILLYxNOTExLibrary{LILLYxTIMETABLES}.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{@@CreateNewLectureEvent}[\manArg{Lecture ID}\secline\manArg{Event Length}\manArg{bgcolor}\manArg{Moderator}\secline\manArg{where}\manArg{title}\manArg{signature}\manArg{name}\manArg{short}]
+Erstellt einen neuen Befehl der Signatur \blankcmd{<signature><Lecture ID>}, der die gleichen Argumente wie \blankcmd{new<EventID>} akzeptiert. Der Befehl wird von \blankcmd{NewLectureSeries} erstellt.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{NewLectureSeries}[\optArg{uni keys}\manArg{Lecture ID}\manArg{Title}\manArg{Docent}]
+Definiert eine neue Vorlesungsreihe, die einie ganze Reihe an keys erwartet, auf derer Basis (standardmäig) ein Befehl für die Vorlesung, Übung und für das Tutorium erstellt wird, sofern nicht anders konfiguriert.
+\begin{center}
+    \begin{tabularx}{\linewidth}{^t>{\em}^l^c^p{0.3\linewidth}+}
+        \toprule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
+            title & String &  & Titel der Vorlesungsreihe \\
+            short title & String & & Kürzel der Vorlesungsreihe \\
+            docent & String &  & Dozent der Vorlesungsreihe \\
+            exercise instructor & String & None & Übungsleiter der Vorlesungsreihe \\
+            tutor & String & None & Tutor der Vorlesungsreihe \\
+        \midrule
+            vl length & enum (siehe unten) & 2 hours & Länge der Vorlesung \\
+            vl bgcolor & color & AppleGreen!25 & Farbe der Vorlesung \\
+            vl where & String & & Ort der Vorlesung \\
+            vl title & String & Vorlesung & Bezeichner der Vorlesung \\
+            vl signature & String & vl & Präfix des Befehls \\
+            vl enabled & Boolean & true & Wenn false, wird kein Befehl erstellt. \\
+        \midrule
+            ub length & enum (siehe unten) & 2 hours & Länge der Übung \\
+            ub bgcolor & color & ChromeYellow!15 & Farbe der Übung \\
+            ub where & String & & Ort der Übung \\
+            ub title & String & Übung & Bezeichner der Übung \\
+            ub signature & String & ub & Präfix des Befehls \\
+            ub enabled & Boolean & true & Wenn false, wird kein Befehl erstellt. \\
+        \midrule
+            tu length & enum (siehe unten) & 1 hour & Länge des Tutoriums \\
+            tu bgcolor & color & ChromeYellow!15 & Farbe des Tutoriums \\
+            tu where & String & & Ort des Tutoriums \\
+            tu title & String & Tutorium & Bezeichner des Tutoriums \\
+            tu signature & String & tu & Präfix des Befehls \\
+            tu enabled & Boolean & true & Wenn false, wird kein Befehl erstellt. \\
+        \bottomrule
+    \end{tabularx}\nskip
+\end{center}
+Ein Beispiel:
+\begin{latex}[morekeywords={[5]{\\ubanaI,\\vlanaI,\\tuanaI,\\vlgdbs,\\lbgdbs,\\theStundenplan}}]
+\NewLectureSeries[%
+    short title=Ana,
+    vl length = 2 hours, % default
+    vl where  = Raum 42,
+    exercise instructor = Frau Zensiert,
+    ub length = 1 hour, %
+    ub where  = Raum 42,
+    tutor = Herr Zensiert,
+    tu length = 2 hours,
+    tu where = Raum 26
+]{anaI}{Analysis für Inf. und Ing.}{Zensiert}
+
+\NewLectureSeries[%
+    short title=GdBS,
+    vl length = 2 hours, % default
+    vl where  = Raum 123,
+    % We will set the übung to be the labor :d
+    exercise instructor = Dr. Zensiert,
+    ub length = 2 hours,
+    ub where = Ja wo denn?,
+    ub title = Labor,
+    ub signature = lb, % will be lbgdbs not ubgdbs!
+    ub bgcolor = Veronica!25, % different bg color
+    tutor = Der Vergessene,
+    tu length = 1 hour,
+    tu where = Raum 19
+]{gdbs}{Grundlagen der Betriebssysteme}{Prof. Dr. Zensiert}
+
+
+\NewTimeTable[title=Stundenplan SoSe 19]{Stundenplan}
+
+% ANA
+\ubanaI{Stundenplan}{Dienstag}{14 uhr}% day, starttime, length constructed above :D
+\vlanaI{Stundenplan}{Donnerstag}{12 uhr}
+\vlanaI{Stundenplan}{Freitag}{8 uhr}
+\tuanaI{Stundenplan}{Freitag}{10 uhr}
+
+% GDBS
+\vlgdbs{Stundenplan}{Montag}{16 uhr}
+\vlgdbs[extra 2 = Raum 42]{Stundenplan}{Donnerstag}{16 uhr}
+\lbgdbs{Stundenplan}{Montag}{12 uhr}
+
+\theStundenplan
+\end{latex}
+\bgroup%
+\NewLectureSeries[%
+    short title=Ana,
+    vl length = 2 hours, % default
+    vl where  = Raum 42,
+    exercise instructor = Frau Zensiert,
+    ub length = 1 hour, %
+    ub where  = Raum 42,
+    tutor = Herr Zensiert,
+    tu length = 2 hours,
+    tu where = Raum 26
+]{anaI}{Analysis für Inf. und Ing.}{Zensiert}
+
+\NewLectureSeries[%
+    short title=GdBS,
+    vl length = 2 hours, % default
+    vl where  = Raum 123,
+    % We will set the übung to be the labor :d
+    exercise instructor = Dr. Zensiert,
+    ub length = 2 hours,
+    ub where = Ja wo denn?,
+    ub title = Labor,
+    ub signature = lb, % will be lbgdbs not ubgdbs!
+    ub bgcolor = Veronica!25, % different bg color
+    tutor = Der Vergessene,
+    tu length = 1 hour,
+    tu where = Raum 19
+]{gdbs}{Grundlagen der Betriebssysteme}{Prof. Dr. Zensiert}
+
+
+\NewTimeTable[title=Stundenplan SoSe 19]{Stundenplan}
+
+% ANA
+\ubanaI{Stundenplan}{Dienstag}{14 uhr}% day, starttime, length constructed above :D
+\vlanaI{Stundenplan}{Donnerstag}{12 uhr}
+\vlanaI{Stundenplan}{Freitag}{8 uhr}
+\tuanaI{Stundenplan}{Freitag}{10 uhr}
+
+% GDBS
+\vlgdbs{Stundenplan}{Montag}{16 uhr}
+\vlgdbs[extra 2 = Raum 42]{Stundenplan}{Donnerstag}{16 uhr}
+\lbgdbs{Stundenplan}{Montag}{12 uhr}
+
+\theStundenplan
+\egroup

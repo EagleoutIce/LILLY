@@ -1,0 +1,25 @@
+\NeedsTeXFormat{LaTeX2e}
+%%% Dieses Modul definiert den Kern von Lilly
+%%% Enthalten sind die grundlegend für die meisten weiteren Lilly-Pakete
+%%% notwendigen Komponenten.
+\ProvidesPackage{LILLYxCORE}[2019/09/12 Stellt den Kern fuer LILLY zur Verfuegung]
+%
+% Lilly - Versions gedöns
+%
+\gdef\LILLYxVERSION{2.0.0}
+\gdef\LILLYxSTATUS{Work in Progress}
+\gdef\LILLYxVERSIONxLONG{2.0.0 - Jake ist auch nur Java}
+%
+% Pakete
+%
+\RequirePackage{LILLYxBOOLEAN} %% \true und \false
+\RequirePackage{LILLYxDEBUG} %% \debugout :D
+\RequirePackage{LILLYxVANILLA}% Wird benötigt, falls Jake nicht verwendet wird :D
+%% Liefert außerdem: LILLYxBOOLEAN und LILLYxDEBUG!
+\RequirePackage{LILLYxPACKAGExCTRL}% LILLYxDemandPackage,LILLYxLoadPackage
+\RequirePackage{LILLYxPATH}% \linput, \linclude etc.
+\RequirePackage{LILLYxCONTROLLERxCONTENT}% Wo ist was :D
+%
+%
+%
+\endinput

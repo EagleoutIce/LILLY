@@ -1,0 +1,203 @@
+%%% This Layout is meant to provide the Layout for a poems collection
+% Its' currently work in Progress :D
+
+\RequirePackage{LILLYxCONTROLLERxBOX}
+
+\RequirePackage{tocloft}
+
+%% General Packages needed for Typesetting
+
+%% https://www.ctan.org/pkg/scrlayer-scrpage
+\LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
+					{Verpflichtööönd}
+					{automark}{}
+
+%% https://www.ctan.org/pkg/framed
+\LILLYxDemandPackage{framed}{Erlaubt das nutzen von leftbar}
+                    {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}
+                    {}{}
+
+%% https://www.ctan.org/pkg/titletoc
+\LILLYxDemandPackage{titletoc}{Macht zusammen mit titlesec den toc}
+                    {Das sieht garnicht gut aus :P}
+					{}{}
+
+%% https://www.ctan.org/pkg/titlesec
+\LILLYxDemandPackage{titlesec}{Macht zusammen mit titletoc den toc}
+					{Das sieht garnicht gut aus :P}
+					{}{}
+
+%% https://www.ctan.org/pkg/microtype
+\LILLYxLoadPackage{microtype}{Ausgeglichene Grauwerte}
+                    {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}
+                    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                    {}{}
+
+%% Setting up the predefined fonts we're going to use:
+\DeclareFixedFont{\tocFont}{U}{eur}{b}{n}{10}
+\DeclareFixedFont{\chpFont}{U}{eur}{b}{n}{24}
+% \DeclareFixedFont{\chpNumber}{U}{eur}{b}{n}{165} no chapter :D
+
+\titlecontents{section}[5.5em]
+{\hspace*{-1.25em}} {\contentslabel{3.2em}} {} {,\itshape\contentspage}
+
+%% Set General style of the Page:
+\def\LILLYxRIGHTMARK{}
+
+\def\SetStyle{%
+	\pagenumbering{arabic}%
+	\pagestyle{scrheadings}%
+	\clearscrheadfoot%
+	\ofoot{\textbf{\thepage}}%
+}
+
+\def\rightmark{}
+
+%% Check Markers:
+\renewcommand{\sectionmark}[1]{%
+    \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
+}
+
+%% we have no header. (there is a koma-option for that, but its not that 'reliable')
+\setheadsepline{0pt}
+
+%% Set Hooks for the Beginning of the Document:
+%% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
+\AtBeginDocument{%
+	\SetStyle
+	% Two column \listofPOEMS
+	\addtocontents{POEM}{\protect\begin{multicols}{2}}
+	% Two column \listofQUOTES
+	\addtocontents{QUOTE}{\protect\begin{multicols}{2}}
+}
+\AtEndDocument{%
+	\addtocontents{POEM}{\protect\end{multicols}}
+	\addtocontents{QUOTE}{\protect\end{multicols}}
+}
+
+%% General spacing stuff:
+\setlength{\parskip}{1ex}\setlength{\parindent}{0ex}
+\setlength{\skip\footins}{0.75cm}\setlength{\footnotesep}{2mm}
+
+
+%% Styling the toc:
+%% Used with babel :D
+\addto\captionsngerman{%
+        \renewcommand{\contentsname}{\leavevmode\vspace*{-0.8\baselineskip}\newline\noindent\efont{Kurzübersicht}\hfill\hbox{}\vspace*{-0.3\baselineskip}}%
+}
+
+\renewcommand\sectionlinesformat[4]{%
+	\phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
+	{{\smaller #3}\, #4}%
+}
+\renewcommand{\@seccntformat}[1]{\textcolor{\Hcolor}{\csname the#1\endcsname}}
+
+\setlength{\cftbeforesecskip}{2.3pt}
+
+
+\renewcommand{\section}{\@startsection{section}{1}{\z@}
+{-4ex \@plus -1ex \@minus -.4ex}
+{1ex \@plus.2ex }
+{\normalfont\LARGE\bfseries\useefont}}
+\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
+{-3ex \@plus -0.1ex \@minus -.4ex}
+{0.5ex \@plus.2ex }
+{\normalfont\normalsize\bfseries\useefont}}
+\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
+{-2ex \@plus -0.1ex \@minus -.2ex}
+{.2ex \@plus.2ex }
+{\normalfont\small\sffamily\bfseries}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+{-2ex \@plus-.2ex \@minus .2ex}
+{.1ex}
+{\normalfont\sffamily\bfseries}}
+
+\list@poems@seentrue%
+\list@quotes@seentrue%
+
+\def\poemstoc{%
+	{%
+		\hypersetup{linkcolor=black}%
+		\iflist@poems@seen% this would require some extensive trickery, therefore they're set/forced to true
+		\OrnamentsUpper[][]{\poems@tocpoemsheader}\vspace*{-1\baselineskip}%
+			\listofPOEMS\vspace*{-2\baselineskip}%
+		\OrnamentsLower{}%
+		\fi%
+		\iflist@quotes@seen%
+		\clearpage\OrnamentsUpper[][]{\poems@tocquotesheader}\vspace*{-1.5\baselineskip}%
+			\listofQUOTES\vspace*{-2\baselineskip}%
+		\OrnamentsLower{}%
+		\fi%
+	}
+	%\SetStyle%
+}
+
+% Author wird in LILLYxPOEMS gesetzt :D
+\def\poems@title{Gedichtsammlung}
+\def\poems@subtitle{Gedichte der Jahre $42$\,--\,$84$}
+
+\def\poems@tocpoemsheader{Inhaltsverzeichnis}
+\def\poems@tocquotesheader{Alle Zitate}
+
+
+\def\poemssettitle#1{\gdef\poems@title{#1}}
+\def\poemssetsubtitle#1{\gdef\poems@subtitle{#1}}
+\def\poemssettocpoemsheader#1{\gdef\poems@tocpoemsheader{#1}}
+\def\poemssettocquotesheader#1{\gdef\poems@tocquotesheader{#1}}
+
+% Change this to a t itlepage with ornaments :D
+\DeclareDocumentCommand{\poemstitle}{%
+	O{ornaelephant} % Left animal
+	O{ornagoat} 	% Right animal
+}{%
+	\newgeometry{margin = 0pt}
+	\begin{titlepage}
+		\begin{tikzpicture}[every node/.style={inner sep=0pt}]
+			\node[minimum width=\paperwidth,minimum height=\paperheight] (thepage) {};
+			\node[shift={(1cm,-1cm)},anchor=north west](CNW)
+				at (thepage.north west) {\pgfornament[width=1.75cm]{61}};
+			\node[shift={(-1cm,-1cm)},anchor=north east](CNE)
+				at (thepage.north east) {\pgfornament[width=1.75cm,symmetry=v]{61}};
+			\node[shift={(1cm,1cm)},anchor=south west](CSW)
+				at (thepage.south west) {\pgfornament[width=1.75cm,symmetry=h]{61}};
+			\node[shift={(-1cm,1cm)},anchor=south east](CSE)
+				at (thepage.south east) {\pgfornament[width=1.75cm,symmetry=c]{61}};
+			% Fill CXW to CXE
+			\foreach \x in {0,...,3} {
+				\draw (CNW) ++ (2.75,0.85) ++ (\x*3.915,0) node {\pgfornament[width=3.915cm]{87}};
+				\draw (CSW) ++ (2.75,-0.85) ++ (\x*3.915,0) node {\pgfornament[width=3.915cm]{87}};
+			}
+			% 'to' ornament, maybe?
+			% Fill CNX to CSX
+			\foreach \x in {0,...,5} {
+				\draw (CNW) ++ (-0.87,-2.79) ++ (0,-\x*4.067) node[rotate=90] {\pgfornament[width=4.067cm]{87}};
+				\draw (CNE) ++ (0.87,-2.79) ++ (0,-\x*4.067) node[rotate=90] {\pgfornament[width=4.067cm]{87}};
+			}
+
+			% Title
+			\draw (thepage.center) ++ (0,\paperheight/3) node[inner sep=6pt] (text) {\Huge\useefont\poems@title};
+
+			% Subornaments Title
+			\node[anchor=north] at (text.south){\pgfornament[width=5em]{8}};
+			\node[anchor=north] at ([xshift=-4em]text.south east){\pgfornament[width=8em]{16}};
+			\node[anchor=north] at ([xshift=4em]text.south west){\pgfornament[width=8em]{15}};
+
+			% Subtitle
+			\draw (thepage.center) ++ (0,\paperheight/6) node[inner sep=6pt] (subtext) {\Large\poems@subtitle};
+
+			% Animals
+			\draw (thepage.center) ++ (-8em,0) node (anileft) {\csname#1\endcsname[width=5cm]};
+			\draw (thepage.center) ++ (8em,0) node (aniright) {\csname#2\endcsname[width=5cm]};
+
+			% Author
+			\draw (thepage.center) ++ (0,-\paperheight/4.75) node[inner sep=6pt] (author) {\LARGE\useefont\poems@author};
+
+			% Ornament below author
+			\node[anchor=north] at (author.south){\pgfornament[width=7em]{75}};
+		\end{tikzpicture}
+	\end{titlepage}
+	\restoregeometry
+	\cleardoublepage
+}
+
+

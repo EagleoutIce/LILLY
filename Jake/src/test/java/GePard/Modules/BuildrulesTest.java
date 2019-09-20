@@ -38,7 +38,7 @@ public class BuildrulesTest {
     @DisplayName("[Buildrules] Überprüft erwartende Blueprint-Settings")
     @CsvSource({ "name,,true", "display-name,,true", "lilly-mode,,true", "complete,false,false",
             "complete-prefix,c_,false", "lilly-complete-prefix,COMPLETE-,false", "nameprefix,#,false",
-            "lilly-loader,\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)},false" })
+            "lilly-loader,\\ignorespaces\\noindent \\input{$(INPUTDIR)$(TEXFILE)},false" })
     void _test_gepard_buildrules_blueprint(String name, String expected, String mandatory) {
         SettingDeskriptor<String> s = Buildrules.getInstance().getBlueprint().get(name);
         Assertions.assertNotNull(s, "Die Einstellung muss Existieren");
@@ -63,7 +63,7 @@ public class BuildrulesTest {
     @CsvSource(value = {
             "default~SettingDeskriptor [brief=Standard-Buildrule ohne Boni :D, isMandatory=false, name=default, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{FALSE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: Standard]",
             "print~SettingDeskriptor [brief=Druck-Buildrule ohne Boni :D, isMandatory=false, name=print, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{print}\\\\providecommand\\\\LILLYxMODExEXTRA{FALSE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: Druck]",
-            "uebungsblatt~SettingDeskriptor [brief=Übungsblatt-Buildrule, erwartet Dokument ohne \\begin usw., isMandatory=false, name=uebungsblatt, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\documentclass[Typ=Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}!Generiere: Übungsblatt]",
+            "uebungsblatt~SettingDeskriptor [brief=Übungsblatt-Buildrule, erwartet Dokument ohne \\begin usw., isMandatory=false, name=uebungsblatt, type=IS_TEXT, value=./OUTPUT/!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\documentclass[Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}!Generiere: Übungsblatt]",
             "c_default~SettingDeskriptor [brief=Complete Standard-Buildrule, isMandatory=false, name=c_default, type=IS_TEXT, value=./OUTPUT/COMPLETE-!\\\\providecommand\\\\LILLYxMODE{default}\\\\providecommand\\\\LILLYxMODExEXTRA{TRUE}!\\\\input{$(INPUTDIR)$(TEXFILE)}!Generiere: COMPLETE-Standard]",
             "c_print~                        \"c_print~SettingDeskriptor [brief=Complete Druck-Buildrule, isMandatory=false, name=c_print, type=IS_TEXT, value=./OUTPUT/COMPLETE-Druck!\\\\\\\\providecommand\\\\\\\\LILLYxMODE{print}\\\\\\\\providecommand\\\\\\\\LILLYxMODExEXTRA{TRUE},\\\"\\\\\\\\input{$(INPUTDIR)$(TEXFILE)}\\\"]\"},delimiter = '~')" }, delimiter = '~')
     void _test_gepard_buildrules_defaults(String should_exist, String should_be) {

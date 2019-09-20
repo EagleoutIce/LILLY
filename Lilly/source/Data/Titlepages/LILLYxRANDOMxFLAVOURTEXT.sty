@@ -4,7 +4,7 @@
 \RequirePackage{LILLYxRANDOM} %% init random
 \RequirePackage{LILLYxENCODING} %% Wir nutzen hier Umlaute :P
 
-\def\@@@flavourtext@cnt{12}
+\def\@@@flavourtext@cnt{13}
 
 \def\@flavourtext@author#1{%
     \hbox{}\hfill {\tiny{\usefont{T1}{qzc}{m}{it}  Florian Sihler, #1}}\par%
@@ -137,6 +137,27 @@
     wie das der Harfe schlägt.}%
     \@flavourtext@author{12.08.2016}}
 }
+
+\@namedef{@@@flavourtext@13}{% Aus: Von den Raben
+    {{\hspace*{-0.125cm}%
+    \parbox{4.95cm}{\say{Die Raben kommen}\\
+    schallt es von den Dächern,\\
+    \say{Habt ihrs vernommen?}\\
+    Sie ernten nur Gelächter.\\
+    Die einen fliehen.}\parbox{4.95cm}{%
+        Die anderen bleiben.\\
+        Die einen schrien,\\
+        Die anderen schweigen.\\
+        Während die Raben weiterziehen\\
+        und sie vertreiben\\
+        oder sich an ihnen weiden.}}\smallskip\\
+    \@flavourtext@author{23.04.2017}}
+}
+
+% Make New:
+
+
+
 
 \def\RandomFlavourText{% Generate a Random Number between '1' and '\@@@flavourtext@cnt'
     \pgfmathrandominteger{\lilly@rnd@tmp}{1}{\@@@flavourtext@cnt}%

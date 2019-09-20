@@ -119,7 +119,7 @@ public class CoreSettings {
 
         // S_LILLY_CLEANS
         settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?", eSetting_Type.IS_TEXTLIST,
-                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls ubp fdb_latexmk auxlock ptc UB TOP listing upa ilg TOPIC DEFS BEMS BEIS BEWS LEMS SATS ZSMS");
+                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls ubp fdb_latexmk auxlock ptc UB TOP listing upa ilg TOPIC DEFS BEMS BEIS BEWS LEMS SATS ZSMS POEM QUOTE");
         // S_LILLY_EXTERNAL
         settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?",
                 eSetting_Type.IS_SWITCH, "false");
@@ -144,7 +144,7 @@ public class CoreSettings {
 
         // besondere Lilly-Einstellungen
         settings.emplace(st, "S_LILLY_VORLESUNG", "Um welche Vorlesung handelt es sich", eSetting_Type.IS_VLS, "NONE");
-        
+
         settings.emplace(st, "S_LILLY_CONFIGS_PATH", "Pfad zu den Lilly-Konfigurationen", eSetting_Type.IS_PATH, "");
         settings.emplace(st, "S_LILLY_DATA_PATH", "Pfad zu generellen Daten wie Boxen...", eSetting_Type.IS_PATH, "");
 
@@ -154,7 +154,7 @@ public class CoreSettings {
                 eSetting_Type.IS_SWITCH, "false");
         settings.emplace(st, "S_LILLY_LAYOUT_LOADER", "Pfad über den Layouts geladen werden können",
                 eSetting_Type.IS_PATH, "");
-                
+
         settings.emplace(st, "S_LILLY_AUTHOR", "Wer ist der Autor des Dokuments", eSetting_Type.IS_TEXT,
                 "Florian Sihler");
         settings.emplace(st, "S_LILLY_AUTHORMAIL", "E-mail adresse des Autors", eSetting_Type.IS_TEXT,

@@ -1,7 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxLISTINGSxLANGUAGExCONTROL}[2019/07/14 Verwaltet Sprachen fuer die Listings-Erweiterungen von LILLY]
 
-\RequirePackage{LILLYxVANILLA}
+\RequirePackage{LILLYxCORE}
+
 \RequirePackage{LILLYxLISTINGS}
 \RequirePackage{LILLYxLISTINGSxADVANCED}% we will construct the presentation - Environments too
 \RequirePackage{LILLYxCONTROLLERxBOX}
@@ -14,7 +15,7 @@
 
 \gdef\lillylstset#1{\pgfkeys{/lillyxLISTINGS/.cd, #1}}
 
-%% Todo make commands like: 'on entry' which will define Actions at the beginning of the listing etc :D 
+%% Todo make commands like: 'on entry' which will define Actions at the beginning of the listing etc :D
 
 \pgfkeys{/lillyxLISTINGS/.is family}
 %% Here we define globals, which are basically applied to every listing - like for example the initial style
@@ -118,28 +119,43 @@
 
 %% They all HAVE to follow the signature of one optional followed by one mandatory Argument
 
-\newtcblisting{presentlst}[2][]{%
-  lstpresenterstyle,
+\newlength{\lilly@lst@outer@spacing}%
+\setlength{\lilly@lst@outer@spacing}{3pt}
+
+\DeclareTCBListing{presentlst}{%
+        O{} % Listing Args
+        O{} % TCB Args
+        m   % Language
+}{%
+  lstpresenterstyle, enlarge top by=\lilly@lst@outer@spacing,enlarge bottom by=\lilly@lst@outer@spacing,
   listing options={%
     style=LSTADVANCED,
-    language=#2,#1}%
+    language=#3,#1},#2%
 }
 {}
-\newtcblisting{plainlst}[2][]{%
-  enhanced jigsaw,breakable,blankest,listing only,
+\DeclareTCBListing{plainlst}{%
+        O{} % Listing Args
+        O{} % TCB Args
+        m   % Language
+}{%
+  enhanced jigsaw,breakable,blankest,listing only,enlarge top by=\lilly@lst@outer@spacing,enlarge bottom by=\lilly@lst@outer@spacing,
   listing options={%
     style=MAIN,
-    language=#2,%set known plain options:
+    language=#3,%set known plain options:
     xleftmargin=0pt,xrightmargin=0pt,%
     numbers=none,numbersep=0pt,frame=none,%
-    rulecolor={},backgroundcolor={},#1}%
+    rulecolor={},backgroundcolor={},#1},#2%
 }
 {}
-\newtcblisting{defaultlst}[2][]{%
-  enhanced jigsaw,breakable,blankest,listing only,
+\DeclareTCBListing{defaultlst}{%
+        O{} % Listing Args
+        O{} % TCB Args
+        m   % Language
+}{%
+  enhanced jigsaw,breakable,blankest,listing only,enlarge top by=\lilly@lst@outer@spacing,enlarge bottom by=\lilly@lst@outer@spacing,
   listing options={%
     style=MAIN,
-    language=#2,#1}%
+    language=#3,#1},#2%
 }
 {}
 
@@ -286,12 +302,15 @@
       \debugout{\space > Draw Command: [\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/draw command}]}%
       %% We will construct those with optional arguments, to give the user a chance to pass optional Arguments :D
       % luckily we can construct the main Argument without any expansion problems :D
-      \expandafter\xdef\csname\inlineCurName\endcsname{\noexpand\protect\noexpand\@ifnextchar[{\expandafter\noexpand\csname @@hasopt@@\inlineCurName\endcsname}{\expandafter\noexpand\csname @@noopt@@\inlineCurName\endcsname}}%
+      \expandafter\xdef\csname\inlineCurName\endcsname{\noexpand\protect\noexpand\@ifnextchar[{\noexpand\protect\expandafter\noexpand\csname @@hasopt@@\inlineCurName\endcsname}{\noexpand\protect\expandafter\noexpand\csname @@noopt@@\inlineCurName\endcsname}}%
       %% Variant without optionals :D
       \expandafter\xdef\csname @@noopt@@\inlineCurName\endcsname####1{\noexpand\protect\expandafter\noexpand\csname\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/draw command}\endcsname{style=\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/listing style},language=#2}{####1}}%
       % Variant with one optional argument, it will be matched by the default delimiter
       \expandafter\xdef\csname @@hasopt@@\inlineCurName\endcsname[####1]####2{\noexpand\protect\expandafter\noexpand\csname\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/draw command}\endcsname{style=\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/listing style},language=#2,####1}{####2}}%
       \expandafter\robustify\csname\inlineCurName\endcsname% robustify
+      %\expandafter\robustify\csname @@noopt@@\inlineCurName\endcsname% robustify
+      %\expandafter\robustify\csname @@hasopt@@\inlineCurName\endcsname% robustify
+
   }%
   % \expandafter\xdef\csname i#1\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINPL{language=#2}{##1}}
   % \expandafter\robustify\csname i#1\endcsname

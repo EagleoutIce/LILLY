@@ -3,16 +3,29 @@
 
 %% Information: Durch: \def\LILLYxColorxInject{} lässt sich das integrieren der jeweiligen Farbpakete annulieren
 %% Diese Option erlaubt ein manuelles überschreiben entfernt allerdings auch jede Garantie bezüglich der Funktionsweise
-\RequirePackage{LILLYxVANILLA}
-\RequirePackage{LILLYxPACKAGExCTRL}
-\RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxCORE}
 
-%% https://ctan.org/pkg/xcolor
-\LILLYxDemandPackage{xcolor}{Ohne Farben mache ich GARNICHTS}%% Package, Info
-                    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+
+
+%% https://ctan.org/pkg/colortbl
+\LILLYxDemandPackage{colortbl}{Farbige Tables :D}%% Package, Info
+                    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
                     {}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
+\ifx\LILLYxUSEREGXCOLOR\undefined
+%% https://ctan.org/pkg/xcolor
+\LILLYxDemandPackage{lilly-xcolor}{Ohne Farben mache ich GARNICHTS}%% Package, Info
+                    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {table}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+\else
+%% https://ctan.org/pkg/xcolor
+\LILLYxDemandPackage{xcolor}{Ohne Farben mache ich GARNICHTS}%% Package, Info
+                    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {table}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+\fi
 %% https://ctan.org/pkg/pgf
 \LILLYxDemandPackage{pgf}{Ohne pgf mache ich GARNICHTS}%% Package, Info
                     {Jetzt mal ernsthaft, was wären wir ohne pgf? Auch wenn ich nicht mehr weiss, warum es hier gebraucht wird.}%% Error-Text
@@ -146,6 +159,7 @@
 \providecommand{\HBcolor}{\Hcolor!7}
 
 
+
 %% Doese Farben werden nun durch Default entsprechend gesetzt:
 
 \gdef\setProfileColors#1{
@@ -184,5 +198,13 @@
 \providecommand{\LILLYxCOLORxEXTENSION}{VOID}
 \userput{_LILLY_COLOR_EXTENSION_\LILLYxCOLORxEXTENSION}{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}
 
+
+% No save the color definition :D
+
+% \typeout{\Hcolor}
+% % No we will encapsulate the \Hcolor, so it is safe to be used inside of a all Constructs :D
+% \edef\@@Hcolor{\Hcolor}
+% \colorlet{@@the@hcolor}{\@@Hcolor} % assign the expanded value
+% \def\Hcolor{@@the@hcolor}% remap
 
 \endinput

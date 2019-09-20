@@ -28,10 +28,16 @@
                     {}{}
 }
 
+%\lstloadaspects{tex}%strings,comments,escape,writefile,style,language,keywords,html,tex,emph,index,keywordcomments,labels}
+
+% Key patch from: https://tex.stackexchange.com/questions/149056/how-can-i-define-additional-literate-replacements-without-deleting-existing-ones
+\def\addToLiterate#1{\edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
+\lst@Key{add to literate}{}{\addToLiterate{#1}}
+
 %% maybe just load and check?
 %% https://ctan.org/pkg/amsfonts
 \LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
-                    {Wir wollen mehr Symbole}%% Error -Text
+                    {Wir wollen mehr Symbole}%% Error-Text
                     {}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
@@ -40,8 +46,9 @@
                     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
                     {}{} %% keine Argumente
 
+%% https://ctan.org/pkg/graphicx
 \LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
-                    {Dieses Paket ist für includegraphicsvon noeten!}
+                    {Dieses Paket ist für includegraphics von noeten!}
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}} %% Sloppy includegraphics draft
                     {}{}
 

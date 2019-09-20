@@ -1,0 +1,142 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONTROLLERxCONTENT}[2019/06/29 Grundlegende Pfadverwaltung fuer Lilly]
+%% TODO: bisher wird die automatische Pfaderkennung auf Windows NICHT aktiviert! => CHANGE
+
+%%% Verwaltet das laden S�MTLICHER DATEN-Dateien
+%% Zu unterbinden
+\RequirePackage{LILLYxCOMMAND}
+\RequirePackage{LILLYxVANILLA}
+\RequirePackage{LILLYxPACKAGExCTRL}
+
+%% https://www.ctan.org/pkg/ifthen
+\LILLYxDemandPackage{ifthen}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
+                    {Um dieses Paket kommt LILLY nicht herum!}
+                    {}{}
+%% https://www.ctan.org/pkg/ifplatform
+\LILLYxDemandPackage{ifplatform}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
+                    {Um dieses Paket kommt LILLY nicht herum!}
+                    {}{}
+
+%% https://www.ctan.org/pkg/pgf
+\LILLYxDemandPackage{pgffor}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
+                    {Um dieses Paket kommen wir hier nicht mehr herum!}
+                    {}{}
+\ifshellescape
+\ifwindows %% todo: determine compile - commands
+    \providecommand{\LILLYxCLSPATH}{./}
+    \providecommand{\LILLYxDOCPATH}{./}
+\else
+    %% GET PATH OF LILLY
+    \ifx\LILLYxCMD\undefined
+        \newread\res
+        \immediate\write18{printf "$(dirname "$(kpsewhich --progname=pdflatex Lilly.cls)")"> \jobname.txt}
+        \endlinechar=\m@ne
+        \immediate\openin\res=\jobname.txt
+        \read\res to \LILLYxCLSPATH
+        \endlinechar=13
+        \closein\res
+    \else
+        \providecommand{\LILLYxCLSPATH}{./}
+    \fi
+
+        %%% GET PATH OF DOC
+
+    \ifx\LILLYxCMD\undefined
+        \immediate\write18{printf "$(dirname "$(find "$(pwd)" -name "\LILLYxDOCUMENTNAME")")" > \jobname.txt}
+        \endlinechar=\m@ne
+        \immediate\openin\res=\jobname.txt
+        \read\res to \LILLYxDOCPATH
+        \endlinechar=13
+        \immediate\write18{rm \jobname.txt}
+        \closein\res
+    \else
+        \providecommand{\LILLYxDOCPATH}{./}
+    \fi
+\fi
+\fi
+%% FALLBACK ERASERS
+\providecommand{\LILLYxCLSPATH}{./}
+\providecommand{\LILLYxDOCPATH}{./}
+
+
+\providecommand{\LILLYxPATHxROOT}{.} %%% WILL BE DEFINITLY SET BY JAKE - TODO
+
+\providecommand{\LILLYxPATHxFILExROOT}{source}
+
+%%% MAIN LOCATIONS
+
+\foreach \id/\lid in {CONTROLLERS/Controllers,
+                      DATA/Data,
+                      GRAPHICS/Graphics,
+                      FALLBACKS/Fallbacks,
+                      HELPER/Helper,
+                      LISTINGS/Listings,
+                      MATHS/Maths,
+                      BEAMER/Beamer,
+                      UTIL/Util,
+                      CORE/Core,
+                      PRESENTER/Presenter} {
+\ifcsname LILLYxPATHx\id\endcsname\else
+    \expandafter\xdef\csname LILLYxPATHx\id\endcsname{\LILLYxPATHxFILExROOT/\lid}
+\fi
+\ifcsname LILLYxABSPATHx\id\endcsname\else
+    \expandafter\xdef\csname LILLYxABSPATHx\id\endcsname{\LILLYxCLSPATH/\LILLYxPATHxFILExROOT/\lid}
+\fi
+}
+
+% \providecommand{\LILLYxPATHxCONTROLLERS}{\LILLYxPATHxFILExROOT/Controllers}
+% \providecommand{\LILLYxPATHxDATA}{\LILLYxPATHxFILExROOT/Data}
+% \providecommand{\LILLYxPATHxGRAPHICS}{\LILLYxPATHxFILExROOT/Graphics}
+% \providecommand{\LILLYxPATHxFALLBACKS}{\LILLYxPATHxFILExROOT/Fallbacks}
+% \providecommand{\LILLYxPATHxHELPER}{\LILLYxPATHxFILExROOT/Helper}
+% \providecommand{\LILLYxPATHxLISTINGS}{\LILLYxPATHxFILExROOT/Listings}
+% \providecommand{\LILLYxPATHxMATHS}{\LILLYxPATHxFILExROOT/Maths}
+% \providecommand{\LILLYxPATHxBEAMER}{\LILLYxPATHxFILExROOT/Beamer}
+
+
+\providecommand{\LILLYxPATHxINDEX}{\LILLYxCLSPATH/source/Data/Configs/IDX}
+
+\providecommand{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}
+
+
+
+%%% Used userput-paths by LILLY - available for overwrite
+%% Bitte akzeptiere, dass die Systempfade nicht �berschrieben werden _d�rfen_
+\typeout{Got for cls: \LILLYxCLSPATH}
+\IfFileExists{\LILLYxCLSPATH/Lilly.cls}{%
+    \ClassInfo{Lilly}{Automatische Pfaderkennung erfolgreich, LILLY-Quellverzeichnis erfolgreich gefunden}%
+}{% else
+    \ClassWarning{Lilly}{Automatische Pfaderkennung gescheitert. Fallback zu lokalem Verzeichnis!}%
+    \renewcommand{\LILLYxCLSPATH}{.}
+}
+
+%%%%%%% NICE HELPER
+
+
+%% WON'T ALLOW '_'  which is fine as they shouldn't be used anyway
+\providecommand{\dataInput}[1]{\InputIfFileExists{\LILLYxCLSPATH/source/Data/#1}{}{\ClassWarning{Lilly}{Die per \protect\dataInput\space angeforderte Datei #1 konnte nicht gefunden werden!}}}
+
+%%% Semesterzahl Path
+\providecommand{\getSemester}[2]{\LILLYxCLSPATH/\LILLYxPATHxDATA/Semester/#1/#2}
+
+
+
+
+
+
+%%% Wir respektieren unseren Nutzer als netten, aber oft unwissenden Menschen
+%%% {Datei}{Nutzerpfad}{Systempfad} -NO TRAILING '/'
+\providecommand{\userput}[3]{%
+\ifthenelse{\equal{#2}{#3}}{%
+    \InputIfFileExists{#3/#1}{}{}%
+}{%
+    \InputIfFileExists{#2/#1}{%
+        \ClassInfo{Lilly}{Lilly hat die Nutzerdatei: #2/#1 respektiert}%
+    }{%
+        \ClassInfo{Lilly}{Lilly hat die Nutzerdatei: #2/#1 ignoriert, weil nicht gefunden}%
+        \InputIfFileExists{#3/#1}{}{}%
+    }%
+}%
+}
+
+\endinput

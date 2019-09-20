@@ -1,8 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCONTROLLERxLINK}[2019/07/14 Stellt die (Hyper-)Link-Erweiterungen fuer LILLY zur Verfuegung]
 
-\RequirePackage{LILLYxVANILLA}
-\RequirePackage{LILLYxPACKAGExCTRL}
+\RequirePackage{LILLYxCORE}
 
 \RequirePackage{LILLYxCOLOR}
 
@@ -10,11 +9,15 @@
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 
 
-\RequirePackage{titletoc} %collission fun :D
-
+%\RequirePackage{titletoc} %collission fun :D
+%% https://ctan.org/pkg/titletoc
+\LILLYxDemandPackage{titletoc}{Damit der tableofcountetns auch schön hübsch gemacht werden kann.}%% Package, Info
+                    {Das Paket titletoc ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
 %% https://ctan.org/pkg/hyperref
-\LILLYxDemandPackage{hyperref}{Fuer tolle Verlinkungen und einen tollen Überblick}%% Package, Info
+\LILLYxDemandPackage{hyperref}{Fuer tolle Verlinkungen und einen tollen Ueberblick}%% Package, Info
                     {Das Paket hyperref ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
                     {pageanchor}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
@@ -69,13 +72,12 @@
 }
 
 \DeclareDocumentCommand{\elable}{ s m }{%
-    \IfBooleanTF{#1}{\phantomsection}{%
+    \IfBooleanT{#1}{\phantomsection}%
         % To allow this command being flawlessly used in a Box-Environment it won't create a phantomsection
         % You can enforce the creation with the star (\elable*)
         \@ifundefined{curboxid}{\phantomsection% Not in box
         }{}% In Box
         \label{#2}\ignorespaces%
-    }%
 }
 
 \let\elabel\elable % to make this annoying typo history :D
@@ -84,16 +86,27 @@
 % \providecommand*{\elable}[1]{%
 %     \phantomsection\label{#1}\ignorespaces%
 % }%\phantomsection % wenn gewünscht das direkter sprung
+
+\def\@print@pageformat#1{%
+\,\textsuperscript{\smaller$\rightarrow$\;\pageref{#1}}
+}
+
+\newcommand{\@default@jmark}[2][Linkname]{{\setLinkColor{\LILLYxColorxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
+\newcommand{\@default@hmark}[2][Linkname]{\setLinkColor{black}\textbf{{\hyperref[#2]{#1}}}}
+\DeclareDocumentCommand{\@default@silentHmark}{ O{Linkname} m O{black} }{\setLinkColor{#3}\begingroup\normalfont\textbf{{\hyperref[#2]{#1}}}\endgroup}
+\newcommand{\@print@jmark}[2][Linkname]{#1\@print@pageformat{#2}}
+\newcommand{\@print@hmark}[2][Linkname]{\textbf{#1}\@print@pageformat{#2}}
+\DeclareDocumentCommand{\@print@silentHmark}{ O{Linkname} m O{black} }{\begingroup\normalfont#1\endgroup}
 \ifx\LILLYxHYPERLINK\true
     \typeout{Normal link - mode}
-    \newcommand{\jmark}[2][Linkname]{{\setLinkColor{\LILLYxColorxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
-    \newcommand{\hmark}[2][Linkname]{\setLinkColor{black}\textbf{{\hyperref[#2]{#1}}}}
-    \DeclareDocumentCommand{\silentHmark}{ O{Linkname} m O{black} }{\setLinkColor{#3}\begingroup\normalfont\textbf{{\hyperref[#2]{#1}}}\endgroup}
+    \let\jmark\@default@jmark
+    \let\hmark\@default@hmark
+    \let\silentHmark\@default@silentHmark
 \else
     \typeout{Print link - mode}
-    \newcommand{\jmark}[2][Linkname]{#1\ensuremath{{}^{\rightarrow~\text{\pageref{#2}}}}}
-    \newcommand{\hmark}[2][Linkname]{\textbf{#1}\ensuremath{{}^{\rightarrow~\text{\pageref{#2}}}}}
-    \DeclareDocumentCommand{\silentHmark}{ O{Linkname} m O{black} }{\begingroup\normalfont#1\endgroup}
+    \let\jmark\@print@jmark
+    \let\hmark\@print@hmark
+    \let\silentHmark\@print@silentHmark
 \fi
 %% With sepcific color :D
 \newcommand{\cmark}[3][Linkname]{\setLinkColor{#3}\textbf{{\hyperref[#2]{#1}}}}

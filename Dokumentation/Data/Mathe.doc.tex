@@ -5,9 +5,11 @@
 \elable{chp:MATH}\hypertarget{LILLYxMATH}An sich ändert LILLY nicht viel an der normalen Implementation der Mathewelt. Dieses Paket liegt hier: \begin{center}
     \blankcmd{LILLYxPATHxMATHS} = \T{\LILLYxPATHxMATHS}
 \end{center}
+
 %
 %
 %
+
 \presentCommand[1.0.3]{LILLYxMathxMode} %% Overbar
 Der verwendete Mathemodus lässt sich mithilfe des Befehls \clatex[morekeywords={[5]{LILLYxMathxMode}}]{:bs:LILLYxMathxMode} frei einstellen. Standardmäßig wird dieser Wert auf \emph{normal} gesetzt.
 \begin{bemerkung}[Standalone-Math]
@@ -20,10 +22,12 @@ Der verwendete Mathemodus lässt sich mithilfe des Befehls \clatex[morekeywords=
 \section{Weitere Befehle}
 
 \subsection[Operatoren \LILLYxBOXxVersion{\small 1.0.3}]{Operatoren}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_OPERATORS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_OPERATORS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.
+
 %
 %
 %
+
 \presentCommand[1.0.3]{overbar}[\manArg{text}] %% Overbar
 Lilly liefert den Befehl auf Basis von \T{mkern} so, dass er direkt Abstände zwischen den Overlines definiert, sodass kein manueller Abstand eingefügt werden muss. So ergibt sich:
 \begin{center}
@@ -34,15 +38,19 @@ Lilly liefert den Befehl auf Basis von \T{mkern} so, dass er direkt Abstände zw
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
+
 %
 %
 %
-\presentCommand[1.0.3]{das}[\cmdlist \anothercmd[1.0.3]{sad}\cmdlist \textbackslash daseq\cmdlist \textbackslash qesad\cmdlist \textbackslash shouldeq]
+
+\presentCommand[1.0.3]{das}[\cmdlist \anothercmd[1.0.3]{sad}\cmdlist \anothercmd[1.0.3]{daseq}\cmdlist \anothercmd[1.0.3]{qesad}\cmdlist \anothercmd[1.0.6]{shouldeq}]
 Für Definitionen gibt es die Befehle \blankcmd{das} ($\das$), \blankcmd{sad} ($\sad$), \blankcmd{daseq} ($\daseq$), \blankcmd{qesad} ($\qesad$) sowie \blankcmd{shouldeq} ($\shouldeq$). All diese Befehle funktionieren sowohl in einer Matheumgebung, das auch im normalen text, sie werden mit \verb|\ensuremath| abgesichert!\par
-Bis auf den letzten werden zudem alle Befehle mithilfe von \verb|\vcentcolon| realisiert.\medskip\newline
+Bis auf den letzten werden zudem alle Befehle mithilfe von \verb|\vcentcolon| realisiert.
+
 %
 %
 %
+
 \presentCommand[1.0.3]{sqrt}[\optArg{n}\manArg{math-Ausdruck}]
 Weiter wurde das Aussehen der Wurzel verändert und die Möglichkeit hinzugefügt, über das optionale Argument \say{\T{n}} höhere Wurzeln zu Formulieren, wir erhalten folgendes:
 \begin{center}
@@ -53,29 +61,37 @@ Weiter wurde das Aussehen der Wurzel verändert und die Möglichkeit hinzugefüg
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\smallskip
 \end{center}
+
 %% todo error patterns:
 %% error, missing $, improper alphabetic constant, ! Too many }'s (in general, lines starting with '!')
 %
 %
 %
-\presentCommand[1.0.3]{det}[\cmdlist \textbackslash adj\cmdlist \textbackslash LH\cmdlist \textbackslash eig\cmdlist \textbackslash Dim\cmdlist \textbackslash sel\cmdlist \textbackslash sign\cmdlist \textbackslash diag\cmdlist \textbackslash LK\cmdlist \textbackslash rg\cmdlist \textbackslash KER\cmdlist \textbackslash Eig]
+
+\presentCommand[1.0.3]{det}[\cmdlist \anothercmd[1.0.3]{adj}\cmdlist \anothercmd[1.0.3]{LH}\cmdlist \anothercmd[1.0.3]{eig}\cmdlist \anothercmd[1.0.3]{Dim}\cmdlist \anothercmd[1.0.3]{sel}\cmdlist \anothercmd[1.0.3]{sign}\cmdlist \anothercmd[1.0.3]{diag}\cmdlist \anothercmd[1.0.3]{LK}\cmdlist \anothercmd[1.0.3]{rg}\cmdlist \anothercmd[1.0.3]{KER}\cmdlist \anothercmd[1.0.3]{Eig}]
 Diese vereinfachenden Operatoren solles es ermöglichen Schneller verschiedene mathematische Operatoren zu setzen
 \displayCommandList[3]{det,adj,LH,eig,Dim,sel,sign,diag,LK,rg,KER,Eig}
+
 %
 %
 %
-\presentCommand[1.0.2]{Im}[\cmdlist \textbackslash mod\cmdlist \textbackslash Re\cmdlist \textbackslash emptyset]
+
+\presentCommand[1.0.2]{Im}[\cmdlist \anothercmd[1.0.2]{mod}\cmdlist \anothercmd[1.0.2]{Re}\cmdlist \anothercmd[1.0.2]{emptyset}]
 Auch wurde das Aussehen von \verb|\mod|, \verb|\Im|, \verb|\Re| und \verb|\emptyset| modifiziert:
 \displayCommandList{mod,Im,Re,emptyset}
+
 %
 %
 %
-\presentCommand[1.0.6]{inf}[\cmdlist \textbackslash sup\cmdlist \textbackslash min\cmdlist \textbackslash max]
+
+\presentCommand[1.0.6]{inf}[\cmdlist \anothercmd[1.0.6]{sup}\cmdlist \anothercmd[1.0.6]{min}\cmdlist \anothercmd[1.0.6]{max}]
 Auch hierbei handelt es sich wieder um stupide Abbildungen im Operator-Style:
 \displayCommandList{inf,sup,min,max}
+
 %
 %
 %
+
 \presentCommand[1.0.9]{abs}[\manArg{math-Ausdruck}]
 Dieser Befehl vereinfacht das Schreiben von Betragsstrichen. Diese passen sich zudem automatisch an die vertikalen Dimensionen des Ausdrucks an:
 \begin{center}
@@ -86,10 +102,12 @@ Dieser Befehl vereinfacht das Schreiben von Betragsstrichen. Diese passen sich z
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\smallskip
 \end{center}
+
 %
 %
 %
-\presentEnvironment[1.0.2]{matrix}[\optArg{Spaltendefinition}\cmdlist \blankenv{pmatrix}\optArg{Spaltendefinition}]
+
+\presentEnvironment[1.0.2]{matrix}[\optArg{Spaltendefinition}\cmdlist \anotherenv[1.0.0]{pmatrix}\optArg{Spaltendefinition}]
 Des Weiteren wurde noch die Matrixumgebung (\verb|\env@matrix|) so erweitert, dass sie als optionales Argument eine gültige Array-Spaltendefinition entgegennimmt:
 \begin{center}\renewcommand{\arraystretch}{0.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{5.5cm}@{\hspace{1em}}|@{\hspace{1em}}C{2cm}@{\hspace{1em}}!{\VRule[1pt]}}
@@ -107,21 +125,27 @@ Des Weiteren wurde noch die Matrixumgebung (\verb|\env@matrix|) so erweitert, da
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
+
 %
 %
 %
-\presentCommand[1.0.8]{val}[\cmdlist \textbackslash sch\cmdlist \textbackslash dom\cmdlist \textbackslash grad]
+
+\presentCommand[1.0.8]{val}[\cmdlist \anothercmd[1.0.8]{sch}\cmdlist \anothercmd[1.0.8]{dom}\cmdlist \anothercmd[1.0.8]{grad}]
 Auch hier handelt es sich um weitere Mathe-Operatoren, die selbstredend implementiert werden:
 \displayCommandList{val,sch,dom,grad}
+
 %
 %
 %
+
 \presentCommand[1.0.8]{arccot}
-Da der ach so wichtige Arkuskotangens erstaunlicherweise nicht standartmäßig dabei ist, hier: \blankcmd{arccot} ($\arccot$).\medskip\newline
+Da der ach so wichtige Arkuskotangens erstaunlicherweise nicht standardmäßig dabei ist, hier: \blankcmd{arccot} ($\arccot$).
+
 %
 %
 %
-\presentCommand[2.0.0]{dif}[\cmdlist \textbackslash dint\optArg[x]{Variable}]
+
+\presentCommand[2.0.0]{dif}[\cmdlist \anothercmd[2.0.0]{dint}\optArg[x]{Variable}]
 Auch hierbei handelt es sich wieder um stupide Abbildungen im Operator-Style für Integration und Differenzierung
 \displayCommandList{dif,dint}
 
@@ -133,21 +157,27 @@ Auch hierbei handelt es sich wieder um stupide Abbildungen im Operator-Style fü
 
 
 \subsection[Symbole \LILLYxBOXxVersion{\small 1.0.3}]{Symbole}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.
+
 %Weitere (nicht nennenswert und vermutlich\cmdold) sind die Befehle: \CMDpreview{x} (\(\x\)), \CMDpreview{y} (\(\y\)) und \CMDpreview{z} (\(\z\))
 %\normalmarginpar
-\presentCommand[1.0.0]{N}[\cmdlist \textbackslash Z\cmdlist \textbackslash Q\cmdlist \textbackslash R\cmdlist \textbackslash C]
+
+\presentCommand[1.0.0]{N}[\cmdlist \anothercmd[1.0.0]{Z}\cmdlist \anothercmd[1.0.0]{Q}\cmdlist \anothercmd[1.0.0]{R}\cmdlist \anothercmd[1.0.0]{C}]
 Für die einzelnen Zahlenräume werden einige Befehle zur Verfügung gestellt, die alle über \verb|\ensuremath| abgesichert sind:
-\blankcmd{N} ($\N$), \blankcmd{Z} ($\Z$), \blankcmd{Q} ($\Q$), \blankcmd{R} ($\R$), \blankcmd{C} ($\C$). Sie werden mithilfe von \verb|\mathbb| generiert.\\
+\blankcmd{N} ($\N$), \blankcmd{Z} ($\Z$), \blankcmd{Q} ($\Q$), \blankcmd{R} ($\R$), \blankcmd{C} ($\C$). Sie werden mithilfe von \verb|\mathbb| generiert.
+
 %
 %
 %
+
 \presentCommand[1.0.1]{i}
-Die komplexe Einheit \i{} wird mit \blankcmd{i} zur Verfügung gestellt.\\
+Die komplexe Einheit \i{} wird mit \blankcmd{i} zur Verfügung gestellt.
+
 %
 %
 %
-\presentCommand[1.0.3]{epsilon}[\cmdlist \textbackslash phi]
+
+\presentCommand[1.0.3]{epsilon}[\cmdlist \anothercmd[1.0.3]{phi}]
 Weiter wurden die griechischen Buchstaben Epsilon und Phi modifiziert:
 \begin{center}
     \begin{tabular}{*{2}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}}!{\VRule[1pt]}}
@@ -157,12 +187,19 @@ Weiter wurden die griechischen Buchstaben Epsilon und Phi modifiziert:
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
+
 %
 %
 %
-\presentCommand[1.0.3]{B}[\cmdlist \textbackslash X\cmdlist \textbackslash K\cmdlist \textbackslash P\cmdlist \textbackslash F\cmdlist \textbackslash O]
-Zudem wird zum Beispiel die Menge der Binärzahlen über \blankcmd{B} ($\B$), die chromatische Zahl über \blankcmd{X} ($\X$) und der generelle Körper mit \blankcmd{K} ($\K$) zur Verfügung gestellt. Für die Potenzmenge liefert LILLY \blankcmd{P} ($\P$), für die Menge der Funktionen \blankcmd{F} ($\F$) und für die Groß-O-Notation \blankcmd{O} ($\O$).\medskip\newline
-\presentCommand[2.0.0]{join}[\cmdlist \textbackslash leftouterjoin\cmdlist \textbackslash rightouterjoin\cmdlist \textbackslash fullouterjoin]
+
+\presentCommand[1.0.3]{B}[\cmdlist \anothercmd[1.0.3]{X}\cmdlist \anothercmd[1.0.3]{K}\cmdlist \anothercmd[1.0.3]{P}\cmdlist \anothercmd[1.0.3]{F}\cmdlist \anothercmd[1.0.3]{O}]
+Zudem wird zum Beispiel die Menge der Binärzahlen über \blankcmd{B} ($\B$), die chromatische Zahl über \blankcmd{X} ($\X$) und der generelle Körper mit \blankcmd{K} ($\K$) zur Verfügung gestellt. Für die Potenzmenge liefert LILLY \blankcmd{P} ($\P$), für die Menge der Funktionen \blankcmd{F} ($\F$) und für die Groß-O-Notation \blankcmd{O} ($\O$).
+
+%
+%
+%
+
+\presentCommand[2.0.0]{join}[\cmdlist \anothercmd[2.0.0]{leftouterjoin}\cmdlist \anothercmd[2.0.0]{rightouterjoin}\cmdlist \anothercmd[2.0.0]{fullouterjoin}]
 Da auch die Relationenalgebra Teil der Mathematik ist, hier die entsprechenden Symbole für die Joins:
 \displayCommandList{join,leftouterjoin,rightouterjoin,fullouterjoin}
 %
@@ -184,33 +221,46 @@ Da auch die Relationenalgebra Teil der Mathematik ist, hier die entsprechenden S
 Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_COMPATIBILITIES}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip
 
 Hier werden einige Befehle eingerichtet, die entweder noch nicht zugeordnet wurden\({}^{\tiny \LILLYxBOXxVersion{\tiny 2.0.0}}\) oder während der Vorlesung (im Überlebenskampf :P) ins \T{eagleStudiPackage} eingebaut worden sind.
+
 %
 %
 %
-\presentCommand[1.0.0]{enum}[\manArg{items}\cmdlist \textbackslash liste\manArg{items}]
-Hier befinden sich die für \la kreierten: \blankcmd{enum\manArg{items}} (\verb|enumerate| mit \newline\blankcmd{narrowitems}) und \blankcmd{liste\manArg{items}} (\verb|enumerate| mit römischen Zahlen und \newline\blankcmd{narrowitems}). \medskip\newline %% TODO: link narrowitems
+
+\presentCommand[1.0.0]{enum}[\manArg{items}\cmdlist \anothercmd[1.0.0]{liste}\manArg{items}]
+Hier befinden sich die für \la kreierten: \T{\blankcmd{enum}\manArg{items}} (\verb|enumerate| mit \newline\blankcmd{narrowitems}) und \T{\blankcmd{liste}\manArg{items}} (\verb|enumerate| mit römischen Zahlen und \newline\blankcmd{narrowitems}).
+
 %
 %
 %
-\presentCommand[1.0.1]{xa}[\cmdlist \textbackslash xb\cmdlist \textbackslash xc]
-Weiter existieren die Befehle \blankcmd{xa} ($\xa$), \blankcmd{xb} ($\xb$), \blankcmd{xc} ($\xc$), welche einen etwas größeren Abstand für eine bessere Lesbarkeit einfügen. \medskip\newline
-\presentCommand[1.0.1]{crossAT}[\manArg{(PosX,PosY)}\cmdlist \textbackslash circAT\manArg{(PosX,PosY)}\cmdlist \textbackslash bblock\manArg{(PosX,PosY)}\manArg{text}]
-Für Ti\textit{k}Z gibt es noch die Befehle \blankcmd{crossAT\manArg{(PosX,PosY)}} (\raisebox{-0.35\baselineskip}{\tikz{\crossAT{(0,0)};}}\footnote{\T{\blankcmd{tikz}\{\blankcmd{crossAT}\{(0,0)\};\}} -- Zum Erhalt der Textzeile vertikal um \T{-0.35\textbackslash baselineskip} verschoben.}) und analog\newline \blankcmd{circAT\manArg{(PosX,PosY)}} (\tikz{\circAT{(0,0)};} \footnote{\T{\blankcmd{tikz}\{\blankcmd{circAT}\{(0,0)\};\}}}), sowie \blankcmd{bblock\manArg{(PosX,PosY)}\manArg{text}} (\raisebox{-0.2\baselineskip}{\tikz{\bblock{(0,0)}{42};}} \footnote{\T{\blankcmd{tikz}\{\blankcmd{bblock}\{(0,0)\}\{42\};\}} -- Wieder vertikal um \T{-0.2\textbackslash baselineskip} verschoben.}). Hier fragt man sich nun vielleicht, warum diese nicht in einem entsprechenden Ti\textit{k}Z-Paket sind. Im Rahmen der mit \LILLYxBOXxVersion{2.0.0} eingeführten Modularisierung hat sich diese Verteilung als günstig erwiesen. %% vielleicht doch verschieben?
-\newline
+
+\presentCommand[1.0.1]{xa}[\cmdlist \anothercmd[1.0.1]{xb}\cmdlist \anothercmd[1.0.1]{xc}]
+Weiter existieren die Befehle \blankcmd{xa} ($\xa$), \blankcmd{xb} ($\xb$), \blankcmd{xc} ($\xc$), welche einen etwas größeren Abstand für eine bessere Lesbarkeit einfügen.
+
 %
 %
 %
-\presentEnvironment[1.0.2]{nstabbing}[\cmdlist \blankenv{centered}\cmdlist \blankenv{sqcases} \cmdold]
+
+
+\presentCommand[1.0.1]{crossAT}[\manArg{(PosX,PosY)}\cmdlist \anothercmd[1.0.1]{circAT}\manArg{(PosX,PosY)}\cmdlist \anothercmd[1.0.1]{bblock}\manArg{(PosX,PosY)}\manArg{text}]
+Für Ti\textit{k}Z gibt es noch die Befehle \T{\blankcmd{crossAT}}\manArg{(PosX,PosY)} (\raisebox{-0.35\baselineskip}{\tikz{\crossAT{(0,0)};}}\footnote{\T{\blankcmd{tikz}\{\blankcmd{crossAT}\{(0,0)\};\}} -- Zum Erhalt der Textzeile vertikal um \T{-0.35\textbackslash baselineskip} verschoben.}) und analog\newline \T{\blankcmd{circAT}\manArg{(PosX,PosY)}} (\tikz{\circAT{(0,0)};} \footnote{\T{\blankcmd{tikz}\{\blankcmd{circAT}\{(0,0)\};\}}}), sowie \T{\blankcmd{bblock}\manArg{(PosX,PosY)}\manArg{text}} (\raisebox{-0.2\baselineskip}{\tikz{\bblock{(0,0)}{42};}} \footnote{\T{\blankcmd{tikz}\{\blankcmd{bblock}\{(0,0)\}\{42\};\}} -- Wieder vertikal um \T{-0.2\textbackslash baselineskip} verschoben.}). Hier fragt man sich nun vielleicht, warum diese nicht in einem entsprechenden Ti\textit{k}Z-Paket sind. Im Rahmen der mit \LILLYxBOXxVersion{2.0.0} eingeführten Modularisierung hat sich diese Verteilung als günstig erwiesen. %% vielleicht doch verschieben?
+
+%
+%
+%
+
+\presentEnvironment[1.0.2]{nstabbing}[\cmdlist \anotherenv[1.0.2]{centered}\cmdlist \anotherenv[1.0.2]{sqcases} \cmdold]
 Weiter werden drei (mittlerweile obsolete) Umgebungen definiert: \begin{ditemize}\narrowitems
     \item \blankenv{nstabbing}:  \verb|tabbing|-Umgebung, ohne Abstände
     \item \blankenv{centered}: \verb|center|-Umgebung, ohne Abstände
     \item \blankenv{sqcases}: Ähnelt \verb|cases| - nur mit '\T{]}'.
 \end{ditemize}
+
 %
 %
 %
+
 \presentCommand[1.0.4]{VRule}[\manArg{width}]
-Zudem definiert sich noch für Tabellen der Befehl \blankcmd{VRule\manArg{width}}, welcher eine Spalte variabler Größe für Tabellen zur Verfügung stellt. Eine exemplarische Verwendung findet sich hier:
+Zudem definiert sich noch für Tabellen der Befehl \T{\blankcmd{VRule}\manArg{width}}, welcher eine Spalte variabler Größe für Tabellen zur Verfügung stellt. Eine exemplarische Verwendung findet sich hier:
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{8cm}@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
@@ -259,37 +309,49 @@ Fügt einen großen senkrechten Strich ein: \blankcmd{trenner} ($\trenner$).
 
 \subsection[Shortcuts \LILLYxBOXxVersion{\small 1.0.8}]{Shortcuts}
 Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SHORTCUTS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip\newline
-Hier befinden sich einige abkürzende Befehle, die primär das Schreiben beschleunigen sollen. Sie werden auf Bedarf stetig erweitert.\medskip\newline
+Hier befinden sich einige abkürzende Befehle, die primär das Schreiben beschleunigen sollen. Sie werden auf Bedarf stetig erweitert.
+
 %
 %
 %
+
 \presentCommand[1.0.7]{folge}[\optArg[a]{Folgenglied}]
-Setzt eine Folge, welche mit dem Index $n$ arbeitet: \blankcmd{folge} (\folge)\medskip\newline
+Setzt eine Folge, welche mit dem Index $n$ arbeitet: \blankcmd{folge} (\folge).
+
 %
 %
 %
+
 \presentCommand[1.0.7]{reihe}[\optArg[a\_k]{Folgenglied}\optArg[0]{Start}]
-Setzt eine Reihe über die Glieder \emph{Folgenglied} an \emph{Start}: \blankcmd{reihe} (\reihe)\medskip\newline
+Setzt eine Reihe über die Glieder \emph{Folgenglied} an \emph{Start}: \blankcmd{reihe} (\reihe)
+
 %
 %
 %
-\presentCommand[1.0.8]{obda}[\cmdlist \textbackslash Obda]
-Schreibt entsprechend \T{o.B.d.A} (\blankcmd{obda}) und \T{O.B.d.A.} (\blankcmd{Obda}) und beschleunigt damit das Tippen von Beweisen \Smiley.\medskip\newline
+
+\presentCommand[1.0.8]{obda}[\cmdlist \anothercmd[1.0.8]{Obda}]
+Schreibt entsprechend \T{o.B.d.A} (\blankcmd{obda}) und \T{O.B.d.A.} (\blankcmd{Obda}) und beschleunigt damit das Tippen von Beweisen \Smiley.
+
 %
 %
 %
-\presentCommand[1.0.7]{gdw}[\cmdlist \textbackslash limn\cmdlist \textbackslash sumn\cmdlist \textbackslash limk\cmdlist \textbackslash sumk]
+
+\presentCommand[1.0.7]{gdw}[\cmdlist \anothercmd[1.0.7]{limn}\cmdlist \anothercmd[1.0.7]{sumn}\cmdlist \anothercmd[1.0.7]{limk}\cmdlist \anothercmd[1.0.7]{sumk}]
 Setzt verschiedene mathematische Ausdrücke:
 \displayCommandList[3]{gdw,limn,sumn,limk,sumk}
+
 %
 %
 %
-\presentCommand[1.0.2]{x}[\optArg[$\sim$]{spacing}\cmdlist \textbackslash y\optArg[$\sim$]{spacing}\cmdlist \textbackslash z\optArg[$\sim$]{spacing} \cmdold]
-Setzt entsprechend: \x[], \y und \z[].\medskip\newline
+
+\presentCommand[1.0.2]{x}[\optArg[$\sim$]{spacing}\cmdlist \anothercmd[1.0.2]{y}\optArg[$\sim$]{spacing}\cmdlist \anothercmd[1.0.2]{z}\optArg[$\sim$]{spacing} \cmdold]
+Setzt entsprechend: \x[], \y und \z[].
+
 %
 %
 %
-\presentCommand[2.0.0]{ceil}[\optArg{math-Ausdruck}\cmdlist \textbackslash floor\optArg{math-Ausdruck}]
+
+\presentCommand[2.0.0]{ceil}[\optArg{math-Ausdruck}\cmdlist \anothercmd[2.0.0]{floor}\optArg{math-Ausdruck}]
 Verkürzt das Schreiben von: \clatex[morekeywords={[5]{left,right,lfloor,rfloor}}]{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \clatex[morekeywords={[5]{lceil}}]{:bs:lceil} \& \clatex[morekeywords={[5]{rceil}}]{:bs:rceil} entsprechend:
 \begin{multicols}{2}%
     \begin{ditemize}
@@ -303,32 +365,42 @@ Verkürzt das Schreiben von: \clatex[morekeywords={[5]{left,right,lfloor,rfloor}
 \begin{center}
     Für die Spezifikationen siehe hier: \jmark[klick mich]{jmp:PLOTSSPEC}!
 \end{center}
-Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_PLOTS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.\medskip\newline
+Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_PLOTS}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxMATH} geladen.
+
 %
 %
 %
+
 \presentCommand[1.0.8]{plotline}[\optArg[Ao]{Farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}\optArg[0]{offset}]
-Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Funktion (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar. Mit \emph{offset}${}^{\T{v2.0.0}}$ lässt sich die Funktion entsprechend verschieben.\medskip\newline
+Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Funktion (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar. Mit \emph{offset}${}^{\T{v2.0.0}}$ lässt sich die Funktion entsprechend verschieben.
+
 %
 %
 %
+
 \presentCommand[1.0.8]{plotseq}[\optArg[Ao]{Farbe}\optArg[\textbackslash x]{Variable}\manArg{Term}\optArg[maxX]{Obergrenze}\secline\optArg[1]{Untergrenze}\optArg[1pt]{Dicke}]
-Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Folge zwischen \emph{Unter-} und \emph{Obergrenze} mit Punkten der Größe \emph{Dicke} (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar.\medskip\newline
+Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Folge zwischen \emph{Unter-} und \emph{Obergrenze} mit Punkten der Größe \emph{Dicke} (siehe Umgebung für Beispiel). Existiert auch außerhalb von \blankenv{graph}, ist aber hier nur eingeschränkt nutzbar.
+
 %
 %
 %
+
 \presentCommand[2.0.0]{xmark}[\optArg[x]{text}\manArg{PosX}\optArg[0.15]{linelength}]
-Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip\newline
+Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
+
 %
 %
 %
+
 \presentCommand[2.0.0]{ymark}[\optArg[xy]{text}\manArg{PosY}\optArg[0.15]{linelength}]
-Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.\medskip\newline
+Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
 
-
-
-
-
+%
+%
+%
+%
+%
+%
 
 \subsection{graph-Environment}\elable{env:graph}
 %
@@ -387,16 +459,20 @@ Für die \emph{Konfiguration} gibt es die folgenden Parameter:
 \end{center}
 
 \presentEnvironment[2.0.0]{egraph}[\optArg{Konfigurationen}]
-Funktioniert analog zu \blankenv{egraph}, erlaubt allerdings keine weiteren \emph{Tikz-Argumente}, sondern macht von \blankenv{tikzternal} gebrauch, kann also ausgelagert werden. (TODO: LINK)\medskip
+Funktioniert analog zu \blankenv{egraph}, erlaubt allerdings keine weiteren \emph{Tikz-Argumente}, sondern macht von \blankenv{tikzternal} gebrauch, kann also ausgelagert werden. (TODO: LINK)
+
+%
+%
+%
 
 \presentEnvironment[1.0.8]{wgraph}[\manArg{Ausrichtung}\optArg{Konfigurationen}\optArg{Tikz-Argumente}\secline\optArg{wrapfig-Zusatz}\optArg[0pt]{width}]
 Um die Graph-Umgebung noch vielfälter zu Gestalten wurde \blankenv{wgraph} geschaffen.
 Nach reichlicher Überlegung wurde ein neuer Befehl etabliert anstelle es in das
 normale \jmark[graph]{env:graph}-Environment einzubetten. Er funktioniert mit der Syntax:
 \begin{latex}
-    \begin{wgraph}{l}[][][\caption{Wichtiger Graph}][400pt]
-        \plotline{\x*\x}
-    \end{wgraph}
+\begin{wgraph}{l}[][][\caption{Wichtiger Graph}][400pt]
+    \plotline{\x*\x}
+\end{wgraph}
 \end{latex}
 \clearpage
 %

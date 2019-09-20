@@ -1,10 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCONTROLLERxBOX}[2019/07/13 Stellt die klassische Box-Erweiterung fuer LILLY zur Verfuegung]
 
-\RequirePackage{LILLYxVANILLA}
-\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
-\RequirePackage{LILLYxCONTROLLERxCONTENT}
-\RequirePackage{LILLYxBOOLEAN}
+\RequirePackage{LILLYxCORE}
+
 \RequirePackage{LILLYxCOLOR}
 \RequirePackage{LILLYxCONTROLLERxLINK}
 \RequirePackage{LILLYxLIST}
@@ -785,12 +783,12 @@
 
     \ifthenelse{\equal{\LILLYxBOXxAufgabexBox}{\true}}{%
         \tcbset{LillyxBOXxDesignxAufgabe/.style={lower separated=false}}%\tcblower
-        \LILLYcommand{\Splitter}{\ifx\LILLYxSolutionsxShow\true{\color{\LILLYxBOXxCOLORxFRAME}\leavevmode\\[-\baselineskip]\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]\else\smallskip\tcblower\fi} %% Linie für tasks
-        \LILLYcommand{\vSplitter}{\vspace{-1\baselineskip} \Splitter \nskip}
+        \gdef\Splitter{\ifx\LILLYxSolutionsxShow\true{\color{\LILLYxBOXxCOLORxFRAME}\leavevmode\\[-0.95\baselineskip]\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]\else\smallskip\tcblower\fi} %% Linie für tasks
+        \gdef\vSplitter{\vspace{-0.9\baselineskip} \Splitter \nskip}
     }{%
         \tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
-        \LILLYcommand{\Splitter}{\vspace{0.1cm} {~\\[0.2cm]\textbf{Lösung:}\\}}
-        \LILLYcommand{\vSplitter}{\vspace{-1\baselineskip} \Splitter \vspace{-1\baselineskip}}
+        \gdef\Splitter{\vspace{0.1cm} {~\\[0.2cm]\textbf{Lösung:}\\}}
+        \gdef\vSplitter{\vspace{-0.9\baselineskip} \Splitter \vspace{-1\baselineskip}}
     }
 
 

@@ -232,7 +232,7 @@ public class JakeCompile {
         case "Mitschrieb":
             // CURRENT POINT OF TODO
             out.write("%% Dokumenttyp: Mitschrieb\n");
-            out.write("\\documentclass[Typ=Mitschrieb,Jake]{Lilly}\n\n");
+            out.write("\\documentclass[Mitschrieb,Jake]{Lilly}\n\n");
             out.write("\\begin{document}\n");
             out.write("Hallo Welt\\newline\n");
             out.write("Lilly-Version: \\LILLYxSTATUS\\newline\n");

@@ -215,7 +215,7 @@ public class SettingDeskriptor<T extends Serializable> implements Serializable {
             throw new MandatorySettingException(
                     "Die verpflichtende Einstellung: " + getName() + " wurde nicht mit einem Wert belegt!");
         if (this.type.equals(eSetting_Type.IS_LATEX))
-            return (T) ((String) value).replaceAll("\\\\", "\\\\\\\\");
+            return (T) ((String) value);//.replaceAll("\\\\", "\\\\\\\\"); currently disabled, as it's done automatically by some process whereas some others don't so this has to be cleaned up :D
         else
             return value;
     }

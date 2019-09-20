@@ -1,5 +1,5 @@
 % comment - in case of need :D
-heading_prefix "\n\\noindent\\ {\\centering\\tikz{\\node at(-1,0) {};\\node at(2,0) {};\\draw[rounded corners=3pt,fill=black!03,thick] (0,0) rectangle ++(5,0.5) node[midway,centered]{\\textbf{"
+heading_prefix "\n\\providecommand{\\idxfsize}{\\normalsize}\n\\noindent\\ {\\centering\\tikz{\\node at(-1,0) {};\\node at(2,0) {};\\draw[rounded corners=3pt,fill=black!03,thick] (0,0) rectangle ++(5,0.5) node[midway,centered]{\\textbf{"
 heading_suffix "}};}}\\par\\nopagebreak\n"
 headings_flag 1
 preamble "\\protect\\thispagestyle{empty}
@@ -10,11 +10,16 @@ preamble "\\protect\\thispagestyle{empty}
 postamble "\n\n\\end{theindex}\n"
 group_skip "  %\n  \\indexspace\n  %\n"numhead_positive "Numbers"
 numhead_negative "Numbers"
-symhead_positive "\\small Ä's Ö's Ü's"
-symhead_negative "\\small Ä's Ö's Ü's"
+symhead_positive "\\small Symbole"
+symhead_negative "\\small Symbole"
 delim_0 "\\pgfsetfillopacity{1.0}\\dotfill\\setLinkColor{\\\LILLYxColorxLINKSxCurrentColor}\\iftrue\\rmfamily "
 delim_1 "\\pgfsetfillopacity{1.0}\\setLinkColor{\\\LILLYxColorxLINKSxCurrentColor}\\iftrue\\rmfamily:~"
 delim_2 "\\pgfsetfillopacity{0.0}\\setLinkColor{white}\\iffalse"
+
+
+item_0 "\n  \\item\\idxfsize{}"
+item_1 "\n     \\subitem\\idxfsize{}"
+item_2 "\n        \\subsubitem\\idxfsize{}"
 item_12 "\\pgfsetfillopacity{1.0}\%\n\\subsubitem\\footnotesize\\mbox{\\footnotesize\\pgfsetfillopacity{1.0}\\rmfamily}\\footnotesize "
 item_2  "\\footnotesize\\mbox{\\pgfsetfillopacity{1.0}\%\n\\footnotesize\\pgfsetfillopacity{1.0}\\rmfamily,} "
 
@@ -22,10 +27,13 @@ encap_prefix "{\\"
 encap_infix "{"
 encap_suffix "}"
 
-quote '~'
 
-delim_t "}\\fi\\pgfsetfillopacity{1.0}\\iftrue\\rmfamily\\normalsize "
-delim_n "}, \\hyperpage{"
+quote '~'
+actual '`'
+
+delim_t "}\\fi\\pgfsetfillopacity{1.0}\\iftrue\\rmfamily\\idxfsize{}"
+delim_n "}, "
+% \\hyperpage{"
 
 indent_space '\t'
 indent_length 4

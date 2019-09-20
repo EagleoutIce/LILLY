@@ -28,9 +28,9 @@
 Mit der Portierung von \Jake in die Programmiersprache Java hat sich die Installation von LILLY, immens vereinfacht.
 Da man hierfür allerdings \Jake benötigt, der sich dann um alles weitere kümmert, sei hier einmal nur kurz erklärt, wie man die \T{stable}-Version von Jake installiert, für mehr Infos siehe: \jmark[Jake Installieren]{mrk:InstallJake}.\newline
 Mit dem Bezug dieser Dokumentation sollte eine \T{jake.jar} Datei einhergegangen sein, die es nun gilt auszuführen. Natürlich wird hierfür Java benötigt, auf einem apt-Basierten Betriebsystem installiert man Java wie folgt:
-\begin{bash}
+\begin{bash*}
 sudo apt install default-jdk
-\end{bash}
+\end{bash*}
 Für alle anderen Derivate gilt es sich auf \url{https://www.oracle.com/de/java/} entsprechend zu informieren.
 Einmal installiert, genügt ein Ausführen der \T{.jar} Datei mithilfe von \cbash{java -jar jake.jar} oder durch
 einen Doppelklick, sofern die entsprechende \T{.jar} als ausführbar markiert ist. Bei der Installation gilt es die Angabe einer \jmark[Nutzerkonfiguration]{mrk:jdefconf} zu beachten.
@@ -38,9 +38,9 @@ Zieht man bunte Fenster der Kommandozeile vor, so ist man in der Lage mit \newli
 
 \paragraph{Lilly mit Jake installieren}
 Nun genügt ein Ausführen von \cbash{jake install}, wobei mithilfe der Option \bbash{-lilly-path} der Pfad angegeben werden kann, an dem sich die LILLY.cls befindet:
-\begin{bash}
+\begin{bash*}
 jake install -lilly-path: '/absoluter/Pfad/zum/Lilly/Ordner'
-\end{bash}
+\end{bash*}
 Anschließend sollte es möglich sein Dokumente mit LILLY zu kompilieren. Gemeinsam mit LILLY werden eine Vielzahl an Beispieldokumenten ausgeliefert, die die Verwendung anschaulich machen sollen und somit auch als Test für eine erfolgreiche Installation verwendet werden können.
 Exemplarisch sei \T{test \& bonus/map\_tests/test.conf} genannt, welches auch die \blankcmd{getGraphics}-Schnittstelle etabliert.
 
@@ -56,9 +56,9 @@ Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu ko
 \section[Erstellen eines Dokuments mit Lilly]{Erstellen eines Dokuments mit Lilly \tiny\LILLYxBOXxVersion{2.0.0}}
 \subsection{Das Gerüst}
 Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine Dokumentklasse handelt, wird sie wie folgt eingebunden:
-\begin{latex}
+\begin{latex*}
 \documentclass[Dokumentation]{Lilly}
-\end{latex}
+\end{latex*}
 \LILLYxNOTExVersion{1.0.7}Für den Typ gibt es unter anderem $4$ Optionen:
 \begin{multicols}{2}
     \begin{itemize}[label=$\diamond$]\narrowitems
@@ -69,16 +69,16 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
     \end{itemize}
 \end{multicols}
 Mit \LILLYxBOXxVersion{2.0.0} ist es nötig nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben, da die explizite Zuweisung versucht, auf die entsprechende Datei zu referenzieren. Die Definition für dieses Dokument lautet zum Beispiel: %% TODO: Change who am i in texts
-\begin{latex}
+\begin{latex*}
 \documentclass[Dokumentation]{Lilly}
-\end{latex}
+\end{latex*}
 In Kombination mit \Jake ist es zudem noch möglich die Option \clatex{Jake} anzugeben, die es Jake gestattet die Dokumentspezifischen Parameter zu bestimmen.\newline
 Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
 So benötigt \T{Mitschrieb} noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester} gemäß:
-\begin{latex}
+\begin{latex*}
 \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/
        \LILLYxVorlesung}
-\end{latex}
+\end{latex*}
 die für die jeweilige Vorlesung definierten Daten lädt.
 Erklärungen für die geladenen Daten befinden sich in den jeweiligen README-Dateien:
 \begin{description}
@@ -95,44 +95,49 @@ Jede Box besteht als Environment und lässt sich wie folgt nutzen:
 \begin{multicols}{2}
 \begin{definition}[Titel]
     Hallo Welt
-\begin{lstlisting}[language=lLatex]
+\begin{latex*}
 \begin{definition}[Titel]
     Hallo welt
-\end{definition}\end{lstlisting}
+\end{definition}
+\end{latex*}
 \end{definition}
 
 \begin{lemma}
     Hallo Welt
-\begin{lstlisting}[language=lLatex]
+\begin{latex*}
 \begin{lemma}
     Hallo welt
-\end{lemma}\end{lstlisting}
+\end{lemma}
+\end{latex*}
 \end{lemma}
 
 \begin{satz}[Titel]
     Hallo Welt
-\begin{lstlisting}[language=lLatex]
+\begin{latex*}
 \begin{satz}[Titel]
     Hallo welt
-\end{satz}\end{lstlisting}
+\end{satz}
+\end{latex*}
 \end{satz}
 \def\LILLYxBOXxAufgabexBox{FALSE}
 \begin{aufgabe}{Titel}{3}
     Hallo Welt
-\begin{lstlisting}[language=lLatex]
+\begin{latex*}
 \begin{aufgabe}{Titel}{3}
     Hallo welt
-\end{aufgabe}\end{lstlisting}
+\end{aufgabe}
+\end{latex*}
 \end{aufgabe}
 \end{multicols}
 Letztere ändert sich zum Beispiel mit dem Dokumenttyp, so wird die Aufgabenbox in einem Übungsblatt immernoch wie folgt veranschaulicht:
 \def\LILLYxBOXxAufgabexBox{TRUE}
 \begin{aufgabe}{Titel}{3}
     Hallo Welt
-\begin{lstlisting}[language=lLatex]
+\begin{latex*}
 \begin{aufgabe}{Titel}{3}
     Hallo welt
-\end{aufgabe}\end{lstlisting}
+\end{aufgabe}
+\end{latex*}
 \end{aufgabe}
 Hier eine Liste aller Boxen:
 \begin{multicols}{3}
@@ -156,9 +161,9 @@ Sie können alle mithilfe von:
 \end{latex}
 jeweils deaktiviert und damit aus dem Dokument entfernt werden (auch nur abschnittsweise, das Reaktivieren funktioniert analog mit \T{TRUE}). \newline
 Eine Auflistung ihrer lässt sich mit dem \T{\textbackslash listof} Befehl erzeugen (\textit{Die Bezeichnung der Listen sind bisher noch inkonsistent :/}). Beispielhaft:
-\begin{lstlisting}[language=lLatex]
+\begin{latex*}
 \listofDEFINITIONS
-\end{lstlisting}
+\end{latex*}
 erzeugt hierbei (\textit{Natürlich sind die Linien nur zur Trennung eingefügt.}):\clearpage
 \tocloftpagestyle{scrheadings}
 \rule{\linewidth}{1.2pt}\vspace{-0.75\baselineskip}
@@ -175,21 +180,21 @@ erzeugt hierbei (\textit{Natürlich sind die Linien nur zur Trennung eingefügt.
 
 \subsection{Hyperlinks}
 \LILLYxNOTExVersion{1.0.0}\elable{mrk:Hey}Eine Sprungmarke innerhalb eines Dokuments lässt sich mit:
-\begin{lstlisting}[language=lLatex]
+\begin{latex*}
 \elable{mrk:Hey} %% \elable{<Sprungmarke>}
-\end{lstlisting}
+\end{latex*}
 erstellen. Referenziert werden kann sie mithilfe des Befehls \blankcmd{jmark}:
-\begin{lstlisting}[language=lLatex]
+\begin{latex*}
 \jmark[Klick mich]{mrk:Hey} %% \jmark[Text]{Sprungmarke}
-\end{lstlisting}
+\end{latex*}
 der erzeugte Link: \jmark[Klick mich]{mrk:Hey}, passt sich zudem der Akzentfarbe der aktuellen Boxumgebung und dem Druckmodus an:\smallskip
 \begin{zusammenfassung}[Testzusammenfassung]
 Siehe hier: \jmark[Klick mich]{mrk:Hey} (Wenn Druck: \printmark[Klick mich]{mrk:Hey})
 \end{zusammenfassung}~\smallskip\newline
 Der alternative Vertreter für \blankcmd{jmark} ist \blankcmd{hmark}, er ignoriert sämtliche Farbattribute:
-\begin{lstlisting}[language=lLatex]
+\begin{latex*}
 \hmark[Klick mich]{mrk:Hey} %% \hmark[Text]{Sprungmarke}
-\end{lstlisting}
+\end{latex*}
 und erzeugt damit: \hmark[Klick mich]{mrk:Hey}.
 
 
@@ -199,15 +204,15 @@ und erzeugt damit: \hmark[Klick mich]{mrk:Hey}.
 \section{Einbinden von weiteren Dokumenten}
 \subsection{Aufgliedern eines Dokuments}
 \LILLYxNOTExVersion{1.0.4}Um Dokumente portabel kompilierbar zu machen, setzt das Makefile gemäß der Konfiguration \blankcmd{LILLYxPATH} (hier: \say{\T{\LILLYxPATH}}). Nun lässt sich mithilfe des Befehls \T{\blankcmd{linput}\{<Pfad>\}} eine Datei relativ zur Quelldatei angeben (beachte, dass absolute Pfade bei \T{\blankcmd{linput}} keinen Sinn machen. Hierfür solltest du weiterhin \blankcmd{input} verwenden).\newline
-Zudem lässt sich damit über \blankcmd{LILLYxDOC\-UM\-ENTxSUB\-NAME} der Name der zuletzt eingebundenen Datei (\T{\LILLYxDOCUMENTxSUBNAME}) abfragen.\newline
+Zudem lässt sich damit über \blankcmd{LILLYxDOCUMENTxSUBNAME} der Name der zuletzt eingebundenen Datei (\T{\LILLYxDOCUMENTxSUBNAME}) abfragen.\newline
 \LILLYxNOTExVersion{1.0.7}Weiter gilt zu beachten, dass es \emph{nicht} möglich ist, das klassische \blankcmd{include} zu verwenden! Dieser Befehl wird aber von LILLY deswegen direkt entsprechend erneuert (hierzu wird das klassische Latex \blankcmd{input} im Zusammenspiel mit \blankcmd{clearpage} verwendet, nicht LILLYs \blankcmd{linput}!). Es ist also im Endeffekt doch möglich Dokumente mit \blankcmd{include}  zu verwenden.
 
 
 
 
 \subsection{Übungsblätter}
-Da es von Bedeutung ist Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können, gibt es hierfür eine einfache Möglichkeit:
-\begin{lstlisting}[language=lLatex]
+\elable{quicke:ublatt}Da es von Bedeutung ist Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können, gibt es hierfür eine einfache Möglichkeit:
+\begin{latex}
 %% \inputUB{<Name>}{<Nummer>}{<Pfad - linput>}
 \inputUB{Mengen}{1}{Aufgaben_Data/Uebungsblatt_1.tex}
 
@@ -217,7 +222,7 @@ Da es von Bedeutung ist Übungsblätter so zu erstellen, dass die Abgaben direkt
     \linput{Aufgaben_Data/Uebungsblatt_1.tex}
 \end{uebungsblatt}
 \newpage
-\end{lstlisting}
+\end{latex}
 Übungsblätter sind nur in \textbf{complete}-Varianten verfügbar, werden also sonst nicht eingebunden! \paragraph{Ein Übungsblatt erstellen}
 Doch wie erstellt man nun ein fachgerechtes Übungsblatt? Nun, da es sich hier um die Schnelleinführung handelt, ein paar Vorgaben. Benenne dein Übungsblatt nach dem Schema: \begin{center}
     \T{uebungsblatt-<VORLESUNG>-<BLATTNUMMER>.tex}
@@ -275,4 +280,7 @@ Kompilieren kann man den Spaß nun mit: \cbash{jake jake.conf}. Und das wars, Bo
     \end{aufgaben}
 \end{aufgabe}
 
+% \section{Kurzübersicht der neuen Befehle}
+% Hier eine Kurzübersicht über alle in Version \LILLYxVERSION hinzugekommenen Befehle
+% Make an automated LATERREAD to allow list operations to be stored in an aux file and reread n the second-run
 \clearpage
