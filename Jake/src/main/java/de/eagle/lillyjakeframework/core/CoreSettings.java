@@ -111,6 +111,11 @@ public class CoreSettings {
         settings.emplace(st, "S_LILLY_MODES", "Modi für den Kompiliervorgang", eSetting_Type.IS_TEXTLIST, "default");
         settings.emplace(st, "S_LILLY_BOXES", "Boxen für den Kompiliervorgang", eSetting_Type.IS_TEXTLIST, "DEFAULT");
 
+        // S_LILLY_COMPRESS
+        settings.emplace(st, "S_LILLY_COMPRESS", "Soll anschließend die PDF komprimiert werden?",
+                eSetting_Type.IS_SWITCH, "false");
+        settings.emplace(st, "S_LILLY_COMPRESS_TARGET", "Komprimierungsziel", eSetting_Type.IS_TEXT, "screen");
+
         // S_LILLY_AUTOCLEAN
         settings.emplace(st, "S_LILLY_AUTOCLEAN", "Sollen beim Arbeiten entstandene Dateien am Ende entfernt werden?",
                 eSetting_Type.IS_SWITCH, "true");

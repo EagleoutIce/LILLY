@@ -83,6 +83,8 @@ Hier die große (und hoffentlich vollständige) Liste aller möglichen Einstellu
         lilly-complete-name & String & COMPLETE- & Präfix der vollständigen Version \\
         lilly-print-name & String & PRINT- & Präfix der Druckversion \\
         lilly-cleans & List & log aux \ldots & Dateiendungen die von \T{autoclean} gelöscht werden \\
+        lilly-compress & Boolean & false & Soll die PDF-Datei komprimiert werden?\footnote{Es wird ghostscript verwendet, es ist für kleine Dateien möglich, dass die komprimierte Datei etwas größer ist, als die Originale. Es wird stets das Suffix \T{-compressed} angehängt.} \\
+        lilly-compress-target & String & screen & Komprimierungslevel für \T{ghostscript} \\
         lilly-autoclean & Boolean & true & Sollen Dateien automatisch gelöscht werden? \\
         lilly-compiletimes & String & 2 & Wie oft soll kompiliert werden \\
         lilly-vorlesung & String & NONE & Um welche Vorlesung handelt es sich? \\
