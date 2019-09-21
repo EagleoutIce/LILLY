@@ -19,6 +19,7 @@ import de.eagle.lillyjakeframework.compiler.JakeCompile;
 import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.datatypes.Settings;
+import de.eagle.util.helper.Cloner;
 import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
@@ -71,6 +72,9 @@ public final class CoreFunctions {
             Map.entry("get",
                     new FunctionDeskriptor<String[], ReturnStatus>("fkt_get",
                             "Sucht nach Grafiken die settings[\"what\"] enthalten!", CoreFunctions::fkt_get)),
+            Map.entry("docs",
+                    new FunctionDeskriptor<String[], ReturnStatus>("fkt_docs",
+                            "Zeigt die Dokumentation an.", CoreFunctions::fkt_docs)),
             Map.entry("update",
                     new FunctionDeskriptor<String[], ReturnStatus>("fkt_update",
                             "Versucht Lilly & Jake zu aktualisieren", CoreFunctions::fkt_update)),
@@ -227,7 +231,33 @@ public final class CoreFunctions {
 
     }
 
-    // Probably won't work right now
+    /**
+     * should (theoretically :P) copy the Documentation to the temp-dir and reveil it :D
+     */
+    public static ReturnStatus fkt_docs(String[] cmd) {
+
+        String _path = PropertiesProvider.getTempPath()+ "/Lilly-Dokumentation.doc.pdf";
+        // Does exist?
+        if(!new File(_path).exists()){
+            // Clone to target
+            try {
+                Cloner.cloneFileRessource("/Lilly-Dokumentation.doc.pdf", _path);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        try {
+            Desktop.getDesktop().open(new File(_path));
+        } catch (IOException e) {
+            JakeWriter.err.println("Opening failed for some reason, trying to open with 'xdg-open'");
+            Executer.runBashCommand("xdg-open \"" + _path +"\"");
+            //e.printStackTrace();
+        }
+        return ReturnStatus.EXIT_SUCCESS;
+    }
+
+
     public static ReturnStatus fkt_get(String[] cmd) {
         JakeWriter.out.println("Zeige alle Grafiken die mit Lilly zur Verfügung stehen.");
         Settings expandables = new Settings("expandables");

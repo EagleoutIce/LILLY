@@ -57,6 +57,13 @@
                 <!-- it will now include the current LILLY-BUILD -->
                 <directory>../Lilly</directory>
             </resource>
+            <resource>
+                <!-- Include the documentation -->
+                <directory>../Dokumentation</directory>
+                <includes>
+                    <include>Lilly-Dokumentation.doc.pdf</include>
+                </includes>
+            </resource>
         </resources>
         <testResources>
             <testResource>
