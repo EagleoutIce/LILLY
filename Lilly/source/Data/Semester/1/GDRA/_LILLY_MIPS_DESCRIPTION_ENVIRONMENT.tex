@@ -58,11 +58,11 @@
 \begin{tikzpicture}[card/.style={inner sep=0pt}]
     \node [card,right] (a) at(0.5,0.35) {\large\bfseries\LILLYxlstTypeWriter\textcolor{black}{\text{ }#1 }};
 
-    \draw (2.6,0.35) node [right] (b) {\tiny\parbox{\widthof{\mnemonicDecode{#1}}-0.15cm}{\mnemonicDecode{#1}}\hspace{-0.2cm}};
+    \draw (2.6,0.35) node [right] (b) {\tiny\parbox{\widthof{\mnemonicDecode{#1}}}{\mnemonicDecode{#1}}\hspace{-0.2cm}};
 
     \node [card,left,minimum width=2cm] (c) at(\textwidth-2.75cm,0.35) {\small \textcolor{black}{\hmark[\text{ }\textbf{#2}--Format ]{frmt:#2}}};
     
-    \node [card,left] (d) at(\textwidth-0.6cm,0.35) {\small \textcolor{black}{\text{ }\hmark[\mdseries #9]{cmd:PC} }};
+    \node [card,left] (d) at(\textwidth-0.6cm,0.35) {\small \textcolor{black}{\text{ }\silentHmark[\mdseries #9]{cmd:PC}[black] }};
     \draw[rounded corners=6pt] (0,0) |- (a) (a) -- (b) (b) -- (c) (c) -- (d) (d) -| (\textwidth,0);
     \draw (\textwidth/4-3cm ,-0.125) rectangle ++(6cm,-0.75) node[midway,centered] {\LILLYxlstTypeWriter #3};
     \draw (\textwidth/4-3cm ,-1.125) rectangle ++(2.75+0.125,-0.5) node[midway,centered] {\small \textbf{Opcode:} #6};
