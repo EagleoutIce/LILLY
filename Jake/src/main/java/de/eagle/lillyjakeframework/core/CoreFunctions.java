@@ -237,15 +237,15 @@ public final class CoreFunctions {
     public static ReturnStatus fkt_docs(String[] cmd) {
 
         String _path = PropertiesProvider.getTempPath()+ "/Lilly-Dokumentation.doc.pdf";
-        // Does exist?
-        if(!new File(_path).exists()){
+        // Does exist?, we DON'T CARE xD, it copies it freaking fast => maybe insert up to date check in the future?
+        //if(!new File(_path).exists()){
             // Clone to target
             try {
                 Cloner.cloneFileRessource("/Lilly-Dokumentation.doc.pdf", _path);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-        }
+        //}
 
         try {
             Desktop.getDesktop().open(new File(_path));
