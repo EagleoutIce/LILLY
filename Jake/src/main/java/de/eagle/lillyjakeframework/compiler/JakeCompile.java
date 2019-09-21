@@ -42,9 +42,9 @@ import static de.eagle.util.io.JakeLogger.*;
  *
  * @brief Diese Klasse verwaltet den Prozess einer kompilierung durch Jake
  *
- * Diese Instanz ist der direkte Bruder von c_Jake.cpp aus Jake-Cpp und
- * verwendet deswegen native Systemaufrufe, auch wenn diese in der Form
- * nicht nötig wären!
+ *        Diese Instanz ist der direkte Bruder von c_Jake.cpp aus Jake-Cpp und
+ *        verwendet deswegen native Systemaufrufe, auch wenn diese in der Form
+ *        nicht nötig wären!
  *
  * @author Florian Sihler
  * @version 2.0.0
@@ -171,7 +171,7 @@ public class JakeCompile {
         }
 
         if (JakeCompile_Worker.failed) {
-            //System.exit(1); // report failure for Linux-Systems
+            // System.exit(1); // report failure for Linux-Systems
             return ReturnStatus.EXIT_FAILURE;
         }
 
@@ -364,6 +364,21 @@ public class JakeCompile {
                         return;
                     }
 
+                }
+                if (CoreSettings.requestSwitch("S_LILLY_COMPRESS")) {
+                    JakeWriter.out.format("%sDa gefordert: Komprimiere PDF-Datei (%s) %s%n", ColorConstants.COL_GOLD, final_name,
+                            ColorConstants.COL_RESET);
+                    Process p;
+                    try {
+                        p = Runtime.getRuntime()
+                                .exec(new String[] { "gs", "-sDEVICE=pdfwrite", "-dCompatibilityLevel=1.4", "-dNOPAUSE", "-dDetectDuplicateImages", "-dCompressFonts=true", "-dPDFSETTINGS=/" + CoreSettings.requestValue("S_LILLY_COMPRESS_TARGET"),
+                                        "-dQUIET", "-dBATCH", "-sOutputFile=" + final_name + "-compressed.pdf",
+                                        final_name + ".pdf" });
+                        p.waitFor();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    
                 }
                 JakeWriter.out.format("%sGenerierung von \"%s.pdf\" (%s) abgeschlossen. (Zeit: %ss)%s%n",
                         ColorConstants.COL_SUCCESS, final_name, boxmode,
