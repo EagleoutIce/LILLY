@@ -197,6 +197,7 @@ Definieren bis \LILLYxBOXxVersion{1.0.9} die Werte, die \blankcmd{LILLY@Typ} hal
     \def\ssltltmp#1{\blankcmd{LILLY@Typ@#1} (\csname LILLY@Typ@#1\endcsname)}%
     \typesetList[ssltltmp]{Mitschrieb,Uebungsblatt,Dokumentation,Zusammenfassung}.
 }
+Diese werden zum Beispiel durch \LILLYxNOTExLibrary{LILLYxPHILOSPHER} in \blankcmd{LILLYxPHILOSOPHERxMETADATA} ausgegeben.
 
 %
 %
@@ -418,7 +419,7 @@ Setzt einen Informationstext in kleiner Schrift. Ich verwende es für gewöhnlic
 %
 %
 
-\presentCommand[2.0.0]{aLink}{\manArg{Target}}
+\presentCommand[2.0.0]{aLink}[\manArg{Target}]
 Das Ziel lässt sich genauso mit \blankcmd{elable} setzen, allerdings wird das Ziel durch das typische Buch/die Seitenzahl um auf einen Verweis im Anhang hinzuweisen, gesetzt.
 
 %
@@ -796,6 +797,13 @@ Wie zu sehen ist, setzt \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} die Hautpfarbe 
 Wird vom Paket verwendet um die Titelseite zu initialisieren.
 
 %
+%
+%
+
+\presentCommand[2.1.0]{@Lilly@@Philosopher@Type@Decode}[\manArg{Typ}]
+Dekodiert den in \blankcmd{LILLY@Typ} gespeicherten Typ für die Anzeige. Sorgt in der Regel dafür, dass nur der erste Buchstabe großgeschrieben wird und die anderen entsprechend klein notiert werden. Wird in \blankcmd{LILLYxPHILOSOPHERxMETADATA} verwendet.
+
+
 %
 %
 
