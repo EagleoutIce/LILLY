@@ -10,6 +10,15 @@
 \input{Konanur.fd}
 \makeatletter
 
+\def\@Lilly@@Philosopher@Type@Decode#1{%
+\begin{switch}{#1}%
+    \case{MITSCHRIEB}{Mitschrieb}%
+    \case{ZUSAMMENFASSUNG}{Zusammenfassung}%
+    \case{DOKUMENTATION}{Dokumentation}%
+    \default{#1}%
+\end{switch}%
+}
+
 %% Mathe
 \xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028}
 %% Praktische Informatik
@@ -124,7 +133,7 @@
 \gdef\LILLYxPHILOSOPHERxINIT{\newgeometry{margin = 0pt}}
 
 \providecommand{\LILLYxPHILOSOPHERxMETADATA}{%
-    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\LILLY@Typ{} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
+    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\@Lilly@@Philosopher@Type@Decode{\LILLY@Typ} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
     \vspace{0.5cm}%
     {\itshape\small Version vom: \\ \heute\par}}}
 }
