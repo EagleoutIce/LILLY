@@ -73,7 +73,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
             return new String[] { "generate_cmd_line_exec", "Stelle Jake der Konsole zur Verfügung" };
         }
         String _desktopPath = getDesktopPath();
-        JakeWriter.out.println("Identified: \"" + _desktopPath + "\" as target-Path for the Desktop starter (mkdirs: " + new File(_desktopPath).mkdirs() + ")");
+        JakeWriter.out.println("Identified: \"" + _desktopPath + "\" as target-Path for the Desktop starter (mkdirs: " + new File(_desktopPath).getParentFile().mkdirs() + ")");
         // Made the directories if not already present!
         
         try (PrintWriter pw = new PrintWriter(_desktopPath)) {
