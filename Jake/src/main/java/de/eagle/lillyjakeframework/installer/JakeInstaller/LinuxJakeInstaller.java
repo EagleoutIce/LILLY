@@ -72,9 +72,11 @@ public class LinuxJakeInstaller extends AutoInstaller {
         if(PropertiesProvider.isHeadless()){
             return new String[] { "generate_cmd_line_exec", "Stelle Jake der Konsole zur Verfügung" };
         }
+        String _desktopPath = getDesktopPath();
+        JakeWriter.out.println("Identified: \"" + _desktopPath + "\" as target-Path for the Desktop starter (mkdirs: " + new File(_desktopPath).mkdirs() + ")");
+        // Made the directories if not already present!
         
-        try (PrintWriter pw = new PrintWriter(getDesktopPath())) {
-
+        try (PrintWriter pw = new PrintWriter(_desktopPath)) {
             pw.println("[Desktop Entry]");
             pw.println("Type=Application");
             pw.println("Name=Jake");
@@ -95,9 +97,9 @@ public class LinuxJakeInstaller extends AutoInstaller {
         // validate Jake exists:
         if (!new File(getDesktopPath()).canRead()) {
             JOptionPane.showMessageDialog(new JFrame(),
-                    "Die Installation scheint fehlgeschlagen zu sein! (DesktopInstall)", "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+                    "Die Installation scheint ein Problem zu haben (DesktopInstall)", "WARNING",
+                    JOptionPane.WARNING_MESSAGE);
+            //System.exit(0);
         }
 
         return new String[] { "generate_cmd_line_exec", "Stelle Jake der Konsole zur Verfügung" };
@@ -249,7 +251,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
      */
     @Override
     public boolean validate() {
-        return (new File(getDesktopPath()).canRead() || PropertiesProvider.isHeadless()) && new File(getCmdLinePath()).canExecute();
+        return /* (new File(getDesktopPath()).canRead() || PropertiesProvider.isHeadless()) && */ new File(getCmdLinePath()).canExecute();
     }
 
 
