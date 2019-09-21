@@ -269,7 +269,7 @@
     %\expandafter\global\expandafter\newif\if
     % #1 Title
     % #2 Should be the tex-options
-    \global\DeclareDocumentEnvironment{\lillyxBoxxName}{O{} O{}}{\ignorespaces% %%O{\theboxid}}{%
+    \global\DeclareDocumentEnvironment{\lillyxBoxxName}{O{} O{}}{\begingroup\ignorespaces% %%O{\theboxid}}{%
         \edef\curboxid{#5}\debugout{Currently in Box: \curboxid}%
         %%% Here we will check if the Box should be really displayed, or if it's disabled. If it is, we'll eliminate it
         %%% This will include Any Codes or other Options supplied with the Box
@@ -279,10 +279,13 @@
             %% IF not disabled, we will proceed as usual.
             \@nameuse{lillyxBOXx\curboxid xPreCode}%
             % Check: Is the Box to be a plain box :D
+            %
             \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xUseBox}}{TRUE}}{%
                 \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={}}% No Modifications needed :D
+                \renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
             }{%
                 \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain, after title app={\leavevmode\\[-0.75\baselineskip]\ignorespaces}}}% Set Blank Box
+                \renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}% If the Box is plain, we will drop the color, as it doesnt make any sense to display color in that case ;D
             }%
             \phantomsection% Here we will start the corresponding box
             % BOX:
@@ -294,9 +297,9 @@
                     }{\debugout{\space>\space It will register with an Emblem/Addon!}%
                         \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
                     }%
-                    }{}},##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
-                \@nameuse{lillyxBOXx\curboxid xInCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
-                \elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}~\vspace*{-.5\baselineskip}\newline%
+                    }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}},##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
+                \@nameuse{lillyxBOXx\curboxid xInCode}
+                \hbox{}~\vspace*{-.5\baselineskip}\newline%
         }\ignorespaces%
     }% SECOND PART
     {% To ensure the Box is disabled we will do the same for the ending:
@@ -305,7 +308,7 @@
         }{%
             \@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend%
         }%
-
+        \endgroup%
     }
 }
 
@@ -705,7 +708,7 @@
     {lemma}% BoxID
 
 \RegisterBox% maybe insert some 'aftertitle' code to allow the emblem to be shown?
-    [UseIt,usestyle=LILLYxBOXxLemma,customlist=true,createlist=false,listname=LEMMATA,listmen=LEMS,boxcol=\LILLYxColorxLemma,emblem={\noexpand\small\noexpand\textcolor{Charcoal}{\noexpand\faStar}},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},lock=\LILLYxBOXxLemmaxLock]% Style definitions
+    [UseIt,usestyle=LILLYxBOXxLemma,customlist=true,createlist=false,listname=LEMMATA,listmen=LEMS,boxcol=\LILLYxColorxLemma,emblem={\noexpand\small{\noexpand\faStar}},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxLEMMA}{TRUE}},lock=\LILLYxBOXxLemmaxLock]% Style definitions
     {lemma*}% Environ Name
     {Lemma \noexpand\thetcbcounter{}~}% The Title
     {lemmaStarred}% BoxID
