@@ -32,6 +32,8 @@
 
 \def\typesetVersion#1{\text{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}}
 
+%% https://tex.stackexchange.com/questions/115932/on-the-basics-of-writing-to-reading-from-auxiliary-files-aux-toc-etc#115933
+
 \makeatletter
 %% [Version][Tagname][Additionals]
 \DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}:bs:\qquad#4}

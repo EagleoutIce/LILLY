@@ -13,6 +13,12 @@
       <resource>
         <directory>../Lilly</directory>
       </resource>
+      <resource>
+        <directory>../Dokumentation</directory>
+        <includes>
+          <include>Lilly-Dokumentation.doc.pdf</include>
+        </includes>
+      </resource>
     </resources>
     <testResources>
       <testResource>
