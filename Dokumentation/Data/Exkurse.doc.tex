@@ -1,6 +1,6 @@
 \renewcommand{\arraystretch}{1.5}
 \chapter{Exkurse}
-\TitleSUB{Ganz viele viele Erklärungen und Beispiele?}
+\TitleSUB{Ganz viele viele Erklärungen, Beispiele und Extras?}
 \elable{chp:EXKURSE}
 
 \section{Wie man sich eine eigene Vorlesung bastelt}
@@ -150,3 +150,42 @@ An sich gibt es keine klare Regel, nach der ein Titelbild generiert werden muss.
 \end{ditemize}
 
 Übrigens: Der \T{TitlepageProvider} ist an sich veraltet und wurde komplett von \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} abgelöst.
+
+\section{Eine Präsentation erstellen}
+\elable{mrk:beamerKIZexample}Zum Erstellen von Präsentationen, kommt zusammen mit Lilly das Beamer-Theme \T{lillyKIZ}, welches eine \T{beamer}-Präsentation mit einem anderen Design versieht und die zu verwendenden Befehle modifiziert. Ersteinmal eine Übersicht, wie das Ganze am Ende aussieht:
+\begin{tcbraster}[raster columns=3, blankest,colback=white]
+    \tcbincludepdf{Data/Documents/BeamerThemelillyKIZ/presentation.pdf}
+\end{tcbraster}
+Es läuft unabhängig von der kompletten Lilly-Welt und unterstützt (dank der \T{beamer}-Klasse) auch nicht alle Bibliotheken. Das Aussehen gleicht der Powerpoint-Vorlage der Universität Ulm, die Einbindung erfolgt einfach:
+\begin{latex}
+\documentclass{beamer}
+\usetheme{lillyKIZ}
+\end{latex}
+Anschließend stehen einige Befehle zur Verfügung:
+
+%
+%
+%
+
+\presentCommand[2.1.0]{settitle}[\manArg{title}\cmdlist\anothercmd[2.1.0]{setheading}\manArg{heading}\cmdlist\anothercmd[2.1.0]{setsubheading}\manArg{subheading}\cmdlist\secline\anothercmd[2.1.0]{setauthor}\manArg{author}\cmdlist\anothercmd[2.1.0]{setsubtitle}\manArg{subtitle}\cmdlist\anothercmd[2.1.0]{setdate}\manArg{date}\cmdlist\secline\anothercmd[2.1.0]{setresourcepath}\manArg{resourcepath}\cmdlist\anothercmd[2.1.0]{settitleimage}\manArg{titleimage}\cmdlist\secline\anothercmd[2.1.0]{settitlewidth}\manArg{titlewidth}\cmdlist\anothercmd[2.1.0]{setlogoimage}\manArg{logoimage}\cmdlist\secline\anothercmd[2.1.0]{setsignature}\manArg{signature}\cmdlist\anothercmd[2.1.0]{setsignatureDarker}\manArg{signatureDarker}]
+Setzt die entsprechenden Felder in der Präsentation.
+
+%
+%
+%
+
+\presentEnvironment[1.0.7]{bulletpoints}[\optArg{itemize args}]
+Setzt eine Liste analog zur Vorlage.
+
+%
+%
+%
+
+\presentEnvironment[1.0.7]{slide}[\optArg[t]{Orientation}\manArg{Title}]
+Sollte anstelle von \blankenv{frame} verwendet werden, kümmert sich um die Nummerierung und das korrekte Setzen des Titels.
+
+\begin{bemerkung}[Code für das obige Beispiel]
+    Das \jmark[obige]{mrk:beamerKIZexample} Beispiel wurde durch diesen Code erzeugt:
+    \ilatex{Data/Documents/BeamerThemelillyKIZ/presentation.tex}
+    Er befindet sich (in den Quelldateien der Dokumentation) im folgenden Ordner:  \blatex{Data/Documents/BeamerThemelillyKIZ}.
+\end{bemerkung}
