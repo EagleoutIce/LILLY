@@ -1,0 +1,118 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxTRANSCRIPTS}[2019/09/05 Liefert ein Design fuer Transkriptionsprotokolle in LILLY]
+
+\RequirePackage{LILLYxCORE}
+\RequirePackage{LILLYxPERSONS}
+\RequirePackage{LILLYxCONTROLLERxENVIRONMENT}
+\RequirePackage{LILLYxBOXxINFOBOXES}
+
+%% TODO: make a transcript layout :D
+
+%
+% Setzt die Möglichkeit Transkripte über Treffen sowie weitere Protokolle anzufertigen.
+% Baut hierbei auf LILLYxPERSONS auf.
+%
+
+%% https://www.ctan.org/pkg/tocloft
+\LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
+                    {Das ist wichtig!}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+
+% Konstruiere die Liste in der sich die Sitzungen eintragen:
+\newcounter{ctrXsessions}\setcounter{ctrXsessions}{0}% counter for the sessions
+\newlistof{SESSIONS}{SESSION}{}% List of sessions
+
+
+\def\MonthToName#1{%
+    \ifcase#1\or Januar\or Februar\or März\or April\or Mai\or Juni\or Juli\or August\or September\or Oktober \or November\or Dezember\else\@ctrerr\fi%
+}
+
+\def\@Session{Sitzung}
+\def\@Session@End{Ende der }
+
+\def\SessionDate{\SESSIONxDAY.$\;$\MonthToName{\SESSIONxMONTH}$\;$\SESSIONxYEAR}
+\def\SessionName{Sitzung des \SessionDate~(\SESSIONxATTENDEESxCOUNT~Teilnehmer)}% Titel
+\def\SessionDuration{\ifnum\SESSIONxDURATIONxMINUTES>0 \SESSIONxDURATIONxMINUTES{$\,$}m\fi}% We don't wan't to see a Time of 0 minutes :D
+\def\SessionTitleFormat{\SessionDate~(\SessionDuration)}
+
+\pgfkeys{%
+    /lillyxSESSION/.is family, /lillyxSESSION,
+    attendees/.store in=\lillyxSessionxattendees, % Teilenehmer der Sitzung, Komma separierte liste Registrierter LILLYxPERSONS
+    where/.store in=\lillyxSessionxwhere, % Wo hat die Sitzung stattgefunden
+    when/.store in=\lillyxSessionxwhen, % Datum als DD.MM.YYYY
+    duration/.store in=\lillyxSessionxduration, % Länge der Sitzung => maybe offer minute and hour support?
+    % Die Kurzbeschreibung wird separat gesetzt und ist nicht Teil der PGF-Keys
+    defaults/.style={%
+        attendees={}, where={}, when={01.01.0001}, duration={0}%
+    }
+}
+
+
+\def\@@Sessions@MapDate#1.#2.#3\@nil{%
+    \gdef\SESSIONxDAY{#1}\gdef\SESSIONxMONTH{#2}\gdef\SESSIONxYEAR{#3}%
+}
+
+% Marks the start of a new Session
+% Maybe make a members command, and again add PGF?
+\DeclareDocumentEnvironment{session}{%
+    O{} % optional tikz-args for the upper half
+    O{} % optional tikz-args for the lower half
+    m   % pgf arguments :D
+    +o  % What we need to keep in Mind 'Sitzungstelegramm'
+}{\leavevmode\newline\noindent%
+    \pgfkeys{/lillyxSESSION, defaults, #3}%
+    \let\SESSIONxDURATIONxMINUTES\lillyxSessionxduration% Temporary mapping
+    \expandafter\@@Sessions@MapDate\lillyxSessionxwhen\@nil% Set xDAY, xMONTH and xYEAR!
+    % Count the Attendees
+    \def\SESSIONxATTENDEESxCOUNT{0} % init/reset
+    \foreach \ignored[count=\i] in \lillyxSessionxattendees {\xdef\SESSIONxATTENDEESxCOUNT{\i}}%
+    % Add to List:
+    \refstepcounter{ctrXsessions}\addcontentsline{SESSION}{section}{{\scriptsize\useefont\thectrXsessions}~\SessionName}%
+    %
+    %
+    \begin{tikzpicture}[every node/.style={transform shape},#1]% Of course :D
+        % Draw a separation-line:
+        \draw[semithick] (0,0) -- (\linewidth,0);
+        \node[rectangle,rounded corners,fill=white,right] at (0.35,0) {\large\bfseries\sffamily\arabic{ctrXsessions}.~\@Session};
+        \node[rectangle,rounded corners,fill=white,left] at (\linewidth-0.15cm,0) {\footnotesize\sffamily\SessionDate};
+    \end{tikzpicture}\vspace*{-0.1cm}\newline%
+    % Typeset the attendees:
+    \resizebox{7cm}{!}{%
+        %%\parbox[c][1.5cm]{1pt}{\relax{}}% We wan't to enforce somewhat of a minimum height :D
+        %\parbox[t]{8cm}{%
+        \begin{minipage}{8cm}
+            \foreach \attendee in \lillyxSessionxattendees{%
+                \ShowPersonTag{\attendee}%
+                % Add the meeting time to the persons attendancees-counter
+                \addtocounter{ctrX\attendee Xattendancetime}{\SESSIONxDURATIONxMINUTES}%
+            }
+        \end{minipage}
+    }\hbox{}\hfill{}\parbox{4cm}{\raggedleft\scriptsize\sffamily%parbox:[c][1cm]
+            \lillyxSessionxwhere\\
+            \SessionDuration
+    }\smallskip\newline
+    % Set a telegram:
+    \newenvironment{telegram}{\centering%
+        \begin{tcolorbox}[presenterstyle,width=7cm]
+        \begin{itemize}[label={$\RHD$}]\setlength{\itemindent}{-0.5cm}\narrowitems
+    }{\end{itemize}\end{tcolorbox}\smallskip}
+    %
+    % Typeset the Telegram, but only if Given!
+    \IfValueT{#4}{%
+        \begin{telegram}%
+            #4
+        \end{telegram}%
+    }%
+    \ignorespaces%
+    %Datum: \SessionTitleFormat
+}{\nopagebreak\leavevmode\newline\noindent%
+    \begin{tikzpicture}[every node/.style={transform shape},#2]% Of course :D
+        % Draw a separation-line:
+        \draw[semithick] (0,0) -- (\linewidth,0) node[midway, rectangle,rounded corners,fill=white]  {\footnotesize\bfseries\sffamily \@Session@End\arabic{ctrXsessions}.~\@Session};
+    \end{tikzpicture}
+}
+
+
+\endinput

@@ -1,0 +1,181 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxPERSONS}[2019/09/22 Liefert eine Personenverwaltung fuer LILLY]
+
+\RequirePackage{LILLYxCORE}
+\RequirePackage{LILLYxTIKZxCORE}
+\RequirePackage{LILLYxFONTS}
+\RequirePackage{LILLYxCONTROLLERxLINK}
+\RequirePackage{LILLYxORNAMENTS}
+
+
+\LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schlüssel-Wert-Spiel zur Verfuegung}
+                    {Lilly ist sich ziemlich sicher, aber doch nicht ganz ob dieses Paket relevant ist}
+                    {}{} %% keine Argumente
+
+
+\LILLYxDemandPackage{shapepar}{Eigentlich nicht sooo wichtig, aber irgendwie dann schon :P}
+                    {Ohne geht es einfach nicht, weil, naja, das einfach gut aussieht :D}
+                    {}{} %% keine Argumente
+
+
+% Ziel ist es, Datenbanken für Personen erstelllen zu können un ddiese dann entsprechend anzeigen zu können,
+% Es werden automatisch IDs für jede Person generiert, wobei andere Pakete diese Daten ebenfalls zur Visualisierung nutzen können.
+% Jede Person zeichnet sich durch ein von PGF-keys zur Verfügung gestelltes Datenfeld aus.
+
+
+% Ersteinmal gilt es festzulegen, was für Daten eine Person überhaupt hat, die anschließende Persistierung erfolgt mit dem Präfix @@lilly@persons@.
+
+%% Die Werte werden wieder für jede InfoBox persistiert, damit das Design variiert werden kann, je nach Geschmack :D
+\pgfkeys{%
+    /lillyxPERSONS/.is family, /lillyxPERSONS,
+    title/.store in=\lillyxPersonsxtitle,
+    name/.store in=\lillyxPersonsxname,
+    last name/.store in =\lillyxPersonsxlastname,
+    age/.store in=\lillyxPersonsxage,
+    color/.store in=\lillyxPersonsxcolor,       % Primary signature Color of the person, this can be tossed too but, hey who cares :D
+    secondary color/.store in=\lillyxPersonsxsecondarycolor,
+    email/.store in=\lillyxPersonsxemail,
+    mobile number/.store in=\lillyxPersonsxmobilenumber,
+    alias/.store in=\lillyxPersonsxalias,
+    brief/.store in=\lillyxPersonsxbrief,
+    symbol/.store in=\lillyxPersonsxsymbol,
+    image/.store in=\lillyxPersonsximage,     % Path to an reguar image accepted by includegraphics => set a dummy?
+    image multiplier/.store in=\lillyxPersonsximagemultiplier,
+    defaults/.style={%
+        age={-1}, secondary color=MudWhite, mobile number={}, email={}, title={}, image={\LILLYxPATHxDATA/Images/me.jpg},% <INSERT DEFAULTPATH>
+        alias={}, symbol={P},image multiplier={1.4\@PersonTag@Height},% All others have to be given!, otherwise the system itself will raise an error message :D
+        % GIVE THEM:
+        name={Noname}, last name={M\"{u}ller}, color={AppleGreen}, brief={Nothing here}%
+    }
+}
+
+% #1 Person ID
+% #2 Field Name
+\def\@@LILLY@persons@get#1#2{%
+    \csname @@lilly@persons@#1@#2\endcsname%
+}
+
+% #1 Person ID
+\def\PersonAlias#1{%
+    \ignorespaces\@@LILLY@persons@get{#1}{Alias}%
+}
+
+% #1 Person ID
+\def\PersonName#1{%
+    \ignorespaces\@@LILLY@persons@get{#1}{Name}%
+}
+
+% #1 Person ID
+\def\PersonFullName#1{%
+    \ignorespaces\@@PersonFullName{#1}%
+}
+
+% #1 Person ID
+\def\@@PersonFullName#1{%
+    % This command will return the Full Name of a Person, it's somewhat of a shortcut-macro:
+    \@@LILLY@persons@get{#1}{Title}$\;$\@@LILLY@persons@get{#1}{Name}~\@@LILLY@persons@get{#1}{LastName}%
+}
+
+\DeclareDocumentCommand{\CreateNewPerson}{%
+    O{} % Additional [somewhat mandatory :P] Person-Args
+    m   % ID of the Person, this is something else than the Name of the Person, this ID translates to the command that will be created
+}{%
+    \pgfkeys{/lillyxPERSONS, defaults, #1}%
+    % All of the Argument will be persisted by expanding them only once, all values can therefore be assigned with regular control-sequences etc.
+    % A Person will only be available AFTER it's creation.
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@Name\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxname}%                            Name (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@Title\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxtitle}%                          Title (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@LastName\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxlastname}%                    Last Name (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@Age\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxage}%                              Age (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@Color\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxcolor}%                          Color (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@SecondaryColor\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxsecondarycolor}%        Secondary Color (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@Email\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxemail}%                          Email (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@MobileNumber\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxmobilenumber}%            Mobile Number (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@Alias\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxalias}%                          Alias (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@Brief\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxbrief}%                          Brief (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@Symbol\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsxsymbol}%                        Symbol (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@Image\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsximage}%                          Image (unexpanded)
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname @@lilly@persons@#2@ImageMultiplier\expandafter\expandafter\endcsname\expandafter{\lillyxPersonsximagemultiplier}%      Image Multiplier (unexpanded)
+    %
+    % Persitence check:
+    \foreach \x in {Name,LastName,Age,Color,SecondaryColor,Email,MobileNumber,Alias,Brief,Symbol,Image} {% Maybe make a Persisting-Library? :D
+        \debugout{[Persons:#2] \x: [\@@LILLY@persons@get{#2}{\x}]}
+    }
+    %
+    % Construct the Person-Command we willl only construct the \the<ID> - Command for a start, the others may be added in fututre releases
+    % Constructing \the<name> to print the timetable
+    \expandafter\xdef\csname the#2\endcsname{%
+        \noexpand\ShowPerson{#2}%
+    }
+    %
+    % Every Person will hold it's own (public) counter which can be used to monitor appearance durations in Meetings/Sessions (see LILLYxTRANSCRIPTS)
+    \newcounter{ctrX#2Xattendancetime}% not needed (implicit):% \setcounter{ctrX#2Xattendancetime}{0}
+    \expandafter\xdef\csname attendance#2\endcsname{%
+        \noexpand\arabic{ctrX#2Xattendancetime}% can be used for calculations too :D
+    }
+}
+
+% #1 PersonID
+\def\@lilly@formatAge#1{%
+    % Will format the Age, only if >= 0
+    \ifnum\@@LILLY@persons@get{#1}{Age}<0\else\@@LILLY@persons@get{#1}{Age}\fi%
+}
+
+\newlength{\@PersonTag@Height}\setlength{\@PersonTag@Height}{12pt}
+
+\DeclareDocumentCommand{\ShowPerson}{%
+    O{} % Optional tikz-args
+    O{LILLYxPERSONS:}   % Linkname to the Informationpage of the Person, if non provided the default (LILLYxPERSONS:<PERSONID>) will be used
+    m   % Person ID
+}{%
+    \phantomsection\hypertarget{#2#3}{}% We will construct a tikzpicture and therefore consult the Graphics-Library (TIKZxCORE)
+    \leavevmode\bigskip\newline\noindent\begin{minipage}{\textwidth}
+        {\large\sffamily\pgfornament[height=0.5\baselineskip,ydelta=-0.775ex]{11} \ifthenelse{\equal{\@@LILLY@persons@get{#3}{Alias}}{}}{}{{\scriptsize[{\itshape\color{\@@LILLY@persons@get{#3}{Color}}\@@LILLY@persons@get{#3}{Alias}}$\,$]~}}\PersonFullName{#3}{$\,$\scriptsize\@lilly@formatAge{#3}}}\hbox{}\hfill{}{\ttfamily\scshape\@@LILLY@persons@get{#3}{Email}}\vspace*{-0.5\baselineskip}\newline\hbox{}\hfill{}{\tiny\@@LILLY@persons@get{#3}{MobileNumber}}\vspace*{-0.5\baselineskip}\newline%
+        \hspace*{0.045\linewidth}\parbox[t][3cm]{0.955\linewidth}{%
+            \font\cmsybig=cmsy10 at 1.2in
+            \newcommand\BigO{{\cmsybig \char10}}
+            \cutout{r}(-1cm,0.85cm)
+            \setlength\cutoutsep{6pt}
+            \shapepar[1.6cm]{\circleshape}%
+            \setlength\unitlength{1cm}%
+            \begin{picture}(0,0)%
+            \put(1.0,-1.5){\makebox[0pt]{\tikz{\filldraw[path image={\@@LILLY@persons@get{#3}{Image}}{2cm},\@@LILLY@persons@get{#3}{SecondaryColor}] (0.4,0.35) circle (1cm);}}}
+            \end{picture}
+            \par
+            \itshape\@@LILLY@persons@get{#3}{Brief}%
+        }
+    \end{minipage}\vspace*{0.8cm}\newline
+}
+
+\newlength{\@tmp@Name@length}
+
+\DeclareDocumentCommand{\ShowPersonTag}{%
+    s   % Star will show the Alias (provided by '\PersonAlias'), otherwise only the first Name will be shown
+    O{LILLYxPERSONS:}   % Linkname to the Informationpage of the Person, if non provided the default (LILLYxPERSONS:<PERSONID>) will be used
+    m   % Person Name
+    O{} % Optional Arguments for the 'tikzpicture' created
+}{%
+    % Evaluate the Name, it will scale the Name based on a minimum width :D
+    \IfBooleanTF{#1}{\def\@tmp@Name{\PersonAlias{#3}}}{\def\@tmp@Name{\@@LILLY@persons@get{#3}{Name}}}%
+    % Now calculate the width of the Name:
+    \settowidth{\@tmp@Name@length}{\@tmp@Name}%
+    \ifdim\@tmp@Name@length>1.95cm\relax \addtolength{\@tmp@Name@length}{0.8cm}% Offset for the image (0.65cm) + offset for look (0.15cm)
+        \else \setlength{\@tmp@Name@length}{2.5cm}\fi%
+    \begin{tikzpicture}[baseline=0.4ex,every node/.style={transform shape},#4]
+        % First, draw the background-Plate
+        \filldraw[rounded corners=0.345\@PersonTag@Height,line width=0.15pt,\@@LILLY@persons@get{#3}{Color},shading=axis,% setting the border to 0.15pt yields a far nicer result on most
+            % Gradient:
+            left color=\@@LILLY@persons@get{#3}{Color}!85!black,right color=\@@LILLY@persons@get{#3}{Color},hyperlink={#2#3}%
+            ]%
+            % Draw:
+            (0,0) rectangle ++(\@tmp@Name@length,0.72\@PersonTag@Height); % Forcefully don't round the whole corners
+        % Place the name in the secondary color:
+        \node[right,\@@LILLY@persons@get{#3}{SecondaryColor},font={\scriptsize\useefont},hyperlink={#2#3}] at (0.65,0.36\@PersonTag@Height) {\@tmp@Name};
+
+        % Draw the Picture provided:
+        \filldraw[path image={\@@LILLY@persons@get{#3}{Image}}{\@@LILLY@persons@get{#3}{ImageMultiplier}},\@@LILLY@persons@get{#3}{SecondaryColor}] (0.4,0.35) circle (0.7\@PersonTag@Height); %semithick for the border?
+    \end{tikzpicture}\space$\,$%
+}
+
+
+\endinput
