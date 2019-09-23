@@ -1,3 +1,0 @@
-\contentsline {chapter}{Themen\begingroup \let \relax \relax \endgroup [Pleaseinsert\PrerenderUnicode {ü}intopreamble]berblick}
-\contentsline {chapter}{Hallo Welt}
-\contentsline {chapter}{Nadel geld?}

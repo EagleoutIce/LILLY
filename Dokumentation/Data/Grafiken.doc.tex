@@ -481,6 +481,31 @@ Setzt ein Verzeichnis, beziehungsweise allgemein liefert diese Umgebung eine Mö
 \end{directory}
 \end{defaultlst}
 
+%
+%
+%
+%
+%
+
+\subsection{Bilder und Bildlinks}
+Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHICS.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Teile dieser Integration wurden durch \url{https://tex.stackexchange.com/questions/120861/making-tikz-path-into-a-hyperlink} inspiriert. Dieses Paket liefert keinen neuen Befehl, allerdings $2$ neue \TikZ-Argumente, die im Folgenden an einem Beispiel präsentiert werden:
+
+\begin{defaultlst}[][listing side text,righthand width=2cm]{lLatex}
+\begin{tikzpicture}
+    % clip image to a path {#1: path to the image}
+    %   {#2 scaled-height of the image}:
+    \filldraw[path image={\LILLYxPATHxDATA/Images/me.jpg}{2cm},AppleGreen] (0,2) circle (1cm);
+    \filldraw[path image={\LILLYxPATHxDATA/Images/me.jpg}{2cm},AppleGreen] (0,0) ellipse (1cm and 0.5cm);
+\end{tikzpicture}
+\end{defaultlst}
+
+\begin{defaultlst}[][listing side text,righthand width=2cm]{lLatex}
+\hypertarget{marker}{Hallo Welt} [\ldots] \par
+%
+\tikz{\filldraw[hyperlink={marker},AppleGreen] (0,0) rectangle ++(2,1);}
+\end{defaultlst}
+
 
 %
 %

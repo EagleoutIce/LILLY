@@ -576,7 +576,7 @@ Setzt unter der Verwendung von \blankcmd{singlequote} ein Zitat mit Autor und op
 %
 
 \section{Stundenpläne}
-\hypertarget{LILLYxTIMETABLES}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPLILLYxTIMETABLESOEMS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.
+\hypertarget{LILLYxTIMETABLES}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxTIMETABLES} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.
 
 %
 %
@@ -884,3 +884,220 @@ Ein Beispiel:
 
 \theStundenplan
 \egroup
+
+%
+%
+%
+%
+%
+
+\section{Personen}
+\hypertarget{LILLYxPERSONS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPERSONS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{CreateNewPerson}[\optArg{PersonArgs}\manArg{PersonID}]
+Erzeugt eine neue Person mit der ID \T{PersonID}, deren Werte durch das Präfix \T{@@lilly@persons@} persistiert werden. Automatisch werden die Befehle \blankcmd{the<PersonID>} und \blankcmd{attendance<PersonID>} erzeugt. Für die \T{PersonArgs} gibt es ein paar Optionen, die in der Regel alle gesetzt werden sollten, zur besseren Lesbarkeit aber entsprechend separat getrennt werden:
+\begin{center}
+    \begin{tabularx}{\linewidth}{^t>{\em}^l^c^p{0.35\linewidth}+}
+        \toprule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
+        title & String & & Titel der Person (Dr., Prof., \ldots) \\
+        name & String & Noname & Vorname der Person \\
+        last name & String & M\"{u}ller & Nachname der Person \\
+        age & Zahl ($\geq$0) & -1 & Alter der Person \\
+        color & Farbe & AppleGreen & Primärfarbe der Person\\
+        secondary color & Farbe & MudWhite & Sekundärfarbe der Person \\
+        email & String & & Email-Adresse der Person\\
+        mobile number & String & & Mobiltelefonnummer der Person \\
+        alias & String & & Alias der Person \\
+        symbol & Code & P & (bisher unbenutzt) \\
+        image & String & \ldots/me.jpg & Pfad zur Grafik \\
+        image mulitplier & Length & 1.4\blankcmd{@Person}\ldots & Zu skalierende Höhe des Bildes. \\
+        \bottomrule
+    \end{tabularx}\nskip
+\end{center}
+
+\elable{mrk:PersonCreation}Erzeugen wir einmal eine Beispiel-Person:
+\begin{latex}
+\CreateNewPerson[name={Florian},last name={Sihler},%
+                 title={Catlord}, email={florian.sihler@web.de},%
+                 alias={EagleoutIce},%
+                 mobile number={+\(49\,who\,cares\)},%
+                 brief={\lipsum[2]}]{Flo},%
+                 color=Azure, image=Data/me%
+\end{latex}
+\CreateNewPerson[name={Florian},email={florian.sihler@web.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=Azure]{Flo}
+\CreateNewPerson[name={Sibille},email={florian.sihler@web.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=AppleGreen]{Flo2}
+\CreateNewPerson[name={Joachim},email={florian.sihler@web.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=DebianRed]{Flo3}
+\CreateNewPerson[name={Petersson},email={florian.sihler@web.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=ChromeYellow]{Flo4}
+
+Die folgenden Befehle zeigen, wie diese Person benutzt werden kann.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{PersonAlias}[\manArg{PersonID}\cmdlist\anothercmd[2.1.0]{PersonName}\manArg{PersonID}\cmdlist\anothercmd[2.1.0]{PersonFullName}\manArg{PersonID}]
+Liefert die jeweiligen Felder der Person als Wert zurück:
+\begin{latex}
+\PersonAlias{Flo} % :yields: !*\lstcomment{\PersonAlias{Flo}}*!
+\PersonName{Flo} % :yields: !*\lstcomment{\PersonName{Flo}}*!
+\PersonFullName{Flo} % :yields: !*\lstcomment{\PersonFullName{Flo}}*!
+\end{latex}
+
+%
+%
+%
+
+\presentCommand[2.1.0]{the<PersonID>}[\cmdlist\anothercmd[2.1.0]{attendance<PersonID>}]
+Liefert einmal die Ausgabe von \blankcmd{ShowPerson} für die entsprechende \T{PersonID} und zum anderen den Wert des der Person zugeordneten \say{Anwesenheits-Zählers} (der zum Beispiel von \LILLYxNOTExLibrary{LILLYxTRANSCRIPTS} genutzt wird).
+
+%
+%
+%
+
+\presentCommand[2.1.0]{ShowPerson}[\optArg{tikz-args}\optArg[LILLYxPERSONS:]{marker}\manArg{PersonID}]
+Setzt einen beschreibenden Abschnitt für die jeweilige Person, die mit der \T{PersonID} verbunden ist. Der vermerkte \T{marker} bezeichnet das Präfix, was das Sprungziel für den entsprechenden \blankcmd{ShowPersonTag} markiert. So ergibt \clatex[morekeywords={[5]{ShowPerson}}]{:bs:ShowPerson\{Flo\}}:
+\ShowPerson{Flo}
+
+%
+%
+%
+
+\presentCommand[2.1.0]{ShowPersonTag}[\optStar\optArg[LILLYxPERSONS:]{marker}\manArg{PersonID}\optArg{tikz-args}]
+Setzt ein kleines Symbol für die jeweilige Person, wobei der Stern das Alias anstelle des Vornamens anzeigt. Der vermerkte \T{marker} bezeichnet das Präfix, was das Sprungziel für die entsprechende \blankcmd{ShowPerson} markiert. So ergibt \clatex[morekeywords={[5]{ShowPersonTag}}]{:bs:ShowPersonTag\{Flo\}}: \ShowPersonTag{Flo}, beziehungsweise \clatex[morekeywords={[5]{ShowPersonTag*}}]{:bs:ShowPersonTag*\{Flo\}}: \ShowPersonTag*{Flo}. Hierbei lässt sich auch erkennen, das der Tag sich in der Breite automatisch verlängert, wenn der entsprechende Bezeichner die Größe übersteigt.
+
+%
+%
+%
+%
+%
+
+\section{(Sitzungs-)Protokolle}
+\hypertarget{LILLYxTRANSCRIPTS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPLILLYxTRANSCRIPTSERSONS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen. Diese Bibliothek basiert auf \LILLYxNOTExLibrary{LILLYxPERSONS}.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{MonthToName}[\manArg{Number}]
+Konvertiert eine Zahl in den deutschen Monatsbezeichner
+\begin{latex}
+\MonthToName{1} % :yields: !*\lstcomment{\MonthToName{1}}*!
+\MonthToName{4} % :yields: !*\lstcomment{\MonthToName{4}}*!
+\MonthToName{9} % :yields: !*\lstcomment{\MonthToName{9}}*!
+\end{latex}
+
+%
+%
+%
+
+\presentCommand[2.1.0]{@Session}[\cmdlist\anothercmd[2.1.0]{@Session@End}]
+Diese Befehle halten die zu verwendenden Bezeichner für eine Sitzung und ihr entsprechendes Ende:
+\begin{latex}
+\@Session % :yields: !*\lstcomment{\@Session}*!
+\@Session@End % :yields: !*\lstcomment{\@Session@End}*!
+\end{latex}
+
+%
+%
+%
+
+\presentCommand[2.1.0]{SessionDate}[\cmdlist\anothercmd[2.1.0]{SessionName}\cmdlist\anothercmd[2.1.0]{SessionDuration}\cmdlist\anothercmd[2.1.0]{SessionTitleFormat}]
+Setzt die entsprechenden Bezeichner, wobei Befehle wie \blankcmd{SESSIONxDAY} verwendet werden können. Sie werden nur innerhalb einer \blankenv{session}-Umgebung sinnvoll expandiert.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{@@Sessions@MapDate}[\manArg{DD.MM.YYYY}\blankcmdidx{@nil}]
+Setzt \blankcmd{SESSIONxDAY}, \blankcmd{SESSIONxMONTH} und \blankcmd{SESSIONxYEAR} entsprechend dem eingegebene Datum.
+
+%
+%
+%
+
+\presentEnvironment[2.1.0]{session}[\optArg{upper tikz}\optArg{lower tikz}\manArg{Session args}\optArg{telegram}]
+Setzt eine Sitzungsumgebung, die sich in die Liste \T{SESSIONS} für das Element \T{SESSION} einträgt, wobei als Bezeichner \blankcmd{SessionName} verwendet wird. Die Sitzungsargumente erlauben die folgenden Bezeichner, wobei zumindest die Teilnehmer und ein Datum für eine sinnvolle Ansicht gesetzt werden sollten:
+
+\begin{center}
+    \begin{tabularx}{\linewidth}{^t>{\em}^l^c^p{0.35\linewidth}+}
+        \toprule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
+        attendees & Liste & & (kommaseparierte) Liste an \LILLYxNOTExLibrary{LILLYxPERSONS}-Personen \\
+        where & String & & Wo findet die Sitzung statt \\
+        when & String & 01.01.0001 & Wann fand die Sitzung statt? [DD.MM.YYYY] \\ % TODO: INCLUDE THE TIME! WHEN DID IT SCHTART?
+        duration & Zahl ($\geq$0) & 0 & Wie viele Minuten hat die Sitzung gedauert\\
+        \bottomrule
+    \end{tabularx}\nskip
+\end{center}
+
+So ergibt (die anderen Personen wurden analog zu \jmark[oben]{mrk:PersonCreation} erzeugt, es wurden lediglich Farbe, Name sowie die ID geändert.):
+\begin{latex}
+\begin{session}{attendees={Flo,Flo2,Flo3},%
+                where={Smiley Pool},%
+                when={21.09.2019},duration={30}}
+\lipsum[1]
+\end{session}
+\end{latex}
+\begin{session}{attendees={Flo,Flo2,Flo3},where={Smiley Pool},when={21.09.2019},duration={30}}
+\lipsum[1]
+\end{session}
+
+Das Argument \T{telegram} erzeugt implizit folgende Umgebung:
+
+%
+%
+%
+
+\presentEnvironment[2.1.0]{telegram}
+Ist nur innerhalb von \blankenv{session} gültig und ermöglicht es eine Kurzzusammenfassung der Sitzung zu geben. Da es implizt ein \blankenv{itemize} eröffnet, müssen die einzelnen Punkte per \blankcmd{item} gegeben werden:
+\begin{latex}
+\begin{session}{attendees={Flo,Flo2,Flo3,Flo4},%
+                where={Winterwunderland},%
+                when={13.12.2020},duration={120}}
+    \begin{telegram}
+        \item Behaltet
+        \item Das
+        \item Im Kopf!
+    \end{telegram}
+    \lipsum[1]
+\end{session}
+\end{latex}
+\begin{session}{attendees={Flo,Flo2,Flo3,Flo4},where={Winterwunderland},when={13.12.2020},duration={120}}
+    \begin{telegram}
+        \item Behaltet
+        \item Das
+        \item Im Kopf!
+    \end{telegram}
+    \lipsum[1]
+\end{session}
+
+\presentCommand[2.1.0]{listofSESSIONS}
+Liefert die Liste aller aufgezeichneter Sitzungen, die sich in der Liste \T{SESSIONS} registriert haben. So liefert \blankcmd{listofSESSIONS}:\\
+\begin{minipage}{\linewidth}\vspace*{-3cm}
+    \listofSESSIONS
+\end{minipage}
+
+\begin{bemerkung}[Anwesenheitszeiten]
+    Da dieses Paket die von \LILLYxNOTExLibrary{LILLYxPERSONS} zur Verfügung gestellten Anwesenheitszähler modifiziert, lässt sich (exemplarisch) so die Anwesenheitsdauer der einzelnen Personen ausgeben:
+\begin{latex}[morekeywords={[5]{\\person}}]
+\begin{ditemize}\narrowitems
+    \foreach \person in {Flo,Flo2,Flo3,Flo4}{%
+        \item \ShowPersonTag{\person}: \csname attendance!**!\person!!**!\endcsname~minutes%
+    }
+\end{ditemize}
+\end{latex}
+Ergibt:
+\begin{ditemize}\narrowitems
+    \foreach \person in {Flo,Flo2,Flo3,Flo4}{%
+        \item \ShowPersonTag{\person}: \csname attendance\person\endcsname~minutes%
+    }
+\end{ditemize}
+
+\end{bemerkung}
