@@ -1,6 +1,9 @@
 %% https://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz#34268
 
-\makeatletter
+% disable ", otherwise forest will fail
+\catcode`\"=12
+\usepackage[edges]{forest}
+\catcode`\"=13
 
 \newcount\dirtree@lvl
 \newcount\dirtree@plvl
@@ -31,51 +34,101 @@
   }
 }
 
-\newenvironment{directory}[1][]{
+\newenvironment{directory}[1][]{%
     \begin{tikzpicture}[dirtree, #1]
     }{;\end{tikzpicture}}
 
 
 
 
-% %% currently based on
-% % https://tex.stackexchange.com/questions/5073/making-a-simple-directory-tree#270761
-% \RequirePackage{forest}
+\colorlet{folderbg}{bondiBlue}
+\colorlet{folderbgdark}{bondiBlue!85!black}
+\colorlet{ifolderbg}{DebianRed}
+\colorlet{ifolderbgdark}{DebianRed!85!black}
+\newlength\len@folder@size
+\setlength\len@folder@size{4pt}
 
-% \definecolor{folderbg}{RGB}{124,166,198}
-% \definecolor{folderborder}{RGB}{110,144,169}
+% #1 light color
+% #2 darker color
+% #3 white color
+\def\@lilly@td@folder#1#2#3{%
+  \fill[rounded corners=0.5pt, color=#2]% peak
+  (-1*\len@folder@size,-\len@folder@size) rectangle (1.85*\len@folder@size,\len@folder@size+2pt);
+\fill[rounded corners=0.5pt, color=#2]% back
+  (-1*\len@folder@size,-\len@folder@size) rectangle (0.35*\len@folder@size,\len@folder@size+3.25pt);
+\fill[rounded corners=0.5pt, color=#3]% doc
+  (-0.8*\len@folder@size,-\len@folder@size) rectangle (1.65*\len@folder@size,\len@folder@size+1.25pt);
+\filldraw[rounded corners=0.5pt, color=#1, ultra thin]%
+  (-1*\len@folder@size,-\len@folder@size) rectangle (1.85*\len@folder@size,\len@folder@size);
+}
 
-% \def\Size{4pt}
-% \tikzset{
-%   folder/.pic={
-%     \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
-%       (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);
-%     \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
-%       (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
-%   }
-% }
+% #1 light color
+% #3 darker color
+% #2 white color
+\def\@lilly@td@file#1#2#3{%
+  \fill[fill=#1!85!#3, rounded corners=0.9pt] (-\len@folder@size,.6*\len@folder@size+2.75pt) coordinate (a) |- (\len@folder@size,-1.2*\len@folder@size) coordinate (b) to[rounded corners=0pt] ++(0,1.8*\len@folder@size) coordinate (c) to[rounded corners=0pt,] ++(-2.75pt,2.75pt) coordinate (d) -- cycle;
+  \fill[fill=#3!65!#1, rounded corners=0.9pt] (d) |- (c);
+  % Set Text Bars:
+  \foreach \y/\fx in {0/1,0.2/1,0.4/1,0.6/0.75} {%
+    \fill[#3] (-0.5\len@folder@size,-\y*\len@folder@size) rectangle ++ (\fx*\len@folder@size,0.4pt);
+  }
+}
+
+\tikzset{%
+  folder/.pic={%
+    \@lilly@td@folder{folderbg}{folderbgdark}{MudWhite}%
+  },
+  importantfolder/.pic={%
+        \@lilly@td@folder{ifolderbg}{ifolderbgdark}{MudWhite}%
+  },
+  file/.pic={%
+    \@lilly@td@file{folderbg}{folderbgdark}{MudWhite}%
+  },
+  importantfile/.pic={%
+    \@lilly@td@file{ifolderbg}{ifolderbgdark}{MudWhite}%
+  },
+}
+\forestset{%
+  declare autowrapped toks={pic me}{},
+  declare boolean register={pic root},
+  pic root=0,
+  pic dir tree/.style={%
+    for tree={%
+      folder,
+      font=\LILLYxlstTypeWriter,
+      grow'=0,
+    },
+    before typesetting nodes={%
+      for tree={%
+        edge label+/.option={pic me},
+      },
+      if pic root={
+        tikz+={
+          \pic at ([xshift=\len@folder@size].west) {folder};
+        },
+        align={l}
+      }{},
+    },
+  },
+  pic me set/.code n args=2{%
+    \forestset{%
+      #1/.style={%
+        inner xsep=2.6\len@folder@size,
+        pic me={pic {#2}},
+      }
+    }
+  },
+  pic me set={dir}{folder},
+  pic me set={idir}{importantfolder},%
+  pic me set={file}{file},
+  pic me set={ifile}{importantfile},
+}
 
 
-% \newenvironment{directory}[1][]{%
-% \begin{forest}
-%     for tree={
-%       font=\LILLYxlstTypeWriter,
-%       grow'=0,
-%       child anchor=west,
-%       parent anchor=south,
-%       anchor=west,
-%       calign=first,
-%       inner xsep=7pt,
-%       edge path={
-%         \noexpand\path [draw, \forestoption{edge}]
-%         (!u.south west) +(7.5pt,0) |- (.child anchor) pic {folder} \forestoption{edge label};
-%       },
-%       before typesetting nodes={
-%         if n=1
-%           {insert before={[,phantom]}}
-%           {}
-%       },
-%       fit=band,
-%       before computing xy={l=15pt},
-%     }
-% }{\end{forest}}
+\newenvironment{fancydir}{%
+\forest%
+    pic dir tree,%
+    pic root,%
+    for tree={dir,}%
+    }{%
+\endforest}%

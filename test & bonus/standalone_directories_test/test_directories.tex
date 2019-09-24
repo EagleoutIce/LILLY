@@ -1,0 +1,41 @@
+%\errorcontextlines 99999
+\documentclass{Lilly}
+
+\usepackage{blindtext}
+
+\begin{document}
+\begin{minipage}{7cm}
+\begin{latex}
+\begin{fancydir}%
+  [system
+    [config]
+    [lib
+      [Access, idir]
+      [Plugin]
+      [file.txt, file]
+    ]
+    [templates]
+    [tests
+      [test.txt, ifile]
+    ]
+  ]
+\end{fancydir}
+\end{latex}
+\end{minipage}
+\hfill\parbox{6cm}{
+  \begin{fancydir}%
+  [system
+    [config]
+    [lib
+      [Access, idir]
+      [Plugin]
+      [file.txt, file]
+    ]
+    [templates]
+    [tests
+      [test.txt, ifile]
+    ]
+  ]
+\end{fancydir}
+}
+\end{document}

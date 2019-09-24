@@ -451,16 +451,15 @@ Setzt ein Attribut beziehungsweise ein Schlüsselattribut im Kontext eines Entit
 %
 %
 
-\subsection{Verzeichnis-Bäume \LILLYxNOTExWarning{Work in Progress}}
-Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_DIRECTORY.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
-Dieses Paket ist bisher nur provisorisch und basiert auf \url{https://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz#34268}, da \T{forest} noch ein paar Probleme macht.
+\subsection{Verzeichnis-Bäume}
+Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_DIRECTORY.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.
 
 %
 %
 %
 
 \presentEnvironment[2.0.0]{directory}[\optArg{tikz args}]
-Setzt ein Verzeichnis, beziehungsweise allgemein liefert diese Umgebung eine Möglichkeit relativ einfach etwas \emph{Verzeichnisähnliches} zu setzen (ist ja, wie gesagt, noch in Arbeit \Smiley). Ein Beispiel:
+Setzt ein Verzeichnis. Allgemein liefert diese Umgebung eine Möglichkeit relativ einfach etwas \emph{Verzeichnisähnliches} zu setzen. Ein Beispiel:
 \begin{defaultlst}[][listing side text,righthand width=4.5cm]{lLatex}
 \begin{directory}[scale=0.5]
 \node{Toplevel}
@@ -473,13 +472,43 @@ Setzt ein Verzeichnis, beziehungsweise allgemein liefert diese Umgebung eine Mö
             child { node {Level 3} }
             child { node {\ldots} }
         }
-        child { node {Readme.md} }
+        child { node {\bfseries Readme.md} }
     }
-    child { node {Level 1}
-        child { node {Level 2} }
+    child { node {\bfseries Level 1}
+        child { node {Level 2} 
+                child {node {test.txt} } }
     };
 \end{directory}
 \end{defaultlst}
+
+%
+%
+%
+
+\presentEnvironment[2.1.0]{fancydir}
+Setzt eine Verzeichnisstruktur, \emph{ähnlich} zu \blankenv{directory}. Ein Beispiel:
+\begin{defaultlst}[][listing side text,righthand width=4.5cm]{lLatex}
+\begin{fancydir}
+    [Toplevel
+        [Level 1
+            [Level 2
+                [Level 3]
+                [\ldots]
+            ]
+            [Level 2
+                [Level 3]
+                [\ldots]
+            ]
+            [Readme.md, ifile]
+        ]
+        [Level 1, idir
+            [Level 2]
+            [test.tex, file]
+        ]
+    ]
+\end{fancydir}
+\end{defaultlst}
+Standardmäßig ist jedes Element ein Verzeichnis. Dateien werden durch \T{file}, wichtige Dateien durch \T{ifile} und wichtige Ordner durch \T{idir} markiert. % Maybe allow the setting of color?
 
 %
 %
