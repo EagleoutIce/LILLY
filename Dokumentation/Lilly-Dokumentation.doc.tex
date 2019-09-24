@@ -53,10 +53,10 @@
 % }
 
 \DeclareDocumentCommand{\addcmd}{ O{1.0.0} m}{%
-    \index{#2`{\blankcmdidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
+    \ifthenelse{\equal{#1}{\LILLYxVERSION}}{\iwriteNewCommands{\noexpand\pushList{lNewCommands}{\noexpand c#2}}}{}\index{#2`{\blankcmdidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
 }
 \DeclareDocumentCommand{\addenv}{ O{1.0.0} m}{%
-    \index{#2`{\blankenvidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
+    \ifthenelse{\equal{#1}{\LILLYxVERSION}}{\iwriteNewCommands{\noexpand\pushList{lNewCommands}{\noexpand e#2}}}{}\index{#2`{\blankenvidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
 }
 
 
@@ -102,6 +102,19 @@
 \compileidx
 
 
+\NewRecorder*{NewCommands}{DOCUNEWCOMMANDS}
+\constructList[,]{lNewCommands}
+
+\makeatletter
+\def\@typesetCommandsForList#1#2{%
+    \begin{switch}{#1}%
+        \case{c}{\blankcmd{#2}}%
+        \case{e}{\blankenv{#2}}%
+    \end{switch}%
+}
+\def\typesetCommandsForList#1{\@typesetCommandsForList{\expandafter\@car#1\@nil}{\expandafter\@cdr#1\@nil}}
+\makeatother
+
 \begin{document}
 
 \LILLYxLayoutxClear
@@ -110,6 +123,7 @@
 \elable{eagleTOC}
 \listofTOPS\clearpage
 \LILLYxLayoutxRestore
+\inputNewCommands
 
 \linput{Data/Einleitung.doc}
 \linput{Data/Mathe.doc}
