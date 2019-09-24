@@ -1,0 +1,20 @@
+\errorcontextlines 99999
+\documentclass{article}
+\usepackage{LILLYxRECORDER}
+% TODO: include lib for Lilly.cls
+
+\usepackage{blindtext}
+
+\begin{document}
+
+\blindtext
+
+\NewRecorder{Dieter}{DIETER}
+
+\writeDieter{Hallo Dieter}
+
+\iwriteDieter{Hallo Olaf}
+
+\pwriteDieter{hallo Dooflaf}
+
+\end{document}
