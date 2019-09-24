@@ -8,6 +8,10 @@
 \def\poems@author{\AUTHOR}
 \def\poemssetauthor#1{\gdef\poems@author{#1}}
 
+\AtBeginDocument{%
+	\NewRecorder{@poems@watcher}{POEMSWATCHER}%
+}
+
 %% https://www.ctan.org/pkg/tocloft
 \LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
                     {Das ist wichtig!}%% Error-Text
@@ -17,13 +21,13 @@
 \newcounter{ctrXpoems}\setcounter{ctrXpoems}{0} % counter for the poems
 \newlistof{POEMS}{POEM}{} % List of Poems
 %\addtocontents{POEM}{\protect\thispagestyle{scrheadings}}
-\newif\iflist@poems@seen\list@poems@seenfalse% No Poem appeared
+\newif\iflist@poems@seen% No Poem appeared
 % NOTE: \ifs currently undocumented
 
 \newcounter{ctrXquotes}\setcounter{ctrXquotes}{0} % counter for the quotes
 \newlistof{QUOTES}{QUOTE}{} % List of Quotes - it will only register Quote-collections created by the 'quotes' environment :D
 %\addtocontents{QUOTE}{\protect\thispagestyle{scrheadings}}
-\newif\iflist@quotes@seen\list@quotes@seenfalse% No Quote appeared
+\newif\iflist@quotes@seen% No Quote appeared
 
 % basically works like \obeylines, but regarding blanklines
 
@@ -53,12 +57,12 @@
 	O{\poems@author} % Author of the Poem
 }{%
     \leavevmode%\begin{minipage}{\linewidth}%
-        \refstepcounter{ctrXpoems}%
-		\addcontentsline{POEM}{section}{{\scriptsize\useefont\thectrXpoems}~#4}%
-		\list@poems@seentrue% Poem appeared
-		\OrnamentsUpper[#3][#2]{#4}\medskip\newline%
-		\begingroup\centering% Poem Mode
-		\subduelines\ignorespaces%
+    \refstepcounter{ctrXpoems}%
+	\addcontentsline{POEM}{section}{{\scriptsize\useefont\thectrXpoems}~#4}%
+	\iflist@poems@seen\relax\else\global\list@poems@seentrue\write@poems@watcher{\noexpand\global\noexpand\list@poems@seentrue}\fi% Poem appeared
+	\OrnamentsUpper[#3][#2]{#4}\medskip\newline%
+	\begingroup\centering% Poem Mode
+	\subduelines\ignorespaces%
 }{%
     \par\endgroup\leavevmode\bigskip\newline%
 	\ifthenelse{\equal{#1}{}}{}{% Comment set
@@ -80,7 +84,7 @@
 	% Register to the Poemlist, as one poem :D :D
 	\clearpage\refstepcounter{ctrXquotes}% TODO: Find better way to registrer them :D
 	\addcontentsline{QUOTE}{section}{{\scriptsize\useefont\thectrXquotes}~#1}%
-	\list@quotes@seentrue% Quote appeared
+	\iflist@quotes@seen\relax\else\global\list@quotes@seentrue\write@poems@watcher{\noexpand\global\noexpand\list@quotes@seentrue}\fi% Quote appeared
 	\leavevmode\hbox{}\hfill\pgfornament[height=1.5em,ydelta=-6pt]{77}\efont{\Large #1}\;\normalfont\pgfornament[height=1.5em,symmetry=v,ydelta=-6pt]{77}\hfill\hbox{}\leavevmode\vspace*{-0.75em}\newline%
 	\hbox{}\hfill\ornasimplebreak\hfill\hbox{}\smallskip\newline
 	\begin{quotes*}[#2]%

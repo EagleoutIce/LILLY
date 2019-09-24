@@ -106,13 +106,10 @@
 {.1ex}
 {\normalfont\sffamily\bfseries}}
 
-\list@poems@seentrue%
-\list@quotes@seentrue%
-
 \def\poemstoc{%
 	{%
 		\hypersetup{linkcolor=black}%
-		\iflist@poems@seen% this would require some extensive trickery, therefore they're set/forced to true
+		\iflist@poems@seen% this works now :D
 		\OrnamentsUpper[][]{\poems@tocpoemsheader}\vspace*{-1\baselineskip}%
 			\listofPOEMS\vspace*{-2\baselineskip}%
 		\OrnamentsLower{}%
