@@ -82,7 +82,7 @@ Hier die große (und hoffentlich vollständige) Liste aller möglichen Einstellu
         lilly-complete & Boolean & true & Vollständige Dokumentvariante \\
         lilly-complete-name & String & COMPLETE- & Präfix der vollständigen Version \\
         lilly-print-name & String & PRINT- & Präfix der Druckversion \\
-        lilly-cleans & List & log aux \ldots & Dateiendungen die von \T{autoclean} gelöscht werden \\
+        lilly-keeps & List & pdf tex \ldots & Dateiendungen die von \T{autoclean} \emph{nicht} gelöscht werden \\
         lilly-compress & Boolean & false & Soll die PDF-Datei komprimiert werden?\footnote{Es wird ghostscript verwendet, es ist für kleine Dateien möglich, dass die komprimierte Datei etwas größer ist, als die Originale. Es wird stets das Suffix \T{-compressed} angehängt.} \\
         lilly-compress-target & String & screen & Komprimierungslevel für \T{ghostscript} \\
         lilly-autoclean & Boolean & true & Sollen Dateien automatisch gelöscht werden? \\
@@ -292,7 +292,7 @@ Jeder so definierte Modus steht in den Einstellungen für \T{lilly-modes} zur Ve
         OUTPUTDIR & Expandiert zum Ausgabeordner \\
         INPUTDIR & Expandiert zum Quellordner \\
         BOXMODES & Expandiert zu den Boxmodi \\
-        CLEANTARGETS & Expandiert zu den zu löschenden Endungen \\
+        KEEPTARGETS & Expandiert zu den zu behaltenden Endungen \\
         SIGNATURECOL & Expandiert zur Signaturfarbe \\
         AUTHOR & Expandiert zum Author \\
         AUTHORMAIL & Expandiert zur Email-Adresse des Autors \\
