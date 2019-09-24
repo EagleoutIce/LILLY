@@ -121,11 +121,9 @@ public class CoreSettings {
                 "Erlaubt es eine gleichnamige .conf Datei oder jake.conf zu verwenden sofern diese existiert.",
                 eSetting_Type.IS_SWITCH, "false");
 
-        // S_LILLY_CLEANS
-        settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?",
-                eSetting_Type.IS_TEXTLIST,
-                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls ubp fdb_latexmk auxlock ptc UB TOP listing upa ilg ZSM TOPIC DEFS BEMS BEIS BEWS LEMS SATS ZSMS POEM QUOTE SESSION"); // Maybe switch to 'keeps' and delete all the others? :P because most of the time we only need the PDF :thinking:
-        // S_LILLY_EXTERNAL
+        // S_LILLY_KEEPS
+        settings.emplace(st, "S_LILLY_KEEPS", "Welche Dateien sollen auf Basis von Autoclean behalten werden?",
+                eSetting_Type.IS_TEXTLIST, "pdf tex conf config md txt sty cls png jpg jpeg gif svg sh"); 
         settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?",
                 eSetting_Type.IS_SWITCH, "false");
         settings.emplace(st, "S_LILLY_COMPLETE", "Sollen die Varianten vollständig erstellt werden?",

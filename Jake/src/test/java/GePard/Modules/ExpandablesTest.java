@@ -53,7 +53,7 @@ public class ExpandablesTest {
     @Order(2)
     @DisplayName("[Expandables] Überprüft erwartende Defaults auf Existenz")
     @CsvSource(value = {"TEXFILE", "BASENAME", "FINALNAME", "LOGFILE", "PDFFILE", "LATEXARGS", "OUTPUTDIR", "INPUTDIR",
-                "BOXMODES", "CLEANTARGETS", "SIGNATURECOL", "AUTHOR", "AUTHORMAIL", "NAMEPREFIX", "SEMESTER", "VORLESUNG",
+                "BOXMODES", "KEEPTARGETS", "SIGNATURECOL", "AUTHOR", "AUTHORMAIL", "NAMEPREFIX", "SEMESTER", "VORLESUNG",
                 "LILLY_CONFIGS_PATH", "N", "JOBCOUNT", "_LILLYARGS", "HOME", "TRUE", "FALSE", "S_TRUE", "S_FALSE",
                 "@JAKEVER", /* "@JAKECDATE", "@JAKECTIME",*/ "@GITHUB", "@CONFPATH", "@AUTONUM", "@WAFFLE" /* Sehr Wichtig! */,
                 "@SELTEXF", "@SELCONF"})

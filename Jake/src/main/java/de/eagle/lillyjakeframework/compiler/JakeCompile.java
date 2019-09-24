@@ -185,18 +185,22 @@ public class JakeCompile {
         return ReturnStatus.EXIT_SUCCESS;
     }
 
+    public static boolean InKeeps(String s){
+        for (String ftext : CoreSettings.requestValue("S_LILLY_KEEPS").split(" +"))
+            if (s.contains(ftext)) return true;
+        return false;
+    }
+
     public static void RequestClean() throws IOException {
         if (CoreSettings.requestSwitch("S_LILLY_AUTOCLEAN")) {
             JakeWriter.out.format("%s> Lösche temporäre Dateien...%s%n", ColorConstants.COL_GOLD,
                     ColorConstants.COL_RESET);
-            for (String ftext : CoreSettings.requestValue("S_LILLY_CLEANS").split(" +")) {
                 Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT")))
-                        .filter(s -> s.toString().contains("." + ftext)).forEach(s -> s.toFile().delete());
+                        .filter(s -> !InKeeps(s.toString())).forEach(s -> s.toFile().delete());
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL"))
                     Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT"),
                             CoreSettings.requestValue("S_LILLY_EXTERNAL_OUT")))
-                            .filter(s -> s.toString().contains("." + ftext)).forEach(s -> s.toFile().delete());
-            }
+                            .filter(s -> !InKeeps(s.toString())).forEach(s -> s.toFile().delete());
         } else {
             JakeWriter.out.format("Kein autoclean, da zugehörige Einstellung (%s) != true%n",
                     CoreSettings.getTranslator().translate("S_LILLY_EXTERNAL"));

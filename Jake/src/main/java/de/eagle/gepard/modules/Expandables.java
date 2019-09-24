@@ -114,8 +114,8 @@ public class Expandables extends AbstractGepardModule{
                 CoreSettings.requestValue("S_LILLY_IN") + "/");
         settings.emplace("BOXMODES", "Expandiert zu den Boxmodi", eSetting_Type.IS_TEXTLIST,
                 CoreSettings.requestValue("S_LILLY_BOXES"));
-        settings.emplace("CLEANTARGETS", "Expandiert zu den zu löschenden Dateien", eSetting_Type.IS_TEXTLIST,
-                CoreSettings.requestValue("S_LILLY_CLEANS"));
+        settings.emplace("KEEPTARGETS", "Expandiert zu den zu behaltenden Dateien", eSetting_Type.IS_TEXTLIST,
+                CoreSettings.requestValue("S_LILLY_KEEPS"));
 
         settings.emplace("SIGNATURECOL", "Expandiert zur Signaturfarbe", eSetting_Type.IS_TEXT,
                 CoreSettings.requestValue("S_LILLY_SIGNATURE_COLOR"));
