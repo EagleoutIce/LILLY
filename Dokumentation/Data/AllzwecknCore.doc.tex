@@ -826,9 +826,53 @@ Versucht die Datei \T{File} zu Laden, wobei erst geschaut wird ob sie im \T{Prio
 %
 %
 
+\subsection{Rekorder}
+\hypertarget{LILLYxRECORDER}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxRECORDER} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.1.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.\medskip\newline
+Dieses Paket erlaubt einen einfachen und standardisierten Zugriff für \T{.aux}-Dateien. Das Dokument muss zweimal kompiliert werden, damit die hier vermerkten Modifikationen gültig werden.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{NewRecorder}[\manArg{ID}\manArg{Extension}]
+Erstellt eine Datei mit dem entsprechenden Suffix \T{Extension} und bindet diese, sofern vorhanden, direkt ein. Weiter werden die Befehle: %
+\def\ttlsx#1{\blankcmd{#1<ID>}}\typesetList[ttlsx]{write,iwrite,pwrite,pause,unpause,close,iclose}{} erstellt.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{pause<ID>}[\cmdlist\anothercmd[2.1.0]{unpause<ID>}]
+Pausiert die Befehle \typesetList[ttlsx]{write,iwrite,pwrite}, beziehungsweise hebt eine bisherige Pausierung auf. Die Befehle können auch dann verwendet werden, wenn sich der Rekorder bereits im entsprechenden Zustand befindet, haben dann allerdings natürlich keinen Effekt.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{write<ID>}[\manArg{Data}\cmdlist\anothercmd[2.1.0]{iwrite<ID>}\manArg{Data}\cmdlist\anothercmd[2.1.0]{pwrite<ID>}\manArg{Data}]
+Schreibt \T{Data} in den jeweiligen Rekorder, wobei 
+\begin{ditemize}
+    \item \blankcmd{write<ID>} die Daten beim Ausliefern der Seite schreibt (es werden also Seitennummern oder ähnliches korrekt aufgelöst), 
+    \item \blankcmd{iwrite<ID>} die Daten direkt schreibt (kann also eine falsche Seitennummer liefern)
+    \item \blankcmd{pwrite<ID>} auf \blankcmd{protected@write} zurück greift.
+\end{ditemize}
+
+%
+%
+%
+
+\presentCommand[2.1.0]{close<ID>}[\cmdlist\anothercmd[2.1.0]{iclose<ID>}]
+Schließt die jeweilige Datei, muss nur dann aufgerufen werden, wenn die Datei im selben kompiliervorgang wieder eingebunden werden muss. \blankcmd{iclose<ID>} schließt die Datei sofort, was in der Luft hängende \blankcmd{write<ID>}-Aufrufe vernichtet.
+
+%
+%
+%
+%
+%
+
 \section{Der Keyval-Parser}
 \hypertarget{LILLYxKEYVALxPARSER}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxKEYVALxPARSER} zur Verfügung gestellt und sind auch nur im Kontext der \T{Lilly.cls} gültig (oder genauer: sinnvoll).\medskip\newline
-Dieses Paket basiert auf dem Paket \T{kvoptions} und setzt alle folgenden Schlüssel in die Familie \T{LILLY} mit dem Präfix \T{LILLY@} (daher auch \blankcmd{LILLy@n} etc.). Ersteinmal wird mittels \blankcmd{userput} die Datei \clatex{_LILLY_KEYVAL_GENERAL.tex} in den Pfaden \blankcmd{lillyPathConfig} beziehungsweise \T{\blankcmd{LILLYxPATHxDATA}/Configs} geladen, die zusätzliche Optionen bereitstellen kann, die dann beim Laden von LILLY benutzt werden können. Die Standard-Version, die mit Lilly mitgeliefert wird, definiert die folgenden Optionen, primär für \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT}, mehrere Optionen mit gleichem Effekt sind durch ein Komma getrennt:
+Dieses Paket basiert auf dem Paket \T{kvoptions} und setzt alle folgenden Schlüssel in die Familie \T{LILLY} mit dem Präfix \T{LILLY@} (daher auch \blankcmd{LILLy@n} etc.). Ersteinmal wird mittels \blankcmd{userput} die Datei \blatex{_LILLY_KEYVAL_GENERAL.tex} in den Pfaden \blankcmd{lillyPathConfig} beziehungsweise \T{\blankcmd{LILLYxPATHxDATA}/Configs} geladen, die zusätzliche Optionen bereitstellen kann, die dann beim Laden von LILLY benutzt werden können. Die Standard-Version, die mit Lilly mitgeliefert wird, definiert die folgenden Optionen, primär für \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT}, mehrere Optionen mit gleichem Effekt sind durch ein Komma getrennt:
 \begin{center}
     \begin{tabular}{^t^p{25em}+}
         \toprule
