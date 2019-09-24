@@ -21,16 +21,23 @@
   \expandafter\protected@write\csname lr@#1\endcsname{#2}
 }
 
-% Does nothing, but consuming 3 arguments
-\def\@@Lilly@Recorder@GenericVoidWrite#1#2#3{}
+% Does nothing, but consuming 4 arguments
+\def\@@Lilly@Recorder@GenericVoidWrite#1#2#3#4{}
 
 % Writes #3 into the Recorder-File with ID #2, executed by WriteCommand Suffixed with #1
-\def\@@Lilly@Recorder@GenericWrite#1#2#3{%
+% Checks Suffix #4 for existing
+\def\@@Lilly@Recorder@GenericWrite#1#2#3#4{%
+  \IfFileExists{\jobname.#4}{}{%
+    \immediate\openout \csname lr@#2\endcsname \jobname.#4\relax%
+  }%
   %\csname iflillyregister@lr@#1@enabled@\endcsname%
     \csname @Lilly@Recorder@#1\endcsname{#2}{#3}%
   %\fi% Otherwise ignore the write-request
 }
+
 \let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericWrite
+% \let\@Lilly@Recorder@PreviousWrite\relax
+
 
 % This will create the Recorder named #1 with the File-Extension #2
 % #1 ID
@@ -42,26 +49,26 @@
   \@input{\jobname.#2}% Input the File
   \if@filesw% only write a File if it should
     \expandafter\newwrite\csname lr@#1\endcsname
-    \immediate\openout \csname lr@#1\endcsname \jobname.#2\relax
   \fi
   %\expandafter\newif\csname iflillyregister@lr@#1@enabled@\endcsname
   %\csname lillyregister@lr@#1@enabled@true\endcsname
   \expandafter\gdef\csname pause#1\endcsname{%
     %\csname lillyregister@lr@#1@enabled@false\endcsname%
-    \let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericVoidWrite
+    %\global\let\@Lilly@Recorder@PreviousWrite\@Lilly@Recorder@GenericWrite% old, but hey
+    \global\let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericVoidWrite
   }
   \expandafter\gdef\csname unpause#1\endcsname{%
     %\csname lillyregister@lr@#1@enabled@true\endcsname%
-    \let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericWrite
+    \global\let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericWrite
   }
   \expandafter\gdef\csname write#1\endcsname##1{%
-    \csname @Lilly@Recorder@GenericWrite\endcsname{Write}{#1}{##1}%
+    \csname @Lilly@Recorder@GenericWrite\endcsname{Write}{#1}{##1}{#2}%
   }
   \expandafter\gdef\csname iwrite#1\endcsname##1{%
-    \csname @Lilly@Recorder@GenericWrite\endcsname{ImmediateWrite}{#1}{##1}%
+    \csname @Lilly@Recorder@GenericWrite\endcsname{ImmediateWrite}{#1}{##1}{#2}%
   }
   \expandafter\gdef\csname pwrite#1\endcsname##1{%
-    \csname @Lilly@Recorder@GenericWrite\endcsname{ProtectedWrite}{#1}{##1}%
+    \csname @Lilly@Recorder@GenericWrite\endcsname{ProtectedWrite}{#1}{##1}{#2}%
   }
   \expandafter\gdef\csname close#1\endcsname{%
     \closeout \csname lr@#1\endcsname \jobname.#2\relax
