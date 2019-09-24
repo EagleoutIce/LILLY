@@ -566,7 +566,7 @@ Setzt innerhalb einer \blankenv{quotes*}-Umgebung ein einzelnes Zitat, ohne geso
 Setzt unter der Verwendung von \blankcmd{singlequote} ein Zitat mit Autor und optionales Datumsangabe.
 \elable{mrk:hidu}
 \begin{bemerkung}[Auflistung der Gedichte und Zitate]
-    Alle Gedichte können mit \blankcmd{listofPOEMS}, alle Zitate mit \blankcmd{listofQUOTES} gelistet werden.
+    Alle Gedichte können mit \blankcmd{listofPOEMS}, alle Zitate mit \blankcmd{listofQUOTES} gelistet werden. Es kann mithilfe der folgenden Bedinungen abgefragt werden, ob überhaupt ein Gedicht/Zitat im Dokument aufgetaucht ist, so kann \say{verhindert} werden, dass eine leere Liste angezeigt wird (beachte \blankcmd{makeatletter}): \blankcmd{iflist@poems@seen} und \blankcmd{iflist@quotes@seen}. Dieses Verfahren basiert auf \LILLYxNOTExLibrary{LILLYxRECORDER} und verwendet das Suffix \T{POEMSWATCHER}.
 \end{bemerkung}
 
 %
@@ -961,7 +961,7 @@ Liefert einmal die Ausgabe von \blankcmd{ShowPerson} für die entsprechende \T{P
 %
 
 \presentCommand[2.1.0]{ShowPerson}[\optArg{tikz-args}\optArg[LILLYxPERSONS:]{marker}\manArg{PersonID}]
-Setzt einen beschreibenden Abschnitt für die jeweilige Person, die mit der \T{PersonID} verbunden ist. Der vermerkte \T{marker} bezeichnet das Präfix, was das Sprungziel für den entsprechenden \blankcmd{ShowPersonTag} markiert. So ergibt \clatex[morekeywords={[5]{ShowPerson}}]{:bs:ShowPerson\{Flo\}}:
+Setzt einen beschreibenden Abschnitt für die jeweilige Person, die mit der \T{PersonID} verbunden ist. Der vermerkte \T{marker} bezeichnet das Präfix, was das Sprungziel für den entsprechenden \blankcmd{ShowPersonTag} markiert. So ergibt \blatex[morekeywords={[5]{ShowPerson}}]{:bs:ShowPerson\{Flo\}}:
 \ShowPerson{Flo}
 
 %
@@ -969,7 +969,7 @@ Setzt einen beschreibenden Abschnitt für die jeweilige Person, die mit der \T{P
 %
 
 \presentCommand[2.1.0]{ShowPersonTag}[\optStar\optArg[LILLYxPERSONS:]{marker}\manArg{PersonID}\optArg{tikz-args}]
-Setzt ein kleines Symbol für die jeweilige Person, wobei der Stern das Alias anstelle des Vornamens anzeigt. Der vermerkte \T{marker} bezeichnet das Präfix, was das Sprungziel für die entsprechende \blankcmd{ShowPerson} markiert. So ergibt \clatex[morekeywords={[5]{ShowPersonTag}}]{:bs:ShowPersonTag\{Flo\}}: \ShowPersonTag{Flo}, beziehungsweise \clatex[morekeywords={[5]{ShowPersonTag*}}]{:bs:ShowPersonTag*\{Flo\}}: \ShowPersonTag*{Flo}. Hierbei lässt sich auch erkennen, das der Tag sich in der Breite automatisch verlängert, wenn der entsprechende Bezeichner die Größe übersteigt.
+Setzt ein kleines Symbol für die jeweilige Person, wobei der Stern das Alias anstelle des Vornamens anzeigt. Der vermerkte \T{marker} bezeichnet das Präfix, was das Sprungziel für die entsprechende \blankcmd{ShowPerson} markiert. So ergibt \blatex[morekeywords={[5]{ShowPersonTag}}]{:bs:ShowPersonTag\{Flo\}}: \ShowPersonTag{Flo}, beziehungsweise \blatex[morekeywords={[5]{ShowPersonTag*}}]{:bs:ShowPersonTag*\{Flo\}}: \ShowPersonTag*{Flo}. Hierbei lässt sich auch erkennen, das der Tag sich in der Breite automatisch verlängert, wenn der entsprechende Bezeichner die Größe übersteigt.
 
 %
 %
