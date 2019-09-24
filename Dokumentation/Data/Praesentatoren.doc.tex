@@ -1007,7 +1007,7 @@ Diese Befehle halten die zu verwendenden Bezeichner für eine Sitzung und ihr en
 %
 %
 
-\presentCommand[2.1.0]{SessionDate}[\cmdlist\anothercmd[2.1.0]{SessionName}\cmdlist\anothercmd[2.1.0]{SessionDuration}\cmdlist\anothercmd[2.1.0]{SessionTitleFormat}]
+\presentCommand[2.1.0]{SessionDate}[\cmdlist\anothercmd[2.1.0]{SessionTime}\cmdlist\anothercmd[2.1.0]{SessionName}\cmdlist\anothercmd[2.1.0]{SessionDuration}\cmdlist\anothercmd[2.1.0]{SessionTitleFormat}]
 Setzt die entsprechenden Bezeichner, wobei Befehle wie \blankcmd{SESSIONxDAY} verwendet werden können. Sie werden nur innerhalb einer \blankenv{session}-Umgebung sinnvoll expandiert.
 
 %
@@ -1015,7 +1015,14 @@ Setzt die entsprechenden Bezeichner, wobei Befehle wie \blankcmd{SESSIONxDAY} ve
 %
 
 \presentCommand[2.1.0]{@@Sessions@MapDate}[\manArg{DD.MM.YYYY}\blankcmdidx{@nil}]
-Setzt \blankcmd{SESSIONxDAY}, \blankcmd{SESSIONxMONTH} und \blankcmd{SESSIONxYEAR} entsprechend dem eingegebene Datum.
+Setzt \blankcmd{SESSIONxDAY}, \blankcmd{SESSIONxMONTH} und \blankcmd{SESSIONxYEAR} entsprechend dem angegebenen Datum.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{@@Sessions@MapTime}[\manArg{HH:MM}\blankcmdidx{@nil}]
+Setzt \blankcmd{SESSIONxHOUR} und \blankcmd{SESSIONxMINUTE} entsprechend der angegebenen Zeit.
 
 %
 %
@@ -1030,9 +1037,10 @@ Setzt eine Sitzungsumgebung, die sich in die Liste \T{SESSIONS} für das Element
             \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
         \midrule
         attendees & Liste & & (kommaseparierte) Liste an \LILLYxNOTExLibrary{LILLYxPERSONS}-Personen \\
-        where & String & & Wo findet die Sitzung statt \\
-        when & String & 01.01.0001 & Wann fand die Sitzung statt? [DD.MM.YYYY] \\ % TODO: INCLUDE THE TIME! WHEN DID IT SCHTART?
-        duration & Zahl ($\geq$0) & 0 & Wie viele Minuten hat die Sitzung gedauert\\
+        where & String & & Wo findet die Sitzung statt? \\
+        when & Datum & 01.01.0001 & Wann fand die Sitzung statt? [DD.MM.YYYY] \\ % TODO: INCLUDE THE TIME! WHEN DID IT SCHTART?
+        duration & Zahl ($\geq$0) & 0 & Wie viele Minuten hat die Sitzung gedauert?\\
+        start time & Zeit & -1:-1 & Start Zeit der Sitzung, wird nur angezeigt, wenn gültig!\\ 
         \bottomrule
     \end{tabularx}\nskip
 \end{center}
@@ -1041,11 +1049,12 @@ So ergibt (die anderen Personen wurden analog zu \jmark[oben]{mrk:PersonCreation
 \begin{latex}
 \begin{session}{attendees={Flo,Flo2,Flo3},%
                 where={Smiley Pool},%
-                when={21.09.2019},duration={30}}
+                when={21.09.2019},duration={30},%
+                start time={12:30}}
 \lipsum[1]
 \end{session}
 \end{latex}
-\begin{session}{attendees={Flo,Flo2,Flo3},where={Smiley Pool},when={21.09.2019},duration={30}}
+\begin{session}{attendees={Flo,Flo2,Flo3},where={Smiley Pool},when={21.09.2019},duration={30},start time={12:30}}
 \lipsum[1]
 \end{session}
 
