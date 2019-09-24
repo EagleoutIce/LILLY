@@ -33,8 +33,17 @@
 \def\@Session@End{Ende der }
 
 \def\SessionDate{\SESSIONxDAY.$\;$\MonthToName{\SESSIONxMONTH}$\;$\SESSIONxYEAR}
+\def\SessionTime{\ifnum\SESSIONxHOUR>-1\relax%
+                    \ifnum\SESSIONxHOUR<25\relax%
+                        \ifnum\SESSIONxMINUTE>-1\relax%
+                            \ifnum\SESSIONxMINUTE<61\relax% VAILD TIME:
+                                \SESSIONxHOUR:\ifnum\SESSIONxMINUTE<10\relax0\fi\SESSIONxMINUTE%
+                            \fi%
+                        \fi%
+                    \fi%
+                \fi} % Padding for minutes 
 \def\SessionName{Sitzung des \SessionDate~(\SESSIONxATTENDEESxCOUNT~Teilnehmer)}% Titel
-\def\SessionDuration{\ifnum\SESSIONxDURATIONxMINUTES>0 \SESSIONxDURATIONxMINUTES{$\,$}m\fi}% We don't wan't to see a Time of 0 minutes :D
+\def\SessionDuration{\ifnum\SESSIONxDURATIONxMINUTES>0\relax\SESSIONxDURATIONxMINUTES{$\,$}m\fi}% We don't wan't to see a Time of 0 minutes :D
 \def\SessionTitleFormat{\SessionDate~(\SessionDuration)}
 
 \pgfkeys{%
@@ -43,15 +52,20 @@
     where/.store in=\lillyxSessionxwhere, % Wo hat die Sitzung stattgefunden
     when/.store in=\lillyxSessionxwhen, % Datum als DD.MM.YYYY
     duration/.store in=\lillyxSessionxduration, % Länge der Sitzung => maybe offer minute and hour support?
+    start time/.store in=\lillyxSessionxstarttime, % Time as HH:MM
     % Die Kurzbeschreibung wird separat gesetzt und ist nicht Teil der PGF-Keys
     defaults/.style={%
-        attendees={}, where={}, when={01.01.0001}, duration={0}%
+        attendees={}, where={}, when={01.01.0001}, duration={0}, start time={-1:-1}%
     }
 }
 
 
 \def\@@Sessions@MapDate#1.#2.#3\@nil{%
     \gdef\SESSIONxDAY{#1}\gdef\SESSIONxMONTH{#2}\gdef\SESSIONxYEAR{#3}%
+}
+
+\def\@@Sessions@MapTime#1:#2\@nil{%
+    \gdef\SESSIONxHOUR{#1}\gdef\SESSIONxMINUTE{#2}%
 }
 
 % Marks the start of a new Session
@@ -65,6 +79,7 @@
     \pgfkeys{/lillyxSESSION, defaults, #3}%
     \let\SESSIONxDURATIONxMINUTES\lillyxSessionxduration% Temporary mapping
     \expandafter\@@Sessions@MapDate\lillyxSessionxwhen\@nil% Set xDAY, xMONTH and xYEAR!
+    \expandafter\@@Sessions@MapTime\lillyxSessionxstarttime\@nil% Set xHOUR and xMINUTE!
     % Count the Attendees
     \def\SESSIONxATTENDEESxCOUNT{0} % init/reset
     \foreach \ignored[count=\i] in \lillyxSessionxattendees {\xdef\SESSIONxATTENDEESxCOUNT{\i}}%
@@ -76,7 +91,7 @@
         % Draw a separation-line:
         \draw[semithick] (0,0) -- (\linewidth,0);
         \node[rectangle,rounded corners,fill=white,right] at (0.35,0) {\large\bfseries\sffamily\arabic{ctrXsessions}.~\@Session};
-        \node[rectangle,rounded corners,fill=white,left] at (\linewidth-0.15cm,0) {\footnotesize\sffamily\SessionDate};
+        \node[rectangle,rounded corners,fill=white,left] at (\linewidth-0.15cm,0) {\footnotesize\sffamily\ifthenelse{\equal{\SessionTime}{}}{}{\SessionTime$\;$Uhr,~}\SessionDate};
     \end{tikzpicture}\vspace*{-0.1cm}\newline%
     % Typeset the attendees:
     \resizebox{7cm}{!}{%
