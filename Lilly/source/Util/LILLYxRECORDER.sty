@@ -39,14 +39,23 @@
 % \let\@Lilly@Recorder@PreviousWrite\relax
 
 
+\def\NewRecorder{%
+  \@ifstar{\@NewRecorder}{\@iNewRecorder}% Input the File
+}
+
+\def\@iNewRecorder#1#2{%
+  % Is there an existing File that we can use?
+  \begingroup\makeatletter\@input{\jobname.#2}%
+  \@NewRecorder{#1}{#2}%
+  \endgroup%
+}
+
 % This will create the Recorder named #1 with the File-Extension #2
 % #1 ID
 % #2 File-extension
-% It will create the commmands \write<ID>, \iwrite<ID>, \pwrite<ID>, \pause<ID>, \unpause<ID>, \close<ID>, \iclose<ID>
-\def\NewRecorder#1#2{%
+% It will create the commmands \write<ID>, \iwrite<ID>, \pwrite<ID>, \pause<ID>, \unpause<ID>, \close<ID>, \iclose<ID>, \input<ID>
+\def\@NewRecorder#1#2{%
   \begingroup\makeatletter%
-  % Is there an existing File that we can use?
-  \@input{\jobname.#2}% Input the File
   \if@filesw% only write a File if it should
     \expandafter\newwrite\csname lr@#1\endcsname
   \fi
@@ -69,6 +78,9 @@
   }
   \expandafter\gdef\csname pwrite#1\endcsname##1{%
     \csname @Lilly@Recorder@GenericWrite\endcsname{ProtectedWrite}{#1}{##1}{#2}%
+  }
+  \expandafter\gdef\csname input#1\endcsname{%
+    \@input{\jobname.#2}%
   }
   \expandafter\gdef\csname close#1\endcsname{%
     \closeout \csname lr@#1\endcsname \jobname.#2\relax

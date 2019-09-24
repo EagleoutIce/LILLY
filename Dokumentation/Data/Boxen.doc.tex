@@ -748,7 +748,7 @@ Sowie: \begin{warningBoxNone*}{Hi}
 Dieser Befehl ist einfach nur exemplarisch entstanden um zu demonstrieren, wie die Boxen auch misshandelt werden können \Smiley. natürlich sollte eigentlich \blankcmd{lillyxMarginxElement} verwendet werden: \T{\blankcmd{dateBox}\{\blankcmd{heute}\}}\!\!\dateBox{\heute}. Wobei die Definition wie folg von statten geht:
 \begin{latex}
 \NewInfoBox[fgcolor={DarkMidnightBlue},bgcolor={MudWhite!0},bordercolor={DarkOrchid},emblem={\faCalendar~},marker={},style/none,titleCode={}]{@dateBox}
-\def!**!\dateBox#1{\begin{@dateBox*}{#1}\end{@dateBox*}}
+\def!**!\dateBox!**!#1{\begin{@dateBox*}{#1}\end{@dateBox*}}
 \end{latex}
 
 %
