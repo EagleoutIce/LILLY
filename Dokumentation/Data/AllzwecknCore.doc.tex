@@ -834,9 +834,9 @@ Dieses Paket erlaubt einen einfachen und standardisierten Zugriff für \T{.aux}-
 %
 %
 
-\presentCommand[2.1.0]{NewRecorder}[\manArg{ID}\manArg{Extension}]
-Erstellt eine Datei mit dem entsprechenden Suffix \T{Extension} und bindet diese, sofern vorhanden, direkt ein. Weiter werden die Befehle: %
-\def\ttlsx#1{\blankcmd{#1<ID>}}\typesetList[ttlsx]{write,iwrite,pwrite,pause,unpause,close,iclose}{} erstellt.
+\presentCommand[2.1.0]{NewRecorder}[\optStar\manArg{ID}\manArg{Extension}]
+Erstellt eine Datei mit dem entsprechenden Suffix \T{Extension} und bindet diese, sofern der Stern \emph{nicht} gesetzt ist, direkt ein. Weiter werden die Befehle: %
+\def\ttlsx#1{\blankcmd{#1<ID>}}\typesetList[ttlsx]{write,iwrite,pwrite,pause,unpause,input,close,iclose}{} erstellt.
 
 %
 %
@@ -849,13 +849,14 @@ Pausiert die Befehle \typesetList[ttlsx]{write,iwrite,pwrite}, beziehungsweise h
 %
 %
 
-\presentCommand[2.1.0]{write<ID>}[\manArg{Data}\cmdlist\anothercmd[2.1.0]{iwrite<ID>}\manArg{Data}\cmdlist\anothercmd[2.1.0]{pwrite<ID>}\manArg{Data}]
+\presentCommand[2.1.0]{write<ID>}[\manArg{Data}\cmdlist\anothercmd[2.1.0]{iwrite<ID>}\manArg{Data}\cmdlist\anothercmd[2.1.0]{pwrite<ID>}\manArg{Data}\cmdlist\anothercmd[2.1.0]{input<ID>}]
 Schreibt \T{Data} in den jeweiligen Rekorder, wobei 
 \begin{ditemize}
     \item \blankcmd{write<ID>} die Daten beim Ausliefern der Seite schreibt (es werden also Seitennummern oder ähnliches korrekt aufgelöst), 
     \item \blankcmd{iwrite<ID>} die Daten direkt schreibt (kann also eine falsche Seitennummer liefern)
     \item \blankcmd{pwrite<ID>} auf \blankcmd{protected@write} zurück greift.
 \end{ditemize}
+Hiervon unterschiedlich bindet \blankcmd{input<ID>} den Rekorder ein, was zum Beispiel dann sinnvoll ist, wenn der Rekorder mit dem Stern deklariert wurde.
 
 %
 %
