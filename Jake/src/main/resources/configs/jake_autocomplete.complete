@@ -31,7 +31,8 @@ _javajake() {
     # opts=$(jake _goptions)
     # opts+=$(ls | grep -e ".tex" -e ".conf") ## find -maxdepth 1 -type f
 
-    opts=$(jake _get -what: "${COMP_WORDS[*]}")
+    opts=$(export JAKE_LAUNCHER_EXTRA_ARGS="-Xshare:auto -XX:TieredStopAtLevel=1
+ -XX:CICompilerCount=1 -XX:+UseSerialGC -Xmx512m -XX:-UsePerfData" && jake _get -what: "${COMP_WORDS[*]}")
 
     # seen=$(__seen_operation "${opts}")
     local IFS=$'\t\n'

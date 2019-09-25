@@ -111,7 +111,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
 
         try (PrintWriter pw = new PrintWriter(getCmdLinePath())) {
             pw.println("#!/bin/bash");
-            pw.println("java -jar " + PropertiesProvider.getThisPath() + " \"$@\"");
+            pw.println("java ${JAKE_LAUNCHER_EXTRA_ARGS} -client -jar " + PropertiesProvider.getThisPath() + " \"$@\"");
         } catch (Exception ignored) {
         }
         new File(getCmdLinePath()).setExecutable(true, false);
