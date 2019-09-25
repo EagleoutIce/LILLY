@@ -154,7 +154,7 @@ public class Expandables extends AbstractGepardModule{
                         + "}\\\\providecommand{\\\\LILLYxPATH}{" + CoreSettings.requestValue("S_LILLY_IN")
                         + "}\\\\providecommand{\\\\AUTHOR}{" + CoreSettings.requestValue("S_LILLY_AUTHOR")
                         + "}\\\\providecommand{\\\\AUTHORMAIL}{" + CoreSettings.requestValue("S_LILLY_AUTHORMAIL")
-                        + "}\\\\providecommand{\\\\LILLYxSemester}{" + CoreSettings.requestValue("S_LILLY_SEMESTER")
+                        // + "}\\\\providecommand{\\\\LILLYxSemester}{" + CoreSettings.requestValue("S_LILLY_SEMESTER") // Removed with v2.1.0
                         + "}\\\\providecommand{\\\\LILLYxVorlesung}{" + CoreSettings.requestValue("S_LILLY_VORLESUNG")
                         + "}\\\\providecommand{\\\\Hcolor}{" + CoreSettings.requestValue("S_LILLY_SIGNATURE_COLOR")
                         + "}"

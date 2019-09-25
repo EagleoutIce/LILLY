@@ -1,0 +1,47 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCONVERTERxMAYA}[2019/06/29 Stellt einen Maya-Converter fuer LILLY zur Verfuegung]
+
+%%Damit dieses eine GDRA blatt Mayas haben konnte... nur weil mir die 'Standard'-Maya-Darstellung nicht gefallen haben ^^
+\DeclareFontFamily{U}{mathb}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathb}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * mathb
+      <10.95> mathb10 <12> <14.4> <17.28> <20.74> <24.88> mathb12
+      }{}
+\DeclareSymbolFont{mathb}{U}{mathb}{m}{n}
+
+\newcommand\mathbfont{\usefont{U}{mathb}{m}{n}}
+
+\newcount\mayacnter%
+\newcount\mayacnta%
+\newcount\mayacntb%
+\newcount\mayacntc%
+\newdimen\mayawidth%
+%
+\def\mayaexpansion{%
+    \mayacntc=\mayacnta\mathbfont
+    \ifnum\mayacntc=0 0\else
+    \rotatebox[origin=c]{-90}{%
+    \loop\ifnum\mayacntc>5\advance\mayacntc by -5\repeat
+    \the\mayacntc\mayacntc=\mayacnta
+    \loop\ifnum\mayacntc>5\advance\mayacntc by -5 5\repeat}%
+    \fi}%
+\def\mayarecurse{{%
+    \mayacnta=\mayacnter \divide\mayacnter by 20
+    \ifnum\mayacnter>0\mayarecurse\fi
+    \mayacntb=\mayacnter
+    \multiply\mayacntb by-20
+    \advance\mayacnta by\mayacntb
+    \hbox to\mayawidth{\hss\mayaexpansion\hss}}}%
+%
+\def\@maya#1{%
+    \mayacnter=#1
+    \setbox0\hbox{\mathbfont 0}%
+    \mayawidth=\wd0
+    \left.
+    \vcenter{\mayarecurse}
+    \right.}%
+\def\maya#1{\ensuremath{\@maya{#1}}}
+\def\mayadigit#1{%
+    \mayacnta=#1\hbox{\mathbfont\mayaexpansion}}%
+
+\endinput

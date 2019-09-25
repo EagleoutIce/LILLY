@@ -44,8 +44,8 @@ Lilly liefert den Befehl auf Basis von \T{mkern} so, dass er direkt Abstände zw
 %
 
 \presentCommand[1.0.3]{das}[\cmdlist \anothercmd[1.0.3]{sad}\cmdlist \anothercmd[1.0.3]{daseq}\cmdlist \anothercmd[1.0.3]{qesad}\cmdlist \anothercmd[1.0.6]{shouldeq}]
-Für Definitionen gibt es die Befehle \blankcmd{das} ($\das$), \blankcmd{sad} ($\sad$), \blankcmd{daseq} ($\daseq$), \blankcmd{qesad} ($\qesad$) sowie \blankcmd{shouldeq} ($\shouldeq$). All diese Befehle funktionieren sowohl in einer Matheumgebung, das auch im normalen text, sie werden mit \verb|\ensuremath| abgesichert!\par
-Bis auf den letzten werden zudem alle Befehle mithilfe von \verb|\vcentcolon| realisiert.
+Für Definitionen gibt es die Befehle \blankcmd{das} ($\das$), \blankcmd{sad} ($\sad$), \blankcmd{daseq} ($\daseq$), \blankcmd{qesad} ($\qesad$) sowie \blankcmd{shouldeq} ($\shouldeq$). All diese Befehle funktionieren sowohl in einer Matheumgebung, das auch im normalen text, sie werden mit \blankcmd{ensuremath} abgesichert!\par
+Bis auf den letzten werden zudem alle Befehle mithilfe von \blankcmd{vcentcolon} realisiert.
 
 %
 %
@@ -77,7 +77,7 @@ Diese vereinfachenden Operatoren solles es ermöglichen Schneller verschiedene m
 %
 
 \presentCommand[1.0.2]{Im}[\cmdlist \anothercmd[1.0.2]{mod}\cmdlist \anothercmd[1.0.2]{Re}\cmdlist \anothercmd[1.0.2]{emptyset}]
-Auch wurde das Aussehen von \verb|\mod|, \verb|\Im|, \verb|\Re| und \verb|\emptyset| modifiziert:
+Auch wurde das Aussehen von \blankcmd{mod}, \blankcmd{Im}, \blankcmd{Re} und \blankcmd{emptyset} modifiziert:
 \displayCommandList{mod,Im,Re,emptyset}
 
 %
@@ -108,7 +108,7 @@ Dieser Befehl vereinfacht das Schreiben von Betragsstrichen. Diese passen sich z
 %
 
 \presentEnvironment[1.0.2]{matrix}[\optArg{Spaltendefinition}\cmdlist \anotherenv[1.0.0]{pmatrix}\optArg{Spaltendefinition}]
-Des Weiteren wurde noch die Matrixumgebung (\verb|\env@matrix|) so erweitert, dass sie als optionales Argument eine gültige Array-Spaltendefinition entgegennimmt:
+Des Weiteren wurde noch die Matrixumgebung (\blankenv{matrix}) so erweitert, dass sie als optionales Argument eine gültige Array-Spaltendefinition entgegennimmt:
 \begin{center}\renewcommand{\arraystretch}{0.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{5.5cm}@{\hspace{1em}}|@{\hspace{1em}}C{2cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
@@ -163,8 +163,8 @@ Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}
 %\normalmarginpar
 
 \presentCommand[1.0.0]{N}[\cmdlist \anothercmd[1.0.0]{Z}\cmdlist \anothercmd[1.0.0]{Q}\cmdlist \anothercmd[1.0.0]{R}\cmdlist \anothercmd[1.0.0]{C}]
-Für die einzelnen Zahlenräume werden einige Befehle zur Verfügung gestellt, die alle über \verb|\ensuremath| abgesichert sind:
-\blankcmd{N} ($\N$), \blankcmd{Z} ($\Z$), \blankcmd{Q} ($\Q$), \blankcmd{R} ($\R$), \blankcmd{C} ($\C$). Sie werden mithilfe von \verb|\mathbb| generiert.
+Für die einzelnen Zahlenräume werden einige Befehle zur Verfügung gestellt, die alle über \blankcmd{ensuremath} abgesichert sind:
+\blankcmd{N} ($\N$), \blankcmd{Z} ($\Z$), \blankcmd{Q} ($\Q$), \blankcmd{R} ($\R$), \blankcmd{C} ($\C$). Sie werden mithilfe von \blankcmd{mathbb} generiert.
 
 %
 %
@@ -182,8 +182,8 @@ Weiter wurden die griechischen Buchstaben Epsilon und Phi modifiziert:
 \begin{center}
     \begin{tabular}{*{2}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \T{\CMDshow{oldepsilon}} & \(\oldepsilon\) & \T{\CMDshow{epsilon}} & \(\epsilon\) \\\hline
-        \T{\CMDshow{oldphi}} & \(\oldphi\)& \T{\CMDshow{phi}} & \(\phi\) \\
+        \T{\blankcmd{oldepsilon}} & \(\oldepsilon\) & \T{\blankcmd{epsilon}} & \(\epsilon\) \\\hline
+        \T{\blankcmd{oldphi}} & \(\oldphi\)& \T{\blankcmd{phi}} & \(\phi\) \\
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
@@ -352,7 +352,7 @@ Setzt entsprechend: \x[], \y und \z[].
 %
 
 \presentCommand[2.0.0]{ceil}[\optArg{math-Ausdruck}\cmdlist \anothercmd[2.0.0]{floor}\optArg{math-Ausdruck}]
-Verkürzt das Schreiben von: \clatex[morekeywords={[5]{left,right,lfloor,rfloor}}]{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \clatex[morekeywords={[5]{lceil}}]{:bs:lceil} \& \clatex[morekeywords={[5]{rceil}}]{:bs:rceil} entsprechend:
+Verkürzt das Schreiben von: \clatex[morekeywords={[5]{left,right,lfloor,rfloor}}]{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \blatex[morekeywords={[5]{lceil}}]{:bs:lceil} \& \blatex[morekeywords={[5]{rceil}}]{:bs:rceil} entsprechend:
 \begin{multicols}{2}%
     \begin{ditemize}
         \item \blankcmd{ceil} (\ceil{\frac{a}{b}})%

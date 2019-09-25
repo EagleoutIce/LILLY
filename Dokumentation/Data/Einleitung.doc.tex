@@ -53,7 +53,7 @@ Exemplarisch sei \T{test \& bonus/map\_tests/test.conf} genannt, welches auch di
 
 \subsection{Keine Installation}
 \begin{bemerkung}
-    Von dieser Methode wird abgeraten
+    Von dieser Methode wird abgeraten.
 \end{bemerkung}
 Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu kompilierende Latex-Datei im selben Verzeichnis wie die Datei \T{Lilly.cls} liegen (also: \T{Lilly}). Natürlich kann dies bei mehreren Dateien, die auf Lilly zugreifen, unübersichtlich werden.
 \clearpage
@@ -61,9 +61,9 @@ Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu ko
 \subsection{Das Gerüst}
 Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine Dokumentklasse handelt, wird sie wie folgt eingebunden:
 \begin{latex*}
-\documentclass[Dokumentation]{Lilly}
+\documentclass[Mitschrieb]{Lilly}
 \end{latex*}
-\LILLYxNOTExVersion{1.0.7}Für den Typ gibt es unter anderem $4$ Optionen:
+\LILLYxNOTExVersion{1.0.7}Für den Typ gibt es (unter anderem) $4$ Optionen:
 \begin{multicols}{2}
     \begin{itemize}[label=$\diamond$]\narrowitems
         \item Dokumentation
@@ -78,18 +78,16 @@ Mit \LILLYxBOXxVersion{2.0.0} ist es nötig nur \clatex{Dokumentation} anstelle 
 \end{latex*}
 In Kombination mit \Jake ist es zudem noch möglich die Option \clatex{Jake} anzugeben, die es Jake gestattet die Dokumentspezifischen Parameter zu bestimmen.\newline
 Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
-So benötigt \T{Mitschrieb} noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester} gemäß:
+So benötigt \T{Mitschrieb} noch den Parameter \T{Vorlesung}, der gemäß:
 \begin{latex*}
-\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/
-       \LILLYxVorlesung}
+\input{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung}
 \end{latex*}
-die für die jeweilige Vorlesung definierten Daten lädt.
-Erklärungen für die geladenen Daten befinden sich in den jeweiligen README-Dateien:
-\begin{description}
-    \item[1. Semester] \url{../Lilly/\LILLYxPATHxDATA/Semester/1/Readme.md}
-    \item[2. Semester] \url{../Lilly/\LILLYxPATHxDATA/Semester/2/Readme.md}
-\end{description}
+die Daten für die jeweilige Vorlesung lädt.
+Erklärungen für die geladenen Daten befinden sich in der README-Datei (\url{../Lilly/\LILLYxPATHxDATA/Semester/Readme.md}).
 
+%
+%
+%
 
 Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semester} sowie noch die optionale Option (tihihi) \T{n} die angibt, um das wievielte Übungsblatt es sich handelt. Darüber müssen wir uns aber in der Regel keine Gedanken machen. Trägt unser Übungsblatt einen Namen wie \T{uebungablatt-gdbs-42.tex}, so kann \Jake über sogenannte \jmark[NameMaps]{mrk:nmaps} entsprechend alles konfigurieren, in diesem Fall benötigt dein Übungsblatt auch kein \T{documentclass} mehr, es genügt das direkte Schreiben von Latex-Code, der Rest wird von Jake übernommen.\\
 Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert, dies gilt es zu beachten, wenn man vielleicht nur etwas testen möchte. In diesem Fall gibt es (wie später auch noch weiter aufgeführt) den sogenannten \emph{Bonustyp} \T{PLAIN}, welcher ein leeres Dokument erstellt! %% TODO: LINK

@@ -33,9 +33,9 @@
 %% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten.
 
 
-%% Wenn ein Semester gesetz ist, dann versuchen wir eine entsprechende Einstellung zu laden.
-\ifnum\LILLYxSemester>0
-    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+%% Wenn eine gültige Vorlesung, dann versuchen wir eine entsprechende Einstellung zu laden.
+\iflilly@vorlesung@isvalid@
+    \RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
 \fi
 
 %% Lilly vertraut auf 'cite' wenn es darum geht Bibtex zu integrieren.

@@ -220,7 +220,7 @@ Ist \blankcmd{LILLYxDEBUG} auf \blankcmd{true} gesetzt, wird \blankcmd{errorcont
     \@@Debug@Page@Content%
 }~\\
 
-Ist \blankcmd{LILLYxSemester} auf einen Wert größer als $0$ gesetzt, wird automatisch die Konfiguration mittels von \blankcmd{RequestConfig} geladen. Ist weiter \blankcmd{LILLYxBIBTEX} definiert, so werden alle für die Verwendung von $\mathrm{B{\scriptstyle{IB}} \! T\!_{\displaystyle E} \! X}$ % maybe make \BibTex
+Ist die \blankcmd{LILLYxVorlesung} auf einen Wert größer als $0$ gesetzt, wird automatisch die Konfiguration mittels von \blankcmd{RequestConfig} geladen. Ist weiter \blankcmd{LILLYxBIBTEX} definiert, so werden alle für die Verwendung von $\mathrm{B{\scriptstyle{IB}} \! T\!_{\displaystyle E} \! X}$ % maybe make \BibTex
  notwendigen Pakete (namentlich \T{cite}) geladen und automatisch ein Aufruf von \T{bibtex} initiiert.
 
 %
@@ -287,7 +287,7 @@ Da mit \LILLYxBOXxVersion{2.0.0} der Stil für Sektionen (und darunterliegende L
 \begin{bemerkung}[Ein Übungsblatt mit \Jake]
     Wie in der \jmark[Einleitung]{quicke:ublatt} bereits angezeigt, ist ein Übungsblatt, wenn man es mit \Jake verwendet, der reine \TeX-Code. In diesem Falle bettet \Jake die Datei nämlich in eine andere gemäß der folgenden Struktur ein:
 \begin{latex}
-\documentclass[Uebungsblatt,Vorlesung=${VORLESUNG},n=${N},Semester=${SEMESTER}]{Lilly}
+\documentclass[Uebungsblatt,Vorlesung=${VORLESUNG},n=${N}]{Lilly}
 \begin{document}
     \input{$(INPUTDIR)$(TEXFILE)}% Das Übungsblatt
 \end{document}
@@ -754,13 +754,14 @@ Diese Befehle werden verwendet um die jeweiligen Fakultätssymbole zu setzen. Da
 %
 
 \presentCommand[1.0.9]{LILLYxColorxTITLExSETTINGSxGENERAL}[\cmdlist\secline\anothercmd[1.0.9]{LILLYxColorxTITLExSETTINGSxVORLESUNG}]
-Diese Befehle definieren die Pfade zu den entsprechenden Definitionen. Sie werden jeweils nur dann eingebunden, wenn \blankcmd{LILLYxSemester} einen Wert größer $0$ hält. Hier sind die Standartdefinitionen:
+Diese Befehle definieren die Pfade zu den entsprechenden Definitionen. Sie werden jeweils nur dann eingebunden, wenn \blankcmd{LILLYxVorlesung} valide ist.
+Hier sind die Standartdefinitionen:
 \begin{latex}
 \providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{%
-  \LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex%
+  \LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex%
 }
 \providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{%
-  \LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/%
+  \LILLYxPATHxDATA/Semester/Definitions/%
     \LILLYxVorlesung%
 }
 \end{latex}
@@ -827,7 +828,7 @@ Setzt die Titelseite wie sie das \jmark[Zusammenfassungs-Layout]{mrk:layoutzsf} 
 \begin{latex}
 \def!**!\LILLYxFACULTY{\LILLYxFACULTYxMATHE}
 \def!**!\LILLYxFACULTYxCOLOR{FacultyMathexColor}
-\def!**!\LILLYxSemester{2}\def!**!\LILLYxVorlesung{ANA1}
+\def!**!\LILLYxVorlesung{ANA1}
 \LILLYxTITLExBONUS{Hallo}
 \end{latex}
 Es liefert ein bekanntes Ergebnis auf der folgenden Seite. Zuvor, ersteinmal die Übersicht über die für gewöhnlich generierten Zusammenfassungen:
@@ -837,7 +838,7 @@ Es liefert ein bekanntes Ergebnis auf der folgenden Seite. Zuvor, ersteinmal die
 {
 \def\LILLYxFACULTY{\LILLYxFACULTYxMATHE}
 \def\LILLYxFACULTYxCOLOR{FacultyMathexColor}
-\def\LILLYxSemester{2}\def\LILLYxVorlesung{ANA1}
+\def\LILLYxVorlesung{ANA1}
 \LILLYxTITLExBONUS{Hallo}
 }
 Offensichtlich wird \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} verwendet.
@@ -854,7 +855,7 @@ Setzt eine Titelseite \emph{ohne} Bonus, so wie sie bereits in der \jmark[Einfü
 %
 
 \presentCommand[1.0.9]{LILLYxTITLE}
-Setzt die Titelseite mittels \blankcmd{LILLYxTITLExRAW}, allerdings nur, wenn \blankcmd{LILLYxSemester} größer $0$ ist. In diesem Fall wird allerdings automatisch das dazugehörige Titelbild hinzugefügt.
+Setzt die Titelseite mittels \blankcmd{LILLYxTITLExRAW}, allerdings nur, wenn \blankcmd{LILLYxVorlesung} valide ist (also existiert). In diesem Fall wird allerdings automatisch das dazugehörige Titelbild hinzugefügt.
 
 
 

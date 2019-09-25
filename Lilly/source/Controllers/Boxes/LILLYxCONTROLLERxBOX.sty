@@ -55,11 +55,13 @@
 
 
 %%%%%%%%% Load Configs if applicable:
-\ifnum\LILLYxSemester>0
-    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
-    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung.tex}
-    \typeout{LOADING: \LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung.tex}
+%\ifnum\LILLYxSemester>0
+\iflilly@vorlesung@isvalid@
+    \RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}%
+    \RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}%
+    \typeout{LOADING: \LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}%
 \fi
+%\fi
 
 
 %%%DEFAULTS

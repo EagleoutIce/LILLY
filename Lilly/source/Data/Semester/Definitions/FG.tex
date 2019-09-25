@@ -1,0 +1,39 @@
+%%% Diese Datei enthält alle notwendigen Definitionen
+
+\def\PROFESSOR{Prof. Dr. Jacobo Torán}
+
+\def\UEBUNGSLEITER{Uwe Baier}
+\def\TUTOR{Marcel Hoffmann}
+
+\def\TITLE{Formale Grundlagen}
+\def\SUBTITLE{\PROFESSOR}
+
+\def\UEBUNGSHEADER{\TITLE\\Übungsblatt \LILLY@n }
+\def\FULLTITLE{ \TITLE \\\fontsize{18pt}{16pt}\selectfont{\SUBTITLE} }
+\DeclareRobustCommand{\POLITEINTRO}{\setcounter{TOPICS}{-1}
+\TOP[disc]{Disclaimer}{Worte des Autors}
+Offensichtlich erhebt dieses Dokument keinen Anspruch auf vollständige Richtigkeit. Es wurde auf Basis der zugrundeliegenden Vorlesungsmaterialien, dem beiligendem Skript und dem Repititorium erstellt und ist eher als unverbindliche Hilfe zu verstehen. Hinzu kommt, dass die kapitelbasierte Einteilung der Vorlesungsvorlage dort durchbrochen wurde, wo eine andere Gruppierung angenehmer oder passender erschien. Bei Anregungen oder Ver\-bes\-ser\-ungs\-vor\-schlä\-gen einfach melden! Diese Zusammenfassung dient zudem explizit \textbf{nicht} als Cheat-Sheet und wurde bewusst ausführlicher gestaltet.\\
+Alle Grafiken wurden vom Autor mithilfe von \LaTeX{} und \TikZ{} erstellt und basieren zum Teil auf denen des Vorlesungsmaterials.{}\hfill {\tiny Florian Sihler}\begin{center}
+    \say{Viel Spaß beim Lernen!}
+\end{center}
+}
+
+\LILLYcommand{\VORLESUNG}{\fg}
+
+%% LAYOUT CONTROL
+\providedef{LILLYxBOXxSatzxLock}{TRUE}
+\providedef{LILLYxBOXxDefinitionxLock}{TRUE}
+
+\providecommand\LILLYxColorxTITLExOffset{9cm}
+
+\providedef{LILLYxBOXxBemerkungxBox}{FALSE}
+\providedef{LILLYxBOXxBeispielxBox}{FALSE}
+\providedef{LILLYxBOXxBeweisxBox}{FALSE}
+\ifcsname LILLYxUBxSHOWTUTOR\endcsname\else
+    \gdef\LILLYxUBxSHOWTUTOR{TRUE}
+\fi
+
+%%NEW TITLE
+
+\LILLYcommand{\LILLYxFACULTY}{\LILLYxFACULTYxTHEORETISCHEINFORMATIK}
+\LILLYcommand{\LILLYxFACULTYxCOLOR}{FacultyTheoretischeInformatikxColor}
