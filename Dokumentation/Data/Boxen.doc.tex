@@ -14,6 +14,20 @@
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
 
+Dem Paket können Argumente übergeben werden, die das Laden einer Bibliothek verhindern, so kann mit \LILLYxBOXxVersion{2.1.0} eingeschränkt werden, welche Pakete geladen werden sollen. \T{iall} lädt alle Argumente:
+\begin{center}
+    \begin{tabular}{^t^t^t^>{\raggedright\arraybackslash}p{8cm}+}
+        \toprule
+            \headerrow Aktivieren & Deaktivieren & Paket \\
+        \midrule
+            boxes & noboxes & \LILLYxNOTExLibrary{LILLYxCONTROLLERxBOX}, \LILLYxNOTExLibrary{LILLYxBOXxCOUNTER} \\
+            infoboxes & noinfoboxes & \LILLYxNOTExLibrary{LILLYxBOXxINFOBOXES}, \LILLYxNOTExLibrary{LILLYxBOXxMARGIN}\\
+        \bottomrule
+    \end{tabular}
+\end{center}
+Es gilt zu beachten, dass Abhängigkeiten untereinander dazu führen können, dass Pakete geladen werden, die abgewählt sind. All diese Argumente können auch LILLY übergeben werden um die entsprechenden Module zu konfigurieren.
+
+
 \section{Grundlegendes}
 \subsection{Eine kleine Einführung}
 % \TransformBoxDefinition{definition}{Waffelmaker~\noexpand\thetcbcounter~}

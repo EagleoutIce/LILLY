@@ -12,6 +12,24 @@
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
 
+Dem Paket können Argumente übergeben werden, die das Laden einer Bibliothek verhindern, so kann mit \LILLYxBOXxVersion{2.1.0} eingeschränkt werden, welche Pakete geladen werden sollen. \T{iall} lädt alle Argumente:
+\begin{center}
+    \begin{tabular}{^t^t^>{\raggedright\arraybackslash}p{8cm}+}
+        \toprule
+            \headerrow Aktivieren & Deaktivieren & Paket \\
+        \midrule
+            poems & nopoems & \LILLYxNOTExLibrary{LILLYxPOEMS} \\
+            ornaments & noornaments & \LILLYxNOTExLibrary{LILLYxORNAMENTS} \\
+            tables & notables & \LILLYxNOTExLibrary{LILLYxTABLES}, \LILLYxNOTExLibrary{LILLYxTABLESxMATERIAL}, \LILLYxNOTExLibrary{LILLYxTABLESxFOREACH}  \\
+            timetables & notimetables & \LILLYxNOTExLibrary{LILLYxTIMETABLES}, \LILLYxNOTExLibrary{LILLYxTIMETABLESxCOMFORT}, \LILLYxNOTExLibrary{LILLYxTIMETABLESxUNIVERSITY} \\
+            persons & nopersons & \LILLYxNOTExLibrary{LILLYxPERSONS}, \LILLYxNOTExLibrary{LILLYxTRANSCRIPTS} \\
+            formatcontrol & noformatcontrol & \LILLYxNOTExLibrary{LILLYxFORMATxCONTROL} \\
+            utilpresenter & noutilpresenter & \LILLYxNOTExLibrary{LILLYxROTARYxENCODER} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+Es gilt zu beachten, dass Abhängigkeiten untereinander dazu führen können, dass Pakete geladen werden, die abgewählt sind. All diese Argumente können auch LILLY übergeben werden um die entsprechenden Module zu konfigurieren. Das Laden des gesamten Pakets \LILLYxNOTExLibrary{LILLYxPRESENTER} kann durch die LILLY-Option \T{nppresenter} verhindert und durch \T{presenter} wieder aktiviert werden.
+
 %
 %
 %
@@ -978,7 +996,7 @@ Setzt ein kleines Symbol für die jeweilige Person, wobei der Stern das Alias an
 %
 
 \section{(Sitzungs-)Protokolle}
-\hypertarget{LILLYxTRANSCRIPTS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPLILLYxTRANSCRIPTSERSONS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen. Diese Bibliothek basiert auf \LILLYxNOTExLibrary{LILLYxPERSONS}.
+\hypertarget{LILLYxTRANSCRIPTS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxTRANSCRIPTS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen. Diese Bibliothek basiert auf \LILLYxNOTExLibrary{LILLYxPERSONS}.
 
 %
 %

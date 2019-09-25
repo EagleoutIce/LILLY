@@ -13,6 +13,12 @@
         \end{latex*}
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
+
+Das Laden des Pakets mit LILLY kann durch die Option \T{listings} aktiviert werden (Standard) und durch \T{nolistings} entsprechend dekativiert. So sorgt das Deklarieren von:
+\begin{latex}
+\documentclass[nolistings]{Lilly}
+\end{latex}
+Für ein Lilly-Dokument ohne \LILLYxNOTExLibrary{LILLYxLISTINGS}. Analog hierzu verfahren die Optionen \T{runtimes} und \T{noruntimes} mit \LILLYxNOTExLibrary{LILLYxRUNTIMES}.\\
 \textit{%
 Sei es nun \fg[], \eidi oder \gdra[], in jeder Vorlesungsreihe war es von Relevanz Quelltexte mit Syntax-Highlighting zu versehen. Hierfür verwendet LILLY die Bibliothek \T{listings} und fügt einige Styles und ein paar Sprachen hinzu, die ebenfalls frei gewählt werden können. Aktuell ist die Implementation an vielen Stellen noch weit weg von perfekt. So ist es in GDRA zum Beispiel immer noch vonnöten das Highlighting, von zum Beispiel \T{addiu}, mithilfe von \T{*\blankcmd{mipsADD}*}einzubinden. An einer Lösung hierfür wird aktuell gearbeitet, siehe weiter \jmark[unten]{jmp:lstCodeInject}.}
 

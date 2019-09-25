@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCALENDAR}[2019/09/25 Stellt eine Kalender-Erweiterung fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCORE}
+
+%% https://www.ctan.org/pkg/tikz
+\LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
+                    {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+%% https://www.ctan.org/pkg/tikz
+\LILLYxDemandPackage{pgfcalendar}{Ein toller Kalender}%% Package, Info
+                    {Dieses Paket funktioniert nicht ohne den Kalender}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+
+
+\endinput
