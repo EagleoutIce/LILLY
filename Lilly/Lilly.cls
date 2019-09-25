@@ -10,7 +10,7 @@
 \newcommand*{\LILLYxVERSIONxLONG}{2.0.0 - Jake ist auch nur Java}
 
 %% Sloppy Defaults if no Jake is used:
-\providecommand{\LILLYxSemester}{1}
+% \providecommand{\LILLYxSemester}{1} % v2.1.0
 \providecommand{\LILLYxVorlesung}{LAII}
 
 \RequirePackage{LILLYxCORE}
@@ -80,7 +80,7 @@
 
 
 %% TODO  MOVE PACKAGE
-\RequirePackage{\LILLYxPATHxDATA/Semester/1/EIDI/tikz-uml}
+\RequirePackage{\LILLYxPATHxDATA/Semester/EIDI/tikz-uml}
 \tikzumlset{fill class=MudWhite, fill state=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter
 
 

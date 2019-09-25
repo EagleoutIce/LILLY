@@ -1,5 +1,5 @@
 # Alle Titelbilder
-PAPERSTEX := $(shell ls titleimage*.tex)
+PAPERSTEX := $(shell ls source/titleimage*.tex)
 PAPERSPDF := $(addsuffix .pdf,$(basename $(PAPERSTEX)))
 
 JOBCOUNT := 3
@@ -18,8 +18,8 @@ all:
 	@$(MAKE) --no-print-directory clean
 
 %.pdf: %.tex
-	pdflatex -jobname $(basename $@) \\input{$<} > ./LILLY_COMPILE.log 2>&1
-	pdflatex -jobname $(basename $@) \\input{$<} >> ./LILLY_COMPILE.log 2>&1
+	pdflatex -jobname $(basename $(shell basename $@)) \\input{$<} > ./LILLY_COMPILE.log 2>&1
+	pdflatex -jobname $(basename $(shell basename $@)) \\input{$<} >> ./LILLY_COMPILE.log 2>&1
 	@$(call $(CLEANTARGET))
 
 clean:

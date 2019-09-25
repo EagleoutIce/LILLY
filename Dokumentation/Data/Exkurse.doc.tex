@@ -9,32 +9,32 @@
     allerdings würde das bedeuten die komplette Ordnerstruktur zu reproduzieren und die notwendingen Standarts selbst zur Verfügung stellen zu müssen. Deswegen wird die Vorlesung direkt in Lilly integriert.
 \end{bemerkung}
 
-Der Datenordner, in dem sich die Vorlesung unter \blatex{Lilly/source/Data/Semester/:lan:Semester:ran:/Definitions/:lan:Vorlesung:ran:} befindet, besitzt eine relativ verpflichtende Struktur, die sich geplant mit \LILLYxBOXxVersion{2.1.0} ändern soll (das Prinzip eines Semesters soll abgeschafft und das Prinzip einer Vorlesung verallgemeinert werden). Hier die Übersicht der Ordnerstruktur ab \blatex{Lilly/source/Data/}:\par
+Der Datenordner, in dem sich die Vorlesung unter \blatex{Lilly/source/Data/Semester/Definitions/:lan:Vorlesung:ran:} befindet, besitzt eine relativ verpflichtende Struktur, die sich geplant mit \LILLYxBOXxVersion{2.1.0} geändert hat. Hier die Übersicht der Ordnerstruktur ab \blatex{Lilly/source/Data/}:\par
 \begin{minipage}{0.35\linewidth}
-    \begin{directory}[scale=0.5]%Optimie the directory option :D
-        \node {Semester}
-        child { node {1}
-                child { node {Definitions}
-                    child { node {GENERAL.tex} }
-                    child { node {EIDI.tex} }
-                    child { node {FG.tex} }
-                    child { node {GDRA.tex} }
-                    child { node {LAII.tex} }
-                }
-                child { node {Graphics}
-                    child { node {titleimageEIDI.pdf} }
-                    child { node {titleimageFG.pdf} }
-                    child { node {titleimageGDRA.pdf} }
-                    child { node {titleimageLAII.pdf} }
-                }
-                child { node {Readme.md} }
-        }
-        child { node {2}
-                child { node {\ldots} }
-        };
-    \end{directory}
+    \centering\scalebox{0.75}{\begin{fancydir}
+        [Semester
+            [Definitions
+                [GENERAL.tex, ifile]
+                [EIDI.tex, file]
+                [FG.tex, file]
+                [ANA1.tex, file]
+                [\ldots, file]
+            ]
+            [Graphics
+                [source
+                    [titleimageEIDI.tex, file]
+                    [\ldots, file]
+                ]
+                [makefile, ifile]
+                [titleimageEIDI.pdf, file]
+                [titleimageFG.pdf, file]
+                [titleimageANA1.pdf, file]
+            ]
+            [Readme.md]
+        ]
+    \end{fancydir}}
 \end{minipage}
-\begin{minipage}{0.65\linewidth}Die Verzeichnisse können weitere Ordner enthalten diese werden allerdings (wie die \T{Readme.md}) nicht von Lilly beachtet. Sie können allerdings weitere Informationen für Vorlesungen enthalten, die dann von diesen Eingebunden werden, sofern dies benötigt wird. Die Definition \T{GENERAL.tex}\footnote{Auch bezüglich der Benennung der Konfigurationen ist eine Änderung für \LILLYxBOXxVersion{2.1.0} geplant.}  wird immer geladen und kann so für das gesamte Semester Definitionen abgegen (so zum Beispiel das Setzen des \blankcmd{LILLYxFlavourText}). Alle anderen Konfigurationen tragen den Namen, der der \LILLYxNOTExLibrary{LILLYxKEYVALxPARSER}-Option \T{Vorlesung} oder der \Jake-\jmark[Einstellung]{mrk:jakesettings} \T{lilly-vorlesung} übergeben werden können. Ein \emph{mapping} dieser Bezeichner findet aktuell nicht statt.
+\begin{minipage}{0.65\linewidth}Die Verzeichnisse können weitere Ordner enthalten diese werden allerdings (wie die \T{Readme.md}) nicht von Lilly beachtet. Sie können allerdings weitere Informationen für Vorlesungen enthalten, die dann von diesen Eingebunden werden, sofern dies benötigt wird. Die Definition \T{GENERAL.tex}\footnote{Auch bezüglich der Benennung der Konfigurationen ist eine Änderung für \LILLYxBOXxVersion{2.1.0} geplant.} wird immer geladen und kann so allgemeine Definitionen angeben (so zum Beispiel das Setzen des \blankcmd{LILLYxFlavourText}). Alle anderen Konfigurationen tragen den Namen, der der \LILLYxNOTExLibrary{LILLYxKEYVALxPARSER}-Option \T{Vorlesung} oder der \Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{lilly-vorlesung} übergeben werden können. Ein \emph{mapping} dieser Bezeichner findet in \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} statt.
 
 \paragraph{Die Vorlesungskonfiguration}
 Eine Vorlesungskonfiguration wie \T{EIDI.tex} kann eine Menge an Befehlen definieren, in der Regel werden allerdings die folgenden gesetzt, wobei die mit \T{default} markierten Optionen nicht gegeben werden müssen:
@@ -57,7 +57,7 @@ Eine Vorlesungskonfiguration wie \T{EIDI.tex} kann eine Menge an Befehlen defini
         \bottomrule
     \end{tabularx}\nskip
 \end{center}
-Besonders sind die Befehle \blankcmd{UEBUNGSLEITER} und \blankcmd{TUTOR}, da diese erst dann gegeben werden \emph{müssen} wenn sie gebraucht werden (genau genommen gilt das für alle Befehle, allerdings werden die anderen in einem Mitschrieb benötigt, um zum Beispiel die Titelseite zu generieren).\newline
+Besonders sind die Befehle \blankcmd{UEBUNGSLEITER} und \blankcmd{TUTOR}, da diese erst dann gegeben werden \emph{müssen} wenn sie angefordert werden (genau genommen gilt das für alle Befehle, allerdings werden die anderen in einem Mitschrieb benötigt, um zum Beispiel die Titelseite zu generieren).\newline
 Weiter ist es möglich, die beiden folgenden Befehle zu setzen, die eine besondere Bedeutung besitzen:%
 \foreach \x in {POLITEINTRO,LILLYxTITLExOffset}{\anothercmd*[1.0.0]{\x}}
 \begin{center}
@@ -65,13 +65,13 @@ Weiter ist es möglich, die beiden folgenden Befehle zu setzen, die eine besonde
         \toprule
             \headerrow Befehl         & Erklärung                    & \normalsize Beispiel                    \\
         \midrule
-            \blankcmd{POLITEINTRO}    & Einleitung für Zusammenfassungen     & Offensichtlich erhebt dieses Dokument keinen Anspruch\ldots \\
-            \blankcmd{LILLYxTITLExOffset}      & Setzt das horizontale Titelbildoffset bei der Zusammenfassung im Falle einer abweichenden Größe            & 11.6cm \\
+            \blankcmd{POLITEINTRO}    & Einleitung für Zusammenfassungen.     & Offensichtlich erhebt dieses Dokument keinen Anspruch\ldots \\
+            \blankcmd{LILLYxTITLExOffset}      & Setzt das horizontale Titelbildoffset bei der Zusammenfassung im Falle einer abweichenden Größe.            & 11.6cm \\
         \bottomrule
     \end{tabular}
 \end{center}
 
-Zur Definition weiterer Einschränkungen wie zum Beispiel der Sichtbarkeit von \LILLYxNOTExLibrary{LILLYxBOXES} sollten mit \blankcmd{providedef} getätigt werden, können allerdings auch anderweitig gesetzt werden, wenn es zum Beispiel nicht anders funktioniert.
+Zur Definition weiterer Einschränkungen wie zum Beispiel der Sichtbarkeit von \LILLYxNOTExLibrary{LILLYxBOXES} sollten mit \blankcmd{providedef} getätigt, können allerdings auch anderweitig gesetzt werden, wenn es zum Beispiel anders nicht funktioniert.
 Hier ein Beispiel für die Vorlesung \T{ANA1}:
 \begin{latex}
 %%% Diese Datei enthält alle notwendigen Definitionen
@@ -139,17 +139,14 @@ Hier ein Beispiel für die Vorlesung \T{ANA1}:
 Das ist bezüglich der Konfigurationsdatei eigenlich auch schon alles was gemacht werden muss. Jetzt gilt es allerdings noch das dazugehörige Titelbild zu generieren:
 
 \paragraph{Ein Titelbild erstellen}
-An sich gibt es keine klare Regel, nach der ein Titelbild generiert werden muss. Es gibt lediglich dioe folgenden Anforderungen an die sie sich halten sollen:
+An sich gibt es keine klare Regel, nach der ein Titelbild generiert werden muss. Es gibt lediglich die folgenden Anforderungen an die sie sich halten sollen:
 \begin{ditemize}
-    \item Der Name \emph{muss} \T{titelimage<Vorlesung>.pdf} entsprechen.
+    \item Der Name \emph{muss} \T{titelimage<Vorlesung>.pdf} entsprechen und in \T{Graphics} liegen.
     \item Ein Titelbild sollte völlig unabhängig von Lilly erstellt werden.
-    \item Ein titelbild muss komplett in \LaTeX{} erstellt werden. Externe Grafiken werden nicht gestattet.
-    \item Die zugehörige \T{.tex}-Datei \emph{muss} mitgeliefert werden.
-    \item Es muss ein \emph{Makefile} existieren welches alle Titelbilder eines Ordners auf einmal neu generiert, sofern eine Änderung vorliegt.
-    \item Derartige Titelbilder dürfen nur im \T{Graphics}-Ordner eines Semesters liegen.
+    \item Ein Titelbild muss komplett in \LaTeX{} erstellt werden. Externe Grafiken werden nicht gestattet.
+    \item Die zugehörige \T{.tex}-Datei \emph{muss} mitgeliefert werden und in \T{Graphics/source} liegen, sie wird automatisch vom \emph{makefile} erfasst.
+    \item Es muss ein \emph{Makefile} existieren welches alle Titelbilder eines Ordners auf einmal neu generiert, sofern eine Änderung vorliegt. Dieses wird für Lilly bereits mitgeliefert.
 \end{ditemize}
-
-Übrigens: Der \T{TitlepageProvider} ist an sich veraltet und wurde komplett von \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} abgelöst.
 
 \section{Eine Präsentation erstellen}
 \elable{mrk:beamerKIZexample}Zum Erstellen von Präsentationen, kommt zusammen mit Lilly das Beamer-Theme \T{lillyKIZ}, welches eine \T{beamer}-Präsentation mit einem anderen Design versieht und die zu verwendenden Befehle modifiziert. Ersteinmal eine Übersicht, wie das Ganze am Ende aussieht:
@@ -167,7 +164,7 @@ Anschließend stehen einige Befehle zur Verfügung:
 %
 %
 
-\presentCommand[2.1.0]{settitle}[\manArg{title}\cmdlist\anothercmd[2.1.0]{setheading}\manArg{heading}\cmdlist\anothercmd[2.1.0]{setsubheading}\manArg{subheading}\cmdlist\secline\anothercmd[2.1.0]{setauthor}\manArg{author}\cmdlist\anothercmd[2.1.0]{setsubtitle}\manArg{subtitle}\cmdlist\anothercmd[2.1.0]{setdate}\manArg{date}\cmdlist\secline\anothercmd[2.1.0]{setresourcepath}\manArg{resourcepath}\cmdlist\anothercmd[2.1.0]{settitleimage}\manArg{titleimage}\cmdlist\secline\anothercmd[2.1.0]{settitlewidth}\manArg{titlewidth}\cmdlist\anothercmd[2.1.0]{setlogoimage}\manArg{logoimage}\cmdlist\secline\anothercmd[2.1.0]{setsignature}\manArg{signature}\cmdlist\anothercmd[2.1.0]{setsignatureDarker}\manArg{signatureDarker}]
+\presentCommand[2.1.0]{settitle}[\manArg{title}\cmdlist\anothercmd[2.1.0]{setheading}\manArg{heading}\cmdlist\anothercmd[2.1.0]{setsubheading}\secline\manArg{subheading}\cmdlist\anothercmd[2.1.0]{setauthor}\manArg{author}\cmdlist\anothercmd[2.1.0]{setsubtitle}\manArg{subtitle}\cmdlist\secline\anothercmd[2.1.0]{setdate}\manArg{date}\cmdlist\anothercmd[2.1.0]{setresourcepath}\manArg{resourcepath}\cmdlist\secline\anothercmd[2.1.0]{settitleimage}\manArg{titleimage}\cmdlist\anothercmd[2.1.0]{settitlewidth}\manArg{titlewidth}\cmdlist\secline\anothercmd[2.1.0]{setlogoimage}\manArg{logoimage}\cmdlist\anothercmd[2.1.0]{setsignature}\manArg{signature}\cmdlist\secline\anothercmd[2.1.0]{setsignatureDarker}\manArg{signatureDarker}]
 Setzt die entsprechenden Felder in der Präsentation.
 
 %

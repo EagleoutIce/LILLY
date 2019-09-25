@@ -161,9 +161,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%Lade gewünschtes Titelblatt => LILLYxTITLE
-\ifnum\LILLYxSemester>0
-    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
-\fi
+\RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}
+%}{}
 %%OLD: \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
 \AtBeginDocument{\LILLYxTITLE}
 

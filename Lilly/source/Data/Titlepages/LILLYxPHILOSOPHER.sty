@@ -99,11 +99,12 @@
     \end{tikzpicture}}{#1}[#2][#3][50pt][\smallNumber][0.125][0.03]
 }
 
-\providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
-\providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung}
-\ifnum\LILLYxSemester>0
-    \input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
-\fi
+\providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
+\providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung}
+
+\RequestConfig{\LILLYxColorxTITLExSETTINGSxGENERAL}
+\RequestConfig{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
+
 
 
 %%% Dieser Befehl malt die untere Leiste und setzt die entsprechenden Daten. Hierbei Kann, von der Höhe abgesehen, keine andere Metrik modifiziert werden.
@@ -149,12 +150,12 @@
     O{\LILLYxFlavourText}   % Textblahblah
     O{\LILLYxFACULTY}       % Zu setzendes Symbol
     O{0.55\paperwidth}      % Scaling
-    O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf}
+    O{\LILLYxPATHxDATA/Semester/Graphics/titleimage\LILLYxVorlesung.pdf}
                             % Titel Symbol
 }{%
-\ifnum\LILLYxSemester>0%
-    \input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}%
-\fi
+
+\RequestConfig{\LILLYxColorxTITLExSETTINGSxGENERAL}\RequestConfig{\LILLYxColorxTITLExSETTINGSxVORLESUNG}%
+
 \clearpage\thispagestyle{empty}%
 \LILLYxPHILOSOPHERxINIT\begingroup%
 \begin{titlepage}
@@ -219,8 +220,8 @@
 }
 
 %% Pfad zu den Einstellungen %% Pfad zur Grafik
-\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
-    \ifnum\LILLYxSemester>0\LILLYxTITLExRAW[#1]\fi
+\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
+    \IfFileExists{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}{\LILLYxTITLExRAW[#1]}{}%
 }
 
 \endinput

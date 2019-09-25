@@ -70,7 +70,9 @@
 
 %% Access Konfiguration File :D This can be determined by the Semester, but in theory every valide tex-File kann
 \def\RequestConfig#1{%
-    \InputIfFileExists{#1}{}{}
+    \InputIfFileExists{#1}{}{%
+      \typeout{Die Datei '#1' wurde angefordet, aber nicht gefunden!}%
+    }
 }
 
 \gdef\makeenvglobal#1{%

@@ -81,9 +81,12 @@ Konvertiert eine bestehende Umgebung in eine globale:
 \presentCommand[2.0.0]{providedef}[\manArg{Name}\manArg{Body}]
 Definiert den Befehl mit den Namen \T{Name}, sofern er noch nicht existiert mittels \blankcmd{def}. Bisher ist die Angabe von Argumenten nicht vorgehsehen.
 
+%
+%
+%
 
-
-
+\presentCommand[2.0.0]{RequestConfig}[\manArg{Path}]
+Lädt die Konfigurationsdatei in \T{Path}, sofern diese existiert.
 
 
 \subsection{Kodierung}
@@ -662,8 +665,8 @@ Hält einen eventuellen Flavour-Text. Dieser kann mit \LILLYxNOTExLibrary{LILLYx
 %
 %
 
-\presentCommand[1.0.0]{LILLYxSemester}
-Enthält das Semester, da nach der Vorlesung nicht gefragt ist, wenn es auf einem negativen Wert steht, wird es, sofern nicht angegeben, auf \T{-1} gesetzt\footnote{Damit kann auch mit \Jake unterschieden werden, der das Semester in diesem Fall bewusst auf \T{0} setzt.}: \LILLYxSemester.
+\presentCommand[1.0.0]{LILLYxSemester}[\cmdold]
+Dieser Befehl ist mit \LILLYxBOXxVersion{2.1.0} nicht mehr Teil von LILLY!
 
 %
 %
@@ -810,7 +813,7 @@ Lädt eine Datei aus dem Datenverzeichnis.
 %
 %
 
-\presentCommand[1.0.4]{getSemester}[\manArg{Semester}\manArg{Vorlesung}]
+\presentCommand[2.1.0]{getVorlesung}[\manArg{Vorlesung}]
 Erhält den Pfad zu den Daten der entsprechenden Vorlesung.
 
 %
@@ -900,10 +903,10 @@ Natürlich gibt es noch eine ganze Menge an Möglichkeiten die, immer zur Verfü
             \headerrow Option & Typ & Standart & Beschreibung \\
         \midrule
             n & String & -1 & Das wievielte Übungsblatt? \\
-            Semester & String & 0 & Das wievielte Semester? \\
+            Semester & String & 0 & Das wievielte Semester? \cmdold \\
             Vorlesung & String & GDRA & Bezeichner der Vorlesung. \\
             Typ & String & PLAIN & Zu verwendendes Layout. \\
-            Jake & Boolean & false & \Jake-Unterstützung\footnote{In diesem Fall übernimmt \Jake das Setzen von \T{Vorlesung} und \T{Semester}.}. \\
+            Jake & Boolean & false & \Jake-Unterstützung\footnote{In diesem Fall übernimmt \Jake das Setzen der \T{Vorlesung}.}. \\
             Universe & Boolean & false & Platzhalter. \\
             paper & Boolean & false & Veraltet. \\
             beamer & Boolean & false & Platzhalter. \\
