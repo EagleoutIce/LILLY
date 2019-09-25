@@ -295,8 +295,8 @@ public class JakeCompile {
 
                 // Start of compile
 
-                int fb = 0;
-                for (int i = 0; i < Integer.parseInt(CoreSettings.requestValue("S_LILLY_COMPILETIMES")); i++) {
+                int fb = 0; int _max_compile = Integer.parseInt(CoreSettings.requestValue("S_LILLY_COMPILETIMES"));
+                for (int i = 0; i < _max_compile; i++) {
                     // execute IN-hooks
                     synchronized (Hooks.getInstance()) {
                         Expandables.finalName = final_name + ".pdf";
@@ -304,7 +304,7 @@ public class JakeCompile {
                     }
                     writeLoggerInfo("Kreiere Latex-Datei (führe pdflatex aus)...", tag);
                     StringBuilder compileCommand = new StringBuilder();
-                    compileCommand.append("pdflatex -jobname ").append(final_name).append(" $(LATEXARGS) ")
+                    compileCommand.append("pdflatex -jobname ").append(final_name).append((i+1<_max_compile)?" -draftmode ":"").append(" $(LATEXARGS) ")
                             .append(b_data[B_EXTRA]).append("${_LILLYARGS}")
                             .append("\\\\providecommand{\\\\LILLYxBOXxMODE}{").append(boxmode).append("}");
                     compileCommand.append("\\\\providecommand{\\\\LILLYxPDFNAME}{").append(final_name).append("}");
