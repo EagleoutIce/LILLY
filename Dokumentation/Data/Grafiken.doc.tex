@@ -593,14 +593,14 @@ Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereit
 
 \subsection{Externalisierung}
 Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
-Auf Basis von \T{environ} und der \TikZ-Bibliothek \T{external} bietet diese Datei eine Möglichkeit Grafiken zu externalisieren. Wirklich aktiviert wird es allerdings nur auf Basis der \Jake-\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external} (genau genommen läuft die kontrolle über \blankcmd{LILLYxEXTERNALIZE}), lagert dann allerdings alle Grafiken die durch folgende Umgebung definiert werden aus:
+Auf Basis von \T{environ} und der \TikZ-Bibliothek \T{external} bietet diese Datei eine Möglichkeit Grafiken zu externalisieren. Wirklich aktiviert wird es allerdings nur auf Basis der \Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external} (genau genommen läuft die kontrolle über \blankcmd{LILLYxEXTERNALIZE}), lagert dann allerdings alle Grafiken die durch folgende Umgebung definiert werden aus:
 
 %
 %
 %
 
 \presentEnvironment[1.0.7]{tikzternal}[\optArg{tikz args}]
-Wenn die Externalisierung (\Jake-\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external}) aktiviert ist, wird die hierrin enthaltene Grafik automatisch externalisiert. Sonst fungiert die Umgebung als normales \blankenv{tikzpicture}.
+Wenn die Externalisierung (\Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external}) aktiviert ist, wird die hierrin enthaltene Grafik automatisch externalisiert. Sonst fungiert die Umgebung als normales \blankenv{tikzpicture}.
 
 %
 %

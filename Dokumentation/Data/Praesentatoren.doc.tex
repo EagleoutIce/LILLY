@@ -1108,5 +1108,45 @@ Ergibt:
         \item \ShowPersonTag{\person}: \csname attendance\person\endcsname~minutes%
     }
 \end{ditemize}
-
 \end{bemerkung}
+
+%
+%
+%
+%
+%
+
+\section{Spezifische Daten}
+Alle diese Definitionen werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.
+
+%
+%
+%
+
+\subsection{Kodierscheiben}
+\hypertarget{LILLYxROTARYxENCODER}Diese Definition wird durch das Paket \LILLYxNOTExLibrary{LILLYxROTARYxENCODER} geladen und mit \LILLYxBOXxVersion{2.0.0} autoatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.
+
+%
+%
+%
+
+\presentCommand[1.0.7]{codierscheibe}[\manArg{inactive Color}\manArg{active Color}\manArg{data list}]
+Setzt eine Kodierscheibe, wobei alle in der \T{data list} vermerkten Werte als aktiv gezählt werden:
+\begin{defaultlst}[morekeywords={[5]{\\xdef\\valueList,\\valueList}}][listing side text,righthand width=4cm]{lLatex}
+\xdef\valueList{{0 , 0 , 0},{1 , 0 , 0},
+                {1 , 1 , 0},{0 , 1 , 0},%
+                {0 , 1 , 1},{1 , 1 , 1},%
+                {1 , 0 , 1},{0 , 0 , 1}%
+}
+\begin{tikzpicture}[scale=0.5]
+    \codierscheibe{white}{purple!50!white}{\valueList}
+\end{tikzpicture}
+\end{defaultlst}
+\begin{defaultlst}[morekeywords={[5]{\\xdef\\valueList,\\valueList}}][listing side text,righthand width=4cm]{lLatex}
+\xdef\valueList{{0 , 1},{1 , 0}}
+\begin{tikzpicture}[scale=0.5]
+    \codierscheibe{white}{green!50!white}{\valueList}
+\end{tikzpicture}
+\end{defaultlst}
+
+Die Makros \blankcmd{minimumRadius}, \blankcmd{radiusScaling} und \blankcmd{startAngle} setzen die entsprechenden Parameter für die zu zeichnende Kodierscheibe.

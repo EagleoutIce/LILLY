@@ -1,6 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxROTARYxENCODER}[2019/06/29 Stellt eine Codierscheibe fuer LILLY zur Verfuegung]
 
+\pgfmathsetmacro{\minimumRadius}{0.5}
+\pgfmathsetmacro{\radiusScaling}{0.5}
+\pgfmathsetmacro{\startAngle}{180}
+
 %%% {false-color}{true-color}{list}
 \def\codierscheibe#1#2#3{
     \foreach \elementIndex [count=\counterIndex] in #3 {\xdef\totalElements{\counterIndex}} %GesamtzahlElemente
