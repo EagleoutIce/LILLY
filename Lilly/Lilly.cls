@@ -281,7 +281,6 @@
 % should be linked to gdra?
 \RequirePackage{LILLYxMIPS}
 \RequirePackage{LILLYxCONVERTERxMAYA}
-\RequirePackage{LILLYxROTARYxENCODER}
 
 % link to eidi?
 \RequirePackage{LILLYxHeapNStack}
