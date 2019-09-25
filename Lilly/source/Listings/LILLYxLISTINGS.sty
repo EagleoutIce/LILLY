@@ -388,6 +388,10 @@
   % dummy
 }
 
-\RequirePackage{LILLYxRUNTIMES}
+\makeatletter
+
+\ifLILLY@runtimes
+  \RequirePackage{LILLYxRUNTIMES}
+\fi
 
 \endinput

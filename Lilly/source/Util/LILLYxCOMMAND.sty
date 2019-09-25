@@ -3,18 +3,13 @@
 
 \RequirePackage{LILLYxPACKAGExCTRL}
 
-%% https://www.ctan.org/pkg/expl3
-\LILLYxDemandPackage{expl3}{Da wir auch was von der tollen Latex3-Zukunft abhaben moegen :D}
-                    {Leider kann LILLY aus diversen Gründen nicht ohne expl3 existieren :/}
-                    {}{} %% keine Argumente
 %% https://www.ctan.org/pkg/xparse
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
                     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
                     {}{} %% keine Argumente
 
 %% tex '\def' in latex style - überschreibe einen Befehl oder erzeuge ihn, wenn es ihn noch nicht gibt
-\ExplSyntaxOn
-\def\LILLYcommand{
+\def\LILLYcommand{%
     \@ifstar%
         \LILLYcommand@S %% star
         \LILLYcommand@N %% nostar
@@ -33,7 +28,6 @@
 \def\grenewcommand{\g@star@or@long\renew@command}
 \def\g@star@or@long#1{%
   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
-\ExplSyntaxOff
 
 \makeatletter
 \let\@local@newenv\@newenv

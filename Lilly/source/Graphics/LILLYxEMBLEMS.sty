@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{LILLYxCONTROLLERxBOX}[2019/08/30 Stellt einen Emblem-Generator fuer LILLY zur Verfuegung]
+\ProvidesPackage{LILLYxEMBLEMS}[2019/08/30 Stellt einen Emblem-Generator fuer LILLY zur Verfuegung]
 
 %% Dieses Paket soll relativ einfach auf Basis von LILLYxCOLOR Embleme generieren.
 %% Ein Emblem ist an sich ein Befehl, der auf einen '\tikz'-Befehel zum Setzen zurückfällt.
@@ -14,6 +14,7 @@
 %\RequirePackage{LILLYxCOLOR}
 %\RequirePackage{LILLYxGRAPHICS}
 
+\catcode`\"=12
 %% https://ctan.org/pkg/wasysym
 \LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}%% Package, Info
                     {Sonst geht halt errorEmblem nicht xD}

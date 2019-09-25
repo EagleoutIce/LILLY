@@ -17,8 +17,6 @@
 \RequirePackage{LILLYxLIST}
 \RequirePackage{LILLYxRANDOM}
 
-%\LILLY%LoadPackage{lipsum42}{Gutes Paket}{MAUMAUMAU}{\def\MauMau{Hauihao}}
-%\LILLY%DemandPackage{lipsum42}{Super Paket}{HAUHAUHAU}{\def\MauMau{Raurau}}
 
 \input{\LILLYxPATHxDATA/_LILLY_GENERAL_COMMANDS}
 
@@ -144,7 +142,14 @@
 %% https://www.ctan.org/pkg/xparse
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
                     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
-                    {}{} %% keine Argumente
+                    {log-declarations=false}{}
+% Silence unwanted output:
+\iflillydebug\else
+\ExplSyntaxOn
+\msg_redirect_module:nnn { LaTeX / xparse } { info }    { none }
+\msg_redirect_module:nnn { LaTeX / xparse } { warning } { none }
+\ExplSyntaxOff
+\fi
 
 \RequirePackage{LILLYxCOMMAND}
 
@@ -182,7 +187,7 @@
                     {}{} %% keine Argumente
 
 \RequirePackage{hhline}
-\ifx\LILLYxTIKZxenable\undefined
+\ifLILLY@graphics
     \RequirePackage{LILLYxGRAPHICS}
 \fi
 
@@ -195,10 +200,13 @@
 
 \RequirePackage{multicol}
 
-\RequirePackage{LILLYxLISTINGS}
-\RequirePackage{LILLYxLISTINGSxADVANCED}
-\RequirePackage{LILLYxRUNTIMES}
-
+\ifLILLY@listings
+    \RequirePackage{LILLYxLISTINGS}
+    \RequirePackage{LILLYxLISTINGSxADVANCED}
+\fi
+\ifLILLY@runtimes
+    \RequirePackage{LILLYxRUNTIMES}
+\fi
 %\ExplSyntaxOn
 %\DeclareCaptionFont{black}{ \color{black} }
 %\DeclareCaptionFormat{none}{
@@ -256,10 +264,11 @@
 % Setup für mathematisches                                                                                            %     %%%% PACKAGE-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{LILLYxMATH}
+\ifLILLY@math
+    \RequirePackage{LILLYxMATH}
+\fi
 
 %\RequirePackage{kpfonts}
-\RequirePackage{LILLYxGRAPHICSxPROVIDER}
 %%\input{\LILLYxPATHxDATA/Graphics/_LILLY_GRAPHICS_PROVIDER}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -274,9 +283,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Datendarstellungen, Presenter                                                                                       %     %%%% PRESENTER %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\RequirePackage{LILLYxPRESENTER}
-
+\ifLILLY@presenter
+    \RequirePackage{LILLYxPRESENTER}
+\fi
 
 % should be linked to gdra?
 \RequirePackage{LILLYxMIPS}
