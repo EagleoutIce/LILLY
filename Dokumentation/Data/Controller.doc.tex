@@ -857,6 +857,34 @@ Setzt eine Titelseite \emph{ohne} Bonus, so wie sie bereits in der \jmark[Einfü
 \presentCommand[1.0.9]{LILLYxTITLE}
 Setzt die Titelseite mittels \blankcmd{LILLYxTITLExRAW}, allerdings nur, wenn \blankcmd{LILLYxVorlesung} valide ist (also existiert). In diesem Fall wird allerdings automatisch das dazugehörige Titelbild hinzugefügt.
 
+%
+%
+%
+%
+%
 
+\section{Randbemerkungen}
+\hypertarget{LILLYxMARGIN}Diese Definitionen befinden sich im eigenständigen Paket \LILLYxNOTExLibrary{LILLYxMARGIN} und abstrahieren Randbemerkungen grundlegend.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{lillyMarginxElement}[\manArg{Text}]
+Setzt \T{Text} in die Margin, wobei Schrit und Orientierung aus den PGF-Keys \T{lillyxMARGIN/font} und \T{lillyxMARGIN/alignment} entnommen werden, die durch \blankcmd{lillymarginset} einfach gesetzt werden können (beispiel: \T{font=\blankcmd{small}}). So ergibt \T{\blankcmd{lillyxMarginxElement}\{Hallo Welt\}}\lillyxMarginxElement{Hallo Welt}.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{lillyxMarginMark}[\manArg{Color}]
+Setzt eine Markierung in der Farbe \T{color}, die gestalt ergibt sich aus \blankcmd{footnotemark}.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{lillyxMarginxNote}[\manArg{Color}\manArg{Text}]
+Setzt ein markiertes \blankcmd{lillyMarginxElement} und setzt den korrespondierenden Marker im Text durch \blankcmd{lillyxMarginMark} So ergibt \T{\blankcmd{lillyxMarginxNote}\{Azure\}\{Hallo Welt\}}\lillyxMarginxNote{Azure}{Hallo Welt}.
 
 %%% Keyval

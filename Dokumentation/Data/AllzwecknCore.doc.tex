@@ -852,11 +852,11 @@ Pausiert die Befehle \typesetList[ttlsx]{write,iwrite,pwrite}, beziehungsweise h
 %
 %
 
-\presentCommand[2.1.0]{write<ID>}[\manArg{Data}\cmdlist\anothercmd[2.1.0]{iwrite<ID>}\manArg{Data}\cmdlist\anothercmd[2.1.0]{pwrite<ID>}\manArg{Data}\cmdlist\anothercmd[2.1.0]{input<ID>}]
+\presentCommand[2.1.0]{write<ID>}[\manArg{Data}\cmdlist\anothercmd[2.1.0]{iwrite<ID>}\manArg{Data}\cmdlist\anothercmd[2.1.0]{pwrite<ID>}\manArg{Data}\cmdlist\secline\anothercmd[2.1.0]{input<ID>}]
 Schreibt \T{Data} in den jeweiligen Rekorder, wobei 
 \begin{ditemize}
     \item \blankcmd{write<ID>} die Daten beim Ausliefern der Seite schreibt (es werden also Seitennummern oder ähnliches korrekt aufgelöst), 
-    \item \blankcmd{iwrite<ID>} die Daten direkt schreibt (kann also eine falsche Seitennummer liefern)
+    \item \blankcmd{iwrite<ID>} die Daten direkt schreibt (kann also eine falsche Seitennummer liefern, dafür ist die Reihenfolge sicher korrekt).
     \item \blankcmd{pwrite<ID>} auf \blankcmd{protected@write} zurück greift.
 \end{ditemize}
 Hiervon unterschiedlich bindet \blankcmd{input<ID>} den Rekorder ein, was zum Beispiel dann sinnvoll ist, wenn der Rekorder mit dem Stern deklariert wurde.
@@ -914,5 +914,5 @@ Natürlich gibt es noch eine ganze Menge an Möglichkeiten die, immer zur Verfü
         \bottomrule
     \end{tabular}
 \end{center}
-\end{minipage}\\
+\end{minipage}\smallskip\\
 Der Typ hat weiterhin die Möglichkeit eigene Hooks zur Verfügung zu stellen, die vor der eigentlichen Arbeit von Lilly ausgeführt werden und so in der Lage sind zum Beispiel das Dokumentformat zu ändern. Sie werden mittels \blankcmd{userput} einmal in \blankcmd{lillyPathConfig} und \T{\blankcmd{LILLYxPATHxDATA}/Layouts/KeyvalHooks} gesucht, wobei der Name der Form \blatex{_LILLY_KEYVAL_<Typ>.tex} folgen muss, also zum Beispiel \blatex{_LILLY_KEYVAL_EIDI.tex}.
