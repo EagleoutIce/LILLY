@@ -1,4 +1,5 @@
 package de.eagle.gepard.parser;
+
 /**
  * @file GeneratorParser.java
  * @author Florian Sihler
@@ -13,9 +14,11 @@ package de.eagle.gepard.parser;
  */
 
 import de.eagle.util.datatypes.Settings;
+import de.eagle.util.io.JakeWriter;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -112,6 +115,11 @@ public class GeneratorParser {
         public JObject(String name, Settings config) {
             this.name = name;
             this.config = config;
+        }
+
+        public JObject(JObject clone){
+            this.name = clone.name;
+            this.config = clone.config.cloneSettings();
         }
 
         /**
@@ -245,7 +253,7 @@ public class GeneratorParser {
         return jobjects.toArray(new JObject[0]);
     }
 
-    /**
+    /**0
      * Liest eine Zeile ein und erhöht die aktuelle LineCount
      *
      * @param reader Der Reader von dem gelesen werden soll

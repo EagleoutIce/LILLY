@@ -8,8 +8,11 @@
  */
 package de.eagle.lillyjakeframework.core;
 
+import de.eagle.gepard.modules.Projects;
+import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eProgress_State;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -39,7 +42,7 @@ public class Definitions {
     public static final String S_FALSE = "false";
 
     public static final String DEFAULT_COMMENT_PATTERN = "![^!]*!";
-    
+
     /**
      * @return Returns the relative working directory
      */
@@ -56,8 +59,16 @@ public class Definitions {
 
     public static String RELATIVE_WORKING_DIR = "";
 
-
     public static final int MAX_SETTINGS_REC = 12;
+
+    public static Settings projects() {
+        try {
+            return Projects.getInstance().getProjects(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * Aktueller Stand dieser Version

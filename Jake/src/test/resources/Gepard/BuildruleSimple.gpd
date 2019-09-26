@@ -2,7 +2,7 @@ BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn ni
 
     ! Das Einrücken _und_ die Leerfelder sind optional. !
     ! Allerdings sollten erstmal nur Leerfelder verwendet werden !
-    ! Mit X sind Zuweisungen markiert die verpflichtend sein sollen (aber nicht sind) !
+    ! Mit X sind Zuweisungen markiert die verpflichtend sind !
 
 !X!  name                   = default     ! buildrule name für lilly-modes !
 
