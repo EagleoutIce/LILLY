@@ -1,5 +1,6 @@
 package de.eagle.lillyjakeframework.cmdline;
 
+import de.eagle.gepard.modules.Projects;
 import de.eagle.lillyjakeframework.core.CoreFunctions;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
@@ -11,7 +12,9 @@ import de.eagle.util.io.JakeWriter;
 
 import static de.eagle.util.io.JakeLogger.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @file CommandLineParser.java
@@ -35,8 +38,8 @@ import java.util.ArrayList;
  * @implNote es gibt noch eine weitere Neuerung zum Cpp-Parser. während dieser
  *           CmdLine-Argumente durch Konfigurationen überschrieben hat so haben
  *           im Java modell die Kommandozeilen Argumente stets den Vorrang, sagt
- *           also die Befehlszeile name = A und eine Konfigurationsdatei name = B
- *           so wird name = A übernommen!
+ *           also die Befehlszeile name = A und eine Konfigurationsdatei name =
+ *           B so wird name = A übernommen!
  *
  * @author Florian Sihler
  * @version 2.0.0
@@ -75,22 +78,33 @@ public class CommandLineParser {
             writeLoggerDebug1("Parsing: " + args[current_arg], "CmdLP");
             current_arg = parse_next_arg(args, current_arg, settings);
         }
-        writeLoggerInfo("Sperre nun alle in der Kommandozeile modifizierten Argumente, damit keine Konfigurationsdatei dazwischenpfuscht :D", "CmdLP");
-        for(String s : lazylocks)
+        writeLoggerInfo(
+                "Sperre nun alle in der Kommandozeile modifizierten Argumente, damit keine Konfigurationsdatei dazwischenpfuscht :D",
+                "CmdLP");
+        for (String s : lazylocks)
             settings.get(s).lock();
         return ReturnStatus.EXIT_SUCCESS;
     }
 
     public static ReturnStatus interpret_settings(String[] args) {
         String op = CoreSettings.requestValue("S_OPERATION");
-        if (CoreFunctions.functions_t.containsKey(CoreSettings.requestValue("S_OPERATION"))) {
+        if (CoreFunctions.functions_t.containsKey(op)) {
             // Operation ist valide
             CoreFunctions.functions_t.get(op).function.apply(args);
         } else {
-            JakeWriter.out.format("%sDie Operation (=%s) ist so nicht gültig, "
-                    + "schreibe \"%s help\" um Informationen über die unterstützten Operationen zu erhalten!%s%n",
-                    ColorConstants.COL_ERROR, op, Definitions.PRG_NAME, ColorConstants.COL_RESET);
-            return ReturnStatus.EXIT_FAILURE;
+            Settings projects = Definitions.projects();
+            String[] names = Projects.getInstance().getAllProjectNames(projects);
+            if(Arrays.asList(names).contains(op)){
+                // apply
+                // System.out.println("Applying: " + op);
+                Projects.getInstance().executeProject(projects, op);
+            } else {
+                JakeWriter.out.format("%sDie Operation (=%s) ist so nicht gültig, "
+                        + "schreibe \"%s help\" um Informationen über die unterstützten Operationen zu erhalten!%s%n",
+                        ColorConstants.COL_ERROR, op, Definitions.PRG_NAME, ColorConstants.COL_RESET);
+                return ReturnStatus.EXIT_FAILURE;
+            }
+            
         }
         return ReturnStatus.EXIT_SUCCESS;
     }

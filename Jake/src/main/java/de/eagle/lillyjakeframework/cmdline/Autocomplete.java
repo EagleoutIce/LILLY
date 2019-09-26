@@ -1,5 +1,7 @@
 package de.eagle.lillyjakeframework.cmdline;
 
+import de.eagle.gepard.modules.Projects;
+
 /**
  * @file Autocomplete.java
  * @author Florian Sihler
@@ -10,13 +12,14 @@ package de.eagle.lillyjakeframework.cmdline;
  * @brief Liefert die Vorschläge für die Autovervollständigung.
  */
 
-
 import de.eagle.lillyjakeframework.core.CoreFunctions;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.util.datatypes.SettingDeskriptor;
+import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -53,6 +56,8 @@ public class Autocomplete {
                     if (k.charAt(0) != Definitions.HIDDEN_ARG && k.equals(split))
                         return true;
                 }
+                for (String i : Projects.getInstance().getAllProjectNames(projects))
+                    if(split.equals(i)) return true;
             }
         }
         return false;
@@ -72,6 +77,7 @@ public class Autocomplete {
         return str.toString();
     }
 
+    private static Settings projects;
     /**
      * Gibt alle zur Verfügung stehenden Optionen aus
      *
@@ -83,6 +89,16 @@ public class Autocomplete {
             if (!s.getKey().startsWith(String.valueOf(Definitions.HIDDEN_ARG)))
                 str.append(s.getKey()).append("\t");
         }
+        // Append all Projects
+        //try {
+            for (var s : Projects.getInstance().getAllProjectNames(projects)) {
+                if (!s.startsWith(String.valueOf(Definitions.HIDDEN_ARG)))
+                    str.append(s).append("\t");
+            }
+        /*} catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        
         return str.toString();
     }
 
@@ -101,11 +117,18 @@ public class Autocomplete {
                 Stream<Path> fx = Files.list(Paths.get(""));
                 cfiles = String.join("\t", fx.map(x -> x.toString())
                         .filter(x -> (x.endsWith(".tex") || x.endsWith(".conf"))).toArray(String[]::new));
+                fx = Files.list(Paths.get(""));
                 files = String.join("\t",
                         fx.filter(x -> (x.toFile().isFile())).map(Path::toString).toArray(String[]::new));
                 fx.close();
             } catch (Exception ignored) {
+                ignored.printStackTrace();
             }
+        }
+        try {
+            projects = Projects.getInstance().getProjects(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         StringBuilder str = new StringBuilder();
         if (cmd_line == null || cmd_line.length == 0 || !was_there_what(cmd_line)) {
@@ -159,7 +182,6 @@ public class Autocomplete {
         } else {
             str.append(print_settings());
         }
-
         /**
          * Ablauf: - Operation gesehen? Nein: Auflisten .tex, .conf und Operationen
          * (wenn lilly-in spezifiziert: nutzen) Ja: Direkt Settings angeben grade by

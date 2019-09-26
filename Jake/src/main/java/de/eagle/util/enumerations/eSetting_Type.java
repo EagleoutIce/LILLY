@@ -1,4 +1,5 @@
 package de.eagle.util.enumerations;
+
 /**
  * @file eSetting_Type.java
  * @author Florian Sihler
@@ -9,6 +10,7 @@ package de.eagle.util.enumerations;
  * @see de.eagle.util.blueprints.AbstractSettings
  */
 
+import de.eagle.gepard.modules.Projects;
 import de.eagle.lillyjakeframework.core.CoreFunctions;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
@@ -16,6 +18,7 @@ import de.eagle.util.datatypes.FunctionDeskriptor;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 /**
  * Verwaltet die Typen die eine Einstellung haben kann
@@ -69,7 +72,7 @@ public enum eSetting_Type {
      * @return true if the data is valid
      */
     public static Boolean CheckOperation(String data){
-        return CoreFunctions.functions_t.containsKey(data);
+        return CoreFunctions.functions_t.containsKey(data) || Arrays.asList(Projects.getInstance().getAllProjectNames(Definitions.projects())).contains(data);
     }
 
     /**

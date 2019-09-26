@@ -149,6 +149,7 @@ public class Settings extends AbstractSettings<String, String> {
             Configurator configurator = new Configurator(this.get("file").getValue());
             configurator.parse_settings(this, true);
         }
+        try {
         Settings set = Expandables.getInstance().getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
         this._settings.forEach((key,
                 value) -> stringList.add(String.format("%s  %-20s: %s [%s]%s%s", ColorConstants.COL_RESET, key,
@@ -157,6 +158,9 @@ public class Settings extends AbstractSettings<String, String> {
                                 ? " => " + Expandables.expand(set, value.getValue())
                                 : "",
                         ColorConstants.COL_RESET)));
+        } catch (Exception ignore) {
+            // Gepardfile not vaild/found? we will ignore for now
+        }
         return stringList.toArray(new String[0]);
     }
 
@@ -222,8 +226,10 @@ public class Settings extends AbstractSettings<String, String> {
     public ReturnStatus joinConfigFile(InputStream configFile) throws IOException {
         writeLoggerDebug1("Die Einstellung: \"" + this.getName() + "\" wird durch eine Konfigurationsdatei erweitert!",
                 "Settings");
+        // System.out.println(this._settings);
         Configurator conf_loader = new Configurator(configFile);
         conf_loader.parse_settings(this, false);
+        // System.out.println(this._settings);
         return new ReturnStatus(0);
     }
 

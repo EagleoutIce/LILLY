@@ -98,7 +98,7 @@ public final class CoreFunctions {
                 JakeWriter.out.println(s);
             }
         } catch (IOException e) {
-            // e.printStackTrace();
+            e.printStackTrace();
         }
 
         return ReturnStatus.EXIT_SUCCESS;

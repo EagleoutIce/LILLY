@@ -1,0 +1,5 @@
+BEGIN project:
+    name = waffel
+    display-name = UNBENUTZT
+    configfiles = /eagle_extra/Studium/LILLY/test & bonus/projects_tests/a/a.conf, /eagle_extra/Studium/LILLY/test & bonus/projects_tests/b/b.conf
+END;

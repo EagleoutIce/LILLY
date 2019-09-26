@@ -214,7 +214,7 @@ jake REI -path: /neuer/pfad/zu/meiner/Konfiguration.conf
     \begin{bash*}
 jake REI
     \end{bash*}
-    Der Nutzerpfad gelöscht werden. So Kann man mit dieser Konfiguration den Author aller Dokumente auf sich verändern:
+    Der Nutzerpfad gelöscht werden. So kann man mit dieser Konfiguration den Author aller Dokumente auf sich verändern:
     \begin{gepard}
 ! Setze Autor für alle Dokumente: !
 lilly-author       = Kalle Uweson
@@ -251,7 +251,7 @@ BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn ni
 
     ! Das Einrücken _und_ die Leerfelder sind optional. !
     ! Allerdings sollten erstmal nur Leerfelder verwendet werden !
-    ! Mit X sind Zuweisungen markiert die verpflichtend sein sollen (aber nicht sind) !
+    ! Mit X sind Zuweisungen markiert die verpflichtend sind !
 
 !X!  name                   = default     ! buildrule name für lilly-modes !
 
@@ -367,7 +367,7 @@ Der Typ (\T{type}) einer Hook, kann die folgenden Bezeichner annehmen: \begin{ce
 Wird die Hook ausgelöst, so wird der \T{body} in der entsprechenden Shell des Betriebssystems ausgeführt. Im Falle einer geglückten Operation wird \T{on-failure} im Fehlerfall wird \T{on-success} ausgeführt.
 
 \subsection{Name Maps}
-\elable{gpd:nmaps}Um Faul bleiben zu können, wurde das \T{nmap}-Modu kreiert, welches für den Namen eines Dokuments gewisse Trigger generieren kann, die verschiedene Einstellungen setzen können. So existieren eine Reihe an Name Maps, die im Falle eines entsprechenden Dokumentnamens die jeweilige Einstellungen übernehmen:
+\elable{gpd:nmaps}Um Faul bleiben zu können, wurde das \T{nmap}-Modul kreiert, welches für den Namen eines Dokuments gewisse Trigger generieren kann, die verschiedene Einstellungen setzen können. So existieren eine Reihe an Name Maps, die im Falle eines entsprechenden Dokumentnamens die jeweilige Einstellungen übernehmen:
 \begin{tabularx}{\linewidth}{^l ^>{\scriptsize}T{6cm} ^p{0.45\linewidth}+}
     \toprule
         \headerrow Name & \normalsize Trigger & Erklärung \\
@@ -401,3 +401,63 @@ BEGIN nmap:
     lilly-semester  = 2!!
 END;
 \end{gepard}
+
+\subsection{Projekte}
+Das \T{project}-Modul erlaubt es bestimmte Kompiliervorgänge und redundante Arbeiten zu verkürzen. Ein Projekt definiert sich ersteinmal recht einfach:
+\begin{gepard}
+BEGIN project:
+!X!    name          = example 
+!X!    display-name  = Beispiel
+!X!    configfiles   = a, b, c
+END;
+\end{gepard}
+Wird nun die entsprechende Gepard-Datei geladen, kann mithilfe von \bbash{jake example} das jeweilige Projekt gestartet werden und die entsprechenden Konfigurationsdateien \T{a}, \T{b} und \T{c} werden (sofern vom System unterstützt) parallel ausgeführt. 
+
+\begin{bemerkung}[Ein Beispielprojekt]
+    Zur sinnvollen Anwendung empfiehlt es sich ein \jmark[Nutzerkonfiguration]{mrk:jdefconf} einzurichten, in der die \Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{gepardrules-path} um eine von uns kreierte \T{projects.gpd} Datei erweitert wird. Als Beispiel:
+    \begin{bash}
+jake REI -path: /tmp/userConf.conf
+echo "gepardrule-path += /tmp/projects.gpd" > /tmp/userConf.conf
+    \end{bash}
+    (Natürlich sollte die eigentliche Nutzerkonfiguration \emph{nicht} im temporären Ordner erstellt werden, es soll hier lediglich als Beispiel dienen.)\newline
+    Wir erstellen nun die entsprechende Datei \say{\T{tmp/projects.gpd}} und erstellen uns zwei Beispielprojekte:
+\begin{gepard}
+BEGIN project:
+    name          = example 
+    display-name  = Beispiel
+    configfiles   = /eagle_extra/Studium/LILLY/test & bonus/projects_tests/a/a.conf, /eagle_extra/Studium/LILLY/test & bonus/projects_tests/b/b.conf
+END;
+
+BEGIN project:
+    name          = waffel 
+    display-name  = Waffel-Projekt
+    configfiles   = /tmp/a/a.conf, /tmp/b/b.conf
+END;
+\end{gepard}
+Nun werden beim Aufrufen der Autovervollständigung von \Jake die beiden Optionen \T{example} und \T{waffel} auftauchen. Wenn wir sie allerdings ausführen möchten, kommt (vermutlich) der Fehler, dass die Konfigurationsdateien nicht korrekt sind. 
+Hier ein beispielhafter Ablauf (die Konfigurationsdateien wurden zum Test mit geeigneten Dokumenten erstellt.):
+{\lstfs{5}
+\begin{plainbash}
+> jake example
+Starte für Projekt "Beispiel" die Konfigurationsdatei: /eagle_extra/Studium/LILLY/test & bonus/projects_tests/b/b.conf
+Starte für Projekt "Beispiel" die Konfigurationsdatei: /eagle_extra/Studium/LILLY/test & bonus/projects_tests/a/a.conf
+Kompiliere Dokument: "./xax.tex" für: Florian Sihler (florian.sihler@web.de)
+> Lösche temporäre Dateien...
+Lilly PRE-Hook[debug] für PRE evaluiert zu: Verwende die Log-Datei: |plain|/tmp/lilly-temp-log8839683682010622951.temp|plain|
+Lilly IN0-Hook[compile-0] für IN0 evaluiert zu: Kompiliere 1/2 für: ./xax-OUT/DEFAULT-xax.pdf
+Lilly IN1-Hook[compile-1] für IN1 evaluiert zu: Kompiliere 2/2 für: ./xax-OUT/DEFAULT-xax.pdf
+Generierung von "./xax-OUT/DEFAULT-xax.pdf" (DEFAULT) abgeschlossen. (Zeit: 3.966s)
+> Lösche temporäre Dateien...
+Kompilieren abgeschlossen!
+Kompiliere Dokument: "./xbx.tex" für: Florian Sihler (florian.sihler@web.de)
+> Lösche temporäre Dateien...
+Lilly PRE-Hook[debug] für PRE evaluiert zu: Verwende die Log-Datei: |plain|/tmp/lilly-temp-log962120036651470328.temp|plain|
+Lilly IN0-Hook[compile-0] für IN0 evaluiert zu: Kompiliere 1/2 für: ./xbx-OUT/DEFAULT-xbx.pdf
+Lilly IN1-Hook[compile-1] für IN1 evaluiert zu: Kompiliere 2/2 für: ./xbx-OUT/DEFAULT-xbx.pdf
+Generierung von "./xbx-OUT/DEFAULT-xbx.pdf" (DEFAULT) abgeschlossen. (Zeit: 3.929s)
+> Lösche temporäre Dateien...
+Kompilieren abgeschlossen!
+\end{plainbash}
+}
+Natürlich ist es auch möglich (mit Umgebungsvariablen etc.) die Projekte nicht Rechner-spezifisch zu machen!
+\end{bemerkung}

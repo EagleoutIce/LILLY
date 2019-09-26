@@ -10,9 +10,11 @@ import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.helper.ResourceControl;
+import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import static de.eagle.lillyjakeframework.core.Definitions.PRG_BRIEF;
 import static de.eagle.util.io.JakeLogger.writeLoggerError;
@@ -41,7 +43,25 @@ public class Jake {
 
     public static void main(String[] args) throws IOException {
 
+        JakeLogger.enabled = false;
         ReturnStatus rs = CommandLineParser.parse_args(args, CoreSettings.getSettings());
+
+        // Disable Logging if '_get'
+        if(CoreSettings.requestValue("S_OPERATION").equals("_get")){
+            JakeLogger.enabled = false;
+            JakeWriter.out = new JakeWriter.MirrorStream(false, true);
+            JakeWriter.err = new JakeWriter.MirrorStream(false, false);
+        } else {
+            JakeLogger.enabled = true;
+        }
+
+        try {
+            CoreSettings.getSettings().joinConfigFile(Definitions.DEFAULT_CONFIG_STREAM);
+            if (Definitions.USER_CONFIG_PATH != null && !Definitions.USER_CONFIG_PATH.isEmpty())
+                CoreSettings.getSettings().joinConfigFile(Definitions.USER_CONFIG_PATH);
+        } catch (IOException what) {
+            writeLoggerError("Es gab einen Fehler beim Lesen der Default-Konfiguration", "Jake");
+        }
 
         if (!CoreSettings.requestValue("S_OPERATION").startsWith(String.valueOf(Definitions.HIDDEN_ARG))) {
             if (args.length > 0 && args[0].startsWith("DEI")) {
@@ -66,13 +86,6 @@ public class Jake {
             // //if()
             // }
 
-            try {
-                CoreSettings.getSettings().joinConfigFile(Definitions.DEFAULT_CONFIG_STREAM);
-                if (Definitions.USER_CONFIG_PATH != null && !Definitions.USER_CONFIG_PATH.isEmpty())
-                    CoreSettings.getSettings().joinConfigFile(Definitions.USER_CONFIG_PATH);
-            } catch (IOException what) {
-                writeLoggerError("Es gab einen Fehler beim Lesen der Default-Konfiguration", "Jake");
-            }
             // Test, if there's an Update for the existing Lilly-Installation
             if(PropertiesProvider.getOS().equals(PropertiesProvider.OS.LINUX) && ResourceControl.LillyInJarIsNewer()) {
                 // Installiere neue Version
