@@ -82,7 +82,7 @@ public class CoreSettings {
             settings.emplace(st, "S_INSTALL_PATH", "Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,
                     "\"${HOME}/texmf\"");
             settings.emplace(st, "S_LILLY_PATH", "Wo liegt die Lilly.cls?", eSetting_Type.IS_PATH,
-                    "\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \"classes\" -e \".vim\" -i -e \"backup\" | head -1))\"");
+                    "\"$(dirname $(locate -e -q 'LILLY/Lilly/Lilly.cls' | grep -v -e \".Trash\" -e \"classes\" -e \".vim\" -i -e \"backup\" | head -1))\"");
             break;
         case MAC:
             settings.emplace(st, "S_INSTALL_PATH", "Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,
@@ -189,7 +189,7 @@ public class CoreSettings {
                 "5");
 
         // Makefile Generierung
-        settings.emplace(st, "S_MK_NAME", "Wechen Namen soll das Makefile haben", eSetting_Type.IS_TEXT, "Makefile");
+        settings.emplace(st, "S_MK_NAME", "Welchen Namen soll das Makefile haben", eSetting_Type.IS_TEXT, "Makefile");
         settings.emplace(st, "S_MK_PATH", "Wohin soll das Makefile", eSetting_Type.IS_PATH, "./");
         settings.emplace(st, "S_MK_USE", "Soll ein Makefile erstellt werden", eSetting_Type.IS_SWITCH, "false");
         try {

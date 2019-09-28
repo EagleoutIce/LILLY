@@ -10,6 +10,7 @@ import de.eagle.gepard.modules.Expandables;
  * @brief Enthält die Funktionen der Kommandozeile
  */
 
+import de.eagle.gepard.modules.Generators;
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.gepard.parser.TokenMatch;
 import de.eagle.gepard.parser.Tokenizer;
@@ -66,6 +67,9 @@ public final class CoreFunctions {
             Map.entry("tokentest",
                     new FunctionDeskriptor<String[], ReturnStatus>("fkt_tokentest",
                             "Testet den Tokenizer auf seine Funktionalität", CoreFunctions::fkt_tokentest)),
+            Map.entry("generate",
+                    new FunctionDeskriptor<String[], ReturnStatus>("fkt_generate",
+                            "Startet den Generator in 'what'", CoreFunctions::fkt_generator)),
             Map.entry("config",
                     new FunctionDeskriptor<String[], ReturnStatus>("fkt_config",
                             "Lädt die Einstellungen aus der Datei 'file'", CoreFunctions::fkt_config)),
@@ -190,6 +194,18 @@ public final class CoreFunctions {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static ReturnStatus fkt_generator(String[] cmd) {
+        // Das Ziel wird durch What übermittelt
+        writeLoggerDebug3("jetzt in: fkt_generator", "func");
+        try {
+            Settings generators = Generators.getInstance().getGenerators(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+            Generators.getInstance().launchGenerator(generators, CoreSettings.requestValue("S_WHAT"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ReturnStatus.EXIT_SUCCESS;
     }
 
     public static ReturnStatus fkt_tokentest(String[] cmd) {

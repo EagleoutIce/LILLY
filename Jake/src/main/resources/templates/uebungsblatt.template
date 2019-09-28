@@ -1,0 +1,36 @@
+#./${Vorlesung}-${Ub-Nr}.tex
+
+% Erstellt am ${GEN-DATE} um ${GEN-TIME}
+% von: ${AUTHOR}
+:
+\begin{aufgabe}{Titel}{Punkte}
+    Allgemeine Aufgabenbeschreibung\ldots
+    \begin{aufgaben}[2]
+        \item Teilaufgabe a)
+        \item Teilaufgabe b)
+        \item Teilaufgabe c)
+        \item Teilaufgabe d)
+    \end{aufgaben}
+\vSplitter
+    \begin{aufgaben}
+        \item Lösung a)
+        \item Lösung b)
+        \item Lösung c)
+        \item Lösung d)
+    \end{aufgaben}
+\end{aufgabe}
+
+#./${Vorlesung}-${Ub-Nr}.conf
+operation   = file_compile
+file        = ${Vorlesung}-${Ub-Nr}.tex
+:
+lilly-modes = uebungsblatt
+lilly-show-boxname = false
+:
+lilly-boxes = ALTERNATE
+lilly-signatur-farbe = bondiBlue
+:
+lilly-nameprefix = ${cAuthor:${NAMEPREFIX}}-
+lilly-author = ${cAuthor:${AUTHOR}}
+:
+lilly-n     = ${Ub-Nr:@[AUTONUM]}

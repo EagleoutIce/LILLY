@@ -14,6 +14,7 @@ import de.eagle.util.enumerations.eProgress_State;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author Florian Sihler
@@ -60,6 +61,9 @@ public class Definitions {
     public static String RELATIVE_WORKING_DIR = "";
 
     public static final int MAX_SETTINGS_REC = 12;
+
+    public static DateTimeFormatter date_format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    public static DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public static Settings projects() {
         try {

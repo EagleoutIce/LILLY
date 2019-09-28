@@ -58,6 +58,7 @@ public class CommandLineParser {
     private static final CharSequence CONFIG_PATTERN = ".conf";
     private static final String ASSIGNMENT_PATTERN = ":";
     private static final String ADD_ASSIGN_PATTERN = "+:";
+    private static final String WHATSHORTCUT = ":";
 
     private static ArrayList<String> lazylocks;
 
@@ -134,6 +135,7 @@ public class CommandLineParser {
      */
     protected static int parse_next_arg(String[] args, int current_arg, Settings settings) {
         String carg = args[current_arg]; // current arg
+        if(carg.length()==0) return current_arg;
         if (carg.charAt(0) != ARGUMENT_PATTERN) { // einzelnes Argument
             if (carg.contains(DOCUMENT_PATTERN)) { // ist Dokument
                 writeLoggerDebug2("Identifiziert: einzelnes Argument (Dokument)", "CmdLP");
@@ -144,6 +146,10 @@ public class CommandLineParser {
                 writeLoggerDebug2("Identifiziert: einzelnes Argument (Konfiguration)", "CmdLP");
                 settings.set("operation", "config");
                 settings.set("file", carg);
+            } else if (carg.startsWith(WHATSHORTCUT)){ // ist von der Form ':Hallo', wird direkt what zugewiesen als shortcut
+                carg = carg.substring(1);
+                writeLoggerDebug2("Identifiziert: Zuweisung (für what: \"" + carg + "\")", "CmdLP");
+                settings.set("what", carg);
             } else { // normale operation
                 writeLoggerDebug2("Identifiziert: einzelnes Argument (normal: \"" + carg + "\")", "CmdLP");
                 settings.set("operation", carg);
