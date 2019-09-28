@@ -96,6 +96,8 @@ public class Projects extends AbstractGepardModule {
                     "Name der beim Ausführen angezeigt wird", eSetting_Type.IS_TEXT, true));
             blueprint.put("configfiles", SettingDeskriptor.create("configfiles",
                     "Kommaseparierte Liste an Konfigurationsdateien", eSetting_Type.IS_TEXT, true));
+            // ------ optional
+            blueprint.put("silence", SettingDeskriptor.create("silence", "Sollen die Ausgaben der einzelnen Operationen angezeigt werden?", eSetting_Type.IS_SWITCH, false, "false"));
         }
         return blueprint;
     }
@@ -136,7 +138,7 @@ public class Projects extends AbstractGepardModule {
         ArrayList<String> ret = new ArrayList<>(projects.size());
         for (var cfg : projects) {
             String key = cfg.getKey();
-            ret.add(key.substring(0, key.lastIndexOf(":")));
+            ret.add(key.substring(1, key.lastIndexOf(":")));
         }
         return ret.toArray(new String[0]);
     }
@@ -154,8 +156,8 @@ public class Projects extends AbstractGepardModule {
         writeLoggerDebug1("Bearbeite nun: " + box.toString(), "Projects");
 
         Settings settings = new Settings(box.getName());
-
-        settings.put(box.config.getValue("name") + ":" + box.config.getValue("display-name"), SettingDeskriptor
+        boolean silence = (box.config.getValue("silence") != null && !box.config.getValue("silence").equals("false"));
+        settings.put((silence?"1":"0")+box.config.getValue("name") + ":" + box.config.getValue("display-name"), SettingDeskriptor
                 .create("", "Box-Deskriptor für Project (Gepard)", box.config.getValue("configfiles")));
         writeLoggerDebug2("erhalten: " + settings.toString(), "Projects");
         return settings;
@@ -171,7 +173,7 @@ public class Projects extends AbstractGepardModule {
     public static SettingDeskriptor<String> getProject(Settings projects, String name) {
         for (var p : projects) {
             String key = p.getKey();
-            if (key.substring(0, key.lastIndexOf(":")).equals(name))
+            if (key.substring(1, key.lastIndexOf(":")).equals(name))
                 return p.getValue();
         }
         return null;
@@ -186,8 +188,12 @@ public class Projects extends AbstractGepardModule {
      */
     public ReturnStatus executeProject(Settings projects, String name) {
         SettingDeskriptor<String> project = getProject(projects, name);
-        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         String[] configfiles = project.getValue().split(",");
+        if(configfiles.length == 0){
+            JakeWriter.err.format("Das gewünschte Projekt (%s) gibt keine Konfigurationsziele an. Abbruch!%n",name);
+            return ReturnStatus.EXIT_FAILURE;
+        }
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         var files = new LinkedList<Callable<String[]>>();
         Settings expandables = new Settings("expandables");
         try {
@@ -200,14 +206,17 @@ public class Projects extends AbstractGepardModule {
             // we will expand the Path to allow Expandables to work on it :D
             _pre_m = Expandables.expand(expandables, _pre_m);
             String m = new File(_pre_m.trim()).getAbsolutePath(); // Ignore pending whitespaces
+            String g = project.getName();
             files.add(() -> {
-                String g = project.getName();
                 JakeWriter.out.println("Starte für Projekt \"" + g.substring(g.lastIndexOf(":") + 1)
                         + "\" die Konfigurationsdatei: " + m);
                 BufferedReader br = Executer
                         .runBashCommand("cd \"" + new File(m).getParent() + "\" && jake config -file: \"" + m
                                 + "\" || echo 'Error! The File [" + m + "] seems to be invalid'");
-                return br.lines().toArray(String[]::new);
+                if(g.charAt(0)=='1')
+                    return new String[] {"Kompilieren von " + m + " wird im Hintergrund fortgesetzt!"};
+                else
+                    return br.lines().toArray(String[]::new);
             });
         }
         try {

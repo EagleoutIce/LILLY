@@ -1,0 +1,78 @@
+#./${Name}.tex
+!: Diese Zeile sorgt dafür, dass das Template an diesen Ort abgelegt werden soll :!
+
+!: Dieses Template wird im 'target-mode=1' verwendet, um alle Variablen zu expandieren :!
+!: Ein solcher Kommentar wie dieser hier, wird nicht übernommen :!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Von Jake erstelltes Lilly LaTeX-File                        %%
+%% Version: @[JAKEVER]  Author: Florian Sihler                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+:
+%
+% Erstellt am ${GEN-DATE} um ${GEN-TIME}
+% von: ${AUTHOR}
+%
+% Dokumenttyp: Zusammenfassung
+%
+:
+\documentclass[Zusammenfassung,Vorlesung=${Vorlesung}]{Lilly}
+:
+\begin{document}
+
+
+\TOP{Ich bin ein Titel}{Und das ist Lustig}
+Wenn hier direkt Text kommt, sowas wie zum Beispiel ein wichtiger \kw{Begriff}, muss nnichts weiter gemacht werden!
+Auch Definitionen sind kein Problem:
+\begin{definition}[Wichtig]
+    Dies ist die wichtigste Definition die du je gelesen haben wirst \aLink{mrk:Wichtig}.
+\end{definition}
+Eine \T{description}:
+\begin{smalldesc}
+    \item[Alphabet] Malphaset
+    \item[Betabet] Wetaled
+\end{smalldesc}
+Oder auch eine \T{ditemize}-Umgebung:
+\begin{smalldite}
+    \item Punkt 1
+    \item Punkt 2
+    \item Punkt 7, tihihi
+\end{smalldite}
+\TOP{Ich bin ein besserer Titel}{Und das ist wirklich Lustig}\TOPskip
+\begin{definition}[Heyho]
+    Kommt eine Definition direkt nach einem neuen Thema, so bevorzuge ich das verringern des Abstandes!
+\end{definition}
+\customex{Dies war aber nun auch wirklch eine tolle Erklärung, finden sie nicht auch Mister Mister?}
+
+\startAppendix
+
+\TOP{Anhang, jippieh ajeah}{Wuuup wuup}
+\elable{mrk:Wichtig}Im Anhang jetzt noch ein tolles \emph{showcase}:
+\begin{center}
+\showcase{Tolle Information}{%
+    Ist das nicht wundervoll? Ich finde es eine tolle Box!
+}
+\end{center}
+Ich bin auch ein wichtiger \sw[Begriff]{Super Begriff}, und der hier ist ein \sr[Begriff]{Super Begriff}{Noch besserer Begriff}, ist das nicht \kw{wundervoll}?
+
+\begin{definition}[Anhangsdefinition]
+Hallo Günthäääär.
+\end{definition}
+
+
+\end{document}
+
+#./${Name}.conf
+
+! Es soll ein Dokument kompiliert werden. !
+operation = file_compile
+file      = ${Name}.tex
+:
+! Setze den Autor auf: ${AUTHOR} !
+lilly-author = ${AUTHOR}
+:
+! Setze die Boxen auf: LIMERENCE !
+lilly-boxes  = LIMERENCE
+:
+! Zeige den expliziten Boxmodus nicht an !
+lilly-show-boxname = false

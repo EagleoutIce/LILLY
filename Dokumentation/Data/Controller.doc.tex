@@ -357,14 +357,14 @@ Die Farbe des \T{ALTERNATE}-Designs wird durch \blankcmd{Hcolor} und damit durch
 
 \subsection{Das Zusammenfassungs-Layout}
 \elable{mrk:layoutzsf}Diese Definitionen befinden sich in der Datei: \blatex[morekeywords={[5]{LILLYxPATHxDATA}}]{:bs:LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_ZUSAMMENFASSUNG}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT} auf Basis von \blankcmd{LILLYxMODE} präsentiert. \medskip\newline
-Das schreiben einer Zusammenfassung unterscheidet sich in gewissem Maßem vom schreiben anderer Dokumente. Aus historischen Gründen wird von einer Verwendung der herömmlichen strukturbefehle wie \blankcmd{section} abgesehen. An ihre Stelle tritt der folgende Befehl, der sich automatisch im Anhang anpasst:
+Das schreiben einer Zusammenfassung unterscheidet sich in gewissem Maßem vom schreiben anderer Dokumente. Aus historischen Gründen wird von einer Verwendung der herömmlichen Strukturbefehle wie \blankcmd{section} abgesehen. An ihre Stelle tritt der folgende Befehl, der sich automatisch im Anhang anpasst:
 
 %
 %
 %
 
 \presentCommand[1.0.3]{TOP}[\optArg{mark}\manArg{Title}\manArg{Comment}]
-Setzt im \emph{Hauptteil} einen normalen Start eines neuen Themenbereichs und im \emph{Anhang} einen (im Inhaltsverzeichnis anders aufgeführten) mit \T{Anhang} angeführten neuen Bereich. Der Wechsel zwischen Hauptteil und Anhang erfolgt einmalig durch \blankcmd{startAppendix}.
+Setzt im \emph{Hauptteil} einen normalen Start eines neuen Themenbereichs und im \emph{Anhang} einen (im Inhaltsverzeichnis anders aufgeführten) neuen Bereich. Der Wechsel zwischen Hauptteil und Anhang erfolgt einmalig durch \blankcmd{startAppendix}.
 
 %
 %
@@ -399,14 +399,14 @@ Dies sind einige Kurzbefehle, die ich im Rahmen von Zusammenfassungen oft benöt
 \customex{Hallo Welt}   % ergibt: !*\lstcomment{\customex{Hallo Welt}}*!
     \end{latex}
 }
-Der Befehl \blankcmd{reg} wurde hierbei gezielt für Register ins leben gerufen und setzt den Text in \blankcmd{LILLYxlstTypeWriter}.
+Der Befehl \blankcmd{reg} wurde hierbei gezielt für Register ins Leben gerufen und setzt den Text in \blankcmd{LILLYxlstTypeWriter}.
 
 %
 %
 %
 
 \presentCommand[1.0.9]{negaskip}[\cmdlist\anothercmd[1.0.9]{negbskip}\cmdlist\anothercmd[2.0.0]{TOPskip}]
-Setzt abstände entsprechend \T{aksip} und \T{bskip}, es handelt sich hierbei um negativ Abstände, die dann verwendet werden können, wenn mehrere Umgebungen Abstände einführen.
+Setzt Abstände entsprechend \T{aksip} und \T{bskip}, es handelt sich hierbei um negativ Abstände, die dann verwendet werden können, wenn mehrere Umgebungen Abstände einführen.
 
 %
 %
