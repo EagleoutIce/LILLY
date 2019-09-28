@@ -27,7 +27,7 @@ public class ProjectsTest {
     @Tag("GePard")
     @Order(1)
     @DisplayName("[Projects] Überprüft erwartende Blueprint-Settings")
-    @CsvSource({ "name,,true", "display-name,,true", "configfiles,,true"})
+    @CsvSource({ "name,,true", "display-name,,true", "configfiles,,true", "silence,false,false"})
     void _test_gepard_projects_blueprint(String name, String expected, String mandatory) {
         SettingDeskriptor<String> s = Projects.getInstance().getBlueprint().get(name);
         Assertions.assertNotNull(s, "Die Einstellung " + name + " muss Existieren");
@@ -60,7 +60,7 @@ public class ProjectsTest {
                 this.getClass().getResource("/Gepard/ProjectSimple.gpd").getFile());
         GeneratorParser.JObject[] j = gepard.parseFile(Projects.box_name, new Settings("Projectsempty"), true);
         Assertions.assertEquals(1, j.length, "Tokenizer sollte ein obj liefern");
-        String expected = "Settings [name=project, unknownPolicy=true, settings={example:Beispiel=SettingDeskriptor [brief=Box-Deskriptor für Project (Gepard), isMandatory=false, name=example:Beispiel, type=IS_TEXT, value=\"a,b,c\"]}]";
+        String expected = "Settings [name=project, unknownPolicy=true, settings={0example:Beispiel=SettingDeskriptor [brief=Box-Deskriptor für Project (Gepard), isMandatory=false, name=0example:Beispiel, type=IS_TEXT, value=\"a,b,c\"]}]";
         Settings s = Projects.getInstance().parseBox(j[0], false);
         Assertions.assertEquals(expected, s.toString());
         //System.out.println(s);
@@ -79,7 +79,7 @@ public class ProjectsTest {
         String[] names = Projects.getInstance().getAllProjectNames(s);
         Assertions.assertEquals(5, names.length, "5 Elemente erwartet");
         for (String r : new String[] {"example", "example2", "example3", "example4", "example5"}) {
-            Assertions.assertTrue(Arrays.asList(names).contains(r), r + " Sollte als Name geliefert werden.");
+            Assertions.assertTrue(Arrays.asList(names).contains(r), r + " sollte als Name geliefert werden.");
         }
     }
 }

@@ -7,7 +7,7 @@
 
     <groupId>de.eagle.lillyjakeframework</groupId>
     <artifactId>lilly-jake-framework</artifactId>
-    <version>2.0.0-DEVELOPMENT</version>
+    <version>2.1.0-DEVELOPMENT</version>
     <packaging>jar</packaging>
 
     <name>Jake</name>

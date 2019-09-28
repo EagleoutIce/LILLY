@@ -421,7 +421,7 @@ BEGIN project:
 !X!    configfiles   = a, b, c
 END;
 \end{gepard}
-Wird nun die entsprechende Gepard-Datei geladen, kann mithilfe von \bbash{jake example} das jeweilige Projekt gestartet werden und die entsprechenden Konfigurationsdateien \T{a}, \T{b} und \T{c} werden (sofern vom System unterstützt) parallel ausgeführt.
+Wird nun die entsprechende Gepard-Datei geladen, kann mithilfe von \bbash{jake example} das jeweilige Projekt gestartet werden und die entsprechenden Konfigurationsdateien \T{a}, \T{b} und \T{c} werden (sofern vom System unterstützt) parallel ausgeführt. Mit der optionalen Einstellung \T{silence} (setzen auf \T{true}) kann die Ausgabe unterdrückt und das Terminal somit direkt freigegeben werden.
 
 \begin{bemerkung}[Ein Beispielprojekt]
     Zur sinnvollen Anwendung empfiehlt es sich ein \jmark[Nutzerkonfiguration]{mrk:jdefconf} einzurichten, in der die \Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{gepardrule-path} um eine von uns kreierte \T{projects.gpd} Datei erweitert wird. Als Beispiel:
