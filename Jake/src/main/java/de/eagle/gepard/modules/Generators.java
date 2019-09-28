@@ -140,9 +140,7 @@ public class Generators extends AbstractGepardModule{
         // settings.put("0test2!Name!Bitte gib den Namen der Konfiguration an!HAMSTER!Ich bin optional", SettingDeskriptor.create("test2", "Exemplarischer Generator.", eSetting_Type.IS_TEXT, false, "!/templates/test2.template"));
         settings.put("1mitschrieb!Name!Bitte gib den Namen der Datei an", SettingDeskriptor.create("mitschrieb", "Generiert die Dateien für einen Mitschrieb.", eSetting_Type.IS_TEXT, false, "!/templates/mitschrieb.template"));
         settings.put("1uebungsblatt!Vorlesung!Bitte gib die zugehörige Vorlesung an (ANA1, LAII, ...)!Ub-Nr!Bitte gib die Nummer des Übungsblattes an!cAuthor!Bitte gib den Namen der Autoren des Übungsblattes an [optional]", SettingDeskriptor.create("uebungsblatt", "Generiert die Dateien für ein Übungsblatt.", eSetting_Type.IS_TEXT, false, "!/templates/uebungsblatt.template"));
-
         // settings.put("test:thereal", SettingDeskriptor.create("test", "hihi" , eSetting_Type.IS_TEXT, false));
-        // Es sollte keine Standardprojekte geben
         return settings;
     }
 

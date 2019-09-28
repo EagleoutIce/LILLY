@@ -13,6 +13,11 @@ package de.eagle.gepard.parser;
  * @see Tokenizer
  */
 
+import de.eagle.gepard.modules.Generators;
+import de.eagle.lillyjakeframework.core.CoreFunctions;
+import de.eagle.util.datatypes.FunctionCollector;
+import de.eagle.util.datatypes.FunctionDeskriptor;
+import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.io.JakeWriter;
 
@@ -20,6 +25,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,6 +71,12 @@ public class GeneratorParser {
     /// Entspricht der Zeilenanzahl (fürs debugging)
     private int __lineCount;
 
+    /*private static final FunctionCollector<JObject , Settings > _bhandler =  new FunctionCollector<>(Map.ofEntries(
+            Map.entry(Generators.box_name,
+                    new FunctionDeskriptor<JObject, ReturnStatus>(Generators.box_name, "Zeigt diese Hilfe an",
+                            CoreFunctions::fkt_help)),
+            ));
+    */
     /**
      * Konstruiert den Generator Parser (GePard)
      *

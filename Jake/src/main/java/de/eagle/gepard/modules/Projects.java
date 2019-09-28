@@ -189,8 +189,17 @@ public class Projects extends AbstractGepardModule {
         ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         String[] configfiles = project.getValue().split(",");
         var files = new LinkedList<Callable<String[]>>();
+        Settings expandables = new Settings("expandables");
+        try {
+            expandables = Expandables.getInstance().expandsCS();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for (String s : configfiles) {
-            String m = new File(s.trim()).getAbsolutePath(); // Ignore pending whitespaces
+            String _pre_m = s.trim();
+            // we will expand the Path to allow Expandables to work on it :D
+            _pre_m = Expandables.expand(expandables, _pre_m);
+            String m = new File(_pre_m.trim()).getAbsolutePath(); // Ignore pending whitespaces
             files.add(() -> {
                 String g = project.getName();
                 JakeWriter.out.println("Starte für Projekt \"" + g.substring(g.lastIndexOf(":") + 1)

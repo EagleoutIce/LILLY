@@ -18,6 +18,7 @@ import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.gui.core.SubForms.CompileWatcher;
 import de.eagle.lillyjakeframework.gui.core.Tools.ConfigEditor;
+import de.eagle.lillyjakeframework.gui.core.Tools.GepardEditor;
 import de.eagle.util.datatypes.JakeDocument;
 import de.eagle.util.enumerations.eDocument_Type;
 import de.eagle.util.helper.PropertiesProvider;
@@ -62,6 +63,7 @@ public class GUICompile extends JFrame {
     private JTable DataTable;
     private JPanel ToolsGroup;
     private JButton btEditConfig;
+    private JButton btEditGepard;
 
     JakeDocument loadedDoc = null;
 
@@ -222,6 +224,14 @@ public class GUICompile extends JFrame {
                 }
             }
         });
+        btEditGepard.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                GepardEditor ce = new GepardEditor();
+                ce.setModal(true);
+                ce.setVisible(true);
+            }
+        });
 
         btCompile.addActionListener(new ActionListener() {
             @Override
@@ -282,7 +292,7 @@ public class GUICompile extends JFrame {
      */
     private void $$$setupUI$$$() {
         MainPanel = new JPanel();
-        MainPanel.setLayout(new GridLayoutManager(4, 4, new Insets(3, 3, 3, 3), -1, -1));
+        MainPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 4, new Insets(3, 3, 3, 3), -1, -1));
         MainPanel.setMaximumSize(new Dimension(-1, -1));
         MainPanel.setMinimumSize(new Dimension(162, 100));
         MainPanel.setOpaque(true);
@@ -292,20 +302,20 @@ public class GUICompile extends JFrame {
         btSelectFile.setHideActionText(false);
         btSelectFile.setText("Select File");
         btSelectFile.setToolTipText("Open a File Chooser to Pick the File you want to compile");
-        MainPanel.add(btSelectFile, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        MainPanel.add(btSelectFile, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btCompile = new JButton();
         btCompile.setBackground(new Color(-15100068));
         btCompile.setEnabled(false);
         btCompile.setForeground(new Color(-197377));
         btCompile.setText("Compile");
         btCompile.setToolTipText("Press to Compile the Document :D");
-        MainPanel.add(btCompile, new GridConstraints(3, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        MainPanel.add(btCompile, new com.intellij.uiDesigner.core.GridConstraints(3, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cbFileCorrect = new JCheckBox();
         cbFileCorrect.setEnabled(false);
         cbFileCorrect.setText("");
-        MainPanel.add(cbFileCorrect, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        MainPanel.add(cbFileCorrect, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        MainPanel.add(scrollPane1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        MainPanel.add(scrollPane1, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         DataTable = new JTable();
         DataTable.setAutoCreateRowSorter(true);
         DataTable.setAutoResizeMode(2);
@@ -320,21 +330,24 @@ public class GUICompile extends JFrame {
         tfFMainFile = new JTextField();
         tfFMainFile.setText("File");
         tfFMainFile.setToolTipText("The file that should be compiled");
-        MainPanel.add(tfFMainFile, new GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(70, -1), null, 0, false));
+        MainPanel.add(tfFMainFile, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(70, -1), null, 0, false));
         lbStatus = new JLabel();
         lbStatus.setText("Entering Data");
-        MainPanel.add(lbStatus, new GridConstraints(3, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        MainPanel.add(lbStatus, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ToolsGroup = new JPanel();
-        ToolsGroup.setLayout(new GridLayoutManager(1, 2, new Insets(3, 3, 3, 3), -1, -1));
+        ToolsGroup.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(3, 3, 3, 3), -1, -1));
         ToolsGroup.setToolTipText("Nice Tools");
-        MainPanel.add(ToolsGroup, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        MainPanel.add(ToolsGroup, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         ToolsGroup.setBorder(BorderFactory.createTitledBorder("Tools"));
         btEditConfig = new JButton();
         btEditConfig.setEnabled(true);
         btEditConfig.setText("Config");
-        ToolsGroup.add(btEditConfig, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer1 = new Spacer();
-        ToolsGroup.add(spacer1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        ToolsGroup.add(btEditConfig, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btEditGepard = new JButton();
+        btEditGepard.setText("Gepard");
+        ToolsGroup.add(btEditGepard, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
+        ToolsGroup.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
     }
 
     /**
