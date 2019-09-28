@@ -108,6 +108,7 @@ public class NameMaps extends AbstractGepardModule {
         return settings;
     }
 
+    private static HashMap<String,Settings> cached = new HashMap<>();
 
     /**
      * Bearbeitet eine komplette Datei
@@ -120,9 +121,15 @@ public class NameMaps extends AbstractGepardModule {
     public Settings getNameMaps(String rulefiles) throws IOException {
         if (rulefiles.isEmpty())
             return getDefaults();
-
-        GeneratorParser gp = new GeneratorParser(rulefiles);
-        return parseRules(gp.parseFile(NameMaps.box_name, getBlueprint(), add_unknown), false);
+        if(cached.containsKey(rulefiles)) {
+            writeLoggerDebug1("Will use already cached values for: " + rulefiles, "nmaps");
+            return cached.get(rulefiles);
+        } else {
+            GeneratorParser gp = new GeneratorParser(rulefiles);
+            Settings sets = parseRules(gp.parseFile(NameMaps.box_name, getBlueprint(), add_unknown), false);
+            cached.put(rulefiles, sets.cloneSettings());
+            return sets;
+        }
     }
 
     /**
