@@ -23,7 +23,9 @@ import de.eagle.util.io.JakeWriter;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -230,9 +232,55 @@ public class GeneratorParser {
         }
     }
 
+    private static HashMap<String,LinkedList<JObject>> cached = new HashMap<>();
+
+    private LinkedList<JObject> filter(LinkedList<JObject> in, String filter) {
+        Pattern p_boxname = Pattern.compile(filter, Pattern.MULTILINE);
+        LinkedList<JObject> returns = new LinkedList<>();
+        for(JObject jo : in) {
+            if (p_boxname.matcher(jo.getName()).matches()){
+                returns.push(jo);
+            }
+        }
+        return returns;
+    }
+
+
+    // /**
+    //  * Works similar to {@link #rawParseFile}, but uses caching for the Boxes
+    //  * 
+    //  * @param identifier  der Name der Blöcke die Analysiert werden sollen
+    //  * @param blueprint   die Zugrunde liegenden Einstellungen - es ist nicht
+    //  *                    erlaubt unbekannte hinzu zu fügen
+    //  * @param add_unknown sollen unbekannte hinzugefügt werden? siehe: @ref
+    //  *                    Configurator
+    //  *
+    //  * @return Alle gefundenen Objekte. Wird keins Gefunden so wird ein leerer
+    //  *         Vektor zurück geben
+    //  *
+    //  * @throws IOException Im Falle eines Fehlers beim Verarbeiten des Streams
+    //  */
+    // public JObject[] parseFile(String identifier, Settings blueprint, boolean add_unknown) throws IOException {
+    //     LinkedList<JObject> jobjects = new LinkedList<JObject>();
+    //     for (String path : this._op_paths) {
+    //         if(cached.containsKey(path)){
+    //             writeLoggerDebug1("Will use already cached values for: " + path, "GeneratorParser");
+    //             jobjects.addAll(cached.get(path));
+    //         } else {
+    //             // Change that, so that we will always join the Boxes with the requested settings at shipout!
+    //             LinkedList<JObject> tmps = rawParseFile(path, /* wir wollen alle Boxen */ "", blueprint, true /* fix, this is clanky? */);
+    //             cached.put(path,tmps);
+    //             jobjects.addAll(tmps);
+    //         }
+    //     }
+    //     return filter(jobjects, identifier).toArray(JObject[]::new);
+    // }
+
+
     /**
      * Extrahiert alle 'identifier'-Definitionen aus einer Datei
      *
+     * @param path     Path to work on
      * @param identifier  der Name der Blöcke die Analysiert werden sollen
      * @param blueprint   die Zugrunde liegenden Einstellungen - es ist nicht
      *                    erlaubt unbekannte hinzu zu fügen
@@ -244,7 +292,7 @@ public class GeneratorParser {
      *
      * @throws IOException Im Falle eines Fehlers beim Verarbeiten des Streams
      */
-    public JObject[] parseFile(String identifier, Settings blueprint, boolean add_unknown) throws IOException {
+    public /*LinkedList<JObject>*/ JObject[] /*raw*/parseFile(/*String path,*/ String identifier, Settings blueprint, boolean add_unknown) throws IOException {
         Box current_box;
         LinkedList<JObject> jobjects = new LinkedList<JObject>();
         for (String path : this._op_paths) {
@@ -262,7 +310,7 @@ public class GeneratorParser {
             }
         }
         writeLoggerInfo("Bearbeiten aller Dateien abgeschlossen", "GePard");
-        return jobjects.toArray(new JObject[0]);
+        return jobjects.toArray(JObject[]::new);
     }
 
     /**0

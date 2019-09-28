@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -217,11 +218,12 @@ public class Expandables extends AbstractGepardModule{
         return settings;
     }
 
+    private static HashMap<String,Settings> cached = new HashMap<>();
+
     /**
      * Bearbeitet eine komplette Datei
      *
-     * @param rulefiles die Liste der rulefiles (durch -TODO: settings- ':'
-     *                  getrennt)
+     * @param rulefiles die Liste der rulefiles
      * @return Einstellungen die entsprechend der Boxen konfiguriert sind
      * @throws IOException Im Falle eines Fails von
      *                     {@link GeneratorParser#parseFile(String, Settings, boolean)}
@@ -229,9 +231,15 @@ public class Expandables extends AbstractGepardModule{
     public Settings getExpandables(String rulefiles) throws IOException {
         if (rulefiles.isEmpty())
             return getDefaults();
-
-        GeneratorParser gp = new GeneratorParser(rulefiles);
-        return parseRules(gp.parseFile(Expandables.box_name, getBlueprint(), add_unknown), false);
+        if(cached.containsKey(rulefiles)) {
+            writeLoggerDebug1("Will use already cached values for: " + rulefiles, "expandables");
+            return cached.get(rulefiles);
+        } else {
+            GeneratorParser gp = new GeneratorParser(rulefiles);
+            Settings sets = parseRules(gp.parseFile(Expandables.box_name, getBlueprint(), add_unknown), false);
+            cached.put(rulefiles, sets.cloneSettings());
+            return sets;
+        }
     }
 
     /**
