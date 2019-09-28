@@ -124,11 +124,39 @@
   pic me set={ifile}{importantfile},
 }
 
+% \DeclareDocumentEnvironment{fancydir}{
+%   O{} % forest opts CURRENTLY UNUSED :D
+%   o % forest main content, allows to set forest opts if set
+% }{%
+% \IfValueTF{#2}{%
+% %     \ifthenelse{\equal{#1}{}}{
+% %       \begingroup
+% %     }{
+% %       \resizebox{#1}{!}\begingroup
+% %     }
+%     \forest
+%     pic dir tree,%
+%     pic root,%
+%     for tree={dir,},%
+%       [#2]%
+%     }{%
+%     \forest
+%     pic dir tree,%
+%     pic root,%
+%     for tree={dir,},%
+%     [#1]}
+% }{\endforest\endgroup}
 
-\newenvironment{fancydir}{%
-\forest%
+
+\environbodyname\STLXTREE% forest uses \BODY too. collision prevention over 9000
+\bracketset{action character=@}
+\NewEnviron{fancydir}{%
+\parbox{1\linewidth}{
+\begin{forest}%
     pic dir tree,%
     pic root,%
     for tree={dir,}%
-    }{%
-\endforest}%
+    @\STLXTREE
+\end{forest}%
+}}%
+\environbodyname\BODY% For the others, we don't want to change that

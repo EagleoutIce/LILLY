@@ -273,7 +273,7 @@ public class JakeCompile {
                 String final_name = b_data[B_NAME]
                         + (CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME") ? boxmode + "-" : "")
                         + new File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+$", "");
-                final_name = final_name.replace("\"", "");
+                final_name = final_name.replace("\"", "").replace(" ","-"); // We can't allow spaces :/
 
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL")) {
                     writeLoggerInfo("Erstelle Ghost Dokument...", tag);

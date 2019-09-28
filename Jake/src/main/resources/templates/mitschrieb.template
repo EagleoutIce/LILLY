@@ -1,0 +1,41 @@
+#./${Name}.tex
+!: Diese Zeile sorgt dafür, dass das Template an diesen Ort abgelegt werden soll :!
+
+!: Dieses Template wird im 'target-mode=1' verwendet, um alle Variablen zu expandieren :!
+!: Ein solcher Kommentar wie dieser hier, wird nicht übernommen :!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Von Jake erstelltes Lilly LaTeX-File                        %%
+%% Version: @[JAKEVER]  Author: Florian Sihler                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+:
+%
+% Erstellt am ${GEN-DATE} um ${GEN-TIME}
+% von: ${AUTHOR}
+%
+% Dokumenttyp: Mitschrieb
+%
+:
+\documentclass[Mitschrieb,Jake]{Lilly}
+:
+\begin{document}
+Hallo Welt\newline
+Lilly-Version: \LILLYxSTATUS\newline
+Status: \LILLYxSTATUS\newline
+Colormap: \LILLYxCOLORxRainbow
+\end{document}
+
+#./${Name}.conf
+
+! Es soll ein Dokument kompiliert werden. !
+operation = file_compile
+file      = ${Name}.tex
+:
+! Setze den Autor auf: ${AUTHOR} !
+lilly-author = ${AUTHOR}
+:
+! Setze die Boxen auf: LIMERENCE !
+lilly-boxes  = LIMERENCE
+:
+! Zeige den expliziten Boxmodus nicht an !
+lilly-show-boxname = false

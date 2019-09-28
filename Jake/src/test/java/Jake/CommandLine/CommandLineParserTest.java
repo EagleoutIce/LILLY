@@ -6,9 +6,11 @@ package Jake.CommandLine; /**
               * @brief Testet die Deifnitionen auf plausibilität
               */
 
+import de.eagle.lillyjakeframework.core.CoreSettings;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -69,6 +71,17 @@ class CommandLineParserTest {
             Assertions.assertEquals(exp_arr[i + 1], args_settings.getValue(exp_arr[i]),
                     "Einstellung muss identisch sein");
         }
+    }
+
+    @Tag("Parse")
+    @DisplayName("[CmdLineParser] Teste parse_next_arg")
+    @Test
+    void _test_cmd_line_what_shortcut() {
+        Settings args_settings = new Settings("ParseNextArg TestSettings");
+        args_settings.put("what",
+                SettingDeskriptor.create("what", "testwhat", eSetting_Type.IS_TEXT, false, ""));
+        CommandLineParser.parse_args(new String[]{"dump",":testwhat",""}, args_settings);
+        Assertions.assertEquals("testwhat", args_settings.getValue("what"));
     }
 
     //TODO: Teste Locks :D

@@ -152,7 +152,7 @@ public class Settings extends AbstractSettings<String, String> {
         try {
         Settings set = Expandables.getInstance().getExpandables(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
         this._settings.forEach((key,
-                value) -> stringList.add(String.format("%s  %-20s: %s [%s]%s%s", ColorConstants.COL_RESET, key,
+                value) -> stringList.add(String.format("%s  %-25s: %s [%s]%s%s", ColorConstants.COL_RESET, key,
                         ColorConstants.STY_PARAM, value.getValue(),
                         (!(Expandables.expand(set, value.getValue())).equals(value.getValue()))
                                 ? " => " + Expandables.expand(set, value.getValue())
