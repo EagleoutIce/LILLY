@@ -149,6 +149,7 @@ An sich gibt es keine klare Regel, nach der ein Titelbild generiert werden muss.
 \end{ditemize}
 
 \section{Eine Präsentation erstellen}
+\subsection{KIZ-Theme}
 \elable{mrk:beamerKIZexample}Zum Erstellen von Präsentationen, kommt zusammen mit Lilly das Beamer-Theme \T{lillyKIZ}, welches eine \T{beamer}-Präsentation mit einem anderen Design versieht und die zu verwendenden Befehle modifiziert. Ersteinmal eine Übersicht, wie das Ganze am Ende aussieht:
 \begin{tcbraster}[raster columns=3, blankest,colback=white]
     \tcbincludepdf{Data/Documents/BeamerThemelillyKIZ/presentation.pdf}
@@ -186,6 +187,15 @@ Sollte anstelle von \blankenv{frame} verwendet werden, kümmert sich um die Numm
     \ilatex{Data/Documents/BeamerThemelillyKIZ/presentation.tex}
     Er befindet sich (in den Quelldateien der Dokumentation) im folgenden Ordner:  \blatex{Data/Documents/BeamerThemelillyKIZ}.
 \end{bemerkung}
+
+\subsection{Lucy-Theme}
+Mit \LILLYxBOXxVersion{2.1.0} kommt Lilly zudem mit dem Beamer-Thema \T{lucy}, welches meinem standard-Präsentationsthema aus der Schule nachempfunden ist. Es liefert keine neuen Umgebungen und bettet sich in das normale \T{beamer}-Layout ein. Ein Beispiel befindet sich (in den Quelldateien der Dokumentation) im folgenden Ordner: \blatex{Data/Documents/BeamerThemelucy} und entspricht der Präsentation fürs mündliche Abitur:
+\begin{tcbraster}[raster columns=3, blankest, graphics pages={4,8,16,20,28,34}, colback=white]
+    \tcbincludepdf{Data/Documents/BeamerThemelucy/lucy_test.pdf}
+\end{tcbraster}
+
+\presentCommand[2.1.0]{parallelcontent}[\manArg{left}\manArg{right}]
+Setzt \T{left} un \T{right} nebeneinander auf die Folie.
 
 \section{Einen Generator kreieren}
 \elable{mrk:gpdgenerators}Auf Basis des Gepard-Moduls \jmark[Generators]{gpd:generators} gilt es in diesem Abschnitt einen dem Mitschrieb-Generator ähnlichen Generator für ein Übungsblatt aufzubauen. Da (vor allem bezüglich der Variablen) dieser Aufbau wechselseitig abläuft wird deswegen an den beiden Dateien (der \T{.gpd}-Datei für die Gepard-Definition und der \T{.template}-Datei für das Template) nebenläufig gearbeitet. Zuerst erzeugen wir eine entsprechende Datei \T{uebungsblatt.gpd}:
