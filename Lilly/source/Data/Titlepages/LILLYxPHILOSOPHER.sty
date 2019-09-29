@@ -170,7 +170,7 @@
     \filldraw[#1] (0,0) |- ++(#6,1.25) -- ++(-0.75,-1.25) -- cycle;
     \node[right,#2] at (\LILLYxLeftsep,0.5) {\Huge\bfseries#3};
     \begin{pgfinterruptboundingbox}
-    \node[left] at(\paperwidth-1.5cm,0.45) {\includegraphics[height=11em]{#7}};
+    \node[left] at(\paperwidth-1.5cm,0.45) {\IfFileExists{#7}{\includegraphics[height=11em]{#7}}{\parbox[t][11em]{7em}{No Image}}};
     \end{pgfinterruptboundingbox}
 \end{tikzternal}
     } {\par\vspace*{9em}\par}%
@@ -209,7 +209,7 @@
         {\centering\par\vspace*{7em}\par
             {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par}
             \par\vspace*{11em}\par
-            \IfValueTF{#1}{\includegraphics[height=20em]{#1}}{\parbox[l][20em]{1em}{}}
+            \IfValueTF{#1}{\IfFileExists{#1}{\includegraphics[height=20em]{#1}}{\parbox[t][20em]{12em}{\Large No Image}}}{\parbox[t][20em]{1em}{}}
             \par\vfill\vspace{2em}\par
         }
         \hbox{}\vfill
