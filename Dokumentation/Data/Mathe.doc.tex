@@ -7,9 +7,9 @@
 \end{center}
 
 Das Laden des Pakets mit LILLY kann durch die Option \T{math} aktiviert werden (Standard) und durch \T{nomath} entsprechend dekativiert. So sorgt das Deklarieren von:
-\begin{latex}
+\begin{latex*}
 \documentclass[nomath]{Lilly}
-\end{latex}
+\end{latex*}
 Für ein Lilly-Dokument ohne \LILLYxNOTExLibrary{LILLYxMATH}.
 
 %
@@ -233,7 +233,7 @@ Hier werden einige Befehle eingerichtet, die entweder noch nicht zugeordnet wurd
 %
 
 \presentCommand[1.0.0]{enum}[\manArg{items}\cmdlist \anothercmd[1.0.0]{liste}\manArg{items}]
-Hier befinden sich die für \la kreierten: \T{\blankcmd{enum}\manArg{items}} (\verb|enumerate| mit \newline\blankcmd{narrowitems}) und \T{\blankcmd{liste}\manArg{items}} (\verb|enumerate| mit römischen Zahlen und \newline\blankcmd{narrowitems}).
+Hier befinden sich die für \la kreierten: \T{\blankcmd{enum}\manArg{items}} (\blankenv{enumerate} mit \newline\blankcmd{narrowitems}) und \T{\blankcmd{liste}\manArg{items}} (\blankenv{enumerate} mit römischen Zahlen und \newline\blankcmd{narrowitems}).
 
 %
 %

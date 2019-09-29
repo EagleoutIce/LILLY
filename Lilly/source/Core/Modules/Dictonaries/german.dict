@@ -1,0 +1,9 @@
+%% All Default Translations will be applied to German, so this will have no effect whatsoever :D
+%% it will hold shortcuts or other 'non-german' translations
+
+\deftranslation{Alle Saetze}{Alle S\"{a}tze}
+\deftranslation{Loesung}{L\"{o}sung}
+\deftranslation{Uebungsblatt}{\"{U}bungsblatt}
+\deftranslation{Alle Uebungsblaetter}{Alle \"{U}bungsbl\"{a}tter}
+
+\deftranslation{Maerz}{M\"{a}rz}

@@ -1,0 +1,62 @@
+\deftranslation{Inhaltsverzeichnis}{Table of Contents}
+
+\deftranslation{und}{and}
+
+%% Gedichte
+\deftranslation{Gedichtsammlung}{Poetry Collection}
+\deftranslation{Alle Zitate}{List of Quotes}
+\deftranslation{Gedichte der Jahre}{Poems from}
+
+%% Wochentage
+\deftranslation{Montag}{Monday}
+\deftranslation{Dienstag}{Tuesday}
+\deftranslation{Mittwoch}{Wednesday}
+\deftranslation{Donnerstag}{Thursday}
+\deftranslation{Freitag}{Friday}
+\deftranslation{Sammstag}{Saturday}
+\deftranslation{Sonntag}{Sunday}
+
+%% Monate
+\deftranslation{Januar}{January}
+\deftranslation{Februar}{Februrary}
+\deftranslation{Maerz}{March}
+\deftranslation{April}{April}
+\deftranslation{Mai}{May}
+\deftranslation{Juni}{June}
+\deftranslation{Juli}{July}
+\deftranslation{August}{August}
+\deftranslation{September}{September}
+\deftranslation{Oktober}{October}
+\deftranslation{November}{November}
+\deftranslation{Dezember}{December}
+
+
+%% Universität
+\deftranslation{Vorlesung}{Lecture}
+\deftranslation{Uebung}{Exercise}
+\deftranslation{Tutorium}{Tutorial}
+
+%% Boxen
+\deftranslation{Alle Bemerkungen}{List of Comments}
+\deftranslation{Bemerkung}{Comment}
+\deftranslation{Alle Beispiele}{List of Examples}
+\deftranslation{Beispiel}{Example}
+\deftranslation{Alle Saetze}{List of Examples}
+\deftranslation{Satz}{Theorem}
+\deftranslation{Alle Beweise}{List of Proofs}
+\deftranslation{Beweis}{Proof}
+\deftranslation{Alle Zusammenfassungen}{List of summaries}
+\deftranslation{Zusammenfassung}{Summary}
+\deftranslation{Alle Aufgaben}{List of exercises}
+\deftranslation{Aufgabe}{Exercise}
+\deftranslation{Loesung}{Solution}
+
+\deftranslation{Alle Uebungsblaetter}{List of exercise sheets}
+\deftranslation{Uebungsblatt}{Exercise Sheet}
+
+% Transcripts
+
+\deftranslation{Sitzung}{Meeting}
+\deftranslation{Sitzung des}{Meeting of}
+\deftranslation{Ende der}{End of}
+\deftranslation{Teilnehmer}{attendees}

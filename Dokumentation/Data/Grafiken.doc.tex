@@ -276,7 +276,7 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
 \begin{center}
 \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.65\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\scriptsize\begin{latex}
+    {\scriptsize\begin{plainlatex}
 \begin{tikzternal}[scale=1,
     every node/.style={minimum size=12pt,transform shape},
     state/.style={circle, !*\T{draw}*!, minimum size=20pt},
@@ -290,7 +290,7 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
     \loopTop[4]{1}{\T{4}};
     \loopRight[4]{2}{\T{2}};
 \end{tikzternal}
-    \end{latex}
+    \end{plainlatex}
     } &      \begin{tikzternal}[scale=1,
         every node/.style={minimum size=12pt,transform shape},
         state/.style={circle, draw, minimum size=20pt},
@@ -577,7 +577,7 @@ Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereit
 \begin{center}
     \begin{tabular}{C{0.45\linewidth}_C{0.45\linewidth}}
         \getPrerendered{Eigene/Proseminar/Cluster/rolf-special} & \getPrerendered{Software/ThreadStates-pdf} \\
-        {\tiny \blatex{:bs:getPrerendered\{Eigene/Proseminar/Cluster/rolf-special\}}} & {\tiny\blatex{:bs:getPrerendered\{Software/ThreadState-pdf\}}}
+        {\tiny \blatex[morekeywords={[5]{getPrerendered}}]{:bs:getPrerendered\{Eigene/Proseminar/Cluster/rolf-special\}}} & {\tiny\blatex[morekeywords={[5]{getPrerendered}}]{:bs:getPrerendered\{Software/ThreadState-pdf\}}}
     \end{tabular}
 \end{center}
 %Weiter existiert der Befehl \blankcmd{lillyGraphicsUsePrerenderedtrue}, mit dem automatisch jeder \blankcmd{getGraphics}-Aufruf in einen entsprechenden \blankcmd{getPrerendered} Aufruf umgewandelt wird.
