@@ -1,7 +1,21 @@
 \headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
 \headcommand {\beamer@framepages {1}{1}}
-\headcommand {\beamer@partpages {1}{1}}
-\headcommand {\beamer@subsectionpages {1}{1}}
-\headcommand {\beamer@sectionpages {1}{1}}
-\headcommand {\beamer@documentpages {1}}
-\headcommand {\gdef \inserttotalframenumber {1}}
+\headcommand {\slideentry {0}{0}{2}{2/4}{}{0}}
+\headcommand {\beamer@framepages {2}{4}}
+\headcommand {\slideentry {0}{0}{3}{5/10}{}{0}}
+\headcommand {\beamer@framepages {5}{10}}
+\headcommand {\slideentry {0}{0}{4}{11/16}{}{0}}
+\headcommand {\beamer@framepages {11}{16}}
+\headcommand {\slideentry {0}{0}{5}{17/20}{}{0}}
+\headcommand {\beamer@framepages {17}{20}}
+\headcommand {\slideentry {0}{0}{6}{21/28}{}{0}}
+\headcommand {\beamer@framepages {21}{28}}
+\headcommand {\slideentry {0}{0}{7}{29/31}{}{0}}
+\headcommand {\beamer@framepages {29}{31}}
+\headcommand {\slideentry {0}{0}{8}{32/34}{}{0}}
+\headcommand {\beamer@framepages {32}{34}}
+\headcommand {\beamer@partpages {1}{34}}
+\headcommand {\beamer@subsectionpages {1}{34}}
+\headcommand {\beamer@sectionpages {1}{34}}
+\headcommand {\beamer@documentpages {34}}
+\headcommand {\gdef \inserttotalframenumber {8}}
