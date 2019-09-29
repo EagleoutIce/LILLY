@@ -88,6 +88,8 @@
 %%\RequirePackage[\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight},top=1.25in,centering]{geometry}
 %top=1.5in,bottom=1.25in,textwidth=6.25in]{geometry}
 
+\RequirePackage{LILLYxSHOWCASE}
+
 %% NEU, weil cooler:
 
 \LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}%% Package, Info

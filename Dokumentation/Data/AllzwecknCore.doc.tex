@@ -134,14 +134,14 @@ Liefert die Länge der Liste, sofern der Seperator ein Komma oder ein anderer vo
 %
 
 \presentCommand[2.0.0]{containsList}[\manArg{ListName}\manArg{search}]
-Vergleicht die vollexpandierten Werte einer \emph{kommaseparierten} Liste mit dem entsprechenden Suchbegriff und expandiert zu \blankcmd{true} (TRUE), wenn das Suchwort gefunden wird. Es ist geplant, dass dieser Ausdruck zu einem regulären TeX-\T{if} expandiert und in \blankcmd{iflistcontains} umgenannt wird.
+Vergleicht die vollexpandierten Werte einer \emph{kommaseparierten} Liste mit dem entsprechenden Suchbegriff und expandiert zu \blankcmd{true} (TRUE), wenn das Suchwort gefunden wird. Es ist geplant, dass dieser Ausdruck zu einem regulären TeX-\T{if} expandiert und in \blankcmd{iflistcontains} umbenannt wird.
 
 %
 %
 %
 
 \presentCommand[2.0.0]{typesetList}[\optArg[typesetVoid]{command}\manArg{ListName}]
-Setzt die Liste in deutscher Listen-Notation, wobei auf jedes Element das entsprechend als \T{command} übergebene Makro angewendet wird, welches als ein Argument den zu setzenden Text entgegen nehmen sollte. Der Standardbefehl \T{typesetVoid}, liefert den Text einfach wieder zurück, allerdings lässt sich wie folgt relativ einfach eine Liste an Befehlen setzen, der Befehl \blankcmd{blankcmd} setzt den Text als Befehl in entsprechender Farbe (\T{\blankcmd{blankcmd}\{hallo\}}: \blankcmd{hallo}):
+Setzt die Liste in deutscher Listen-Notation, wobei auf jedes Element das entsprechend als \T{command} übergebene Makro angewendet wird, welches als ein Argument den zu setzenden Text entgegen nehmen sollte (mit \LILLYxBOXxVersion{2.1.0} wird die Sprache berücksichtigt). Der Standardbefehl \T{typesetVoid}, liefert den Text einfach wieder zurück, allerdings lässt sich wie folgt relativ einfach eine Liste an Befehlen setzen, der Befehl \blankcmd{blankcmd} setzt den Text als Befehl in entsprechender Farbe (\T{\blankcmd{blankcmd}\{hallo\}}: \blankcmd{hallo}):
 \begin{latex*}
 \typesetList[blankcmd]{Ich, mag, züüüge, so viele züüge}.
 \end{latex*}
@@ -867,6 +867,30 @@ Hiervon unterschiedlich bindet \blankcmd{input<ID>} den Rekorder ein, was zum Be
 
 \presentCommand[2.1.0]{close<ID>}[\cmdlist\anothercmd[2.1.0]{iclose<ID>}]
 Schließt die jeweilige Datei, muss nur dann aufgerufen werden, wenn die Datei im selben kompiliervorgang wieder eingebunden werden muss. \blankcmd{iclose<ID>} schließt die Datei sofort, was in der Luft hängende \blankcmd{write<ID>}-Aufrufe vernichtet.
+
+%
+%
+%
+%
+%
+
+\subsection{Übersetzungen}
+\hypertarget{LILLYxTRANSLATOR}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxTRANSLATOR} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.1.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.\medskip\newline
+
+Zusammen mit dem \T{translator} Paket lassen sich durch \blankcmd{translate} Worte übersetzen, sofern eine Übersetzung für sie definiert wurde. Bisher wird die Englische (\T{english}) und die Deutsche (\T{german}) Sprache unterstützt, wobei standardmäßig die Worte in deutscher Sprache gesetzt werden. Es werden mit \LILLYxBOXxVersion{2.1.0} folgende Argumente für das Paket akzeptiert, die so auch Lilly übergeben werden können:
+
+\begin{center}
+    \begin{tabular}{^t^t^t^>{\raggedright\arraybackslash}p{6.5cm}+}
+        \toprule
+            \headerrow Aktivieren & Deaktivieren & Standard & Effekt \\
+        \midrule
+            german & nogerman & german & Setzt die Übersetzungen für die Deutsche Sprache. \\
+            english & noenglish & noenglish & Setzt die Übersetzungen für die Englische Sprache. \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+Die meisten Pakete von Lilly halten sich an diese Übersetzungen und erlauben es so auch englische Dokumente ohne großen Konfigurationsaufwand zu erzeugen. \textit{Hinweis: Dieses Paket ändert keine Befehlsbezeichner. Es nimmt lediglich Einfluss auf das gesetzte Ergebnis.}
 
 %
 %

@@ -31,11 +31,11 @@
 
 
 \def\MonthToName#1{%
-    \ifcase#1\or Januar\or Februar\or März\or April\or Mai\or Juni\or Juli\or August\or September\or Oktober \or November\or Dezember\else\@ctrerr\fi%
+    \ifcase#1\or \translate{Januar}\or \translate{Februar}\or \translate{März}\or \translate{April}\or \translate{Mai}\or \translate{Juni}\or \translate{Juli}\or \translate{August}\or \translate{September}\or \translate{Oktober }\or \translate{November}\or \translate{Dezember}\else\@ctrerr\fi%
 }
 
-\def\@Session{Sitzung}
-\def\@Session@End{Ende der }
+\def\@Session{\translate{Sitzung}}
+\def\@Session@End{\translate{Ende der} }
 
 \def\SessionDate{\SESSIONxDAY.$\;$\MonthToName{\SESSIONxMONTH}$\;$\SESSIONxYEAR}
 \def\SessionTime{\ifnum\SESSIONxHOUR>-1\relax%
@@ -47,7 +47,7 @@
                         \fi%
                     \fi%
                 \fi} % Padding for minutes 
-\def\SessionName{Sitzung des \SessionDate~(\SESSIONxATTENDEESxCOUNT~Teilnehmer)}% Titel
+\def\SessionName{\tranlsate{Sitzung des} \SessionDate~(\SESSIONxATTENDEESxCOUNT~\translate{Teilnehmer})}% Titel
 \def\SessionDuration{\ifnum\SESSIONxDURATIONxMINUTES>0\relax\SESSIONxDURATIONxMINUTES{$\,$}m\fi}% We don't wan't to see a Time of 0 minutes :D
 \def\SessionTitleFormat{\SessionDate~(\SessionDuration)}
 
