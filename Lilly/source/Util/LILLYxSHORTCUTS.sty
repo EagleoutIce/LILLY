@@ -51,7 +51,7 @@
 
 \newcommand{\dispnote}[2][]{\parbox[t]{5em}{#1{\small#2}}}
 
-\newcommand{\note}[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
+\providecommand{\note}[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
 
 %%Smallnote
 \newcommand{\snote}[2][1]{\note[\scriptsize #1]{#2}}
