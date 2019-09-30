@@ -60,3 +60,8 @@
 \deftranslation{Sitzung des}{Meeting of}
 \deftranslation{Ende der}{End of}
 \deftranslation{Teilnehmer}{attendees}
+
+%% General
+
+\deftranslation{Abb.}{Fig.}
+\deftranslation{Tbl.}{Tbl.}
