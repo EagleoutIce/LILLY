@@ -24,7 +24,7 @@ Dem Paket können Argumente übergeben werden, die das Laden einer Bibliothek ve
             timetables & notimetables & \LILLYxNOTExLibrary{LILLYxTIMETABLES}, \LILLYxNOTExLibrary{LILLYxTIMETABLESxCOMFORT}, \LILLYxNOTExLibrary{LILLYxTIMETABLESxUNIVERSITY} \\
             persons & nopersons & \LILLYxNOTExLibrary{LILLYxPERSONS}, \LILLYxNOTExLibrary{LILLYxTRANSCRIPTS} \\
             formatcontrol & noformatcontrol & \LILLYxNOTExLibrary{LILLYxFORMATxCONTROL} \\
-            utilpresenter & noutilpresenter & \LILLYxNOTExLibrary{LILLYxROTARYxENCODER} \\
+            utilpresenter & noutilpresenter & \LILLYxNOTExLibrary{LILLYxROTARYxENCODER}, \LILLYxNOTExLibrary{LILLYxSHOWCASE}\\
         \bottomrule
     \end{tabular}
 \end{center}
@@ -1168,3 +1168,56 @@ Setzt eine Kodierscheibe, wobei alle in der \T{data list} vermerkten Werte als a
 \end{defaultlst}
 
 Die Makros \blankcmd{minimumRadius}, \blankcmd{radiusScaling} und \blankcmd{startAngle} setzen die entsprechenden Parameter für die zu zeichnende Kodierscheibe.
+
+%
+%
+%
+%
+%
+
+\section{Schaukästen}
+\hypertarget{LILLYxSHOWCASE}Alle diese Definitionen werden mit \LILLYxBOXxVersion{2.1.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen. Sie stehen auch als eigenes Paket \LILLYxNOTExLibrary{LILLYxSHOWCASE} zur Verfügung.
+
+%
+%
+%
+
+\subsection{Der Kern}
+\hypertarget{LILLYxSHOWCASExCORE}Diese Definitionen liegen im Paket \LILLYxNOTExLibrary{LILLYxSHOWCASExCORE} und werden mit \LILLYxBOXxVersion{2.1.0} automatisch durch das Paket \LILLYxNOTExLibrary{LILLYxSHOWCASE} geladen.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{lilly@xy}[\manArg{x}\manArg{y}\manArg{content}\cmdlist\anothercmd[2.1.0]{lilly@xyl}\manArg{x}\manArg{y}\manArg{content}\cmdlist\secline\anothercmd[2.1.0]{lilly@xyr}\manArg{x}\manArg{y}\manArg{content}\cmdlist\anothercmd[2.1.0]{lilly@xyc}\manArg{x}\manArg{y}\manArg{content}]
+Setzt relativ zur aktuellen Position den \T{content} verschoben um \T{x} und \T{y}. Die anderen Befehle richten den Inhalt jeweils nach rechts, links oder zentriert aus.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{lilly@grid@xy}[\manArg{x}\manArg{y}]
+Setzt relativ zur aktuellen Position den \T{content} verschoben um \T{x} und \T{y}, wobei die Koordinaten automatisch vielfache einer festen Größe (\blankcmd{pc}) sind.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{lilly@beginpage}[\cmdlist\anothercmd[2.1.0]{lilly@endpage}]
+Sorgt dafür, dass die XY-Koordinaten der Seite auf links unten gesetzt werden.
+
+%
+%
+%
+
+\subsection{Grafiken}
+\hypertarget{LILLYxSHOWCASExFIGURES}Diese Definitionen liegen im Paket \LILLYxNOTExLibrary{LILLYxSHOWCASExFIGURES} und werden mit \LILLYxBOXxVersion{2.1.0} automatisch durch das Paket \LILLYxNOTExLibrary{LILLYxSHOWCASE} geladen.
+
+Dieses Paket setzt grundlegende Stile für \blankcmd{caption}, \blankenv{figure} und \blankenv{table}.  Weiter setzt es bessere Abstände für \blankenv{wrapfigure}. Final werden die folgenden Umgebungen gesetzt:
+
+%
+%
+%
+
+\presentEnvironment[2.1.0]{lfig}[\optArg[auto]{width}\cmdlist\anotherenv[2.1.0]{lfig*}\optArg[auto]{width}\cmdlist\secline\anotherenv[2.1.0]{rfig}\optArg[auto]{width}\cmdlist\anotherenv[2.1.0]{rfig*}\optArg[auto]{width}]
+Setzt eine Umgebung links oder rechts im aktuellen Textfluss wobei der nächste Start eines Paragraphen als Ankerpunkt gesucht wird. Ein Start eines neuen Paragraphen kann jeweils durch die mit einem Stern markierte Umgebung forciert werden. 

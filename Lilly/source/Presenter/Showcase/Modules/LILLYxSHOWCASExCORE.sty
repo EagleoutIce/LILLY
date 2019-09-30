@@ -18,16 +18,20 @@
 \def\lilly@beginpage{\null\vfill\bgroup\offinterlineskip\leftskip=\z@}
 \def\lilly@endpage{\egroup\eject}
 
+\newdimen\pc%
+\pc=14bp
+
+\def\lilly@grid@xy#1#2{\xy{#1\pc}{#2\pc}}
+
+% Won't be documented as unstable
+
 \newbox\lilly@placer
 \def\lilly@text#1{\setbox\lilly@placer=\vbox\bgroup\hsize=#1\hrule}
 
 \def\lilly@endtext{\vskip-\prevdepth\vfil\egroup\setbox0=\vsplit\lilly@placer to\z@}
 \def\lilly@lines#1{\vsplit\lilly@placer to #1\baselineskip}
 
-\newdimen\pc%
-\pc=14bp
 
-\def\lilly@grid@xy#1#2{\xy{#1\pc}{#2\pc}}
 
 
 

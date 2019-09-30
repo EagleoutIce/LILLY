@@ -1,9 +1,11 @@
 \documentclass[german]{article}
-
+\usepackage[ngerman]{babel}
 
 \PassOptionsToPackage{english}{LILLYxTRANSLATOR}
 \usepackage{LILLYxSHOWCASE}
-\usepackage{LILLYxTRANSLATOR}
+
+
+
 
 \usepackage{blindtext}
 
@@ -13,7 +15,7 @@
 
 \begin{figure}
     \centering
-    \caption{Hallo}
+    \caption{\blindtext}
     \label{fig:Hallo}
 \end{figure}
 
@@ -22,5 +24,20 @@
 \translate{Olaf}
 
 \translate{X}
+
+\blindtext\par
+\begin{lfig}
+    \begin{tikzpicture}
+        \draw (0,0) circle (2);
+    \end{tikzpicture}
+    \caption{KRASSE FIGUR}
+\end{lfig}
+\blindtext
+\begin{wrapfigure}{l}{0pt}
+    \centering\begin{tikzpicture}
+        \draw (0,0) circle (1);
+    \end{tikzpicture}
+    \caption{KRASSE FIGUR}
+\end{wrapfigure}
 
 \end{document}
