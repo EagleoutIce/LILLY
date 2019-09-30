@@ -42,65 +42,105 @@
 
 
 \colorlet{folderbg}{bondiBlue}
-\colorlet{folderbgdark}{bondiBlue!85!black}
 \colorlet{ifolderbg}{DebianRed}
-\colorlet{ifolderbgdark}{DebianRed!85!black}
+\colorlet{filebg}{bondiBlue}
+\colorlet{ifilebg}{DebianRed}
 \newlength\len@folder@size
 \setlength\len@folder@size{4pt}
+
+\def\@folderindent{2.6}
+\def\@fileindent{1.75}
+
+\def\SetFolderFileSameIndent{%
+    \gdef\@fileindent{\@folderindent}
+}
 
 % #1 light color
 % #2 darker color
 % #3 white color
-\def\@lilly@td@folder#1#2#3{%
+% #4 Icon
+\def\@lilly@td@folder#1#2#3#4{%
+    \begin{scope}[every node/.style={overlay}]  
   \fill[rounded corners=0.5pt, color=#2]% peak
   (-1*\len@folder@size,-\len@folder@size) rectangle (1.85*\len@folder@size,\len@folder@size+2pt);
 \fill[rounded corners=0.5pt, color=#2]% back
   (-1*\len@folder@size,-\len@folder@size) rectangle (0.35*\len@folder@size,\len@folder@size+3.25pt);
 \fill[rounded corners=0.5pt, color=#3]% doc
   (-0.8*\len@folder@size,-\len@folder@size) rectangle (1.65*\len@folder@size,\len@folder@size+1.25pt);
-\filldraw[rounded corners=0.5pt, color=#1, ultra thin]%
-  (-1*\len@folder@size,-\len@folder@size) rectangle (1.85*\len@folder@size,\len@folder@size);
+\filldraw[rounded corners=0.5pt, color=#1, ultra thin]% front
+  (-1*\len@folder@size,-\len@folder@size) rectangle (1.85*\len@folder@size,\len@folder@size) node[midway, centered,#3,font={\tiny\sffamily}] {#4};
+  \end{scope}
 }
 
 % #1 light color
-% #3 darker color
-% #2 white color
-\def\@lilly@td@file#1#2#3{%
+% #2 darker color
+% #3 white color
+% #4 logo, if empty => bars
+\def\@lilly@td@file#1#2#3#4{%
+\begin{scope}[every node/.style={overlay}]
   \fill[fill=#1!85!#3, rounded corners=0.9pt] (-\len@folder@size,.6*\len@folder@size+2.75pt) coordinate (a) |- (\len@folder@size,-1.2*\len@folder@size) coordinate (b) to[rounded corners=0pt] ++(0,1.8*\len@folder@size) coordinate (c) to[rounded corners=0pt,] ++(-2.75pt,2.75pt) coordinate (d) -- cycle;
   \fill[fill=#3!65!#1, rounded corners=0.9pt] (d) |- (c);
   % Set Text Bars:
+  \ifthenelse{\equal{#4}{}}{
   \foreach \y/\fx in {0/1,0.2/1,0.4/1,0.6/0.75} {%
     \fill[#3] (-0.5\len@folder@size,-\y*\len@folder@size) rectangle ++ (\fx*\len@folder@size,0.4pt);
   }
+  }{\node[#3,font={\tiny\sffamily},overlay] at(0,-0.25\len@folder@size) {#4};} % absatz für den knick
+\end{scope}
 }
+
+% \def\@SmashText#1\@nil{%
+%   \smash{XX#1XX}%
+% }
 
 \tikzset{%
   folder/.pic={%
-    \@lilly@td@folder{folderbg}{folderbgdark}{MudWhite}%
+        \@lilly@td@folder{#1}{#1!85}{MudWhite}{}%
   },
-  importantfolder/.pic={%
-        \@lilly@td@folder{ifolderbg}{ifolderbgdark}{MudWhite}%
+  pics/folder/.default={folderbg},
+  logofolder/.pic={%
+        \@lilly@td@folder{folderbg}{folderbg!85}{MudWhite}{#1}%
   },
+  pics/logofolder/.default={$\pi$},
+  pics/complexfolder/.style 2 args={%
+        code ={\@lilly@td@folder{#1}{#1!85}{MudWhite}{#2}}%
+  },
+  pics/complexfolder/.default={folderbg}{$\pi$},
+  %
+  %
+  %
   file/.pic={%
-    \@lilly@td@file{folderbg}{folderbgdark}{MudWhite}%
+        \@lilly@td@file{#1}{#1!85}{MudWhite}{}%
   },
-  importantfile/.pic={%
-    \@lilly@td@file{ifolderbg}{ifolderbgdark}{MudWhite}%
+  pics/file/.default={filebg},
+  pics/logofile/.default={$\pi$},
+  logofile/.pic={%
+        \@lilly@td@file{filebg}{filebg!85}{MudWhite}{#1}%
   },
+  pics/logofile/.default={$\pi$},
+  pics/complexfile/.style 2 args={%
+        code ={\@lilly@td@file{#1}{#1!85}{MudWhite}{#2}}%
+  },
+  pics/complexfile/.default={filebg}{$\pi$}
 }
 \forestset{%
-  declare autowrapped toks={pic me}{},
+  declare autowrapped toks={icon pic}{},
   declare boolean register={pic root},
   pic root=0,
   pic dir tree/.style={%
     for tree={%
       folder,
-      font=\LILLYxlstTypeWriter,
+      s sep=3.5pt,
+      font={\LILLYxlstTypeWriter},
       grow'=0,
     },
+      % execute at end node=\noexpand\@nil,%
     before typesetting nodes={%
       for tree={%
-        edge label+/.option={pic me},
+        edge label+/.option={icon pic},
+        text depth={1pt},
+        execute at begin node={\strut},%
+        %node format = {\noexpand\node(\forestoption{name}) [\forestoption{node options}]{\forestoption{content format}};},
       },
       if pic root={
         tikz+={
@@ -110,42 +150,94 @@
       }{},
     },
   },
-  pic me set/.code n args=2{%
+  % #1 style name
+  % #2 pic name
+  % #3 color default
+  % #4 offset
+  create pic key/.code n args=4{%
     \forestset{%
       #1/.style={%
-        inner xsep=2.6\len@folder@size,
-        pic me={pic {#2}},
-      }
+        inner xsep=#4*\len@folder@size,
+        icon pic={pic {#2=##1}},
+      },
+      #1/.default=#3,
     }
   },
-  pic me set={dir}{folder},
-  pic me set={idir}{importantfolder},%
-  pic me set={file}{file},
-  pic me set={ifile}{importantfile},
+  % #1 style name
+  % #2 pic name
+  % #3 color default
+  % #4 offset
+  % #5 default symbol
+  create symbol pic key/.code n args=5{%
+    \forestset{%
+      #1/.style n args=2{%
+        inner xsep=#4*\len@folder@size,
+        icon pic={pic {#2={##1}{##2}}},
+      },
+      #1/.default={#3}{#5},
+    }
+  },
+  create pic key={dir}{folder}{folderbg}{\@folderindent}, % normal dir
+  create pic key={idir}{folder}{ifolderbg}{\@folderindent}, % important dir
+  create pic key={ldir}{logofolder}{$\mathbf{\pi}$}{\@folderindent}, % normal dir with logo
+  create symbol pic key={cdir}{complexfolder}{folderbg}{\@folderindent}{$\mathbf{\pi}$}, % colored dir with logo option
+  create pic key={file}{file}{filebg}{\@fileindent},
+  create pic key={ifile}{file}{ifilebg}{\@fileindent},
+  create pic key={lfile}{logofile}{$\mathbf{\pi}$}{\@fileindent}, %complexfile
+  create symbol pic key={cfile}{complexfile}{filebg}{\@fileindent}{$\mathbf{\pi}$}, % colored file with logo option
 }
 
-% \DeclareDocumentEnvironment{fancydir}{
-%   O{} % forest opts CURRENTLY UNUSED :D
-%   o % forest main content, allows to set forest opts if set
-% }{%
-% \IfValueTF{#2}{%
-% %     \ifthenelse{\equal{#1}{}}{
-% %       \begingroup
-% %     }{
-% %       \resizebox{#1}{!}\begingroup
-% %     }
-%     \forest
-%     pic dir tree,%
-%     pic root,%
-%     for tree={dir,},%
-%       [#2]%
-%     }{%
-%     \forest
-%     pic dir tree,%
-%     pic root,%
-%     for tree={dir,},%
-%     [#1]}
-% }{\endforest\endgroup}
+
+\DeclareDocumentCommand{\CreateNewFolderType}{
+    o           % Color
+    m           % Name
+    O{}         % icon
+}{%
+  \IfValueTF{#1}{
+    \forestset{% 
+      #2/.style n args=2{%
+        inner xsep=\@folderindent*\len@folder@size,%
+        icon pic={pic {complexfolder={##1}{##2}}},%
+      },%
+      #2/.default={#1}{#3},%
+    }%
+  }{% No #1
+    \forestset{% 
+      #2/.style = {%
+        inner xsep=\@folderindent*\len@folder@size,%
+        icon pic={pic {logofolder={##1}}},%
+      },%
+      #2/.default={#3},%
+    }%
+  }
+}
+
+
+
+\DeclareDocumentCommand{\CreateNewFileType}{
+    o           % Color
+    m           % Name
+    O{}         % icon
+}{%
+  \IfValueTF{#1}{%
+    \forestset{% 
+      #2/.style n args=2{%
+        inner xsep=\@fileindent*\len@folder@size,%
+        icon pic={pic {complexfile={##1}{##2}}},%
+      },%
+      #2/.default={#1}{#3},%
+    }
+  }{% No #1
+    \forestset{% 
+      #2/.style = {%
+        inner xsep=\@fileindent*\len@folder@size,%
+        icon pic={pic {logofile={##1}}},%
+      },%
+      #2/.default={#3},%
+    }
+  }
+}
+
 
 
 \environbodyname\STLXTREE% forest uses \BODY too. collision prevention over 9000

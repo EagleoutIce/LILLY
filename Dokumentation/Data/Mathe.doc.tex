@@ -392,14 +392,14 @@ Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Folge zwischen \emph{Unt
 %
 
 \presentCommand[2.0.0]{xmark}[\optArg[x]{text}\manArg{PosX}\optArg[0.15]{linelength}]
-Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
+Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem Text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
 
 %
 %
 %
 
 \presentCommand[2.0.0]{ymark}[\optArg[xy]{text}\manArg{PosY}\optArg[0.15]{linelength}]
-Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
+Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem Text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
 
 %
 %
@@ -417,7 +417,7 @@ Es existiert die folgende Implementation der Graph-Umgebung:
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-{\begin{latex}[breaklines=true]
+{\begin{plainlatex}[breaklines=true]
 \begin{graph}[scale=1.15,maxY=3,numbers]
     \plotline[purple]{sqrt(\x+2.5)};
     \plotline[Ao][\y]{(\y*\y)/1.5};
@@ -425,7 +425,7 @@ Es existiert die folgende Implementation der Graph-Umgebung:
         {sin(deg(\x))^2};
     \xmark[\xi]{1.5}; \ymark[\psi]{2.5};
 \end{graph}
-\end{latex}}
+\end{plainlatex}}
 &
         \begin{graph}[scale=1.15,maxY=3,numbers]
             \plotline[purple]{sqrt(\x+2.5)};
@@ -495,7 +495,7 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.7\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.3\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        {\begin{latex}[breaklines=true]
+        {\begin{plainlatex}[breaklines=true]
 \begin{tikzternal}[scale=0.5]
 \begin{axis}[3d box=complete, colormap/bluered,
              grid=major,view={60}{40},
@@ -503,14 +503,14 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
     :bcmd:addplot3:ecmd:[data cs=cart,surf,domain=-3:3,samples=20, opacity=0.5] {x+y};
 \end{axis}
 \end{tikzternal}
-        \end{latex}
+        \end{plainlatex}
         } &  \begin{tikzternal}[scale=0.6]
             \begin{axis}[3d box=complete, colormap/bluered,grid=major,view={60}{40},z buffer=sort, data cs=polar]
               \addplot3[data cs=cart,surf,domain=-3:3,samples=20, opacity=0.5] {x+y};
             \end{axis}
           \end{tikzternal}\\
         \hline
-{\begin{latex}[breaklines=true]
+{\begin{plainlatex}[breaklines=true]
 \begin{tikzternal}[scale=0.6]
     \begin{axis}[3d box=complete, axis equal image, colormap/bluered,grid=major,view={60}{40},z buffer=sort,enlargelimits=0.2,scale=2.3]
     :bcmd:addplot3:ecmd:[%
@@ -523,7 +523,7 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
      {cos(v)});
     \end{axis}
 \end{tikzternal}
-\end{latex}
+\end{plainlatex}
 } & \begin{tikzternal}[scale=0.6]
     \begin{axis}[3d box=complete, axis equal image, colormap/bluered,grid=major,view={60}{40},z buffer=sort,enlargelimits=0.2,scale=2.3]
     \addplot3[%

@@ -13,9 +13,9 @@
 \end{bemerkung}
 \hypertarget{LILLYxTIKZxCORE}Dieses Paket basiert übrigens auf \LILLYxNOTExLibrary{LILLYxTIKZxCORE}, welche selbst nicht direkt sondern nur durch die hier verfügbaren Befehle dokumentiert ist und auch nicht frei verwendet werden sollte (ausgenommen natürlich, man weiß, wie \Smiley).\medskip\\
 Das Laden des Pakets mit LILLY kann durch die Option \T{graphics} aktiviert werden (Standard) und durch \T{nographics} entsprechend dekativiert. So sorgt das Deklarieren von:
-\begin{latex}
+\begin{latex*}
 \documentclass[nographics]{Lilly}
-\end{latex}
+\end{latex*}
 Für ein Lilly-Dokument ohne \LILLYxNOTExLibrary{LILLYxGRAPHICS}.
 
 %
@@ -162,7 +162,7 @@ Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da d
 \begin{center}%\renewcommand{\arraystretch}{0.25}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.4\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-{\begin{latex}
+{\begin{plainlatex}
 \begin{tikzternal}
   \node (A) at (1,2) {A};
   \PgetXY{(A)}{\myX}{\myY};
@@ -171,7 +171,7 @@ Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da d
   \PgetY{(B)}{\anotherY};
   \node (C) at (1.5*\myY,\anotherY) {C};
 \end{tikzternal}
-\end{latex}
+\end{plainlatex}
 } &
 \begin{tikzternal}
     \draw[thin,xshift=0.5cm,yshift=0.5cm] (-1,-2) grid (3,2); %step=1.0
@@ -494,26 +494,94 @@ Setzt ein Verzeichnis. Allgemein liefert diese Umgebung eine Möglichkeit relati
 Setzt eine Verzeichnisstruktur, \emph{ähnlich} zu \blankenv{directory}. Ein Beispiel:
 \begin{defaultlst}[][listing side text,righthand width=4.5cm]{lLatex}
 \begin{fancydir}
-    [Toplevel
-        [Level 1
-            [Level 2
-                [Level 3]
-                [\ldots]
-            ]
-            [Level 2
-                [Level 3]
-                [\ldots]
-            ]
-            [Readme.md, ifile]
+[Toplevel
+    [Level 1, dir=AppleGreen
+        [Level 2
+            [Level 3]
+            [\ldots, cfile={ChromeYellow}{X}]
         ]
-        [Level 1, idir
-            [Level 2]
-            [test.tex, file]
+        [Level 2
+            [Level 3, ldir={\faApple}]
+            [\ldots]
         ]
+        [Readme.md, ifile]
     ]
+    [Level 1, idir
+        [Level 2]
+        [test.tex, file]
+    ]
+]
 \end{fancydir}
 \end{defaultlst}
-Standardmäßig ist jedes Element ein Verzeichnis. Dateien werden durch \T{file}, wichtige Dateien durch \T{ifile} und wichtige Ordner durch \T{idir} markiert. % Maybe allow the setting of color?
+Standardmäßig ist jedes Element ein Verzeichnis. Es gibt allerdings einige Möglichkeiten das Aussehen zu verändern: \begin{ditemize}\narrowitems
+        \item Für Ordner: \begin{ditemize}\narrowitems
+        \item \T{dir=\manArg{Color}} Setzt ein Verzeichnis in der übergebenen Farbe. Wird keine Farbe  übergeben, so wird die Standardfarbe (\T{folderbg}) verwendet.
+        \item \T{idir=\manArg{Color}} Setzt ein Verzeichnis in der übergebenen Farbe. Wird keine Farbe übergeben, so wird die Standardfarbe (\T{ifolderbg}) verwendet um einen wichtigen Ordner zu markieren.
+        \item \T{ldir=\manArg{Logo}} Setzt ein Verzeichnis in \T{folderbg} mit dem übergebenen Logo als Inhalt. Wird ein leeres Logo übergeben, so wird auch keins gesetzt.
+        \item \T{cdir=\manArg{Color}\manArg{Logo}} Setzt ein Verzeichnis in \T{Color} mit dem übergebenen \T{Logo} als Inhalt. Wird ein leeres Logo übergeben, so wird auch keins gesetzt.
+    \end{ditemize}
+    \item Für Dateien: \begin{ditemize}\narrowitems %% TODO:
+        \item \T{file=\manArg{Color}} Setzt eine Datei in der übergebenen Farbe. Wird keine Farbe  übergeben, so wird die Standardfarbe (\T{filebg}) verwendet.
+        \item \T{ifile=\manArg{Color}} Setzt eine Datei in der übergebenen Farbe. Wird keine Farbe übergeben, so wird die Standardfarbe (\T{ifilebg}) verwendet um einen wichtigen Ordner zu markieren.
+        \item \T{lfile=\manArg{Logo}} Setzt eine Datei in \T{filebg} mit dem übergebenen Logo als Inhalt. Wird ein leeres Logo übergeben, so wird auch keins gesetzt.
+        \item \T{cfile=\manArg{Color}\manArg{Logo}} Setzt eine Datei in \T{Color} mit dem übergebenen \T{Logo} als Inhalt. Wird ein leeres Logo übergeben, so wird auch keins gesetzt.
+    \end{ditemize}
+\end{ditemize}
+Mit den folgenden Befehlen lassen sich zudem eigene Dateitypen kreieren:
+
+%
+%
+%
+
+\presentCommand[2.1.0]{CreateNewFolderType}[\optArg{Color}\manArg{Name}\optArg{Logo}\cmdlist\secline\anothercmd[2.1.0]{CreateNewFileType}\optArg{Color}\manArg{Name}\optArg{Logo}]
+Erzeugt einen neuen Ordner- beziehungsweise Dateityp. Ein Beispiel:
+\begin{defaultlst}[][listing side text,righthand width=2.75cm]{lLatex}
+% C-Files
+\CreateNewFileType[DarkMidnightBlue]{.c}[\textbf{C}]
+\CreateNewFolderType[Veronica]{templates}
+\begin{fancydir}
+[test
+    [super, templates
+        [UH.TXT, file=ChromeYellow]
+        [my.c, .c]
+    ]
+]
+\end{fancydir}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[2.1.0]{SetFolderFileSameIndent}
+Standardmäßig werden die Texte für eine Datei näher an die Datei gesetzt. Dieser Befehl sorgt dafür, dass die Texte auf einem Level gleich weit eingerückt werden:
+{
+\begin{defaultlst}[][listing side text,righthand width=2.75cm]{lLatex}
+\begin{fancydir}
+[test
+    [super,
+        [Hallo, file]
+        [Hallo]
+    ]
+    [duper, file]
+]
+\end{fancydir}
+\SetFolderFileSameIndent
+\begin{fancydir}
+[test
+    [super,
+        [Hallo, file]
+        [Hallo]
+    ]
+    [duper, file]
+]
+\end{fancydir}
+\end{defaultlst}
+}
+
+
+
+% Note commands \createnew etc.
 
 %
 %
