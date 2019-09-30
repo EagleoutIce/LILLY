@@ -54,7 +54,7 @@ public class GepardEditor extends JDialog {
     }
 
     public GepardEditor() {
-        this.document = new JakeDocument(eDocument_Type.IS_GEPARD,"unbenannt");
+        this.document = new JakeDocument(eDocument_Type.IS_GEPARD, "unbenannt");
         $$$setupUI$$$();
         init();
     }

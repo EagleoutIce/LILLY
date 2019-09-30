@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
@@ -36,6 +37,8 @@ import java.util.stream.Stream;
  * @since 2.0.0
  */
 public class Autocomplete {
+
+    private static String[] projectsAr;
 
     /**
      * Schaut, ob bereits eine Funktion geben wurde
@@ -51,12 +54,10 @@ public class Autocomplete {
                 if (split.endsWith(".tex") || split.endsWith(".conf") || split.equals("REI") || split.equals("DEI")
                         || split.equals("GUI"))
                     return true;
-                for (var fd : CoreFunctions.functions_t.entrySet()) {
-                    String k = fd.getKey();
-                    if (k.charAt(0) != Definitions.HIDDEN_ARG && k.equals(split))
-                        return true;
-                }
-                for (String i : Projects.getInstance().getAllProjectNames(projects))
+                if(CoreFunctions.functions_t.containsKey(split) && split.charAt(0) != Definitions.HIDDEN_ARG)
+                    return true;
+                if(projects != null)
+                for (String i : projectsAr)
                     if(split.equals(i)) return true;
             }
         }
@@ -91,10 +92,10 @@ public class Autocomplete {
         }
         // Append all Projects
         //try {
-            for (var s : Projects.getInstance().getAllProjectNames(projects)) {
-                if (!s.startsWith(String.valueOf(Definitions.HIDDEN_ARG)))
-                    str.append(s).append("\t");
-            }
+        for (var s : projectsAr) {
+            if (!s.startsWith(String.valueOf(Definitions.HIDDEN_ARG)))
+                str.append(s).append("\t");
+        }
         /*} catch (IOException e) {
             e.printStackTrace();
         }*/
@@ -102,7 +103,7 @@ public class Autocomplete {
         return str.toString();
     }
 
-    public static String cfiles, files;
+    private static Stream<Path> fx;
 
     /**
      * Liefert entsprechend der Eingaben alle möglichen Ausgaben. Impliziert somit
@@ -112,30 +113,29 @@ public class Autocomplete {
      * @return String für das Autocomplete Skript
      */
     public static String parse_cmd_autocomplete(String[] cmd_line) {
-        if (cfiles == null || files == null) {
-            try {
-                Stream<Path> fx = Files.list(Paths.get(""));
-                cfiles = String.join("\t", fx.map(x -> x.toString())
-                        .filter(x -> (x.endsWith(".tex") || x.endsWith(".conf"))).toArray(String[]::new));
-                fx = Files.list(Paths.get(""));
-                files = String.join("\t",
-                        fx.filter(x -> (x.toFile().isFile())).map(Path::toString).toArray(String[]::new));
-                fx.close();
-            } catch (Exception ignored) {
-                ignored.printStackTrace();
-            }
-        }
         try {
-            projects = Projects.getInstance().getProjects(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+            if(projects == null)
+                projects = Projects.getInstance().getProjects(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
         } catch (IOException e) {
-            e.printStackTrace();
+            return e.getMessage();
         }
+        projectsAr = Projects.getInstance().getAllProjectNames(projects);
         StringBuilder str = new StringBuilder();
         if (cmd_line == null || cmd_line.length == 0 || !was_there_what(cmd_line)) {
             // Gab es noch keine operation - so schlagen wir stehts optionen for
+            String cfiles = "";
+            try {
+                fx = Files.list(Paths.get(""));
+                cfiles = String.join("\t", fx.map(Path::toString)
+                        .filter(x -> (x.endsWith(".tex") || x.endsWith(".conf"))).toArray(String[]::new));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
             str.append(print_options()).append(cfiles);
+
             // gibt alle tex und config dateien mit aus
             // Files.list(Paths.get("")).forEach(sss -> System.out.println("y" + sss));
+            fx.close();
             return str.toString();
         }
 
@@ -151,7 +151,13 @@ public class Autocomplete {
             SettingDeskriptor t = CoreSettings.settings.get(arg);
             switch (t.type) {
             case IS_FILE:
-                str.append(files);
+                try {
+                    fx = Files.list(Paths.get(""));
+                    str.append(String.join("\t",
+                    fx.filter(x -> (x.toFile().isFile())).map(Path::toString).toArray(String[]::new)));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
                 break;
             case IS_NUM:
                 str.append("Erwarte: Zahl\tBitte gib eine Zahl ein!\t \tErklärung: ").append(t.getBrief()).append("\n");
@@ -182,11 +188,12 @@ public class Autocomplete {
         } else {
             str.append(print_settings());
         }
-        /**
+        /*
          * Ablauf: - Operation gesehen? Nein: Auflisten .tex, .conf und Operationen
          * (wenn lilly-in spezifiziert: nutzen) Ja: Direkt Settings angeben grade by
          * settings? tanzen!
          */
+        fx.close();
         return str.toString();
     }
 }
