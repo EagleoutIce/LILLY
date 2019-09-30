@@ -151,7 +151,7 @@ An sich gibt es keine klare Regel, nach der ein Titelbild generiert werden muss.
 \section{Eine Präsentation erstellen}
 \subsection{KIZ-Theme}
 \elable{mrk:beamerKIZexample}Zum Erstellen von Präsentationen, kommt zusammen mit Lilly das Beamer-Theme \T{lillyKIZ}, welches eine \T{beamer}-Präsentation mit einem anderen Design versieht und die zu verwendenden Befehle modifiziert. Ersteinmal eine Übersicht, wie das Ganze am Ende aussieht:
-\begin{tcbraster}[raster columns=3, blankest,colback=white]
+\begin{tcbraster}[raster columns=3, blankest, graphics pages={1,4,5}, colback=white]
     \tcbincludepdf{Data/Documents/BeamerThemelillyKIZ/presentation.pdf}
 \end{tcbraster}
 Es läuft unabhängig von der kompletten Lilly-Welt und unterstützt (dank der \T{beamer}-Klasse) auch nicht alle Bibliotheken. Das Aussehen gleicht der Powerpoint-Vorlage der Universität Ulm, die Einbindung erfolgt einfach:
@@ -306,7 +306,7 @@ uebungsblatt.gpd  uebungsblatt.template
 > $ jake -gepardrule-path: ./uebungsblatt.gpd generate :mein-ub -answer: yes
 Der Generator benötigt ein paar Informationen, die es nun auszufüllen gilt.
 Du kannst keinen Wert angeben um eine optionale Angabe zu verweigern.
-[cAuthor] Bitte gib den Namen der Autoren des Übungsblattes an [optional]> 
+[cAuthor] Bitte gib den Namen der Autoren des Übungsblattes an [optional]>
                 Florian-S-Dieter-X
 [Vorlesung] Bitte gib die zugehörige Vorlesung an (ANA1, LAII, ...)> FG
 [Ub-Nr] Bitte gib die Nummer des Übungsblattes an> 9
@@ -317,17 +317,17 @@ Der von dir gewählte Generator möchte eine Datei hier hin platzieren: ./FG-9.c
 >imp>the-limerent@elizabeth /tmp/ttextmp
 > $ jake FG-9.conf
 Kompiliere Dokument: "./FG-9.tex" für: Florian-S-Dieter-X (florian.sihler@web.de)
-Information: Aufgrund des Name-Mappings werden deine Einstellungen angepasst. 
+Information: Aufgrund des Name-Mappings werden deine Einstellungen angepasst.
 Die Regeln im Folgenden werden jeweils angezeigt und angwendet:
     - FG
 > Lösche temporäre Dateien...
-Lilly PRE-Hook[debug] für PRE evaluiert zu: Verwende die Log-Datei: 
+Lilly PRE-Hook[debug] für PRE evaluiert zu: Verwende die Log-Datei:
             /tmp/lilly-temp-log**8077425150559038754.temp
-Lilly IN0-Hook[compile-0] für IN0 evaluiert zu: Kompiliere 1/2 für: 
+Lilly IN0-Hook[compile-0] für IN0 evaluiert zu: Kompiliere 1/2 für:
             ./FG-9-OUT/Florian-S-Dieter-X-FG-9.pdf
-Lilly IN1-Hook[compile-1] für IN1 evaluiert zu: Kompiliere 2/2 für: 
+Lilly IN1-Hook[compile-1] für IN1 evaluiert zu: Kompiliere 2/2 für:
         ./FG-9-OUT/Florian-S-Dieter-X-FG-9.pdf
-Generierung von "./FG-9-OUT/Florian-S-Dieter-X-FG-9.pdf" (ALTERNATE) abgeschlossen. 
+Generierung von "./FG-9-OUT/Florian-S-Dieter-X-FG-9.pdf" (ALTERNATE) abgeschlossen.
         (Zeit: 3.295s)
 > Lösche temporäre Dateien...
 Kompilieren abgeschlossen!
@@ -335,7 +335,7 @@ Kompilieren abgeschlossen!
 }
 Die entstehende datei sieht wie folgt aus (der hier automatisch auftauchende Tutor sollte in einem richtigen Template natürlich überschrieben werden und wurde hier entsprechend zensiert, das Blatt wurde zudem mit der Nummer $14$ generiert, allerdings sollte das für die Demo nichts verändern.)
 \begin{center}
-    \includegraphics[width=0.9\linewidth]{Data/Bilder/GeneratorUBBeispiel}
+    \includegraphics[width=0.75\linewidth]{Data/Bilder/GeneratorUBBeispiel}
 \end{center}
 Übrigens, der hier gebaute Generator existiert (ungefähr) so bereits in Lilly unter dem Namen \T{uebungsblatt}!
 % Todo: fix fancydir
