@@ -21,6 +21,7 @@ import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.helper.Cloner;
+import de.eagle.util.helper.CommandLine;
 import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
@@ -29,9 +30,11 @@ import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.FunctionCollector;
 
 import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.Comparator;
 import java.util.Map;
 
@@ -286,12 +289,34 @@ public final class CoreFunctions {
         }
 
         JakeWriter.out.println("Öffne: \"" + lPath + "/source/Data/Graphics/all-OUT/all.pdf\"");
-
+        File target = new File(lPath + "/source/Data/Graphics/all-OUT/all.pdf");
+        if(!target.isFile() || CoreSettings.requestValue("S_WHAT").equals("force")) {
+            JakeWriter.out.format("%sEs scheint, als wären die Grafikressourcen bei dir noch nicht kompiliert wurden!%s%n", ColorConstants.COL_GOLD,ColorConstants.COL_RESET);
+            String result = CommandLine.get_answer("Sollen die Grafiken erzeugt werden? Dies kann eine Weile dauern! [y/n]> ");
+            if(result.equals("N")){
+                JakeWriter.out.println("Abbruch");
+                return ReturnStatus.EXIT_FAILURE;
+            }
+            // finding the GetAll.py
+            File getallpy = new File(lPath + "/source/Data/Graphics/GetAll.py");
+            if(!getallpy.isFile()){
+                JakeWriter.err.println("Die Datei " + getallpy.getAbsolutePath() + " scheint fehlerhaft zu sein. Abbruch!");
+                return ReturnStatus.EXIT_FAILURE;
+            }
+            // Execute the Prerender:
+            BufferedReader br = Executer.runBashCommand("cd " + getallpy.getParentFile().getAbsolutePath() + " && python3 GetAll.py prerender");
+            if(br != null)
+                br.lines().forEach(JakeWriter.out::println);
+            JakeWriter.out.println("Prerender Abgeschlossen. Generiere die PDF...");
+            br = Executer.runBashCommand("cd " + getallpy.getParentFile().getAbsolutePath() + " && python3 GetAll.py");
+            if(br != null)
+                br.lines().forEach(JakeWriter.out::println);
+            JakeWriter.out.println("Generierung Abgeschlossen");
+        }
         // Multiplattform:
         // Desktop.getDesktop().open(myFile);
         try {
-            Desktop.getDesktop().open(
-                    new File(lPath + "/source/Data/Graphics/all-OUT/all.pdf"));
+            Desktop.getDesktop().open(target);
         } catch (IOException e) {
             JakeWriter.err.println("Opening failed for some reason, trying to open with 'xdg-open'");
             Executer.runBashCommand("xdg-open \"" + lPath + "/source/Data/Graphics/all-OUT/all.pdf" + "\"");

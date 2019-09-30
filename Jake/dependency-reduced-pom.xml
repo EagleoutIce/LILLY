@@ -12,6 +12,9 @@
       </resource>
       <resource>
         <directory>../Lilly</directory>
+        <excludes>
+          <exclude>**/source/Data/Graphics/**/*.pdf</exclude>
+        </excludes>
       </resource>
       <resource>
         <directory>../Dokumentation</directory>
@@ -39,6 +42,7 @@
         <version>3.2.0</version>
         <executions>
           <execution>
+            <id>main-build</id>
             <goals>
               <goal>shade</goal>
             </goals>

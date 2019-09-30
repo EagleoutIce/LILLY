@@ -9,6 +9,13 @@
 \RequirePackage{LILLYxLIST}
 \RequirePackage{LILLYxLISTINGSxLANGUAGExCONTROL}% \RegisterLanguage
 
+\RequirePackage{kvoptions}
+
+% ifLILLY@runtimes: Control the runtimes-module
+\DeclareBoolOption[true]{runtimes}\DeclareComplementaryOption{noruntimes}{runtimes}
+
+
+\ProcessOptions*
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Packages
@@ -390,7 +397,7 @@
 
 \makeatletter
 
-\ifLILLY@runtimes
+\ifLILLYxLISTINGS@runtimes
   \RequirePackage{LILLYxRUNTIMES}
 \fi
 

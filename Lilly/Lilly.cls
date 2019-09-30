@@ -200,9 +200,7 @@
     \RequirePackage{LILLYxLISTINGS}
     \RequirePackage{LILLYxLISTINGSxADVANCED}
 \fi
-\ifLILLY@runtimes
-    \RequirePackage{LILLYxRUNTIMES}
-\fi
+
 %\ExplSyntaxOn
 %\DeclareCaptionFont{black}{ \color{black} }
 %\DeclareCaptionFormat{none}{

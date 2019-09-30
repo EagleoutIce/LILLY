@@ -56,6 +56,10 @@
             <resource>
                 <!-- it will now include the current LILLY-BUILD -->
                 <directory>../Lilly</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/source/Data/Graphics/**/*.pdf</exclude>
+                </excludes>
             </resource>
             <resource>
                 <!-- Include the documentation -->
@@ -85,6 +89,7 @@
                 <version>3.2.0</version>
                 <executions>
                     <execution>
+                        <id>main-build</id>
                         <goals>
                             <goal>shade</goal>
                         </goals>
