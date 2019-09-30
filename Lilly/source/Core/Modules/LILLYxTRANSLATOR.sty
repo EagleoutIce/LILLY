@@ -25,11 +25,11 @@
 %% Maybe make them real dictonraies?
 
 \ifLILLYxTRANSLATOR@english
-\input{\LILLYxABSPATHxCORE/Modules/Dictonaries/english.dict}
+\InputIfFileExists{\LILLYxABSPATHxCORE/Modules/Dictonaries/english.dict}{}{\typeout{English dict not found enable shell escape?}}
 \fi
 
 \ifLILLYxTRANSLATOR@german
-\input{\LILLYxABSPATHxCORE/Modules/Dictonaries/german.dict}
+\InputIfFileExists{\LILLYxABSPATHxCORE/Modules/Dictonaries/german.dict}{}{\typeout{German dict not found enable shell escape?}}
 \fi
 
 \endinput
