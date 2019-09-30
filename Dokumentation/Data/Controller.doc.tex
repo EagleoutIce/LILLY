@@ -253,7 +253,7 @@ Setzt die Bibliographie mit dem Namen \T{Name} automatisch, greift intern auf \b
 \subsection{Das Mitschrieb-Layout}
 \elable{mrk:laymit}Diese Definitionen befinden sich in der Datei: \blatex[morekeywords={[5]{LILLYxPATHxDATA}}]{:bs:LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_MITSCHRIEB}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT} auf Basis von \blankcmd{LILLYxMODE} präsentiert. \newline
 Dieses Design ist als Urdesign zusammen mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} für die Generierung von Mitschreiben verantwortlich. Im Folgenden wird nicht auf jede einzelne Modifikation sondern nur auf die nutzbaren Befehle eingegangen:
-\begin{tcbraster}[raster columns=3, blankest,graphics pages={1,2,3,5,7,9},colback=white]
+\begin{tcbraster}[raster columns=3, blankest,graphics pages={1,2,3},colback=white]
     \tcbincludepdf{Data/Documents/LayoutMitschrieb/mitschrieb.pdf}
 \end{tcbraster}
 
@@ -335,15 +335,15 @@ Die Farbe des \T{ALTERNATE}-Designs wird durch \blankcmd{Hcolor} und damit durch
 
 \begin{document}
 \begin{aufgabe}{Grenzwertberechnung durch Mittelwertsatz}{5}
-    Man bestimme die folgenden Grenzwerte %... 
+    Man bestimme die folgenden Grenzwerte %...
     \begin{aufgaben}[2]
         \item \(\displaystyle \lim_{x \to \infty} x ( 1 - \cos (1/x))\)
         \item \(\lim_{x \to a} \frac{x^\alpha - a^\alpha}{x^\beta - a^\beta}\) für \(a > 0, \beta \neq 0\)
     \end{aufgaben}
 \vSplitter
     \begin{aufgaben}
-        \item Dies lässt sich wieder, %... 
-        \item Nach dem %... 
+        \item Dies lässt sich wieder, %...
+        \item Nach dem %...
     \end{aufgaben}
 \end{aufgabe}
 \end{document}
@@ -446,7 +446,7 @@ Präsentiert eine Information in einem an Karten anmutenden Format.
     Im Folgenden ist nun das Ziel eine eigene Zusammenfassung zu erstellen. In diesem Beispiel muss \Jake nicht verwendet werden, ein Kompilieren mit \T{-shell-escape} (beziehungsweise je nach System \T{-enable-write18}) genügt völlig, damit die automatische Index-unsterstüzung von Lilly greifen kann.
 \ilatex{Data/Documents/LayoutZusammenfassung/example-zsf.tex}
     Die Generierung der Titelseite erfolgt übrigens ebenfalls mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER}. Das (hierbei durch \bbash{pdflatex -shell-escape example-zsf.tex} erzeugte) Ergebnis sieht so aus:
-    \begin{tcbraster}[raster columns=3, blankest,colback=white]
+    \begin{tcbraster}[raster columns=3, blankest, graphics pages={1,2,3}, colback=white]
         \tcbincludepdf{Data/Documents/LayoutZusammenfassung/example-zsf.pdf}
     \end{tcbraster}
 \end{bemerkung}
@@ -531,7 +531,7 @@ Hier ein Beispiel:
 \end{latex}
 
 Liefert (das volle Beispiel findet sich unter \blatex{Data/Documents/LayoutElegantBook/example-eb.tex}, in den Quelldateien dieser Dokumentation):
-\begin{tcbraster}[raster columns=4, blankest,colback=white]
+\begin{tcbraster}[raster columns=4, blankest, graphics pages={1,2,4,5},colback=white]
     \tcbincludepdf{Data/Documents/LayoutElegantBook/example-eb.pdf}
 \end{tcbraster}
 
@@ -667,7 +667,7 @@ Setzt die jeweiligen Felder für die Daten.\\
 %
 
 Im Folgenden ein Beispiel, welches sich wiedereinmal (\T{Data/Documents/LayoutPoems/poems.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
-\begin{tcbraster}[raster columns=3, graphics pages={1,...,9}, blankest,colback=white]
+\begin{tcbraster}[raster columns=3, graphics pages={1,3,5,6,7,8}, blankest,colback=white]
     \tcbincludepdf{Data/Documents/LayoutPoems/poems.pdf}
 \end{tcbraster}
 
@@ -707,7 +707,7 @@ Liefert einen zufälligen Text. Beispiel: \blankcmd{RandomFlavourText} liefert (
 \hypertarget{LILLYxPHILOSOPHER}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} zur Verfügung gestellt. \medskip\newline
 
 Dieses Paket hat mit \LILLYxBOXxVersion{1.0.8} die Generierung der Titelseiten für Mitschriften und mit \LILLYxBOXxVersion{2.0.0} auch für Zusammenfassungen übernommen. \elable{mrk:philentry}Hier ein kleines Beispiel:
-\begin{tcbraster}[raster columns=4, blankest,graphics pages={1,...,8},colback=white]
+\begin{tcbraster}[raster columns=4, blankest,graphics pages={1,3,4,6},colback=white]
     \tcbincludepdf{Data/Documents/Philosopher/philosopher.pdf}
 \end{tcbraster}
 
@@ -831,16 +831,10 @@ Setzt die Titelseite wie sie das \jmark[Zusammenfassungs-Layout]{mrk:layoutzsf} 
 \def!**!\LILLYxVorlesung{ANA1}
 \LILLYxTITLExBONUS{Hallo}
 \end{latex}
-Es liefert ein bekanntes Ergebnis auf der folgenden Seite. Zuvor, ersteinmal die Übersicht über die für gewöhnlich generierten Zusammenfassungen:
-\begin{tcbraster}[raster columns=4, blankest,graphics pages={9,...,16},colback=white]
+Es liefert das Ergebnis ganz links in folgender Übersicht an Beispielen:
+\begin{tcbraster}[raster columns=4, blankest,graphics pages={10,13,15,16},colback=white]
     \tcbincludepdf{Data/Documents/Philosopher/philosopher.pdf}
 \end{tcbraster}
-{
-\def\LILLYxFACULTY{\LILLYxFACULTYxMATHE}
-\def\LILLYxFACULTYxCOLOR{FacultyMathexColor}
-\def\LILLYxVorlesung{ANA1}
-\LILLYxTITLExBONUS{Hallo}
-}
 Offensichtlich wird \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} verwendet.
 
 %

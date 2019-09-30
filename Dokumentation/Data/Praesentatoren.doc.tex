@@ -174,7 +174,7 @@ Information: Die Breite dieser Begrenzer passt sich an die aktuelle Zeilenbreite
 
 \presentCommand[2.0.0]{PresentAllOrnaments}
 Erzeugt mithilfe von \LILLYxNOTExLibrary{LILLYxTABLESxFOREACH} eine tabellarische Auflistung aller Ornamente:
-\begin{tcbraster}[raster columns=4, blankest,colback=white]
+\begin{tcbraster}[raster columns=4, blankest, graphics pages={1,2,3,6}, colback=white]
     \tcbincludepdf{Data/Documents/AllOrnaments/ornaments.pdf}
 \end{tcbraster}
 Die unterschiedlichen Höhen entstammen hierbei der Tatsache, dass dieser Befehl alle Ornamente (zur besseren Übersicht) mit derselben Breite setzt.
@@ -1058,7 +1058,7 @@ Setzt eine Sitzungsumgebung, die sich in die Liste \T{SESSIONS} für das Element
         where & String & & Wo findet die Sitzung statt? \\
         when & Datum & 01.01.0001 & Wann fand die Sitzung statt? [DD.MM.YYYY] \\ % TODO: INCLUDE THE TIME! WHEN DID IT SCHTART?
         duration & Zahl ($\geq$0) & 0 & Wie viele Minuten hat die Sitzung gedauert?\\
-        start time & Zeit & -1:-1 & Start Zeit der Sitzung, wird nur angezeigt, wenn gültig!\\ 
+        start time & Zeit & -1:-1 & Start Zeit der Sitzung, wird nur angezeigt, wenn gültig!\\
         \bottomrule
     \end{tabularx}\nskip
 \end{center}
@@ -1220,4 +1220,4 @@ Dieses Paket setzt grundlegende Stile für \blankcmd{caption}, \blankenv{figure}
 %
 
 \presentEnvironment[2.1.0]{lfig}[\optArg[auto]{width}\cmdlist\anotherenv[2.1.0]{lfig*}\optArg[auto]{width}\cmdlist\secline\anotherenv[2.1.0]{rfig}\optArg[auto]{width}\cmdlist\anotherenv[2.1.0]{rfig*}\optArg[auto]{width}]
-Setzt eine Umgebung links oder rechts im aktuellen Textfluss wobei der nächste Start eines Paragraphen als Ankerpunkt gesucht wird. Ein Start eines neuen Paragraphen kann jeweils durch die mit einem Stern markierte Umgebung forciert werden. 
+Setzt eine Umgebung links oder rechts im aktuellen Textfluss wobei der nächste Start eines Paragraphen als Ankerpunkt gesucht wird. Ein Start eines neuen Paragraphen kann jeweils durch die mit einem Stern markierte Umgebung forciert werden.
