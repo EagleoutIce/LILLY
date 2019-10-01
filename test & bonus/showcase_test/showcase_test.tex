@@ -1,7 +1,7 @@
 \documentclass[german]{article}
 \usepackage[ngerman]{babel}
 
-\PassOptionsToPackage{english}{LILLYxTRANSLATOR}
+\usepackage{LILLYxCOLOR}
 \usepackage{LILLYxSHOWCASE}
 
 
@@ -19,12 +19,6 @@
     \label{fig:Hallo}
 \end{figure}
 
-\translate{Beispiel}
-
-\translate{Olaf}
-
-\translate{X}
-
 \blindtext\par
 \begin{lfig}
     \begin{tikzpicture}
@@ -39,5 +33,16 @@
     \end{tikzpicture}
     \caption{KRASSE FIGUR}
 \end{wrapfigure}
+
+\clearpage
+%\begin{bannerpage}
+    \GenericLeftBanner{AppleGreen!15}
+    \GenericTopBanner{Azure!15}
+    \GenericRightBanner{DebianRed!15}
+    \GenericBottomBanner{ChromeYellow!15}
+\clearpage
+    \DefaultLeftBookmarkBanner{DebianRed!15}
+    \DefaultRightBookmarkBanner[6cm]{AppleGreen!15}
+%\end{bannerpage}
 
 \end{document}
