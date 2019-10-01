@@ -14,6 +14,11 @@
         <directory>../Lilly</directory>
         <excludes>
           <exclude>**/source/Data/Graphics/**/*.pdf</exclude>
+          <exclude>**/*.aux</exclude>
+          <exclude>**/*.log</exclude>
+          <exclude>**/*.svn</exclude>
+          <exclude>**/*.nav</exclude>
+          <exclude>**/*.snm</exclude>
         </excludes>
       </resource>
       <resource>
