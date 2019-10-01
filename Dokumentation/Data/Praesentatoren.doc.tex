@@ -174,7 +174,7 @@ Information: Die Breite dieser Begrenzer passt sich an die aktuelle Zeilenbreite
 
 \presentCommand[2.0.0]{PresentAllOrnaments}
 Erzeugt mithilfe von \LILLYxNOTExLibrary{LILLYxTABLESxFOREACH} eine tabellarische Auflistung aller Ornamente:
-\begin{tcbraster}[raster columns=4, blankest, graphics pages={1,2,3,6}, colback=white]
+\begin{tcbraster}[raster columns=4, blankest, graphics pages={1,2,6}, colback=white]
     \tcbincludepdf{Data/Documents/AllOrnaments/ornaments.pdf}
 \end{tcbraster}
 Die unterschiedlichen Höhen entstammen hierbei der Tatsache, dass dieser Befehl alle Ornamente (zur besseren Übersicht) mit derselben Breite setzt.
@@ -959,7 +959,7 @@ Die folgenden Befehle zeigen, wie diese Person benutzt werden kann.
 %
 %
 
-\presentCommand[2.1.0]{PersonAlias}[\manArg{PersonID}\cmdlist\anothercmd[2.1.0]{PersonName}\manArg{PersonID}\cmdlist\anothercmd[2.1.0]{PersonFullName}\manArg{PersonID}]
+\presentCommand[2.1.0]{PersonAlias}[\manArg{PersonID}\cmdlist\anothercmd[2.1.0]{PersonName}\manArg{PersonID}\cmdlist\secline\anothercmd[2.1.0]{PersonFullName}\manArg{PersonID}]
 Liefert die jeweiligen Felder der Person als Wert zurück:
 \begin{latex}
 \PersonAlias{Flo} % :yields: !*\lstcomment{\PersonAlias{Flo}}*!

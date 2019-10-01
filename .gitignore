@@ -62,6 +62,8 @@ bin
 *.snm
 *.toc
 
+**/Data/Graphics/**/*.pdf
+
 # Created by https://www.gitignore.io/api/intellij
 
 ### Intellij ###
