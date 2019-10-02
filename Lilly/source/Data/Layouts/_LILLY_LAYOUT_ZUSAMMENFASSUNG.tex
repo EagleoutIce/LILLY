@@ -183,7 +183,7 @@
 
 \providecommand{\LILLYxINDEXxINTERMEDIATExFORMAT}{\clearpage}
 
-\AtEndDocument{%
+\AtEndDocument{\makeatletter%
     \addtocontents{DEFINITIONS}{\protect\thispagestyle{empty}}
     \protect\pagestyle{empty}\thispagestyle{empty}
     \LILLYxCLEARxHEADFOOT\pagestyle{empty}
