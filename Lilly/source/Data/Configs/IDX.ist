@@ -32,7 +32,7 @@ quote '~'
 actual '`'
 
 delim_t "}\\fi\\pgfsetfillopacity{1.0}\\iftrue\\rmfamily\\idxfsize{}"
-delim_n "}, "
+delim_n "}, \\hyperpage{"
 % \\hyperpage{"
 
 indent_space '\t'
