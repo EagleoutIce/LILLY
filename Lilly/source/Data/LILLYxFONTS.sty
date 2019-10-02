@@ -2,8 +2,21 @@
 \ProvidesPackage{LILLYxFONTS}[2019/07/11 Stellt die Schriften-Erweiterungen fuer LILLY zur Verfuegung]
 
 
-% \usepackage{CormorantGaramond}
-\usepackage{CrimsonPro}
+\RequirePackage{LILLYxCORE}
+\RequirePackage{kvoptions}
+
+
+\DeclareVoidOption{garamond}{\usepackage{CormorantGaramond}}
+\DeclareVoidOption{crimson}{\usepackage{CrimsonPro}\let\oldnormalfont\normalfont\def\normalfont{\oldnormalfont\mdseries}}
+\DeclareVoidOption{lcrimson}{\usepackage[light]{CrimsonPro}\let\oldnormalfont\normalfont\def\normalfont{\oldnormalfont\mdseries}}
+\DeclareVoidOption{kpfont}{\PassOptionsToPackage{full}{textcomp}% Fix option clash :D
+\usepackage{kpfonts}}
+
+\DeclareDefaultOption{} % Default: do nothing
+
+
+\ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
+
 
 
 %% https://www.ctan.org/pkg/fontawesome
@@ -11,7 +24,7 @@
                     {Wie du bist nicht super fonti-awesome. Ich versuche die Symbole zu simulieren!}
                     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_FONTAWESOME}} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
                     {}{}
-
+% No doku
 %% WHICH FONT?
 \DeclareFixedFont{\chapterNumberFSize}{U}{eur}{b}{n}{\f@size} %% Euler Font für die Kapitelnummern - ich finde die toll
 \DeclareFixedFont{\chapterNumber}{U}{eur}{b}{n}{80} %% Euler Font für die Kapitelnummern - ich finde die toll
@@ -24,7 +37,7 @@
 \def\efont#1{
     \begingroup\useefont#1\endgroup
 }
-
+% no doku
 \gdef\fsize{\dimexpr\f@size pt\relax}
 
 

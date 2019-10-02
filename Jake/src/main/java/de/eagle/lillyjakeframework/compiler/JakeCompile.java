@@ -202,8 +202,8 @@ public class JakeCompile {
                             CoreSettings.requestValue("S_LILLY_EXTERNAL_OUT")))
                             .filter(s -> !InKeeps(s.toString())).forEach(s -> s.toFile().delete());
         } else {
-            JakeWriter.out.format("Kein autoclean, da zugehörige Einstellung (%s) != true%n",
-                    CoreSettings.getTranslator().translate("S_LILLY_EXTERNAL"));
+            JakeWriter.out.format("Kein autoclean, da die zugehörige Einstellung (%s) != true%n",
+                    CoreSettings.getTranslator().translate("S_LILLY_AUTOCLEAN"));
         }
 
     }
@@ -382,7 +382,7 @@ public class JakeCompile {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    
+
                 }
                 JakeWriter.out.format("%sGenerierung von \"%s.pdf\" (%s) abgeschlossen. (Zeit: %ss)%s%n",
                         ColorConstants.COL_SUCCESS, final_name, boxmode,

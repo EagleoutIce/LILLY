@@ -121,7 +121,7 @@
     \ifnum\@@LILLY@persons@get{#1}{Age}<0\else\@@LILLY@persons@get{#1}{Age}\fi%
 }
 
-\newlength{\@PersonTag@Height}\setlength{\@PersonTag@Height}{12pt}
+\newlength{\@PersonTag@Height}\setlength{\@PersonTag@Height}{12.5pt}
 
 \DeclareDocumentCommand{\ShowPerson}{%
     O{} % Optional tikz-args
@@ -158,8 +158,9 @@
     % Evaluate the Name, it will scale the Name based on a minimum width :D
     \IfBooleanTF{#1}{\def\@tmp@Name{\PersonAlias{#3}}}{\def\@tmp@Name{\@@LILLY@persons@get{#3}{Name}}}%
     % Now calculate the width of the Name:
-    \settowidth{\@tmp@Name@length}{\@tmp@Name}%
-    \ifdim\@tmp@Name@length>1.95cm\relax \addtolength{\@tmp@Name@length}{0.8cm}% Offset for the image (0.65cm) + offset for look (0.15cm)
+    \settowidth{\@tmp@Name@length}{\scriptsize\useefont\@tmp@Name}%
+    % \typeout{WIDTH: \the\@tmp@Name@length}
+    \ifdim\@tmp@Name@length>47.5pt\relax \addtolength{\@tmp@Name@length}{0.9cm}% Offset for the image (0.65cm) + offset for look (0.25cm)
         \else \setlength{\@tmp@Name@length}{2.5cm}\fi%
     \begin{tikzpicture}[baseline=0.4ex,every node/.style={transform shape},#4]
         % First, draw the background-Plate
@@ -174,7 +175,7 @@
 
         % Draw the Picture provided:
         \filldraw[path image={\@@LILLY@persons@get{#3}{Image}}{\@@LILLY@persons@get{#3}{ImageMultiplier}},\@@LILLY@persons@get{#3}{SecondaryColor}] (0.4,0.35) circle (0.7\@PersonTag@Height); %semithick for the border?
-    \end{tikzpicture}\space$\,$%
+    \end{tikzpicture}%
 }
 
 
