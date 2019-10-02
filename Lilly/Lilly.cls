@@ -41,33 +41,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Setzen und Abfragen der Werte für das Dokument                                                                      %     %%%% PRE-DEFAULTS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifx\LILLYxGeneralxPaperformat\undefined
-    \providecommand{\LILLYxGeneralxPaperformat}{a4paper}          %%% A4 Papier
-\fi
-\ifx\LILLYxGeneralxFontsize\undefined
-    \providecommand{\LILLYxGeneralxFontsize}{11pt}           %%% 11-Punkt-Schrift
-\fi
-\ifx\LILLYxDocumentxTYPE\undefined
-    \providecommand{\LILLYxDocumentxTYPE}{scrbook}           %%% Dokumentbasisklasse es Dokuments
-\fi
-\ifx\LILLYxDocumentxTYPExExtras\undefined
-    \providecommand\LILLYxMODExPRINT{print}
-    \ifx\LILLYxMODE\LILLYxMODExPRINT
-        \providecommand{\LILLYxDocumentxTYPExExtras}{twoside}    %%% Weitere Zusätze für das Dokument
-        \providecommand{\LILLYxLeftOffset}{18mm}
-        \ifx\LILLYxDEBUG\true
-            %\providecommand{\LILLYxGeometryxExtras}{bindingoffset=8mm,showframe}
-            \providecommand{\LILLYxGeometryxExtras}{bindingoffset=\LILLYxLeftOffset}
-        \else
-            \providecommand{\LILLYxGeometryxExtras}{bindingoffset=\LILLYxLeftOffset}
-        \fi
+
+\providecommand\LILLYxMODExPRINT{print}
+\ifx\LILLYxMODE\LILLYxMODExPRINT
+    \providecommand{\LILLYxDocumentxTYPExExtras}{twoside}    %%% Weitere Zusätze für das Dokument
+    \providecommand{\LILLYxLeftOffset}{18mm}
+    \ifx\LILLYxDEBUG\true
+        %\providecommand{\LILLYxGeometryxExtras}{bindingoffset=8mm,showframe}
+        \def\LILLYxGeometryxExtras{bindingoffset=\LILLYxLeftOffset}
     \else
-        \providecommand{\LILLYxDocumentxTYPExExtras}{oneside}    %%% Weitere Zusätze für das Dokument
-        \providecommand{\LILLYxGeometryxExtras}{}
+        \def\LILLYxGeometryxExtras{bindingoffset=\LILLYxLeftOffset}
     \fi
+\else
+    \providecommand{\LILLYxDocumentxTYPExExtras}{oneside}    %%% Weitere Zusätze für das Dokument
+    % \providecommand{\LILLYxGeometryxExtras}{}
 \fi
-\providecommand{\LILLYxLayoutxWidth}{6in}
-\providecommand{\LILLYxLayoutxHeight}{9.05in}
+
 
 \LILLYxPoliteKnock[.cls]{\LILLYxDocumentxTYPE}{} %% Hier ist alles toll
                   {\ClassError{Ich brauche leider \LILLYxDocumentxTYPE als Paket um irgendwas tun zu können! Ich darf auch nicht auf article oder gleichwertige Pakete umsteigen. Tut mir Leid, so wird das nichts!}} %% Hier dann wohl nicht!
