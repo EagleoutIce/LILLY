@@ -112,12 +112,12 @@
 	{%
 		\hypersetup{linkcolor=black}%
 		\iflist@poems@seen% this works now :D
-		\OrnamentsUpper[][]{\poems@tocpoemsheader}\vspace*{-1\baselineskip}%
+		\OrnamentsUpper[][]{\poems@tocpoemsheader}\vskip-2.75cm%
 			\listofPOEMS\vspace*{-2\baselineskip}%
 		\OrnamentsLower{}%
 		\fi%
 		\iflist@quotes@seen%
-		\clearpage\OrnamentsUpper[][]{\poems@tocquotesheader}\vspace*{-1.5\baselineskip}%
+		\clearpage\OrnamentsUpper[][]{\poems@tocquotesheader}\vskip-2.75cm%
 			\listofQUOTES\vspace*{-2\baselineskip}%
 		\OrnamentsLower{}%
 		\fi%
