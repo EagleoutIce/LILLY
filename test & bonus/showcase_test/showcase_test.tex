@@ -1,18 +1,23 @@
+\errorcontextlines 9999
 \documentclass[german]{article}
 \usepackage[ngerman]{babel}
 
 \usepackage{LILLYxCOLOR}
 \usepackage{LILLYxSHOWCASE}
+% \usepackage{LILLYxORNAMENTS}
+\usepackage{LILLYxGRAPHICS}
+\usepackage{LILLYxCONTROLLERxLINK}
 
 
 
+\usepackage[sfdefault]{overlock}
 
 \usepackage{blindtext}
 
 \usepackage{tikz}
 
 \begin{document}
-
+\iffalse
 \begin{figure}
     \centering
     \caption{\blindtext}
@@ -44,5 +49,83 @@
     \DefaultLeftBookmarkBanner{DebianRed!15}
     \DefaultRightBookmarkBanner[6cm]{AppleGreen!15}
 %\end{bannerpage}
+
+\clearpage
+
+\begin{Banner}
+    Hallo Welt
+\end{Banner}
+\clearpage
+\fi
+
+\pagestyle{empty}
+\makeatletter
+
+\def\@@FirstName{}
+\def\@@SecondName{}
+\def\@@SetName#1 #2\@nil{%
+    \gdef\@@FirstName{#1}%
+    \gdef\@@SecondName{#2}%
+}
+\def\SetName#1{%
+    \@@SetName#1 \@nil
+}
+
+
+
+
+\colorlet{SignColor}{Charcoal}
+\pagecolor{SignColor!7}
+\newdimen\hexrad \hexrad=2.5cm
+\def\b@width{2\hexrad}
+
+\newcommand{\raisedrule}[2][0em]{\leaders\hbox{\rule[#1]{0.01pt}{#2}}\hfill}
+
+
+
+% Header
+% Text
+\long\def\Description#1#2{%
+\hskip2em\parbox{\linewidth-3.25em}{\textbf{#1:} #2}\vskip2.5em
+}
+\def\email#1{\href{mailto:#1}{#1}}
+
+% #1 Symbol
+% #2 Text
+\def\StartBannerBlock#1#2{\bgroup\color{MudWhite}\Large%
+    \leavevmode\hbox{}\hskip1em\relax\parbox{1.5em}{\huge\strut#1}~\MakeUppercase{#2}\(\;\)\raisedrule[0.25\baselineskip]{1pt}\hskip3.55pt\smallskip\egroup{}
+
+    %
+}
+
+\NewEnviron{litemize}[1][]{\bgroup\hypersetup{urlcolor={MudWhite}}%
+\hskip1.75em\relax\parbox{\linewidth-3.25em}{\begin{itemize}\leftmargin=0pt\labelsep=0.75em%
+    \BODY\end{itemize}}\egroup}
+
+\SetName{Florian Sihler}
+
+\def\lphone{\item[{\makebox[1em][c]{\faPhone}}]}
+\def\lmail{\item[{\makebox[1em][c]{\faEnvelope}}]}
+\def\lurl{\item[{\makebox[1em][c]{\faGlobe}}]}
+\def\llocation{\item[{\makebox[1em][c]{\faMapMarker}}]}
+
+
+\begin{Banner}[bottom color=SignColor!25!black, top right color={SignColor}, top left color={SignColor!50!black},width=8cm,%
+    pre code={\filldraw[path image={\LILLYxPATHxDATA/Images/me.jpg}{\b@width},MudWhite] ([yshift=-2.25\hexrad,xshift=8cm/2]current page.north west) -- ++ (30:\hexrad) -- ++ (90:\hexrad) -- ++ (150:\hexrad) -- ++ (210:\hexrad) -- ++ (270:\hexrad) -- cycle;}]
+    \color{MudWhite}\vskip2.5\hexrad\large{}
+    \begin{center}\Huge
+        \@@FirstName~\textbf{\@@SecondName}\bigskip
+        % \ornasimplebreak[scale=0.35,ydelta=-0.75cm]{}
+    \end{center}
+    \StartBannerBlock{\faUser}{Kurzbeschreibung}
+    \Description{Hallo Welt}{Hallo Welt ich mag Züge und finde, dass dieser Texttext wirklich eine Auszeichnung für Hervorragendes \TeX-ting verdient. Du nicht auch? Ich bin geil, danke fürs Lesen}
+    \StartBannerBlock{\LARGE\faComments}{Kontakt}
+    \begin{litemize}
+        \lphone +49\,000\,00100100
+        \lmail \email{florian.sihler@web.de}
+        \lurl \url{www.shaumal.de}
+        % \llocation Leonhardstraße 29, 73054 Eislingen
+    \end{litemize}
+\end{Banner}
 
 \end{document}
