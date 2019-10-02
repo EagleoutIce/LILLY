@@ -46,7 +46,7 @@
                             \fi%
                         \fi%
                     \fi%
-                \fi} % Padding for minutes 
+                \fi} % Padding for minutes
 \def\SessionName{\translate{Sitzung des} \SessionDate~(\SESSIONxATTENDEESxCOUNT~\translate{Teilnehmer})}% Titel
 \def\SessionDuration{\ifnum\SESSIONxDURATIONxMINUTES>0\relax\SESSIONxDURATIONxMINUTES{$\,$}m\fi}% We don't wan't to see a Time of 0 minutes :D
 \def\SessionTitleFormat{\SessionDate~(\SessionDuration)}
@@ -104,7 +104,7 @@
         %\parbox[t]{8cm}{%
         \begin{minipage}{8cm}
             \foreach \attendee in \lillyxSessionxattendees{%
-                \ShowPersonTag{\attendee}%
+                \ShowPersonTag{\attendee}~$\;$%
                 % Add the meeting time to the persons attendancees-counter
                 \addtocounter{ctrX\attendee Xattendancetime}{\SESSIONxDURATIONxMINUTES}%
             }

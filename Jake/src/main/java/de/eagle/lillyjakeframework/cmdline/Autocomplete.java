@@ -99,7 +99,7 @@ public class Autocomplete {
         /*} catch (IOException e) {
             e.printStackTrace();
         }*/
-        
+
         return str.toString();
     }
 
@@ -193,6 +193,7 @@ public class Autocomplete {
          * (wenn lilly-in spezifiziert: nutzen) Ja: Direkt Settings angeben grade by
          * settings? tanzen!
          */
+        if (fx != null)
         fx.close();
         return str.toString();
     }
