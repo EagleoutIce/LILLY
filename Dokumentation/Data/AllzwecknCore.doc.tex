@@ -15,6 +15,36 @@
 %
 %
 %
+\subsection{Schriften}
+\hypertarget{LILLYxFONTS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxFONTS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.1.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen. Es kann eine der folgenden Optionen dem Paket oder Lilly übergeben werden, um die Dokumentschriftart zu ändern: \T{garamond}, \T{crimson}, \T{lcrimson}, \T{kpfont}. Diese Dokumentation wurde durch folgenden Aufruf erzeugt:
+\begin{latex*}
+\documentclass[Dokumentation,kpfont]{Lilly}
+\end{latex*}
+
+%
+%
+%
+
+\presentCommand[1.0.9]{useefont}[\cmdlist\anothercmd[1.0.7]{efont}\manArg{Text}]
+Setzt \T{Text} in der Euler-Font. So ergibt \T{\blankcmd{efont}\{Hallo\}}: \efont{Hallo}.
+
+%
+%
+%
+
+\presentCommand[1.0.7]{kfont}[\manArg[Text]]
+Setzt \T{Text} in der Konanur-Font. So ergibt \T{\blankcmd{kfont}\{Hallo\}}: \kfont{Hallo}.
+
+%
+%
+%
+
+\presentCommand[1.0.7]{Lilly}
+Setzt den Lilly-Schriftzug (in Konanur-Schrift): \blankcmd{Lilly} ergibt: \Lilly.
+
+%
+%
+%
 \subsection{Lilly-Befehle}
 \hypertarget{LILLYxCOMMAND}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxCOMMAND} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen.\medskip\newline
 Die Befehle die hier zur Verfügung gestellt werden sollten nur dann verwendet werden, wenn es keine andere Möglichkeit gibt, das gewünschte Ergebnis zu erreichen.
@@ -853,9 +883,9 @@ Pausiert die Befehle \typesetList[ttlsx]{write,iwrite,pwrite}, beziehungsweise h
 %
 
 \presentCommand[2.1.0]{write<ID>}[\manArg{Data}\cmdlist\anothercmd[2.1.0]{iwrite<ID>}\manArg{Data}\cmdlist\anothercmd[2.1.0]{pwrite<ID>}\manArg{Data}\cmdlist\secline\anothercmd[2.1.0]{input<ID>}]
-Schreibt \T{Data} in den jeweiligen Rekorder, wobei 
+Schreibt \T{Data} in den jeweiligen Rekorder, wobei
 \begin{ditemize}
-    \item \blankcmd{write<ID>} die Daten beim Ausliefern der Seite schreibt (es werden also Seitennummern oder ähnliches korrekt aufgelöst), 
+    \item \blankcmd{write<ID>} die Daten beim Ausliefern der Seite schreibt (es werden also Seitennummern oder ähnliches korrekt aufgelöst),
     \item \blankcmd{iwrite<ID>} die Daten direkt schreibt (kann also eine falsche Seitennummer liefern, dafür ist die Reihenfolge sicher korrekt).
     \item \blankcmd{pwrite<ID>} auf \blankcmd{protected@write} zurück greift.
 \end{ditemize}
