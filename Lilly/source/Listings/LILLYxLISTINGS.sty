@@ -253,7 +253,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Grundlegender Befehl zum Schreiben von Code innerhalb einer zeile, löst nicht die Problematiken wie Sonderzeichen, aber mit irgendwas muss man arbeiten können
-\DeclareRobustCommand{\LILLYxwriteLst}[2][]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite,fill=MudWhite, centered]{\,\vphantom{I}\lstinline[#1]!#2!\,};}}
+\DeclareRobustCommand{\LILLYxwriteLst}[2][]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite,fill=MudWhite, centered]{\,\vphantom{I}\lstinline[#1]`#2`\,};}}
 
 \gdef\LILLYxLSTINLINE#1#2{%
   \begingroup\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\noexpand\baselineskip, inner xsep=2.4pt, inner ysep=2.1pt,draw, %rounded corners=4pt,
