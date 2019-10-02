@@ -19,6 +19,7 @@
                     {}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
+
 \newcounter{ctrXpoems}\setcounter{ctrXpoems}{0} % counter for the poems
 \newlistof{POEMS}{POEM}{} % List of Poems
 %\addtocontents{POEM}{\protect\thispagestyle{scrheadings}}
@@ -29,6 +30,11 @@
 \newlistof{QUOTES}{QUOTE}{} % List of Quotes - it will only register Quote-collections created by the 'quotes' environment :D
 %\addtocontents{QUOTE}{\protect\thispagestyle{scrheadings}}
 \newif\iflist@quotes@seen% No Quote appeared
+
+% Even if not shown we want the Lists to be seen, so we will manually set their writes
+% LILLYxRECORDER:
+\@@OpenOut@Default{POEM}
+\@@OpenOut@Default{QUOTE}
 
 % basically works like \obeylines, but regarding blanklines
 
@@ -57,7 +63,7 @@
 	m 				 % Date of the Poem
 	O{\poems@author} % Author of the Poem
 }{%
-    \leavevmode%\begin{minipage}{\linewidth}%
+    \leavevmode\phantomsection%\begin{minipage}{\linewidth}%
     \refstepcounter{ctrXpoems}%
 	\addcontentsline{POEM}{section}{{\scriptsize\useefont\thectrXpoems}~#4}%
 	\iflist@poems@seen\relax\else\global\list@poems@seentrue\write@poems@watcher{\noexpand\global\noexpand\list@poems@seentrue}\fi% Poem appeared
@@ -83,7 +89,7 @@
 	O{\poems@author}	% Default Author
 }{%
 	% Register to the Poemlist, as one poem :D :D
-	\clearpage\refstepcounter{ctrXquotes}% TODO: Find better way to registrer them :D
+	\clearpage\phantomsection\refstepcounter{ctrXquotes}% TODO: Find better way to registrer them :D
 	\addcontentsline{QUOTE}{section}{{\scriptsize\useefont\thectrXquotes}~#1}%
 	\iflist@quotes@seen\relax\else\global\list@quotes@seentrue\write@poems@watcher{\noexpand\global\noexpand\list@quotes@seentrue}\fi% Quote appeared
 	\leavevmode\hbox{}\hfill\pgfornament[height=1.5em,ydelta=-6pt]{77}\efont{\Large #1}\;\normalfont\pgfornament[height=1.5em,symmetry=v,ydelta=-6pt]{77}\hfill\hbox{}\leavevmode\vspace*{-0.75em}\newline%

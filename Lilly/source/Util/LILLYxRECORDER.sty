@@ -91,4 +91,15 @@
   \@nobreakfalse\endgroup%
 }
 
+
+\def\@@OpenOut@Default#1{%
+  \IfFileExists{\jobname.#1}{}{%
+  \if@filesw%
+    \expandafter\newwrite\csname tf@#1\endcsname%
+    \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax%
+  \fi%
+  }
+}
+
+
 \endinput
