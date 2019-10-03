@@ -60,11 +60,11 @@
 %% Set Hooks for the Beginning of the Document:
 %% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
 \AtBeginDocument{%
-	\SetStyle
+	\SetStyle%
 	% Two column \listofPOEMS
-	\addtocontents{POEM}{\protect\begin{multicols}{2}}
+	\addtocontents{POEM}{\protect\begin{multicols}{2}}%
 	% Two column \listofQUOTES
-	\addtocontents{QUOTE}{\protect\begin{multicols}{2}}
+	\addtocontents{QUOTE}{\protect\begin{multicols}{2}}%
 }
 \AtEndDocument{%
 	\addtocontents{POEM}{\protect\end{multicols}}
@@ -112,12 +112,12 @@
 	{%
 		\hypersetup{linkcolor=black}%
 		\iflist@poems@seen% this works now :D
-		\OrnamentsUpper[][]{\poems@tocpoemsheader}\vskip-2.75cm%
+		\OrnamentsUpper[][]{\poems@tocpoemsheader}%\vskip-2.75cm%
 			\listofPOEMS\vspace*{-2\baselineskip}%
 		\OrnamentsLower{}%
 		\fi%
 		\iflist@quotes@seen%
-		\clearpage\OrnamentsUpper[][]{\poems@tocquotesheader}\vskip-2.75cm%
+		\clearpage\OrnamentsUpper[][]{\poems@tocquotesheader}%\vskip-2.75cm%
 			\listofQUOTES\vspace*{-2\baselineskip}%
 		\OrnamentsLower{}%
 		\fi%
