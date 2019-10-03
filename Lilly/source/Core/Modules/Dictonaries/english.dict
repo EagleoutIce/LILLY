@@ -65,3 +65,8 @@
 
 \deftranslation{Abb.}{Fig.}
 \deftranslation{Tbl.}{Tbl.}
+
+% Application
+
+\deftranslation{Kurzbeschreibung}{About me}
+\deftranslation{Kontakt}{Contact Information}

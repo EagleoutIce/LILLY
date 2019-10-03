@@ -1,0 +1,287 @@
+\errorcontextlines 9999
+\documentclass[german]{article}
+\usepackage[ngerman]{babel}
+
+\usepackage[left=8cm,top=0cm,right=0cm,bottom=0cm,a4paper]{geometry}
+
+\usepackage{LILLYxCOLOR}
+\usepackage{LILLYxSHOWCASE}
+\usepackage{LILLYxENCODING}
+% \usepackage{LILLYxORNAMENTS}
+\usepackage{LILLYxGRAPHICS}
+\usepackage{LILLYxCONTROLLERxLINK}
+
+\usepackage{calligra}
+
+\usepackage{enumitem}
+\usepackage[sfdefault]{overlock}
+
+\usepackage{blindtext}
+
+\usepackage{tikz}
+\makeatletter
+\RequirePackage[yyyymmdd,hhmmss]{datetime}
+\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
+\newlength{\len@space}
+\settowidth{\len@space}{\ }
+
+\begin{document}
+\iffalse
+\begin{figure}
+    \centering
+    \caption{\blindtext}
+    \label{fig:Hallo}
+\end{figure}
+
+\blindtext\par
+\begin{lfig}
+    \begin{tikzpicture}
+        \draw (0,0) circle (2);
+    \end{tikzpicture}
+    \caption{KRASSE FIGUR}
+\end{lfig}
+\blindtext
+\begin{wrapfigure}{l}{0pt}
+    \centering\begin{tikzpicture}
+        \draw (0,0) circle (1);
+    \end{tikzpicture}
+    \caption{KRASSE FIGUR}
+\end{wrapfigure}
+
+\clearpage
+%\begin{bannerpage}
+    \GenericLeftBanner{AppleGreen!15}
+    \GenericTopBanner{Azure!15}
+    \GenericRightBanner{DebianRed!15}
+    \GenericBottomBanner{ChromeYellow!15}
+\clearpage
+    \DefaultLeftBookmarkBanner{DebianRed!15}
+    \DefaultRightBookmarkBanner[6cm]{AppleGreen!15}
+%\end{bannerpage}
+
+\clearpage
+
+\begin{Banner}
+    Hallo Welt
+\end{Banner}
+\clearpage
+\fi
+
+
+\begin{application}{SimpleLeftBanner}
+\setname{Florian Sihler}
+\colorprofile{Charcoal}
+\setbrief{Hallo Welt}{Hallo Welt ich mag Züge und finde, dass dieser Texttext wirklich eine Auszeichnung für Hervorragendes \TeX-ting verdient. Du nicht auch? Ich bin geil, danke fürs Lesen}
+\StartApplication{}
+
+Hallo
+\end{application}
+
+
+
+
+
+
+
+
+\pagestyle{empty}
+\makeatletter
+
+\def\@@FirstName{}
+\def\@@SecondName{}
+\def\@@SetName#1 #2\@nil{%
+    \gdef\@@FirstName{#1}%
+    \gdef\@@SecondName{#2}%
+}
+\def\SetName#1{%
+    \@@SetName#1 \@nil
+}
+
+
+
+
+\colorlet{SignColor}{Charcoal}
+\pagecolor{SignColor!7}
+\newdimen\hexrad \hexrad=2.5cm
+\def\b@width{2\hexrad}
+
+\newcommand{\raisedrule}[2][0em]{\leaders\hbox{\rule[#1]{0.01pt}{#2}}\hfill}
+
+
+\NewEnviron{text}{%
+    \hskip0.3cm\relax\parbox{\linewidth-1cm-0.3cm}{\BODY}%
+}
+
+% Header
+% Text
+\long\def\Description#1#2{%
+\hskip2em\parbox{\linewidth-3.35em}{\textbf{#1:} #2}
+}
+\def\email#1{\href{mailto:#1}{#1}}
+
+% Maybe select with \ifinbanner@?
+
+% #1 Symbol
+% #2 Text
+\def\StartBlock#1#2{\bgroup\color{SignColor!75!black}\Large%
+    \leavevmode\newline\hbox{}\hskip1em\relax\parbox{1.5em}{#1\strut}~\MakeUppercase{#2}\(\;\)\raisedrule[0.25\baselineskip]{1.25pt}\smallskip\egroup{}
+
+    %
+}
+
+
+% #1 Symbol
+% #2 Text
+\def\StartBannerBlock#1#2{\bgroup\color{MudWhite}\Large%
+    \leavevmode\vskip1.5em\hbox{}\hskip1em\relax\parbox{1.5em}{\huge#1\strut}~\MakeUppercase{#2}\(\;\)\raisedrule[0.25\baselineskip]{1pt}\hskip3.55pt\smallskip\egroup{}
+
+    %
+}
+
+\NewEnviron{litemize}[1][]{\bgroup\hypersetup{urlcolor={MudWhite}}%
+\hskip1.75em\relax\parbox{\linewidth-3.25em}{\begin{itemize}[label={\makebox[1em][c]{\Large$\bullet$}},#1]\leftmargin=0pt\labelsep=0.75em%
+    \BODY\end{itemize}}\egroup}
+
+\SetName{Florian Sihler}
+
+\def\lphone{\item[{\makebox[1em][c]{\faPhone}}]}
+\def\lmail{\item[{\makebox[1em][c]{\faEnvelope}}]}
+\def\lurl{\item[{\makebox[1em][c]{\faGlobe}}]}
+\def\llocation{\item[{\makebox[1em][c]{\faMapMarker}}]}
+
+\def\lfacebook{\item[{\makebox[1em][c]{\faFacebookSquare}}]}
+\def\linstagram{\item[{\makebox[1em][c]{\faInstagram}}]}
+\def\ltwitter{\item[{\makebox[1em][c]{\faTwitter}}]}
+\def\lrss{\item[{\makebox[1em][c]{\faRss}}]}
+
+
+
+% \renewcommand*{\thefootnote}{$\langle$\textbf{\alph{footnote}}$\rangle$}
+% \renewcommand\footnoterule{\color{SignColor!25!black}\kern-3pt \hrule width 2in \kern 2.6pt}
+
+% #1 width
+% #2 height
+% #3 tikz extra
+% #4 progress (0<=x<=1)
+% #5 bordercol
+% #6 progresscol
+% #7 backcol (blank=transparent)
+\def\@@ProgressBar#1#2#3#4#5#6#7{%
+    \tikz{\begin{scope}%
+        \clip[#3] (0,#2/2) -- ++ (0.15,#2/2) -- ++ (#1-0.3,0) -- ++ (0.15,-#2/2) -- ++(-0.15, -#2/2) -- ++(-#1+0.3,0) -- cycle;%Clip
+        \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        \fill[#6] (0,0) rectangle (#4*#1,#2);% Progress
+        \end{scope}\draw[#5,thick,#3] (0,#2/2) -- ++ (0.15,#2/2) -- ++ (#1-0.3,0) -- ++ (0.15,-#2/2) -- ++(-0.15, -#2/2) -- ++(-#1+0.3,0) -- cycle;% border
+    }%
+}
+
+% #1 progress
+\def\lProgressBar#1{%
+    \@@ProgressBar{6.5em}{0.65em}{}{\ifdim#1pt>1pt #1/100.0\else#1\fi}{MudWhite}{MudWhite}{}%
+}
+
+% #1 progress
+\def\sProgressBar#1{%
+    \@@ProgressBar{6.5em}{0.65em}{}{\ifdim#1pt>1pt #1/100.0\else#1\fi}{SignColor!35!black}{SignColor!35!black}{}%
+}
+
+% #1 Name
+% #2 When
+% #3 Where
+\NewEnviron{event}[3]{%
+        \item[\color{SignColor!75!black}\raisebox{0.5pt}{$\bullet$}] {\color{SignColor!75!black}\textbf{#1}\hskip0.5em\relax/\hskip0.5em\relax{\small#3\hbox{}\hfill#2}\hskip1cm}\\[0.1em]\parbox[t]{\linewidth-1cm}{\BODY}\medskip
+}
+
+\foreach \@col in {Charcoal,DatmouthGreen,DarkMidnightBlue,Crimson}{
+\colorlet{SignColor}{\@col}
+\pagecolor{SignColor!7}
+\begin{Banner}[bottom color=SignColor!25!black, top right color={SignColor}, top left color={SignColor!50!black},width=8cm,%
+    pre code={\filldraw[path image={\LILLYxPATHxDATA/Images/me.jpg}{\b@width},MudWhite] ([yshift=-2.25\hexrad,xshift=8cm/2]current page.north west) -- ++ (30:\hexrad) -- ++ (90:\hexrad) -- ++ (150:\hexrad) -- ++ (210:\hexrad) -- ++ (270:\hexrad) -- cycle;}]
+    \color{MudWhite}\vskip2.5\hexrad\large{}
+    \begin{center}\Huge
+        \@@FirstName~\textbf{\@@SecondName}\bigskip
+        % \ornasimplebreak[scale=0.35,ydelta=-0.75cm]{}
+    \end{center}
+    \StartBannerBlock{\faUser}{Kurzbeschreibung}
+    \Description{Hallo Welt}{Hallo Welt ich mag Züge und finde, dass dieser Texttext wirklich eine Auszeichnung für Hervorragendes \TeX-ting verdient. Du nicht auch? Ich bin geil, danke fürs Lesen}
+    \smallskip\StartBannerBlock{\LARGE\faComments}{Kontakt}
+    \begin{litemize}
+        \lphone +49\,000\,00100100
+        \lmail \email{florian.sihler@web.de}
+        \lurl \url{www.shaumal.de}
+        \llocation Leonhardstraße 29, 73054 Eislingen
+    \end{litemize}
+    \StartBannerBlock{\LARGE\faPieChart}{Persönliche Fertigkeiten}
+    \begin{litemize}
+        \item Aussehen \hfill\lProgressBar{100}
+        \item Manieren \hfill\lProgressBar{75}
+        \item Klukheit \hfill\lProgressBar{42}
+        \item Kräatüvütät \hfill\lProgressBar{85}
+    \end{litemize}
+    \smallskip\StartBannerBlock{\LARGE\faUsers}{Soziale Netzwerke}
+    \begin{litemize}
+        \linstagram \href{https://www.instagram.com/eagleoutice/}{eagleoutice}
+        \lfacebook Hab isch nüsch.
+        \ltwitter Nischt available.
+        \lrss Whos providing dis?
+    \end{litemize}
+\end{Banner}
+\medskip
+\StartBlock{\faGraduationCap}{Ausbildung}
+\hskip-0.25cm\parbox{\linewidth+0.25cm}{\begin{itemize}
+    \begin{event}{Grundschule}{2006 -- 2010}{Schillerschule, Eislingen}
+        Grundschulausbildung
+    \end{event}
+    \begin{event}{Gymnasium}{2010 -- 2018}{Erich Kästner Gymnasium, Eislingen}
+        Schulausbildung inklusive allgemeinbildendem Abitur (Abschluss: Drölf).
+    \end{event}
+    \begin{event}{Universität}{2018 -- Heute}{Universität Ulm}
+        Bachelorstudium Informatik mit Modulschwerpunkt Psychologie. Um auch ein bisschen zu erklären was ich hier gemacht habe schreibe ich diesen etwas längeren Text der zeigen soll wie Geil ich bin und wie gut Umbrüche funktionieren.
+    \end{event}
+\end{itemize}}
+\vfill\StartBlock{\faTasks}{Fertigkeiten und Kenntnisse}%\noexpand\footnote{Hallo}}
+\hskip-0.25cm\parbox{\linewidth-1cm+0.25cm}{\begin{multicols}{2}\vspace*{-\baselineskip}
+    \begin{itemize}[topsep=0pt,label={\color{SignColor!75!black}\raisebox{0.5pt}{$\bullet$}},itemsep=2pt]
+        \item Käsespätzle \hfill\sProgressBar{60}
+        \item Shyriiwook \hfill\sProgressBar{45}
+        \item Mikado \hfill\sProgressBar{75}
+        \item Sielder von Catan \hfill\sProgressBar{94}
+        \item Tanzen \hfill\sProgressBar{5}
+        \item \TeX{} \& Freunde \hfill\sProgressBar{80}
+    \end{itemize}
+\end{multicols}\leavevmode{}\\[-1.5\baselineskip]\hbox{}\hfill Alle Daten entstammen den eigenen Beobachtungen.\smallskip}
+\vfill\StartBlock{\faSuitcase}{Beruflicher Werdegang}
+\hskip-0.25cm\parbox{\linewidth+0.25cm}{\begin{itemize}
+\begin{event}{Logistik Manager}{2011 -- Heute}{Eislingen \& Ulm}
+    Tägliche Besuche beim Dönermann meines Vertrauens, sie lehrten mich \begin{itemize}[label={\color{SignColor!25!black}\raisebox{0.75pt}{\scriptsize$\bullet$}},topsep=4pt,itemsep=2pt]
+        \item Zuverlässigkeit, da er mir den Döner täglich frisch zubereitet.
+        \item Pünktlichkeit, da ich den Döner ja noch warm möchte.
+    \end{itemize}
+\end{event}
+\begin{event}{Gut-Ausseher}{1999 -- Heute}{Überall}
+    Eine pittoreske Erscheinung samt makelloser Physiognomie zeichnen mich, meines Zeichens übrigens Narzist und Egomane, tagtäglich aus. Die Vorteile eines derartig charismatischen Auftretens liegen selbstredend auf der Hand, ungeachtet des Effekts die Damen- und Herrenwelt gleichermaßen in den Bann zu ziehen.
+\end{event}
+\smallskip\begin{event}{Professioneller Getränkeholer}{2018 -- Heute}{Ulm}
+    Mit dem Erhalt der eigenen Wohnung lehrte mich die Gesellschaft nicht nur ein unglaublich großes Maß an Verantwortung zu tragen sondern auch regelmäßig frische Getränke den steilen Eselsberg hinauf um das menscheigene Bedürfniss des Durstes zu stillen.
+\end{event}
+\end{itemize}}
+\vfill\StartBlock{\faThumbsOUp}{Motiviation}
+\smallskip\begin{text}
+    Ich möchte den Job, denn ich brauche das Geld EinsEinsElf!!!!!\blindtext{}
+\end{text}\vskip1.25em
+    \hbox{}\hskip1cm Mit freundlichen süßen:
+    \vskip3.75em\begin{flushright}% Unterschrift
+        \parbox[t]{6cm}{%
+            \centering
+            {\huge\calligra{} Florian Sihler}\\[-0.75\baselineskip]
+            \rule{5cm}{1pt}\\
+            \@@FirstName~\@@SecondName\hskip-\len@space\relax,\hskip1em\relax\heute
+        }
+    \end{flushright}
+\vfill{\vskip2em}
+\clearpage
+}
+
+
+
+\end{document}

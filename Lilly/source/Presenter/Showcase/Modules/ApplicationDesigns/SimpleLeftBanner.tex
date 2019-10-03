@@ -1,0 +1,70 @@
+\pagecolor{\lilly@applications@page@color}%
+% Set the Banner:
+\newdimen\hexrad \hexrad=2.5cm
+\def\b@width{2\hexrad}
+%
+%
+% [#1] raise
+%  #2  thickness
+\newcommand{\@applications@raisedrule}[2][0em]{\leaders\hbox{\rule[#1]{0.01pt}{#2}}\hfill}
+%
+%
+% #1 Symbol
+% #2 Text
+\def\@applications@StartBannerBlock#1#2{\bgroup\color{\lilly@applications@contrast@color}\Large%
+    \leavevmode\vskip1.5em\hbox{}\hskip1em\relax\parbox{1.5em}{\huge#1\strut}~\MakeUppercase{#2}\(\;\)\@applications@raisedrule[0.25\baselineskip]{1pt}\hskip3.55pt\smallskip\egroup{}
+
+    %
+}
+%
+%
+%
+\NewEnviron{@applications@litemize}[1][]{\bgroup\hypersetup{urlcolor={\lilly@applications@contrast@color}}%
+\hskip1.75em\relax\parbox{\linewidth-3.25em}{\begin{itemize}[label={\makebox[1em][c]{\Large$\bullet$}},#1]\leftmargin=0pt\labelsep=0.75em%
+    \BODY\end{itemize}}\egroup}
+
+
+\def\@applications@lphone#1{\item[{\makebox[1em][c]{\faPhone}}] #1}
+\def\@applications@lmail#1{\item[{\makebox[1em][c]{\faEnvelope}}] \href{mailto:#1}{#1}}
+\def\@applications@lurl#1{\item[{\makebox[1em][c]{\faGlobe}}] \url{#1}}
+\def\@applications@llocation#1{\item[{\makebox[1em][c]{\faMapMarker}}] #1}
+\def\@applications@lmphone#1{\item[{\makebox[1em][c]{\faMobile}}] #1}
+
+
+%
+%
+\begin{Banner}[bottom color=\lilly@applications@primary@color!25!\lilly@applications@secondary@color, top right color={\lilly@applications@primary@color}, top left color={\lilly@applications@primary@color!50!\lilly@applications@secondary@color},width=8cm,%
+    pre code={\filldraw[path image={\LILLYxPATHxDATA/Images/me.jpg}{\b@width},\lilly@applications@contrast@color] ([yshift=-2.25\hexrad,xshift=8cm/2]current page.north west) -- ++ (30:\hexrad) -- ++ (90:\hexrad) -- ++ (150:\hexrad) -- ++ (210:\hexrad) -- ++ (270:\hexrad) -- cycle;}]
+    \color{\lilly@applications@contrast@color}\vskip2.5\hexrad\large{}
+    \begin{center}\Huge
+        \ifcsname lilly@applications@person@title\endcsname\@nameuse{lilly@applications@person@title}~\fi\lilly@applications@person@first@name~\textbf{\lilly@applications@person@last@name}%\bigskip
+        % \ornasimplebreak[scale=0.35,ydelta=-0.75cm]{}
+    \end{center}
+    %
+    %
+    %
+    % Erster Block: Kurzbeschreibung
+    %
+    %
+    %
+    \@applications@StartBannerBlock{\faUser}{\translate{Kurzbeschreibung}}%
+    \hskip2em\parbox{\linewidth-3.35em}{\textbf{\lilly@applications@brief@init:} \lilly@applications@brief}
+    %
+    %
+    %
+    % Zweiter Block: Kontakt
+    %
+    %
+    %
+    \@applications@StartBannerBlock{\LARGE\faComments}{\translate{Kontakt}}%
+    \begin{@applications@litemize}
+        \def\@applications@setcontacts#1#2#3#4{\@nameuse{@applications@l#4}{\@nameuse{#3}}}
+        \@applications@SetNElementsFromCmdListIfTheyExist{4}{@applications@setcontacts}{%
+            lilly@applications@person@telephone/phone,%
+            lilly@applications@person@mobile@phone/mphone,%
+            lilly@applications@person@email/mail,%
+            lilly@applications@person@website/url,%
+            lilly@applications@person@location/location%
+        }
+    \end{@applications@litemize}
+\end{Banner}
