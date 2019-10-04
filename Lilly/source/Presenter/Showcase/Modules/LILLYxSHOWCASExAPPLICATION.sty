@@ -3,9 +3,6 @@
 
 \RequirePackage{LILLYxSHOWCASExBANNERS}%
 
-\RequirePackage[yyyymmdd,hhmmss]{datetime}
-\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
-
 % Erlaubt das Setzen einer Bewerbung.
 % Es werden verschiedene Befehle gesetzt, die dann das jeweilige geladene Bewerbungs-Design mit effekten Versehen kann.
 % Macht ein Befehl im Rahmen des Bewerbungslayouts keinen Sinn, so wird er einfach nicht gesetzt.
@@ -132,7 +129,7 @@
     \@@applications@SetName#1 \@nil%
 }
 
-\def\@applications@Colorprofile#1{%
+\def\@applications@ColorProfile#1{%
     \applicationset{%
         primary color=#1,%
         secondary color=black,%
@@ -184,11 +181,15 @@
     \fi
 }
 
+% we want block
+% by default we will consume all contents
+\NewEnviron{block}[2][]{}
+
 % Defaults
-\@applications@Colorprofile{Charcoal}
+\@applications@ColorProfile{Charcoal}
 
 \def\@applications@StartApplication#1{%
-    \userput{#1.tex}{\lillyPathData}{\LILLYxPATHxPRESENTER/Showcase/Modules/ApplicationDesigns}
+    \userput{#1.tex}{\lillyPathData}{\LILLYxPATHxPRESENTER/Showcase/Modules/ApplicationDesigns}%
 }
 
 % #1 init
@@ -208,11 +209,11 @@
 \DeclareDocumentEnvironment{application}{%
     O{} % applicationset
     m   % theme name TODO: Load the theme, and set geometry accordingly
-}{\bgroup\makeatletter\KOMAoptions{fontsize=10pt}\parindent=10.95pt%
+}{\bgroup\makeatletter%
 \userput{#2.config.tex}{\lillyPathData}{\LILLYxPATHxPRESENTER/Showcase/Modules/ApplicationDesigns}
     \applicationset{#1}%
     \let\setname\@applications@SetName{#1}%
-    \let\colorprofile\@applications@Colorprofile%
+    \let\colorprofile\@applications@ColorProfile%
     \def\StartApplication{\@applications@StartApplication{#2}}%
     \let\setbrief\@applications@SetBrief%
     \let\setemail\@applications@SetEmail%

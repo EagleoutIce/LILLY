@@ -246,6 +246,17 @@ Liefert eine zufällige Zahl zwischen \T{LowerBound} und \T{UpperBound} (jeweils
 Die Kurzbefehle die hier definiert werden existieren, auch wenn das dafür notwendige Paket nicht geladen ist. In diesem Fall sorgt die Verwendung für einen Fehler.
 \end{bemerkung}
 
+%
+%
+%
+
+\presentCommand[2.0.0]{heute}
+Liefert das aktuelle Datum in hübscher deutscher Notation. Dieser Befehl wird gegebenenfalls in ein anderes Paket übertragen: \blankcmd{heute} liefert: \heute.
+
+%
+%
+%
+
 \presentCommand[2.0.0]{lstfs}[\optArg{lineSpread}\manArg{fontsize}]
 Setzt die aktuelle Schriftgrößen Definition für \LILLYxNOTExLibrary{LILLYxLISTINGS}, genau genommen werden \blankcmd{LILLYxLISTINGSxFONTSIZE} sowie \blankcmd{LILLYxLISTINGSxNUMxFONTSIZE} entsprechend definiert.
 
@@ -748,8 +759,8 @@ Beispiel:
 %
 %
 
-\presentCommand[1.0.7]{LILLYxLoadPackage}[\manArg{Paket}\manArg{Brief}\manArg{Error-Text}\manArg{Fallback}\manArg{Params}\manArg{Error}]
-Lädt das \T{Paket} mit dem Parametern \T{Params} und fügt die Beschreibung \T{Brief} hinzu. Wird es nicht gefunden, so wird der \T{Error-Text} ausgegeben und zusätzlich \T{Error} initiiert. Das Kompilieren scheitert nicht, wenn das Paket nicht existiert, allerdings wird der \T{Fallback}-Code zusätzlich ausgeführt um so Befehle zu emulieren.
+\presentCommand[1.0.7]{LILLYxLoadPackage}[\manArg{Paket}\manArg{Brief}\manArg{Error-Text}\manArg{Fallback}\manArg{Params}\manArg{true}]
+Lädt das \T{Paket} mit dem Parametern \T{Params} und fügt die Beschreibung \T{Brief} hinzu. Wird es nicht gefunden, so wird der \T{Error-Text} ausgegeben, sonst \T{true} initiiert. Das Kompilieren scheitert nicht, wenn das Paket nicht existiert, allerdings wird der \T{Fallback}-Code zusätzlich ausgeführt um so Befehle zu emulieren.
 Beispiel:
 \begin{latex*}
 %% https://ctan.org/pkg/graphicx

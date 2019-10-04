@@ -338,4 +338,83 @@ Die entstehende datei sieht wie folgt aus (der hier automatisch auftauchende Tut
     \includegraphics[width=0.75\linewidth]{Data/Bilder/GeneratorUBBeispiel}
 \end{center}
 Übrigens, der hier gebaute Generator existiert (ungefähr) so bereits in Lilly unter dem Namen \T{uebungsblatt}!
-% Todo: fix fancydir
+
+
+
+\section{Eine Bewerbung erstellen}
+\subsection{SimpleLeftBanner}
+\elable{mrk:applicationexample}Zum Erstellen von einer Bewerbung erzeugen wir uns ersteinmal ein Lilly-Dokument. Wir verwenden die Schriftart \T{overclock} (auch weil dieses Design dafür ausgelegt ist) udn erhalten damit die folgende Grundstruktur:
+\begin{latex}
+\documentclass[overclock]{Lilly}
+
+\begin{document}
+\begin{application}{SimpleLeftBanner}
+    %% Weiterer Code hier.
+\end{application}
+\end{document}
+\end{latex}
+Nun setzen wir Name, Bild und Fabrprofil:
+\begin{latex}
+\setname{Florian Sihler}
+\colorprofile{Charcoal}
+\setimage{\LILLYxPATHxDATA/Images/me.jpg}
+\end{latex}
+Weiter noch den Erklärtext, Email, Ort und Website:
+\begin{latex}[firstnumber=last]
+\setimage{\LILLYxPATHxDATA/Images/me.jpg}
+\setbrief{Hallo Welt}{Hallo Welt ich mag Züge und finde, dass dieser Texttext wirklich eine Auszeichnung für Hervorragendes \TeX-ting verdient. Du nicht auch? Ich bin geil, danke fürs Lesen}
+\setemail{florian.sihler@web.de}
+\setphone{+49\,000\,00100100}
+\setlocation{Niemandsland 42, 12345 Kaffingen}
+\setwebsite{www.toll.comm}
+\end{latex}
+Nun fügen wir ein paar tolle Skills hinzu:
+\begin{latex}[firstnumber=last]
+\addskill{Klukheit}{42}
+\addskill{Tanzen}{3}
+\addskill{Intelgement}{90}
+\addskill{Verzweifelt}{72}
+\addskill{KungFuMaster}{100}
+\end{latex}
+Der letzte würde hierbei nur angezeigt werden, wenn wir zum Beispiel keine Website anzeigen, da das Design versucht jedem Abschnitt $4$ Elemente zu übergeben. Die sozialen Kontakte setzen wir mittels \blankcmd{applicationset}:
+\begin{latex}[firstnumber=last]
+\applicationset{%
+    instagram={\href{https://www.instagram.com/eagleoutice}{eagleoutice}},
+    facebook={habischnet},
+    twitter={nopedope},
+    rss={who shares dat?}
+}
+\end{latex}
+Auch hier würden nur maximal $4$ angezeigt werden, da wir die anderen Blöcke voll ausgefüllt haben. Nun können wir mit dem Setzen der Bewerbung beginnen:
+\begin{latex}[firstnumber=last]
+\StartApplication
+\end{latex}
+Nun können wir mit dem Setzen der einzelnen Blöcke beginnen, zur Übersicht werden hierbei jeweils nur die Felder angedeutet und nicht mit exorbitant viel Text gefüllt:
+\begin{latex}[firstnumber=last]
+\begin{block}[\faGraduationCap]{Ausbildung}
+    \begin{timeline}
+        \begin{event}{Grundschule}{2006 -- 2010}{Schillerschule, Günzburg}
+            Grundschulausbildung\ldots
+        \end{event}
+        \begin{event}{Gymnasium}{2010 -- 2018}{Erich Kästner Gymnasium, Eislingen}
+            Schulausbildung \ldots
+        \end{event}
+        % :ldots:
+    \end{timeline}
+\end{block}
+\begin{block}[\faTasks]{Fertigkeiten und Kenntnisse} %
+    \begin{bulletpoints}[2]
+        \item Käsespätzle \progressbar{60}
+        \item Shyriiwook \progressbar{45}
+        % \ldots
+    \end{bulletpoints}
+\end{block}
+% \ldots
+\begin{block}[\faThumbsOUp]{Motivation}
+    \begin{text}
+        Ich möchte den Job, denn ich brauche das Geld EinsEinsElf!!% :ldots:
+    \end{text}
+\end{block}
+\sign[Florian Sihler]
+\end{latex}
+Die entstehende PDF kann bei \blankcmd{applicationset} betrachtet werden.
