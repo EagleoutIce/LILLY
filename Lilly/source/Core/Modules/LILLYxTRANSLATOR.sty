@@ -32,4 +32,14 @@
 \InputIfFileExists{\LILLYxABSPATHxCORE/Modules/Dictonaries/german.dict}{}{\typeout{German dict not found enable shell escape?}}
 \fi
 
+
+\newcommand\xtranslate[2][]{%
+    \iftranslationdefined{#2}{%
+        \translate{#2}%
+    }{%
+        \ifx\\#1\\#2\else#1\fi% if #1 is empty set #2
+    }%
+}
+% TODO PROVIDE xtranslate with an optional argument. this one should be placed if neither of the dictonaries can be found. !!! TODO TODO TODO TODO ETC :P
+
 \endinput

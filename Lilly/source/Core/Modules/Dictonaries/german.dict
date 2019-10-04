@@ -4,6 +4,9 @@
 \deftranslation{Alle Saetze}{Alle S\"{a}tze}
 \deftranslation{Loesung}{L\"{o}sung}
 \deftranslation{Uebungsblatt}{\"{U}bungsblatt}
-\deftranslation{Alle Uebungsblaetter}{Alle \"{U}bungsbl\"{a}tter}
+\deftranslation{AlleUebungsblaetter}{Alle \"{U}bungsbl\"{a}tter}
 
 \deftranslation{Maerz}{M\"{a}rz}
+
+
+\deftranslation{PersoenlicheFertigkeiten}{Pers\"{o}nliche Fertigkeiten}

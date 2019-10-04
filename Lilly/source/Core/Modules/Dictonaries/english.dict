@@ -51,7 +51,7 @@
 \deftranslation{Aufgabe}{Exercise}
 \deftranslation{Loesung}{Solution}
 
-\deftranslation{Alle Uebungsblaetter}{List of exercise sheets}
+\deftranslation{AlleUebungsblaetter}{List of exercise sheets}
 \deftranslation{Uebungsblatt}{Exercise Sheet}
 
 % Transcripts
@@ -70,3 +70,5 @@
 
 \deftranslation{Kurzbeschreibung}{About me}
 \deftranslation{Kontakt}{Contact Information}
+\deftranslation{PersoenlicheFertigkeiten}{Personal skills}
+\deftranslation{Soziale Netzwerke}{Social}

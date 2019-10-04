@@ -1223,3 +1223,18 @@ Dieses Paket setzt grundlegende Stile für \blankcmd{caption}, \blankenv{figure}
 
 \presentEnvironment[2.1.0]{lfig}[\optArg[auto]{width}\cmdlist\anotherenv[2.1.0]{lfig*}\optArg[auto]{width}\cmdlist\secline\anotherenv[2.1.0]{rfig}\optArg[auto]{width}\cmdlist\anotherenv[2.1.0]{rfig*}\optArg[auto]{width}]
 Setzt eine Umgebung links oder rechts im aktuellen Textfluss wobei der nächste Start eines Paragraphen als Ankerpunkt gesucht wird. Ein Start eines neuen Paragraphen kann jeweils durch die mit einem Stern markierte Umgebung forciert werden.
+
+\subsection{Bewerbungen}
+\hypertarget{LILLYxSHOWCASExAPPLICATION}Diese Definitionen liegen im Paket \LILLYxNOTExLibrary{LILLYxSHOWCASExAPPLICATION} und werden mit \LILLYxBOXxVersion{2.1.0} automatisch durch das Paket \LILLYxNOTExLibrary{LILLYxSHOWCASE} geladen. Eine Bewerbung kann, auch im Kontext eines Dokuments zu verwendet werden um ein Dokument wie das rechts vermerkte zu erzeugen.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{applicationset}[\manArg{application keys}]
+\begin{rfig*}
+    \includegraphics[width=5cm]{Data/Bilder/Application.png}
+\end{rfig*}
+Eine Bewerbung wird auf Basis eines Datenpools gesetzt, der durch diesen Befehl gesetzt werden kann. Welche Daten davon verwendet werden obliegt der jeweiligen Vorlage die verwendet wird. Weiter gilt zu beachten, dass es für die wichtigsten Felder Kurzbefehle wie \blankcmd{setname} gibt, die innerhalb von \blankenv{application} zur Verfügung stehen. Im Folgenden eine Auflistung aller präsenter Schlüsse: \typesetList[T]{primary color,secondary color,text color,page color,title,first name,last name,image,birth day,birth month,birth year,age,telephone,mobile phone,email,private email,website,location,instagram,facebook,twitter,rss,linkedin,devarianart,steam,soundcloud,wordpress,xing,youtube,reddit,github,gitlab,telegram,dropbox,slack,brief init,brief}.
+
+% Todo: Document :D
