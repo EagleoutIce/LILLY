@@ -1,0 +1,157 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxPROGRESSBARS}[2019/10/04 Stellt Fortschrittsleisten fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCORE}
+
+%% https://www.ctan.org/pkg/tikz
+\LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
+                    {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+
+
+% #1 width
+% #2 height
+% #3 tikz extra
+% #4 progress (0<=x<=1)
+% #5 bordercol
+% #6 progresscol
+% #7 backcol (blank=transparent)
+% #8 in code
+\def\@@pb@ProgressBar@roundings#1#2#3#4#5#6#7#8{%
+    \tikz{\begin{scope}%
+        \clip[rounded corners=#2/5,#3] (0,0) rectangle (#1,#2);%Clip
+        \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        \fill[#6] (0,0) rectangle (#4*#1,#2);% Progress
+        \end{scope}\draw[#5,thick,rounded corners=#2/5,#3] (0,0) rectangle (#1,#2);% border
+        #8%
+    }%
+}
+
+\def\@@pb@ProgressBar@rounds#1#2#3#4#5#6#7#8{%
+    \tikz{\begin{scope}%
+        \clip[rounded corners=#2/2,#3] (0,0) rectangle (#1,#2);%Clip
+        \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        \fill[#6] (0,0) rectangle (#4*#1,#2);% Progress
+        \end{scope}\draw[#5,thick,rounded corners=#2/2,#3] (0,0) rectangle (#1,#2);% border
+        #8%
+    }%
+}
+
+\def\@@pb@ProgressBar@triangles#1#2#3#4#5#6#7#8{%
+    \tikz{\begin{scope}%
+        \clip[#3] (0,#2/2) -- ++ (0.15cm,#2/2) -- ++ (#1-0.3cm,0) -- ++ (0.15cm,-#2/2) -- ++(-0.15cm, -#2/2) -- ++(-#1+0.3cm,0) -- cycle;%Clip
+        \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        \fill[#6] (0,0) rectangle (#4*#1,#2);% Progress
+        \end{scope}\draw[#5,thick,#3] (0,#2/2) -- ++ (0.15cm,#2/2) -- ++ (#1-0.3cm,0) -- ++ (0.15cm,-#2/2) -- ++(-0.15cm, -#2/2) -- ++(-#1+0.3cm,0) -- cycle;% border
+        #8%
+    }%
+}
+
+\def\@@pb@ProgressBar@hexas#1#2#3#4#5#6#7#8{%
+    \def\edgefactor{0.1cm}%
+    \tikz{\begin{scope}%
+        \clip[#3] (0,#2/4) -- ++(0,#2/2) -- ++(\edgefactor,#2/4) -- ++ (#1-2*\edgefactor,0) -- ++ (\edgefactor,-#2/4) -- ++ (0,-#2/2) -- ++(-\edgefactor, -#2/4) -- ++(-#1+2*\edgefactor,0) -- cycle;%Clip
+        \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        \fill[#6] (0,0) rectangle (#4*#1,#2);% Progress
+        \end{scope}\draw[#5,thick,#3] (0,#2/4) -- ++(0,#2/2) -- ++(\edgefactor,#2/4) -- ++ (#1-2*\edgefactor,0) -- ++ (\edgefactor,-#2/4) -- ++ (0,-#2/2) -- ++(-\edgefactor, -#2/4) -- ++(-#1+2*\edgefactor,0) -- cycle;% border
+        #8%
+    }%
+}
+
+\def\@@pb@ProgressBar@slider#1#2#3#4#5#6#7#8{%
+    \tikz{\begin{scope}%
+        \clip[#3] (0,0) rectangle (#1,#2);%Clip
+        \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        \fill[#6] (0,2*#2/5) rectangle ++(#4*#1,#2/5);% Progress
+        \fill[#6,fill opacity=0.25] (#4*#1,2*#2/5) rectangle ++(#1-#4*#1,#2/5); % negative Progress
+        \end{scope}\fill[#5,thick,overlay,#3] (#4*#1,2.5*#2/5) circle (#2/3);% border
+        #8%
+    }%
+}
+
+
+% \def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
+
+% NOTE: TIKZ WILL BE THE NUMBER OF DOTS
+\def\@@pb@ProgressBar@dots#1#2#3#4#5#6#7#8{%
+    \ifx\\#3\\\def\@countdots{10}\else\def\@countdots{#3}\fi
+    \tikz{\begin{scope}%
+        \clip[rounded corners=#2/4] (0,0) rectangle (#1,#2);%Clip
+        \foreach \r in {0,...,10} {%
+            \pgfmathparse{\r*\@countdots<#4*100}%
+            \ifnum\pgfmathresult=1\def\op@{1}\else\def\op@{0.25}\fi
+            \fill[#5,thick,overlay,fill opacity=\op@] (\r*#1/\@countdots+#1/20,#1/\@countdots*0.5) circle (#1/\@countdots*0.5);% progress
+        }
+        \end{scope}%
+        #8%
+    }%
+}
+
+\tikzset{invclip/.style={clip,insert path={{[reset cm]
+      (-16383.99999pt,-16383.99999pt) rectangle (16383.99999pt,16383.99999pt)
+    }}}}
+
+\def\@@pb@ProgressBar@radialbars#1#2#3#4#5#6#7#8{%
+    \ifx\\#3\\\def\@countdots{12}\else\def\@countdots{#3}\fi
+    \tikz{\begin{scope}%
+    \begin{pgfinterruptboundingbox}\path[invclip,#3] (#1/2,0) circle (#1/2-#2/2);\end{pgfinterruptboundingbox}\clip (#1/2,0) circle (#1/2);%Clip
+        % \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        %\fill[#6,rounded corners=20pt] (#1,0) arc (0:#4*360:#1/2);% Progress
+        \pgfmathsetmacro{\@lr}{360/\@countdots}
+        \pgfmathsetmacro{\@lre}{360-\@lr}
+        \foreach \r in {0,\@lr,...,\@lre} {%
+            \pgfmathparse{\r pt<#4*360}%
+            \ifnum\pgfmathresult=1\def\op@{1}\else\def\op@{0.25}\fi
+            \fill[#5,thick,overlay,fill opacity=\op@,#3] (#1/2,0) ++ (\r:#1/2-#2/4) circle (#2);% progress
+        }
+        \end{scope}%
+        \path (0,-#1/2) rectangle ++(#1,#1);%
+        #8%
+    }%
+}
+
+\def\@@pb@ProgressBar@radialdots#1#2#3#4#5#6#7#8{%
+    \tikz{\begin{scope}%
+    \begin{pgfinterruptboundingbox}\path[invclip,#3] (#1/2,0) circle (#1/2-#2/2);\end{pgfinterruptboundingbox}\clip (#1/2,0) circle (#1/2);%Clip
+        % \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        %\fill[#6,rounded corners=20pt] (#1,0) arc (0:#4*360:#1/2);% Progress
+        \foreach \r in {0,5,...,360} {%
+            \pgfmathparse{\r pt<#4*360}%
+            \ifnum\pgfmathresult=1\def\op@{1}\else\def\op@{0.25}\fi
+            \fill[#5,thick,overlay,fill opacity=\op@,#3] (#1/2,0) ++ (\r:#1/2-#2/4) circle (#2/5);% progress
+        }
+        \end{scope}%
+        \path (0,-#1/2) rectangle ++(#1,#1);%
+        #8%
+    }%
+}
+
+\def\@@pb@ProgressBar@radial#1#2#3#4#5#6#7#8{%
+    \tikz{\begin{scope}%
+    \begin{pgfinterruptboundingbox}\path[invclip,#3] (#1/2,0) circle (#1/2-#2/2);\end{pgfinterruptboundingbox}\clip (#1/2,0) circle (#1/2);%Clip
+        \fill[#6,rounded corners=20pt, fill opacity=0.25] (#1/2,0) circle (#1/2);% Progress
+        \fill[#6,rounded corners=20pt] (#1,0) arc (0:#4*360:#1/2);% Progress
+        \end{scope}%
+        \path (0,-#1/2) rectangle ++(#1,#1);%
+        #8%
+    }%
+}
+
+\DeclareDocumentCommand{\@pb@ProgressBar}{%
+        s % if starred => show progress, experimental!
+        O{} % tikz
+        m   % handlers/roundings
+        m   % progress
+        O{\Hcolor} % border
+        O{\Hcolor} % progress
+        O{}        % back
+        O{6.5em}    % width
+        O{MudWhite} % text
+}{%
+    \csname @@pb@ProgressBar@#3\endcsname{#8}{0.65em}{#2}{\ifdim#4pt>1pt #4/100.0\else#4\fi}{#5}{#6}{#7}{\IfBooleanT{#1}{\node[#9] at(\ifdim#4pt>1pt #4/100.0\else#4\fi*#8/2,0.65em/2) {\tiny\ifdim#4pt>1pt #4\else\pgfmathparse{int(#4*100)}\pgfmathresult\fi\%};}}%
+}
+
+\let\ProgressBar\@pb@ProgressBar%
+
+\endinput
