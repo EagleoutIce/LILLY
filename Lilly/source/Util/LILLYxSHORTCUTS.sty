@@ -1,6 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxSHORTCUTS}[2019/08/03 Stellt einige Shortcuts fuer LILLY zur Verfuegung]
 
+
+\RequirePackage[yyyymmdd,hhmmss]{datetime}
+\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
+
 %% Dieses Paket fordert kein anderes, es wird davon ausgegangen, dass zu den Shortcuts die benötigten Pakete
 %% geladen werden/sind
 
