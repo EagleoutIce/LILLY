@@ -22,7 +22,7 @@
 % Wandelt eine Zahl in den entsprechenden Wochentag um, 0 entspricht Montag, 6 dem Sonntag
 % #1 Number to convert
 \def\IntToWeekday#1{
-  \ifcase#1\translate{Montag}\or\translate{Dienstag}\or\translate{Mittwoch}\or\translate{Donnerstag}\or\translate{Freitag}\or\translate{Samstag}\or\translate{Sonntag}\else\@ctrerr\fi
+  \ifcase#1\xtranslate{Montag}\or\xtranslate{Dienstag}\or\xtranslate{Mittwoch}\or\xtranslate{Donnerstag}\or\xtranslate{Freitag}\or\xtranslate{Samstag}\or\xtranslate{Sonntag}\else\@ctrerr\fi
 }
 
 \pgfkeys{%

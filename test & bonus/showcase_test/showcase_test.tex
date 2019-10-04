@@ -1,90 +1,89 @@
 \errorcontextlines 9999
-\documentclass[german]{article}
-\usepackage[ngerman]{babel}
-
-\usepackage[left=8cm,top=0cm,right=0cm,bottom=0cm,a4paper]{geometry}
-
-\usepackage{LILLYxCOLOR}
-\usepackage{LILLYxSHOWCASE}
-\usepackage{LILLYxENCODING}
-% \usepackage{LILLYxORNAMENTS}
-\usepackage{LILLYxGRAPHICS}
-\usepackage{LILLYxCONTROLLERxLINK}
-
-\usepackage{calligra}
-
-\usepackage{enumitem}
-\usepackage[sfdefault]{overlock}
+\documentclass[overclock]{Lilly}
 
 \usepackage{blindtext}
 
-\usepackage{tikz}
+% \usepackage{tikz}
 \makeatletter
-\RequirePackage[yyyymmdd,hhmmss]{datetime}
-\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
-\newlength{\len@space}
-\settowidth{\len@space}{\ }
 
 \begin{document}
-\iffalse
-\begin{figure}
-    \centering
-    \caption{\blindtext}
-    \label{fig:Hallo}
-\end{figure}
-
-\blindtext\par
-\begin{lfig}
-    \begin{tikzpicture}
-        \draw (0,0) circle (2);
-    \end{tikzpicture}
-    \caption{KRASSE FIGUR}
-\end{lfig}
-\blindtext
-\begin{wrapfigure}{l}{0pt}
-    \centering\begin{tikzpicture}
-        \draw (0,0) circle (1);
-    \end{tikzpicture}
-    \caption{KRASSE FIGUR}
-\end{wrapfigure}
-
-\clearpage
-%\begin{bannerpage}
-    \GenericLeftBanner{AppleGreen!15}
-    \GenericTopBanner{Azure!15}
-    \GenericRightBanner{DebianRed!15}
-    \GenericBottomBanner{ChromeYellow!15}
-\clearpage
-    \DefaultLeftBookmarkBanner{DebianRed!15}
-    \DefaultRightBookmarkBanner[6cm]{AppleGreen!15}
-%\end{bannerpage}
-
-\clearpage
-
-\begin{Banner}
-    Hallo Welt
-\end{Banner}
-\clearpage
-\fi
-
-
+\foreach \col in {Charcoal} {% %% AppleGreen,Azure,DebianRed,ddpurple
 \begin{application}{SimpleLeftBanner}
 \setname{Florian Sihler}
-\colorprofile{Charcoal}
+\colorprofile{\col}
+\setimage{./me.jpg}
 \setbrief{Hallo Welt}{Hallo Welt ich mag Züge und finde, dass dieser Texttext wirklich eine Auszeichnung für Hervorragendes \TeX-ting verdient. Du nicht auch? Ich bin geil, danke fürs Lesen}
 \setemail{florian.sihler@web.de}
 \setphone{+49\,000\,00100100}
-\setlocation{Leonhardstraße 29, 73054 Eislingen}
-\setwebsite{www.toll.commmm}
+\setlocation{Niemandsland 42, 12345 Kaffingen}
+%\setwebsite{www.toll.commmm}
+\addskill{Klukheit}{42}
+%\addskilltext{Dieterhaftigkeit over 90000, Hallo Welt, na wie geht es dir?}
+\addskill{Tanzen}{3}
+\addskill{Intelgement}{90}
+\addskill{Verzweifelt}{72}
+\addskill{KungFuMaster}{100} % won't be shown
+\applicationset{%
+    instagram={eagleoutice},
+    facebook={habischnet},
+    twitter={nopedope},
+    rss={who shares dat?}
+}
 \StartApplication{}
-
-Hallo
+\begin{block}[\faGraduationCap]{Ausbildung}
+    \begin{timeline}
+        \begin{event}{Grundschule}{2006 -- 2010}{Schillerschule, Eislingen}
+            Grundschulausbildung
+        \end{event}
+        \begin{event}{Gymnasium}{2010 -- 2018}{Erich Kästner Gymnasium, Eislingen}
+            Schulausbildung inklusive allgemeinbildendem Abitur (Abschluss: Drölf).
+        \end{event}
+        \begin{event}{Universität}{2018 -- Heute}{Universität Ulm}
+            Bachelorstudium Informatik mit Modulschwerpunkt Psychologie. Um auch ein bisschen zu erklären was ich hier gemacht habe schreibe ich diesen etwas längeren Text der zeigen soll wie Geil ich bin und wie gut Umbrüche funktionieren.
+        \end{event}
+    \end{timeline}
+\end{block}
+\begin{block}[\faTasks]{Fertigkeiten und Kenntnisse} %
+    \begin{bulletpoints}[2]
+        \item Käsespätzle \progressbar{60}
+        \item Shyriiwook \progressbar{45}
+        \item Mikado \progressbar{75}
+        \item Siedler von Catan \progressbar{94}
+        \item Tanzen \progressbar{5}
+        \item \TeX{} \& Freunde \progressbar{80}
+    \end{bulletpoints}
+    \begin{flushright}\vskip-0.25cm
+        Alle Daten entstammen den eigenen Beobachtungen.\hspace*{1cm}
+    \end{flushright}
+\end{block}
+\begin{block}[\faSuitcase]{Beruflicher Werdegang}
+    \begin{timeline}
+        \begin{event}{Logistik Manager}{2011 -- Heute}{Eislingen \& Ulm}
+            Tägliche Besuche beim Dönermann meines Vertrauens, sie lehrten mich \begin{bulletpoints}
+                \item Zuverlässigkeit, da er mir den Döner täglich frisch zubereitet.
+                \item Pünktlichkeit, da ich den Döner ja noch warm möchte.
+            \end{bulletpoints}
+        \end{event}
+        \begin{event}{Gut-Ausseher}{1999 -- Heute}{Überall}
+            Eine pittoreske Erscheinung samt makelloser Physiognomie zeichnen mich, meines Zeichens übrigens Narzist und Egomane, tagtäglich aus. Die Vorteile eines derartig charismatischen Auftretens liegen selbstredend auf der Hand, ungeachtet des Effekts die Damen- und Herrenwelt gleichermaßen in den Bann zu ziehen.
+        \end{event}
+        \smallskip\begin{event}{Professioneller Getränkeholer}{2018 -- Heute}{Ulm}
+            Mit dem Erhalt der eigenen Wohnung lehrte mich die Gesellschaft nicht nur ein unglaublich großes Maß an Verantwortung zu tragen sondern auch regelmäßig frische Getränke den steilen Eselsberg hinauf um das menscheigene Bedürfniss des Durstes zu stillen.
+        \end{event}
+    \end{timeline}
+\end{block}
+\begin{block}[\faThumbsOUp]{Motivation}
+    \begin{text}
+        Ich möchte den Job, denn ich brauche das Geld EinsEinsElf!!!!!\blindtext{}        
+    \end{text}
+\end{block}
+\sign[Florian Sihler]
 \end{application}
+}
 
 
 
-
-% \iffalse
+\iffalse
 
 
 \pagestyle{empty}
@@ -248,7 +247,7 @@ Hallo
         \item Käsespätzle \hfill\sProgressBar{60}
         \item Shyriiwook \hfill\sProgressBar{45}
         \item Mikado \hfill\sProgressBar{75}
-        \item Sielder von Catan \hfill\sProgressBar{94}
+        \item Siedler von Catan \hfill\sProgressBar{94}
         \item Tanzen \hfill\sProgressBar{5}
         \item \TeX{} \& Freunde \hfill\sProgressBar{80}
     \end{itemize}
@@ -268,7 +267,7 @@ Hallo
     Mit dem Erhalt der eigenen Wohnung lehrte mich die Gesellschaft nicht nur ein unglaublich großes Maß an Verantwortung zu tragen sondern auch regelmäßig frische Getränke den steilen Eselsberg hinauf um das menscheigene Bedürfniss des Durstes zu stillen.
 \end{event}
 \end{itemize}}
-\vfill\StartBlock{\faThumbsOUp}{Motiviation}
+\vfill\StartBlock{\faThumbsOUp}{Motivation}
 \smallskip\begin{text}
     Ich möchte den Job, denn ich brauche das Geld EinsEinsElf!!!!!\blindtext{}
 \end{text}\vskip1.25em
@@ -285,6 +284,6 @@ Hallo
 \clearpage
 }
 
-% \fi
+\fi
 
 \end{document}
