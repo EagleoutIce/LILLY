@@ -3,15 +3,25 @@
 
 \usepackage{blindtext}
 
+
 % \usepackage{tikz}
-\makeatletter
 
 \begin{document}
-\foreach \col in {Charcoal} {% %% AppleGreen,Azure,DebianRed,ddpurple
+
+% Docment and add radials
+
+\makeatletter
+\foreach \t in {roundings,rounds,triangles,hexas,slider,dots,radialbars,radialdots,radial} {
+    \foreach \p in {0,25,50,75,100}{
+        \noindent\t:\p: \hfill \@pb@ProgressBar{\t}{\p}\newline
+    }
+}
+
+\foreach \col in {Charcoal,AppleGreen,Azure,DebianRed,ddpurple} {% %% 
 \begin{application}{SimpleLeftBanner}
 \setname{Florian Sihler}
 \colorprofile{\col}
-\setimage{./me.jpg}
+\setimage{\LILLYxPATHxDATA/Images/me.jpg}
 \setbrief{Hallo Welt}{Hallo Welt ich mag Züge und finde, dass dieser Texttext wirklich eine Auszeichnung für Hervorragendes \TeX-ting verdient. Du nicht auch? Ich bin geil, danke fürs Lesen}
 \setemail{florian.sihler@web.de}
 \setphone{+49\,000\,00100100}
@@ -80,7 +90,6 @@
 \sign[Florian Sihler]
 \end{application}
 }
-
 
 
 \iffalse

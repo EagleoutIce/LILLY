@@ -194,7 +194,7 @@
     \vskip4.125em\begin{flushright}% Unterschrift
         \parbox[t]{6cm}{%
             \centering
-            \IfValueT{#1}{{\huge\calligra{} #1}\\[-0.75\baselineskip]}
+            \IfValueTF{#1}{{\huge\calligra{} #1}\\[-0.75\baselineskip]}{{\huge\strut}}
             \rule{5cm}{1pt}\\
             \@@applications@Construct@FullName\relax,\hskip0.75em\relax\heute
         }\hspace*{0.5cm}
@@ -205,7 +205,7 @@
 %
 % [#1] Symbol
 %  #2  Title
-\newenvironment{block}[2][]{\bgroup%
+\renewenvironment{block}[2][]{\bgroup%
     \let\progressbar\@applications@sProgressBar%
     \@applications@StartBlock{#1}{#2}%
     \begin{minipage}{\linewidth}\ignorespaces%

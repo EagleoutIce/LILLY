@@ -84,7 +84,6 @@
                     {\LILLYxGeneralxPaperformat,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering,\LILLYxGeometryxExtras}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D - wenn er das dann mal kann
 
-
 %% \RequirePackage[english,ngerman]{babel}
 
 \LILLYxDemandPackage{babel}{Dieses Paket brauchen wir für Sprachen, weil sie toll sind}
