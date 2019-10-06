@@ -25,6 +25,7 @@ Dem Paket können Argumente übergeben werden, die das Laden einer Bibliothek ve
             persons & nopersons & \LILLYxNOTExLibrary{LILLYxPERSONS}, \LILLYxNOTExLibrary{LILLYxTRANSCRIPTS} \\
             formatcontrol & noformatcontrol & \LILLYxNOTExLibrary{LILLYxFORMATxCONTROL} \\
             utilpresenter & noutilpresenter & \LILLYxNOTExLibrary{LILLYxROTARYxENCODER}, \LILLYxNOTExLibrary{LILLYxSHOWCASE}, \LILLYxNOTExLibrary{LILLYxPROGRESSBARS}\\
+            presentgames & nopresentgames & \LILLYxNOTExLibrary{LILLYxCARDS} \\
         \bottomrule
     \end{tabular}
 \end{center}
@@ -195,7 +196,7 @@ Die unterschiedlichen Höhen entstammen hierbei der Tatsache, dass dieser Befehl
 %
 
 \presentCommand[2.1.0]{ProgressBar}[\optStar\optArg{tikz}\manArg{drawer}\manArg{progress}\optArg[\blankcmdidx{Hcolor}]{border}\secline\optArg[\blankcmdidx{Hcolor}]{progres}\optArg{background}\optArg[6.5em]{width}\optArg[MudWhite]{text}]
-Zeichnet eine Fortschrittsanzeige im Stil \T{drawer} mit einem Firtschritt von \T{progress}\%. Wird der stern gesetzt, so wird versucht den prozentualen Fortschritt anzuzeigen, die option wurde eigentlich nur für einen \T{drawer} konzipiert und ist deswegen unter Umständen sinnfrei. Es werden die folgenden \T{drawer} unterstützt: \typesetList[T]{roundings,rounds,triangles,hexas,slider,dots,radial,radialbars,radialdots}. Der Fortschritt kann auch als Zahl $p \in [0,1]$ angegeben werden. Hier ein paar Beispiele: 
+Zeichnet eine Fortschrittsanzeige im Stil \T{drawer} mit einem Fortschritt von \T{progress}\%. Wird der Stern gesetzt, so wird versucht den prozentualen Fortschritt anzuzeigen, die Option wurde eigentlich nur für einen \T{drawer} konzipiert und ist deswegen unter Umständen sinnfrei. Es werden die folgenden \T{drawer} unterstützt: \typesetList[T]{roundings,rounds,triangles,hexas,slider,dots,radial,radialbars,radialdots}. Der Fortschritt kann auch als Zahl $p \in [0,1]$ angegeben werden. Hier ein paar Beispiele:
 \begin{defaultlst}[][listing side text,righthand width=3.5cm]{lLatex}
 \ProgressBar{roundings}{27}
 \ProgressBar{rounds}{100}
@@ -1261,10 +1262,12 @@ Setzt eine Umgebung links oder rechts im aktuellen Textfluss wobei der nächste 
 %
 
 \presentCommand[2.1.0]{applicationset}[\manArg{application keys}]
-\begin{rfig*}
+\begin{minipage}{\linewidth-5.5cm}
+    Eine Bewerbung wird auf Basis eines Datenpools gesetzt, der durch diesen Befehl gesetzt werden kann. Welche Daten davon verwendet werden obliegt der jeweiligen Vorlage die verwendet wird. Weiter gilt zu beachten, dass es für die wichtigsten Felder Kurzbefehle wie \blankcmd{setname} gibt, die innerhalb von \blankenv{application} zur Verfügung stehen. Im Folgenden eine Auflistung aller präsenter Schlüsse: \typesetList[T]{primary color,secondary color,text color,page color,title,first name,last name,image,birth day,birth month,birth year,age,telephone,mobile phone,email,private email,website,location,instagram,facebook,twitter,rss,linkedin,devarianart,steam,soundcloud,wordpress,xing,youtube,reddit,github,gitlab,telegram,dropbox,slack,brief init,brief}.
+\end{minipage}\hfill
+\begin{minipage}{5cm}
     \includegraphics[width=5cm]{Data/Bilder/Application.png}
-\end{rfig*}
-Eine Bewerbung wird auf Basis eines Datenpools gesetzt, der durch diesen Befehl gesetzt werden kann. Welche Daten davon verwendet werden obliegt der jeweiligen Vorlage die verwendet wird. Weiter gilt zu beachten, dass es für die wichtigsten Felder Kurzbefehle wie \blankcmd{setname} gibt, die innerhalb von \blankenv{application} zur Verfügung stehen. Im Folgenden eine Auflistung aller präsenter Schlüsse: \typesetList[T]{primary color,secondary color,text color,page color,title,first name,last name,image,birth day,birth month,birth year,age,telephone,mobile phone,email,private email,website,location,instagram,facebook,twitter,rss,linkedin,devarianart,steam,soundcloud,wordpress,xing,youtube,reddit,github,gitlab,telegram,dropbox,slack,brief init,brief}.
+\end{minipage}
 
 %
 %
@@ -1370,3 +1373,195 @@ Primär zur semantischen Trennung. Erlaubt das Verwenden der folgendne Umgebung:
 
 \presentEnvironment[2.1.0]{event}[\manArg{Name}\manArg{Wann}\manArg{Wo}]
 Setzt ein Event in einer Zeitleiste.
+
+%
+%
+%
+%
+%
+
+\section{Spiele}
+\subsection{Kartenspiele}
+\hypertarget{LILLYxCARDS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxCARDS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.1.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxPRESENTER} geladen.\medskip\newline
+
+Dieses Paket stellt die Möglichkeit zur Vefügung Spiele mit verschiedenen Spielkarten zu erzeugen, wobei zusätzlich einige Hilfsfunktionen wie \blankcmd{CardFan} angeboten werden:
+
+%
+%
+%
+
+\presentCommand[2.1.0]{CreateCardGame}[\optArg{card args}\manArg{GameID}\manArg{title}]
+Erzeugt ein neues Spiel mit der ID \T{GameID}, diese \emph{muss} eindeutig sein, sonst wird ein bestehndes Spiel überschreiben. Für die Kartenargumente \T{card args} siehe \blankcmd{<GameID>x<ClassID>xNewCard}, der Titel wird nur bei Befehlen wie \blankcmd{ShowGameClasses} angezeigt. Es wird der Befehl \blankcmd{<GameID>xCreateCardClass} erzeugt:
+
+%
+%
+%
+
+\presentCommand[2.1.0]{<GameID>xCreateCardClass}[\optArg{card args}\manArg{ClassID}\manArg{title}]
+Erzeugt eine neue Klasse mit der ID \T{ClassID} für das Spiel \T{<GameID>}, diese \emph{muss} eindeutig sein, sonst wird eine bestehnde Klasse überschreiben. Für die Kartenargumente \T{card args} siehe \blankcmd{<GameID>x<ClassID>xNewCard}, der Titel wird nur bei Befehlen wie \blankcmd{ShowClassCards} angezeigt. Es wird der Befehl \blankcmd{<GameID>x<ClassID>xNewCard} erzeugt:
+
+%
+%
+%
+
+\presentCommand[2.1.0]{<GameID>x<ClassID>xNewCard}[\optArg{card args}\manArg{CardID}\manArg{title}]
+Erzeugt die Karte \T{CardID} in der Klasse \T{<ClasID>} des Spiels \T{<GameID>}. Neben den optionalen \T{card args} die mit der generierung angeführt werden erhält sie auch noch alle Argumente die der Klasse beziehungsweise dem Spiel übergeben wurden. Die Argumente werden durch \T{lillyxCARDSx} persistiert und erlauben die folgenden Konfigurationen:
+\begin{center}
+    \begin{tabularx}{\linewidth}{^t>{\em}^l^c^p{0.3\linewidth}+}
+        \toprule
+            \headerrow Bezeichner & \normalfont\bfseries Typ & Standard & Beschreibung\\
+        \midrule
+            draw & Drawer & default & Routine, die die Karte zeichnen soll \\
+            main color & Color & Azure & Hauptfarbe der Karte \\
+            back color & Color & MudWhite!25 & Hintergrundfarbe der Karte \\
+            border color & Color & Charcoal & Randfarbe der Karte \\
+            second color & Color & Azure & Sekundärfarbe der Karte \\
+            text style & Tikzargs & white & Formatierungen für (Haupt-) Texte. \\
+        \midrule
+            extra 1 & Beliebig &  & Register, dessen Bedeutung vom Drawer abhängt. \\
+            extra 2 & Beliebig &  & Register, dessen Bedeutung vom Drawer abhängt. \\
+            extra 3 & Beliebig &  & Register, dessen Bedeutung vom Drawer abhängt. \\
+            extra 4 & Beliebig &  & Register, dessen Bedeutung vom Drawer abhängt. \\
+            extra 5 & Beliebig &  & Register, dessen Bedeutung vom Drawer abhängt. \\
+            extra 6 & Beliebig &  & Register, dessen Bedeutung vom Drawer abhängt. \\
+            extra 7 & Beliebig &  & Register, dessen Bedeutung vom Drawer abhängt. \\
+            extra 8 & Beliebig &  & Register, dessen Bedeutung vom Drawer abhängt. \\
+            extra 9 & Beliebig &  & Register, dessen Bedeutung vom Drawer abhängt. \\
+        \bottomrule
+    \end{tabularx}\nskip
+\end{center}
+Es wird der Befehl \blankcmd{<CardID>} erzeugt.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{<CardID>}[\optArg{extra Args}]
+Ruft die \T{draw}-Routine mit den entsprechendne Konfigurationen für die Karte auf.
+
+
+\begin{bemerkung}[Das \T{draw} Makro]
+    Hier kann jeder beliebige Bezeichner übergeben werden, solange ein Makro der Signatur \blankcmd{@lilly@cards@draw@<Bezeichner>} definiert ist, welches zwei Argumente konsumiert. Für mehr Informationen siehe \blankcmd{@lilly@cards@draw@default}. Dieses Makro wird (auch zum debugging) standardmäig mitgeliefert.
+\end{bemerkung}
+
+%
+%
+%
+
+\presentCommand[2.1.0]{@lilly@cards@draw@default}[\manArg{extra args}\manArg{CardID}]
+Übernimmt das Zeichnen einer Informationsübersicht für die Karte. Im Folgenden ein Beispiel:
+\begin{defaultlst}[morekeywords={[5]{\\SpielAxCreateCardClass,\\SpielAxKlasseAxNewCard,\\KarteA}}][listing side text,righthand width=2.5cm]{lLatex}
+\CreateCardGame[extra 1={Hi}]{SpielA}{Das Spiel A}
+\SpielAxCreateCardClass[extra 2={Du}]{KlasseA}{Die Klasse A}
+\SpielAxKlasseAxNewCard[extra 3={Na?}]{KarteA}{Die Karte A}
+\KarteA
+\end{defaultlst}
+\CreateCardGame[extra 1={Hi}]{SpielA}{Das Spiel A}
+\SpielAxCreateCardClass[extra 2={Du}]{KlasseA}{Die Klasse A}
+\SpielAxKlasseAxNewCard[extra 3={Na?}]{KarteA}{Die Karte A}
+
+%
+%
+%
+
+\presentCommand[2.1.0]{@lilly@cards@get}[\manArg{CardID}\manArg{Key}]
+Evaluiert zum persistierten \T{key} der Karte \T{CardID}, leerfelder werden hierbei durch ein \T{@} ersetzt und die Extras mit Buchstaben enummeriert (also zum Beispiel \T{extra@d} anstelle \T{extra 4} und \T{back@color} anstelle \T{back color}).
+
+%
+%
+%
+
+\presentCommand[2.1.0]{ShowGameClasses}[\manArg{GameID}\cmdlist\anothercmd[2.1.0]{ShowClassCards}\manArg{ClassID}]
+Zeigen jeweils eine Vollansicht ihrer jeweils untergeordneten Kategorien (\blankcmd{ShowGameClasses} ruft für jede Klasse zusätzlich \blankcmd{ShowClassCards} auf).
+
+%
+%
+%
+\presentCommand[2.1.0]{CardFan}[\optArg[0]{Risen-List}\manArg{CardID-List}\manArg{max Cards}\cmdlist\secline\anothercmd[2.1.0]{CardBoard}\optArg[0]{Risen-List}\manArg{CardID-List}\manArg{Distance}]
+Ordnet die Karten in der jeweiligen Form an. Als optionales Argument können bei $1$ beginnende Indices urchgegeben werden. Diese Karten werden hervorgehoben. Zu der bei \blankcmd{@lilly@cards@draw@default} erstellten Struktur fügen wir hinzu:
+\begin{latex}[morekeywords={[5]{\\SpielAxCreateCardClass,\\SpielAxKlasseAxNewCard,\\KarteA,\\KarteB}}]
+\SpielAxKlasseAxNewCard[extra 3={Wa?}]{KarteB}{Die Karte B}
+\CardFan{KarteA,KarteB,KarteB,KarteA,KarteA}{4}
+\CardBoard[2,3]{KarteA,KarteB,KarteB,KarteA}{2em}
+\end{latex}
+\SpielAxKlasseAxNewCard[extra 3={Wa?}]{KarteB}{Die Karte B}
+Ergibt:
+\begin{center}
+    \CardFan{KarteA,KarteB,KarteB,KarteA,KarteA}{3}\hskip17em\CardBoard[2,3]{KarteA,KarteB,KarteB,KarteA}{2em}\vskip2em
+\end{center}
+Das Maximum bei \T{max Cards} kann übrigens auch größer sein als die Liste. Die Karten werden dann wahrscheinlich weiter gespreizt gesetzt.
+
+%
+%
+%
+%
+%
+
+\subsection{Fantasie-Kartenspiel}
+\hypertarget{LILLYxCARDSxFANTASY}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxCARDSxFANTASY} zur Verfügung gestellt. Dieses Paket basiert auf \LILLYxNOTExLibrary{LILLYxCARDS} (mit dem es ebenfalls geladen wird) und definiert neben dem neuen \T{draw} namens \say{fantasy} die folgende Umgebung zur einfachen Generierung von Karten (genau genommen stellt diese Umgebung nur Umbenennungen für \blankcmd{<CardID>} zur Verfügung.) Der Drawer verwendet die Extras wie folgt:
+\begin{multicols}{3}
+    \begin{enumerate}
+        \item Bildpfad
+        \item Kartenkosten
+        \item Farbe des Kostenfelds
+        \item Kartensymbol
+        \item Kartenfarbe
+        \item Zitat
+        \item Effekt
+    \end{enumerate}
+\end{multicols}
+
+%
+%
+%
+
+\presentEnvironment[2.1.0]{NewFantasyCard}[\optArg{card args}\manArg{GameID}\manArg{ClassID}\manArg{CardID}]
+In dieser Umgebung stehen die folgende Befehle zur Verfügung, die die entsprechenden Felder setzen: \typesetList[blankcmdidx]{settitle,setimage,setprice,setpricecolor,setclasssymbol,setclasstext,setquote,seteffects,setcolor,setcardcolor,settextstyle}.
+
+\begin{bemerkung}[Einen Helden erschaffen]
+    Im Folgenden gilt es mich, den Autor als Magier-Karte zu etablieren. Wir beginnen mit der Erzeugung es Spiels:
+    \begin{latex}
+\CreateCardGame[draw=fantasy, extra 3={ChromeYellow}]{Fantasy}%
+        {Ein Fantasy-CardGame}
+    \end{latex}\CreateCardGame[draw=fantasy, extra 3={ChromeYellow}]{Fantasy}{Ein Fantasy-CardGame}%
+    Wir setzen also die Farbe des Preisfeldes für alle Karten in diesem Spiel auf \T{ChromeYellow}, wuhuu \Smiley. Nun erstellen wir die Magier-Klasse wobei ich auf das \T{fontawesome}-Symbol \T{faMagic} zurückgreife:
+    \begin{latex}[firstnumber=last,morekeywords={[5]{\\FantasyxCreateCardClass,\\magicLogo}}]
+\def!**!\magicLogo{\large!**!\faMagic}
+\FantasyxCreateCardClass[extra 4={\noexpand!**!\magicLogo}, %
+        extra 5={Magier}, main color={Purple}]{Mages}{Die Magier Klasse}
+    \end{latex}\FantasyxCreateCardClass[extra 4={\noexpand\large\noexpand\faMagic}, extra 5={Magier}, main color={Purple}]{Mages}{Die Magier Klasse}%
+    Nun erstellen wir die Karte mittels \blankenv{NewFantasyCard}:
+    \begin{latex}[firstnumber=last,morekeywords={[5]{\\FantasyxCreateCardClass}}]
+\begin{NewFantasyCard}{Fantasy}{Mages}{Flo}
+    \settitle{Florian der Zauberer}
+    \setimage{Data/me.jpg}
+    \setprice{42}
+    \setquote{\say{Ich werde dich mit Blicken vernichten! Schauangriiiiiiiiiff!!!}}
+    \seteffects{\medskip%
+        \begin{itemize}[leftmargin=14pt]\closeritems
+            \item Sieht verdammt gut aus.
+            \item Schrecken aller Magier.
+            \item Beherrscht: Klingentanz. Ja! Als Magier!
+        \end{itemize}\medskip
+        {\scriptsize Super EPIC POWER}
+    }
+\end{NewFantasyCard}
+    \end{latex}
+    \begin{NewFantasyCard}{Fantasy}{Mages}{Flo}
+        \settitle{Florian der Zauberer}
+        \setimage{Data/me.jpg}
+        \setprice{42}
+        \setquote{\say{Ich werde dich mit Blicken vernichten! Schauangriiiiiiiiiff!!!}}
+        \seteffects{\medskip%
+            \begin{itemize}[leftmargin=14pt]\closeritems
+                \item Sieht verdammt gut aus.
+                \item Schrecken aller Magier.
+                \item Beherrscht: Klingentanz. Ja! Als Magier!
+            \end{itemize}\medskip
+            {\scriptsize Super EPIC POWER}
+        }
+    \end{NewFantasyCard}
+    Natürlich würde man sich selbst Kurzbfehle und Stile für die Effekte definieren, die einfach übergeben werden können. Hier übrigens noch das Ergebnis, auf das wir alle gewartet haben: \begin{center}
+        \Flo
+    \end{center}
+\end{bemerkung}
