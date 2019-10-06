@@ -26,6 +26,9 @@
 % ifLILLY@utilpresenter: Control the utilpresenter-module
 \DeclareBoolOption[true]{utilpresenter}\DeclareComplementaryOption{noutilpresenter}{utilpresenter}
 
+% ifLILLY@presentgames: Control the utilpresenter-module
+\DeclareBoolOption[true]{presentgames}\DeclareComplementaryOption{nopresentgames}{presentgames}
+
 \ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
 
 \ifLILLYxPRESENTER@iall
@@ -36,6 +39,7 @@
     \LILLYxPRESENTER@timetablestrue%
     \LILLYxPRESENTER@formatcontroltrue%
     \LILLYxPRESENTER@utilpresentertrue%
+    \LILLYxPRESENTER@presentgamestrue%
 \fi
 % An sich nur eine Ansammlung aller Bilbiotheken die der Präsentations-Klasse zuzuordnen sind.
 
@@ -74,5 +78,9 @@
     \RequirePackage{LILLYxTIMETABLES}
         \RequirePackage{LILLYxTIMETABLESxCOMFORT}
         \RequirePackage{LILLYxTIMETABLESxUNIVERSITY}
+\fi
+
+\ifLILLYxPRESENTER@presentgames
+    \RequirePackage{LILLYxCARDS}
 \fi
 \endinput
