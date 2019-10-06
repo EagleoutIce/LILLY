@@ -10,7 +10,6 @@
     {Ohne gehts nedda :/}%% Error-Text
     {}{}
 
-
 \RequirePackage{kvoptions}                                 %Erweiterte Optionen
 
 % ifLILLY@english: Load the english-dictonary
@@ -21,17 +20,15 @@
 
 \ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
 
-
 %% Maybe make them real dictonraies?
 
-\ifLILLYxTRANSLATOR@english
-\InputIfFileExists{\LILLYxABSPATHxCORE/Modules/Dictonaries/english.dict}{}{\typeout{English dict not found enable shell escape?}}
+\ifLILLYxTRANSLATOR@english%
+    \InputIfFileExists{\LILLYxABSPATHxCORE/Modules/Dictonaries/english.dict}{}{\typeout{English dict not found! Searched: \LILLYxPATHxCORE/Modules/Dictonaries/}}
 \fi
 
-\ifLILLYxTRANSLATOR@german
-\InputIfFileExists{\LILLYxABSPATHxCORE/Modules/Dictonaries/german.dict}{}{\typeout{German dict not found enable shell escape?}}
+\ifLILLYxTRANSLATOR@german%
+    \InputIfFileExists{\LILLYxPATHxCORE/Modules/Dictonaries/german.dict}{}{\typeout{German dict not found! Searched: \LILLYxPATHxCORE/Modules/Dictonaries/}}
 \fi
-
 
 \newcommand\xtranslate[2][]{%
     \iftranslationdefined{#2}{%
@@ -40,6 +37,5 @@
         \ifx\\#1\\#2\else#1\fi% if #1 is empty set #2
     }%
 }
-% TODO PROVIDE xtranslate with an optional argument. this one should be placed if neither of the dictonaries can be found. !!! TODO TODO TODO TODO ETC :P
 
 \endinput

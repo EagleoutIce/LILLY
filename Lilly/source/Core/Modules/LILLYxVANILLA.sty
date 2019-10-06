@@ -1,6 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxVANILLA}[2019/07/14 Simuliert ein Starten durch JAKE um pdflatex kompatibel zu bleiben]
 
+% Dieses Paket definiert die Grundlagen, damit Lilly auch ohne Jake verwendet werden kann.
+%
+%
+
 \RequirePackage{LILLYxBOOLEAN} %% \true und \false
 \RequirePackage{LILLYxDEBUG} %% \debugout :D
 
@@ -10,8 +14,7 @@
 \providecommand{\LILLYxBOXxMODE}{LIMERENCE}
 
 \providecommand{\LILLYxPAPER}{}
-\providecommand{\LILLYxVorlesung}{@@}
-
+\providecommand{\LILLYxVorlesung}{@@}   % Diese darf einfach nicht existieren
 
 \providecommand{\AUTHOR}{Florian Sihler}
 \providecommand{\AUTHORMAIL}{florian.sihler@web.de}
@@ -24,7 +27,6 @@
 
 \providecommand{\LILLYxFlavourText}{Kein Flavour-Text hinterlegt. Setze den Befehl LILLYxFlavourText entsprechend deines Wunsches.}
 
-
 %% Size defaults
 
 \providecommand{\LILLYxGeneralxPaperformat}{a4paper}     %%% A4 Papier
@@ -33,7 +35,5 @@
 \providecommand{\LILLYxLayoutxWidth}{6in}
 \providecommand{\LILLYxLayoutxHeight}{9.05in}
 \providecommand{\LILLYxGeometryxExtras}{}
-
-% \providecommand{\LILLYxSemester}{-1} % v2.1.0
 
 \endinput
