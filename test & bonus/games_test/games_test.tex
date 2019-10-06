@@ -1,0 +1,114 @@
+\errorcontextlines 999
+\documentclass[a4paper]{article}
+
+\usepackage[a4paper,left=10mm,right=10mm,top=20mm,bottom=20mm]{geometry}
+
+\RequirePackage{LILLYxCARDSxFANTASY}
+\RequirePackage{LILLYxENCODING}
+
+\usepackage{blindtext}
+% \usepackage{anttor}
+% \usepackage{tikz}
+\begin{document}
+
+\CreateCardGame[draw=fantasy, extra 3={ChromeYellow}]{Fantasy}{Ein Fantasy-CardGame}
+\def\wlogo{\large\faUser}
+\FantasyxCreateCardClass[extra 5={Warrior},extra 4={\noexpand\wlogo}]{Warriors}{Die Krieger Klasse}
+
+\begin{NewFantasyCard}{Fantasy}{Warriors}{TestCard}
+    \settitle{Wuffi der Große}
+    Hallo Welt wie geht es dir?
+\end{NewFantasyCard}
+\TestCard
+
+\begin{NewFantasyCard}{Fantasy}{Warriors}{TestCardB}
+    \settitle{Wuffi der Blose}
+    \setimage{./mage.jpg}
+    Hallo Welt wie geht es dir?
+\end{NewFantasyCard}
+
+\begin{NewFantasyCard}{Fantasy}{Warriors}{TestCardC}
+    \settitle{Wuffi C}
+    Hallo Welt wie geht es dir?
+\end{NewFantasyCard}
+
+\TestCard X
+\TestCardB
+\TestCardC X
+\TestCardB
+\TestCard X
+
+\Clearpage
+% \FantasyxWarriorsxNewCard[extra 1={./sword.jpg}, extra 6={Mag Züge echt gern}, extra 7={Vergiftung+42}]{grusel}{Grußel the Wusel}
+% \FantasyxWarriorsxNewCard[extra 1={./mage.jpg}, extra 6={Lacht in der Sonne}, extra 7={Vergiftung +42\\Feuer (+ und Flamme)\\[2em] Er heißt der Verbrannte.}, main color={AppleGreen}]{brusel}{Brußel the Husel}
+% \FantasyxWarriorsxNewCard[extra 1={./devil.jpg}, extra 6={Lacht weil Lichtenstein.}, extra 7={tötet mit wonne \\ Geile Performance,\\ Vernichtung +3}, main color={DebianRed}]{devil}{Elite dead devil}
+
+% \grusel
+% \brusel
+% \devil\newline
+
+% Fan test:\vskip18em
+% \begin{center}
+%     \CardFan{grusel,brusel,devil,brusel}{4}
+% \end{center}
+% \clearpage
+% \vspace*{9em}
+% Raise test, raising card 6: \vskip18em
+% \begin{center}
+%     \CardFan[6]{grusel,brusel,devil,brusel,grusel,brusel,devil,brusel}{7}
+% \end{center}
+% \vskip9em
+% Board test:
+% \begin{center}
+%     \CardBoard{grusel,brusel,devil,brusel}{4em}
+% \end{center}
+% Boardtest raising 2 and 3
+% \begin{center}
+%     \CardBoard[2,3]{grusel,brusel,devil,brusel,devil,devil}{4em}
+% \end{center}
+% \vfill\hbox{}
+% \clearpage
+% \CreateCardGame{Hallo}{Hallo, das Kartenspiel}
+% \HalloxCreateCardClass[extra 3={Super}]{Super}{Die Super Klasse}
+% \HalloxCreateCardClass{Duper}{Die Duper Klasse}
+
+% \HalloxSuperxNewCard[extra 1={Dieter}]{hellion}{Hellion the great}
+% \HalloxSuperxNewCard{bella}{Bella the great}
+
+
+% \HalloxDuperxNewCard{rebellion}{Rebellion the great}
+% \HalloxDuperxNewCard[extra 1={Hallo}]{stella}{Stella the great}
+
+% \ShowClassCards{Super}
+
+% \ShowGameClasses{Hallo}
+
+% \makeatletter
+% \@lilly@cards@game@Hallo@classlist \newline
+
+% \lillyxCARDSxstellaxextra@a
+% \lillyxCARDSxhellionxextra@a
+
+% Args:
+% [\@lilly@cards@game@Hallo@args]
+% [\@lilly@cards@class@Super@args]
+
+% \stella
+
+% \hellion
+
+% \newpage
+% \vspace*{6cm}
+% \begin{center}
+%     \CardFan{stella,hellion,stella,hellion,stella,stella,stella,stella,hellion}{7}\hskip10cm\CardFan[3]{stella,hellion,stella,hellion,stella,stella,stella,stella,hellion}{7}\\[17em]
+%     \CardFan[2,4,6]{stella,hellion,stella,hellion,stella,stella,stella,stella,hellion}{7}\hskip10cm\CardFan[2,3]{stella,hellion,stella,hellion,stella,stella,stella,stella,hellion}{7}
+% \end{center}
+% \vskip4cm
+% \begin{center}
+%     \CardBoard{stella,hellion,stella,hellion,stella,stella,stella,stella,hellion}{2em}
+%     \hskip6cm\CardBoard[3]{stella,hellion,stella,hellion,stella,stella,stella,stella,hellion}{1em}\\[2em]
+%     \CardBoard[2,4,6]{stella,hellion,stella,hellion,stella,hellion,stella,hellion}{1em}\hskip6cm\CardBoard[2,3]{stella,hellion,stella,hellion,stella}{2em}
+% \end{center}
+
+
+\end{document}
