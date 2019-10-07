@@ -1,3 +1,5 @@
+\babel@toc {ngerman}{}
+\babel@toc {ngerman}{}
 \pagestyle {empty}
 \thispagestyle {empty}
 \contentsline {chapter}{\numberline {1}Mathe}{1}{chapter.1}% 

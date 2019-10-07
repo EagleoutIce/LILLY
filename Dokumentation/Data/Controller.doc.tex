@@ -455,10 +455,7 @@ Präsentiert eine Information in einem an Karten anmutenden Format.
 
 Dieses Design wird von Lilly dann gewählt, wenn kein anderes Layout gewählt wird. Es liefert keine Befehle die genutzt werden sollten, sie dienen alle nur der internen Verarbeitung. Hier ein Beispiel:
 \ilatex{Data/Documents/LayoutPlain/example-plain.tex}
-Liefert:
-\begin{tcbraster}[raster columns=3, blankest,colback=white]
-    \tcbincludepdf{Data/Documents/LayoutPlain/example-plain.pdf}
-\end{tcbraster}
+Das Ergebnis kann in den Quelldateien der Dokumentation betrachtet werden.
 
 %
 %
@@ -578,7 +575,7 @@ Setzt einen Text in kuriver Schrift um zum Beispiel eine Kurzzusammenfassung fü
 %
 %
 
-Im Folgenden ein Beispiel, welches sich auch hier (\T{Data/Documents/LayoutPaper/example-paper.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
+Im Folgenden ein Beispiel, welches sich auch hier (\blatex{Data/Documents/LayoutPaper/example-paper.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
 \begin{tcbraster}[raster columns=3, blankest,colback=white]
     \tcbincludepdf{Data/Documents/LayoutPaper/example-paper-OUT/example-paper.pdf}
 \end{tcbraster}
@@ -624,11 +621,7 @@ Setzt eine kleine Erklärung zu gewissen Sektionen oder Abschnitten.
 %
 %
 
-Hier ein Beispiel, der dem Code in \T{Data/Documents/LayoutPnP/example-pnp.tex} (der Quelldateien) entspringt:
-\begin{tcbraster}[raster columns=2, blankest,colback=white,graphics options={trim=0cm 6.5cm 0cm 0cm,clip}]
-    \tcbincludepdf[blankest]{Data/Documents/LayoutPnP/example-pnp.pdf}
-\end{tcbraster}
-Es wurden für dieses Beispiel noch weitere Umgebungen in der Datei generiert (die Ansicht hier ist beschnitten).
+Ein Beispiel kann in den Quelldateien hier gefunden werden: \blatex{Data/Documents/LayoutPnP/example-pnp.tex}.
 
 %
 %
@@ -659,7 +652,7 @@ Setzt die jeweiligen Felder für die Daten.\\
 %
 %
 
-Im Folgenden ein Beispiel, welches sich wiedereinmal (\T{Data/Documents/LayoutPoems/poems.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
+Im Folgenden ein Beispiel, welches sich wiedereinmal (\blatex{Data/Documents/LayoutPoems/poems.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
 \begin{tcbraster}[raster columns=3, graphics pages={1,3,6}, blankest,colback=white]
     \tcbincludepdf{Data/Documents/LayoutPoems/poems.pdf}
 \end{tcbraster}
@@ -699,10 +692,11 @@ Liefert einen zufälligen Text. Beispiel: \blankcmd{RandomFlavourText} liefert (
 \subsection{Philosopher}
 \hypertarget{LILLYxPHILOSOPHER}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} zur Verfügung gestellt. \medskip\newline
 
-Dieses Paket hat mit \LILLYxBOXxVersion{1.0.8} die Generierung der Titelseiten für Mitschriften und mit \LILLYxBOXxVersion{2.0.0} auch für Zusammenfassungen übernommen. \elable{mrk:philentry}Hier ein kleines Beispiel:
-\begin{tcbraster}[raster columns=4, blankest,graphics pages={1,3,4,6},colback=white]
-    \tcbincludepdf{Data/Documents/Philosopher/philosopher.pdf}
-\end{tcbraster}
+Dieses Paket hat mit \LILLYxBOXxVersion{1.0.8} die Generierung der Titelseiten für Mitschriften und mit \LILLYxBOXxVersion{2.0.0} auch für Zusammenfassungen übernommen.
+% \elable{mrk:philentry}Hier ein kleines Beispiel:
+% \begin{tcbraster}[raster columns=4, blankest,graphics pages={1,3,4,6},colback=white]
+%     \tcbincludepdf{Data/Documents/Philosopher/philosopher.pdf}
+% \end{tcbraster}
 
 %
 %
@@ -722,10 +716,7 @@ Ein Befehl, der aus offensichtlichen Gründen wohl nicht wirklich frei verwendet
     \LILLYxGENxFACULTY{Mathematik}{:bmath:\pi:emath:}{#1}[#2][#3][80pt][\smallNumber][0.125]
 }
 \end{latex}
-Dies definiert das Mathe-Siegel, \blankcmd{LILLYxFACULTYxMATHE} ergibt (wird zusätzlich zentriert):
-\begin{center}
-    \LILLYxFACULTYxMATHE
-\end{center}
+Dies definiert das Mathe-Siegel.
 
 %
 %
@@ -824,18 +815,14 @@ Setzt die Titelseite wie sie das \jmark[Zusammenfassungs-Layout]{mrk:layoutzsf} 
 \def!**!\LILLYxVorlesung{ANA1}
 \LILLYxTITLExBONUS{Hallo}
 \end{latex}
-Es liefert das Ergebnis ganz links in folgender Übersicht an Beispielen:
-\begin{tcbraster}[raster columns=4, blankest,graphics pages={10,13,15,16},colback=white]
-    \tcbincludepdf{Data/Documents/Philosopher/philosopher.pdf}
-\end{tcbraster}
-Offensichtlich wird \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} verwendet.
+Das Ergebnis kann in den Quelldateien der Dokumentation unter \blatex{Data/Documents/Philosopher/} gefunden werden. Offensichtlich wird \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} verwendet.
 
 %
 %
 %
 
 \presentCommand[1.0.9]{LILLYxTITLExRAW}[\optArg{Title Image PDF}]
-Setzt eine Titelseite \emph{ohne} Bonus, so wie sie bereits in der \jmark[Einführung]{mrk:philentry} gezeigt wurden. Das anzuzeigende Titelbild sollte übergeben werden. Es wird auf \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} und \blankcmd{LILLYxPHILOSOPHERxMETADATA} zurückgegriffen.
+Setzt eine Titelseite \emph{ohne} Bonus (normal). Das anzuzeigende Titelbild sollte übergeben werden. Es wird auf \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} und \blankcmd{LILLYxPHILOSOPHERxMETADATA} zurückgegriffen.
 
 %
 %

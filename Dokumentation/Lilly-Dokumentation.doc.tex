@@ -1,10 +1,7 @@
 \def\LILLYxBOXxBemerkungxLock{TRUE}
 \documentclass[Dokumentation,kpfont]{Lilly}%debug for more information as additional argment => TOOD: document :D: doesn't seem to work. check?
-\usepackage[subject={TestTip},author={EagleoutIce},version=1]{pdfcomment}
 
 \usepackage{lipsum}
-
-%%TODO INCLUDE TITLE-Control in lilly
 
 %%Move \Lilly to Lilly :D
 
@@ -40,17 +37,6 @@
 \endgroup%
 }
 \makeatother
-
-
-
-% %%% Listen für Versionen der entsprechenden Befehle
-% \foreach \major in {1} { %% Construct Versions
-%     \foreach \minor in {0} {
-%         \foreach \iteration in {0,...,10} {
-%             \newlistof{Version\major\minor\iteration}{\major.\minor.\iteration}{Version \major.\minor.\iteration}
-%         }
-%     }
-% }
 
 \DeclareDocumentCommand{\addcmd}{ O{1.0.0} m}{%
     \ifthenelse{\equal{#1}{\LILLYxVERSION}}{\iwriteNewCommands{\noexpand\pushList{lNewCommands}{\noexpand c#2}}}{}\index{#2`{\blankcmdidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%

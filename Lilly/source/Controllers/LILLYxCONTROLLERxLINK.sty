@@ -8,7 +8,6 @@
 \RequirePackage{LILLYxCONTROLLERxMODE}
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 
-
 %\RequirePackage{titletoc} %collission fun :D
 %% https://ctan.org/pkg/titletoc
 \LILLYxDemandPackage{titletoc}{Damit der tableofcountetns auch schön hübsch gemacht werden kann.}%% Package, Info
@@ -44,9 +43,9 @@
     citecolor=\LILLYxColorxLINKSxCiteColor,
     filecolor=black!75!black,
     urlcolor=\LILLYxColorxLINKSxUrlColor,
-    hyperfootnotes=true,
+    % hyperfootnotes=true,
     hypertexnames,
-    bookmarks=true,
+    % bookmarks=true,
     unicode=true,
     pdftoolbar=false,
     pdfpagemode=UseAttachments,
@@ -55,9 +54,7 @@
     pdfsubject={Latex-Dokument},
     pdfauthor={\AUTHOR~(\AUTHORMAIL)},
     pdfcreator={pdflatex on \platformname\space using the LILLY-Package (v\LILLYxVERSION) by Florian Sihler (florian.sihler@uni-ulm.de)},
-    bookmarks=true
 }
-
 
 \ifcsname LILLYxHYPERLINK\endcsname\else
     \gdef\LILLYxHYPERLINK{TRUE}
@@ -110,7 +107,6 @@
 \fi
 %% With sepcific color :D
 \newcommand{\cmark}[3][Linkname]{\setLinkColor{#3}\textbf{{\hyperref[#2]{#1}}}}
-
 
 \providecommand*{\eXButton}[2]{\Acrobatmenu{#1}{\textcolor{\LILLYxColorxLINKSxMainColor}{#2}}}
 

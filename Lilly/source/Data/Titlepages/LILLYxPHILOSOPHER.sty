@@ -4,6 +4,16 @@
 
 \RequirePackage{LILLYxTIKZxCORE}
 \RequirePackage{LILLYxCONTROLLERxLINK}
+\RequirePackage{LILLYxUTIL}
+
+
+\LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}%% Package, Info
+                    {Dieses Paket ist für LILLY überlebenswichtig}%% Error-Text
+                    {\LILLYxGeneralxPaperformat,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering,\LILLYxGeometryxExtras}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D - wenn er das dann mal kann
+
+
+\providecommand{\LILLY@Typ}{Unbekannt}
 
 \usetikzlibrary{decorations.text}
 
@@ -152,10 +162,8 @@
     O{0.55\paperwidth}      % Scaling
     O{\LILLYxPATHxDATA/Semester/Graphics/titleimage\LILLYxVorlesung.pdf}
                             % Titel Symbol
-}{%
-
+}{\hypersetup{pageanchor=false}%
 \RequestConfig{\LILLYxColorxTITLExSETTINGSxGENERAL}\RequestConfig{\LILLYxColorxTITLExSETTINGSxVORLESUNG}%
-
 \clearpage\thispagestyle{empty}%
 \LILLYxPHILOSOPHERxINIT\begingroup%
 \begin{titlepage}
@@ -199,11 +207,11 @@
 %}
 \end{titlepage}
 \clearpage%
-\endgroup\restoregeometry%
+\endgroup\restoregeometry\hypersetup{pageanchor=true}%
 }
 
 \DeclareDocumentCommand{\LILLYxTITLExRAW}{ o }{
-    \begingroup%
+    \begingroup\hypersetup{pageanchor=false}%
     \clearpage\begin{titlepage}
         \LILLYxPHILOSOPHERxINIT%
         {\centering\par\vspace*{7em}\par
@@ -216,7 +224,7 @@
         \LILLYxPHILOSOPHERxMETADATA
         {\par\vspace*{7.5em}\par}%
         \LILLYxPHILOSOPHERxBORDERBLOCK{3} %% height
-    \end{titlepage}\endgroup\restoregeometry%
+    \end{titlepage}\endgroup\restoregeometry\hypersetup{pageanchor=true}%
 }
 
 %% Pfad zu den Einstellungen %% Pfad zur Grafik
