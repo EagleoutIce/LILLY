@@ -258,8 +258,8 @@ public class JakeCompile {
             writeLoggerInfo(b_data[B_TEXT].replace("\"\"", "") + " -Version("
                     + CoreSettings.requestValue("S_LILLY_BOXES") + ") der Latex-Datei: "
                     + CoreSettings.requestValue("S_FILE") + "..." + ColorConstants.COL_RESET, tag);
-
-            for (String boxmode : CoreSettings.requestValue("S_LILLY_BOXES").split(" +")) {
+            String[] bmodes = CoreSettings.requestValue("S_LILLY_BOXES").split(" +");
+            for (String boxmode : bmodes) {
                 writeLoggerInfo("Schreibe boxmode...", tag);
                 // TODO: for threadsafety chagne name including thread id and pass threadid on
                 // compile
@@ -271,7 +271,7 @@ public class JakeCompile {
                 }
 
                 String final_name = b_data[B_NAME]
-                        + (CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME") ? boxmode + "-" : "")
+                        + (CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME") && bmodes.length > 1 ? boxmode + "-" : "")
                         + new File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+$", "");
                 final_name = final_name.replace("\"", "").replace(" ","-"); // We can't allow spaces :/
 
