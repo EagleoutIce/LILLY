@@ -5,10 +5,6 @@
 \providecommand{\AUTHOR}{Florian Sihler}
 \providecommand{\AUTHORMAIL}{florian.sihler@web.de}
 
-%% Sloppy Defaults if no Jake is used:
-% \providecommand{\LILLYxSemester}{1} % v2.1.0
-\providecommand{\LILLYxVorlesung}{LAII}
-
 \RequirePackage{LILLYxCORE}
 \RequirePackage{LILLYxLIST}
 \RequirePackage{LILLYxRANDOM}
@@ -34,7 +30,6 @@
 % Key-Val-Optionen zum verarbeiten von Argumenten                                                                     %     %%%% PACKAGE-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\input{\LILLYxPATHxCONTROLLERS/Parser/_LILLY_KEYVAL_PARSER}
 \RequirePackage{LILLYxKEYVALxPARSER}
 
 
@@ -74,8 +69,6 @@
 \renewcommand*{\thefootnote}{$\langle$\textbf{\doublealph{footnote}}$\rangle$}
 \renewcommand*{\thempfootnote}{$\langle$\textbf{\arabic{mpfootnote}}$\rangle$}
 
-%%\RequirePackage[\LILLYxGeneralxPaperformat, \LILLYxGeometryxExtras,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight},top=1.25in,centering]{geometry}
-%top=1.5in,bottom=1.25in,textwidth=6.25in]{geometry}
 
 %% NEU, weil cooler:
 
@@ -153,11 +146,6 @@
 \RequirePackage{LILLYxCONTROLLERxENVIRONMENT}
 \RequirePackage{LILLYxSHORTCUTS}
 
-\LILLYxLoadPackage{wrapfig}{Um Figuren und Tabellen angenehmer einzubetten}
-                    {Ich versuche nun von Hand die Umgebungen wrapfigure und wraptable notduerftig zu simulieren ERROR}
-                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_WRAPFIG}}
-                    {}{} %% NO ARGS
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TiKz und andere Grafik freuden                                                                                      %     %%%% TIKZ-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -189,32 +177,6 @@
     \RequirePackage{LILLYxLISTINGSxADVANCED}
 \fi
 
-%\ExplSyntaxOn
-%\DeclareCaptionFont{black}{ \color{black} }
-%\DeclareCaptionFormat{none}{
-%    \makebox[\textwidth]{#1#2#3}
-%}
-%\DeclareCaptionFont{black}{ \color{black} }
-%
-%\ExplSyntaxOff
-%\DeclareCaptionFormat{listing}{
-%    \makebox[\textwidth]{#1#2#3}
-%}
-
-%\def\noprint#1{}
-
-%\ExplSyntaxOn
-%\NewDocumentCommand \mipsspecifier { }
-%{
-%    \tl_set:No \l_demo_tl {\the\use:c{lst@token}}
-%    \regex_replace_all:nnN { .([a-zA-Z]+[0-9]+) } {\$\c{textcolor}\cB\{ limegreen \cE\}\cB{ \1 \cE} } \l_demo_tl
-%    \tl_use:N \l_demo_tl
-%    \noprint
-%}
-
-%\ExplSyntaxOff
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Unterdrücken verschiedener Fehler                                                                                   %     %%%% ERROR HANDLING %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -224,6 +186,9 @@
 \clubpenalty=10000
 \widowpenalty=10000
 
+\pdfminorversion=5
+\pdfcompresslevel=9
+\pdfobjcompresslevel=2
 
 \RequirePackage{LILLYxSWITCHxCASE}
 
@@ -250,17 +215,11 @@
     \RequirePackage{LILLYxMATH}
 \fi
 
-%\RequirePackage{kpfonts}
-%%\input{\LILLYxPATHxDATA/Graphics/_LILLY_GRAPHICS_PROVIDER}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Übersetzungen, alternativen, etc...                                                                                 %     %%%% TRANSLATIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{LILLYxTRANSLATIONSxUNIVERSE}
-
-%\input{\LILLYxPATHxCONTROLLERS/Outro/_LILLY_OUTRO_CONTROLLER}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Datendarstellungen, Presenter                                                                                       %     %%%% PRESENTER %%%%

@@ -15,10 +15,15 @@
         <excludes>
           <exclude>**/source/Data/Graphics/**/*.pdf</exclude>
           <exclude>**/*.aux</exclude>
+          <exclude>**/*.auxlock</exclude>
           <exclude>**/*.log</exclude>
+          <exclude>**/*.mw</exclude>
           <exclude>**/*.svn</exclude>
+          <exclude>**/*.listing</exclude>
           <exclude>**/*.nav</exclude>
+          <exclude>**/*.idx</exclude>
           <exclude>**/*.snm</exclude>
+          <exclude>**/*.md</exclude>
         </excludes>
       </resource>
       <resource>

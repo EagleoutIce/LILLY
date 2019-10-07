@@ -56,11 +56,11 @@ bin
 **/.idea/tasks.xml
 **.classpath
 **workspace.xml
-*.aux
-*.log
-*.nav
-*.snm
-*.toc
+**/*.aux
+**/*.log
+**/*.nav
+**/*.snm
+**/*.toc
 
 **/Data/Graphics/**/*.pdf
 

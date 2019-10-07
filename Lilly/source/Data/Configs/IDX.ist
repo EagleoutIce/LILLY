@@ -31,7 +31,7 @@ encap_suffix "}"
 quote '~'
 actual '`'
 
-delim_t "}\\fi\\pgfsetfillopacity{1.0}\\iftrue\\rmfamily\\idxfsize{}"
+delim_t "}\\fi\\pgfsetfillopacity{1.0}\\rmfamily\\idxfsize{}"
 delim_n "}, \\hyperpage{"
 % \\hyperpage{"
 
