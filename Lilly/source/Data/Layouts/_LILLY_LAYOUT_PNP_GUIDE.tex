@@ -40,11 +40,12 @@
 \DeclareFixedFont{\chpFont}{U}{eur}{b}{n}{24}
 % \DeclareFixedFont{\chpNumber}{U}{eur}{b}{n}{165} no chapter :D
 
-\LILLYcommand{\cftsubsecfont}{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!90!white}}
+\LILLYcommand{\cftsubsecfont}{\footnotesize}
 %\renewcommand{\cftsecleader}{\hfill}
 %\LILLYcommand{\cftsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
 \LILLYcommand{\cftsubsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
-\LILLYcommand{\cftsubsecpagefont}{\normalfont\scriptsize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!70!white}}
+\LILLYcommand{\cftsubsecpagefont}{\scriptsize}
+\LILLYcommand{\cftsubsecnumwidth}{1.75em}
 
 %% Set General style of the Page:
 \def\LILLYxRIGHTMARK{}
@@ -56,6 +57,7 @@
 	\ofoot{\textbf{\thepage}}%
 	\lofoot{{\LILLYxRIGHTMARK}}%
 	\refoot{{\leftmark}}%
+	\addtocontents{toc}{\protect\thispagestyle{scrheadings}}
 }
 
 \def\rightmark{}
@@ -91,7 +93,16 @@
 	\phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
 	{{\smaller #3}\, #4}%
 }
-\renewcommand{\@seccntformat}[1]{\textcolor{\Hcolor}{\csname the#1\endcsname}}
+
+\DeclareRobustCommand{\@seccntformat}[1]{%
+  \def\temp@@a{#1}%
+  \def\temp@@b{section}%
+  \ifx\temp@@a\temp@@b%
+  	\textcolor{\Hcolor}{\arabic{#1}}%
+  \else%
+  	\textcolor{\Hcolor}{\arabic{section}{\normalfont.}\arabic{#1}}%
+  \fi%
+}
 
 \setlength{\cftbeforesecskip}{2.3pt}
 
@@ -122,7 +133,6 @@
     \end{tcolorbox}
 \end{center}
 }
-\SetStyle%
 }
 
 
