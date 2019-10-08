@@ -11,7 +11,12 @@
         \end{latex*}
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
-\hypertarget{LILLYxTIKZxCORE}Dieses Paket basiert übrigens auf \LILLYxNOTExLibrary{LILLYxTIKZxCORE}, welche selbst nicht direkt sondern nur durch die hier verfügbaren Befehle dokumentiert ist und auch nicht frei verwendet werden sollte (ausgenommen natürlich, man weiß, wie \Smiley).
+\hypertarget{LILLYxTIKZxCORE}Dieses Paket basiert übrigens auf \LILLYxNOTExLibrary{LILLYxTIKZxCORE}, welche selbst nicht direkt sondern nur durch die hier verfügbaren Befehle dokumentiert ist und auch nicht frei verwendet werden sollte (ausgenommen natürlich, man weiß, wie \Smiley).\medskip\\
+Das Laden des Pakets mit LILLY kann durch die Option \T{graphics} aktiviert werden (Standard) und durch \T{nographics} entsprechend dekativiert. So sorgt das Deklarieren von:
+\begin{latex*}
+\documentclass[nographics]{Lilly}
+\end{latex*}
+Für ein Lilly-Dokument ohne \LILLYxNOTExLibrary{LILLYxGRAPHICS}.
 
 %
 %
@@ -108,15 +113,16 @@ Zur Information, alle diese Befehle wurden wie folgt präsentiert:
 \begin{latex}[morekeywords={[5]{tikz}}]
 :bs:tikz!**!\:lan:graphdot:ran:{(0,0)}{42}{a}};
 \end{latex}
-wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für den Textfluss noch die Boxposition angepasst, dies spielt allerdings für den Graphen keine Rolle. Mit \LILLYxBOXxVersion{2.0.0} wurden die Farben der Dots der neuen Palette %%TODO: link
-entsprechend portiert.
+wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für den Textfluss noch die Boxposition angepasst, dies spielt allerdings für den Graphen keine Rolle. Mit \LILLYxBOXxVersion{2.0.0} wurden die Farben der Dots der neuen Palette entsprechend portiert.
 
 %
 %
 %
 
 \presentCommand[1.0.4]{graphPOI}[\manArg{(PosX,PosY)}\manArg{accent-color}\manArg{year}\manArg{obj-name}\manArg{brief}\secline\manArg{img-path}\manArg{img-link}\manArg{extra}]
-Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen look für Timelines garantiert. Im Folgenden eine repräsentation, die den Wirrwarr an Optionen etwas übersichtlicher macht. Es gilt zu beachten, dass \clatex{:lan:extra:ran:} hier die Rolle des entsprechendes Landes einnimmt:\vspace{-1.15\baselineskip}
+Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen Look für Timelines garantiert.
+Im Folgenden eine Repräsentation, die den Wirrwarr an Optionen etwas übersichtlicher macht. Es gilt zu beachten, dass \clatex{:lan:extra:ran:} hier die Rolle des entsprechendes Landes einnimmt.\iflillycompact\else
+\vspace{-1.15\baselineskip}
 %
 %%%% COMPAT CHEAT
 \LILLYcommand{\graphPOICOMPAT}[8]{
@@ -132,11 +138,11 @@ Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen loo
 \begin{tikzternal}[scale=0.75,
         every node/.style={transform shape}]
     \graphPOI{(0,0)}{purple}{1999 n.Chr.}
-      {Florian Sihler}
-      {Florian Sihler ist der Autor dieses Dokuments.}
-      {Data/2003.jpg}
-      {https://github.com/EagleoutIce/Quickblit}
-      {Deutschland};
+        {Florian Sihler}
+        {Florian Sihler ist der Autor dieses Dokuments.}
+        {Data/2003.jpg}
+        {https://github.com/EagleoutIce/Quickblit}
+        {Deutschland};
 \end{tikzternal}
     \end{plainlatex}}&{%
     \begin{tikzternal}[scale=0.75,
@@ -146,7 +152,8 @@ Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen loo
     \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
-Hier wurde aus Platzgründen die Größe angepasst. Es gibt auch noch \blankcmd{LILLYxMODExEXTRA} der es ermöglicht den \blankcmd{graphPOI}-Befehl einzuschränken.
+Hier wurde aus Platzgründen die Größe angepasst.\fi
+Es gibt auch noch \blankcmd{LILLYxMODExEXTRA} der es ermöglicht den \blankcmd{graphPOI}-Befehl einzuschränken.
 Wir dieser Befehl auf \verb|\true| (\true) gesetzt, so wird \blankcmd{graphPOI} so konfiguriert, dass die zugehörige Grafik angezeigt wird. Ist dies nicht der Fall (in anderen Worten: \blankcmd{LILLYxMODExEXTRA}=\verb|\false|), so wird kein Bild angezeigt (auch der Link existiert dann nicht). Diese Version wurde erstellt um Urheberrechtsverletzungen zu vermeiden.
 
 %
@@ -158,7 +165,7 @@ Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da d
 \begin{center}%\renewcommand{\arraystretch}{0.25}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.4\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-{\begin{latex}
+{\begin{plainlatex}
 \begin{tikzternal}
   \node (A) at (1,2) {A};
   \PgetXY{(A)}{\myX}{\myY};
@@ -167,7 +174,7 @@ Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da d
   \PgetY{(B)}{\anotherY};
   \node (C) at (1.5*\myY,\anotherY) {C};
 \end{tikzternal}
-\end{latex}
+\end{plainlatex}
 } &
 \begin{tikzternal}
     \draw[thin,xshift=0.5cm,yshift=0.5cm] (-1,-2) grid (3,2); %step=1.0
@@ -272,7 +279,7 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
 \begin{center}
 \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.65\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    {\scriptsize\begin{latex}
+    {\scriptsize\begin{plainlatex}
 \begin{tikzternal}[scale=1,
     every node/.style={minimum size=12pt,transform shape},
     state/.style={circle, !*\T{draw}*!, minimum size=20pt},
@@ -286,7 +293,7 @@ Im folgenden sei eine beispielhafte Verwendung gezeigt (der Automat muss keinen 
     \loopTop[4]{1}{\T{4}};
     \loopRight[4]{2}{\T{2}};
 \end{tikzternal}
-    \end{latex}
+    \end{plainlatex}
     } &      \begin{tikzternal}[scale=1,
         every node/.style={minimum size=12pt,transform shape},
         state/.style={circle, draw, minimum size=20pt},
@@ -452,16 +459,15 @@ Setzt ein Attribut beziehungsweise ein Schlüsselattribut im Kontext eines Entit
 %
 %
 
-\subsection{Verzeichnis-Bäume \LILLYxNOTExWarning{Work in Progress}}
-Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_DIRECTORY.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
-Dieses Paket ist bisher nur provisorisch und basiert auf \url{https://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz#34268}, da \T{forest} noch ein paar Probleme macht.
+\subsection{Verzeichnis-Bäume}
+Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_DIRECTORY.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.
 
 %
 %
 %
 
 \presentEnvironment[2.0.0]{directory}[\optArg{tikz args}]
-Setzt ein Verzeichnis, beziehungsweise allgemein liefert diese Umgebung eine Möglichkeit relativ einfach etwas \emph{Verzeichnisähnliches} zu setzen (ist ja, wie gesagt, noch in Arbeit \Smiley). Ein Beispiel:
+Setzt ein Verzeichnis. Allgemein liefert diese Umgebung eine Möglichkeit relativ einfach etwas \emph{Verzeichnisähnliches} zu setzen. Ein Beispiel:
 \begin{defaultlst}[][listing side text,righthand width=4.5cm]{lLatex}
 \begin{directory}[scale=0.5]
 \node{Toplevel}
@@ -474,12 +480,135 @@ Setzt ein Verzeichnis, beziehungsweise allgemein liefert diese Umgebung eine Mö
             child { node {Level 3} }
             child { node {\ldots} }
         }
-        child { node {Readme.md} }
+        child { node {\bfseries Readme.md} }
     }
-    child { node {Level 1}
-        child { node {Level 2} }
+    child { node {\bfseries Level 1}
+        child { node {Level 2}
+                child {node {test.txt} } }
     };
 \end{directory}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentEnvironment[2.1.0]{fancydir}
+Setzt eine Verzeichnisstruktur, \emph{ähnlich} zu \blankenv{directory}. Ein Beispiel:
+\begin{defaultlst}[][listing side text,righthand width=4.5cm]{lLatex}
+\begin{fancydir}
+[Toplevel
+    [Level 1, dir=AppleGreen
+        [Level 2
+            [Level 3]
+            [\ldots, cfile={ChromeYellow}{X}]
+        ]
+        [Level 2
+            [Level 3, ldir={\faApple}]
+            [\ldots]
+        ]
+        [Readme.md, ifile]
+    ]
+    [Level 1, idir
+        [Level 2]
+        [test.tex, file]
+    ]
+]
+\end{fancydir}
+\end{defaultlst}
+Standardmäßig ist jedes Element ein Verzeichnis. Es gibt allerdings einige Möglichkeiten das Aussehen zu verändern: \begin{ditemize}\narrowitems
+        \item Für Ordner: \begin{ditemize}\narrowitems
+        \item \T{dir=\manArg{Color}} Setzt ein Verzeichnis in der übergebenen Farbe. Wird keine Farbe  übergeben, so wird die Standardfarbe (\T{folderbg}) verwendet.
+        \item \T{idir=\manArg{Color}} Setzt ein Verzeichnis in der übergebenen Farbe. Wird keine Farbe übergeben, so wird die Standardfarbe (\T{ifolderbg}) verwendet um einen wichtigen Ordner zu markieren.
+        \item \T{ldir=\manArg{Logo}} Setzt ein Verzeichnis in \T{folderbg} mit dem übergebenen Logo als Inhalt. Wird ein leeres Logo übergeben, so wird auch keins gesetzt.
+        \item \T{cdir=\manArg{Color}\manArg{Logo}} Setzt ein Verzeichnis in \T{Color} mit dem übergebenen \T{Logo} als Inhalt. Wird ein leeres Logo übergeben, so wird auch keins gesetzt.
+    \end{ditemize}
+    \item Für Dateien: \begin{ditemize}\narrowitems %% TODO:
+        \item \T{file=\manArg{Color}} Setzt eine Datei in der übergebenen Farbe. Wird keine Farbe  übergeben, so wird die Standardfarbe (\T{filebg}) verwendet.
+        \item \T{ifile=\manArg{Color}} Setzt eine Datei in der übergebenen Farbe. Wird keine Farbe übergeben, so wird die Standardfarbe (\T{ifilebg}) verwendet um einen wichtigen Ordner zu markieren.
+        \item \T{lfile=\manArg{Logo}} Setzt eine Datei in \T{filebg} mit dem übergebenen Logo als Inhalt. Wird ein leeres Logo übergeben, so werden die Textstreifen gesetzt.
+        \item \T{cfile=\manArg{Color}\manArg{Logo}} Setzt eine Datei in \T{Color} mit dem übergebenen \T{Logo} als Inhalt. Wird ein leeres Logo übergeben, so werden die Textstreifen gesetzt.
+    \end{ditemize}
+\end{ditemize}
+Mit den folgenden Befehlen lassen sich zudem eigene Dateitypen kreieren:
+
+%
+%
+%
+
+\presentCommand[2.1.0]{CreateNewFolderType}[\optArg{Color}\manArg{Name}\optArg{Logo}\cmdlist\secline\anothercmd[2.1.0]{CreateNewFileType}\optArg{Color}\manArg{Name}\optArg{Logo}]
+Erzeugt einen neuen Ordner- beziehungsweise Dateityp. Ein Beispiel:
+\begin{defaultlst}[][listing side text,righthand width=2.75cm]{lLatex}
+% C-Files
+\CreateNewFileType[DarkMidnightBlue]{.c}[\textbf{C}]
+\CreateNewFolderType[Veronica]{templates}
+\begin{fancydir}
+[test
+    [super, templates
+        [UH.TXT, file=ChromeYellow]
+        [my.c, .c]
+    ]
+]
+\end{fancydir}
+\end{defaultlst}
+
+%
+%
+%
+
+\presentCommand[2.1.0]{SetFolderFileSameIndent}
+Standardmäßig werden die Texte für eine Datei näher an die Datei gesetzt. Dieser Befehl sorgt dafür, dass die Texte auf einem Level gleich weit eingerückt werden:
+{
+\begin{defaultlst}[][listing side text,righthand width=2.75cm]{lLatex}
+\begin{fancydir}
+[test
+    [super,
+        [Hallo, file]
+        [Hallo]
+    ]
+    [duper, file]
+]
+\end{fancydir}
+\SetFolderFileSameIndent
+\begin{fancydir}
+[test
+    [super,
+        [Hallo, file]
+        [Hallo]
+    ]
+    [duper, file]
+]
+\end{fancydir}
+\end{defaultlst}
+}
+
+
+
+% Note commands \createnew etc.
+
+%
+%
+%
+%
+%
+
+\subsection{Bilder und Bildlinks}
+Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHICS.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
+Teile dieser Integration wurden durch \url{https://tex.stackexchange.com/questions/120861/making-tikz-path-into-a-hyperlink} inspiriert. Dieses Paket liefert keinen neuen Befehl, allerdings $2$ neue \TikZ-Argumente, die im Folgenden an einem Beispiel präsentiert werden:
+
+\begin{defaultlst}[][listing side text,righthand width=2cm]{lLatex}
+\begin{tikzpicture}
+    % clip image to a path {#1: path to the image}
+    %   {#2 scaled-height of the image}:
+    \filldraw[path image={\LILLYxPATHxDATA/Images/me.jpg}{2cm},AppleGreen] (0,2) circle (1cm);
+    \filldraw[path image={\LILLYxPATHxDATA/Images/me.jpg}{2cm},AppleGreen] (0,0) ellipse (1cm and 0.5cm);
+\end{tikzpicture}
+\end{defaultlst}
+
+\begin{defaultlst}[][listing side text,righthand width=2cm]{lLatex}
+\hypertarget{marker}{Hallo Welt} [\ldots] \par
+%
+\tikz{\filldraw[hyperlink={marker},AppleGreen] (0,0) rectangle ++(2,1);}
 \end{defaultlst}
 
 
@@ -492,16 +621,18 @@ Setzt ein Verzeichnis, beziehungsweise allgemein liefert diese Umgebung eine Mö
 Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxGRAPHICSxPROVIDER} und hängt vom Mutterpaket ab.
 
 \presentCommand[2.0.0]{getGraphics}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
-Erlaubt den Zugriff auf zahlreiche Grafiken, die im Rahmen der Arbeit entstanden sind. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stets nur eine Dimension skaliert wird! Die bisher enthaltenen Grafiken können durch \cbash{jake get} abgerufen werden: \begin{center}
+Erlaubt den Zugriff auf zahlreiche Grafiken, die im Rahmen der Arbeit entstanden sind. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stets nur eine Dimension skaliert wird! Die bisher enthaltenen Grafiken können durch \cbash{jake get} abgerufen werden.
+\iflillycompact\else\begin{center}
     \begin{tabular}{C{0.45\linewidth}_C{0.45\linewidth}}
         \getGraphics{Rechner/PLAAmpel} & \getGraphics{Software/ThreadStates} \\
         {\tiny \blatex{:bs:getGraphics\{Rechner/PLAAmpel\}}} & {\tiny\blatex{:bs:getGraphics\{Software/ThreadState\}}}
     \end{tabular}
-\end{center}
-Die Größe skaliert sich in der Regel automatisch, allerdings existieren auch Grafiken, die automatisch nicht skaliert werden, da sie Code oder andere nicht skalierfähige Elemente enthalten: \begin{center}
+\end{center}\fi
+Die Größe skaliert sich in der Regel automatisch, allerdings existieren auch Grafiken, die automatisch nicht skaliert werden, da sie Code oder andere nicht skalierfähige Elemente enthalten.
+\iflillycompact\else\begin{center}
     \getGraphics{Software/XML/XMLUebersicht}
     \blatex{:bs:getGraphics\{Software/XML/XMLUebersicht\}}
-\end{center}
+\end{center}\fi
 
 \presentCommand[2.0.0]{getGraphicsPath}[\manArg{path}]
 Liefert den absoluten Pfad zu einer Grafik. Beispiel:
@@ -515,16 +646,16 @@ Liefert: \T{\getGraphicsPath{Software/XML/XMLUebersicht}}.
 %
 
 \presentCommand[2.0.0]{getPrerendered}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
-Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereits vorberechneten Grafiken. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stehts nur eine Dimension skaliert wird! Sie werden in der Grafiksammlung durch den Tag \T{pdf} gekennzeichnet (die Breite wurde im Beispiel angepasst, oder lassen sich durch das Anfügen eines \say{\T{-pdf}}-Suffix:
-\begin{center}
+Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereits vorberechneten Grafiken. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stehts nur eine Dimension skaliert wird! Sie werden in der Grafiksammlung durch den Tag \T{pdf} gekennzeichnet (die Breite wurde im Beispiel angepasst), oder lassen sich durch das Anfügen eines \say{\T{-pdf}}-Suffix erhalten.
+\iflillycompact\else\begin{center}
     \begin{tabular}{C{0.45\linewidth}_C{0.45\linewidth}}
-        \getPrerendered{Eigene/Proseminar/Cluster/rolf-special} & \getPrerendered{Software/ThreadStates-pdf} \\
-        {\tiny \blatex{:bs:getPrerendered\{Eigene/Proseminar/Cluster/rolf-special\}}} & {\tiny\blatex{:bs:getPrerendered\{Software/ThreadState-pdf\}}}
+        \getPrerendered{Rechner/PLAAmpel-pdf} & \getPrerendered{Software/ThreadStates-pdf} \\
+        {\tiny \blatex[morekeywords={[5]{getPrerendered}}]{:bs:getPrerendered\{Rechner/PLAAmpel-pdf\}}} & {\tiny\blatex[morekeywords={[5]{getPrerendered}}]{:bs:getPrerendered\{Software/ThreadState-pdf\}}}
     \end{tabular}
-\end{center}
+\end{center}\fi
 %Weiter existiert der Befehl \blankcmd{lillyGraphicsUsePrerenderedtrue}, mit dem automatisch jeder \blankcmd{getGraphics}-Aufruf in einen entsprechenden \blankcmd{getPrerendered} Aufruf umgewandelt wird.
 \emph{Es gilt zu beachten, dass die bereits vorgenerierten Grafiken von den manuell generierten abweichen können!}
-
+Mit Version \LILLYxBOXxVersion{2.1.0} wird \Jake (um die Größe zu reduzieren) ohne die vorkompilierten Grafiken ausgeliefert. Diese können allerdings durch \bbash{jake get} generiert werden (\Jake fragt nach, wenn die Dateien nicht gefunden werden können!). Dieser Prozess kann einige Minuten in Anspruch nehmen und erübrigt sich bei einer Installation über die Entwicklungs-Version. Durch \T{:force} kann das Generieren dieser Grafiken forciert werden, wobei jeweils nur Änderungen neu kompiliert werden.
 
 %
 %
@@ -540,14 +671,14 @@ Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereit
 
 \subsection{Externalisierung}
 Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAPHICS}}]{:bs:LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_GRAPHEN.tex}, sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.\medskip\newline
-Auf Basis von \T{environ} und der \TikZ-Bibliothek \T{external} bietet diese Datei eine Möglichkeit Grafiken zu externalisieren. Wirklich aktiviert wird es allerdings nur auf Basis der \Jake-\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external} (genau genommen läuft die kontrolle über \blankcmd{LILLYxEXTERNALIZE}), lagert dann allerdings alle Grafiken die durch folgende Umgebung definiert werden aus:
+Auf Basis von \T{environ} und der \TikZ-Bibliothek \T{external} bietet diese Datei eine Möglichkeit Grafiken zu externalisieren. Wirklich aktiviert wird es allerdings nur auf Basis der \Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external} (genau genommen läuft die kontrolle über \blankcmd{LILLYxEXTERNALIZE}), lagert dann allerdings alle Grafiken die durch folgende Umgebung definiert werden aus:
 
 %
 %
 %
 
 \presentEnvironment[1.0.7]{tikzternal}[\optArg{tikz args}]
-Wenn die Externalisierung (\Jake-\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external}) aktiviert ist, wird die hierrin enthaltene Grafik automatisch externalisiert. Sonst fungiert die Umgebung als normales \blankenv{tikzpicture}.
+Wenn die Externalisierung (\Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external}) aktiviert ist, wird die hierrin enthaltene Grafik automatisch externalisiert. Sonst fungiert die Umgebung als normales \blankenv{tikzpicture}.
 
 %
 %

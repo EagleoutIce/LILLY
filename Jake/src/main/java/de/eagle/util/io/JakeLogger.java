@@ -36,6 +36,8 @@ public class JakeLogger {
 
     public static String target;
 
+    public static boolean enabled = true;
+
     /**
      * Initialisiert den Logger auf einem Pfad
      *
@@ -44,16 +46,18 @@ public class JakeLogger {
      * @param level          auf Basis welches Levels soll die Ausgabe erfolgen ?
      */
     public static void initLogger(String targetFilePath, boolean output, Level level) {
-        LOGGER = Logger.getLogger("Main Jake Log");
-        target = targetFilePath;
-        getLogger().setUseParentHandlers(output);
-        getLogger().setLevel(level);
-        try {
-            FileHandler fh = new FileHandler(targetFilePath);
-            fh.setFormatter(new JakeFormatter());
-            LOGGER.addHandler(fh);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(enabled){
+            LOGGER = Logger.getLogger("Main Jake Log");
+            target = targetFilePath;
+            getLogger().setUseParentHandlers(output);
+            getLogger().setLevel(level);
+            try {
+                FileHandler fh = new FileHandler(targetFilePath);
+                fh.setFormatter(new JakeFormatter());
+                LOGGER.addHandler(fh);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -95,6 +99,7 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerDebug1(String message, String sender) {
+        if(enabled)
         getLogger().log(Level.FINE, String.format("%-45s        %-8s: %s", getCallerName(), sender, message));
     }
 
@@ -111,6 +116,7 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerDebug2(String message, String sender) {
+        if(enabled)
         getLogger().log(Level.FINER, String.format("%-45s        %-8s: %s", getCallerName(), sender, message));
     }
 
@@ -134,6 +140,7 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerDebug3(String message, String sender) {
+        if(enabled)
         getLogger().log(Level.FINEST, String.format("%-45s        %-8s: %s", getCallerName(), sender, message));
     }
 
@@ -148,6 +155,7 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerWarning(String message, String sender) {
+        if(enabled)
         getLogger().log(Level.WARNING, String.format("%-45s   !!   %-8s: %s", getCallerName(), sender, message));
     }
 
@@ -178,6 +186,7 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerInfo(String message, String sender) {
+        if(enabled)
         getLogger().log(Level.INFO, String.format("%-45s        %-8s: %s", getCallerName(), sender, message));
     }
 
@@ -198,6 +207,7 @@ public class JakeLogger {
     public static void writeLoggerError(String message, String sender) {
         // @Todo nicht machen wenn Terminal-Sync aktiv
         // System.err.format("%-45s ## %-8s: %s", getCallerName(), sender, message);
+        if(enabled)
         getLogger().log(Level.SEVERE, String.format("%-45s   ##   %-8s: %s", getCallerName(), sender, message));
     }
 
@@ -222,6 +232,7 @@ public class JakeLogger {
      * @see JakeLogger
      */
     public static void writeLogger(String message, String sender, Level level) {
+        if(enabled)
         getLogger().log(Level.WARNING, String.format("%-45s   ~~   %-8s: %s", getCallerName(), sender, message));
     }
 

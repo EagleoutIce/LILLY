@@ -1,0 +1,207 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCARDS}[2019/10/04 Stellt eine (Spiel-)Karten-Erweiterung fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxCORE}
+\RequirePackage{LILLYxCOLOR}
+
+\usepackage{tikzrput}% fans
+
+%% \RequirePackage{pgfkeys}
+\LILLYxDemandPackage{pgfkeys}{Damit wir angenehme kv-pairs haben}
+                    {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
+                    {}{}
+
+%% https://www.ctan.org/pkg/tikz
+\LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
+                    {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
+                    {}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliotheken weitaus einfacher finden kann :D
+
+\usetikzlibrary{patterns,shadows}
+
+% hier wird die Grundlegende Schnittstelle für Spielkarten erzeugt, die es ermöglicht
+% ein eigenes Kartendesign anzulegen, für das dann wieder unterschiedliche Kartenklassen/Kategorien
+% erzeugt werden können. Abgesehen von einer Blank-Card erzeugt dieses Paket keine einzige Karte.
+% Allerdings können Erweiterungen existieren (vielleicht über kvoptions ladbar?) die es ermöglichen
+% Pokerkarten vorzuladen.
+
+
+\pgfkeys{%
+    /lillyxCARDS/.is family, /lillyxCARDS,
+    draw/.store in=\lilly@cards@draw, % this command should perform the drawing-operation for the card, based on persisted data
+    main color/.store in=\lilly@cards@main@color,
+    back color/.store in=\lilly@cards@back@color,
+    border color/.store in=\lilly@cards@border@color,
+    second color/.store in=\lilly@cards@second@color,
+    text style/.store in=\lilly@cards@text@style,
+    full title/.store in=\lilly@cards@full@title, % no doc as mandatory
+    extra 1/.store in=\lilly@cards@extra@a,% General purpose registers, will be available to the drawer
+    extra 2/.store in=\lilly@cards@extra@b,
+    extra 3/.store in=\lilly@cards@extra@c,
+    extra 4/.store in=\lilly@cards@extra@d,
+    extra 5/.store in=\lilly@cards@extra@e,
+    extra 6/.store in=\lilly@cards@extra@f,
+    extra 7/.store in=\lilly@cards@extra@g,%
+    extra 8/.store in=\lilly@cards@extra@h,%
+    extra 9/.store in=\lilly@cards@extra@i,%
+    defaults/.style={%
+        draw={default}, main color={Azure}, back color={MudWhite!25}, border color={Charcoal}, second color={AppleGreen}, text style={white},%
+        extra 1={}, extra 2={}, extra 3={}, extra 4={}, extra 5={}, extra 6={}, extra 7={}, extra 8={}, extra 9={}%
+    }
+}%% All those values will be persisted with 'lillyxCARDSx'-Prefix :D
+
+\newdimen\@lilly@cards@default@cardwidth \@lilly@cards@default@cardwidth=6cm
+\newdimen\@lilly@cards@default@cardheight \@lilly@cards@default@cardheight=9cm
+
+% #1 key name
+% #2 target name
+\def\@@lilly@cards@persist#1#2{%
+    % persisting lilly@cards@#1 as lillyxCARDSx#2x#1.\\
+    \expandafter\expandafter\expandafter\gdef\expandafter\expandafter\csname lillyxCARDSx#2x#1\expandafter\expandafter\endcsname\expandafter\expandafter{\csname lilly@cards@#1\endcsname}%
+}
+
+\def\@lilly@cards@shapes@default@card{(0,0) rectangle (\@lilly@cards@default@cardwidth,\@lilly@cards@default@cardheight)}
+
+\def\@lilly@cards@default@scaling{0.35}
+
+% #1 Special Arguments for the Card
+% #2 Id of the Card
+\def\@lilly@cards@draw@default#1#2{%
+    \begin{tikzpicture}[every node/.style={transform shape}, scale=\@lilly@cards@default@scaling,#1]
+        \fill[rounded corners=0.225cm,\@lilly@cards@get{#2}{back@color}] \@lilly@cards@shapes@default@card;  % Background
+        \fill[rounded corners=0.125cm,\@lilly@cards@get{#2}{border@color}]  % Title:
+                (0.1*\@lilly@cards@default@cardwidth,0.95\@lilly@cards@default@cardheight) rectangle (0.9*\@lilly@cards@default@cardwidth,0.75\@lilly@cards@default@cardheight)
+                node[midway,centered, text width={0.8*\@lilly@cards@default@cardwidth},align=center,\@lilly@cards@get{#2}{text@style}] {\bfseries\@lilly@cards@get{#2}{full@title}};
+        \node[below=0.25cm,text width={0.85*\@lilly@cards@default@cardwidth}] at(0.5*\@lilly@cards@default@cardwidth,0.75\@lilly@cards@default@cardheight) {\foreach \k [count=\i] in {a,...,i} {extra \i: \@lilly@cards@get{#2}{extra@\k}\\}class: \@nameuse{@lilly@cards@card@#2@class}\\game: \@nameuse{@lilly@cards@card@#2@game}\\card: \texttt{\textbackslash #2}};
+        \draw[\@lilly@cards@get{#2}{border@color},rounded corners=0.225cm] \@lilly@cards@shapes@default@card; % Border (hiding overlaps :P)
+    \end{tikzpicture}
+}
+
+% #1 name
+% #2 key
+\def\@lilly@cards@get#1#2{\@nameuse{lillyxCARDSx#1x#2}}
+
+
+% Target names of the persiting namespace.
+% As we don't need any different, all values will be expanded once and stored global
+\def\@lilly@cards@persist#1{%
+    \foreach \k in {draw,main@color,back@color,border@color,second@color,text@style,full@title}{%
+        \@@lilly@cards@persist{\k}{#1}%
+    }
+    \foreach \k in {a,...,i}{%
+        \@@lilly@cards@persist{extra@\k}{#1}%
+    }
+}
+
+%% CreateCardGame
+% erzeugt \<ID>xCreateCardClass
+% welches es dann erlaubt eine KartenKlasse zu erzeugen von der dann mittels
+% \<ID>x<ClassID>xNewCard neue Karten erzeugt werden können die dann mit \<CardID> zur Verfügung stehen.
+% Die jeweiligen Verschachtelung tiefen erlauben ebenfalls die Anzeige dieser Karten.
+% Es wird auch an einer Visualisierung der Hand gearbeitet. Die es erlaubt Karten gedreht übereinander zu lagern.
+\DeclareDocumentCommand{\CreateCardGame}{
+    O{} % card game args, they will be forwarded to every card created in this game.
+    m   % ID/Name of the Cardgame
+    m   % Full title of the CardGame
+}{%
+    \expandafter\gdef\csname @lilly@cards@game@#2@classlist\endcsname{} % No classes Registered
+    % Create The Command to create a cardclass. It will have the same signature
+    \expandafter\xdef\csname @lilly@cards@game@#2@title\endcsname{#3} % No classes Registered
+    \expandafter\xdef\csname @lilly@cards@game@#2@args\endcsname{#1} % Args Registered just for debugging
+
+    \expandafter\DeclareDocumentCommand\csname #2xCreateCardClass\endcsname{%
+        O{} % card game args, they will be forwarded to every card created in this game.
+        m   % ID/Name of the CardClass
+        m   % Full title of the CardClass
+    }{%
+        \expandafter\gdef\csname @lilly@cards@class@##2@cardlist\endcsname{} % No cards Registered
+        \expandafter\xdef\csname @lilly@cards@class@##2@title\endcsname{##3} % No classes Registered
+        \expandafter\xdef\csname @lilly@cards@class@##2@args\endcsname{##1} % Args Registered just for debugging
+        %Lets add to the list:
+        \xdef\@tlist{\csname @lilly@cards@game@#2@classlist\endcsname}
+        \expandafter\xdef\csname @lilly@cards@game@#2@classlist\endcsname{\expandafter\ifx\expandafter\\\@tlist\\ ##2\else\@tlist,##2\fi}
+        % Lets create the Card-Command
+        \expandafter\DeclareDocumentCommand\csname #2x##2xNewCard\endcsname{%
+            O{} % Card specific arguments
+            m   % Id of the Card
+            m   % Full title of the Card
+        }{%
+            \pgfkeys{/lillyxCARDS, defaults, #1}\pgfkeys{/lillyxCARDS,##1}\pgfkeys{/lillyxCARDS, full title=####3,####1}%
+            \expandafter\xdef\csname @lilly@cards@card@####2@game\endcsname{#2} % No classes Registered
+            \expandafter\xdef\csname @lilly@cards@card@####2@class\endcsname{##2} % No classes Registered
+            \xdef\@tlist{\csname @lilly@cards@class@##2@cardlist\endcsname}
+            \expandafter\xdef\csname @lilly@cards@class@##2@cardlist\endcsname{\expandafter\ifx\expandafter\\\@tlist\\ ####2\else\@tlist,####2\fi}
+            % Card Args: [####1]. In Class Args: [##1]. In Game Args: [#1]\\
+            % Card ID: ####2. In Class ID: ##2. In Game ID: #2\\
+            % Card Title: ####3. In Class Title: ##3. In Game Title: #3 \\
+            \@lilly@cards@persist{####2}
+            % Now we construct the Command that will handle the drawing fo the command, there will be an environment too:
+            \expandafter\DeclareDocumentCommand\csname ####2\endcsname{%
+                O{} % Tikz args
+            }{%
+                \expandafter\csname @lilly@cards@draw@\@lilly@cards@get{####2}{draw}\endcsname{########1}{####2}
+            }
+        }
+    }
+}
+
+
+% #1 GameName
+\def\ShowGameClasses#1{%
+    \begin{center}
+        \Large\textbf{\csname @lilly@cards@game@#1@title\endcsname:}
+    \end{center}
+    \xdef\@tmp{\@nameuse{@lilly@cards@game@#1@classlist}}
+    \foreach \class in \@tmp{%
+        \ShowClassCards{\class}~\newline
+    }
+}
+
+
+% #1 ClassName
+\def\ShowClassCards#1{%
+    \textbf{\csname @lilly@cards@class@#1@title\endcsname:}\newline
+    \xdef\@tmp{\@nameuse{@lilly@cards@class@#1@cardlist}}
+    \foreach \card in \@tmp{%
+        \csname\card\endcsname\space%
+    }
+}
+
+% \newlength\@lilly@lastblength
+% \def\@erasewidth#1{%
+%     \settowidth{\@lilly@lastblength}{#1}#1\hskip-\@lilly@lastblength\relax
+% }
+
+% [#1] cards to raise
+%  #2  List of Cards to show
+%  #3  max cards
+\newcommand\CardFan[3][0]{%
+    \ifnum#3>7 \def\@cardang{190}\else\if#3>4\def\@cardang{140}\else\def\@cardang{70}\fi\fi%
+    \foreach \card [count=\i, evaluate=\i as \angle using {-(\i-#3/2)*\@cardang/#3}] in {#2} {%
+        \foreach \d in {#1} {%
+            %\typeout{checking \d with \i}
+            \ifnum\i=\d \pgfmathparse{sin(90+\angle)}\global\let\@ly\pgfmathresult \pgfmathparse{cos(90+\angle)+\i/#3}\global\let\@lx\pgfmathresult \gdef\@opt{every node/.style={transform shape},scale=1.15}\breakforeach\else\gdef\@ly{0}\gdef\@lx{\i/#3}\gdef\@opt{}\fi%
+        }%
+        \rput[b]{\angle}(\@lx,\@ly){\edef\cxctmp{\noexpand\@nameuse{\card}[\@opt]}\cxctmp}%
+        \ifnum\i=#3\breakforeach\fi%
+    }%reserve width:
+    %\hskip\dimexpr5em\relax\vskip\@lilly@cards@default@cardheight
+}
+
+% [#1] cards to raise
+%  #2 List of cards
+%  #3 distance between cards
+\newcommand\CardBoard[3][0]{%
+    \foreach \card [count=\i] in {#2} {%
+        \makebox[0pt]{%
+            \foreach \d in {#1} {%
+                \ifnum\i=\d \gdef\@rai{2em}\gdef\@opt{scale=1.15}\breakforeach\else%
+                \gdef\@rai{0em}\gdef\@opt{}\fi%
+            }\raisebox{\@rai}{\edef\cxctmp{\@nameuse{\card}[\@opt]}\cxctmp}}\hskip#3%
+    }
+}
+
+\RequirePackage{LILLYxCARDSxFANTASY}
+
+
+\endinput

@@ -55,6 +55,15 @@ Liefert den entsprechenden Author für \T{lilly-author}. Dies lässt sich auch b
 jake dump -lilly-boxes: "DEFAULT" -lilly-boxes+: "ALTERNATE"
 \end{bash*}
 Den Wert \say{\T{DEFAULT ALTERNATE}} für die Einstellung \T{lilly-boxes}, die Trennung der Elemente (Leerfeld) wird von Jake automatisch erkannt ist aber in der Regel auf Leerfelder normiert.\\
+Mit Version \LILLYxBOXxVersion{2.1.0} gibt es noch eine einfache Möglichkeit das besondere Feld \T{what} zu füllen, das zum Beispiel für \jmark[Generatoren]{gpd:generators} verwendet wird.
+Führt man einen Block mit einem Doppelpunkt an, so wird dieser für die \T{what}-Option direkt gesetzt, was zum Beispiel ermöglicht:
+\begin{bash*}
+jake generate :mitschrieb
+\end{bash*}
+eine Kurzform für:
+\begin{bash*}
+jake generate -what: mitschrieb
+\end{bash*}
 Hier die große (und hoffentlich vollständige) Liste aller möglichen Einstellungen. Ist der Standardwert zu lang, so wird er durch \T{\ldots} gekürzt, wenn er abhängig ist, wird dies in der Bemerkung erklärt. Es gilt zu beachten, dass sich durch Konfigurationsdateien alle Einstellungen modifizieren lassen und somit auch die Standardwerte verändern:{%\renewcommand{\arraystretch}{0.95}
 \begin{tabularx}{\linewidth}{t~i~t~^>{\scriptsize}m{0.3\linewidth}+}
     \toprule
@@ -82,13 +91,15 @@ Hier die große (und hoffentlich vollständige) Liste aller möglichen Einstellu
         lilly-complete & Boolean & true & Vollständige Dokumentvariante \\
         lilly-complete-name & String & COMPLETE- & Präfix der vollständigen Version \\
         lilly-print-name & String & PRINT- & Präfix der Druckversion \\
-        lilly-cleans & List & log aux \ldots & Dateiendungen die von \T{autoclean} gelöscht werden \\
+        lilly-keeps & List & pdf tex \ldots & Dateiendungen die von \T{autoclean} \emph{nicht} gelöscht werden \\
+        lilly-compress & Boolean & false & Soll die PDF-Datei komprimiert werden?\footnote{Es wird ghostscript verwendet, es ist für kleine Dateien möglich, dass die komprimierte Datei etwas größer ist, als die Originale. Es wird stets das Suffix \T{-compressed} angehängt.} \\
+        lilly-compress-target & String & screen & Komprimierungslevel für \T{ghostscript} \\
         lilly-autoclean & Boolean & true & Sollen Dateien automatisch gelöscht werden? \\
         lilly-compiletimes & String & 2 & Wie oft soll kompiliert werden \\
         lilly-vorlesung & String & NONE & Um welche Vorlesung handelt es sich? \\
-        lilly-semester & String & 0 & Das wievielte Semester ist es \\
+        lilly-semester & String & 0 & Das wievielte Semester ist es \cmdold\\
         lilly-n & String & 42 & Um das wievielte Übungsblatt handelt es sich? \\
-        lilly-show-boxname & Boolean & true & Soll der Boxname angezeigt werden? \\
+        lilly-show-boxname & Boolean & true & Soll der Boxname angezeigt werden? Diese Einstellunge ist nur von Relevanz, wenn mehr als ein Boxmodus angegeben wird.\\
         lilly-layout-loader & String & & Pfad zu den Layouts \\
         lilly-external & Boolean & false & Soll versucht werden, Grafiken auszulagern? \\
         lilly-external-out & String & extimg & Ausgabeordner für ausgelagert Grafiken \\
@@ -126,20 +137,21 @@ Als letzte wichtige Funktion sei noch \T{get} genannt, welche für das Paket \LI
 \begin{bash*}
 jake get
 \end{bash*}
-Eine PDF wie die folgende, die alle mit Lilly gelieferten Grafiken enthält:
-\begin{tcbraster}[raster columns=3, blankest, graphics pages={13,33,34},colback=white]
-    \tcbincludepdf{\LILLYxPATHxDATA/Graphics/all-OUT/all.pdf}
-\end{tcbraster}
-Angezeigt wurden hier übrigens die Seiten $13$, $33$ und $34$ zum Kompilierzeitpunkt dieser Dokumentation.
+Eine PDF, die alle mit Lilly gelieferten Grafiken enthält.
+
 \paragraph{Gui}
-Wie bereits angemerkt, ist die GUI von \Jake noch nicht ansatzweise ausgereift. Der sich öffnende Hauptdialog erlaubt das Auswählen einer Latex- oder Konfigurationsdatei und zeigt die aus der Datei extrahierten Informationen inklusiver ihrer (sofern verschieden) extrahierten Werte an:
+Wie bereits angemerkt, ist die GUI von \Jake noch nicht ansatzweise ausgereift. Der sich öffnende Hauptdialog erlaubt das Auswählen einer Latex- oder Konfigurationsdatei und zeigt die aus der Datei extrahierten Informationen inklusiver ihrer (sofern verschieden) extrahierten Werte an.
+\iflillycompact\else%
 \begin{center}
     \includegraphics[width=0.75\linewidth]{Data/Bilder/JakeGUIMain.png}
 \end{center}
-Nebst einem schönen Ausblick auf das was in der GUI-Welt noch so alles geschehen mag, bietet sich der Button \T{Config} an, der im Falle keine ausgewählten Konfigurationsdatei einfach auf einer neuen arbeitet:
+\fi%
+Nebst einem schönen Ausblick auf das was in der GUI-Welt noch so alles geschehen mag, bietet sich der Button \T{Config} an, der im Falle keine ausgewählten Konfigurationsdatei einfach auf einer neuen arbeitet.
+\iflillycompact\else%
 \begin{center}
     \includegraphics[width=0.5\linewidth]{Data/Bilder/JakeGUIConfig.png}\includegraphics[width=0.5\linewidth]{Data/Bilder/JakeGUIConfigSelection.png}
 \end{center}
+\fi%
 Hier werden nicht nur einige Informationen zu den jeweileigen Einstellungen angezeigt, sondern auch Plausibilitätsprüfungen durchgeführt. Im Falle einer neuen Konfigurationsdatei kann beim Speichern ein entsprechendes Ziel ausgewählt werden.
 
 \subsection{Entwicklerinformationen}
@@ -148,7 +160,7 @@ Wenn du an \Jake oder Lilly mitentwickelst, oder einfach generell immer die aktu
 \begin{enumerate}\narrowitems
     \item Klone das Git-Repository (\url{https://github.com/EagleoutIce/LILLY})
     \item Navigiere in das Verzeichnis \T{Jake/} im Repository
-    \item Generiere die neuste \Jake-Version: \begin{bash*}
+    \item Generiere die neuste \Jake[-]Version: \begin{bash*}
 mvn clean install
         \end{bash*}
     \item Wähle aus (beachte die Angabe einer \jmark[Nutzerkonfiguration]{mrk:jdefconf}): \begin{description}
@@ -212,7 +224,7 @@ jake REI -path: /neuer/pfad/zu/meiner/Konfiguration.conf
     \begin{bash*}
 jake REI
     \end{bash*}
-    Der Nutzerpfad gelöscht werden. So Kann man mit dieser Konfiguration den Author aller Dokumente auf sich verändern:
+    Der Nutzerpfad gelöscht werden. So kann man mit dieser Konfiguration den Author aller Dokumente auf sich verändern:
     \begin{gepard}
 ! Setze Autor für alle Dokumente: !
 lilly-author       = Kalle Uweson
@@ -222,7 +234,7 @@ lilly-show-boxname = false
 ! Setze standardbox auf ALTERNATE !
 lilly-boxes        = ALTERNATE
     \end{gepard}
-    Aktuell wird überlegt, ob bei der Instalation direkt nach wichtigen Daten wie dem Namen gefragt wird.
+    Aktuell wird überlegt, ob bei der Installation direkt nach wichtigen Daten wie dem Namen gefragt wird.
 \end{bemerkung}
 
 \subsection{Gepard Module im Allgemeinen}
@@ -249,7 +261,7 @@ BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn ni
 
     ! Das Einrücken _und_ die Leerfelder sind optional. !
     ! Allerdings sollten erstmal nur Leerfelder verwendet werden !
-    ! Mit X sind Zuweisungen markiert die verpflichtend sein sollen (aber nicht sind) !
+    ! Mit X sind Zuweisungen markiert die verpflichtend sind !
 
 !X!  name                   = default     ! buildrule name für lilly-modes !
 
@@ -290,7 +302,7 @@ Jeder so definierte Modus steht in den Einstellungen für \T{lilly-modes} zur Ve
         OUTPUTDIR & Expandiert zum Ausgabeordner \\
         INPUTDIR & Expandiert zum Quellordner \\
         BOXMODES & Expandiert zu den Boxmodi \\
-        CLEANTARGETS & Expandiert zu den zu löschenden Endungen \\
+        KEEPTARGETS & Expandiert zu den zu behaltenden Endungen \\
         SIGNATURECOL & Expandiert zur Signaturfarbe \\
         AUTHOR & Expandiert zum Author \\
         AUTHORMAIL & Expandiert zur Email-Adresse des Autors \\
@@ -310,6 +322,7 @@ Jeder so definierte Modus steht in den Einstellungen für \T{lilly-modes} zur Ve
         S\_FALSE & Expandiert zur Jake-Definition von \emph{false} (\say{\emph{false}}) \\
     \bottomrule
 \end{tabularx}
+Mit Version \LILLYxBOXxVersion{2.1.0} ist es möglich für ein solches Expandable einen Standardwert anzugeben, was vor allem im Zusammenspiel mit \jmark[Generatoren]{gpd:generators} einen Vorteil bietet. Die Notation erfolgt zum Beispiel wie folgt: \T{\$\{WUFFEL:Dieter\}}. Existiert das Expandable \T{WUFFEL} nicht, so expandiert es dennoch und zwar zu \T{Dieter}. Es kann so auch (rekursiv) ein anderes Expandable angegeben werden wie: \T{\$\{WUFFEL:\$\{AUTHOR\}\}}. Nun expandiert \T{WUFFEL} unter den entsprechenden Umständen zu \T{AUTHOR}. Die Angabe eines Default-Werts ist aus offensichtlichen Gründen für die folgenden Expandables nicht möglich:\smallskip\newline
 Es existieren noch einer Reihe besonderer Expandables, die entweder Shell Befehle beinhalten, oder außerhalb des direkten Dokumentenkontext steht. Sie besitzen die Signatur \T{@[<Name>]} und sind in der Regel lazy:
 \begin{tabularx}{\linewidth}{^t^p{0.75\linewidth}+}
     \toprule
@@ -365,7 +378,7 @@ Der Typ (\T{type}) einer Hook, kann die folgenden Bezeichner annehmen: \begin{ce
 Wird die Hook ausgelöst, so wird der \T{body} in der entsprechenden Shell des Betriebssystems ausgeführt. Im Falle einer geglückten Operation wird \T{on-failure} im Fehlerfall wird \T{on-success} ausgeführt.
 
 \subsection{Name Maps}
-\elable{gpd:nmaps}Um Faul bleiben zu können, wurde das \T{nmap}-Modu kreiert, welches für den Namen eines Dokuments gewisse Trigger generieren kann, die verschiedene Einstellungen setzen können. So existieren eine Reihe an Name Maps, die im Falle eines entsprechenden Dokumentnamens die jeweilige Einstellungen übernehmen:
+\elable{gpd:nmaps}Um Faul bleiben zu können, wurde das \T{nmap}-Modul kreiert, welches für den Namen eines Dokuments gewisse Trigger generieren kann, die verschiedene Einstellungen setzen können. So existieren eine Reihe an Name Maps, die im Falle eines entsprechenden Dokumentnamens die jeweilige Einstellungen übernehmen:
 \begin{tabularx}{\linewidth}{^l ^>{\scriptsize}T{6cm} ^p{0.45\linewidth}+}
     \toprule
         \headerrow Name & \normalsize Trigger & Erklärung \\
@@ -399,3 +412,116 @@ BEGIN nmap:
     lilly-semester  = 2!!
 END;
 \end{gepard}
+
+\subsection{Projekte}
+Das \T{project}-Modul erlaubt es bestimmte Kompiliervorgänge und redundante Arbeiten zu verkürzen. Ein Projekt definiert sich ersteinmal recht einfach:
+\begin{gepard}
+BEGIN project:
+!X!    name          = example
+!X!    display-name  = Beispiel
+!X!    configfiles   = a, b, c
+END;
+\end{gepard}
+Wird nun die entsprechende Gepard-Datei geladen, kann mithilfe von \bbash{jake example} das jeweilige Projekt gestartet werden und die entsprechenden Konfigurationsdateien \T{a}, \T{b} und \T{c} werden (sofern vom System unterstützt) parallel ausgeführt. Mit der optionalen Einstellung \T{silence} (setzen auf \T{true}) kann die Ausgabe unterdrückt und das Terminal somit direkt freigegeben werden.
+
+\begin{bemerkung}[Ein Beispielprojekt]
+    Zur sinnvollen Anwendung empfiehlt es sich ein \jmark[Nutzerkonfiguration]{mrk:jdefconf} einzurichten, in der die \Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{gepardrule-path} um eine von uns kreierte \T{projects.gpd} Datei erweitert wird. Als Beispiel:
+    \begin{bash}
+jake REI -path: /tmp/userConf.conf
+echo "gepardrule-path += /tmp/projects.gpd" > /tmp/userConf.conf
+    \end{bash}
+    (Natürlich sollte die eigentliche Nutzerkonfiguration \emph{nicht} im temporären Ordner erstellt werden, es soll hier lediglich als Beispiel dienen.)\newline
+    Wir erstellen nun die entsprechende Datei \say{\T{tmp/projects.gpd}} und erstellen uns zwei Beispielprojekte:
+\begin{gepard}
+BEGIN project:
+    name          = example
+    display-name  = Beispiel
+    configfiles   = /eagle_extra/Studium/LILLY/test & bonus/projects_tests/a/a.conf, /eagle_extra/Studium/LILLY/test & bonus/projects_tests/b/b.conf
+END;
+
+BEGIN project:
+    name          = waffel
+    display-name  = Waffel-Projekt
+    configfiles   = /tmp/a/a.conf, /tmp/b/b.conf
+END;
+\end{gepard}
+Nun werden beim Aufrufen der Autovervollständigung von \Jake die beiden Optionen \T{example} und \T{waffel} auftauchen. Wenn wir sie allerdings ausführen möchten, kommt (vermutlich) der Fehler, dass die Konfigurationsdateien nicht korrekt sind.
+Hier ein beispielhafter Ablauf (die Konfigurationsdateien wurden zum Test mit geeigneten Dokumenten erstellt.):
+{\lstfs{5}
+\begin{plainbash}
+> jake example
+Starte für Projekt "Beispiel" die Konfigurationsdatei: /eagle_extra/Studium/LILLY/test & bonus/projects_tests/b/b.conf
+Starte für Projekt "Beispiel" die Konfigurationsdatei: /eagle_extra/Studium/LILLY/test & bonus/projects_tests/a/a.conf
+Kompiliere Dokument: "./xax.tex" für: Florian Sihler (florian.sihler@web.de)
+> Lösche temporäre Dateien...
+Lilly PRE-Hook[debug] für PRE evaluiert zu: Verwende die Log-Datei: |plain|/tmp/lilly-temp-log8839683682010622951.temp|plain|
+Lilly IN0-Hook[compile-0] für IN0 evaluiert zu: Kompiliere 1/2 für: ./xax-OUT/DEFAULT-xax.pdf
+Lilly IN1-Hook[compile-1] für IN1 evaluiert zu: Kompiliere 2/2 für: ./xax-OUT/DEFAULT-xax.pdf
+Generierung von "./xax-OUT/DEFAULT-xax.pdf" (DEFAULT) abgeschlossen. (Zeit: 3.966s)
+> Lösche temporäre Dateien...
+Kompilieren abgeschlossen!
+Kompiliere Dokument: "./xbx.tex" für: Florian Sihler (florian.sihler@web.de)
+> Lösche temporäre Dateien...
+Lilly PRE-Hook[debug] für PRE evaluiert zu: Verwende die Log-Datei: |plain|/tmp/lilly-temp-log962120036651470328.temp|plain|
+Lilly IN0-Hook[compile-0] für IN0 evaluiert zu: Kompiliere 1/2 für: ./xbx-OUT/DEFAULT-xbx.pdf
+Lilly IN1-Hook[compile-1] für IN1 evaluiert zu: Kompiliere 2/2 für: ./xbx-OUT/DEFAULT-xbx.pdf
+Generierung von "./xbx-OUT/DEFAULT-xbx.pdf" (DEFAULT) abgeschlossen. (Zeit: 3.929s)
+> Lösche temporäre Dateien...
+Kompilieren abgeschlossen!
+\end{plainbash}
+}
+Natürlich ist es auch möglich (mit Umgebungsvariablen etc.) die Projekte nicht Rechner-spezifisch zu machen!
+\end{bemerkung}
+
+\subsection{Generatoren}
+\elable{gpd:generators}Das \T{generator}-Modul erlaubt es Dokumente zu Erzeugen um sich vor allem redundanten Anfangsarbeiten zu ersparen:
+\begin{gepard}[morekeywords={[3]{variableA,variableB}}]
+BEGIN generator:
+!X!  name                   = beispielgenerator
+!X!  template-file          = /pfad/zum/template
+!X!  target-mode            = 0
+
+brief                       = Hallo Welt
+
+variableA = Super Variable A
+variableB = Super Variable B...
+
+! ... !
+END;
+\end{gepard}
+Mit \Jake kann der Generator (sofern er mithilfe von \T{gepardrule-path} geladen wird) nun mit wie folgt aufgerufen werden:
+\begin{bash*}
+jake generate :beispielgenerator
+\end{bash*}
+Damit sei auch die \Jake[-]Funktion \T{generate} präsentiert, die ohne die Angabe eines weiteren Arguments alle vorhandenen Generatoren samt einer kurzen Beschreibung präsentiert:
+\rbash{jake generate}
+Betrachten wir doch einmal die Optionen der obigen Datei genauer: \T{name} wird, wie bereits gezeigt, als Kurzbezeichner verwendet und und gemeinsam mit \T{brief} in der Liste aller Generatoren angezeigt. Das \T{template-file} verweist auf eine gleich genauer behandelte Datei die als Grundlage für die Generierung verwendet werden kann. Der \T{target-mode} ist bisher für \say{0} und \say{1} definiert und gibt an, in wie weit die \T{expandables} aufgelöst werden. \newline
+Alle anderen hier definierten Variablen werden vom Nutzer abgefragt, wobei der ihnen zugewiesene Text dem Nutzer als Information angezeigt werden kann. Über diesen Weg kann einem Nutzer auch angezeigt werden, dass kein Wert akzeptiert wird und die Variable optional ist. Zum besseren Verständis gilt es ein einfaches Template zu betrachten:
+\begin{gepard}
+!: No specific output location requested :!
+! This line will make it to the output-file !
+:
+lilly-author    =     ${AUTHOR}
+:
+!: If the expandable HAMSTER won't be supplied, this line will not be printed as for the leading ':':!
+: lilly-hamster =     ${HAMSTER}
+\end{gepard}
+Hier gibt es nun bereits einige, vielleicht verwirrende Zeilen:
+\begin{gepard*}
+!: blah blah blah :!
+\end{gepard*}
+Ein solcher Kommentar wird nicht übernommen und dient lediglich zur Dokumentation des Templates. Die Zeile wird, so wie alle Leerzeilen, bei der Verarbeitung entfernt.
+\begin{gepard*}
+! blah blah blah !
+\end{gepard*}
+Ein solcher Kommentar wird übernommen und wie ein normaler Konfigurations- oder Gepard-Kommentar angezeigt. Genau genommen beistzt eine solche Zeile gar keine besondere Bedeutung und wird (wie jede andere) übernommen.
+\begin{gepard*}
+:
+\end{gepard*}
+Eine Zeile die mit einem Doppelpunkt angeführt wird hat eine besondere Bedeutung. Der Doppelpunkt wird von der Ausgabe einfach entfernt, was es möglicht macht so eine Leerzeile in der Ausgabedatei zu erzeugen. Wird, wie hier noch anderer Text übergeben:
+\begin{gepard*}
+: lilly-hamster =     ${HAMSTER} ${AUTHOR}
+\end{gepard*}
+So erlaubt \Jake[,] dass eine vom Nutzer nicht gebundene Variable existiert. Wird also in der zugehörigen Gepard-Datei die Variable \T{HAMSTER} deklariert, vom Nutzer aber nicht angegeben, so wird die Zeile nicht übernommen. Dies erlaubt optionale Zeilen, zum Beispiel bei der Erstellung eines Konfigurations-Generator.
+\textit{Hinweis: Dies gilt \emph{nicht} für eine Variable, die nicht vom nutzer ignoriert wurde, diese wird einfach übernommen.} Würde der Doppelpunkt nicht angegeben werden, wirft Gepard einen Fehler. Hier ist auch der \T{target-mode} von Relevanz. Setzt man ihn auf $1$ werden alle \jmark[Expandables]{gpd:expandables} zur Verfügung gestellt und direkt aufgelöst. Auf $0$ werden sie in die Ausgabedatei übernommen. \newline
+Es gibt noch eine weitere besondere Zeile, sofern sie mit einer Raute beginnt. Ihr nachfolgend kann ein gewünschter Dateipfad angegben werden, an den die folgenden Zeilen geschrieben werden sollen und somit auch mehr als nur eine Datei (inklusive Ordner) auf Basis eines Templates erzeugt werden kann. Für eine praktische Anwendung siehe im entsprechenden \jmark[Exkurs]{mrk:gpdgenerators}.

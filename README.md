@@ -1,24 +1,31 @@
 ![Titelschmild Witelbild](Header.png)
 
-## Motivation 
+## Motivation
 
 Dieses Framework wird im Rahmen des Informatikstudiums an der Uni Ulm betrieben, um die Realisierung von Skripten und Mitschriften in Latex zu vereinfachen.
 
-## Dokumentation
-Bist du auf der Suche nach der Dokumentation? Die findest du hier: [Dokumentation](Dokumentation/Lilly-Dokumentation.doc.pdf).
+## Installation
+
+*(Information: Bisher ist diese Installation nur für Linuxioide-Betriebsysteme getestet.)*
+
+Um die neuste Version inklusive Jake zu erhalten, [Klick Mich](https://github.com/EagleoutIce/LILLY/releases/latest/download/jake.jar)!
+Nun genügt es sich einen heimelichen Ort auszusuchen (es werden keine weiteren Dateien an Ort und Stelle entpackt, allerdings werden alle Verweise auf den Installationsort gesetzt) und dort mittels `java -jar jake.jar` die Installation zu beginnen. Wahlweise existiert auch eine GUI-basierte Installation `java -jar jake.jar GUI`. Anschließend kann mittels `jake install` Lilly installiert werden (unter Umständen kann es nötig sein die Konfigurationsdatei der Konsole neu enzulesen, damit `jake` gefunden wird!).
+
+Anschließende Updates können mittels `jake update` durchgeführt werden. Eine Reinstallation mittels `jake REI` und eine Deinstallation mittels `jake DEI`. Die grafische Oberfläche kann mittels `jake GUI` gestartet werden, alle weiteren Befehle lassen sich durch das bloße Eintippen von `jake` anzeigen. Weitere Informationen zur Einrichtung von Jake sind der Dokumentation (`jake docs` oder [Dokumentation](https://github.com/EagleoutIce/LILLY/releases/latest/download/Lilly-Dokumentation.doc.pdf)) zu entnehmen. Mit Version 2.1.0 von Jake werden diese nicht mehr mit dem Repository geliefert!
+
+## Details zur Dokumentation
+
+Um die `jake.jar` in ihrer Größe möglichst Kompakt zu halten, liefert sie auch nur eine reduzierte Variante der Dokumentation, bei der primär grafische Beispiele entfernt wurden. Die 'ausführliche' Dokumentation befindet sich hier: https://github.com/EagleoutIce/LILLY/releases/latest/download/Lilly-Dokumentation.doc.pdf oder kann mittels `jake` im Unterordner Dokumentation durch `jake doc.conf` selbst generiert werden (eine vorhandene, aktuelle Installation von Lilly vorausgesetzt).
 
 ## Wichtig
 
-Wenn du mitarbeiten möchtest ist das super, melde dich einfach bei mir! Allgemein gilt zu beachten: 
+Wenn du mitarbeiten möchtest ist das super, melde dich einfach bei mir! Allgemein gilt zu beachten:
 Dieses Repository akzeptiert nur signed Commits: https://help.github.com/en/articles/signing-commits
 
 Ein exemplarischer Wiki-Eintrag um die Frage "How to create a wiki?" zu beantworten, befindet sich hier:
 https://github.com/EagleoutIce/LILLY/wiki/Eine-Vorlesung-erstellen
 
 Wenn dir beim Schreiben ein To-Do einfällt, so markiere es einfach entsprechend mit `TODO` oder `@todo` im Code :D
-
-Die sich bisher in Arbeit befindende [Dokumentation](Dokumentation/Lilly-Dokumentation.doc.pdf) sollte noch mit
-vorsicht genossen werden :D Sie sollte dringend mal wieder aktualisiert werden :sweat_smile:!
 
 **Aktuelle Aufgabenfelder:**
 
@@ -30,42 +37,25 @@ vorsicht genossen werden :D Sie sollte dringend mal wieder aktualisiert werden :
 
 Bitte füge alle geplanten oder gewünschten Ziele hinzu!
 
-## Wie es losgeht
-Da sich diese Readme noch im Aufbau befindet. Für alle Hinweise bezüglich der Installation nach dem Herunterladen des Repositories siehe:
+## Funktionen
 
-1. [Jake/source/README.md](Jake/source/README.md)
-   Für das Installieren und Dokumentieren von Jake (lilly_jake) 
-
-2. [Jake/README.md](Jake/README.md) 
-   Für eine grundlegende Einführung in Jake und das Installieren von LILLY
-
-
-## Funktionen 
+*(Der volle Funktionsumfang, der mittlerweile weit über die unten genannten Punkte hinaus geht, ist am besten der jeweilg der Version beigelegten Dokumentation zu entnehmen.)*
 
 Im Allgemeinen bietet Lilly die Möglichkeit ein in LaTeX geschriebenes Dokument im Nachhinein über Konsolbefehle zu konfigurieren. Hierzu bietet Lilly auch einige Funktionen zur Layoutgestaltung selbst an.
-Momentan sind 3 Boxdesigns verfügbar: 
+Momentan sind 3 Boxdesigns verfügbar:
 
-- Default 
-- Alternate 
-- Limerence 
+- Default
+- Alternate
+- Limerence
 
 sowie zwei verschiedenen Generierungstypen:
 
 - Normal
 - Druck
 
-Desweiteren gibt es die kleine (mittlerweilen immer größer werdende) helfende Hand namens Jake. 
+Desweiteren gibt es die kleine (mittlerweilen immer größer werdende) helfende Hand namens Jake.
 Jake hilft bei der Installation von Lilly und fehlenden Latex-Paketen, beim Generieren der notwendigen Makefiles und noch vielem mehr!
 
-### FAQ Template
+## Deinstallation alter Lilly-Versionen
 
-Im Folgenden sind einige häufig gestellte Fragen (Im Aufbau :P)
-
-<details>
-  <summary>Ich habe diese Frage?</summary>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus arcu felis bibendum ut tristique. Malesuada proin libero nunc consequat interdum varius sit. In hac habitasse platea dictumst vestibulum rhoncus est. Orci dapibus ultrices in iaculis. Velit laoreet id donec ultrices tincidunt. Id ornare arcu odio ut sem nulla pharetra. Nisl tincidunt eget nullam non nisi est sit amet facilisis. Ut morbi tincidunt augue interdum velit euismod. Facilisi morbi tempus iaculis urna id.</p>
-   <p>Eget velit aliquet sagittis id consectetur purus ut faucibus. Placerat orci nulla pellentesque dignissim enim sit. Enim sed faucibus turpis in eu. Et netus et malesuada fames ac. Mi proin sed libero enim sed faucibus turpis. Odio tempor orci dapibus ultrices in iaculis. Morbi quis commodo odio aenean sed adipiscing diam donec adipiscing. Vel orci porta non pulvinar neque laoreet suspendisse interdum. Cursus in hac habitasse platea dictumst. Porttitor leo a diam sollicitudin tempor id eu nisl nunc. Mattis aliquam faucibus purus in massa tempor nec feugiat. Egestas integer eget aliquet nibh praesent tristique magna. Neque sodales ut etiam sit amet nisl purus in mollis. Diam maecenas ultricies mi eget mauris pharetra et. Nunc sed velit dignissim sodales ut eu sem integer vitae. Eu sem integer vitae justo eget magna fermentum iaculis eu. In iaculis nunc sed augue lacus viverra vitae congue eu.</p>
-   <p>Arcu risus quis varius quam quisque id diam. Gravida arcu ac tortor dignissim convallis aenean et. Accumsan lacus vel facilisis volutpat est velit egestas. Pellentesque adipiscing commodo elit at imperdiet. Nibh tortor id aliquet lectus proin nibh nisl condimentum id. Massa id neque aliquam vestibulum morbi blandit cursus risus at. Lectus quam id leo in vitae turpis massa sed elementum. Vitae semper quis lectus nulla at volutpat diam ut venenatis. In egestas erat imperdiet sed euismod nisi. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. A iaculis at erat pellentesque. Et netus et malesuada fames. Facilisis volutpat est velit egestas dui. Ut eu sem integer vitae justo eget magna fermentum. Massa massa ultricies mi quis. Ut morbi tincidunt augue interdum velit. Donec adipiscing tristique risus nec feugiat. Blandit cursus risus at ultrices mi. Morbi tincidunt ornare massa eget.</p>
-   <p>Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed. Neque aliquam vestibulum morbi blandit cursus risus. Amet justo donec enim diam vulputate. Sagittis orci a scelerisque purus semper eget duis at. Aliquam nulla facilisi cras fermentum odio. Lorem ipsum dolor sit amet. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris. Commodo viverra maecenas accumsan lacus vel facilisis. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Luctus venenatis lectus magna fringilla urna porttitor. Sed felis eget velit aliquet sagittis id consectetur purus ut. Egestas diam in arcu cursus. Duis ultricies lacus sed turpis tincidunt id aliquet risus. Libero nunc consequat interdum varius sit amet mattis vulputate.</p>
-   <p>Sed nisi lacus sed viverra. Pellentesque habitant morbi tristique senectus et netus. Tellus orci ac auctor augue mauris augue neque gravida. Pellentesque sit amet porttitor eget dolor. Id faucibus nisl tincidunt eget nullam. Consequat nisl vel pretium lectus quam id. Maecenas volutpat blandit aliquam etiam erat velit scelerisque. Netus et malesuada fames ac turpis egestas maecenas. Fringilla phasellus faucibus scelerisque eleifend donec. Amet consectetur adipiscing elit duis tristique. Velit euismod in pellentesque massa placerat duis. Nam libero justo laoreet sit amet. Ac ut consequat semper viverra nam. Sed vulputate odio ut enim blandit volutpat. Duis ultricies lacus sed turpis tincidunt id aliquet.</p>
-</details>
+Alte Instanzen von Lilly können auch manuell entfernt werden. Es genügt die unter `${HOME}/texmf/tex/latex/` Lilly-zuzuschreibenden Dateien (je nach Installation der Ordner `Lilly` oder die `Lilly.cls` samt `source`-Ordner) zu löschen.

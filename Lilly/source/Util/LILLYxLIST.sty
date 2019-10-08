@@ -65,8 +65,8 @@
     \getListLength{#2}%
     \foreach \x[count=\i] in \@tmpl {%
         \ifnum\i=\@c@tmp%
-        ~und \else%
-        \ifnum\i>1, \fi%
+        ~\xtranslate{und} \else%
+        \ifnum\i>1,\space\fi%
         \fi%
         \@nameuse{#1}{\x}%
     }\ignorespaces%

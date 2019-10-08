@@ -1,0 +1,38 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxSHOWCASExCORE}[2019/09/29 Stellt den Kern fuer LILLYxSHOWCASE zur Verfuegung]
+
+%% Allow to position Coordinates
+
+\long\def\lilly@xy#1#2#3{%
+    \setbox0=\hbox to\z@{%
+        \kern#1\raise#2\hbox to\z@{#3}\hss
+    }%
+    \ht0=\z@\dp0=\z@\box0%
+}
+
+%% shortcuts for centering, left and right alighned
+\long\def\lilly@xyl#1#2#3{\lilly@xy{#1}{#2}{\hss#3}}
+\long\def\lilly@xyr#1#2#3{\lilly@xy{#1}{#2}{#3\hss}}
+\long\def\lilly@xyc#1#2#3{\lilly@xy{#1}{#2}{\hss#3\hss}}
+
+\def\lilly@beginpage{\null\vfill\bgroup\offinterlineskip\leftskip=\z@}
+\def\lilly@endpage{\egroup\eject}
+
+\newdimen\pc%
+\pc=14bp
+
+\def\lilly@grid@xy#1#2{\xy{#1\pc}{#2\pc}}
+
+% Won't be documented as unstable
+
+\newbox\lilly@placer
+\def\lilly@text#1{\setbox\lilly@placer=\vbox\bgroup\hsize=#1\hrule}
+
+\def\lilly@endtext{\vskip-\prevdepth\vfil\egroup\setbox0=\vsplit\lilly@placer to\z@}
+\def\lilly@lines#1{\vsplit\lilly@placer to #1\baselineskip}
+
+
+
+
+
+\endinput

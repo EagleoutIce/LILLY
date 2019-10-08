@@ -1,0 +1,233 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxSHOWCASExAPPLICATION}[2019/10/02 Stellt Banner fuer LILLYxSHOWCASE zur Verfuegung]
+
+\RequirePackage{LILLYxSHOWCASExBANNERS}%
+
+% Erlaubt das Setzen einer Bewerbung.
+% Es werden verschiedene Befehle gesetzt, die dann das jeweilige geladene Bewerbungs-Design mit effekten Versehen kann.
+% Macht ein Befehl im Rahmen des Bewerbungslayouts keinen Sinn, so wird er einfach nicht gesetzt.
+
+
+%% Die folgenden Datensammlung wird als pgfkeys abgelegt und kann von den Designs verwendet werden.
+%% Anschließend einige Kurzbefehle, die es erlauben die einzelnen Felder automatisiert zu setzen.
+
+
+\pgfkeys{%
+    /lillyxAPPLICATIONS/.is family, /lillyxAPPLICATIONS,
+    %% colors:
+    primary color/.store in=\lilly@applications@primary@color,
+    secondary color/.store in=\lilly@applications@secondary@color,
+    contrast color/.store in=\lilly@applications@contrast@color,
+    text color/.store in=\lilly@applications@text@color,
+    page color/.store in=\lilly@applications@page@color,
+    %% Person:
+    title/.store in=\lilly@applications@person@title,
+    first name/.store in=\lilly@applications@person@first@name,
+    last name/.store in=\lilly@applications@person@last@name,
+    image/.store in=\lilly@applications@person@image,
+    job title/.store in=\lilly@applications@person@job@title,
+    birth day/.store in=\lilly@applications@person@birth@day,
+    birth month/.store in=\lilly@applications@person@birth@month,
+    birth year/.store in=\lilly@applications@person@birth@year,
+    age/.store in=\lilly@applications@person@age,
+    % Contact data:
+    telephone/.store in=\lilly@applications@person@telephone,
+    mobile phone/.store in=\lilly@applications@person@mobile@phone,
+    email/.store in=\lilly@applications@person@email,
+    private email/.store in=\lilly@applications@person@private@email,
+    website/.store in=\lilly@applications@person@website,
+    location/.store in=\lilly@applications@person@location,
+    % Social:
+    instagram/.store in=\lilly@applications@person@instagram,
+    facebook/.store in=\lilly@applications@person@facebook,
+    twitter/.store in=\lilly@applications@person@twitter,
+    rss/.store in=\lilly@applications@person@rss,
+    linkedin/.store in=\lilly@applications@person@linkedin,
+    steam/.store in=\lilly@applications@person@steam,
+    soundcloud/.store in=\lilly@applications@person@soundcloud,
+    wordpress/.store in=\lilly@applications@person@wordpress,
+    xing/.store in=\lilly@applications@person@xing,
+    youtube/.store in=\lilly@applications@person@youtube,
+    reddit/.store in=\lilly@applications@person@reddit,
+    github/.store in=\lilly@applications@person@github,
+    gitlab/.store in=\lilly@applications@person@gitlab,
+    telegram/.store in=\lilly@applications@person@telegram,
+    dropbox/.store in=\lilly@applications@person@dropbox,
+    slack/.store in=\lilly@applications@person@slack,
+    %% General Stuff:
+    brief init/.store in=\lilly@applications@brief@init,
+    brief/.store in=\lilly@applications@brief
+}%
+
+%Helper Macro fro
+\def\@NeedsFields#1{%
+    \foreach \x/\l in {#1}{
+        \expandafter\ifcsname\x\endcsname\else\PackageError{LILLYxSHOWCASExAPPLICATION}
+        {Das Feld '\l' wurde nicht gesetzt!}
+        {Setze es durch \protect\applicationset{\l={Wert}}}\fi
+    }
+}
+
+\def\lilly@applications@skills{} % list of skills always with Text and Progress, if the progress is EMPTY (!= 0) no bar will be set and  no space inserted.they should only be managed by the following iterfaces to avoid nonworking skilllists
+
+\def\@applications@clearskills{%
+    \gdef\lilly@applications@skills{}%
+}
+
+% currently unused
+\def\@@applications@setskills#1{%
+    \gdef\lilly@applications@skills{#1}%
+}
+
+\def\@applications@addskill#1#2{%
+    \edef\@@applications@skills@last{\lilly@applications@skills}%
+    \expandafter\ifx\expandafter\\\lilly@applications@skills\\
+        \xdef\lilly@applications@skills{{#1}/{#2}}%
+    \else%
+        \xdef\lilly@applications@skills{\@@applications@skills@last,{#1}/{#2}}%
+    \fi
+}
+
+
+
+
+\long\def\applicationset#1{\pgfkeys{/lillyxAPPLICATIONS,#1}}
+
+% init all keys with an empty value
+% \foreach \x in {primary color,secondary color,text color,page color,%
+%     title,first name,last name,birth day,birth month,birth year,%
+%     age,telephone,mobile phone,email,private email,website,location,%
+%     instagram,facebook,twitter,rss,linkedin,devarianart,steam,soundcloud,wordpress,xing,%
+%     youtube,reddit,github,gitlab,telegram,dropbox} {
+%         \applicationset{\x={}}
+%     }
+
+% #1 width
+% #2 height
+% #3 tikz extra
+% #4 progress (0<=x<=1)
+% #5 bordercol
+% #6 progresscol
+% #7 backcol (blank=transparent)
+\def\@@ProgressBar#1#2#3#4#5#6#7{%
+    \tikz{\begin{scope}%
+        \clip[#3] (0,0) rectangle (#1,#2);%Clip
+        \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        \fill[#6] (0,0) rectangle (#4*#1,#2);% Progress
+        \end{scope}\draw[#5,thick,#3] (0,0) rectangle (#1,#2);% border
+    }%
+}
+
+\def\@@applications@Construct@FullName{%
+    \ifcsname lilly@applications@person@title\endcsname\@nameuse{lilly@applications@person@title}~\fi\lilly@applications@person@first@name~\lilly@applications@person@last@name%
+}
+
+\def\@@applications@SetName#1 #2\@nil{%
+   \applicationset{first name={#1},last name={#2}}
+}
+\def\@applications@SetName#1{%
+    \@@applications@SetName#1 \@nil%
+}
+
+\def\@applications@ColorProfile#1{%
+    \applicationset{%
+        primary color=#1,%
+        secondary color=black,%
+        contrast color=MudWhite,%
+        text color=black,%
+        page color=#1!7!white%
+    }%
+}
+
+\newcounter{@applications@elemc}
+% Typesets up to #1 Elements from a List, if they're Commands exist
+% they will be passed to #2, which should be a csname consuming exactly four arguments:
+%       ##1: current element counter
+%       ##2: current total counter in list
+%       ##3: existing csname
+%       ##4: tag passed with the list:
+% #3 The List of csnames in the shape of "csname/tag" whereas tag will be
+%
+\def\@applications@SetNElementsFromCmdListIfTheyExist#1#2#3{%
+    \edef\@cmax{#1}%
+    \setcounter{@applications@elemc}{0}
+    \ifnum\@cmax<1\else% Handle the zero or less case which should be the 'i am stupid' case :D, hopefully
+    \foreach \element/\tag [count=\i] in {#3}{%
+        \expandafter\ifcsname\element\endcsname%
+            \csname#2\endcsname{\i}{\the@applications@elemc}{\element}{\tag}%
+            \stepcounter{@applications@elemc}%
+        \fi%
+        \ifnum\the@applications@elemc=\@cmax \breakforeach\fi% breakforeach will continue the current execution therefore we will tailcheck
+    }%
+    \fi
+}
+
+
+% Typesets up to #1 Elements from a List,
+% they will be passed to #2, which should be a csname consuming exactly four arguments:
+%       ##1: current element counter
+%       ##2: current total counter in list
+%       ##3: text
+%       ##4: tag passed with the list:
+% #3 The List of texts in the shape of "text/tag" whereas tag will be
+%
+\def\@applications@SetNElementsFromList#1#2#3{%
+    \edef\@cmax{#1}%
+    \ifnum\@cmax<1\else% Handle the zero or less case which should be the 'i am stupid' case :D, hopefully
+    \foreach \element/\tag [count=\i] in {#3}{%
+        \csname#2\endcsname{\i}{\i}{\element}{\tag}%
+        \ifnum\i=\@cmax \breakforeach\fi% breakforeach will continue the current execution therefore we will tailcheck
+    }%
+    \fi
+}
+
+% we want block
+% by default we will consume all contents
+\NewEnviron{block}[2][]{}
+
+% Defaults
+\@applications@ColorProfile{Charcoal}
+
+\def\@applications@StartApplication#1{%
+    \userput{#1.tex}{\lillyPathData}{\LILLYxPATHxPRESENTER/Showcase/Modules/ApplicationDesigns}%
+}
+
+% #1 init
+% #2 main
+\long\def\@applications@SetBrief#1#2{%
+    \applicationset{brief init={#1},brief={#2}}%
+}
+
+\def\@applications@SetEmail#1{\applicationset{email={#1}}}
+\def\@applications@SetPhone#1{\applicationset{telephone={#1}}}
+\def\@applications@SetMphone#1{\applicationset{mobile phone={#1}}}
+\def\@applications@SetWebsite#1{\applicationset{website={#1}}}
+\def\@applications@SetImage#1{\applicationset{image={#1}}}
+\long\def\@applications@SetLocation#1{\applicationset{location={#1}}}
+
+%% all other Commands will be available only in the application-environment
+\DeclareDocumentEnvironment{application}{%
+    O{} % applicationset
+    m   % theme name
+}{\bgroup\makeatletter%
+\userput{#2.config.tex}{\lillyPathData}{\LILLYxPATHxPRESENTER/Showcase/Modules/ApplicationDesigns}
+    \applicationset{#1}%
+    \let\setname\@applications@SetName{#1}%
+    \let\colorprofile\@applications@ColorProfile%
+    \def\StartApplication{\@applications@StartApplication{#2}}%
+    \let\setbrief\@applications@SetBrief%
+    \let\setemail\@applications@SetEmail%
+    \let\setphone\@applications@SetPhone%
+    \let\setmphone\@applications@SetMphone%
+    \let\setwebsite\@applications@SetWebsite%
+    \let\setlocation\@applications@SetLocation%
+    \let\setimage\@applications@SetImage%
+    \let\addskill\@applications@addskill% with progress
+    \def\addskilltext##1{\@applications@addskill{##1}{}}% text only skill
+}{%
+    \restoregeometry\egroup%
+}
+
+% \userput{_LILLY_BOXES_#1}{\lillyPathData}{\LILLYxPATHxDATA/POIs}
+
+\endinput

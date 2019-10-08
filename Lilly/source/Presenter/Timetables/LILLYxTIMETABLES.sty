@@ -22,7 +22,7 @@
 % Wandelt eine Zahl in den entsprechenden Wochentag um, 0 entspricht Montag, 6 dem Sonntag
 % #1 Number to convert
 \def\IntToWeekday#1{
-  \ifcase#1 Montag\or Dienstag\or Mittwoch\or Donnerstag\or Freitag\or Samstag\or Sonntag\else\@ctrerr\fi
+  \ifcase#1\xtranslate{Montag}\or\xtranslate{Dienstag}\or\xtranslate{Mittwoch}\or\xtranslate{Donnerstag}\or\xtranslate{Freitag}\or\xtranslate{Samstag}\or\xtranslate{Sonntag}\else\@ctrerr\fi
 }
 
 \pgfkeys{%
@@ -39,7 +39,7 @@
         day end time=20, % end 8 PM
         week start day=0, % Monday
         week end day=4, % Friday
-        title={Ich bin ein Titel, setzte 'title' um mich zu \"{a}ndern}, %maybe require?
+        title={Ich bin ein Titel, setze 'title' um mich zu \"{a}ndern}, %maybe require?
         time formatter={AtLineDistCompanion}
     }
 }%% All those values will be persisted with 'lillyxINFOBOXESx'-Prefix :D

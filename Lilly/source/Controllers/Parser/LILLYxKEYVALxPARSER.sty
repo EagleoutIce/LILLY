@@ -10,12 +10,12 @@
 
 %%% User-Defined Shortcuts:
 \userput{_LILLY_KEYVAL_GENERAL}{\lillyPathConfig}{\LILLYxPATHxDATA/Configs}
+\RequestConfig{\LILLYxPATHxDATA/Configs/_LILLY_KEYVAL_PACKAGES}
 
 
-
-\DeclareStringOption [-1]{n}[-1]                           %Das wievielte Übungsblatt ist es?
-\DeclareStringOption[0]{Semester}[0]                       %Das wievielte Semester ist es?
-\DeclareStringOption[GDRA]{Vorlesung}[GDRA]                %Bezeichner der Vorlesung
+\DeclareStringOption [-1]{n}[-1]                           % Das wievielte Übungsblatt ist es?
+\DeclareStringOption[0]{Semester}[0]                       % Das wievielte Semester ist es?, Die Option bleibt aus Kompatibilitätsgründen, hat aber keien Bedeutung mehr!
+\DeclareStringOption[GDRA]{Vorlesung}[GDRA]                % Bezeichner der Vorlesung
 \DeclareStringOption[PLAIN]{Typ}[PLAIN]
 \DeclareBoolOption[false]{Jake}
 \DeclareBoolOption[false]{Universe}
@@ -25,21 +25,20 @@
 
 %%\DeclareBoolOption{Vorlesung}                            % Wir wollen einfache keys :D
 
-\ProcessKeyvalOptions*                                     %Verarbeite Paketargumente (Optionen, wie auch immer)
+\ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
 
 \ifLILLY@Jake
     \ClassInfo{Lilly}{Nutze Jake-Unterstuetzung}
-    \providecommand{\LILLYxSemester}{\LILLY@Semester}
+    % \providecommand{\LILLYxSemester}{\LILLY@Semester}    % v2.1.0
     \providecommand{\LILLYxVorlesung}{\LILLY@Vorlesung}
 \else
     \ClassInfo{Lilly}{Nutze keine Jake-Unterstuetzung}
-    \renewcommand{\LILLYxSemester}{\LILLY@Semester}
+    % \renewcommand{\LILLYxSemester}{\LILLY@Semester}      % v2.1.0
     \renewcommand{\LILLYxVorlesung}{\LILLY@Vorlesung}
 \fi
 
 %% Here we will Load KeyVal-Hooks for Layouts and other Packages :D
 %  This way they are able to deploy shortcuts AND include needed Stuff :P
 \userput{_LILLY_KEYVAL_\LILLY@Typ}{\lillyPathConfig}{\LILLYxPATHxDATA/Layouts/KeyvalHooks}
-
 
 \endinput

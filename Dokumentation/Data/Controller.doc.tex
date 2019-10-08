@@ -197,6 +197,7 @@ Definieren bis \LILLYxBOXxVersion{1.0.9} die Werte, die \blankcmd{LILLY@Typ} hal
     \def\ssltltmp#1{\blankcmd{LILLY@Typ@#1} (\csname LILLY@Typ@#1\endcsname)}%
     \typesetList[ssltltmp]{Mitschrieb,Uebungsblatt,Dokumentation,Zusammenfassung}.
 }
+Diese werden zum Beispiel durch \LILLYxNOTExLibrary{LILLYxPHILOSPHER} in \blankcmd{LILLYxPHILOSOPHERxMETADATA} ausgegeben.
 
 %
 %
@@ -213,13 +214,14 @@ Der Layout-Controller übernimmt mit \LILLYxBOXxVersion{2.0.0} die Aufgaben der 
     vorgestellt werden.
 \end{bemerkung}
 
-Ist \blankcmd{LILLYxDEBUG} auf \blankcmd{true} gesetzt, wird \blankcmd{errorcontextlines} entsprechend modifiziert und eine entsprechende DEBUG-Titlepage gesetzt:\smallskip\\
+Ist \blankcmd{LILLYxDEBUG} auf \blankcmd{true} gesetzt, wird \blankcmd{errorcontextlines} entsprechend modifiziert und eine entsprechende DEBUG-Titlepage gesetzt.
+\iflillycompact\else\smallskip\\
 \makeatletter%
 \framebox{%
     \@@Debug@Page@Content%
 }~\\
-
-Ist \blankcmd{LILLYxSemester} auf einen Wert größer als $0$ gesetzt, wird automatisch die Konfiguration mittels von \blankcmd{RequestConfig} geladen. Ist weiter \blankcmd{LILLYxBIBTEX} definiert, so werden alle für die Verwendung von $\mathrm{B{\scriptstyle{IB}} \! T\!_{\displaystyle E} \! X}$ % maybe make \BibTex
+\fi
+Ist die \blankcmd{LILLYxVorlesung} auf einen Wert größer als $0$ gesetzt, wird automatisch die Konfiguration mittels von \blankcmd{RequestConfig} geladen. Ist weiter \blankcmd{LILLYxBIBTEX} definiert, so werden alle für die Verwendung von $\mathrm{B{\scriptstyle{IB}} \! T\!_{\displaystyle E} \! X}$ % maybe make \BibTex
  notwendigen Pakete (namentlich \T{cite}) geladen und automatisch ein Aufruf von \T{bibtex} initiiert.
 
 %
@@ -228,13 +230,6 @@ Ist \blankcmd{LILLYxSemester} auf einen Wert größer als $0$ gesetzt, wird auto
 
 \presentCommand[2.0.0]{LILLYxCLEARxHEADFOOT}
 Arbeitet analog zu \blankcmd{clearscrheadfoot}, löscht die einzelnen Komponenten allerdings explizit.
-
-%
-%
-%
-
-\presentCommand[2.0.0]{heute}
-Liefert das aktuelle Datum in hübscher deutscher Notation. Dieser Befehl wird gegebenenfalls in ein anderes Paket übertragen: \blankcmd{heute} liefert: \heute.
 
 %
 %
@@ -251,10 +246,12 @@ Setzt die Bibliographie mit dem Namen \T{Name} automatisch, greift intern auf \b
 
 \subsection{Das Mitschrieb-Layout}
 \elable{mrk:laymit}Diese Definitionen befinden sich in der Datei: \blatex[morekeywords={[5]{LILLYxPATHxDATA}}]{:bs:LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_MITSCHRIEB}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT} auf Basis von \blankcmd{LILLYxMODE} präsentiert. \newline
-Dieses Design ist als Urdesign zusammen mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} für die Generierung von Mitschreiben verantwortlich. Im Folgenden wird nicht auf jede einzelne Modifikation sondern nur auf die nutzbaren Befehle eingegangen:
-\begin{tcbraster}[raster columns=3, blankest,graphics pages={1,2,3,5,7,9},colback=white]
+Dieses Design ist als Urdesign zusammen mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} für die Generierung von Mitschreiben verantwortlich. Im Folgenden wird nicht auf jede einzelne Modifikation sondern nur auf die nutzbaren Befehle eingegangen.
+\iflillycompact\else%
+\begin{tcbraster}[raster columns=3, blankest,graphics pages={1,2,3},colback=white]
     \tcbincludepdf{Data/Documents/LayoutMitschrieb/mitschrieb.pdf}
 \end{tcbraster}
+\fi%
 
 %
 %
@@ -286,7 +283,7 @@ Da mit \LILLYxBOXxVersion{2.0.0} der Stil für Sektionen (und darunterliegende L
 \begin{bemerkung}[Ein Übungsblatt mit \Jake]
     Wie in der \jmark[Einleitung]{quicke:ublatt} bereits angezeigt, ist ein Übungsblatt, wenn man es mit \Jake verwendet, der reine \TeX-Code. In diesem Falle bettet \Jake die Datei nämlich in eine andere gemäß der folgenden Struktur ein:
 \begin{latex}
-\documentclass[Uebungsblatt,Vorlesung=${VORLESUNG},n=${N},Semester=${SEMESTER}]{Lilly}
+\documentclass[Uebungsblatt,Vorlesung=${VORLESUNG},n=${N}]{Lilly}
 \begin{document}
     \input{$(INPUTDIR)$(TEXFILE)}% Das Übungsblatt
 \end{document}
@@ -299,10 +296,12 @@ Das bedeutet natürlich, dass man sich auch selbst ein Übungsblatt ohne \Jake b
 %
 
 \presentCommand[1.0.1]{TUTORBOX}
-Setzt eine Tutorbox für Übungsblatt(abgaben) die auf Papier stattfinden:
+Setzt eine Tutorbox für Übungsblatt(abgaben) die auf Papier stattfinden.
+\iflillycompact\else%
 \begin{center}
    \tcbincludepdf[blankest, graphics options={trim=2.5cm 25cm 2.5cm 1.65cm, clip}]{Data/Documents/LayoutUebungsblatt/tutorbox.pdf}
 \end{center}
+\fi%
 
 %
 %
@@ -315,7 +314,8 @@ Setzt Punkte an das Ende der Zeile, um zum Beispiel Teilpunkte in Aufgaben einfa
 %
 %
 
-Weiter besteht eine Unterstützung durch \LILLYxNOTExLibrary{LILLYxBOXES}, so kann der Boxmodi \T{ALTERNATE} ein anderers Design hervorrufen (genau genommen durch die Modifikation von \blankenv{aufgabe}):
+Weiter besteht eine Unterstützung durch \LILLYxNOTExLibrary{LILLYxBOXES}, so kann der Boxmodi \T{ALTERNATE} ein anderers Design hervorrufen (genau genommen durch die Modifikation von \blankenv{aufgabe}).
+\iflillycompact\else%
 \begin{center}
     \begin{tabular}{cc}
         \toprule
@@ -325,7 +325,8 @@ Weiter besteht eine Unterstützung durch \LILLYxNOTExLibrary{LILLYxBOXES}, so ka
         \bottomrule
     \end{tabular}
 \end{center}
-Die Farbe des \T{ALTERNATE}-Designs wird durch \blankcmd{Hcolor} und damit durch die \Jake-\jmark[Einstellung]{mrk:jakesettings} \T{lilly-signatur-farbe} kontrolliert. Beide hier gezeigten Dokumente wurden übrigens nur mit \T{pdflatex} kompiliert! Die Dokumente finden sich zur Ausführlichkeit im Quellordner der Dokumentation unter \T{Data/Documents/LayoutUebungsblatt}, wobei sie sich derart ähneln, dass hier exemplarisch das Übungsblatt in der \T{DEFAULT}-Variante (gekürzt) aufgeführt ist:
+\fi%
+Die Farbe des \T{ALTERNATE}-Designs wird durch \blankcmd{Hcolor} und damit durch die \Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{lilly-signatur-farbe} kontrolliert. Beide hier gezeigten Dokumente wurden übrigens nur mit \T{pdflatex} kompiliert! Die Dokumente finden sich zur Ausführlichkeit im Quellordner der Dokumentation unter \T{Data/Documents/LayoutUebungsblatt}, wobei sie sich derart ähneln, dass hier exemplarisch das Übungsblatt in der \T{DEFAULT}-Variante (gekürzt) aufgeführt ist:
 \begin{latex}
 \def!**!\LILLYxBOXxMODE{DEFAULT}
 \documentclass[Uebungsblatt]{Lilly}
@@ -334,15 +335,15 @@ Die Farbe des \T{ALTERNATE}-Designs wird durch \blankcmd{Hcolor} und damit durch
 
 \begin{document}
 \begin{aufgabe}{Grenzwertberechnung durch Mittelwertsatz}{5}
-    Man bestimme die folgenden Grenzwerte %... 
+    Man bestimme die folgenden Grenzwerte %...
     \begin{aufgaben}[2]
         \item \(\displaystyle \lim_{x \to \infty} x ( 1 - \cos (1/x))\)
         \item \(\lim_{x \to a} \frac{x^\alpha - a^\alpha}{x^\beta - a^\beta}\) für \(a > 0, \beta \neq 0\)
     \end{aufgaben}
 \vSplitter
     \begin{aufgaben}
-        \item Dies lässt sich wieder, %... 
-        \item Nach dem %... 
+        \item Dies lässt sich wieder, %...
+        \item Nach dem %...
     \end{aufgaben}
 \end{aufgabe}
 \end{document}
@@ -356,14 +357,14 @@ Die Farbe des \T{ALTERNATE}-Designs wird durch \blankcmd{Hcolor} und damit durch
 
 \subsection{Das Zusammenfassungs-Layout}
 \elable{mrk:layoutzsf}Diese Definitionen befinden sich in der Datei: \blatex[morekeywords={[5]{LILLYxPATHxDATA}}]{:bs:LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_ZUSAMMENFASSUNG}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT} auf Basis von \blankcmd{LILLYxMODE} präsentiert. \medskip\newline
-Das schreiben einer Zusammenfassung unterscheidet sich in gewissem Maßem vom schreiben anderer Dokumente. Aus historischen Gründen wird von einer Verwendung der herömmlichen strukturbefehle wie \blankcmd{section} abgesehen. An ihre Stelle tritt der folgende Befehl, der sich automatisch im Anhang anpasst:
+Das schreiben einer Zusammenfassung unterscheidet sich in gewissem Maßem vom schreiben anderer Dokumente. Aus historischen Gründen wird von einer Verwendung der herömmlichen Strukturbefehle wie \blankcmd{section} abgesehen. An ihre Stelle tritt der folgende Befehl, der sich automatisch im Anhang anpasst:
 
 %
 %
 %
 
 \presentCommand[1.0.3]{TOP}[\optArg{mark}\manArg{Title}\manArg{Comment}]
-Setzt im \emph{Hauptteil} einen normalen Start eines neuen Themenbereichs und im \emph{Anhang} einen (im Inhaltsverzeichnis anders aufgeführten) mit \T{Anhang} angeführten neuen Bereich. Der Wechsel zwischen Hauptteil und Anhang erfolgt einmalig durch \blankcmd{startAppendix}.
+Setzt im \emph{Hauptteil} einen normalen Start eines neuen Themenbereichs und im \emph{Anhang} einen (im Inhaltsverzeichnis anders aufgeführten) neuen Bereich. Der Wechsel zwischen Hauptteil und Anhang erfolgt einmalig durch \blankcmd{startAppendix}.
 
 %
 %
@@ -398,14 +399,14 @@ Dies sind einige Kurzbefehle, die ich im Rahmen von Zusammenfassungen oft benöt
 \customex{Hallo Welt}   % ergibt: !*\lstcomment{\customex{Hallo Welt}}*!
     \end{latex}
 }
-Der Befehl \blankcmd{reg} wurde hierbei gezielt für Register ins leben gerufen und setzt den Text in \blankcmd{LILLYxlstTypeWriter}.
+Der Befehl \blankcmd{reg} wurde hierbei gezielt für Register ins Leben gerufen und setzt den Text in \blankcmd{LILLYxlstTypeWriter}.
 
 %
 %
 %
 
 \presentCommand[1.0.9]{negaskip}[\cmdlist\anothercmd[1.0.9]{negbskip}\cmdlist\anothercmd[2.0.0]{TOPskip}]
-Setzt abstände entsprechend \T{aksip} und \T{bskip}, es handelt sich hierbei um negativ Abstände, die dann verwendet werden können, wenn mehrere Umgebungen Abstände einführen.
+Setzt Abstände entsprechend \T{aksip} und \T{bskip}, es handelt sich hierbei um negativ Abstände, die dann verwendet werden können, wenn mehrere Umgebungen Abstände einführen.
 
 %
 %
@@ -418,7 +419,7 @@ Setzt einen Informationstext in kleiner Schrift. Ich verwende es für gewöhnlic
 %
 %
 
-\presentCommand[2.0.0]{aLink}{\manArg{Target}}
+\presentCommand[2.0.0]{aLink}[\manArg{Target}]
 Das Ziel lässt sich genauso mit \blankcmd{elable} setzen, allerdings wird das Ziel durch das typische Buch/die Seitenzahl um auf einen Verweis im Anhang hinzuweisen, gesetzt.
 
 %
@@ -444,10 +445,13 @@ Präsentiert eine Information in einem an Karten anmutenden Format.
 \begin{bemerkung}[Eine beispielhafte Zusammenfassung]
     Im Folgenden ist nun das Ziel eine eigene Zusammenfassung zu erstellen. In diesem Beispiel muss \Jake nicht verwendet werden, ein Kompilieren mit \T{-shell-escape} (beziehungsweise je nach System \T{-enable-write18}) genügt völlig, damit die automatische Index-unsterstüzung von Lilly greifen kann.
 \ilatex{Data/Documents/LayoutZusammenfassung/example-zsf.tex}
-    Die Generierung der Titelseite erfolgt übrigens ebenfalls mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER}. Das (hierbei durch \bbash{pdflatex -shell-escape example-zsf.tex} erzeugte) Ergebnis sieht so aus:
-    \begin{tcbraster}[raster columns=3, blankest,colback=white]
+    Die Generierung der Titelseite erfolgt übrigens ebenfalls mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER}.
+    \iflillycompact\else%
+    Das (hierbei durch \bbash{pdflatex -shell-escape example-zsf.tex} erzeugte) Ergebnis sieht so aus:
+    \begin{tcbraster}[raster columns=3, blankest, graphics pages={1,2,3}, colback=white]
         \tcbincludepdf{Data/Documents/LayoutZusammenfassung/example-zsf.pdf}
     \end{tcbraster}
+    \fi
 \end{bemerkung}
 
 %
@@ -461,10 +465,7 @@ Präsentiert eine Information in einem an Karten anmutenden Format.
 
 Dieses Design wird von Lilly dann gewählt, wenn kein anderes Layout gewählt wird. Es liefert keine Befehle die genutzt werden sollten, sie dienen alle nur der internen Verarbeitung. Hier ein Beispiel:
 \ilatex{Data/Documents/LayoutPlain/example-plain.tex}
-Liefert:
-\begin{tcbraster}[raster columns=3, blankest,colback=white]
-    \tcbincludepdf{Data/Documents/LayoutPlain/example-plain.pdf}
-\end{tcbraster}
+Das Ergebnis kann in den Quelldateien der Dokumentation betrachtet werden.
 
 %
 %
@@ -528,11 +529,12 @@ Hier ein Beispiel:
 \section{SectionA}
 % ...
 \end{latex}
-
+\iflillycompact\else
 Liefert (das volle Beispiel findet sich unter \blatex{Data/Documents/LayoutElegantBook/example-eb.tex}, in den Quelldateien dieser Dokumentation):
-\begin{tcbraster}[raster columns=4, blankest,colback=white]
+\begin{tcbraster}[raster columns=4, blankest, graphics pages={1,2,4,5},colback=white]
     \tcbincludepdf{Data/Documents/LayoutElegantBook/example-eb.pdf}
 \end{tcbraster}
+\fi
 
 %
 %
@@ -584,15 +586,15 @@ Setzt einen Text in kuriver Schrift um zum Beispiel eine Kurzzusammenfassung fü
 %
 %
 
-Im Folgenden ein Beispiel, welches sich auch hier (\T{Data/Documents/LayoutPaper/example-paper.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
+Im Folgenden ein Beispiel, welches sich auch hier (\blatex{Data/Documents/LayoutPaper/example-paper.tex}) in den Quelldateien der Dokumentation findet.\iflillycompact\else Es erzeugt das folgende Dokument:
 \begin{tcbraster}[raster columns=3, blankest,colback=white]
     \tcbincludepdf{Data/Documents/LayoutPaper/example-paper-OUT/example-paper.pdf}
 \end{tcbraster}
 Hierfür wurde \Jake verwendet, mit dem folgenden Configfile:
 \igepard{Data/Documents/LayoutPaper/paper.conf}
+\fi
 
-
-\subsection{Das PnPGuide-Layout}
+\subsection{Das PnP-Guide-Layout}
 \elable{mrk:laypnp}Diese Definitionen befinden sich in der Datei: \blatex[morekeywords={[5]{LILLYxPATHxDATA}}]{:bs:LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_PNP_GUIDE}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT} auf Basis von \blankcmd{LILLYxMODE} präsentiert. \medskip\newline
 Dieses Layout wurde für schnelle kleine und simple Dokumente (hauptsächlich Pen and Paper) gestaltet.
 
@@ -630,11 +632,7 @@ Setzt eine kleine Erklärung zu gewissen Sektionen oder Abschnitten.
 %
 %
 
-Hier ein Beispiel, der dem Code in \T{Data/Documents/LayoutPnP/example-pnp.tex} (der Quelldateien) entspringt:
-\begin{tcbraster}[raster columns=2, blankest,colback=white,graphics options={trim=0cm 6.5cm 0cm 0cm,clip}]
-    \tcbincludepdf[blankest]{Data/Documents/LayoutPnP/example-pnp.pdf}
-\end{tcbraster}
-Es wurden für dieses Beispiel noch weitere Umgebungen in der Datei generiert (die Ansicht hier ist beschnitten).
+Ein Beispiel kann in den Quelldateien hier gefunden werden: \blatex{Data/Documents/LayoutPnP/example-pnp.tex}.
 
 %
 %
@@ -664,12 +662,12 @@ Setzt die jeweiligen Felder für die Daten.\\
 %
 %
 %
-
-Im Folgenden ein Beispiel, welches sich wiedereinmal (\T{Data/Documents/LayoutPoems/poems.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
-\begin{tcbraster}[raster columns=3, graphics pages={1,...,9}, blankest,colback=white]
+\iflillycompact\else
+Im Folgenden ein Beispiel, welches sich wiedereinmal (\blatex{Data/Documents/LayoutPoems/poems.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
+\begin{tcbraster}[raster columns=3, graphics pages={1,3,6}, blankest,colback=white]
     \tcbincludepdf{Data/Documents/LayoutPoems/poems.pdf}
 \end{tcbraster}
-
+\fi
 
 % Should this really be documented right now? - probably not
 % Dokumentation
@@ -705,10 +703,11 @@ Liefert einen zufälligen Text. Beispiel: \blankcmd{RandomFlavourText} liefert (
 \subsection{Philosopher}
 \hypertarget{LILLYxPHILOSOPHER}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} zur Verfügung gestellt. \medskip\newline
 
-Dieses Paket hat mit \LILLYxBOXxVersion{1.0.8} die Generierung der Titelseiten für Mitschriften und mit \LILLYxBOXxVersion{2.0.0} auch für Zusammenfassungen übernommen. \elable{mrk:philentry}Hier ein kleines Beispiel:
-\begin{tcbraster}[raster columns=4, blankest,graphics pages={1,...,8},colback=white]
-    \tcbincludepdf{Data/Documents/Philosopher/philosopher.pdf}
-\end{tcbraster}
+Dieses Paket hat mit \LILLYxBOXxVersion{1.0.8} die Generierung der Titelseiten für Mitschriften und mit \LILLYxBOXxVersion{2.0.0} auch für Zusammenfassungen übernommen.
+% \elable{mrk:philentry}Hier ein kleines Beispiel:
+% \begin{tcbraster}[raster columns=4, blankest,graphics pages={1,3,4,6},colback=white]
+%     \tcbincludepdf{Data/Documents/Philosopher/philosopher.pdf}
+% \end{tcbraster}
 
 %
 %
@@ -728,10 +727,7 @@ Ein Befehl, der aus offensichtlichen Gründen wohl nicht wirklich frei verwendet
     \LILLYxGENxFACULTY{Mathematik}{:bmath:\pi:emath:}{#1}[#2][#3][80pt][\smallNumber][0.125]
 }
 \end{latex}
-Dies definiert das Mathe-Siegel, \blankcmd{LILLYxFACULTYxMATHE} ergibt (wird zusätzlich zentriert):
-\begin{center}
-    \LILLYxFACULTYxMATHE
-\end{center}
+Dies definiert das Mathe-Siegel.
 
 %
 %
@@ -753,13 +749,14 @@ Diese Befehle werden verwendet um die jeweiligen Fakultätssymbole zu setzen. Da
 %
 
 \presentCommand[1.0.9]{LILLYxColorxTITLExSETTINGSxGENERAL}[\cmdlist\secline\anothercmd[1.0.9]{LILLYxColorxTITLExSETTINGSxVORLESUNG}]
-Diese Befehle definieren die Pfade zu den entsprechenden Definitionen. Sie werden jeweils nur dann eingebunden, wenn \blankcmd{LILLYxSemester} einen Wert größer $0$ hält. Hier sind die Standartdefinitionen:
+Diese Befehle definieren die Pfade zu den entsprechenden Definitionen. Sie werden jeweils nur dann eingebunden, wenn \blankcmd{LILLYxVorlesung} valide ist.
+Hier sind die Standartdefinitionen:
 \begin{latex}
 \providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{%
-  \LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex%
+  \LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex%
 }
 \providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{%
-  \LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/%
+  \LILLYxPATHxDATA/Semester/Definitions/%
     \LILLYxVorlesung%
 }
 \end{latex}
@@ -799,6 +796,13 @@ Wird vom Paket verwendet um die Titelseite zu initialisieren.
 %
 %
 
+\presentCommand[2.1.0]{@Lilly@@Philosopher@Type@Decode}[\manArg{Typ}]
+Dekodiert den in \blankcmd{LILLY@Typ} gespeicherten Typ für die Anzeige. Sorgt in der Regel dafür, dass nur der erste Buchstabe großgeschrieben wird und die anderen entsprechend klein notiert werden. Wird in \blankcmd{LILLYxPHILOSOPHERxMETADATA} verwendet.
+
+
+%
+%
+
 \presentCommand[1.0.9]{LILLYxPHILOSOPHERxMETADATA}
 Setzt die Metadaten wie den Autor(\blankcmd{AUTHOR}) und dessen Emailadresse (\blankcmd{AUTHORMAIL}). Hier ein Beispiel (der Rahmen wurde explizit hinzugefügt): \blankcmd{LILLYxPHILOSOPHERxMETADATA} liefert:\smallskip\\
 \framebox{\LILLYxPHILOSOPHERxMETADATA}
@@ -819,35 +823,53 @@ Setzt die Titelseite wie sie das \jmark[Zusammenfassungs-Layout]{mrk:layoutzsf} 
 \begin{latex}
 \def!**!\LILLYxFACULTY{\LILLYxFACULTYxMATHE}
 \def!**!\LILLYxFACULTYxCOLOR{FacultyMathexColor}
-\def!**!\LILLYxSemester{2}\def!**!\LILLYxVorlesung{ANA1}
+\def!**!\LILLYxVorlesung{ANA1}
 \LILLYxTITLExBONUS{Hallo}
 \end{latex}
-Es liefert ein bekanntes Ergebnis auf der folgenden Seite. Zuvor, ersteinmal die Übersicht über die für gewöhnlich generierten Zusammenfassungen:
-\begin{tcbraster}[raster columns=4, blankest,graphics pages={9,...,16},colback=white]
-    \tcbincludepdf{Data/Documents/Philosopher/philosopher.pdf}
-\end{tcbraster}
-{
-\def\LILLYxFACULTY{\LILLYxFACULTYxMATHE}
-\def\LILLYxFACULTYxCOLOR{FacultyMathexColor}
-\def\LILLYxSemester{2}\def\LILLYxVorlesung{ANA1}
-\LILLYxTITLExBONUS{Hallo}
-}
-Offensichtlich wird \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} verwendet.
+Das Ergebnis kann in den Quelldateien der Dokumentation unter \blatex{Data/Documents/Philosopher/} gefunden werden. Offensichtlich wird \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} verwendet.
 
 %
 %
 %
 
 \presentCommand[1.0.9]{LILLYxTITLExRAW}[\optArg{Title Image PDF}]
-Setzt eine Titelseite \emph{ohne} Bonus, so wie sie bereits in der \jmark[Einführung]{mrk:philentry} gezeigt wurden. Das anzuzeigende Titelbild sollte übergeben werden. Es wird auf \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} und \blankcmd{LILLYxPHILOSOPHERxMETADATA} zurückgegriffen.
+Setzt eine Titelseite \emph{ohne} Bonus (normal). Das anzuzeigende Titelbild sollte übergeben werden. Es wird auf \blankcmd{LILLYxPHILOSOPHERxBORDERBLOCK} und \blankcmd{LILLYxPHILOSOPHERxMETADATA} zurückgegriffen.
 
 %
 %
 %
 
 \presentCommand[1.0.9]{LILLYxTITLE}
-Setzt die Titelseite mittels \blankcmd{LILLYxTITLExRAW}, allerdings nur, wenn \blankcmd{LILLYxSemester} größer $0$ ist. In diesem Fall wird allerdings automatisch das dazugehörige Titelbild hinzugefügt.
+Setzt die Titelseite mittels \blankcmd{LILLYxTITLExRAW}, allerdings nur, wenn \blankcmd{LILLYxVorlesung} valide ist (also existiert). In diesem Fall wird allerdings automatisch das dazugehörige Titelbild hinzugefügt.
 
+%
+%
+%
+%
+%
 
+\section{Randbemerkungen}
+\hypertarget{LILLYxMARGIN}Diese Definitionen befinden sich im eigenständigen Paket \LILLYxNOTExLibrary{LILLYxMARGIN} und abstrahieren Randbemerkungen grundlegend.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{lillyMarginxElement}[\manArg{Text}]
+Setzt \T{Text} in die Margin, wobei Schrit und Orientierung aus den PGF-Keys \T{lillyxMARGIN/font} und \T{lillyxMARGIN/alignment} entnommen werden, die durch \blankcmd{lillymarginset} einfach gesetzt werden können (beispiel: \T{font=\blankcmd{small}}). So ergibt \T{\blankcmd{lillyxMarginxElement}\{Hallo Welt\}}\lillyxMarginxElement{Hallo Welt}.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{lillyxMarginMark}[\manArg{Color}]
+Setzt eine Markierung in der Farbe \T{color}, die gestalt ergibt sich aus \blankcmd{footnotemark}.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{lillyxMarginxNote}[\manArg{Color}\manArg{Text}]
+Setzt ein markiertes \blankcmd{lillyMarginxElement} und setzt den korrespondierenden Marker im Text durch \blankcmd{lillyxMarginMark} So ergibt \T{\blankcmd{lillyxMarginxNote}\{Azure\}\{Hallo Welt\}}\lillyxMarginxNote{Azure}{Hallo Welt}.
 
 %%% Keyval

@@ -1,16 +1,14 @@
 \documentclass[Typ=PLAIN,Jake]{Lilly}
-\makeatletter
+% ignoring the offset
 \begin{document}
-    \foreach \vl/\se [count=\i] in {ANA1/2,PDP/2,PVS/2,GDBS/2,GDRA/1,FG/1,LAII/1,EIDI/1}{
+    \foreach \vl/\se [count=\i] in {ANA1,PDP,PVS,GDBS,GDRA,FG,LAII,EIDI}{
         \renewcommand{\LILLYxVorlesung}{\vl}
-        \renewcommand{\LILLYxSemester}{\se}
-        \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+        \input{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
         \LILLYxTITLE
     }
-    \foreach \vl/\se [count=\i] in {ANA1/2,PDP/2,PVS/2,GDBS/2,GDRA/1,FG/1,LAII/1,EIDI/1}{
+    \foreach \vl/\se [count=\i] in {ANA1,PDP,PVS,GDBS,GDRA,FG,LAII,EIDI}{
         \renewcommand{\LILLYxVorlesung}{\vl}
-        \renewcommand{\LILLYxSemester}{\se}
-        \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+        \input{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
         \LILLYxTITLExBONUS{\@Alph{\i}usammenfassung}%
     }
 \end{document}

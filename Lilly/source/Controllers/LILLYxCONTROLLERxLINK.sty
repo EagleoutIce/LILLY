@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCONTROLLERxLINK}[2019/07/14 Stellt die (Hyper-)Link-Erweiterungen fuer LILLY zur Verfuegung]
 
+\def\theindex{}
 \RequirePackage{LILLYxCORE}
 
 \RequirePackage{LILLYxCOLOR}
@@ -8,20 +9,14 @@
 \RequirePackage{LILLYxCONTROLLERxMODE}
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 
-
+\ifcsname LILLYxBEAMER\endcsname\else
 %\RequirePackage{titletoc} %collission fun :D
 %% https://ctan.org/pkg/titletoc
 \LILLYxDemandPackage{titletoc}{Damit der tableofcountetns auch schön hübsch gemacht werden kann.}%% Package, Info
                     {Das Paket titletoc ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
                     {}%%Params
                     {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
-
-%% https://ctan.org/pkg/hyperref
-\LILLYxDemandPackage{hyperref}{Fuer tolle Verlinkungen und einen tollen Ueberblick}%% Package, Info
-                    {Das Paket hyperref ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
-                    {pageanchor}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
-
+\fi
 %% https://www.ctan.org/pkg/xparse
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
                     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
@@ -32,6 +27,11 @@
                     {Um dieses Paket kommt LILLY nicht herum!}
                     {}{}
 
+%% https://ctan.org/pkg/hyperref
+\LILLYxDemandPackage{hyperref}{Fuer tolle Verlinkungen und einen tollen Ueberblick}%% Package, Info
+                    {Das Paket hyperref ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+                    {pageanchor}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grundelgendes setup von hyperref                                                                                    %     %%%% HYPERREF-BASICS %%%%
@@ -44,9 +44,9 @@
     citecolor=\LILLYxColorxLINKSxCiteColor,
     filecolor=black!75!black,
     urlcolor=\LILLYxColorxLINKSxUrlColor,
-    hyperfootnotes=true,
+    % hyperfootnotes=true,
     hypertexnames,
-    bookmarks=true,
+    % bookmarks=true,
     unicode=true,
     pdftoolbar=false,
     pdfpagemode=UseAttachments,
@@ -55,9 +55,7 @@
     pdfsubject={Latex-Dokument},
     pdfauthor={\AUTHOR~(\AUTHORMAIL)},
     pdfcreator={pdflatex on \platformname\space using the LILLY-Package (v\LILLYxVERSION) by Florian Sihler (florian.sihler@uni-ulm.de)},
-    bookmarks=true
 }
-
 
 \ifcsname LILLYxHYPERLINK\endcsname\else
     \gdef\LILLYxHYPERLINK{TRUE}
@@ -110,7 +108,6 @@
 \fi
 %% With sepcific color :D
 \newcommand{\cmark}[3][Linkname]{\setLinkColor{#3}\textbf{{\hyperref[#2]{#1}}}}
-
 
 \providecommand*{\eXButton}[2]{\Acrobatmenu{#1}{\textcolor{\LILLYxColorxLINKSxMainColor}{#2}}}
 

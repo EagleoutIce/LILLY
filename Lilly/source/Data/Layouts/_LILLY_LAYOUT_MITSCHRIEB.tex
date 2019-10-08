@@ -161,17 +161,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%Lade gewünschtes Titelblatt => LILLYxTITLE
-\ifnum\LILLYxSemester>0
-    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
-\fi
+\RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}
+%}{}
 %%OLD: \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
 \AtBeginDocument{\LILLYxTITLE}
 
 %%Generieren Inhaltsverzeichnis
 
-\LILLYcommand{\contentsname}{\vspace{-1cm}\hfill Inhaltsverzeichnis\hfill\vspace{-0.8cm}}
+\LILLYcommand{\contentsname}{\vspace{-1cm}\hfill \xtranslate{Inhaltsverzeichnis}\hfill\vspace{-0.8cm}}
 \addto\captionsngerman{%
-    \renewcommand{\contentsname}{\hbox{}\relax\hfill Inhaltsverzeichnis\hfill\hbox{}\relax}%
+    \renewcommand{\contentsname}{\hbox{}\relax\hfill \xtranslate{Inhaltsverzeichnis}\hfill\hbox{}\relax}%
 }
 \LILLYcommand{\cftsubsecfont}{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!90!white}}
 %\renewcommand{\cftsecleader}{\hfill}

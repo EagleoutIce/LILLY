@@ -1,43 +1,24 @@
-%%% For good practice: first define all the commands we will use later:
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Declare Commands                                                      %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\enum}{}
-\newcommand{\liste}{}
-\newcommand{\xa}{}
-\newcommand{\xb}{}
-\newcommand{\xc}{}
-\newcommand{\rddots}{}
-\newcommand{\crossAT}{}
-\newcommand{\circAT}{}
-\newcommand{\bblock}{}
-\newcommand{\VRule}{}
-\newcommand{\trenner}{}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Implements Commands                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\renewcommand{\enum}[1]{\begin{enumerate}\narrowitems  #1 \end{enumerate}  }
-\renewcommand{\liste}[1]{\begin{enumerate}[label=\roman*)]\narrowitems  #1 \end{enumerate}  }
+\long\def\enum#1{\begin{enumerate}\narrowitems  #1 \end{enumerate}  }
+\long\def\liste#1{\begin{enumerate}[label=\roman*)]\narrowitems  #1 \end{enumerate}  }
 
-\renewcommand{\xa}{\overline{x_1}\tab[0.04cm]}
-\renewcommand{\xb}{\overline{x_2}\tab[0.04cm]}
-\renewcommand{\xc}{\overline{x_3}\tab[0.04cm]}
+\def\xa{\overline{x_1}\tab[0.04cm]}
+\def\xb{\overline{x_2}\tab[0.04cm]}
+\def\xc{\overline{x_3}\tab[0.04cm]}
 
-\renewcommand{\rddots}{\reflectbox{$\ddots$}}
+\def\rddots{\reflectbox{$\ddots$}}
 
-\renewcommand{\crossAT}[1]{\node at #1 {\large \ding{55}};}
-\renewcommand{\circAT}[1]{\draw[thick] #1 circle (0.13);}
+\def\crossAT#1{\node at #1 {\large \ding{55}};}
+\def\circAT#1{\draw[thick] #1 circle (0.13);}
 
-\renewcommand*\bblock[2]{\draw #1 [thin] rectangle ++(0.5,0.5) node [pos=.5] {\tiny{#2} }; }
+\def\bblock#1#2{\draw #1 [thin] rectangle ++(0.5,0.5) node [pos=.5] {\tiny{#2} }; }
 
-\renewcommand{\VRule}[1][\arrayrulewidth]{\vrule width #1}
+\LILLYcommand{\VRule}[1][\arrayrulewidth]{\vrule width #1}
 
-\renewcommand{\trenner}{\ensuremath{\tab[0.05cm]\Big|\tab[0.05cm]}}
+\def\trenner{\ensuremath{\tab[0.05cm]\Big|\tab[0.05cm]}}
 
 %%Tabbing umgebung ohne Abstand - Veraltet
 % @Deprecated

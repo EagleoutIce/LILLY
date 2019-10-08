@@ -1,0 +1,29 @@
+BEGIN project:
+name=example
+display-name=Beispiel
+configfiles="a,b,c"
+END;
+
+BEGIN project:
+name=example2
+display-name=Beispiel
+configfiles="a,b,c"
+END;
+
+BEGIN project:
+name=example3
+display-name=Beispiel
+configfiles="a,b,c"
+END;
+
+BEGIN project:
+name=example4
+display-name=Beispiel
+configfiles="a,b,c"
+END;
+
+BEGIN project:
+name=example5
+display-name=Beispiel
+configfiles="a,b,c"
+END;

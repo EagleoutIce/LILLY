@@ -3,11 +3,12 @@
 \RequirePackage{caption}
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 
+\providedef{TITLE}{Unbekannte Vorlesung}
+\providedef{UEBUNGSHEADER}{\TITLE\\Übungsblatt \LILLY@n}
+
 
 %% Vital configurations
-\ifnum\LILLYxSemester>0
-    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
-\fi
+\RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % General and Layoutkonfiguration                %

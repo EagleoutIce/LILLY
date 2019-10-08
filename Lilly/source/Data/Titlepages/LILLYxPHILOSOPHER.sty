@@ -4,11 +4,30 @@
 
 \RequirePackage{LILLYxTIKZxCORE}
 \RequirePackage{LILLYxCONTROLLERxLINK}
+\RequirePackage{LILLYxUTIL}
+
+
+\LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}%% Package, Info
+                    {Dieses Paket ist für LILLY überlebenswichtig}%% Error-Text
+                    {\LILLYxGeneralxPaperformat,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering,\LILLYxGeometryxExtras}%%Params
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D - wenn er das dann mal kann
+
+
+\providecommand{\LILLY@Typ}{Unbekannt}
 
 \usetikzlibrary{decorations.text}
 
 \input{Konanur.fd}
 \makeatletter
+
+\def\@Lilly@@Philosopher@Type@Decode#1{%
+\begin{switch}{#1}%
+    \case{MITSCHRIEB}{Mitschrieb}%
+    \case{ZUSAMMENFASSUNG}{Zusammenfassung}%
+    \case{DOKUMENTATION}{Dokumentation}%
+    \default{#1}%
+\end{switch}%
+}
 
 %% Mathe
 \xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028}
@@ -90,11 +109,12 @@
     \end{tikzpicture}}{#1}[#2][#3][50pt][\smallNumber][0.125][0.03]
 }
 
-\providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
-\providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/\LILLYxVorlesung}
-\ifnum\LILLYxSemester>0
-    \input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
-\fi
+\providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
+\providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung}
+
+\RequestConfig{\LILLYxColorxTITLExSETTINGSxGENERAL}
+\RequestConfig{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
+
 
 
 %%% Dieser Befehl malt die untere Leiste und setzt die entsprechenden Daten. Hierbei Kann, von der Höhe abgesehen, keine andere Metrik modifiziert werden.
@@ -113,7 +133,7 @@
     \filldraw[#1] (0,0) -- ++(\paperwidth,0) -- ++(0,#3) --  ++(-0.1\paperwidth,0) -- ++(-0.1\paperwidth,1) -- ++(-0.1\paperwidth,0) --  ++(-0.1\paperwidth,-1) -- ++(-0.6\paperwidth,0) -- cycle;%
     \begin{scope}[every node/.style={color=#2}]%
         \node at(0.75\paperwidth,2) {#5}; %\resizebox{!}{#3cm}{
-        \node[right] at(\LILLYxLeftsep,1.5) {\parbox{0.45\linewidth}{\footnotesize{#4\par}}};
+        \node[right] at(\LILLYxLeftsep,1.5) {\parbox{9.9cm}{\footnotesize{#4\par}}};
         \node[above left] at(\paperwidth,0.02) {\begingroup\hypersetup{urlcolor=#2}\href{https://github.com/EagleoutIce/LILLY}{\usefont{U}{Konanur}{xl}{n}LILLY}\hypersetup{urlcolor=\LILLYxColorxLINKSxUrlColor}\endgroup};%
         \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};%
     \end{scope}%
@@ -124,7 +144,7 @@
 \gdef\LILLYxPHILOSOPHERxINIT{\newgeometry{margin = 0pt}}
 
 \providecommand{\LILLYxPHILOSOPHERxMETADATA}{%
-    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\LILLY@Typ{} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
+    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\@Lilly@@Philosopher@Type@Decode{\LILLY@Typ} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
     \vspace{0.5cm}%
     {\itshape\small Version vom: \\ \heute\par}}}
 }
@@ -140,12 +160,10 @@
     O{\LILLYxFlavourText}   % Textblahblah
     O{\LILLYxFACULTY}       % Zu setzendes Symbol
     O{0.55\paperwidth}      % Scaling
-    O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf}
+    O{\LILLYxPATHxDATA/Semester/Graphics/titleimage\LILLYxVorlesung.pdf}
                             % Titel Symbol
-}{%
-\ifnum\LILLYxSemester>0%
-    \input{\LILLYxColorxTITLExSETTINGSxGENERAL}\input{\LILLYxColorxTITLExSETTINGSxVORLESUNG}%
-\fi
+}{\hypersetup{pageanchor=false}%
+\RequestConfig{\LILLYxColorxTITLExSETTINGSxGENERAL}\RequestConfig{\LILLYxColorxTITLExSETTINGSxVORLESUNG}%
 \clearpage\thispagestyle{empty}%
 \LILLYxPHILOSOPHERxINIT\begingroup%
 \begin{titlepage}
@@ -160,7 +178,7 @@
     \filldraw[#1] (0,0) |- ++(#6,1.25) -- ++(-0.75,-1.25) -- cycle;
     \node[right,#2] at (\LILLYxLeftsep,0.5) {\Huge\bfseries#3};
     \begin{pgfinterruptboundingbox}
-    \node[left] at(\paperwidth-1.5cm,0.45) {\includegraphics[height=11em]{#7}};
+    \node[left] at(\paperwidth-1.5cm,0.45) {\IfFileExists{#7}{\includegraphics[height=11em]{#7}}{\parbox[t][11em]{7em}{No Image}}};
     \end{pgfinterruptboundingbox}
 \end{tikzternal}
     } {\par\vspace*{9em}\par}%
@@ -189,29 +207,29 @@
 %}
 \end{titlepage}
 \clearpage%
-\endgroup\restoregeometry%
+\endgroup\restoregeometry\hypersetup{pageanchor=true}%
 }
 
 \DeclareDocumentCommand{\LILLYxTITLExRAW}{ o }{
-    \begingroup%
+    \begingroup\hypersetup{pageanchor=false}%
     \clearpage\begin{titlepage}
         \LILLYxPHILOSOPHERxINIT%
         {\centering\par\vspace*{7em}\par
             {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par}
             \par\vspace*{11em}\par
-            \IfValueTF{#1}{\includegraphics[height=20em]{#1}}{\parbox[l][20em]{1em}{}}
+            \IfValueTF{#1}{\IfFileExists{#1}{\includegraphics[height=20em]{#1}}{\parbox[t][20em]{12em}{\Large No Image}}}{\parbox[t][20em]{1em}{}}
             \par\vfill\vspace{2em}\par
         }
         \hbox{}\vfill
         \LILLYxPHILOSOPHERxMETADATA
         {\par\vspace*{7.5em}\par}%
         \LILLYxPHILOSOPHERxBORDERBLOCK{3} %% height
-    \end{titlepage}\endgroup\restoregeometry%
+    \end{titlepage}\endgroup\restoregeometry\hypersetup{pageanchor=true}%
 }
 
 %% Pfad zu den Einstellungen %% Pfad zur Grafik
-\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
-    \ifnum\LILLYxSemester>0\LILLYxTITLExRAW[#1]\fi
+\DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
+    \IfFileExists{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}{\LILLYxTITLExRAW[#1]}{}%
 }
 
 \endinput

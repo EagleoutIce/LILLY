@@ -7,10 +7,6 @@
 \RequirePackage{LILLYxFONTS}
 \RequirePackage{LILLYxPHILOSOPHER}
 
-%% https://www.ctan.org/pkg/babel
-\LILLYxDemandPackage{babel}{Dieses Paket brauchen wir für Sprachen, weil sie toll sind}
-                    {Um dieses Paket kommt LILLY nicht herum!}
-                    {english,ngerman}{}
 
 %% https://www.ctan.org/pkg/tocloft
 \LILLYxDemandPackage{tocloft}{custom lists und so}
@@ -33,9 +29,9 @@
 %% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten.
 
 
-%% Wenn ein Semester gesetz ist, dann versuchen wir eine entsprechende Einstellung zu laden.
-\ifnum\LILLYxSemester>0
-    \RequestConfig{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/GENERAL.tex}
+%% Wenn eine gültige Vorlesung, dann versuchen wir eine entsprechende Einstellung zu laden.
+\iflilly@vorlesung@isvalid@
+    \RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
 \fi
 
 %% Lilly vertraut auf 'cite' wenn es darum geht Bibtex zu integrieren.
@@ -46,11 +42,6 @@
     \ClassInfo{Lilly}{Bibtex wird verwendet!}
     \RequirePackage{cite}
 \fi
-
-%% Da Daten wichtig sind, hier ein handelsüblicher shortcut zur Datumsanzeige
-\RequirePackage[yyyymmdd,hhmmss]{datetime}
-% \heute => dd. MMMM YYYY [example: 25. August 2019]
-\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
 
 %% Für die klassischen Layouts gab es hier früher einige Anpassungen.
 %% Um die Struktur zu behalten, wir diese Aufgabe nun komplett dem entsprechenden Layout übergeben,

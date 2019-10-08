@@ -33,6 +33,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+// import java.util.Arrays;
 
 import static de.eagle.lillyjakeframework.core.Definitions.*;
 import static de.eagle.util.io.JakeLogger.*;
@@ -42,9 +43,9 @@ import static de.eagle.util.io.JakeLogger.*;
  *
  * @brief Diese Klasse verwaltet den Prozess einer kompilierung durch Jake
  *
- * Diese Instanz ist der direkte Bruder von c_Jake.cpp aus Jake-Cpp und
- * verwendet deswegen native Systemaufrufe, auch wenn diese in der Form
- * nicht nötig wären!
+ *        Diese Instanz ist der direkte Bruder von c_Jake.cpp aus Jake-Cpp und
+ *        verwendet deswegen native Systemaufrufe, auch wenn diese in der Form
+ *        nicht nötig wären!
  *
  * @author Florian Sihler
  * @version 2.0.0
@@ -139,7 +140,7 @@ public class JakeCompile {
         Settings b_rules = Buildrules.getInstance().parseRules(CoreSettings.requestValue("S_GEPARDRULES_PATH"),
                 CoreSettings.requestSwitch("S_LILLY_COMPLETE"));
         String[] buildrules = CoreSettings.requestValue("S_LILLY_MODES").split(" +");
-
+        // System.out.println(Arrays.toString(buildrules));
         JakeCompile_Worker.failed = false;
         JakeCompile_Worker[] workers = new JakeCompile_Worker[buildrules.length];
         int ctr = 0;
@@ -171,7 +172,7 @@ public class JakeCompile {
         }
 
         if (JakeCompile_Worker.failed) {
-            //System.exit(1); // report failure for Linux-Systems
+            // System.exit(1); // report failure for Linux-Systems
             return ReturnStatus.EXIT_FAILURE;
         }
 
@@ -185,21 +186,25 @@ public class JakeCompile {
         return ReturnStatus.EXIT_SUCCESS;
     }
 
+    public static boolean InKeeps(String s){
+        for (String ftext : CoreSettings.requestValue("S_LILLY_KEEPS").split(" +"))
+            if (s.contains(ftext)) return true;
+        return false;
+    }
+
     public static void RequestClean() throws IOException {
         if (CoreSettings.requestSwitch("S_LILLY_AUTOCLEAN")) {
             JakeWriter.out.format("%s> Lösche temporäre Dateien...%s%n", ColorConstants.COL_GOLD,
                     ColorConstants.COL_RESET);
-            for (String ftext : CoreSettings.requestValue("S_LILLY_CLEANS").split(" +")) {
                 Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT")))
-                        .filter(s -> s.toString().contains("." + ftext)).forEach(s -> s.toFile().delete());
+                        .filter(s -> !InKeeps(s.toString())).forEach(s -> s.toFile().delete());
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL"))
                     Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT"),
                             CoreSettings.requestValue("S_LILLY_EXTERNAL_OUT")))
-                            .filter(s -> s.toString().contains("." + ftext)).forEach(s -> s.toFile().delete());
-            }
+                            .filter(s -> !InKeeps(s.toString())).forEach(s -> s.toFile().delete());
         } else {
-            JakeWriter.out.format("Kein autoclean, da zugehörige Einstellung (%s) != true%n",
-                    CoreSettings.getTranslator().translate("S_LILLY_EXTERNAL"));
+            JakeWriter.out.format("Kein autoclean, da die zugehörige Einstellung (%s) != true%n",
+                    CoreSettings.getTranslator().translate("S_LILLY_AUTOCLEAN"));
         }
 
     }
@@ -254,8 +259,8 @@ public class JakeCompile {
             writeLoggerInfo(b_data[B_TEXT].replace("\"\"", "") + " -Version("
                     + CoreSettings.requestValue("S_LILLY_BOXES") + ") der Latex-Datei: "
                     + CoreSettings.requestValue("S_FILE") + "..." + ColorConstants.COL_RESET, tag);
-
-            for (String boxmode : CoreSettings.requestValue("S_LILLY_BOXES").split(" +")) {
+            String[] bmodes = CoreSettings.requestValue("S_LILLY_BOXES").split(" +");
+            for (String boxmode : bmodes) {
                 writeLoggerInfo("Schreibe boxmode...", tag);
                 // TODO: for threadsafety chagne name including thread id and pass threadid on
                 // compile
@@ -267,9 +272,9 @@ public class JakeCompile {
                 }
 
                 String final_name = b_data[B_NAME]
-                        + (CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME") ? boxmode + "-" : "")
+                        + (CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME") && bmodes.length > 1 ? boxmode + "-" : "")
                         + new File(CoreSettings.requestValue("S_FILE")).toString().replaceFirst("[.][^.]+$", "");
-                final_name = final_name.replace("\"", "");
+                final_name = final_name.replace("\"", "").replace(" ","-"); // We can't allow spaces :/
 
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL")) {
                     writeLoggerInfo("Erstelle Ghost Dokument...", tag);
@@ -291,8 +296,8 @@ public class JakeCompile {
 
                 // Start of compile
 
-                int fb = 0;
-                for (int i = 0; i < Integer.parseInt(CoreSettings.requestValue("S_LILLY_COMPILETIMES")); i++) {
+                int fb = 0; int _max_compile = Integer.parseInt(CoreSettings.requestValue("S_LILLY_COMPILETIMES"));
+                for (int i = 0; i < _max_compile; i++) {
                     // execute IN-hooks
                     synchronized (Hooks.getInstance()) {
                         Expandables.finalName = final_name + ".pdf";
@@ -300,7 +305,7 @@ public class JakeCompile {
                     }
                     writeLoggerInfo("Kreiere Latex-Datei (führe pdflatex aus)...", tag);
                     StringBuilder compileCommand = new StringBuilder();
-                    compileCommand.append("pdflatex -jobname ").append(final_name).append(" $(LATEXARGS) ")
+                    compileCommand.append("pdflatex -jobname ").append(final_name).append((i+1<_max_compile)?" -draftmode ":"").append(" $(LATEXARGS) ")
                             .append(b_data[B_EXTRA]).append("${_LILLYARGS}")
                             .append("\\\\providecommand{\\\\LILLYxBOXxMODE}{").append(boxmode).append("}");
                     compileCommand.append("\\\\providecommand{\\\\LILLYxPDFNAME}{").append(final_name).append("}");
@@ -362,6 +367,21 @@ public class JakeCompile {
                                 ColorConstants.COL_ERROR, id, b_data[B_TEXT], ColorConstants.COL_ERROR,
                                 ColorConstants.COL_RESET);
                         return;
+                    }
+
+                }
+                if (CoreSettings.requestSwitch("S_LILLY_COMPRESS")) {
+                    JakeWriter.out.format("%sDa gefordert: Komprimiere PDF-Datei (%s) %s%n", ColorConstants.COL_GOLD, final_name,
+                            ColorConstants.COL_RESET);
+                    Process p;
+                    try {
+                        p = Runtime.getRuntime()
+                                .exec(new String[] { "gs", "-sDEVICE=pdfwrite", "-dCompatibilityLevel=1.4", "-dNOPAUSE", "-dDetectDuplicateImages", "-dCompressFonts=true", "-dPDFSETTINGS=/" + CoreSettings.requestValue("S_LILLY_COMPRESS_TARGET"),
+                                        "-dQUIET", "-dBATCH", "-sOutputFile=" + final_name + "-compressed.pdf",
+                                        final_name + ".pdf" });
+                        p.waitFor();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
                 }

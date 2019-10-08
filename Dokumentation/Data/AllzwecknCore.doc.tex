@@ -15,6 +15,39 @@
 %
 %
 %
+\subsection{Schriften}
+\hypertarget{LILLYxFONTS}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxFONTS} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.1.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen. Es kann eine der folgenden Optionen dem Paket oder Lilly übergeben werden, um die Dokumentschriftart zu ändern: \typesetList[T]{garamond,crimson,lcrimson,kpfont,overclock}. Diese Dokumentation wurde durch folgenden Aufruf erzeugt:
+\begin{latex*}
+\documentclass[Dokumentation,kpfont]{Lilly}
+\end{latex*}
+
+%
+%
+%
+
+\presentCommand[1.0.9]{useefont}[\cmdlist\anothercmd[1.0.7]{efont}\manArg{Text}]
+Setzt \T{Text} in der Euler-Font. So ergibt \T{\blankcmd{efont}\{Hallo\}}: \efont{Hallo}.
+
+%
+%
+%
+
+\presentCommand[1.0.7]{kfont}[\manArg{Text}]
+Setzt \T{Text} in der Konanur-Font. So ergibt \T{\blankcmd{kfont}\{Hallo\}}: \kfont{Hallo}.
+
+%
+%
+%
+
+\presentCommand[1.0.7]{Lilly}
+Setzt den Lilly-Schriftzug (in Konanur-Schrift): \blankcmd{Lilly} ergibt: \Lilly.
+
+\presentCommand[1.0.0]{LILLYxlstTypeWriter}
+Die allgemeine TypeWriter-Schriftart wird mithilfe von \blankcmd{LILLYxlstTypeWriter} auf \T{AnonymousPro} gesetzt (\textit{Sie wird auch hier für die Dokumentation verwendet}).
+
+%
+%
+%
 \subsection{Lilly-Befehle}
 \hypertarget{LILLYxCOMMAND}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxCOMMAND} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxUTIL} geladen.\medskip\newline
 Die Befehle die hier zur Verfügung gestellt werden sollten nur dann verwendet werden, wenn es keine andere Möglichkeit gibt, das gewünschte Ergebnis zu erreichen.
@@ -81,9 +114,12 @@ Konvertiert eine bestehende Umgebung in eine globale:
 \presentCommand[2.0.0]{providedef}[\manArg{Name}\manArg{Body}]
 Definiert den Befehl mit den Namen \T{Name}, sofern er noch nicht existiert mittels \blankcmd{def}. Bisher ist die Angabe von Argumenten nicht vorgehsehen.
 
+%
+%
+%
 
-
-
+\presentCommand[2.0.0]{RequestConfig}[\manArg{Path}]
+Lädt die Konfigurationsdatei in \T{Path}, sofern diese existiert.
 
 
 \subsection{Kodierung}
@@ -131,14 +167,14 @@ Liefert die Länge der Liste, sofern der Seperator ein Komma oder ein anderer vo
 %
 
 \presentCommand[2.0.0]{containsList}[\manArg{ListName}\manArg{search}]
-Vergleicht die vollexpandierten Werte einer \emph{kommaseparierten} Liste mit dem entsprechenden Suchbegriff und expandiert zu \blankcmd{true} (TRUE), wenn das Suchwort gefunden wird. Es ist geplant, dass dieser Ausdruck zu einem regulären TeX-\T{if} expandiert und in \blankcmd{iflistcontains} umgenannt wird.
+Vergleicht die vollexpandierten Werte einer \emph{kommaseparierten} Liste mit dem entsprechenden Suchbegriff und expandiert zu \blankcmd{true} (TRUE), wenn das Suchwort gefunden wird. Es ist geplant, dass dieser Ausdruck zu einem regulären TeX-\T{if} expandiert und in \blankcmd{iflistcontains} umbenannt wird.
 
 %
 %
 %
 
 \presentCommand[2.0.0]{typesetList}[\optArg[typesetVoid]{command}\manArg{ListName}]
-Setzt die Liste in deutscher Listen-Notation, wobei auf jedes Element das entsprechend als \T{command} übergebene Makro angewendet wird, welches als ein Argument den zu setzenden Text entgegen nehmen sollte. Der Standardbefehl \T{typesetVoid}, liefert den Text einfach wieder zurück, allerdings lässt sich wie folgt relativ einfach eine Liste an Befehlen setzen, der Befehl \blankcmd{blankcmd} setzt den Text als Befehl in entsprechender Farbe (\T{\blankcmd{blankcmd}\{hallo\}}: \blankcmd{hallo}):
+Setzt die Liste in deutscher Listen-Notation, wobei auf jedes Element das entsprechend als \T{command} übergebene Makro angewendet wird, welches als ein Argument den zu setzenden Text entgegen nehmen sollte (mit \LILLYxBOXxVersion{2.1.0} wird die Sprache berücksichtigt). Der Standardbefehl \T{typesetVoid}, liefert den Text einfach wieder zurück, allerdings lässt sich wie folgt relativ einfach eine Liste an Befehlen setzen, der Befehl \blankcmd{blankcmd} setzt den Text als Befehl in entsprechender Farbe (\T{\blankcmd{blankcmd}\{hallo\}}: \blankcmd{hallo}):
 \begin{latex*}
 \typesetList[blankcmd]{Ich, mag, züüüge, so viele züüge}.
 \end{latex*}
@@ -212,6 +248,17 @@ Liefert eine zufällige Zahl zwischen \T{LowerBound} und \T{UpperBound} (jeweils
 \begin{bemerkung}[Verwendung der Kurzbefehle]
 Die Kurzbefehle die hier definiert werden existieren, auch wenn das dafür notwendige Paket nicht geladen ist. In diesem Fall sorgt die Verwendung für einen Fehler.
 \end{bemerkung}
+
+%
+%
+%
+
+\presentCommand[2.0.0]{heute}
+Liefert das aktuelle Datum in hübscher deutscher Notation. Dieser Befehl wird gegebenenfalls in ein anderes Paket übertragen: \blankcmd{heute} liefert: \heute.
+
+%
+%
+%
 
 \presentCommand[2.0.0]{lstfs}[\optArg{lineSpread}\manArg{fontsize}]
 Setzt die aktuelle Schriftgrößen Definition für \LILLYxNOTExLibrary{LILLYxLISTINGS}, genau genommen werden \blankcmd{LILLYxLISTINGSxFONTSIZE} sowie \blankcmd{LILLYxLISTINGSxNUMxFONTSIZE} entsprechend definiert.
@@ -459,10 +506,12 @@ Setzt die entsprechenden Felder \blankcmd{AUTHOR} und \blankcmd{AUTHORMAIL}, die
 %
 
 \presentCommand[2.0.0]{LillyLogo}[]
-Setzt das Lilly-Logo, welches sich auch in der Dokumentation wiederfindet:\smallskip\\
+Setzt das Lilly-Logo, welches sich auch in der Dokumentation wiederfindet.
+\iflillycompact\else
+\smallskip\\
 \begin{minipage}{\linewidth}
     \LillyLogo
-\end{minipage}\\
+\end{minipage}\\\fi
 Die Formatierung verwendet übrigens \emph{nicht} \blankcmd{Acronym}, da sie möglichst ohne weiteres Paket funktionieren sollte.
 
 %
@@ -662,8 +711,8 @@ Hält einen eventuellen Flavour-Text. Dieser kann mit \LILLYxNOTExLibrary{LILLYx
 %
 %
 
-\presentCommand[1.0.0]{LILLYxSemester}
-Enthält das Semester, da nach der Vorlesung nicht gefragt ist, wenn es auf einem negativen Wert steht, wird es, sofern nicht angegeben, auf \T{-1} gesetzt\footnote{Damit kann auch mit \Jake unterschieden werden, der das Semester in diesem Fall bewusst auf \T{0} setzt.}: \LILLYxSemester.
+\presentCommand[1.0.0]{LILLYxSemester}[\cmdold]
+Dieser Befehl ist mit \LILLYxBOXxVersion{2.1.0} nicht mehr Teil von LILLY!
 
 %
 %
@@ -715,8 +764,8 @@ Beispiel:
 %
 %
 
-\presentCommand[1.0.7]{LILLYxLoadPackage}[\manArg{Paket}\manArg{Brief}\manArg{Error-Text}\manArg{Fallback}\manArg{Params}\manArg{Error}]
-Lädt das \T{Paket} mit dem Parametern \T{Params} und fügt die Beschreibung \T{Brief} hinzu. Wird es nicht gefunden, so wird der \T{Error-Text} ausgegeben und zusätzlich \T{Error} initiiert. Das Kompilieren scheitert nicht, wenn das Paket nicht existiert, allerdings wird der \T{Fallback}-Code zusätzlich ausgeführt um so Befehle zu emulieren.
+\presentCommand[1.0.7]{LILLYxLoadPackage}[\manArg{Paket}\manArg{Brief}\manArg{Error-Text}\manArg{Fallback}\manArg{Params}\manArg{true}]
+Lädt das \T{Paket} mit dem Parametern \T{Params} und fügt die Beschreibung \T{Brief} hinzu. Wird es nicht gefunden, so wird der \T{Error-Text} ausgegeben, sonst \T{true} initiiert. Das Kompilieren scheitert nicht, wenn das Paket nicht existiert, allerdings wird der \T{Fallback}-Code zusätzlich ausgeführt um so Befehle zu emulieren.
 Beispiel:
 \begin{latex*}
 %% https://ctan.org/pkg/graphicx
@@ -783,7 +832,7 @@ Setzt für alle folgenden Module die jeweiligen Pfade, wobei \T{ABSPATH} jeweils
     \item \blankcmd{LILLYxPATHxGRAPHICS}: \newline\lstshowcmd{\LILLYxPATHxGRAPHICS}
     \item \blankcmd{LILLYxABSPATHxGRAPHICS}: \newline\lstshowcmd{\LILLYxABSPATHxGRAPHICS}
 \end{ditemize}\def\stdloperation#1{\blankcmd{LILLYxPATHx#1} (\blankcmd{LILLYxABSPATHx#1})\anothercmd*[1.0.4]{LILLYxPATHx#1}\anothercmd*[1.0.4]{LILLYxABSPATHx#1}}
-Alle entsprechenden Befehle: \typesetList[stdloperation]{CONTROLLERS,DATA,GRAPHICS,FALLBACKS,HELPER,LISTINGS,MATHS,BEAMER,UTIL,CORE,PRESENTER}
+Alle entsprechenden Befehle: \typesetList[stdloperation]{CONTROLLERS,DATA,GRAPHICS,FALLBACKS,HELPER,LISTINGS,MATHS,BEAMER,UTIL,CORE,PRESENTER}. Diese werden lediglich zu absoluten Pfaden aufgelöst, wenn \T{shell-escape} (\T{write-18}) aktiviert ist.
 
 %
 %
@@ -810,7 +859,7 @@ Lädt eine Datei aus dem Datenverzeichnis.
 %
 %
 
-\presentCommand[1.0.4]{getSemester}[\manArg{Semester}\manArg{Vorlesung}]
+\presentCommand[2.1.0]{getVorlesung}[\manArg{Vorlesung}]
 Erhält den Pfad zu den Daten der entsprechenden Vorlesung.
 
 %
@@ -826,9 +875,78 @@ Versucht die Datei \T{File} zu Laden, wobei erst geschaut wird ob sie im \T{Prio
 %
 %
 
+\subsection{Rekorder}
+\hypertarget{LILLYxRECORDER}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxRECORDER} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.1.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.\medskip\newline
+Dieses Paket erlaubt einen einfachen und standardisierten Zugriff für \T{.aux}-Dateien. Das Dokument muss zweimal kompiliert werden, damit die hier vermerkten Modifikationen gültig werden.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{NewRecorder}[\optStar\manArg{ID}\manArg{Extension}]
+Erstellt eine Datei mit dem entsprechenden Suffix \T{Extension} und bindet diese, sofern der Stern \emph{nicht} gesetzt ist, direkt ein. Weiter werden die Befehle: %
+\def\ttlsx#1{\blankcmd{#1<ID>}}\typesetList[ttlsx]{write,iwrite,pwrite,pause,unpause,input,close,iclose}{} erstellt.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{pause<ID>}[\cmdlist\anothercmd[2.1.0]{unpause<ID>}]
+Pausiert die Befehle \typesetList[ttlsx]{write,iwrite,pwrite}, beziehungsweise hebt eine bisherige Pausierung auf. Die Befehle können auch dann verwendet werden, wenn sich der Rekorder bereits im entsprechenden Zustand befindet, haben dann allerdings natürlich keinen Effekt.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{write<ID>}[\manArg{Data}\cmdlist\anothercmd[2.1.0]{iwrite<ID>}\manArg{Data}\cmdlist\anothercmd[2.1.0]{pwrite<ID>}\manArg{Data}\cmdlist\secline\anothercmd[2.1.0]{input<ID>}]
+Schreibt \T{Data} in den jeweiligen Rekorder, wobei
+\begin{ditemize}
+    \item \blankcmd{write<ID>} die Daten beim Ausliefern der Seite schreibt (es werden also Seitennummern oder ähnliches korrekt aufgelöst),
+    \item \blankcmd{iwrite<ID>} die Daten direkt schreibt (kann also eine falsche Seitennummer liefern, dafür ist die Reihenfolge sicher korrekt).
+    \item \blankcmd{pwrite<ID>} auf \blankcmd{protected@write} zurück greift.
+\end{ditemize}
+Hiervon unterschiedlich bindet \blankcmd{input<ID>} den Rekorder ein, was zum Beispiel dann sinnvoll ist, wenn der Rekorder mit dem Stern deklariert wurde.
+
+%
+%
+%
+
+\presentCommand[2.1.0]{close<ID>}[\cmdlist\anothercmd[2.1.0]{iclose<ID>}]
+Schließt die jeweilige Datei, muss nur dann aufgerufen werden, wenn die Datei im selben kompiliervorgang wieder eingebunden werden muss. \blankcmd{iclose<ID>} schließt die Datei sofort, was in der Luft hängende \blankcmd{write<ID>}-Aufrufe vernichtet.
+
+%
+%
+%
+%
+%
+
+\subsection{Übersetzungen}
+\hypertarget{LILLYxTRANSLATOR}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxTRANSLATOR} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.1.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.\medskip\newline
+
+Zusammen mit dem \T{translator} Paket lassen sich durch \blankcmd{translate} Worte übersetzen, sofern eine Übersetzung für sie definiert wurde. Bisher wird die Englische (\T{english}) und die Deutsche (\T{german}) Sprache unterstützt, wobei standardmäßig die Worte in deutscher Sprache gesetzt werden. Es werden mit \LILLYxBOXxVersion{2.1.0} folgende Argumente für das Paket akzeptiert, die so auch Lilly übergeben werden können:
+
+\begin{center}
+    \begin{tabular}{^t^t^t^>{\raggedright\arraybackslash}p{6.5cm}+}
+        \toprule
+            \headerrow Aktivieren & Deaktivieren & Standard & Effekt \\
+        \midrule
+            german & nogerman & german & Setzt die Übersetzungen für die Deutsche Sprache. \\
+            english & noenglish & noenglish & Setzt die Übersetzungen für die Englische Sprache. \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+Die meisten Pakete von Lilly halten sich an diese Übersetzungen und erlauben es so auch englische Dokumente ohne großen Konfigurationsaufwand zu erzeugen. \textit{Hinweis: Dieses Paket ändert keine Befehlsbezeichner. Es nimmt lediglich Einfluss auf das gesetzte Ergebnis.}
+
+%
+%
+%
+%
+%
+
 \section{Der Keyval-Parser}
 \hypertarget{LILLYxKEYVALxPARSER}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxKEYVALxPARSER} zur Verfügung gestellt und sind auch nur im Kontext der \T{Lilly.cls} gültig (oder genauer: sinnvoll).\medskip\newline
-Dieses Paket basiert auf dem Paket \T{kvoptions} und setzt alle folgenden Schlüssel in die Familie \T{LILLY} mit dem Präfix \T{LILLY@} (daher auch \blankcmd{LILLy@n} etc.). Ersteinmal wird mittels \blankcmd{userput} die Datei \clatex{_LILLY_KEYVAL_GENERAL.tex} in den Pfaden \blankcmd{lillyPathConfig} beziehungsweise \T{\blankcmd{LILLYxPATHxDATA}/Configs} geladen, die zusätzliche Optionen bereitstellen kann, die dann beim Laden von LILLY benutzt werden können. Die Standard-Version, die mit Lilly mitgeliefert wird, definiert die folgenden Optionen, primär für \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT}, mehrere Optionen mit gleichem Effekt sind durch ein Komma getrennt:
+Dieses Paket basiert auf dem Paket \T{kvoptions} und setzt alle folgenden Schlüssel in die Familie \T{LILLY} mit dem Präfix \T{LILLY@} (daher auch \blankcmd{LILLy@n} etc.). Ersteinmal wird mittels \blankcmd{userput} die Datei \blatex{_LILLY_KEYVAL_GENERAL.tex} in den Pfaden \blankcmd{lillyPathConfig} beziehungsweise \T{\blankcmd{LILLYxPATHxDATA}/Configs} geladen, die zusätzliche Optionen bereitstellen kann, die dann beim Laden von LILLY benutzt werden können. Die Standard-Version, die mit Lilly mitgeliefert wird, definiert die folgenden Optionen, primär für \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT}, mehrere Optionen mit gleichem Effekt sind durch ein Komma getrennt:
 \begin{center}
     \begin{tabular}{^t^p{25em}+}
         \toprule
@@ -855,10 +973,10 @@ Natürlich gibt es noch eine ganze Menge an Möglichkeiten die, immer zur Verfü
             \headerrow Option & Typ & Standart & Beschreibung \\
         \midrule
             n & String & -1 & Das wievielte Übungsblatt? \\
-            Semester & String & 0 & Das wievielte Semester? \\
+            Semester & String & 0 & Das wievielte Semester? \cmdold \\
             Vorlesung & String & GDRA & Bezeichner der Vorlesung. \\
             Typ & String & PLAIN & Zu verwendendes Layout. \\
-            Jake & Boolean & false & \Jake-Unterstützung\footnote{In diesem Fall übernimmt \Jake das Setzen von \T{Vorlesung} und \T{Semester}.}. \\
+            Jake & Boolean & false & \Jake[-]Unterstützung\footnote{In diesem Fall übernimmt \Jake das Setzen der \T{Vorlesung}.}. \\
             Universe & Boolean & false & Platzhalter. \\
             paper & Boolean & false & Veraltet. \\
             beamer & Boolean & false & Platzhalter. \\
@@ -866,5 +984,5 @@ Natürlich gibt es noch eine ganze Menge an Möglichkeiten die, immer zur Verfü
         \bottomrule
     \end{tabular}
 \end{center}
-\end{minipage}\\
+\end{minipage}\smallskip\\
 Der Typ hat weiterhin die Möglichkeit eigene Hooks zur Verfügung zu stellen, die vor der eigentlichen Arbeit von Lilly ausgeführt werden und so in der Lage sind zum Beispiel das Dokumentformat zu ändern. Sie werden mittels \blankcmd{userput} einmal in \blankcmd{lillyPathConfig} und \T{\blankcmd{LILLYxPATHxDATA}/Layouts/KeyvalHooks} gesucht, wobei der Name der Form \blatex{_LILLY_KEYVAL_<Typ>.tex} folgen muss, also zum Beispiel \blatex{_LILLY_KEYVAL_EIDI.tex}.

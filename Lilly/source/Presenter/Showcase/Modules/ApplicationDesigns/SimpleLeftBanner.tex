@@ -1,0 +1,222 @@
+\@NeedsFields{%
+    lilly@applications@page@color/page color,%
+    lilly@applications@person@image/image,%
+    lilly@applications@person@first@name/first name,%
+    lilly@applications@person@last@name/last name,%
+    lilly@applications@brief@init/brief init,%
+    lilly@applications@brief/brief%
+}
+\pagecolor{\lilly@applications@page@color}%
+% Set the Banner:
+\newdimen\hexrad \hexrad=2.5cm
+\def\b@width{2\hexrad}
+%
+%
+% [#1] raise
+%  #2  thickness
+\newcommand{\@applications@raisedrule}[2][0em]{\leaders\hbox{\rule[#1]{0.01pt}{#2}}\hfill}
+%
+%
+% #1 Symbol
+% #2 Text
+\def\@applications@StartBannerBlock#1#2{\bgroup\color{\lilly@applications@contrast@color}\Large%
+    \leavevmode\vskip1.5em\hbox{}\hskip1em\relax\parbox{1.5em}{\huge#1\strut}~\MakeUppercase{#2}\(\;\)\@applications@raisedrule[0.25\baselineskip]{1pt}\hskip3.55pt\smallskip\egroup{}
+
+    %
+}
+
+
+% #1 Symbol
+% #2 Text
+\def\@applications@StartBlock#1#2{\bgroup\color{\lilly@applications@primary@color!75!black}\Large%
+    \leavevmode\newline\hbox{}\hskip1em\relax\parbox{1.5em}{#1\strut}~\MakeUppercase{#2}\(\;\)\@applications@raisedrule[0.25\baselineskip]{1.25pt}\smallskip\egroup{}
+
+    %
+}
+%
+% #1 progress
+\def\@application@lProgressBar#1{%
+    \@@ProgressBar{6.5em}{0.65em}{rounded corners=0.25em/2}{\ifdim#1pt>1pt #1/100.0\else#1\fi}{MudWhite}{MudWhite}{}%
+}
+%
+% #1 progress
+\def\@applications@sProgressBar#1{%
+    \hfill\@@ProgressBar{6.5em}{0.65em}{rounded corners=0.25em/2}{\ifdim#1pt>1pt #1/100.0\else#1\fi}{\lilly@applications@primary@color!35!black}{\lilly@applications@primary@color!35!black}{}%
+}
+%
+%
+%
+\NewEnviron{@applications@litemize}[1][]{\bgroup\hypersetup{urlcolor={\lilly@applications@contrast@color}}%
+\hskip1.75em\relax\parbox{\linewidth-3.25em}{\begin{itemize}[label={\makebox[1em][c]{\Large$\bullet$}},#1]\leftmargin=0pt\labelsep=0.75em%
+    \BODY\end{itemize}}\egroup}
+
+
+\def\@applications@lphone#1{\item[{\makebox[1em][c]{\faPhone}}] #1}
+\def\@applications@lmail#1{\item[{\makebox[1em][c]{\faEnvelope}}] \href{mailto:#1}{#1}}
+\def\@applications@lurl#1{\item[{\makebox[1em][c]{\faGlobe}}] \url{#1}}
+\def\@applications@llocation#1{\item[{\makebox[1em][c]{\faMapMarker}}] #1}
+\def\@applications@lmphone#1{\item[{\makebox[1em][c]{\Large\faMobile}}] #1}
+
+\foreach \xcs/\symfa in {%
+    facebook/faFacebookSquare,%
+    instagram/faInstagram,%
+    twitter/faTwitter,%
+    rss/faRss,%
+    linkedin/faLinkedin,%
+    steam/faSteamSquare,%
+    soundcloud/faSoundcloud,%
+    wordpress/faWordpress,%
+    xing/faXing,%
+    youtube/faYoutubePlay,%
+    reddit/faReddit,%
+    github/faGithubSquare,%
+    gitlab/faGitlab,%
+    telegram/faPaperPlane,%
+    dropbox/faDropbox,%
+    slack/faSlack%
+}{%
+    \expandafter\xdef\csname @applications@l\xcs\endcsname##1{\noexpand\item[{\noexpand\makebox[1em][c]{\expandafter\noexpand\csname\symfa\endcsname}}] ##1}%
+}
+%
+%
+\begin{Banner}[bottom color=\lilly@applications@primary@color!25!\lilly@applications@secondary@color, top right color={\lilly@applications@primary@color}, top left color={\lilly@applications@primary@color!50!\lilly@applications@secondary@color},width=8cm,%
+    pre code={\filldraw[path image={\lilly@applications@person@image}{\b@width},\lilly@applications@contrast@color] ([yshift=-2.25\hexrad,xshift=8cm/2]current page.north west) -- ++ (30:\hexrad) -- ++ (90:\hexrad) -- ++ (150:\hexrad) -- ++ (210:\hexrad) -- ++ (270:\hexrad) -- cycle;}]
+    \color{\lilly@applications@contrast@color}\vskip2.5\hexrad\large{}
+    \begin{center}\Huge
+        \ifcsname lilly@applications@person@title\endcsname\@nameuse{lilly@applications@person@title}~\fi\lilly@applications@person@first@name~\textbf{\lilly@applications@person@last@name}%\bigskip
+        % \ornasimplebreak[scale=0.35,ydelta=-0.75cm]{}
+    \end{center}
+    %
+    \let\c@@applications@bannermax\relax
+    \newcounter{@applications@bannermax}%
+    \setcounter{@applications@bannermax}{4}%
+    %
+    %
+    % Erster Block: Kurzbeschreibung
+    %
+    %
+    %
+    \@applications@StartBannerBlock{\faUser}{\xtranslate{Kurzbeschreibung}}%
+    \hskip2em\parbox{\linewidth-3.35em}{\textbf{\lilly@applications@brief@init:} \lilly@applications@brief}
+    %
+    %
+    %
+    % Zweiter Block: Kontakt
+    %
+    %
+    %
+    \smallskip\@applications@StartBannerBlock{\LARGE\faComments}{\xtranslate{Kontakt}}%
+    \begin{@applications@litemize}
+        \def\@applications@setcontacts#1#2#3#4{\addtocounter{@applications@bannermax}{-1}\@nameuse{@applications@l#4}{\@nameuse{#3}}}
+        \@applications@SetNElementsFromCmdListIfTheyExist{\the@applications@bannermax}{@applications@setcontacts}{%
+            lilly@applications@person@telephone/phone,%
+            lilly@applications@person@mobile@phone/mphone,%
+            lilly@applications@person@email/mail,%
+            lilly@applications@person@website/url,%
+            lilly@applications@person@location/location%
+        }
+    \end{@applications@litemize}
+    %
+    %
+    %
+    % Dritter Block: Persönliche Fertigkeiten 
+    %
+    %
+    %
+    \addtocounter{@applications@bannermax}{4}%
+    \smallskip\@applications@StartBannerBlock{\LARGE\faPieChart}{\xtranslate[Pers\"{o}nliche Fertigkeiten]{PersoenlicheFertigkeiten}}
+    \def\@applications@example#1#2#3#4{\addtocounter{@applications@bannermax}{-1} \item \ifthenelse{\equal{#4}{}}{#3}{\parbox[t]{\linewidth-7.25em}{#3}\hfill\@application@lProgressBar{#4}}}
+    \edef\@tmp{\noexpand\@applications@SetNElementsFromList{\the@applications@bannermax}{@applications@example}{\lilly@applications@skills}}
+    \begin{@applications@litemize}
+        \@tmp
+    \end{@applications@litemize}
+    %
+    %
+    %
+    % Vierter Block: Soziale Netzwerke
+    %
+    %
+    %
+    \addtocounter{@applications@bannermax}{4}%
+    %% TODO: make for all social possibilities, and writer their \l.... commands
+    % Further make this template more customizeable by selecting the names of the kategories etc.
+    \smallskip\@applications@StartBannerBlock{\LARGE\faUsers}{\xtranslate{Soziale Netzwerke}}
+    \begin{@applications@litemize}
+        \def\@applications@setsocial#1#2#3#4{\addtocounter{@applications@bannermax}{-1} \@nameuse{@applications@l#4}{\@nameuse{#3}}}
+        \@applications@SetNElementsFromCmdListIfTheyExist{\the@applications@bannermax}{@applications@setsocial}{%
+            lilly@applications@person@instagram/instagram,%
+            lilly@applications@person@facebook/facebook,%
+            lilly@applications@person@twitter/twitter,%
+            lilly@applications@person@rss/rss,%
+            lilly@applications@person@linkedin/linkedin,%
+            lilly@applications@person@steam/steam,%
+            lilly@applications@person@soundcloud/soundcloud,%
+            lilly@applications@person@wordpress/wordpress,%
+            lilly@applications@person@xing/xing,%
+            lilly@applications@person@youtube/youtube,%
+            lilly@applications@person@reddit/reddit,%
+            lilly@applications@person@github/github,%
+            lilly@applications@person@gitlab/gitlab,%
+            lilly@applications@person@telegram/telegram,%
+            lilly@applications@person@dropbox/dropbox,%
+            lilly@applications@person@slack/slack%
+        }
+    \end{@applications@litemize}
+\end{Banner}%
+\medskip\ignorespaces%
+% Here we will set the necessary blocks for the user to create the main-side. 
+%
+% #1 Name
+% #2 When
+% #3 Where
+\NewEnviron{@application@event}[3]{%
+\item[\color{\lilly@applications@primary@color!75!black}\raisebox{0.5pt}{$\bullet$}] {\color{\lilly@applications@primary@color!75!black}\textbf{#1}\hskip0.5em\relax/\hskip0.5em\relax{\small#3\hbox{}\hfill#2}\hskip1cm}\\[0.1em]\parbox[t]{\linewidth-1cm}{\BODY}\medskip
+}%
+%
+\newdimen\@application@bpskip \@application@bpskip=0.25cm%
+% #1 number of cols
+\NewEnviron{@application@bulletpoints}[1][]{\leavevmode\newline\indent%
+    \ifnum\@listdepth=\@ne \@application@bpskip=0.075cm\else \@application@bpskip=0.25cm\fi%
+    \hskip-\@application@bpskip\parbox{\linewidth-1cm+\@application@bpskip}{%
+    \ifx\\#1\\\else\begin{multicols}{#1}\vspace*{-\baselineskip}\fi%
+    \begin{itemize}[topsep=4pt, label={\color{\lilly@applications@primary@color!75!black}\ifnum\@listdepth=\@ne \raisebox{0.5pt}{$\bullet$}\else\raisebox{1.25pt}{\scriptsize$\bullet$}\fi},itemsep=2pt]%
+        \BODY%
+    \end{itemize}%
+    \ifx\\#1\\\else\end{multicols}\fi%
+    }%
+}%
+\NewEnviron{@application@text}{%
+    \hskip0.3cm\relax\parbox{\linewidth-1cm-0.3cm}{\BODY}%
+}
+% if #1 given it will sign with tese words
+\DeclareDocumentCommand{\sign}{ o O{Mit freundlichen Grüßen:} }{%
+\null\vfill\hskip1cm #2%
+    \vskip4.125em\begin{flushright}% Unterschrift
+        \parbox[t]{6cm}{%
+            \centering
+            \IfValueTF{#1}{{\huge\calligra{} #1}\\[-0.75\baselineskip]}{{\huge\strut}}
+            \rule{5cm}{1pt}\\
+            \@@applications@Construct@FullName\relax,\hskip0.75em\relax\heute
+        }\hspace*{0.5cm}
+    \end{flushright}\vskip0.75cm%
+}%
+%
+%
+%
+% [#1] Symbol
+%  #2  Title
+\renewenvironment{block}[2][]{\bgroup%
+    \let\progressbar\@applications@sProgressBar%
+    \@applications@StartBlock{#1}{#2}%
+    \begin{minipage}{\linewidth}\ignorespaces%
+    \let\bulletpoints\@application@bulletpoints \let\endbulletpoints\end@application@bulletpoints
+    \let\text\@application@text \let\endtext\end@application@text
+    \NewEnviron{timeline}{%
+        \let\event\@application@event \let\endevent\end@application@event%
+        \hskip-0.25cm\parbox{\linewidth+0.25cm}{\begin{itemize}%
+            \BODY%
+        \end{itemize}}%
+    }%
+    
+
+}{\end{minipage}\egroup\medskip}

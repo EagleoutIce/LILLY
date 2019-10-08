@@ -155,7 +155,7 @@
   enhanced jigsaw,breakable,blankest,listing only,enlarge top by=\lilly@lst@outer@spacing,enlarge bottom by=\lilly@lst@outer@spacing,
   listing options={%
     style=MAIN,
-    language=#3,#1},#2%
+    language=#3,#1},#2, after={\\[-0.25\baselineskip]}%
 }
 {}
 
@@ -173,7 +173,7 @@
 % #5 Language
 \def\LillyNewLstEnvironCore#1#2#3#4#5{%
         %This does already work, but has the drawback of not being able to provide the (wanted) different styles
-      \lstnewenvironment{#1}[1][]{#3\lstset{##1}}{#4}
+      \lstnewenvironment{#1}[1][]{#3\lstset{##1}}{#4}%
       % \newtcblisting{#1}[1][]{%
       %   enhanced jigsaw,breakable,blankest,listing only,
       %   listing options={%
@@ -191,7 +191,7 @@
 % #4 Out Extra
 % #5 Language
 \def\LillyNewLstEnvironCoreStarred#1#2#3#4#5{%
-      \lstnewenvironment{#1}[1][]{#3\lstset{style=nonum,##1}}{#4}
+      \lstnewenvironment{#1}[1][]{#3\lstset{style=nonum,##1}}{#4}%
 }
 
 % #1 Name
@@ -202,7 +202,7 @@
 \def\LillyNewLstEnvironPlain#1#2#3#4#5{%
   \lstnewenvironment{#1}[1][]{#3\lstset{xleftmargin=0pt,xrightmargin=0pt,%
   numbers=none,numbersep=0pt,frame=none,%
-  rulecolor={},backgroundcolor={},##1}}{#4}
+  rulecolor={},backgroundcolor={},##1}}{#4}%
   % \expandafter\xdef\csname#1\endcsname{\noexpand\leavevmode\noexpand\vspace*{-0.45\noexpand\baselineskip}\noexpand\plainlst{#5}}
   % \expandafter\xdef\csname end#1\endcsname{\noexpand\endplainlst}
 }

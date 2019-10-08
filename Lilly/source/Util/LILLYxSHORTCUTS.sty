@@ -1,11 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxSHORTCUTS}[2019/08/03 Stellt einige Shortcuts fuer LILLY zur Verfuegung]
 
+
+\RequirePackage[yyyymmdd,hhmmss]{datetime}
+\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
+
 %% Dieses Paket fordert kein anderes, es wird davon ausgegangen, dass zu den Shortcuts die benötigten Pakete
 %% geladen werden/sind
 
 \newcommand{\lstfs}[2][1]{\def\LILLYxLISTINGSxFONTSIZE{\fontsize{#2}{#2}\selectfont\linespread{#1}}%
-\ifnum#2>3\def\LILLYxLISTINGSxNUMxFONTSIZE{\edef\@@subfs{\the\numexpr #2-3\relax}\fontsize{\@@subfs}{\@@subfs}\selectfont\linespread{#1}}%
+\ifnum#2>4\def\LILLYxLISTINGSxNUMxFONTSIZE{\edef\@@subfs{\the\numexpr #2-4\relax}\fontsize{\@@subfs}{\@@subfs}\selectfont\linespread{#1}}%
 \else\def\LILLYxLISTINGSxNUMxFONTSIZE{\tiny\linespread{#1}}\fi%
 }
 
@@ -51,7 +55,7 @@
 
 \newcommand{\dispnote}[2][]{\parbox[t]{5em}{#1{\small#2}}}
 
-\newcommand{\note}[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
+\providecommand{\note}[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
 
 %%Smallnote
 \newcommand{\snote}[2][1]{\note[\scriptsize #1]{#2}}
@@ -82,14 +86,15 @@
 
 
 %% vorlesungsspezifische Shortcuts :D
-\LILLYcommand{\fg}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont For\-ma\-le Grund\-la\-gen}#1}
-\LILLYcommand{\gdra}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen der Rech\-ner\-arch\-it\-ek\-tur}#1}
-\LILLYcommand{\eidi}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ein\-f\"{u}hr\-ung in die Inf\-or\-ma\-tik}#1}
-\LILLYcommand{\la}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Lin\-e\-a\-re Al\-ge\-bra}#1}
+\LILLYcommand{\fg}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont For\-ma\-le\ Grund\-la\-gen}#1}
+\LILLYcommand{\gdra}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen\ der\ Rech\-ner\-arch\-it\-ek\-tur}#1}
+\LILLYcommand{\eidi}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ein\-f\"{u}hr\-ung\ in\ die Inf\-or\-ma\-tik}#1}
+\LILLYcommand{\la}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Lin\-e\-a\-re\ Al\-ge\-bra}#1}
 \LILLYcommand{\anaI}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ana\-ly\-sis~1}#1}
-\LILLYcommand{\pdp}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pa\-ra\-dig\-men der Pro\-gram\-mie\-rung}#1}
-\LILLYcommand{\gdbs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen der Be\-triebs\-sys\-tem\-e}#1}
-\LILLYcommand{\pvs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pro\-gram\-mie\-rung von Sys\-tem\-en}#1}
+\LILLYcommand{\pdp}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pa\-ra\-dig\-men\ der\ Pro\-gram\-mie\-rung}#1}
+\LILLYcommand{\gdbs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen\ der\ Be\-triebs\-sys\-tem\-e}#1}
+\LILLYcommand{\pvs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pro\-gram\-mie\-rung\ von\ Sys\-tem\-en}#1}
+\LILLYcommand{\algo}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Al\-go\-rith\-men\ und\ Da\-ten\-struk\-tur\-en}#1}
 %% Seminar
 \LILLYcommand{\knn}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont K\"{u}nstliche neuronale Netze}#1}
 

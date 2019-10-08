@@ -1,0 +1,9 @@
+!: No specific output location requested :!
+!: Comments starting with '!:' won't be passed to the target file and are informative :!
+
+! This line will make it to the output-file !
+
+lilly-author    =     ${AUTHOR}
+
+!: If the expandable '${HAMSTER}' won't be supplied, this line will not be printed as for the leading ':':!
+: lilly-hamster =     ${HAMSTER}

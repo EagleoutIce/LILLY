@@ -56,8 +56,14 @@ bin
 **/.idea/tasks.xml
 **.classpath
 **workspace.xml
-*.aux
-*.log
+**/*.aux
+**/*.log
+**/*.nav
+**/*.snm
+**/*.toc
+**/*.doc.pdf
+**/Data/Graphics/**/*.pdf
+**/*.jar
 
 # Created by https://www.gitignore.io/api/intellij
 

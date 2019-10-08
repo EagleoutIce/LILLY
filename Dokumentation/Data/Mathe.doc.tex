@@ -6,6 +6,12 @@
     \blankcmd{LILLYxPATHxMATHS} = \T{\LILLYxPATHxMATHS}
 \end{center}
 
+Das Laden des Pakets mit LILLY kann durch die Option \T{math} aktiviert werden (Standard) und durch \T{nomath} entsprechend dekativiert. So sorgt das Deklarieren von:
+\begin{latex*}
+\documentclass[nomath]{Lilly}
+\end{latex*}
+Für ein Lilly-Dokument ohne \LILLYxNOTExLibrary{LILLYxMATH}.
+
 %
 %
 %
@@ -44,8 +50,8 @@ Lilly liefert den Befehl auf Basis von \T{mkern} so, dass er direkt Abstände zw
 %
 
 \presentCommand[1.0.3]{das}[\cmdlist \anothercmd[1.0.3]{sad}\cmdlist \anothercmd[1.0.3]{daseq}\cmdlist \anothercmd[1.0.3]{qesad}\cmdlist \anothercmd[1.0.6]{shouldeq}]
-Für Definitionen gibt es die Befehle \blankcmd{das} ($\das$), \blankcmd{sad} ($\sad$), \blankcmd{daseq} ($\daseq$), \blankcmd{qesad} ($\qesad$) sowie \blankcmd{shouldeq} ($\shouldeq$). All diese Befehle funktionieren sowohl in einer Matheumgebung, das auch im normalen text, sie werden mit \verb|\ensuremath| abgesichert!\par
-Bis auf den letzten werden zudem alle Befehle mithilfe von \verb|\vcentcolon| realisiert.
+Für Definitionen gibt es die Befehle \blankcmd{das} ($\das$), \blankcmd{sad} ($\sad$), \blankcmd{daseq} ($\daseq$), \blankcmd{qesad} ($\qesad$) sowie \blankcmd{shouldeq} ($\shouldeq$). All diese Befehle funktionieren sowohl in einer Matheumgebung, das auch im normalen text, sie werden mit \blankcmd{ensuremath} abgesichert!\par
+Bis auf den letzten werden zudem alle Befehle mithilfe von \blankcmd{vcentcolon} realisiert.
 
 %
 %
@@ -77,7 +83,7 @@ Diese vereinfachenden Operatoren solles es ermöglichen Schneller verschiedene m
 %
 
 \presentCommand[1.0.2]{Im}[\cmdlist \anothercmd[1.0.2]{mod}\cmdlist \anothercmd[1.0.2]{Re}\cmdlist \anothercmd[1.0.2]{emptyset}]
-Auch wurde das Aussehen von \verb|\mod|, \verb|\Im|, \verb|\Re| und \verb|\emptyset| modifiziert:
+Auch wurde das Aussehen von \blankcmd{mod}, \blankcmd{Im}, \blankcmd{Re} und \blankcmd{emptyset} modifiziert:
 \displayCommandList{mod,Im,Re,emptyset}
 
 %
@@ -108,7 +114,7 @@ Dieser Befehl vereinfacht das Schreiben von Betragsstrichen. Diese passen sich z
 %
 
 \presentEnvironment[1.0.2]{matrix}[\optArg{Spaltendefinition}\cmdlist \anotherenv[1.0.0]{pmatrix}\optArg{Spaltendefinition}]
-Des Weiteren wurde noch die Matrixumgebung (\verb|\env@matrix|) so erweitert, dass sie als optionales Argument eine gültige Array-Spaltendefinition entgegennimmt:
+Des Weiteren wurde noch die Matrixumgebung (\blankenv{matrix}) so erweitert, dass sie als optionales Argument eine gültige Array-Spaltendefinition entgegennimmt:
 \begin{center}\renewcommand{\arraystretch}{0.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{5.5cm}@{\hspace{1em}}|@{\hspace{1em}}C{2cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
@@ -163,15 +169,15 @@ Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_SYMBOLS}
 %\normalmarginpar
 
 \presentCommand[1.0.0]{N}[\cmdlist \anothercmd[1.0.0]{Z}\cmdlist \anothercmd[1.0.0]{Q}\cmdlist \anothercmd[1.0.0]{R}\cmdlist \anothercmd[1.0.0]{C}]
-Für die einzelnen Zahlenräume werden einige Befehle zur Verfügung gestellt, die alle über \verb|\ensuremath| abgesichert sind:
-\blankcmd{N} ($\N$), \blankcmd{Z} ($\Z$), \blankcmd{Q} ($\Q$), \blankcmd{R} ($\R$), \blankcmd{C} ($\C$). Sie werden mithilfe von \verb|\mathbb| generiert.
+Für die einzelnen Zahlenräume werden einige Befehle zur Verfügung gestellt, die alle über \blankcmd{ensuremath} abgesichert sind:
+\blankcmd{N} ($\N$), \blankcmd{Z} ($\Z$), \blankcmd{Q} ($\Q$), \blankcmd{R} ($\R$), \blankcmd{C} ($\C$). Sie werden mithilfe von \blankcmd{mathbb} generiert.
 
 %
 %
 %
 
 \presentCommand[1.0.1]{i}
-Die komplexe Einheit \i{} wird mit \blankcmd{i} zur Verfügung gestellt.
+Die komplexe Einheit \T{i} wird mit \blankcmd{i} zur Verfügung gestellt.
 
 %
 %
@@ -182,8 +188,8 @@ Weiter wurden die griechischen Buchstaben Epsilon und Phi modifiziert:
 \begin{center}
     \begin{tabular}{*{2}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        \T{\CMDshow{oldepsilon}} & \(\oldepsilon\) & \T{\CMDshow{epsilon}} & \(\epsilon\) \\\hline
-        \T{\CMDshow{oldphi}} & \(\oldphi\)& \T{\CMDshow{phi}} & \(\phi\) \\
+        \T{\blankcmd{oldepsilon}} & \(\oldepsilon\) & \T{\blankcmd{epsilon}} & \(\epsilon\) \\\hline
+        \T{\blankcmd{oldphi}} & \(\oldphi\)& \T{\blankcmd{phi}} & \(\phi\) \\
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
@@ -227,7 +233,7 @@ Hier werden einige Befehle eingerichtet, die entweder noch nicht zugeordnet wurd
 %
 
 \presentCommand[1.0.0]{enum}[\manArg{items}\cmdlist \anothercmd[1.0.0]{liste}\manArg{items}]
-Hier befinden sich die für \la kreierten: \T{\blankcmd{enum}\manArg{items}} (\verb|enumerate| mit \newline\blankcmd{narrowitems}) und \T{\blankcmd{liste}\manArg{items}} (\verb|enumerate| mit römischen Zahlen und \newline\blankcmd{narrowitems}).
+Hier befinden sich die für \la kreierten: \T{\blankcmd{enum}\manArg{items}} (\blankenv{enumerate} mit \newline\blankcmd{narrowitems}) und \T{\blankcmd{liste}\manArg{items}} (\blankenv{enumerate} mit römischen Zahlen und \newline\blankcmd{narrowitems}).
 
 %
 %
@@ -352,7 +358,7 @@ Setzt entsprechend: \x[], \y und \z[].
 %
 
 \presentCommand[2.0.0]{ceil}[\optArg{math-Ausdruck}\cmdlist \anothercmd[2.0.0]{floor}\optArg{math-Ausdruck}]
-Verkürzt das Schreiben von: \clatex[morekeywords={[5]{left,right,lfloor,rfloor}}]{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \clatex[morekeywords={[5]{lceil}}]{:bs:lceil} \& \clatex[morekeywords={[5]{rceil}}]{:bs:rceil} entsprechend:
+Verkürzt das Schreiben von: \clatex[morekeywords={[5]{left,right,lfloor,rfloor}}]{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \blatex[morekeywords={[5]{lceil}}]{:bs:lceil} \& \blatex[morekeywords={[5]{rceil}}]{:bs:rceil} entsprechend:
 \begin{multicols}{2}%
     \begin{ditemize}
         \item \blankcmd{ceil} (\ceil{\frac{a}{b}})%
@@ -386,14 +392,14 @@ Zeichnet in eine \jmark[Graph-Umgebung]{env:graph} eine Folge zwischen \emph{Unt
 %
 
 \presentCommand[2.0.0]{xmark}[\optArg[x]{text}\manArg{PosX}\optArg[0.15]{linelength}]
-Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
+Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem Text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
 
 %
 %
 %
 
 \presentCommand[2.0.0]{ymark}[\optArg[xy]{text}\manArg{PosY}\optArg[0.15]{linelength}]
-Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
+Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem Text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
 
 %
 %
@@ -411,7 +417,7 @@ Es existiert die folgende Implementation der Graph-Umgebung:
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.5\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.4\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-{\begin{latex}[breaklines=true]
+{\begin{plainlatex}[breaklines=true]
 \begin{graph}[scale=1.15,maxY=3,numbers]
     \plotline[purple]{sqrt(\x+2.5)};
     \plotline[Ao][\y]{(\y*\y)/1.5};
@@ -419,7 +425,7 @@ Es existiert die folgende Implementation der Graph-Umgebung:
         {sin(deg(\x))^2};
     \xmark[\xi]{1.5}; \ymark[\psi]{2.5};
 \end{graph}
-\end{latex}}
+\end{plainlatex}}
 &
         \begin{graph}[scale=1.15,maxY=3,numbers]
             \plotline[purple]{sqrt(\x+2.5)};
@@ -459,7 +465,7 @@ Für die \emph{Konfiguration} gibt es die folgenden Parameter:
 \end{center}
 
 \presentEnvironment[2.0.0]{egraph}[\optArg{Konfigurationen}]
-Funktioniert analog zu \blankenv{egraph}, erlaubt allerdings keine weiteren \emph{Tikz-Argumente}, sondern macht von \blankenv{tikzternal} gebrauch, kann also ausgelagert werden. (TODO: LINK)
+Funktioniert analog zu \blankenv{egraph}, erlaubt allerdings keine weiteren \emph{Tikz-Argumente}, sondern macht von \blankenv{tikzternal} gebrauch, kann also ausgelagert werden.
 
 %
 %
@@ -474,6 +480,7 @@ normale \jmark[graph]{env:graph}-Environment einzubetten. Er funktioniert mit de
     \plotline{\x*\x}
 \end{wgraph}
 \end{latex}
+\iflillycompact\else%
 \clearpage
 %
 %
@@ -489,7 +496,7 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{0.5em}}C{0.7\textwidth}@{\hspace{0.5em}}|@{\hspace{0.5em}}C{0.3\textwidth}@{\hspace{0.5em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
-        {\begin{latex}[breaklines=true]
+        {\begin{plainlatex}[breaklines=true]
 \begin{tikzternal}[scale=0.5]
 \begin{axis}[3d box=complete, colormap/bluered,
              grid=major,view={60}{40},
@@ -497,14 +504,14 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
     :bcmd:addplot3:ecmd:[data cs=cart,surf,domain=-3:3,samples=20, opacity=0.5] {x+y};
 \end{axis}
 \end{tikzternal}
-        \end{latex}
+        \end{plainlatex}
         } &  \begin{tikzternal}[scale=0.6]
             \begin{axis}[3d box=complete, colormap/bluered,grid=major,view={60}{40},z buffer=sort, data cs=polar]
               \addplot3[data cs=cart,surf,domain=-3:3,samples=20, opacity=0.5] {x+y};
             \end{axis}
           \end{tikzternal}\\
         \hline
-{\begin{latex}[breaklines=true]
+{\begin{plainlatex}[breaklines=true]
 \begin{tikzternal}[scale=0.6]
     \begin{axis}[3d box=complete, axis equal image, colormap/bluered,grid=major,view={60}{40},z buffer=sort,enlargelimits=0.2,scale=2.3]
     :bcmd:addplot3:ecmd:[%
@@ -517,7 +524,7 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
      {cos(v)});
     \end{axis}
 \end{tikzternal}
-\end{latex}
+\end{plainlatex}
 } & \begin{tikzternal}[scale=0.6]
     \begin{axis}[3d box=complete, axis equal image, colormap/bluered,grid=major,view={60}{40},z buffer=sort,enlargelimits=0.2,scale=2.3]
     \addplot3[%
@@ -535,5 +542,5 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
 \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
-
+\fi
 \renewcommand{\arraystretch}{1}

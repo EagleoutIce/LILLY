@@ -71,16 +71,17 @@ public class Cloner<T> implements iRealCloneable<T> {
      *
      * @throws IOException
      */
-        public static String cloneFileRessource(String res, String dst) throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(Executer.class.getResourceAsStream(res)));
-        File outf = new File(dst);
-        BufferedWriter out = new BufferedWriter(new FileWriter(outf));
-        String s;
-        while ((s = in.readLine()) != null) {
-            out.write(s + "\n");
-        }
-        in.close();
-        out.close();
+    public static String cloneFileRessource(String res, String dst) throws IOException {
+        Files.copy(Cloner.class.getResourceAsStream(res), Paths.get(dst), StandardCopyOption.REPLACE_EXISTING);
+        // BufferedReader in = new BufferedReader(new InputStreamReader(Executer.class.getResourceAsStream(res)));
+        // File outf = new File(dst);
+        // BufferedWriter out = new BufferedWriter(new FileWriter(outf));
+        // String s;
+        // while ((s = in.readLine()) != null) {
+        //     out.write(s + "\n");
+        // }
+        // in.close();
+        // out.close();
         return dst;
     }
 

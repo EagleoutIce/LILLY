@@ -220,6 +220,24 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
     }
 
     /**
+     * Setzt eine Einstellung
+     *
+     * @param key       Bezeichner der Einstellung
+     * @param new_value Neuer Wert der Einstellung
+     * @param brief Erklärung der Einstellung, wenn neu
+     * @return false, wenn die Einstellung gesperrt ist
+     */
+    public boolean set(K key, V new_value, String brief) {
+        if (_settings.containsKey(key))
+            return _settings.get(key).setValue(new_value);
+        if (add_unknown) {
+            _settings.put(key, SettingDeskriptor.create(key.toString(), brief, eSetting_Type.IS_TEXT, false,
+                    new_value));
+        }
+        return true;
+    }
+
+    /**
      * @return Liefert die Größe der Einstellungen
      */
     public int size() {
@@ -269,7 +287,7 @@ public abstract class AbstractSettings<K extends Serializable, V extends Seriali
     public boolean softJoin(AbstractSettings<K, V> newSettings) {
         boolean ret = true;
         for (Map.Entry<K, SettingDeskriptor<V>> elem : newSettings) {
-            if (!this.set(elem.getKey(), elem.getValue().getValue()))
+            if (!this.set(elem.getKey(), elem.getValue().getValue(), elem.getValue().getBrief()))
                 ret = false;
         }
         return ret;
