@@ -148,11 +148,19 @@ Hier eine Auflistung aller Ornamente:
 
 \presentCommand[2.0.0]{OrnamentsBoxTitle}[\optArg{tikzargs}\manArg{Title}\optArg{width}]
 Setzt eine Ornamentbox um den \T{Title}, wobei die Breite automatisch auf Basis der Länge des Titels generiert wird, sofern sie nicht durch \T{width} explizit angegeben wird.
+\iflillycompact%
+\begin{latex}
+    \begin{center}
+        \OrnamentsBoxTitle{Hallo}
+    \end{center}
+\end{latex}
+\else%
 \begin{defaultlst}[][listing side text,righthand width=7cm]{lLatex}
 \begin{center}
     \OrnamentsBoxTitle{Hallo}
 \end{center}
 \end{defaultlst}
+\fi%
 
 %
 %
