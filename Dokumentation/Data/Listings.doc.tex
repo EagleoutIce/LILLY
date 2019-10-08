@@ -13,6 +13,12 @@
         \end{latex*}
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
+
+Das Laden des Pakets mit LILLY kann durch die Option \T{listings} aktiviert werden (Standard) und durch \T{nolistings} entsprechend dekativiert. So sorgt das Deklarieren von:
+\begin{latex}
+\documentclass[nolistings]{Lilly}
+\end{latex}
+Für ein Lilly-Dokument ohne \LILLYxNOTExLibrary{LILLYxLISTINGS}. Analog hierzu verfahren die Optionen \T{runtimes} und \T{noruntimes} mit \LILLYxNOTExLibrary{LILLYxRUNTIMES}.\\
 \textit{%
 Sei es nun \fg[], \eidi oder \gdra[], in jeder Vorlesungsreihe war es von Relevanz Quelltexte mit Syntax-Highlighting zu versehen. Hierfür verwendet LILLY die Bibliothek \T{listings} und fügt einige Styles und ein paar Sprachen hinzu, die ebenfalls frei gewählt werden können. Aktuell ist die Implementation an vielen Stellen noch weit weg von perfekt. So ist es in GDRA zum Beispiel immer noch vonnöten das Highlighting, von zum Beispiel \T{addiu}, mithilfe von \T{*\blankcmd{mipsADD}*}einzubinden. An einer Lösung hierfür wird aktuell gearbeitet, siehe weiter \jmark[unten]{jmp:lstCodeInject}.}
 
@@ -225,9 +231,6 @@ public static void main(String[] args) {
 }
 \end{lstnonum}
 
-\presentCommand[1.0.0]{LILLYxlstTypeWriter}
-Die allgemeine TypeWriter-Schriftart wird mithilfe von \blankcmd{LILLYxlstTypeWriter} auf \T{AnonymousPro} gesetzt (\textit{Sie wird auch hier für die Dokumentation verwendet}).
-
 %
 %
 %
@@ -248,7 +251,7 @@ Setzt den Text so wie der Main-Stil den Code als Kommentar, String oder Zahl set
 5 + 3 ergibt: :!:*\pgfmathparse{5+3}\pgfmathresult*:!:
 5 + 3 ergibt: :!:*\lstnumber{\pgfmathparse{5+3}\pgfmathresult}*:!:
 \isLanguageNameLoaded{java} // ::c:yields: :!:*\isLanguageNameLoaded{java}*:!:
-\isLanguageNameLoaded{java} // ::c:yields: :!:*\lstcomment{\isLanguageNameLoaded{java}}*:!:
+\isLanguageNameLoaded{java} // ::c:yields: :!:*\lstcomment{\isLang!**!uageNameLoaded{java}}*:!:
 "Im :!:*\LILLYxDOCUMENTxSUBNAME*:!: :D"
 "Im :!:*\lststring{\LILLYxDOCUMENTxSUBNAME}*:!: :D"
 \end{java}
@@ -530,7 +533,7 @@ Letzere Box wird auch für den generierten Befehl verwendet. Die Inline-Befehle 
 \elable{mrk:jmpLiterate}Im Kontext verschiedener Programmiersprachen kam bald der Wunsch auf verschiedene Symbole entsprechend einfach Setzen zu können. Bisher werden alle diese Ersetzungsregeln über das Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen und ermöglichen es, neben Umlauten auch Symbole einzubinden. Die Ersetzungsregeln werden nicht über eine Liste gehandhabt und sind ebenso vielfältig wie es die Bedürfnisse erfordern. Im Folgenden eine Auflistung aller in \LILLYxBOXxVersion{2.0.0} enthaltener Ersetzungsregeln:
 \begin{multicols}{4}
     \begin{description}
-        \foreach \x in {:bs:,:bmath:,:emath:,:dollar:,:space:,:ws:,:cdots:,:cdot:,:ldots:,:c:,:float:,:exp:,:yields:,:lan:,:ran:,:bcmd:,:star:} {
+        \foreach \x in {:bs:,:bmath:,:emath:,:dollar:,:space:,:ws:,:cdots:,:cdot:,:ldots:,:c:,:float:,:exp:,:yields:,:lan:,:ran:,:bcmd:,:star:,:percent:} {
             \item[{\T{\x}}] \say{\lstshowcmd{\x}}
         }
     \end{description}

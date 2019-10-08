@@ -1,18 +1,86 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxPRESENTER}[2019/09/15 Stellt Praesentatoren fuer LILLY zur Verfuegung]
 
+\RequirePackage{kvoptions}                                 %Erweiterte Optionen
+
+\DeclareBoolOption[false]{iall}
+
+% ifLILLY@poems: Control the poem-module
+\DeclareBoolOption[true]{poems}\DeclareComplementaryOption{nopoems}{poems}
+
+% ifLILLY@ornaments: Control the ornaments-module
+\DeclareBoolOption[true]{ornaments}\DeclareComplementaryOption{noornaments}{ornaments}
+
+% ifLILLY@tables: Control the tables-module
+\DeclareBoolOption[true]{tables}\DeclareComplementaryOption{notables}{tables}
+
+% ifLILLY@persons: Control the persons-module
+\DeclareBoolOption[true]{persons}\DeclareComplementaryOption{nopersons}{persons}
+
+% ifLILLY@timetables: Control the timetables-module
+\DeclareBoolOption[true]{timetables}\DeclareComplementaryOption{notimetables}{timetables}
+
+% ifLILLY@formatcontrol: Control the formatcontrol-module
+\DeclareBoolOption[true]{formatcontrol}\DeclareComplementaryOption{noformatcontrol}{formatcontrol}
+
+% ifLILLY@utilpresenter: Control the utilpresenter-module
+\DeclareBoolOption[true]{utilpresenter}\DeclareComplementaryOption{noutilpresenter}{utilpresenter}
+
+% ifLILLY@presentgames: Control the utilpresenter-module
+\DeclareBoolOption[true]{presentgames}\DeclareComplementaryOption{nopresentgames}{presentgames}
+
+\ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
+
+\ifLILLYxPRESENTER@iall
+    \LILLYxPRESENTER@poemstrue%
+    \LILLYxPRESENTER@ornamentstrue%
+    \LILLYxPRESENTER@tablestrue%
+    \LILLYxPRESENTER@personstrue%
+    \LILLYxPRESENTER@timetablestrue%
+    \LILLYxPRESENTER@formatcontroltrue%
+    \LILLYxPRESENTER@utilpresentertrue%
+    \LILLYxPRESENTER@presentgamestrue%
+\fi
 % An sich nur eine Ansammlung aller Bilbiotheken die der Präsentations-Klasse zuzuordnen sind.
 
 \RequirePackage{LILLYxCORE}
 
-\RequirePackage{LILLYxFORMATxCONTROL}
-\RequirePackage{LILLYxORNAMENTS}
-\RequirePackage{LILLYxTABLES}
-    \RequirePackage{LILLYxTABLESxFOREACH}
-    \RequirePackage{LILLYxTABLESxMATERIAL}
-\RequirePackage{LILLYxPOEMS}
-\RequirePackage{LILLYxTIMETABLES}
-    \RequirePackage{LILLYxTIMETABLESxCOMFORT}
-    \RequirePackage{LILLYxTIMETABLESxUNIVERSITY}
+\ifLILLYxPRESENTER@formatcontrol
+    \RequirePackage{LILLYxFORMATxCONTROL}
+\fi
 
+\ifLILLYxPRESENTER@utilpresenter
+    \RequirePackage{LILLYxROTARYxENCODER}
+    \RequirePackage{LILLYxSHOWCASE}
+    \RequirePackage{LILLYxPROGRESSBARS}
+\fi
+
+\ifLILLYxPRESENTER@persons
+    \RequirePackage{LILLYxPERSONS}
+    \RequirePackage{LILLYxTRANSCRIPTS}
+\fi
+
+\ifLILLYxPRESENTER@poems
+    \RequirePackage{LILLYxPOEMS}
+\fi
+
+\ifLILLYxPRESENTER@ornaments
+    \RequirePackage{LILLYxORNAMENTS}
+\fi
+
+\ifLILLYxPRESENTER@tables
+    \RequirePackage{LILLYxTABLES}
+        \RequirePackage{LILLYxTABLESxFOREACH}
+        \RequirePackage{LILLYxTABLESxMATERIAL}
+\fi
+
+\ifLILLYxPRESENTER@timetables
+    \RequirePackage{LILLYxTIMETABLES}
+        \RequirePackage{LILLYxTIMETABLESxCOMFORT}
+        \RequirePackage{LILLYxTIMETABLESxUNIVERSITY}
+\fi
+
+\ifLILLYxPRESENTER@presentgames
+    \RequirePackage{LILLYxCARDS}
+\fi
 \endinput

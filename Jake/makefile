@@ -1,11 +1,22 @@
-all: clean
-	mvn install && java -cp target/lilly-jake-framework-2.0.0-DEVELOPMENT-shaded.jar de.eagle.lillyjakeframework.Jake
+all: compile
+
+default:
+	mvn install && java -jar target/development-jake.jar
 
 gui: clean
-	mvn install && java -jar target/lilly-jake-framework-2.0.0-DEVELOPMENT-shaded.jar GUI
+	mvn install && java -jar target/development-jake.jar GUI
+
+update-stable: compile
+	cp target/development-jake.jar jake.jar
+
+compile:
+	mvn clean install
 
 run:
-	java -cp target/lilly-jake-framework-2.0.0-DEVELOPMENT-shaded.jar de.eagle.lillyjakeframework.Jake
+	java -jar target/development-jake.jar
+
+docs: target/development-jake.jar
+	cd doc_source && $(MAKE)
 
 clean:
 	mvn clean

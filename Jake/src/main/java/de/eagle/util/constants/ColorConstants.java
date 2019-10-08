@@ -14,8 +14,9 @@ public class ColorConstants {
     /// @brief Blaue Farbe
     public static final String COL_CYAN = "\033[38;5;39m";
     /// @brief Grüne Farbe
-    public static final String COL_GREEN = "\033[38;2;102;250;0m";
-
+    public static final String COL_GREEN = "\033[38;5;106m";// "\033[38;2;101;200;25m";
+    /// @brief Lila Farbe
+    public static final String COL_PURPLE = "\033[38;5;127m";
     /// @brief Design-String zum Zurücksetzen der Farbe
     public static final String COL_RESET = "\033[0m";
     /// @brief Design-String zum Setzen der Fehler-Farbe in der Konsole

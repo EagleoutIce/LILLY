@@ -1,0 +1,13 @@
+BEGIN project: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn nicht !
+
+    ! Das Einrücken _und_ die Leerfelder sind optional. !
+    ! Allerdings sollten erstmal nur Leerfelder verwendet werden !
+    ! Mit X sind Zuweisungen markiert die verpflichtend sind !
+
+!X!  name                   = example     ! projektname für lilly-modes !
+
+!X!  display-name           = Beispiel    ! Anzeigename (Standard-Version) !
+
+!X!  configfiles            = "a,b,c"     ! Liste an Konfigurationsdateien !
+
+END; ! Semikolon wieder nicht nötig, aber ich mag es :D !

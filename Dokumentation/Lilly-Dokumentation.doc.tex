@@ -1,10 +1,7 @@
 \def\LILLYxBOXxBemerkungxLock{TRUE}
-\documentclass[Dokumentation]{Lilly}%debug for more information as additional argment => TOOD: document :D: doesn't seem to work. check?
-\usepackage[subject={TestTip},author={EagleoutIce},version=1]{pdfcomment}
+\documentclass[Dokumentation,kpfont]{Lilly}%debug for more information as additional argment => TOOD: document :D: doesn't seem to work. check?
 
 \usepackage{lipsum}
-
-%%TODO INCLUDE TITLE-Control in lilly
 
 %%Move \Lilly to Lilly :D
 
@@ -20,7 +17,7 @@
 
 
 \usepackage{aurical}
-\newcommand{\Jake}[1][~]{\jmark[\begingroup\Fontauri Jake#1\endgroup]{mrk:JAKE}}
+\newcommand{\Jake}[1][~]{\jmark[\begingroup\Fontauri Jake\endgroup]{mrk:JAKE}#1}
 \newcommand{\LJake}[1][~]{\begingroup\T{lilly\_jake}\endgroup#1}
 
 \newcommand*{\blankcmd}[1]{\bgroup\setLinkColor{Orchid}\jmark[\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}]{cmd:#1}\egroup}
@@ -41,22 +38,11 @@
 }
 \makeatother
 
-
-
-% %%% Listen für Versionen der entsprechendne Befehle
-% \foreach \major in {1} { %% Construct Versions
-%     \foreach \minor in {0} {
-%         \foreach \iteration in {0,...,10} {
-%             \newlistof{Version\major\minor\iteration}{\major.\minor.\iteration}{Version \major.\minor.\iteration}
-%         }
-%     }
-% }
-
 \DeclareDocumentCommand{\addcmd}{ O{1.0.0} m}{%
-    \index{#2`{\blankcmdidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
+    \ifthenelse{\equal{#1}{\LILLYxVERSION}}{\iwriteNewCommands{\noexpand\pushList{lNewCommands}{\noexpand c#2}}}{}\index{#2`{\blankcmdidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
 }
 \DeclareDocumentCommand{\addenv}{ O{1.0.0} m}{%
-    \index{#2`{\blankenvidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
+    \ifthenelse{\equal{#1}{\LILLYxVERSION}}{\iwriteNewCommands{\noexpand\pushList{lNewCommands}{\noexpand e#2}}}{}\index{#2`{\blankenvidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
 }
 
 
@@ -93,8 +79,16 @@
 % Version
 \def\lilib#1#2{\;\protect\textsuperscript{\protect\LILLYxNOTExLibrary{#1}\;\typesetVersion{#2}}}
 \robustify\lilib%
-
-
+\makeatletter
+% the 'example' environment will only be shown in the 'non-compact'-version
+\newif\iflillycompact
+\ifcsname compactXdoc\endcsname
+    \global\lillycompacttrue
+\else \global\lillycompactfalse\fi
+\NewEnviron{example}{
+    \iflillycompact\else\BODY\fi
+}
+\makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dokumentation                                                                                                       %     %%%% DOC %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,13 +96,28 @@
 \compileidx
 
 
+\NewRecorder*{NewCommands}{DOCUNEWCOMMANDS}
+\constructList[,]{lNewCommands}
+
+\makeatletter
+\def\@typesetCommandsForList#1#2{%
+    \begin{switch}{#1}%
+        \case{c}{\blankcmd{#2}}%
+        \case{e}{\blankenv{#2}}%
+    \end{switch}%
+}
+\def\typesetCommandsForList#1{\@typesetCommandsForList{\expandafter\@car#1\@nil}{\expandafter\@cdr#1\@nil}}
+\makeatother
+
 \begin{document}
+
 \LILLYxLayoutxClear
     \linput{Data/Title.doc}
     \linput{Data/Abstract.doc}\clearpage
 \elable{eagleTOC}
 \listofTOPS\clearpage
 \LILLYxLayoutxRestore
+\inputNewCommands
 
 \linput{Data/Einleitung.doc}
 \linput{Data/Mathe.doc}
@@ -122,20 +131,20 @@
 \linput{Data/Jake.doc}
 \linput{Data/Exkurse.doc}
 
-% Make the persitence library (2.1.0)
+% Make the persitence library (2.2.0)
 %% FOR 2.1.0:
-% Dokumentiere das mitgelieferte Beamer-layout
 % Changelog
-% Add 'jake docs' to show an included documentation it should be packed like lilly :D
+% Dokumentiere die einzelnen Module wie LILLYxMIPS aus GDRA :D
 
 \linput{Data/Aussicht.doc}
 \normalmarginpar\par
 \chapter{Anhang}
 \TitleSUB{Veraltete Dokumente, Zusätzliches, Easter-Eggs, \ldots}
+\iflillycompact\else
 \linput{Data/Old/Ver10007.doc.old}
 \clearpage
 \linput{Data/Old/Ver10009.doc.old}
-\clearpage
+\clearpage\fi\def\rightmark{}
 \thispagestyle{empty}
 \bgroup
 \def\idxfsize{\scriptsize}

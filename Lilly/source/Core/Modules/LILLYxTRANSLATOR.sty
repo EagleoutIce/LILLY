@@ -1,0 +1,41 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxTRANSLATOR}[2019/09/29 Stellt einen Uebersetzer fuer LILLY zur Verfuegung]
+
+\RequirePackage{LILLYxVANILLA}
+\RequirePackage{LILLYxPACKAGExCTRL}
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+
+%% https://ctan.org/pkg/translator
+\LILLYxDemandPackage{translator}{Fuer Uebersetzungen}%% Package, Info
+    {Ohne gehts nedda :/}%% Error-Text
+    {}{}
+
+\RequirePackage{kvoptions}                                 %Erweiterte Optionen
+
+% ifLILLY@english: Load the english-dictonary
+\DeclareBoolOption[false]{english}\DeclareComplementaryOption{noenglish}{english}
+
+% ifLILLY@german: Load the german-dictonary
+\DeclareBoolOption[true]{german}\DeclareComplementaryOption{nogerman}{german}
+
+\ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
+
+%% Maybe make them real dictonraies?
+
+\ifLILLYxTRANSLATOR@english%
+    \InputIfFileExists{\LILLYxABSPATHxCORE/Modules/Dictonaries/english.dict}{}{\typeout{English dict not found! Searched: \LILLYxPATHxCORE/Modules/Dictonaries/}}
+\fi
+
+\ifLILLYxTRANSLATOR@german%
+    \InputIfFileExists{\LILLYxPATHxCORE/Modules/Dictonaries/german.dict}{}{\typeout{German dict not found! Searched: \LILLYxPATHxCORE/Modules/Dictonaries/}}
+\fi
+
+\newcommand\xtranslate[2][]{%
+    \iftranslationdefined{#2}{%
+        \translate{#2}%
+    }{%
+        \ifx\\#1\\#2\else#1\fi% if #1 is empty set #2
+    }%
+}
+
+\endinput

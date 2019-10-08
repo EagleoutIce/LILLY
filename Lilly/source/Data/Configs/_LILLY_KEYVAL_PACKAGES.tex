@@ -1,0 +1,13 @@
+% Diese Optionen erlauben es die Pakete, die Lilly einbindet, zu steuern.
+
+% ifLILLY@math: Control the math-module
+\DeclareBoolOption[true]{math}\DeclareComplementaryOption{nomath}{math}
+
+% ifLILLY@listings: Control the listings-module
+\DeclareBoolOption[true]{listings}\DeclareComplementaryOption{nolistings}{listings}
+
+% ifLILLY@graphics: Control the graphics-module
+\DeclareBoolOption[true]{graphics}\DeclareComplementaryOption{nographics}{graphics}
+
+% ifLILLY@presenter: Control the presenter-module
+\DeclareBoolOption[true]{presenter}\DeclareComplementaryOption{nopresenter}{presenter}

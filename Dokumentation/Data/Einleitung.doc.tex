@@ -1,5 +1,10 @@
 \chapter{Einleitung}
 \TitleSUB{Integrieren von LILLY -- Die Grundlagen von A-Z}
+\section{Kurzübersicht: Neues in Version \LILLYxVERSION{}}
+Hier eine Auflistung aller der in der Version \LILLYxVERSION{} neu hinzugekommenen Makros und Umgebungen in der Reihenfolge ihres Erscheinens:
+\typesetList[typesetCommandsForList]{\thelNewCommands}.\newline
+Die hier präsentierte Anzeige erfolgt übrigens mithilfe von \blankcmd{typesetList}.
+\clearpage
 \section{Installieren von Lilly}
 \LILLYxNOTExVersion{2.0.0}\hypertarget{LILLY}Aktuell kommt die Dokumentklasse ohne \T{.ins} oder \T{.dtx} Datei, dafür allerdings mit einem Installer für alle Debian (Linux) basierten Betriebsysteme, an einer Variante für MacOS und Windows wird momentan gearbeitet.
 
@@ -49,7 +54,7 @@ Exemplarisch sei \T{test \& bonus/map\_tests/test.conf} genannt, welches auch di
 
 \subsection{Keine Installation}
 \begin{bemerkung}
-    Von dieser Methode wird abgeraten
+    Von dieser Methode wird abgeraten.
 \end{bemerkung}
 Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu kompilierende Latex-Datei im selben Verzeichnis wie die Datei \T{Lilly.cls} liegen (also: \T{Lilly}). Natürlich kann dies bei mehreren Dateien, die auf Lilly zugreifen, unübersichtlich werden.
 \clearpage
@@ -57,9 +62,9 @@ Natürlich lässt sich Lilly auch so nutzen, hierfür muss einfach nur die zu ko
 \subsection{Das Gerüst}
 Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine Dokumentklasse handelt, wird sie wie folgt eingebunden:
 \begin{latex*}
-\documentclass[Dokumentation]{Lilly}
+\documentclass[Mitschrieb]{Lilly}
 \end{latex*}
-\LILLYxNOTExVersion{1.0.7}Für den Typ gibt es unter anderem $4$ Optionen:
+\LILLYxNOTExVersion{1.0.7}Für den Typ gibt es (unter anderem) $4$ Optionen:
 \begin{multicols}{2}
     \begin{itemize}[label=$\diamond$]\narrowitems
         \item Dokumentation
@@ -68,24 +73,22 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
         \item Zusammenfassung
     \end{itemize}
 \end{multicols}
-Mit \LILLYxBOXxVersion{2.0.0} ist es nötig nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben, da die explizite Zuweisung versucht, auf die entsprechende Datei zu referenzieren. Die Definition für dieses Dokument lautet zum Beispiel: %% TODO: Change who am i in texts
+Mit \LILLYxBOXxVersion{2.0.0} ist es nötig nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben, da die explizite Zuweisung versucht, auf die entsprechende Datei zu referenzieren. Die Definition für dieses Dokument lautet zum Beispiel (für das Argument \T{kpfont} siehe \LILLYxNOTExLibrary{LILLYxFONTS}): %% TODO: Change who am i in texts
 \begin{latex*}
-\documentclass[Dokumentation]{Lilly}
+\documentclass[Dokumentation,kpfont]{Lilly}
 \end{latex*}
 In Kombination mit \Jake ist es zudem noch möglich die Option \clatex{Jake} anzugeben, die es Jake gestattet die Dokumentspezifischen Parameter zu bestimmen.\newline
 Zu beachten ist, dass die anderen Optionen weitere Parameter \emph{fordern}. \newline
-So benötigt \T{Mitschrieb} noch den Parameter \T{Vorlesung}, der zusammen mit dem Parameter \T{Semester} gemäß:
+So benötigt \T{Mitschrieb} noch den Parameter \T{Vorlesung}, der gemäß:
 \begin{latex*}
-\input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/Definitions/
-       \LILLYxVorlesung}
+\input{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung}
 \end{latex*}
-die für die jeweilige Vorlesung definierten Daten lädt.
-Erklärungen für die geladenen Daten befinden sich in den jeweiligen README-Dateien:
-\begin{description}
-    \item[1. Semester] \url{../Lilly/\LILLYxPATHxDATA/Semester/1/Readme.md}
-    \item[2. Semester] \url{../Lilly/\LILLYxPATHxDATA/Semester/2/Readme.md}
-\end{description}
+die Daten für die jeweilige Vorlesung lädt.
+Erklärungen für die geladenen Daten befinden sich in der README-Datei (\url{../Lilly/\LILLYxPATHxDATA/Semester/Readme.md}).
 
+%
+%
+%
 
 Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semester} sowie noch die optionale Option (tihihi) \T{n} die angibt, um das wievielte Übungsblatt es sich handelt. Darüber müssen wir uns aber in der Regel keine Gedanken machen. Trägt unser Übungsblatt einen Namen wie \T{uebungablatt-gdbs-42.tex}, so kann \Jake über sogenannte \jmark[NameMaps]{mrk:nmaps} entsprechend alles konfigurieren, in diesem Fall benötigt dein Übungsblatt auch kein \T{documentclass} mehr, es genügt das direkte Schreiben von Latex-Code, der Rest wird von Jake übernommen.\\
 Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert, dies gilt es zu beachten, wenn man vielleicht nur etwas testen möchte. In diesem Fall gibt es (wie später auch noch weiter aufgeführt) den sogenannten \emph{Bonustyp} \T{PLAIN}, welcher ein leeres Dokument erstellt! %% TODO: LINK
@@ -263,24 +266,21 @@ In das Übungsblatt können wir nun unsere Aufgaben stecken. Hier ist der \emph{
 %% Weitere Aufgaben, wenn gewünscht
 \end{latex}
 
-Kompilieren kann man den Spaß nun mit: \cbash{jake jake.conf}. Und das wars, Boom \Smiley:\\
-
-\begin{aufgabe}{Tolle Aufgabe}{400} % 400 Punkte
-    Die Aufgabenbeschreibung, blah, blah, blah, \ldots
-    \begin{aufgaben}
-        \item Teilaufgabe a)
-        \item Teilaufgabe b)
-        \item \ldots
-    \end{aufgaben}
-\vSplitter
-    \begin{aufgaben}
-        \item Antwort zu Teilaufgabe a)
-        \item Antwort zu Teilaufgabe b)
-        \item \ldots
-    \end{aufgaben}
-\end{aufgabe}
-
-% \section{Kurzübersicht der neuen Befehle}
-% Hier eine Kurzübersicht über alle in Version \LILLYxVERSION hinzugekommenen Befehle
-% Make an automated LATERREAD to allow list operations to be stored in an aux file and reread n the second-run
-\clearpage
+Kompilieren kann man den Spaß nun mit: \cbash{jake jake.conf}. Und das wars, Boom \Smiley.
+\begin{example}
+    \begin{aufgabe}{Tolle Aufgabe}{400} % 400 Punkte
+        Die Aufgabenbeschreibung, blah, blah, blah, \ldots
+        \begin{aufgaben}
+            \item Teilaufgabe a)
+            \item Teilaufgabe b)
+            \item \ldots
+        \end{aufgaben}
+    \vSplitter
+        \begin{aufgaben}
+            \item Antwort zu Teilaufgabe a)
+            \item Antwort zu Teilaufgabe b)
+            \item \ldots
+        \end{aufgaben}
+    \end{aufgabe}
+\end{example}
+Für eine Variante mit einem Generator (\Jake[]) siehe \jmark[hier]{gpd:generators}.

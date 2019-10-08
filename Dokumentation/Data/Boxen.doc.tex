@@ -14,6 +14,20 @@
         auch ohne das Verwenden der restlichen LILLY-Welt benutzen lässt.
 \end{bemerkung}
 
+Dem Paket können Argumente übergeben werden, die das Laden einer Bibliothek verhindern, so kann mit \LILLYxBOXxVersion{2.1.0} eingeschränkt werden, welche Pakete geladen werden sollen. \T{iall} lädt alle Argumente:
+\begin{center}
+    \begin{tabular}{^t^t^>{\raggedright\arraybackslash}p{8cm}+}
+        \toprule
+            \headerrow Aktivieren & Deaktivieren & Paket \\
+        \midrule
+            boxes & noboxes & \LILLYxNOTExLibrary{LILLYxCONTROLLERxBOX}, \LILLYxNOTExLibrary{LILLYxBOXxCOUNTER} \\
+            infoboxes & noinfoboxes & \LILLYxNOTExLibrary{LILLYxBOXxINFOBOXES}, \LILLYxNOTExLibrary{LILLYxBOXxMARGIN}\\
+        \bottomrule
+    \end{tabular}
+\end{center}
+Es gilt zu beachten, dass Abhängigkeiten untereinander dazu führen können, dass Pakete geladen werden, die abgewählt sind. All diese Argumente können auch LILLY übergeben werden um die entsprechenden Module zu konfigurieren.
+
+
 \section{Grundlegendes}
 \subsection{Eine kleine Einführung}
 % \TransformBoxDefinition{definition}{Waffelmaker~\noexpand\thetcbcounter~}
@@ -119,7 +133,7 @@ Dieser Befehl besitzt (Stand \LILLYxBOXxVersion{2.0.0}) nicht für alle Boxbezei
 \def!**!\LILLYxBOXxBeweisxBox{FALSE} % Deaktiviert Beweisboxen
 \end{latex*}
 \end{bemerkung}
-
+\iflillycompact\else
 Hier die definierten Umgebungen in ihrer freien Wildbahn und Gestalt:
 
 %%PYSCRIPT:
@@ -211,7 +225,7 @@ Nicht richtig darstellbar aber weiter existiert:
 \begin{uebungsblatt}[Titel][2]
         moin
 \end{uebungsblatt}\end{lstlisting}
-
+\fi
 \presentEnvironment[1.0.0]{task}[\optArg{opt-Addons}\manArg{Titel}\manArg{Punkte}\cmdold]
 Ein aus dem \T{eagleStudiPackage} stammendes Relikt, welches nur aus Kompatibilitätsgründen gehalten wird. Ebenso:
 
@@ -412,12 +426,14 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
     \end{bemerkung}
 \end{document}
     \end{latex}
+    \begin{example}
     In beiden Fällen erzeugen wir die folgenden Boxen:
 {
     \begin{center}
         \tcbincludepdf[blankest]{Data/Documents/Boxexample/boxexample.pdf}
     \end{center}
 }
+\end{example}
 \end{beispiel}
 
 \subsection{Standart-Boxen}
@@ -433,7 +449,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Definitionsbox im entsp
 \begin{definition}[Hallo]
    Hallo Welt!
 \end{definition}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -457,7 +473,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Bemerkungsbox im entspr
 \begin{bemerkung}[Hallo]
    Hallo Welt!
 \end{bemerkung}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -484,7 +500,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Beispielbox im entsprec
 \begin{beispiel}[Hallo]
    Hallo Welt!
 \end{beispiel}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -511,7 +527,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Satzbox im entsprechend
 \begin{satz}[Hallo]
    Hallo Welt!
 \end{satz}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -538,7 +554,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Beweisbox im entspreche
 \begin{beweis}[Hallo]
    Hallo Welt!
 \end{beweis}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -565,7 +581,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Lemmabox im entsprechen
 \begin{lemma}[Hallo]
    Hallo Welt!
 \end{lemma}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -592,7 +608,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Zusammenfassungsbox im 
 \begin{zusammenfassung}[Hallo]
    Hallo Welt!
 \end{zusammenfassung}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -619,7 +635,7 @@ Wird nicht durch \blankcmd{RegisterBox} erzeugt und setzt eine Aufgabenbox im en
 \begin{aufgabe}{hallo}{42}
    Hallo Welt!
 \end{aufgabe}
-\end{latex} 
+\end{latex}
 
 
 %
@@ -632,7 +648,7 @@ Wird nicht durch \blankcmd{RegisterBox} erzeugt und setzt ein Übungsblatt, die 
 \begin{uebungsblatt}[Hallo]
    Hallo Welt!
 \end{uebungsblatt}
-\end{latex} 
+\end{latex}
 
 \clearpage
 \section{Info-Boxes}
@@ -748,7 +764,7 @@ Sowie: \begin{warningBoxNone*}{Hi}
 Dieser Befehl ist einfach nur exemplarisch entstanden um zu demonstrieren, wie die Boxen auch misshandelt werden können \Smiley. natürlich sollte eigentlich \blankcmd{lillyxMarginxElement} verwendet werden: \T{\blankcmd{dateBox}\{\blankcmd{heute}\}}\!\!\dateBox{\heute}. Wobei die Definition wie folg von statten geht:
 \begin{latex}
 \NewInfoBox[fgcolor={DarkMidnightBlue},bgcolor={MudWhite!0},bordercolor={DarkOrchid},emblem={\faCalendar~},marker={},style/none,titleCode={}]{@dateBox}
-\def!**!\dateBox#1{\begin{@dateBox*}{#1}\end{@dateBox*}}
+\def!**!\dateBox!**!#1{\begin{@dateBox*}{#1}\end{@dateBox*}}
 \end{latex}
 
 %
@@ -770,3 +786,30 @@ Wie bereits erwähnt, werden die Einstellungen für eine InfoBox persistiert. Hi
 \presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xPostCode}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xEmblem}\vspace{-\baselineskip}
 \presentCommand[2.0.0]{lillyxINFOBOXESx<InfoBox>xMarker}
+
+%
+%
+%
+%
+%
+
+\section{Randboxen}
+\hypertarget{LILLYxBOXxMARGIN}Diese Definitionen werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxBOXES} geladen. Sie befinden sich ebenfalls im eigenständigen Paket \LILLYxNOTExLibrary{LILLYxBOXxMARGIN} und basieren auf \LILLYxNOTExLibrary{LILLYxMARGIN}.
+
+%
+%
+%
+
+\presentCommand[2.0.0]{abstractMarginBox}[\optStar\optArg[\blankcmdidx{baselineskip}]{Mindesthöhe}\manArg{Icon}\manArg{Farbe}\manArg{Inhalt}]
+Setzt eine Box in die Margin, wobei das Setzen eines Sterns die mit \blankcmd{iflillyxMarginxBox} unter \T{lillyxMARGIN/box/showIcon} invertiert. So erzeugt\abstractMarginBox{\faLinux}{AppleGreen}{%
+    Hallo Welt \\
+    Wie geht es dir?
+}:
+\begin{latex}
+\abstractMarginBox{\faLinux}{AppleGreen}{%
+    Hallo Welt \\
+    Wie geht es dir?
+}
+\end{latex}
+Information: Der hier angezeigte Code wurde direkt nach \say{erzeugt} platziert - daher das Symbol.
+Das Setzen des Icons kann durch \blankcmd{lillyboxmarginset} mit \T{showIcon=false} deaktiviert werden.

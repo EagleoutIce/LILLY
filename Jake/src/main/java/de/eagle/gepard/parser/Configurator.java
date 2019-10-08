@@ -1,4 +1,5 @@
 package de.eagle.gepard.parser;
+
 /**
  * @file Configurator.java
  * @author Florian Sihler
@@ -13,6 +14,7 @@ import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
+import de.eagle.util.io.JakeWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -140,19 +142,18 @@ public class Configurator {
                         }
                         break;
                     default:
-                        writeLoggerWarning(
-                                "Die Operation: " + matchings[OPT] + " in: \"" + matchings[ALL] + "\" ist ungütig!",
-                                "config");
+                    JakeWriter.out.format("%sDie Operation: \"%s\" in: \"%s\" ist ungütig!%s%n",COL_ERROR,matchings[OPT],matchings[ALL],COL_RESET);
+                        throw new RuntimeException("Aus Sicherheitsgründen kann eine solche unbekannte Operation nicht zugelassen werden!");
                     }
-                } else
-                    writeLoggerWarning(COL_ERROR + "Die Zuordnung \"" + m.getStripped() + "\" ist ungültig" + COL_RESET,
-                            "config");
-            } else
-                writeLoggerWarning(COL_ERROR + "Die Zeile: " + m.getMatchings()[ALL] + " ist ungültig! " + COL_RESET,
-                        "config");
-
+                } else{
+                    JakeWriter.out.format("%sDie Zuordnung \"%s\" ist ungültig (\"%s\" ist kein gültiger Schlüssel)!%s%n" ,COL_ERROR,m.getStripped(),matchings[LHS],COL_RESET);
+                    throw new RuntimeException("Aus Sicherheitsgründen kann eine solche ungültige Zuordnung nicht zugelassen werden!");
+                }
+            } else {
+                JakeWriter.out.format("%sDie Zeile: %s ist ungültig!%s%n",COL_ERROR, m.getMatchings()[ALL],COL_RESET);
+                throw new RuntimeException("Aus Sicherheitsgründen kann eine solche ungültige Konfiguration nicht zugelassen werden!");
+            }
         }
-
         return 0;
     }
 }

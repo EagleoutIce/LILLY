@@ -1,0 +1,145 @@
+%% Pakete
+\RequirePackage[utf8x]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{ngerman}
+
+%% Schrift:
+% \RequirePackage{helvet}
+\RequirePackage[default]{lato}
+
+\RequirePackage{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+
+\RequirePackage{textcomp}
+\RequirePackage{float}
+
+\RequirePackage{environ}
+
+\RequirePackage[yyyymmdd,hhmmss]{datetime}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Helpers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Leightweight Font
+\newcommand{\lfseries}{\fontseries{l}\selectfont}
+
+%% Datum - Kleine Hilfe
+\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Befehle %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Header, Footer und Titlepage
+\def\@@beamer@subheading{Zwischentitel}               \def\setsubheading#1{\gdef\@@beamer@subheading{#1}}
+
+\def\@@beamer@author{Autor}                           \def\setauthor#1{\gdef\@@beamer@author{#1}}
+\def\@@beamer@heading{Leitthema}                      \def\setheading#1{\gdef\@@beamer@heading{#1}}
+\def\@@beamer@title{Titel}                            \def\settitle#1{\gdef\@@beamer@title{#1}}
+\def\@@beamer@subtitle{\@@beamer@heading}             \def\setsubtitle#1{\gdef\@@beamer@subtitle{#1}}
+\def\@@beamer@date{\heute}                            \def\setdate#1{\gdef\@@beamer@date{#1}}
+\def\@@beamer@resourcepath{source/Beamer/Bilder/KIZ/} \def\setresourcepath#1{\gdef\@@beamer@resourcepath{#1}}
+\def\@@beamer@titleimage{startbild1}                  \def\settitleimage#1{\gdef\@@beamer@titleimage{#1}}
+\def\@@beamer@titlewidth{\paperwidth}                 \def\settitlewidth#1{\gdef\@@beamer@titlewidth{#1}}
+
+\def\@@beamer@logoimage{logo_100_Pant_RGB}            \def\setlogoimage#1{\gdef\@@beamer@logoimage{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Farben %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Signature Farbe
+\definecolor{sigCol}{RGB}{163,38,56} %% uni ulm informatik signatur
+\definecolor{apGray}{RGB}{52,48,48} %% test-farbe TODO remove
+
+\def\@@beamer@signature{sigCol}                                \def\setsignature#1{\gdef\@@beamer@signature{#1}}
+\def\@@beamer@signatureDarker{\@@beamer@signature!90!black}    \def\setsignatureDarker#1{\gdef\@@beamer@signatureDarker{#1}}
+
+%% Farbsätze
+\AtBeginDocument{%
+  \setbeamercolor{normal text}{fg=apGray, bg=}
+  \setbeamercolor{frametitle}{fg=\@@beamer@signature}
+  \setbeamercolor{item}{parent={normal text}}
+  \setbeamercolor{title page}{fg=white}
+  \setbeamercolor{block title}{fg=\@@beamer@signature}
+  \setbeamercolor{block title example}{fg=\@@beamer@signature}
+  \setbeamercolor{section in toc}{fg=\@@beamer@signature}
+  \setbeamercolor{subsection in toc}{fg=\@@beamer@signature}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Zähler & Längen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{ctrSlide}\setcounter{ctrSlide}{0}
+\newlength{\lenLogoHeight}\setlength{\lenLogoHeight}{1cm}
+\newlength{\lenTitleShort}\setlength{\lenTitleShort}{5cm}
+\newlength{\lenTitleHeight}\setlength{\lenTitleHeight}{5.8cm}
+\newlength{\lenItemIndent}\setlength{\lenItemIndent}{1.25em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Layouts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Keine Navigationssymbole
+\setbeamertemplate{navigation symbols}{}
+\beamertemplatenavigationsymbolsempty
+
+%% NoLogo
+\AtBeginDocument{\setbeamertemplate{logo}{}}
+
+%% Layout
+\setbeamersize{text margin left=14mm,text margin right=10mm}
+
+\setbeamertemplate{title page}{}
+
+\setbeamerfont{title}{size=\LARGE}
+\setbeamerfont{normal text}{size=\normalsize}
+\setbeamerfont{author}{shape=\itshape}
+\setbeamerfont{frametitle}{series=\bfseries, size=\Large}
+\setbeamerfont{institute}{family=\rmfamily, series=\bfseries, size=\normalsize}
+\setbeamertemplate{itemize items}{---}
+
+%% Frame design
+\setbeamertemplate{frametitle}{
+\hspace*{-1.6cm}\begin{tikzpicture}
+    \node at(0,0.07) {};
+    \draw[\@@beamer@signature] (0,0) -- (\paperwidth+1.6,0);
+    \filldraw[\@@beamer@signature] (0,0) rectangle ++ (1.25,-0.275) node[midway,centered,white]
+        {\normalfont\tiny Seite \thectrSlide};
+    \node[\@@beamer@signature,right] at(1.4,-0.17)
+        {\lfseries\tiny \@@beamer@subheading{} $\mid$ \@@beamer@heading{} $\mid$ \@@beamer@date};
+    \node at(0,-1.25) {};
+\end{tikzpicture}
+\begin{beamercolorbox}{frametitle}
+	\usebeamerfont{frametitle}\insertframetitle
+\end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Aufzählungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Aufzählung die der Vorlage ähnelt, ohne itemize o.ä. zu modifizieren
+\newenvironment{bulletpoints}[1][] { \begin{itemize}[#1]
+  \setlength{\itemsep}{1.5ex}
+
+  \addtolength{\itemindent}{\lenItemIndent}  }
+{ \end{itemize} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Slides %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NewEnviron{slide}[2][t]{ \refstepcounter{ctrSlide}\addcontentsline{toc}{chapter}{#2}\begin{frame}[#1]{#2} \BODY \end{frame} }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Titelfolie %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\AtBeginDocument{%
+  {\begin{frame}
+      \newgeometry{margin=0pt}
+      \maketitle\vspace*{-1.5cm}
+      {\hspace*{5.7cm}\raisebox{0.35cm}{\IfFileExists{\@@beamer@resourcepath\@@beamer@logoimage}{%
+        \includegraphics[height=\lenLogoHeight]{\@@beamer@resourcepath\@@beamer@logoimage}} {%
+          \includegraphics[height=\lenLogoHeight]{\@@beamer@logoimage}}%
+      }}
+      {\hspace*{-1.4cm}\centering \IfFileExists{\@@beamer@resourcepath\@@beamer@titleimage}{\parbox[c][5.6cm]{\paperwidth}{\vfill\centering\includegraphics[width=\@@beamer@titlewidth]%
+        {\@@beamer@resourcepath\@@beamer@titleimage}\vfill}}{\parbox[c][5.6cm]{\paperwidth}{\vfill\centering\includegraphics[width=\@@beamer@titlewidth]{\@@beamer@titleimage}\vfill}}}
+      \hspace*{-1.1cm}\begin{minipage}[t]{0.44\paperwidth}
+          \parbox[t][\lenTitleShort]{\linewidth}{%
+            \vspace*{2.5\baselineskip}{\relax}~\\%
+            \tiny \@@beamer@subheading{} $\mid$ \@@beamer@author{} $\mid$ \@@beamer@date}
+      \end{minipage}\begin{minipage}[t]{0.5\paperwidth}
+          \parbox[t][\lenTitleHeight]{\linewidth}{\color{\@@beamer@signature}\mbox{}\small \@@beamer@title \\
+          \scriptsize \@@beamer@subtitle}
+      \end{minipage}\vspace{-\lenTitleShort}
+      \restoregeometry
+  \end{frame}}
+}

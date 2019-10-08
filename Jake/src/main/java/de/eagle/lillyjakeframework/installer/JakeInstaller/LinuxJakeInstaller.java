@@ -73,7 +73,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
             return new String[] { "generate_cmd_line_exec", "Stelle Jake der Konsole zur Verfügung" };
         }
         String _desktopPath = getDesktopPath();
-        JakeWriter.out.println("Identified: \"" + _desktopPath + "\" as target-Path for the Desktop starter (mkdirs: " + new File(_desktopPath).mkdirs() + ")");
+        JakeWriter.out.println("Identified: \"" + _desktopPath + "\" as target-Path for the Desktop starter (mkdirs: " + new File(_desktopPath).getParentFile().mkdirs() + ")");
         // Made the directories if not already present!
         
         try (PrintWriter pw = new PrintWriter(_desktopPath)) {
@@ -111,7 +111,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
 
         try (PrintWriter pw = new PrintWriter(getCmdLinePath())) {
             pw.println("#!/bin/bash");
-            pw.println("java -jar " + PropertiesProvider.getThisPath() + " \"$@\"");
+            pw.println("java ${JAKE_LAUNCHER_EXTRA_ARGS} -client -jar " + PropertiesProvider.getThisPath() + " \"$@\"");
         } catch (Exception ignored) {
         }
         new File(getCmdLinePath()).setExecutable(true, false);
@@ -163,11 +163,11 @@ public class LinuxJakeInstaller extends AutoInstaller {
             }
         }
 
-        return new String[]{"vaildate_tools","Überprüfe auf verfügbare Pakete"};
+        return new String[]{"validate_tools","Überprüfe auf verfügbare Pakete"};
     }
 
 
-    public static String[] fkt_vaildate_tools(String s){
+    public static String[] fkt_validate_tools(String s){
         // testet ob die notwendigen Programme installiert sind
         Process p = null;
             LinkedList<String> needed = new LinkedList<>();
@@ -205,7 +205,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
                 for (String pkg : pkgs) {
                     JakeWriter.out.format(" - %s%n", pkg);
                 }
-                return true; 
+                return true;
             }
 
             String tpath = Executer.getSHPath("/scripts/install/bash/linux_install.sh");
@@ -217,7 +217,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
             //System.out.println(Arrays.toString(args));
             Process tp = new ProcessBuilder(args).start();
             if(tp.waitFor() != Definitions.SUCCESS) {
-                JakeWriter.out.println("Die Installation scheint gescheitert/abgebrochen!"); 
+                JakeWriter.out.println("Die Installation scheint gescheitert/abgebrochen!");
                 throw new RuntimeException("Installation Cancelled");
             }
             //System.out.println(tp.waitFor()); // todo, retrieve correct return code to detect failures
@@ -236,7 +236,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
             Map.entry("generate_menu_entry", new FunctionDeskriptor<String, String[]>("fkt_generate_menu_entry","Generiert einen Menüeintrag", LinuxJakeInstaller::fkt_generate_menu_entry)),
             Map.entry("generate_cmd_line_exec",  new FunctionDeskriptor<String, String[]>("fkt_generate_cmd_line_exec","Generiert den Kommandozeilenstarter", LinuxJakeInstaller::fkt_generate_cmd_line_exec)),
             Map.entry("inject_path_extend",  new FunctionDeskriptor<String, String[]>("fkt_inject_path_extend","Erweitere Path-Variable", LinuxJakeInstaller::fkt_inject_path_extend)),
-            Map.entry("vaildate_tools",  new FunctionDeskriptor<String, String[]>("fkt_vaildate_tools","Teste installierte Pakete", LinuxJakeInstaller::fkt_vaildate_tools))
+            Map.entry("validate_tools",  new FunctionDeskriptor<String, String[]>("fkt_validate_tools","Teste installierte Pakete", LinuxJakeInstaller::fkt_validate_tools))
         ));
 
         this.progress = 0; // TEMPORARY => CHANGE

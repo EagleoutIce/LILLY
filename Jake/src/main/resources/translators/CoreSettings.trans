@@ -1,9 +1,9 @@
 !                                                                                             !
-!                              JAKE 2.0.0 - Development Build                                 !
+!                                JAKE 2.1.0 - Final Build                                     !
 !                                                                                             !
 
                                 ! Author: Florian Sihler  !
-                                ! Version: 2.0.0-dev      !
+                                ! Version: 2.1.0          !
 
 
 ! Info: !
@@ -30,7 +30,7 @@ S_LILLY_MODES           = lilly-modes
 S_LILLY_COMPLETE        = lilly-complete
 S_LILLY_COMPLETE_NAME   = lilly-complete-name
 S_LILLY_PRINT_NAME      = lilly-print-name
-S_LILLY_CLEANS          = lilly-cleans
+S_LILLY_KEEPS           = lilly-keeps
 S_LILLY_COMPILETIMES    = lilly-compiletimes
 S_LILLY_AUTOCLEAN       = lilly-autoclean
 S_LILLY_VORLESUNG       = lilly-vorlesung
@@ -44,10 +44,13 @@ S_LILLY_AUTHOR          = lilly-author
 S_LILLY_AUTHORMAIL      = lilly-author-mail
 S_LILLY_SIGNATURE_COLOR = lilly-signatur-farbe
 S_LILLY_BIBTEX          = lilly-bibtex
-S_GEPARDRULES_PATH      = gepardrule-path
 S_LILLY_DOCTYPE         = lilly-doctype
 S_LILLY_CONFIGS_PATH    = lilly-configs-path
 S_LILLY_DATA_PATH       = lilly-data-path
+S_LILLY_COMPRESS        = lilly-compress
+S_LILLY_COMPRESS_TARGET = lilly-compress-target
+
+S_GEPARDRULES_PATH      = gepardrule-path
 
 S_FILE                  = file
 S_ANSWER                = answer
@@ -60,6 +63,8 @@ S_WHAT                  = what
 S_INSTALL_PATH          = install-path
 S_AUTOCONF              = autoconf
 S_COMMENT_PATTERN       = comment-pattern
+
+
 
 S_JOBCOUNT              = jobcount
 S_ERRORCOUNT            = error-count

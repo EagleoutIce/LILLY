@@ -116,7 +116,7 @@ class JakeDocumentTest {
     void _test_checkConf_complex(String resourcePath, boolean expected) throws IOException {
         // Wir nehmen einige Beispielkonfigurationen und stellen sie dann als JakeDocument zur Verfügung
         JakeDocument jd = new JakeDocument(new File(Executer.getPath(new InputStreamReader(JakeDocumentTest.class.getResourceAsStream(resourcePath)),".conf")));
-        Assertions.assertEquals(expected, jd.isValid(), "Es wird vom Dokument dieser Zustand erwartet");
+        Assertions.assertEquals(expected, jd.isValid(), "Es wird vom Dokument " + resourcePath + " dieser Zustand erwartet");
     }
     @Test
     @Order(5)

@@ -1,0 +1,9 @@
+BEGIN generator:
+!X!  name                   = example
+!X!  template-file          = /isch/bins/template
+!X!  target-mode            = 0
+
+VARIABLE_A                  = Bitte setze mich
+another-var                 = I choose you, pikachuuu
+
+END;

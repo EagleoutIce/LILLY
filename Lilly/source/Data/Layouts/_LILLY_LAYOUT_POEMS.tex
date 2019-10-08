@@ -5,6 +5,8 @@
 
 \RequirePackage{tocloft}
 
+\RequirePackage{LILLYxPOEMS}
+
 %% General Packages needed for Typesetting
 
 %% https://www.ctan.org/pkg/scrlayer-scrpage
@@ -58,11 +60,11 @@
 %% Set Hooks for the Beginning of the Document:
 %% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
 \AtBeginDocument{%
-	\SetStyle
+	\SetStyle%
 	% Two column \listofPOEMS
-	\addtocontents{POEM}{\protect\begin{multicols}{2}}
+	\addtocontents{POEM}{\protect\begin{multicols}{2}}%
 	% Two column \listofQUOTES
-	\addtocontents{QUOTE}{\protect\begin{multicols}{2}}
+	\addtocontents{QUOTE}{\protect\begin{multicols}{2}}%
 }
 \AtEndDocument{%
 	\addtocontents{POEM}{\protect\end{multicols}}
@@ -106,19 +108,16 @@
 {.1ex}
 {\normalfont\sffamily\bfseries}}
 
-\list@poems@seentrue%
-\list@quotes@seentrue%
-
 \def\poemstoc{%
 	{%
 		\hypersetup{linkcolor=black}%
-		\iflist@poems@seen% this would require some extensive trickery, therefore they're set/forced to true
-		\OrnamentsUpper[][]{\poems@tocpoemsheader}\vspace*{-1\baselineskip}%
+		\iflist@poems@seen% this works now :D
+		\OrnamentsUpper[][]{\poems@tocpoemsheader}%\vskip-2.75cm%
 			\listofPOEMS\vspace*{-2\baselineskip}%
 		\OrnamentsLower{}%
 		\fi%
 		\iflist@quotes@seen%
-		\clearpage\OrnamentsUpper[][]{\poems@tocquotesheader}\vspace*{-1.5\baselineskip}%
+		\clearpage\OrnamentsUpper[][]{\poems@tocquotesheader}%\vskip-2.75cm%
 			\listofQUOTES\vspace*{-2\baselineskip}%
 		\OrnamentsLower{}%
 		\fi%
@@ -127,11 +126,11 @@
 }
 
 % Author wird in LILLYxPOEMS gesetzt :D
-\def\poems@title{Gedichtsammlung}
-\def\poems@subtitle{Gedichte der Jahre $42$\,--\,$84$}
+\def\poems@title{\xtranslate{Gedichtsammlung}}
+\def\poems@subtitle{\xtranslate{Gedichte der Jahre} $42$\,--\,$84$}
 
-\def\poems@tocpoemsheader{Inhaltsverzeichnis}
-\def\poems@tocquotesheader{Alle Zitate}
+\def\poems@tocpoemsheader{\xtranslate{Inhaltsverzeichnis}}
+\def\poems@tocquotesheader{\xtranslate{Alle Zitate}}
 
 
 \def\poemssettitle#1{\gdef\poems@title{#1}}

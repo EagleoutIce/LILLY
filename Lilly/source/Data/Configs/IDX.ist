@@ -23,7 +23,7 @@ item_2 "\n        \\subsubitem\\idxfsize{}"
 item_12 "\\pgfsetfillopacity{1.0}\%\n\\subsubitem\\footnotesize\\mbox{\\footnotesize\\pgfsetfillopacity{1.0}\\rmfamily}\\footnotesize "
 item_2  "\\footnotesize\\mbox{\\pgfsetfillopacity{1.0}\%\n\\footnotesize\\pgfsetfillopacity{1.0}\\rmfamily,} "
 
-encap_prefix "{\\"
+encap_prefix "\\"
 encap_infix "{"
 encap_suffix "}"
 
@@ -31,8 +31,8 @@ encap_suffix "}"
 quote '~'
 actual '`'
 
-delim_t "}\\fi\\pgfsetfillopacity{1.0}\\iftrue\\rmfamily\\idxfsize{}"
-delim_n "}, "
+delim_t "\\fi\\pgfsetfillopacity{1.0}\\rmfamily\\idxfsize{}"
+% delim_n "}, \\hyperpage{"
 % \\hyperpage{"
 
 indent_space '\t'

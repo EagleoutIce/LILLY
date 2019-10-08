@@ -18,6 +18,7 @@ import de.eagle.util.blueprints.AbstractSettings;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
+import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -81,6 +83,8 @@ public class Expandables extends AbstractGepardModule{
      */
     private static Settings blueprint = null;
 
+    public static String lilly_path = null;
+
     /**
      * Entspricht get_default_expandables
      *
@@ -114,8 +118,8 @@ public class Expandables extends AbstractGepardModule{
                 CoreSettings.requestValue("S_LILLY_IN") + "/");
         settings.emplace("BOXMODES", "Expandiert zu den Boxmodi", eSetting_Type.IS_TEXTLIST,
                 CoreSettings.requestValue("S_LILLY_BOXES"));
-        settings.emplace("CLEANTARGETS", "Expandiert zu den zu löschenden Dateien", eSetting_Type.IS_TEXTLIST,
-                CoreSettings.requestValue("S_LILLY_CLEANS"));
+        settings.emplace("KEEPTARGETS", "Expandiert zu den zu behaltenden Dateien", eSetting_Type.IS_TEXTLIST,
+                CoreSettings.requestValue("S_LILLY_KEEPS"));
 
         settings.emplace("SIGNATURECOL", "Expandiert zur Signaturfarbe", eSetting_Type.IS_TEXT,
                 CoreSettings.requestValue("S_LILLY_SIGNATURE_COLOR"));
@@ -138,6 +142,15 @@ public class Expandables extends AbstractGepardModule{
         settings.emplace("LILLY_DATA_PATH", "Pfad zu den Daten", eSetting_Type.IS_PATH,
                 CoreSettings.requestValue("S_LILLY_DATA_PATH"));
 
+        try {
+            if(lilly_path==null)
+                lilly_path = Executer.runBashCommand("echo " + CoreSettings.requestValue("S_LILLY_PATH")).readLine();
+            settings.emplace("LILLY_CLS_PATH", "Pfad zur Lilly.cls", eSetting_Type.IS_PATH, lilly_path);
+        } catch (IOException e) {
+            settings.emplace("LILLY_CLS_PATH", "Pfad zur Lilly.cls", eSetting_Type.IS_PATH,"ERROR");
+            e.printStackTrace();
+        }
+
 
         settings.emplace("N", "Expandiert zur Nummer (wie z.B. Übungsblatt)", eSetting_Type.IS_NUM,
                 CoreSettings.requestValue("S_LILLY_N"));
@@ -154,7 +167,7 @@ public class Expandables extends AbstractGepardModule{
                         + "}\\\\providecommand{\\\\LILLYxPATH}{" + CoreSettings.requestValue("S_LILLY_IN")
                         + "}\\\\providecommand{\\\\AUTHOR}{" + CoreSettings.requestValue("S_LILLY_AUTHOR")
                         + "}\\\\providecommand{\\\\AUTHORMAIL}{" + CoreSettings.requestValue("S_LILLY_AUTHORMAIL")
-                        + "}\\\\providecommand{\\\\LILLYxSemester}{" + CoreSettings.requestValue("S_LILLY_SEMESTER")
+                        // + "}\\\\providecommand{\\\\LILLYxSemester}{" + CoreSettings.requestValue("S_LILLY_SEMESTER") // Removed with v2.1.0
                         + "}\\\\providecommand{\\\\LILLYxVorlesung}{" + CoreSettings.requestValue("S_LILLY_VORLESUNG")
                         + "}\\\\providecommand{\\\\Hcolor}{" + CoreSettings.requestValue("S_LILLY_SIGNATURE_COLOR")
                         + "}"
@@ -205,11 +218,12 @@ public class Expandables extends AbstractGepardModule{
         return settings;
     }
 
+    private static HashMap<String,Settings> cached = new HashMap<>();
+
     /**
      * Bearbeitet eine komplette Datei
      *
-     * @param rulefiles die Liste der rulefiles (durch -TODO: settings- ':'
-     *                  getrennt)
+     * @param rulefiles die Liste der rulefiles
      * @return Einstellungen die entsprechend der Boxen konfiguriert sind
      * @throws IOException Im Falle eines Fails von
      *                     {@link GeneratorParser#parseFile(String, Settings, boolean)}
@@ -217,9 +231,15 @@ public class Expandables extends AbstractGepardModule{
     public Settings getExpandables(String rulefiles) throws IOException {
         if (rulefiles.isEmpty())
             return getDefaults();
-
-        GeneratorParser gp = new GeneratorParser(rulefiles);
-        return parseRules(gp.parseFile(Expandables.box_name, getBlueprint(), add_unknown), false);
+        if(cached.containsKey(rulefiles)) {
+            writeLoggerDebug1("Will use already cached values for: " + rulefiles, "expandables");
+            return cached.get(rulefiles);
+        } else {
+            GeneratorParser gp = new GeneratorParser(rulefiles);
+            Settings sets = parseRules(gp.parseFile(Expandables.box_name, getBlueprint(), add_unknown), false);
+            cached.put(rulefiles, sets.cloneSettings());
+            return sets;
+        }
     }
 
     /**
@@ -281,7 +301,7 @@ public class Expandables extends AbstractGepardModule{
 
     public static int rec_exp_calls = 0;
 
-    public static String replaceByPattern(String suffix, String string, Pattern p) {
+    public static String replaceByPattern(String suffix, String string, String p) {
         String s;
         try {
             Optional<Path> os = Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_IN"))).filter(r -> r.toString().endsWith(suffix)).findFirst();
@@ -295,7 +315,7 @@ public class Expandables extends AbstractGepardModule{
             JakeWriter.err.println(e.getMessage());
             s = "NONE";
         }
-        string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(s));
+        string = string.replace(p, s);
         return string;
     }
 
@@ -317,6 +337,67 @@ public class Expandables extends AbstractGepardModule{
         return expandables;
     }
 
+    private static String _expand(Settings expandables, String _name, String _default, String string, String matched) {
+        if(expandables.containsKey(_name)) {// Replace with Value:
+            String val = expandables.getValue(_name);
+            writeLoggerDebug3("Expanding [" + _name + "] in: " + string + " /w " + val, "expander");
+            // switch for lazys:
+            switch (_name) {
+                case "BASENAME": // could be a method, but who cares? :D
+                    string = string.replace(matched, expand(expandables, "$(TEXFILE)").replaceFirst("[.][a-zA-Z0-9]{1,7}", ""));
+                    break;
+                case "PDFFILE":
+                    string = string.replace(matched,expand(expandables, "$(TEXFILE)").replaceFirst("[.][a-zA-Z0-9]{1,7}", "") + ".pdf");
+                    break;
+                case "FINALNAME":
+                    string = string.replace(matched, finalName);
+                    break;
+                case "LOGFILE":
+                    string = string.replace(matched, JakeLogger.target);
+                    break;
+                default:
+                    if (string.startsWith("!!"))
+                        JakeWriter.err.println("unsupported System based lazy eval for " + _name + "! pls report this");
+                    else
+                        string = string.replace(matched, val);
+            }
+        } else if (_default != null) {// provides default
+            writeLoggerDebug2("Expanding [" + _name + "] in: " + string + " /w (default) " + _default, "expander");
+            string = string.replace(matched, _default);
+        } else { // unknown
+            writeLoggerDebug1("Expansion for: \"" + matched + "\" not possible, neither expandable nor default provided", "expander");
+        }
+        return string;
+    }
+
+    private static String _expand_lazy(Settings expandables, String _name, String string, String matched) {
+        _name = "@" + _name;
+        if(expandables.containsKey(_name)) {// Replace with Value:
+            String val = expandables.getValue(_name);
+            writeLoggerDebug3("@[] Expanding [" + _name + "] in: " + string + " /w " + val, "expander");
+            // switch for lazys:
+            switch (_name) {
+                case "@AUTONUM":
+                    string = string.replace(matched, get_number(expand(expandables, "$(TEXFILE)")));
+                    break;
+                case "@SELTEXF":
+                    string = replaceByPattern(".tex", string, matched);
+                    break;
+                case "@SELCONF":
+                    string = replaceByPattern(".conf", string, matched);
+                    break;
+                default:
+                    if (string.startsWith("!!"))
+                        JakeWriter.err.println("Unsupported System based lazy eval for " + _name + "! pls report this");
+                    else
+                        string = string.replace(matched, val);
+            }
+        } else { // unknown
+            writeLoggerDebug1("Expansion for: \"" + matched + "\" not possible, neither expandable nor default provided", "expander");
+        }
+        return string;
+    }
+
     public static String expand(Settings expandables, String string) {
         if (rec_exp_calls > Definitions.MAX_SETTINGS_REC) {
             throw new RuntimeException("Maximale Expansionstiefe für Expandables erreicht! Der Request: \"" + string
@@ -324,57 +405,22 @@ public class Expandables extends AbstractGepardModule{
                     + "selbst nicht verwendet werden!");
         }
         rec_exp_calls++;
-        String last = "";
+        String last;
         int counter = 0;
         Pattern p;
         do {
             last = string;
-            for (Map.Entry<String, SettingDeskriptor<String>> sd : expandables) {
-                if (sd.getKey().startsWith("@"))
-                    p = Pattern.compile("@\\[" + sd.getKey().substring(1) + "]", Pattern.MULTILINE);
-                else
-                    p = Pattern.compile("\\$[{(]" + sd.getKey() + "[})]", Pattern.MULTILINE); // we don't care about
-                                                                                              // unbalanced
-                Matcher m = p.matcher(string);
-                if (m.find()) {
-                    writeLoggerDebug3("Expanding [" + m.group() + "] in: " + string + " /w " + sd.getValue().getValue(),
-                            "expander");
-                    // here well select specific cases
-                    switch (sd.getKey()) {
-                    case "@AUTONUM":
-                        string = string.replaceAll("\\@\\[AUTONUM\\]",
-                                Matcher.quoteReplacement(get_number(expand(expandables, "$(TEXFILE)"))));
-                        break;
-                    case "@SELTEXF":
-                        string = replaceByPattern(".tex", string, p);
-                        break;
-                    case "@SELCONF":
-                        string = replaceByPattern(".conf", string, p);
-                        break;
-                    case "BASENAME": // could be a method, but who cares? :D
-                        string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(
-                                expand(expandables, "$(TEXFILE)").replaceFirst("[.][a-zA-Z0-9]{1,7}", "")));
-                        break;
-                    case "PDFFILE":
-                        string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(
-                                expand(expandables, "$(TEXFILE)").replaceFirst("[.][a-zA-Z0-9]{1,7}", "") + ".pdf"));
-                        break;
-                    case "FINALNAME":
-                        string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(finalName));
-                        break;
-                    case "LOGFILE":
-                        string = string.replaceAll(p.pattern(), JakeLogger.target);
-                        break;
-                    default:
-                        if (string.startsWith("!!"))
-                            JakeWriter.err.println("unsupported System based lazy eval! pls report this");
-                        else {
-                            string = string.replaceAll(p.pattern(), Matcher.quoteReplacement(sd.getValue().getValue()));
-                        }
-                    }
-                    if (sd.getValue().getValue().equals("!!"))
-                        writeLoggerDebug3("  =>  Lazy expand to: \"" + string + "\"", "expander");
-                }
+            Matcher default_expansions = Pattern.compile("\\$(?<bracket>[({])(?<name>[^:})]+)((?<split>:)(?<default>(.[{(].*[)}])*|[^})]*))?[)}]").matcher(string);
+            Matcher protected_expansions = Pattern.compile("@\\[(?<name>[^]]*)]").matcher(string);
+            while(default_expansions.find()) { // defaults and that kinda stuff
+                String _name = default_expansions.group("name");
+                String _default = null;
+                try { _default = default_expansions.group("default"); } catch (IllegalArgumentException ignored) {}
+                string = _expand(expandables, _name, _default,string, default_expansions.group());
+            }
+            while (protected_expansions.find()) { // lazys and that kinda stuff - this wasn't copy and pasted
+                String _name = protected_expansions.group("name");
+                string = _expand_lazy(expandables, _name,string, protected_expansions.group());
             }
             counter++;
         } while (!last.equals(string) && counter < 8);

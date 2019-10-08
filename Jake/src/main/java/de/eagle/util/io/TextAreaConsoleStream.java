@@ -26,7 +26,7 @@ public class TextAreaConsoleStream extends AbstractConsoleWriter {
 
     private TextAreaConsoleStream update() {
         flush();
-        target.setText("<html>" + String.join("<br>", contents) + "<br>" + currentLine + "</html>");
+        target.setText("<html> <head></head><body>" + String.join("<br>", contents) + "<br>" + currentLine + "</body></html>");
         flush();
         return this;
     }
@@ -38,11 +38,13 @@ public class TextAreaConsoleStream extends AbstractConsoleWriter {
 
     public static String format(String format) {
         format = "<font>" + format.replace(ColorConstants.COL_RESET,"</font><font>").replace(ColorConstants.COL_ERROR, "</font><font color=rgb(255,32,82)>")
-                .replace(ColorConstants.COL_GOLD, "</font><font color=rgb(255,191,0)>")
+                .replace(ColorConstants.COL_GOLD, "</font><font color=rgb(255,150,0)>")
                 .replace(ColorConstants.STY_PARAM,"</font><font>")
-                .replace(ColorConstants.COL_CYAN, "</font><font color=rgb(0,20,180)>")
-                .replace(ColorConstants.COL_GREEN, "</font><font color=rgb(102,250,0)>")+ "</font>";
-        return format; // transforming the Data (change AnsiEscapCodes to HTML)
+                .replace(ColorConstants.COL_CYAN, "</font><font color=rgb(0,102,125)>")
+                .replace(ColorConstants.COL_PURPLE, "</font><font color=rgb(203,47,122)>")
+                .replace(ColorConstants.COL_GREEN, "</font><font color=rgb(102,184,67)>")
+                .replace(ColorConstants.COL_SUCCESS, "</font><font color=rgb(102,184,67)>")+ "</font>";
+        return format; // transforming the Data (change AnsiEscapeCodes to HTML)
     }
 
     @Override
@@ -53,7 +55,7 @@ public class TextAreaConsoleStream extends AbstractConsoleWriter {
     @Override
     public AbstractConsoleWriter println(String s) {
         contents.add(format(currentLine + s.replaceAll("\\n","<br>")));
-        currentLine = ""; return this;
+        currentLine = ""; return update();
     }
 
     @Override

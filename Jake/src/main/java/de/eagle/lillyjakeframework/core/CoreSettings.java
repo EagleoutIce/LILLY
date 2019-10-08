@@ -10,19 +10,16 @@ package de.eagle.lillyjakeframework.core;
  * @brief enthält die Dokumentübergreifenden Einstellungen.
  */
 
-
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.lillyjakeframework.translators.SettingsTranslator;
-import de.eagle.util.blueprints.Translator;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.helper.PropertiesProvider;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.HashMap;
+
 
 import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
 
@@ -85,7 +82,7 @@ public class CoreSettings {
             settings.emplace(st, "S_INSTALL_PATH", "Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,
                     "\"${HOME}/texmf\"");
             settings.emplace(st, "S_LILLY_PATH", "Wo liegt die Lilly.cls?", eSetting_Type.IS_PATH,
-                    "\"$(dirname $(locate -e -q 'Lilly.cls' | grep -v -e \".Trash\" -e \"classes\" -e \".vim\" -i -e \"backup\" | head -1))\"");
+                    "\"$(dirname $(locate -e -q 'LILLY/Lilly/Lilly.cls' | grep -v -e \".Trash\" -e \"classes\" -e \".vim\" -i -e \"backup\" | head -1))\"");
             break;
         case MAC:
             settings.emplace(st, "S_INSTALL_PATH", "Wohin gilt es Lilly zu installieren?", eSetting_Type.IS_PATH,
@@ -111,16 +108,22 @@ public class CoreSettings {
         settings.emplace(st, "S_LILLY_MODES", "Modi für den Kompiliervorgang", eSetting_Type.IS_TEXTLIST, "default");
         settings.emplace(st, "S_LILLY_BOXES", "Boxen für den Kompiliervorgang", eSetting_Type.IS_TEXTLIST, "DEFAULT");
 
+        // S_LILLY_COMPRESS
+        settings.emplace(st, "S_LILLY_COMPRESS", "Soll anschließend die PDF komprimiert werden?",
+                eSetting_Type.IS_SWITCH, "false");
+        settings.emplace(st, "S_LILLY_COMPRESS_TARGET", "Komprimierungsziel", eSetting_Type.IS_TEXT, "screen");
+
         // S_LILLY_AUTOCLEAN
         settings.emplace(st, "S_LILLY_AUTOCLEAN", "Sollen beim Arbeiten entstandene Dateien am Ende entfernt werden?",
                 eSetting_Type.IS_SWITCH, "true");
 
-        settings.emplace(st, "S_AUTOCONF", "Erlaubt es eine gleichnamige .conf Datei oder jake.conf zu verwenden sofern diese existiert.", eSetting_Type.IS_SWITCH, "false");
+        settings.emplace(st, "S_AUTOCONF",
+                "Erlaubt es eine gleichnamige .conf Datei oder jake.conf zu verwenden sofern diese existiert.",
+                eSetting_Type.IS_SWITCH, "false");
 
-        // S_LILLY_CLEANS
-        settings.emplace(st, "S_LILLY_CLEANS", "Welche Dateien sollen auf Basis von Autoclean entfernt werden?", eSetting_Type.IS_TEXTLIST,
-                "log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls ubp fdb_latexmk auxlock ptc UB TOP listing upa ilg TOPIC DEFS BEMS BEIS BEWS LEMS SATS ZSMS POEM QUOTE");
-        // S_LILLY_EXTERNAL
+        // S_LILLY_KEEPS
+        settings.emplace(st, "S_LILLY_KEEPS", "Welche Dateien sollen auf Basis von Autoclean behalten werden?",
+                eSetting_Type.IS_TEXTLIST, "pdf tex conf config md txt sty cls png jpg jpeg gif svg sh gpd");
         settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?",
                 eSetting_Type.IS_SWITCH, "false");
         settings.emplace(st, "S_LILLY_COMPLETE", "Sollen die Varianten vollständig erstellt werden?",
@@ -159,14 +162,19 @@ public class CoreSettings {
                 "Florian Sihler");
         settings.emplace(st, "S_LILLY_AUTHORMAIL", "E-mail adresse des Autors", eSetting_Type.IS_TEXT,
                 "florian.sihler@web.de");
-        settings.emplace(st, "S_LILLY_BIBTEX", "Angabe der . bib Datei !OHNE ENDUNG!.", eSetting_Type.IS_TEXT, ""); // include check, if bibtex required
+        settings.emplace(st, "S_LILLY_BIBTEX", "Angabe der . bib Datei !OHNE ENDUNG!.", eSetting_Type.IS_TEXT, ""); // include
+                                                                                                                    // check,
+                                                                                                                    // if
+                                                                                                                    // bibtex
+                                                                                                                    // required
         settings.emplace(st, "S_LILLY_SIGNATURE_COLOR",
                 "Welche Highlighting Farbe soll verwendet werden, per Hcolor (und HBcolor)", eSetting_Type.IS_LATEX,
                 "Leaf");
 
         // Generelle Einstellungen
         settings.emplace(st, "S_OPERATION", "Was soll getan werden?", eSetting_Type.IS_OPERATION, "help");
-        settings.emplace(st, "S_FILE", "Wie soll die Datei heißen?", eSetting_Type.IS_TEXT /* Da nicht wirklich existent, kann auch erstellt werden! */, "dummy.tex");
+        settings.emplace(st, "S_FILE", "Wie soll die Datei heißen?",
+                eSetting_Type.IS_TEXT /* Da nicht wirklich existent, kann auch erstellt werden! */, "dummy.tex");
         settings.emplace(st, "S_DEBUG", "Sollen Meldungen ausgegeben werden?", eSetting_Type.IS_SWITCH, "false");
         settings.emplace(st, "S_DEBUG_FILTER", "Regex-Expression welche Debug-Nachrichten anzuzeigen sind!",
                 eSetting_Type.IS_TEXT, ".*");
@@ -181,7 +189,7 @@ public class CoreSettings {
                 "5");
 
         // Makefile Generierung
-        settings.emplace(st, "S_MK_NAME", "Wechen Namen soll das Makefile haben", eSetting_Type.IS_TEXT, "Makefile");
+        settings.emplace(st, "S_MK_NAME", "Welchen Namen soll das Makefile haben", eSetting_Type.IS_TEXT, "Makefile");
         settings.emplace(st, "S_MK_PATH", "Wohin soll das Makefile", eSetting_Type.IS_PATH, "./");
         settings.emplace(st, "S_MK_USE", "Soll ein Makefile erstellt werden", eSetting_Type.IS_SWITCH, "false");
         try {
@@ -226,7 +234,7 @@ public class CoreSettings {
     /**
      * Will take the Key and pass it through the Translator before assigning
      *
-     * @param key the key (will be translated)
+     * @param key   the key (will be translated)
      * @param value the value (won't be translated)
      * @return {@link de.eagle.util.blueprints.AbstractSettings#set(Serializable, Serializable)}
      */

@@ -2,7 +2,7 @@
 \ProvidesPackage{LILLYxCONTROLLERxCONTENT}[2019/06/29 Grundlegende Pfadverwaltung fuer Lilly]
 %% TODO: bisher wird die automatische Pfaderkennung auf Windows NICHT aktiviert! => CHANGE
 
-%%% Verwaltet das laden S�MTLICHER DATEN-Dateien
+%%% Verwaltet das laden SÄMTLICHER DATEN-Dateien
 %% Zu unterbinden
 \RequirePackage{LILLYxCOMMAND}
 \RequirePackage{LILLYxVANILLA}
@@ -116,8 +116,8 @@
 %% WON'T ALLOW '_'  which is fine as they shouldn't be used anyway
 \providecommand{\dataInput}[1]{\InputIfFileExists{\LILLYxCLSPATH/source/Data/#1}{}{\ClassWarning{Lilly}{Die per \protect\dataInput\space angeforderte Datei #1 konnte nicht gefunden werden!}}}
 
-%%% Semesterzahl Path
-\providecommand{\getSemester}[2]{\LILLYxCLSPATH/\LILLYxPATHxDATA/Semester/#1/#2}
+%%% Name
+\providecommand{\getVorlesung}[1]{\LILLYxCLSPATH/\LILLYxPATHxDATA/Semester/#1}
 
 
 
@@ -139,4 +139,6 @@
 }%
 }
 
+\newif\iflilly@vorlesung@isvalid@
+\IfFileExists{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}{\global\lilly@vorlesung@isvalid@true}{\global\lilly@vorlesung@isvalid@false}
 \endinput

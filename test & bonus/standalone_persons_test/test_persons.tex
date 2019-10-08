@@ -1,0 +1,91 @@
+\errorcontextlines 99999
+\documentclass{article}
+\def\LILLYxDEBUG{TRUE}
+\usepackage{LILLYxTRANSCRIPTS}
+% TODO: include lib for Lilly.cls
+
+\usepackage{blindtext}
+
+\begin{document}
+\CreateNewPerson[name={Florian},image=me,email={florian.sihler@uni-ulm.de},alias={EagleoutIce},mobile number={+\(49\,152\,59169778\)},brief={\blindtext},last name={Sihler}]{Dieter}
+
+
+\CreateNewPerson[name={Dieter},image=me,email={dieter.dergute@web.de},alias={MonsterSlayer},mobile number={+\(49\,152\,59169778\)},brief={\blindtext},last name={Dergute},color=DebianRed]{Dieter2}
+
+\CreateNewPerson[name={Wolfgang},image=me,email={wolfgang.peter@web.de},alias={Shadowblades},mobile number={+\(49\,152\,59169778\)},brief={\blindtext},last name={Peter},color=Azure]{Dieter3}
+
+\CreateNewPerson[name={Jonas},image=me,email={jonas.jensson@web.de},alias={Brillenbritta},mobile number={+\(49\,152\,59169778\)},brief={\blindtext},last name={Jensson},color=ChromeYellow]{Dieter4}
+
+\CreateNewPerson[name={Daniel},image=me,email={florian.sihler@web.de},alias={Little Fee},mobile number={+\(49\,152\,59169778\)},brief={\blindtext},last name={Poles},color=Veronica]{Dieter5}
+
+
+% -------------------
+
+
+% \paragraph{Anwesenheit:}~\smallskip\\
+% \ShowPersonTag{Dieter}\ShowPersonTag{Dieter2}\ShowPersonTag{Dieter3}\\
+% \ShowPersonTag{Dieter4}\ShowPersonTag{Dieter5}
+
+\section{Sitzungen im Überblick}
+\listofSESSIONS{}
+
+
+
+
+\section{Die Sitzungen}
+\begin{session}{attendees={Dieter,Dieter3,Dieter4,Dieter5},where={Smiley Pool},when={21.09.2019},duration={30}}
+
+\begin{telegram}
+    \item Behaltet
+    \item Das
+    \item Im Kopf!
+\end{telegram}
+
+\blindtext
+
+\end{session}
+
+\clearpage
+
+\begin{session}{attendees={Dieter,Dieter2,Dieter4},where={Beci},when={22.09.2019},duration=120}
+
+\begin{telegram}
+    \item Behaltet
+    \item Das
+    \item Im Kopf!
+\end{telegram}
+
+\blindtext
+
+\end{session}
+
+
+\begin{session}{attendees={Dieter,Dieter2,Dieter3,Dieter4,Dieter5},where={Smiley Pool},when={23.09.2019},duration=60}
+
+\begin{telegram}
+    \item Behaltet
+    \item Das
+    \item Im Kopf!
+\end{telegram}
+
+\blindtext
+
+\end{session}
+
+
+
+\clearpage
+
+\section{Beteiligte}
+\addcontentsline{SESSION}{section}{Beteiligte}
+\ShowPerson{Dieter}\ShowPerson{Dieter2}\ShowPerson{Dieter3}\ShowPerson{Dieter4}\ShowPerson{Dieter5}
+
+\section{Anwesenheitsübersicht}
+
+\begin{ditemize}
+\foreach \person in {Dieter,Dieter2,Dieter3,Dieter4,Dieter5}{%
+    \item \ShowPersonTag{\person}: \csname attendance\person\endcsname~minutes%
+}
+\end{ditemize}
+
+\end{document}

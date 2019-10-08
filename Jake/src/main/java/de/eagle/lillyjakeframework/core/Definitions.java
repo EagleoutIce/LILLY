@@ -8,9 +8,13 @@
  */
 package de.eagle.lillyjakeframework.core;
 
+import de.eagle.gepard.modules.Projects;
+import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eProgress_State;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author Florian Sihler
@@ -18,14 +22,14 @@ import java.io.InputStream;
  *         Speichert alle Globalen Definitionen für Jake, die aus keiner Datei
  *         heraus erstellt werden und mit der spezifischen Jake Version
  *         einhergehen.
- * @version 2.0.0
+ * @version 2.1.0
  * @since 2.0.0
  */
 public class Definitions {
     /// Kurzbeschreibung der Version
-    public static final String PRG_BRIEF = "Jake 2.0.0 - It's Java Time";
+    public static final String PRG_BRIEF = "Jake 2.1.0 - Daten, selbstgebacken :D";
     /// Die Version als String
-    public static final String JAKE_VERSION = "2.00.00";
+    public static final String JAKE_VERSION = "2.01.00";
 
     public static final String PRG_NAME = "jake";
 
@@ -39,7 +43,7 @@ public class Definitions {
     public static final String S_FALSE = "false";
 
     public static final String DEFAULT_COMMENT_PATTERN = "![^!]*!";
-    
+
     /**
      * @return Returns the relative working directory
      */
@@ -56,8 +60,19 @@ public class Definitions {
 
     public static String RELATIVE_WORKING_DIR = "";
 
-
     public static final int MAX_SETTINGS_REC = 12;
+
+    public static DateTimeFormatter date_format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    public static DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+    public static Settings projects() {
+        try {
+            return Projects.getInstance().getProjects(CoreSettings.requestValue("S_GEPARDRULES_PATH"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * Aktueller Stand dieser Version
@@ -72,7 +87,7 @@ public class Definitions {
     public static final String JAKE_INSTALLED_PATH = System.getenv("JAKE_INSTALLATION_PATH");
 
     /// Die aktuelle Version als Zahl
-    public static final int JAKE_VERSION_NUM = 20000;
+    public static final int JAKE_VERSION_NUM = 20100;
 
     public static final int B_NAME = 0;
     public static final int B_EXTRA = 1;
