@@ -30,11 +30,10 @@ import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.FunctionCollector;
 
 import java.awt.Desktop;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.Buffer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Comparator;
 import java.util.Map;
 
@@ -250,6 +249,30 @@ public final class CoreFunctions {
 
     }
 
+    public static byte[] getCheckSum(InputStream is) throws NoSuchAlgorithmException, IOException {
+        byte[] buffer = new byte[1024];
+        MessageDigest complete = MessageDigest.getInstance("MD5");
+        int numRead;
+
+        do {
+            numRead = is.read(buffer);
+            if (numRead > 0) {
+                complete.update(buffer, 0, numRead);
+            }
+        } while (numRead != -1);
+        return complete.digest();
+    }
+
+    public static String getMD5Checksum(InputStream is) throws NoSuchAlgorithmException, IOException {
+        byte[] b = getCheckSum(is);
+        StringBuilder result = new StringBuilder();
+        for (int i=0; i < b.length; i++) {
+            result.append(Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return result.toString();
+    }
+
+
     /**
      * should (theoretically :P) copy the Documentation to the temp-dir and reveil it :D
      */
@@ -257,13 +280,28 @@ public final class CoreFunctions {
 
         String _path = PropertiesProvider.getTempPath()+ "/Lilly-Dokumentation.doc.pdf";
         // Does exist?, we DON'T CARE xD, it copies it freaking fast => maybe insert up to date check in the future?
-        //if(!new File(_path).exists()){
-            // Clone to target
+        boolean doclone = true;
+        File f;
+        if((f = new File(_path)).exists()){
+            // Check if Resource has changed:
+            String intern = "", extern = "";
+            try {
+                intern = getMD5Checksum(CoreFunctions.class.getResourceAsStream("/COMPACT-Lilly-Dokumentation.doc.pdf"));
+                extern = getMD5Checksum(new FileInputStream(f));
+            } catch (NoSuchAlgorithmException | IOException e) {
+                e.printStackTrace();
+            }
+            doclone = !intern.equals(extern);
+        }
+        // Clone to target
+        if(doclone) {
+            JakeWriter.out.println("Die Dokumentation wird kopiert...");
             try {
                 Cloner.cloneFileRessource("/COMPACT-Lilly-Dokumentation.doc.pdf", _path);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+        }
         //}
         JakeWriter.out.println("Information: Die mit Jake mitgelieferte Dokumentation ist komprimiert und enthält weniger Beispielgrafiken und Ausführungen. Für eine volle Dokumentation siehe hier: https://github.com/EagleoutIce/LILLY");
         try {
