@@ -65,6 +65,13 @@ class CommandLineParserTest {
         Settings args_settings = new Settings("ParseNextArg TestSettings");
         args_settings.put("testtoggle",
                 SettingDeskriptor.create("testtoggle", "Testtoggle", eSetting_Type.IS_SWITCH, false, "true"));
+        args_settings.put("name", SettingDeskriptor.create("name", "Name", eSetting_Type.IS_TEXT, false, ""));
+        args_settings.put("operation", SettingDeskriptor.create("operation", "Operation", eSetting_Type.IS_TEXT, false, ""));
+        args_settings.put("lilly-n", SettingDeskriptor.create("lilly-n", "lilly-n", eSetting_Type.IS_TEXT, false, ""));
+        args_settings.put("error-toggle", SettingDeskriptor.create("error-toggle", "error-toggle", eSetting_Type.IS_SWITCH, false, ""));
+        args_settings.put("lilly-modes", SettingDeskriptor.create("lilly-modes", "lilly-modes", eSetting_Type.IS_TEXT, false, ""));
+        args_settings.put("lilly-author", SettingDeskriptor.create("lilly-author", "lilly-author", eSetting_Type.IS_TEXT, false, ""));
+        args_settings.put("lilly-nameprefix", SettingDeskriptor.create("lilly-nameprefix", "lilly-nameprefix", eSetting_Type.IS_TEXT, false, ""));
         CommandLineParser.parse_args(arg_arr, args_settings);
 
         for (int i = 0; i < exp_arr.length; i += 2) { // teste ob Einstellungen passen

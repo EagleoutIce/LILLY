@@ -16,12 +16,14 @@ import com.intellij.uiDesigner.core.Spacer;
 import de.eagle.gepard.parser.Configurator;
 import de.eagle.lillyjakeframework.core.CoreSettings;
 import de.eagle.lillyjakeframework.core.Definitions;
-import de.eagle.lillyjakeframework.gui.core.SubForms.CompileWatcher;
 import de.eagle.lillyjakeframework.gui.core.Tools.ConfigEditor;
 import de.eagle.lillyjakeframework.gui.core.Tools.GepardEditor;
 import de.eagle.util.datatypes.JakeDocument;
 import de.eagle.util.enumerations.eDocument_Type;
+import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
+import de.eagle.util.io.JakeWriter;
+import de.eagle.util.io.TextAreaConsoleStream;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -33,6 +35,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -64,6 +67,11 @@ public class GUICompile extends JFrame {
     private JPanel ToolsGroup;
     private JButton btEditConfig;
     private JButton btEditGepard;
+    private JTabbedPane main_tabp;
+    private JPanel file_selection;
+    private JPanel compile_log;
+    private JEditorPane outlog;
+    private JScrollPane outlogsp;
 
     JakeDocument loadedDoc = null;
 
@@ -71,6 +79,8 @@ public class GUICompile extends JFrame {
         return cbFileCorrect.isSelected();
     }
 
+
+    public final TextAreaConsoleStream OUT;
 
     public String[][] receiveDocumentData(JakeDocument doc) {
         // First of all Detect if the File is a config or a tex file:
@@ -233,42 +243,45 @@ public class GUICompile extends JFrame {
             }
         });
 
+
         btCompile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (loadedDoc == null) return;
-                switch (loadedDoc.getType()) {
-                    case IS_TEX:
-                        CoreSettings.set(CoreSettings.getTranslator().translate("S_FILE"), loadedDoc.getPath().getName());
-                        lbStatus.setText("Compiling...");
-                        showCompileWatcher();
-                        lbStatus.setText("Compiling finished successfully!");
-
-                        break;
-                    case IS_CONF:
-                        // To be sure, wen wan't to rejoin the config-Settings with the CoreSettings
-                        try {
-                            Configurator cfg = new Configurator(loadedDoc.getPath().getAbsolutePath());
-                            cfg.parse_settings(CoreSettings.getSettings(), false);
-                            lbStatus.setText("Compiling...");
-                            //JakeCompile.compile(new String[]{});
-                            showCompileWatcher();
-                        } catch (IOException e) {
-                            lbStatus.setText(e.getMessage());
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                btCompile.setEnabled(false);
+                // We will operate similar to projects by spawning new little Jakes :smile:
+                new Thread(new async_compile()).start();
             }
         });
-
+        OUT = new TextAreaConsoleStream(outlog);
     }
 
-    public void showCompileWatcher() {
-        CompileWatcher cw = new CompileWatcher(new String[]{});
-        cw.setModal(true);
-        cw.setVisible(true); // here we must evaluate the feedback  Value :D
+    public class async_compile implements Runnable {
+        @Override
+        public void run() {
+            BufferedReader br = compileFile();
+            String _line;
+            // we will expand the Path to allow Expandables to work on it :D
+            try {
+                while ((_line = br.readLine()) != null) {
+                    OUT.println(_line);
+                    // JakeWriter.out.println(_line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            btCompile.setEnabled(true);
+        }
+    }
+
+    BufferedReader compileFile() {
+        String m = loadedDoc.getPath().getAbsolutePath(); // Ignore pending whitespaces
+        // System.out.println("Got Path: " + m);
+        BufferedReader br = Executer
+                .runBashCommand("cd \"" + new File(m).getParent() + "\" && jake \"" + m
+                        + "\" || echo 'Error! The File [" + m + "] seems to be invalid'");
+        return br;
+
     }
 
     public static void main(String[] args) {
@@ -292,30 +305,23 @@ public class GUICompile extends JFrame {
      */
     private void $$$setupUI$$$() {
         MainPanel = new JPanel();
-        MainPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 4, new Insets(3, 3, 3, 3), -1, -1));
+        MainPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(3, 3, 3, 3), -1, -1));
         MainPanel.setMaximumSize(new Dimension(-1, -1));
         MainPanel.setMinimumSize(new Dimension(162, 100));
         MainPanel.setOpaque(true);
         MainPanel.setPreferredSize(new Dimension(162, 100));
-        btSelectFile = new JButton();
-        btSelectFile.setAutoscrolls(true);
-        btSelectFile.setHideActionText(false);
-        btSelectFile.setText("Select File");
-        btSelectFile.setToolTipText("Open a File Chooser to Pick the File you want to compile");
-        MainPanel.add(btSelectFile, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        btCompile = new JButton();
-        btCompile.setBackground(new Color(-15100068));
-        btCompile.setEnabled(false);
-        btCompile.setForeground(new Color(-197377));
-        btCompile.setText("Compile");
-        btCompile.setToolTipText("Press to Compile the Document :D");
-        MainPanel.add(btCompile, new com.intellij.uiDesigner.core.GridConstraints(3, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        main_tabp = new JTabbedPane();
+        main_tabp.setEnabled(true);
+        MainPanel.add(main_tabp, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
+        file_selection = new JPanel();
+        file_selection.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
+        main_tabp.addTab("File Selection", file_selection);
         cbFileCorrect = new JCheckBox();
         cbFileCorrect.setEnabled(false);
         cbFileCorrect.setText("");
-        MainPanel.add(cbFileCorrect, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        file_selection.add(cbFileCorrect, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        MainPanel.add(scrollPane1, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        file_selection.add(scrollPane1, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         DataTable = new JTable();
         DataTable.setAutoCreateRowSorter(true);
         DataTable.setAutoResizeMode(2);
@@ -327,17 +333,10 @@ public class GUICompile extends JFrame {
         DataTable.putClientProperty("JTable.autoStartsEdit", Boolean.FALSE);
         DataTable.putClientProperty("Table.isFileList", Boolean.FALSE);
         scrollPane1.setViewportView(DataTable);
-        tfFMainFile = new JTextField();
-        tfFMainFile.setText("File");
-        tfFMainFile.setToolTipText("The file that should be compiled");
-        MainPanel.add(tfFMainFile, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(70, -1), null, 0, false));
-        lbStatus = new JLabel();
-        lbStatus.setText("Entering Data");
-        MainPanel.add(lbStatus, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ToolsGroup = new JPanel();
         ToolsGroup.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 3, new Insets(3, 3, 3, 3), -1, -1));
         ToolsGroup.setToolTipText("Nice Tools");
-        MainPanel.add(ToolsGroup, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        file_selection.add(ToolsGroup, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         ToolsGroup.setBorder(BorderFactory.createTitledBorder("Tools"));
         btEditConfig = new JButton();
         btEditConfig.setEnabled(true);
@@ -348,6 +347,58 @@ public class GUICompile extends JFrame {
         ToolsGroup.add(btEditGepard, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
         ToolsGroup.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        tfFMainFile = new JTextField();
+        tfFMainFile.setText("File");
+        tfFMainFile.setToolTipText("The file that should be compiled");
+        file_selection.add(tfFMainFile, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(70, -1), null, 0, false));
+        btSelectFile = new JButton();
+        btSelectFile.setAutoscrolls(true);
+        btSelectFile.setHideActionText(false);
+        btSelectFile.setText("Select File");
+        btSelectFile.setToolTipText("Open a File Chooser to Pick the File you want to compile");
+        file_selection.add(btSelectFile, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        btCompile = new JButton();
+        btCompile.setBackground(new Color(-15100068));
+        btCompile.setEnabled(false);
+        btCompile.setForeground(new Color(-197377));
+        btCompile.setText("Compile");
+        btCompile.setToolTipText("Press to Compile the Document :D");
+        file_selection.add(btCompile, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        lbStatus = new JLabel();
+        lbStatus.setText("Entering Data");
+        file_selection.add(lbStatus, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        compile_log = new JPanel();
+        compile_log.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        compile_log.setEnabled(true);
+        main_tabp.addTab("Compile Log", compile_log);
+        outlogsp = new JScrollPane();
+        compile_log.add(outlogsp, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        outlog = new JEditorPane();
+        outlog.setContentType("text/html");
+        outlog.setEditable(false);
+        Font outlogFont = this.$$$getFont$$$("Hack", -1, -1, outlog.getFont());
+        if (outlogFont != null) outlog.setFont(outlogFont);
+        outlog.setText("<html>\n  <head>\n    \n  </head>\n  <body>\n  </body>\n</html>\n");
+        outlogsp.setViewportView(outlog);
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
+        if (currentFont == null) return null;
+        String resultName;
+        if (fontName == null) {
+            resultName = currentFont.getName();
+        } else {
+            Font testFont = new Font(fontName, Font.PLAIN, 10);
+            if (testFont.canDisplay('a') && testFont.canDisplay('1')) {
+                resultName = fontName;
+            } else {
+                resultName = currentFont.getName();
+            }
+        }
+        return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
     }
 
     /**

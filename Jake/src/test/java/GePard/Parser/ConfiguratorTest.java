@@ -4,6 +4,8 @@ import de.eagle.gepard.parser.Configurator;
 import de.eagle.gepard.parser.Tokenizer;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
+import de.eagle.util.enumerations.eSetting_Type;
+
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class ConfiguratorTest {
     Settings _generate_simple_settings() {
         HashMap<String, SettingDeskriptor<String>> testSets = new HashMap<>();
         testSets.put("Hallo", SettingDeskriptor.create("Hallo", "Hallo Welt Einstellung"));
-
+        testSets.put("name", SettingDeskriptor.create("name", "Name Einstellung, weil cool", eSetting_Type.IS_TEXT, false, ""));
         return new Settings("TestSettings", false, testSets);
     }
 

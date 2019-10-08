@@ -78,6 +78,10 @@ public class CommandLineParser {
         for (int current_arg = 0; current_arg < args.length; current_arg++) {
             writeLoggerDebug1("Parsing: " + args[current_arg], "CmdLP");
             current_arg = parse_next_arg(args, current_arg, settings);
+            if(current_arg < 0) {
+                JakeWriter.err.println("Abbruch!");
+                return ReturnStatus.EXIT_FAILURE;
+            }
         }
         writeLoggerInfo(
                 "Sperre nun alle in der Kommandozeile modifizierten Argumente, damit keine Konfigurationsdatei dazwischenpfuscht :D",
@@ -105,7 +109,7 @@ public class CommandLineParser {
                         ColorConstants.COL_ERROR, op, Definitions.PRG_NAME, ColorConstants.COL_RESET);
                 return ReturnStatus.EXIT_FAILURE;
             }
-            
+
         }
         return ReturnStatus.EXIT_SUCCESS;
     }
@@ -136,12 +140,17 @@ public class CommandLineParser {
     protected static int parse_next_arg(String[] args, int current_arg, Settings settings) {
         String carg = args[current_arg]; // current arg
         if(carg.length()==0) return current_arg;
+        String stripped = strip_modifications(carg);
+        // At this point stripped will still contain the '-'
+        if(carg.charAt(0) == ARGUMENT_PATTERN && !settings.containsKey(stripped.substring(1))){
+            JakeWriter.err.println("Die Einstellung: \"" + stripped.substring(1) + "\" ist unbekannt!");
+            return -1;
+        }
         if (carg.charAt(0) != ARGUMENT_PATTERN) { // einzelnes Argument
             if (carg.contains(DOCUMENT_PATTERN)) { // ist Dokument
                 writeLoggerDebug2("Identifiziert: einzelnes Argument (Dokument)", "CmdLP");
                 settings.set("operation", "file_compile");
                 settings.set("file", carg);
-                // TODO: teste auf Übungsblatt
             } else if (carg.contains(CONFIG_PATTERN)) { // Ist Konfigurationsdatei
                 writeLoggerDebug2("Identifiziert: einzelnes Argument (Konfiguration)", "CmdLP");
                 settings.set("operation", "config");
@@ -155,40 +164,40 @@ public class CommandLineParser {
                 settings.set("operation", carg);
             }
         } else if (carg.contains(ASSIGNMENT_PATTERN)) { // Zuweisung
-            carg = carg.substring(1); // '-'
+            stripped = stripped.substring(1); // '-'
             writeLoggerDebug2("Identifiziert: Zuweisung (normal: \"" + carg + "\")", "CmdLP");
 
             if (current_arg == args.length - 1) {
                 writeLoggerError("Die Option \"" + carg + "\" benötigt ein Argument! Dieses wurde nicht geliefert!",
                         "Parser");
-                writeLoggerInfo("[Argument-Brief]: " + settings.get(strip_modifications(carg)).getBrief(), "Parser");
+                writeLoggerInfo("[Argument-Brief]: " + settings.get(stripped).getBrief(), "Parser");
             }
             if (carg.contains(ADD_ASSIGN_PATTERN)) { // Ist eine Addition
                 if (current_arg >= args.length - 1)
                     throw new RuntimeException(
                             "Der Parameter: '" + args[current_arg] + "' benötigt ein nachfolgendes Argument!");
-                boolean b = settings.add(strip_modifications(carg), args[++current_arg]);
-                writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" += \"" + args[current_arg]
+                boolean b = settings.add(stripped, args[++current_arg]);
+                writeLoggerDebug2("Weise zu: \"" + stripped + "\" += \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");
-                //settings.get(strip_modifications(carg)).lock();
-                if(!strip_modifications(carg).equals("file")) // this one has to be overwritten :D
-                    lazylocks.add(strip_modifications(carg));
+                //settings.get(stripped).lock();
+                if(!stripped.equals("file")) // this one has to be overwritten :D
+                    lazylocks.add(stripped);
             } else { // ist normale zuweisung
                 if (current_arg >= args.length - 1)
                     throw new RuntimeException(
                             "Der Parameter: '" + args[current_arg] + "' benötigt ein nachfolgendes Argument!");
-                boolean b = settings.set(strip_modifications(carg), args[++current_arg]);
-                writeLoggerDebug2("Weise zu: \"" + strip_modifications(carg) + "\" = \"" + args[current_arg]
+                boolean b = settings.set(stripped, args[++current_arg]);
+                writeLoggerDebug2("Weise zu: \"" + stripped + "\" = \"" + args[current_arg]
                         + "\" (feedback: " + b + ")", "CmdLP");
-                //settings.get(strip_modifications(carg)).lock();    
-                if(!strip_modifications(carg).equals("file")) // this one has to be overwritten :D            
-                lazylocks.add(strip_modifications(carg));
+                //settings.get(stripped).lock();
+                if(!stripped.equals("file")) // this one has to be overwritten :D
+                    lazylocks.add(stripped);
             }
         } else { // Es handelt sich um einen Switch
             carg = carg.substring(1); // '-'
             if (settings.containsKey(carg)) {
                 SettingDeskriptor sarg = settings.get(carg);
-                writeLoggerDebug2("Toggle boolesche Funktion! (alter Wert: \"" + sarg.getValue() + "\"", "CmdLP");
+                writeLoggerDebug2("Toggle boolesche Funktion! (alter Wert: \"" + sarg.getValue() + "\")", "CmdLP");
                 if (!sarg.type.equals(eSetting_Type.IS_SWITCH))
                     throw new IllegalArgumentException("Es handelt sich hier um keine boolesche Funktion!");
                 // toggle:
