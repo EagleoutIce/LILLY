@@ -9,15 +9,15 @@
 \begin{document}
 
 % Docment and add radials
-
+\iffalse
 \makeatletter
 \foreach \t in {roundings,rounds,triangles,hexas,slider,dots,radialbars,radialdots,radial} {
     \foreach \p in {0,25,50,75,100}{
         \noindent\t:\p: \hfill \@pb@ProgressBar{\t}{\p}\newline
     }
 }
-
-\foreach \col in {Charcoal,AppleGreen,Azure,DebianRed,ddpurple} {% %%
+\fi
+\foreach \col in {Charcoal}{%,AppleGreen,Azure,DebianRed,ddpurple} {% %%
 \begin{application}{SimpleLeftBanner}
 \setname{Florian Sihler}
 \colorprofile{\col}

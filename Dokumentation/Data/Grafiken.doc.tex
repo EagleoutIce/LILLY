@@ -120,7 +120,9 @@ wobei \clatex{:lan:graphdot:ran:} entsprechend ersetzt wurde, weiter wurde für 
 %
 
 \presentCommand[1.0.4]{graphPOI}[\manArg{(PosX,PosY)}\manArg{accent-color}\manArg{year}\manArg{obj-name}\manArg{brief}\secline\manArg{img-path}\manArg{img-link}\manArg{extra}]
-Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen look für Timelines garantiert. Im Folgenden eine repräsentation, die den Wirrwarr an Optionen etwas übersichtlicher macht. Es gilt zu beachten, dass \clatex{:lan:extra:ran:} hier die Rolle des entsprechendes Landes einnimmt:\vspace{-1.15\baselineskip}
+Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen Look für Timelines garantiert.
+Im Folgenden eine Repräsentation, die den Wirrwarr an Optionen etwas übersichtlicher macht. Es gilt zu beachten, dass \clatex{:lan:extra:ran:} hier die Rolle des entsprechendes Landes einnimmt.\iflillycompact\else
+\vspace{-1.15\baselineskip}
 %
 %%%% COMPAT CHEAT
 \LILLYcommand{\graphPOICOMPAT}[8]{
@@ -136,11 +138,11 @@ Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen loo
 \begin{tikzternal}[scale=0.75,
         every node/.style={transform shape}]
     \graphPOI{(0,0)}{purple}{1999 n.Chr.}
-      {Florian Sihler}
-      {Florian Sihler ist der Autor dieses Dokuments.}
-      {Data/2003.jpg}
-      {https://github.com/EagleoutIce/Quickblit}
-      {Deutschland};
+        {Florian Sihler}
+        {Florian Sihler ist der Autor dieses Dokuments.}
+        {Data/2003.jpg}
+        {https://github.com/EagleoutIce/Quickblit}
+        {Deutschland};
 \end{tikzternal}
     \end{plainlatex}}&{%
     \begin{tikzternal}[scale=0.75,
@@ -150,7 +152,8 @@ Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen loo
     \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
-Hier wurde aus Platzgründen die Größe angepasst. Es gibt auch noch \blankcmd{LILLYxMODExEXTRA} der es ermöglicht den \blankcmd{graphPOI}-Befehl einzuschränken.
+Hier wurde aus Platzgründen die Größe angepasst.\fi
+Es gibt auch noch \blankcmd{LILLYxMODExEXTRA} der es ermöglicht den \blankcmd{graphPOI}-Befehl einzuschränken.
 Wir dieser Befehl auf \verb|\true| (\true) gesetzt, so wird \blankcmd{graphPOI} so konfiguriert, dass die zugehörige Grafik angezeigt wird. Ist dies nicht der Fall (in anderen Worten: \blankcmd{LILLYxMODExEXTRA}=\verb|\false|), so wird kein Bild angezeigt (auch der Link existiert dann nicht). Diese Version wurde erstellt um Urheberrechtsverletzungen zu vermeiden.
 
 %
@@ -618,16 +621,18 @@ Teile dieser Integration wurden durch \url{https://tex.stackexchange.com/questio
 Dieser Teil existiert weiter auch als eigenes Paket mit: \LILLYxNOTExLibrary{LILLYxGRAPHICSxPROVIDER} und hängt vom Mutterpaket ab.
 
 \presentCommand[2.0.0]{getGraphics}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
-Erlaubt den Zugriff auf zahlreiche Grafiken, die im Rahmen der Arbeit entstanden sind. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stets nur eine Dimension skaliert wird! Die bisher enthaltenen Grafiken können durch \cbash{jake get} abgerufen werden: \begin{center}
+Erlaubt den Zugriff auf zahlreiche Grafiken, die im Rahmen der Arbeit entstanden sind. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stets nur eine Dimension skaliert wird! Die bisher enthaltenen Grafiken können durch \cbash{jake get} abgerufen werden.
+\iflillycompact\else\begin{center}
     \begin{tabular}{C{0.45\linewidth}_C{0.45\linewidth}}
         \getGraphics{Rechner/PLAAmpel} & \getGraphics{Software/ThreadStates} \\
         {\tiny \blatex{:bs:getGraphics\{Rechner/PLAAmpel\}}} & {\tiny\blatex{:bs:getGraphics\{Software/ThreadState\}}}
     \end{tabular}
-\end{center}
-Die Größe skaliert sich in der Regel automatisch, allerdings existieren auch Grafiken, die automatisch nicht skaliert werden, da sie Code oder andere nicht skalierfähige Elemente enthalten: \begin{center}
+\end{center}\fi
+Die Größe skaliert sich in der Regel automatisch, allerdings existieren auch Grafiken, die automatisch nicht skaliert werden, da sie Code oder andere nicht skalierfähige Elemente enthalten.
+\iflillycompact\else\begin{center}
     \getGraphics{Software/XML/XMLUebersicht}
     \blatex{:bs:getGraphics\{Software/XML/XMLUebersicht\}}
-\end{center}
+\end{center}\fi
 
 \presentCommand[2.0.0]{getGraphicsPath}[\manArg{path}]
 Liefert den absoluten Pfad zu einer Grafik. Beispiel:
@@ -641,13 +646,13 @@ Liefert: \T{\getGraphicsPath{Software/XML/XMLUebersicht}}.
 %
 
 \presentCommand[2.0.0]{getPrerendered}[\optArg[\textbackslash linewidth]{width}\manArg{path}\optArg{height}]
-Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereits vorberechneten Grafiken. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stehts nur eine Dimension skaliert wird! Sie werden in der Grafiksammlung durch den Tag \T{pdf} gekennzeichnet (die Breite wurde im Beispiel angepasst, oder lassen sich durch das Anfügen eines \say{\T{-pdf}}-Suffix:
-\begin{center}
+Erlaubt eine automatisch an die Seitenbreite skalierte Implementation von bereits vorberechneten Grafiken. Bei einer Angabe von Breite und Höhe gewinnt die Breite, da stehts nur eine Dimension skaliert wird! Sie werden in der Grafiksammlung durch den Tag \T{pdf} gekennzeichnet (die Breite wurde im Beispiel angepasst), oder lassen sich durch das Anfügen eines \say{\T{-pdf}}-Suffix erhalten.
+\iflillycompact\else\begin{center}
     \begin{tabular}{C{0.45\linewidth}_C{0.45\linewidth}}
         \getPrerendered{Rechner/PLAAmpel-pdf} & \getPrerendered{Software/ThreadStates-pdf} \\
         {\tiny \blatex[morekeywords={[5]{getPrerendered}}]{:bs:getPrerendered\{Rechner/PLAAmpel-pdf\}}} & {\tiny\blatex[morekeywords={[5]{getPrerendered}}]{:bs:getPrerendered\{Software/ThreadState-pdf\}}}
     \end{tabular}
-\end{center}
+\end{center}\fi
 %Weiter existiert der Befehl \blankcmd{lillyGraphicsUsePrerenderedtrue}, mit dem automatisch jeder \blankcmd{getGraphics}-Aufruf in einen entsprechenden \blankcmd{getPrerendered} Aufruf umgewandelt wird.
 \emph{Es gilt zu beachten, dass die bereits vorgenerierten Grafiken von den manuell generierten abweichen können!}
 Mit Version \LILLYxBOXxVersion{2.1.0} wird \Jake (um die Größe zu reduzieren) ohne die vorkompilierten Grafiken ausgeliefert. Diese können allerdings durch \bbash{jake get} generiert werden (\Jake fragt nach, wenn die Dateien nicht gefunden werden können!). Dieser Prozess kann einige Minuten in Anspruch nehmen und erübrigt sich bei einer Installation über die Entwicklungs-Version. Durch \T{:force} kann das Generieren dieser Grafiken forciert werden, wobei jeweils nur Änderungen neu kompiliert werden.

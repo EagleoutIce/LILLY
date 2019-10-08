@@ -177,7 +177,7 @@ Für die einzelnen Zahlenräume werden einige Befehle zur Verfügung gestellt, d
 %
 
 \presentCommand[1.0.1]{i}
-Die komplexe Einheit \i{} wird mit \blankcmd{i} zur Verfügung gestellt.
+Die komplexe Einheit \T{i} wird mit \blankcmd{i} zur Verfügung gestellt.
 
 %
 %
@@ -480,6 +480,7 @@ normale \jmark[graph]{env:graph}-Environment einzubetten. Er funktioniert mit de
     \plotline{\x*\x}
 \end{wgraph}
 \end{latex}
+\iflillycompact\else%
 \clearpage
 %
 %
@@ -541,5 +542,5 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
 \specialrule{1pt}{0pt}{0pt}
     \end{tabular}
 \end{center}
-
+\fi
 \renewcommand{\arraystretch}{1}

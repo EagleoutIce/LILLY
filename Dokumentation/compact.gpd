@@ -1,0 +1,11 @@
+BEGIN buildrule:
+    name = compact
+    display-name = Kompakt-
+    lilly-mode = default
+
+    complete = false
+    nameprefix = COMPACT-
+
+    ! We will use this switch to select in the Documentation !
+    lilly-loader = \\def\\compactXdoc{}\\input{$(INPUTDIR)$(TEXFILE)}
+END;

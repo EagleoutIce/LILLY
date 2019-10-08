@@ -214,12 +214,13 @@ Der Layout-Controller übernimmt mit \LILLYxBOXxVersion{2.0.0} die Aufgaben der 
     vorgestellt werden.
 \end{bemerkung}
 
-Ist \blankcmd{LILLYxDEBUG} auf \blankcmd{true} gesetzt, wird \blankcmd{errorcontextlines} entsprechend modifiziert und eine entsprechende DEBUG-Titlepage gesetzt:\smallskip\\
+Ist \blankcmd{LILLYxDEBUG} auf \blankcmd{true} gesetzt, wird \blankcmd{errorcontextlines} entsprechend modifiziert und eine entsprechende DEBUG-Titlepage gesetzt.
+\iflillycompact\else\smallskip\\
 \makeatletter%
 \framebox{%
     \@@Debug@Page@Content%
 }~\\
-
+\fi
 Ist die \blankcmd{LILLYxVorlesung} auf einen Wert größer als $0$ gesetzt, wird automatisch die Konfiguration mittels von \blankcmd{RequestConfig} geladen. Ist weiter \blankcmd{LILLYxBIBTEX} definiert, so werden alle für die Verwendung von $\mathrm{B{\scriptstyle{IB}} \! T\!_{\displaystyle E} \! X}$ % maybe make \BibTex
  notwendigen Pakete (namentlich \T{cite}) geladen und automatisch ein Aufruf von \T{bibtex} initiiert.
 
@@ -245,10 +246,12 @@ Setzt die Bibliographie mit dem Namen \T{Name} automatisch, greift intern auf \b
 
 \subsection{Das Mitschrieb-Layout}
 \elable{mrk:laymit}Diese Definitionen befinden sich in der Datei: \blatex[morekeywords={[5]{LILLYxPATHxDATA}}]{:bs:LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_MITSCHRIEB}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT} auf Basis von \blankcmd{LILLYxMODE} präsentiert. \newline
-Dieses Design ist als Urdesign zusammen mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} für die Generierung von Mitschreiben verantwortlich. Im Folgenden wird nicht auf jede einzelne Modifikation sondern nur auf die nutzbaren Befehle eingegangen:
+Dieses Design ist als Urdesign zusammen mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER} für die Generierung von Mitschreiben verantwortlich. Im Folgenden wird nicht auf jede einzelne Modifikation sondern nur auf die nutzbaren Befehle eingegangen.
+\iflillycompact\else%
 \begin{tcbraster}[raster columns=3, blankest,graphics pages={1,2,3},colback=white]
     \tcbincludepdf{Data/Documents/LayoutMitschrieb/mitschrieb.pdf}
 \end{tcbraster}
+\fi%
 
 %
 %
@@ -293,10 +296,12 @@ Das bedeutet natürlich, dass man sich auch selbst ein Übungsblatt ohne \Jake b
 %
 
 \presentCommand[1.0.1]{TUTORBOX}
-Setzt eine Tutorbox für Übungsblatt(abgaben) die auf Papier stattfinden:
+Setzt eine Tutorbox für Übungsblatt(abgaben) die auf Papier stattfinden.
+\iflillycompact\else%
 \begin{center}
    \tcbincludepdf[blankest, graphics options={trim=2.5cm 25cm 2.5cm 1.65cm, clip}]{Data/Documents/LayoutUebungsblatt/tutorbox.pdf}
 \end{center}
+\fi%
 
 %
 %
@@ -309,7 +314,8 @@ Setzt Punkte an das Ende der Zeile, um zum Beispiel Teilpunkte in Aufgaben einfa
 %
 %
 
-Weiter besteht eine Unterstützung durch \LILLYxNOTExLibrary{LILLYxBOXES}, so kann der Boxmodi \T{ALTERNATE} ein anderers Design hervorrufen (genau genommen durch die Modifikation von \blankenv{aufgabe}):
+Weiter besteht eine Unterstützung durch \LILLYxNOTExLibrary{LILLYxBOXES}, so kann der Boxmodi \T{ALTERNATE} ein anderers Design hervorrufen (genau genommen durch die Modifikation von \blankenv{aufgabe}).
+\iflillycompact\else%
 \begin{center}
     \begin{tabular}{cc}
         \toprule
@@ -319,6 +325,7 @@ Weiter besteht eine Unterstützung durch \LILLYxNOTExLibrary{LILLYxBOXES}, so ka
         \bottomrule
     \end{tabular}
 \end{center}
+\fi%
 Die Farbe des \T{ALTERNATE}-Designs wird durch \blankcmd{Hcolor} und damit durch die \Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{lilly-signatur-farbe} kontrolliert. Beide hier gezeigten Dokumente wurden übrigens nur mit \T{pdflatex} kompiliert! Die Dokumente finden sich zur Ausführlichkeit im Quellordner der Dokumentation unter \T{Data/Documents/LayoutUebungsblatt}, wobei sie sich derart ähneln, dass hier exemplarisch das Übungsblatt in der \T{DEFAULT}-Variante (gekürzt) aufgeführt ist:
 \begin{latex}
 \def!**!\LILLYxBOXxMODE{DEFAULT}
@@ -438,10 +445,13 @@ Präsentiert eine Information in einem an Karten anmutenden Format.
 \begin{bemerkung}[Eine beispielhafte Zusammenfassung]
     Im Folgenden ist nun das Ziel eine eigene Zusammenfassung zu erstellen. In diesem Beispiel muss \Jake nicht verwendet werden, ein Kompilieren mit \T{-shell-escape} (beziehungsweise je nach System \T{-enable-write18}) genügt völlig, damit die automatische Index-unsterstüzung von Lilly greifen kann.
 \ilatex{Data/Documents/LayoutZusammenfassung/example-zsf.tex}
-    Die Generierung der Titelseite erfolgt übrigens ebenfalls mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER}. Das (hierbei durch \bbash{pdflatex -shell-escape example-zsf.tex} erzeugte) Ergebnis sieht so aus:
+    Die Generierung der Titelseite erfolgt übrigens ebenfalls mit \LILLYxNOTExLibrary{LILLYxPHILOSOPHER}.
+    \iflillycompact\else%
+    Das (hierbei durch \bbash{pdflatex -shell-escape example-zsf.tex} erzeugte) Ergebnis sieht so aus:
     \begin{tcbraster}[raster columns=3, blankest, graphics pages={1,2,3}, colback=white]
         \tcbincludepdf{Data/Documents/LayoutZusammenfassung/example-zsf.pdf}
     \end{tcbraster}
+    \fi
 \end{bemerkung}
 
 %
@@ -519,11 +529,12 @@ Hier ein Beispiel:
 \section{SectionA}
 % ...
 \end{latex}
-
+\iflillycompact\else
 Liefert (das volle Beispiel findet sich unter \blatex{Data/Documents/LayoutElegantBook/example-eb.tex}, in den Quelldateien dieser Dokumentation):
 \begin{tcbraster}[raster columns=4, blankest, graphics pages={1,2,4,5},colback=white]
     \tcbincludepdf{Data/Documents/LayoutElegantBook/example-eb.pdf}
 \end{tcbraster}
+\fi
 
 %
 %
@@ -575,13 +586,13 @@ Setzt einen Text in kuriver Schrift um zum Beispiel eine Kurzzusammenfassung fü
 %
 %
 
-Im Folgenden ein Beispiel, welches sich auch hier (\blatex{Data/Documents/LayoutPaper/example-paper.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
+Im Folgenden ein Beispiel, welches sich auch hier (\blatex{Data/Documents/LayoutPaper/example-paper.tex}) in den Quelldateien der Dokumentation findet.\iflillycompact\else Es erzeugt das folgende Dokument:
 \begin{tcbraster}[raster columns=3, blankest,colback=white]
     \tcbincludepdf{Data/Documents/LayoutPaper/example-paper-OUT/example-paper.pdf}
 \end{tcbraster}
 Hierfür wurde \Jake verwendet, mit dem folgenden Configfile:
 \igepard{Data/Documents/LayoutPaper/paper.conf}
-
+\fi
 
 \subsection{Das PnP-Guide-Layout}
 \elable{mrk:laypnp}Diese Definitionen befinden sich in der Datei: \blatex[morekeywords={[5]{LILLYxPATHxDATA}}]{:bs:LILLYxPATHxDATA/Layouts/_LILLY_LAYOUT_PNP_GUIDE}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCONTROLLERxLAYOUT} auf Basis von \blankcmd{LILLYxMODE} präsentiert. \medskip\newline
@@ -651,12 +662,12 @@ Setzt die jeweiligen Felder für die Daten.\\
 %
 %
 %
-
+\iflillycompact\else
 Im Folgenden ein Beispiel, welches sich wiedereinmal (\blatex{Data/Documents/LayoutPoems/poems.tex}) in den Quelldateien der Dokumentation findet. Es erzeugt das folgende Dokument:
 \begin{tcbraster}[raster columns=3, graphics pages={1,3,6}, blankest,colback=white]
     \tcbincludepdf{Data/Documents/LayoutPoems/poems.pdf}
 \end{tcbraster}
-
+\fi
 
 % Should this really be documented right now? - probably not
 % Dokumentation

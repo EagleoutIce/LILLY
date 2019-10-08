@@ -136,7 +136,7 @@ Konstruiert einen Neuen Befehl der Struktur \blankcmd{orna<Name>}, der auf das \
 %
 
 \presentCommand[2.0.0]{orna<Name>}[\optArg{ornaargs}]
-Setzt das zuvor mit \blankcmd{@@CreateOrnamentCommand} definierte Ornament. So zum Beispiel: \blankcmd{ornalion} liefert \ornalion.\newline
+Setzt das zuvor mit \blankcmd{@@CreateOrnamentCommand} definierte Ornament. So zum Beispiel: \blankcmd{ornalion} liefert \ornalion.
 Hier eine Auflistung aller Ornamente:
 \getRegisteredOrnaments%
 %\edef\xdoctmp{\noexpand\typesetList{\lillyxlist}}\xdoctmp
@@ -165,10 +165,10 @@ Setzt obere und untere Begrenzer, die auch in \LILLYxNOTExLibrary{LILLYxPOEMS} v
 
 \OrnamentsLower{Wichtig!}
 \end{defaultlst}
-Ergibt:\\
+\iflillycompact\else Ergibt:\\
 \OrnamentsUpper{Meldung}
 
-\OrnamentsLower{Wichtig!}
+\OrnamentsLower{Wichtig!}\fi
 Information: Die Breite dieser Begrenzer passt sich an die aktuelle Zeilenbreite an, ist allerdings(bezüglich Liniendicke) auf Seiten im \T{DIN A4}-Format optimiert.
 
 %
@@ -176,10 +176,12 @@ Information: Die Breite dieser Begrenzer passt sich an die aktuelle Zeilenbreite
 %
 
 \presentCommand[2.0.0]{PresentAllOrnaments}
-Erzeugt mithilfe von \LILLYxNOTExLibrary{LILLYxTABLESxFOREACH} eine tabellarische Auflistung aller Ornamente:
-\begin{tcbraster}[raster columns=4, blankest, graphics pages={1,2,6}, colback=white]
-    \tcbincludepdf{Data/Documents/AllOrnaments/ornaments.pdf}
-\end{tcbraster}
+Erzeugt mithilfe von \LILLYxNOTExLibrary{LILLYxTABLESxFOREACH} eine tabellarische Auflistung aller Ornamente.
+\begin{example}
+    \begin{tcbraster}[raster columns=4, blankest, graphics pages={1,2,6}, colback=white]
+        \tcbincludepdf{Data/Documents/AllOrnaments/ornaments.pdf}
+    \end{tcbraster}
+\end{example}
 Die unterschiedlichen Höhen entstammen hierbei der Tatsache, dass dieser Befehl alle Ornamente (zur besseren Übersicht) mit derselben Breite setzt.
 
 %
@@ -205,12 +207,19 @@ Zeichnet eine Fortschrittsanzeige im Stil \T{drawer} mit einem Fortschritt von \
 \ProgressBar{slider}{55}
 \end{defaultlst}
 Die mit \T{radial} angeführten Fotschrittsleisten benötigen entsprechend mehr Platz und lassen sich somit auch nicht in einen normalen Textfluss einbinden:
+\iflillycompact
+\begin{latex}
+\ProgressBar{radialbars}{27}
+\ProgressBar{radial}{45}
+\ProgressBar{radialdots}{0.9251}
+\end{latex}
+\else
 \begin{defaultlst}[][listing above text,righthand width=3.5cm,before lower={\centering}]{lLatex}
 \ProgressBar{radialbars}{27}
 \ProgressBar{radial}{45}
 \ProgressBar{radialdots}{0.9251}
 \end{defaultlst}
-
+\fi
 %
 %
 %
@@ -523,14 +532,16 @@ Für eine genaue Erklärung siehe \blankenv{poem}. Hier ein Beispiel:
     und bin doch hier.
 \end{poem*}
 \end{latex}
-\begin{poem*}{Hallo Welt}{10.09.2019}[Florian Sihler]
-    Hallo Welt,
-    Wie geht es dir?
-    Du bist so fern,
-    und doch bei mir.
-    ich hab dich gern,
-    und bin doch hier.
-\end{poem*}
+\begin{example}
+    \begin{poem*}{Hallo Welt}{10.09.2019}[Florian Sihler]
+        Hallo Welt,
+        Wie geht es dir?
+        Du bist so fern,
+        und doch bei mir.
+        ich hab dich gern,
+        und bin doch hier.
+    \end{poem*}
+\end{example}
 
 \presentCommand[2.0.0]{subduelines}
 Wie am Beispiel für \blankenv{poem*} zu sehen ist, müssen keine Zeilenenden oder ähnliches angegeben werden. Dies mag die Verwendung von \blankcmd{obeylines} vermuten lassen, allerdings hätte dieser Befehl den Nachteil, dass die Strophen nicht durch eine Leerzeile getrennt werden könnten, da diese von \blankcmd{obeylines} geschluckt werden. Deswegen stellt dieser Befehl eine Variante dar, die sowohl in zentrierten als auch nicht zentrierten Umgebungen funktioniert:
@@ -889,6 +900,7 @@ Ein Beispiel:
 
 \theStundenplan
 \end{latex}
+\iflillycompact\else%
 \bgroup%
 \NewLectureSeries[%
     short title=Ana,
@@ -934,7 +946,7 @@ Ein Beispiel:
 
 \theStundenplan
 \egroup
-
+\fi
 %
 %
 %
@@ -1011,9 +1023,11 @@ Liefert einmal die Ausgabe von \blankcmd{ShowPerson} für die entsprechende \T{P
 %
 
 \presentCommand[2.1.0]{ShowPerson}[\optArg{tikz-args}\optArg[LILLYxPERSONS:]{marker}\manArg{PersonID}]
-Setzt einen beschreibenden Abschnitt für die jeweilige Person, die mit der \T{PersonID} verbunden ist. Der vermerkte \T{marker} bezeichnet das Präfix, was das Sprungziel für den entsprechenden \blankcmd{ShowPersonTag} markiert. So ergibt \blatex[morekeywords={[5]{ShowPerson}}]{:bs:ShowPerson\{Flo\}}:
-\ShowPerson{Flo}
-
+Setzt einen beschreibenden Abschnitt für die jeweilige Person, die mit der \T{PersonID} verbunden ist. Der vermerkte \T{marker} bezeichnet das Präfix, was das Sprungziel für den entsprechenden \blankcmd{ShowPersonTag} markiert.
+\begin{example}
+    So ergibt \blatex[morekeywords={[5]{ShowPerson}}]{:bs:ShowPerson\{Flo\}}:
+    \ShowPerson{Flo}
+\end{example}
 %
 %
 %
@@ -1192,13 +1206,14 @@ Setzt eine Kodierscheibe, wobei alle in der \T{data list} vermerkten Werte als a
     \codierscheibe{white}{purple!50!white}{\valueList}
 \end{tikzpicture}
 \end{defaultlst}
+\iflillycompact\else%
 \begin{defaultlst}[morekeywords={[5]{\\xdef\\valueList,\\valueList}}][listing side text,righthand width=4cm]{lLatex}
 \xdef\valueList{{0 , 1},{1 , 0}}
 \begin{tikzpicture}[scale=0.5]
     \codierscheibe{white}{green!50!white}{\valueList}
 \end{tikzpicture}
 \end{defaultlst}
-
+\fi%
 Die Makros \blankcmd{minimumRadius}, \blankcmd{radiusScaling} und \blankcmd{startAngle} setzen die entsprechenden Parameter für die zu zeichnende Kodierscheibe.
 
 %
@@ -1262,12 +1277,18 @@ Setzt eine Umgebung links oder rechts im aktuellen Textfluss wobei der nächste 
 %
 
 \presentCommand[2.1.0]{applicationset}[\manArg{application keys}]
-\begin{minipage}{\linewidth-5.5cm}
+\def\txewidth{0cm}
+\begin{example}
+    \gdef\txewidth{5.5cm}
+\end{example}
+\begin{minipage}{\linewidth-\txewidth}
     Eine Bewerbung wird auf Basis eines Datenpools gesetzt, der durch diesen Befehl gesetzt werden kann. Welche Daten davon verwendet werden obliegt der jeweiligen Vorlage die verwendet wird. Weiter gilt zu beachten, dass es für die wichtigsten Felder Kurzbefehle wie \blankcmd{setname} gibt, die innerhalb von \blankenv{application} zur Verfügung stehen. Im Folgenden eine Auflistung aller präsenter Schlüsse: \typesetList[T]{primary color,secondary color,text color,page color,title,first name,last name,image,birth day,birth month,birth year,age,telephone,mobile phone,email,private email,website,location,instagram,facebook,twitter,rss,linkedin,devarianart,steam,soundcloud,wordpress,xing,youtube,reddit,github,gitlab,telegram,dropbox,slack,brief init,brief}.
 \end{minipage}\hfill
-\begin{minipage}{5cm}
-    \includegraphics[width=5cm]{Data/Bilder/Application.png}
-\end{minipage}
+\begin{example}
+    \begin{minipage}{5cm}
+        \includegraphics[width=5cm]{Data/Bilder/Application.png}
+    \end{minipage}
+\end{example}
 
 %
 %
@@ -1561,7 +1582,7 @@ In dieser Umgebung stehen die folgende Befehle zur Verfügung, die die entsprech
             {\scriptsize Super EPIC POWER}
         }
     \end{NewFantasyCard}
-    Natürlich würde man sich selbst Kurzbfehle und Stile für die Effekte definieren, die einfach übergeben werden können. Hier übrigens noch das Ergebnis, auf das wir alle gewartet haben: \begin{center}
+    Natürlich würde man sich selbst Kurzbfehle und Stile für die Effekte definieren, die einfach übergeben werden können. Hier übrigens noch das Ergebnis, auf das wir alle gewartet haben: \iflillycompact\else\begin{center}
         \Flo
-    \end{center}
+    \end{center}\fi
 \end{bemerkung}

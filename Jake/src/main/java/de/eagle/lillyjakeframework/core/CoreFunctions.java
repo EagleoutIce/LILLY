@@ -260,12 +260,12 @@ public final class CoreFunctions {
         //if(!new File(_path).exists()){
             // Clone to target
             try {
-                Cloner.cloneFileRessource("/Lilly-Dokumentation.doc.pdf", _path);
+                Cloner.cloneFileRessource("/COMPACT-Lilly-Dokumentation.doc.pdf", _path);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         //}
-
+        JakeWriter.out.println("Information: Die mit Jake mitgelieferte Dokumentation ist komprimiert und enthält weniger Beispielgrafiken und Ausführungen. Für eine volle Dokumentation siehe hier: https://github.com/EagleoutIce/LILLY");
         try {
             Desktop.getDesktop().open(new File(_path));
         } catch (IOException e) {
