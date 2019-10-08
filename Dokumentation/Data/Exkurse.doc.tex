@@ -150,10 +150,13 @@ An sich gibt es keine klare Regel, nach der ein Titelbild generiert werden muss.
 
 \section{Eine Präsentation erstellen}
 \subsection{KIZ-Theme}
-\elable{mrk:beamerKIZexample}Zum Erstellen von Präsentationen, kommt zusammen mit Lilly das Beamer-Theme \T{lillyKIZ}, welches eine \T{beamer}-Präsentation mit einem anderen Design versieht und die zu verwendenden Befehle modifiziert. Ersteinmal eine Übersicht, wie das Ganze am Ende aussieht:
-\begin{tcbraster}[raster columns=3, blankest, graphics pages={1,4,5}, colback=white]
-    \tcbincludepdf{Data/Documents/BeamerThemelillyKIZ/presentation.pdf}
-\end{tcbraster}
+\elable{mrk:beamerKIZexample}Zum Erstellen von Präsentationen, kommt zusammen mit Lilly das Beamer-Theme \T{lillyKIZ}, welches eine \T{beamer}-Präsentation mit einem anderen Design versieht und die zu verwendenden Befehle modifiziert.
+\begin{example}
+    Ersteinmal eine Übersicht, wie das Ganze am Ende aussieht:
+    \begin{tcbraster}[raster columns=3, blankest, graphics pages={1,4,5}, colback=white]
+        \tcbincludepdf{Data/Documents/BeamerThemelillyKIZ/presentation.pdf}
+    \end{tcbraster}
+\end{example}
 Es läuft unabhängig von der kompletten Lilly-Welt und unterstützt (dank der \T{beamer}-Klasse) auch nicht alle Bibliotheken. Das Aussehen gleicht der Powerpoint-Vorlage der Universität Ulm, die Einbindung erfolgt einfach:
 \begin{latex}
 \documentclass{beamer}
@@ -189,10 +192,12 @@ Sollte anstelle von \blankenv{frame} verwendet werden, kümmert sich um die Numm
 \end{bemerkung}
 
 \subsection{Lucy-Theme}
-Mit \LILLYxBOXxVersion{2.1.0} kommt Lilly zudem mit dem Beamer-Thema \T{lucy}, welches meinem standard-Präsentationsthema aus der Schule nachempfunden ist. Es liefert keine neuen Umgebungen und bettet sich in das normale \T{beamer}-Layout ein. Ein Beispiel befindet sich (in den Quelldateien der Dokumentation) im folgenden Ordner: \blatex{Data/Documents/BeamerThemelucy} und entspricht der Präsentation fürs mündliche Abitur:
-\begin{center}
-    \includegraphics[width=\linewidth] {Data/Bilder/lucy-preview.png}
-\end{center}
+Mit \LILLYxBOXxVersion{2.1.0} kommt Lilly zudem mit dem Beamer-Thema \T{lucy}, welches meinem standard-Präsentationsthema aus der Schule nachempfunden ist. Es liefert keine neuen Umgebungen und bettet sich in das normale \T{beamer}-Layout ein. Ein Beispiel befindet sich (in den Quelldateien der Dokumentation) im folgenden Ordner: \blatex{Data/Documents/BeamerThemelucy} und entspricht der Präsentation fürs mündliche Abitur.
+\begin{example}
+    \begin{center}
+        \includegraphics[width=\linewidth] {Data/Bilder/lucy-preview.png}
+    \end{center}
+\end{example}
 
 \presentCommand[2.1.0]{parallelcontent}[\manArg{left}\manArg{right}]
 Setzt \T{left} un \T{right} nebeneinander auf die Folie.
@@ -333,12 +338,13 @@ Generierung von "./FG-9-OUT/Florian-S-Dieter-X-FG-9.pdf" (ALTERNATE) abgeschloss
 Kompilieren abgeschlossen!
 \end{plainbash}
 }
-Die entstehende datei sieht wie folgt aus (der hier automatisch auftauchende Tutor sollte in einem richtigen Template natürlich überschrieben werden und wurde hier entsprechend zensiert, das Blatt wurde zudem mit der Nummer $14$ generiert, allerdings sollte das für die Demo nichts verändern.)
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{Data/Bilder/GeneratorUBBeispiel}
-\end{center}
-Übrigens, der hier gebaute Generator existiert (ungefähr) so bereits in Lilly unter dem Namen \T{uebungsblatt}!
-
+\begin{example}
+    Die entstehende Datei sieht wie folgt aus (der hier automatisch auftauchende Tutor sollte in einem richtigen Template natürlich überschrieben werden und wurde hier entsprechend zensiert, das Blatt wurde zudem mit der Nummer \(14\) generiert, allerdings sollte das für die Demo nichts verändern.)
+    \begin{center}
+        \includegraphics[width=0.75\linewidth]{Data/Bilder/GeneratorUBBeispiel}
+    \end{center}
+    Übrigens, der hier gebaute Generator existiert (ungefähr) so bereits in Lilly unter dem Namen \T{uebungsblatt}!
+\end{example}
 
 
 \section{Eine Bewerbung erstellen}
@@ -417,4 +423,6 @@ Nun können wir mit dem Setzen der einzelnen Blöcke beginnen, zur Übersicht we
 \end{block}
 \sign[Florian Sihler]
 \end{latex}
-Die entstehende PDF kann bei \blankcmd{applicationset} betrachtet werden.
+\begin{example}
+    Die entstehende PDF kann bei \blankcmd{applicationset} betrachtet werden.
+\end{example}

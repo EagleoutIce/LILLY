@@ -1,7 +1,7 @@
 \def\LILLYxBOXxBemerkungxLock{TRUE}
 \documentclass[Dokumentation,kpfont]{Lilly}%debug for more information as additional argment => TOOD: document :D: doesn't seem to work. check?
 
-\usepackage{lipsum} 
+\usepackage{lipsum}
 
 %%Move \Lilly to Lilly :D
 
@@ -79,8 +79,16 @@
 % Version
 \def\lilib#1#2{\;\protect\textsuperscript{\protect\LILLYxNOTExLibrary{#1}\;\typesetVersion{#2}}}
 \robustify\lilib%
-
-
+\makeatletter
+% the 'example' environment will only be shown in the 'non-compact'-version
+\newif\iflillycompact
+\ifcsname compactXdoc\endcsname
+    \global\lillycompacttrue
+\else \global\lillycompactfalse\fi
+\NewEnviron{example}{
+    \iflillycompact\else\BODY\fi
+}
+\makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dokumentation                                                                                                       %     %%%% DOC %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -132,10 +140,11 @@
 \normalmarginpar\par
 \chapter{Anhang}
 \TitleSUB{Veraltete Dokumente, Zusätzliches, Easter-Eggs, \ldots}
+\iflillycompact\else
 \linput{Data/Old/Ver10007.doc.old}
 \clearpage
 \linput{Data/Old/Ver10009.doc.old}
-\clearpage\def\rightmark{}
+\clearpage\fi\def\rightmark{}
 \thispagestyle{empty}
 \bgroup
 \def\idxfsize{\scriptsize}

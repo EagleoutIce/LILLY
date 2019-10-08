@@ -123,7 +123,7 @@ public class CoreSettings {
 
         // S_LILLY_KEEPS
         settings.emplace(st, "S_LILLY_KEEPS", "Welche Dateien sollen auf Basis von Autoclean behalten werden?",
-                eSetting_Type.IS_TEXTLIST, "pdf tex conf config md txt sty cls png jpg jpeg gif svg sh"); 
+                eSetting_Type.IS_TEXTLIST, "pdf tex conf config md txt sty cls png jpg jpeg gif svg sh gpd");
         settings.emplace(st, "S_LILLY_EXTERNAL", "Sollen tikzternal-Grafiken ausgelagert werden?",
                 eSetting_Type.IS_SWITCH, "false");
         settings.emplace(st, "S_LILLY_COMPLETE", "Sollen die Varianten vollständig erstellt werden?",

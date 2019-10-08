@@ -397,7 +397,7 @@
     \ifthenelse{\equal{#5}{\true}}{%
         \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} #4}%
     }{% Da 1.12 mehr platz!
-        \addcontentsline{#2}{#1}{\makebox[1cm][l]{#3} #4}%
+        \addcontentsline{#2}{#1}{\makebox[0.75cm][r]{#3} #4}%
     }\ignorespacesafterend%
 }
 %% Liste typ counter name pin lock
@@ -406,7 +406,7 @@
     \ifthenelse{\equal{#6}{\true}}{%
         \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} \makebox[1em][c]{#5}~#4}%
     }{% Da 1.12 mehr platz!
-        \addcontentsline{#2}{#1}{\makebox[1cm][l]{#3} \makebox[1em][c]{#5}~#4}%
+        \addcontentsline{#2}{#1}{\makebox[0.75cm][r]{#3} \makebox[1em][c]{#5}~#4}%
     }\ignorespacesafterend%
 }
 

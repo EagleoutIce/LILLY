@@ -70,7 +70,7 @@
                 <!-- Include the documentation -->
                 <directory>../Dokumentation</directory>
                 <includes>
-                    <include>Lilly-Dokumentation.doc.pdf</include>
+                    <include>COMPACT-Lilly-Dokumentation.doc.pdf</include>
                 </includes>
             </resource>
         </resources>

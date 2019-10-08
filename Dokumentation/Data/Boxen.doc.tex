@@ -133,7 +133,7 @@ Dieser Befehl besitzt (Stand \LILLYxBOXxVersion{2.0.0}) nicht für alle Boxbezei
 \def!**!\LILLYxBOXxBeweisxBox{FALSE} % Deaktiviert Beweisboxen
 \end{latex*}
 \end{bemerkung}
-
+\iflillycompact\else
 Hier die definierten Umgebungen in ihrer freien Wildbahn und Gestalt:
 
 %%PYSCRIPT:
@@ -225,7 +225,7 @@ Nicht richtig darstellbar aber weiter existiert:
 \begin{uebungsblatt}[Titel][2]
         moin
 \end{uebungsblatt}\end{lstlisting}
-
+\fi
 \presentEnvironment[1.0.0]{task}[\optArg{opt-Addons}\manArg{Titel}\manArg{Punkte}\cmdold]
 Ein aus dem \T{eagleStudiPackage} stammendes Relikt, welches nur aus Kompatibilitätsgründen gehalten wird. Ebenso:
 
@@ -426,12 +426,14 @@ Hiervon weichen nur 2 Definitionen ab. Die der Aufgaben-Box:
     \end{bemerkung}
 \end{document}
     \end{latex}
+    \begin{example}
     In beiden Fällen erzeugen wir die folgenden Boxen:
 {
     \begin{center}
         \tcbincludepdf[blankest]{Data/Documents/Boxexample/boxexample.pdf}
     \end{center}
 }
+\end{example}
 \end{beispiel}
 
 \subsection{Standart-Boxen}
@@ -447,7 +449,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Definitionsbox im entsp
 \begin{definition}[Hallo]
    Hallo Welt!
 \end{definition}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -471,7 +473,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Bemerkungsbox im entspr
 \begin{bemerkung}[Hallo]
    Hallo Welt!
 \end{bemerkung}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -498,7 +500,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Beispielbox im entsprec
 \begin{beispiel}[Hallo]
    Hallo Welt!
 \end{beispiel}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -525,7 +527,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Satzbox im entsprechend
 \begin{satz}[Hallo]
    Hallo Welt!
 \end{satz}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -552,7 +554,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Beweisbox im entspreche
 \begin{beweis}[Hallo]
    Hallo Welt!
 \end{beweis}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -579,7 +581,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Lemmabox im entsprechen
 \begin{lemma}[Hallo]
    Hallo Welt!
 \end{lemma}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -606,7 +608,7 @@ Wird durch \blankcmd{RegisterBox} erzeugt und setzt eine Zusammenfassungsbox im 
 \begin{zusammenfassung}[Hallo]
    Hallo Welt!
 \end{zusammenfassung}
-\end{latex} 
+\end{latex}
 
 %
 %
@@ -633,7 +635,7 @@ Wird nicht durch \blankcmd{RegisterBox} erzeugt und setzt eine Aufgabenbox im en
 \begin{aufgabe}{hallo}{42}
    Hallo Welt!
 \end{aufgabe}
-\end{latex} 
+\end{latex}
 
 
 %
@@ -646,7 +648,7 @@ Wird nicht durch \blankcmd{RegisterBox} erzeugt und setzt ein Übungsblatt, die 
 \begin{uebungsblatt}[Hallo]
    Hallo Welt!
 \end{uebungsblatt}
-\end{latex} 
+\end{latex}
 
 \clearpage
 \section{Info-Boxes}

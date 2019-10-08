@@ -140,14 +140,18 @@ jake get
 Eine PDF, die alle mit Lilly gelieferten Grafiken enthält.
 
 \paragraph{Gui}
-Wie bereits angemerkt, ist die GUI von \Jake noch nicht ansatzweise ausgereift. Der sich öffnende Hauptdialog erlaubt das Auswählen einer Latex- oder Konfigurationsdatei und zeigt die aus der Datei extrahierten Informationen inklusiver ihrer (sofern verschieden) extrahierten Werte an:
+Wie bereits angemerkt, ist die GUI von \Jake noch nicht ansatzweise ausgereift. Der sich öffnende Hauptdialog erlaubt das Auswählen einer Latex- oder Konfigurationsdatei und zeigt die aus der Datei extrahierten Informationen inklusiver ihrer (sofern verschieden) extrahierten Werte an.
+\iflillycompact\else%
 \begin{center}
     \includegraphics[width=0.75\linewidth]{Data/Bilder/JakeGUIMain.png}
 \end{center}
-Nebst einem schönen Ausblick auf das was in der GUI-Welt noch so alles geschehen mag, bietet sich der Button \T{Config} an, der im Falle keine ausgewählten Konfigurationsdatei einfach auf einer neuen arbeitet:
+\fi%
+Nebst einem schönen Ausblick auf das was in der GUI-Welt noch so alles geschehen mag, bietet sich der Button \T{Config} an, der im Falle keine ausgewählten Konfigurationsdatei einfach auf einer neuen arbeitet.
+\iflillycompact\else%
 \begin{center}
     \includegraphics[width=0.5\linewidth]{Data/Bilder/JakeGUIConfig.png}\includegraphics[width=0.5\linewidth]{Data/Bilder/JakeGUIConfigSelection.png}
 \end{center}
+\fi%
 Hier werden nicht nur einige Informationen zu den jeweileigen Einstellungen angezeigt, sondern auch Plausibilitätsprüfungen durchgeführt. Im Falle einer neuen Konfigurationsdatei kann beim Speichern ein entsprechendes Ziel ausgewählt werden.
 
 \subsection{Entwicklerinformationen}

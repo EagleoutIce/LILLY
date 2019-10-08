@@ -33,6 +33,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+// import java.util.Arrays;
 
 import static de.eagle.lillyjakeframework.core.Definitions.*;
 import static de.eagle.util.io.JakeLogger.*;
@@ -139,7 +140,7 @@ public class JakeCompile {
         Settings b_rules = Buildrules.getInstance().parseRules(CoreSettings.requestValue("S_GEPARDRULES_PATH"),
                 CoreSettings.requestSwitch("S_LILLY_COMPLETE"));
         String[] buildrules = CoreSettings.requestValue("S_LILLY_MODES").split(" +");
-
+        // System.out.println(Arrays.toString(buildrules));
         JakeCompile_Worker.failed = false;
         JakeCompile_Worker[] workers = new JakeCompile_Worker[buildrules.length];
         int ctr = 0;
