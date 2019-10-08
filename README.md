@@ -27,9 +27,6 @@ https://github.com/EagleoutIce/LILLY/wiki/Eine-Vorlesung-erstellen
 
 Wenn dir beim Schreiben ein To-Do einfällt, so markiere es einfach entsprechend mit `TODO` oder `@todo` im Code :D
 
-Die sich bisher in Arbeit befindende [Dokumentation](Dokumentation/Lilly-Dokumentation.doc.pdf) sollte noch mit
-vorsicht genossen werden :D Sie sollte dringend mal wieder aktualisiert werden :sweat_smile:!
-
 **Aktuelle Aufgabenfelder:**
 
 1. [Lilly](https://github.com/EagleoutIce/LILLY/projects/3?fullscreen=true)
