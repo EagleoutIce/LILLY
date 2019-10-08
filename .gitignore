@@ -61,7 +61,7 @@ bin
 **/*.nav
 **/*.snm
 **/*.toc
-
+# **/COMPACT-Lilly-Dokumentation.doc.pdf
 **/Data/Graphics/**/*.pdf
 
 # Created by https://www.gitignore.io/api/intellij
