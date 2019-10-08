@@ -59,7 +59,7 @@
     brief/.store in=\lilly@applications@brief
 }%
 
-%Helper Macro fro 
+%Helper Macro fro
 \def\@NeedsFields#1{%
     \foreach \x/\l in {#1}{
         \expandafter\ifcsname\x\endcsname\else\PackageError{LILLYxSHOWCASExAPPLICATION}
@@ -208,7 +208,7 @@
 %% all other Commands will be available only in the application-environment
 \DeclareDocumentEnvironment{application}{%
     O{} % applicationset
-    m   % theme name TODO: Load the theme, and set geometry accordingly
+    m   % theme name
 }{\bgroup\makeatletter%
 \userput{#2.config.tex}{\lillyPathData}{\LILLYxPATHxPRESENTER/Showcase/Modules/ApplicationDesigns}
     \applicationset{#1}%
