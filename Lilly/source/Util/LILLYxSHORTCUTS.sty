@@ -9,7 +9,7 @@
 %% geladen werden/sind
 
 \newcommand{\lstfs}[2][1]{\def\LILLYxLISTINGSxFONTSIZE{\fontsize{#2}{#2}\selectfont\linespread{#1}}%
-\ifnum#2>3\def\LILLYxLISTINGSxNUMxFONTSIZE{\edef\@@subfs{\the\numexpr #2-3\relax}\fontsize{\@@subfs}{\@@subfs}\selectfont\linespread{#1}}%
+\ifnum#2>4\def\LILLYxLISTINGSxNUMxFONTSIZE{\edef\@@subfs{\the\numexpr #2-4\relax}\fontsize{\@@subfs}{\@@subfs}\selectfont\linespread{#1}}%
 \else\def\LILLYxLISTINGSxNUMxFONTSIZE{\tiny\linespread{#1}}\fi%
 }
 
