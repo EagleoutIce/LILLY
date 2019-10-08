@@ -1,4 +1,5 @@
 package Jake.Core;
+
 /**
  * @file CoreFunctionsTest.java
  * @author Raphael Straub
@@ -10,7 +11,9 @@ package Jake.Core;
 
 import de.eagle.lillyjakeframework.cmdline.CommandLineParser;
 import de.eagle.lillyjakeframework.core.CoreFunctions;
+import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
+import de.eagle.util.enumerations.eSetting_Type;
 import de.eagle.util.io.ConsolePrintStream;
 import de.eagle.util.io.JakeWriter;
 import de.eagle.util.io.VoidPrintStream;
@@ -65,12 +68,19 @@ public class CoreFunctionsTest {
     @DisplayName("[CoreFunctions] Testet Settings.dump() ohne .conf datei")
     void _test_fkt_dump() throws IOException {
         String[] arg_arr = "-name:#TollerName#waffel#-testtoggle".split("\\s*#\\s*");
-        String[] exp_arr = "name#TollerName#operation#waffel#testtoggle#false".split("\\s*#\\s*");
+        String[] exp_arr = "name#TollerName#testtoggle#false#operation#waffel".split("\\s*#\\s*");
         Settings settings = new Settings("TestSettings");
-        CommandLineParser.parse_args(arg_arr, settings);
+        settings.put("testtoggle",
+        SettingDeskriptor.create("testtoggle", "Testtoggle", eSetting_Type.IS_SWITCH, false, "true"));
+        settings.put("name", SettingDeskriptor.create("name", "Name", eSetting_Type.IS_TEXT, false, ""));
+        settings.put("operation", SettingDeskriptor.create("operation", "Operation", eSetting_Type.IS_TEXT, false, ""));
+         CommandLineParser.parse_args(arg_arr, settings);
         String[] a = settings.dump();
+        // for (String s : a){
+        //     System.out.println(s);
+        // }
         for (int i = 0; i < a.length; i++)
-            Assertions.assertTrue(a[i].contains(exp_arr[2 * i + 1]));
+            Assertions.assertTrue(a[i].contains(exp_arr[2 * i + 1]), "Expected: " + exp_arr[2* i +1] + " to exist in " + a[i] + ", but it doesnt.");
         CoreFunctions.fkt_dump(null);
         Assertions.assertTrue(true, "Diese Funktion wird menschlich getestet und solange sie keinen Laufzeitfehler wirft als korrekt betrachtet.");
     }

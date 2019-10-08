@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="de.eagle.lillyjakeframework.gui.core.GUICompile">
-  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="3" left="3" bottom="3" right="3"/>
     <constraints>
       <xy x="20" y="20" width="666" height="438"/>
@@ -13,116 +13,171 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="d89f8" class="javax.swing.JButton" binding="btSelectFile">
+      <tabbedpane id="cf4c6" binding="main_tabp">
         <constraints>
-          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <autoscrolls value="true"/>
-          <hideActionText value="false"/>
-          <text value="Select File"/>
-          <toolTipText value="Open a File Chooser to Pick the File you want to compile"/>
-        </properties>
-      </component>
-      <component id="819bb" class="javax.swing.JButton" binding="btCompile">
-        <constraints>
-          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-15100068"/>
-          <enabled value="false"/>
-          <foreground color="-197377"/>
-          <text value="Compile"/>
-          <toolTipText value="Press to Compile the Document :D"/>
-        </properties>
-      </component>
-      <component id="82230" class="javax.swing.JCheckBox" binding="cbFileCorrect">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <scrollpane id="45b91">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="817a8" class="javax.swing.JTable" binding="DataTable">
-            <constraints/>
-            <properties>
-              <autoCreateRowSorter value="true"/>
-              <autoResizeMode value="2"/>
-              <enabled value="false"/>
-              <fillsViewportHeight value="true"/>
-              <showHorizontalLines value="false"/>
-              <showVerticalLines value="true"/>
-              <toolTipText value="Show Data about the selected File"/>
-            </properties>
-            <clientProperties>
-              <JTable.autoStartsEdit class="java.lang.Boolean" value="false"/>
-              <Table.isFileList class="java.lang.Boolean" value="false"/>
-            </clientProperties>
-          </component>
-        </children>
-      </scrollpane>
-      <component id="ec82b" class="javax.swing.JTextField" binding="tfFMainFile">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="70" height="-1"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
           </grid>
         </constraints>
         <properties>
-          <text value="File"/>
-          <toolTipText value="The file that should be compiled"/>
+          <enabled value="true"/>
         </properties>
-      </component>
-      <component id="2460c" class="javax.swing.JLabel" binding="lbStatus">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Entering Data"/>
-        </properties>
-      </component>
-      <grid id="f5a73" binding="ToolsGroup" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="3" left="3" bottom="3" right="3"/>
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <toolTipText value="Nice Tools"/>
-        </properties>
-        <border type="none" title="Tools"/>
+        <border type="none"/>
         <children>
-          <component id="a73de" class="javax.swing.JButton" binding="btEditConfig">
+          <grid id="562c4" binding="file_selection" layout-manager="GridLayoutManager" row-count="4" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <tabbedpane title="File Selection"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="82230" class="javax.swing.JCheckBox" binding="cbFileCorrect">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <scrollpane id="45b91">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="6" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="817a8" class="javax.swing.JTable" binding="DataTable">
+                    <constraints/>
+                    <properties>
+                      <autoCreateRowSorter value="true"/>
+                      <autoResizeMode value="2"/>
+                      <enabled value="false"/>
+                      <fillsViewportHeight value="true"/>
+                      <showHorizontalLines value="false"/>
+                      <showVerticalLines value="true"/>
+                      <toolTipText value="Show Data about the selected File"/>
+                    </properties>
+                    <clientProperties>
+                      <JTable.autoStartsEdit class="java.lang.Boolean" value="false"/>
+                      <Table.isFileList class="java.lang.Boolean" value="false"/>
+                    </clientProperties>
+                  </component>
+                </children>
+              </scrollpane>
+              <grid id="f5a73" binding="ToolsGroup" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="3" left="3" bottom="3" right="3"/>
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <toolTipText value="Nice Tools"/>
+                </properties>
+                <border type="none" title="Tools"/>
+                <children>
+                  <component id="a73de" class="javax.swing.JButton" binding="btEditConfig">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <enabled value="true"/>
+                      <text value="Config"/>
+                    </properties>
+                  </component>
+                  <component id="de56b" class="javax.swing.JButton" binding="btEditGepard">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Gepard"/>
+                    </properties>
+                  </component>
+                  <hspacer id="eb72a">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                </children>
+              </grid>
+              <component id="d89f8" class="javax.swing.JButton" binding="btSelectFile">
+                <constraints>
+                  <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="true"/>
+                  <hideActionText value="false"/>
+                  <text value="Select File"/>
+                  <toolTipText value="Open a File Chooser to Pick the File you want to compile"/>
+                </properties>
+              </component>
+              <component id="819bb" class="javax.swing.JButton" binding="btCompile">
+                <constraints>
+                  <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-15100068"/>
+                  <enabled value="false"/>
+                  <foreground color="-197377"/>
+                  <text value="Compile"/>
+                  <toolTipText value="Press to Compile the Document :D"/>
+                </properties>
+              </component>
+              <component id="2460c" class="javax.swing.JLabel" binding="lbStatus">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="2" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="2"/>
+                  <horizontalTextPosition value="2"/>
+                  <text value="Entering Data"/>
+                </properties>
+              </component>
+              <component id="ec82b" class="javax.swing.JTextField" binding="tfFMainFile">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="70" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="File"/>
+                  <toolTipText value="The file that should be compiled"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="c3a6" binding="compile_log" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Compile Log"/>
             </constraints>
             <properties>
               <enabled value="true"/>
-              <text value="Config"/>
             </properties>
-          </component>
-          <component id="de56b" class="javax.swing.JButton" binding="btEditGepard">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Gepard"/>
-            </properties>
-          </component>
-          <hspacer id="eb72a">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
+            <border type="none"/>
+            <children>
+              <scrollpane id="ee5a5" binding="outlogsp">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="88e80" class="javax.swing.JEditorPane" binding="outlog">
+                    <constraints/>
+                    <properties>
+                      <contentType value="text/html"/>
+                      <editable value="false"/>
+                      <font name="Hack"/>
+                      <text value="&lt;html&gt;&#10;  &lt;head&gt;&#10;    &#10;  &lt;/head&gt;&#10;  &lt;body&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;&#10;"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
         </children>
-      </grid>
+      </tabbedpane>
     </children>
   </grid>
 </form>
