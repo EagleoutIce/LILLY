@@ -1,3 +1,0 @@
-\contentsline {section}{\numberline {1}Gottaktionen f\IeC {\"u}r eigene Gl\IeC {\"a}ubige}{1}{section*.1}% 
-\contentsline {section}{\numberline {2}Gottaktionen mit der Welt}{2}{section*.2}% 
-\contentsfinish 
