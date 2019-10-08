@@ -506,10 +506,12 @@ Setzt die entsprechenden Felder \blankcmd{AUTHOR} und \blankcmd{AUTHORMAIL}, die
 %
 
 \presentCommand[2.0.0]{LillyLogo}[]
-Setzt das Lilly-Logo, welches sich auch in der Dokumentation wiederfindet:\smallskip\\
+Setzt das Lilly-Logo, welches sich auch in der Dokumentation wiederfindet.
+\iflillycompact\else
+\smallskip\\
 \begin{minipage}{\linewidth}
     \LillyLogo
-\end{minipage}\\
+\end{minipage}\\\fi
 Die Formatierung verwendet übrigens \emph{nicht} \blankcmd{Acronym}, da sie möglichst ohne weiteres Paket funktionieren sollte.
 
 %
