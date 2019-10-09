@@ -89,7 +89,7 @@
     \def\SESSIONxATTENDEESxCOUNT{0} % init/reset
     \foreach \ignored[count=\i] in \lillyxSessionxattendees {\xdef\SESSIONxATTENDEESxCOUNT{\i}}%
     % Add to List:
-    \refstepcounter{ctrXsessions}\addcontentsline{SESSION}{section}{{\scriptsize\useefont\thectrXsessions}~\SessionName}%
+    \refstepcounter{ctrXsessions}\addcontentsline{SESSION}{section}{{\scriptsize\useefont\thectrXsessions}.~\SessionName}%
     %
     %
     \begin{tikzpicture}[every node/.style={transform shape},#1]% Of course :D

@@ -98,9 +98,9 @@
   \def\temp@@a{#1}%
   \def\temp@@b{section}%
   \ifx\temp@@a\temp@@b%
-  	\textcolor{\Hcolor}{\arabic{#1}}%
+  	\textcolor{\Hcolor}{\thesection}%
   \else%
-  	\textcolor{\Hcolor}{\arabic{section}{\normalfont.}\arabic{#1}}%
+  	\textcolor{\Hcolor}{\thesection:\arabic{#1}}%
   \fi%
 }
 
@@ -118,11 +118,11 @@
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -0.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
-{\normalfont\small\sffamily\bfseries}}
+{\normalfont\small\sffamily\itshape}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
 {-2ex \@plus-.2ex \@minus .2ex}
 {.1ex}
-{\normalfont\sffamily\bfseries}}
+{\normalfont\large\itshape}}
 
 \def\pnptoc{%
 {%
