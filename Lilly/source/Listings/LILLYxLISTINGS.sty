@@ -38,7 +38,7 @@
 %\lstloadaspects{tex}%strings,comments,escape,writefile,style,language,keywords,html,tex,emph,index,keywordcomments,labels}
 
 % Key patch from: https://tex.stackexchange.com/questions/149056/how-can-i-define-additional-literate-replacements-without-deleting-existing-ones
-\def\addToLiterate#1{\edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
+\def\addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
 \lst@Key{add to literate}{}{\addToLiterate{#1}}
 
 %% maybe just load and check?
@@ -226,6 +226,7 @@
   {.1}{{{\lpDigit{.1}}}}2 {.2}{{{\lpDigit{.2}}}}2 {.3}{{{\lpDigit{.3}}}}2
   {.4}{{{\lpDigit{.4}}}}2 {.5}{{{\lpDigit{.5}}}}2 {.6}{{{\lpDigit{.6}}}}2
   {.7}{{{\lpDigit{.7}}}}2 {.8}{{{\lpDigit{.8}}}}2 {.9}{{{\lpDigit{.9}}}}2
+  {:lmath:}{{\textcolor{bondiBlue}{\textbackslash(}}}2 {:rmath:}{{\textcolor{bondiBlue}{\textbackslash)}}}2 {:ldmath:}{{\textcolor{bondiBlue}{\textbackslash[}}}2 {:rdmath:}{{\textcolor{bondiBlue}{\textbackslash]}}}2 {:ul:}{{\_}}1
 } %Damit die Umlaute in lstlistings auch korrekt formatiert werden.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

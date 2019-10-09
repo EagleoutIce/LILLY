@@ -522,7 +522,7 @@ Setzt den Autor, der standardmäig auf \blankcmd{AUTHOR} gesetzt ist und so als 
 %
 
 \presentEnvironment[2.0.0]{poem}[\optArg{Comment}\optArg{Left Ornament}\optArg{Right Ornament}\secline\manArg{Name}\manArg{Date}\optArg[\blankcmdidx{poems@author}]{Author}]
-Setzt ein Gedicht mit dem Namen \T{Name} geschrieben am \T{Date}. Der Autor kann durch \blankcmd{poemssetauthor} geändert, oder gezielt durch \T{Author} angegeben werden. Diese umgebung unterscheidet sich von \blankenv{poems*}, dass sie noch einen Seitenumbruch einfügt und das Gedicht auch vertikal zentriert. Allein deswegen wird zum Beibehalt der Dokumentationskonsistenz dort ein entsprechendens Beispiel gezeigt, da sich die Umgebungen sonst gleichen.
+Setzt ein Gedicht mit dem Namen \T{Name} geschrieben am \T{Date}. Der Autor kann durch \blankcmd{poemssetauthor} geändert, oder gezielt durch \T{Author} angegeben werden. Diese umgebung unterscheidet sich von \blankenv{poems*}, dass sie noch einen Seitenumbruch einfügt und das Gedicht auch vertikal zentriert. Allein deswegen wird zum Beibehalt der Dokumentationskonsistenz dort ein entsprechendes Beispiel gezeigt, da sich die Umgebungen sonst gleichen.
 
 %
 %
@@ -540,7 +540,7 @@ Für eine genaue Erklärung siehe \blankenv{poem}. Hier ein Beispiel:
     und bin doch hier.
 \end{poem*}
 \end{latex}
-\begin{example}
+\iflillycompact\else%
     \begin{poem*}{Hallo Welt}{10.09.2019}[Florian Sihler]
         Hallo Welt,
         Wie geht es dir?
@@ -549,7 +549,7 @@ Für eine genaue Erklärung siehe \blankenv{poem}. Hier ein Beispiel:
         ich hab dich gern,
         und bin doch hier.
     \end{poem*}
-\end{example}
+\fi
 
 \presentCommand[2.0.0]{subduelines}
 Wie am Beispiel für \blankenv{poem*} zu sehen ist, müssen keine Zeilenenden oder ähnliches angegeben werden. Dies mag die Verwendung von \blankcmd{obeylines} vermuten lassen, allerdings hätte dieser Befehl den Nachteil, dass die Strophen nicht durch eine Leerzeile getrennt werden könnten, da diese von \blankcmd{obeylines} geschluckt werden. Deswegen stellt dieser Befehl eine Variante dar, die sowohl in zentrierten als auch nicht zentrierten Umgebungen funktioniert:
