@@ -64,7 +64,8 @@ bin
 **/*.doc.pdf
 **/Data/Graphics/**/*.pdf
 **/*.jar
-
+**/changes.save
+**/ALLchanges.save
 # Created by https://www.gitignore.io/api/intellij
 
 ### Intellij ###
