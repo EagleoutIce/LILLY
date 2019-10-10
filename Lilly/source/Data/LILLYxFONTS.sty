@@ -5,19 +5,25 @@
 \RequirePackage{LILLYxCORE}
 \RequirePackage{kvoptions}
 
-
-\DeclareVoidOption{garamond}{\usepackage{CormorantGaramond}}
-\DeclareVoidOption{crimson}{\usepackage{CrimsonPro}\let\oldnormalfont\normalfont\def\normalfont{\oldnormalfont\mdseries}}
-\DeclareVoidOption{lcrimson}{\usepackage[light]{CrimsonPro}\let\oldnormalfont\normalfont\def\normalfont{\oldnormalfont\mdseries}}
+\newif\ifdefined@custom@font@\defined@custom@font@false
+\DeclareVoidOption{garamond}{\usepackage{CormorantGaramond}\global\defined@custom@font@true}
+\DeclareVoidOption{crimson}{\usepackage{CrimsonPro}\let\oldnormalfont\normalfont\def\normalfont{\oldnormalfont\mdseries}\global\defined@custom@font@true}
+\DeclareVoidOption{lcrimson}{\usepackage[light]{CrimsonPro}\let\oldnormalfont\normalfont\def\normalfont{\oldnormalfont\mdseries}\global\defined@custom@font@true}
 \DeclareVoidOption{kpfont}{\PassOptionsToPackage{full}{textcomp}% Fix option clash :D
-\usepackage{kpfonts}}
+\usepackage{kpfonts}\global\defined@custom@font@true}
 
-\DeclareVoidOption{overclock}{\usepackage[sfdefault]{overlock}}
+\DeclareVoidOption{overclock}{\usepackage[sfdefault]{overlock}\global\defined@custom@font@true}
+
+\DeclareVoidOption{pxfont}{\usepackage{newpxtext,eulerpx}\global\defined@custom@font@true}
+
+\DeclareVoidOption{palatino}{\usepackage{palatino}\global\defined@custom@font@true}
 
 \RequirePackage{calligra}
 
-\DeclareDefaultOption{} % Default: do nothing
-
+\DeclareDefaultOption{}%
+\ifdefined@custom@font@\else
+    \usepackage{CormorantGaramond}% Default: we try this font :P
+\fi%
 
 \ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
 
