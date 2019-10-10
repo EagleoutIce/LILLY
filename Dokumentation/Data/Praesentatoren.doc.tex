@@ -698,6 +698,7 @@ Betrachten wir einmal ein Beispiel:
     \theTimeTable
 \end{center}
 \egroup%
+\iflillycompact\else%
 Ein weiteres Beispiel:
 \begin{latex}[morekeywords={[5]{\\theAnotherTimeTable}}]
 \NewTimeTable{AnotherTimeTable}
@@ -709,6 +710,7 @@ Ein weiteres Beispiel:
 \begin{center}
     \theAnotherTimeTable
 \end{center}
+\fi
 
 %
 %
@@ -756,7 +758,7 @@ Generiert ein Event im Timetable, wobei automatisch zwei verschiedene Stile je n
         \bottomrule
     \end{tabularx}\nskip
 \end{center}
-Die Erzeugung eines solchen Events generiert einen neuen Befehl mit dem Bezeichner \blankcmd{@<TimeTable>@event@id}, wobei die \T{id} ein hochzählender Wert ist.\newline
+Die Erzeugung eines solchen Events generiert einen neuen Befehl mit dem Bezeichner \blankcmd{@<TimeTable>@event@<id>}, wobei die \T{id} ein hochzählender Wert ist.\newline
 Wie leicht ersichtlich ist, ist dieser Befehl zwar öffentlich, aber nicht sehr angenehm direkt benutzt zu werden. Deswegen:
 
 %
