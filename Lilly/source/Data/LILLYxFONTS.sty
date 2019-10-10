@@ -6,6 +6,7 @@
 \RequirePackage{kvoptions}
 
 \newif\ifdefined@custom@font@\defined@custom@font@false
+\DeclareVoidOption{defaultfont}{\global\defined@custom@font@true}
 \DeclareVoidOption{garamond}{\usepackage{CormorantGaramond}\global\defined@custom@font@true}
 \DeclareVoidOption{crimson}{\usepackage{CrimsonPro}\let\oldnormalfont\normalfont\def\normalfont{\oldnormalfont\mdseries}\global\defined@custom@font@true}
 \DeclareVoidOption{lcrimson}{\usepackage[light]{CrimsonPro}\let\oldnormalfont\normalfont\def\normalfont{\oldnormalfont\mdseries}\global\defined@custom@font@true}

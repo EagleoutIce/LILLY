@@ -30,11 +30,14 @@
 \LILLYcommand{\leftmark}{} %% fix no chapter bug
 \LILLYcommand{\rightmark}{}
 
+\def\@lilly@mitschrieb@chfont{\scshape}
+
+
 \titleformat{\chapter}[display]%
         {\relax}
         {\vspace{-4\baselineskip}\raggedleft{\color{LightGray}\chapterNumber\thechapter} \\ }
         {0pt}%
-        {\vspace*{-4\baselineskip}\color{\LILLYxColorxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\scshape}% change color and size here
+        {\vspace*{-4\baselineskip}\color{\LILLYxColorxTITLExCOLOR}\huge\vspace*{.9\baselineskip}\raggedright\@lilly@mitschrieb@chfont}% change color and size here
         [\normalcolor\normalsize\vspace*{-.7\baselineskip}\rule{\textwidth}{0.5pt}\vspace*{-1.7\baselineskip}]%
 
 \newcommand*{\TitleSUB}[1]{
@@ -96,7 +99,6 @@
         %\ihead{\hspace{-0.1cm}\raisebox{-2em}{\faCaretDown}}
     \else%% \LILLYxFACULTYxCOLOR
         %%\lohead{\hspace*{-1.83cm}\small{\tikz[baseline=1.215ex]{\filldraw[LightGray!50!white,draw, rounded corners=1pt] (0,0) -- ++(1.45,0) -- ++(0.25,0.25) -- ++ (-0.25,0.25) -- ++(-1.45,0) -- cycle (0.75,0.25) node[minimum height=\baselineskip, inner sep=1pt,\LILLYxColorxLINKSxMainColor]{\silentHmark[Kapitel]{eagleTOC}[\LILLYxColorxLINKSxMainColor]};} \leftmark}}
-
         %\fi
         \lohead{\AUTHOR}
         \lofoot{\silentHmark[\small\textit{Kapitel}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}\leftmark}
@@ -136,25 +138,27 @@
 
 \renewcommand{\@seccntformat}[1]{\textcolor{\LILLYxColorxTITLExCOLOR}{\csname the#1\endcsname}}
 
+\def\@lilly@mitschrieb@selfont{\sffamily\bfseries}
+% \def\@lilly@mitschrieb@selfont{\useefont\bfseries}
+
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
-{-4ex \@plus -1ex \@minus -.4ex}
+{-4ex \@plus -1ex \@minus -.4ex}    
 {1ex \@plus.2ex }
-{\normalfont\LARGE\sffamily\bfseries}}
+{\normalfont\LARGE\@lilly@mitschrieb@selfont}}
 \renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
 {-3ex \@plus -0.1ex \@minus -.4ex}
 {0.5ex \@plus.2ex }
-{\normalfont\Large\sffamily\bfseries}}
+{\normalfont\Large\@lilly@mitschrieb@selfont}}
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -0.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
-{\normalfont\small\sffamily\bfseries}}
+{\normalfont\@lilly@mitschrieb@selfont}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
 {-2ex \@plus-.2ex \@minus .2ex}
 {.1ex}
-{\normalfont\sffamily\bfseries}}
+{\normalfont\small\@lilly@mitschrieb@selfont}}
 
 \setlength{\parindent}{0pt}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Introkonfiguration                             %
@@ -182,8 +186,8 @@
     \newpage\addtocontents{toc}{\protect\pagestyle{empty}}
     \addtocontents{toc}{\protect\thispagestyle{empty}}
     %%Sichergeh :D
-    \thispagestyle{empty}
-    \protect\pagestyle{empty}
+    \thispagestyle{empty}%
+    \protect\pagestyle{empty}%
     \elable{eagleTOC}
     \tableofcontents
     \ifx\LILLYxMODE\LILLYxMODExPRINT%
@@ -195,8 +199,6 @@
         \clearpairofpagestyles%
     \fi%
 }
-
-
 
 \AtBeginDocument{
     \LILLYxLayoutxRestore
