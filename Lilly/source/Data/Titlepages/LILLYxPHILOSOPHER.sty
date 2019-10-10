@@ -120,7 +120,7 @@
 %%% Dieser Befehl malt die untere Leiste und setzt die entsprechenden Daten. Hierbei Kann, von der Höhe abgesehen, keine andere Metrik modifiziert werden.
 \DeclareDocumentCommand{\LILLYxPHILOSOPHERxBORDERBLOCK}{%
     O{\LILLYxFACULTYxCOLOR} % SignaturFarbe
-    O{LightGray}            % Textfarbe
+    O{MudWhite}            % Textfarbe
     m%{3}                   % Baseheight
     O{\LILLYxFlavourText}   % Textblahblah
     O{\LILLYxFACULTY}       % Zu setzendes Symbol
@@ -133,7 +133,7 @@
     \filldraw[#1] (0,0) -- ++(\paperwidth,0) -- ++(0,#3) --  ++(-0.1\paperwidth,0) -- ++(-0.1\paperwidth,1) -- ++(-0.1\paperwidth,0) --  ++(-0.1\paperwidth,-1) -- ++(-0.6\paperwidth,0) -- cycle;%
     \begin{scope}[every node/.style={color=#2}]%
         \node at(0.75\paperwidth,2) {#5}; %\resizebox{!}{#3cm}{
-        \node[right] at(\LILLYxLeftsep,1.5) {\parbox{9.9cm}{\footnotesize{#4\par}}};
+        \node[right] at(\LILLYxLeftsep,1.5) {\parbox{9.9cm}{\footnotesize\bfseries{#4\par}}};
         \node[above left] at(\paperwidth,0.02) {\begingroup\hypersetup{urlcolor=#2}\href{https://github.com/EagleoutIce/LILLY}{\usefont{U}{Konanur}{xl}{n}LILLY}\hypersetup{urlcolor=\LILLYxColorxLINKSxUrlColor}\endgroup};%
         \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};%
     \end{scope}%
