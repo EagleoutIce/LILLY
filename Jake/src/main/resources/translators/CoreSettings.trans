@@ -1,9 +1,9 @@
 !                                                                                             !
-!                                JAKE 2.1.0 - Final Build                                     !
+!                              JAKE 2.2.0 - Development Build                                 !
 !                                                                                             !
 
                                 ! Author: Florian Sihler  !
-                                ! Version: 2.1.0          !
+                                ! Version: 2.2.0-dev      !
 
 
 ! Info: !
@@ -18,8 +18,8 @@
 ! einen Kreisschluss bilden, da in diesem Fall stets die linksseitige Definition dominiert.   !
 
 ! Fehlerbehandlung: !
-! Im Falle einer invalidierung dieser Konfigurationsdatei, so existiert eine Sicherung stets  !
-! im aktuellen Stable-Build: https://github.com/EagleoutIce/LILLY                             !
+! Im Falle einer Invalidierung dieser Konfigurationsdatei, existiert eine Sicherung stets im  !
+! aktuellen Stable-Build: https://github.com/EagleoutIce/LILLY                                !
 
 S_LILLY_PATH            = lilly-path
 S_LILLY_OUT             = lilly-out
@@ -63,8 +63,6 @@ S_WHAT                  = what
 S_INSTALL_PATH          = install-path
 S_AUTOCONF              = autoconf
 S_COMMENT_PATTERN       = comment-pattern
-
-
 
 S_JOBCOUNT              = jobcount
 S_ERRORCOUNT            = error-count
