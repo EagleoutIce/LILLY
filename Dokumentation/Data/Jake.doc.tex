@@ -14,10 +14,10 @@ seine Funktionalität zur Verfügung stellt!
 \begin{bash*}
 java -jar jake.jar
 \end{bash*}
-Nach abgeschlossener Installation sollte das Terminal neu gestartet, oder die Konfigurationsdatei neu geladen werden, um Jake zur Verfüung zu stellen. Das bloße Ausführen von \cbash{jake} sollte nun eine Hilfe anzeigen, die über die jeweiligen Optionen aufklärt.
+Nach abgeschlossener Installation sollte das Terminal neu gestartet, oder die Konfigurationsdatei neu geladen werden, um Jake zur Verfügung zu stellen. Das bloße Ausführen von \cbash{jake} sollte nun eine Hilfe anzeigen, die über die jeweiligen Optionen aufklärt.
 
 \begin{bemerkung}[C++ Jake]
-\textit{Bis zur Version \LILLYxBOXxVersion{1.0.9} war Jake in C++ geschrieben jund benötigt deswegen eine andere Installation.}\newline
+\textit{Bis zur Version \LILLYxBOXxVersion{1.0.9} ist Jake in C++ geschrieben und benötigt deswegen eine andere Installation:}\newline
 \Jake zu installieren sollte normalerweise einem Kinderspiel gleichen. Notwendig sind hierfür
 auf allen bisher unterstützten Betriebssystemen (Debian-Basiertes Linux und MacOS) ein
 \verb|C++14| fähiger \T{gcc}-Compiler und \T{make}.
@@ -26,7 +26,7 @@ Es befindet sich hier: \T{Lilly/Jake/jake\_source}.
 In diesem Verzeichnis kann man nun \T{make} ausführen. Dies sorgt dafür,
 dass nicht nur \T{jake.cpp} zu einer ausführbaren Datei wird, sondern auch,
 dass \LJake systemweit zur Verfügung steht (sofern die verwendeten Konsole
-bash, zsh oder iTerm ist, bzw. im allgemeinen auf eine der folgenden Dateien
+bash, zsh oder iTerm ist, bzw. im Allgemeinen auf eine der folgenden Dateien
 zugreift: \T{.bashrc}, \T{.zshrc}, \T{.bash\_profile}).\newline
 Damit gilt \Jake als \emph{installiert}.
 \end{bemerkung}
@@ -34,6 +34,10 @@ Damit gilt \Jake als \emph{installiert}.
 
 \subsection{Lilly mit Jake installieren}
 Mit \LILLYxBOXxVersion{2.0.0} liefert \Jake stets eine Version von Lilly mit, die sich nach einem Update automatisch mit dem nächsten Start von \Jake aktualisiert, sofern sie einmal installiert wurde: \bbash{jake install}. Wird hier eine Frage nach verschiedenen Installationsoptionen gestellt, so siehe bei den \jmark[Entwicklerinformationen]{mrk:jakedevinfo} oder wähle einfach die Intallation der enthaltenen Variante (vermutlich Option $2$). Die automatische Aktualisierung wird durch eine Ausgabe getreu \T{[Die Lilly-Installation wurde aktualisiert.]} ausgegeben. Mithilfe von \bbash{jake GUI} kann Jake auch über die Kommandozeile im Grafischen-Modus gestartet werden, allerdings empfiehlt sich hierfür das Verwenden des Eintrags im Anwendungsmenü.
+
+\subsection{Jake aktualisieren}
+
+Mit Version \LILLYxBOXxVersion{2.1.0} unterstützt \Jake die Funktion \T{update} (\cbash{jake update}) die \Jake auf die aktuelle Stable-Version aktualisiert. Dies geschieht ebenfalls, wenn \Jake aktuell auf einer Entwicklungsversion ist, sollte also in diesem Fall mit Bedacht eingesetzt werden!
 
 \subsection{Jake im Überblick}
 Hier werden zuerst die Vorzüge der Kommandozeile präsentiert, da die grafische Variante von Jake noch nicht sinnvoll ausgebaut ist und sich bisher lediglich zum editieren von Konfigurationsdateien eignet.

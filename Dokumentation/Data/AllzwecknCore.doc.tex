@@ -471,16 +471,16 @@ Setzt den in der Länge \emph{LILLYxNegativeSkip} definierten Abstand, der Stand
 %
 %
 
-\presentCommand[1.0.6]{LILLYcoloredSQ}[\manArg{Color}]
-Zeigt die Farbe in einem formatierten Rechteck: \T{\blankcmd{LILLYcoloredSQ}\manArg{bondiBlue}} ergibt: \LILLYcoloredSQ{bondiBlue}.
+\presentCommand[1.0.6][2.2.0]{LILLYcoloredSQ}[\optArg{Text}\manArg{Color}]
+Zeigt die Farbe in einem formatierten Rechteck: \blatex{\\LILLYcoloredSQ\{bondiBlue\}} ergibt: \LILLYcoloredSQ{bondiBlue}. Mit \LILLYxBOXxVersion{2.2.0} kann ein Text übergeben werden: \blatex{\\LILLYcoloredSQ[\\tiny Hi]\{bondiBlue\}} ergibt: \LILLYcoloredSQ[\tiny Hi]{bondiBlue}.
 
 %
 %
 %
 
-\presentCommand[1.0.6]{LILLYxCOLORxRainbow}
+\presentCommand[1.0.6][2.2.0]{LILLYxCOLORxRainbow}
 Zeigt alle Farben die im aktuellen Profil verwendet werden mithilfe von \blankcmd{LILLYcoloredSQ} an:
-\LILLYxCOLORxRainbow
+\LILLYxCOLORxRainbow. Mit Version \LILLYxBOXxVersion{2.2.0} werden auch die entsprechenden Kurzbezeichner der jeweiligen Farbe in der Box angezeigt. \T{Ub*} steht hierbei für eine Zusatzübung, \T{Lin} für die Link-farbe, \T{Lid} für die dunklere Linkfarbe und \T{coA - coD} für die eingeführten \jmark[Paletten]{mrk:palettes}.
 
 %
 %
@@ -878,7 +878,7 @@ Versucht die Datei \T{File} zu Laden, wobei erst geschaut wird ob sie im \T{Prio
 
 \subsection{Rekorder}
 \hypertarget{LILLYxRECORDER}Diese Definitionen werden über die Bibliothek \LILLYxNOTExLibrary{LILLYxRECORDER} zur Verfügung gestellt. Sie werden mit \LILLYxBOXxVersion{2.1.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxCORE} geladen.\medskip\newline
-Dieses Paket erlaubt einen einfachen und standardisierten Zugriff für \T{.aux}-Dateien. Das Dokument muss zweimal kompiliert werden, damit die hier vermerkten Modifikationen gültig werden.
+Dieses Paket erlaubt einen einfachen und standardisierten Zugriff für \T{.aux}-Dateien. Das Dokument muss zweimal kompiliert werden, damit die hier vermerkten Modifikationen gültig werden. Übrigens: Sollte aufgrund zu vieler Recorder dieser Fehler erscheinen: \say{No room for a new \blankcmd{write}}, so genügt es Lilly (oder \LILLYxNOTExLibrary{LILLYxRECORDER}) die Option \T{morewrites} zu übergeben!
 
 %
 %

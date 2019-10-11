@@ -117,6 +117,24 @@ Eine weitere Repräsentation der Farben ergibt sich durch \blankcmd{LILLYxCOLORx
 
 \section{Farberweiterungen}
 
+\subsection{Das Palettenmodell}
+\elable{mrk:palettes}Mit \LILLYxBOXxVersion{2.2.0} hat die Bibliothek \LILLYxNOTExLibrary{LILLYxCOLORxPALETTE} das Licht der Welt erblickt. Sie wird automatisch durch das Einbinden von \LILLYxNOTExLibrary{LILLYxCOLOR} geladen!
+
+%
+%
+%
+
+\presentCommand[2.2.0]{LillyNewPaletteColor}[\optArg{tikzstyle}\manArg{name}\manArg{color}\manArg{color-name}\secline\manArg{color-adj}]
+Erzeugt neue Farbbefehle der Struktur \blankcmd{c<name>} für die gewünschte Farbe (\T{color}), \blankcmd{c<name>name} für den Name der Farbe (\T{color-name}), \blankcmd{c<name>adj} für eine Beugung der Farbe (\T{color-adj}) und \blankcmd{c<name>tikz} für die Tikz-Befehle (\T{tikzstyle} oder, wenn leer \T{color}). Sie werden von den folgenden Fabrprofilen definiert: 
+
+%
+%
+%
+
+\presentCommand[2.2.0]{lillycolorprofile}[\manArg{name}]
+Lädt das gewünschte Farbprofil. Die gültigen Bezeichner finden sich im nächsten Abschnitt. Es ist auch möglich (da \blankcmd{userput} verwendet wird) in \blankcmd{lillyPathColorExtension} eine Datei mit dem Bezeichner \T{\_LILLY\_COLOR\_EXTENSION\_<Bezeichner>} abzulegen. Diese steht dann auch unter dem Namen \T{<Bezeichner>} zur Verfügung.
+
+\subsection{Vordefinierte Paletten}
 Es gibt eine Reihe an Farberweiterungen, die die oben definierten Druckprofile hinsichtlich einer gewissen Farbprägung abändern. Die von Lilly standardmäßig includierten Profile finden sich hier: \T{\blankcmd{LILLYxPATHxDATA}/Colors/Extensions}:
 \begin{center}
     \begin{tabular}{^t^l^l+}
@@ -130,7 +148,19 @@ Es gibt eine Reihe an Farberweiterungen, die die oben definierten Druckprofile h
         \bottomrule
     \end{tabular}
 \end{center}
-Die Farbprofile können durch das Setzen von \blankcmd{LILLYxCOLORxEXTENSION} auf den jeweiligen Bezeichner geladen werden.
+Die Farbprofile können durch das Setzen von \blankcmd{LILLYxCOLORxEXTENSION} auf den jeweiligen Bezeichner oder, ab \LILLYxBOXxVersion{2.2.0} mittels \blankcmd{lillycolorprofile} geladen werden. 
+\begin{bemerkung}[PalettenFarben]
+    Jede dieser Paletten (auch \T{VOID}) erzeugt mittels \blankcmd{LillyNewPaletteColor} die Farben \typesetList{A,B,C,D}, die im Dokument (auch zu Konsistenzzwecken) verwendet werden sollten!
+    So erzeugt zum Beispiel \T{VOID} die Palettenfarbe \T{A} durch:
+    \begin{latex*}
+\LillyNewPaletteColor{A}{Purple}{Lila}{lila}%        
+    \end{latex*}
+    Wir können also zum Beispiel folgendes machen:
+    \begin{defaultlst}[][listing side text,righthand width=3cm]{lLatex}
+\textcolor{\cA}{Dieser Text ist in \cAname, 
+    also \cAadj.}
+    \end{defaultlst}
+\end{bemerkung}
 
 \section{Weitere Planungen}
 \begin{ditemize}[label=$\diamond$]\narrowitems
