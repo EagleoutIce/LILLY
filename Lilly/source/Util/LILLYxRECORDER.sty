@@ -14,16 +14,16 @@
 
 % Writes #2 into the Recorder-File with ID #1, write will be executed at shipout of the Page
 \def\@Lilly@Recorder@Write#1#2{%
-  \expandafter\write\csname lr@#1\endcsname{#2}
+  \expandafter\write\csname lr@#1\endcsname{#2}%
 }
 % Writes #2 into the Recorder-File with ID #1, write will be executed instantly
 \def\@Lilly@Recorder@ImmediateWrite#1#2{%
-  \expandafter\immediate\expandafter\write\csname lr@#1\endcsname{#2}
+  \expandafter\immediate\expandafter\write\csname lr@#1\endcsname{#2}%
 }
 
 % Writes #2 into the Recorder-File with ID #1, write will be protected
 \def\@Lilly@Recorder@ProtectedWrite#1#2{%
-  \expandafter\protected@write\csname lr@#1\endcsname{#2}
+  \expandafter\protected@write\csname lr@#1\endcsname{#2}%
 }
 
 % Does nothing, but consuming 4 arguments
@@ -62,37 +62,37 @@
 \def\@NewRecorder#1#2{%
   \begingroup\makeatletter%
   \if@filesw% only write a File if it should
-    \expandafter\newwrite\csname lr@#1\endcsname
-  \fi
+    \expandafter\newwrite\csname lr@#1\endcsname%
+  \fi%
   %\expandafter\newif\csname iflillyregister@lr@#1@enabled@\endcsname
   %\csname lillyregister@lr@#1@enabled@true\endcsname
   \expandafter\gdef\csname pause#1\endcsname{%
     %\csname lillyregister@lr@#1@enabled@false\endcsname%
     %\global\let\@Lilly@Recorder@PreviousWrite\@Lilly@Recorder@GenericWrite% old, but hey
-    \global\let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericVoidWrite
+    \global\let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericVoidWrite%
   }
   \expandafter\gdef\csname unpause#1\endcsname{%
     %\csname lillyregister@lr@#1@enabled@true\endcsname%
-    \global\let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericWrite
-  }
+    \global\let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericWrite%
+  }%
   \expandafter\gdef\csname write#1\endcsname##1{%
     \csname @Lilly@Recorder@GenericWrite\endcsname{Write}{#1}{##1}{#2}%
-  }
+  }%
   \expandafter\gdef\csname iwrite#1\endcsname##1{%
     \csname @Lilly@Recorder@GenericWrite\endcsname{ImmediateWrite}{#1}{##1}{#2}%
-  }
+  }%
   \expandafter\gdef\csname pwrite#1\endcsname##1{%
     \csname @Lilly@Recorder@GenericWrite\endcsname{ProtectedWrite}{#1}{##1}{#2}%
-  }
+  }%
   \expandafter\gdef\csname input#1\endcsname{%
     \@input{\jobname.#2}%
-  }
+  }%
   \expandafter\gdef\csname close#1\endcsname{%
-    \closeout \csname lr@#1\endcsname \jobname.#2\relax
-  }
+    \closeout \csname lr@#1\endcsname \jobname.#2\relax%
+  }%
   \expandafter\gdef\csname iclose#1\endcsname{%
-    \immediate\closeout \csname lr@#1\endcsname \jobname.#2\relax
-  }
+    \immediate\closeout \csname lr@#1\endcsname \jobname.#2\relax%
+  }%
   \@nobreakfalse\endgroup%
 }
 
