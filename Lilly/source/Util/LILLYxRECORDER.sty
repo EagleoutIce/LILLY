@@ -8,6 +8,11 @@
 \RequirePackage{LILLYxVANILLA}
 \RequirePackage{LILLYxPACKAGExCTRL}
 
+\RequirePackage{kvoptions}
+\DeclareVoidOption{morewrites}{\RequirePackage{morewrites}}
+\ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
+
+
 % \LILLYxLoadPackage{morewrites}{Just to be sure}%% Package, Info
 %                     {Dieses Paket ist für LILLY nicht wichtig, aber kann vielleicht Fehler beheben!}%% Error-Text
 %                     {}{}{}%\morewritessetup{allocate = 18}

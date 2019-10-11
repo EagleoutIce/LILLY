@@ -8,6 +8,9 @@
     prefix=LILLY@
 }
 
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxCOMMAND}
+
 %%% User-Defined Shortcuts:
 \userput{_LILLY_KEYVAL_GENERAL}{\lillyPathConfig}{\LILLYxPATHxDATA/Configs}
 \RequestConfig{\LILLYxPATHxDATA/Configs/_LILLY_KEYVAL_PACKAGES}
@@ -22,6 +25,7 @@
 \DeclareBoolOption[false]{paper}
 \DeclareBoolOption[false]{beamer}
 \DeclareBoolOption[true]{beamerKiz}
+\DeclareVoidOption{morewrites}{\PassOptionsToPackage{morewrites}{LILLYxRECORDER}}
 
 %%\DeclareBoolOption{Vorlesung}                            % Wir wollen einfache keys :D
 
