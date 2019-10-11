@@ -66,22 +66,26 @@
 \providecommand{\nskip}{\vspace{\LILLYxNegativeSkip}}
 
 
-\LILLYcommand{\LILLYcoloredSQ}[1]{\tikz{\draw[fill=#1!75!white,#1!75!white] (-0.05,-0.05) rectangle ++ (0.4,0.4);\draw[fill=#1!50!white,#1!50!white] (0,0) rectangle ++ (0.35,0.35);\draw[fill=#1,#1] (0,0) rectangle ++ (0.3,0.3);}}
+\LILLYcommand{\LILLYcoloredSQ}[2][]{\tikz{\draw[fill=#2!75!white,#2!75!white] (-0.05,-0.05) rectangle ++ (0.4,0.4);\draw[fill=#2!50!white,#2!50!white] (0,0) rectangle ++ (0.35,0.35);\draw[fill=#2,#2] (0,0) rectangle ++ (0.3,0.3) node[midway,centered,MudWhite,scale=0.75,inner sep=0pt] {#1};}}
 
 \LILLYcommand{\LILLYxCOLORxRainbow}{% who needs foreach
-    \LILLYcoloredSQ{\LILLYxColorxDefinition}
-    \LILLYcoloredSQ{\LILLYxColorxSatz}
-    \LILLYcoloredSQ{\LILLYxColorxBeweis}
-    \LILLYcoloredSQ{\LILLYxColorxLemma}
-    \LILLYcoloredSQ{\LILLYxColorxBemerkung}
-    \LILLYcoloredSQ{\LILLYxColorxZusammenfassung}
-    \LILLYcoloredSQ{\LILLYxColorxBeispiel}
-    \LILLYcoloredSQ{\LILLYxColorxUebungsaufgabe}
-    \LILLYcoloredSQ{\LILLYxColorxZusatzuebung}
-    \LILLYcoloredSQ{\LILLYxColorxLINKSxMainColor}
-    \LILLYcoloredSQ{\LILLYxColorxLINKSxMainColorDarker}
-    \LILLYcoloredSQ{\LILLYxColorxLINKSxCiteColor}
-    \LILLYcoloredSQ{\LILLYxColorxLINKSxUrlColor}
+    \LILLYcoloredSQ[\tiny Def]{\LILLYxColorxDefinition} %
+    \LILLYcoloredSQ[\tiny Sat]{\LILLYxColorxSatz} %
+    \LILLYcoloredSQ[\tiny Bew]{\LILLYxColorxBeweis} %
+    \LILLYcoloredSQ[\tiny Lem]{\LILLYxColorxLemma} %
+    \LILLYcoloredSQ[\tiny Bem]{\LILLYxColorxBemerkung} %
+    \LILLYcoloredSQ[\tiny Zsf]{\LILLYxColorxZusammenfassung} %
+    \LILLYcoloredSQ[\tiny Bei]{\LILLYxColorxBeispiel} %
+    \LILLYcoloredSQ[\tiny Ub]{\LILLYxColorxUebungsaufgabe} %
+    \LILLYcoloredSQ[\tiny Ub*]{\LILLYxColorxZusatzuebung} %
+    \LILLYcoloredSQ[\tiny Lin]{\LILLYxColorxLINKSxMainColor} %
+    \LILLYcoloredSQ[\tiny Lid]{\LILLYxColorxLINKSxMainColorDarker} %
+    \LILLYcoloredSQ[\tiny cit]{\LILLYxColorxLINKSxCiteColor} %
+    \LILLYcoloredSQ[\tiny url]{\LILLYxColorxLINKSxUrlColor} %
+    \LILLYcoloredSQ[\tiny coA]{\cA} %
+    \LILLYcoloredSQ[\tiny coB]{\cB} %
+    \LILLYcoloredSQ[\tiny coC]{\cC} %
+    \LILLYcoloredSQ[\tiny coD]{\cD}%
 }
 
 
