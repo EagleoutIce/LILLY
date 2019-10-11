@@ -48,6 +48,8 @@
 
 \gdef\getListLength#1{%
     \def\@tmpl{#1}%
+    % init:
+    \gdef\@c@tmp{0}
     \foreach \@tmp[count=\@@c@tmp] in \@tmpl {\xdef\@c@tmp{\@@c@tmp}}%
     % length in @c@tmp
     % \@c@tmp%
@@ -64,9 +66,9 @@
     \def\@tmpl{#2}%
     \getListLength{#2}%
     \foreach \x[count=\i] in \@tmpl {%
-        \ifnum\i=\@c@tmp%
+        \ifnum\i>1 \ifnum\i=\@c@tmp%
         ~\xtranslate{und} \else%
-        \ifnum\i>1,\space\fi%
+        ,\space\fi%
         \fi%
         \@nameuse{#1}{\x}%
     }\ignorespaces%
