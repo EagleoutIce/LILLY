@@ -98,19 +98,9 @@
     keywordstyle    = [4]\lstPackget{keywordstyle 4}, %% FILES
     keywordstyle    = [5]\lstPackget{keywordstyle 5}, %% SHELLPRE
     keywordstyle    = [6]\lstPackget{keywordstyle 6}, %% SHELLPRE
-    % texcsstyle      = *\lstPackget{keywordstyle},
-    % texcsstyle      = *[2]\lstPackget{keywordstyle 2}, %%KW
-    % texcsstyle      = *[3]\lstPackget{keywordstyle 3}, %% PARAM
-    % texcsstyle      = *[4]\lstPackget{keywordstyle 4}, %% FILES
-    % texcsstyle      = *[5]\lstPackget{keywordstyle 5}, %% SHELLPRE
-    % texcsstyle      = *[6]\lstPackget{keywordstyle 6}, %% SHELLPRE
     otherkeywords   = {},
     alsoletter      = {@},
-    %moredelim=**[is][\itshape]{|}{|},
-    %comment=[l]{//},
     keywordsprefix  = {},
-    %keepspaces      = true,
-    %alsoother={(,,[]},
     basicstyle      = \lstPackget{basicstyle},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
     commentstyle    = \lstPackget{commentstyle},
     extendedchars   = true,
@@ -121,10 +111,14 @@
     xrightmargin    = \lstPackget{xrightmargin},
     numbers         = left,
     numbersep       = \lstPackget{numbersep},
-    %frameround=tttt, %% mag backgroundcolor nicht
     framerule       = \lstPackget{framerule},
     escapeinside={!*}{*!},
 }
+
+
+\ifx\LILLYxMODE\LILLYxMODExPRINT
+  \lstPackkeys{backgroundcolor=\color{black!0}}
+\fi
 
 \lstset{%
     style=MAIN
