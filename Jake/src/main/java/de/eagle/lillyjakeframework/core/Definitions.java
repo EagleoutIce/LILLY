@@ -22,12 +22,12 @@ import java.time.format.DateTimeFormatter;
  *         Speichert alle Globalen Definitionen für Jake, die aus keiner Datei
  *         heraus erstellt werden und mit der spezifischen Jake Version
  *         einhergehen.
- * @version 2.1.0
+ * @version 2.2.0
  * @since 2.0.0
  */
 public class Definitions {
     /// Kurzbeschreibung der Version
-    public static final String PRG_BRIEF = "Jake 2.2.0 - Ein Regenbogenfarbpalast";
+    public static final String PRG_BRIEF = "Jake Ver. 2.2.0 - Ein Regenbogenfarbpalast";
     /// Die Version als String
     public static final String JAKE_VERSION = "2.02.00";
 
