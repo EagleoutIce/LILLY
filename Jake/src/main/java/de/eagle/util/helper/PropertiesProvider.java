@@ -1,5 +1,7 @@
 package de.eagle.util.helper;
 
+import de.eagle.lillyjakeframework.core.Definitions;
+
 /**
  * @file PropertiesProvider.java
  * @author Florian Sihler
@@ -16,6 +18,7 @@ import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.MacOSJakeInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.WindowsJakeInstaller;
 import de.eagle.lillyjakeframework.installer.LillyInstaller.LinuxLillyInstaller;
+import de.eagle.util.io.JakeWriter;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -58,6 +61,10 @@ public class PropertiesProvider {
             }
         }
         return OS.OTHER;
+    }
+
+    public static void printMetadata() {
+        JakeWriter.out.format("%s (%s)%n", Definitions.PRG_BRIEF, "Florian Sihler");
     }
 
     /**
