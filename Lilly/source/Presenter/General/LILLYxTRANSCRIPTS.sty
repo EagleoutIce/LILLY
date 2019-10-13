@@ -22,7 +22,7 @@
 \LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
                     {Das ist wichtig!}%% Error-Text
                     {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliotheken weitaus einfacher finden kann :D
 
 
 % Konstruiere die Liste in der sich die Sitzungen eintragen:
@@ -48,7 +48,7 @@
                     \fi%
                 \fi} % Padding for minutes
 \def\SessionName{\xtranslate{Sitzung des} \SessionDate~(\SESSIONxATTENDEESxCOUNT~\xtranslate{Teilnehmer})}% Titel
-\def\SessionDuration{\ifnum\SESSIONxDURATIONxMINUTES>0\relax\SESSIONxDURATIONxMINUTES{$\,$}m\fi}% We don't wan't to see a Time of 0 minutes :D
+\def\SessionDuration{\ifnum\SESSIONxDURATIONxMINUTES>0\relax\SESSIONxDURATIONxMINUTES{$\,$}m\fi}% We don't want to see a Time of 0 minutes :D
 \def\SessionTitleFormat{\SessionDate~(\SessionDuration)}
 
 \pgfkeys{%
@@ -100,12 +100,12 @@
     \end{tikzpicture}\vspace*{-0.1cm}\newline%
     % Typeset the attendees:
     \resizebox{7cm}{!}{%
-        %%\parbox[c][1.5cm]{1pt}{\relax{}}% We wan't to enforce somewhat of a minimum height :D
+        %%\parbox[c][1.5cm]{1pt}{\relax{}}% We want to enforce somewhat of a minimum height :D
         %\parbox[t]{8cm}{%
         \begin{minipage}{8cm}
             \foreach \attendee in \lillyxSessionxattendees{%
                 \ShowPersonTag{\attendee}~$\;$%
-                % Add the meeting time to the persons attendancees-counter
+                % Add the meeting time to the persons attendant's-counter
                 \addtocounter{ctrX\attendee Xattendancetime}{\SESSIONxDURATIONxMINUTES}%
             }
         \end{minipage}
@@ -133,6 +133,5 @@
         \draw[semithick] (0,0) -- (\linewidth,0) node[midway, rectangle,rounded corners,fill=white]  {\footnotesize\bfseries\sffamily \@Session@End\arabic{ctrXsessions}.~\@Session};
     \end{tikzpicture}
 }
-
 
 \endinput
