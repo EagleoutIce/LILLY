@@ -17,8 +17,9 @@
     moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
     moredelim=[is][{}]{|plain|}{|plain|},
     alsoletter={:\#!-},
-    add to literate={/}{{\@lillylst@inouter{/}}}1,
-    otherkeywords={<?,?>,<,>},
+    alsoother={<>},
+    add to literate={/}{{\@lillylst@inouter{/}}}1 {<}{{\@lillylst@inouter{<}}}1 {>}{{\@lillylst@inouter{>}}}1,
+    %otherkeywords={<?,?>,<,>},
     %frameround=tttt, %% mag background color nicht
     escapeinside={!*}{*!},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
