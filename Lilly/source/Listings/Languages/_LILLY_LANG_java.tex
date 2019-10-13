@@ -1,5 +1,7 @@
 %% Wird für die Dokumentation entsprechend erweitert
 
+\newcommand{\@@JavaImport}[1]{import~\textit{#1};}
+
 \lstdefinelanguage{lJava}{
     language=java,
     deletekeywords = {<,>,\,},
@@ -12,6 +14,7 @@
     moredelim=**[il][{\lstHLError}]{|err|:},
     moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
     moredelim=[is][{}]{|plain|}{|plain|},
+    % moredelim=[is][\@@JavaImport]{import\ }{;}, % there shouldn't be any highlights in a line prefixed with import :D
     %frameround=tttt, %% mag backgroundcolor nicht
     escapeinside={!*}{*!},
     morecomment=[s]{/*}{*/},
