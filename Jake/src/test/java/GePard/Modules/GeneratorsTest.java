@@ -47,7 +47,6 @@ public class GeneratorsTest {
     @Order(2)
     @DisplayName("[Generators] Überprüft erwartende Defaults")
     void _test_gepard_projects_defaults() {
-        // There are no defaults right now
     }
 
     @Test
