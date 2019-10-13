@@ -186,8 +186,8 @@
 
 \hbadness=99999
 \hfuzz=15000pt
-\clubpenalty=10000
-\widowpenalty=10000
+\clubpenalty10000
+\widowpenalty10000
 
 \pdfminorversion=5
 \pdfcompresslevel=9
