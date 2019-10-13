@@ -5,13 +5,14 @@ package de.eagle.lillyjakeframework.installer.LillyInstaller;
  * @author Florian Sihler
  * @version 1.0.0
  *
- * @since 2.0.0
+ * @since 2.2.0
  *
  * @brief Installiert Lilly auf einem Linuxioiden Betriebssystem
  */
 
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.installer.AutoInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
 import de.eagle.util.constants.ColorConstants;
@@ -147,7 +148,7 @@ public class LinuxLillyInstaller extends AutoInstaller {
         File target = searchLillyCls();
         if(target != null) {
             writeLoggerInfo("Erfrage Installationsart für interne Lilly.cls", "LLInst");
-            JakeWriter.out.println("Jake kann Lilly mit Version 2.0.0 auf 2 verschiedene Arten installieren:");
+            JakeWriter.out.println("Jake kann Lilly mit Version " + Definitions.JAKE_VERSION + " auf 2 verschiedene Arten installieren:");
             JakeWriter.out.println("   1) Verlinkung der gefunden Lilly-Instanz (" + target.getPath() + ")");
             JakeWriter.out.println("   2) Installation der in Jake enthaltenen Variante von Lilly");
             switch (CommandLine.get_answer("Gebe deine Auswahl ein [1/2/(c)ancel]> ", new String[]{"1","2","C"})) {
@@ -182,7 +183,6 @@ public class LinuxLillyInstaller extends AutoInstaller {
                 Arrays.toString(Executer.runBashCommand("texhash " + CoreSettings.requestValue("S_INSTALL_PATH")).lines().toArray(String[]::new)));
         JakeWriter.out.println("Lilly installiert");
         return new String[] {"search_packages", "Suche die von Lilly verwendeten Pakete"};
-        // TODO: As last step: search for packages
     }
 
     public static String[] fkt_search_packages(String s) {

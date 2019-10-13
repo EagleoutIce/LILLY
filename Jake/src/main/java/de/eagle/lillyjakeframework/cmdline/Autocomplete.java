@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
@@ -148,7 +147,7 @@ public class Autocomplete {
         arg = CommandLineParser.strip_modifications(arg.substring(1));
         // System.out.println("last: " + ararg[ararg.length-1] + " # " + arg);
         if (ararg[ararg.length - 1].contains(Definitions.ASS_PATTERN) && CoreSettings.settings.containsKey(arg)) {
-            SettingDeskriptor t = CoreSettings.settings.get(arg);
+            SettingDeskriptor<String> t = CoreSettings.settings.get(arg);
             switch (t.type) {
             case IS_FILE:
                 try {

@@ -56,11 +56,12 @@ public class Jake {
         }
 
         try {
-            CoreSettings.getSettings().joinConfigFile(Definitions.DEFAULT_CONFIG_STREAM);
+            // We won't load the default config now as it will not point to any project.
+            // CoreSettings.getSettings().joinConfigFile(Definitions.DEFAULT_CONFIG_STREAM);
             if (Definitions.USER_CONFIG_PATH != null && !Definitions.USER_CONFIG_PATH.isEmpty())
                 CoreSettings.getSettings().joinConfigFile(Definitions.USER_CONFIG_PATH);
-        } catch (IOException what) {
-            writeLoggerError("Es gab einen Fehler beim Lesen der Default-Konfiguration", "Jake");
+        } catch (IOException ignored) {
+            writeLoggerError("Es gab einen Fehler beim Lesen der Nutzer-Konfiguration", "Jake");
         }
 
         if (!CoreSettings.requestValue("S_OPERATION").startsWith(String.valueOf(Definitions.HIDDEN_ARG))) {
@@ -94,6 +95,15 @@ public class Jake {
             }
 
         }
+
+
+        try {
+            CoreSettings.getSettings().joinConfigFile(Definitions.DEFAULT_CONFIG_STREAM);
+        } catch (IOException ignored) {
+            writeLoggerError("Es gab einen Fehler beim Lesen der Standard-Konfiguration", "Jake");
+        }
+
+
         if (args.length > 0 && args[0].equals("GUI")) {
             Definitions.GUI = true;
                // JOptionPane.showMessageDialog(new JFrame(), "Du bist im Gui - Modus, hier wird dich bald Jake begrüßen!",
@@ -110,17 +120,5 @@ public class Jake {
             return;
         }
         writeLoggerError("Die Arbeit ist gescheitert. parse_args liefert: " + rs, "Jake");
-        /*
-         * JakeWriter.out.
-         * println("Da es noch kein gescheites cmdline parsing gibt - grumpy - wird die datei dummy.tex hardgecoded."
-         * ); JakeWriter.out.
-         * println("Ab jetzt auch JakeWriter anstelle von System.out, System.err und System.in verwenden!"
-         * ); JakeWriter.out.println("Dies ist dann für die GUI-Entwicklung nötig");
-         * JakeWriter.out.
-         * println("Wenn der Dialog getestet werden soll, einfach die dummy.tex löschen!"
-         * ); JakeCompile.compile(new String[]{""});
-         */
-        // load settings & interpret settings otherwise exit with failure
-
     }
 }

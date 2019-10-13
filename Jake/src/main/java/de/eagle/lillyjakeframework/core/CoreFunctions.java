@@ -2,8 +2,8 @@ package de.eagle.lillyjakeframework.core;
 
 /**
  * @file CoreFunctions.java
- * @author Raphael Straub
- * @version 2.0.0
+ * @author Florian Sihler
+ * @version 2.2.0
  *
  * @brief Enthält die Funktionen der Kommandozeile
  */
