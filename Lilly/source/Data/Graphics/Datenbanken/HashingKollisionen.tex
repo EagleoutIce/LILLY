@@ -1,0 +1,15 @@
+\gdef\GRAPHICSxHashingxKollisionen{%
+\begin{tikzternal}[scale=0.95, every node/.style={transform shape,font=\small}]
+    \draw[rounded corners = 6pt, very thick] (0,0) rectangle ++ (3,0.6) node[midway, centered] {Chaining};
+    \draw[rounded corners = 6pt] (-2,1.75) rectangle ++ (4.25,0.6) node[midway, centered] {{Belegungsfaktor} \(\beta = \frac{n}{m}\)};
+    \draw (1.5,0.6) to[out=90, in=270] (-2+4.25/2,1.75);
+    \draw[rounded corners = 6pt, very thick] (5,0) rectangle ++ (3,0.6) node[midway, centered] {Open - Hashing};
+    \draw[rounded corners = 6pt] (3,2) rectangle ++ (3.75,1.2) node[midway, centered] {\parbox{3.6cm}{{Lineares Sond.}: \\ \(h_i(s) = \big(h(s) + i\big)\%m\)}};
+    \draw (6.5,0.6) to[out=90, in=270] (3+3.75/2,2);
+    \draw[rounded corners = 6pt] (6,-2.6) rectangle ++ (5.75,1.2) node[midway, centered] {\parbox{5.45cm}{Quadratisches Sondieren: \\ \(h_i(s) = \big(h(s) + (-1)^{i+1} \cdot \left\lceil \frac{i}{2}\right\rceil^2 \big)\%m\)}};
+    \draw (6.5,0) to[out=270, in=90] (6+5.75/2,-1.4);
+    \draw[rounded corners = 6pt] (7.25,1.6) rectangle ++ (4.25,1.2) node[midway, centered] {\parbox{4.1cm}{{Double Hashing}: \\ \(h_i(s) = \big(h(s) + h'(s) \cdot i\big)\%m\)}};
+    \draw (8,0.3) to[out=0, in=270] (7.25+4.75/2,1.6);
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxHashingxKollisionen} %% new pattern maybe apply to all?
