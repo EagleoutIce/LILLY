@@ -142,7 +142,7 @@ public class Generators extends AbstractGepardModule{
         settings.put("1uebungsblatt!Vorlesung!Bitte gib die zugehörige Vorlesung an (ANA1, LAII, ...)!Ub-Nr!Bitte gib die Nummer des Übungsblattes an!cAuthor!Bitte gib den Namen der Autoren des Übungsblattes an [optional]", SettingDeskriptor.create("uebungsblatt", "Generiert die Dateien für ein Übungsblatt.", eSetting_Type.IS_TEXT, false, "!/templates/uebungsblatt.template"));
         // settings.put("test:thereal", SettingDeskriptor.create("test", "hihi" , eSetting_Type.IS_TEXT, false));
         settings.put("1zusammenfassung!Name!Bitte gib den Namen der Datei an!Vorlesung!Bitte gib die zugehörige Vorlesung an (ANA1, LAII, ...)", SettingDeskriptor.create("zusammenfassung", "Generiert die Dateien für eine Zusammenfassung.", eSetting_Type.IS_TEXT, false, "!/templates/zusammenfassung.template"));
-
+        settings.put("1vorlesung!VorlesungKurz!Bitte gib das Kürzel der Vorlesung ein. Unter diesem steht die Vorlesung dann für Lilly zur Verfügung!ProfName!Name des Professors!UbLeiterName!Name des Übungsleiters!TutorName!Name des Tutors!VorlesungTitel!Titel der Vorlesung!UbHead!Titel eines Übungsblatts[optional]!ShowTutor!Ist die Abgabe Digital? Dann die Variable nicht angeben!Fakultaet!Name der Fakultät in Großbuchstaben (THEORETISCHEINFORMATIK,...)!FakultaetFarbe!Name der Fakultaet in CamelCase(TheoretischeInformatik,...)", SettingDeskriptor.create("vorlesung", "Generiert die Konfiguration für eine Vorlesung.", eSetting_Type.IS_TEXT, false, "!/templates/vorlesung.template"));
         return settings;
     }
 
