@@ -142,7 +142,7 @@
 % \def\@lilly@mitschrieb@selfont{\useefont\bfseries}
 
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
-{-4ex \@plus -1ex \@minus -.4ex}    
+{-4ex \@plus -1ex \@minus -.4ex}
 {1ex \@plus.2ex }
 {\normalfont\LARGE\@lilly@mitschrieb@selfont}}
 \renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
@@ -176,9 +176,11 @@
 \addto\captionsngerman{%
     \renewcommand{\contentsname}{\hbox{}\relax\hfill \xtranslate{Inhaltsverzeichnis}\hfill\hbox{}\relax}%
 }
+
+
 \LILLYcommand{\cftsubsecfont}{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!90!white}}
 %\renewcommand{\cftsecleader}{\hfill}
-\LILLYcommand{\cftsubsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
+\LILLYcommand{\cftsubsecleader}{{\lilly@cftdotfill{\cftsubsecdotsep}}}
 \LILLYcommand{\cftsubsecpagefont}{\normalfont\scriptsize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!70!white}}
 
 \AtBeginDocument{
