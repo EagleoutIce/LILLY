@@ -65,7 +65,7 @@
 
 \deftranslation{Abb.}{Fig.}
 \deftranslation{Tbl.}{Tbl.}
-
+\deftranslation{Alle Algorithmen}{List of Algorithms}
 % Application
 
 \deftranslation{Kurzbeschreibung}{About me}

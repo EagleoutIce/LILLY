@@ -97,7 +97,7 @@
 
 
 %% Jede registrierte Sprache erhält automatisch ihre environments, ihren \c-Befehl,\b-Befehl und ihren \i-Befehl
-%% Damit wird redundante Code-Generierung erspahrt.
+%% Damit wird redundante Code-Generierung erspart.
 
 %% Enthält lediglich den Namen der entsprechenden Sprache, für convenience :D
 \constructList[,]{RegisteredLanguageNames}
@@ -119,7 +119,7 @@
 
 \newif\iflstlastwasacharacter% Will disable numberhl if true
 \lstlastwasacharacterfalse
-% \newif\iflstnumnohlmode% Will prevent h31 <- 3 to highlight as '3' would reset the hl behaviour
+% \newif\iflstnumnohlmode% Will prevent h31 <- 3 to highlight as '3' would reset the hl behavior
 % \lstnumnohlmodefalse
 
 \newcommand\digitstyle{\color{DarkMidnightBlue}}
@@ -195,7 +195,7 @@
 % Literates - Definitions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Konfigurere Sonderzeichen
+%% Konfiguriere Sonderzeichen
 \lstset{literate=%
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
@@ -340,5 +340,7 @@
 \ifLILLYxLISTINGS@runtimes
   \RequirePackage{LILLYxRUNTIMES}
 \fi
+
+\RequirePackage{LILLYxLISTINGSxALGORITHMS}
 
 \endinput
