@@ -18,15 +18,15 @@
 
 \RequirePackage{kvoptions}                                 %Erweiterte Optionen
 
-% ifLILLY@english: Load the english-dictonary
+% ifLILLY@english: Load the english-dictionary
 \DeclareBoolOption[false]{english}\DeclareComplementaryOption{noenglish}{english}
 
-% ifLILLY@german: Load the german-dictonary
+% ifLILLY@german: Load the german-dictionary
 \DeclareBoolOption[true]{german}\DeclareComplementaryOption{nogerman}{german}
 
 \ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
 
-%% Maybe make them real dictonraies?
+%% Maybe make them real dictionraies?
 
 \ifLILLYxTRANSLATOR@english%
     \InputIfFileExists{\LILLYxABSPATHxCORE/Modules/Dictonaries/english.dict}{}{\typeout{English dict not found! Searched: \LILLYxPATHxCORE/Modules/Dictonaries/}}

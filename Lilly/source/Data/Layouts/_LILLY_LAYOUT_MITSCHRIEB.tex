@@ -57,7 +57,7 @@
         \ifthenelse{\equal{#2}{}}%
         {\defChapter{#3}\def\xchapname{#3}}% use same
         {\defChapter[{#2}]{#3}\def\xchapname{#2}}%
-        \getRegisteredBoxLists
+        \getRegisteredListOfLists
         \foreach \ctmplistname in \lillyxlist {%
             \addcontentsline{\ctmplistname}{chapter}{\xchapname}%
         }
