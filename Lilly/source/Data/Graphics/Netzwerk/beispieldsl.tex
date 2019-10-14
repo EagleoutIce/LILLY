@@ -35,7 +35,7 @@
     \fill[\cC!15] (-3.5,3.5) -| ++ (-2,1.5) -- ++(-0.25,0) -- ++(1.25,0.5) -- ++(1.25,-0.5) -| cycle;
 
     \coordinate (SplitterC) at (-4,4);
-    \draw[fill=\cC] (SplitterC) rectangle ++(0.25,0.25) ++(-0.25,0) node[below=0.25cm] {\tiny splitter};
+    \draw[fill=\cC] (SplitterC) rectangle ++(0.25,0.25) ++(-0.125,0) node[below=0.25cm] {\tiny splitter};
     \draw[link] (SplitterC)++(0.25,0.125) -- ++(2.75,0);
 
     \node[rack switch,scale=0.5] (dslmod) at ($(SplitterC)+(-0.5,0.125)$) {};

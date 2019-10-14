@@ -1,0 +1,64 @@
+% \PassOptionsToPackage{dvipsnames}{xcolor}
+\documentclass[tikz,border=2mm]{standalone}
+
+\usepackage{LILLYxCOLOR}
+\pgfmathsetseed{\number\pdfrandomseed}
+\pgfmathdeclarerandomlist{color}{{Awesome}{DebianRed}{DarkOrchid}{Orchid}{AppleGreen}{Purple}}
+\pgfmathrandomitem{\randcol}{color}
+
+% As, well, someone wanted an AMAZING GRID
+% let's introduce a random walker
+\pgfmathsetseed{\number\pdfrandomseed}
+% #1 Radius
+% #2 Last Angle - to prohibit crazy-walks
+\def\NextRandCoordsFF#1#2{
+  \pgfmathsetmacro{\TargetRandAng}{45*sign(rand)+#2}
+  \pgfmathsetmacro{\TargetRandX}{#1*cos(\TargetRandAng)}
+  \pgfmathsetmacro{\TargetRandY}{#1*sin(\TargetRandAng)}
+  \global\let\CurTarX\TargetRandX \global\let\CurTarY\TargetRandY \global\let\CurTarAng\TargetRandAng%
+}
+
+\def\NextRandCoords#1#2{
+  \pgfmathsetmacro{\TargetRandAng}{50*rand+#2}
+  \pgfmathsetmacro{\TargetRandX}{#1*cos(\TargetRandAng)}
+  \pgfmathsetmacro{\TargetRandY}{#1*sin(\TargetRandAng)}
+  \global\let\CurTarX\TargetRandX \global\let\CurTarY\TargetRandY \global\let\CurTarAng\TargetRandAng%
+}
+
+% #1 init pointX
+% #2 init pointY
+% #3 init angle
+% #4 number of steps
+% WalkerCs
+\def\Walk#1#2#3#4#5{
+  \gdef\CurX{#1} \gdef\CurY{#2} \gdef\CurAng{#3}
+  \foreach \step in {1,...,#4} {
+    \pgfmathsetmacro{\Tarlength}{2.5-1.5*\step/#4}
+    \csname #5\endcsname{\Tarlength}{\CurAng}% calc next
+    \pgfmathsetmacro{\ColGrading}{100-75*\step/#4}
+    \draw[\randcol!\ColGrading] (\CurX,\CurY) -- ++(\CurTarX,\CurTarY);
+    \pgfmathsetmacro{\NewCurX}{\CurX+\CurTarX}\pgfmathsetmacro{\NewCurY}{\CurY+\CurTarY}
+    \global\let\CurX\NewCurX \global\let\CurY\NewCurY \global\let\CurAng\CurTarAng
+
+  }
+}
+
+\begin{document}
+% Draws a hundred blocks random city
+\begin{tikzpicture}[]
+  % we walk some paths in 45 degrees, randomly of course :D
+  \def\max{100}
+  \foreach \walk in {1,...,\max}{
+    \pgfmathsetmacro{\StartX}{16*rand}
+    \pgfmathsetmacro{\StartY}{2*rand}
+    \Walk{\StartX}{\StartY}{\walk/\max*360}{25}{NextRandCoordsFF};
+  }
+  \foreach \walk in {1,...,\max}{
+    \pgfmathsetmacro{\StartX}{12*rand}
+    \pgfmathsetmacro{\StartY}{2*rand}
+    \Walk{\StartX}{\StartY}{\walk/\max*360}{25}{NextRandCoords};
+  }
+
+  \node[below,scale=3,font=\sffamily] at(0,-15){Dies ist ein zufällig generiertes Platzhalter-Bild, bis ich etwas besseres finde :D};
+\end{tikzpicture}
+\end{document}
