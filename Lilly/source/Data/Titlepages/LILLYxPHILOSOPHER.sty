@@ -30,13 +30,15 @@
 }
 
 %% Mathe
-\xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028}
+\xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028} %% rgb(086,170,028)
 %% Praktische Informatik
-\xglobal\definecolor{FacultyPraktischeInformatikxColor}{RGB}{221,101,015}
+\xglobal\definecolor{FacultyPraktischeInformatikxColor}{RGB}{236,130,000} %% rgb(236,130,000)
 %% Theoretische Informatik
-\xglobal\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221}
+\xglobal\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221} %% rgb(002,133,221)
 %% Technische Informatik
-\xglobal\definecolor{FacultyTechnischeInformatikxColor}{RGB}{177,2,221}
+\xglobal\definecolor{FacultyTechnischeInformatikxColor}{RGB}{221,0,107} %% rgb(221,0,107)
+%% Anwendungsfach Psychologie
+\xglobal\definecolor{FacultyPsychologiexColor}{RGB}{129,74,38} %% rgb(129,74,38)
 
 \newlength{\LILLYxLeftsep}\setlength{\LILLYxLeftsep}{2cm}
 
@@ -107,6 +109,10 @@
             }%
         }%
     \end{tikzpicture}}{#1}[#2][#3][50pt][\smallNumber][0.125][0.03]
+}
+
+\DeclareDocumentCommand{\LILLYxFACULTYxPSYCHOLOGIE}{ O{MudWhite} O{FacultyPsychologiexColor} O{} }{%
+    \LILLYxGENxFACULTY{Psychologie}{$\mathbf{\Psi}$}{#1}[#2][#3][60pt][\smallNumber][0.125]
 }
 
 \providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
@@ -183,7 +189,7 @@
 \end{tikzternal}
     } {\par\vspace*{9em}\par}%
     {\centering% Title:
-    {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par%
+    {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{39pt}{39pt}\selectfont\FULLTITLE\par}%
     } {\par\vspace*{8em}\par}%
     \hbox{}
     \setLinkColor{Charcoal}%!75!darkgray}%
@@ -215,7 +221,7 @@
     \clearpage\begin{titlepage}
         \LILLYxPHILOSOPHERxINIT%
         {\centering\par\vspace*{7em}\par
-            {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par}
+            {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-1.5\LILLYxLeftsep}{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{39pt}{39pt}\selectfont\FULLTITLE\par}}
             \par\vspace*{11em}\par
             \IfValueTF{#1}{\IfFileExists{#1}{\includegraphics[height=20em]{#1}}{\parbox[t][20em]{12em}{\Large No Image}}}{\parbox[t][20em]{1em}{}}
             \par\vfill\vspace{2em}\par
