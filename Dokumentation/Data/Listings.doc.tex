@@ -412,7 +412,7 @@ Funktioniert analog zu \T{MIPS}, aber definiert das Design für kurze Ausschnitt
 %
 %
 \presentCommand[2.0.0]{RegisterLanguage}[\manArg{Sprache}\manArg{lst-language}\secline\optArg[RegisteredLanguages]{sig-list}\secline\optArg[RegisteredLanguageNames]{name-list}]
-Registriert eine \T{Sprache} wie \T{java} mit der entsprechenden Listing-Sprache \T{lst-language} wie \T{lJava}. Die Signatur der Sprache wird in die Liste \T{sig-list}, der ledigliche Name (wie \T{java}) in die Liste \T{name-list} eingetragen. Konstruiert werden die \jmark[weiter oben]{mrk:reglangs} beschriebenen Befehle für die Sprache. Erschaffen wir uns einmal die Sprache \T{rubberduck}:
+Registriert eine \T{Sprache} wie \T{java} mit der entsprechenden Listing-Sprache \T{lst-language} wie \T{lJava}. Die Signatur der Sprache wird in die Liste \T{sig-list}, lediglich der Name (wie \T{java}) in die Liste \T{name-list} eingetragen. Konstruiert werden die \jmark[weiter oben]{mrk:reglangs} beschriebenen Befehle für die Sprache. Erschaffen wir uns einmal die Sprache \T{rubberduck}:
 \begin{latex}
 \lstdefinelanguage{lRubberduck}{
     comment=[l]{\#},
@@ -425,7 +425,7 @@ Registriert eine \T{Sprache} wie \T{java} mit der entsprechenden Listing-Sprache
     morekeywords = {Quack, new},
     morekeywords = [2]{Duck}
 }
-Bisher haben wir damit noch keine Sprache geladen oder irgenetwas Lilly-Kompatibles erzeugt:
+Bisher haben wir damit noch keine Sprache geladen oder irgendetwas Lilly-Kompatibles erzeugt:
 \begin{latex*}
 \isLanguageNameLoaded{rubberduck} % :yields: !*\lstcomment{\isLanguageNameLoaded{rubberduck}}*!
 \end{latex*}
@@ -467,7 +467,7 @@ Wie die einzelnen Umgebungen heißen und wie sie dargestellt werden sollen läss
 %
 %
 \presentCommand[2.0.0]{LillyNewLstEnvironCore}[\manArg{Name}\manArg{Key}\manArg{In-Extra}\manArg{Out-Extra}\manArg{Language}]
-Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kann somit vom Nutzer modifziert/überschrieben werden um die Eigenschaften der durch \blankcmd{RegisterLanguage}-generierten Umgebungen zu modifizieren. Diese Befehl kümmert sich um die Standartumgebung wie \clatex[morekeywords={[5]{begin}}]{:bs:begin\{latex\}}. Er erhält die entsprechenden Informationen über die jeweiligen Argumente. Die Standartdefinition dieses Befehls lautet ganz einfach:
+Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kann somit vom Nutzer modifiziert/überschrieben werden um die Eigenschaften der durch \blankcmd{RegisterLanguage}-generierten Umgebungen zu modifizieren. Diese Befehl kümmert sich um die Standartumgebung wie \clatex[morekeywords={[5]{begin}}]{:bs:begin\{latex\}}. Er erhält die entsprechenden Informationen über die jeweiligen Argumente. Die Standartdefinition dieses Befehls lautet ganz einfach:
 \begin{latex}[morekeywords={[5]{\\LillyNewLstEnvironCore}}]
 \def!**!\LillyNewLstEnvironCore!**!#1#2#3#4#5{%
     \lstnewenvironment{#1}[1][]{#3\lstset{##1}}{#4}
@@ -477,7 +477,7 @@ Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kan
 %
 %
 \presentCommand[2.0.0]{LillyNewLstEnvironPlain}[\manArg{Name}\manArg{Key}\manArg{In-Extra}\secline\manArg{Out-Extra}\manArg{Language}]
-Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kann somit vom Nutzer modifziert/überschrieben werden um die Eigenschaften der durch \blankcmd{RegisterLanguage}-generierten Umgebungen zu modifizieren. Diese Befehl kümmert sich um die Plain-Umgebung wie \clatex[morekeywords={[5]{begin}}]{:bs:begin\{plainlatex\}}.
+Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kann somit vom Nutzer modifiziert/überschrieben werden um die Eigenschaften der durch \blankcmd{RegisterLanguage}-generierten Umgebungen zu modifizieren. Diese Befehl kümmert sich um die Plain-Umgebung wie \clatex[morekeywords={[5]{begin}}]{:bs:begin\{plainlatex\}}.
 Die Standartdefinition dieses Befehls lautet:
 \begin{latex}[morekeywords={[5]{\\LillyNewLstEnvironPlain}}]
 \def!**!\LillyNewLstEnvironPlain!**!#1#2#3#4#5{%
@@ -490,7 +490,7 @@ Die Standartdefinition dieses Befehls lautet:
 %
 %
 \presentCommand[2.0.0]{LillyNewLstEnvironPresent}[\manArg{Name}\manArg{Key}\manArg{In-Extra}\secline\manArg{Out-Extra}\manArg{Language}]
-Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kann somit vom Nutzer modifziert/überschrieben werden um die Eigenschaften der durch \blankcmd{RegisterLanguage}-generierten Umgebungen zu modifizieren. Diese Befehl kümmert sich um die Presentation-Umgebung wie \clatex[morekeywords={[5]{begin}}]{:bs:begin\{slatex\}}.
+Dieser Befehl sollte nicht manuell aufgerufen werden, er wird aufgerufen und kann somit vom Nutzer modifiziert/überschrieben werden um die Eigenschaften der durch \blankcmd{RegisterLanguage}-generierten Umgebungen zu modifizieren. Diese Befehl kümmert sich um die Presentation-Umgebung wie \clatex[morekeywords={[5]{begin}}]{:bs:begin\{slatex\}}.
 Die Standartdefinition dieses Befehls lautet:
 \begin{latex}[morekeywords={[5]{\\LillyNewLstEnvironPresent,\\presentlst,\\endpresentlst}}]
 \def!**!\LillyNewLstEnvironPresent!**!#1#2#3#4#5{%
@@ -572,9 +572,9 @@ Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTING
 
 \presentCommand[2.0.0]{p<lang>}[\manArg{Code}]
 Setzt Analog zu \blankcmd{c<lang>} den Code in einer Zeile im entsprechend Design. Hier allerdings ebenfalls das neue, modernere Design:
-\begin{latex}
+\begin{latex*}
 \pcpp{int main(int argc, char** argv)}
-\end{latex}
+\end{latex*}
 Ergibt: \pcpp{int main(int argc, char** argv)}.
 % \begin{slatex}
 % \documentclass{article}
@@ -611,28 +611,139 @@ Ergibt: \pcpp{int main(int argc, char** argv)}.
 % }
 % \end{sjava}
 
+\section{Algorithmen mit \T{algorithm2e}}
+\hypertarget{LILLYxLISTINGSxALGORITHMS}Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/LILLYxLISTINGSxALGORITHMS}. Sie werden mit \LILLYxBOXxVersion{2.2.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGS} geladen. Weiter existiert es als eigenständiges Paket \LILLYxNOTExLibrary{LILLYxLISTINGSxALGORITHMS}.\medskip\newline
+Dieses Paket nimmt ebenfalls Argumente entgegen die auch LILLY übergeben werden können:
+\begin{center}
+    \begin{tabular}{^t^t^>{\raggedright\arraybackslash}p{8cm}+}
+        \toprule
+            \headerrow Option & Umschaltoption & Paket \\
+        \midrule
+            german & english & Setzt die Sprache entsprechend auf Deutsch und English \\
+            algomod & noalgomod & Setzt man explizit \T{noalgomod}, so werden alle folgenden Änderungen nicht angewendet! Das heißt, dass auch die Befehle nicht zur Verfügung stehen. Allerdings werden die normalen Konfigurationen vorgenommen.\\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\begin{bemerkung}[Modifikationen]
+    Dieses Paket \emph{fordert} einen Titel von einem Algorithmus, deswegen werden \blankenv{algorithm} und Vergleichbare Umgebungen modifiziert und hier als \say{neue} Umgebungen präsentiert.
+\end{bemerkung}
+
+%
+%
+%
+
+\presentCommand[2.2.0]{StartCode}[\cmdlist\anothercmd[2.2.0]{EndCode}]
+Erlaubt es in einer Umgebung wie \blankenv{algorithm} den Start des eigentlichen Codes zu deklarieren. Dies empfiehlt sich zum Beispiel nach dem Setzen von \blankcmd{KwData} und \blankcmd{KwResult}. Analog markiert \blankcmd{EndCode} das Ende einer Sequenz und kann so verwendet werden um ein neues \blankcmd{KwData}/\blankcmd{KwResult}-Segment einzuleiten. Es ist \emph{nicht} nötig, \blankcmd{EndCode} am Ende eines Algorithmus zu setzen.
+
+%
+%
+%
+
+\presentCommand[2.2.0]{Comment}[\optStar\optArg{Align}\manArg{comment}]
+Setzt einen Kommentar via \T{tcp}.
+
+%
+%
+%
+
+\presentCommand[2.2.0]{listofALGORITHMS}
+Arbeitet analog zu \blankcmd{listofalgorithms}, operiert allerdings Lilly-Konform (weiter werden auch wirklich \emph{nur} Algorithmen eingetragen). Diese Liste wird nie automatisch gesetzt und kann so am gewünschten Ort platziert werden
+
+%
+%
+%
+
+\presentEnvironment[2.2.0]{algorithm}[\optArg[auto]{FloatPlacement}\manArg{Title}\optArg[Title]{ShortTitle}\cmdlist\secline\anotherenv[2.2.0]{algorithm*}\optArg[auto]{FloatPlacement}\manArg{Title}\optArg[Title]{ShortTitle}]
+Operiert analog zu \blankenv{algorithm} und \blankenv{algorithm*} des \T{algorithm2e}-Pakets. Lilly versucht automatisch eine korrekte Floating-Position zu erhalten.
+
+
+
+
+
+\presentEnvironment[2.2.0]{procedure}[\optArg[auto]{FloatPlacement}\manArg{Title}\optArg[Title]{ShortTitle}\cmdlist\secline\anotherenv[2.2.0]{procedure*}\optArg[auto]{FloatPlacement}\manArg{Title}\optArg[Title]{ShortTitle}]
+Operiert analog zu \blankenv{procedure} und \blankenv{procedure*} des \T{algorithm2e}-Pakets. Lilly versucht automatisch eine korrekte Floating-Position zu erhalten. Weiter müssen die Klammern nicht angegeben werden, da Lilly diese automatisch anfügt.
+
+%
+%
+%
+
+\presentEnvironment[2.2.0]{function}[\optArg[auto]{FloatPlacement}\manArg{Title}\optArg[Title]{ShortTitle}\cmdlist\secline\anotherenv[2.2.0]{function*}\optArg[auto]{FloatPlacement}\manArg{Title}\optArg[Title]{ShortTitle}]
+Operiert analog zu \blankenv{function} und \blankenv{function*} des \T{algorithm2e}-Pakets. Lilly versucht automatisch eine korrekte Floating-Position zu erhalten. Weiter müssen die Klammern nicht angegeben werden, da Lilly diese automatisch anfügt.
+\iflillycompact\else%
+\begin{beispiel}[Ein beispielhafter Algorithmus]
+\begin{latex}
+\begin{algorithm}{Ich bin ein Beispiel}
+\KwData{Liebe, Lust und Leidenschaft}
+\KwResult{Trauer und Leid}
+\StartCode
+Suche Person\;
+\While(suche Person){Person nicht gefunden}{
+    Halte Ausschau\;
+    \If{Person sieht gut aus}{
+        Spreche an\;
+        \Comment{Modern Stalking}
+        Daten \(\gets\) Führe Konversation\;
+        \eIf{\T{Daten} passen}{
+            Person gefunden\;
+        }{
+            Person nicht gefunden\;
+        }
+    }
+}
+\Comment{Rest}
+\end{algorithm}
+    \end{latex}
+\begin{algorithm}{Ich bin ein Beispiel}
+\KwData{Liebe, Lust und Leidenschaft}
+\KwResult{Trauer und Leid}
+\StartCode
+Suche Person\;
+\While(suche Person){Person nicht gefunden}{
+    Halte Ausschau\;
+    \If{Person sieht gut aus}{
+        Spreche an\;
+        \Comment{Modern Stalking}
+        Daten \(\gets\) Führe Konversation\;
+        \eIf{\T{Daten} passen}{
+            Person gefunden\;
+        }{
+            Person nicht gefunden\;
+        }
+    }
+}
+\Comment{Rest}
+\end{algorithm}
+\end{beispiel}
+\fi
+
 \section{Runtimes}
 \hypertarget{LILLYxRUNTIMES}Diese Definitionen befinden sich in der Datei: {\ltt\blankcmd{LILLYxPATHxLISTINGS}/LILLYxRUNTIMES}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von \LILLYxNOTExLibrary{LILLYxLISTINGSxADVANCED} geladen. Weiter existiert es als eigenständiges Paket \LILLYxNOTExLibrary{LILLYxRUNTIMES}.\medskip\newline
-Runtimes bieten die Möglichkeit Code einer Programmiersprache in Latex ausführen zu lassen und das Ergebnis ebenfalls im Latexdokument zu setzen. Hierfür wird eine bereits aufgesetzte Umgebung für die jeweilige Sprache benötigt, LILLY greift also auf einen bestehenden Compiler/Interpreter zurück. Alle mitgelieferten Runtimes befinden sich in der Liste \T{RegisteredRuntimes} und liefern:\newline
+Runtimes bieten die Möglichkeit Code einer Programmiersprache in Latex ausführen zu lassen und das Ergebnis ebenfalls im Latexdokument zu setzen. Hierfür wird eine bereits aufgesetzte Umgebung für die jeweilige Sprache benötigt, LILLY greift also auf einen bestehenden Compiler/Interpreter zurück. Alle mitgelieferten Runtimes befinden sich in der Liste \T{RegisteredRuntimes} und liefern:
+
 %
 %
 %
+
 \presentCommand[2.0.0]{r<Runtime>}[\optArg[\textbackslash ,:]{Mid-Text}\manArg{Code}]
 Führt den übergebenen Code in der jeweiligen Runtime aus und liefert das Ergebnis. So zum Beispiel mit \T{\blankcmd{rbash}\{ls . | tail -2\}}: \rbash{ls . | tail -2}
 \T{\blankcmd{rbash}[liefert:]\{ls . | tail -4\}}: \rbash[liefert:]{ls . | sort | tail -4}
+
 %
 %
 %
+
 \presentCommand[2.0.0]{isRuntimeLoaded}[\manArg{runtimeName}]
 Testet analog zu \jmark[\blankcmd{isLanguageNameLoaded}]{mrk:ilnl} ob eine entsprechende Runtime geladen ist:
 \begin{latex}
 \isRuntimeLoaded{bash}  % :yields: !*\lstcomment{\isRuntimeLoaded{bash}}*!
 \isRuntimeLoaded{waffel} % :yields: !*\lstcomment{\isRuntimeLoaded{waffel}}*!
 \end{latex}
+
 % Won't use inline as this breaks color highlight :D
 %
 %
-%
+
 \begin{bemerkung}[Was es noch so gibt]
     Die Runtimes liefern, bisher noch nicht normiert, auch noch Befehle wie: \blankcmd{previewBashFile}, die eine bestehende Datei ausführen und das Ergebnis ausgeben. An einer Normierung und Erweiterung wird gearbeitet.
 \end{bemerkung}
