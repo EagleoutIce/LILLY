@@ -2,12 +2,12 @@
 % ignoring the offset
 \begin{document}
     \makeatletter
-    \foreach \vl/\se [count=\i] in {ANA1,PDP,PVS,GDBS,GDRA,FG,LAII,EIDI,EIDIF}{
+    \foreach \vl/\se [count=\i] in {ANA1,PDP,PVS,GDBS,GDRA,FG,LAII,EIDI,EIDIF,GDRN}{
         \renewcommand{\LILLYxVorlesung}{\vl}
         \input{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
         \LILLYxTITLE
     }
-    \foreach \vl/\se [count=\i] in {ANA1,PDP,PVS,GDBS,GDRA,FG,LAII,EIDI,EIDIF}{
+    \foreach \vl/\se [count=\i] in {ANA1,PDP,PVS,GDBS,GDRA,FG,LAII,EIDI,EIDIF,GDRN}{
         \renewcommand{\LILLYxVorlesung}{\vl}
         \input{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
         \LILLYxTITLExBONUS{\@Alph{\i}usammenfassung}%
