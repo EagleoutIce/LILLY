@@ -112,7 +112,7 @@
     \IfBooleanTF{#1}{\rowcolor{#6}}{#2\ignorespaces\IfValueT{#5}{%
             #5\\\endfirsthead%
             #8#5\\\endhead
-        }\ignorespaces}%
+        }\ignorespaces}\ignorespaces%
 }{%
     \endlongtable%
 }
@@ -164,7 +164,7 @@
         \IfBooleanTF{#1}{\rowcolor{#6}}{#2\ignorespaces\IfValueT{#5}{%
             #5\\\endfirsthead%
             #8#5\\\endhead
-        }\ignorespaces}%
+        }\ignorespaces}\ignorespaces%
 }{%
     \end{longtabu}
 }
