@@ -196,7 +196,7 @@ public class JakeCompile {
         if (CoreSettings.requestSwitch("S_LILLY_AUTOCLEAN")) {
             JakeWriter.out.format("%s> Lösche temporäre Dateien...%s%n", ColorConstants.COL_GOLD,
                     ColorConstants.COL_RESET);
-                Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT")))
+                Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT"))).filter(s -> s.toFile().isFile())
                         .filter(s -> !InKeeps(s.toString())).forEach(s -> s.toFile().delete());
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL"))
                     Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT"),
