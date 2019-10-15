@@ -5,16 +5,8 @@
 \providecommand{\AUTHOR}{Florian Sihler}
 \providecommand{\AUTHORMAIL}{florian.sihler@web.de}
 
-
-\RequirePackage{LILLYxBOOLEAN} %% \true und \false
-\RequirePackage{LILLYxDEBUG} %% \debugout :D
 \RequirePackage{LILLYxVANILLA}% Wird benötigt, falls Jake nicht verwendet wird :D
 %% Liefert außerdem: LILLYxBOOLEAN und LILLYxDEBUG!
-\RequirePackage{LILLYxPACKAGExCTRL}% LILLYxDemandPackage,LILLYxLoadPackage
-\RequirePackage{LILLYxPATH}% \linput, \linclude etc.
-\RequirePackage{LILLYxCONTROLLERxCONTENT}% Wo ist was :D
-
-\input{\LILLYxPATHxDATA/_LILLY_GENERAL_COMMANDS}
 
 \newcounter{ctr_DUMMY}
 
@@ -33,6 +25,8 @@
 \RequirePackage{LILLYxCORE}
 \RequirePackage{LILLYxLIST}
 \RequirePackage{LILLYxRANDOM}
+
+\input{\LILLYxPATHxDATA/_LILLY_GENERAL_COMMANDS}
 
 
 

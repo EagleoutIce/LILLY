@@ -45,4 +45,8 @@
 %  This way they are able to deploy shortcuts AND include needed Stuff :P
 \userput{_LILLY_KEYVAL_\LILLY@Typ}{\lillyPathConfig}{\LILLYxPATHxDATA/Layouts/KeyvalHooks}
 
+
+\newif\iflilly@vorlesung@isvalid@
+\IfFileExists{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}{\global\lilly@vorlesung@isvalid@true}{\global\lilly@vorlesung@isvalid@false}
+
 \endinput
