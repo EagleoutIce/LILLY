@@ -26,13 +26,14 @@
 \ifLILLYxLISTINGSxALGORITHMS@algomod
 \setlength{\algoheightrule}{1.15pt} % thickness of the rules above and below
 \setlength{\algotitleheightrule}{0.8pt} % thickness of the rule below the title
-\ifcsname chapter\endcsname
-\def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-1.5cm}}
-\else\ifcsname section\endcsname
-  \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-0.5cm}}
-  \else
-  \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-0cm}}
-\fi\fi
+% \ifcsname chapter\endcsname
+% \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-1.5cm}}
+% \else\ifcsname section\endcsname
+%   \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-0.5cm}}
+%   \else
+%  \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-0cm}}
+%\fi\fi
+\def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-1cm}}
 \newlistof{ALGORITHMS}{ALGO}{\LillyAlgoTitle}
 \pushList{RegisteredListOfLists}{ALGO}
 
@@ -70,13 +71,13 @@
 
 %%% Algorithm
 \let\@oldalgo\algorithm \let\end@oldalgo\endalgorithm
-\DeclareDocumentEnvironment{algorithm}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\addcontentsline{ALGO}{section}{\@@@lillystpone{algocf}. #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgo[#1]}\@tbg\Indm%
+\DeclareDocumentEnvironment{algorithm}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\addcontentsline{ALGO}{section}{\makebox[.4cm][r]{\@@@lillystpone{algocf}.} #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgo[#1]}\@tbg\Indm%
 }{\caption[#3]{#2}\end@oldalgo\@lillyalgo@exit\egroup}
 
 \expandafter\let\expandafter\@oldalgos\csname algorithm*\endcsname \expandafter\let\expandafter\end@oldalgos\csname endalgorithm*\endcsname
 \DeclareDocumentEnvironment{algorithm*}{%
   O{\@lilly@AUTOPLACEMENTALGO} m O{#2}
-}{\bgroup\addcontentsline{ALGO}{section}{\@@@lillystpone{algocf}. #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgos[#1]}\@tbg\Indm%
+}{\bgroup\addcontentsline{ALGO}{section}{\makebox[.4cm][r]{\@@@lillystpone{algocf}.} #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgos[#1]}\@tbg\Indm%
 }{\caption[#3]{#2}\end@oldalgos\@lillyalgo@exit\egroup}
 
 

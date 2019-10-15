@@ -6,7 +6,7 @@
     \blankcmd{LILLYxPATHxMATHS} = \T{\LILLYxPATHxMATHS}
 \end{center}
 
-Das Laden des Pakets mit LILLY kann durch die Option \T{math} aktiviert werden (Standard) und durch \T{nomath} entsprechend dekativiert. So sorgt das Deklarieren von:
+Das Laden des Pakets mit LILLY kann durch die Option \T{math} aktiviert werden (Standard) und durch \T{nomath} entsprechend deaktiviert. So sorgt das Deklarieren von:
 \begin{latex*}
 \documentclass[nomath]{Lilly}
 \end{latex*}
@@ -108,6 +108,13 @@ Dieser Befehl vereinfacht das Schreiben von Betragsstrichen. Diese passen sich z
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\smallskip
 \end{center}
+
+%
+%
+%
+
+\presentCommand[2.2.0]{dist}[\manArg{math-Ausdruck}]
+Setzt einen Ausdruck in doppelte Striche und kann so für Abstände eingesetzt werden: \clatex{:bmath:\\dist\{x\}:emath:} ergibt: $\dist{x}$.
 
 %
 %
