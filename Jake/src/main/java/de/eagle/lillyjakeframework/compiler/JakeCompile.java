@@ -278,10 +278,7 @@ public class JakeCompile {
 
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL")) {
                     writeLoggerInfo("Erstelle Ghost Dokument...", tag);
-                    Path go_p = Paths.get(Expandables.expand(expandables,
-                            (b_data[B_NAME]
-                                    + ((CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME")) ? boxmode + "-" : "")
-                                    + CoreSettings.requestValue("S_FILE")).replaceAll("\"", "")));
+                    Path go_p = Paths.get(final_name + ".tex");
                     try (PrintWriter go = new PrintWriter(go_p.toFile())) {
                         go.format("\\providecommand{\\LILLYxBOXxMODE}{%s}", boxmode);
                         go.format("\\providecommand{\\LILLYxPDFNAME}{%s}", final_name); // TODO: better expand
