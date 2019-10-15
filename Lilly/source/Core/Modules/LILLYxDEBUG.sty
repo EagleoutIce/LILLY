@@ -2,13 +2,10 @@
 \ProvidesPackage{LILLYxDEBUG}[2019/09/04 Liefert Debug-Optionen fuer LILLY]
 
 \RequirePackage{LILLYxVANILLA}
-\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
 
 
 %% https://www.ctan.org/pkg/ifthen
-\LILLYxDemandPackage{ifthen}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
-                    {Um dieses Paket kommt LILLY nicht herum!}
-                    {}{}
+\RequirePackage{ifthen}
 
 \providecommand{\LILLYxDEBUG}{FALSE}
 
