@@ -4,13 +4,13 @@ PAPERSPDF := $(addsuffix .pdf,$(basename $(PAPERSTEX)))
 
 JOBCOUNT := 3
 
-CLEANTARGETS := log aux out ind bbl blg lof lot toc idx acn acr alg glg glo gls fls fdb_latexmk auxlock md5 SATZE ZSM UB TOP listing upa ilg TOPIC DEFS
+CLEANTARGETS := .log .aux .out .ind .bbl .blg .lof .lot .toc .idx .acn .acr .alg .glg .glo .gls .fls .fdb_latexmk .auxlock .md5 .SATZE .ZSM .UB .TOP .listing .upa .ilg .TOPIC .DEFS -slave.pdf
 CLEANTARGET  := LILLYxClean
 
 void = return 0;
 
 LILLYxClean = echo "\033[38;2;255;191;0m> Lösche temporäre Dateien...[m" && \
-     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*.$$fd; done
+     for fd in $(CLEANTARGETS); do rm -f $(OUTPUTDIR)*$$fd; done
 
 #create all papers
 all:
@@ -18,8 +18,8 @@ all:
 	@$(MAKE) --no-print-directory clean
 
 %.pdf: %.tex
-	pdflatex -jobname $(basename $(shell basename $@)) \\input{$<} > ./LILLY_COMPILE.log 2>&1
-	pdflatex -jobname $(basename $(shell basename $@)) \\input{$<} >> ./LILLY_COMPILE.log 2>&1
+	pdflatex -shell-escape -jobname $(basename $(shell basename $@)) \\input{$<} > ./LILLY_COMPILE.log 2>&1
+	pdflatex -shell-escape -jobname $(basename $(shell basename $@)) \\input{$<} >> ./LILLY_COMPILE.log 2>&1
 	@$(call $(CLEANTARGET))
 
 clean:

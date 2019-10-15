@@ -1,0 +1,20 @@
+% \PassOptionsToPackage{dvipsnames}{xcolor}
+% \errorcontextlines 99999
+\documentclass[tikz,border=2mm]{standalone}
+\usetikzlibrary{positioning,matrix,decorations.pathmorphing}
+
+%First of all: compile the doc:
+\immediate\write18{pdflatex titleimageEIDIF-slave.slave}
+
+\begin{document}
+% Draws a hundred blocks random city
+% \begin{tikzpicture}
+%   \node at(10,0) {\GenerateMe};
+%   %\node at(-10,0) {\GenerateMe};
+% \end{tikzpicture}
+\begin{tikzpicture}
+  \node at(2.45cm,0) {\includegraphics[width=5cm]{titleimageEIDIF-slave.pdf}};
+  \node at(-2.45cm,0) {\reflectbox{\includegraphics[width=5cm]{titleimageEIDIF-slave.pdf}}};
+\end{tikzpicture}
+
+\end{document}
