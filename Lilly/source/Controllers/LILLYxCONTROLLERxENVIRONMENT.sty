@@ -26,7 +26,7 @@
                         \setlist[ditemize,4]{label=--} %$\clubsuit$
                         \DeclareDocumentEnvironment{aufgaben}{ o O{} }{%
                             \begingroup\IfValueT{##1}{\vspace{-0.15cm}\begin{multicols}{##1}}%
-                                \begin{enumerate}[label=\textbf{\alph*)},##2]\setlength{\itemsep}{1pt}%
+                                \begin{enumerate}[label={\ifnum\@listdepth=\@ne\textbf{\alph*)}\else{\roman*)}\fi},##2]\setlength{\itemsep}{1pt}%
                         }{%
                             \end{enumerate}%
                             \IfValueT{##1}{\end{multicols}\vspace{-0.15cm}}%
