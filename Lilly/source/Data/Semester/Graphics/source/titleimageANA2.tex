@@ -1,0 +1,195 @@
+\documentclass[tikz,border=2mm]{standalone}
+\usetikzlibrary{positioning,matrix,decorations.pathmorphing,calc,3d}
+
+\tikzset{%
+% seeing this afterwards, i'm stupid as shit :D
+path image/.style n args=3{
+   path picture={
+      \node[#3] at (path picture bounding box.center) {
+         \includegraphics[height=#2]{#1}
+      };
+   }
+}
+}
+
+%% will draw a Cube of specified length at:
+% #1 position lower front left
+% #2 front image
+% #3 top image
+% #4 right image
+\def\DrawCubeFull#1#2#3#4{
+  \draw (#1) node[canvas is zx plane at y=-0.5] {
+         \includegraphics[height=1cm]{images/#3}
+      };
+  \draw (#1) node[canvas is zy plane at x=-0.5] {
+        \reflectbox{\includegraphics[height=1cm]{images/#4}}
+     };
+  \draw (#1) node[canvas is xy plane at z=-0.5] {
+      \includegraphics[height=1cm]{images/#2}
+   };
+  \draw (#1) node[canvas is zx plane at y=0.5] {
+         \includegraphics[height=1cm]{images/#3}
+      };
+  \draw (#1) node[canvas is zy plane at x=0.5] {
+        \reflectbox{\includegraphics[height=1cm]{images/#4}}
+     };
+  \draw (#1) node[canvas is xy plane at z=0.5] {
+      \includegraphics[height=1cm]{images/#2}
+   };
+}
+
+%% will draw a Cube of specified length at:
+% #1 position lower front left
+% #2 front image
+% #3 top image
+% #4 right image
+\def\DrawCube#1#2#3#4{
+  \draw (#1) node[canvas is zx plane at y=0.5] {
+         \includegraphics[height=1cm]{images/#3}
+      };
+  \draw (#1) node[canvas is zy plane at x=0.5] {
+        \reflectbox{\includegraphics[height=1cm]{images/#4}}
+     };
+  \draw (#1) node[canvas is xy plane at z=0.5] {
+      \includegraphics[height=1cm]{images/#2}
+   };
+}
+
+% #1 Draw Grass at this coordinate
+\def\DrawGrassAt#1{
+  \DrawCube{#1}{earth_front}{earth_top}{earth_front}
+}
+
+% #1 Draw Dirt at this coordinate
+\def\DrawDirtAt#1{
+  \DrawCube{#1}{dirt_front}{dirt_front}{dirt_front}
+}
+
+% #1 Draw Wood at this coordinate
+\def\DrawWoodAt#1{
+  \DrawCube{#1}{wood_side}{wood_top}{wood_side}
+}
+
+% #1 Draw Leaves at this coordinate
+\def\DrawLeavesAt#1{
+  \DrawCubeFull{#1}{leaves_side}{leaves_side}{leaves_side}
+}
+
+% #1 Draw Stone at this coordinate
+\def\DrawStoneAt#1{
+  \DrawCube{#1}{stone_side}{stone_side}{stone_side}
+}
+
+% #1 Draw Iron at this coordinate
+\def\DrawIronAt#1{
+  \DrawCube{#1}{iron_side}{iron_side}{iron_side}
+}
+
+% #1 Draw Coal at this coordinate
+\def\DrawCoalAt#1{
+  \DrawCube{#1}{coal_side}{coal_side}{coal_side}
+}
+% % #1 Draw Water at this coordinate
+% \def\DrawWaterAt#1{
+%   \DrawCube{#1}{water_side}{water_side}{water_side}
+% }
+% % #1 Draw Water at this coordinate
+% \def\DrawWaterFrontAt#1{
+%   \DrawCube{#1}{water_side}{water_side}{transparent}
+% }
+% #1 Draw Water at this coordinate
+\def\DrawWaterTopAt#1{
+  \DrawCube{#1}{transparent}{water_side}{transparent}
+}
+% % #1 Draw Water at this coordinate
+% \def\DrawWaterRightAt#1{
+%   \DrawCube{#1}{transparent}{water_side}{water_side}
+% }
+\begin{document}
+\begin{tikzpicture}[circleround/.style={thick}]
+  \node (bound) at (12.5,11,3.5) {~};
+  \node (bound) at (-6.85,-8.4,0) {~};
+  % semi circles behind
+  % \foreach \r in {0,15,...,360}{
+    \begin{pgfinterruptboundingbox}
+    \begin{scope}[canvas is zx plane at y=2]
+      %\draw (3.5,-5) rectangle (-9,12);
+      \clip (3.5,-5) rectangle (-9,12);
+      \draw[circleround] (3.5,3.5) circle (8.5);
+    \end{scope}
+    \begin{scope}[canvas is zy plane at x=3.5]
+      %\draw (3.5,-12) rectangle (-9,12);
+      \clip (3.5,-12) rectangle (-9,12);
+      \draw[circleround] (3.5,2) circle (8.5);
+    \end{scope}
+  \end{pgfinterruptboundingbox}
+
+  %}
+  \foreach \x in{3,...,5}{
+    \foreach \z in {5,6}{
+      \DrawDirtAt{\x,0,\z}
+    }
+  }
+  % dirt front:
+  \foreach \y in {-1,0}{
+    \foreach \x in{0,...,7}{
+      \DrawDirtAt{\x ,\y,7}
+      \DrawDirtAt{7 ,\y,\x}
+    }
+  }
+  % grass top:
+  \foreach \x in{0,...,7}{
+    \foreach \z in {0,...,4}{
+        \DrawGrassAt{\x ,1,\z}
+    }
+  }
+
+  \foreach \z in {5,...,7}{
+    \foreach \x in{0,...,2}{
+        \DrawGrassAt{\x ,1,\z}
+    }
+  }
+  \DrawWaterTopAt{3,1,5}\DrawWaterTopAt{4,1,5}\DrawWaterTopAt{5,1,5}
+  \DrawWaterTopAt{3,1,6}\DrawWaterTopAt{4,1,6}\DrawWaterTopAt{5,1,6}
+
+  \foreach \x in{3,...,7}{\DrawGrassAt{\x,1,7}}
+  \foreach \z in {5,...,7}{
+    \foreach \x in{6,...,7}{
+        \DrawGrassAt{\x ,1,\z}
+    }
+  }
+  \DrawLeavesAt{6,5,0}% the leaf behind
+  % tree
+  \DrawWoodAt{6,2,1}\DrawWoodAt{6,3,1}\DrawWoodAt{6,4,1}\DrawWoodAt{6,5,1}
+  % leaves
+  \foreach \z in {0,...,2}{
+    \foreach \x in{5,...,7}{
+      \DrawLeavesAt{\x,6,\z}
+    }
+  }
+  \DrawLeavesAt{6,7,1}
+  % stones on the right
+  \DrawIronAt{0,3,0}\DrawStoneAt{0,3,1}\DrawIronAt{1,3,0}
+  \DrawStoneAt{1,2,1}\DrawCoalAt{0,2,2}\DrawStoneAt{2,2,0}
+
+  \draw[circleround] (3.5,2,3.5) circle (8.5);
+  \foreach \r in {0,15,...,360}{
+    \fill (3.5,2,3.5) ++ (\r:8.5) circle (2pt);
+
+  }
+  % Aftert circles:
+  \begin{pgfinterruptboundingbox}
+  \begin{scope}[canvas is zx plane at y=2]
+    %\draw (3.5,-5) rectangle (15,12);
+    \clip (3.5,-5) rectangle (15,12);
+    \draw[circleround] (3.5,3.5) circle (8.5);
+  \end{scope}
+  \begin{scope}[canvas is zy plane at x=3.5]
+    %\draw (3.5,-12) rectangle (15,12);
+    \clip (3.5,-12) rectangle (15,12);
+    \draw[circleround] (3.5,2) circle (8.5);
+  \end{scope}
+  \end{pgfinterruptboundingbox}
+\end{tikzpicture}
+
+\end{document}
