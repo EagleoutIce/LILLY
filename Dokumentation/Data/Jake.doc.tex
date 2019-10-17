@@ -3,7 +3,7 @@
 \elable{mrk:JAKE}\TitleSUB{\Jake[]! Would you get me the cake please?\ldots \hfill \LILLYxBOXxVersion{\small 1.0.8}}
 \section{Grundlegendes}\elable{jmp:iJake}
 \subsection{Entwicklung}
-Anfänglich wurde \Jake als \emph{installer} konzipiert, der einfach nur die mühsehlige Installation
+Anfänglich wurde \Jake als \emph{installer} konzipiert, der einfach nur die mühselige Installation
 des Pakets abnehmen soll. Mittlerweile hat sich \Jake allerdings weiterentwickelt und
 bietet das Potenzial für einiges mehr. Im Folgenden sei die Funktionsweise genauer erklärt.
 Zu beachten ist allerdings, dass \Jake bisher nur für Linux und MacOS einen Installer und somit
@@ -87,7 +87,7 @@ Hier die große (und hoffentlich vollständige) Liste aller möglichen Einstellu
         comment-pattern & String & ![\char`\^!]*! & Kommentarmuster \\
     \midrule
         lilly-path & String & \$(dirname\ldots & Pfad zur \T{Lilly.cls} \\
-        lilly-out & String & ./\$(BASE\ldots & Ausgabeordner der Tex-Datei? \\
+        lilly-out & String & ./\$(BASE\ldots & Ausgabeordner der PDF-Datei \\
         lilly-in & String & ./ & Input-Pfad für Dateien \\
         lilly-nameprefix & String & & Namenspräfix für Ausgabedatei \\
         lilly-boxes & List & DEFAULT & Boxen für den Kompiliervorgang \\
@@ -115,7 +115,7 @@ Hier die große (und hoffentlich vollständige) Liste aller möglichen Einstellu
         lilly-configs-path & String & & Pfad zur Lilly-Konfigurationsdatei (\blankcmd{lillyPathConfig})\\
         lilly-data-path & String & & Pfad zu generellen Daten (\blankcmd{lillyPathData})\\
         \midrule
-        jobcount & String & 2 & Wie viele verschiedene Threads sollen im multithreaded-compile gleichzeitig betrieben weren? \\
+        jobcount & String & 2 & Wie viele verschiedene Threads sollen im multithreaded-compile gleichzeitig betrieben werden? \\
         error-count & String & 5 & Wie viele Fehler sollen in der Vorschau maximal angezeigt werden? \\
         mk-name & String & Makefile & Veraltet, Name des Makefiles \\
         mk-path & String & ./ & Veraltet, Pfad des Makefiles \\
@@ -254,8 +254,8 @@ BEGIN :lan:modul:ran::
     :lan:Modulspezifikation:ran:
 END;
 \end{gepard}
-Die Spezifikation besteht in der Regel aus Konfigurationsähnlichen Zuweisungen, die je nach Modul eine unterschiedliche semantische Bedeutung haben. Die gewünschten Konfigruationen können über die Einstellung \T{gepardrule-path} % CHANGE THIS TO A LIST AND FIX IF FILES AREN'T VALID :D
-gesetzt werden, wobei die Pfade durch einen \say{\T{:}} getrennt sind. Bisher muss vom Nutzer die Existenz der zugrundeliegendne Dateien gewährleistet werden.
+Die Spezifikation besteht in der Regel aus Konfigurationsähnlichen Zuweisungen, die je nach Modul eine unterschiedliche semantische Bedeutung haben. Die gewünschten Konfigurationen können über die Einstellung \T{gepardrule-path} % CHANGE THIS TO A LIST AND FIX IF FILES AREN'T VALID :D
+gesetzt werden, wobei die Pfade durch einen \say{\T{:}} getrennt sind. Bisher muss vom Nutzer die Existenz der zugrundeliegenden Dateien gewährleistet werden.
 
 \subsection{Buildrules}
 Buildrules definieren den Modus in dem das Dokument kompiliert wird. So definieren sie den \T{print} und den \T{default} Modus. Die Box trägt den Namen \T{buildrule} und muss einen Namen, einen Anzeigenamen und einen Modus definieren. Im Folgenden die Definition des \T{default}-Modus, die Kommentare sollten die Anforderungen zu Genüge erklären:
@@ -283,7 +283,7 @@ BEGIN buildrule: ! Der Doppelpunkt ist optional. Ich mag ihn, man braucht ihn ni
      lilly-complete-prefix  = COMPLETE-   ! Namenszusatz wenn complete Version (Default: COMPLETE-)!
 
      lilly-loader           = \\input{$(INPUTDIR)$(TEXFILE)}
-                    ! Diese Funktion ist advanced und beschreib die Einbinderoutine - einfach
+                    ! Diese Funktion ist advanced und beschreibt die Einbinderoutine - einfach
                       ignorieren !
 
 END; ! Semikolon wieder nicht nötig, aber ich mag es :D !
@@ -292,7 +292,7 @@ END; ! Semikolon wieder nicht nötig, aber ich mag es :D !
 Jeder so definierte Modus steht in den Einstellungen für \T{lilly-modes} zur Verfügung. Auch wenn sie bisher eher eingeschränkt agieren können, so bieten sie bereits einiges an Flexibilität.
 
 \subsection{Expandables}
-\elable{gpd:expandables}Die hier definierten Variablen können überall in Einstellungen oder anderen Gepardrule-Files verwendet werden. Abgesehen von einer rekursiven Definition ist alles gestattet. Jake definiert bereits eine Reihe an Expandables, ein paar davon greifen auf Shell-Befehle zurück, was aus Sicherheitsgründen sonst nicht gestattet ist (im Klartext: Auch wenn es vordefinierte Expandables gibt die auf Shell-Befehle zurückgreifen, kann kein manuell definiertes Expandable eigene Shell-Befehle iniziieren). Im Folgenden sind jeweils nur ihre Bezeichner angegeben, jedes Expandable kann durch \T{\$[<Name>]} und \T{\$\{<Name>\}} angegeben werden um zum Zielwert zu evaluieren:
+\elable{gpd:expandables}Die hier definierten Variablen können überall in Einstellungen oder anderen Gepardrule-Files verwendet werden. Abgesehen von einer rekursiven Definition ist alles gestattet. Jake definiert bereits eine Reihe an Expandables, ein paar davon greifen auf Shell-Befehle zurück, was aus Sicherheitsgründen sonst nicht gestattet ist (im Klartext: Auch wenn es vordefinierte Expandables gibt die auf Shell-Befehle zurückgreifen, kann kein manuell definiertes Expandable eigene Shell-Befehle initiieren). Im Folgenden sind jeweils nur ihre Bezeichner angegeben, jedes Expandable kann durch \T{\$[<Name>]} und \T{\$\{<Name>\}} angegeben werden um zum Zielwert zu evaluieren:
 \begin{tabularx}{\linewidth}{^t^p{0.65\linewidth}+}
     \toprule
         \headerrow Bezeichner & Evaluiert zu\\ % On every Page
@@ -364,7 +364,7 @@ BEGIN hook:
 !X!  type       =       IN0
      body       = echo "Hallo Welt - will it break?"
      on-failure =       ! nothing at all !
-     on-success = ""    ! still nothign  !
+     on-success = ""    ! still nothing  !
 END;
 \end{gepard}
 Der Typ (\T{type}) einer Hook, kann die folgenden Bezeichner annehmen: \begin{center}
@@ -518,7 +518,7 @@ Ein solcher Kommentar wird nicht übernommen und dient lediglich zur Dokumentati
 \begin{gepard*}
 ! blah blah blah !
 \end{gepard*}
-Ein solcher Kommentar wird übernommen und wie ein normaler Konfigurations- oder Gepard-Kommentar angezeigt. Genau genommen beistzt eine solche Zeile gar keine besondere Bedeutung und wird (wie jede andere) übernommen.
+Ein solcher Kommentar wird übernommen und wie ein normaler Konfigurations- oder Gepard-Kommentar angezeigt. Genau genommen besitzt eine solche Zeile gar keine besondere Bedeutung und wird (wie jede andere) übernommen.
 \begin{gepard*}
 :
 \end{gepard*}
@@ -528,4 +528,4 @@ Eine Zeile die mit einem Doppelpunkt angeführt wird hat eine besondere Bedeutun
 \end{gepard*}
 So erlaubt \Jake[,] dass eine vom Nutzer nicht gebundene Variable existiert. Wird also in der zugehörigen Gepard-Datei die Variable \T{HAMSTER} deklariert, vom Nutzer aber nicht angegeben, so wird die Zeile nicht übernommen. Dies erlaubt optionale Zeilen, zum Beispiel bei der Erstellung eines Konfigurations-Generator.
 \textit{Hinweis: Dies gilt \emph{nicht} für eine Variable, die nicht vom nutzer ignoriert wurde, diese wird einfach übernommen.} Würde der Doppelpunkt nicht angegeben werden, wirft Gepard einen Fehler. Hier ist auch der \T{target-mode} von Relevanz. Setzt man ihn auf $1$ werden alle \jmark[Expandables]{gpd:expandables} zur Verfügung gestellt und direkt aufgelöst. Auf $0$ werden sie in die Ausgabedatei übernommen. \newline
-Es gibt noch eine weitere besondere Zeile, sofern sie mit einer Raute beginnt. Ihr nachfolgend kann ein gewünschter Dateipfad angegben werden, an den die folgenden Zeilen geschrieben werden sollen und somit auch mehr als nur eine Datei (inklusive Ordner) auf Basis eines Templates erzeugt werden kann. Für eine praktische Anwendung siehe im entsprechenden \jmark[Exkurs]{mrk:gpdgenerators}.
+Es gibt noch eine weitere besondere Zeile, sofern sie mit einer Raute beginnt. Ihr nachfolgend kann ein gewünschter Dateipfad angegeben werden, an den die folgenden Zeilen geschrieben werden sollen und somit auch mehr als nur eine Datei (inklusive Ordner) auf Basis eines Templates erzeugt werden kann. Für eine praktische Anwendung siehe im entsprechenden \jmark[Exkurs]{mrk:gpdgenerators}.
