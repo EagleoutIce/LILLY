@@ -55,7 +55,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
 
     /**
      * Generiert den Menü eintrag
-     * 
+     *
      * @return Array der Form [ID-der nächsten Funktion, Beschreibung der nächsten
      *         Funktion]
      */
@@ -75,7 +75,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
         String _desktopPath = getDesktopPath();
         JakeWriter.out.println("Identified: \"" + _desktopPath + "\" as target-Path for the Desktop starter (mkdirs: " + new File(_desktopPath).getParentFile().mkdirs() + ")");
         // Made the directories if not already present!
-        
+
         try (PrintWriter pw = new PrintWriter(_desktopPath)) {
             pw.println("[Desktop Entry]");
             pw.println("Type=Application");
@@ -138,7 +138,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    
+
 
         // source $(shell pwd)/_jake_autocomplete
         for (String f : shells) {
@@ -148,7 +148,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
             if (file.canWrite()) {
                 try {
                     String[] lines = Files.lines(Paths.get(file.getAbsolutePath())).filter(x -> !x.contains("# JAVA_JAKE")).toArray(String[]::new); // contains '# Java_Jake'
-                    //lines.forEachOrdered(x-> System.out.println(x)); 
+                    //lines.forEachOrdered(x-> System.out.println(x));
                     // Da die Datei überschrieben wird, scheitert die Stream-Operation danach
                     JakeLogger.writeLoggerInfo("Prepping: " + file.getAbsolutePath(),"LinuxIns");
                     PrintWriter pw = new PrintWriter(new FileOutputStream(file)); //, true
@@ -296,7 +296,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
             JakeLogger.writeLoggerInfo("Die Datei: " + getDesktopPath() + " wurde entfernt", "Uninst");
         }
 
-        // Entferne complete-skript (bash), das kann man besser machen, aber copy paste ist lustig 
+        // Entferne complete-skript (bash), das kann man besser machen, aber copy paste ist lustig
         String ptp = Paths.get(HOME, ".local", "bash_completition","_jake.complete").toString();
         if(! new File(ptp).canRead()){
             JakeLogger.writeLoggerWarning("Die Datei: " + ptp + " kann nicht gefunden werden", "Uninst");

@@ -4,6 +4,13 @@
 \definecolor{BorderBlue}{RGB}{33, 51, 148}
 \definecolor{CoinColor}{RGB}{245, 230, 61}
 
+\definecolor{InkyColor}{RGB}{0, 165, 236}
+\definecolor{ClydeColor}{RGB}{255, 130, 0}
+\definecolor{PinkyColor}{RGB}{254, 171, 200}
+\definecolor{BlinkyColor}{RGB}{251, 1, 0}
+
+\pgfmathsetseed{\number\pdfrandomseed}
+
 % #1 init
 % #2 exit
 % #3 coin amount
@@ -62,6 +69,32 @@
 \coins{2,-14.75}{12,-14.75}{20};
 \coins{3,-10.5}{5,-10.5}{4};
 
+
+% draw: pacman:
+\draw[thin,CoinColor!90!black,fill=CoinColor] (3.125,-10.5) -- ++(30:0.35) arc[radius = 0.35,start angle=30,delta angle=300] -- cycle;
+
+% ghost:
+% #1 where #2 color
+\def\drawGhost#1#2{
+  \fill[#2,rounded corners=1pt] (#1) arc[radius = 0.25,start angle=180,delta angle=-180] -- ++(0,-0.3) -| ++(-0.1,0.05) -| ++(-0.1,-0.05) -| ++(-0.1,0.05) -| ++(-0.1,-0.05) -- ++(-0.1,0) -- cycle;
+  % get random offsets for more fun:
+  \pgfmathsetmacro{\eyeX}{0.25*rand}\pgfmathsetmacro{\eyeY}{0.15*rand}
+  \fill[white] (#1)++(0.25/2,0) circle (2pt); \fill (#1)++(\eyeX pt,\eyeY pt)++(0.25/2,0) circle (1.25pt);
+  \pgfmathsetmacro{\eyeX}{0.25*rand}\pgfmathsetmacro{\eyeY}{0.15*rand}
+  \fill[white] (#1)++(0.75/2,0) circle (2pt); \fill (#1)++(\eyeX pt,\eyeY pt)++(0.75/2,0) circle (1.25pt);
+}
+\drawGhost{5.25,-0.5}{InkyColor}
+% draw targetpath for the ghost
+\draw[InkyColor,thin,rounded corners = 1pt] (5.25,-0.55) -| ++(-1.75,-9.5) node (inkytar) {};\fill[InkyColor] (inkytar) circle (2pt);
+
+\drawGhost{9.35,-6}{ClydeColor}
+\draw[ClydeColor,thin,rounded corners = 1pt] (9.35,-6) ++(0.25,0) |- ++(-4.6,-3) |- ++(-1,-1.5) node (clydetar) {};\fill[ClydeColor] (clydetar) circle (2pt);
+
+\drawGhost{12.875,-12.125}{PinkyColor}
+\draw[PinkyColor,thin,rounded corners = 1pt] (12.875,-12.125) ++(0.25,0) |- ++(-1.65,-1.2) |- ++(-4.9,1.35) |- ++(-2.575,1.475) node (pinkytar) {};\fill[PinkyColor] (pinkytar) circle (2pt);
+
+\drawGhost{1.5,-12.25}{BlinkyColor}
+\draw[BlinkyColor,thin,rounded corners = 1pt] (1.5,-12.25) ++(0.25,0) |- ++(1.75,-1.15) -- ++(0,2.45) node (blinkytar) {};\fill[BlinkyColor] (blinkytar) circle (2pt);
 
 \end{tikzpicture}
 

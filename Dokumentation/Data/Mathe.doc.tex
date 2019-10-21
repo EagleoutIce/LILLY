@@ -364,6 +364,13 @@ Setzt entsprechend: \x[], \y und \z[].
 %
 %
 
+\presentCommand[1.0.6]{points}[\manArg{Punkte}]
+Setzt Punkte an das Ende der Zeile, um zum Beispiel Teilpunkte in Aufgaben einfach zu setzen.
+
+%
+%
+%
+
 \presentCommand[2.0.0]{ceil}[\optArg{math-Ausdruck}\cmdlist \anothercmd[2.0.0]{floor}\optArg{math-Ausdruck}]
 Verkürzt das Schreiben von: \clatex[morekeywords={[5]{left,right,lfloor,rfloor}}]{:bs:left:bs:lfloor\<Ausdruck\>:bs:right:bs:rfloor} beziehungsweise \blatex[morekeywords={[5]{lceil}}]{:bs:lceil} \& \blatex[morekeywords={[5]{rceil}}]{:bs:rceil} entsprechend:
 \begin{multicols}{2}%
@@ -405,7 +412,7 @@ Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem Text \emph{text}. F
 %
 %
 
-\presentCommand[2.0.0]{ymark}[\optArg[xy]{text}\manArg{PosY}\optArg[0.15]{linelength}]
+\presentCommand[2.0.0]{ymark}[\optArg[y]{text}\manArg{PosY}\optArg[0.15]{linelength}]
 Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem Text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
 
 %

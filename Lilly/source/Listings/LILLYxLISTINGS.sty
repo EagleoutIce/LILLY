@@ -119,6 +119,9 @@
 
 \newif\iflstlastwasacharacter% Will disable numberhl if true
 \lstlastwasacharacterfalse
+\newif\iflstlastwasacharacterkeep
+\lstlastwasacharacterkeepfalse
+
 % \newif\iflstnumnohlmode% Will prevent h31 <- 3 to highlight as '3' would reset the hl behavior
 % \lstnumnohlmodefalse
 
@@ -129,7 +132,7 @@
 %\iflstnumnohlmode%
   %#1\else
   \iflstlastwasacharacter%\lstnumnohlmodetrue% was char => don't highlight, we won't check for hex right now
-  #1\else%
+  \global\lstlastwasacharacterkeeptrue#1\else\global\lstlastwasacharacterkeepfalse%
     \ifnum\lst@mode=\lst@Pmode\relax% PMode: Not in any special Mode
     {\digitstyle #1}%
     \else%
@@ -149,12 +152,12 @@
   \lst@whitespacefalse\lstlastwasacharactertrue\lst@AppendLetter%
 }%
 \def\lst@ProcessOther{%
-  \lst@whitespacefalse\lstlastwasacharacterfalse\lst@AppendOther%
+  \lst@whitespacefalse\lst@AppendOther%
 }%
-\def\lst@whitespacetrue{\lstlastwasacharacterfalse\global\let\lst@ifwhitespace\iftrue}%
+\def\lst@whitespacetrue{\iflstlastwasacharacterkeep\lstlastwasacharacterkeepfalse\else\lstlastwasacharacterfalse\fi\global\let\lst@ifwhitespace\iftrue}%
 \def\lst@whitespacefalse{\global\let\lst@ifwhitespace\iffalse}%
 
-\def\@nc{\lstlastwasacharacterfalse}
+\def\@nc{\iflstlastwasacharacterkeep\else\lstlastwasacharacterfalse\fi}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Literates - Routine
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -182,7 +185,7 @@
                    \lst@token{#2}\lst@length#3\relax%
                    \lst@XPrintToken
                    %\fi%
-                   \lst@whitespacefalse\@nc%
+                   \lst@whitespacefalse%\@nc%
                  \fi
                  \let\lst@next\lst@CArgEmptyGobble
              \fi
