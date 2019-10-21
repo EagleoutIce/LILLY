@@ -154,7 +154,7 @@
 \def\lst@ProcessOther{%
   \lst@whitespacefalse\lst@AppendOther%
 }%
-\def\lst@whitespacetrue{\iflstlastwasacharacterkeep\lstlastwasacharacterkeepfalse\else\lstlastwasacharacterfalse\fi\global\let\lst@ifwhitespace\iftrue}%
+\def\lst@whitespacetrue{\iflstlastwasacharacterkeep\lstlastwasacharacterkeepfalse\lstlastwasacharacterfalse\else\lstlastwasacharacterfalse\fi\global\let\lst@ifwhitespace\iftrue}%
 \def\lst@whitespacefalse{\global\let\lst@ifwhitespace\iffalse}%
 
 \def\@nc{\iflstlastwasacharacterkeep\else\lstlastwasacharacterfalse\fi}
@@ -185,7 +185,7 @@
                    \lst@token{#2}\lst@length#3\relax%
                    \lst@XPrintToken
                    %\fi%
-                   \lst@whitespacefalse%\@nc%
+                   \lst@whitespacefalse\@nc%
                  \fi
                  \let\lst@next\lst@CArgEmptyGobble
              \fi
