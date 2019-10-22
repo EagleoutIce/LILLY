@@ -66,6 +66,7 @@ bin
 **/*.jar
 **/changes.save
 **/ALLchanges.save
+*.save
 # Created by https://www.gitignore.io/api/intellij
 
 ### Intellij ###
