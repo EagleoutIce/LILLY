@@ -122,9 +122,9 @@
 
 \colorlet{HeaderColor}{\Hcolor}
 \colorlet{NextHeaderColor}{HeaderColor}
-
-\def\MHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\color{white}}\rowcolor{HeaderColor}\Gape[0.5mm][0.25mm]{}}
-\def\MNHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\color{white}}\rowcolor{NextHeaderColor}\Gape[0.5mm][0.25mm]{}{\hspace*{-2.3em}\textcolor{MudWhite}{$\blacktriangledown$}}\hspace*{1.4em}\;}
+\def\@LILLY@rowfont@specs{\color{white}}
+\def\MHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{HeaderColor}\@ifstar{}{\Gape[0.5mm][0.25mm]{}}}
+\def\MNHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{NextHeaderColor}\@ifstar{}{\Gape[0.5mm][0.25mm]{}}{\hspace*{-2.3em}\textcolor{HeaderColor!40!white}{$\blacktriangledown$}}\hspace*{1.4em}\;}
 % Maybe set Arrow to right?
 \DeclareDocumentEnvironment{mtable}{%
     s % starred has no header
@@ -155,8 +155,8 @@
     O{MudWhite!90} % Second Row
     O{\MNHeaderRow} % How to color Headers on continued lines
 }{%
-    \IfBooleanTF{#1}{\taburowcolors[2] {#6 .. #7}}
-    {\taburowcolors[2] 2{#6 .. #7}}
+    \IfBooleanTF{#1}{\taburowcolors[1] {#6 .. #7}}
+    {\taburowcolors[1] 2{#6 .. #7}}
     \everyrow{\tabucline[.4mm  white]{}}
     \tabulinesep = ^2mm_2mm
     #3\ignorespaces

@@ -41,9 +41,9 @@
 \def\LILLYxRIGHTMARK{}
 
 \def\SetStyle{%
+	\clearscrheadfoot%
 	\pagenumbering{arabic}%
 	\pagestyle{scrheadings}%
-	\clearscrheadfoot%
 	\ofoot{\textbf{\thepage}}%
 }
 
@@ -62,9 +62,9 @@
 \AtBeginDocument{%
 	\SetStyle%
 	% Two column \listofPOEMS
-	\addtocontents{POEM}{\protect\begin{multicols}{2}}%
+	\addtocontents{POEM}{\protect\pagestyle{scrheadings}\protect\thispagestyle{scrheadings}\protect\begin{multicols}{2}}%
 	% Two column \listofQUOTES
-	\addtocontents{QUOTE}{\protect\begin{multicols}{2}}%
+	\addtocontents{QUOTE}{\protect\pagestyle{scrheadings}\protect\thispagestyle{scrheadings}\protect\begin{multicols}{2}}%
 }
 \AtEndDocument{%
 	\addtocontents{POEM}{\protect\end{multicols}}
@@ -79,7 +79,7 @@
 %% Styling the toc:
 %% Used with babel :D
 \addto\captionsngerman{%
-        \renewcommand{\contentsname}{\leavevmode\vspace*{-0.8\baselineskip}\newline\noindent\efont{Kurzübersicht}\hfill\hbox{}\vspace*{-0.3\baselineskip}}%
+    \renewcommand{\contentsname}{\leavevmode\vspace*{-0.8\baselineskip}\newline\noindent\efont{Kurzübersicht}\hfill\hbox{}\vspace*{-0.3\baselineskip}}%
 }
 
 \renewcommand\sectionlinesformat[4]{%
@@ -89,7 +89,6 @@
 \renewcommand{\@seccntformat}[1]{\textcolor{\Hcolor}{\csname the#1\endcsname}}
 
 \setlength{\cftbeforesecskip}{2.3pt}
-
 
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
 {-4ex \@plus -1ex \@minus -.4ex}
@@ -122,7 +121,6 @@
 		\OrnamentsLower{}%
 		\fi%
 	}
-	%\SetStyle%
 }
 
 % Author wird in LILLYxPOEMS gesetzt :D
