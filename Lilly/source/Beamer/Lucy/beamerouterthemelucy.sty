@@ -1,11 +1,13 @@
 \mode<presentation>
 
+
+\providecommand{\totalframes}{\inserttotalframenumber}
 \defbeamertemplate*{footline}{lucy}[1][] {
     \hskip0.25cm\begin{tikzpicture}[fnote/.style={cwhite,font={\lfseries\supertiny}}]
         \fill[csecondary, rounded corners=1.25pt] (0,0) rectangle ++ (\paperwidth-0.5cm,1.125em);
         \node[right,fnote] at(0,1.125em/2) {\insertshorttitle};
         \node[fnote] at(\paperwidth/2,1.125em/2) {\insertshortauthor};
-        \node[left,fnote] at(\paperwidth-0.5cm,1.125em/2) {\insertframenumber/\inserttotalframenumber};
+        \node[left,fnote] at(\paperwidth-0.5cm,1.125em/2) {\insertframenumber/\totalframes};
     \end{tikzpicture}
     \vskip0.25cm
 }

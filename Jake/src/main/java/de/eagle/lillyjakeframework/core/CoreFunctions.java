@@ -337,7 +337,7 @@ public final class CoreFunctions {
         } catch (IOException e) {
 
         }
-
+        // Note: this does only work if dirname, locate and printf will work this has to be assured on non-apt idstrs
         JakeWriter.out.println("Öffne: \"" + lPath + "/source/Data/Graphics/all-OUT/all.pdf\"");
         File target = new File(lPath + "/source/Data/Graphics/all-OUT/all.pdf");
         if (!target.isFile() || CoreSettings.requestValue("S_WHAT").equals("force")) {

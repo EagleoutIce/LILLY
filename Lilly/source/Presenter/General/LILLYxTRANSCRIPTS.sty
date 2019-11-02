@@ -47,7 +47,9 @@
                         \fi%
                     \fi%
                 \fi} % Padding for minutes
-\def\SessionName{\xtranslate{Sitzung des} \SessionDate~(\SESSIONxATTENDEESxCOUNT~\xtranslate{Teilnehmer})}% Titel
+
+\def\SessionNameFont{}
+\def\SessionName{\SessionNameFont\xtranslate{Sitzung des} \SessionDate~(\SESSIONxATTENDEESxCOUNT~\xtranslate{Teilnehmer})}% Titel
 \def\SessionDuration{\ifnum\SESSIONxDURATIONxMINUTES>0\relax\SESSIONxDURATIONxMINUTES{$\,$}m\fi}% We don't want to see a Time of 0 minutes :D
 \def\SessionTitleFormat{\SessionDate~(\SessionDuration)}
 
@@ -115,7 +117,7 @@
     }\smallskip\newline
     % Set a telegram:
     \newenvironment{telegram}{\centering%
-        \begin{tcolorbox}[presenterstyle,width=7cm]
+        \begin{tcolorbox}[presenterstyle,width=0.75\linewidth]
         \begin{itemize}[label={$\RHD$}]\setlength{\itemindent}{-0.5cm}\narrowitems
     }{\end{itemize}\end{tcolorbox}\smallskip}
     %
