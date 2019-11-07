@@ -4,21 +4,30 @@
 \RequirePackage{LILLYxCORE}
 
 \RequirePackage{LILLYxCOLOR}
+
 \RequirePackage{LILLYxCONTROLLERxLINK}
 \RequirePackage{LILLYxLIST}
 \RequirePackage{LILLYxFONTS}
 \RequirePackage{LILLYxSHORTCUTS}
+
+
+
 
 %% \RequirePackage{pgfkeys}
 \LILLYxDemandPackage{pgfkeys}{Damit wir angenehme kv-pairs haben}
                     {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
                     {}{}
 
+\ifcsname LILLYxBEAMER\endcsname%
+    \def\lillynlistof#1#2#3{\ignorespaces}%
+\else
 %% https://www.ctan.org/pkg/tocloft
 \LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
                     {Das ist wichtig!}%% Error-Text
                     {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliotheken weitaus einfacher finden kann :D
+    \let\lillynlistof\newlistof
+\fi
 
 %% https://ctan.org/pkg/tcolorbox
 \LILLYxDemandPackage{tcolorbox}{Fuer all die schoenen boexlis:D} %% Package, Info
@@ -263,7 +272,7 @@
 
     %% Persistence END
     \ifcreatelist%
-    \debugout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\newlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\pushList{RegisteredListOfLists}{\@nameuse{lillyxBOXx\theboxid xListMen}}\fi%
+    \debugout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\lillynlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\pushList{RegisteredListOfLists}{\@nameuse{lillyxBOXx\theboxid xListMen}}\fi%
     %\expandafter\global\expandafter\newif\if
     % #1 Title
     % #2 Should be the tex-options
@@ -420,7 +429,7 @@
 
 %% {name}[initial Lock = TRUE]{ListName}{listtext}[stared-effekt]
 \DeclareDocumentCommand{\DeclareLillyBox}{ m O{TRUE} m m o }{%%
-    \newlistof{list@#3}{#3}{#4\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+    \lillynlistof{list@#3}{#3}{#4\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
     %% Ist keine Box gewünscht?
     \ifx\csname LILLYxBOXx#1xBox\endcsname\false%
         \tcbset{LillyxBOXxDesignx#1/.style={LillyxBOXxDesignxPlain}}%
@@ -447,7 +456,7 @@
 \providecommand{\LILLYxSEENxDEFINITION}{FALSE}
 
 %% Definition Box
-\newlistof{DEFINITIONS}{DEFS}{\lillyxBOXxdefinitionxListText}
+\lillynlistof{DEFINITIONS}{DEFS}{\lillyxBOXxdefinitionxListText}
 \pushList{RegisteredListOfLists}{DEFS}
 
 %\ifx\LILLYYxBOXxDefinitionxBox\true
@@ -480,7 +489,7 @@
 
 % \ifx\LILLYxBOXxDefinitionxEnable\true
 %     %\debugout{Definitions enabled}
-%     \newlistof{DEFINITIONS}{DEFS}{Alle Definitionen\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+%     \lillynlistof{DEFINITIONS}{DEFS}{Alle Definitionen\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
 %     %% TITEL OPTIONALE-ADDONS
 
 %     \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LillyxBOXxDesignxDefinition/.style={}}\else\tcbset{LillyxBOXxDesignxDefinition/.style={LillyxBOXxDesignxPlain}}\fi
@@ -515,7 +524,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bemerkungen                                                                                                         %     %%%% BEMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newlistof{BEMERKUNGEN}{BEMS}{\lillyxBOXxbemerkungxListText}
+\lillynlistof{BEMERKUNGEN}{BEMS}{\lillyxBOXxbemerkungxListText}
 \pushList{RegisteredListOfLists}{BEMS}
 
 \providecommand{\LILLYxSEENxBEMERKUNG}{FALSE}
@@ -559,7 +568,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\newlistof{BEISPIELE}{BEIS}{\lillyxBOXxbeispielxListText}
+\lillynlistof{BEISPIELE}{BEIS}{\lillyxBOXxbeispielxListText}
 \pushList{RegisteredListOfLists}{BEIS}
 
 \providecommand{\LILLYxSEENxBEISPIEL}{FALSE}
@@ -581,7 +590,7 @@
 
 
 % \ifx\LILLYxBOXxBeispielxEnable\true
-%     \newlistof{BEISPIELE}{BEIS}{Alle Beispiele\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+%     \lillynlistof{BEISPIELE}{BEIS}{Alle Beispiele\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
 
 %     %% TITEL OPTIONALE-ADDONS
 %     \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeispiel/.style={}}\else\tcbset{LillyxBOXxDesignxBeispiel/.style={LillyxBOXxDesignxPlain}}\fi
@@ -605,7 +614,7 @@
 % Sätze                                                                                                               %     %%%% SATS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newlistof{SATZE}{SATS}{\lillyxBOXxsatzxListText}
+\lillynlistof{SATZE}{SATS}{\lillyxBOXxsatzxListText}
 \pushList{RegisteredListOfLists}{SATS}
 
 \providecommand{\LILLYxSEENxSATZ}{FALSE}
@@ -627,7 +636,7 @@
 % \providecommand{\LILLYxSEENxSATZ}{FALSE}
 
 % \ifx\LILLYxBOXxSatzxEnable\true
-%     \newlistof{SATZ}{SATZE}{Alle Sätze\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+%     \lillynlistof{SATZ}{SATZE}{Alle Sätze\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
 
 %     %% TITEL OPTIONALE-ADDONS
 %     \DeclareDocumentEnvironment{satz}{O{} O{}}{\grenewcommand{\LILLYxSEENxSATZ}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxSatz}%
@@ -648,7 +657,7 @@
 % Beweis                                                                                                              %     %%%% BEWS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newlistof{BEWEISE}{BEWS}{\lillyxBOXxbeweisxListText}
+\lillynlistof{BEWEISE}{BEWS}{\lillyxBOXxbeweisxListText}
 \pushList{RegisteredListOfLists}{BEWS}
 
 \providecommand{\LILLYxSEENxBEWEIS}{FALSE}
@@ -668,7 +677,7 @@
     {beweisStarred}% BoxID
 
 % \ifx\LILLYxBOXxBeweisxEnable\true
-%     \newlistof{BEWEISE}{BEWS}{Alle Beweise\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+%     \lillynlistof{BEWEISE}{BEWS}{Alle Beweise\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
 
 %     %% TITEL OPTIONALE-ADDONS
 %     \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeweis/.style={}}\else\tcbset{LillyxBOXxDesignxBeweis/.style={LillyxBOXxDesignxPlain}}\fi
@@ -691,7 +700,7 @@
 % Lemmas                                                                                                              %     %%%% LEMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newlistof{LEMMATA}{LEMS}{\lillyxBOXxlemmaxListText}
+\lillynlistof{LEMMATA}{LEMS}{\lillyxBOXxlemmaxListText}
 \pushList{RegisteredListOfLists}{LEMS}
 
 \providecommand{\LILLYxSEENxLEMMA}{FALSE}
@@ -714,7 +723,7 @@
 
 
 % \ifx\LILLYxBOXxLemmaxEnable\true
-%     \newlistof{LEMMAS}{LEMME}{Alle Lemmata\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+%     \lillynlistof{LEMMAS}{LEMME}{Alle Lemmata\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
 
 %     %% TITEL OPTIONALE-ADDONS
 %     \DeclareDocumentEnvironment{lemma}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLemma}%
@@ -739,7 +748,7 @@
 % Zusammenfassungen                                                                                                   %     %%%% ZSMS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newlistof{ZUSAMMENFASSUNGEN}{ZSMS}{\lillyxBOXxzusammenfassungxListText}
+\lillynlistof{ZUSAMMENFASSUNGEN}{ZSMS}{\lillyxBOXxzusammenfassungxListText}
 \pushList{RegisteredListOfLists}{ZSMS}
 
 \providecommand{\LILLYxSEENxZUSAMMENFASSUNG}{FALSE}
@@ -761,7 +770,7 @@
 % \providecommand{\LILLYxSEENxZUSAMMENFASSUNG}{FALSE}
 
 % \ifx\LILLYxBOXxZusammenfassungxEnable\true
-%     \newlistof{ZSMS}{ZSM}{Alle Zusammenfassungen\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+%     \lillynlistof{ZSMS}{ZSM}{Alle Zusammenfassungen\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
 
 %     %% TITEL OPTIONALE-ADDONS
 %     \DeclareDocumentEnvironment{zusammenfassung}{O{} O{}}{\grenewcommand{\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxZusammenfassung}%
@@ -790,7 +799,7 @@
     \def\LILLYxSolutionsxShow{TRUE}%
 \fi
 \ifx\LILLYxBOXxAufgabexEnable\true
-    \newlistof{TSKS}{TSK}{\xtranslate{Alle Aufgaben}\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+    \lillynlistof{TSKS}{TSK}{\xtranslate{Alle Aufgaben}\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
     \pushList{RegisteredListOfLists}{TSK}
 
 %% Splitter could issue a tcblower and then use startrecording to get the soluions extra?
@@ -808,15 +817,15 @@
 
     %% [OPTIONALE-ADDONS]{TITEL}{PUNKTE}
     \DeclareDocumentEnvironment{aufgabeXdefault}{ O{} m m }{% \scantokens{ %
-        \refstepcounter{ctr_TSK}%
-        \ifx\LILLYxSolutionsxShow\true\else\tcbset{LillyxBOXxDesignxAufgabe/.style={        lowerbox=ignored}}\fi%
+        \refstepcounter{ctr_TSK}#1%
+        \ifx\LILLYxSolutionsxShow\true\else\tcbset{LillyxBOXxDesignxAufgabe/.style={lowerbox=ignored}}\fi%
         \begin{LILLYxBOXxAufgabe}[#2][\xtranslate{Aufgabe} \arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe,%
             %savedelimiter=aufgabe,savelowerto={ub/\arabic{ctr_TSK}.tex},
-        #1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}~\\[-.25\baselineskip]\ignorespacesafterend%
+        #1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}\leavevmode\\[-.25\baselineskip]\ignorespaces%
     }{\end{LILLYxBOXxAufgabe}}% } %
     \DeclareDocumentEnvironment{aufgabeXplain}{ O{} m m }{% \scantokens{ %
-        \refstepcounter{ctr_TSK}%
-        \begin{LILLYxBOXxAufgabexPlain}[#2][\xtranslate{Aufgabe} \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxPlain,after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}~\\\ignorespacesafterend%
+        \refstepcounter{ctr_TSK}#1%
+        \begin{LILLYxBOXxAufgabexPlain}[#2][\xtranslate{Aufgabe} \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxPlain,after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}\leavevmode\\\ignorespaces%
     }{\end{LILLYxBOXxAufgabexPlain}}% } %
     %% Allows live Switching between styles in the same document
     \DeclareDocumentEnvironment{aufgabe}{ O{} m m }{%
@@ -835,7 +844,7 @@
 \providecommand{\LILLYxSEENxUBS}{FALSE}
 
 \ifx\LILLYxBOXxUebungsblattxEnable\true
-    \newlistof{UBS}{UB}{\xtranslate[Alle \"{U}bungsbl\"{a}tter]{AlleUebungsblaetter}\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+    \lillynlistof{UBS}{UB}{\xtranslate[Alle \"{U}bungsbl\"{a}tter]{AlleUebungsblaetter}\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
     \pushList{RegisteredListOfLists}{UB}
 
     %% TITEL NUMMER

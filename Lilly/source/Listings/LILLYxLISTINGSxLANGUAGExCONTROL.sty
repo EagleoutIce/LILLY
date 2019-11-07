@@ -2,10 +2,12 @@
 \ProvidesPackage{LILLYxLISTINGSxLANGUAGExCONTROL}[2019/07/14 Verwaltet Sprachen fuer die Listings-Erweiterungen von LILLY]
 
 \RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
 
 \RequirePackage{LILLYxLISTINGS}
 \RequirePackage{LILLYxLISTINGSxADVANCED}% we will construct the presentation - Environments too
 \RequirePackage{LILLYxCONTROLLERxBOX}
+% \RequirePackage{LILLYxCONTROLLERxBOX}
 \tcbuselibrary{listingsutf8}% Lilly won't used minted. Minted would need a seperate installation of pygments. Urgh
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -288,5 +290,10 @@
 %         }%
 %         \lilly@tmp%
 % }
+
+\lstdefinelanguage{lVoid}{}
+
+\RegisterLanguage{void}{lVoid}
+
 
 \endinput

@@ -142,6 +142,10 @@
         execute at begin node={\strut},%
         %node format = {\noexpand\node(\forestoption{name}) [\forestoption{node options}]{\forestoption{content format}};},
       },
+      % edge path={
+      %   \noexpand\path[\forestoption{edge},densely dashed]
+      %   (!to tier=p.parent anchor)++(-0.25,0) |-(.child anchor)\forestoption{edge label};
+      %  },
       if pic root={
         tikz+={
           \pic at ([xshift=\len@folder@size].west) {folder};
