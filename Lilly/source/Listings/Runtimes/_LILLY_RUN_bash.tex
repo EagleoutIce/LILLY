@@ -22,13 +22,13 @@
 }
 \gdef\rbash@noopt#1{\cbash{#1}\,:\getBashFileExecutionOutput{#1}}
 
-
+\def\lstrbashlistopts{}
 %% oldies are goldies :D
 \ifx\LILLYxCMD\undefined
 %% {file} (coming soon: [input])
 \gdef\getBashFileExecutionOutput#1{%
-\immediate\write18{ #1 > \jobname.txt }
-\lstinputlisting[style=BashOutput,language=lBash]{\jobname.txt}
+\immediate\write18{ #1 > \jobname.txt 2> \jobname.txt} % safest way :D
+\lstinputlisting[style=BashOutput,language=lBash,keywords={[4]{}}]{\jobname.txt}
 \immediate\write18{ rm \jobname.txt }
 }
 \else

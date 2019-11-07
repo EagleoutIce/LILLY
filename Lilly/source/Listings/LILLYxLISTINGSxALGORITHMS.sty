@@ -1,7 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxLISTINGSxALGORITHMS}[2019/10/14 Stellt eine Algorithmen-Erweiterungen fuer LILLYxLISTINGS zur Verfuegung]
 
-\RequirePackage{LILLYxCORE} %% DemandPackage und LoadPackage
+\RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE} %% DemandPackage und LoadPackage
 \RequirePackage{LILLYxLISTINGS} %% DemandPackage und LoadPackage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -34,7 +35,9 @@
 %  \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-0cm}}
 %\fi\fi
 \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-1cm}}
+\ifcsname LILLYxBEAMER\endcsname\else%
 \newlistof{ALGORITHMS}{ALGO}{\LillyAlgoTitle}
+\fi
 \pushList{RegisteredListOfLists}{ALGO}
 
 % We want comments
@@ -61,11 +64,15 @@
 \def\StartCode{\Indp}
 \def\EndCode{\Indm}
 
+\SetKw{KwOr}{or}
+\SetKw{KwAnd}{and}
+
 % [#1] Float placement
 %  #2  Caption
 % [#3] short caption (=#2)
 
-\def\@lillyalgo@init{\IncMargin{1em}}
+\def\@lilly@algo@def@style{\rmfamily\upshape}
+\def\@lillyalgo@init{\IncMargin{1em}\def\Int{{\@lilly@algo@def@style int}}\def\Matrix{{\@lilly@algo@def@style 2DMatrix}}\def\True{{\@lilly@algo@def@style true}}\def\False{{\@lilly@algo@def@style false}}}
 \def\@lillyalgo@exit{\DecMargin{1em}}
 \def\@@@lillystpone#1{\the\numexpr\value{#1}+1\relax}
 
@@ -103,6 +110,7 @@
 }{\bgroup\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgfuncs[#1]}\@tbg\Indm%
 }{\caption[#3()]{#2()}\end@oldalgfuncs\@lillyalgo@exit\egroup}
 
+\SetKwProg{Fn}{def}{:}{end}%~def
 
 \fi
 \endinput
