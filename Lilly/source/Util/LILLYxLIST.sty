@@ -58,6 +58,13 @@
 
 \def\typesetVoid#1{#1}%
 
+\def\@typeset@list@and{und}
+
+\newcommand{\TypesetList}[3][typesetVoid]{\bgroup%
+    \edef\@typeset@list@and{#3}\edef\@@tmp{\noexpand\@@typesetList[\unexpanded{#1}]{#2}}\@@tmp%
+    \egroup%
+}
+
 \newcommand{\typesetList}[2][typesetVoid]{%
     \edef\@@tmp{\noexpand\@@typesetList[\unexpanded{#1}]{#2}}\@@tmp%
 }
@@ -68,7 +75,7 @@
     \getListLength{#2}%
     \foreach \x[count=\i] in \@tmpl {%
         \ifnum\i>1 \ifnum\i=\@c@tmp%
-        ~\xtranslate{und} \else%
+        ~\xtranslate{\@typeset@list@and} \else%
         ,\space\fi%
         \fi%
         \@nameuse{#1}{\x}%
