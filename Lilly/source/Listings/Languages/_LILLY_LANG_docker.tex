@@ -1,0 +1,30 @@
+%% Wird für die Dokumentation entsprechend erweitert
+
+\lstdefinelanguage{lDocker}{
+    alsoletter={|~{,}_.><:-},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[il][{\lstHLError}]{|err|:},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+    moredelim=[is][{}]{|plain|}{|plain|},
+    moredelim=**[il][{\color{Charcoal}\bfseries}]{>imp>},
+    comment=[l]{\#},
+    escapeinside={!*}{*!},
+    morekeywords = {FROM,RUN,LABEL,VOLUME,ENTRYPOINT,EXPOSE,ADD},
+    %morekeywords = [2]{mkdir,texhash,make,apt,>,<,cd,git,pdflatex,mvn},
+    %morekeywords = [3]{print,install,update,get,dump,config,tokentest,clean,help,buildfile_compile,generate},
+    %morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake,jake,java,javac,ghci,ghc,grep,ls,cp,sort,find,man,tail,head,setfacl,getfacl,groups,ls,pdflatex,apt-get,texdoc,traceroute,docker},
+    %morekeywords = [5]{GUI,REI,DEI},
+    %morekeywords = [6]{javafx:compile,javafx:run},
+    morestring=[b]'
+}
+
+\RegisterLanguage{docker}{lDocker}
+
+
+% \lstnewenvironment{bash}[1][]
+%   {\lstset{language=lBash,#1}}
+% {}
+
+
+% \pushList{RegisteredLanguages}{bash/lBash}
