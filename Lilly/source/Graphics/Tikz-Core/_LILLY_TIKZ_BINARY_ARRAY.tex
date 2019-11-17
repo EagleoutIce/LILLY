@@ -1,0 +1,19 @@
+\newcounter{BinaryArray@CurrentSlot}
+\def\BinaryArray@ne{1}
+\def\BinaryArray@activecol{black}
+\def\BinaryArray@Iter#1#2\@nil{
+\ifx\\#1\\\else%
+\def\tmp@ne{#1}\ifx\tmp@ne\BinaryArray@ne
+    \fill[\BinaryArray@activecol] (1*\theBinaryArray@CurrentSlot*\SlotWidth pt + 0.1*\SlotWidth pt,0.1*\SlotWidth pt) rectangle ++(0.8*\SlotWidth pt,0.8*\SlotWidth pt);
+\else\fi
+\draw (\theBinaryArray@CurrentSlot*\SlotWidth pt,0) rectangle ++(\SlotWidth pt,\SlotWidth pt);
+\node at(\theBinaryArray@CurrentSlot*\SlotWidth pt + 0.5*\SlotWidth pt,1) {\theBinaryArray@CurrentSlot};
+\stepcounter{BinaryArray@CurrentSlot}
+\ifx\\#2\\\else\BinaryArray@Iter#2\@nil\fi%
+\fi
+}
+\def\BinaryArray#1#2#3{
+% \def\SlotData{11100001001100100}
+\pgfmathsetmacro\SlotWidth{#3/#2}
+\BinaryArray@Iter#1\@nil
+}
