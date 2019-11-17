@@ -199,6 +199,29 @@ Was hierbei auch interessant ist: die Skalierung von $X$- und $Y$-Koordinaten wi
 %
 %
 
+\subsection{Binäre Arrays}
+Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_BINARY\_ARRAY}. Sie werden mit \LILLYxBOXxVersion{2.2.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.
+
+\presentCommand[2.2.0]{BinaryArray}[\manArg{BinData}\manArg{NumOfElements}\manArg{WantedWidth}]
+Setzt ein Binäres Array in einer schönen Repräsentation. Die Farbe für \say{aktive} Felder wird mittels \blankcmd{BinaryArray@activecol} definiert.
+\begin{latex*}
+\begin{tikzpicture}
+    \BinaryArray{1100110010101010}{16}{9cm}
+\end{tikzpicture}
+\end{latex*}
+Ergibt: \begin{center}
+    \begin{tikzpicture}
+        \BinaryArray{1100110010101010}{16}{9cm}
+    \end{tikzpicture}
+\end{center}
+
+%
+%
+%
+%
+%
+%
+
 \subsection{Rotation}
 Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Core/\_LILLY\_TIKZ\_ROTATION}. Sie werden mit \LILLYxBOXxVersion{2.0.0} automatisch mit dem Einbinden von\newline \LILLYxNOTExLibrary{LILLYxGRAPHICS} geladen.
 
@@ -678,7 +701,7 @@ Auf Basis von \T{environ} und der \TikZ-Bibliothek \T{external} bietet diese Dat
 %
 
 \presentEnvironment[1.0.7]{tikzternal}[\optArg{tikz args}]
-Wenn die Externalisierung (\Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external}) aktiviert ist, wird die hierrin enthaltene Grafik automatisch externalisiert. Sonst fungiert die Umgebung als normales \blankenv{tikzpicture}.
+Wenn die Externalisierung (\Jake[-]\jmark[Einstellung]{mrk:jakesettings} \T{lilly-external}) aktiviert ist, wird die hierin enthaltene Grafik automatisch externalisiert. Sonst fungiert die Umgebung als normales \blankenv{tikzpicture}.
 
 %
 %
@@ -788,7 +811,7 @@ Die Shortcuts von oben, wurden hierbei wie folgt definiert:
 %
 
 \presentCommand[2.0.0]{textEmblem}[\manArg{Emblem}]
-Setzt ein Emblem für den Fließtext: \textEmblem\codeEmblem{} anstelle von \codeEmblem. Die Argumentklammern können Vernachläassigt werden, das Bedeutet Es genügt das Schreiben von \T{\blankcmd{textEmblem}\blankcmd{codeEmblem}}.
+Setzt ein Emblem für den Fließtext: \textEmblem\codeEmblem{} anstelle von \codeEmblem. Die Argumentklammern können Vernachlässigt werden, das Bedeutet Es genügt das Schreiben von \T{\blankcmd{textEmblem}\blankcmd{codeEmblem}}.
 
 %
 %
