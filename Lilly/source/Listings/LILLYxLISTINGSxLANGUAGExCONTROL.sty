@@ -158,6 +158,16 @@
 }
 {}
 
+\DeclareTCBListing{sclatex}{% preview latex code
+        O{} % Listing Args
+        O{} % TCB Args
+}{%
+  enhanced jigsaw,breakable,blankest,enlarge top by=\lilly@lst@outer@spacing,enlarge bottom by=\lilly@lst@outer@spacing,listing side text,righthand width=3.5cm,before lower={\vspace*{-0.75\baselineskip}},
+  listing options={%
+    style=MAIN,
+    language=lLatex,#1},#2, after={\\[-0.25\baselineskip]},
+}
+{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Registration of Languages :D
@@ -291,7 +301,7 @@
 %         \lilly@tmp%
 % }
 
-\lstdefinelanguage{lVoid}{}
+\lstdefinelanguage{lVoid}{columns=}
 
 \RegisterLanguage{void}{lVoid}
 

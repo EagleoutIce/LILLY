@@ -43,7 +43,7 @@
 % We want comments
 
 \let\Comment\tcp
-\long\def\@lillyalgo@cmtfrmt#1{\color{Charcoal}\T{\small#1}}
+\long\def\@lillyalgo@cmtfrmt#1{\color{Charcoal}\T{#1}}
 \SetCommentSty{@lillyalgo@cmtfrmt}
 \SetNoFillComment%\SetSideCommentLeft
 % \SetNlSty{T}{}{}
@@ -79,36 +79,36 @@
 %%% Algorithm
 \let\@oldalgo\algorithm \let\end@oldalgo\endalgorithm
 \DeclareDocumentEnvironment{algorithm}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\addcontentsline{ALGO}{section}{\makebox[.4cm][r]{\@@@lillystpone{algocf}.} #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgo[#1]}\@tbg\Indm%
-}{\caption[#3]{#2}\end@oldalgo\@lillyalgo@exit\egroup}
+}{\ifx\\#2\\\else\caption[#3]{#2}\fi\end@oldalgo\@lillyalgo@exit\egroup}
 
 \expandafter\let\expandafter\@oldalgos\csname algorithm*\endcsname \expandafter\let\expandafter\end@oldalgos\csname endalgorithm*\endcsname
 \DeclareDocumentEnvironment{algorithm*}{%
   O{\@lilly@AUTOPLACEMENTALGO} m O{#2}
 }{\bgroup\addcontentsline{ALGO}{section}{\makebox[.4cm][r]{\@@@lillystpone{algocf}.} #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgos[#1]}\@tbg\Indm%
-}{\caption[#3]{#2}\end@oldalgos\@lillyalgo@exit\egroup}
+}{\ifx\\#2\\\else\caption[#3]{#2}\fi\end@oldalgos\@lillyalgo@exit\egroup}
 
 
 \let\@oldprodc\procedure \let\end@oldprodc\endprocedure
 \DeclareDocumentEnvironment{procedure}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\@lillyalgo@init%
   \edef\@tbg{\noexpand\@oldprodc[#1]}\@tbg\Indm%
-}{\caption[#3()]{#2()}\end@oldprodc\@lillyalgo@exit\egroup}
+}{\ifx\\#2\\\else\caption[#3()]{#2()}\fi\end@oldprodc\@lillyalgo@exit\egroup}
 
 \expandafter\let\expandafter\@oldprodcs\csname procedure*\endcsname \expandafter\let\expandafter\end@oldprodcs\csname endprocedure*\endcsname
 \DeclareDocumentEnvironment{procedure*}{%
   O{\@lilly@AUTOPLACEMENTALGO} m O{#2}
 }{\bgroup\@lillyalgo@init\edef\@tbg{\noexpand\@oldprodcs[#1]}\@tbg\Indm%
-}{\caption[#3()]{#2()}\end@oldprodcs\@lillyalgo@exit\egroup}
+}{\ifx\\#2\\\else\caption[#3()]{#2()}\fi\end@oldprodcs\@lillyalgo@exit\egroup}
 
 \let\@oldalgfunc\function \let\end@oldalgfunc\endfunction
 \DeclareDocumentEnvironment{function}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\@lillyalgo@init%
   \edef\@tbg{\noexpand\@oldalgfunc[#1]}\@tbg\Indm%
-}{\caption[#3()]{#2()}\end@oldalgfunc\@lillyalgo@exit\egroup}
+}{\ifx\\#2\\\else\caption[#3()]{#2()}\fi\end@oldalgfunc\@lillyalgo@exit\egroup}
 
 \expandafter\let\expandafter\@oldalgfuncs\csname function*\endcsname \expandafter\let\expandafter\end@oldalgfuncs\csname endfunction*\endcsname
 \DeclareDocumentEnvironment{function*}{%
   O{\@lilly@AUTOPLACEMENTALGO} m O{#2}
 }{\bgroup\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgfuncs[#1]}\@tbg\Indm%
-}{\caption[#3()]{#2()}\end@oldalgfuncs\@lillyalgo@exit\egroup}
+}{\ifx\\#2\\\else\caption[#3()]{#2()}\fi\end@oldalgfuncs\@lillyalgo@exit\egroup}
 
 \SetKwProg{Fn}{def}{:}{end}%~def
 
