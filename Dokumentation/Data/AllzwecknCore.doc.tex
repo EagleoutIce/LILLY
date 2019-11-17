@@ -187,6 +187,19 @@ Analog:
 \end{latex*}\bgroup%
 \newcommand{\meinBefehl}[1]{Jeah (\textit{#1})}%
 Liefert: \typesetList[meinBefehl]{Ich, mag, züüüge, so viele züüge}.\egroup
+
+%
+%
+%
+
+\presentCommand[2.2.0]{TypesetList}[\optArg[typesetVoid]{command}\manArg{ListName}\manArg{LastAnd}]
+Funktioniert analog zu \blankcmd{typesetList}, gestattet aber das setzen des wortes zwischen den letzten beiden Elementen:
+\begin{latex*}
+\TypesetList[blankcmd]{Ich, mag, züüüge, so viele züüge}{oder}.
+\end{latex*}
+Ergibt: \TypesetList[blankcmd]{Ich, mag, züüüge, so viele züüge}{oder}.
+
+
 %
 %
 %
