@@ -12,8 +12,11 @@
 \ifx\\#2\\\else\BinaryArray@Iter#2\@nil\fi%
 \fi
 }
-\def\BinaryArray#1#2#3{
-% \def\SlotData{11100001001100100}
-\pgfmathsetmacro\SlotWidth{#3/#2}
-\BinaryArray@Iter#1\@nil
+% #1 data
+% #2 num of elements
+% #3 length
+\def\BinaryArray#1#2#3{%
+\setcounter{BinaryArray@CurrentSlot}{0}% \def\SlotData{11100001001100100}
+\pgfmathsetmacro\SlotWidth{#3/#2}%
+\BinaryArray@Iter#1\@nil%
 }
