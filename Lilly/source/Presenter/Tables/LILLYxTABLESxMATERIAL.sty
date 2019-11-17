@@ -46,9 +46,9 @@
 % there will be mtabular and mltabular using the existing table-environments - everybody: do the jay!
 
 \def\MTBHeaderRow{%\rowfont{\normalfont\bfseries\leavevmode\color{white}}
-\rowcolor{\HeaderColor}\Gape[0.5mm][0.25mm]{}\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
+\rowcolor{HeaderColor}\Gape[0.5mm][0.25mm]{}\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
 \def\MNTBHeaderRow{%\rowfont{\normalfont\bfseries\leavevmode\color{white}}
-\rowcolor{\NextHeaderColor}\Gape[0.5mm][0.25mm]{}{\hspace*{-2.3em}\textcolor{MudWhite}{$\blacktriangledown$}}\hspace*{1.4em}\;\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
+\rowcolor{NextHeaderColor}\Gape[0.5mm][0.25mm]{}{\hspace*{-2.3em}\textcolor{MudWhite}{$\blacktriangledown$}}\hspace*{1.4em}\;\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
 
 
 
@@ -122,11 +122,11 @@
 
 
 
-\def\HeaderColor{\Hcolor}
-\def\NextHeaderColor{\HeaderColor}
+\colorlet{HeaderColor}{\Hcolor}
+\colorlet{NextHeaderColor}{HeaderColor}
 \def\@LILLY@rowfont@specs{\color{white}}
-\def\MHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{\HeaderColor}\@ifstar{}{\Gape[0.5mm][0.25mm]{}}}
-\def\MNHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{\NextHeaderColor}\@ifstar{}{\Gape[0.5mm][0.25mm]{}}{\hspace*{-2.3em}\textcolor{\HeaderColor!40!white}{$\blacktriangledown$}}\hspace*{1.4em}\;}
+\def\MHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{HeaderColor}\@ifstar{}{\Gape[0.5mm][0.25mm]{}}}
+\def\MNHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{NextHeaderColor}\@ifstar{}{\Gape[0.5mm][0.25mm]{}}{\hspace*{-2.3em}\textcolor{HeaderColor!40!white}{$\blacktriangledown$}}\hspace*{1.4em}\;}
 % Maybe set Arrow to right?
 \DeclareDocumentEnvironment{mtable}{%
     s % starred has no header
