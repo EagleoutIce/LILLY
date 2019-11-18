@@ -1,0 +1,52 @@
+
+%% Diese Datei liefert einen Befehl mit folgenden Eigenschaften:
+% Laden einer Shell-Datei
+% Ausführen dieser Shell-Datei mit einem angebenen Interpreter
+% Evaluation zu Ergebnis der Ausführung
+
+\lstdefinestyle{DockerOutput}{
+  basicstyle=\LILLYxLISTINGSxFONTSIZE\LILLYxlstTypeWriter,
+  frame=tblr,
+  numbers=none,
+  frame=single,
+  xleftmargin=3pt,
+  xrightmargin=3pt,
+  backgroundcolor=\color{black!0},
+  rulecolor=\color{lstmainbordercol}
+}
+
+\gdef\rdocker{\@ifnextchar[{\rdocker@opt}{\rdocker@noopt}}
+\gdef\rdocker@opt[#1]#2{
+  \cdocker{#2}~#1%% TODO: configure layout with #1
+  \getBashFileExecutionOutput{#2}
+}
+\gdef\rdocker@noopt#1{\cdocker{#1}\,:\getBashFileExecutionOutput{#1}}
+
+\def\lstrdockerlistopts{}
+%% oldies are goldies :D
+\ifx\LILLYxCMD\undefined
+%% {file} (coming soon: [input])
+\gdef\getDockerFileExecutionOutput#1{%
+\immediate\write18{ #1 > \jobname-docker.txt 2> \jobname-docker.txt} % safest way :D
+\lstinputlisting[style=DockerOutput,language=lDocker]{\jobname-docker.txt}
+\immediate\write18{ rm \jobname-docker.txt }
+}
+\else
+\gdef\getDockerFileExecutionOutput#1{Direkte Befehlsevaluation deaktiviert!}
+\fi
+
+\gdef\previewDocker#1{%
+\begingroup
+\colorbox{MudWhite!93!black}{\lstinline[language=lDocker]{docker #1}}
+\getDockerFileExecutionOutput{docker #1}
+\endgroup
+}
+
+
+
+\NewDocumentCommand{\previewDockerFile}{ m } {
+\begingroup
+\lstinputlisting[language=lDocker, caption={Inhalt der Datei #1}]{#1}
+\endgroup
+\previewBash{docker #1}
+}
