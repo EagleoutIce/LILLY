@@ -60,7 +60,7 @@
 % #3 white color
 % #4 Icon
 \def\@lilly@td@folder#1#2#3#4{%
-    \begin{scope}[every node/.style={overlay}]  
+    \begin{scope}[every node/.style={overlay}]
   \fill[rounded corners=0.5pt, color=#2]% peak
   (-1*\len@folder@size,-\len@folder@size) rectangle (1.85*\len@folder@size,\len@folder@size+2pt);
 \fill[rounded corners=0.5pt, color=#2]% back
@@ -81,11 +81,11 @@
   \fill[fill=#1!85!#3, rounded corners=0.9pt] (-\len@folder@size,.6*\len@folder@size+2.75pt) coordinate (a) |- (\len@folder@size,-1.2*\len@folder@size) coordinate (b) to[rounded corners=0pt] ++(0,1.8*\len@folder@size) coordinate (c) to[rounded corners=0pt,] ++(-2.75pt,2.75pt) coordinate (d) -- cycle;
   \fill[fill=#3!65!#1, rounded corners=0.9pt] (d) |- (c);
   % Set Text Bars:
-  \ifthenelse{\equal{#4}{}}{
+  \ifx\\#4\\
   \foreach \y/\fx in {0/1,0.2/1,0.4/1,0.6/0.75} {%
     \fill[#3] (-0.5\len@folder@size,-\y*\len@folder@size) rectangle ++ (\fx*\len@folder@size,0.4pt);
   }
-  }{\node[#3,font={\tiny\sffamily},overlay] at(0,-0.25\len@folder@size) {#4};} % absatz für den knick
+  \else\node[#3,font={\tiny\sffamily},overlay] at(0,-0.25\len@folder@size) {#4};\fi % absatz für den knick
 \end{scope}
 }
 
@@ -198,7 +198,7 @@
     O{}         % icon
 }{%
   \IfValueTF{#1}{
-    \forestset{% 
+    \forestset{%
       #2/.style n args=2{%
         inner xsep=\@folderindent*\len@folder@size,%
         icon pic={pic {complexfolder={##1}{##2}}},%
@@ -206,7 +206,7 @@
       #2/.default={#1}{#3},%
     }%
   }{% No #1
-    \forestset{% 
+    \forestset{%
       #2/.style = {%
         inner xsep=\@folderindent*\len@folder@size,%
         icon pic={pic {logofolder={##1}}},%
@@ -224,7 +224,7 @@
     O{}         % icon
 }{%
   \IfValueTF{#1}{%
-    \forestset{% 
+    \forestset{%
       #2/.style n args=2{%
         inner xsep=\@fileindent*\len@folder@size,%
         icon pic={pic {complexfile={##1}{##2}}},%
@@ -232,7 +232,7 @@
       #2/.default={#1}{#3},%
     }
   }{% No #1
-    \forestset{% 
+    \forestset{%
       #2/.style = {%
         inner xsep=\@fileindent*\len@folder@size,%
         icon pic={pic {logofile={##1}}},%
