@@ -84,7 +84,7 @@
 %% Styling the toc:
 %% Used with babel :D
 \addto\captionsngerman{%
-        \renewcommand{\contentsname}{\leavevmode\vspace*{-0.8\baselineskip}\newline\noindent\efont{Kurzübersicht}\hfill\hbox{}\vspace*{-0.3\baselineskip}}%
+        \renewcommand{\contentsname}{}%
 }
 \providecommand{\idxtitle}{Kurz\"{u}bersicht}
 \def\compileidx{\makeindex[title=\idxtitle,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{\idxtitle}}
@@ -129,8 +129,11 @@
 {%
 \begin{center}
 	\hypersetup{linkcolor=black}%
-    \begin{tcolorbox}[presenterstyle,bottom=5.6pt]
+	\begin{tcolorbox}[presenterstyle,bottom=5.6pt]
+		\leavevmode\\\noindent{\Large\efont{Kurzübersicht}}\hfill\\[-1.5\baselineskip]
+		\setlength\columnsep{25pt}\begin{multicols}{2}
 		\tableofcontents
+		\end{multicols}
     \end{tcolorbox}
 \end{center}
 }
