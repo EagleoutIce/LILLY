@@ -838,7 +838,7 @@
 \else %% Keine Aufgaben
     \NewEnviron{aufgabe}[2][]{}
 \fi
-
+\let\task\undefined
 \NewEnviron{task}[3][]{\begin{aufgabe}[#1]{#2}{#3}\Body\end{aufgabe}}
 
 \providecommand{\LILLYxSEENxUBS}{FALSE}
