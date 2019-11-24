@@ -33,6 +33,8 @@
 %
 \ProcessPgfOptions{/tikzuml/options}%
 %
+\def\tikzumlRelationStereoTypeStyle{}%
+%
 \def\pgfsetlayersArg{background}%
 \pgfdeclarelayer{background}%
 \newcounter{tikzumlPackageLayers}%
@@ -927,17 +929,17 @@
           \ifnum\numArcs=4%
             \ifnum\theposStereo>300%
               \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-300)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
+              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype}}%
             \else%
               \ifnum\theposStereo<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
+                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype}}%
               \else%
                 \ifnum\theposStereo>200%
                   \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
-                  \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
+                  \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype}}%
                 \else%
                   \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-                  \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
+                  \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype}}%
                 \fi%
               \fi%
             \fi%
@@ -1153,13 +1155,13 @@
           \else%
             \ifnum\theposStereo>200%
               \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
             \else%
               \ifnum\theposStereo<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
               \else%
                 \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-                \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+                \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
               \fi%
             \fi%
             %
@@ -1384,7 +1386,7 @@
                            node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
                            node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
                            node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                           node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+                           node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
       \xdef\tikzumlPath{(\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) -- \tikzumlLastArc (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor) }%
       \ifnum\thetikzumlStateLevel>0%
         \def\tikzumlStateFitTmp{\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname}%
@@ -1406,9 +1408,9 @@
       %
       \ifnum\theposStereo>100%
         \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-        \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+        \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
       \else%
-        \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+        \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
       \fi%
       %
       \ifnum\thepos>100%
@@ -1471,9 +1473,9 @@
         %
         \ifnum\theposStereo>100%
           \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-          \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+          \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
         \else%
-          \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+          \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
         \fi%
         %
         \ifnum\thepos>100%
@@ -1552,13 +1554,13 @@
           %
           \ifnum\theposStereo>200%
             \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
-            \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+            \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
           \else%
             \ifnum\theposStereo<100%
-              \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+              \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
             \else%
               \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-              \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+              \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
             \fi%
           \fi%
           %
@@ -1658,13 +1660,13 @@
             %
             \ifnum\theposStereo>200%
               \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
             \else%
               \ifnum\theposStereo<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
               \else%
                 \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-                \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+                \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center,\tikzumlRelationStereoTypeStyle] {\stereotype} }%
               \fi%
             \fi%
             %
