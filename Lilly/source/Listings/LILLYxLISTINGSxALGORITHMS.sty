@@ -91,7 +91,7 @@
 \let\@oldprodc\procedure \let\end@oldprodc\endprocedure
 \DeclareDocumentEnvironment{procedure}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\@lillyalgo@init%
   \edef\@tbg{\noexpand\@oldprodc[#1]}\@tbg\Indm%
-}{\ifx\\#2\\\else\caption[#3()]{#2()}\fi\end@oldprodc\@lillyalgo@exit\egroup}
+}{\ifx\\#2\\\else\caption[#3()]{#2()}\label{proc:#2}\fi\end@oldprodc\@lillyalgo@exit\egroup}
 
 \expandafter\let\expandafter\@oldprodcs\csname procedure*\endcsname \expandafter\let\expandafter\end@oldprodcs\csname endprocedure*\endcsname
 \DeclareDocumentEnvironment{procedure*}{%
