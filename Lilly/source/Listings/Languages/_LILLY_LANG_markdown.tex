@@ -1,21 +1,24 @@
-\lstdefinelanguage{lGit}{
+\lstdefinelanguage{lMarkdown}{
     alsoletter={|~_><-},
     moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
     moredelim=**[is][{\lstHLError}]{|err|}{|err|},
     moredelim=**[il][{\lstHLError}]{|err|:},
     moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+    moredelim=**[is][{\itshape}]{|it|}{|it|},
     moredelim=[is][{}]{|plain|}{|plain|},
     moredelim=**[il][{\color{Charcoal}\bfseries}]{>imp>},
-    comment=[l]{\#},
-    morestring=[s]"",
+    moredelim=**[s][{\color{DebianRed}\texttt}]{`}{`},
+    % string=[l]{\#},
+    morecomment=[l]{\#},
+    commentstyle=\color{AppleGreen},
     escapeinside={!*}{*!},
-    morekeywords = {remote},
+    morekeywords = {},
     % morekeywords = [2]{},
-    morekeywords = [3]{commit,push,add,init,status,rm,pull,clone,checkout,branch,merge,config},
+    morekeywords = [3]{},
     %morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake,jake,java,javac,ghci,ghc,grep,ls,cp,sort,find,man,tail,head,setfacl,getfacl,groups,ls,pdflatex,apt-get,texdoc,traceroute,docker},
-    morekeywords = [5]{git},
-    morekeywords = [6]{origin,master,user-input,--global},
+    morekeywords = [5]{},
+    morekeywords = [6]{},
     morestring=[b]'
 }
 
-\RegisterLanguage{git}{lGit}
+\RegisterLanguage{markdown}{lMarkdown}
