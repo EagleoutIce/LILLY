@@ -122,6 +122,8 @@
 \newif\iflstlastwasacharacterkeep
 \lstlastwasacharacterkeepfalse
 
+\newif\iflstforcenum
+\lstforcenumfalse
 % \newif\iflstnumnohlmode% Will prevent h31 <- 3 to highlight as '3' would reset the hl behavior
 % \lstnumnohlmodefalse
 
@@ -135,8 +137,8 @@
   \global\lstlastwasacharacterkeeptrue#1\else\global\lstlastwasacharacterkeepfalse%
     \ifnum\lst@mode=\lst@Pmode\relax% PMode: Not in any special Mode
     {\digitstyle #1}%
-    \else%
-      #1%
+    \else\iflstforcenum%should num be forced?
+      {\digitstyle #1}\else#1\fi%
     \fi\hbox{\relax{}}%
   \fi%
   %\fi
@@ -216,6 +218,7 @@
   {:bs:}{{\color{Orchid}\textbackslash}}1 {:bmath:}{{\color{bondiBlue}\$}}1 {:percent:}{{\%}}1
   {:emath:}{{{\color{bondiBlue}\$}}}1 {:dollar:}{{{\color{bondiBlue}\$\normalcolor}}}1 {:plaindollar:}{{\$}}1%spaces
   %% brace fix
+  {:rn:}{{\textcolor{AppleGreen}{{\small\T{\textbf{\textbackslash r\textbackslash n}}}}}}4
   {(}{{(\@nc}}1 {)}{{)\@nc}}1 {:space:}{{{ }}}1 {:ws:}{{{ }}}1 {:cdots:}{{{$\cdots$}}}1 {:cdot:}{{{$\cdot$}}}1 {:ldots:}{{{\ldots}}}1 {:!:}{{{!}}}1
   {:c:}{{{}}}0 {:star:}{{{*}}}1 {:minus:}{{{-}}}1
   {:float:}{{{\color{bondiBlue}f\normalcolor}}}1 {:exp:}{{{\color{bondiBlue}e\normalcolor}}}1 {:yields:}{{{$\rightarrow$}}}1%

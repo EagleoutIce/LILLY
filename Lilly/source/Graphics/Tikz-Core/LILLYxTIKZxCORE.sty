@@ -16,7 +16,7 @@
 arrows,automata,calc,intersections,%
 through,decorations.pathreplacing,%
 decorations.pathmorphing,backgrounds,%
-positioning,fit,shapes,shadings,%
+positioning,fit,shapes,shadings,arrows.meta,%
 shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
 
 %% https://www.ctan.org/pkg/circuitikz
@@ -48,6 +48,8 @@ shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
                     {}
                     {}{}
 
+
+                    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Hypbrid Pakete für den Tikz Core: Tikzternal                                                                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -87,5 +89,8 @@ shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_NETZWERKGRAPHEN}
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_RORSCHACH_INKBLOT_TEST}
 \RequirePackage{\LILLYxPATHxDATA/Semester/EIDI/tikz-uml}
+\tikzumlset{fill class=MudWhite, fill note=MudWhite!20, fill package=MudWhite!50,fill usecase=MudWhite,fill object=MudWhite} % , font=\small\LILLYxlstTypeWriter
+
+
 
 \endinput

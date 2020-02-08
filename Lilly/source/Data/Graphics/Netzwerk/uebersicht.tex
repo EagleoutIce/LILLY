@@ -1,5 +1,5 @@
-\gdef\GRAPHICSxUebersicht{%
-\begin{tikzternal}[every node/.style={font={\small\sffamily}, transform shape}, router size/.style={scale=0.2}, tiny router size/.style={scale=0.1},scale=0.75,link/.style={}]
+\gdef\GRAPHICSxUebersicht{% Test
+\begin{tikzpicture}[every node/.style={font={\small\sffamily}, transform shape}, router size/.style={scale=0.2}, tiny router size/.style={scale=0.1},scale=0.75,link/.style={}]
     % todo: fix nested tikzpic via router, i'm lazy right now
     %% Regional ISP
     \fill[\cA!15] (0,-0.85) circle (1.85);
@@ -121,6 +121,6 @@
     \node at ($(TopPoint)+(-0.25,0.75)$) {\Large\faMobile};
     \node at ($(TopPoint)+(-0.25,-1.5)$) {\Large\faMobile};
     \node at ($(TopPoint)+(-1.5,-1.35)$) {\Large\faMobile};
-\end{tikzternal}
+\end{tikzpicture}
 }
 \LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxUebersicht}

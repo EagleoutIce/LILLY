@@ -72,7 +72,8 @@
 % [#3] short caption (=#2)
 
 \def\@lilly@algo@def@style{\rmfamily\upshape}
-\def\@lillyalgo@init{\IncMargin{1em}\def\Int{{\@lilly@algo@def@style int}}\def\Matrix{{\@lilly@algo@def@style 2DMatrix}}\def\True{{\@lilly@algo@def@style true}}\def\False{{\@lilly@algo@def@style false}}}
+\def\@lillyalgo@init{%\def\alabel##1{\gdef\@alabel{#1}}%
+  \IncMargin{1em}\def\Int{{\@lilly@algo@def@style int}}\def\Matrix{{\@lilly@algo@def@style 2DMatrix}}\def\True{{\@lilly@algo@def@style true}}\def\False{{\@lilly@algo@def@style false}}}
 \def\@lillyalgo@exit{\DecMargin{1em}}
 \def\@@@lillystpone#1{\the\numexpr\value{#1}+1\relax}
 
@@ -90,14 +91,14 @@
 
 \let\@oldprodc\procedure \let\end@oldprodc\endprocedure
 \DeclareDocumentEnvironment{procedure}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\@lillyalgo@init%
-  \edef\@tbg{\noexpand\@oldprodc[#1]}\@tbg\Indm%
-}{\ifx\\#2\\\else\caption[#3()]{#2()}\label{proc:#2}\fi\end@oldprodc\@lillyalgo@exit\egroup}
+  \edef\@tbg{\noexpand\@oldprodc[#1]}\@tbg\ifx\\#2\\\else\caption[#3()]{#2()\label{proc:#2}}\fi\Indm%
+}{\end@oldprodc\@lillyalgo@exit\egroup}
 
 \expandafter\let\expandafter\@oldprodcs\csname procedure*\endcsname \expandafter\let\expandafter\end@oldprodcs\csname endprocedure*\endcsname
 \DeclareDocumentEnvironment{procedure*}{%
   O{\@lilly@AUTOPLACEMENTALGO} m O{#2}
-}{\bgroup\@lillyalgo@init\edef\@tbg{\noexpand\@oldprodcs[#1]}\@tbg\Indm%
-}{\ifx\\#2\\\else\caption[#3()]{#2()}\fi\end@oldprodcs\@lillyalgo@exit\egroup}
+}{\bgroup\@lillyalgo@init\edef\@tbg{\noexpand\@oldprodcs[#1]}\@tbg\ifx\\#2\\\else\caption[#3()]{#2()\label{proc:#2}}\fi\Indm%
+}{\end@oldprodcs\@lillyalgo@exit\egroup}
 
 \let\@oldalgfunc\function \let\end@oldalgfunc\endfunction
 \DeclareDocumentEnvironment{function}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\@lillyalgo@init%
@@ -112,5 +113,6 @@
 
 \SetKwProg{Fn}{def}{:}{end}%~def
 
+\SetKwRepeat{Do}{do}{while}
 \fi
 \endinput

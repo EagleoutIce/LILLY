@@ -3,7 +3,7 @@
 
 
 \providecommand{\AUTHOR}{Florian Sihler}
-\providecommand{\AUTHORMAIL}{florian.sihler@web.de}
+\providecommand{\AUTHORMAIL}{florian.sihler@uni-ulm.de}
 
 \RequirePackage{LILLYxVANILLA}% Wird benötigt, falls Jake nicht verwendet wird :D
 %% Liefert außerdem: LILLYxBOOLEAN und LILLYxDEBUG!

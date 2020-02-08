@@ -1,5 +1,5 @@
 \gdef\GRAPHICSxBeispielDsl{%
-\begin{tikzternal}[every node/.style={font={\small\sffamily}, transform shape}, router size/.style={scale=0.2}, tiny router size/.style={scale=0.1},scale=0.75,link/.style={}]
+\begin{tikzpicture}[every node/.style={font={\small\sffamily}, transform shape}, router size/.style={scale=0.2}, tiny router size/.style={scale=0.1},scale=0.75,link/.style={}]
     %% The ISP:
     \coordinate (ispcenter) at (1,0.5);
     \fill[\cB!15] (ispcenter) circle (2.125);
@@ -14,9 +14,9 @@
     % and again, i haven't prepared a DSLAM, i am sooo sloppy mjomm nomm:
     \coordinate (dslamcenter) at (-1,3.5);
 
-    \filldraw[left color=white,right color=AuroMetalSaurus] (dslamcenter) -- ++(0.4,0) -- ++(0.5,0.25) -- ++(0.2,0) -- ++(0,1) -- ++(-0.2,0) -- ++(-0.5,0.25) -- ++(-0.4,0)--cycle;
-    \draw[fill=AuroMetalSaurus] (dslamcenter)++(0,1.5) -- ++(0.25,0.5) -- ++(0.4,0) -- ++(0.5,-0.25) -- ++(0.2,0) -- ++(-0.25,-0.5) -- ++(-0.2,0) -- ++(-0.5,0.25) -- ++(-0.4,0);
-    \draw[fill=AuroMetalSaurus] (dslamcenter)++(1.1,0.25) -- ++(0.25,0.5) -- ++(0,1) -- ++(-0.25,-0.5) -- cycle;
+    \filldraw[left color=white,right color=AuroMetalSaurus,line join=round] (dslamcenter) -- ++(0.4,0) -- ++(0.5,0.25) -- ++(0.2,0) -- ++(0,1) -- ++(-0.2,0) -- ++(-0.5,0.25) -- ++(-0.4,0)--cycle;
+    \draw[fill=AuroMetalSaurus,line join=round] (dslamcenter)++(0,1.5) -- ++(0.25,0.5) -- ++(0.4,0) -- ++(0.5,-0.25) -- ++(0.2,0) -- ++(-0.25,-0.5) -- ++(-0.2,0) -- ++(-0.5,0.25) -- ++(-0.4,0);
+    \draw[fill=AuroMetalSaurus,line join=round] (dslamcenter)++(1.1,0.25) -- ++(0.25,0.5) -- ++(0,1) -- ++(-0.25,-0.5) -- cycle;
     \draw[-stealth'] (dslamcenter)++(0.1,0.25)-- ++(0.2,0) -- ++(0.5,0.25) -- ++(0.2,0);
     \draw[-stealth'] (dslamcenter)++(0.1,1.25)-- ++(0.2,0) -- ++(0.5,-0.25) -- ++(0.2,0);
     \draw[-stealth'] (dslamcenter)++(0.1,0.75)-- ++(0.9,0);
@@ -48,6 +48,6 @@
     % pc:
     \node[server,scale=0.5] (homepc1) at ($(dslmod)+(-0.65,-0.25)$) {};
     \draw (homepc1) -| (dslmod);
-\end{tikzternal}
+\end{tikzpicture}
 }
 \LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxBeispielDsl}

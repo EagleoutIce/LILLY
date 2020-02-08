@@ -33,7 +33,7 @@
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_cpp}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_python}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_docker}
-\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_sonar_cube}
+\input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_sonar_qube}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_git}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_markdown}
 
@@ -65,7 +65,7 @@
         % Generic Configurations
         % breaklines/.initial={true},% Currently won't expand correctly
         % extendedchars/.initial={true},%
-        prebreak/.initial={\raisebox{0.35\baselineskip}{\rotatebox{270}{\normalcolor\LILLYxLISTINGSxNUMxFONTSIZE$\curvearrowright$}}},%
+        prebreak/.initial={\LILLYxLISTINGSxNUMxFONTSIZE\hbox{\hfill$\hookleftarrow$}},%
         % core styles
         basicstyle/.initial={\LILLYxlstTypeWriter\color{black}\LILLYxLISTINGSxFONTSIZE},%
         stringstyle/.initial={\color{DarkChromeYellow}},%
@@ -117,7 +117,7 @@
     numbers         = left,
     numbersep       = \lstPackget{numbersep},
     framerule       = \lstPackget{framerule},
-    escapeinside={!*}{*!},
+    escapeinside    = {!*}{*!},
 }
 
 

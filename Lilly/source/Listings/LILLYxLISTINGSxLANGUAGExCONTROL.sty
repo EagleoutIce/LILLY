@@ -63,6 +63,18 @@
       constructor command/.initial={LillyNewLstEnvironPlain}
 }
 
+\pgfkeys{/lillyxLISTINGS/pnum/.is family,%
+    /lillyxLISTINGS/pnum,
+      listing style/.initial = {\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style}},% Ensure main is loaded, maybe make flexible in future versions?
+      % % #1 language name (java, latex, ..-)
+      % % #2 lst language name (lJava, lLatex,...)
+      % command name/.code 2 args={#1}, % default will by constructed for '\begin{java}', '\begin{latex}' ....
+      command name prefix/.initial = {pnum},%
+      command name suffix/.initial = {},%
+      %draw environment/.initial={plainlst}, % will hold the name of the corresponding environment. It must hold one optional Argument to accept listings-definitions and one mandatory for the language
+      constructor command/.initial={LillyNewLstEnvironPlainWNums}
+}
+
 \pgfkeys{/lillyxLISTINGS/presentation/.is family,%
     /lillyxLISTINGS/presentation,
       listing style/.initial = {\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style}},% Ensure main is loaded, maybe make flexible in future versions?
@@ -111,6 +123,7 @@
       command name suffix/.initial = {},
       draw command/.initial={LILLYxLSTINLINExADVANCED} % will hold the name of the corresponding command (2 args, #1 language sequence, #2 content - will be forwarded in construction)
 }
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Environments used to style the languages
@@ -221,6 +234,18 @@
 % #3 In Extra
 % #4 Out Extra
 % #5 Language
+\def\LillyNewLstEnvironPlainWNums#1#2#3#4#5{%
+  \lstnewenvironment{#1}[1][]{#3\lstset{xleftmargin=0pt,xrightmargin=0pt,%
+  numbers=left,numbersep=7pt,frame=none,%
+  rulecolor={},backgroundcolor={},##1}}{#4}%
+}
+
+
+% #1 Name
+% #2 Key
+% #3 In Extra
+% #4 Out Extra
+% #5 Language
 % NOTE: currently no opt arg, as \@ifnextchar breaks scanning of lst@next
 \def\LillyNewLstEnvironPresent#1#2#3#4#5{%
 %\lstnewenvironment{#1}[1][]{\lstset{##1}#3}{#4}
@@ -253,7 +278,7 @@
   %   \presentlst{lLatex}
   % }{\endpresentlst}
 % This will allow us to construct the environments via foreach :D
-  \foreach \environName in {default,nonumber,plain,presentation}{%
+  \foreach \environName in {default,nonumber,plain,pnum,presentation}{%
       \debugout{Register 'env \environName' for #1/#2}%
         \edef\environCurName{\pgfkeysvalueof{/lillyxLISTINGS/\environName/command name prefix}#1\pgfkeysvalueof{/lillyxLISTINGS/\environName/command name suffix}}% assign
         \debugout{\space > Environment Name: [\environCurName]}%
@@ -301,7 +326,7 @@
 %         \lilly@tmp%
 % }
 
-\lstdefinelanguage{lVoid}{columns=fixed,moredelim=[is][{}]{|plain|}{|plain|}}
+\lstdefinelanguage{lVoid}{columns=fixed,moredelim=[is][{}]{|plain|}{|plain|},moredelim=[is][{\itshape\color{Purple}}]{|ihl|}{|ihl|},moredelim=**[is][\digitstyle]{|num|}{|num|}}
 
 \RegisterLanguage{void}{lVoid}
 

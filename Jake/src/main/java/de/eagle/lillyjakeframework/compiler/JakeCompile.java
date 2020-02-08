@@ -3,7 +3,7 @@ package de.eagle.lillyjakeframework.compiler;
 /**
  * @file JakeCompile.java
  * @author Florian Sihler
- * @version 1.0.9
+ * @version 1.0.10
  *
  * @since 2.0.0
  *
@@ -304,7 +304,8 @@ public class JakeCompile {
                     StringBuilder compileCommand = new StringBuilder();
                     compileCommand.append("pdflatex -jobname ").append(final_name).append((i+1<_max_compile)?" -draftmode ":"").append(" $(LATEXARGS) ")
                             .append(b_data[B_EXTRA]).append("${_LILLYARGS}")
-                            .append("\\\\providecommand{\\\\LILLYxBOXxMODE}{").append(boxmode).append("}");
+                            .append("\\\\providecommand{\\\\LILLYxBOXxMODE}{").append(boxmode).append("}")
+                            .append("\\\\providecommand{\\\\LILLYxCOMPILExTIME}{").append(i).append("}");
                     compileCommand.append("\\\\providecommand{\\\\LILLYxPDFNAME}{").append(final_name).append("}");
                     compileCommand.append("").append(b_data[B_INPUT]);
 

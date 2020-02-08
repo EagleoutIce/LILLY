@@ -65,7 +65,7 @@ if len(sys.argv) > 1:
                 if x not in changewatcher or float(changewatcher[x]) < os.path.getmtime(x):
                     p = x.replace(".tex","-pdf.tex")
                     with open(p,'w') as out:
-                        out.write("\\documentclass[tikz,preview]{article}\n\\usepackage[active,tightpage]{preview}\n\\usepackage{LILLYxGRAPHICS}\n\\usepackage{LILLYxLISTINGS}\n\\usepackage{LILLYxSHORTCUTS}\n\\usepackage{LILLYxMATH}\n\\usepackage{LILLYxTABLES}\n\\begin{document}\n\\tikzumlset{fill class=MudWhite, fill state=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter}%\n")
+                        out.write("\\documentclass[tikz,preview]{article}\n\\usepackage[active,tightpage]{preview}\n\\usepackage{LILLYxGRAPHICS}\n\\usepackage{LILLYxLISTINGS}\n\\usepackage{LILLYxSHORTCUTS}\n\\usepackage{LILLYxMATH}\n\\usepackage{LILLYxTABLES}\n\\usepackage[ngerman]{babel}\n\\begin{document}\n\\tikzumlset{fill class=MudWhite, fill state=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter}%\n")
                         out.write("\\begin{{preview}}\\getGraphics{{{0}}}\\end{{preview}}\n".format(x))
                         out.write("\\end{document}")
                         out.close()
