@@ -2,9 +2,9 @@
 PAPERSTEX := $(shell ls source/titleimage*.tex)
 PAPERSPDF := $(addsuffix .pdf,$(basename $(PAPERSTEX)))
 
-JOBCOUNT := 3
+JOBCOUNT := 5
 
-CLEANTARGETS := .log .aux .out .ind .bbl .blg .lof .lot .toc .idx .acn .acr .alg .glg .glo .gls .fls .fdb_latexmk .auxlock .md5 .SATZE .ZSM .UB .TOP .listing .upa .ilg .TOPIC .DEFS -slave.pdf
+CLEANTARGETS := .log .aux .out .ind .bbl .blg .lof .lot .toc .idx .acn .acr .alg .glg .glo .gls .fls .fdb_latexmk .auxlock .md5 .SATZE .ZSM .UB .TOP .listing .upa .ilg .TOPIC .DEFS -slave.pdf -compressed.pdf
 CLEANTARGET  := LILLYxClean
 
 void = return 0;
@@ -21,6 +21,8 @@ all:
 	pdflatex -shell-escape -jobname $(basename $(shell basename $@)) \\input{$<} > ./LILLY_COMPILE.log 2>&1
 	pdflatex -shell-escape -jobname $(basename $(shell basename $@)) \\input{$<} >> ./LILLY_COMPILE.log 2>&1
 	@$(call $(CLEANTARGET))
+	# gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$(basename $(shell basename $@))-compressed.pdf $(basename $(shell basename $@)).pdf
+
 
 clean:
 	@$(call $(CLEANTARGET))

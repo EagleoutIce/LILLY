@@ -40,8 +40,12 @@
   } -- (#11)
 }
 
-\def\GenerateRorschach{\makeatletter%
-\pgfmathsetseed{\number\pdfrandomseed}
+\def\GenerateRorschach{%
+\GenerateRorschachSpecific{\number\pdfrandomseed}%
+}
+
+\def\GenerateRorschachSpecific#1{\makeatletter%
+\pgfmathsetseed{#1}
 \begin{tikzpicture}[mypath/.style={decoration={random steps, segment length=6pt},decorate,rounded corners=3pt}]
   \def\max{e} \def\stepmax{25}
   \foreach \a[count=\i] in {a,...,\max}{

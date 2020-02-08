@@ -74,6 +74,7 @@
     parallelepiped offset x=2mm,
     parallelepiped offset y=1.25mm,
     xscale=-1,
+    line join=round,
     path picture={
       \draw[top color=gray!5,bottom color=gray!40]
       (path picture bounding box.south west) rectangle
@@ -101,6 +102,7 @@
     minimum height=0.75cm,
     parallelepiped offset x=3mm,
     parallelepiped offset y=2mm,
+    line join=round,
     xscale=-1,
     path picture={
       \draw[top color=gray!5,bottom color=gray!40]
@@ -148,7 +150,7 @@
   \draw [thick, shade, upper left=switch, lower left=switch,
     upper right=switch, lower right=switch!10!white] (ul)
     arc (-180:180:3cm and .75cm);
-  \node at (0,0.75){\color{blue!60!black}\Huge #1};% The name of the router
+  \node at (0,0.75){\color{switch!10!black}\Huge #1};% The name of the router
   %  We will now draw the symbol of the course
   \draw[ultra thick] (-1.9,1.75) -- ++ (1.25,0) -- ++(1.5,0.6) -- ++(1.25,0);
   \draw[ultra thick] (-1.9,2.35) -- ++ (1.25,0) -- ++(1.5,-0.6) -- ++(1.25,0);

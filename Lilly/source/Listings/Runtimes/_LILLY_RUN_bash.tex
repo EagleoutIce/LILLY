@@ -39,13 +39,14 @@
   \immediate\write18{ #2 > #1 2> #1}%
 }
 
+\gdef\rbashcurrentinject{}
 %% oldies are goldies :D
 \ifx\LILLYxCMD\undefined
 %% {file} (coming soon: [input])
 \gdef\getBashFileExecutionOutput#1{%
-\ExecuteBash{\jobname.txt}{#1}% safest way :D
-\lstinputlisting[style=BashOutput,language=lVoid,keywords={[4]{}}]{\jobname.txt}
-\immediate\write18{ rm \jobname.txt }
+\ExecuteBash{\jobname.run.out}{#1}% safest way :D
+\edef\@exectmp{\noexpand\lstinputlisting[style=BashOutput,language=lVoid,keywords={[4]{}},\rbashcurrentinject]{\jobname.run.out}}\@exectmp{}
+\immediate\write18{ rm \jobname.run.out }
 }
 \else
 \gdef\getBashFileExecutionOutput#1{Direkte Befehlsevaluation deaktiviert!}

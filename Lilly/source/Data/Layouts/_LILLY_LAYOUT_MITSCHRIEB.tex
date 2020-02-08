@@ -9,6 +9,7 @@
                     {}{} %% keine Argumente
 
 %% https://ctan.org/pkg/wasysym
+\catcode`\"=12
 \LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}%% Package, Info
                     {Sonst geht halt errorEmblem nicht xD}
                     {}{nointegrals}{\let\wasysymLightning\lightning}%% otherwise this would collide with the amssymb :D
@@ -45,6 +46,7 @@
 \newcommand{\LILLYxRIGHTMARK}{\faBookmark}
 \let\defChapter\chapter
 
+\def\xchapname{} % empty by default ^^
 \DeclareDocumentCommand{\chapter}{
     s   % starred
     O{} % optional short
@@ -60,7 +62,7 @@
         \foreach \ctmplistname in \lillyxlist {%
             \addcontentsline{\ctmplistname}{chapter}{\xchapname}%
         }
-        \renewcommand{\leftmark}{\xchapname}\renewcommand{\LILLYxRIGHTMARK}{\faBookmark}%
+        \grenewcommand{\leftmark}{\xchapname}\grenewcommand{\LILLYxRIGHTMARK}{\faBookmark}%
     }%
 }
 
@@ -184,6 +186,7 @@
 
 \AtBeginDocument{
     %%Niemand will irgendwas sehen beim TOC :D
+    \frontmatter%
     \newpage\addtocontents{toc}{\protect\pagestyle{empty}}
     \addtocontents{toc}{\protect\thispagestyle{empty}}
     %%Sichergeh :D
@@ -201,8 +204,8 @@
     \fi%
 }
 
-\AtBeginDocument{
-    \LILLYxLayoutxRestore
+\AtBeginDocument{%
+    \LILLYxLayoutxRestore\mainmatter%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -214,6 +217,7 @@
 % there is a clear command i know :P
 \def\LILLYxCLEARxHEADFOOT{\lohead{}\cohead{}\rohead{}\lofoot{}\cofoot{}\rofoot{}}
 
+\def\LillyDocLevel{chapter}
 %% Wir haben einen Mitschrieb =>
 %% - Definitionen
 %% - Sätze
@@ -226,20 +230,20 @@
      \ofoot{}\cfoot{}\ifoot{} %clear footer => fixes double page issue
     \pagestyle{empty}% \typeout{REDNECK: \n@true\space \LILLYxSEENxDEFINITION}
     \ifx\LILLYxBOXxDefinitionxEnable\true\ifthenelse{\equal{\LILLYxSEENxDEFINITION}{\n@true}}{%
-    \clearpage\phantomsection\addcontentsline{toc}{chapter}{Definitionen}
+    \clearpage\phantomsection\addcontentsline{toc}{\LillyDocLevel}{Definitionen}
     \listofDEFINITIONS
     \clearpage}{}\fi
     \ifx\LILLYxBOXxSatzxEnable\true\ifthenelse{\equal{\LILLYxSEENxSATZ}{\n@true}}{%
-    \phantomsection\addcontentsline{toc}{chapter}{Sätze}
+    \phantomsection\addcontentsline{toc}{\LillyDocLevel}{Sätze}
     \listofSATZE
     \clearpage}{}\fi
      \ifx\LILLYxBOXxLemmaxEnable\true\ifthenelse{\equal{\LILLYxSEENxLEMMA}{\n@true}}{%
-    \phantomsection\addcontentsline{toc}{chapter}{Lemmata}
+    \phantomsection\addcontentsline{toc}{\LillyDocLevel}{Lemmata}
     \listofLEMMATA\clearpage}{}\fi
     \ifx\LILLYxBOXxZusammenfassungxEnable\true\ifthenelse{\equal{\LILLYxSEENxZUSAMMENFASSUNG}{\n@true}}{%
-    \phantomsection\addcontentsline{toc}{chapter}{Zusammenfassungen}
+    \phantomsection\addcontentsline{toc}{\LillyDocLevel}{Zusammenfassungen}
     \listofZUSAMMENFASSUNGEN\clearpage}{}\fi
      \ifx\LILLYxBOXxUebungsblattxEnable\true\ifthenelse{\equal{\LILLYxSEENxUBS}{\n@true}}{%
-    \phantomsection\addcontentsline{toc}{chapter}{Übungsblätter}
+    \phantomsection\addcontentsline{toc}{\LillyDocLevel}{Übungsblätter}
     \listofUBS}{}\fi
  }

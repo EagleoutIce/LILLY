@@ -56,7 +56,7 @@
 
 %% If stared, keep default column formatting (italic, math, ...)
 \DeclareDocumentCommand{\headerrow}{ s }{%
-    \setrow{\IfBooleanF{#1}{\normalfont}\bfseries\arraybackslash}
+    \setrow{\IfBooleanF{#1}{\normalfont}\bfseries\normalsize\arraybackslash}
 }
 
 \def\cheaderrow{\setrow{\bfseries\centering\arraybackslash\hspace{0pt}}}
