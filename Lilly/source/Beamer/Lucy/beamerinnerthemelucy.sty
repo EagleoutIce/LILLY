@@ -1,10 +1,23 @@
 \mode<presentation>
+
+\newcommand\lucy@true{true}
+\providecommand{\lucyUseAlternativeTitle}{false}
+\ifx\lucyUseAlternativeTitle\lucy@true
 \defbeamertemplate*{title page}{lucy}[1][] {
-    \Fontauri
     \begin{center}
         {\Huge\color{cprimary}\inserttitle}
     \\[3.5em]
         \color{csecondary}\insertauthor
     \end{center}
 }
+\else
+\defbeamertemplate*{title page}{lucy}[1][] {
+    \Fontauri
+    \begin{center}
+        {\Huge\color{cprimary}\inserttitle}
+    \\[3.5em]
+        \color{csecondary}\insertauthor{} \(\circ\) \insertdate
+    \end{center}
+}
+\fi
 \mode<all>

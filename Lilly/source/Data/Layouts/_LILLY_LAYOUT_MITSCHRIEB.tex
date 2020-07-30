@@ -46,6 +46,7 @@
 \newcommand{\LILLYxRIGHTMARK}{\faBookmark}
 \let\defChapter\chapter
 
+\providecommand\LILLYxHideRegister{}
 \def\xchapname{} % empty by default ^^
 \DeclareDocumentCommand{\chapter}{
     s   % starred
@@ -58,10 +59,12 @@
         \ifthenelse{\equal{#2}{}}%
         {\defChapter{#3}\def\xchapname{#3}}% use same
         {\defChapter[{#2}]{#3}\def\xchapname{#2}}%
+        \expandafter\ifx\expandafter\\\LILLYxHideRegister\\
         \getRegisteredListOfLists
         \foreach \ctmplistname in \lillyxlist {%
             \addcontentsline{\ctmplistname}{chapter}{\xchapname}%
         }
+        \fi%
         \grenewcommand{\leftmark}{\xchapname}\grenewcommand{\LILLYxRIGHTMARK}{\faBookmark}%
     }%
 }
@@ -217,7 +220,7 @@
 % there is a clear command i know :P
 \def\LILLYxCLEARxHEADFOOT{\lohead{}\cohead{}\rohead{}\lofoot{}\cofoot{}\rofoot{}}
 
-\def\LillyDocLevel{chapter}
+\providecommand\LillyDocLevel{chapter}
 %% Wir haben einen Mitschrieb =>
 %% - Definitionen
 %% - Sätze

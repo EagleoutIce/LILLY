@@ -294,6 +294,7 @@
                 \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain, after title app={\leavevmode\\[-0.75\baselineskip]\ignorespaces}}}% Set Blank Box
                 \renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}% If the Box is plain, we will drop the color, as it doesnt make any sense to display color in that case ;D
             }%
+            %\addvspace{0em plus 0.33em minus 0em}%
             \phantomsection% Here we will start the corresponding box
             % BOX:
             \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,before upper app={\ignorespacesafterend},%
@@ -312,7 +313,8 @@
         \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
             \endLILLYxSPECIALBOXxHIDDEN% This shall be the end of silence :D
         }{%
-            \@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend%
+            \@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}%\addvspace{0em plus 0.33em minus 0em}
+            \ignorespacesafterend%
         }%
         \endgroup%
     }
@@ -422,7 +424,7 @@
     %%\relax %% TODO IMPLEMENT CONVENIENT INCREMEMT => MANUAL COUNTERS?
 }
 
-\tcbset{LillyxBOXxDesignxPlain/.style={frame hidden, frame code={},leftrule=0mm, left=0pt, skin first is subskin of={emptyfirst}{frame code={},interior code={}}, skin middle is subskin of={emptymiddle}{frame code={},interior code={}},skin last is subskin of={emptylast}{frame code={},interior code={}}, colback=white,colframe=white,right=-2pt,top=0pt, fonttitle=\bfseries\color{black},attach title to upper={},enhanced,opacityfill=0}}
+\tcbset{LillyxBOXxDesignxPlain/.style={frame hidden, frame code={},leftrule=0mm, left=0pt, skin first is subskin of={emptyfirst}{frame code={},interior code={}}, skin middle is subskin of={emptymiddle}{frame code={},interior code={}},skin last is subskin of={emptylast}{frame code={},interior code={}}, colback=white,colframe=white,right=-2pt,top=0pt, fonttitle=\bfseries\color{black},attach title to upper={},enhanced,opacityfill=0,lines before break=4}}
 
 
 %% Approach do generate a general Box provider
@@ -810,11 +812,11 @@
         \gdef\vSplitter{\vspace{-0.9\baselineskip} \Splitter \nskip}
     }{%
         \tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
-        \gdef\Splitter{\vspace{0.1cm} {~\\[0.2cm]\textbf{\xtranslate[L\"{o}sung]{Loesung}:}\\}}
+        \gdef\Splitter{\vspace{0.1cm} {~\\[0.2cm]\textbf{\xtranslate[L\"{o}sung]{Loesung}:}\\*[0.1cm]}}
         \gdef\vSplitter{\vspace{-0.9\baselineskip} \Splitter \vspace{-1\baselineskip}}
     }
 
-
+    \gdef\LILLYxAufgabenCounter{\arabic{ctr_EXE}.\arabic{ctr_TSK}}
     %% [OPTIONALE-ADDONS]{TITEL}{PUNKTE}
     \DeclareDocumentEnvironment{aufgabeXdefault}{ O{} m m }{% \scantokens{ %
         \refstepcounter{ctr_TSK}#1%
@@ -825,7 +827,7 @@
     }{\end{LILLYxBOXxAufgabe}}% } %
     \DeclareDocumentEnvironment{aufgabeXplain}{ O{} m m }{% \scantokens{ %
         \refstepcounter{ctr_TSK}#1%
-        \begin{LILLYxBOXxAufgabexPlain}[#2][\xtranslate{Aufgabe} \arabic{ctr_EXE}.\arabic{ctr_TSK}][LillyxBOXxDesignxPlain,after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}\leavevmode\\\ignorespaces%
+        \begin{LILLYxBOXxAufgabexPlain}[#2][\xtranslate{Aufgabe} \LILLYxAufgabenCounter][LillyxBOXxDesignxPlain,after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}\leavevmode\\\ignorespaces%
     }{\end{LILLYxBOXxAufgabexPlain}}% } %
     %% Allows live Switching between styles in the same document
     \DeclareDocumentEnvironment{aufgabe}{ O{} m m }{%

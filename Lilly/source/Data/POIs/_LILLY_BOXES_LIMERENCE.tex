@@ -1,19 +1,20 @@
 %%% TITEL TITLEPREFIX OPTIONAL-CONTROLLERS
+\def\LILLYxBOXxLIMERENCExBORDERxWIDTH{3.145pt}
 \makeatletter
-\tcbset{LillyxBOXxDesignxLimerence/.style={breakable, lines before break=3, enhanced jigsaw,sharp corners, boxrule=0pt, fonttitle={\bfseries}, coltitle={black}, attach title to upper, opacityfill=0.45, top=3pt, bottom=3pt, right=5pt, frame hidden,colback=LightGray!23!white,grow to right by=3pt,enlargepage flexible=\baselineskip,after title app={\hbox{}~\vspace*{-.85\baselineskip}\newline\unskip\widowpenalties=3 10000 10000 150}}}
+\tcbset{LillyxBOXxDesignxLimerence/.style={breakable, lines before break=3, enhanced jigsaw,sharp corners, boxrule=0pt, fonttitle={\bfseries}, coltitle={black}, attach title to upper, opacityfill=0.45, top=3pt, bottom=3pt, right=5pt, frame hidden,colback=LightGray!26!white,grow to right by=\LILLYxBOXxLIMERENCExBORDERxWIDTH,enlargepage flexible=\baselineskip,after title app={\hbox{}~\vspace*{-.85\baselineskip}\newline\unskip\widowpenalties=3 10000 10000 150}}}
 
 %%% small arrows on breaks:
 \tcbset{% #1 is the color
     LillyxBOXxDesignxLimerencexArrows/.style={%
-    borderline west={3pt}{0pt}{#1},
+    borderline west={\LILLYxBOXxLIMERENCExBORDERxWIDTH}{0pt}{#1},
     extras first and middle={overlay={%
         \begin{scope}[shift={(frame.south west)}]
-                \path[fill=#1] (0pt,0) -- ++(3pt,0pt) --  ++(-1.5pt,-3pt) --cycle;
+                \path[fill=#1] (0pt,0) -- ++(\LILLYxBOXxLIMERENCExBORDERxWIDTH,0pt) --  ++(-1.75pt,-\LILLYxBOXxLIMERENCExBORDERxWIDTH) --cycle;
         \end{scope}
     }},%
     extras middle and last={overlay={%
         \begin{scope}[shift={(frame.north west)}]
-                \path[fill=#1] (0pt,0) -- ++(3pt,0pt) --  ++(-1.5pt,3pt) --cycle;
+                \path[fill=#1] (0pt,0) -- ++(\LILLYxBOXxLIMERENCExBORDERxWIDTH,0pt) --  ++(-1.75pt,\LILLYxBOXxLIMERENCExBORDERxWIDTH) --cycle;
         \end{scope}
     }}
 }
@@ -35,10 +36,10 @@
     \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxDefinition}}\else\tcbset{LILLYxBOXxDefinitionxBoxxLimerence/.style={opacityfill=0}}\fi
 }\fi
 
-\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-3pt,   %
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-\LILLYxBOXxLIMERENCExBORDERxWIDTH,   %
 LillyxBOXxDesignxLimerence, LILLYxBOXxDefinitionxBoxxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-3.75em}{#1}}$\ifx\LILLYxBOXxDefinitionxBox\true\\[0.1pt]\else\\[-0.4\baselineskip]\fi}, %
 }
-\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-3pt,   %
+\RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{} }{ enlarge left by=-\LILLYxBOXxLIMERENCExBORDERxWIDTH,   %
 LillyxBOXxDesignxLimerence,LILLYxBOXxDefinitionxBoxxLimerence, #3, title={#2\ifthenelse{\equal{#1}{}}{\parbox[t]{\linewidth-\widthof{#2}-2em}{#1}}{--~\parbox[t]{\linewidth-\widthof{#2}-0.05em-\widthof{--~}}{#1}}\parbox[t]{2em}{\textcolor{\LILLYxColorxDefinition}{\large\faThumbTack}}\ifx\LILLYxBOXxDefinitionxBox\true\\[0.1pt]\else\\[-0.4\baselineskip]\fi},bookmark*={color=\LILLYxColorxDefinition}{#2 -- #1} %
 }
 
@@ -50,7 +51,7 @@ LillyxBOXxDesignxLimerence,LILLYxBOXxDefinitionxBoxxLimerence, #3, title={#2\ift
     \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxBeispiel}}\else\tcbset{LILLYxBOXxBeispielxBoxxLimerence/.style={opacityfill=0}}\fi
 }\fi
 
-\RenewTColorBox[use counter from=LILLYxBOXxBeispiel]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ enlarge left by=-3pt, LILLYxBOXxBeispielxBoxxLimerence,   %
+\RenewTColorBox[use counter from=LILLYxBOXxBeispiel]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ enlarge left by=-\LILLYxBOXxLIMERENCExBORDERxWIDTH, LILLYxBOXxBeispielxBoxxLimerence,   %
 LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxBeispielxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
 }
 
@@ -64,12 +65,12 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{-
     \ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxBemerkung}}\else\tcbset{LILLYxBOXxBemerkungxBoxxLimerence/.style={opacityfill=0}}\fi
 }\fi
 
-\RenewTColorBox[use counter from=LILLYxBOXxBemerkung]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ enlarge left by=-3pt,LILLYxBOXxBemerkungxBoxxLimerence ,  %
+\RenewTColorBox[use counter from=LILLYxBOXxBemerkung]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ enlarge left by=-\LILLYxBOXxLIMERENCExBORDERxWIDTH,LILLYxBOXxBemerkungxBoxxLimerence ,  %
 LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxBemerkungxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
 }
 
 %%% Die Satz-Box:
-\RenewTColorBox[use counter from=LILLYxBOXxSatz]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{ enlarge left by=-3pt, LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxSatz,   %
+\RenewTColorBox[use counter from=LILLYxBOXxSatz]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{ enlarge left by=-\LILLYxBOXxLIMERENCExBORDERxWIDTH, LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxSatz,   %
 LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\\}, %
 }
 
@@ -82,7 +83,7 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{-
     \ifx\LILLYxBOXxBeweisxBox\true\typeout{Beweis Box shown}\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxBeweis}}\else\typeout{Beweis box hidden}\tcbset{LILLYxBOXxBeweisxBoxxLimerence/.style={opacityfill=0}}\fi
 }\fi
 
-\RenewTColorBox[use counter from=LILLYxBOXxBeweis]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ enlarge left by=-3pt,LILLYxBOXxBeweisxBoxxLimerence ,  %
+\RenewTColorBox[use counter from=LILLYxBOXxBeweis]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ enlarge left by=-\LILLYxBOXxLIMERENCExBORDERxWIDTH,LILLYxBOXxBeweisxBoxxLimerence ,  %
 LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-1.75em}{#1}}$\ifx\LILLYxBOXxBeweisxBox\true\\\else\\[-0.4\baselineskip]\fi}, %
 }
 
@@ -95,13 +96,13 @@ LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{-
     \ifx\LILLYxBOXxLemmaxBox\true\typeout{Lemma Box shown}\tcbset{LILLYxBOXxLemmaxBoxxLimerence/.style={LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxLemma}}\else\typeout{Lemma box hidden}\tcbset{LILLYxBOXxLemmaxBoxxLimerence/.style={opacityfill=0}}\fi
 }\fi
 
-\RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{ enlarge left by=-3pt, LILLYxBOXxLemmaxBoxxLimerence ,  %
+\RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{ enlarge left by=-\LILLYxBOXxLIMERENCExBORDERxWIDTH, LILLYxBOXxLemmaxBoxxLimerence ,  %
 LillyxBOXxDesignxLimerence, #3, title={$\vcenter{#2\ifthenelse{\equal{#1}{}}{}{--~}\parbox[t]{\linewidth-\widthof{#2}-0.3em}{#1}}$\\}, %
 }
 
 
 %%% Die Zusammenfassung-Box:
-\RenewTColorBox[use counter from=LILLYxBOXxZusammenfassung]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ enlarge left by=-3pt, LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxZusammenfassung,   %
+\RenewTColorBox[use counter from=LILLYxBOXxZusammenfassung]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ enlarge left by=-\LILLYxBOXxLIMERENCExBORDERxWIDTH, LillyxBOXxDesignxLimerencexArrows=\LILLYxColorxZusammenfassung,   %
 LillyxBOXxDesignxLimerence, #3, IfValueTF={#1}{title={#2\ifthenelse{\equal{#1}{}}{\parbox[t]{\linewidth-\widthof{#2}-2em}{#1}}{--~\parbox[t]{\linewidth-\widthof{#2}-0.75em-\widthof{--~}}{#1}}\parbox[t]{2em}{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}\\}}{title={#2\hbox{}\hfill\parbox[t]{2em}{\textcolor{\LILLYxColorxZusammenfassung}{\large\faArchive}}}}, %
 }
 

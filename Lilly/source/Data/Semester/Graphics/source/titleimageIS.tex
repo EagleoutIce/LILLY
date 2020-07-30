@@ -1,0 +1,559 @@
+\errorcontextlines 9999
+\documentclass[tikz,border=2mm]{standalone}
+\usetikzlibrary{positioning,matrix,decorations.pathmorphing,calc,3d,shapes}
+\usepackage{LILLYxLIST}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\newlength\p \setlength\p{0.2pt} % 1.6mm
+\def\h{1.2025} % "height" mltplr
+
+% choose palette
+% \definecolor{PaletteA}{HTML}{b63a3a} % #b63a3a
+% \definecolor{PaletteB}{HTML}{f37736} % #f37736
+% \definecolor{PaletteC}{HTML}{fdf498} % #fdf498
+% \definecolor{PaletteD}{HTML}{7bc043} % #7bc043
+% \definecolor{PaletteE}{HTML}{0392cf} % #0392cf
+% \definecolor{PaletteF}{HTML}{96ceb4} % #96ceb4
+% \definecolor{PaletteG}{HTML}{ffcc5c} % #ffcc5c
+% \definecolor{PaletteH}{HTML}{854442} % #854442
+% \definecolor{PaletteI}{HTML}{dc2446} % #dc2446
+% \definecolor{PaletteJ}{HTML}{ff5588} % #ff5588
+% \definecolor{PaletteK}{HTML}{8b008b} % #8b008b
+% \definecolor{PaletteL}{HTML}{65737e} % #65737e
+% \definecolor{PaletteM}{HTML}{afafaf} % #afafaf
+% \definecolor{PaletteN}{HTML}{2e8b57} % #2e8b57
+
+% lego palette
+\definecolor{PaletteA}{HTML}{AC78BA} % #AC78BA % BUFFERED: #05131D
+\definecolor{PaletteB}{HTML}{65737e} % #65737e % buffer white #FFFFFF
+\definecolor{PaletteC}{HTML}{A0A5A9} % #A0A5A9
+\definecolor{PaletteD}{HTML}{C91A09} % #C91A09
+\definecolor{PaletteE}{HTML}{36AEBF} % #36AEBF
+\definecolor{PaletteF}{HTML}{6C6E68} % #6C6E68
+\definecolor{PaletteG}{HTML}{F2CD37} % #F2CD37
+\definecolor{PaletteH}{HTML}{0055BF} % #0055BF
+\definecolor{PaletteI}{HTML}{582A12} % #582A12
+\definecolor{PaletteJ}{HTML}{E4CD9E} % #E4CD9E
+\definecolor{PaletteK}{HTML}{237841} % #237841
+\definecolor{PaletteL}{HTML}{FE8A18} % #FE8A18
+\definecolor{PaletteM}{HTML}{BBE90B} % #BBE90B
+\definecolor{PaletteN}{HTML}{0A3463} % #0A3463
+\definecolor{PaletteO}{HTML}{720E0F} % #720E0F
+\definecolor{PaletteP}{HTML}{AA7F2E} % #AA7F2E
+\definecolor{PaletteQ}{HTML}{DF6695} % #DF6695
+
+% random color iteration
+\pgfmathsetseed{\number\pdfrandomseed}
+\pgfmathdeclarerandomlist{colors}{{PaletteA}{PaletteB}{PaletteC}{PaletteD}{PaletteE}{PaletteF}{PaletteG}{PaletteH}{PaletteI}{PaletteJ}{PaletteK}{PaletteL}{PaletteM}{PaletteN}{PaletteO}{PaletteP}{PaletteQ}}
+\def\r{\pgfmathrandomitem{\rndColor}{colors}}
+\def\mrand#1#2{random(#1,#2)}
+%\def\rand#1#2{\pgfmathsetmacro\currand{\mrand}\currand}
+
+\constructList[,]{colorBuffer1}
+\constructList[,]{colorBuffer2}
+\constructList[,]{colorBuffer3}
+\constructList[,]{colorBuffer4}
+
+
+\newif\ifdobuffer
+\dobufferfalse
+
+\iffalse
+
+% #1 at; #2 color
+\def\BrickOneXFour#1#2{
+    % front -| ++(-1\p,1\p,0) -| ++(-3\p,-1\p,0)
+    \draw[fill=#2] (#1) -| ++(\p+3\p+\p,6\p,0) -| cycle;
+    % 3d back
+    \draw[fill=#2] (#1)++(5\p,0,0) -- ++(0,0,-20\p) |- ++(-5\p,6\p,0) -- ++(0,0,20\p) -- ++(5\p,0,0) -- ++(0,-6\p,0);
+    % strut line
+    \draw (#1)++(5\p,6\p,0) -- ++(0,0,-20\p);
+
+    % buttons
+    % \begin{scope}[shift={(#1)},canvas is xz plane at y=6\p]
+    %     \draw (2.4\p,-4\p,0) circle [radius=50*\p];
+    %     \draw (2.4\p,-4\p-6\p,0) circle [radius=50*\p];
+    %     \draw (2.4\p,-4\p-12\p,0) circle [radius=50*\p];
+    %     \draw (2.4\p,-4\p-18\p,0) circle [radius=50*\p];
+
+    % \end{scope}
+    % \fill[#2,draw=black] (#1)++(2.4\p-1.75\p,7\p,-4\p) -- ++(0,-1\p,0) -- ++(2*1.75\p,0,0) -- ++(0,1\p,0) -- cycle;
+
+    \foreach \i in {3,2,1,0} {
+        \node[cylinder,draw,fill=#2,shape border rotate=130,text width=150\p,aspect =.3, scale=0.5] at ($(#1)+(2.6\p,6\p,-3\p-\i*5\p)$) {};%-\i/25
+    }
+    % \begin{scope}[shift={(#1)},canvas is xz plane at y=7\p]
+    %     \draw[fill=#2] (2.4\p,-4\p,0) circle [radius=50*\p];
+    %     \draw[fill=#2] (2.4\p,-4\p-6\p,0) circle [radius=50*\p];
+    %     \draw[fill=#2] (2.4\p,-4\p-12\p,0) circle [radius=50*\p];
+    %     \draw[fill=#2] (2.4\p,-4\p-18\p,0) circle [radius=50*\p];
+    % \end{scope}
+}
+
+ % example 3d demo
+ \iffalse
+ \BrickOneXFour{-1,0,0}{Azure}
+ \BrickOneXFour{-1,0,4}{Azure}
+ \BrickOneXFour{-1,0,8}{Azure}
+ \BrickOneXFour{-1,0,12}{Azure}
+
+ \BrickOneXFour{0,0,0}{Crimson}
+
+ \BrickOneXFour{3,0,0}{AppleGreen}
+ \BrickOneXFour{0,1.2025,0}{AppleGreen}
+ \BrickOneXFour{1,1.2025,0}{Crimson}
+ \BrickOneXFour{2,1.2025,0}{AppleGreen}
+ \BrickOneXFour{3,1.2025,0}{Crimson}
+ \BrickOneXFour{1,0,4}{AppleGreen}
+ \BrickOneXFour{2,0,4}{Crimson}
+ \BrickFourXOne{0,0,9}{ChromeYellow}
+ \BrickFourXOne{0,0,10}{ChromeYellow}
+ \BrickFourXOne{0,0,11}{ChromeYellow}
+ \BrickFourXOne{0,0,12}{ChromeYellow}
+ \BrickFourXOne{0,2*1.2025,0}{ChromeYellow}
+
+ \foreach \xyi in {0,4,8,12} {
+     \BrickOneXFour{4,0,\xyi}{Azure}
+ }
+ \BrickOneXFour{0,1.2025,12}{AppleGreen}
+
+ \BrickTwoXFour{11,1.2025,12}{AppleGreen}
+ \BrickOneXFour{11,2*1.2025,12}{Crimson}
+ \BrickOneXFour{12,2*1.2025,12}{Azure}
+
+ \BrickTwoXTwo{12,2*1.2025,5}{bondiBlue}
+ \BrickFourXOne{-5,2*1.2025,12}{Crimson}
+ \fi
+
+\fi
+
+% #1 at; #2 color; #3: width (\p+3\p+\p), #4: depth (20\p), #5 count caps x, #6 count caps y, #7 foreground cheats :D
+\def\BrickGeneric#1#2#3#4#5#6#7{
+    % front -| ++(-1\p,1\p,0) -| ++(-3\p,-1\p,0)
+    \draw[fill=#2] (#1) -| ++(#3,6\p,0) -| cycle;
+    % 3d back
+    \draw[fill=#2] (#1)++(#3,0,0) -- ++(0,0,-#4) |- ++(-#3,6\p,0) -- ++(0,0,#4) -- ++(#3,0,0) -- ++(0,-6\p,0);
+    % strut line
+    \draw (#1)++(#3,6\p,0) -- ++(0,0,-#4);
+    % caps
+    \foreach \x in {#5,...,1} {
+        \foreach \y in {#6,...,1} {
+            \node[cylinder,draw,fill=#2,shape border rotate=130,text width=150\p,aspect =.3, scale=0.5] at ($(#1)+(2.5\p+\x*5\p-5\p,6\p,-3\p-\y*5\p+5\p)$) {};%-\i/25
+        }
+    }
+    \ifdobuffer
+        \edef\tmpXContainer{\noexpand\pushList{colorBuffer\BufferC}{#1/#2/{#7}}}\tmpXContainer%
+    \else
+        \begin{pgfonlayer}{foreground}
+            \foreach \x/\y in {#7} {
+                \node[cylinder,draw,fill=#2,shape border rotate=130,text width=150\p,aspect =.3, scale=0.5] at ($(#1)+(2.5\p+\x*5\p-5\p,6\p,-3\p-\y*5\p+5\p)$) {};%-\i/25
+            }
+        \end{pgfonlayer}
+    \fi
+}
+
+
+\def\PrintBuffer#1{%
+    \csname getcolorBuffer#1\endcsname\relax
+    \foreach \pos/\col/\lst in \lillyxlist {
+        \foreach \x/\y in \lst {
+            % \typeout{X: \x, Y: \y, pos: \pos, col: \col}
+            \node[cylinder,draw,fill=\col,shape border rotate=130,text width=150\p,aspect =.3, scale=0.5] at ($(\pos)+(2.5\p+\x*5\p-5\p,6\p,-3\p-\y*5\p+5\p)$) {};%-\i/25
+        }
+    }
+    \setList{colorBuffer#1}{}% clear
+    \gdef\lillyxlist{}
+}
+
+% #2 at; #3 color
+% [cheats] :D
+\newcommand*\BrickOneXFour[3][]{\BrickGeneric{#2}{#3}{5\p}{20\p}{1}{4}{#1}}
+\newcommand*\BrickFourXOne[3][]{\BrickGeneric{#2}{#3}{20\p}{5\p}{4}{1}{#1}}
+\newcommand*\BrickTenXOne[3][]{\BrickGeneric{#2}{#3}{50\p}{5\p}{10}{1}{#1}}
+\newcommand*\BrickThreeXOne[3][]{\BrickGeneric{#2}{#3}{15\p}{5\p}{3}{1}{#1}}
+\newcommand*\BrickThreeXTwo[3][]{\BrickGeneric{#2}{#3}{15\p}{10\p}{3}{2}{#1}}
+\newcommand*\BrickTenXTwo[3][]{\BrickGeneric{#2}{#3}{50\p}{10\p}{10}{2}{#1}}
+\newcommand*\BrickTwoXFour[3][]{\BrickGeneric{#2}{#3}{10\p}{20\p}{2}{4}{#1}}
+\newcommand*\BrickFourXTwo[3][]{\BrickGeneric{#2}{#3}{20\p}{10\p}{4}{2}{#1}}
+\newcommand*\BrickSixXTwo[3][]{\BrickGeneric{#2}{#3}{30\p}{10\p}{6}{2}{#1}}
+\newcommand*\BrickTwoXThree[3][]{\BrickGeneric{#2}{#3}{10\p}{15\p}{2}{3}{#1}}
+\newcommand*\BrickSixXOne[3][]{\BrickGeneric{#2}{#3}{30\p}{5\p}{6}{1}{#1}}
+\newcommand*\BrickTwoXTwo[3][]{\BrickGeneric{#2}{#3}{10\p}{10\p}{2}{2}{#1}}
+\newcommand*\BrickOneXTwo[3][]{\BrickGeneric{#2}{#3}{5\p}{10\p}{1}{2}{#1}}
+\newcommand*\BrickTwoXOne[3][]{\BrickGeneric{#2}{#3}{10\p}{5\p}{2}{1}{#1}}
+\newcommand*\BrickOneXOne[3][]{\BrickGeneric{#2}{#3}{5\p}{5\p}{1}{1}{#1}}
+
+
+
+%% HERE WE DEFINE THE CHARACTERS AND THE CARRIAGE LOGIC
+\newcounter{carriageX} \setcounter{carriageX}{0}
+\newcounter{carriageY} \setcounter{carriageY}{0}
+
+\makeatletter
+\def\@rasterwidth{1cm}
+\def\@charheight{17cm}
+
+% .####
+% ..##.
+% ..##.
+% ..##.
+% ..##.
+% ..##.
+% .####
+
+\def\@character@I{
+    % Letter I build from bottom left to top right
+    \r\BrickFourXTwo{0,0,0}{\rndColor}
+    \r\BrickFourXTwo[4/1]{4,0,0}{\rndColor}
+    \BrickFourXTwo{2,1*\h,0}{\rndColor}
+    \r\r% buffer
+    % stack:
+    \foreach \yi in {1,...,9} {
+        \pgfmathsetmacro\currand{\mrand{1}{4}}
+        \ifnum\currand=1\else
+            \r
+        \fi
+        \BrickTwoXTwo{3,\yi*\h + 1*\h,0}{\rndColor}
+    }
+    \r\BrickFourXTwo{2,11*\h,0}{\rndColor}
+    \BrickFourXTwo[4/1]{0,12*\h,0}{\rndColor}
+    \r\BrickFourXTwo[1/1]{4,12*\h,0}{\rndColor}
+    % bottom right
+    \pgfmathsetmacro\currand{\mrand{1}{4}}
+    \ifnum\currand<2\else
+        \r\BrickOneXOne{7,1*\h,-1}{\rndColor}
+    \fi
+    \ifnum\currand<2%
+        \r\BrickTwoXOne{3,13*\h,-1}{\rndColor}
+    \else
+        \r\BrickOneXTwo{5,2*\h,0}{\rndColor}
+        \ifnum\currand=2%    
+            \r\BrickTwoXTwo{1,13*\h,0}{\rndColor}
+        \else
+            \r\BrickTwoXTwo{6,13*\h,0}{\rndColor}
+        \fi
+    \fi
+    \addtocounter{carriageX}{13}
+}
+
+% ..#######.
+% .##.....##
+% .##.....##
+% .##.....##
+% .##.....##
+% .##.....##
+% ..#######.
+
+\def\@character@O{
+    % Letter O build from bottom left to top right
+    % first the base, lets use a long part
+    \r\BrickOneXOne{2,0,0}{\rndColor}
+    \r\BrickTenXTwo{3,0,0}{\rndColor}
+    \r\BrickTenXTwo{0,1*\h,0}{\rndColor}
+    \r\BrickSixXTwo{10,1*\h,0}{\rndColor}
+
+    \foreach \yi in {2, 4, 6}{
+        \foreach \xi in {0, 11} {
+            \ifnum\yi=2
+                \ifnum\xi=11
+                    \pgfmathsetmacro\currand{\mrand{1}{3}}
+                    \ifnum\currand=2
+                        \r\BrickTwoXTwo{9,2*\h,0}{\rndColor}
+                    \fi
+                \fi
+            \fi
+
+            \r\BrickFourXTwo{\xi,\yi*\h,0}{\rndColor}
+            \pgfmathsetmacro\currand{\mrand{1}{8}}
+            \ifnum\currand<2\else
+                \ifnum\currand>5
+                    \r\BrickOneXFour[1/1]{\xi+4,\yi*\h,1}{\rndColor}
+                \else
+                    \r\BrickOneXTwo{\xi+4,\yi*\h,0}{\rndColor}
+                \fi
+            \fi
+            \pgfmathsetmacro\currand{\mrand{1}{9}}
+            \ifnum\currand<2\else
+                \r\BrickOneXTwo{\xi,\yi*\h + \h,0}{\rndColor}
+            \fi
+
+            \r\BrickFourXTwo{\xi+1,\yi*\h + \h,0}{\rndColor}
+        }
+    }
+
+    % 8
+    \r\BrickTwoXTwo[2/1]{0,8*\h,0}{\rndColor}
+    \r\BrickThreeXOne{2,8*\h,-1}{\rndColor}
+    \r\BrickThreeXOne[1/1,2/1,3/1]{2,8*\h,0}{\rndColor}
+    \r\BrickSixXTwo{10,8*\h,0}{\rndColor}
+    % 9
+    \r\BrickOneXTwo{0,9*\h,0}{\rndColor}
+    \r\BrickFourXOne{1,9*\h,-1}{\rndColor}
+    %\r\BrickFourXOne{1,9*\h,0}{\rndColor}
+    \r\BrickThreeXOne{5,9*\h,-1}{\rndColor}
+    %\r\BrickTwoXOne{6,9*\h,0}{\rndColor}
+    \dobuffertrue
+        \def\BufferC{1}
+        \r\BrickSixXTwo[5/1,6/1]{9,9*\h,0}{\rndColor}
+    \dobufferfalse
+    \r\BrickOneXTwo{15,9*\h,0}{\rndColor}
+
+    % 10
+    \r\BrickSixXTwo{0,10*\h,0}{\rndColor}
+    \r\BrickTwoXTwo{6,10*\h,0}{\rndColor}
+    \dobuffertrue
+        \def\BufferC{2}
+        \r\BrickFourXTwo[1/1]{8,10*\h,0}{\rndColor}
+    \dobufferfalse
+    \r\BrickTwoXOne{12,10*\h,-1}{\rndColor}
+    \r\BrickTwoXOne{14,10*\h,-1}{\rndColor}
+    \r\BrickOneXOne[1/1]{12,10*\h,0}{\rndColor}
+    \PrintBuffer{1} % print the buffer of below
+    \r\BrickOneXOne{15,10*\h,0}{\rndColor}
+
+    % 11
+    \r\BrickTwoXTwo[2/1]{1,11*\h,0}{\rndColor}
+    \r\BrickTwoXTwo[1/1,2/1]{3,11*\h,0}{\rndColor}
+    %\r\BrickOneXTwo[1/1]{5,11*\h,0}{\rndColor}
+    \r\BrickThreeXTwo[1/1,2/1,3/1]{5,11*\h,0}{\rndColor}
+    \r\BrickOneXOne{8,11*\h,-1}{\rndColor}
+    \PrintBuffer{2} % print the buffer of below
+    \r\BrickThreeXTwo[1/1,2/1,3/1]{9,11*\h,0}{\rndColor}
+    \r\BrickOneXOne{12,11*\h,-1}{\rndColor}
+    \r\BrickTwoXOne{13,11*\h,-1}{\rndColor}
+
+    % 12
+    \r\BrickTenXOne{2,12*\h,-1}{\rndColor}
+
+    % 13
+    \r\BrickTwoXOne{3,13*\h,-1}{\rndColor}
+    \pgfmathsetmacro\currand{\mrand{1}{3}}
+    \ifnum\currand=2
+        \r\BrickTwoXOne{6,13*\h,-1}{\rndColor}
+    \fi
+    \addtocounter{carriageX}{17}
+}
+
+% .##....##
+% .###...##
+% .####..##
+% .##.##.##
+% .##..####
+% .##...###
+% .##....##
+
+\def\@character@N{
+    % Letter N build from bottom left to top right
+
+    % 0
+    \r\BrickOneXFour[1/2]{0,0,2}{\rndColor}
+    \r\BrickTwoXTwo{1,0,0}{\rndColor}
+
+
+    \r\BrickTwoXTwo{10,0,0}{\rndColor}
+    \r\BrickOneXFour[1/1]{12,0,1}{\rndColor}
+
+    % 1
+    \r\BrickThreeXTwo{0,1*\h,0}{\rndColor}
+    \r\BrickFourXTwo{9,1*\h,0}{\rndColor}
+
+    % 2
+    \r\BrickTwoXTwo{0,2*\h,0}{\rndColor}
+    \r\BrickThreeXTwo{9,2*\h,0}{\rndColor}
+
+    % 3 - 7
+    \foreach \yi in {1,...,5} {
+        \pgfmathsetmacro\currand{\mrand{1}{4}}
+        \ifnum\currand=1
+            \BrickTwoXTwo{0,\yi*\h + 2*\h,0}{\rndColor}
+        \else\r
+            \ifnum\currand=2
+                \BrickFourXOne{-1,\yi*\h + 2*\h,0}{\rndColor}
+            \else 
+                \BrickTwoXTwo{0,\yi*\h + 2*\h,0}{\rndColor}
+            \fi
+        \fi
+    }
+
+        % down 3
+        \r\BrickFourXTwo{9,3*\h,0}{\rndColor}
+
+        % down 4
+        \r\BrickThreeXTwo{8,4*\h,0}{\rndColor}
+        \r\BrickThreeXTwo{11,4*\h,0}{\rndColor}
+
+        % down 5
+        \r\BrickThreeXTwo{8,5*\h,0}{\rndColor}
+
+        % down 6
+        \r\BrickTwoXTwo{7,6*\h,0}{\rndColor}
+        \r\BrickOneXTwo{9,6*\h,0}{\rndColor}
+
+        % down 7
+        \r\BrickThreeXTwo{6,7*\h,0}{\rndColor}
+
+    % right side
+    \foreach \yi in {1,...,5} {
+        \pgfmathsetmacro\currand{\mrand{1}{6}}
+        \ifnum\currand=1
+            \BrickThreeXTwo{12,\yi*\h + 4*\h,0}{\rndColor}
+        \else\r
+            \ifnum\currand=2
+                \BrickFourXOne{11,\yi*\h + 4*\h,0}{\rndColor}
+            \else
+                \ifnum\currand=3
+                    \BrickFourXTwo{11,\yi*\h + 4*\h,0}{\rndColor}
+                \else
+                    \BrickTwoXTwo{12,\yi*\h + 4*\h,0}{\rndColor}
+            \fi
+            \fi
+        \fi
+    }
+
+    % 8
+    \r\BrickFourXTwo{-1,8*\h,0}{\rndColor}
+    \r\BrickFourXTwo{5,8*\h,0}{\rndColor}
+
+    % 9
+    \r\BrickFourXTwo{0,9*\h,0}{\rndColor}
+    \r\BrickTwoXTwo{5,9*\h,0}{\rndColor}
+
+    % 10
+    \r\BrickThreeXTwo{0,10*\h,0}{\rndColor}
+    \r\BrickThreeXTwo{4,10*\h,0}{\rndColor}
+    \r\BrickThreeXTwo{10,10*\h,0}{\rndColor}
+
+    % 11 
+    \dobuffertrue
+        \def\BufferC{3}
+        \r\BrickSixXTwo[2/1,3/1,4/1,5/1]{-1,11*\h,0}{\rndColor}
+    \dobufferfalse
+    \r\BrickOneXTwo{5,11*\h,0}{\rndColor}
+    \dobuffertrue
+        \def\BufferC{4}
+        \r\BrickThreeXTwo[1/1,2/1]{11,11*\h,0}{\rndColor}
+    \dobufferfalse
+
+    % 12
+    \r\BrickFourXOne{0,12*\h,-1}{\rndColor}
+    \PrintBuffer{3}
+    \r\BrickTwoXTwo{4,12*\h,0}{\rndColor}
+    \r\BrickTwoXOne{11,12*\h,-1}{\rndColor}
+    \PrintBuffer{4}
+    \r\BrickOneXTwo{13,12*\h,0}{\rndColor}
+
+    % 13
+    \r\BrickSixXTwo{1,13*\h,0}{\rndColor}
+    \pgfmathsetmacro\currand{\mrand{8}{11}}
+    \r\BrickSixXTwo{\currand,13*\h,0}{\rndColor}
+
+    \addtocounter{carriageX}{20}
+}
+
+% .########
+% .##......
+% .##......
+% .######..
+% .##......
+% .##......
+% .##......
+
+\def\@character@F{
+    % Letter N build from bottom left to top right
+
+    % 0
+    \r\BrickThreeXTwo{0,0,0}{\rndColor}
+    \dobuffertrue
+        \def\BufferC{1}
+        \r\BrickTwoXOne[1/1]{0,0,1}{\rndColor}
+    \dobufferfalse
+    \r\BrickOneXFour[1/1]{3,0,2}{\rndColor}
+
+    % 1
+    \r\BrickTwoXThree{0,1*\h,0}{\rndColor}
+    \r\BrickTwoXTwo{3,1*\h,0}{\rndColor}
+    \PrintBuffer{1}
+    \r\BrickThreeXOne{1,1*\h,1}{\rndColor}
+
+    % 2
+    \r\BrickThreeXTwo[2/1,3/1]{1,2*\h,1}{\rndColor}
+
+    % 3
+    \r\BrickTwoXTwo{0,3*\h,1}{\rndColor}
+    \r\BrickTwoXTwo{2,3*\h,0}{\rndColor}
+
+    % 4
+    \r\BrickThreeXTwo[2/1,3/1]{1,4*\h,1}{\rndColor}
+
+    % 5
+    \r\BrickTwoXThree[2/1]{0,5*\h,2}{\rndColor}
+    \r\BrickTwoXTwo{2,5*\h,0}{\rndColor}
+
+    % 6
+    \r\BrickThreeXTwo[2/1,3/1]{1,6*\h,1}{\rndColor}
+
+    % 7
+    \r\BrickTwoXTwo[1/1,2/1]{0,7*\h,2}{\rndColor}
+    \r\BrickThreeXTwo{2,7*\h,0}{\rndColor}
+    \r\BrickSixXOne{5,7*\h,0}{\rndColor}
+    \r\BrickSixXTwo{5,7*\h,1}{\rndColor}
+
+    % 8
+    \r\BrickFourXOne{0,8*\h,0}{\rndColor}
+    \r\BrickFourXTwo{4,8*\h,0}{\rndColor}
+    \r\BrickTenXOne{0,8*\h,1}{\rndColor}
+
+    % 9
+    \r\BrickFourXTwo{2,9*\h,1}{\rndColor}
+
+    % 10
+    \r\BrickThreeXTwo{1,10*\h,1}{\rndColor}
+    \r\BrickOneXTwo{4,10*\h,1}{\rndColor}
+
+    % 11
+    \r\BrickFourXTwo{2,11*\h,1}{\rndColor}
+
+    % 12
+    \r\BrickFourXTwo{1,12*\h,1}{\rndColor}
+    \r\BrickSixXTwo{6,12*\h,1}{\rndColor}
+    \r\BrickOneXTwo{15,12*\h,1}{\rndColor}
+
+    % 13
+    \r\BrickTenXTwo{0,13*\h,1}{\rndColor}
+    \r\BrickSixXTwo{10,13*\h,1}{\rndColor}
+
+    \addtocounter{carriageX}{19}
+}
+
+% MAJOR:
+
+\def\PlaceCharacter#1{%
+    \begin{scope}[xshift=\value{carriageX}*\@rasterwidth,yshift=-\value{carriageY}*\@charheight]
+        \@nameuse{@character@#1}
+    \end{scope}%
+}
+\def\NewLine{\setcounter{carriageX}{0}\addtocounter{carriageY}{1}}
+
+\makeatother
+
+
+\begin{document}
+\begin{tikzpicture} [line join=round]
+    % \begin{scope}[canvas is xz plane at y=0]
+    %     \draw[gray] (-5,5) grid ++ (75,-10);
+    % \end{scope}
+    % \begin{scope}[canvas is xy plane at z=-5]
+    %     \draw[gray] (-5,0) grid ++ (75,20);
+    % \end{scope}
+    % \begin{scope}[canvas is yz plane at x=-5]
+    %     \draw[gray] (0,-5) grid ++ (20,10);
+    % \end{scope}
+    \PlaceCharacter{I}\PlaceCharacter{N}\PlaceCharacter{F}\PlaceCharacter{O}\NewLine{}
+    % \PlaceCharacter{N}\PlaceCharacter{N}\PlaceCharacter{N}\PlaceCharacter{N}\PlaceCharacter{N}
+    % \PlaceCharacter{I}\PlaceCharacter{N}\PlaceCharacter{O}\NewLine{}
+    \node[above=5.75cm] at(current bounding box.north) {};
+    \node[below=5.75cm] at(current bounding box.south) {};
+\end{tikzpicture}
+\end{document}
