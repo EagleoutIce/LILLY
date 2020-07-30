@@ -57,7 +57,7 @@
     orientation/.is choice,
     orientation/left/.code={\gdef\@@lilly@banner@curstart{(current page.north west)}\gdef\@@lilly@banner@curend{([xshift=\@@lilly@banner@curwidth]current page.south west)}}, % Left Banner
     orientation/top/.code={\gdef\@@lilly@banner@curstart{(current page.north west)}\gdef\@@lilly@banner@curend{([yshift=-\@@lilly@banner@curwidth]current page.north east)}}, % Top Banner
-    orientation/right/.code={\gdef\@@lilly@banner@curstart{(current page.north east)}\gdef\@@lilly@banner@curend{([xshift=-\@@lilly@banner@curwidth]current page.south east)}}, % Right Banner
+    orientation/right/.code={\gdef\@@lilly@banner@curstart{([xshift=-2cm]current page.north east)}\gdef\@@lilly@banner@curend{([xshift=-\@@lilly@banner@curwidth]current page.south east)}}, % Right Banner
     orientation/bottom/.code={\gdef\@@lilly@banner@curstart{(current page.south west)}\gdef\@@lilly@banner@curend{([yshift=\@@lilly@banner@curwidth]current page.south east)}}, % Bottom Banner
     width/.store in=\@@lilly@banner@curwidth, % width
     length/.store in=\@@lilly@banner@curlength, % length
@@ -85,7 +85,7 @@
 % #3 field width
 % #4 field height
 \long\def\@@banner@node#1#2#3#4{%
-\draw #2 node[overlay,minimum width=#3,minimum height=#4,below right] {\begin{minipage}[t][#4]{#3}#1\end{minipage}}; % ,align=flush left,draw,rectangle]
+\draw #2 node[overlay,minimum width=#3,xshift=-#3,minimum height=#4,below right] {\begin{minipage}[t][#4]{#3}#1\end{minipage}}; % ,align=flush left,draw,rectangle]
 }
 
 % #1 pgfkeys
@@ -94,7 +94,7 @@
     % Set the Banner
     \begin{switch}{\@@lilly@banner@bannerdrawer}
         \case{bookmark}{%
-            \@@bookmark@banner{upper left=\@@lilly@banner@curbgtopleftcolor,lower left=\@@lilly@banner@curbgbotleftcolor,upper right=\@@lilly@banner@curbgtoprightcolor,lower right=\@@lilly@banner@curbgbotrightcolor}{\@@lilly@banner@curstart}{\@@lilly@banner@curlength}{1.5cm}{\@@lilly@banner@curwidth}{%
+            \@@bookmark@banner{upper left=\@@lilly@banner@curbgtopleftcolor,lower left=\@@lilly@banner@curbgbotleftcolor,upper right=\@@lilly@banner@curbgtoprightcolor,lower right=\@@lilly@banner@curbgbotrightcolor}{\@@lilly@banner@curstart}{\@@lilly@banner@curlength}{1.5cm}{-\@@lilly@banner@curwidth}{%
                 \@@lilly@banner@precode%
                 \@@banner@node{\BODY}{\@@lilly@banner@curstart}{\@@lilly@banner@curwidth}{\@@lilly@banner@curlength-1.5cm}%
                 \@@lilly@banner@postcode%

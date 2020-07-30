@@ -1,0 +1,32 @@
+%%% Diese Datei enthält alle notwendigen Definitionen
+
+\def\PROFESSOR{Prof. Dr. Manfred Reichert}
+
+\def\UEBUNGSLEITER{Unbekannt}
+\def\TUTOR{Unbekannt}
+
+\def\TITLE{Informationssysteme}
+\def\SUBTITLE{\PROFESSOR}
+
+
+
+\LILLYcommand{\VORLESUNG}{\is}
+
+\setlength{\itemsep}{0.15\baselineskip}
+
+%% LAYOUT CONTROL
+\providedef{LILLYxBOXxSatzxLock}{TRUE}
+\providedef{LILLYxBOXxDefinitionxLock}{TRUE}
+
+\providecommand\LILLYxColorxTITLExOffset{11.6cm}
+
+\providedef{LILLYxBOXxBeispielxBox}{FALSE}
+\providedef{LILLYxBOXxBeweisxBox}{FALSE}
+\ifcsname LILLYxUBxSHOWTUTOR\endcsname\else
+    \gdef\LILLYxUBxSHOWTUTOR{TRUE}
+\fi
+
+%%NEW TITLE
+
+\LILLYcommand{\LILLYxFACULTY}{\LILLYxFACULTYxPRAKTISCHEINFORMATIK}
+\LILLYcommand{\LILLYxFACULTYxCOLOR}{FacultyPraktischeInformatikxColor}

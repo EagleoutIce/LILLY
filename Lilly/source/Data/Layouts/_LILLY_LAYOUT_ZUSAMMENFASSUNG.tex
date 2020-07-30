@@ -41,7 +41,7 @@
     \chead{}
 \else
     \lohead{\AUTHOR}
-    \lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}\leftmark}
+    \lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}\,\leftmark}
     \cfoot{}
     \chead{}
     \rohead{\VORLESUNG}
@@ -61,7 +61,7 @@
 \newcommand{\startAppendix}{\clearpage\par\phantomsection%
 \addcontentsline{toc}{section}{Anhang}\addcontentsline{TOPIC}{TOPICS}{Anhang}\addcontentsline{DEFS}{chapter}{Anhang}\appendixtrue%
 \ifx\LILLYxMODE\LILLYxMODExPRINT\lehead{\textsf{$\mathbf{A}\mid\,$ \normalfont\textsf{Anhang}}}%
-\else\lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}Anhang}%
+\else\lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}\,Anhang}%
 \fi
 }
 
@@ -86,13 +86,13 @@
 
 
 \providecommand{\TOP}[3][top_default_jmpmrk]{%
-    \ifappendix%
+    \addvspace{1.5em plus 0.75em minus 0.5em}\ifappendix%
     \refstepcounter{ctr_ADDONS}\addcontentsline{toc}{subsection}{#2}\else%
     \ifnum\value{TOPICS}>-1\addcontentsline{DEFS}{chapter}{#2}\fi\addcontentsline{toc}{section}{#2}%
     \TOPICS{#2}\markleft{#2}\fi\elable{top:#1}%
-    \leavevmode\\%%breakpatch
-    \parbox{\linewidth}{{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \ifappendix\arabic{ctr_ADDONS}\else\arabic{TOPICS}\fi) #2} \hfill{\tiny #3}}\vspace{-0.5\baselineskip}\newline%
-    \rule{\textwidth}{2pt}\smallskip\\\ignorespacesafterend%
+    \nopagebreak[4]\par\nopagebreak[4]%%breakpatch
+    \parbox{\linewidth}{{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \ifappendix\arabic{ctr_ADDONS}\else\arabic{TOPICS}\fi) #2} \hfill{\tiny #3}}\vspace{-0.5\baselineskip}\\*%
+    \rule{\textwidth}{2pt}\smallskip\\*\ignorespacesafterend%
 }
 
 \DeclareRobustCommand{\kw}[1]{\textbf{#1}\index{#1}}
@@ -189,7 +189,7 @@
     \protect\pagestyle{empty}\TOPICS{Stichwortverzeichnis}
     \printindex
     \LILLYxINDEXxINTERMEDIATExFORMAT
-    \ifx\LILLYxBOXxDefinitionxEnable\true
+    \ifx\LILLYxBOXxDefinitionxEnable\true\ifthenelse{\equal{\LILLYxSEENxDEFINITION}{\n@true}}{%
     \pagenumbering{gobble}\protect\pagestyle{empty}\phantomsection\addcontentsline{toc}{chapter}{Definitionen}\elable{mrk:DEFS}
-    \listofDEFINITIONS\fi
+    \listofDEFINITIONS}{}\fi
 }
