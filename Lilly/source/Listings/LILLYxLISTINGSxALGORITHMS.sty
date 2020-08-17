@@ -86,7 +86,7 @@
 \DeclareDocumentEnvironment{algorithm*}{%
   O{\@lilly@AUTOPLACEMENTALGO} m O{#2}
 }{\bgroup\addcontentsline{ALGO}{section}{\makebox[.4cm][r]{\@@@lillystpone{algocf}.} #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgos[#1]}\@tbg\Indm%
-}{\ifx\\#2\\\else\caption[#3]{#2}\fi\end@oldalgos\@lillyalgo@exit\egroup}
+}{\ifx\\#2\\\else\caption[#3]{#2\label{alg:#2}}\fi\end@oldalgos\@lillyalgo@exit\egroup}
 
 
 \let\@oldprodc\procedure \let\end@oldprodc\endprocedure

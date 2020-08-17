@@ -1,0 +1,86 @@
+\documentclass{standalone}
+% \usepackage{tikz}
+\usepackage{LILLYxCOLOR}
+\usepackage{LILLYxGRAPHICS}
+\usepackage{enumitem}     
+\usepackage{tikz-3dplot}
+\usetikzlibrary{svg.path}
+\def\Head{svg {M 29,64 C 23,64 17,63 13,61 C  9,59  4,52  2,47 C  0,42  3,28  8,22 C 13,16 10,14  8, 8 C 10, 5 26, 6 29, 0 C 30, 2 34, 5 36, 6 C 38, 7 41, 8 43, 7 C 45, 6 50, 5 52, 7 C 54, 9 53,11 53,12 C 53,13 55,16 55,17 C 55,18 53,19 53,20 C 53,21 56,22 56,23 C 56,24 54,25 54,28 C 54,31 62,31 62,33 C 62,35 54,41 53,43 C 52,45 50,51 49,54 C 48,57 53,60 51,61 C 49,62 35,64 29,64 Z}}
+
+% cube
+\def\CubeWhite{white}
+\def\CubeBlack{black}
+\newcommand*\Cube[3][]{\bgroup%
+\pgfmathsetmacro\tileRadius{0.09}
+\def\colfront{Crimson}\def\colside{\CubeWhite}
+\def\upperRotation{140}
+\tdplotsetmaincoords{70}{100}
+\begin{scope}[xshift=#2cm,yshift=#3cm,line join=round,scale=0.2325,#1,every node/.style={transform shape}]
+\clip (-3,-2.5) rectangle (3,2.5);
+\begin{scope}[tdplot_main_coords]
+    \filldraw [\CubeBlack,canvas is yz plane at x=1.5] (-1.5,-1.5) rectangle (1.5,0.5);
+    \filldraw [\CubeBlack,canvas is xz plane at y=1.5] (-1.5,-1.5) rectangle (1.5,0.5);
+    \filldraw [\CubeBlack,canvas is yx plane at z=0.5] (-1.5,-1.5) rectangle (1.5,1.5);
+    \foreach \x in {-1.5,-0.5,0.5}{
+        \foreach \y in {-1.5,-0.5}{
+            \draw [canvas is yz plane at x=1.5,shift={(\x,\y)},fill=\colside,draw=\CubeBlack] (0.5,0) -- ({1-\tileRadius},0) arc (-90:0:\tileRadius) -- (1,{1-\tileRadius}) arc (0:90:\tileRadius) -- (\tileRadius,1) arc (90:180:\tileRadius) -- (0,\tileRadius) arc (180:270:\tileRadius) -- cycle;
+            \draw [canvas is xz plane at y=1.5,shift={(\x,\y)},fill=Crimson,draw=\CubeBlack] (0.5,0) -- ({1-\tileRadius},0) arc (-90:0:\tileRadius) -- (1,{1-\tileRadius}) arc (0:90:\tileRadius) -- (\tileRadius,1) arc (90:180:\tileRadius) -- (0,\tileRadius) arc (180:270:\tileRadius) -- cycle;
+        }
+    }
+    \tdplotsetrotatedcoords{0}{0}{-\upperRotation+90}
+    \begin{scope}[tdplot_rotated_coords]
+        \foreach \x in {-1.5,-0.5,0.5}{
+            \filldraw [draw=\CubeBlack,canvas is yz plane at x=1.5,shift={(\x,0.5)}] (0,0) rectangle (1,1);
+            \filldraw [draw=\CubeBlack,canvas is xz plane at y=1.5,shift={(\x,0.5)}] (0,0) rectangle (1,1);
+            \draw [canvas is yz plane at x=1.5,shift={(\x,0.5)},fill=\colside,draw=\CubeBlack] (0.5,0) -- ({1-\tileRadius},0) arc (-90:0:\tileRadius) -- (1,{1-\tileRadius}) arc (0:90:\tileRadius) -- (\tileRadius,1) arc (90:180:\tileRadius) -- (0,\tileRadius) arc (180:270:\tileRadius) -- cycle;
+            \draw [canvas is xz plane at y=1.5,shift={(\x,0.5)},fill=\colfront,draw=\CubeBlack] (0.5,0) -- ({1-\tileRadius},0) arc (-90:0:\tileRadius) -- (1,{1-\tileRadius}) arc (0:90:\tileRadius) -- (\tileRadius,1) arc (90:180:\tileRadius) -- (0,\tileRadius) arc (180:270:\tileRadius) -- cycle;
+            \foreach \y in {-1.5,-0.5,0.5}{
+                \filldraw [\CubeBlack,canvas is yx plane at z=1.5,shift={(\x,\y)}] (0,0) rectangle (1,1);
+                \draw [canvas is yx plane at z=1.5,shift={(\x,\y)},fill=AppleGreen,draw=\CubeBlack] (0.5,0) -- ({1-\tileRadius},0) arc (-90:0:\tileRadius) -- (1,{1-\tileRadius}) arc (0:90:\tileRadius) -- (\tileRadius,1) arc (90:180:\tileRadius) -- (0,\tileRadius) arc (180:270:\tileRadius) -- cycle;
+            }
+        }
+    \end{scope}
+\end{scope}
+\end{scope}\egroup
+}
+
+\begin{document}
+% basing by: https://tex.stackexchange.com/questions/370961/tikz-silhouette-of-human-face-seen-from-the-side
+\begin{tikzpicture}[scale=1.35]
+    \begin{scope}[xscale=-1]
+        \draw[thin] \Head;
+    \end{scope}
+    \begin{scope}[xshift=-0.35cm]
+        \fill[black] \Head;
+    \end{scope}
+    % white overlay for line crossing right head
+    \begin{scope}% clip scope
+        \begin{scope}[xshift=-0.35cm]% shift scope
+            \clip \Head;
+            \begin{scope}[xshift=0.35cm,xscale=-1]
+                \draw[white] \Head;
+            \end{scope}
+        \end{scope}
+    \end{scope}
+    \Cube[rotate=-5]{-1}{1.45}
+    \def\CubeBlack{white}
+    \def\CubeWhite{black}
+    \Cube[rotate=5,xscale=-1]{0.7}{1.45}
+    % draw the dash dot mouth circle
+    \draw[densely dashed,thin,black] (-2.25,0.64) arc (100:80:12cm);
+    % scope clipped white
+    \begin{scope}% clip scope
+        \begin{scope}[xshift=-0.35cm]% shift scope
+            \clip \Head;
+            \begin{scope}[xshift=0.35cm]
+                \draw[densely dashed,thin,white] (-2.25,0.64) arc (100:80:12cm);
+            \end{scope}
+        \end{scope}
+    \end{scope}
+    % upper lower margin nodes
+    \node[above] at(current bounding box.north) {};
+    \node[below] at(current bounding box.south) {};
+    \node[right] at(current bounding box.east) {};
+    \node[left] at(current bounding box.west) {};
+\end{tikzpicture}
+\end{document}

@@ -121,7 +121,8 @@
 \lstlastwasacharacterfalse
 \newif\iflstlastwasacharacterkeep
 \lstlastwasacharacterkeepfalse
-
+\newif\iflstdonumhl
+\lstdonumhltrue
 \newif\iflstforcenum
 \lstforcenumfalse
 % \newif\iflstnumnohlmode% Will prevent h31 <- 3 to highlight as '3' would reset the hl behavior
@@ -133,6 +134,7 @@
 {\begingroup%
 %\iflstnumnohlmode%
   %#1\else
+  \iflstdonumhl%
   \iflstlastwasacharacter%\lstnumnohlmodetrue% was char => don't highlight, we won't check for hex right now
   \global\lstlastwasacharacterkeeptrue#1\else\global\lstlastwasacharacterkeepfalse%
     \ifnum\lst@mode=\lst@Pmode\relax% PMode: Not in any special Mode
@@ -140,7 +142,7 @@
     \else\iflstforcenum%should num be forced?
       {\digitstyle #1}\else#1\fi%
     \fi\hbox{\relax{}}%
-  \fi%
+  \fi\else#1\fi%
   %\fi
   \endgroup
 }

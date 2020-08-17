@@ -18,6 +18,7 @@ import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.MacOSJakeInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.WindowsJakeInstaller;
 import de.eagle.lillyjakeframework.installer.LillyInstaller.LinuxLillyInstaller;
+import de.eagle.lillyjakeframework.installer.LillyInstaller.MacOSLillyInstaller;
 import de.eagle.util.io.JakeWriter;
 
 import java.io.File;
@@ -171,7 +172,7 @@ public class PropertiesProvider {
             case LINUX:
                 return new LinuxLillyInstaller(gui);
             case MAC:
-                return new MacOSJakeInstaller(gui);
+                return new MacOSLillyInstaller(gui);
             case WINDOWS:
                 return new WindowsJakeInstaller(gui);
             default:
