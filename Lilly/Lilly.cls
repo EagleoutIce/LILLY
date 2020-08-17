@@ -65,8 +65,8 @@
 \LoadClass[\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,titlepage=firstiscover,\LILLYxDocumentxTYPExExtras,\LILLYxPAPER]{\LILLYxDocumentxTYPE}
 
 %% Finde ich so generell schöner zum Lesen :D
-\renewcommand*{\thefootnote}{$\langle$\textbf{\doublealph{footnote}}$\rangle$}
-\renewcommand*{\thempfootnote}{$\langle$\textbf{\arabic{mpfootnote}}$\rangle$}
+\renewcommand*{\thefootnote}{$\langle$\textbf{\arabic{footnote}}$\rangle$}
+\renewcommand*{\thempfootnote}{$\langle$\textbf{\doublealph{mpfootnote}}$\rangle$}
 
 
 %% NEU, weil cooler:

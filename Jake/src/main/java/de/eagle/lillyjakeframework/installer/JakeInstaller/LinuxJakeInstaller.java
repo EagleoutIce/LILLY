@@ -180,7 +180,7 @@ public class LinuxJakeInstaller extends AutoInstaller {
                         needed.add(prg[1]);
                     }
                     p.waitFor();
-                } catch (Exception ingored) { needed.add(prg[1]); }
+                } catch (Exception ignored) { needed.add(prg[1]); }
 
             }
             if(needed.size()>0){

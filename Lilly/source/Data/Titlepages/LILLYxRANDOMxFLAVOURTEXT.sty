@@ -4,7 +4,7 @@
 \RequirePackage{LILLYxRANDOM} %% init random
 \RequirePackage{LILLYxENCODING} %% Wir nutzen hier Umlaute :P
 
-\def\@@@flavourtext@cnt{14}
+\def\@@@flavourtext@cnt{18}
 
 \def\@flavourtext@author#1{%
     \hbox{}\hfill {\tiny{\usefont{T1}{qzc}{m}{it}  Florian Sihler, #1}}\par%
@@ -19,6 +19,7 @@
     because when the darkness rise'\\
     It shall be the only thing alive.\@flavourtext@author{23.12.2018}}
 }
+
 \@namedef{@@@flavourtext@2}{% Ursprünglicher Text Semester %2
     {Und da waren sie wieder und tanzten im Mondlicht,\\
     Während um sie eine Welt voller Hohn ist,\\
@@ -123,7 +124,7 @@
     Wenn sie tanzen dort am Lagerfeuer; so glücklich und verliebt,\\
     Vergessen sie der Schatten Schrecken, im Wiegen der Musik.\\
     Wo der Harfespieler Saiten zieht, hüpfen sie im Takt,\\
-    Im Licht dieser Welt hat wohl jeder seinen Platz.}%
+    Im Licht dieser Welt hat dann wohl jeder seinen Platz.}%
     \@flavourtext@author{13.08.2019}}
 }
 
@@ -159,7 +160,8 @@
     \parbox{4.95cm}{%
     Die Sonne steht dort im Zenit\\
     wirft Schatten mit den Wolken\\
-    und obwohl es Mammuts nicht mehr gibt,\\
+    und obwohl es Mammuts nicht\\
+    mehr gibt,\\
     reden wir von solchen.
     }\parbox{4.95cm}{%
     Wir, die wir schon längst,\\
@@ -170,9 +172,44 @@
 }
 
 % Make New:
+\@namedef{@@@flavourtext@15}{% Aus: Lachgeschichten
+    {{%
+Wehmutig tränkt der Schuhe alter Pfade,\\
+Schuld drückt die Sohlen in den Schlamm.\\
+Ledern läuft er barfuß, dann und wann,\\
+der Blick geht zum Anfang aller Tage.}%
+    \@flavourtext@author{25.02.2020}}
+}
+
+\@namedef{@@@flavourtext@16}{% Aus: Tarotkartenspieler
+    {{%
+    \parbox{4.95cm}{Still und schweigsam hilet er,\\
+was das letzte Licht des\\
+Tages war.}\parbox{4.95cm}{%
+Ein Tarotkartenspieler\\
+legt ihm aller Zukunft\\offen dar}}\smallskip\\%
+    \@flavourtext@author{3.07.2020}}
+}
 
 
-
+\@namedef{@@@flavourtext@17}{% Aus: Tarotkartenspieler
+    {{%
+Einen Tag lang, soll es wieder gestern sein.\\
+Alles Zukunft, wie noch eben.}%
+    \@flavourtext@author{3.07.2020}}
+}
+\@namedef{@@@flavourtext@18}{% Aus: Sieh, die Blumen sprießen
+    {{\hspace*{-0.125cm}%
+    \parbox{4.95cm}{Falter fliegen frei dem Wind\\
+    und huldigen dem Flammenschein,\\
+    Noten die hier fliegen,\\
+    flattern niemals wieder Heim.}\parbox{4.95cm}{%
+    Und so bleibt es nur beim Wiegen\\
+    und der Wind umsäumt den Hain\\
+    und es legt sich zu den Toten, das\\
+    was niemals hätte sollen sein.}}\smallskip\\
+    \@flavourtext@author{3.08.2020}}
+}
 
 \def\RandomFlavourText{% Generate a Random Number between '1' and '\@@@flavourtext@cnt'
     \pgfmathrandominteger{\lilly@rnd@tmp}{1}{\@@@flavourtext@cnt}%

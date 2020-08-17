@@ -150,13 +150,14 @@
 \gdef\LILLYxPHILOSOPHERxINIT{\newgeometry{margin = 0pt}}
 
 \providecommand{\LILLYxPHILOSOPHERxMETADATA}{%
-    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\@Lilly@@Philosopher@Type@Decode{\LILLY@Typ} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
+    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\@Lilly@@Philosopher@Type@Decode{\LILLY@Typ} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\hypersetup{urlcolor=black}\href{mailto:\AUTHORMAIL}{\AUTHORMAIL}}\par}
     \vspace{0.5cm}%
     {\itshape\small Version vom: \\ \heute\par}}}
 }
 
 %% title toc listname
 \providecommand{\LILLYxPHILOSOPHERxBONUSxTTOCxHEADER}{Themenübersicht}
+\providecommand\LILLYZSFxLOGOHEIGHT{11em}
 
 %% This variant prints an highlighted Bonus and include \LILLY@n/a number if wanted as an extra number to seperate Versions
 \DeclareDocumentCommand{\LILLYxTITLExBONUS}{%
@@ -184,13 +185,13 @@
     \filldraw[#1] (0,0) |- ++(#6,1.25) -- ++(-0.75,-1.25) -- cycle;
     \node[right,#2] at (\LILLYxLeftsep,0.5) {\Huge\bfseries#3};
     \begin{pgfinterruptboundingbox}
-    \node[left] at(\paperwidth-1.5cm,0.45) {\IfFileExists{#7}{\includegraphics[height=11em]{#7}}{\parbox[t][11em]{7em}{No Image}}};
+    \node[left] at(\paperwidth-1.05cm,0.45) {\IfFileExists{#7}{\includegraphics[height=\LILLYZSFxLOGOHEIGHT,width=21.25em,keepaspectratio]{#7}}{\parbox[t][\LILLYZSFxLOGOHEIGHT]{7em}{No Image}}};
     \end{pgfinterruptboundingbox}
 \end{tikzternal}
-    } {\par\vspace*{9em}\par}%
+    } {\par\vspace*{9em plus 3.75em minus 3.75em}\par}%
     {\centering% Title:
     {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{39pt}{39pt}\selectfont\FULLTITLE}\par%
-    } {\par\vspace*{8em}\par}%
+    } {\vspace*{4em plus 3em minus 3em}\par}%
     \hbox{}
     \setLinkColor{Charcoal}%!75!darkgray}%
     %{\def\linewidth{4cm} }{\listofTOPICS}
@@ -206,7 +207,7 @@
     }
     \hbox{}\vfill%
     \LILLYxPHILOSOPHERxMETADATA
-    {\par\vspace*{7.5em}\par}%
+    {\par\vspace*{7.5em plus 3em minus 3em}\par}%
     \LILLYxPHILOSOPHERxBORDERBLOCK[#1][#2]{3}[#4][#5] %% height
     %\vspace{-3pt}% Compensate offset
     %%
@@ -218,7 +219,7 @@
 \newlength\lilly@philosopher@titleraw@h
 \setlength{\lilly@philosopher@titleraw@h}{20em}
 \DeclareDocumentCommand{\LILLYxTITLExRAW}{ o }{
-    \begingroup\hypersetup{pageanchor=false}%
+    \begingroup\hypersetup{pageanchor=false}\setlength{\parindent}{0em}%
     \clearpage\begin{titlepage}
         \LILLYxPHILOSOPHERxINIT%
         {\centering\par\vspace*{7em}\par

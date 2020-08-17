@@ -17,7 +17,7 @@
                     {section}{\AtBeginDocument{%
                     \expandafter\renewcommand\expandafter\subsection\expandafter
                       {\expandafter\@fb@subsecFB\subsection}%
-                    \newcommand\@fb@subsecFB{\FloatBarrier
+                    \newcommand\@fb@subsecFB{% \FloatBarrier
                     \gdef\@fb@afterHsHook{\@fb@topbarrier \gdef\@fb@afterHsHook{}}}
                     \g@addto@macro\@afterheading{\@fb@afterHsHook}
                     \gdef\@fb@afterHsHook{} %% currently not working as excepted :P

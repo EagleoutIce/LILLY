@@ -1,6 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCOLOR}[2019/07/11 Stellt die Farb-Erweiterungen fuer LILLY zur Verfuegung]
 
+\providecommand{\LILLYxMODExPRINT}{print}
+
 %% Information: Durch: \def\LILLYxColorxInject{} lässt sich das integrieren der jeweiligen Farbpakete annulieren
 %% Diese Option erlaubt ein manuelles überschreiben entfernt allerdings auch jede Garantie bezüglich der Funktionsweise
 \RequirePackage{LILLYxCORE}
@@ -77,6 +79,7 @@
 
 \pushList{LillyColorList}{DarkMidnightBlue/0/74/148}   %%#004A94
 \pushList{LillyColorList}{Azure/0/127/255}             %%#007FFF
+\pushList{LillyColorList}{SteelBlue/25/25/112}         %%#4682B4
 \pushList{LillyColorList}{bondiBlue/0/149/182}         %%#0095B6
 \pushList{LillyColorList}{antiVeg/190/238/239}         %%#BEEEEF
 
@@ -96,8 +99,12 @@
 
 \pushList{LillyColorList}{MudWhite/245/245/243}        %%#F5F5F3
 \pushList{LillyColorList}{LightGray/224/224/224}       %%#E0E0E0
+\pushList{LillyColorList}{SpanishGray/151/152/151}     %%#979897
+\pushList{LillyColorList}{PlumbagoGray/133/138/141}    %%#858a8d
 \pushList{LillyColorList}{AuroMetalSaurus/110/127/128} %%#6E7F80
 \pushList{LillyColorList}{Charcoal/54/69/79}           %%#36454F
+\pushList{LillyColorList}{Jet/52/52/52}                %%#343434
+
 
 \storeLillyColorList{LISTxColors}
 \registerColors{\LISTxColors}{}
