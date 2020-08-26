@@ -35,11 +35,11 @@ import java.util.stream.Collectors;
 
 import static de.eagle.util.io.JakeLogger.*;
 
-public class LinuxLillyInstaller extends AutoInstaller {
-    public LinuxLillyInstaller(boolean gui) {
-        super("Linux Lilly Installer", gui);
+public class MacOSLillyInstaller extends AutoInstaller {
+    public MacOSLillyInstaller(boolean gui) {
+        super("MacOS Lilly Installer", gui);
         steps = new FunctionCollector<>(Map.ofEntries(
-                Map.entry("check_pdftex", new FunctionDeskriptor<>("fkt_check_pdflatex","Teste, ob 'pdflatex' vorhanden ist", LinuxLillyInstaller::fkt_check_pdflatex)),
+                Map.entry("check_pdftex", new FunctionDeskriptor<>("fkt_check_pdflatex","Warne, da es nicht testet auf MacOS", LinuxLillyInstaller::fkt_check_pdflatex)),
                 Map.entry("create_install_path", new FunctionDeskriptor<>("fkt_create_install_path","Erstellt das Installationsziel", LinuxLillyInstaller::fkt_create_install_path)),
                 Map.entry("install_lilly", new FunctionDeskriptor<>("fkt_install_lilly","Installiere Lilly", LinuxLillyInstaller::fkt_install_lilly)),
                 Map.entry("inform_tex", new FunctionDeskriptor<>("fkt_inform_tex","Informiert TeX über die Installation", LinuxLillyInstaller::fkt_inform_tex)),
@@ -50,7 +50,35 @@ public class LinuxLillyInstaller extends AutoInstaller {
     }
 
     public static String[] fkt_check_pdflatex(String s) {
-        JakeWriter.out.println("Es wird erwartet, dass texlive bereits installiert ist! Fehlt es, kann lilly nicht richtig funktionieren.");
+        writeLoggerInfo("Teste Vorhandensein von 'pdflatex'","LLInst");
+        try {
+            if(Executer.runCommand("which pdflatex").readLine() == null) {
+                // Nicht installiert
+                writeLoggerWarning("'pdflatex' ist NICHT vorhanden, tue mein bestes es zu installieren","LLInst");
+                JakeWriter.out.format("%sEs kann kein 'pdflatex' gefunden werden. Ohne ist Jake ein nichts. " +
+                        "Es ist geplant und in Aussicht, dass Jake hier selbst ansetzt und 'pdflatex' Portabel und " +
+                        "unabhängig von deinem System installiert, allerdings ist das erst für 1.1.0 geplant und somit " +
+                        "noch nicht, naja, implementiert. Darob hier, simple Installation, du kannst die Anfrage " +
+                        "einfach abbrechen, es wird dann ohne 'pdflatex' weitergemacht.%s%n",
+                        ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
+                JakeWriter.out.println("Soll 'texlive' installiert werden?");
+                switch (CommandLine.get_answer("[(y)es/(n)o/(c)ancel]> ", new String[] { "Y", "N", "C" })) {
+                    case "Y":
+                        LinuxJakeInstaller.installPackages("texlive-most mlocate texlive-lang texlive-langextra biber texlive-full");
+                        break;
+                    case "N":
+                        JakeWriter.out.println("Installation wird nicht durchgeführt");
+                        break;
+                    case "C":
+                        JakeWriter.err.println("Installation wird abgebrochen");
+                        return END;
+                }
+            } else {
+                writeLoggerDebug2("'pdflatex' ist vorhanden","LLInst");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return new String[] {"create_install_path", "Erstelle Installationsziel"};
     }
 
