@@ -1,3 +1,18 @@
+# More Lilly Files
+*.DEFS
+*.DOCUCHANGECOMMANDS
+*.DOCUNEWCOMMANDS
+*.POEM
+*.POEMSWATCHER
+*.QUOTE
+*.SESSION
+*.TOP
+*.idx
+*.ilg
+*.ind
+*.listing
+*.mw
+
 # Prerequisites
 *.d
 
