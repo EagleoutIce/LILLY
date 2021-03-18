@@ -26,11 +26,14 @@
                         \setlist[ditemize,4]{label=--} %$\clubsuit$
                         \DeclareDocumentEnvironment{aufgaben}{ o O{} }{%
                             \begingroup\IfValueT{##1}{\vspace{-0.15cm}\begin{multicols}{##1}}%
-                                \begin{enumerate}[label=\textbf{\alph*)},##2]\setlength{\itemsep}{1pt}%
+                                \begin{enumerate}[label={\ifnum\@listdepth=\@ne\textbf{\alph*)}\else{\roman*)}\fi},##2]\setlength{\itemsep}{1pt}%
                         }{%
                             \end{enumerate}%
                             \IfValueT{##1}{\end{multicols}\vspace{-0.15cm}}%
                         \endgroup}
+                        \newlist{steps}{enumerate}{1}
+                        \setlist[steps]{label=\textit{\arabic*. Schritt:~},labelindent=\parindent,leftmargin=2cm,align=right,topsep=0pt}
+                        \gdef\descriptionlabel##1{\hspace{\labelsep}\textbf{##1}}%
                     } % shortlabels
 
 

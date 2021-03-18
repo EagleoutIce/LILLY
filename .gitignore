@@ -1,3 +1,20 @@
+# More Lilly Files
+*.DEFS
+*.DOCUCHANGECOMMANDS
+*.DOCUNEWCOMMANDS
+*.POEM
+*.POEMSWATCHER
+*.QUOTE
+*.SESSION
+*.TOP
+*.idx
+*.ilg
+*.ind
+*.listing
+*.mw
+**/.settings/
+*.pdf
+
 # Prerequisites
 *.d
 
@@ -64,7 +81,9 @@ bin
 **/*.doc.pdf
 **/Data/Graphics/**/*.pdf
 **/*.jar
-
+**/changes.save
+**/ALLchanges.save
+*.save
 # Created by https://www.gitignore.io/api/intellij
 
 ### Intellij ###

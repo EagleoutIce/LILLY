@@ -1,5 +1,6 @@
 \def\LILLYxBOXxBemerkungxLock{TRUE}
-\documentclass[Dokumentation,kpfont]{Lilly}%debug for more information as additional argment => TOOD: document :D: doesn't seem to work. check?
+\errorcontextlines 999999
+\documentclass[Dokumentation,kpfont,morewrites]{Lilly}%debug for more information as additional argment => TOOD: document :D: doesn't seem to work. check?
 
 \usepackage{lipsum}
 
@@ -30,7 +31,7 @@
 \def\typesetVersion#1{\text{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}}
 
 \makeatletter
-%% [Version][Tagname][Additionals]
+%% [Version][lastchange][Tagname][Additionals]
 \DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}:bs:\qquad#4}
   \begingroup~\newline\elable{cmd:#3}%\IfValueTF{#3}{\elable{cmd:#3}}{\elable{cmd:#2}}%
   \hspace*{-1.5cm}$\diamond$~~\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\typesetVersion{#1}}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
@@ -38,23 +39,24 @@
 }
 \makeatother
 
-\DeclareDocumentCommand{\addcmd}{ O{1.0.0} m}{%
-    \ifthenelse{\equal{#1}{\LILLYxVERSION}}{\iwriteNewCommands{\noexpand\pushList{lNewCommands}{\noexpand c#2}}}{}\index{#2`{\blankcmdidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
+\DeclareDocumentCommand{\addcmd}{ O{1.0.0} O{#1} m}{%
+    \ifthenelse{\equal{#2}{\LILLYxVERSION}}{\iwriteChangedCommands{\noexpand\pushList{lChangedCommands}{\noexpand c#3}}\index{#3`{\blankcmdidx{#3}\textsuperscript{\tiny\T{(v#1:v#2)}}}}}{\index{#3`{\blankcmdidx{#3}\textsuperscript{\tiny\T{(v#1)}}}}}\ignorespaces%
+    \ifthenelse{\equal{#1}{\LILLYxVERSION}}{\iwriteNewCommands{\noexpand\pushList{lNewCommands}{\noexpand c#3}}}{}\ignorespaces%
 }
-\DeclareDocumentCommand{\addenv}{ O{1.0.0} m}{%
-    \ifthenelse{\equal{#1}{\LILLYxVERSION}}{\iwriteNewCommands{\noexpand\pushList{lNewCommands}{\noexpand e#2}}}{}\index{#2`{\blankenvidx{#2}\textsuperscript{\tiny\T{(v#1)}}}}\ignorespaces%
+\DeclareDocumentCommand{\addenv}{ O{1.0.0} O{#1} m}{%
+    \ifthenelse{\equal{#2}{\LILLYxVERSION}}{\iwriteChangedCommands{\noexpand\pushList{lChangedCommands}{\noexpand e#3}}\index{#3`{\blankenvidx{#3}\textsuperscript{\tiny\T{(v#1:v#2)}}}}}{\index{#3`{\blankenvidx{#3}\textsuperscript{\tiny\T{(v#1)}}}}}\ignorespaces%
+    \ifthenelse{\equal{#1}{\LILLYxVERSION}}{\iwriteNewCommands{\noexpand\pushList{lNewCommands}{\noexpand e#3}}}{}\ignorespaces%
 }
 
-
-\DeclareDocumentCommand{\anothercmd}{ s O{1.0.0} m}{\elable{cmd:#3}\addcmd[#2]{#3}\IfBooleanF{#1}{\blankcmdidx{#3}}}%
-\DeclareDocumentCommand{\anotherenv}{ s O{1.0.0} m}{\elable{cmd:#3}\addenv[#2]{#3}\IfBooleanF{#1}{\blankenvidx{#3}}}%
+\DeclareDocumentCommand{\anothercmd}{ s O{1.0.0} O{1.0.0} m}{\elable{cmd:#4}\addcmd[#2][#3]{#4}\IfBooleanF{#1}{\blankcmdidx{#4}}}%
+\DeclareDocumentCommand{\anotherenv}{ s O{1.0.0} O{1.0.0} m}{\elable{cmd:#4}\addenv[#2][#3]{#4}\IfBooleanF{#1}{\blankenvidx{#4}}}%
 
 %% Since,
-\DeclareDocumentCommand{\presentCommand}{ O{1.0.0} m O{} } {%
-    \presentStuff[#1]{\blankcmdidx{#2#3}}[#2]\addcmd[#1]{#2}\ignorespaces%
+\DeclareDocumentCommand{\presentCommand}{ O{1.0.0} O{1.0.0} m O{} } {%
+    \presentStuff[#1]{\blankcmdidx{#3#4}}[#3]\addcmd[#1][#2]{#3}\ignorespaces%
 }
-\DeclareDocumentCommand{\presentEnvironment}{ O{1.0.0} m O{} }{%
-    \presentStuff[#1]{\blankenvidx{#2#3}}[#2]\addenv[#1]{#2}\ignorespaces%
+\DeclareDocumentCommand{\presentEnvironment}{ O{1.0.0} O{1.0.0} m O{} }{%
+    \presentStuff[#1]{\blankenvidx{#3#4}}[#3]\addenv[#1][#2]{#3}\ignorespaces%
 }
 \newcommand*{\frmttxt}[1]{\begingroup\color{black}\emph{#1}\endgroup}
 \newcommand*{\cmdlist}{\begingroup\color{black},\;\endgroup}
@@ -95,6 +97,22 @@
 \renewcommand{\indexname}{Befehle}
 \compileidx
 
+% collect new
+\NewRecorder*{NewCommands}{DOCUNEWCOMMANDS}
+\constructList[,]{lNewCommands}
+% collect changed
+\NewRecorder*{ChangedCommands}{DOCUCHANGECOMMANDS}
+\constructList[,]{lChangedCommands}
+
+\makeatletter
+\def\@typesetCommandsForList#1#2{%
+    \begin{switch}{#1}%
+        \case{c}{\blankcmd{#2}}%
+        \case{e}{\blankenv{#2}}%
+    \end{switch}%
+}
+\def\typesetCommandsForList#1{\@typesetCommandsForList{\expandafter\@car#1\@nil}{\expandafter\@cdr#1\@nil}}
+\makeatother
 
 \NewRecorder*{NewCommands}{DOCUNEWCOMMANDS}
 \constructList[,]{lNewCommands}
@@ -118,6 +136,7 @@
 \listofTOPS\clearpage
 \LILLYxLayoutxRestore
 \inputNewCommands
+\inputChangedCommands
 
 \linput{Data/Einleitung.doc}
 \linput{Data/Mathe.doc}
@@ -131,8 +150,8 @@
 \linput{Data/Jake.doc}
 \linput{Data/Exkurse.doc}
 
-% Make the persitence library (2.2.0)
-%% FOR 2.1.0:
+%% FOR 2.2/3.0:
+% Make the persistence library
 % Changelog
 % Dokumentiere die einzelnen Module wie LILLYxMIPS aus GDRA :D
 

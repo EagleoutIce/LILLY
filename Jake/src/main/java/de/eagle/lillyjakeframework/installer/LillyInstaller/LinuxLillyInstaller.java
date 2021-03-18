@@ -5,13 +5,14 @@ package de.eagle.lillyjakeframework.installer.LillyInstaller;
  * @author Florian Sihler
  * @version 1.0.0
  *
- * @since 2.0.0
+ * @since 2.2.0
  *
  * @brief Installiert Lilly auf einem Linuxioiden Betriebssystem
  */
 
 import de.eagle.gepard.modules.Expandables;
 import de.eagle.lillyjakeframework.core.CoreSettings;
+import de.eagle.lillyjakeframework.core.Definitions;
 import de.eagle.lillyjakeframework.installer.AutoInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
 import de.eagle.util.constants.ColorConstants;
@@ -49,35 +50,7 @@ public class LinuxLillyInstaller extends AutoInstaller {
     }
 
     public static String[] fkt_check_pdflatex(String s) {
-        writeLoggerInfo("Teste Vorhandensein von 'pdflatex'","LLInst");
-        try {
-            if(Executer.runCommand("which pdflatex").readLine() == null) {
-                // Nicht installiert
-                writeLoggerWarning("'pdflatex' ist NICHT vorhanden, tue mein bestes es zu installieren","LLInst");
-                JakeWriter.out.format("%sEs kann kein 'pdflatex' gefunden werden. Ohne ist Jake ein nichts. " +
-                        "Es ist geplant und in Aussicht, dass Jake hier selbst ansetzt und 'pdflatex' Portabel und " +
-                        "unabhängig von deinem System installiert, allerdings ist das erst für 1.1.0 geplant und somit " +
-                        "noch nicht, naja, implementiert. Darob hier, simple Installation, du kannst die Anfrage " +
-                        "einfach abbrechen, es wird dann ohne 'pdflatex' weitergemacht.%s%n",
-                        ColorConstants.COL_ERROR, ColorConstants.COL_RESET);
-                JakeWriter.out.println("Soll 'texlive' installiert werden?");
-                switch (CommandLine.get_answer("[(y)es/(n)o/(c)ancel]> ", new String[] { "Y", "N", "C" })) {
-                    case "Y":
-                        LinuxJakeInstaller.installPackages("texlive-most mlocate texlive-lang texlive-langextra biber texlive-full");
-                        break;
-                    case "N":
-                        JakeWriter.out.println("Installation wird nicht durchgeführt");
-                        break;
-                    case "C":
-                        JakeWriter.err.println("Installation wird abgebrochen");
-                        return END;
-                }
-            } else {
-                writeLoggerDebug2("'pdflatex' ist vorhanden","LLInst");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JakeWriter.out.println("Es wird erwartet, dass texlive bereits installiert ist! Fehlt es, kann lilly nicht richtig funktionieren.");
         return new String[] {"create_install_path", "Erstelle Installationsziel"};
     }
 
@@ -147,7 +120,7 @@ public class LinuxLillyInstaller extends AutoInstaller {
         File target = searchLillyCls();
         if(target != null) {
             writeLoggerInfo("Erfrage Installationsart für interne Lilly.cls", "LLInst");
-            JakeWriter.out.println("Jake kann Lilly mit Version 2.0.0 auf 2 verschiedene Arten installieren:");
+            JakeWriter.out.println("Jake kann Lilly mit Version " + Definitions.JAKE_VERSION + " auf 2 verschiedene Arten installieren:");
             JakeWriter.out.println("   1) Verlinkung der gefunden Lilly-Instanz (" + target.getPath() + ")");
             JakeWriter.out.println("   2) Installation der in Jake enthaltenen Variante von Lilly");
             switch (CommandLine.get_answer("Gebe deine Auswahl ein [1/2/(c)ancel]> ", new String[]{"1","2","C"})) {
@@ -182,7 +155,6 @@ public class LinuxLillyInstaller extends AutoInstaller {
                 Arrays.toString(Executer.runBashCommand("texhash " + CoreSettings.requestValue("S_INSTALL_PATH")).lines().toArray(String[]::new)));
         JakeWriter.out.println("Lilly installiert");
         return new String[] {"search_packages", "Suche die von Lilly verwendeten Pakete"};
-        // TODO: As last step: search for packages
     }
 
     public static String[] fkt_search_packages(String s) {

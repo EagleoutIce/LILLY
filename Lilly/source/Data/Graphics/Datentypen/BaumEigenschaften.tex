@@ -1,0 +1,16 @@
+\gdef\GRAPHICSxBaumxEigenschaften{%
+\begin{tikzternal}[ every node/.style={transform shape}, scale=0.75,
+            ring/.style={
+                draw,circle,minimum width={0.75cm},font=\small
+            }]
+            \node[ring] at (0,0) (one) {1};
+            \node[ring] at (1,0) (two) {2};
+            \node[ring] at (2,1) (tre) {3};
+            \node[ring] at (3,0) (for) {4};
+            \node[ring] at (2,-1) (fiv) {5};
+            \node[ring] at (4,0) (six) {6};
+            \draw (one) -- (two) to[bend left=45] (tre) (tre) to[bend left=45] (for) (for)-- (six);
+            \draw (two) to[bend right=45] (fiv) (fiv) to[bend right=45] (for);
+        \end{tikzternal}
+    }
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxBaumxEigenschaften} %% new pattern maybe apply to all?

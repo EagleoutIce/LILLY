@@ -1,0 +1,22 @@
+%% SonarCüüüüübööööööö
+\lstdefinelanguage{lSonarQube}{
+    alsoletter={|~_><-},
+    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+    moredelim=**[il][{\lstHLError}]{|err|:},
+    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+    moredelim=[is][{}]{|plain|}{|plain|},
+    moredelim=**[il][{\color{Charcoal}\bfseries}]{>imp>},
+    comment=[l]{\#},
+    morestring=[s]"",
+    escapeinside={!*}{*!},
+    morekeywords = {},
+    % morekeywords = [2]{},
+    morekeywords = [3]{projectKey,projectName,projectVersion,sources,sourceEncoding,scm,java},
+    %morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake,jake,java,javac,ghci,ghc,grep,ls,cp,sort,find,man,tail,head,setfacl,getfacl,groups,ls,pdflatex,apt-get,texdoc,traceroute,docker},
+    morekeywords = [5]{sonar},
+    morekeywords = [6]{provider,binaries},
+    morestring=[b]'
+}
+
+\RegisterLanguage{sonarqube}{lSonarQube}

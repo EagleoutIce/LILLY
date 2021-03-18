@@ -4,7 +4,7 @@
 
 \RequirePackage{LILLYxTIKZxCORE}
 \RequirePackage{LILLYxCONTROLLERxLINK}
-\RequirePackage{LILLYxUTIL}
+% \RequirePackage{LILLYxCONTROLLERxLINK}\RequirePackage{LILLYxUTIL}
 
 
 \LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}%% Package, Info
@@ -30,13 +30,15 @@
 }
 
 %% Mathe
-\xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028}
+\xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028} %% rgb(086,170,028)
 %% Praktische Informatik
-\xglobal\definecolor{FacultyPraktischeInformatikxColor}{RGB}{221,101,015}
+\xglobal\definecolor{FacultyPraktischeInformatikxColor}{RGB}{236,130,000} %% rgb(236,130,000)
 %% Theoretische Informatik
-\xglobal\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221}
+\xglobal\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221} %% rgb(002,133,221)
 %% Technische Informatik
-\xglobal\definecolor{FacultyTechnischeInformatikxColor}{RGB}{177,2,221}
+\xglobal\definecolor{FacultyTechnischeInformatikxColor}{RGB}{221,0,107} %% rgb(221,0,107)
+%% Anwendungsfach Psychologie
+\xglobal\definecolor{FacultyPsychologiexColor}{RGB}{129,74,38} %% rgb(129,74,38)
 
 \newlength{\LILLYxLeftsep}\setlength{\LILLYxLeftsep}{2cm}
 
@@ -109,6 +111,10 @@
     \end{tikzpicture}}{#1}[#2][#3][50pt][\smallNumber][0.125][0.03]
 }
 
+\DeclareDocumentCommand{\LILLYxFACULTYxPSYCHOLOGIE}{ O{MudWhite} O{FacultyPsychologiexColor} O{} }{%
+    \LILLYxGENxFACULTY{Psychologie}{$\mathbf{\Psi}$}{#1}[#2][#3][60pt][\smallNumber][0.125]
+}
+
 \providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
 \providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung}
 
@@ -120,7 +126,7 @@
 %%% Dieser Befehl malt die untere Leiste und setzt die entsprechenden Daten. Hierbei Kann, von der Höhe abgesehen, keine andere Metrik modifiziert werden.
 \DeclareDocumentCommand{\LILLYxPHILOSOPHERxBORDERBLOCK}{%
     O{\LILLYxFACULTYxCOLOR} % SignaturFarbe
-    O{LightGray}            % Textfarbe
+    O{MudWhite}            % Textfarbe
     m%{3}                   % Baseheight
     O{\LILLYxFlavourText}   % Textblahblah
     O{\LILLYxFACULTY}       % Zu setzendes Symbol
@@ -133,7 +139,7 @@
     \filldraw[#1] (0,0) -- ++(\paperwidth,0) -- ++(0,#3) --  ++(-0.1\paperwidth,0) -- ++(-0.1\paperwidth,1) -- ++(-0.1\paperwidth,0) --  ++(-0.1\paperwidth,-1) -- ++(-0.6\paperwidth,0) -- cycle;%
     \begin{scope}[every node/.style={color=#2}]%
         \node at(0.75\paperwidth,2) {#5}; %\resizebox{!}{#3cm}{
-        \node[right] at(\LILLYxLeftsep,1.5) {\parbox{9.9cm}{\footnotesize{#4\par}}};
+        \node[right] at(\LILLYxLeftsep,1.5) {\parbox{9.9cm}{\footnotesize\bfseries{#4\par}}};
         \node[above left] at(\paperwidth,0.02) {\begingroup\hypersetup{urlcolor=#2}\href{https://github.com/EagleoutIce/LILLY}{\usefont{U}{Konanur}{xl}{n}LILLY}\hypersetup{urlcolor=\LILLYxColorxLINKSxUrlColor}\endgroup};%
         \node[above left] at(\paperwidth,0.52) {\tiny \textsf{Ver. \LILLYxVERSION}};%
     \end{scope}%
@@ -144,13 +150,14 @@
 \gdef\LILLYxPHILOSOPHERxINIT{\newgeometry{margin = 0pt}}
 
 \providecommand{\LILLYxPHILOSOPHERxMETADATA}{%
-    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\@Lilly@@Philosopher@Type@Decode{\LILLY@Typ} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\AUTHORMAIL}\par}
+    {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\@Lilly@@Philosopher@Type@Decode{\LILLY@Typ} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\hypersetup{urlcolor=black}\href{mailto:\AUTHORMAIL}{\AUTHORMAIL}}\par}
     \vspace{0.5cm}%
     {\itshape\small Version vom: \\ \heute\par}}}
 }
 
 %% title toc listname
 \providecommand{\LILLYxPHILOSOPHERxBONUSxTTOCxHEADER}{Themenübersicht}
+\providecommand\LILLYZSFxLOGOHEIGHT{11em}
 
 %% This variant prints an highlighted Bonus and include \LILLY@n/a number if wanted as an extra number to seperate Versions
 \DeclareDocumentCommand{\LILLYxTITLExBONUS}{%
@@ -178,13 +185,13 @@
     \filldraw[#1] (0,0) |- ++(#6,1.25) -- ++(-0.75,-1.25) -- cycle;
     \node[right,#2] at (\LILLYxLeftsep,0.5) {\Huge\bfseries#3};
     \begin{pgfinterruptboundingbox}
-    \node[left] at(\paperwidth-1.5cm,0.45) {\IfFileExists{#7}{\includegraphics[height=11em]{#7}}{\parbox[t][11em]{7em}{No Image}}};
+    \node[left] at(\paperwidth-1.05cm,0.45) {\IfFileExists{#7}{\includegraphics[height=\LILLYZSFxLOGOHEIGHT,width=21.25em,keepaspectratio]{#7}}{\parbox[t][\LILLYZSFxLOGOHEIGHT]{7em}{No Image}}};
     \end{pgfinterruptboundingbox}
 \end{tikzternal}
-    } {\par\vspace*{9em}\par}%
+    } {\par\vspace*{9em plus 3.75em minus 3.75em}\par}%
     {\centering% Title:
-    {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par%
-    } {\par\vspace*{8em}\par}%
+    {\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{39pt}{39pt}\selectfont\FULLTITLE}\par%
+    } {\vspace*{4em plus 3em minus 3em}\par}%
     \hbox{}
     \setLinkColor{Charcoal}%!75!darkgray}%
     %{\def\linewidth{4cm} }{\listofTOPICS}
@@ -200,7 +207,7 @@
     }
     \hbox{}\vfill%
     \LILLYxPHILOSOPHERxMETADATA
-    {\par\vspace*{7.5em}\par}%
+    {\par\vspace*{7.5em plus 3em minus 3em}\par}%
     \LILLYxPHILOSOPHERxBORDERBLOCK[#1][#2]{3}[#4][#5] %% height
     %\vspace{-3pt}% Compensate offset
     %%
@@ -209,15 +216,16 @@
 \clearpage%
 \endgroup\restoregeometry\hypersetup{pageanchor=true}%
 }
-
+\newlength\lilly@philosopher@titleraw@h
+\setlength{\lilly@philosopher@titleraw@h}{20em}
 \DeclareDocumentCommand{\LILLYxTITLExRAW}{ o }{
-    \begingroup\hypersetup{pageanchor=false}%
+    \begingroup\hypersetup{pageanchor=false}\setlength{\parindent}{0em}%
     \clearpage\begin{titlepage}
         \LILLYxPHILOSOPHERxINIT%
         {\centering\par\vspace*{7em}\par
-            {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{40pt}{16pt}\selectfont\FULLTITLE}\par}
-            \par\vspace*{11em}\par
-            \IfValueTF{#1}{\IfFileExists{#1}{\includegraphics[height=20em]{#1}}{\parbox[t][20em]{12em}{\Large No Image}}}{\parbox[t][20em]{1em}{}}
+            {\hspace*{0.25\LILLYxLeftsep}\parbox{\linewidth-1.75\LILLYxLeftsep}{\raggedright\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{39pt}{39pt}\selectfont\FULLTITLE}\par}\pgfmathsetmacro\@tlh@target{31em-\lilly@philosopher@titleraw@h}
+            \par\vspace*{\@tlh@target pt}\par
+            \IfValueTF{#1}{\IfFileExists{#1}{\includegraphics[height=\lilly@philosopher@titleraw@h]{#1}}{\parbox[t][20em]{\lilly@philosopher@titleraw@h}{\Large No Image}}}{\parbox[t][\lilly@philosopher@titleraw@h]{1em}{}}
             \par\vfill\vspace{2em}\par
         }
         \hbox{}\vfill

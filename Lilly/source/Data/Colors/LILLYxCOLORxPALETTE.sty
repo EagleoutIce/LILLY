@@ -1,0 +1,39 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxCOLORxPALETTE}[2019/10/11 Stellt die Farbpaletten-Erweiterungen fuer die Lillyfarben zur Verfuegung]
+
+\RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
+\RequirePackage{LILLYxCOLOR}
+% \RequirePackage{LILLYxCOLOR}
+% Erlaube Paletten fürs Drucken (mit Stil etc....)
+
+
+% Constructs \cX based commands for using in code :smile:
+%
+% [#1] Style to be used in tikz
+%  #2  Suffix for the Command
+%  #3  Name of the Color to be used
+%  #4  Name of the Color to be displayed in Text
+%  #5  Used as 'shaded' adjective-like
+\newcommand\LillyNewPaletteColor[5][]{%
+    % construct the Main Color Command:
+    \expandafter\gdef\csname c#2\endcsname{#3}%
+    % construct the Name:
+    \expandafter\gdef\csname c#2name\endcsname{#4\xspace}%
+    % construct the likeaby :P
+    \expandafter\gdef\csname c#2adj\endcsname{#5\xspace}%
+    % tikz styling
+    \ifx\\#1\\\expandafter\gdef\csname c#2tikz\endcsname{#3}%
+    \else\expandafter\gdef\csname c#2tikz\endcsname{#1}%
+    \fi%
+}
+
+% Load the Colorprofile #1.
+\def\lillycolorprofile#1{%
+\userput{_LILLY_COLOR_EXTENSION_#1}{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}%
+% Reload Colors:
+\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColor,citecolor=\LILLYxColorxLINKSxCiteColor,filecolor=black!75!black,urlcolor=\LILLYxColorxLINKSxUrlColor}%
+}
+
+
+\endinput

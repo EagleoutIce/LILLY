@@ -522,7 +522,7 @@ Setzt den Autor, der standardmäig auf \blankcmd{AUTHOR} gesetzt ist und so als 
 %
 
 \presentEnvironment[2.0.0]{poem}[\optArg{Comment}\optArg{Left Ornament}\optArg{Right Ornament}\secline\manArg{Name}\manArg{Date}\optArg[\blankcmdidx{poems@author}]{Author}]
-Setzt ein Gedicht mit dem Namen \T{Name} geschrieben am \T{Date}. Der Autor kann durch \blankcmd{poemssetauthor} geändert, oder gezielt durch \T{Author} angegeben werden. Diese umgebung unterscheidet sich von \blankenv{poems*}, dass sie noch einen Seitenumbruch einfügt und das Gedicht auch vertikal zentriert. Allein deswegen wird zum Beibehalt der Dokumentationskonsistenz dort ein entsprechendens Beispiel gezeigt, da sich die Umgebungen sonst gleichen.
+Setzt ein Gedicht mit dem Namen \T{Name} geschrieben am \T{Date}. Der Autor kann durch \blankcmd{poemssetauthor} geändert, oder gezielt durch \T{Author} angegeben werden. Diese umgebung unterscheidet sich von \blankenv{poems*}, dass sie noch einen Seitenumbruch einfügt und das Gedicht auch vertikal zentriert. Allein deswegen wird zum Beibehalt der Dokumentationskonsistenz dort ein entsprechendes Beispiel gezeigt, da sich die Umgebungen sonst gleichen.
 
 %
 %
@@ -540,7 +540,7 @@ Für eine genaue Erklärung siehe \blankenv{poem}. Hier ein Beispiel:
     und bin doch hier.
 \end{poem*}
 \end{latex}
-\begin{example}
+\iflillycompact\else%
     \begin{poem*}{Hallo Welt}{10.09.2019}[Florian Sihler]
         Hallo Welt,
         Wie geht es dir?
@@ -549,7 +549,7 @@ Für eine genaue Erklärung siehe \blankenv{poem}. Hier ein Beispiel:
         ich hab dich gern,
         und bin doch hier.
     \end{poem*}
-\end{example}
+\fi
 
 \presentCommand[2.0.0]{subduelines}
 Wie am Beispiel für \blankenv{poem*} zu sehen ist, müssen keine Zeilenenden oder ähnliches angegeben werden. Dies mag die Verwendung von \blankcmd{obeylines} vermuten lassen, allerdings hätte dieser Befehl den Nachteil, dass die Strophen nicht durch eine Leerzeile getrennt werden könnten, da diese von \blankcmd{obeylines} geschluckt werden. Deswegen stellt dieser Befehl eine Variante dar, die sowohl in zentrierten als auch nicht zentrierten Umgebungen funktioniert:
@@ -698,6 +698,7 @@ Betrachten wir einmal ein Beispiel:
     \theTimeTable
 \end{center}
 \egroup%
+\iflillycompact\else%
 Ein weiteres Beispiel:
 \begin{latex}[morekeywords={[5]{\\theAnotherTimeTable}}]
 \NewTimeTable{AnotherTimeTable}
@@ -709,6 +710,7 @@ Ein weiteres Beispiel:
 \begin{center}
     \theAnotherTimeTable
 \end{center}
+\fi
 
 %
 %
@@ -756,7 +758,7 @@ Generiert ein Event im Timetable, wobei automatisch zwei verschiedene Stile je n
         \bottomrule
     \end{tabularx}\nskip
 \end{center}
-Die Erzeugung eines solchen Events generiert einen neuen Befehl mit dem Bezeichner \blankcmd{@<TimeTable>@event@id}, wobei die \T{id} ein hochzählender Wert ist.\newline
+Die Erzeugung eines solchen Events generiert einen neuen Befehl mit dem Bezeichner \blankcmd{@<TimeTable>@event@<id>}, wobei die \T{id} ein hochzählender Wert ist.\newline
 Wie leicht ersichtlich ist, ist dieser Befehl zwar öffentlich, aber nicht sehr angenehm direkt benutzt zu werden. Deswegen:
 
 %
@@ -994,16 +996,16 @@ Erzeugt eine neue Person mit der ID \T{PersonID}, deren Werte durch das Präfix 
 \elable{mrk:PersonCreation}Erzeugen wir einmal eine Beispiel-Person:
 \begin{latex}
 \CreateNewPerson[name={Florian},last name={Sihler},%
-                 title={Catlord}, email={florian.sihler@web.de},%
+                 title={Catlord}, email={florian.sihler@uni-ulm.de},%
                  alias={EagleoutIce},%
                  mobile number={+\(49\,who\,cares\)},%
-                 brief={\lipsum[2]}]{Flo},%
-                 color=Azure, image=Data/me%
+                 color=Azure, image=Data/me,%
+                 brief={\lipsum[2]}]{Flo}
 \end{latex}
-\CreateNewPerson[name={Florian},email={florian.sihler@web.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=Azure]{Flo}
-\CreateNewPerson[name={Sibille},email={florian.sihler@web.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=AppleGreen]{Flo2}
-\CreateNewPerson[name={Joachim},email={florian.sihler@web.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=DebianRed]{Flo3}
-\CreateNewPerson[name={Petersson},email={florian.sihler@web.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=ChromeYellow]{Flo4}
+\CreateNewPerson[name={Florian},email={florian.sihler@uni-ulm.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=Azure]{Flo}
+\CreateNewPerson[name={Sibille},email={florian.sihler@uni-ulm.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=AppleGreen]{Flo2}
+\CreateNewPerson[name={Joachim},email={florian.sihler@uni-ulm.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=DebianRed]{Flo3}
+\CreateNewPerson[name={Petersson},email={florian.sihler@uni-ulm.de},alias={EagleoutIce},mobile number={+\(49\,who\,cares\)},brief={\lipsum[2]},last name={Sihler},title=Catlord,image={./Data/me},color=ChromeYellow]{Flo4}
 
 Die folgenden Befehle zeigen, wie diese Person benutzt werden kann.
 

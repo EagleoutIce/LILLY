@@ -66,22 +66,26 @@
 \providecommand{\nskip}{\vspace{\LILLYxNegativeSkip}}
 
 
-\LILLYcommand{\LILLYcoloredSQ}[1]{\tikz{\draw[fill=#1!75!white,#1!75!white] (-0.05,-0.05) rectangle ++ (0.4,0.4);\draw[fill=#1!50!white,#1!50!white] (0,0) rectangle ++ (0.35,0.35);\draw[fill=#1,#1] (0,0) rectangle ++ (0.3,0.3);}}
+\LILLYcommand{\LILLYcoloredSQ}[2][]{\tikz{\draw[fill=#2!75!white,#2!75!white] (-0.05,-0.05) rectangle ++ (0.4,0.4);\draw[fill=#2!50!white,#2!50!white] (0,0) rectangle ++ (0.35,0.35);\draw[fill=#2,#2] (0,0) rectangle ++ (0.3,0.3) node[midway,centered,MudWhite,scale=0.75,inner sep=0pt] {#1};}}
 
 \LILLYcommand{\LILLYxCOLORxRainbow}{% who needs foreach
-    \LILLYcoloredSQ{\LILLYxColorxDefinition}
-    \LILLYcoloredSQ{\LILLYxColorxSatz}
-    \LILLYcoloredSQ{\LILLYxColorxBeweis}
-    \LILLYcoloredSQ{\LILLYxColorxLemma}
-    \LILLYcoloredSQ{\LILLYxColorxBemerkung}
-    \LILLYcoloredSQ{\LILLYxColorxZusammenfassung}
-    \LILLYcoloredSQ{\LILLYxColorxBeispiel}
-    \LILLYcoloredSQ{\LILLYxColorxUebungsaufgabe}
-    \LILLYcoloredSQ{\LILLYxColorxZusatzuebung}
-    \LILLYcoloredSQ{\LILLYxColorxLINKSxMainColor}
-    \LILLYcoloredSQ{\LILLYxColorxLINKSxMainColorDarker}
-    \LILLYcoloredSQ{\LILLYxColorxLINKSxCiteColor}
-    \LILLYcoloredSQ{\LILLYxColorxLINKSxUrlColor}
+    \LILLYcoloredSQ[\tiny Def]{\LILLYxColorxDefinition} %
+    \LILLYcoloredSQ[\tiny Sat]{\LILLYxColorxSatz} %
+    \LILLYcoloredSQ[\tiny Bew]{\LILLYxColorxBeweis} %
+    \LILLYcoloredSQ[\tiny Lem]{\LILLYxColorxLemma} %
+    \LILLYcoloredSQ[\tiny Bem]{\LILLYxColorxBemerkung} %
+    \LILLYcoloredSQ[\tiny Zsf]{\LILLYxColorxZusammenfassung} %
+    \LILLYcoloredSQ[\tiny Bei]{\LILLYxColorxBeispiel} %
+    \LILLYcoloredSQ[\tiny Ub]{\LILLYxColorxUebungsaufgabe} %
+    \LILLYcoloredSQ[\tiny Ub*]{\LILLYxColorxZusatzuebung} %
+    \LILLYcoloredSQ[\tiny Lin]{\LILLYxColorxLINKSxMainColor} %
+    \LILLYcoloredSQ[\tiny Lid]{\LILLYxColorxLINKSxMainColorDarker} %
+    \LILLYcoloredSQ[\tiny cit]{\LILLYxColorxLINKSxCiteColor} %
+    \LILLYcoloredSQ[\tiny url]{\LILLYxColorxLINKSxUrlColor} %
+    \LILLYcoloredSQ[\tiny coA]{\cA} %
+    \LILLYcoloredSQ[\tiny coB]{\cB} %
+    \LILLYcoloredSQ[\tiny coC]{\cC} %
+    \LILLYcoloredSQ[\tiny coD]{\cD}%
 }
 
 
@@ -89,8 +93,17 @@
 \LILLYcommand{\fg}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont For\-ma\-le\ Grund\-la\-gen}#1}
 \LILLYcommand{\gdra}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen\ der\ Rech\-ner\-arch\-it\-ek\-tur}#1}
 \LILLYcommand{\eidi}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ein\-f\"{u}hr\-ung\ in\ die Inf\-or\-ma\-tik}#1}
+\LILLYcommand{\eidif}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ein\-f\"{u}hr\-ung\ in\ die For\-schungs\-me\-tho\-den}#1}
+\LILLYcommand{\apii}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont All\-ge\-meine Psy\-cho\-lo\-gie IIa}#1}
+\LILLYcommand{\logi}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Logik}#1}
+\LILLYcommand{\softi}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Soft\-waretechnik I\,\&\,II}#1}
+\LILLYcommand{\buk}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Be\-re\-chen\-bar\-keit und Kom\-ple\-xi\-tät}#1}
+\LILLYcommand{\stochI}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont An\-ge\-wand\-te Sto\-chas\-tik 1}#1}
+\LILLYcommand{\sozi}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont So­\-zi\-­al\-­psy\-­cho\-­lo\-­gie I}#1}
 \LILLYcommand{\la}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Lin\-e\-a\-re\ Al\-ge\-bra}#1}
+\LILLYcommand{\is}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont In\-for\-ma\-ti\-ons\-sys\-teme}#1}
 \LILLYcommand{\anaI}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ana\-ly\-sis~1}#1}
+\LILLYcommand{\anaII}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ana\-ly\-sis~2a}#1}
 \LILLYcommand{\pdp}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pa\-ra\-dig\-men\ der\ Pro\-gram\-mie\-rung}#1}
 \LILLYcommand{\gdbs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen\ der\ Be\-triebs\-sys\-tem\-e}#1}
 \LILLYcommand{\pvs}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pro\-gram\-mie\-rung\ von\ Sys\-tem\-en}#1}
@@ -98,6 +111,7 @@
 %% Seminar
 \LILLYcommand{\knn}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont K\"{u}nstliche neuronale Netze}#1}
 
+\LILLYcommand{\gdrn}[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grundlagen der Rechnernetze}#1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

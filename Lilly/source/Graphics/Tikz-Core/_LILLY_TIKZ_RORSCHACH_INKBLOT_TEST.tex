@@ -1,0 +1,60 @@
+\pgfmathdeclarerandomlist{rorschachXcolor}{{Amber}{Coquelicot}{Awesome}{DebianRed}{DarkMidnightBlue}{Azure}{DarkOrchid}{Orchid}{BritishRacingGreen}{Ao}{AppleGreen}{AuroMetalSaurus}{Purple}}
+\makeatletter
+% As, well, someone wanted an AMAZING GRID
+% let's introduce a random walker
+
+\def\Rorschach@NextRandCoords#1#2{
+  \pgfmathsetmacro{\TargetRandAng}{50*rand+#2}
+  \pgfmathsetmacro{\TargetRandX}{#1*cos(\TargetRandAng)}
+  \pgfmathsetmacro{\TargetRandY}{#1*sin(\TargetRandAng)}
+  \global\let\CurTarX\TargetRandX \global\let\CurTarY\TargetRandY \global\let\CurTarAng\TargetRandAng%
+}
+
+% #1 init pointX
+% #2 init pointY
+% #3 init angle
+% #4 number of steps
+% #5 WalkerCs
+% #6 prefix name
+\def\Rorschach@Walk#1#2#3#4#5#6{
+  \gdef\CurX{#1} \gdef\CurY{#2} \gdef\CurAng{#3}
+  \foreach \step in {1,...,#4} {
+    \pgfmathsetmacro{\Tarlength}{2.5-1*\step/#4}
+    \csname #5\endcsname{\Tarlength}{\CurAng}% calc next
+    \pgfmathsetmacro{\ColGrading}{100-75*\step/#4}
+    \fill[\randcol!\ColGrading,mypath] (\CurX,\CurY) -- ++(\CurTarX,\CurTarY);
+    \pgfmathsetmacro{\NewCurX}{\CurX+\CurTarX}\pgfmathsetmacro{\NewCurY}{\CurY+\CurTarY}
+    \coordinate (#6\step) at(\NewCurX,\NewCurY);
+    \global\let\CurX\NewCurX \global\let\CurY\NewCurY \global\let\CurAng\CurTarAng
+  }
+}
+
+
+%% This command generates the Path for the fill algorithm, sad guy
+% #1 Prefix
+% #2 Maximum
+\def\Rorschach@Fillcreation#1#2{%
+  (#11)%
+  \foreach \i in {2,...,#2}{%
+    -- (#1\i)
+  } -- (#11)
+}
+
+\def\GenerateRorschach{%
+\GenerateRorschachSpecific{\number\pdfrandomseed}%
+}
+
+\def\GenerateRorschachSpecific#1{\makeatletter%
+\pgfmathsetseed{#1}
+\begin{tikzpicture}[mypath/.style={decoration={random steps, segment length=6pt},decorate,rounded corners=3pt}]
+  \def\max{e} \def\stepmax{25}
+  \foreach \a[count=\i] in {a,...,\max}{
+    \pgfmathrandomitem{\randcol}{rorschachXcolor}
+    \pgfmathsetmacro{\@StartX}{15*rand}
+    \pgfmathsetmacro{\@StartY}{6*rand}
+    \edef\@tmp{\noexpand\Rorschach@Walk{\@StartX}{\@StartY}{10\i}{\stepmax}{Rorschach@NextRandCoords}{\a}}\@tmp;
+    \edef\@tmp{\noexpand\fill[black,mypath] \noexpand\Rorschach@Fillcreation{\a}{\stepmax}}\@tmp;
+  }
+\end{tikzpicture}
+\makeatother
+}

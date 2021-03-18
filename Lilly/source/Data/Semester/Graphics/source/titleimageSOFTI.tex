@@ -1,0 +1,163 @@
+\documentclass[tikz,border=2mm]{standalone}
+\usetikzlibrary{positioning,calc,arrows}
+
+\usepackage{tikzducks}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\colorlet{them.color}{purple!10}
+\colorlet{us.color}{lime!10}
+
+% grid x
+\newlength\gx \setlength{\gx}{5cm}
+% grid y
+\newlength\gy\setlength{\gy}{2cm}
+
+% pgfmatrix?
+\begin{document}
+\begin{tikzpicture}[%
+    them/.style={%
+        fill=them.color,rectangle,draw,thick,%
+        minimum width=7em,minimum height=1cm,%
+        align=left,%
+    },
+    next/.style={-stealth',thick},
+    us/.style={
+      minimum width=7em,minimum height=1cm,%
+        align=left,thick,%
+      path picture={%
+        \draw[fill=us.color,thick] (path picture bounding box.south west) -- (path picture bounding box.north west) --  (path picture bounding box.north east) -- ([yshift=0.5em]path picture bounding box.south east) -- ([xshift=-0.5em]path picture bounding box.south east)-- cycle;
+        \draw[fill=us.color!55!black] ([xshift=-0.5em]path picture bounding box.south east) |- ++(0.5em,0.5em) -- cycle;
+      }
+    }
+  ]
+  
+  \node[above right,align=left,font=\Huge\usefont{U}{eur}{b}{n}\bfseries] at(-2.5,1) {Die Geschichte einer\\knuffigen Zauberente.};
+
+  \node[them] (them-1) at(0,0) {%
+    Wir wollen eine Quietscheente!
+  };
+
+  \node[us] (us-1) at (\gx,0) {Rot, blau, grün?};
+
+  \draw[next] (them-1.east) to[out=15,in=195] (us-1.west);
+
+  \node[them] (them-2) at (2\gx,\gy) {Ehm, quietschig?};
+  \draw[next] (us-1.east) to[out=-16,in=172] (them-2.west);
+
+  \node[us] (us-2) at (2.5\gx,0) {Quietschig wie? Orange?};
+  \draw[next] (them-2.south) to[out=-120,in=195] (us-2.west);
+  
+  \node[them] (them-3) at (3\gx,\gy) {Naja, also quietschig reicht uns. Da\\müssen sie nicht mehr machen.};
+
+  \draw[next] (us-2.north) to[out=105,in=-75] (them-3.south);
+  \node[us] (us-3) at (3.5\gx,0) {Dann machen wir\\sie nur quietschig.};
+  \draw[next] (them-3.east) to[out=15,in=-15,looseness=2] (us-3.east);
+
+
+  \node[them] (them-4) at (3.5\gx,-\gy) {Aber schwimmen können muss sie!};
+
+  \draw[next] (us-3.south) to[out=-125,in=65] (them-4.north);
+
+  \node[us] (us-4) at (1.75\gx,-\gy) {Schwimmen, klar, dass\ldots};
+  \draw[next] (them-4.west) to[out=160,in=25] ([yshift=0.25cm]us-4.east);
+
+  \node[them] (them-5) at (2.4\gx,-1.225\gy) {Haben sie schon was?};
+
+  \node[us] (us-5) at (0.75\gx,-1.5\gy) {Aber Sie haben doch gerade erst...};
+  \draw[next] (them-5.south) to[out=250,in=290,looseness=0.45] (us-5.south);
+
+  \node[them] (them-6) at (0.6\gx,-0.75\gy) {Sie hatten schon\\$10$ Minuten!};
+
+  \draw[next] ([xshift=5em]us-5.north) to[out=65,in=14] (them-6.east);
+  \node[us] (us-6) at (-0.175\gx,-1.5\gy) {Ehm, natürlich,\ldots\\hier:\\[0.25cm]\hfill%
+    \begin{tikzpicture}
+      \draw (0,0) ellipse (0.75cm and 0.45cm);
+      \draw (-0.15cm,0.45cm) ellipse (0.35cm and 0.45cm);
+      \draw (-0.75cm,0.45cm) -| ++(0.45cm,0.25cm) -- cycle;
+    \end{tikzpicture}\hfill\hbox{}
+  };
+  \draw[next] (them-6.west) to[out=210,in=80] (us-6.north);
+
+  \node[them] (them-7) at (0.6\gx,-2.5\gy) {Was ist das?!};
+  \draw[next] (us-6.south) to[out=270,in=220] (them-7.west);
+
+  \node[us] (us-7) at (1.6\gx,-2.5\gy) {Die erste Version der Ente!};
+  \draw[next] (them-7.east) to[out=15,in=195] (us-7.west);
+
+  \node[them] (them-8) at (3\gx,-2\gy) {Sie ist nich'-mal quietschig.};
+  \draw[next] (us-7.east) to[out=-15,in=-195] (them-8.west);
+
+  \node[us] (us-8) at (3.6\gx,-3.25\gy) {Wie wäre es hiermit:\\[0.25cm]\hfill{}\tikz{\duck}\hfill{}\hbox{}};
+  \draw[next] (them-8.east) to[out=15,in=60,looseness=2] (us-8.north);
+
+  \node[them] (them-9) at (2.5\gx,-3.25\gy) {Kann sie schwimmen?};
+  \draw[next] (us-8.west) to[out=220,in=45] (them-9.east);
+
+  \def\drawwater{\fill[cyan!60!blue, even odd rule] (1.00,0.40) ellipse (0.88 and 0.35) (1.00,0.40) ellipse (0.75 and 0.25);\fill[cyan!60!blue, even odd rule] (1.00,0.40) ellipse (1.05 and 0.50) (1.00,0.40) ellipse (0.95 and 0.42);\fill[cyan!60!blue, even odd rule] (1.00,0.40) ellipse (1.23 and 0.63) (1.00,0.40) ellipse (1.17 and 0.57);\fill[cyan!60!blue, even odd rule] (1.00,0.40) ellipse (1.42 and 0.77) (1.00,0.40) ellipse (1.38 and 0.73);}
+
+  \node[us,align=center] (us-9) at (1.6\gx,-3.75\gy) {Ähm, natürlich:\\[0.25cm]\tikz[scale=0.45,baseline=1em]{\duck[water=cyan!60!blue]}$\,\rightarrow\,${\tikz[scale=0.45,baseline=1em]{\drawwater}}\hfill\hbox{}\\[0.25cm]\scriptsize Naja, wir arbeiten dran.};
+
+  \draw[next] (them-9.south) to[out=290,in=45] (us-9.east);
+
+  \node[them] (them-10) at (0.75\gx,-3.5\gy) {Und fliegen?};
+  \draw[next] (us-9.west) to[out=240,in=25] (them-10.east);
+
+  \node[us] (us-10) at (0,-3.5\gy) {Was? Nein!};
+  \draw[next] (them-10.west) to[out=240,in=25] (us-10.east);
+
+  \node[them] (them-11) at (-0.25\gx,-4.25\gy) {Lassen Sie sie fliegen.};
+  \draw[next] (us-10.west) to[out=165,in=115] ([xshift=-0.5cm]them-11.north);
+
+  \node[us,align=center] (us-11) at (0.6\gx,-5\gy) {Naaa-klaaaar:\\[0.25cm]\tikz{\duck[witch,mask=purple,cape=purple]}};
+  \draw[next] (them-11.south) to[out=250,in=140] (us-11.west);
+
+  \node[them] (them-12) at (1.5\gx,-5\gy) {Aber sie ist ja\\gar nicht süß!!!!};
+  \draw[next] (us-11.east) to[out=25,in=220] (them-12.west);
+
+
+  \node[us] (us-12) at (2.75\gx,-4.25\gy) {Das wollen sie auch noch?};
+  \draw[next] (them-12.east) to[out=-25,in=200] (us-12.west);
+
+  \node[them] (them-13) at (2.5\gx,-5.25\gy) {Jepp!};
+  \draw[next] (us-12.south) to[out=255,in=75] (them-13.north);
+
+  \node[us] (us-13) at (3.25\gx,-5\gy) {Bis wann?};
+  \draw[next] (them-13.east) to[out=-15,in=175] (us-13.west);
+
+  \node[them] (them-14) at (3.6\gx,-5.75\gy) {Wollen Sie damit sagen, Sie haben\\noch gar nicht angefangen?};
+  \draw[next] (us-13.east) to[out=65,in=45,looseness=2] (them-14.north);
+
+  \node[us] (us-14) at (2.25\gx,-6.5\gy) {Wie machen wir sie denn 'süß'?};
+  \draw[next] (them-14.west) to[out=215,in=115] (us-14.north);
+
+  \node[them] (them-15) at (1.6\gx,-5.75\gy) {Wir dachten Sie sind Experte.};
+  \draw[next] (us-14.west) to[out=200,in=300,looseness=1.5] (them-15.south);
+
+  \node[us,align=center] (us-15) at (-0.25\gx,-6\gy) {Wie wäre es mit Pink?\\[0.25cm]\tikz{\duck[witch,mask=purple,cape=purple,body=red!30!white]}};
+  \draw[next] (them-15.west) to[out=195,in=-25] (us-15.east);
+
+  \node[them] (them-16) at (0.75\gx,-6.6\gy) {Aber ich bitte Sie, der Markt\\hasst Klischees};
+  \draw[next] (us-15.south) to[out=290,in=250,looseness=0.5] (them-16.south);
+
+  \node[us] (us-16) at (1.5\gx,-7.35\gy) {Wir könnten sie braun machen\ldots};
+  \draw[next] (them-16.east) to[out=25,in=75] (us-16.north);
+
+  \node[them] (them-17) at (3.5\gx,-6.825\gy) {Igitt! Wie sehen die Enten denn aus,\\da wo sie herkommen? Blau!};
+  \draw[next] (us-16.east) to[out=-25,in=170] (them-17.west);
+
+  \node[us] (us-17) at (3.5\gx,-8.25\gy) {Etwa so?\quad\tikz[baseline=1.25cm]{\duck[witch,mask=purple,cape=purple,body=teal]}};
+  \draw[next] (them-17.south) to[out=290,in=115] (us-17.north);
+
+  \node[them] (them-18) at (2.5\gx,-8\gy) {Sie. Ist. Nicht. Süß.};
+  \draw[next] (us-17.west) to[out=170,in=25] (them-18.east);
+
+
+  \node[us] (us-18) at (1.5\gx,-8.75\gy) {Dann so?\quad\tikz[baseline=1.25cm]{\duck[witch,mask=purple,cape=purple,body=teal,bunny]}};
+  \draw[next] (them-18.south) to[out=290,in=35] (us-18.east);
+
+  \node[them,text width=20em] (them-19) at (0,-8.45\gy) {Danke, für ihren Aufwand. Wir haben auf dem Markt ein Produkt gefunden, welches all unsere Anforderungen für uns erfüllt:\\[0.25cm]\hfill{\tikz{\duck}}\hfill{}\hbox{}\\[0.25cm]Hier, eine Waffel, für ihre Mühen.};
+  \draw[next] (us-18.west) to[out=180,in=45] (them-19.east);
+
+\end{tikzpicture}
+\end{document}

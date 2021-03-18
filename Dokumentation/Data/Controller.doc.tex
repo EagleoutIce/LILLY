@@ -57,7 +57,7 @@ Setzt eine unsortierte Auflistung auf Basis von \T{ditemize}, allerdings sind di
 %
 %
 
-\presentEnvironment[2.0.0]{aufgaben}[\optArg{Spalten}\optArg{enumargs}]
+\presentEnvironment[2.0.0][2.2.0]{aufgaben}[\optArg{Spalten}\optArg{enumargs}]
 Präsentiert eine Liste in Anlehnung an \blankenv{enumerate}, erlaubt allerdings eine Erweiterung durch \blankenv{multicols}, weiter wurden Abstände angepasst:
 \begin{defaultlst}[][listing side text,righthand width=7cm]{lLatex}
 \begin{aufgaben}
@@ -74,7 +74,7 @@ Präsentiert eine Liste in Anlehnung an \blankenv{enumerate}, erlaubt allerdings
     \item schwer!
 \end{aufgaben}
 \end{defaultlst}
-Siehe \jmark[Übungsblatt]{mrk:layoutub} für ein eingebettetes Beispiel.
+Siehe \jmark[Übungsblatt]{mrk:layoutub} für ein eingebettetes Beispiel. \textit{Information: Mit \LILLYxBOXxVersion{2.2.0} passt sich die Umgebung auch an eine zweite Verschachtelungstiefe an!}
 
 
 %
@@ -302,13 +302,6 @@ Setzt eine Tutorbox für Übungsblatt(abgaben) die auf Papier stattfinden.
    \tcbincludepdf[blankest, graphics options={trim=2.5cm 25cm 2.5cm 1.65cm, clip}]{Data/Documents/LayoutUebungsblatt/tutorbox.pdf}
 \end{center}
 \fi%
-
-%
-%
-%
-
-\presentCommand[1.0.6]{points}[\manArg{Punkte}]
-Setzt Punkte an das Ende der Zeile, um zum Beispiel Teilpunkte in Aufgaben einfach zu setzen.
 
 %
 %
@@ -849,7 +842,7 @@ Setzt die Titelseite mittels \blankcmd{LILLYxTITLExRAW}, allerdings nur, wenn \b
 %
 
 \section{Randbemerkungen}
-\hypertarget{LILLYxMARGIN}Diese Definitionen befinden sich im eigenständigen Paket \LILLYxNOTExLibrary{LILLYxMARGIN} und abstrahieren Randbemerkungen grundlegend.
+\hypertarget{LILLYxMARGIN}Diese Definitionen befinden sich im eigenständigen Paket \LILLYxNOTExLibrary{LILLYxMARGIN} und abstrahieren Randbemerkungen grundlegend. Dieses Paket akzeptiert ebenso wie Lilly die Option \T{usemarginnote}, die im Folgenden in \blankcmd{lillyMarginxElement} anstelle von \blankcmd{marginpar} \blankcmd{marginnote} verwendet. Dies kann mithilfe von \T{usemarginpar} wieder umgeschalten werden, dies ist die Standardeinstellung.
 
 %
 %

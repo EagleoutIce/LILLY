@@ -1,1 +1,12 @@
-%% defines nothing - but could do anything :D
+% Resets the palette Colors
+\ifx\LILLYxMODE\LILLYxMODExPRINT% Print Mode
+    \LillyNewPaletteColor{A}{SpanishGray}{Grau}{gräulich}%
+    \LillyNewPaletteColor{B}{LightGray}{Hellgrau}{hellgräulich}%
+    \LillyNewPaletteColor{C}{Jet}{Schwarz}{schwarz}%
+    \LillyNewPaletteColor{D}{MudWhite}{Weißgrau}{weißgräulich}%
+\else% normal Mode
+    \LillyNewPaletteColor{A}{DarkOrchid}{Lila}{lila}%
+    \LillyNewPaletteColor{B}{DarkChromeYellow}{Orange}{orange}%
+    \LillyNewPaletteColor{C}{DarkMidnightBlue}{Blau}{bläulich}%
+    \LillyNewPaletteColor{D}{AppleGreen}{Grün}{grünlich}%
+\fi

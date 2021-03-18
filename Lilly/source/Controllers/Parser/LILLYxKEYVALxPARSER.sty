@@ -8,6 +8,9 @@
     prefix=LILLY@
 }
 
+\RequirePackage{LILLYxCONTROLLERxCONTENT}
+\RequirePackage{LILLYxCOMMAND}
+
 %%% User-Defined Shortcuts:
 \userput{_LILLY_KEYVAL_GENERAL}{\lillyPathConfig}{\LILLYxPATHxDATA/Configs}
 \RequestConfig{\LILLYxPATHxDATA/Configs/_LILLY_KEYVAL_PACKAGES}
@@ -22,6 +25,7 @@
 \DeclareBoolOption[false]{paper}
 \DeclareBoolOption[false]{beamer}
 \DeclareBoolOption[true]{beamerKiz}
+\DeclareVoidOption{morewrites}{\PassOptionsToPackage{morewrites}{LILLYxRECORDER}}
 
 %%\DeclareBoolOption{Vorlesung}                            % Wir wollen einfache keys :D
 
@@ -40,5 +44,11 @@
 %% Here we will Load KeyVal-Hooks for Layouts and other Packages :D
 %  This way they are able to deploy shortcuts AND include needed Stuff :P
 \userput{_LILLY_KEYVAL_\LILLY@Typ}{\lillyPathConfig}{\LILLYxPATHxDATA/Layouts/KeyvalHooks}
+
+
+\@ifundefined{iflilly@vorlesung@isvalid@}{
+\newif\iflilly@vorlesung@isvalid@
+}{}
+\IfFileExists{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}{\global\lilly@vorlesung@isvalid@true}{\global\lilly@vorlesung@isvalid@false}
 
 \endinput

@@ -2,16 +2,13 @@
 \ProvidesPackage{LILLYxENCODING}[2019/07/16 Stellt die Kodierungs-Erweiterungen fuer LILLY zur Verfuegung]
 
 \RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grundlegende Pakete (Encoding etc.)                                                                                 %     %%%% ENCODINGS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \catcode`\"=12
-%% https://www.ctan.org/pkg/inputenc
-\LILLYxLoadPackage{inputenc}{Damit Eingaben auch brav codiert werden :D}
-                    {Kein Inputencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
-                    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
-                    {utf8x}{}
+
 
 %% https://www.ctan.org/pkg/fontenc
 \LILLYxLoadPackage{fontenc}{Damit Schriften auch brav codiert werden :D}
@@ -19,6 +16,11 @@
                     {\def\LILLYxDEMOxFONTENC{Ist nicht Da}} %% Heile heile Welt
                     {T1}{\def\LILLYxDEMOxFONTENC{Ist Da}}
 
+                    %% https://www.ctan.org/pkg/inputenc
+\LILLYxLoadPackage{inputenc}{Damit Eingaben auch brav codiert werden :D}
+                    {Kein Inputencoding? Das ist seltsam, dann lasse ich die Option wohl weg?}
+                    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+                    {utf8x}{}
 % Deprecated
 % %% https://www.ctan.org/pkg/ngerman
 % \LILLYxLoadPackage{ngerman}{Damit auch wirklich Deutsch gesprochen wird, ist zur Sicherheit da, redundant da babel!}

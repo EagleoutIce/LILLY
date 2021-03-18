@@ -2,10 +2,12 @@
 \ProvidesPackage{LILLYxMARGIN}[2019/07/13 Stellt die Margin-Kontrolle fuer LILLY zur Verfuegung]
 
 \RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
 
 \RequirePackage{LILLYxCOLOR}
+% \RequirePackage{LILLYxCOLOR}
 \RequirePackage{LILLYxCONTROLLERxLINK}
-
+% \RequirePackage{LILLYxCONTROLLERxLINK}
 
 
 %% https://www.ctan.org/pkg/pgfkeys
@@ -23,6 +25,29 @@
                     {Ohne machts einfach nur halb so viel spass, aber ok}
                     {}{}{} %% keine Argumente
 
+\RequirePackage{kvoptions}                                 %Erweiterte Optionen
+\DeclareBoolOption[true]{usemarginpar}\DeclareComplementaryOption{usemarginnote}{usemarginpar}
+\ProcessKeyvalOptions*
+
+\ifLILLYxMARGIN@usemarginpar%
+\gdef\lillyxMarginxElement#1{%
+    \marginpar{%
+        \pgfkeys{/lillyxMARGIN/alignment}\pgfkeys{/lillyxMARGIN/font}%
+        #1
+    }\unskip\ignorespaces%
+}
+\else%
+%% https://www.ctan.org/pkg/marginnote
+\LILLYxDemandPackage{marginnote}{Wens glücklich macht}
+                    {}
+                    {}{} %% keine Argumente
+\gdef\lillyxMarginxElement#1{%
+    \marginnote{%
+        \pgfkeys{/lillyxMARGIN/alignment}\pgfkeys{/lillyxMARGIN/font}%
+        #1%
+    }\unskip\ignorespaces%
+}
+\fi                    
 %% Die globalen Konfigurationen für die Randkontroller
 
 \gdef\lillymarginset#1{\pgfkeys{/lillyxMARGIN/.cd, #1}}
@@ -31,14 +56,6 @@
     /lillyxMARGIN/.is family, /lillyxMARGIN,
     font/.code={\footnotesize},
     alignment/.code = {\strictpagecheck\checkoddpage\ifoddpage\raggedright\else\raggedleft\fi}
-}
-
-
-\gdef\lillyxMarginxElement#1{%
-    \marginpar{%
-        \pgfkeys{/lillyxMARGIN/alignment}\pgfkeys{/lillyxMARGIN/font}%
-        #1
-    }\unskip\ignorespaces%
 }
 
 % #1 Color

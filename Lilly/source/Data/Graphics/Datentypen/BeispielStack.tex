@@ -1,0 +1,23 @@
+\gdef\GRAPHICSxBeispielxStack{%
+\begin{tikzternal}[scale=0.75,every node/.style={transform shape}]
+    \draw (0,3.5) -- (0,0) -- ++(2,0) --++(0,3.5); \node at(2.5,1.75) {\Large \(\rightarrow\)}; \node at(1,3.75) [above] {\T{push(1)}};
+    \node at(1,0) [below] {\T{isEmpty()=>true}};
+    \draw (3,3.5) -- ++(0,-3.5) -- ++(2,0) --++(0,3.5);
+    \draw (3,0) rectangle ++(2,1) node[midway,centered] {1}; \node at(5.5,1.75) {\Large \(\rightarrow\)}; \node at(4,3.75) [above] {\T{push(0)}};
+    \draw (6,3.5) -- ++(0,-3.5) -- ++(2,0) --++(0,3.5);
+    \draw (6,1) rectangle ++(2,1) node[midway,centered] {0};
+    \draw (6,0) rectangle ++(2,1) node[midway,centered] {1};
+    \node at(8.5,1.75) {\Large \(\rightarrow\)};  \node at(7,3.75) [above] {\T{push(1)}};
+    \draw (9,3.5) -- ++(0,-3.5) -- ++(2,0) --++(0,3.5);
+    \draw (9,2) rectangle ++(2,1) node[midway,centered] {1};
+    \draw (9,1) rectangle ++(2,1) node[midway,centered] {0};
+    \draw (9,0) rectangle ++(2,1) node[midway,centered] {1};
+    \draw[-latex] (10,3.25) -- ++(0,0.5);
+    \node at(11.5,1.75) {\Large \(\rightarrow\)};  \node at(10,3.75) [above] {\T{pop()}};
+    \node at(13,0) [below] {\T{isEmpty()=>false}};
+    \draw (12,3.5) -- ++(0,-3.5) -- ++(2,0) --++(0,3.5);
+    \draw (12,1) rectangle ++(2,1) node[midway,centered] {0};
+    \draw (12,0) rectangle ++(2,1) node[midway,centered] {1};
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxBeispielxStack} %% new pattern maybe apply to all?

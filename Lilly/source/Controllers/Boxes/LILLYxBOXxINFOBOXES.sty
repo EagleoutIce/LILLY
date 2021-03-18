@@ -2,8 +2,12 @@
 \ProvidesPackage{LILLYxBOXxINFOBOXES}[2019/07/13 Stellt die InfoBoxes fuer LILLY zur Verfuegung]
 
 \RequirePackage{LILLYxCONTROLLERxBOX}
+% \RequirePackage{LILLYxCONTROLLERxBOX}
 \RequirePackage{LILLYxBOXxMARGIN}
+% \RequirePackage{LILLYxBOXxMARGIN}
 \RequirePackage{LILLYxEMBLEMS}
+% \RequirePackage{LILLYxEMBLEMS}
+
 
 
 
@@ -93,11 +97,11 @@
     % #1 Optional Arguments
     % #2 Title
     \global\DeclareDocumentEnvironment{#3}{O{} m}{\ignorespaces%
-        \begin{AbstractInfoBoxDrawer}{#3}{##1}{##2}
-        }{\end{AbstractInfoBoxDrawer}}
+        \begin{AbstractInfoBoxDrawer}{#3}{##1}{##2}%
+        }{\end{AbstractInfoBoxDrawer}\ignorespaces}
     \global\DeclareDocumentEnvironment{#3*}{O{} m}{\ignorespaces%
-        \AbstractInfoMarginBoxDrawer{#3}{##1}{##2}
-        }{\endAbstractInfoMarginBoxDrawer}
+        \AbstractInfoMarginBoxDrawer{#3}{##1}{##2}%
+        }{\endAbstractInfoMarginBoxDrawer\ignorespaces}
 }
 
 %% Here we will set the TcolorBox-Styles for the drawing options :D
@@ -135,13 +139,13 @@
 % #1 The Id Of the Box it's not possible to transmit all persisted Values easily so this saves a lot of '#'-Symbols :D
 % #2 The Optional Arguments
 % #3 The Title
-\DeclareDocumentEnvironment{AbstractInfoBoxDrawer}{mmm}{
-    \@libo{#1}{PreCode}
+\DeclareDocumentEnvironment{AbstractInfoBoxDrawer}{mmm}{%
+    \@libo{#1}{PreCode}%
     \begin{tcolorbox}[lillyxINFOBOXESxDesignsx\@libo{#1}{Draw}={\color{\@libo{#1}{FgColor}}\@libo{#1}{TitleFont}}{\@libo{#1}{BgColor}}{}{\@libo{#1}{BorderColor}}{\@libo{#1}{Emblem}#3\@libo{#1}{TitleCode}}]\ignorespaces%
         \@libo{#1}{InCode}\@libo{#1}{TextFont}\unskip\ignorespaces%
         %lillyxINFOBOXESx#1xEmblem, which is: \csname lillyxINFOBOXESx#1xEmblem\endcsname
 }{%
-        \@libo{#1}{OutCode}
+        \@libo{#1}{OutCode}%
     \end{tcolorbox}\@libo{#1}{PostCode}%
 }
 
@@ -150,11 +154,12 @@
 % #3 The Title
 \NewEnviron{AbstractInfoMarginBoxDrawer}[3]{% could be done with +b, but as this option is realtivley new, it might not work :D
         % Here the Marker Magic :D make with switch decideable
-        \textsuperscript{\,\cmark[\@nameuse{lillyxINFOBOXESx#1xMarker}]{mrkibox:\theCTRxLILLYxTOTALINFOBOXES}{\@nameuse{lillyxINFOBOXESx#1xBorderColor}}}%
+        % \expandafter\ifx\expandafter
+        \textsuperscript{\cmark[\@nameuse{lillyxINFOBOXESx#1xMarker}]{mrkibox:\theCTRxLILLYxTOTALINFOBOXES}{\@nameuse{lillyxINFOBOXESx#1xBorderColor}}}%
         \lillyxMarginxElement{\elable{mrkibox:\theCTRxLILLYxTOTALINFOBOXES}%
             \begin{AbstractInfoBoxDrawer}{#1}{#2}{#3}
                 \BODY
-            \end{AbstractInfoBoxDrawer}
+            \end{AbstractInfoBoxDrawer}%
         }\refstepcounter{CTRxLILLYxTOTALINFOBOXES}%
 }
 

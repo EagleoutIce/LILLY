@@ -3,14 +3,10 @@
 
 
 \providecommand{\AUTHOR}{Florian Sihler}
-\providecommand{\AUTHORMAIL}{florian.sihler@web.de}
+\providecommand{\AUTHORMAIL}{florian.sihler@uni-ulm.de}
 
-\RequirePackage{LILLYxCORE}
-\RequirePackage{LILLYxLIST}
-\RequirePackage{LILLYxRANDOM}
-
-
-\input{\LILLYxPATHxDATA/_LILLY_GENERAL_COMMANDS}
+\RequirePackage{LILLYxVANILLA}% Wird benötigt, falls Jake nicht verwendet wird :D
+%% Liefert außerdem: LILLYxBOOLEAN und LILLYxDEBUG!
 
 \newcounter{ctr_DUMMY}
 
@@ -21,16 +17,19 @@
 
 \providecommand*{\LILLYxDummy}{dummy}                        %%% ONLY THING DEFINE HERE
 
-\RequirePackage{LILLYxPATH} %% provides \linput as \LILLYxPATH based input
-\RequirePackage{LILLYxBOOLEAN} %% \true und \false
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Key-Val-Optionen zum verarbeiten von Argumenten                                                                     %     %%%% PACKAGE-OPTIONS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{LILLYxKEYVALxPARSER}
+\RequirePackage{LILLYxCORE}
+\RequirePackage{LILLYxLIST}
+\RequirePackage{LILLYxRANDOM}
+
+
+
+\input{\LILLYxPATHxDATA/_LILLY_GENERAL_COMMANDS}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,8 +65,8 @@
 \LoadClass[\LILLYxGeneralxPaperformat,\LILLYxGeneralxFontsize,titlepage=firstiscover,\LILLYxDocumentxTYPExExtras,\LILLYxPAPER]{\LILLYxDocumentxTYPE}
 
 %% Finde ich so generell schöner zum Lesen :D
-\renewcommand*{\thefootnote}{$\langle$\textbf{\doublealph{footnote}}$\rangle$}
-\renewcommand*{\thempfootnote}{$\langle$\textbf{\arabic{mpfootnote}}$\rangle$}
+\renewcommand*{\thefootnote}{$\langle$\textbf{\arabic{footnote}}$\rangle$}
+\renewcommand*{\thempfootnote}{$\langle$\textbf{\doublealph{mpfootnote}}$\rangle$}
 
 
 %% NEU, weil cooler:
@@ -183,8 +182,8 @@
 
 \hbadness=99999
 \hfuzz=15000pt
-\clubpenalty=10000
-\widowpenalty=10000
+\clubpenalty10000
+\widowpenalty10000
 
 \pdfminorversion=5
 \pdfcompresslevel=9

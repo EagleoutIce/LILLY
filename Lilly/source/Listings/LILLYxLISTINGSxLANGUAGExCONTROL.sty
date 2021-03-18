@@ -2,12 +2,13 @@
 \ProvidesPackage{LILLYxLISTINGSxLANGUAGExCONTROL}[2019/07/14 Verwaltet Sprachen fuer die Listings-Erweiterungen von LILLY]
 
 \RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
 
 \RequirePackage{LILLYxLISTINGS}
 \RequirePackage{LILLYxLISTINGSxADVANCED}% we will construct the presentation - Environments too
 \RequirePackage{LILLYxCONTROLLERxBOX}
+% \RequirePackage{LILLYxCONTROLLERxBOX}
 \tcbuselibrary{listingsutf8}% Lilly won't used minted. Minted would need a seperate installation of pygments. Urgh
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % pgf-keys control
@@ -50,7 +51,6 @@
       constructor command/.initial={LillyNewLstEnvironCoreStarred}
 }
 
-
 \pgfkeys{/lillyxLISTINGS/plain/.is family,%
     /lillyxLISTINGS/plain,
       listing style/.initial = {\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style}},% Ensure main is loaded, maybe make flexible in future versions?
@@ -61,6 +61,18 @@
       command name suffix/.initial = {},%
       %draw environment/.initial={plainlst}, % will hold the name of the corresponding environment. It must hold one optional Argument to accept listings-definitions and one mandatory for the language
       constructor command/.initial={LillyNewLstEnvironPlain}
+}
+
+\pgfkeys{/lillyxLISTINGS/pnum/.is family,%
+    /lillyxLISTINGS/pnum,
+      listing style/.initial = {\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style}},% Ensure main is loaded, maybe make flexible in future versions?
+      % % #1 language name (java, latex, ..-)
+      % % #2 lst language name (lJava, lLatex,...)
+      % command name/.code 2 args={#1}, % default will by constructed for '\begin{java}', '\begin{latex}' ....
+      command name prefix/.initial = {pnum},%
+      command name suffix/.initial = {},%
+      %draw environment/.initial={plainlst}, % will hold the name of the corresponding environment. It must hold one optional Argument to accept listings-definitions and one mandatory for the language
+      constructor command/.initial={LillyNewLstEnvironPlainWNums}
 }
 
 \pgfkeys{/lillyxLISTINGS/presentation/.is family,%
@@ -88,7 +100,6 @@
       draw command/.initial={LILLYxLSTINLINE} % will hold the name of the corresponding command (2 args, #1 language sequence, #2 content - will be forwarded in construction)
 }
 
-
 \pgfkeys{/lillyxLISTINGS/inline blank/.is family,%
     /lillyxLISTINGS/inline blank,
       listing style/.initial = {\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style}},% Ensure main is loaded, maybe make flexible in future versions?
@@ -112,6 +123,7 @@
       command name suffix/.initial = {},
       draw command/.initial={LILLYxLSTINLINExADVANCED} % will hold the name of the corresponding command (2 args, #1 language sequence, #2 content - will be forwarded in construction)
 }
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Environments used to style the languages
@@ -159,6 +171,16 @@
 }
 {}
 
+\DeclareTCBListing{sclatex}{% preview latex code
+        O{} % Listing Args
+        O{} % TCB Args
+}{%
+  enhanced jigsaw,breakable,blankest,enlarge top by=\lilly@lst@outer@spacing,enlarge bottom by=\lilly@lst@outer@spacing,listing side text,righthand width=3.5cm,before lower={\vspace*{-0.75\baselineskip}},
+  listing options={%
+    style=MAIN,
+    language=lLatex,#1},#2, after={\\[-0.25\baselineskip]},
+}
+{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Registration of Languages :D
@@ -212,6 +234,18 @@
 % #3 In Extra
 % #4 Out Extra
 % #5 Language
+\def\LillyNewLstEnvironPlainWNums#1#2#3#4#5{%
+  \lstnewenvironment{#1}[1][]{#3\lstset{xleftmargin=0pt,xrightmargin=0pt,%
+  numbers=left,numbersep=7pt,frame=none,%
+  rulecolor={},backgroundcolor={},##1}}{#4}%
+}
+
+
+% #1 Name
+% #2 Key
+% #3 In Extra
+% #4 Out Extra
+% #5 Language
 % NOTE: currently no opt arg, as \@ifnextchar breaks scanning of lst@next
 \def\LillyNewLstEnvironPresent#1#2#3#4#5{%
 %\lstnewenvironment{#1}[1][]{\lstset{##1}#3}{#4}
@@ -228,25 +262,6 @@
       \edef\xxcurlst{\expandafter\noexpand\csname\pgfkeysvalueof{/lillyxLISTINGS/\environName/constructor command}\endcsname{#3}{#1}{\noexpand\lstset{style=\pgfkeysvalueof{/lillyxLISTINGS/\environName/listing style},language=#2}}{}{#2}}
   \global\xxcurlst%
   %\relax%No one (this means me) really knows why this helps, but it enforces the lst@next - search to interpret the first char of an cs-sequence correctly
-  % \newenvironment{#3}[1][]{
-  %     %\debugout{Hello In: #1, #2, #3}
-  %     \csname\pgfkeysvalueof{/lillyxLISTINGS/#1/draw environment}\endcsname[##1]{#2}%
-  % }{\csname end\pgfkeysvalueof{/lillyxLISTINGS/#1/draw environment}\endcsname}% Set
-  % It's somewhat mythical, the manual creation of the environment won't create any error. This is real magic - i guess
-  % Divider
-  %\expandafter\xdef\csname#3\endcsname{\expandafter\noexpand\csname\pgfkeysvalueof{/lillyxLISTINGS/#1/draw environment}\endcsname\noexpand{#2}}
-  % \expandafter\xdef\csname#3\endcsname{\noexpand\protect\noexpand\@ifnextchar[{\expandafter\noexpand\csname @@hasopt@@#3\endcsname}{\expandafter\noexpand\csname @@noopt@@#3\endcsname}}%
-  % % No opts
-  % \expandafter\xdef\csname @@noopt@@#3\endcsname{\expandafter\noexpand\csname\pgfkeysvalueof{/lillyxLISTINGS/#1/draw environment}\endcsname{#2}}
-  % % Has opts
-  % \long\expandafter\xdef\csname @@hasopt@@#3\endcsname[##1]{\expandafter\noexpand\csname\pgfkeysvalueof{/lillyxLISTINGS/#1/draw environment}\endcsname[##1]{#2}}
-  % End
-  %\expandafter\xdef\csname end#3\endcsname{\expandafter\noexpand\csname end\pgfkeysvalueof{/lillyxLISTINGS/#1/draw environment}\endcsname}
-  %\relax
-  %\newenvironment{#3}[1][]{\defaultlst{#2}}{\enddefaultlst}
-  % \DeclareDocumentEnvironment{#3}{O{}}{%
-  %   \presentlst{#2}
-  % }{\endpresentlst}
 \egroup%
 \globaldefs=0%
 }
@@ -263,7 +278,7 @@
   %   \presentlst{lLatex}
   % }{\endpresentlst}
 % This will allow us to construct the environments via foreach :D
-  \foreach \environName in {default,nonumber,plain,presentation}{%
+  \foreach \environName in {default,nonumber,plain,pnum,presentation}{%
       \debugout{Register 'env \environName' for #1/#2}%
         \edef\environCurName{\pgfkeysvalueof{/lillyxLISTINGS/\environName/command name prefix}#1\pgfkeysvalueof{/lillyxLISTINGS/\environName/command name suffix}}% assign
         \debugout{\space > Environment Name: [\environCurName]}%
@@ -271,27 +286,6 @@
         \edef\CreateAnLstEnviron{\noexpand\Lilly@NewLstEnviron{\environName}{#2}{\environCurName}}% fully expand the Name, otherwise it would be undefined when the environment gets used
         \CreateAnLstEnviron%
   }
-  % \edef\environDefaultName{\pgfkeysvalueof{/lillyxLISTINGS/default/command name prefix}#1\pgfkeysvalueof{/lillyxLISTINGS/default/command name suffix}}% assign
-  % \edef\environPlainName{\pgfkeysvalueof{/lillyxLISTINGS/plain/command name prefix}#1\pgfkeysvalueof{/lillyxLISTINGS/plain/command name suffix}}% assign
-  % \edef\environPresentName{\pgfkeysvalueof{/lillyxLISTINGS/presentation/command name prefix}#1\pgfkeysvalueof{/lillyxLISTINGS/presentation/command name suffix}}% assign
-  % \bgroup%
-  %     \globaldefs=1%Enabling globaldefs to make the defined environments
-  %     %\expandafter\xdef\csname\environDefaultName\endcsname[]
-  %     % \let\lst@arg\@empty
-  %     % \lst@XConvert{\environDefaultName}\@nil
-  %     % \expandafter\lstnewenvironment@\expandafter\lst@arg{\environDefaultName}{##2}
-  %     %\edef\tmpcreationofenvlst{\noexpand\lstnewenvironment{\environDefaultName}[1][]{\noexpand\lstset{language=#1,####1}}{}}
-  %     %\tmpcreationofenvlst
-  %     %   {\lstset{language=#1,##1}}
-  %     %   {}
-  %     % \newenvironment{\environDefaultName}[1][]{\lillylstplain[%
-  %     %   ##1%
-  %     % ]{#2}}{\lillylstplain}% Default
-  %     \newenvironment{\environPlainName}[1][]{\plainlst[##1]{#2}}{\endplainlst}% Plain
-  %     \newenvironment{\environDefaultName}[1][]{\presentlst[##1]{#2}}{\endpresentlst}% Presentation
-  % \egroup%
-  %
-  %
   % This procedure can be used in persistence to iterate over the pgf-keys
   %% Register 'inline default'
   \foreach \inlineName in {default,blank,input,present}{%
@@ -312,11 +306,6 @@
       %\expandafter\robustify\csname @@hasopt@@\inlineCurName\endcsname% robustify
 
   }%
-  % \expandafter\xdef\csname i#1\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINPL{language=#2}{##1}}
-  % \expandafter\robustify\csname i#1\endcsname
-  %
-  %
-  %
   %
   %% END: Register Language to supplied Lists:
   \pushList{#3}{#1/#2}% Register Signature
@@ -336,5 +325,10 @@
 %         }%
 %         \lilly@tmp%
 % }
+
+\lstdefinelanguage{lVoid}{columns=fixed,moredelim=[is][{}]{|plain|}{|plain|},moredelim=[is][{\itshape\color{Purple}}]{|ihl|}{|ihl|},moredelim=**[is][\digitstyle]{|num|}{|num|}}
+
+\RegisterLanguage{void}{lVoid}
+
 
 \endinput

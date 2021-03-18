@@ -1,11 +1,9 @@
 package de.eagle.lillyjakeframework.core;
 
-import de.eagle.gepard.modules.Expandables;
-
 /**
  * @file CoreFunctions.java
- * @author Raphael Straub
- * @version 2.0.0
+ * @author Florian Sihler
+ * @version 2.2.0
  *
  * @brief Enthält die Funktionen der Kommandozeile
  */
@@ -17,6 +15,8 @@ import de.eagle.gepard.parser.Tokenizer;
 import de.eagle.lillyjakeframework.cmdline.Autocomplete;
 import de.eagle.lillyjakeframework.cmdline.CommandLineParser;
 import de.eagle.lillyjakeframework.compiler.JakeCompile;
+import de.eagle.util.constants.ColorConstants;
+import de.eagle.util.datatypes.FunctionCollector;
 import de.eagle.util.datatypes.FunctionDeskriptor;
 import de.eagle.util.datatypes.ReturnStatus;
 import de.eagle.util.datatypes.Settings;
@@ -26,23 +26,27 @@ import de.eagle.util.helper.Executer;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
-import de.eagle.util.constants.ColorConstants;
-import de.eagle.util.datatypes.FunctionCollector;
+
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug3;
 
 import java.awt.Desktop;
-import java.io.*;
-import java.net.MalformedURLException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
-import java.nio.Buffer;
 import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Comparator;
 import java.util.Map;
 
-import static de.eagle.util.io.JakeLogger.*;
+import de.eagle.gepard.modules.Expandables;
 
 /**
  * Enthält viele Funktionen
@@ -100,7 +104,7 @@ public final class CoreFunctions {
      */
     public static ReturnStatus fkt_dump(String[] cmd) {
         writeLoggerDebug1("Liefere die Konfigurationen (fkt_dump)", "func");
-
+        PropertiesProvider.printMetadata();
         try {
             JakeWriter.out.println("Settings Dump: ");
             JakeWriter.out.println(
@@ -124,7 +128,8 @@ public final class CoreFunctions {
      */
     public static ReturnStatus fkt_help(String[] cmd) {
         writeLoggerDebug1("Gebe die Hilfe aus (fkt_help)", "func");
-        JakeWriter.out.format("Benutzung:%n%n%s%s [options=help] [file]%s%n%n[options]:%n", ColorConstants.COL_GOLD,
+        PropertiesProvider.printMetadata();
+        JakeWriter.out.format("Benutzung:%n%n%s%s [operation=help] [file] [options]%s%n%noperations:%n", ColorConstants.COL_GOLD,
                 Definitions.PRG_NAME, ColorConstants.COL_RESET);
         functions_t.entrySet().stream()
                 .filter(m -> m.getKey().length() > 0 && m.getKey().charAt(0) != Definitions.HIDDEN_ARG)
@@ -136,15 +141,14 @@ public final class CoreFunctions {
         JakeWriter.out.format("  %-15s: %s%n", "REI", "Versucht Jake zu Reinstallieren (Entwicklerfunktion)");
 
         JakeWriter.out.println(
-                "\n[file]:\nAngabe gemäß \"xxx.tex\". Dies setzt die Operation automatisch auf file_compile und generiert damit \\"
-                        + " ein generelles makefile für \"xxx.tex\".");
-        JakeWriter.out.println("\nnote:\nAllgemeine Einstellungen können über \"-key" + Definitions.ASS_PATTERN
+                "\nfile:\nAngabe gemäß \"xxx.tex\". Dies setzt die Operation automatisch auf file_compile und kompiliert damit die Datei. Es kann auch eine Konfigurationsdatei \"xxx.conf\" übergeben werden. In diesem Fall wird die Operation automatisch auf config gesetzt.");
+        JakeWriter.out.println("\noptions:\nAllgemeine Einstellungen können über \"-key" + Definitions.ASS_PATTERN
                 + "value\" gesetzt werden (\"-key\" für boolesche). " + "So setzt: \"-path" + Definitions.ASS_PATTERN
                 + " /es/gibt/kuchen\" die Einstellung settings[\"path\"] auf besagten Wert: \"/es/gibt/kuchen\". "
-                + "Weiter ist es möglich mit '" + Definitions.ASS_PATTERN + "' values hinzuzufügen.");
+                + "Weiter ist es möglich mit '" + Definitions.ASS_PATTERN + "' values hinzuzufügen. Alle aktuellen Einstellungen können der Dokumentation entnommen werden (jake docs).");
 
         JakeWriter.out.println(
-                ("\nBeispiel:\n  jake test.tex -lilly-modes: default -lilly-author: \"Detlef Dieter\" -lilly-boxes+: LIMERENCE"));
+                ("\nBeispiel:\n  jake test.tex -lilly-modes: default -lilly-author: \"Detlef Dieter\" -lilly-boxes+: LIMERENCE\n\nÜbrigens: Die Konfiguration 'what' die zum Beispiel für den Generator gebraucht wird, kann auch durch einen Doppepunkt angeführt werden. So genügt: \n  jake generate :mitschrieb"));
         return ReturnStatus.EXIT_SUCCESS;
     }
 
@@ -325,15 +329,15 @@ public final class CoreFunctions {
 
     public static ReturnStatus fkt_get(String[] cmd) {
         JakeWriter.out.println("Zeige alle Grafiken die mit Lilly zur Verfügung stehen.");
-        Settings expandables = new Settings("expandables");
+        // Settings expandables = new Settings("expandables");
         String lPath = "";
         try {
-            expandables = Expandables.getInstance().expandsCS();
+            /* expandables = */ Expandables.getInstance().expandsCS();
             lPath = Executer.runBashCommand("printf " + CoreSettings.requestValue("S_LILLY_PATH")).readLine();
         } catch (IOException e) {
 
         }
-
+        // Note: this does only work if dirname, locate and printf will work this has to be assured on non-apt idstrs
         JakeWriter.out.println("Öffne: \"" + lPath + "/source/Data/Graphics/all-OUT/all.pdf\"");
         File target = new File(lPath + "/source/Data/Graphics/all-OUT/all.pdf");
         if (!target.isFile() || CoreSettings.requestValue("S_WHAT").equals("force")) {
@@ -402,8 +406,8 @@ public final class CoreFunctions {
             ReadableByteChannel readableByteChannel = Channels.newChannel(url.openStream());
             System.out.println("Target: " + PropertiesProvider.getThisPath());
             FileOutputStream fileOutputStream = new FileOutputStream(PropertiesProvider.getThisPath());
-            FileChannel fileChannel = fileOutputStream.getChannel();
             fileOutputStream.getChannel().transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
+            fileOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

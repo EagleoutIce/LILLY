@@ -1,0 +1,118 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LILLYxLISTINGSxALGORITHMS}[2019/10/14 Stellt eine Algorithmen-Erweiterungen fuer LILLYxLISTINGS zur Verfuegung]
+
+\RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE} %% DemandPackage und LoadPackage
+\RequirePackage{LILLYxLISTINGS} %% DemandPackage und LoadPackage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{kvoptions}                                 %Erweiterte Optionen
+
+% ifLILLYxLISTINGSxALGORITHMS@german: Load the german names?
+\DeclareBoolOption[true]{german}\DeclareComplementaryOption{english}{german}
+
+\DeclareBoolOption[true]{algomod}\DeclareComplementaryOption{noalgomod}{algomod}
+
+\ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
+
+%% https://www.ctan.org/pkg/algorithm2e
+\LILLYxDemandPackage{algorithm2e}{Algoritmen im Pseudo-Dialect}
+                    {Ohne macht dieses Paket keinen Sinn :D}
+                    {linesnumbered,algoruled,\ifLILLYxLISTINGSxALGORITHMS@german german\else english\fi}{}
+
+
+\ifLILLYxLISTINGSxALGORITHMS@algomod
+\setlength{\algoheightrule}{1.15pt} % thickness of the rules above and below
+\setlength{\algotitleheightrule}{0.8pt} % thickness of the rule below the title
+% \ifcsname chapter\endcsname
+% \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-1.5cm}}
+% \else\ifcsname section\endcsname
+%   \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-0.5cm}}
+%   \else
+%  \def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-0cm}}
+%\fi\fi
+\def\LillyAlgoTitle{{\xtranslate{Alle Algorithmen}}\vspace*{-1cm}}
+\ifcsname LILLYxBEAMER\endcsname\else%
+\newlistof{ALGORITHMS}{ALGO}{\LillyAlgoTitle}
+\fi
+\pushList{RegisteredListOfLists}{ALGO}
+
+% We want comments
+
+\let\Comment\tcp
+\long\def\@lillyalgo@cmtfrmt#1{\color{Charcoal}\T{#1}}
+\SetCommentSty{@lillyalgo@cmtfrmt}
+\SetNoFillComment%\SetSideCommentLeft
+% \SetNlSty{T}{}{}
+
+% will expand to H only if not in multicol
+\def\@lilly@AUTOPLACEMENTALGO{%
+  \ifx\multicols\@undefined
+  \else
+     \ifnum\col@number>\@ne
+       \@twocolumntrue
+     \fi
+  \fi
+  \if@twocolumn%
+  \else H\fi%
+}
+
+% Allows to declare Code segments :D
+\def\StartCode{\Indp}
+\def\EndCode{\Indm}
+
+\SetKw{KwOr}{or}
+\SetKw{KwAnd}{and}
+
+% [#1] Float placement
+%  #2  Caption
+% [#3] short caption (=#2)
+
+\def\@lilly@algo@def@style{\rmfamily\upshape}
+\def\@lillyalgo@init{%\def\alabel##1{\gdef\@alabel{#1}}%
+  \IncMargin{1em}\def\Int{{\@lilly@algo@def@style int}}\def\Matrix{{\@lilly@algo@def@style 2DMatrix}}\def\True{{\@lilly@algo@def@style true}}\def\False{{\@lilly@algo@def@style false}}}
+\def\@lillyalgo@exit{\DecMargin{1em}}
+\def\@@@lillystpone#1{\the\numexpr\value{#1}+1\relax}
+
+%%% Algorithm
+\let\@oldalgo\algorithm \let\end@oldalgo\endalgorithm
+\DeclareDocumentEnvironment{algorithm}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\addcontentsline{ALGO}{section}{\makebox[.4cm][r]{\@@@lillystpone{algocf}.} #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgo[#1]}\@tbg\Indm%
+}{\ifx\\#2\\\else\caption[#3]{#2}\fi\end@oldalgo\@lillyalgo@exit\egroup}
+
+\expandafter\let\expandafter\@oldalgos\csname algorithm*\endcsname \expandafter\let\expandafter\end@oldalgos\csname endalgorithm*\endcsname
+\DeclareDocumentEnvironment{algorithm*}{%
+  O{\@lilly@AUTOPLACEMENTALGO} m O{#2}
+}{\bgroup\addcontentsline{ALGO}{section}{\makebox[.4cm][r]{\@@@lillystpone{algocf}.} #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgos[#1]}\@tbg\Indm%
+}{\ifx\\#2\\\else\caption[#3]{#2\label{alg:#2}}\fi\end@oldalgos\@lillyalgo@exit\egroup}
+
+
+\let\@oldprodc\procedure \let\end@oldprodc\endprocedure
+\DeclareDocumentEnvironment{procedure}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\@lillyalgo@init%
+  \edef\@tbg{\noexpand\@oldprodc[#1]}\@tbg\ifx\\#2\\\else\caption[#3()]{#2()\label{proc:#2}}\fi\Indm%
+}{\end@oldprodc\@lillyalgo@exit\egroup}
+
+\expandafter\let\expandafter\@oldprodcs\csname procedure*\endcsname \expandafter\let\expandafter\end@oldprodcs\csname endprocedure*\endcsname
+\DeclareDocumentEnvironment{procedure*}{%
+  O{\@lilly@AUTOPLACEMENTALGO} m O{#2}
+}{\bgroup\@lillyalgo@init\edef\@tbg{\noexpand\@oldprodcs[#1]}\@tbg\ifx\\#2\\\else\caption[#3()]{#2()\label{proc:#2}}\fi\Indm%
+}{\end@oldprodcs\@lillyalgo@exit\egroup}
+
+\let\@oldalgfunc\function \let\end@oldalgfunc\endfunction
+\DeclareDocumentEnvironment{function}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\@lillyalgo@init%
+  \edef\@tbg{\noexpand\@oldalgfunc[#1]}\@tbg\Indm%
+}{\ifx\\#2\\\else\caption[#3()]{#2()}\fi\end@oldalgfunc\@lillyalgo@exit\egroup}
+
+\expandafter\let\expandafter\@oldalgfuncs\csname function*\endcsname \expandafter\let\expandafter\end@oldalgfuncs\csname endfunction*\endcsname
+\DeclareDocumentEnvironment{function*}{%
+  O{\@lilly@AUTOPLACEMENTALGO} m O{#2}
+}{\bgroup\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgfuncs[#1]}\@tbg\Indm%
+}{\ifx\\#2\\\else\caption[#3()]{#2()}\fi\end@oldalgfuncs\@lillyalgo@exit\egroup}
+
+\SetKwProg{Fn}{def}{:}{end}%~def
+
+\SetKwRepeat{Do}{do}{while}
+\fi
+\endinput

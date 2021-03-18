@@ -2,6 +2,7 @@
 \ProvidesPackage{LILLYxLIST}[2019/07/13 Stellt die Grundlagen einer Liste fuer LILLY zur Verfuegung]
 
 \RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
 \RequirePackage{LILLYxCOMMAND}
 
 
@@ -48,12 +49,21 @@
 
 \gdef\getListLength#1{%
     \def\@tmpl{#1}%
+    % init:
+    \gdef\@c@tmp{0}
     \foreach \@tmp[count=\@@c@tmp] in \@tmpl {\xdef\@c@tmp{\@@c@tmp}}%
     % length in @c@tmp
     % \@c@tmp%
 }
 
 \def\typesetVoid#1{#1}%
+
+\def\@typeset@list@and{und}
+
+\newcommand{\TypesetList}[3][typesetVoid]{\bgroup%
+    \edef\@typeset@list@and{#3}\edef\@@tmp{\noexpand\@@typesetList[\unexpanded{#1}]{#2}}\@@tmp%
+    \egroup%
+}
 
 \newcommand{\typesetList}[2][typesetVoid]{%
     \edef\@@tmp{\noexpand\@@typesetList[\unexpanded{#1}]{#2}}\@@tmp%
@@ -64,9 +74,9 @@
     \def\@tmpl{#2}%
     \getListLength{#2}%
     \foreach \x[count=\i] in \@tmpl {%
-        \ifnum\i=\@c@tmp%
-        ~\xtranslate{und} \else%
-        \ifnum\i>1,\space\fi%
+        \ifnum\i>1 \ifnum\i=\@c@tmp%
+        ~\xtranslate{\@typeset@list@and} \else%
+        ,\space\fi%
         \fi%
         \@nameuse{#1}{\x}%
     }\ignorespaces%
@@ -109,5 +119,11 @@
 }
 
 \constructList{lillytmplist}
+
+% This one will hold all important lists, like list of Definitions etc. to let them be registered in chapters etc.
+\constructList[,]{RegisteredListOfLists}%
+\pushList{RegisteredListOfLists}{lof}
+\pushList{RegisteredListOfLists}{lot}
+
 
 \endinput

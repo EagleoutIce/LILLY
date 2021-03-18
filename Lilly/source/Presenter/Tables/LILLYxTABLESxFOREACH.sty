@@ -2,6 +2,7 @@
 \ProvidesPackage{LILLYxTABLESxFOREACH}[2019/08/02 Stellt eine foreach-Erweiterung fuer Tabellen zur Verfuegung]
 
 \RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
 
 \RequirePackage{LILLYxTABLES}
 
@@ -39,5 +40,14 @@
         \tabadd{\\}%
     }
 }
+%% Foreach :D
+% Manual foreach #1 in #2 do #3, wil insert no newline
+\long\def\tabforeachm#1#2#3{%
+    \tabreset\def\amp{\noexpand&}%
+    \foreach #1 in {#2} {%
+        #3%
+    }
+}
+
 
 \endinput

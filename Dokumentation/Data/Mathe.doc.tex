@@ -6,7 +6,7 @@
     \blankcmd{LILLYxPATHxMATHS} = \T{\LILLYxPATHxMATHS}
 \end{center}
 
-Das Laden des Pakets mit LILLY kann durch die Option \T{math} aktiviert werden (Standard) und durch \T{nomath} entsprechend dekativiert. So sorgt das Deklarieren von:
+Das Laden des Pakets mit LILLY kann durch die Option \T{math} aktiviert werden (Standard) und durch \T{nomath} entsprechend deaktiviert. So sorgt das Deklarieren von:
 \begin{latex*}
 \documentclass[nomath]{Lilly}
 \end{latex*}
@@ -108,6 +108,13 @@ Dieser Befehl vereinfacht das Schreiben von Betragsstrichen. Diese passen sich z
         \specialrule{1pt}{0pt}{0pt}
     \end{tabular}\smallskip
 \end{center}
+
+%
+%
+%
+
+\presentCommand[2.2.0]{dist}[\manArg{math-Ausdruck}]
+Setzt einen Ausdruck in doppelte Striche und kann so für Abstände eingesetzt werden: \clatex{:bmath:\\dist\{x\}:emath:} ergibt: $\dist{x}$.
 
 %
 %
@@ -321,8 +328,8 @@ Hier befinden sich einige abkürzende Befehle, die primär das Schreiben beschle
 %
 %
 
-\presentCommand[1.0.7]{folge}[\optArg[a]{Folgenglied}]
-Setzt eine Folge, welche mit dem Index $n$ arbeitet: \blankcmd{folge} (\folge).
+\presentCommand[1.0.7]{folge}[\optArg[a]{Folgenglied}\cmdlist\anothercmd[2.2.0]{folgek}\optArg[a]{Folgenglied}]
+Setzt eine Folge, welche mit dem Index $n$ arbeitet: \blankcmd{folge} (\folge). Analog: \blankcmd{folgek} (\folgek).
 
 %
 %
@@ -352,6 +359,13 @@ Setzt verschiedene mathematische Ausdrücke:
 
 \presentCommand[1.0.2]{x}[\optArg[$\sim$]{spacing}\cmdlist \anothercmd[1.0.2]{y}\optArg[$\sim$]{spacing}\cmdlist \anothercmd[1.0.2]{z}\optArg[$\sim$]{spacing} \cmdold]
 Setzt entsprechend: \x[], \y und \z[].
+
+%
+%
+%
+
+\presentCommand[1.0.6]{points}[\manArg{Punkte}]
+Setzt Punkte an das Ende der Zeile, um zum Beispiel Teilpunkte in Aufgaben einfach zu setzen.
 
 %
 %
@@ -398,7 +412,7 @@ Setzt einen Marker auf der $x$-Achse bei \emph{PosX} mit dem Text \emph{text}. F
 %
 %
 
-\presentCommand[2.0.0]{ymark}[\optArg[xy]{text}\manArg{PosY}\optArg[0.15]{linelength}]
+\presentCommand[2.0.0]{ymark}[\optArg[y]{text}\manArg{PosY}\optArg[0.15]{linelength}]
 Setzt einen Marker auf der $y$-Achse bei \emph{PosY} mit dem Text \emph{text}. Für ein Beispiel, siehe \jmark[Graph-Umgebung]{env:graph}.
 
 %

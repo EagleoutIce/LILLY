@@ -19,7 +19,7 @@ def view(path):
         subprocess.call(('xdg-open', path))
 
 def pdfwsamename(x):
-    return os.path.isfile(x+ '.pdf')
+    return os.path.isfile(x+ '-pdf.pdf')
 
 changewatcher = {}
 
@@ -60,12 +60,12 @@ if len(sys.argv) > 1:
         outname = "latest"
     elif sys.argv[1]=="prerender":
         for x in all:
-            if "Eigene" not in x and "-pdf" not in x: # sloppy
+            if "-pdf" not in x: # sloppy :: "Eigene" not in x and
                 x = x.replace(dir_path + "/","")
                 if x not in changewatcher or float(changewatcher[x]) < os.path.getmtime(x):
                     p = x.replace(".tex","-pdf.tex")
                     with open(p,'w') as out:
-                        out.write("\\documentclass[tikz,preview]{article}\n\\usepackage[active,tightpage]{preview}\n\\usepackage{LILLYxGRAPHICS}\n\\usepackage{LILLYxLISTINGS}\n\\usepackage{LILLYxSHORTCUTS}\n\\usepackage{LILLYxMATH}\n\\usepackage{LILLYxTABLES}\n\\begin{document}\n\\tikzumlset{fill class=MudWhite, fill state=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter}%\n")
+                        out.write("\\documentclass[tikz,preview]{article}\n\\usepackage[active,tightpage]{preview}\n\\usepackage{LILLYxGRAPHICS}\n\\usepackage{LILLYxLISTINGS}\n\\usepackage{LILLYxSHORTCUTS}\n\\usepackage{LILLYxMATH}\n\\usepackage{LILLYxTABLES}\n\\usepackage[ngerman]{babel}\n\\begin{document}\n\\tikzumlset{fill class=MudWhite, fill state=MudWhite, fill note=MudWhite!20} % , font=\small\LILLYxlstTypeWriter}%\n")
                         out.write("\\begin{{preview}}\\getGraphics{{{0}}}\\end{{preview}}\n".format(x))
                         out.write("\\end{document}")
                         out.close()
@@ -114,7 +114,7 @@ with open("./" + fname,'w') as out:
         x = x.replace(".tex","")
         print(x)
         if pdfwsamename(x):
-            out.write("\\phantomsection \\addcontentsline{{toc}}{{section}}{{{1}}}\\verb|{0}|\\quad{{\\tiny pdf}}& \\includegraphics[width=0.8\\linewidth]{{{2}}}\\\\\n\\midrule ".format(x,x[x.index("/")+1:],x+".pdf"))
+            out.write("\\phantomsection \\addcontentsline{{toc}}{{section}}{{{1}}}\\verb|{0}|\\quad{{\\tiny pdf}}& \\includegraphics[width=0.8\\linewidth]{{{2}}}\\\\\n\\midrule ".format(x,x[x.index("/")+1:],x+"-pdf.pdf"))
         else:
             out.write("\\phantomsection \\addcontentsline{{toc}}{{section}}{{{1}}}\\verb|{0}| & \\getGraphics{{{0}}}\\\\\n\\midrule ".format(x,x[x.index("/")+1:]))
     out.write("\\bottomrule\n\\end{tabularx}\n")

@@ -5,13 +5,13 @@
 % Evaluation zu Ergebnis der Ausführung
 
 \lstdefinestyle{BashOutput}{
-  basicstyle=\small\LILLYxlstTypeWriter,
+  basicstyle=\LILLYxLISTINGSxFONTSIZE\LILLYxlstTypeWriter,
   frame=tblr,
   numbers=none,
   frame=single,
   xleftmargin=3pt,
   xrightmargin=3pt,
-  backgroundcolor=\color{lstmainbackcol},
+  backgroundcolor=\color{black!0},
   rulecolor=\color{lstmainbordercol}
 }
 
@@ -22,14 +22,31 @@
 }
 \gdef\rbash@noopt#1{\cbash{#1}\,:\getBashFileExecutionOutput{#1}}
 
+% will execute #3 but display #2
+\gdef\Rbash{\@ifnextchar[{\Rbash@opt}{\Rbash@noopt}}
+\gdef\Rbash@opt[#1]#2#3{
+  \cbash{#2}~#1%% TODO: configure layout with #1
+  \getBashFileExecutionOutput{#3}%
+}
+\gdef\Rbash@noopt#1#2{\cbash{#1}\,:\getBashFileExecutionOutput{#2}}
 
+
+\def\lstrbashlistopts{}
+
+% #1 file
+% #2 cmd
+\gdef\ExecuteBash#1#2{%
+  \immediate\write18{ #2 > #1 2> #1}%
+}
+
+\gdef\rbashcurrentinject{}
 %% oldies are goldies :D
 \ifx\LILLYxCMD\undefined
 %% {file} (coming soon: [input])
 \gdef\getBashFileExecutionOutput#1{%
-\immediate\write18{ #1 > \jobname.txt }
-\lstinputlisting[style=BashOutput,language=lBash]{\jobname.txt}
-\immediate\write18{ rm \jobname.txt }
+\ExecuteBash{\jobname.run.out}{#1}% safest way :D
+\edef\@exectmp{\noexpand\lstinputlisting[style=BashOutput,language=lVoid,keywords={[4]{}},\rbashcurrentinject]{\jobname.run.out}}\@exectmp{}
+\immediate\write18{ rm \jobname.run.out }
 }
 \else
 \gdef\getBashFileExecutionOutput#1{Direkte Befehlsevaluation deaktiviert!}

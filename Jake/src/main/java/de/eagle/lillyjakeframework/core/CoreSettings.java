@@ -161,7 +161,7 @@ public class CoreSettings {
         settings.emplace(st, "S_LILLY_AUTHOR", "Wer ist der Autor des Dokuments", eSetting_Type.IS_TEXT,
                 "Florian Sihler");
         settings.emplace(st, "S_LILLY_AUTHORMAIL", "E-mail adresse des Autors", eSetting_Type.IS_TEXT,
-                "florian.sihler@web.de");
+                "florian.sihler@uni-ulm.de");
         settings.emplace(st, "S_LILLY_BIBTEX", "Angabe der . bib Datei !OHNE ENDUNG!.", eSetting_Type.IS_TEXT, ""); // include
                                                                                                                     // check,
                                                                                                                     // if

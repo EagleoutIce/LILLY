@@ -3,10 +3,13 @@
 
 \def\theindex{}
 \RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
 
 \RequirePackage{LILLYxCOLOR}
+% \RequirePackage{LILLYxCOLOR}
 
 \RequirePackage{LILLYxCONTROLLERxMODE}
+% \RequirePackage{LILLYxCONTROLLERxMODE}
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 
 \ifcsname LILLYxBEAMER\endcsname\else
@@ -86,7 +89,7 @@
 % }%\phantomsection % wenn gewünscht das direkter sprung
 
 \def\@print@pageformat#1{%
-\,\textsuperscript{\smaller$\rightarrow$\;\pageref{#1}}
+\,\textsuperscript{\smaller$\rightarrow\mskip\thickmuskip$\pageref{#1}}
 }
 
 \newcommand{\@default@jmark}[2][Linkname]{{\setLinkColor{\LILLYxColorxLINKSxCurrentColor}{\hyperref[#2]{#1}}}}
@@ -106,6 +109,11 @@
     \let\hmark\@print@hmark
     \let\silentHmark\@print@silentHmark
 \fi
+\ifcsname LILLYxBEAMER\endcsname\else
+\let\@oldautoref\autoref
+\renewcommand{\autoref}[1]{\jmark[\@oldautoref*{#1}]{#1}\nolinebreak{}}
+\fi
+
 %% With sepcific color :D
 \newcommand{\cmark}[3][Linkname]{\setLinkColor{#3}\textbf{{\hyperref[#2]{#1}}}}
 

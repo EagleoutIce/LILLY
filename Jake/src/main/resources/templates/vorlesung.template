@@ -1,0 +1,19 @@
+#${HOME}/texmf/tex/latex/Lilly/source/Data/Semester/Definitions/${VorlesungKurz}.tex
+% Beteiligte Personen
+\def\PROFESSOR{${ProfName:Dr. Unbekannt}}
+\def\UEBUNGSLEITER{${UbLeiterName:Unbekannt}}
+\def\TUTOR{${TutorName:Unbekannt}}
+:
+% Titel:
+\def\TITLE{${VorlesungTitel}}
+\def\SUBTITLE{\PROFESSOR}
+\def\UEBUNGSHEADER{${UbHead:\TITLE\\Übungsblatt \LILLY@n}}
+\def\FULLTITLE{ \TITLE \\\fontsize{18pt}{16pt}\selectfont{\SUBTITLE} }
+
+% Test für Online-Abgabe:
+\gdef\LILLYxUBxSHOWTUTOR{FALSE}
+: \gdef\LILLYxUBxSHOWTUTOR{TRUE} % ${ShowTutor}
+
+% Fakultät und Farbe:
+\def\LILLYxFACULTY{\LILLYxFACULTYx${Fakultaet:THEORETISCHEINFORMATIK}}
+\def\LILLYxFACULTYxCOLOR{Faculty${FakultaetFarbe:TheoretischeInformatik}xColor}

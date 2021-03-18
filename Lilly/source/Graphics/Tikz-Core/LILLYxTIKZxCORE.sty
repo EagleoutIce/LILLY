@@ -1,8 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxTIKZxCORE}[2019/07/12 Stellt den Kern der Tikz-Schnittstelle fuer LILLY zur Verfuegung]
 
-\RequirePackage{LILLYxCORE} %% DemandPackage und LoadPackage
+\RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE} %% DemandPackage und LoadPackage
 \RequirePackage{LILLYxCOLOR}
+% \RequirePackage{LILLYxCOLOR}
 
 %% https://www.ctan.org/pkg/tikz
 \LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
@@ -14,7 +16,7 @@
 arrows,automata,calc,intersections,%
 through,decorations.pathreplacing,%
 decorations.pathmorphing,backgrounds,%
-positioning,fit,shapes,shadings,%
+positioning,fit,shapes,shadings,arrows.meta,%
 shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
 
 %% https://www.ctan.org/pkg/circuitikz
@@ -46,6 +48,8 @@ shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
                     {}
                     {}{}
 
+
+                    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Hypbrid Pakete für den Tikz Core: Tikzternal                                                                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -63,6 +67,8 @@ shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
                     {}{}
 \fi
 
+\RequirePackage{tikzducks}
+
 %%
 
 \tikzset{stretch/.initial=1,%
@@ -78,8 +84,13 @@ shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_ROTATION}
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_SYMBOLS}
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_ER}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_BINARY_ARRAY}
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_DIRECTORY}
-
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_NETZWERKGRAPHEN}
+\input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_RORSCHACH_INKBLOT_TEST}
 \RequirePackage{\LILLYxPATHxDATA/Semester/EIDI/tikz-uml}
+\tikzumlset{fill class=MudWhite, fill note=MudWhite!20, fill package=MudWhite!50,fill usecase=MudWhite,fill object=MudWhite} % , font=\small\LILLYxlstTypeWriter
+
+
 
 \endinput

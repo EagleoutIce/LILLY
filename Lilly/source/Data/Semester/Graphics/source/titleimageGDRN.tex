@@ -1,0 +1,29 @@
+\documentclass{standalone}
+% \usepackage{tikz}
+\usepackage{LILLYxCOLOR}
+\usepackage{LILLYxGRAPHICS}
+\usepackage{enumitem} 
+
+\input{titleimageGDRN-helper.slave}
+    
+
+\begin{document}
+
+\begin{tikzpicture}
+\xdef\stateList{UnitedStatesOfAmerica/\cA/{xshift=0.75cm,yshift=-0.25cm},Greenland/Cinnabar/{},UnitedKingdom/\cB/xshift=0.075cm,Sweden/\cC/xshift=-0.15cm,Japan/\cD/xshift=0.2cm,Germany/DebianRed/{},Spain/mint/{},Libya/DatmouthGreen/{},Botswana/Azure/{},Australia/ChromeYellow/{},NewZealand/tealblue/{xshift=0.225cm,yshift=0.11cm},Argentina/Amethyst/{xshift=-0.25cm},Brazil/bondiBlue/{},China/BrightPink/{},Russia/AppleGreen/{},Canada/DarkChromeYellow/{xshift=-0.5cm,yshift=-0.25cm},Tanzania/DarkMidnightBlue/{},Mali/Cherry/{},UnitedStatesOfAmerica/\cA/{xshift=0.75cm,yshift=-0.25cm}}
+\tikzset{set states/.style args={#1/#2/#3}{#1={fill=#2!45}}}
+\edef\tmp{\noexpand\tikzset{set states/.list={\stateList}}}\tmp{}
+\WORLD[every state={draw=white, thick, fill=black!20}]
+
+\foreach [count=\i,remember=\col as \lcol (initially white),
+         remember=\country as \lcountry (initially none),
+         remember=\mods as \lmods (initially none)] \country/\col/\mods in \stateList {
+    \ifnum\i>1 %
+        \edef\tmp{\noexpand\draw[-stealth',\lcol!17!black] ([\lmods]\lcountry.center) to[bend left] ([\mods]\country.center);}\tmp{}
+    \fi
+}
+
+% TODO: draw connection lines
+\end{tikzpicture}
+
+\end{document}

@@ -1,9 +1,32 @@
 package de.eagle.lillyjakeframework.compiler;
 
+import static de.eagle.lillyjakeframework.core.Definitions.B_EXTRA;
+import static de.eagle.lillyjakeframework.core.Definitions.B_INPUT;
+import static de.eagle.lillyjakeframework.core.Definitions.B_NAME;
+import static de.eagle.lillyjakeframework.core.Definitions.B_TEXT;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
+import static de.eagle.util.io.JakeLogger.writeLoggerError;
+import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
+import static de.eagle.util.io.JakeLogger.writeLoggerWarning;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+// import java.util.Arrays;
+
 /**
  * @file JakeCompile.java
  * @author Florian Sihler
- * @version 1.0.9
+ * @version 1.0.10
  *
  * @since 2.0.0
  *
@@ -25,18 +48,6 @@ import de.eagle.util.helper.CommandLine;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-// import java.util.Arrays;
-
-import static de.eagle.lillyjakeframework.core.Definitions.*;
-import static de.eagle.util.io.JakeLogger.*;
 
 /**
  * @class JakeCompile
@@ -196,7 +207,7 @@ public class JakeCompile {
         if (CoreSettings.requestSwitch("S_LILLY_AUTOCLEAN")) {
             JakeWriter.out.format("%s> Lösche temporäre Dateien...%s%n", ColorConstants.COL_GOLD,
                     ColorConstants.COL_RESET);
-                Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT")))
+                Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT"))).filter(s -> s.toFile().isFile())
                         .filter(s -> !InKeeps(s.toString())).forEach(s -> s.toFile().delete());
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL"))
                     Files.list(Paths.get(CoreSettings.requestValue("S_LILLY_OUT"),
@@ -278,10 +289,7 @@ public class JakeCompile {
 
                 if (CoreSettings.requestSwitch("S_LILLY_EXTERNAL")) {
                     writeLoggerInfo("Erstelle Ghost Dokument...", tag);
-                    Path go_p = Paths.get(Expandables.expand(expandables,
-                            (b_data[B_NAME]
-                                    + ((CoreSettings.requestSwitch("S_LILLY_SHOW_BOX_NAME")) ? boxmode + "-" : "")
-                                    + CoreSettings.requestValue("S_FILE")).replaceAll("\"", "")));
+                    Path go_p = Paths.get(final_name + ".tex");
                     try (PrintWriter go = new PrintWriter(go_p.toFile())) {
                         go.format("\\providecommand{\\LILLYxBOXxMODE}{%s}", boxmode);
                         go.format("\\providecommand{\\LILLYxPDFNAME}{%s}", final_name); // TODO: better expand
@@ -307,7 +315,8 @@ public class JakeCompile {
                     StringBuilder compileCommand = new StringBuilder();
                     compileCommand.append("pdflatex -jobname ").append(final_name).append((i+1<_max_compile)?" -draftmode ":"").append(" $(LATEXARGS) ")
                             .append(b_data[B_EXTRA]).append("${_LILLYARGS}")
-                            .append("\\\\providecommand{\\\\LILLYxBOXxMODE}{").append(boxmode).append("}");
+                            .append("\\\\providecommand{\\\\LILLYxBOXxMODE}{").append(boxmode).append("}")
+                            .append("\\\\providecommand{\\\\LILLYxCOMPILExTIME}{").append(i).append("}");
                     compileCommand.append("\\\\providecommand{\\\\LILLYxPDFNAME}{").append(final_name).append("}");
                     compileCommand.append("").append(b_data[B_INPUT]);
 

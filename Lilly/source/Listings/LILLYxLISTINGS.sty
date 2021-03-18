@@ -4,7 +4,7 @@
 \RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
 \RequirePackage{LILLYxCONTROLLERxCONTENT}
 \RequirePackage{LILLYxCOLOR}
-\RequirePackage{LILLYxENCODING}
+% \RequirePackage{LILLYxCOLOR}
 \RequirePackage{LILLYxFONTS}
 \RequirePackage{LILLYxLIST}
 \RequirePackage{LILLYxLISTINGSxLANGUAGExCONTROL}% \RegisterLanguage
@@ -38,7 +38,7 @@
 %\lstloadaspects{tex}%strings,comments,escape,writefile,style,language,keywords,html,tex,emph,index,keywordcomments,labels}
 
 % Key patch from: https://tex.stackexchange.com/questions/149056/how-can-i-define-additional-literate-replacements-without-deleting-existing-ones
-\def\addToLiterate#1{\edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
+\def\addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
 \lst@Key{add to literate}{}{\addToLiterate{#1}}
 
 %% maybe just load and check?
@@ -97,7 +97,7 @@
 
 
 %% Jede registrierte Sprache erhält automatisch ihre environments, ihren \c-Befehl,\b-Befehl und ihren \i-Befehl
-%% Damit wird redundante Code-Generierung erspahrt.
+%% Damit wird redundante Code-Generierung erspart.
 
 %% Enthält lediglich den Namen der entsprechenden Sprache, für convenience :D
 \constructList[,]{RegisteredLanguageNames}
@@ -119,7 +119,13 @@
 
 \newif\iflstlastwasacharacter% Will disable numberhl if true
 \lstlastwasacharacterfalse
-% \newif\iflstnumnohlmode% Will prevent h31 <- 3 to highlight as '3' would reset the hl behaviour
+\newif\iflstlastwasacharacterkeep
+\lstlastwasacharacterkeepfalse
+\newif\iflstdonumhl
+\lstdonumhltrue
+\newif\iflstforcenum
+\lstforcenumfalse
+% \newif\iflstnumnohlmode% Will prevent h31 <- 3 to highlight as '3' would reset the hl behavior
 % \lstnumnohlmodefalse
 
 \newcommand\digitstyle{\color{DarkMidnightBlue}}
@@ -128,14 +134,15 @@
 {\begingroup%
 %\iflstnumnohlmode%
   %#1\else
+  \iflstdonumhl%
   \iflstlastwasacharacter%\lstnumnohlmodetrue% was char => don't highlight, we won't check for hex right now
-  #1\else%
+  \global\lstlastwasacharacterkeeptrue#1\else\global\lstlastwasacharacterkeepfalse%
     \ifnum\lst@mode=\lst@Pmode\relax% PMode: Not in any special Mode
     {\digitstyle #1}%
-    \else%
-      #1%
+    \else\iflstforcenum%should num be forced?
+      {\digitstyle #1}\else#1\fi%
     \fi\hbox{\relax{}}%
-  \fi%
+  \fi\else#1\fi%
   %\fi
   \endgroup
 }
@@ -149,12 +156,12 @@
   \lst@whitespacefalse\lstlastwasacharactertrue\lst@AppendLetter%
 }%
 \def\lst@ProcessOther{%
-  \lst@whitespacefalse\lstlastwasacharacterfalse\lst@AppendOther%
+  \lst@whitespacefalse\lstlastwasacharacterkeepfalse\lstlastwasacharacterfalse\lst@AppendOther%
 }%
-\def\lst@whitespacetrue{\lstlastwasacharacterfalse\global\let\lst@ifwhitespace\iftrue}%
+\def\lst@whitespacetrue{\iflstlastwasacharacterkeep\lstlastwasacharacterkeepfalse\lstlastwasacharacterfalse\else\lstlastwasacharacterfalse\fi\global\let\lst@ifwhitespace\iftrue}%
 \def\lst@whitespacefalse{\global\let\lst@ifwhitespace\iffalse}%
 
-\def\@nc{\lstlastwasacharacterfalse}
+\def\@nc{\iflstlastwasacharacterkeep\else\lstlastwasacharacterfalse\fi}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Literates - Routine
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -195,7 +202,7 @@
 % Literates - Definitions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Konfigurere Sonderzeichen
+%% Konfiguriere Sonderzeichen
 \lstset{literate=%
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
@@ -211,10 +218,11 @@
   {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
   {:bs:}{{\color{Orchid}\textbackslash}}1 {:bmath:}{{\color{bondiBlue}\$}}1 {:percent:}{{\%}}1
-  {:emath:}{{{\color{bondiBlue}\$}}}1 {:dollar:}{{{\color{bondiBlue}\$\normalcolor}}}1%spaces
+  {:emath:}{{{\color{bondiBlue}\$}}}1 {:dollar:}{{{\color{bondiBlue}\$\normalcolor}}}1 {:plaindollar:}{{\$}}1%spaces
   %% brace fix
+  {:rn:}{{\textcolor{AppleGreen}{{\small\T{\textbf{\textbackslash r\textbackslash n}}}}}}4
   {(}{{(\@nc}}1 {)}{{)\@nc}}1 {:space:}{{{ }}}1 {:ws:}{{{ }}}1 {:cdots:}{{{$\cdots$}}}1 {:cdot:}{{{$\cdot$}}}1 {:ldots:}{{{\ldots}}}1 {:!:}{{{!}}}1
-  {:c:}{{{}}}0 {:star:}{{{*}}}1
+  {:c:}{{{}}}0 {:star:}{{{*}}}1 {:minus:}{{{-}}}1
   {:float:}{{{\color{bondiBlue}f\normalcolor}}}1 {:exp:}{{{\color{bondiBlue}e\normalcolor}}}1 {:yields:}{{{$\rightarrow$}}}1%
   {:lan:}{{{$\langle\,$}}}1 {:ran:}{{{$\,\rangle$}}}1
   {:bcmd:}{\color{Orchid}\textbackslash}1 {:ecmd:}{\normalcolor}0
@@ -226,6 +234,7 @@
   {.1}{{{\lpDigit{.1}}}}2 {.2}{{{\lpDigit{.2}}}}2 {.3}{{{\lpDigit{.3}}}}2
   {.4}{{{\lpDigit{.4}}}}2 {.5}{{{\lpDigit{.5}}}}2 {.6}{{{\lpDigit{.6}}}}2
   {.7}{{{\lpDigit{.7}}}}2 {.8}{{{\lpDigit{.8}}}}2 {.9}{{{\lpDigit{.9}}}}2
+  {:lmath:}{{\textcolor{bondiBlue}{\textbackslash(}}}2 {:rmath:}{{\textcolor{bondiBlue}{\textbackslash)}}}2 {:ldmath:}{{\textcolor{bondiBlue}{\textbackslash[}}}2 {:rdmath:}{{\textcolor{bondiBlue}{\textbackslash]}}}2 {:ul:}{{\_}}1
 } %Damit die Umlaute in lstlistings auch korrekt formatiert werden.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -339,5 +348,7 @@
 \ifLILLYxLISTINGS@runtimes
   \RequirePackage{LILLYxRUNTIMES}
 \fi
+
+\RequirePackage{LILLYxLISTINGSxALGORITHMS}
 
 \endinput

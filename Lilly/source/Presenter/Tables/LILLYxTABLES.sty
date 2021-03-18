@@ -2,6 +2,7 @@
 \ProvidesPackage{LILLYxTABLES}[2019/08/02 Stellt eine Tabellen-Erweiterung fuer LILLY zur Verfuegung]
 
 \RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
 
 %% https://www.ctan.org/pkg/tabularx
 \LILLYxDemandPackage{tabularx}{Niemand würde es wagen, das glorreiche tabularx-Paket zu ersetzen!}
@@ -45,9 +46,9 @@
 
 \newcolumntype{i}{^>{\itshape}l}
 \newcolumntype{d}[1]{^>{\rightdots{#1}}r<{\endrightdots}}% INFO: NOT DOCUMENTED :D
-\newcolumntype{L}[1]{^>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{^>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{^>{\centering\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{^>{\raggedright\let\newline\\\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{^>{\raggedleft\let\newline\\\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{^>{\centering\arraybackslash}m{#1}}
 
 \newcolumntype{t}{^>{\LILLYxlstTypeWriter}l}
 \newcolumntype{T}[1]{^>{\LILLYxlstTypeWriter}p{#1}}
@@ -55,7 +56,7 @@
 
 %% If stared, keep default column formatting (italic, math, ...)
 \DeclareDocumentCommand{\headerrow}{ s }{%
-    \setrow{\IfBooleanF{#1}{\normalfont}\bfseries\arraybackslash}
+    \setrow{\IfBooleanF{#1}{\normalfont}\bfseries\normalsize\arraybackslash}
 }
 
 \def\cheaderrow{\setrow{\bfseries\centering\arraybackslash\hspace{0pt}}}
@@ -83,5 +84,7 @@
 
 \RequirePackage{LILLYxTABLESxMATERIAL}
 \RequirePackage{LILLYxTABLESxFOREACH}
+% table fake newline
+\def\tblfnl{\leavevmode\vspace*{-\baselineskip}\newline}
 
 \endinput

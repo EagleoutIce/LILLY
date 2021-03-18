@@ -2,6 +2,7 @@
 % Its' currently work in Progress :D
 
 \RequirePackage{LILLYxCONTROLLERxBOX}
+% \RequirePackage{LILLYxCONTROLLERxBOX}
 
 \RequirePackage{tocloft}
 
@@ -34,16 +35,16 @@
 \DeclareFixedFont{\chpFont}{U}{eur}{b}{n}{24}
 % \DeclareFixedFont{\chpNumber}{U}{eur}{b}{n}{165} no chapter :D
 
-\titlecontents{section}[5.5em]
-{\hspace*{-1.25em}} {\contentslabel{3.2em}} {} {,\itshape\contentspage}
+\titlecontents{section}[2.5em]
+{} {\contentslabel{0.6em}} {} {,\quad\bgroup\itshape\contentspage\egroup}[\addvspace{6pt plus 4pt minus 4pt}]
 
 %% Set General style of the Page:
 \def\LILLYxRIGHTMARK{}
 
 \def\SetStyle{%
+	\clearscrheadfoot%
 	\pagenumbering{arabic}%
 	\pagestyle{scrheadings}%
-	\clearscrheadfoot%
 	\ofoot{\textbf{\thepage}}%
 }
 
@@ -62,9 +63,9 @@
 \AtBeginDocument{%
 	\SetStyle%
 	% Two column \listofPOEMS
-	\addtocontents{POEM}{\protect\begin{multicols}{2}}%
+	\addtocontents{POEM}{\protect\pagestyle{scrheadings}\protect\thispagestyle{scrheadings}\protect\begin{multicols}{2}}%
 	% Two column \listofQUOTES
-	\addtocontents{QUOTE}{\protect\begin{multicols}{2}}%
+	\addtocontents{QUOTE}{\protect\pagestyle{scrheadings}\protect\thispagestyle{scrheadings}\protect\begin{multicols}{2}}%
 }
 \AtEndDocument{%
 	\addtocontents{POEM}{\protect\end{multicols}}
@@ -79,7 +80,7 @@
 %% Styling the toc:
 %% Used with babel :D
 \addto\captionsngerman{%
-        \renewcommand{\contentsname}{\leavevmode\vspace*{-0.8\baselineskip}\newline\noindent\efont{Kurzübersicht}\hfill\hbox{}\vspace*{-0.3\baselineskip}}%
+    \renewcommand{\contentsname}{\leavevmode\vspace*{-0.8\baselineskip}\newline\noindent\efont{Kurzübersicht}\hfill\hbox{}\vspace*{-0.3\baselineskip}}%
 }
 
 \renewcommand\sectionlinesformat[4]{%
@@ -89,7 +90,6 @@
 \renewcommand{\@seccntformat}[1]{\textcolor{\Hcolor}{\csname the#1\endcsname}}
 
 \setlength{\cftbeforesecskip}{2.3pt}
-
 
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
 {-4ex \@plus -1ex \@minus -.4ex}
@@ -122,7 +122,6 @@
 		\OrnamentsLower{}%
 		\fi%
 	}
-	%\SetStyle%
 }
 
 % Author wird in LILLYxPOEMS gesetzt :D

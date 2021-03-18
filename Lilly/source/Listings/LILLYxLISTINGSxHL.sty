@@ -22,14 +22,14 @@
 }
 \def\lilly@lsthighlight@endenv{%
   \end{lillyHighlight}%
-  \egroup
+  \egroup%
 }
 \newcommand{\lilly@lsthighlight@box}[2][]{%
-  \tikz[#1]{%
+    \hspace*{-0.35pt}\tikz[#1]{%
     \pgfpathrectangle{\pgfpoint{1pt}{0pt}}{\pgfpoint{\wd #2}{\ht #2}}%
     \pgfusepath{use as bounding box}%
-    \node[anchor=base west, fill=ChromeYellow!30,outer sep=0pt,inner xsep=1pt, inner ysep=-1.105pt, rounded corners=2pt, minimum height=\ht\strutbox+1pt,#1]{\raisebox{1pt}{\strut}\strut\usebox{#2}};
-  }%
+    \node[anchor=base west, fill=ChromeYellow!30,outer sep=0pt,inner xsep=0pt,outer xsep=1pt, inner ysep=-1.105pt, rounded corners=1.65pt, minimum height=\ht\strutbox+1pt,#1]{\hspace*{0.35pt}\raisebox{1pt}{\strut}\strut\usebox{#2}\hspace*{-0.35pt}};
+  }\hspace*{0.35pt}%
 }
 
 

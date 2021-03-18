@@ -1,11 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCOLOR}[2019/07/11 Stellt die Farb-Erweiterungen fuer LILLY zur Verfuegung]
 
+\providecommand{\LILLYxMODExPRINT}{print}
+
 %% Information: Durch: \def\LILLYxColorxInject{} lässt sich das integrieren der jeweiligen Farbpakete annulieren
 %% Diese Option erlaubt ein manuelles überschreiben entfernt allerdings auch jede Garantie bezüglich der Funktionsweise
 \RequirePackage{LILLYxCORE}
-
-
+% \RequirePackage{LILLYxCORE}
 
 %% https://ctan.org/pkg/colortbl
 \LILLYxDemandPackage{colortbl}{Farbige Tables :D}%% Package, Info
@@ -73,18 +74,17 @@
 \pushList{LillyColorList}{AmericanRose/255/3/62}       %%#FF033E
 \pushList{LillyColorList}{Awesome/255/32/82}           %%#FF2052
 \pushList{LillyColorList}{BrightPink/255/0/127}        %%#FF007F
-
 \pushList{LillyColorList}{DebianRed/215/10/83}         %%#D70A53
 \pushList{LillyColorList}{Crimson/220/20/60}           %%#DC143C
 
 \pushList{LillyColorList}{DarkMidnightBlue/0/74/148}   %%#004A94
 \pushList{LillyColorList}{Azure/0/127/255}             %%#007FFF
+\pushList{LillyColorList}{SteelBlue/25/25/112}         %%#4682B4
 \pushList{LillyColorList}{bondiBlue/0/149/182}         %%#0095B6
 \pushList{LillyColorList}{antiVeg/190/238/239}         %%#BEEEEF
 
-
 \pushList{LillyColorList}{DarkOrchid/104/34/139}       %%#68228B
-\pushList{LillyColorList}{Purple/128/0/128}            %% #800080
+\pushList{LillyColorList}{Purple/128/0/128}            %%#800080
 \pushList{LillyColorList}{Veronica/160/32/240}         %%#A020F0
 \pushList{LillyColorList}{Orchid/180/82/205}           %%#B452CD
 \pushList{LillyColorList}{Amethyst/153/102/204}        %%#9966CC
@@ -99,8 +99,12 @@
 
 \pushList{LillyColorList}{MudWhite/245/245/243}        %%#F5F5F3
 \pushList{LillyColorList}{LightGray/224/224/224}       %%#E0E0E0
+\pushList{LillyColorList}{SpanishGray/151/152/151}     %%#979897
+\pushList{LillyColorList}{PlumbagoGray/133/138/141}    %%#858a8d
 \pushList{LillyColorList}{AuroMetalSaurus/110/127/128} %%#6E7F80
 \pushList{LillyColorList}{Charcoal/54/69/79}           %%#36454F
+\pushList{LillyColorList}{Jet/52/52/52}                %%#343434
+
 
 \storeLillyColorList{LISTxColors}
 \registerColors{\LISTxColors}{}
@@ -123,7 +127,6 @@
 \pushList{LillyCompatColorList}{skyblue/60/179/113}          %% #3CB371
 
 \pushList{LillyCompatColorList}{tealblue/51/153/255}         %% #3399FF
-
 
 \pushList{LillyCompatColorList}{superlightgray/240/240/240}  %% #F0F0F0
 
@@ -159,8 +162,6 @@
 \providecommand{\Hcolor}{Leaf}
 \providecommand{\HBcolor}{\Hcolor!7}
 
-
-
 %% Doese Farben werden nun durch Default entsprechend gesetzt:
 
 \gdef\setProfileColors#1{
@@ -172,7 +173,6 @@
         }
     }
 }
-
 
 \gdef\LillyxStorexCurrentColorProfile{%% store current colorprofile
 \global\let\lilly@oldcolors\LISTxProfileColors%
@@ -194,18 +194,11 @@
 
 \storeLillyProfileColors{LISTxProfileColors}
 
+\RequirePackage{LILLYxCOLORxPALETTE}
+
 %% Aktuell erlaubt Lilly nur Standartmäßig diese beiden Farprofile
 %% Allerings werden Farberweiterungen unterstützt:
 \providecommand{\LILLYxCOLORxEXTENSION}{VOID}
 \userput{_LILLY_COLOR_EXTENSION_\LILLYxCOLORxEXTENSION}{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}
-
-
-% No save the color definition :D
-
-% \typeout{\Hcolor}
-% % No we will encapsulate the \Hcolor, so it is safe to be used inside of a all Constructs :D
-% \edef\@@Hcolor{\Hcolor}
-% \colorlet{@@the@hcolor}{\@@Hcolor} % assign the expanded value
-% \def\Hcolor{@@the@hcolor}% remap
 
 \endinput

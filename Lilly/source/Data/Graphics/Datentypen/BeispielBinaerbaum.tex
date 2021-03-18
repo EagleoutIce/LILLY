@@ -1,0 +1,22 @@
+\gdef\GRAPHICSxBeispielxBinärbaum{%
+\begin{tikzternal}[
+            ring/.style={
+                draw,circle,minimum width={0.7cm}
+            }]
+            \node[ring] at (0,0) (one) {1};
+            \node[ring] at (-1.5,-1) (two) {2};
+            \node[ring] at (1.5,-1) (tre) {3};
+            \node[ring] at (2.5,-2) (for) {7};
+            \node[ring] at (.5,-2) (fiv) {6};
+            \node[ring] at (-2.5,-2) (six) {4};
+            \node[ring] at (-.5,-2) (sev) {5};
+
+            \draw[-latex] (one) -- (two);
+            \draw[-latex] (one) -- (tre);
+            \draw[-latex] (two) -- (six);
+            \draw[-latex] (two) -- (sev);
+            \draw[-latex] (tre) -- (for);
+            \draw[-latex] (tre) -- (fiv);
+        \end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxBeispielxBinärbaum} %% new pattern maybe apply to all?

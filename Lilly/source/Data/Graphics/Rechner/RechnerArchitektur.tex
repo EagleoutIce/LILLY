@@ -1,0 +1,29 @@
+\gdef\GRAPHICSxRechnerxArchitektur{%
+\begin{tikzternal}[scale=0.7, every node/.style={transform shape}, every path/.style={transform shape}]
+    \draw[rounded corners=0.1cm] (0,0) rectangle ++(4,1);
+
+    \draw[rounded corners=0.1cm] (5,0) rectangle ++(4,1);
+
+    \draw[rounded corners=0.1cm] (0,2) rectangle ++(9,1);
+
+    \node at(2,0.5) (e) {Ein-/Ausgabewerk};
+    \node at(7,0.5) (s) {Speicherwerk};
+    \node at(4.5,2.5) (b) {Bus-System};
+
+    \draw[rounded corners=0.1cm] (0.3,4.3) rectangle ++(3,1);
+
+    \draw[rounded corners=0.1cm] (5.7,4.3) rectangle ++(3,1);
+
+    \draw[rounded corners=0.1cm] (0,4) rectangle ++(9,2.5);
+
+    \node at(1.8,4.8) (r) {Rechenwerk};
+    \node at(7.2,4.8) (s) {Steuerwerk};
+    \node at(4.5,6) {\huge{\textbf{CPU}}};
+
+    \draw[line width=0.5mm,latex-latex] (1.8,4.3) -- ++(0,-1.3);
+    \draw[line width=0.5mm,latex-latex] (7.2,4.3) -- ++(0,-1.3);
+    \draw[line width=0.5mm,latex-latex] (1.8,2) -- ++(0,-1);
+    \draw[line width=0.5mm,latex-latex] (7.2,2) -- ++(0,-1);
+\end{tikzternal}
+}
+\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxRechnerxArchitektur} %% new pattern maybe apply to all?

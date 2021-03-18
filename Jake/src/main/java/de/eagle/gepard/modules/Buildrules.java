@@ -1,5 +1,10 @@
 package de.eagle.gepard.modules;
 
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
+
+import java.util.HashMap;
+
 /**
  * @file Buildrules.java
  * @author Florian Sihler
@@ -19,11 +24,6 @@ import de.eagle.util.constants.ColorConstants;
 import de.eagle.util.datatypes.SettingDeskriptor;
 import de.eagle.util.datatypes.Settings;
 import de.eagle.util.enumerations.eSetting_Type;
-
-import java.util.HashMap;
-
-import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
-import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
 
 // Information:
 // Alle "Entspricht ..." Kommentare gilt es zu ändern!
@@ -161,6 +161,14 @@ public class Buildrules extends AbstractGepardModule{
         settings.emplace("uebungsblatt", "Übungsblatt-Buildrule, erwartet Dokument ohne \\begin usw.",
                 eSetting_Type.IS_TEXT,
                 createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(), "Übungsblatt", "default",
+                        true,
+                        "\\\\documentclass[Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}",
+                        CoreSettings.requestValue("S_LILLY_NAMEPREFIX"), "", "TODO"));
+        
+        // Druck-Übungsblatt
+        settings.emplace("puebungsblatt", "(Druck)Übungsblatt-Buildrule, erwartet Dokument ohne \\begin usw.",
+                eSetting_Type.IS_TEXT,
+                createRuleFromData(CoreSettings.getSettings(), CoreSettings.getTranslator(), "Druck-Übungsblatt", "print",
                         true,
                         "\\\\documentclass[Uebungsblatt${_C}Vorlesung=${VORLESUNG}${_C}n=${N}${_C}Semester=${SEMESTER}]{Lilly}\\\\begin{document}\\\\ignorespaces\\\\noindent \\\\input{$(INPUTDIR)$(TEXFILE)}\\\\end{document}",
                         CoreSettings.requestValue("S_LILLY_NAMEPREFIX"), "", "TODO"));

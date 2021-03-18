@@ -1,6 +1,5 @@
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
 \RequirePackage[automark,headsepline]{scrlayer-scrpage}         %Header konfigurieren
-\RequirePackage{caption}
 \RequirePackage{lastpage}                                       %Letzte Seite erhalten
 
 \providedef{TITLE}{Unbekannte Vorlesung}
@@ -14,14 +13,14 @@
 % General and Layoutkonfiguration                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\LILLYcommand{\TUTORBOX}{ %Tutorboxen für Blätter die analog abgegeben werden sollen => !Wird automatisch eingebunden. Siehe weiter unten. Komfort! Yay
+\def\TUTORBOX#1#2{ %Tutorboxen für Blätter die analog abgegeben werden sollen => !Wird automatisch eingebunden. Siehe weiter unten. Komfort! Yay
     \begin{centered}
     \noindent\fbox{
         \begin{minipage}{\dimexpr0.8\textwidth-2\fboxsep-2\fboxrule\relax}
             \vspace{0.1cm}
         \begin{centered}
-            \textbf{Tutor}: \\
-            \large{\TUTOR}
+            \textbf{#2}: \\
+            \large{#1}
         \end{centered}
         \vspace{0.1cm}
         \end{minipage}
@@ -43,16 +42,17 @@
     \rohead{\parbox[b][\headheight][b]{0.3\textwidth}{\raggedleft \heute}} \cofoot{}
     \rofoot{\thepage/\pageref{LastPage}}
     \ifx\LILLYxUBxSHOWTUTOR\true
-        \TUTORBOX
+        \TUTORBOX{\TUTOR}{Tutor}
     \fi
 }
 
-\newcommand{\points}[1]{\hbox{}\hfill{\emph{#1}}}
 
 \AtBeginDocument{
     \LILLYxLayoutxRestore
 }
 
+\RequirePackage{float} %% for H
+\RequirePackage{chngcntr}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Outrokonfiguration                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

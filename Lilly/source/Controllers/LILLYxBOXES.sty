@@ -1,6 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxBOXES}[2019/07/13 Stellt die Boxen fuer LILLY zur Verfuegung]
 
+
+\RequirePackage{LILLYxCORE}
+% \RequirePackage{LILLYxCORE}
+
 \RequirePackage{kvoptions}                                 %Erweiterte Optionen
 
 \DeclareBoolOption[false]{iall}
@@ -20,11 +24,13 @@
 
 \ifLILLYxBOXES@boxes
     \RequirePackage{LILLYxCONTROLLERxBOX}
+% \RequirePackage{LILLYxCONTROLLERxBOX}
     \RequirePackage{LILLYxBOXxCOUNTER}
 \fi
 
 \ifLILLYxBOXES@infoboxes
     \RequirePackage{LILLYxBOXxMARGIN}
+% \RequirePackage{LILLYxBOXxMARGIN}
     \RequirePackage{LILLYxBOXxINFOBOXES}
 \fi
 \endinput
