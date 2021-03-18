@@ -1,5 +1,28 @@
 package de.eagle.lillyjakeframework.compiler;
 
+import static de.eagle.lillyjakeframework.core.Definitions.B_EXTRA;
+import static de.eagle.lillyjakeframework.core.Definitions.B_INPUT;
+import static de.eagle.lillyjakeframework.core.Definitions.B_NAME;
+import static de.eagle.lillyjakeframework.core.Definitions.B_TEXT;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug1;
+import static de.eagle.util.io.JakeLogger.writeLoggerDebug2;
+import static de.eagle.util.io.JakeLogger.writeLoggerError;
+import static de.eagle.util.io.JakeLogger.writeLoggerInfo;
+import static de.eagle.util.io.JakeLogger.writeLoggerWarning;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+// import java.util.Arrays;
+
 /**
  * @file JakeCompile.java
  * @author Florian Sihler
@@ -25,18 +48,6 @@ import de.eagle.util.helper.CommandLine;
 import de.eagle.util.helper.PropertiesProvider;
 import de.eagle.util.io.JakeLogger;
 import de.eagle.util.io.JakeWriter;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-// import java.util.Arrays;
-
-import static de.eagle.lillyjakeframework.core.Definitions.*;
-import static de.eagle.util.io.JakeLogger.*;
 
 /**
  * @class JakeCompile

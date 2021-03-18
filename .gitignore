@@ -12,6 +12,7 @@
 *.ind
 *.listing
 *.mw
+**/.settings/
 
 # Prerequisites
 *.d
