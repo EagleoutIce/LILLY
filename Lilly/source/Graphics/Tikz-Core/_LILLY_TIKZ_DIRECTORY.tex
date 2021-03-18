@@ -80,7 +80,7 @@
   \fill[fill=#1!85!#3, rounded corners=0.9pt] (-\len@folder@size,.6*\len@folder@size+2.75pt) coordinate (a) |- (\len@folder@size,-1.2*\len@folder@size) coordinate (b) to[rounded corners=0pt] ++(0,1.8*\len@folder@size) coordinate (c) to[rounded corners=0pt,] ++(-2.75pt,2.75pt) coordinate (d) -- cycle;
   \fill[fill=#3!65!#1, rounded corners=0.9pt] (d) |- (c);
   % Set Text Bars:
-  \ifx\\#4\\
+  \ifx!#4!
   \foreach \y/\fx in {0/1,0.2/1,0.4/1,0.6/0.75} {%
     \fill[#3] (-0.5\len@folder@size,-\y*\len@folder@size) rectangle ++ (\fx*\len@folder@size,0.4pt);
   }

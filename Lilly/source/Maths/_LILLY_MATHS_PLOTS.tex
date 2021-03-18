@@ -1,27 +1,24 @@
 %%% Implementation des in der Dokumentation gewünschten LILLY-PLOT environments!
-
 \RequirePackage{LILLYxTIKZxCORE} % den hat man sowieso gebraucht :D
-
-%% \RequirePackage{pgfkeys}
 \LILLYxDemandPackage{pgfkeys}{Damit wir angenehme kv-pairs haben}
-                    {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
-                    {}{}
+    {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
+    {}{}
 
 \LILLYxDemandPackage{wrapfig}{Falls wir es floating haben möchten :D}
-                    {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
-                    {}{}
+    {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
+    {}{}
 \makeatletter
 \LILLYxLoadPackage{placeins}{Halte Floatings auf (sub)section level konsistent}
-                    {Dieses Paket ist für Lilly nicht Lebensnotwendig}
-                    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
-                    {section}{\AtBeginDocument{%
-                    \expandafter\renewcommand\expandafter\subsection\expandafter
-                      {\expandafter\@fb@subsecFB\subsection}%
-                    \newcommand\@fb@subsecFB{% \FloatBarrier
-                    \gdef\@fb@afterHsHook{\@fb@topbarrier \gdef\@fb@afterHsHook{}}}
-                    \g@addto@macro\@afterheading{\@fb@afterHsHook}
-                    \gdef\@fb@afterHsHook{} %% currently not working as excepted :P
-                 }}
+    {Dieses Paket ist für Lilly nicht Lebensnotwendig}
+    {} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+    {section}{\AtBeginDocument{%
+    \expandafter\renewcommand\expandafter\subsection\expandafter
+        {\expandafter\@fb@subsecFB\subsection}%
+    \newcommand\@fb@subsecFB{% \FloatBarrier
+    \gdef\@fb@afterHsHook{\@fb@topbarrier \gdef\@fb@afterHsHook{}}}
+    \g@addto@macro\@afterheading{\@fb@afterHsHook}
+    \gdef\@fb@afterHsHook{} %% currently not working as excepted :P
+    }}
 
 \newif\ifdonumbering
 \pgfkeys { %
@@ -67,23 +64,23 @@
 \DeclareDocumentEnvironment{graph}{ O{} O{}}{
 \pgfkeys{/lillyxPlot, defaults, #1} %% Hier könnte graph wrapfigure support erhalten mit ifthenelse{\equal{#3}{}}{}{\wrapfigure{#3}{#4}} oder so
 \begingroup\begin{tikzpicture}[scale=\lillyxPlotxScale,xscale=\lillyxPlotxXScale,yscale=\lillyxPlotxYScale,#2]
-    \draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset)
-            grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
-            \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0)
-            -- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
-            node[right] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelX};
-            \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset)
-            -- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
-            node[above] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelY};
-        \ifdonumbering
-        \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumXMin))] in {\lillyxPlotxMinX,...,\lillyxPlotxMaxX} {
-            \node [below right, Charcoal!50!white] at (\i,0) {\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
-        }
-        \foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumYMin))] in {\lillyxPlotxMinY,...,\lillyxPlotxMaxY} {
-            \node [above left, Charcoal!50!white] at (0,\i) {\!\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
-        }
-        \fi
-        }{\end{tikzpicture}\endgroup}
+\draw[help lines, color=gray!30, densely dashed] (\lillyxPlotxMinX-\lillyxPlotxOffset, \lillyxPlotxMinY-\lillyxPlotxOffset)
+    grid (\lillyxPlotxMaxX+\lillyxPlotxOffset, \lillyxPlotxMaxY+\lillyxPlotxOffset);
+    \draw[->, thick] (\lillyxPlotxMinX-\lillyxPlotxOffset-\lillyxPlotxLoffset, 0)
+    -- (\lillyxPlotxMaxX+\lillyxPlotxOffset+\lillyxPlotxLoffset, 0)
+    node[right] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelX};
+    \draw[->, thick] (0, \lillyxPlotxMinY-\lillyxPlotxOffset-\lillyxPlotxLoffset)
+    -- (0, \lillyxPlotxMaxY+\lillyxPlotxOffset+\lillyxPlotxLoffset)
+    node[above] {\fontsize{\lillyxPlotxLabelSize}{\lillyxPlotxNumSize}\selectfont\lillyxPlotxLabelY};
+\ifdonumbering
+\foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumXMin))] in {\lillyxPlotxMinX,...,\lillyxPlotxMaxX} {
+    \node [below right, Charcoal!50!white] at (\i,0) {\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
+}
+\foreach \i[evaluate=\i as \ii using (int(\i+\lillyxPlotxNumYMin))] in {\lillyxPlotxMinY,...,\lillyxPlotxMaxY} {
+    \node [above left, Charcoal!50!white] at (0,\i) {\!\fontsize{\lillyxPlotxNumSize}{\lillyxPlotxNumSize}\selectfont\ii};
+}
+\fi
+}{\end{tikzpicture}\endgroup}
 
 %% {POS}[PGFKEYS][TIKZKEYS][WIDTH][WRAPFIGOFF]
 \DeclareDocumentEnvironment{wgraph}{ m O{} O{}  O{} O{0pt}} {%

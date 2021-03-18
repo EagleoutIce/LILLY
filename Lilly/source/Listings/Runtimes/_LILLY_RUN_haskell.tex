@@ -1,16 +1,11 @@
-
 %% Diese Datei liefert einen Befehl mit folgenden Eigenschaften:
 % Laden einer Shell-Datei
 % Ausführen dieser Shell-Datei mit einem angebenen Interpreter
 % Evaluation zu Ergebnis der Ausführung
-
 \lstdefinestyle{HaskellOutput}{
-  basicstyle=\small\LILLYxlstTypeWriter,
-  frame=tblr,
-  numbers=none,
-  frame=single,
-  xleftmargin=3pt,
-  xrightmargin=3pt,
+  basicstyle=\small\LILLYxlstTypeWriter,frame=tblr,
+  numbers=none,frame=single,
+  xleftmargin=3pt,xrightmargin=3pt,
   backgroundcolor=\color{lstmainbackcol},
   rulecolor=\color{lstmainbordercol}
 }
@@ -21,7 +16,6 @@
   \getHaskellFileExecutionOutput{echo 'main = print (#2)' > \jobname.hs && runhaskell \jobname.hs}
 }
 \gdef\rhaskell@noopt#1{\chaskell{print (#1)}\,:\getHaskellFileExecutionOutput{echo 'main = print (#1)' > \jobname.hs && runhaskell \jobname.hs}}
-
 
 %% oldies are goldies :D
 \ifx\LILLYxCMD\undefined
@@ -42,12 +36,8 @@
 \getHaskellFileExecutionOutput{#1}
 \endgroup
 }
-
-
-
 \NewDocumentCommand{\previewHaskellFile}{ m } {
 \begingroup
 \lstinputlisting[language=HaskellOutput, caption={Inhalt der Datei #1}]{#1}
 \endgroup
-\previewHaskell{runhaskell #1}
-}
+\previewHaskell{runhaskell #1}}

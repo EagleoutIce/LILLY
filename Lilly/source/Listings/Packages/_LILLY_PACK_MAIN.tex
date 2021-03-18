@@ -1,33 +1,24 @@
 %% Das normale Source-Code Paket für die Latex-Mitschriebe
 \ifx\LILLYxMODE\LILLYxMODExPRINT
-    \providecommand{\LILLYxCODExKEYWORDSTYLE}{\color{DebianRed}\bfseries}
+    \providecommand\LILLYxCODExKEYWORDSTYLE{\color{DebianRed}\bfseries}
 \else
-    \providecommand{\LILLYxCODExKEYWORDSTYLE}{\color{DebianRed}}
+    \providecommand\LILLYxCODExKEYWORDSTYLE{\color{DebianRed}}
 \fi
-%\else
-
-%\fi
-
 %% Die explizite Angabe erfolgt gewollt :D
-
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_assembler}
-
 %%%%% Pseudo-Sprachen
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_pseudo}
 %%%%% GDRA
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_mips}
-
 %%%%% Dokumentation - needfull shell
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_bash}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_latex}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_gepard}
-
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_java}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_xml}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_sql}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_psm}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_xsl}
-
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_chr}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_prolog}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_haskell}
@@ -37,12 +28,7 @@
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_sonar_qube}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_git}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_markdown}
-
-
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_json}
-
-% Main erlaubt das konfigurieren der Definitionen wie Farben etc. via pgfkeys :D
-
 \def\lstPackkeys#1{%
   \pgfkeys{%
     /lillyxLISTINGS/packages/MAIN/.cd,#1%
@@ -51,37 +37,25 @@
 \def\lstPackget#1{\pgfkeysvalueof{/lillyxLISTINGS/packages/MAIN/#1}}
 
 \pgfkeys{/lillyxLISTINGS/packages/MAIN/.is family,%
-         /lillyxLISTINGS/packages/MAIN,%
-        % Frame
-        backgroundcolor/.initial={\color{lstmainbackcol}},%
-        rulecolor/.initial={\color{lstmainbordercol}},%
-        % frame/.initial={single},%
-        framerule/.initial={1pt},%
-        xleftmargin/.initial={15pt},%
-        xrightmargin/.initial={3pt},%
-        %Numbers
-        %numbers/.initial={left},%
-        numbersep/.initial={7pt},%
-        numberstyle/.initial=\color{gray}\LILLYxLISTINGSxNUMxFONTSIZE\sffamily\@lstnumconsumer,%
-        % Generic Configurations
-        % breaklines/.initial={true},% Currently won't expand correctly
-        % extendedchars/.initial={true},%
-        prebreak/.initial={\LILLYxLISTINGSxNUMxFONTSIZE\hbox{\hfill$\hookleftarrow$}},%
-        % core styles
-        basicstyle/.initial={\LILLYxlstTypeWriter\mdseries\color{black}\LILLYxLISTINGSxFONTSIZE},%
-        stringstyle/.initial={\color{DarkChromeYellow}},%
-        commentstyle/.initial={\color{gray}\LILLYxlstTypeWriter},%
-        % Additional Definitions
-        % otherkeywords/.initial={},%
-        % alsoletter/.initial={@_},%
-        % keywordsprefix/.initial={},%
-        % Keywordstyles
-        keywordstyle/.initial={\LILLYxCODExKEYWORDSTYLE},%
-        keywordstyle 2/.initial={\color{Azure}},%
-        keywordstyle 3/.initial={\color{AppleGreen}},%
-        keywordstyle 4/.initial={\color{DatmouthGreen}\ifx\LILLYxMODE\LILLYxMODExPRINT\bfseries\fi},%
-        keywordstyle 5/.initial={\color{Orchid}},%
-        keywordstyle 6/.initial={\itshape}
+    /lillyxLISTINGS/packages/MAIN,%
+  % Frame
+  backgroundcolor/.initial={\color{lstmainbackcol}},%
+  rulecolor/.initial={\color{lstmainbordercol}},%
+  framerule/.initial={1pt},%
+  xleftmargin/.initial={15pt},%
+  xrightmargin/.initial={3pt},%
+  numbersep/.initial={7pt},%
+  numberstyle/.initial=\color{gray}\LILLYxLISTINGSxNUMxFONTSIZE\sffamily\@lstnumconsumer,%
+  prebreak/.initial={\LILLYxLISTINGSxNUMxFONTSIZE\hbox{\hfill$\hookleftarrow$}},%
+  basicstyle/.initial={\LILLYxlstTypeWriter\mdseries\color{black}\LILLYxLISTINGSxFONTSIZE},%
+  stringstyle/.initial={\color{DarkChromeYellow}},%
+  commentstyle/.initial={\color{gray}\LILLYxlstTypeWriter},%
+  keywordstyle/.initial={\LILLYxCODExKEYWORDSTYLE},%
+  keywordstyle 2/.initial={\color{Azure}},%
+  keywordstyle 3/.initial={\color{AppleGreen}},%
+  keywordstyle 4/.initial={\color{DatmouthGreen}\ifx\LILLYxMODE\LILLYxMODExPRINT\bfseries\fi},%
+  keywordstyle 5/.initial={\color{Orchid}},%
+  keywordstyle 6/.initial={\itshape}
 }
 
 %% Typesets values like the listings comment:D
@@ -92,40 +66,35 @@
 \def\lststring#1{\bgroup\lstPackget{basicstyle}\lstPackget{stringstyle}#1\egroup}
 \def\lstnumber#1{\bgroup\lstPackget{basicstyle}\digitstyle#1\egroup}
 
-
 \lstdefinestyle{MAIN}{
-    breaklines      = true,
-    backgroundcolor = \lstPackget{backgroundcolor},
-    rulecolor       = \lstPackget{rulecolor},
-    stringstyle     = \lstPackget{stringstyle},
-    keywordstyle    = \lstPackget{keywordstyle},
-    keywordstyle    = [2]\lstPackget{keywordstyle 2}, %%KW
-    keywordstyle    = [3]\lstPackget{keywordstyle 3}, %% PARAM
-    keywordstyle    = [4]\lstPackget{keywordstyle 4}, %% FILES
-    keywordstyle    = [5]\lstPackget{keywordstyle 5}, %% SHELLPRE
-    keywordstyle    = [6]\lstPackget{keywordstyle 6}, %% SHELLPRE
-    otherkeywords   = {},
-    alsoletter      = {@},
-    keywordsprefix  = {},
-    basicstyle      = \lstPackget{basicstyle},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
-    commentstyle    = \lstPackget{commentstyle},
-    extendedchars   = true,
-    numberstyle     = \lstPackget{numberstyle},
-    prebreak        = \lstPackget{prebreak},
-    frame           = single,
-    xleftmargin     = \lstPackget{xleftmargin},
-    xrightmargin    = \lstPackget{xrightmargin},
-    numbers         = left,
-    numbersep       = \lstPackget{numbersep},
-    framerule       = \lstPackget{framerule},
-    escapeinside    = {!*}{*!},
+  breaklines      = true,
+  backgroundcolor = \lstPackget{backgroundcolor},
+  rulecolor       = \lstPackget{rulecolor},
+  stringstyle     = \lstPackget{stringstyle},
+  keywordstyle    = \lstPackget{keywordstyle},
+  keywordstyle    = [2]\lstPackget{keywordstyle 2}, %%KW
+  keywordstyle    = [3]\lstPackget{keywordstyle 3}, %% PARAM
+  keywordstyle    = [4]\lstPackget{keywordstyle 4}, %% FILES
+  keywordstyle    = [5]\lstPackget{keywordstyle 5}, %% SHELLPRE
+  keywordstyle    = [6]\lstPackget{keywordstyle 6}, %% SHELLPRE
+  otherkeywords   = {},
+  alsoletter      = {@},
+  keywordsprefix  = {},
+  basicstyle      = \lstPackget{basicstyle},   %Damit es auch wirklich ausschaut wie die Schreibmaschine!
+  commentstyle    = \lstPackget{commentstyle},
+  extendedchars   = true,
+  numberstyle     = \lstPackget{numberstyle},
+  prebreak        = \lstPackget{prebreak},
+  frame           = single,
+  xleftmargin     = \lstPackget{xleftmargin},
+  xrightmargin    = \lstPackget{xrightmargin},
+  numbers         = left,
+  numbersep       = \lstPackget{numbersep},
+  framerule       = \lstPackget{framerule},
+  escapeinside    = {!*}{*!},
 }
-
 
 \ifx\LILLYxMODE\LILLYxMODExPRINT
   \lstPackkeys{backgroundcolor=\color{black!0}}
 \fi
-
-\lstset{%
-    style=MAIN
-}
+\lstset{style=MAIN}

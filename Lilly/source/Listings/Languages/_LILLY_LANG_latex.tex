@@ -1,22 +1,12 @@
 %% Wird für die Dokumentation entsprechend erweitert
-
- %
-
 \lstdefinelanguage{lLatex}{
-    %language=[LaTeX]TeX,
     keywordstyle = [7]{\color{Azure}}, %%
     keywordstyle = [4]{\color{AppleGreen}},
     morecomment = [l]{\%},
-    %morecomment=[s][\color{bondiBlue}]{\$}{\$}, %% see :bmath: and :emath:
     commentstyle={\color{gray}\LILLYxlstTypeWriter},
     add to literate={\\$}{{\$}}1 {\\$}{{\$}}1 {\\\%}{{\%}}1 {\\(}{{{\textcolor{bondiBlue}{\textbackslash(}}}}2 {\\)}{{{\textcolor{bondiBlue}{\textbackslash)}}}}2 {\\[}{{{\textcolor{bondiBlue}{\textbackslash[}}}}2 {\\]}{{{\textcolor{bondiBlue}{\textbackslash]}}}}2 {\\;}{{{\textcolor{Purple}{\textbackslash;}}}}2 {scrlayer-scrpage}{{{\lstkwtwo{scrlayer-scrpage}}}}{16} {sopra-base}{{{\lstkwtwo{sopra-base}}}}{10} {sopra-documentation}{{{\lstkwtwo{sopra-documentation}}}}{19} {sopra-models}{{{\lstkwtwo{sopra-models}}}}{12} {sopra-attachments}{{{\lstkwtwo{sopra-attachments}}}}{17} {sopra-listings}{{{\lstkwtwo{sopra-listings}}}}{14},
     alsoletter={\\\#@*},
     alsoother={!,"_^},
-    % moredelim=**[s][{\color{bondiBlue}}]{$$}{$$},
-    % moredelim=**[s][{\color{bondiBlue}}]{$}{$},
-    % moredelim=**[s][{\color{bondiBlue}}]{\\(}{\\)},
-    % moredelim=**[s][{\color{bondiBlue}}]{\\[}{\\]},
-    %deletekeywords=[5]{\\},
     columns=[c]flexible,
     escapeinside={!*}{*!},
     morekeywords = [2]{Lilly,Jake,book,lipsum,geometry,babel,inputenc,amsmath,enumitem,fontenc,xcolor,hyperref,LILLYxMATH,LILLYxGRAPHICS,LILLYxCOLOR,LILLYxBOXES,LISTxCompatColors,LILLYxCONTROLLERxBOX,LILLYxLISTINGS,blindtext,fancyhdr,LILLYxLISTINGSxADVANCED,lillyKIZ,,beamer,graphicx,booktabs,LILLYxTIMETABLESxUNIVERSITY,LILLYxUTIL,\\long,LILLYxCORE,LILLYxLIST,LILLYxFORMATxCONTROL,LISTxColors,LILLYxPRESENTER,\\LISTxCompatColors,\\LISTxColors,\\def,\\gdef,\\edef,\\xdef,\\gdef,\\ifnum,\\relax,\\@nil,\\DeclareDocumentCommand,\\if,\\ifx,\\else,\\fi,blindtext,\\LILLY@n,\\uppercase},
@@ -36,5 +26,4 @@
     morekeywords = [6]{Dokumentation,Mitschrieb,Uebungsblatt,Zusammenfassung,samples,opacity,\\storeLillyColorList,\\storeLillyCompatColorList,article,lJava,lLatex,lCpp},
     morekeywords = [7]{\#1,\#2,\#3,\#4,\#5,\#6,\#7,\#8,\#9},
 }
-
 \RegisterLanguage{latex}{lLatex}

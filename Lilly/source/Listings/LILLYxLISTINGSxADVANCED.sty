@@ -1,110 +1,27 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxLISTINGSxADVANCED}[2019/08/23 Stellt eine Optik-Erweiterung fuer LILLYxLISTINGS zur Verfuegung]
-
-\RequirePackage{LILLYxLISTINGS}
-\RequirePackage{LILLYxCONTROLLERxBOX}
-% \RequirePackage{LILLYxCONTROLLERxBOX}
-
+\RequirePackage{LILLYxLISTINGS,LILLYxCONTROLLERxBOX}
 \tcbuselibrary{listingsutf8}
-
 \lstdefinestyle{LSTADVANCED}{
     backgroundcolor={},
     rulecolor={},
     numberstyle=\color{gray}\LILLYxLISTINGSxNUMxFONTSIZE\sffamily,
-    xleftmargin=12pt,
-    xrightmargin=3pt,
-    frame=l,
-    numbers=left,
-    numbersep=12pt,
-    framexleftmargin=3pt,
+    xleftmargin=12pt,xrightmargin=3pt,frame=l,
+    numbers=left,numbersep=12pt,framexleftmargin=3pt,
     rulecolor=\color{Charcoal},
-    %frameround=tttt, %% mag backgroundcolor nicht
-    framerule=0.5pt,
+    framerule=.5pt,
 }
 
 \tcbset{
   lstpresenterstyle/.style={%
-    colback=MudWhite!5,
-    boxrule=1pt,
-    enhanced jigsaw,
-    listing only,
-    breakable=true,
-    opacityback=0.9,
-    arc is angular=5mm,
-    fuzzy halo=0.1mm with MudWhite,
-    top=0.11mm,
-    bottom=0.11mm,
-    colframe=Charcoal,
-  }
+    colback=MudWhite!5,boxrule=1pt,
+    enhanced jigsaw,listing only,
+    breakable=true,opacityback=.9,
+    arc is angular=5mm,fuzzy halo=.1mm with MudWhite,
+    top=.11mm,bottom=.11mm,colframe=Charcoal}
 }
 
-
 \DeclareTotalTCBox{\LILLYxLSTINLINExADVANCED}{ s O{} m m }
-{verbatim,lstpresenterstyle,left=0.25mm,right=0.25mm,#2}
+{verbatim,lstpresenterstyle,left=.25mm,right=.25mm,#2}
 {\lstinline[#3]^#4^}
-
-
-
-% \def\ConstructEnv#1#2{
-% \global\DeclareTCBListing{#1}{ O{} }{%
-%         lstpresenterstyle,
-%         listing options={%
-%           language=#2,
-%           style=LSTADVANCED},
-%         ##1%
-%       }
-% }
-
-%
-% Will be done with the Language-Registration Process
-%
-
-% \getRegisteredLanguages%
-% \typeout{Start advanced Language Registration}
-% \foreach \clang/\llang in \lillyxlist {%
-%   \ifthenelse{\equal{\clang}{}}{}{
-%     \ifthenelse{\equal{\llang}{}}{}{
-%         \edef\fexpclang{s\clang}
-%         \typeout{New Presenter for: \clang\space (\llang) with name: p\clang\space and for long: \fexpclang}
-%         %\ConstructEnv{\fexpclang}{\llang}
-%       \expandafter\xdef\csname p\clang\endcsname##1{\noexpand\protect\noexpand\LILLYxLSTINLINExADVANCED{\llang}{##1}}
-%       \expandafter\robustify\csname p\clang\endcsname
-%   }}
-% }
-
-% \foreach \x/\i in {sjava/lJava} {
-%   \globaldefs=1
-%   \newenvironment{\x}[1][]{%
-%   \tcblisting{lstpresenterstyle,listing options={language=\i,style=LSTADVANCED},##1}}%
-%   {\endtcblisting}
-% }
-
-
-
-% will be done by \RegisterLanguage :D
-
-% \newtcblisting{sjava}[1][]{%
-%   lstpresenterstyle,%
-%   listing options={%
-%     language=lJava,
-%     style=LSTADVANCED},#1%
-% }
-% {}
-
-
-% \DeclareDocumentEnvironment{slatex}{O{}}{
-%   \presentlst{lLatex}
-% }{\endpresentlst}
-
-% \newtcblisting{scpp}[1][]{%
-%   lstpresenterstyle,
-%   listing options={%
-%     language=lCpp,
-%     style=LSTADVANCED},
-%   #1%
-% }
-% {}
-
-
-
 \endinput

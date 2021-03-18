@@ -1,43 +1,30 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxTABLESxMATERIAL}[2019/09/05 Zeigt das Material-Design fuer die LILLY-Tables]
-
-\RequirePackage{LILLYxCORE}
-% \RequirePackage{LILLYxCORE}
-
-\RequirePackage{LILLYxCOLOR}
-% \RequirePackage{LILLYxCOLOR}
+\RequirePackage{LILLYxCORE,LILLYxCOLOR}
 
 %% https://ctan.org/pkg/makecell
 \LILLYxDemandPackage{makecell}{Rotierte Zellen, Super Zellen, Enten, ...}%% Package, Info
-                    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
-                    {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+    {}{}
 
 %% https://ctan.org/pkg/tabu
 \LILLYxDemandPackage{tabu}{Coole Tabellen}%% Package, Info
-                    {Das Paket tabu ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
-                    {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+    {Das Paket tabu ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+    {}{}
 
-\def\tabu@classz{%
-    %  \ifx\tabu@prepnext@tok\prepnext@tok% in tabu
-    %    \expandafter\tabu@classz@oldarray
-    %  \else
-    \tabu@classzORI
-    %  \fi
-}%
+\def\tabu@classz{\tabu@classzORI}
 \def\tabu@ignorehfil{\tabu@nohfil}
 
 %% https://ctan.org/pkg/longtable
 \LILLYxDemandPackage{longtable}{Coole, lange Tabellen}%% Package, Info
-                    {Das Paket longtable ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
-                    {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+    {Das Paket longtable ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+    {}%%Params
+    {}
 
 %% https://www.ctan.org/pkg/xparse
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
-                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
-                    {}{} %% keine Argumente
+    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+    {}{} %% keine Argumente
 
 %% We will define the materialtabel 'mtable' and the long variant as 'mltable'
 %
@@ -46,9 +33,9 @@
 % there will be mtabular and mltabular using the existing table-environments - everybody: do the jay!
 
 \def\MTBHeaderRow{%\rowfont{\normalfont\bfseries\leavevmode\color{white}}
-\rowcolor{HeaderColor}\Gape[0.5mm][0.25mm]{}\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
+\rowcolor{HeaderColor}\Gape[.5mm][.25mm]{}\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
 \def\MNTBHeaderRow{%\rowfont{\normalfont\bfseries\leavevmode\color{white}}
-\rowcolor{NextHeaderColor}\Gape[0.5mm][0.25mm]{}{\hspace*{-2.3em}\textcolor{MudWhite}{$\blacktriangledown$}}\hspace*{1.4em}\;\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
+\rowcolor{NextHeaderColor}\Gape[.5mm][.25mm]{}{\hspace*{-2.3em}\textcolor{MudWhite}{$\blacktriangledown$}}\hspace*{1.4em}\;\setrow{\parbox[c][1.75em]{0pt}{}\normalfont\bfseries\leavevmode\color{white}}}
 
 
 
@@ -57,18 +44,12 @@
     \@@tabularArgPatch@iter#1\@empty\@nil
 }
 
-
 \def\@@tabularArgPatch@iter#1#2\@nil{%                        % Define Iteration
-    \ifx#1\@empty%                                            % Handle Emptyarg
-    \else%                                                    % Otherwise
-        % \ifthenelse{\equal{#1}{<}}{#1}{%
-        %     \ifthenelse{\equal{#1}{>}}{#1}{%
+    \ifx#1\@empty                                             % Handle Emptyarg
+    \else                                                     % Otherwise
                 ^#1%                                          % Set the Char if this is not '>' and '>
-        %     }
-        % }
-        \@@tabularArgPatch@iter#2\@empty\@nil%                % Re-iter with tail:D
-    %}%
-    \fi%
+        \@@tabularArgPatch@iter#2\@empty\@nil                 % Re-iter with tail:D
+    \fi
 }
 
 
@@ -87,7 +68,7 @@
     % As there is no 'rowfont' command for the tabular environment we will fake it. We will use \@@tabularArgPatch and insert an '^' before every character. NOTE: This means its not possible to use '>' or '<' etc as they will be polluted with '^' in the process
     % Therefore you will have to create a temporary column to use them - it would be theoretically possible to change that behaviour but it should be perfectly fine atm :) - hate the future moment
     % Expand the header arguments:
-    \edef\@@tabular@init@{\noexpand\tabular{>{~\noexpand\parbox[c][1.5em]{0pt}{\noexpand\vphantom{I}}}\@@tabularArgPatch{#4}<{~\noexpand\clearrow\noexpand\vspace*{0.4mm}}}}\@@tabular@init@
+    \edef\@@tabular@init@{\noexpand\tabular{>{~\noexpand\parbox[c][1.5em]{0pt}{\noexpand\vphantom{I}}}\@@tabularArgPatch{#4}<{~\noexpand\clearrow\noexpand\vspace*{.4mm}}}}\@@tabular@init@
         \IfBooleanTF{#1}{\rowcolor{#6}}{#2}\ignorespaces
 }{%
     \endtabular%
@@ -110,7 +91,7 @@
     % As there is no 'rowfont' command for the tabular environment we will fake it. We will use \@@tabularArgPatch and insert an '^' before every character. NOTE: This means its not possible to use '>' or '<' etc as they will be polluted with '^' in the process
     % Therefore you will have to create a temporary column to use them - it would be theoretically possible to change that behaviour but it should be perfectly fine atm :) - hate the future moment
     % Expand the header arguments:
-    \edef\@@tabular@init@{\noexpand\longtable{>{~\noexpand\parbox[c][1.5em]{0pt}{\noexpand\vphantom{I}}}\@@tabularArgPatch{#4}<{~\noexpand\clearrow\noexpand\vspace*{0.4mm}}}}\@@tabular@init@
+    \edef\@@tabular@init@{\noexpand\longtable{>{~\noexpand\parbox[c][1.5em]{0pt}{\noexpand\vphantom{I}}}\@@tabularArgPatch{#4}<{~\noexpand\clearrow\noexpand\vspace*{.4mm}}}}\@@tabular@init@
     \IfBooleanTF{#1}{\rowcolor{#6}}{#2\ignorespaces\IfValueT{#5}{%
             #5\\\endfirsthead%
             #8#5\\\endhead
@@ -125,8 +106,8 @@
 \colorlet{HeaderColor}{\Hcolor}
 \colorlet{NextHeaderColor}{HeaderColor}
 \def\@LILLY@rowfont@specs{\color{white}}
-\def\MHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{HeaderColor}\@ifstar{}{\Gape[0.5mm][0.25mm]{}}}
-\def\MNHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{NextHeaderColor}\@ifstar{}{\Gape[0.5mm][0.25mm]{}}{\hspace*{-2.3em}\textcolor{HeaderColor!40!white}{$\blacktriangledown$}}\hspace*{1.4em}\;}
+\def\MHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{HeaderColor}\@ifstar{}{\Gape[.5mm][.25mm]{}}}
+\def\MNHeaderRow{\rowfont{\normalfont\bfseries\leavevmode\@LILLY@rowfont@specs}\rowcolor{NextHeaderColor}\@ifstar{}{\Gape[.5mm][.25mm]{}}{\hspace*{-2.3em}\textcolor{HeaderColor!40!white}{$\blacktriangledown$}}\hspace*{1.4em}\;}
 % Maybe set Arrow to right?
 \DeclareDocumentEnvironment{mtable}{%
     s % starred has no header
@@ -139,11 +120,11 @@
     \IfBooleanTF{#1}{\taburowcolors[2] {#5 .. #6}}
         {\taburowcolors[2] 2{#5 .. #6}}
     \everyrow{\tabucline[.4mm  white]{}}
-    \extrarowsep = 0.15mm
+    \extrarowsep = .15mm
     \tabulinesep = ^2mm_2mm
     #3\ignorespaces
     \begin{tabu}{>{~}#4<{~}}
-        \IfBooleanTF{#1}{\rowcolor{#6}}{#2}\ignorespaces
+    \IfBooleanTF{#1}{\rowcolor{#6}}{#2}\ignorespaces
 }{%
     \end{tabu}
 }
@@ -157,20 +138,17 @@
     O{MudWhite!90} % Second Row
     O{\MNHeaderRow} % How to color Headers on continued lines
 }{%
-    \IfBooleanTF{#1}{\taburowcolors[1] {#6 .. #7}}
-    {\taburowcolors[1] 2{#6 .. #7}}
-    \everyrow{\tabucline[.4mm  white]{}}
-    \tabulinesep = ^2mm_2mm
-    #3\ignorespaces
-    \begin{longtabu}{>{~}#4<{~}}
-        \IfBooleanTF{#1}{\rowcolor{#6}}{#2\ignorespaces\IfValueT{#5}{%
-            #5\\\endfirsthead%
-            #8#5\\\endhead
-        }\ignorespaces}\ignorespaces%
+\IfBooleanTF{#1}{\taburowcolors[1] {#6 .. #7}}
+{\taburowcolors[1] 2{#6 .. #7}}
+\everyrow{\tabucline[.4mm  white]{}}
+\tabulinesep = ^2mm_2mm
+#3\ignorespaces
+\begin{longtabu}{>{~}#4<{~}}
+    \IfBooleanTF{#1}{\rowcolor{#6}}{#2\ignorespaces\IfValueT{#5}{%
+        #5\\\endfirsthead
+        #8#5\\\endhead
+    }\ignorespaces}\ignorespaces
 }{%
     \end{longtabu}
 }
-
-
-
 \endinput

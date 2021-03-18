@@ -1,76 +1,51 @@
-
-%% Bessere Formatierungen mancher Formatierungen in der Matheumgebung
-
-
-
-
-
-
-\providecommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} %Anpassung overlapping: GDRA
-
-
+\providecommand\overbar[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} %Anpassung overlapping: GDRA
 \ifcsname LetLtxMacro\endcsname%
 \LetLtxMacro{\legsqrt}{\sqrt}
 \let\oldr@@t\r@@t
 \def\r@@t#1#2{%
 \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
-\advance\dimen0-0.2\ht0
+\advance\dimen0-.2\ht0
 \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
-{\box0\lower0.4pt\box2}}
-\renewcommand*{\sqrt}[2][\ ]{\legsqrt[#1]{#2} }      %%Schönere Wurzel
-\newcommand{\oldsqrt}[2][\ ]{\oldr@@t#1{#2}}
+{\box0\lower.4pt\box2}}
+\renewcommand*\sqrt[2][\ ]{\legsqrt[#1]{#2} }      %%Schönere Wurzel
+\newcommand*\oldsqrt[2][\ ]{\oldr@@t#1{#2}}
 \else
-\newcommand{\oldsqrt}[2][\ ]{\sqrt[#1]{#2} }
+\newcommand*\oldsqrt[2][\ ]{\sqrt[#1]{#2} }
 \fi
-
-\providecommand{\das}
-    {\ensuremath{\vcentcolon\nolinebreak\mkern-1mu\nolinebreak=}}
-\providecommand{\daseq}
-    {\ensuremath{\vcentcolon\nolinebreak\mkern-1mu\nolinebreak\Leftrightarrow}}
-\providecommand{\sad}
-    {\ensuremath{=\nolinebreak\mkern-1mu\nolinebreak\vcentcolon}}
-\providecommand{\qesad}
-    {\ensuremath{\Leftrightarrow\nolinebreak\mkern-1mu\nolinebreak\vcentcolon}}
-\providecommand{\shouldeq}{\ensuremath{\stackrel{!}{=}}}
-
-\renewcommand{\det}{\text{det}~}
-\providecommand{\adj}{\text{adj}~}
-\providecommand{\inf}{\text{inf}~}
-\providecommand{\sup}{\text{sup}~}
-
-\providecommand{\max}{\text{max}~}
-\providecommand{\min}{\text{min}~}
-
-\LILLYcommand{\emptyset}{\ensuremath{\o}}
-
-\providecommand{\LH}{\ensuremath{{\cal LH}}}
-\providecommand{\eig}{\text{Eig}\tab[0.04cm]}
-\providecommand{\Dim}{{\text{dim}\tab[0.08cm]}}
-\providecommand{\dif}{\mathop{}\!\mathrm{d}}
-\providecommand{\dint}[1][x]{\mathop{}\!\frac{\mathrm{d}}{\mathrm{d}#1}}
-
-\providecommand{\sel}{\textsc{sel}}
-\providecommand{\sign}{\text{sign}~}
-\LILLYcommand\diag{\text{diag}\tab[0.04cm]}
-\renewcommand{\mod}{{\tab[0.1cm]\textsc{mod}\tab[0.1cm]}}
-\renewcommand{\Im}{\mathfrak{Im}}
-\renewcommand{\Re}{\mathfrak{Re}}
+\providecommand\das{\ensuremath{\vcentcolon\nolinebreak\mkern-1mu\nolinebreak=}}
+\providecommand\daseq{\ensuremath{\vcentcolon\nolinebreak\mkern-1mu\nolinebreak\Leftrightarrow}}
+\providecommand\sad{\ensuremath{=\nolinebreak\mkern-1mu\nolinebreak\vcentcolon}}
+\providecommand\qesad{\ensuremath{\Leftrightarrow\nolinebreak\mkern-1mu\nolinebreak\vcentcolon}}
+\providecommand\shouldeq{\ensuremath{\stackrel{!}{=}}}
+\renewcommand\det{\text{det}~}
+\providecommand\adj{\text{adj}~}
+\providecommand\inf{\text{inf}~}
+\providecommand\sup{\text{sup}~}
+\providecommand\max{\text{max}~}
+\providecommand\min{\text{min}~}
+\LILLYcommand\emptyset{\ensuremath{\o}}
+\providecommand\LH{\ensuremath{{\cal LH}}}
+\providecommand\eig{\text{Eig}\tab[.04cm]}
+\providecommand\Dim{{\text{dim}\tab[.08cm]}}
+\providecommand\dif{\mathop{}\!\mathrm{d}}
+\providecommand\dint[1][x]{\mathop{}\!\frac{\mathrm{d}}{\mathrm{d}#1}}
+\providecommand\sel{\textsc{sel}}
+\providecommand\sign{\text{sign}~}
+\LILLYcommand\diag{\text{diag}\tab[.04cm]}
+\renewcommand\mod{{\tab[.1cm]\textsc{mod}\tab[.1cm]}}
+\renewcommand\Im{\mathfrak{Im}}
+\renewcommand\Re{\mathfrak{Re}}
 \providecommand\LK{LK}
-\providecommand\rg{{\textsl{rg}\tab[0.04cm]}}
-\providecommand\KER{{\textsl{ker}\tab[0.04cm]}}
-\providecommand\Eig{{\textsl{Eig}\tab[0.04cm]}}
-
+\providecommand\rg{{\textsl{rg}\tab[.04cm]}}
+\providecommand\KER{{\textsl{ker}\tab[.04cm]}}
+\providecommand\Eig{{\textsl{Eig}\tab[.04cm]}}
 \providecommand{\abs}[1]{\ensuremath{\left|#1\right|}}
-
 \def\dist#1{\ensuremath{\left\lVert{#1}\right\rVert}} % move to lilly
-
-\DeclareMathOperator{\val}{val}
-\DeclareMathOperator{\sch}{sch}
-\DeclareMathOperator{\dom}{dom}
-\DeclareMathOperator{\grad}{Grad}
-
-\DeclareMathOperator{\arccot}{arccot}
-
+\DeclareMathOperator\val{val}
+\DeclareMathOperator\sch{sch}
+\DeclareMathOperator\dom{dom}
+\DeclareMathOperator\grad{Grad}
+\DeclareMathOperator\arccot{arccot}
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
 \hskip -\arraycolsep
 \let\@ifnextchar\new@ifnextchar

@@ -1,20 +1,12 @@
-%% Wird für die Dokumentation entsprechend erweitert
-
-\newcommand{\@@JavaImport}[1]{import~\textit{#1};}
-
-\providecommand{\lstHLGreen}{\@lillyLstHL[fill=AppleGreen!26,draw=AppleGreen!26]}
-\providecommand{\lstHLBlue}{\@lillyLstHL[fill=Azure!26,draw=Azure!26]}
-\providecommand{\lstHLRed}{\@lillyLstHL[fill=DebianRed!26,draw=DebianRed!26]}
-\providecommand{\lstHLOrange}{\@lillyLstHL[fill=ChromeYellow!26,draw=ChromeYellow!26]}
+\providecommand\lstHLGreen{\@lillyLstHL[fill=AppleGreen!26,draw=AppleGreen!26]}
+\providecommand\lstHLBlue{\@lillyLstHL[fill=Azure!26,draw=Azure!26]}
+\providecommand\lstHLRed{\@lillyLstHL[fill=DebianRed!26,draw=DebianRed!26]}
+\providecommand\lstHLOrange{\@lillyLstHL[fill=ChromeYellow!26,draw=ChromeYellow!26]}
 
 \lstdefinelanguage{lJava}{
-    language=java,
-    deletekeywords = {<,>,\,},
-    otherkeywords = {->},
-    alsoletter={@_},
-    alsoother={[]},
-    comment=[l]{//},
-    keywordsprefix={@},
+    language=java,deletekeywords = {<,>,\,},
+    otherkeywords = {->},alsoletter={@_},
+    alsoother={[]},comment=[l]{//},keywordsprefix={@},
     moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
     moredelim=**[is][{\lstHLError}]{|err|}{|err|},
     moredelim=**[il][{\lstHLError}]{|err|:},
@@ -28,10 +20,7 @@
     moredelim=[is][\itshape\color{Purple}]{|ihl|}{|ihl|},
     moredelim=**[is][\itshape\bfseries]{|bhl|}{|bhl|},
     moredelim=**[is][\digitstyle]{|num|}{|num|},
-    % {\\033\[}{{\lstkwtwo{\textbackslash 033[}}}5
     add to literate={\\u}{{\lstkwtwo{\textbackslash u}}}2 {\\n}{{\lstkwtwo{\textbackslash n}}}2  {\\"}{{\lstkwtwo{\textbackslash\dq}}}2 {\\\\}{{\lstkwtwo{\textbackslash\textbackslash}}}2 {\%s}{{\lstkwfive{\%s}}}2 {\%d}{{\lstkwfive{\%d}}}2 {\%c}{{\lstkwfive{\%c}}}2 {\%b}{{\lstkwfive{\%b}}}2 {\%n}{{\lstkwfive{\%n}}}2 {Bicycle2}{{\lstkwtwo{Bicycle2}}}8 {Bicycle3}{{\lstkwtwo{Bicycle3}}}8 {Point2D}{{\lstkwtwo{Point2D}}}7,
-    % moredelim=[is][\@@JavaImport]{import\ }{;}, % there shouldn't be any highlights in a line prefixed with import :D
-    %frameround=tttt, %% mag backgroundcolor nicht
     escapeinside={!*}{*!},
     morecomment=[s]{/*}{*/},
     morekeywords = {System,var,Integer,String,assert}, %% Damit ich nichts mehr machen muss:
@@ -44,14 +33,5 @@
     setOnMouseMoved,setOnMouseEntered,setOnMouseExited,getX,getY,setBackground,getHours,getMinutes,setHours,setMinutes,substring,notify,notifyAll,wait,getTransaction,begin,persist,getResultList,createQuery,size,createEntityManagerFactory,start,newFixedThreadPool,createEntityManager,getInputStream,getOutputStream},
     morekeywords = [4]{Files,Paths,Collectors,Collection,Iterable,Iterator,Object,Stage,EOFException,ClassNotFoundException,IOException,XPathConstants,SQLException,Exception,Runnable,IndexOutOfBoundsException,IllegalStateException,GenerationType},
     morekeywords = [5]{filter,map,sorted,collect,toList,toSet,toMap,forEach,mapToInt,stream,sum,read,reduce,NODESET,MULTILINE,MAX_VALUE,CENTER_LEFT,CENTER_RIGHT,CENTER,TOP_LEFT,TOP_CENTER,TOP_RIGHT,BLUE,RED,GREEN,YELLOW,EMPTY,SECONDS,ENTER,MAX_VALUE,IDENTITY,getClass,toString},
-    morekeywords = [6]{out,in,err,OBJECT},
-}
-
+    morekeywords = [6]{out,in,err,OBJECT}}
 \RegisterLanguage{java}{lJava}
-
-
-% \lstnewenvironment{java}[1][]
-%   {\lstset{language=lJava,#1}}
-% {}
-
-% \pushList{RegisteredLanguages}{java/lJava}

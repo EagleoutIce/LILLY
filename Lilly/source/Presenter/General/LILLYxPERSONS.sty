@@ -1,29 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxPERSONS}[2019/09/22 Liefert eine Personenverwaltung fuer LILLY]
-
-\RequirePackage{LILLYxCORE}
-% \RequirePackage{LILLYxCORE}
-\RequirePackage{LILLYxTIKZxCORE}
-\RequirePackage{LILLYxFONTS}
-\RequirePackage{LILLYxCONTROLLERxLINK}
-% \RequirePackage{LILLYxCONTROLLERxLINK}\RequirePackage{LILLYxORNAMENTS}
-
-
+\RequirePackage{LILLYxCORE,LILLYxTIKZxCORE,LILLYxFONTS,LILLYxCONTROLLERxLINK}
 \LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schlüssel-Wert-Spiel zur Verfuegung}
-                    {Lilly ist sich ziemlich sicher, aber doch nicht ganz ob dieses Paket relevant ist}
-                    {}{} %% keine Argumente
-
-
+    {Lilly ist sich ziemlich sicher, aber doch nicht ganz ob dieses Paket relevant ist}
+    {}{} %% keine Argumente
 \LILLYxDemandPackage{shapepar}{Eigentlich nicht sooo wichtig, aber irgendwie dann schon :P}
-                    {Ohne geht es einfach nicht, weil, naja, das einfach gut aussieht :D}
-                    {}{} %% keine Argumente
-
-
+    {Ohne geht es einfach nicht, weil, naja, das einfach gut aussieht :D}
+    {}{} %% keine Argumente
 % Ziel ist es, Datenbanken für Personen erstelllen zu können un ddiese dann entsprechend anzeigen zu können,
 % Es werden automatisch IDs für jede Person generiert, wobei andere Pakete diese Daten ebenfalls zur Visualisierung nutzen können.
 % Jede Person zeichnet sich durch ein von PGF-keys zur Verfügung gestelltes Datenfeld aus.
-
-
 % Ersteinmal gilt es festzulegen, was für Daten eine Person überhaupt hat, die anschließende Persistierung erfolgt mit dem Präfix @@lilly@persons@.
 
 %% Die Werte werden wieder für jede InfoBox persistiert, damit das Design variiert werden kann, je nach Geschmack :D
@@ -49,28 +35,15 @@
         name={Noname}, last name={M\"{u}ller}, color={AppleGreen}, brief={Nothing here}%
     }
 }
-
 % #1 Person ID
 % #2 Field Name
-\def\@@LILLY@persons@get#1#2{%
-    \csname @@lilly@persons@#1@#2\endcsname%
-}
-
+\def\@@LILLY@persons@get#1#2{\csname @@lilly@persons@#1@#2\endcsname}
 % #1 Person ID
-\def\PersonAlias#1{%
-    \ignorespaces\@@LILLY@persons@get{#1}{Alias}%
-}
-
+\def\PersonAlias#1{\ignorespaces\@@LILLY@persons@get{#1}{Alias}}
 % #1 Person ID
-\def\PersonName#1{%
-    \ignorespaces\@@LILLY@persons@get{#1}{Name}%
-}
-
+\def\PersonName#1{\ignorespaces\@@LILLY@persons@get{#1}{Name}}
 % #1 Person ID
-\def\PersonFullName#1{%
-    \ignorespaces\@@PersonFullName{#1}%
-}
-
+\def\PersonFullName#1{\ignorespaces\@@PersonFullName{#1}}
 % #1 Person ID
 \def\@@PersonFullName#1{%
     % This command will return the Full Name of a Person, it's somewhat of a shortcut-macro:
@@ -129,23 +102,22 @@
     O{LILLYxPERSONS:}   % Linkname to the Informationpage of the Person, if non provided the default (LILLYxPERSONS:<PERSONID>) will be used
     m   % Person ID
 }{%
-    \phantomsection\hypertarget{#2#3}{}% We will construct a tikzpicture and therefore consult the Graphics-Library (TIKZxCORE)
-    \leavevmode\bigskip\newline\noindent\begin{minipage}{\textwidth}
-        {\large\sffamily\pgfornament[height=0.5\baselineskip,ydelta=-0.775ex]{11} \ifthenelse{\equal{\@@LILLY@persons@get{#3}{Alias}}{}}{}{{\scriptsize[{\itshape\color{\@@LILLY@persons@get{#3}{Color}}\@@LILLY@persons@get{#3}{Alias}}$\,$]~}}\PersonFullName{#3}{$\,$\scriptsize\@lilly@formatAge{#3}}}\hbox{}\hfill{}{\ttfamily\scshape\@@LILLY@persons@get{#3}{Email}}\vspace*{-0.5\baselineskip}\newline\hbox{}\hfill{}{\tiny\@@LILLY@persons@get{#3}{MobileNumber}}\vspace*{-0.5\baselineskip}\newline%
-        \hspace*{0.045\linewidth}\parbox[t][3cm]{0.955\linewidth}{%
-            \font\cmsybig=cmsy10 at 1.2in
-            \newcommand\BigO{{\cmsybig \char10}}
-            \cutout{r}(-1cm,0.85cm)
-            \setlength\cutoutsep{6pt}
-            \shapepar[1.6cm]{\circleshape}%
-            \setlength\unitlength{1cm}%
-            \begin{picture}(0,0)%
-            \put(1.0,-1.5){\makebox[0pt]{\tikz{\filldraw[path image={\@@LILLY@persons@get{#3}{Image}}{2cm},\@@LILLY@persons@get{#3}{SecondaryColor}] (0.4,0.35) circle (1cm);}}}
-            \end{picture}
-            \par
-            \itshape\@@LILLY@persons@get{#3}{Brief}%
-        }
-    \end{minipage}\vspace*{0.8cm}\newline
+\phantomsection\hypertarget{#2#3}{}% We will construct a tikzpicture and therefore consult the Graphics-Library (TIKZxCORE)
+\leavevmode\bigskip\newline\noindent\begin{minipage}{\textwidth}
+    {\large\sffamily\pgfornament[height=.5\baselineskip,ydelta=-.775ex]{11} \ifthenelse{\equal{\@@LILLY@persons@get{#3}{Alias}}{}}{}{{\scriptsize[{\itshape\color{\@@LILLY@persons@get{#3}{Color}}\@@LILLY@persons@get{#3}{Alias}}$\,$]~}}\PersonFullName{#3}{$\,$\scriptsize\@lilly@formatAge{#3}}}\hbox{}\hfill{}{\ttfamily\scshape\@@LILLY@persons@get{#3}{Email}}\vspace*{-.5\baselineskip}\newline\hbox{}\hfill{}{\tiny\@@LILLY@persons@get{#3}{MobileNumber}}\vspace*{-.5\baselineskip}\newline%
+    \hspace*{.045\linewidth}\parbox[t][3cm]{.955\linewidth}{%
+        \font\cmsybig=cmsy10 at 1.2in
+        \newcommand\BigO{{\cmsybig \char10}}
+        \cutout{r}(-1cm,.85cm)
+        \setlength\cutoutsep{6pt}
+        \shapepar[1.6cm]{\circleshape}%
+        \setlength\unitlength{1cm}%
+        \begin{picture}(0,0)%
+        \put(1.0,-1.5){\makebox[0pt]{\tikz{\filldraw[path image={\@@LILLY@persons@get{#3}{Image}}{2cm},\@@LILLY@persons@get{#3}{SecondaryColor}] (.4,.35) circle (1cm);}}}
+        \end{picture}
+        \par\itshape\@@LILLY@persons@get{#3}{Brief}%
+    }
+\end{minipage}\vspace*{.8cm}\newline
 }
 
 \newlength{\@tmp@Name@length}
@@ -156,27 +128,27 @@
     m   % Person Name
     O{} % Optional Arguments for the 'tikzpicture' created
 }{%
-    % Evaluate the Name, it will scale the Name based on a minimum width :D
-    \IfBooleanTF{#1}{\def\@tmp@Name{\PersonAlias{#3}}}{\def\@tmp@Name{\@@LILLY@persons@get{#3}{Name}}}%
-    % Now calculate the width of the Name:
-    \settowidth{\@tmp@Name@length}{\scriptsize\useefont\@tmp@Name}%
-    % \typeout{WIDTH: \the\@tmp@Name@length}
-    \ifdim\@tmp@Name@length>47.5pt\relax \addtolength{\@tmp@Name@length}{0.9cm}% Offset for the image (0.65cm) + offset for look (0.25cm)
-        \else \setlength{\@tmp@Name@length}{2.5cm}\fi%
-    \begin{tikzpicture}[baseline=0.4ex,every node/.style={transform shape},#4]
-        % First, draw the background-Plate
-        \filldraw[rounded corners=0.345\@PersonTag@Height,line width=0.15pt,\@@LILLY@persons@get{#3}{Color},shading=axis,% setting the border to 0.15pt yields a far nicer result on most
-            % Gradient:
-            left color=\@@LILLY@persons@get{#3}{Color}!85!black,right color=\@@LILLY@persons@get{#3}{Color},hyperlink={#2#3}%
-            ]%
-            % Draw:
-            (0,0) rectangle ++(\@tmp@Name@length,0.72\@PersonTag@Height); % Forcefully don't round the whole corners
-        % Place the name in the secondary color:
-        \node[right,\@@LILLY@persons@get{#3}{SecondaryColor},font={\scriptsize\useefont},hyperlink={#2#3}] at (0.65,0.36\@PersonTag@Height) {\@tmp@Name};
+% Evaluate the Name, it will scale the Name based on a minimum width :D
+\IfBooleanTF{#1}{\def\@tmp@Name{\PersonAlias{#3}}}{\def\@tmp@Name{\@@LILLY@persons@get{#3}{Name}}}%
+% Now calculate the width of the Name:
+\settowidth{\@tmp@Name@length}{\scriptsize\useefont\@tmp@Name}%
+% \typeout{WIDTH: \the\@tmp@Name@length}
+\ifdim\@tmp@Name@length>47.5pt\relax \addtolength{\@tmp@Name@length}{.9cm}% Offset for the image (.65cm) + offset for look (.25cm)
+    \else \setlength{\@tmp@Name@length}{2.5cm}\fi%
+\begin{tikzpicture}[baseline=.4ex,every node/.style={transform shape},#4]
+    % First, draw the background-Plate
+    \filldraw[rounded corners=.345\@PersonTag@Height,line width=.15pt,\@@LILLY@persons@get{#3}{Color},shading=axis,% setting the border to .15pt yields a far nicer result on most
+        % Gradient:
+        left color=\@@LILLY@persons@get{#3}{Color}!85!black,right color=\@@LILLY@persons@get{#3}{Color},hyperlink={#2#3}%
+        ]%
+        % Draw:
+        (0,0) rectangle ++(\@tmp@Name@length,.72\@PersonTag@Height); % Forcefully don't round the whole corners
+    % Place the name in the secondary color:
+    \node[right,\@@LILLY@persons@get{#3}{SecondaryColor},font={\scriptsize\useefont},hyperlink={#2#3}] at (.65,.36\@PersonTag@Height) {\@tmp@Name};
 
-        % Draw the Picture provided:
-        \filldraw[path image={\@@LILLY@persons@get{#3}{Image}}{\@@LILLY@persons@get{#3}{ImageMultiplier}},\@@LILLY@persons@get{#3}{SecondaryColor}] (0.4,0.35) circle (0.7\@PersonTag@Height); %semithick for the border?
-    \end{tikzpicture}%
+    % Draw the Picture provided:
+    \filldraw[path image={\@@LILLY@persons@get{#3}{Image}}{\@@LILLY@persons@get{#3}{ImageMultiplier}},\@@LILLY@persons@get{#3}{SecondaryColor}] (.4,.35) circle (.7\@PersonTag@Height); %semithick for the border?
+\end{tikzpicture}%
 }
 
 

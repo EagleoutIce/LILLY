@@ -1,35 +1,23 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxRECORDER}[2019/09/24 Liefert eine Verwaltung eigener temporaerer Dateien]
-
 % Die grundlegende Idee ist es, bestimme Befehle über die Datei hinweg aufnehmen zu lassen um so zum Beispiel zu Beginn
 % des Dokuments zu erfahren, ob im Dokument ein gewisser Befehl auftaucht.
 % Die Verwendung dieses Pakets erfordert grundlegend einen zweiten kompilier-Durchgang
-
 \RequirePackage{LILLYxVANILLA}
 \RequirePackage{LILLYxPACKAGExCTRL}
-
 \RequirePackage{kvoptions}
 \DeclareVoidOption{morewrites}{\RequirePackage{morewrites}}
-\ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
-
-
-% \LILLYxLoadPackage{morewrites}{Just to be sure}%% Package, Info
-%                     {Dieses Paket ist für LILLY nicht wichtig, aber kann vielleicht Fehler beheben!}%% Error-Text
-%                     {}{}{}%\morewritessetup{allocate = 18}
+\ProcessKeyvalOptions* % Verarbeite Paketargumente (Optionen, wie auch immer)
 
 % Writes #2 into the Recorder-File with ID #1, write will be executed at shipout of the Page
-\def\@Lilly@Recorder@Write#1#2{%
-  \expandafter\write\csname lr@#1\endcsname{#2}%
-}
+\def\@Lilly@Recorder@Write#1#2{\expandafter\write\csname lr@#1\endcsname{#2}}
 % Writes #2 into the Recorder-File with ID #1, write will be executed instantly
 \def\@Lilly@Recorder@ImmediateWrite#1#2{%
   \expandafter\immediate\expandafter\write\csname lr@#1\endcsname{#2}%
 }
 
 % Writes #2 into the Recorder-File with ID #1, write will be protected
-\def\@Lilly@Recorder@ProtectedWrite#1#2{%
-  \expandafter\protected@write\csname lr@#1\endcsname{#2}%
-}
+\def\@Lilly@Recorder@ProtectedWrite#1#2{\expandafter\protected@write\csname lr@#1\endcsname{#2}}
 
 % Does nothing, but consuming 4 arguments
 \def\@@Lilly@Recorder@GenericVoidWrite#1#2#3#4{}
@@ -47,8 +35,6 @@
 
 \let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericWrite
 % \let\@Lilly@Recorder@PreviousWrite\relax
-
-
 \def\NewRecorder{%
   \@ifstar{\@NewRecorder}{\@iNewRecorder}% Input the File
 }
@@ -56,8 +42,7 @@
 \def\@iNewRecorder#1#2{%
   % Is there an existing File that we can use?
   \begingroup\makeatletter\@input{\jobname.#2}%
-  \@NewRecorder{#1}{#2}%
-  \endgroup%
+  \@NewRecorder{#1}{#2}\endgroup
 }
 
 % This will create the Recorder named #1 with the File-Extension #2
@@ -67,14 +52,14 @@
 \def\@NewRecorder#1#2{%
   \begingroup\makeatletter%
   \if@filesw% only write a File if it should
-    \expandafter\newwrite\csname lr@#1\endcsname%
+    \expandafter\newwrite\csname lr@#1\endcsname
   \fi%
   %\expandafter\newif\csname iflillyregister@lr@#1@enabled@\endcsname
   %\csname lillyregister@lr@#1@enabled@true\endcsname
   \expandafter\gdef\csname pause#1\endcsname{%
     %\csname lillyregister@lr@#1@enabled@false\endcsname%
     %\global\let\@Lilly@Recorder@PreviousWrite\@Lilly@Recorder@GenericWrite% old, but hey
-    \global\let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericVoidWrite%
+    \global\let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericVoidWrite
   }
   \expandafter\gdef\csname unpause#1\endcsname{%
     %\csname lillyregister@lr@#1@enabled@true\endcsname%
@@ -93,23 +78,20 @@
     \@input{\jobname.#2}%
   }%
   \expandafter\gdef\csname close#1\endcsname{%
-    \closeout \csname lr@#1\endcsname \jobname.#2\relax%
+    \closeout \csname lr@#1\endcsname \jobname.#2\relax
   }%
   \expandafter\gdef\csname iclose#1\endcsname{%
-    \immediate\closeout \csname lr@#1\endcsname \jobname.#2\relax%
+    \immediate\closeout \csname lr@#1\endcsname \jobname.#2\relax
   }%
-  \@nobreakfalse\endgroup%
+  \@nobreakfalse\endgroup
 }
-
 
 \def\@@OpenOut@Default#1{%
   \IfFileExists{\jobname.#1}{}{%
-  \if@filesw%
-    \expandafter\newwrite\csname tf@#1\endcsname%
-    \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax%
-  \fi%
+  \if@filesw
+    \expandafter\newwrite\csname tf@#1\endcsname
+    \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax
+  \fi
   }
 }
-
-
 \endinput

@@ -1,17 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxSHOWCASExAPPLICATION}[2019/10/02 Stellt Banner fuer LILLYxSHOWCASE zur Verfuegung]
-
 \RequirePackage{LILLYxSHOWCASExBANNERS}%
-
 % Erlaubt das Setzen einer Bewerbung.
 % Es werden verschiedene Befehle gesetzt, die dann das jeweilige geladene Bewerbungs-Design mit effekten Versehen kann.
 % Macht ein Befehl im Rahmen des Bewerbungslayouts keinen Sinn, so wird er einfach nicht gesetzt.
 
-
 %% Die folgenden Datensammlung wird als pgfkeys abgelegt und kann von den Designs verwendet werden.
 %% Anschließend einige Kurzbefehle, die es erlauben die einzelnen Felder automatisiert zu setzen.
-
-
 \pgfkeys{%
     /lillyxAPPLICATIONS/.is family, /lillyxAPPLICATIONS,
     %% colors:
@@ -69,39 +64,20 @@
 }
 
 \def\lilly@applications@skills{} % list of skills always with Text and Progress, if the progress is EMPTY (!= 0) no bar will be set and  no space inserted.they should only be managed by the following iterfaces to avoid nonworking skilllists
-
-\def\@applications@clearskills{%
-    \gdef\lilly@applications@skills{}%
-}
-
+\def\@applications@clearskills{\gdef\lilly@applications@skills{}}
 % currently unused
-\def\@@applications@setskills#1{%
-    \gdef\lilly@applications@skills{#1}%
-}
+\def\@@applications@setskills#1{\gdef\lilly@applications@skills{#1}}
 
 \def\@applications@addskill#1#2{%
     \edef\@@applications@skills@last{\lilly@applications@skills}%
-    \expandafter\ifx\expandafter\\\lilly@applications@skills\\
-        \xdef\lilly@applications@skills{{#1}/{#2}}%
-    \else%
-        \xdef\lilly@applications@skills{\@@applications@skills@last,{#1}/{#2}}%
+    \ifx\lilly@applications@skills\@empty
+        \protected@xdef\lilly@applications@skills{{#1}/{#2}}%
+    \else
+        \protected@xdef\lilly@applications@skills{\@@applications@skills@last,{#1}/{#2}}%
     \fi
 }
 
-
-
-
 \long\def\applicationset#1{\pgfkeys{/lillyxAPPLICATIONS,#1}}
-
-% init all keys with an empty value
-% \foreach \x in {primary color,secondary color,text color,page color,%
-%     title,first name,last name,birth day,birth month,birth year,%
-%     age,telephone,mobile phone,email,private email,website,location,%
-%     instagram,facebook,twitter,rss,linkedin,devarianart,steam,soundcloud,wordpress,xing,%
-%     youtube,reddit,github,gitlab,telegram,dropbox} {
-%         \applicationset{\x={}}
-%     }
-
 % #1 width
 % #2 height
 % #3 tikz extra
@@ -112,7 +88,7 @@
 \def\@@ProgressBar#1#2#3#4#5#6#7{%
     \tikz{\begin{scope}%
         \clip[#3] (0,0) rectangle (#1,#2);%Clip
-        \ifx\\#7\\\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+        \ifx!#7!\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
         \fill[#6] (0,0) rectangle (#4*#1,#2);% Progress
         \end{scope}\draw[#5,thick,#3] (0,0) rectangle (#1,#2);% border
     }%
@@ -156,7 +132,7 @@
         \expandafter\ifcsname\element\endcsname%
             \csname#2\endcsname{\i}{\the@applications@elemc}{\element}{\tag}%
             \stepcounter{@applications@elemc}%
-        \fi%
+        \fi
         \ifnum\the@applications@elemc=\@cmax \breakforeach\fi% breakforeach will continue the current execution therefore we will tailcheck
     }%
     \fi
@@ -209,25 +185,22 @@
 \DeclareDocumentEnvironment{application}{%
     O{} % applicationset
     m   % theme name
-}{\bgroup\makeatletter%
+}{\begingroup\makeatletter
 \userput{#2.config.tex}{\lillyPathData}{\LILLYxPATHxPRESENTER/Showcase/Modules/ApplicationDesigns}
     \applicationset{#1}%
     \let\setname\@applications@SetName{#1}%
-    \let\colorprofile\@applications@ColorProfile%
+    \let\colorprofile\@applications@ColorProfile
     \def\StartApplication{\@applications@StartApplication{#2}}%
-    \let\setbrief\@applications@SetBrief%
-    \let\setemail\@applications@SetEmail%
-    \let\setphone\@applications@SetPhone%
-    \let\setmphone\@applications@SetMphone%
-    \let\setwebsite\@applications@SetWebsite%
-    \let\setlocation\@applications@SetLocation%
-    \let\setimage\@applications@SetImage%
+    \let\setbrief\@applications@SetBrief
+    \let\setemail\@applications@SetEmail
+    \let\setphone\@applications@SetPhone
+    \let\setmphone\@applications@SetMphone
+    \let\setwebsite\@applications@SetWebsite
+    \let\setlocation\@applications@SetLocation
+    \let\setimage\@applications@SetImage
     \let\addskill\@applications@addskill% with progress
     \def\addskilltext##1{\@applications@addskill{##1}{}}% text only skill
 }{%
-    \restoregeometry\egroup%
+    \restoregeometry\endgroup
 }
-
-% \userput{_LILLY_BOXES_#1}{\lillyPathData}{\LILLYxPATHxDATA/POIs}
-
 \endinput

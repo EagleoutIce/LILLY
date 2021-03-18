@@ -1,24 +1,19 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxORNAMENTS}[2019/09/09 Stellt Ornamente fuer LILLY zur Verfuegung]
-
-\RequirePackage{LILLYxCORE}
-% \RequirePackage{LILLYxCORE}
-
-\RequirePackage{LILLYxLIST}
+\RequirePackage{LILLYxCORE,LILLYxLIST}
 
 %% https://www.ctan.org/pkg/pgfornaments
 \LILLYxDemandPackage{pgfornament}{Fuer tolle Ornamente}
-                    {Dieses Paket kann nicht ohne pgfornaments verwendet werden ;D}
-                    {}{}
+    {Dieses Paket kann nicht ohne pgfornaments verwendet werden ;D}
+    {}{}
 
 %% https://ctan.org/pkg/calc
 \LILLYxDemandPackage{calc}{Zur Berechnung der richtigen Masse} %% Package, Info
-                    {Es ist wichtig, dass die dimensionen übereinstimmen}%% Error-Text
-                    {}%%Params
-                    {}
+    {Es ist wichtig, dass die dimensionen übereinstimmen}%% Error-Text
+    {}{}
 
-\tikzset{pgfornamentstyle/.style={line width=0.075pt}}%
-\def\ornathin{\tikzset{pgfornamentstyle/.style={line width=0.075pt}}}
+\tikzset{pgfornamentstyle/.style={line width=.075pt}}%
+\def\ornathin{\tikzset{pgfornamentstyle/.style={line width=.075pt}}}
 % An sich ist dieses Paket erstmal nichts anderes als ein Wrapper für das pgfornaments-Paket, welches mit TeX ausgeliefert wird
 % Es werden für die sonst ünber Zahlen zu verfügung stehenden Ornamente wrapper erstellt, sowie einige nützliche Hilfsfunktionen und Ornament konstalltionen bereitgestellt die dann im Dokument verwendet werden können.
 % Für direkte Informationen, wie dieses Dokument nun die einzelnen Ornamente zuweist, ist es wohl am besten die Dokumentation von Lilly oder von pgfornamnets zurate zu ziehen.
@@ -27,7 +22,6 @@
 % weiter ist eine Bibliothek wie ORNAMENTSxTHEMES geplahnt, die es erlaubt, einfache Befehle wie \ornabreak zu verwenden, deren Stil dann über pgfkeys gesteuert werden kann
 
 \constructList[,]{RegisteredOrnaments}
-
 
 %% Creates the \orna<name> commands, which pass through the optional argument :D
 % #1 The Number to map
@@ -49,7 +43,6 @@
     }
 }
 
-
 % Let's define the Animals, as \@@CreateOrnamentCommand does construct global, we don't have to bother about that :D
 \foreach \nr/\animal in {%
      90/rooster,    91/cow,     100/eagle,%
@@ -69,7 +62,7 @@
      88/simplebreak,  87/leafbreak,      84/spearbreak,%
      85/wigglebreak%
 }{%
-    \@@CreateOrnamentCommand{\nr}{\lorna}{scale=0.25}%
+    \@@CreateOrnamentCommand{\nr}{\lorna}{scale=.25}%
 }
 
 
@@ -77,10 +70,8 @@
 \foreach \nr/\lorna in {%
       6/knight,        8/rose,            4/steeringwheel%
 }{%
-    \@@CreateOrnamentCommand{\nr}{\lorna}{scale=0.35}%
+    \@@CreateOrnamentCommand{\nr}{\lorna}{scale=.35}%
 }
-
-
 
 % Let's define the others
 \foreach \nr/\lorna in {%
@@ -100,11 +91,9 @@
     \@@CreateOrnamentCommand{\nr}{\lorna}{}%
 }
 
-
-
 %% Here we define a simple Frame command, inspired by the simple Frame example from the ornaments documentation
 \newlength{\@@framesize}
-\DeclareDocumentCommand{\OrnamentsBoxTitle}{%
+\DeclareDocumentCommand\OrnamentsBoxTitle{%
     O{} % Optional tikz arguments
     m   % Title to be displayed
     o   % Optional width, if not given it will autoscale to the Title width
@@ -113,33 +102,31 @@
     \begin{tikzpicture}[transform shape, every node/.style={inner sep=0pt}, #1]
         \node[minimum size=\@@framesize](vecbox){};
         \node[anchor=north west] at (vecbox.north west){%
-        \pgfornament[width=0.2*\@@framesize]{63}};
+        \pgfornament[width=.2*\@@framesize]{63}};
         \node[anchor=north east] at (vecbox.north east){%
-        \pgfornament[width=0.2*\@@framesize,symmetry=v]{63}};
+        \pgfornament[width=.2*\@@framesize,symmetry=v]{63}};
         \node[anchor=south west] at (vecbox.south west){%
-        \pgfornament[width=0.2*\@@framesize,symmetry=h]{63}};
+        \pgfornament[width=.2*\@@framesize,symmetry=h]{63}};
         \node[anchor=south east] at (vecbox.south east){%
-        \pgfornament[width=0.2*\@@framesize,symmetry=c]{63}};
+        \pgfornament[width=.2*\@@framesize,symmetry=c]{63}};
         \node[anchor=north] at (vecbox.north){%
-        \pgfornament[width=0.6*\@@framesize,symmetry=h]{46}};
+        \pgfornament[width=.6*\@@framesize,symmetry=h]{46}};
         \node[anchor=south] at (vecbox.south){%
-        \pgfornament[width=0.6*\@@framesize]{46}};
+        \pgfornament[width=.6*\@@framesize]{46}};
         \node[anchor=north,rotate=90] at (vecbox.west){%
-        \pgfornament[width=0.6*\@@framesize,symmetry=h]{46}};
+        \pgfornament[width=.6*\@@framesize,symmetry=h]{46}};
         \node[anchor=north,rotate=-90] at (vecbox.east){%
-        \pgfornament[width=0.6*\@@framesize,symmetry=h]{46}};
+        \pgfornament[width=.6*\@@framesize,symmetry=h]{46}};
         \node[inner sep=6pt] (text) at (vecbox.center){\Huge #2};
         \node[anchor=north] at (text.south){%
-        \pgfornament[width=0.5*\@@framesize]{75}};
+        \pgfornament[width=.5*\@@framesize]{75}};
         \node[anchor=south] at (text.north){%
-        \pgfornament[width=0.5*\@@framesize,symmetry=h]{75}};
+        \pgfornament[width=.5*\@@framesize,symmetry=h]{75}};
     \end{tikzpicture}
 }
 
-
 %% Some other Definitions :D
-
-\DeclareDocumentCommand{\OrnamentsUpper}{%
+\DeclareDocumentCommand\OrnamentsUpper{%
     O{} % Optional Emblem upper right
     O{ornafeather} % Optional Emblem upper left
     O{}            % Optional tikz arguments
@@ -149,21 +136,21 @@
     \begin{tikzpicture}[transform shape, every node/.style={inner sep=0pt}, #3]
         \node[minimum width=\@@framesize](ornabox){};
         \node[anchor=north west] at (ornabox.north west){%
-        \pgfornament[width=0.09*\@@framesize]{41}};
+        \pgfornament[width=.09*\@@framesize]{41}};
         \node[anchor=north east] at (ornabox.north east){%
-        \pgfornament[width=0.09*\@@framesize,symmetry=v]{41}};
-        \node[anchor=north] at ([yshift=0.2434cm]ornabox.north){%
-        \pgfornament[width=0.225*\@@framesize]{84}};
-        \tikzset{pgfornamentstyle/.style={line width=0.05pt}}%
+        \pgfornament[width=.09*\@@framesize,symmetry=v]{41}};
+        \node[anchor=north] at ([yshift=.2434cm]ornabox.north){%
+        \pgfornament[width=.225*\@@framesize]{84}};
+        \tikzset{pgfornamentstyle/.style={line width=.05pt}}%
         %Ornaments shouldn't breakt the spacing :D
-        \node[anchor=north east,overlay] at ([yshift=-0.75cm,xshift=-0.75cm]ornabox.north east){%
-            \ifcsname#1\endcsname\csname#1\endcsname[width=0.05*\@@framesize]\fi};
-        \node[anchor=north west,overlay] at ([yshift=-0.75cm,xshift=0.75cm]ornabox.north west){%
-            \ifcsname#2\endcsname\csname#2\endcsname[width=0.05*\@@framesize,symmetry=v]\fi};
+        \node[anchor=north east,overlay] at ([yshift=-.75cm,xshift=-.75cm]ornabox.north east){%
+            \ifcsname#1\endcsname\csname#1\endcsname[width=.05*\@@framesize]\fi};
+        \node[anchor=north west,overlay] at ([yshift=-.75cm,xshift=.75cm]ornabox.north west){%
+            \ifcsname#2\endcsname\csname#2\endcsname[width=.05*\@@framesize,symmetry=v]\fi};
         \node[anchor=north] at ([yshift=-1.15cm]ornabox.north){%
             \Large \efont{#4}%
         };
-    \end{tikzpicture}\unskip%
+    \end{tikzpicture}\unskip
 }
 
 \DeclareDocumentCommand{\OrnamentsLower}{%
@@ -174,19 +161,13 @@
     \begin{tikzpicture}[transform shape, every node/.style={inner sep=0pt}, #1]
         \node[minimum width=\@@framesize,minimum height=4em](ornabox){};
         \node[anchor=south west] at (ornabox.south west){%
-        \pgfornament[width=0.09*\@@framesize,symmetry=h]{41}};
+        \pgfornament[width=.09*\@@framesize,symmetry=h]{41}};
         \node[anchor=south east] at (ornabox.south east){%
-        \pgfornament[width=0.09*\@@framesize,symmetry=c]{41}};
-        \node[anchor=south] at ([yshift=-0.2434cm]ornabox.south){%
-        \pgfornament[width=0.225*\@@framesize]{84}};
-        \node[anchor=south east] at ([xshift=-0.65cm,yshift=0.225cm]ornabox.south east){\scriptsize%
+        \pgfornament[width=.09*\@@framesize,symmetry=c]{41}};
+        \node[anchor=south] at ([yshift=-.2434cm]ornabox.south){%
+        \pgfornament[width=.225*\@@framesize]{84}};
+        \node[anchor=south east] at ([xshift=-.65cm,yshift=.225cm]ornabox.south east){\scriptsize%
         \parbox{\linewidth-2.25cm}{\flushright#2\endflushright}};
-        %\tikzset{pgfornamentstyle/.style={line width=0.05pt}}%
-        % \node[anchor=north east] at ([yshift=-0.75cm,xshift=-0.75cm]ornabox.north east){%
-        % \csname#1\endcsname[width=0.15*\@@framesize]};
-        % \node[anchor=north] at ([yshift=-1.15cm]ornabox.north){%
-        %     \Large \efont{#3}%
-        % };
     \end{tikzpicture}
 }
 
@@ -209,6 +190,4 @@
     \end{mltable}
     \tabreset
 }
-
-
 \endinput

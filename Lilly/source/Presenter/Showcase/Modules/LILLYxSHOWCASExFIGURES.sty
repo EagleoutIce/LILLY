@@ -1,6 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxSHOWCASExFIGURES}[2019/09/29 Stellt die Grafikunterstuetzung fuer LILLYxSHOWCASE zur Verfuegung]
-
 %% https://ctan.org/pkg/caption
 \LILLYxDemandPackage{caption}{Zur Modifikation der Untertitel}%% Package, Info
     {Ohne gehts nedda :/}%% Error-Text
@@ -8,30 +7,23 @@
 
 \LILLYxLoadPackage{subcaption}{Fuer tolle Untertitel}
     {Dieses Paket ist oft nicht vorhanden, nicht schlimm, wird dann nicht benutzt!}
-    {}
-    {}{}
+    {}{}{}
 
 \LILLYxDemandPackage{wrapfig}{Falls wir es floating haben möchten :D}
     {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
     {}{}
-
 \captionsetup[figure]{name=\xtranslate{Abb.}}
 \captionsetup[table]{name=\xtranslate{Tbl.}}
-
-\setlength\intextsep{0.75\baselineskip}
-\setlength\floatsep{1.5\baselineskip}
+\intextsep=.75\baselineskip
+\floatsep=1.5\baselineskip
 %% Some utility environments based on wrapfig
 
-\newenvironment{lfig}[1][0pt]{\wrapfigure{L}{#1}\centering%
+\newenvironment{lfig}[1][\z@]{\wrapfigure{L}{#1}\centering
 }{\endwrapfigure}
-
-\newenvironment{lfig*}[1][0pt]{\par\wrapfigure{L}{#1}\centering%
+\newenvironment{lfig*}[1][\z@]{\par\wrapfigure{L}{#1}\centering
 }{\endwrapfigure}
-
-\newenvironment{rfig}[1][0pt]{\wrapfigure{R}{#1}\centering%
+\newenvironment{rfig}[1][\z@]{\wrapfigure{R}{#1}\centering
 }{\endwrapfigure}
-
-\newenvironment{rfig*}[1][0pt]{\par\wrapfigure{R}{#1}\centering%
+\newenvironment{rfig*}[1][\z@]{\par\wrapfigure{R}{#1}\centering
 }{\endwrapfigure}
-
 \endinput

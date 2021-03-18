@@ -1,37 +1,34 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxROTARYxENCODER}[2019/06/29 Stellt eine Codierscheibe fuer LILLY zur Verfuegung]
 
-\pgfmathsetmacro{\minimumRadius}{0.5}
-\pgfmathsetmacro{\radiusScaling}{0.5}
-\pgfmathsetmacro{\startAngle}{180}
+\def\minimumRadius{.5}
+\def\radiusScaling{.5}
+\def\startAngle{180}
 
 %%% {false-color}{true-color}{list}
 \def\codierscheibe#1#2#3{
-    \foreach \elementIndex [count=\counterIndex] in #3 {\xdef\totalElements{\counterIndex}} %GesamtzahlElemente
-
-    \foreach \element [count=\elementCounter]  in #3 {
-        \foreach \subElement [count=\subElementCounter] in \element {
-
-            \ifthenelse{\subElement>0} %ist 'true' - soll farbig sein
-            {\def\highlightColor{#2}} % true
-            {\def\highlightColor{#1}} % false
-
-            %line-calculation - von stackOverflow entnommen (https://tex.stackexchange.com/questions/448406/how-to-draw-a-gray-coded-disk#448411)
-            \draw[fill=\highlightColor] (\startAngle+\elementCounter*360/\totalElements:\minimumRadius+\subElementCounter*\radiusScaling)
-            arc(\startAngle+\elementCounter*360/\totalElements:{\startAngle+(\elementCounter+1)*360/\totalElements}:\minimumRadius+\subElementCounter*\radiusScaling)
-            -- ({\startAngle+(\elementCounter+1)*360/\totalElements}:{\minimumRadius+(\subElementCounter+1)*\radiusScaling})
-            arc({\startAngle+(\elementCounter+1)*360/\totalElements}:\startAngle+\elementCounter*360/\totalElements:{\minimumRadius+(\subElementCounter+1)*\radiusScaling}) -- cycle;
-            \ifnum \elementCounter=1 % Äußerer Ring
-            \pgfmathtruncatemacro{\ringNumber}{\subElementCounter-1}
-            \node at ({\startAngle+(\elementCounter+0.5)*360/\totalElements}:{\minimumRadius+(\subElementCounter+0.5)*\radiusScaling})
-            {\tiny{\(y_\ringNumber\)}};
-            \fi
-            \pgfmathsetmacro{\maximumRadius}{\minimumRadius+\subElementCounter*\radiusScaling+\radiusScaling} %Setze (neuen) Radius
-            \xdef\maximumRadius{\maximumRadius}
-        }
-        \pgfmathsetmacro{\elementLabel}{int(\elementCounter-1)}
-        \node[anchor={\startAngle+180+(\elementCounter+0.5)*360/\totalElements}] at ({\startAngle+(\elementCounter+0.5)*360/\totalElements}:\maximumRadius){\footnotesize\textbf \elementLabel};
-    }
+\foreach \elementIndex [count=\counterIndex] in #3 {\xdef\totalElements{\counterIndex}} %GesamtzahlElemente
+\foreach \element [count=\elementCounter]  in #3 {
+\foreach \subElement [count=\subElementCounter] in \element {
+    \ifthenelse{\subElement>0} %ist 'true' - soll farbig sein
+    {\def\highlightColor{#2}} % true
+    {\def\highlightColor{#1}} % false
+    %line-calculation - von stackOverflow entnommen (https://tex.stackexchange.com/questions/448406/how-to-draw-a-gray-coded-disk#448411)
+    \draw[fill=\highlightColor] (\startAngle+\elementCounter*360/\totalElements:\minimumRadius+\subElementCounter*\radiusScaling)
+    arc(\startAngle+\elementCounter*360/\totalElements:{\startAngle+(\elementCounter+1)*360/\totalElements}:\minimumRadius+\subElementCounter*\radiusScaling)
+    -- ({\startAngle+(\elementCounter+1)*360/\totalElements}:{\minimumRadius+(\subElementCounter+1)*\radiusScaling})
+    arc({\startAngle+(\elementCounter+1)*360/\totalElements}:\startAngle+\elementCounter*360/\totalElements:{\minimumRadius+(\subElementCounter+1)*\radiusScaling}) -- cycle;
+    \ifnum \elementCounter=1 % Äußerer Ring
+    \pgfmathtruncatemacro{\ringNumber}{\subElementCounter-1}
+    \node at ({\startAngle+(\elementCounter+.5)*360/\totalElements}:{\minimumRadius+(\subElementCounter+.5)*\radiusScaling})
+    {\tiny{\(y_\ringNumber\)}};
+    \fi
+    \pgfmathsetmacro{\maximumRadius}{\minimumRadius+\subElementCounter*\radiusScaling+\radiusScaling} %Setze (neuen) Radius
+    \xdef\maximumRadius{\maximumRadius}
+}
+\pgfmathsetmacro{\elementLabel}{int(\elementCounter-1)}
+\node[anchor={\startAngle+180+(\elementCounter+.5)*360/\totalElements}] at ({\startAngle+(\elementCounter+.5)*360/\totalElements}:\maximumRadius){\footnotesize\textbf \elementLabel};
+}
 }
 
 \endinput

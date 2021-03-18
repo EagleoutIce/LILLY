@@ -1,16 +1,11 @@
-
 %% Diese Datei liefert einen Befehl mit folgenden Eigenschaften:
 % Laden einer Shell-Datei
 % Ausführen dieser Shell-Datei mit einem angebenen Interpreter
 % Evaluation zu Ergebnis der Ausführung
-
 \lstdefinestyle{BashOutput}{
   basicstyle=\LILLYxLISTINGSxFONTSIZE\LILLYxlstTypeWriter,
-  frame=tblr,
-  numbers=none,
-  frame=single,
-  xleftmargin=3pt,
-  xrightmargin=3pt,
+  frame=tblr,numbers=none,frame=single,
+  xleftmargin=3pt,xrightmargin=3pt,
   backgroundcolor=\color{black!0},
   rulecolor=\color{lstmainbordercol}
 }
@@ -21,7 +16,6 @@
   \getBashFileExecutionOutput{#2}
 }
 \gdef\rbash@noopt#1{\cbash{#1}\,:\getBashFileExecutionOutput{#1}}
-
 % will execute #3 but display #2
 \gdef\Rbash{\@ifnextchar[{\Rbash@opt}{\Rbash@noopt}}
 \gdef\Rbash@opt[#1]#2#3{
@@ -29,12 +23,8 @@
   \getBashFileExecutionOutput{#3}%
 }
 \gdef\Rbash@noopt#1#2{\cbash{#1}\,:\getBashFileExecutionOutput{#2}}
-
-
 \def\lstrbashlistopts{}
-
-% #1 file
-% #2 cmd
+% #1 file #2 cmd
 \gdef\ExecuteBash#1#2{%
   \immediate\write18{ #2 > #1 2> #1}%
 }
@@ -56,14 +46,10 @@
 \begingroup
 \colorbox{MudWhite!93!black}{\lstinline[language=lBash]{$ #1}}
 \getBashFileExecutionOutput{#1}
-\endgroup
-}
-
-
+\endgroup}
 
 \NewDocumentCommand{\previewBashFile}{ m } {
 \begingroup
 \lstinputlisting[language=lBash, caption={Inhalt der Datei #1}]{#1}
 \endgroup
-\previewBash{bash #1}
-}
+\previewBash{bash #1}}

@@ -3,18 +3,13 @@
 % Laden einer Shell-Datei
 % Ausführen dieser Shell-Datei mit einem angebenen Interpreter
 % Evaluation zu Ergebnis der Ausführung
-
 \lstdefinestyle{DockerOutput}{
   basicstyle=\LILLYxLISTINGSxFONTSIZE\LILLYxlstTypeWriter,
-  frame=tblr,
-  numbers=none,
-  frame=single,
-  xleftmargin=3pt,
-  xrightmargin=3pt,
+  frame=tblr,numbers=none,frame=single,
+  xleftmargin=3pt,xrightmargin=3pt,
   backgroundcolor=\color{black!0},
   rulecolor=\color{lstmainbordercol}
 }
-
 \gdef\rdocker{\@ifnextchar[{\rdocker@opt}{\rdocker@noopt}}
 \gdef\rdocker@opt[#1]#2{
   \cdocker{#2}~#1%% TODO: configure layout with #1
@@ -39,14 +34,9 @@
 \begingroup
 \colorbox{MudWhite!93!black}{\lstinline[language=lDocker]{docker #1}}
 \getDockerFileExecutionOutput{docker #1}
-\endgroup
-}
-
-
-
+\endgroup}
 \NewDocumentCommand{\previewDockerFile}{ m } {
 \begingroup
 \lstinputlisting[language=lDocker, caption={Inhalt der Datei #1}]{#1}
 \endgroup
-\previewBash{docker #1}
-}
+\previewBash{docker #1}}

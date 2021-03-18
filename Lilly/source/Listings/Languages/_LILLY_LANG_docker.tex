@@ -1,5 +1,3 @@
-%% Wird für die Dokumentation entsprechend erweitert
-
 \lstdefinelanguage{lDocker}{
     alsoletter={|~_.><-},
     moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
@@ -12,20 +10,9 @@
     morestring=[s]"",
     escapeinside={!*}{*!},
     morekeywords = {FROM,RUN,LABEL,VOLUME,ENTRYPOINT,EXPOSE,ADD},
-    %morekeywords = [2]{mkdir,texhash,make,apt,>,<,cd,git,pdflatex,mvn},
     morekeywords = [3]{pull,run,build,image,inspect,rmi},
-    %morekeywords = [4]{lilly_compile.sh,sudo,lilly_jake,jake,java,javac,ghci,ghc,grep,ls,cp,sort,find,man,tail,head,setfacl,getfacl,groups,ls,pdflatex,apt-get,texdoc,traceroute,docker},
     morekeywords = [5]{docker},
     morekeywords = [6]{ls},
     morestring=[b]'
 }
-
 \RegisterLanguage{docker}{lDocker}
-
-
-% \lstnewenvironment{bash}[1][]
-%   {\lstset{language=lBash,#1}}
-% {}
-
-
-% \pushList{RegisteredLanguages}{bash/lBash}

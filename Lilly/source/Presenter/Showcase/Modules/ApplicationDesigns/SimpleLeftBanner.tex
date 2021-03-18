@@ -10,47 +10,32 @@
 % Set the Banner:
 \newdimen\hexrad \hexrad=2.5cm
 \def\b@width{2\hexrad}
-%
-%
 % [#1] raise
 %  #2  thickness
 \newcommand{\@applications@raisedrule}[2][0em]{\leaders\hbox{\rule[#1]{0.01pt}{#2}}\hfill}
-%
-%
 % #1 Symbol
 % #2 Text
-\def\@applications@StartBannerBlock#1#2{\bgroup\color{\lilly@applications@contrast@color}\Large%
-    \leavevmode\vskip1.5em\hbox{}\hskip1em\relax\parbox{1.5em}{\huge#1\strut}~\MakeUppercase{#2}\(\;\)\@applications@raisedrule[0.25\baselineskip]{1pt}\hskip3.55pt\smallskip\egroup{}
-
-    %
+\def\@applications@StartBannerBlock#1#2{\begingroup\color{\lilly@applications@contrast@color}\Large%
+    \leavevmode\vskip1.5em\hbox{}\hskip1em\relax\parbox{1.5em}{\huge#1\strut}~\MakeUppercase{#2}\(\;\)\@applications@raisedrule[0.25\baselineskip]{1pt}\hskip3.55pt\smallskip\endgroup
 }
-
-
 % #1 Symbol
 % #2 Text
-\def\@applications@StartBlock#1#2{\bgroup\color{\lilly@applications@primary@color!75!black}\Large%
-    \leavevmode\newline\hbox{}\hskip1em\relax\parbox{1.5em}{#1\strut}~\MakeUppercase{#2}\(\;\)\@applications@raisedrule[0.25\baselineskip]{1.25pt}\smallskip\egroup{}
-
+\def\@applications@StartBlock#1#2{\begingroup\color{\lilly@applications@primary@color!75!black}\Large%
+    \leavevmode\newline\hbox{}\hskip1em\relax\parbox{1.5em}{#1\strut}~\MakeUppercase{#2}\(\;\)\@applications@raisedrule[0.25\baselineskip]{1.25pt}\smallskip\endgroup
     %
 }
-%
 % #1 progress
 \def\@application@lProgressBar#1{%
     \@@ProgressBar{6.5em}{0.65em}{rounded corners=0.25em/2}{\ifdim#1pt>1pt #1/100.0\else#1\fi}{MudWhite}{MudWhite}{}%
 }
-%
 % #1 progress
 \def\@applications@sProgressBar#1{%
     \hfill\@@ProgressBar{6.5em}{0.65em}{rounded corners=0.25em/2}{\ifdim#1pt>1pt #1/100.0\else#1\fi}{\lilly@applications@primary@color!35!black}{\lilly@applications@primary@color!35!black}{}%
 }
 %
-%
-%
-\NewEnviron{@applications@litemize}[1][]{\bgroup\hypersetup{urlcolor={\lilly@applications@contrast@color}}%
+\NewEnviron{@applications@litemize}[1][]{\begingroup\hypersetup{urlcolor={\lilly@applications@contrast@color}}%
 \hskip1.75em\relax\parbox{\linewidth-3.25em}{\begin{itemize}[label={\makebox[1em][c]{\Large$\bullet$}},#1]\leftmargin=0pt\labelsep=0.75em%
-    \BODY\end{itemize}}\egroup}
-
-
+    \BODY\end{itemize}}\endgroup}
 \def\@applications@lphone#1{\item[{\makebox[1em][c]{\faPhone}}] #1}
 \def\@applications@lmail#1{\item[{\makebox[1em][c]{\faEnvelope}}] \href{mailto:#1}{#1}}
 \def\@applications@lurl#1{\item[{\makebox[1em][c]{\faGlobe}}] \url{#1}}
@@ -90,21 +75,10 @@
     \let\c@@applications@bannermax\relax
     \newcounter{@applications@bannermax}%
     \setcounter{@applications@bannermax}{4}%
-    %
-    %
     % Erster Block: Kurzbeschreibung
-    %
-    %
-    %
     \@applications@StartBannerBlock{\faUser}{\xtranslate{Kurzbeschreibung}}%
     \hskip2em\parbox{\linewidth-3.35em}{\textbf{\lilly@applications@brief@init:} \lilly@applications@brief}
-    %
-    %
-    %
     % Zweiter Block: Kontakt
-    %
-    %
-    %
     \smallskip\@applications@StartBannerBlock{\LARGE\faComments}{\xtranslate{Kontakt}}%
     \begin{@applications@litemize}
         \def\@applications@setcontacts#1#2#3#4{\addtocounter{@applications@bannermax}{-1}\@nameuse{@applications@l#4}{\@nameuse{#3}}}
@@ -116,13 +90,7 @@
             lilly@applications@person@location/location%
         }
     \end{@applications@litemize}
-    %
-    %
-    %
-    % Dritter Block: Persönliche Fertigkeiten 
-    %
-    %
-    %
+    % Dritter Block: Persönliche Fertigkeiten
     \addtocounter{@applications@bannermax}{4}%
     \smallskip\@applications@StartBannerBlock{\LARGE\faPieChart}{\xtranslate[Pers\"{o}nliche Fertigkeiten]{PersoenlicheFertigkeiten}}
     \def\@applications@example#1#2#3#4{\addtocounter{@applications@bannermax}{-1} \item \ifthenelse{\equal{#4}{}}{#3}{\parbox[t]{\linewidth-7.25em}{#3}\hfill\@application@lProgressBar{#4}}}
@@ -130,13 +98,7 @@
     \begin{@applications@litemize}
         \@tmp
     \end{@applications@litemize}
-    %
-    %
-    %
     % Vierter Block: Soziale Netzwerke
-    %
-    %
-    %
     \addtocounter{@applications@bannermax}{4}%
     %% TODO: make for all social possibilities, and writer their \l.... commands
     % Further make this template more customizeable by selecting the names of the kategories etc.
@@ -164,7 +126,7 @@
     \end{@applications@litemize}
 \end{Banner}%
 \medskip\ignorespaces%
-% Here we will set the necessary blocks for the user to create the main-side. 
+% Here we will set the necessary blocks for the user to create the main-side.
 %
 % #1 Name
 % #2 When
@@ -178,11 +140,11 @@
 \NewEnviron{@application@bulletpoints}[1][]{\leavevmode\newline\indent%
     \ifnum\@listdepth=\@ne \@application@bpskip=0.075cm\else \@application@bpskip=0.25cm\fi%
     \hskip-\@application@bpskip\parbox{\linewidth-1cm+\@application@bpskip}{%
-    \ifx\\#1\\\else\begin{multicols}{#1}\vspace*{-\baselineskip}\fi%
+    \ifx!#1!\else\begin{multicols}{#1}\vspace*{-\baselineskip}\fi%
     \begin{itemize}[topsep=4pt, label={\color{\lilly@applications@primary@color!75!black}\ifnum\@listdepth=\@ne \raisebox{0.5pt}{$\bullet$}\else\raisebox{1.25pt}{\scriptsize$\bullet$}\fi},itemsep=2pt]%
         \BODY%
     \end{itemize}%
-    \ifx\\#1\\\else\end{multicols}\fi%
+    \ifx!#1!\else\end{multicols}\fi%
     }%
 }%
 \NewEnviron{@application@text}{%
@@ -200,12 +162,9 @@
         }\hspace*{0.5cm}
     \end{flushright}\vskip0.75cm%
 }%
-%
-%
-%
 % [#1] Symbol
 %  #2  Title
-\renewenvironment{block}[2][]{\bgroup%
+\renewenvironment{block}[2][]{\begingroup%
     \let\progressbar\@applications@sProgressBar%
     \@applications@StartBlock{#1}{#2}%
     \begin{minipage}{\linewidth}\ignorespaces%
@@ -214,9 +173,7 @@
     \NewEnviron{timeline}{%
         \let\event\@application@event \let\endevent\end@application@event%
         \hskip-0.25cm\parbox{\linewidth+0.25cm}{\begin{itemize}%
-            \BODY%
+            \BODY
         \end{itemize}}%
     }%
-    
-
-}{\end{minipage}\egroup\medskip}
+}{\end{minipage}\endgroup\medskip}

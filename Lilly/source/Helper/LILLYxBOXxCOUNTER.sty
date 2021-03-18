@@ -1,23 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxBOXxCOUNTER}[2019/07/13 Stellt die Counter-Erweiterung fuer Boxen fuer LILLY zur Verfuegung]
 
-%% Fordere, dass Boxen geladen:
-\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
-\RequirePackage{LILLYxCONTROLLERxCONTENT}
-
-\RequirePackage{LILLYxCONTROLLERxBOX}
-% \RequirePackage{LILLYxCONTROLLERxBOX}
-
-%\ClassError{Lilly}{Das Paket: LILLYxBOXxCOUNTER kann nur als Erweiterung von LILLYxCONTROLLERxBOX verwendet werden}{This cannot be recovered}
+\RequirePackage{LILLYxPACKAGExCTRL,LILLYxCONTROLLERxCONTENT,LILLYxCONTROLLERxBOX}
 
 %% Diese Datei macht nur Sinn in Verbindung mit dem Box-Controller
 %% Sie übernimmt die alten mappings und löst somit die Sperrigen Zählerdefinitionen auf!
-\providecommand{\CTRxDEF}{tcb@cnt@LILLYxBOXxDefinition}
-\providecommand{\CTRxBEI}{tcb@cnt@LILLYxBOXxBeispiel}
-\providecommand{\CTRxBEM}{tcb@cnt@LILLYxBOXxBemerkung}
-\providecommand{\CTRxSAT}{tcb@cnt@LILLYxBOXxSatz}
-\providecommand{\CTRxBEW}{tcb@cnt@LILLYxBOXxBeweis}
-\providecommand{\CTRxLEM}{tcb@cnt@LILLYxBOXxLemma}
-\providecommand{\CTRxZSM}{tcb@cnt@LILLYxBOXxZusammenfassung}
-
+\providecommand\CTRxDEF{tcb@cnt@LILLYxBOXxDefinition}
+\providecommand\CTRxBEI{tcb@cnt@LILLYxBOXxBeispiel}
+\providecommand\CTRxBEM{tcb@cnt@LILLYxBOXxBemerkung}
+\providecommand\CTRxSAT{tcb@cnt@LILLYxBOXxSatz}
+\providecommand\CTRxBEW{tcb@cnt@LILLYxBOXxBeweis}
+\providecommand\CTRxLEM{tcb@cnt@LILLYxBOXxLemma}
+\providecommand\CTRxZSM{tcb@cnt@LILLYxBOXxZusammenfassung}
 \endinput

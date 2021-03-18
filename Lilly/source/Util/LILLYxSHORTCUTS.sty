@@ -1,19 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxSHORTCUTS}[2019/08/03 Stellt einige Shortcuts fuer LILLY zur Verfuegung]
-
-
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
 \providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
-
 %% Dieses Paket fordert kein anderes, es wird davon ausgegangen, dass zu den Shortcuts die benötigten Pakete
 %% geladen werden/sind
-
-\newcommand{\lstfs}[2][1]{\def\LILLYxLISTINGSxFONTSIZE{\fontsize{#2}{#2}\selectfont\linespread{#1}}%
+\newcommand*\lstfs[2][1]{\def\LILLYxLISTINGSxFONTSIZE{\fontsize{#2}{#2}\selectfont\linespread{#1}}%
 \ifnum#2>4\def\LILLYxLISTINGSxNUMxFONTSIZE{\edef\@@subfs{\the\numexpr #2-4\relax}\fontsize{\@@subfs}{\@@subfs}\selectfont\linespread{#1}}%
 \else\def\LILLYxLISTINGSxNUMxFONTSIZE{\tiny\linespread{#1}}\fi%
 }
 
-\providecommand{\T}[1]{{\text{\LILLYxlstTypeWriter #1}}}%Shortcut Schreibmaschine
+\providecommand\T[1]{{\text{\LILLYxlstTypeWriter #1}}}%Shortcut Schreibmaschine
 \gdef\ltt{\LILLYxlstTypeWriter}
 
 \providecommand\narrowitems{\setlength{\itemsep}{0pt}}
@@ -25,32 +21,26 @@
 \providecommand\qq[1][0]{\glqq#1\grqq{}} %""
 \providecommand\colvec[1]{\begin{pmatrix}#1\end{pmatrix}} %Vektoren für Mathe
 \providecommand\minicolvec[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)} %Vektoren für Mathe
-
-\providecommand{\qedsymbol}{\hbox{}\hfill{}\textcolor{Charcoal}{$\blacksquare$}}  %Beweisbox
-\providecommand{\say}[1]{\glqq{#1}\grqq}
-
-\providecommand{\engl}[2][]{#1(engl. \textit{#2})#1}
-
+\providecommand\qedsymbol{\hbox{}\hfill{}\textcolor{Charcoal}{$\blacksquare$}}  %Beweisbox
+\providecommand\say[1]{\glqq{#1}\grqq}
+\providecommand\engl[2][]{#1(engl. \textit{#2})#1}
 \providecommand\cd{\ensuremath{\cdot}}
 
-\providecommand{\rom}[1]{\text{\MakeUppercase{\romannumeral #1}}} %Zahlen Römisch (GDRA)
+\providecommand\rom[1]{\text{\MakeUppercase{\romannumeral #1}}} %Zahlen Römisch (GDRA)
 
-\def\fquad{\hskip1em plus 0.25em minus 0.25em\relax}
-\def\fqquad{\hskip2em plus 0.35em minus 0.35em\relax}
+\def\fquad{\hskip1em plus .25em minus .25em\relax}
+\def\fqquad{\hskip2em plus .35em minus .35em\relax}
 
 %TIKZSYMBOLS
-\providecommand\ring[1]{\fill #1 circle [radius=0.7pt];} %%Schortcuts für Schaltkreise, weil es mir so besser gefällt ^^ und ich das Scaling erst nachher angepasst habe ^^
+\providecommand\ring[1]{\fill #1 circle [radius=.7pt];} %%Schortcuts für Schaltkreise, weil es mir so besser gefällt ^^ und ich das Scaling erst nachher angepasst habe ^^
 \providecommand\bigRing[1]{\fill #1 circle [radius=1.4pt];}
 \providecommand\bigCRing[2][limegreen]{\fill[fill=#1] #2 circle [radius=1.4pt];}
 
-\providecommand\ringC[2][limegreen]{\fill[fill=#1] #2 circle [radius=0.7pt];}
+\providecommand\ringC[2][limegreen]{\fill[fill=#1] #2 circle [radius=.7pt];}
 
-
-
-
-\def\firstcircle{(90:0.5cm) circle (0.75cm)} %%Shortcuts für FG, auch danach gerne genutzt
-\def\secondcircle{(330:0.5cm) circle (0.75cm)}
-\def\thirdcircle{(210:0.5cm) circle (0.75cm)}
+\def\firstcircle{(90:.5cm) circle (.75cm)} %%Shortcuts für FG, auch danach gerne genutzt
+\def\secondcircle{(330:.5cm) circle (.75cm)}
+\def\thirdcircle{(210:.5cm) circle (.75cm)}
 \def\bigcircle{(0:0cm) circle (1.5cm)}
 
 \newcommand{\dispnote}[2][]{\parbox[t]{5em}{#1{\small#2}}}
@@ -58,15 +48,14 @@
 \providecommand{\note}[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
 
 %%Smallnote
-\newcommand{\snote}[2][1]{\note[\scriptsize #1]{#2}}
+\newcommand\snote[2][1]{\note[\scriptsize #1]{#2}}
 
-
-
-\newlength{\LILLYxNegativeSkip}\setlength{\LILLYxNegativeSkip}{-1.5\baselineskip}
+\newlength\LILLYxNegativeSkip
+\LILLYxNegativeSkip=-1.5\baselineskip
 \providecommand{\nskip}{\vspace{\LILLYxNegativeSkip}}
 
 
-\LILLYcommand{\LILLYcoloredSQ}[2][]{\tikz{\draw[fill=#2!75!white,#2!75!white] (-0.05,-0.05) rectangle ++ (0.4,0.4);\draw[fill=#2!50!white,#2!50!white] (0,0) rectangle ++ (0.35,0.35);\draw[fill=#2,#2] (0,0) rectangle ++ (0.3,0.3) node[midway,centered,MudWhite,scale=0.75,inner sep=0pt] {#1};}}
+\LILLYcommand{\LILLYcoloredSQ}[2][]{\tikz{\draw[fill=#2!75!white,#2!75!white] (-.05,-.05) rectangle ++ (.4,.4);\draw[fill=#2!50!white,#2!50!white] (0,0) rectangle ++ (.35,.35);\draw[fill=#2,#2] (0,0) rectangle ++ (.3,.3) node[midway,centered,MudWhite,scale=.75,inner sep=0pt] {#1};}}
 
 \LILLYcommand{\LILLYxCOLORxRainbow}{% who needs foreach
     \LILLYcoloredSQ[\tiny Def]{\LILLYxColorxDefinition} %
@@ -119,10 +108,9 @@
 \def\setLillyAuthor#1{\gdef\AUTHOR{#1}}
 \def\setLillyAuthormail#1{\gdef\AUTHORMAIL{#1}}
 
-
 \def\LillyLogo{\bgroup%
     {\fontsize{68}{68}\selectfont\centering\Lilly\par}
-{\centering{\sffamily \textbf{L}illy \textbf{i}s a \textbf{L}atex \textbf{L}ovable \textbf{Y}ogurt} \par}\vspace*{0.2\baselineskip}\egroup
+{\centering{\sffamily \textbf{L}illy \textbf{i}s a \textbf{L}atex \textbf{L}ovable \textbf{Y}ogurt} \par}\vspace*{.2\baselineskip}\egroup
 }
 
 \endinput

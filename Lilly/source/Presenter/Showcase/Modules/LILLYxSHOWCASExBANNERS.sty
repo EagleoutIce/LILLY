@@ -1,33 +1,23 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxSHOWCASExBANNERS}[2019/10/01 Stellt Banner fuer LILLYxSHOWCASE zur Verfuegung]
-
 \RequirePackage{LILLYxSWITCHxCASE}%
 
 \LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}%% Package, Info
                     {Dieses Paket ist für LILLY überlebenswichtig}%% Error-Text
                     {\LILLYxGeneralxPaperformat,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering,\LILLYxGeometryxExtras}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D - wenn er das dann mal kann
+                    {}
 
 %% https://www.ctan.org/pkg/tikz
 \LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
                     {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
-                    {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+                    {}{}
 
 %% https://ctan.org/pkg/environ
 \LILLYxDemandPackage{environ}{Uebernimmt das leere environment ohne grosse Probleme} %% Package, Info
-                    {Leider ist auch dieses Paket verpflichtend :/}%% Error-Text
-                    {}%%Params
-                    {}
+    {Leider ist auch dieses Paket verpflichtend :/}%% Error-Text
+    {}{}
 
 \usetikzlibrary{shadings}
-
-%% Needs the Geometry package. Require?
-
-% % start a new bannerpage
-% \newenvironment{bannerpage}{\bgroup\newgeometry{margin=0pt}\unskip%
-% }{\restoregeometry\egroup}
-
 
 % #1 color
 % #2 start point rectangle
@@ -75,7 +65,7 @@
     pre code/.store in=\@@lilly@banner@precode,
     post code/.store in=\@@lilly@banner@postcode,
     defaults/.style={%
-        orientation/left, width=6cm, color={yellow!15}, banner style/plain,length=0.5\paperwidth,%
+        orientation/left, width=6cm, color={yellow!15}, banner style/plain,length=.5\paperwidth,%
         pre code={}, post code={}%
     }
 }
@@ -110,7 +100,6 @@
     \end{switch}
 }
 
-
 % #1 color
 % #2 start point
 % #3 length
@@ -124,15 +113,9 @@
     \end{tikzpicture}%
 }
 
-
-\newdimen\bannerheight
-\bannerheight=0.35\paperheight
-
+\newdimen\bannerheight \bannerheight=.35\paperheight
 % #1 width
 % #2 Color
-\newcommand{\DefaultLeftBookmarkBanner}[2][3cm]{\@@bookmark@banner{#2}{([xshift=2.5cm]current page.north west)}{\bannerheight}{1.5cm}{#1}{}}
-\newcommand{\DefaultRightBookmarkBanner}[2][3cm]{\@@bookmark@banner{#2}{([xshift=-2.5cm]current page.north east)}{\bannerheight}{1.5cm}{-#1}{}}
-
-
-
+\newcommand\DefaultLeftBookmarkBanner[2][3cm]{\@@bookmark@banner{#2}{([xshift=2.5cm]current page.north west)}{\bannerheight}{1.5cm}{#1}{}}
+\newcommand\DefaultRightBookmarkBanner[2][3cm]{\@@bookmark@banner{#2}{([xshift=-2.5cm]current page.north east)}{\bannerheight}{1.5cm}{-#1}{}}
 \endinput

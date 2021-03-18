@@ -1,33 +1,20 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCARDS}[2019/10/04 Stellt eine (Spiel-)Karten-Erweiterung fuer LILLY zur Verfuegung]
+\RequirePackage{LILLYxCORE,LILLYxCOLOR,tikzrput}
 
-\RequirePackage{LILLYxCORE}
-% \RequirePackage{LILLYxCORE}
-\RequirePackage{LILLYxCOLOR}
-% \RequirePackage{LILLYxCOLOR}
-
-\usepackage{tikzrput}% fans
-
-%% \RequirePackage{pgfkeys}
 \LILLYxDemandPackage{pgfkeys}{Damit wir angenehme kv-pairs haben}
                     {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
                     {}{}
-
 %% https://www.ctan.org/pkg/tikz
 \LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
-                    {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
-                    {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliotheken weitaus einfacher finden kann :D
-
+    {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
+    {}{}
 \usetikzlibrary{patterns,shadows}
-
 % hier wird die Grundlegende Schnittstelle für Spielkarten erzeugt, die es ermöglicht
 % ein eigenes Kartendesign anzulegen, für das dann wieder unterschiedliche Kartenklassen/Kategorien
 % erzeugt werden können. Abgesehen von einer Blank-Card erzeugt dieses Paket keine einzige Karte.
 % Allerdings können Erweiterungen existieren (vielleicht über kvoptions ladbar?) die es ermöglichen
 % Pokerkarten vorzuladen.
-
-
 \pgfkeys{%
     /lillyxCARDS/.is family, /lillyxCARDS,
     draw/.store in=\lilly@cards@draw, % this command should perform the drawing-operation for the card, based on persisted data
@@ -116,63 +103,56 @@
         m   % ID/Name of the CardClass
         m   % Full title of the CardClass
     }{%
-        \expandafter\gdef\csname @lilly@cards@class@##2@cardlist\endcsname{} % No cards Registered
-        \expandafter\xdef\csname @lilly@cards@class@##2@title\endcsname{##3} % No classes Registered
-        \expandafter\xdef\csname @lilly@cards@class@##2@args\endcsname{##1} % Args Registered just for debugging
-        %Lets add to the list:
-        \xdef\@tlist{\csname @lilly@cards@game@#2@classlist\endcsname}
-        \expandafter\xdef\csname @lilly@cards@game@#2@classlist\endcsname{\expandafter\ifx\expandafter\\\@tlist\\ ##2\else\@tlist,##2\fi}
-        % Lets create the Card-Command
-        \expandafter\DeclareDocumentCommand\csname #2x##2xNewCard\endcsname{%
-            O{} % Card specific arguments
-            m   % Id of the Card
-            m   % Full title of the Card
-        }{%
-            \pgfkeys{/lillyxCARDS, defaults, #1}\pgfkeys{/lillyxCARDS,##1}\pgfkeys{/lillyxCARDS, full title=####3,####1}%
-            \expandafter\xdef\csname @lilly@cards@card@####2@game\endcsname{#2} % No classes Registered
-            \expandafter\xdef\csname @lilly@cards@card@####2@class\endcsname{##2} % No classes Registered
-            \xdef\@tlist{\csname @lilly@cards@class@##2@cardlist\endcsname}
-            \expandafter\xdef\csname @lilly@cards@class@##2@cardlist\endcsname{\expandafter\ifx\expandafter\\\@tlist\\ ####2\else\@tlist,####2\fi}
-            % Card Args: [####1]. In Class Args: [##1]. In Game Args: [#1]\\
-            % Card ID: ####2. In Class ID: ##2. In Game ID: #2\\
-            % Card Title: ####3. In Class Title: ##3. In Game Title: #3 \\
-            \@lilly@cards@persist{####2}
-            % Now we construct the Command that will handle the drawing fo the command, there will be an environment too:
-            \expandafter\DeclareDocumentCommand\csname ####2\endcsname{%
-                O{} % Tikz args
-            }{%
-                \expandafter\csname @lilly@cards@draw@\@lilly@cards@get{####2}{draw}\endcsname{########1}{####2}
-            }
-        }
+\expandafter\gdef\csname @lilly@cards@class@##2@cardlist\endcsname{} % No cards Registered
+\expandafter\xdef\csname @lilly@cards@class@##2@title\endcsname{##3} % No classes Registered
+\expandafter\xdef\csname @lilly@cards@class@##2@args\endcsname{##1} % Args Registered just for debugging
+%Lets add to the list:
+\xdef\@tlist{\csname @lilly@cards@game@#2@classlist\endcsname}
+\expandafter\xdef\csname @lilly@cards@game@#2@classlist\endcsname{\expandafter\ifx\expandafter\\\@tlist\\ ##2\else\@tlist,##2\fi}
+% Lets create the Card-Command
+\expandafter\DeclareDocumentCommand\csname #2x##2xNewCard\endcsname{%
+    O{} % Card specific arguments
+    m   % Id of the Card
+    m   % Full title of the Card
+}{%
+    \pgfkeys{/lillyxCARDS, defaults, #1}\pgfkeys{/lillyxCARDS,##1}\pgfkeys{/lillyxCARDS, full title=####3,####1}%
+    \expandafter\xdef\csname @lilly@cards@card@####2@game\endcsname{#2} % No classes Registered
+    \expandafter\xdef\csname @lilly@cards@card@####2@class\endcsname{##2} % No classes Registered
+    \xdef\@tlist{\csname @lilly@cards@class@##2@cardlist\endcsname}
+    \expandafter\xdef\csname @lilly@cards@class@##2@cardlist\endcsname{\expandafter\ifx\expandafter\\\@tlist\\ ####2\else\@tlist,####2\fi}
+    % Card Args: [####1]. In Class Args: [##1]. In Game Args: [#1]\\
+    % Card ID: ####2. In Class ID: ##2. In Game ID: #2\\
+    % Card Title: ####3. In Class Title: ##3. In Game Title: #3 \\
+    \@lilly@cards@persist{####2}
+    % Now we construct the Command that will handle the drawing fo the command, there will be an environment too:
+    \expandafter\DeclareDocumentCommand\csname ####2\endcsname{%
+        O{} % Tikz args
+    }{%
+        \expandafter\csname @lilly@cards@draw@\@lilly@cards@get{####2}{draw}\endcsname{########1}{####2}
     }
-}
+}}}
 
 
 % #1 GameName
 \def\ShowGameClasses#1{%
-    \begin{center}
-        \Large\textbf{\csname @lilly@cards@game@#1@title\endcsname:}
-    \end{center}
-    \xdef\@tmp{\@nameuse{@lilly@cards@game@#1@classlist}}
-    \foreach \class in \@tmp{%
-        \ShowClassCards{\class}~\newline
-    }
+\begin{center}
+    \Large\textbf{\csname @lilly@cards@game@#1@title\endcsname:}
+\end{center}
+\xdef\@tmp{\@nameuse{@lilly@cards@game@#1@classlist}}
+\foreach \class in \@tmp{%
+    \ShowClassCards{\class}~\newline
+}
 }
 
 
 % #1 ClassName
 \def\ShowClassCards#1{%
-    \textbf{\csname @lilly@cards@class@#1@title\endcsname:}\newline
-    \xdef\@tmp{\@nameuse{@lilly@cards@class@#1@cardlist}}
-    \foreach \card in \@tmp{%
-        \csname\card\endcsname\space%
-    }
+\textbf{\csname @lilly@cards@class@#1@title\endcsname:}\newline
+\xdef\@tmp{\@nameuse{@lilly@cards@class@#1@cardlist}}
+\foreach \card in \@tmp{%
+    \csname\card\endcsname\space%
 }
-
-% \newlength\@lilly@lastblength
-% \def\@erasewidth#1{%
-%     \settowidth{\@lilly@lastblength}{#1}#1\hskip-\@lilly@lastblength\relax
-% }
+}
 
 % [#1] cards to raise
 %  #2  List of Cards to show
@@ -202,8 +182,5 @@
             }\raisebox{\@rai}{\edef\cxctmp{\@nameuse{\card}[\@opt]}\cxctmp}}\hskip#3%
     }
 }
-
 \RequirePackage{LILLYxCARDSxFANTASY}
-
-
 \endinput

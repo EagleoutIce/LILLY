@@ -23,7 +23,7 @@
     % construct the likeaby :P
     \expandafter\gdef\csname c#2adj\endcsname{#5\xspace}%
     % tikz styling
-    \ifx\\#1\\\expandafter\gdef\csname c#2tikz\endcsname{#3}%
+    \ifx!#1!\expandafter\gdef\csname c#2tikz\endcsname{#3}%
     \else\expandafter\gdef\csname c#2tikz\endcsname{#1}%
     \fi%
 }

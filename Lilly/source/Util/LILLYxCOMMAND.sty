@@ -1,26 +1,21 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCOMMAND}[2019/07/14 Liefert den grundlegenden LILLYcommand]
-
 \RequirePackage{LILLYxPACKAGExCTRL}
 
 %% https://www.ctan.org/pkg/xparse
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
-                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
-                    {}{} %% keine Argumente
+  {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+  {}{} %% keine Argumente
 
 %% tex '\def' in latex style - überschreibe einen Befehl oder erzeuge ihn, wenn es ihn noch nicht gibt
 \def\LILLYcommand{%
-    \@ifstar%
+    \@ifstar
         \LILLYcommand@S %% star
         \LILLYcommand@N %% nostar
 }
 
-\def\LILLYcommand@S#1{
-    \let#1\outer\renewcommand*#1
-}
-\def\LILLYcommand@N#1{
-    \let#1\outer\renewcommand#1
-}
+\def\LILLYcommand@S#1{\let#1\outer\renewcommand*#1}
+\def\LILLYcommand@N#1{\let#1\outer\renewcommand#1}
 
 %% DANKE an: https://tex.stackexchange.com/questions/51733/global-renewcommand-equivalent-of-global-def
 \makeatletter
@@ -43,23 +38,9 @@
 \def\@xaldef#1{%
   \debugout{Current Value: #1}
 }
-\def\providedef#1#2{
-  %\typeout{Request to define #1}
-  \expandafter\@xaldef{\csname #1\endcsname}
-  \@ifundefined{#1}{
-    %\typeout{Defining, as undefined before with: #2}
-    \expandafter\def\csname #1\endcsname{#2}
-  }{}
-  % \ifthenelse{\isundefined{#1}}{
-  %   \typeout{Defining, as undefined before with: #2}
-  %   \expandafter\def\csname #1\endcsname{#2}
-  % }{%
-  %   %
-  % }
-  % \expandafter\ifdefined\csname #1 \endcsname\expandafter\else
-  % \typeout{Defining, as undefined before with: #2}
-  % \expandafter\def\csname #1\endcsname{#2}
-  % \fi
+\def\providedef#1#2{%
+  \expandafter\@xaldef{\csname #1\endcsname}%
+  \@ifundefined{#1}{\expandafter\def\csname #1\endcsname{#2}}{}%
 }
 
 %% Access Konfiguration File :D This can be determined by the Semester, but in theory every valide tex-File kann

@@ -1,10 +1,7 @@
 %% Wird für die Dokumentation entsprechend erweitert
-
 \lstdefinelanguage{lSql}{
     language=sql,
     comment=[l]{--},
-    %alsoletter={\#=-},
-    %morecomment=[s]{!}{!},
     escapeinside={!*}{*!},
     moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
     moredelim=**[is][{\lstHLError}]{|err|}{|err|},
@@ -20,13 +17,5 @@
     morekeywords = [5]{},
     morekeywords = [6]{AUTO_INCREMENT},
     morecomment=[s]{/*}{*/},
-    %keywordstyle={\color{DebianRed}},
 }
-
 \RegisterLanguage{sql}{lSql}
-
-% \lstnewenvironment{sql}[1][]
-%   {\lstset{language=lSql,#1}}
-% {}
-
-% \pushList{RegisteredLanguages}{sql/lSql}

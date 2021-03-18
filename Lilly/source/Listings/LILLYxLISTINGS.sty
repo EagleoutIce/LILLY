@@ -1,90 +1,59 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxLISTINGS}[2019/07/14 Stellt die Listings-Erweiterungen fuer LILLY zur Verfuegung]
 
-\RequirePackage{LILLYxPACKAGExCTRL} %% DemandPackage und LoadPackage
-\RequirePackage{LILLYxCONTROLLERxCONTENT}
-\RequirePackage{LILLYxCOLOR}
-% \RequirePackage{LILLYxCOLOR}
-\RequirePackage{LILLYxFONTS}
-\RequirePackage{LILLYxLIST}
-\RequirePackage{LILLYxLISTINGSxLANGUAGExCONTROL}% \RegisterLanguage
-
-\RequirePackage{kvoptions}
-
+\RequirePackage{LILLYxPACKAGExCTRL,LILLYxCONTROLLERxCONTENT,LILLYxCOLOR,LILLYxFONTS,LILLYxLIST,LILLYxLISTINGSxLANGUAGExCONTROL,kvoptions}
 % ifLILLY@runtimes: Control the runtimes-module
 \DeclareBoolOption[true]{runtimes}\DeclareComplementaryOption{noruntimes}{runtimes}
-
-
 \ProcessOptions*
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Packages
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %%% Die Verwaltung der Listings verläuft auf verschiedene Highlighting -Module welche auch über die Kommandozeile definiert werden können
-
 \LILLYxPoliteKnock{listingsutf8}{% wir wollen natürlich UTF8, wenns geht
 %% https://www.ctan.org/pkg/listingsutf8
 \LILLYxDemandPackage{listingsutf8}{Tolle Umlaute in tollen Codes}
-                    {Also dieser Fehler sollte nun wirklich nicht vorkommen.}
-                    {}{}
-}{
+  {Also dieser Fehler sollte nun wirklich nicht vorkommen.}
+  {}{}}{
 %% https://www.ctan.org/pkg/listings
 \LILLYxDemandPackage{listings}{Tolle Codes}
-                    {Also mit irgendwas muss ich arbeiten.}
-                    {}{}
+  {Also mit irgendwas muss ich arbeiten.}
+  {}{}
 }
-
-%\lstloadaspects{tex}%strings,comments,escape,writefile,style,language,keywords,html,tex,emph,index,keywordcomments,labels}
 
 % Key patch from: https://tex.stackexchange.com/questions/149056/how-can-i-define-additional-literate-replacements-without-deleting-existing-ones
 \def\addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
 \lst@Key{add to literate}{}{\addToLiterate{#1}}
-
-%% maybe just load and check?
 %% https://ctan.org/pkg/amsfonts
 \LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
-                    {Wir wollen mehr Symbole}%% Error-Text
-                    {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+  {Wir wollen mehr Symbole}%% Error-Text
+  {}{}
 
 %% https://www.ctan.org/pkg/xparse
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
-                    {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
-                    {}{} %% keine Argumente
+  {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
+  {}{}
 
 %% https://ctan.org/pkg/graphicx
 \LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
-                    {Dieses Paket ist für includegraphics von noeten!}
-                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}} %% Sloppy includegraphics draft
-                    {}{}
+  {Dieses Paket ist für includegraphics von noeten!}
+  {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}}{}{}
 
 \newif\ifaccsup@available@
 \accsup@available@true
 %% https://www.ctan.org/pkg/accsupp
 \LILLYxLoadPackage{accsupp}{Besserer PDF-Support}
-                    {Ohne gehts nicht}
-                    {\global\accsup@available@false}{}{}
-
+  {Ohne gehts nicht}
+  {\global\accsup@available@false}{}{}
 %% https://www.ctan.org/pkg/etoolbox
 \LILLYxDemandPackage{etoolbox}{Damit die Befehle robust sind}
-                    {Ohne gehts nicht - leider}
-                    {}{}
+  {Ohne gehts nicht - leider}
+  {}{}
 
 %% NOTE: https://ctan.kako-dev.de/macros/latex/contrib/lstaddons/lstautogobble.pdf
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Colors
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %% Current Colors:
 \definecolor{lstmainbordercol}{HTML}{EAECF0}
 \definecolor{lstmainbackcol}{HTML}{F8F9FA}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lists
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %% Alle Sprachen müssen sich hier registrieren, solange es nicht implementiert ist,
 %% kann man nachträglich keine entfernen tihihih
 \constructList[,]{RegisteredLanguages}
@@ -95,28 +64,19 @@
 %% '\isLanguageLoaded{cpp/lCpp}' => \true wenn ja, sonst \false
 %% Dies wird von \RegisterLanguage automatisch entsprechend gehandhabt :D
 
-
 %% Jede registrierte Sprache erhält automatisch ihre environments, ihren \c-Befehl,\b-Befehl und ihren \i-Befehl
 %% Damit wird redundante Code-Generierung erspart.
 
 %% Enthält lediglich den Namen der entsprechenden Sprache, für convenience :D
 \constructList[,]{RegisteredLanguageNames}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % If available, remove line numbers from selection
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\ifaccsup@available@%
+\ifaccsup@available@
 \def\@lstnumconsumer#1{%
 \BeginAccSupp{method=escape,ActualText={}}#1\EndAccSupp{}%
-}%
-\else\def\@lstnumconsumer#1{#1}\fi
+}\else\def\@lstnumconsumer#1{#1}\fi
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Handling of Number-Highlighting
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \newif\iflstlastwasacharacter% Will disable numberhl if true
 \lstlastwasacharacterfalse
 \newif\iflstlastwasacharacterkeep
@@ -125,31 +85,21 @@
 \lstdonumhltrue
 \newif\iflstforcenum
 \lstforcenumfalse
-% \newif\iflstnumnohlmode% Will prevent h31 <- 3 to highlight as '3' would reset the hl behavior
-% \lstnumnohlmodefalse
 
 \newcommand\digitstyle{\color{DarkMidnightBlue}}
 % Lilly process Digit
 \newcommand{\lpDigit}[1]
 {\begingroup%
-%\iflstnumnohlmode%
-  %#1\else
-  \iflstdonumhl%
-  \iflstlastwasacharacter%\lstnumnohlmodetrue% was char => don't highlight, we won't check for hex right now
-  \global\lstlastwasacharacterkeeptrue#1\else\global\lstlastwasacharacterkeepfalse%
-    \ifnum\lst@mode=\lst@Pmode\relax% PMode: Not in any special Mode
-    {\digitstyle #1}%
-    \else\iflstforcenum%should num be forced?
-      {\digitstyle #1}\else#1\fi%
-    \fi\hbox{\relax{}}%
-  \fi\else#1\fi%
-  %\fi
-  \endgroup
-}
-
-
-% \newif\iflstinhexmode
-% \lstlastwasacharacterfalse
+\iflstdonumhl%
+\iflstlastwasacharacter%\lstnumnohlmodetrue% was char => don't highlight, we won't check for hex right now
+\global\lstlastwasacharacterkeeptrue#1\else\global\lstlastwasacharacterkeepfalse%
+  \ifnum\lst@mode=\lst@Pmode\relax% PMode: Not in any special Mode
+  {\digitstyle #1}%
+  \else\iflstforcenum%should num be forced?
+    {\digitstyle #1}\else#1\fi%
+  \fi\hbox{\relax{}}%
+\fi\else#1\fi%
+\endgroup}
 
 % Overwrite routines do make em apply to the checks
 \def\lst@ProcessLetter{%
@@ -162,45 +112,31 @@
 \def\lst@whitespacefalse{\global\let\lst@ifwhitespace\iffalse}%
 
 \def\@nc{\iflstlastwasacharacterkeep\else\lstlastwasacharacterfalse\fi}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Literates - Routine
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \def\lst@Literate#1#2#3{%
-    \ifx\relax#2\@empty\else%
-        \lst@CArgX #1\relax\lst@CDef%
-            {}%
-            {\let\lst@next\@empty%
-             \lst@ifxliterate%
-                \lst@ifmode \let\lst@next\lst@CArgEmpty \fi%
-             \fi
-             \ifx\lst@next\@empty%
-                 \ifx\lst@OutputBox\@gobble\else%
-                 %\def\@@repl{#2}\typeout{#2}
-                  %\ifx\@@repl\@@crerpl\inhexmodefalse\firstchartrue\else\iffirstchar%
-                  %% start of a word
-                  %\fi\firstcharfalse\fi% is space
-                  %\ifx\@@repl\@@crehex\inhexmodetrue\fi%
-                  %   \ifnum\lst@mode=\lst@Pmode\relax%
-                  %     {\digitstyle #2}
-                  %   \else #2\fi
-                  % \else
-                   \lst@XPrintToken \let\lst@scanmode\lst@scan@m%
-                   \lst@token{#2}\lst@length#3\relax%
-                   \lst@XPrintToken
-                   %\fi%
-                   \lst@whitespacefalse\@nc%
-                 \fi
-                 \let\lst@next\lst@CArgEmptyGobble
-             \fi
-             \lst@next}%
-            \@empty
-        \expandafter\lst@Literate
-    \fi}
+\ifx\relax#2\@empty\else%
+\lst@CArgX #1\relax\lst@CDef%
+{}%
+{\let\lst@next\@empty%
+\lst@ifxliterate%
+  \lst@ifmode \let\lst@next\lst@CArgEmpty \fi%
+\fi
+\ifx\lst@next\@empty%
+    \ifx\lst@OutputBox\@gobble\else%
+      \lst@XPrintToken \let\lst@scanmode\lst@scan@m%
+      \lst@token{#2}\lst@length#3\relax%
+      \lst@XPrintToken
+      %\fi%
+      \lst@whitespacefalse\@nc%
+    \fi
+    \let\lst@next\lst@CArgEmptyGobble
+\fi
+\lst@next}%
+\@empty
+\expandafter\lst@Literate
+\fi}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Literates - Definitions
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Konfiguriere Sonderzeichen
 \lstset{literate=%
@@ -237,67 +173,48 @@
   {:lmath:}{{\textcolor{bondiBlue}{\textbackslash(}}}2 {:rmath:}{{\textcolor{bondiBlue}{\textbackslash)}}}2 {:ldmath:}{{\textcolor{bondiBlue}{\textbackslash[}}}2 {:rdmath:}{{\textcolor{bondiBlue}{\textbackslash]}}}2 {:ul:}{{\_}}1
 } %Damit die Umlaute in lstlistings auch korrekt formatiert werden.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Core-Commands for Highlighting of Inline-Snippes
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %% Grundlegender Befehl zum Schreiben von Code innerhalb einer zeile, löst nicht die Problematiken wie Sonderzeichen, aber mit irgendwas muss man arbeiten können
-\DeclareRobustCommand{\LILLYxwriteLst}[2][]{\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite,fill=MudWhite, centered]{\,\vphantom{I}\lstinline[#1]`#2`\,};}}
+\DeclareRobustCommand{\LILLYxwriteLst}[2][]{\tikz[baseline=-.6ex]{\node[rectangle, minimum height=.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite,fill=MudWhite, centered]{\thinspace\vphantom{I}\lstinline[#1]`#2`\thinspace};}}
 
 \gdef\LILLYxLSTINLINE#1#2{%
-  \begingroup\tikz[baseline=-0.6ex]{\node[rectangle, minimum height=0.95\noexpand\baselineskip, inner xsep=2.4pt, inner ysep=2.1pt,draw, %rounded corners=4pt,
-  lstmainbordercol, fill=lstmainbackcol, centered]{\vphantom{I}\lstinline[#1]`#2`};}\endgroup%
+  \begingroup\tikz[baseline=-.6ex]{\node[rectangle, minimum height=.95\noexpand\baselineskip, inner xsep=2.4pt, inner ysep=2.1pt,draw, %rounded corners=4pt,
+  lstmainbordercol, fill=lstmainbackcol, centered]{\vphantom{I}\lstinline[#1]`#2`};}\endgroup
 }
-\gdef\LILLYxLSTBLANKINLINE#1#2{%
-  \begingroup\,\vphantom{I}\lstinline[#1]`#2`\,\endgroup%
-}
+\gdef\LILLYxLSTBLANKINLINE#1#2{\begingroup\thinspace\vphantom{I}\lstinline[#1]`#2`\thinspace\endgroup}
 
-\gdef\LILLYxLSTINPL#1#2{%
-  \begingroup\lstinputlisting[#1]{#2}\endgroup%
-}
+\gdef\LILLYxLSTINPL#1#2{\begingroup\lstinputlisting[#1]{#2}\endgroup}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Listing - Command specific patches
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \def\lst@PlaceNumber{\makebox[\dimexpr 1em+\lst@numbersep][l]{\normalfont
   \lst@numberstyle{\thelstnumber}}}%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Utility Commands
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\LillyXlstXsloppy{\makeatletter
+\tolerance 9999%
+\emergencystretch 3em%
+\hfuzz .5cm%
+\vfuzz\hfuzz\makeatother}
 
-\def\LillyXlstXsloppy{\makeatletter%
-  \tolerance 9999%
-  \emergencystretch 3em%
-  \hfuzz .5cm%
-  \vfuzz\hfuzz\makeatother}%
+\def\LillyXlstXfussy{\makeatletter
+\emergencystretch=\z@
+\tolerance 200%
+\hfuzz .1pt%
+\vfuzz\hfuzz\makeatother}
 
-\def\LillyXlstXfussy{\makeatletter%
-  \emergencystretch 0em
-  \tolerance 200%
-  \hfuzz .1pt%
-  \vfuzz\hfuzz\makeatother}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definitions, could be done via pgfkeys?
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \def\LILLYxLISTINGSxFONTSIZE{\linespread{1}}
 \def\LILLYxLISTINGSxNUMxFONTSIZE{\footnotesize}
 
 \lstdefinestyle{nonum}{
     xleftmargin=3pt,xrightmargin=3pt,%will fix some overhead :D
-    numbers=none,numbersep=0pt,
+    numbers=none,numbersep=\z@,
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Environments - always wannahaves
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \lstnewenvironment{lstplain}[1][]
-  {\def\lillyst@backcol{white}\lstset{xleftmargin=0pt,xrightmargin=0pt,%
-  numbers=none,numbersep=0pt,frame=none,%
+  {\def\lillyst@backcol{white}\lstset{xleftmargin=\z@,xrightmargin=\z@,%
+  numbers=none,numbersep=\z@,frame=none,%
   rulecolor={},backgroundcolor={} %
   ,#1}}
 {\def\lilly@lst@backcol{MudWhite}}
@@ -307,48 +224,28 @@
   ,#1}}
 {}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Package-Control
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Es ist möglich über diesen Befehl das zu ladende Sprachpaket zu definieren
 \providecommand{\LILLYxListingsxPACK}{MAIN}
 
 %% Lädt ein entsprechendes Sprachpaket
 \input{\LILLYxPATHxLISTINGS/Packages/_LILLY_PACK_\LILLYxListingsxPACK}
-
 \storeRegisteredLanguages{LISTxRegisteredLanguages}
 \storeRegisteredLanguageNames{LISTxRegisteredLanguageNames}
 %% erlaubt es Den inhalt eines Befehls zu setzen
 \newcommand{\lstshowcmd}[2][]{\edef\@tmp@@b{\noexpand\lstinline[#1]!#2!}\@tmp@@b}
-
 %%Embetter Break Control:
 \LillyXlstXsloppy
-
-
-\newcommand{\isLanguageLoaded}[1]{%
-  \containsList{RegisteredLanguages}{#1}%
-}%
+\newcommand{\isLanguageLoaded}[1]{\containsList{RegisteredLanguages}{#1}}%
 
 % for more convenience
-\newcommand{\isLanguageNameLoaded}[1]{%
-  \containsList{RegisteredLanguageNames}{#1}%
-}%
-
-
+\newcommand{\isLanguageNameLoaded}[1]{\containsList{RegisteredLanguageNames}{#1}}%
 \RequirePackage{LILLYxLISTINGSxHL}
-
-%% \RequirePackage{LILLYxLISTINGSxLINEBGRD}
-\def\HLError#1{% sloppy
-  % dummy
-}
-
+\def\HLError#1{}
 \makeatletter
-
 \ifLILLYxLISTINGS@runtimes
   \RequirePackage{LILLYxRUNTIMES}
 \fi
-
 \RequirePackage{LILLYxLISTINGSxALGORITHMS}
-
 \endinput

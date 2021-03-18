@@ -1,10 +1,6 @@
 %% Wird für die Dokumentation entsprechend erweitert
-
 \def\@lillylst@inouter#1{\ifnum\lst@mode=\lst@Pmode\relax \lstkwone{#1}\else#1\fi}
-
 \lstdefinelanguage{lXml}{
-    % language=xml,
-    %% identifierstyle=\color{AppleGreen},
     morestring=[b]",
     morestring=[b]',
     %morestring=[s]{>}{<},
@@ -20,8 +16,6 @@
     alsoletter={:\#!-},
     alsoother={<>},
     add to literate={/}{{\@lillylst@inouter{/}}}1 {<}{{\@lillylst@inouter{<}}}1 {>}{{\@lillylst@inouter{>}}}1,
-    %otherkeywords={<?,?>,<,>},
-    %frameround=tttt, %% mag background color nicht
     escapeinside={!*}{*!},
     showstringspaces=true,  %Damit es keine Verwechslungen gibt
     morekeywords = {!DOCTYPE,DOCTYPE,!ELEMENT,ELEMENT,!ATTLIST,ATTLIST},
@@ -33,9 +27,3 @@
 }
 
 \RegisterLanguage{xml}{lXml}
-
-% \lstnewenvironment{xml}[1][]
-%   {\lstset{language=lXml,#1}}
-% {}
-
-% \pushList{RegisteredLanguages}{xml/lXml}

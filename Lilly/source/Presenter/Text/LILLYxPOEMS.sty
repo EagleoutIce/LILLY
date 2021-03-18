@@ -1,11 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxPOEMS}[2019/09/05 Liefert eine Gedicht-Erweiterung fuer LILLY]
-
-\RequirePackage{LILLYxCORE}
-% \RequirePackage{LILLYxCORE}
-
-\RequirePackage{LILLYxORNAMENTS}
-\RequirePackage{LILLYxFONTS}
+\RequirePackage{LILLYxCORE,LILLYxORNAMENTS,LILLYxFONTS}
 
 \def\poems@author{\AUTHOR}
 \def\poemssetauthor#1{\gdef\poems@author{#1}}
@@ -16,9 +11,8 @@
 
 %% https://www.ctan.org/pkg/tocloft
 \LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
-                    {Das ist wichtig!}%% Error-Text
-                    {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliothken weitaus einfacher finden kann :D
+    {Das ist wichtig!}%% Error-Text
+    {}{}
 
 
 \newcounter{ctrXpoems}\setcounter{ctrXpoems}{0} % counter for the poems
@@ -43,7 +37,6 @@
 {\catcode `\^^M\active%
 	\gdef\subduelines{\catcode `\^^M\active\def^^M{\leavevmode\\}}
 }
-
 
 % The Poem wuhuuu :D
 \DeclareDocumentEnvironment{poem}{
@@ -113,8 +106,4 @@
 	}
 
 }{}
-
-
-
-%% set like in doku tikzrput
 \endinput

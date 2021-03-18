@@ -3,80 +3,52 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxLISTINGSxLINEBGRD}[2019/08/20 Stellt eine Erweiterungen fuer LILLYs Listings zur Verfuegung]
-
 \RequirePackage{LILLYxLISTINGS}
-
 %% This is not optional for linebgrd
-
 %% https://www.ctan.org/pkg/listings
 \LILLYxDemandPackage{listings}{Tolle Codes}
-                    {Also mit irgendwas muss ich arbeiten.}
-                    {}{}
+    {Also mit irgendwas muss ich arbeiten.}{}{}
 
 %% Information, dieses Paket arbeitet auf Basis von: https://ctan.org/pkg/lstaddons versucht allerdings die Probleme, die das enthaltene lstlinebgrd liefert, portabel zu gestalten.
-
 % Original Author: Martin Scharrer <martin@scharrer-online.de>
-
-
-
-% \let\old@lstKV@SwitchCases\lstKV@SwitchCases
-% \def\lstKV@SwitchCases#1#2#3{}
-
 \lst@Key{numbers}{none}{%
-    \def\lst@PlaceNumber{\lst@linebgrd}%
-    \lstKV@SwitchCases{#1}%
-    {none:\\%
-     left:\def\lst@PlaceNumber{\llap{\normalfont
-                \lst@numberstyle{\thelstnumber}\kern\lst@numbersep}\lst@linebgrd}\\%
-     right:\def\lst@PlaceNumber{\rlap{\normalfont
-                \kern\linewidth \kern\lst@numbersep
-                \lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
-    }{\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
+\def\lst@PlaceNumber{\lst@linebgrd}%
+\lstKV@SwitchCases{#1}%
+{none:\\%
+    left:\def\lst@PlaceNumber{\llap{\normalfont
+            \lst@numberstyle{\thelstnumber}\kern\lst@numbersep}\lst@linebgrd}\\%
+    right:\def\lst@PlaceNumber{\rlap{\normalfont
+            \kern\linewidth \kern\lst@numbersep
+            \lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
+}{\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
 
-    
 % New keys
-\lst@Key{linebackgroundcolor}{}{%
-    \def\lst@linebgrdcolor{#1}%
-}
-\lst@Key{linebackgroundsep}{0pt}{%
-    \def\lst@linebgrdsep{#1}%
-}
-\lst@Key{linebackgroundwidth}{\linewidth}{%
-    \def\lst@linebgrdwidth{#1}%
-}
-\lst@Key{linebackgroundheight}{\ht\strutbox}{%
-    \def\lst@linebgrdheight{#1}%
-}
-\lst@Key{linebackgrounddepth}{\dp\strutbox}{%
-    \def\lst@linebgrddepth{#1}%
-}
-\lst@Key{linebackgroundcmd}{\color@block}{%
-    \def\lst@linebgrdcmd{#1}%
-}
+\lst@Key{linebackgroundcolor}{}{\def\lst@linebgrdcolor{#1}}
+\lst@Key{linebackgroundsep}{0pt}{\def\lst@linebgrdsep{#1}}
+\lst@Key{linebackgroundwidth}{\linewidth}{\def\lst@linebgrdwidth{#1}}
+\lst@Key{linebackgroundheight}{\ht\strutbox}{\def\lst@linebgrdheight{#1}}
+\lst@Key{linebackgrounddepth}{\dp\strutbox}{\def\lst@linebgrddepth{#1}}
+\lst@Key{linebackgroundcmd}{\color@block}{\def\lst@linebgrdcmd{#1}}
 
 %% work in Progress: detect original Backgroundcolor and use it
 \def\lilly@lst@backcol{MudWhite}
 
 % Line Background macro => modified
 \long\def\lst@linebgrd{%
-    \ifx\lst@linebgrdcolor\empty\else
-    \rlap{%
-        \lst@basicstyle
-        \color{\lilly@lst@backcol}%% changed
-        \lst@linebgrdcolor{%
-        \kern-\dimexpr\lst@linebgrdsep\relax%
-        \lst@linebgrdcmd{\lst@linebgrdwidth}{\lst@linebgrdheight}{\lst@linebgrddepth}%
-        }%
+\ifx\lst@linebgrdcolor\empty\else
+\rlap{%
+    \lst@basicstyle
+    \color{\lilly@lst@backcol}%% changed
+    \lst@linebgrdcolor{%
+    \kern-\dimexpr\lst@linebgrdsep\relax%
+    \lst@linebgrdcmd{\lst@linebgrdwidth}{\lst@linebgrdheight}{\lst@linebgrddepth}%
     }%
-    \fi
+}%
+\fi
 }
 
 %% Beautifying Shortcuts:
 \def\HLError#1{% sloppy
   \ifnum\value{lstnumber}=#1\color{DebianRed!25}\else\color{\lilly@lst@backcol}\fi
 }
-
-
-%\let\lstKV@SwitchCases\old@lstKV@SwitchCases
-
 \endinput

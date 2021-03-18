@@ -1,10 +1,8 @@
 \lstdefinelanguage{lChr}{
-    % language=prolog,
     alsoletter={-|~{,}_.><=:\*'?\\},
     comment=[l]{\%},
     keywordsprefix={\$},
     morecomment=[s]{/*}{*/},
-    % morecomment=[s]{\{-}{-\}},
     escapeinside={!!}{!!},
     morekeywords = {==>,@,<=>,=:=,\\,|,->,<-,>=,=<,builtin,call,:-,is,mod,=,leq}, %% expanded by prolog
     morekeywords = [2]{},
@@ -12,13 +10,4 @@
     morekeywords = [4]{::=,.,chr_constraint,true,false,true.,false.},
     morekeywords = [5]{write,writeq,read},
 }
-
 \RegisterLanguage{chr}{lChr}
-
-% \lstnewenvironment{chr}[1][]
-%   {\lstset{language=lChr,#1}}
-% {}
-
-
-
-% \pushList{RegisteredLanguages}{chr/lChr}

@@ -1,33 +1,28 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCARDSxFANTASY}[2019/10/05 Stellt eine Fantasy-Erweiterung fuer LILLY-Karten zur Verfuegung]
-
-\RequirePackage{LILLYxCARDS}
-\RequirePackage{LILLYxTIKZxCORE}
-\RequirePackage{LILLYxFONTS}
+\RequirePackage{LILLYxCARDS,LILLYxTIKZxCORE,LILLYxFONTS}
 \usetikzlibrary{calc,fadings}
-
 %% Verwendungszwecke der Extra-Register:
-%   extra 1: Path to the Image
-%   extra 2: Cost of the Card
-%   extra 3: color of the price field
-%   extra 4: class icon
-%   extra 5: class text (color is main)
-%   extra 6: quote/flavour
-%   extra 7: effects
-
+% 1: Path to the Image
+% 2: Cost of the Card
+% 3: color of the price field
+% 4: class icon
+% 5: class text (color is main)
+% 6: quote/flavour
+% 7: effects
 % Card metrics:
 \newdimen\@lilly@cards@fantasy@cardwidth \@lilly@cards@fantasy@cardwidth=\@lilly@cards@default@cardwidth
 \newdimen\@lilly@cards@fantasy@cardheight \@lilly@cards@fantasy@cardheight=\@lilly@cards@default@cardheight
 
 % Image metrics:
 \newdimen\@lilly@cards@fantasy@imagewidth \@lilly@cards@fantasy@imagewidth=\@lilly@cards@fantasy@cardwidth
-\newdimen\@lilly@cards@fantasy@imageheight \@lilly@cards@fantasy@imageheight=0.65\@lilly@cards@fantasy@cardheight
+\newdimen\@lilly@cards@fantasy@imageheight \@lilly@cards@fantasy@imageheight=.65\@lilly@cards@fantasy@cardheight
 
 % strip and Text Metrics
-\newdimen\@lilly@cards@fantasy@stripw \@lilly@cards@fantasy@stripw=0.7cm % width
-\newdimen\@lilly@cards@fantasy@stripp \@lilly@cards@fantasy@stripp=0.2cm % padding
-\newdimen\@lilly@cards@fantasy@stript \@lilly@cards@fantasy@stript=0.2cm % top strip size assured
-\newdimen\@lilly@cards@fantasy@textp  \@lilly@cards@fantasy@textp=0.1cm  % padding
+\newdimen\@lilly@cards@fantasy@stripw \@lilly@cards@fantasy@stripw=.7cm % width
+\newdimen\@lilly@cards@fantasy@stripp \@lilly@cards@fantasy@stripp=.2cm % padding
+\newdimen\@lilly@cards@fantasy@stript \@lilly@cards@fantasy@stript=.2cm % top strip size assured
+\newdimen\@lilly@cards@fantasy@textp  \@lilly@cards@fantasy@textp=.1cm  % padding
 
 % lets define the shapes of the cards:
 %% Card:
@@ -35,10 +30,10 @@
 \def\@lilly@cards@shapes@fantasy@card{(0,0) rectangle (\@lilly@cards@fantasy@cardwidth,\@lilly@cards@fantasy@cardheight)}
 % Title area:
 \def\@lilly@cards@shapes@fantasy@title{(2*\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw,\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@stripp) rectangle (\@lilly@cards@fantasy@cardwidth-2*\@lilly@cards@fantasy@stripp-\@lilly@cards@fantasy@stripw,\@lilly@cards@fantasy@cardheight-1.75*\@lilly@cards@fantasy@stripw)}
-\def\@lilly@cards@shapes@fantasy@titley{\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@stripp-1.5*\@lilly@cards@fantasy@textp-0.5*\@lilly@cards@fantasy@stripw}
+\def\@lilly@cards@shapes@fantasy@titley{\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@stripp-1.5*\@lilly@cards@fantasy@textp-.5*\@lilly@cards@fantasy@stripw}
 \def\@lilly@cards@fantasy@titlew{\@lilly@cards@fantasy@cardwidth-2*\@lilly@cards@fantasy@stripp-\@lilly@cards@fantasy@stripw-(2*\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw)}  % width
 % Content
-\def\@lilly@cards@shapes@fantasy@content{(2*\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw,0.5*\@lilly@cards@fantasy@cardheight) rectangle (\@lilly@cards@fantasy@cardwidth+\@lilly@cards@fantasy@stript,-\@lilly@cards@fantasy@stript)}
+\def\@lilly@cards@shapes@fantasy@content{(2*\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw,.5*\@lilly@cards@fantasy@cardheight) rectangle (\@lilly@cards@fantasy@cardwidth+\@lilly@cards@fantasy@stript,-\@lilly@cards@fantasy@stript)}
 
 %% Strips
 % Long left:
@@ -50,16 +45,16 @@
 
 %% Tikz Data:
 % based on tikzcards
-\providedef{@lilly@cards@fantasy@scaling}{0.75}
+\providedef{@lilly@cards@fantasy@scaling}{.75}
 
 \tikzset{
     @lilly@cards@fantasy@cardargs/.style={every node/.style=transform shape,scale=\@lilly@cards@fantasy@scaling},
-    @lilly@cards@fantasy@cardcorners/.style={rounded corners=\@lilly@cards@fantasy@scaling*0.225cm},
-    @lilly@cards@fantasy@elementcorners/.style={rounded corners=\@lilly@cards@fantasy@scaling*0.125cm},
+    @lilly@cards@fantasy@cardcorners/.style={rounded corners=\@lilly@cards@fantasy@scaling*.225cm},
+    @lilly@cards@fantasy@elementcorners/.style={rounded corners=\@lilly@cards@fantasy@scaling*.125cm},
     @lilly@cards@fantasy@stripshadow/.style={drop shadow={opacity=.5,color=black}},
     @lilly@cards@fantasy@strip/.style={@lilly@cards@fantasy@elementcorners,@lilly@cards@fantasy@stripshadow},
     @lilly@cards@fantasy@cardimage/.style={path picture={%
-            \node[below=-1.5mm,inner sep=0pt] (@crd@img) at (0.5*\@lilly@cards@fantasy@cardwidth,\@lilly@cards@fantasy@cardheight) {
+            \node[below=-1.5mm,inner sep=0pt] (@crd@img) at (.5*\@lilly@cards@fantasy@cardwidth,\@lilly@cards@fantasy@cardheight) {
                 \edef\@tmp{\noexpand\includegraphics[width=\noexpand\@lilly@cards@fantasy@imagewidth,keepaspectratio]{#1}}\@tmp%
             };
         }
@@ -71,63 +66,63 @@
 % #1 Special Arguments for the Card
 % #2 Id of the Card
 \def\@lilly@cards@draw@fantasy#1#2{\fontfamily{antt}%
-    \begin{tikzpicture}[@lilly@cards@fantasy@cardargs,#1]
-        \clip[@lilly@cards@fantasy@cardcorners] \@lilly@cards@shapes@fantasy@card;
-        \fill[\@lilly@cards@get{#2}{back@color}] \@lilly@cards@shapes@fantasy@card;
-        % Draw the background with the image:
-        \IfFileExists{\@lilly@cards@get{#2}{extra@a}}{%Image:
-        \draw[@lilly@cards@fantasy@cardimage=\@lilly@cards@get{#2}{extra@a}] (0,\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@imageheight) to ++(\@lilly@cards@fantasy@cardwidth,0) to[@lilly@cards@fantasy@cardcorners] (\@lilly@cards@fantasy@cardwidth,\@lilly@cards@fantasy@cardheight) to[@lilly@cards@fantasy@cardcorners] (0,\@lilly@cards@fantasy@cardheight) -- cycle;
-        % Get Height of Node position:
-        \PgetY{(@crd@img)}{\imgnY}
-        \pgfmathsetmacro\@ld{\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@imageheight}
-        \def\@off{0}
-        \ifdim\imgnY>\@lilly@cards@fantasy@imageheight%
-            \def\@targetp{($(@crd@img.south east)+(0,\@off cm)$)}\else%
-            \def\@targetp{(\@lilly@cards@fantasy@cardwidth,\@ld pt+\@off cm)}\fi
-        % Fade for the Image: will automatically  adapt to image size
-        \fill[\@lilly@cards@get{#2}{back@color}] (0,0) rectangle \@targetp;
-        % \node[above right] at(0,0){\imgnY : \@ld : \the\@lilly@cards@fantasy@imageheight};
-        \def\@off{0.525}
-        \foreach \@i in {0,1}{
-            \fill[\@lilly@cards@get{#2}{back@color},path fading=@fantasy@color@imgfad] \@targetp
-            ++(-\@lilly@cards@fantasy@cardwidth,-0.525cm) rectangle \@targetp;
-            }
-        }{}
+\begin{tikzpicture}[@lilly@cards@fantasy@cardargs,#1]
+\clip[@lilly@cards@fantasy@cardcorners] \@lilly@cards@shapes@fantasy@card;
+\fill[\@lilly@cards@get{#2}{back@color}] \@lilly@cards@shapes@fantasy@card;
+% Draw the background with the image:
+\IfFileExists{\@lilly@cards@get{#2}{extra@a}}{%Image:
+\draw[@lilly@cards@fantasy@cardimage=\@lilly@cards@get{#2}{extra@a}] (0,\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@imageheight) to ++(\@lilly@cards@fantasy@cardwidth,0) to[@lilly@cards@fantasy@cardcorners] (\@lilly@cards@fantasy@cardwidth,\@lilly@cards@fantasy@cardheight) to[@lilly@cards@fantasy@cardcorners] (0,\@lilly@cards@fantasy@cardheight) -- cycle;
+% Get Height of Node position:
+\PgetY{(@crd@img)}{\imgnY}
+\pgfmathsetmacro\@ld{\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@imageheight}
+\def\@off{0}
+\ifdim\imgnY>\@lilly@cards@fantasy@imageheight%
+    \def\@targetp{($(@crd@img.south east)+(0,\@off cm)$)}\else%
+    \def\@targetp{(\@lilly@cards@fantasy@cardwidth,\@ld pt+\@off cm)}\fi
+% Fade for the Image: will automatically  adapt to image size
+\fill[\@lilly@cards@get{#2}{back@color}] (0,0) rectangle \@targetp;
+% \node[above right] at(0,0){\imgnY : \@ld : \the\@lilly@cards@fantasy@imageheight};
+\def\@off{.525}
+\foreach \@i in {0,1}{
+    \fill[\@lilly@cards@get{#2}{back@color},path fading=@fantasy@color@imgfad] \@targetp
+    ++(-\@lilly@cards@fantasy@cardwidth,-.525cm) rectangle \@targetp;
+    }
+}{}
 
-        % Upper right tag
-        \fill[@lilly@cards@fantasy@strip,\@lilly@cards@get{#2}{extra@c}] \@lilly@cards@shapes@fantasy@rightStrip;
-        \node at (\@lilly@cards@fantasy@cardwidth-0.5*\@lilly@cards@fantasy@stripw-\@lilly@cards@fantasy@stripp,\@lilly@cards@shapes@fantasy@titley-0.1cm) {\color{black}\ifthenelse{\equal{}{\@lilly@cards@get{#2}{extra@b}}}{?}{\@lilly@cards@get{#2}{extra@b}}};
-        % Price set
+% Upper right tag
+\fill[@lilly@cards@fantasy@strip,\@lilly@cards@get{#2}{extra@c}] \@lilly@cards@shapes@fantasy@rightStrip;
+\node at (\@lilly@cards@fantasy@cardwidth-.5*\@lilly@cards@fantasy@stripw-\@lilly@cards@fantasy@stripp,\@lilly@cards@shapes@fantasy@titley-.1cm) {\color{black}\ifthenelse{\equal{}{\@lilly@cards@get{#2}{extra@b}}}{?}{\@lilly@cards@get{#2}{extra@b}}};
+% Price set
 
-        %% left tags
-        % uper left
-        \fill[@lilly@cards@fantasy@strip,\@lilly@cards@get{#2}{main@color}] \@lilly@cards@shapes@fantasy@leftStrip;
-        % icon
-        \node at (\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw-1.75\@lilly@cards@fantasy@stript,\@lilly@cards@fantasy@cardheight-2\@lilly@cards@fantasy@stripp-0.37cm) {\color{white}\edef\@tmp{\@lilly@cards@get{#2}{extra@d}}\@tmp};
-        % lower left
-        \fill[@lilly@cards@fantasy@strip,,\@lilly@cards@get{#2}{main@color}] \@lilly@cards@shapes@fantasy@typeStrip node[rotate=90,above left=1.4mm,\@lilly@cards@get{#2}{text@style}] {%
-            \color{white}\expandafter\MakeUppercase{\@lilly@cards@get{#2}{extra@e}}\quad\hbox{}
-        };
+%% left tags
+% uper left
+\fill[@lilly@cards@fantasy@strip,\@lilly@cards@get{#2}{main@color}] \@lilly@cards@shapes@fantasy@leftStrip;
+% icon
+\node at (\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw-1.75\@lilly@cards@fantasy@stript,\@lilly@cards@fantasy@cardheight-2\@lilly@cards@fantasy@stripp-.37cm) {\color{white}\edef\@tmp{\@lilly@cards@get{#2}{extra@d}}\@tmp};
+% lower left
+\fill[@lilly@cards@fantasy@strip,,\@lilly@cards@get{#2}{main@color}] \@lilly@cards@shapes@fantasy@typeStrip node[rotate=90,above left=1.4mm,\@lilly@cards@get{#2}{text@style}] {%
+    \color{white}\expandafter\MakeUppercase{\@lilly@cards@get{#2}{extra@e}}\quad\hbox{}
+};
 
-        % content:
-        \fill[@lilly@cards@fantasy@elementcorners,\@lilly@cards@get{#2}{back@color}] \@lilly@cards@shapes@fantasy@content;
+% content:
+\fill[@lilly@cards@fantasy@elementcorners,\@lilly@cards@get{#2}{back@color}] \@lilly@cards@shapes@fantasy@content;
 
-        \node[below right, text width=(\@lilly@cards@fantasy@cardwidth-2*\@lilly@cards@fantasy@stripp-\@lilly@cards@fantasy@stripw-2*\@lilly@cards@fantasy@textp-0.3cm)] at (2*\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw+\@lilly@cards@fantasy@textp,0.5*\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@textp) {
-            \@lilly@cards@get{#2}{extra@f}
-        };
-        \node[below right, text width=(\@lilly@cards@fantasy@cardwidth-2*\@lilly@cards@fantasy@stripp-\@lilly@cards@fantasy@stripw-2*\@lilly@cards@fantasy@textp-0.3cm)] at (2*\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw+\@lilly@cards@fantasy@textp,3cm) {%
-            \pgfmathparse{\@lilly@cards@fantasy@scaling*2}%
-            \vrule width \textwidth height \pgfmathresult pt \\[-2pt]
-            \vspace{0.15cm}
-            {\scriptsize\unskip\@lilly@cards@get{#2}{extra@g}}
-        };
+\node[below right, text width=(\@lilly@cards@fantasy@cardwidth-2*\@lilly@cards@fantasy@stripp-\@lilly@cards@fantasy@stripw-2*\@lilly@cards@fantasy@textp-.3cm)] at (2*\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw+\@lilly@cards@fantasy@textp,.5*\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@textp) {
+    \@lilly@cards@get{#2}{extra@f}
+};
+\node[below right, text width=(\@lilly@cards@fantasy@cardwidth-2*\@lilly@cards@fantasy@stripp-\@lilly@cards@fantasy@stripw-2*\@lilly@cards@fantasy@textp-.3cm)] at (2*\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw+\@lilly@cards@fantasy@textp,3cm) {%
+    \pgfmathparse{\@lilly@cards@fantasy@scaling*2}%
+    \vrule width \textwidth height \pgfmathresult pt \\[-2pt]
+    \vspace{.15cm}
+    {\scriptsize\unskip\@lilly@cards@get{#2}{extra@g}}
+};
 
-        % Draw the title:
-        \fill[@lilly@cards@fantasy@elementcorners,\@lilly@cards@get{#2}{border@color},opacity=0.85]  % Title:
-            \@lilly@cards@shapes@fantasy@title node[midway,centered, text width={\@lilly@cards@fantasy@titlew},align=center,\@lilly@cards@get{#2}{text@style}] {\bfseries\@lilly@cards@get{#2}{full@title}};
-        % draw the border:
-        \draw[\@lilly@cards@get{#2}{border@color},@lilly@cards@fantasy@cardcorners] \@lilly@cards@shapes@fantasy@card;
-    \end{tikzpicture}%
+% Draw the title:
+\fill[@lilly@cards@fantasy@elementcorners,\@lilly@cards@get{#2}{border@color},opacity=.85]  % Title:
+    \@lilly@cards@shapes@fantasy@title node[midway,centered, text width={\@lilly@cards@fantasy@titlew},align=center,\@lilly@cards@get{#2}{text@style}] {\bfseries\@lilly@cards@get{#2}{full@title}};
+% draw the border:
+\draw[\@lilly@cards@get{#2}{border@color},@lilly@cards@fantasy@cardcorners] \@lilly@cards@shapes@fantasy@card;
+\end{tikzpicture}%
 }
 
 
@@ -148,32 +143,31 @@
 %  #3  The Class the Card should Be Part of
 %  #4  The CardID
 \NewEnviron{NewFantasyCard}[4][]{%
-    % create the environment commands:
-    \def\settitle##1{\gdef\@card@tmp@title{##1}}%
-    \def\setimage##1{\gdef\@card@tmp@image{##1}}%
-    \def\setprice##1{\gdef\@card@tmp@price{##1}}%
-    \def\setpricecolor##1{\gdef\@card@tmp@pricecol{##1}}%
-    \def\setclasssymbol##1{\gdef\@card@tmp@classsymb{##1}}%
-    \def\setclasstext##1{\gdef\@card@tmp@classtext{##1}}%
-    \long\def\setquote##1{\long\gdef\@card@tmp@quote{##1}}%
-    \long\def\seteffects##1{\long\gdef\@card@tmp@effects{##1}}%
-    % create commands for the default fields:
-    \def\setcolor##1{\gdef\@card@tmp@maincolor{##1}}%
-    \def\setcardcolor##1{\gdef\@card@tmp@backcol{##1}}%
-    \def\settextstyle##1{\gdef\@card@tmp@textstyle{##1}}%
-    % \def\settitle##1{\gdef\@card@tmp@title{##1}}%
-    \BODY%
-    {\globaldefs=1% make it available outside :D
-        \@nameuse{#2x#3xNewCard}[draw={fantasy},#1]{#4}{}% insert title
-    }
-    % Now Set the CardValues, we will expand them once:
-    \foreach \k/\tk in {title/full@title,image/extra@a,price/extra@b,pricecol/extra@c,classsymb/extra@d,classtext/extra@e,quote/extra@f, effects/extra@g,maincolor/main@color,backcol/back@color,textstyle/text@style}{%
-        \ifcsname @card@tmp@\k\endcsname% only persist if set
-            \@@lilly@fantasy@cards@persist{\k}{#4}{\tk}%
-        \fi% erase in any case:
-        \expandafter\global\expandafter\let\csname @card@tmp@\k\endcsname\undefined
-    }
-    %\@nameuse{lillyxCARDSx#4x}
+% create the environment commands:
+\def\settitle##1{\gdef\@card@tmp@title{##1}}%
+\def\setimage##1{\gdef\@card@tmp@image{##1}}%
+\def\setprice##1{\gdef\@card@tmp@price{##1}}%
+\def\setpricecolor##1{\gdef\@card@tmp@pricecol{##1}}%
+\def\setclasssymbol##1{\gdef\@card@tmp@classsymb{##1}}%
+\def\setclasstext##1{\gdef\@card@tmp@classtext{##1}}%
+\long\def\setquote##1{\long\gdef\@card@tmp@quote{##1}}%
+\long\def\seteffects##1{\long\gdef\@card@tmp@effects{##1}}%
+% create commands for the default fields:
+\def\setcolor##1{\gdef\@card@tmp@maincolor{##1}}%
+\def\setcardcolor##1{\gdef\@card@tmp@backcol{##1}}%
+\def\settextstyle##1{\gdef\@card@tmp@textstyle{##1}}%
+% \def\settitle##1{\gdef\@card@tmp@title{##1}}%
+\BODY
+{\globaldefs=1% make it available outside :D
+    \@nameuse{#2x#3xNewCard}[draw={fantasy},#1]{#4}{}% insert title
+}
+% Now Set the CardValues, we will expand them once:
+\foreach \k/\tk in {title/full@title,image/extra@a,price/extra@b,pricecol/extra@c,classsymb/extra@d,classtext/extra@e,quote/extra@f, effects/extra@g,maincolor/main@color,backcol/back@color,textstyle/text@style}{%
+    \ifcsname @card@tmp@\k\endcsname% only persist if set
+        \@@lilly@fantasy@cards@persist{\k}{#4}{\tk}%
+    \fi% erase in any case:
+    \expandafter\global\expandafter\let\csname @card@tmp@\k\endcsname\undefined
+}
 }
 
 \endinput

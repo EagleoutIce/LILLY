@@ -19,23 +19,23 @@ path image/.style n args=3{
 % #4 right image
 % #5 back image
 \def\DrawCubeFull#1#2#3#4#5{
-  \ifx\\#3\\\else
+  \ifx!#3!\else
   \draw (#1) node[canvas is zx plane at y=-0.5] {
          \includegraphics[height=1cm]{images/#3}
-      };\fi\ifx\\#4\\\else
+      };\fi\ifx!#4!\else
   \draw (#1) node[canvas is zy plane at x=-0.5] {
         \reflectbox{\includegraphics[height=1cm]{images/#4}}
-     };\fi\ifx\\#5\\\else
+     };\fi\ifx!#5!\else
    \draw (#1) node[canvas is xy plane at z=-0.5] {
       \includegraphics[height=1cm]{images/#5}
    };
-   \fi\ifx\\#3\\\else
+   \fi\ifx!#3!\else
   \draw (#1) node[canvas is zx plane at y=0.5] {
          \includegraphics[height=1cm]{images/#3}
-      };\fi\ifx\\#4\\\else
+      };\fi\ifx!#4!\else
   \draw (#1) node[canvas is zy plane at x=0.5] {
         \reflectbox{\includegraphics[height=1cm]{images/#4}}
-     };\fi\ifx\\#2\\\else
+     };\fi\ifx!#2!\else
   \draw (#1) node[canvas is xy plane at z=0.5] {
       \includegraphics[height=1cm]{images/#2}
    };\fi
@@ -47,15 +47,15 @@ path image/.style n args=3{
 % #3 top image
 % #4 right image
 \def\DrawCube#1#2#3#4{%
-  \ifx\\#3\\\else% top
+  \ifx!#3!\else% top
   \draw (#1) node[canvas is zx plane at y=0.5] {
          \includegraphics[height=1cm]{images/#3}
       };
-  \fi\ifx\\#4\\\else% right
+  \fi\ifx!#4!\else% right
   \draw (#1) node[canvas is zy plane at x=0.5] {
         \reflectbox{\includegraphics[height=1cm]{images/#4}}
      };
-  \fi\ifx\\#2\\\else% front
+  \fi\ifx!#2!\else% front
   \draw (#1) node[canvas is xy plane at z=0.5] {
       \includegraphics[height=1cm]{images/#2}
    };
@@ -194,7 +194,7 @@ path image/.style n args=3{
   \DrawGrassTopAt{6, 1, 4}
   \DrawGrassTopRightAt{7,1,4}
 
-  
+
 
   \foreach \z in {5,...,7}{
     \foreach \x in{0,...,2}{
