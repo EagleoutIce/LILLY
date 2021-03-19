@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCOLOR}[2019/07/11 Stellt die Farb-Erweiterungen fuer LILLY zur Verfuegung]
 
-\providecommand{\LILLYxMODExPRINT}{print}
+\providecommand\LILLYxMODExPRINT{print}
 
 % Information: Durch: \def\LILLYxColorxInject{} lässt sich das integrieren der jeweiligen Farbpakete annulieren
 % Diese Option erlaubt ein manuelles überschreiben entfernt allerdings auch jede Garantie bezüglich der Funktionsweise
@@ -9,24 +9,24 @@
 % \RequirePackage{LILLYxCORE}
 
 
-\LILLYxDemandPackage{colortbl}{Farbige Tables :D}% Package, Info
-    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}% Error-Text
+\LILLYxDemandPackage{colortbl}{Farbige Tables :D}
+    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}
     {}{}
 
 \ifx\LILLYxUSEREGXCOLOR\undefined
 
-\LILLYxDemandPackage{lilly-xcolor}{Ohne Farben mache ich GARNICHTS}% Package, Info
-    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}% Error-Text
+\LILLYxDemandPackage{lilly-xcolor}{Ohne Farben mache ich GARNICHTS}
+    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}
     {table}{}
 \else
 
-\LILLYxDemandPackage{xcolor}{Ohne Farben mache ich GARNICHTS}% Package, Info
-    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}% Error-Text
+\LILLYxDemandPackage{xcolor}{Ohne Farben mache ich GARNICHTS}
+    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}
     {table}{}
 \fi
 
-\LILLYxDemandPackage{pgf}{Ohne pgf mache ich GARNICHTS}% Package, Info
-    {Jetzt mal ernsthaft, was wären wir ohne pgf? Auch wenn ich nicht mehr weiss, warum es hier gebraucht wird.}% Error-Text
+\LILLYxDemandPackage{pgf}{Ohne pgf mache ich GARNICHTS}
+    {Jetzt mal ernsthaft, was wären wir ohne pgf? Auch wenn ich nicht mehr weiss, warum es hier gebraucht wird.}
     {}{}
 
 % Hier wird, entsprechend der Konfiguration,
@@ -164,7 +164,7 @@
 
 % Aktuell erlaubt Lilly nur Standartmäßig diese beiden Farprofile
 % Allerings werden Farberweiterungen unterstützt:
-\providecommand{\LILLYxCOLORxEXTENSION}{VOID}
+\providecommand\LILLYxCOLORxEXTENSION{VOID}
 \userput{_LILLY_COLOR_EXTENSION_\LILLYxCOLORxEXTENSION}{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}
 
 \endinput

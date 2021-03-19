@@ -3,10 +3,10 @@
 % PHILOSOPHER ist ein Titlepageprovider der nach und nach die alten provider ersetzen soll
 
 \RequirePackage{LILLYxTIKZxCORE,LILLYxCONTROLLERxLINK}
-\LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}% Package, Info
-                    {Dieses Paket ist für LILLY überlebenswichtig}% Error-Text
+\LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}
+                    {Dieses Paket ist für LILLY überlebenswichtig}
                     {\LILLYxGeneralxPaperformat,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering,\LILLYxGeometryxExtras}{}
-\providecommand{\LILLY@Typ}{Unbekannt}
+\providecommand\LILLY@Typ{Unbekannt}
 \usetikzlibrary{decorations.text}
 
 \input{Konanur.fd}
@@ -106,8 +106,8 @@
     \LILLYxGENxFACULTY{Psychologie}{$\mathbf{\Psi}$}{#1}[#2][#3][60pt][\smallNumber][0.125]
 }
 
-\providecommand{\LILLYxColorxTITLExSETTINGSxGENERAL}{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
-\providecommand{\LILLYxColorxTITLExSETTINGSxVORLESUNG}{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung}
+\providecommand\LILLYxColorxTITLExSETTINGSxGENERAL{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
+\providecommand\LILLYxColorxTITLExSETTINGSxVORLESUNG{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung}
 \RequestConfig{\LILLYxColorxTITLExSETTINGSxGENERAL}
 \RequestConfig{\LILLYxColorxTITLExSETTINGSxVORLESUNG}
 
@@ -139,14 +139,14 @@
 
 \gdef\LILLYxPHILOSOPHERxINIT{\newgeometry{margin = 0pt}}
 
-\providecommand{\LILLYxPHILOSOPHERxMETADATA}{%
+\providecommand\LILLYxPHILOSOPHERxMETADATA{%
     {\raggedright\hspace*{\LILLYxLeftsep}\parbox{\linewidth-\LILLYxLeftsep}{{\scshape \tiny{\@Lilly@@Philosopher@Type@Decode{\LILLY@Typ} von}\\\large\AUTHOR\\[-0.35\baselineskip]{\normalfont\LILLYxlstTypeWriter\tiny\hypersetup{urlcolor=black}\href{mailto:\AUTHORMAIL}{\AUTHORMAIL}}\par}
     \vspace{0.5cm}%
     {\itshape\small Version vom: \\ \heute\par}}}
 }
 
 % title toc listname
-\providecommand{\LILLYxPHILOSOPHERxBONUSxTTOCxHEADER}{Themenübersicht}
+\providecommand\LILLYxPHILOSOPHERxBONUSxTTOCxHEADER{Themenübersicht}
 \providecommand\LILLYZSFxLOGOHEIGHT{11em}
 
 % This variant prints an highlighted Bonus and include \LILLY@n/a number if wanted as an extra number to seperate Versions

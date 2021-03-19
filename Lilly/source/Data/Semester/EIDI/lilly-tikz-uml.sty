@@ -99,9 +99,9 @@
                        port width/.initial=1ex, fill port/.initial= yellow!20,%
                        fill assembly connector/.initial= white,%
                        .unknown/.code={%
-                         \let\keyname=\pgfkeyscurrentname%
-                         \let\keyvalue=\pgfkeyscurrentvalue%
-                         \errmessage{TIKZUML ERROR : in tikzuml global, invalid option \keyname}%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \errmessage{TIKZUML ERROR : in tikzuml global, invalid option \keyname}%
                        }%
 }%
 %
@@ -140,34 +140,34 @@
 \newcommand\tikzumlset[1]{%
   \pgfkeys{/tikzuml/.cd,#1}%
   \pgfkeys{/tikzuml/.cd, text/.get=\tikzumlDefaultTextColor, draw/.get=\tikzumlDefaultDrawColor, font/.get=\tikzumlDefaultFont,%
-                         x/.get=\tikzumlDefaultX, y/.get=\tikzumlDefaultY,%
-                         package type/.get=\tikzumlPackageDefaultType, fill package/.get=\tikzumlPackageDefaultFillColor,%
-                         class width/.get=\tikzumlClassDefaultWidth, simple interface width/.get=\tikzumlSimpleInterfaceDefaultWidth, class type/.get=\tikzumlClassDefaultType, fill class/.get=\tikzumlClassDefaultFillColor, fill template/.get=\tikzumlClassTemplateFillColorDefaultFillColor,%
-                         narynode width/.get=\tikzumlNaryNodeWidth,%
-                         relation geometry/.get=\tikzumlRelationDefaultGeometry, relation angle1/.get=\tikzumlRelationDefaultAngleO, relation angle2/.get=\tikzumlRelationDefaultAngleT, relation loopsize/.get=\tikzumlRelationDefaultLoopSize, relation weight/.get=\tikzumlRelationDefaultWeight, relation pos1/.get=\tikzumlRelationDefaultPosO, relation pos2/.get=\tikzumlRelationDefaultPosT, relation pos stereo/.get=\tikzumlRelationDefaultPosStereo,%
-                         note width/.get=\tikzumlNoteDefaultWidth, fill note/.get=\tikzumlNoteDefaultFillColor,%
-                         fill system/.get=\tikzumlSystemDefaultFillColor,%
-                         fill usecase/.get=\tikzumlUseCaseDefaultFillColor,%
-                         actor below/.get=\tikzumlActorDefaultBelow,%
-                         state join width/.get=\tikzumlStateJoinDefaultWidth,%
-                         state decision width/.get=\tikzumlStateDecisionDefaultWidth,%
-                         state initial width/.get=\tikzumlStateInitialDefaultWidth,%
-                         state final width/.get=\tikzumlStateFinalDefaultWidth,%
-                         state enter width/.get=\tikzumlStateEnterDefaultWidth,%
-                         state exit width/.get=\tikzumlStateExitDefaultWidth,%
-                         state end width/.get=\tikzumlStateEndDefaultWidth,%
-                         state history width/.get=\tikzumlStateHistoryDefaultWidth,%
-                         state deep history width/.get=\tikzumlStateDeepHistoryDefaultWidth,%
-                         state width/.get=\tikzumlStateDefaultWidth, fill state/.get=\tikzumlStateDefaultFillColor,%
-                         object stereo/.get=\tikzumlObjectDefaultStereo, fill object/.get=\tikzumlObjectDefaultFillColor,%
-                         call dt/.get=\tikzumlCallDefaultDT, call padding/.get=\tikzumlCallDefaultPadding, call type/.get=\tikzumlCallDefaultType, fill call/.get=\tikzumlCallDefaultFillColor,%
-                         fragment type/.get=\tikzumlFragmentDefaultType, fragment inner xsep/.get=\tikzumlFragmentDefaultXSep, fragment inner ysep/.get=\tikzumlFragmentDefaultYSep, fill fragment/.get=\tikzumlFragmentDefaultFillColor,%
-                         create call dt/.get=\tikzumlCreateCallDT,%
-                         component width/.get=\tikzumlComponentDefaultWidth, fill component/.get=\tikzumlComponentDefaultFillColor,%
-                         required interface distance/.get=\tikzumlRequiredInterfaceDefaultDistance, required interface width/.get=\tikzumlRequiredInterfaceDefaultWidth, required interface padding/.get=\tikzumlRequiredInterfaceDefaultPadding,%
-                         provided interface distance/.get=\tikzumlProvidedInterfaceDefaultDistance, provided interface width/.get=\tikzumlProvidedInterfaceDefaultWidth, provided interface padding/.get=\tikzumlProvidedInterfaceDefaultPadding,%
-                         port width/.get=\tikzumlPortDefaultWidth, fill port/.get=\tikzumlPortDefaultFillColor,%
-                         fill assembly connector/.get=\tikzumlAssemblyConnectorDefaultFillColor%
+ x/.get=\tikzumlDefaultX, y/.get=\tikzumlDefaultY,%
+ package type/.get=\tikzumlPackageDefaultType, fill package/.get=\tikzumlPackageDefaultFillColor,%
+ class width/.get=\tikzumlClassDefaultWidth, simple interface width/.get=\tikzumlSimpleInterfaceDefaultWidth, class type/.get=\tikzumlClassDefaultType, fill class/.get=\tikzumlClassDefaultFillColor, fill template/.get=\tikzumlClassTemplateFillColorDefaultFillColor,%
+ narynode width/.get=\tikzumlNaryNodeWidth,%
+ relation geometry/.get=\tikzumlRelationDefaultGeometry, relation angle1/.get=\tikzumlRelationDefaultAngleO, relation angle2/.get=\tikzumlRelationDefaultAngleT, relation loopsize/.get=\tikzumlRelationDefaultLoopSize, relation weight/.get=\tikzumlRelationDefaultWeight, relation pos1/.get=\tikzumlRelationDefaultPosO, relation pos2/.get=\tikzumlRelationDefaultPosT, relation pos stereo/.get=\tikzumlRelationDefaultPosStereo,%
+ note width/.get=\tikzumlNoteDefaultWidth, fill note/.get=\tikzumlNoteDefaultFillColor,%
+ fill system/.get=\tikzumlSystemDefaultFillColor,%
+ fill usecase/.get=\tikzumlUseCaseDefaultFillColor,%
+ actor below/.get=\tikzumlActorDefaultBelow,%
+ state join width/.get=\tikzumlStateJoinDefaultWidth,%
+ state decision width/.get=\tikzumlStateDecisionDefaultWidth,%
+ state initial width/.get=\tikzumlStateInitialDefaultWidth,%
+ state final width/.get=\tikzumlStateFinalDefaultWidth,%
+ state enter width/.get=\tikzumlStateEnterDefaultWidth,%
+ state exit width/.get=\tikzumlStateExitDefaultWidth,%
+ state end width/.get=\tikzumlStateEndDefaultWidth,%
+ state history width/.get=\tikzumlStateHistoryDefaultWidth,%
+ state deep history width/.get=\tikzumlStateDeepHistoryDefaultWidth,%
+ state width/.get=\tikzumlStateDefaultWidth, fill state/.get=\tikzumlStateDefaultFillColor,%
+ object stereo/.get=\tikzumlObjectDefaultStereo, fill object/.get=\tikzumlObjectDefaultFillColor,%
+ call dt/.get=\tikzumlCallDefaultDT, call padding/.get=\tikzumlCallDefaultPadding, call type/.get=\tikzumlCallDefaultType, fill call/.get=\tikzumlCallDefaultFillColor,%
+ fragment type/.get=\tikzumlFragmentDefaultType, fragment inner xsep/.get=\tikzumlFragmentDefaultXSep, fragment inner ysep/.get=\tikzumlFragmentDefaultYSep, fill fragment/.get=\tikzumlFragmentDefaultFillColor,%
+ create call dt/.get=\tikzumlCreateCallDT,%
+ component width/.get=\tikzumlComponentDefaultWidth, fill component/.get=\tikzumlComponentDefaultFillColor,%
+ required interface distance/.get=\tikzumlRequiredInterfaceDefaultDistance, required interface width/.get=\tikzumlRequiredInterfaceDefaultWidth, required interface padding/.get=\tikzumlRequiredInterfaceDefaultPadding,%
+ provided interface distance/.get=\tikzumlProvidedInterfaceDefaultDistance, provided interface width/.get=\tikzumlProvidedInterfaceDefaultWidth, provided interface padding/.get=\tikzumlProvidedInterfaceDefaultPadding,%
+ port width/.get=\tikzumlPortDefaultWidth, fill port/.get=\tikzumlPortDefaultFillColor,%
+ fill assembly connector/.get=\tikzumlAssemblyConnectorDefaultFillColor%
   }%
 }%
 %
@@ -188,11 +188,11 @@
 %                       class diagrams                   %
 %
 \pgfkeys{/tikzuml/relation/.cd, attr1/.style args={#1|#2}{arg1=#1, mult1=#2},%
-                                attr2/.style args={#1|#2}{arg2=#1, mult2=#2},%
-                                attr/.style args={#1|#2}{arg=#1, mult=#2},%
-                                recursive/.style args={#1|#2|#3}{angle1=#1, angle2=#2, loopsize=#3},%
-                                anchors/.style args={#1 and #2}{anchor1=#1, anchor2=#2},%
-                                recursive direction/.style args={#1 to #2}{recursive direction start=#1, recursive direction end=#2}%
+ attr2/.style args={#1|#2}{arg2=#1, mult2=#2},%
+ attr/.style args={#1|#2}{arg=#1, mult=#2},%
+ recursive/.style args={#1|#2|#3}{angle1=#1, angle2=#2, loopsize=#3},%
+ anchors/.style args={#1 and #2}{anchor1=#1, anchor2=#2},%
+ recursive direction/.style args={#1 to #2}{recursive direction start=#1, recursive direction end=#2}%
 }%
 %
 \pgfkeys{/tikzuml/note/.cd, anchors/.style args={#1 and #2}{anchor1=#1, anchor2=#2}}%
@@ -252,37 +252,37 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newenvironment{umlpackage}[2][]{%
   \pgfkeys{/tikzuml/package/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, style/.style={},%
-                                 name/.initial=tikzumlEmpty, type/.initial=\tikzumlPackageDefaultType, draw/.initial=\tikzumlDefaultDrawColor,%
-                                 fill/.initial=\tikzumlPackageDefaultFillColor, text/.initial=\tikzumlDefaultTextColor,%
-                                 no coords/.is if=tikzumlpackageWithoutCoords,%
-                                 no coords=false,%
-                                 .unknown/.code={%
-                                   \let\keyname=\pgfkeyscurrentname%
-                                   \let\keyvalue=\pgfkeyscurrentvalue%
-                                   \ifthenelse{\equal{\keyname}{above}\OR%
-                                               \equal{\keyname}{left}\OR%
-                                               \equal{\keyname}{below}\OR%
-                                               \equal{\keyname}{right}\OR%
-                                               \equal{\keyname}{above left}\OR%
-                                               \equal{\keyname}{above right}\OR%
-                                               \equal{\keyname}{below left}\OR%
-                                               \equal{\keyname}{below right}}{%
-                                     \IfSubStr{\keyvalue}{ of }{%
-                                       \pgfkeys{/tikzuml/package/.cd, no coords}%
-                                     }{}%
-                                   }{}%
-                                   \ifx\keyvalue\pgfkeysnovalue%
-                                     \pgfkeys{/tikzuml/package/.cd, style/.append style/.expand once={\keyname}}%
-                                   \else%
-                                     \pgfkeys{/tikzuml/package/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                   \fi%
-                                   %\errmessage{TIKZUML ERROR : in umlpackage, invalid option \keyname}%
-                                 }%
+  name/.initial=tikzumlEmpty, type/.initial=\tikzumlPackageDefaultType, draw/.initial=\tikzumlDefaultDrawColor,%
+  fill/.initial=\tikzumlPackageDefaultFillColor, text/.initial=\tikzumlDefaultTextColor,%
+  no coords/.is if=tikzumlpackageWithoutCoords,%
+  no coords=false,%
+  .unknown/.code={%
+    \let\keyname=\pgfkeyscurrentname%
+    \let\keyvalue=\pgfkeyscurrentvalue%
+    \ifthenelse{\equal{\keyname}{above}\OR%
+                \equal{\keyname}{left}\OR%
+                \equal{\keyname}{below}\OR%
+                \equal{\keyname}{right}\OR%
+                \equal{\keyname}{above left}\OR%
+                \equal{\keyname}{above right}\OR%
+                \equal{\keyname}{below left}\OR%
+                \equal{\keyname}{below right}}{%
+      \IfSubStr{\keyvalue}{ of }{%
+        \pgfkeys{/tikzuml/package/.cd, no coords}%
+      }{}%
+    }{}%
+    \ifx\keyvalue\pgfkeysnovalue%
+      \pgfkeys{/tikzuml/package/.cd, style/.append style/.expand once={\keyname}}%
+    \else%
+      \pgfkeys{/tikzuml/package/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+    \fi%
+    %\errmessage{TIKZUML ERROR : in umlpackage, invalid option \keyname}%
+  }%
   }%
   \pgfkeys{/tikzuml/package/.cd, #1}%
   \pgfkeys{/tikzuml/package/.cd, x/.get=\tikzumlPackageXShift, y/.get=\tikzumlPackageYShift, name/.get=\tikzumlPackageName, type/.get=\tikzumlPackageTypeTmp,%
-                                 draw/.get=\tikzumlPackageDrawColor, fill/.get=\tikzumlPackageFillColor,%
-                                 text/.get=\tikzumlPackageTextColor%
+ draw/.get=\tikzumlPackageDrawColor, fill/.get=\tikzumlPackageFillColor,%
+ text/.get=\tikzumlPackageTextColor%
   }%
   %
 
@@ -376,36 +376,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlclass[4][]{%
   \pgfkeys{/tikzuml/class/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlClassDefaultWidth, type/.initial=\tikzumlClassDefaultType,%
-                               tags/.initial={}, style/.style={},%
-                               template/.initial={}, name/.initial=tikzumlEmpty,%
-                               draw/.initial=\tikzumlDefaultDrawColor,%
-                               fill template/.initial=\tikzumlClassTemplateFillColorDefaultFillColor,%
-                               fill/.initial=\tikzumlClassDefaultFillColor,%
-                               text/.initial=\tikzumlDefaultTextColor,%
-                               simple/.is if=tikzumlclassSimpleStyle, circle/.is if=tikzumlclassCircleShape, no coords/.is if=tikzumlclassWithoutCoords,%
-                               simple=false, circle=false, no coords=false,%
-                               .unknown/.code={%
-                                 \let\keyname=\pgfkeyscurrentname%
-                                 \let\keyvalue=\pgfkeyscurrentvalue%
-                                 \ifthenelse{\equal{\keyname}{above}\OR%
-                                             \equal{\keyname}{left}\OR%
-                                             \equal{\keyname}{below}\OR%
-                                             \equal{\keyname}{right}\OR%
-                                             \equal{\keyname}{above left}\OR%
-                                             \equal{\keyname}{above right}\OR%
-                                             \equal{\keyname}{below left}\OR%
-                                             \equal{\keyname}{below right}}{%
-                                   \IfSubStr{\keyvalue}{ of }{%
-                                     \pgfkeys{/tikzuml/class/.cd, no coords}%
-                                   }{}%
-                                 }{}%
-                                 \ifx\keyvalue\pgfkeysnovalue%
-                                   \pgfkeys{/tikzuml/class/.cd, style/.append style/.expand once={\keyname}}%
-                                 \else%
-                                   \pgfkeys{/tikzuml/class/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                 \fi%
-                                 %\errmessage{TIKZUML ERROR : in umlclass, invalid option \keyname}%
-                               }%
+  tags/.initial={}, style/.style={},%
+  template/.initial={}, name/.initial=tikzumlEmpty,%
+  draw/.initial=\tikzumlDefaultDrawColor,%
+  fill template/.initial=\tikzumlClassTemplateFillColorDefaultFillColor,%
+  fill/.initial=\tikzumlClassDefaultFillColor,%
+  text/.initial=\tikzumlDefaultTextColor,%
+  simple/.is if=tikzumlclassSimpleStyle, circle/.is if=tikzumlclassCircleShape, no coords/.is if=tikzumlclassWithoutCoords,%
+  simple=false, circle=false, no coords=false,%
+  .unknown/.code={%
+    \let\keyname=\pgfkeyscurrentname%
+    \let\keyvalue=\pgfkeyscurrentvalue%
+    \ifthenelse{\equal{\keyname}{above}\OR%
+                \equal{\keyname}{left}\OR%
+                \equal{\keyname}{below}\OR%
+                \equal{\keyname}{right}\OR%
+                \equal{\keyname}{above left}\OR%
+                \equal{\keyname}{above right}\OR%
+                \equal{\keyname}{below left}\OR%
+                \equal{\keyname}{below right}}{%
+      \IfSubStr{\keyvalue}{ of }{%
+        \pgfkeys{/tikzuml/class/.cd, no coords}%
+      }{}%
+    }{}%
+    \ifx\keyvalue\pgfkeysnovalue%
+      \pgfkeys{/tikzuml/class/.cd, style/.append style/.expand once={\keyname}}%
+    \else%
+      \pgfkeys{/tikzuml/class/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+    \fi%
+    %\errmessage{TIKZUML ERROR : in umlclass, invalid option \keyname}%
+  }%
   }%
   \pgfkeys{/tikzuml/class/.cd,#1}%
   %
@@ -416,10 +416,10 @@
   \fi%
   %
   \pgfkeys{/tikzuml/class/.cd, x/.get=\tikzumlClassX, y/.get=\tikzumlClassY, width/.get=\tikzumlClassMinimumWidth,%
-                               type/.get=\tikzumlClassTypeTmp, tags/.get=\tikzumlClassTagsTmp, template/.get=\tikzumlClassTemplateFillColorParam,%
-                               name/.get=\tikzumlClassName,%
-                               draw/.get=\tikzumlClassDrawColor, fill/.get=\tikzumlClassFillColor,%
-                               text/.get=\tikzumlClassTextColor, fill template/.get=\tikzumlClassTemplateFillColor%
+ type/.get=\tikzumlClassTypeTmp, tags/.get=\tikzumlClassTagsTmp, template/.get=\tikzumlClassTemplateFillColorParam,%
+ name/.get=\tikzumlClassName,%
+ draw/.get=\tikzumlClassDrawColor, fill/.get=\tikzumlClassFillColor,%
+ text/.get=\tikzumlClassTextColor, fill template/.get=\tikzumlClassTemplateFillColor%
   }%
   %
   \ifthenelse{\equal{\tikzumlClassTypeTmp}{class}}{%
@@ -533,48 +533,48 @@
 % shortcuts for interface, enum and typedef environments
 \newcommand\umlabstract[4][]{%
   \pgfkeys{/tikzuml/class/.cd, .unknown/.code={%
-                                          \let\keyname=\pgfkeyscurrentname%
-                                          \let\keyvalue=\pgfkeyscurrentvalue%
-                                          \ifthenelse{\equal{\keyname}{type}}{%
-                                            \errmessage{TIKZUML ERROR : in umlabstract, forbidden option type}%
-                                          }{}%
-                                        }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{type}}{%
+ \errmessage{TIKZUML ERROR : in umlabstract, forbidden option type}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/class/.cd, #1}%
   \umlclass[type=abstract,#1]{#2}{#3}{#4}%
 }%
 \newcommand\umlinterface[4][]{%
   \pgfkeys{/tikzuml/class/.cd, .unknown/.code={%
-                                          \let\keyname=\pgfkeyscurrentname%
-                                          \let\keyvalue=\pgfkeyscurrentvalue%
-                                          \ifthenelse{\equal{\keyname}{type}}{%
-                                            \errmessage{TIKZUML ERROR : in umlinterface, forbidden option type}%
-                                          }{}%
-                                        }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{type}}{%
+ \errmessage{TIKZUML ERROR : in umlinterface, forbidden option type}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/class/.cd, #1}%
   \umlclass[type=interface,#1]{#2}{#3}{#4}%
 }%
 \newcommand\umltypedef[4][]{%
   \pgfkeys{/tikzuml/class/.cd, .unknown/.code={%
-                                          \let\keyname=\pgfkeyscurrentname%
-                                          \let\keyvalue=\pgfkeyscurrentvalue%
-                                          \ifthenelse{\equal{\keyname}{type}}{%
-                                            \errmessage{TIKZUML ERROR : in umltypedef, forbidden option type}%
-                                          }{}%
-                                        }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{type}}{%
+ \errmessage{TIKZUML ERROR : in umltypedef, forbidden option type}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/class/.cd, #1}%
   \umlclass[type=typedef,#1]{#2}{#3}{#4}%
 }%
 \newcommand\umlenum[4][]{%
   \pgfkeys{/tikzuml/class/.cd, .unknown/.code={%
-                                          \let\keyname=\pgfkeyscurrentname%
-                                          \let\keyvalue=\pgfkeyscurrentvalue%
-                                          \ifthenelse{\equal{\keyname}{type}}{%
-                                            \errmessage{TIKZUML ERROR : in umlenum, forbidden option type}%
-                                          }{}%
-                                        }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{type}}{%
+ \errmessage{TIKZUML ERROR : in umlenum, forbidden option type}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/class/.cd, #1}%
   \umlclass[type=enum,#1]{#2}{#3}{#4}
@@ -584,12 +584,12 @@
 \newcommand\umlemptyclass[2][]{\umlclass[#1]{#2}{}{}}%
 \newcommand\umlsimpleclass[2][]{%
   \pgfkeys{/tikzuml/class/.cd, .unknown/.code={%
-                                          \let\keyname=\pgfkeyscurrentname%
-                                          \let\keyvalue=\pgfkeyscurrentvalue%
-                                          \ifthenelse{\equal{\keyname}{simple}}{%
-                                            \errmessage{TIKZUML ERROR : in umlsimpleclass, forbidden option simple}%
-                                          }{}%
-                                        }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{simple}}{%
+ \errmessage{TIKZUML ERROR : in umlsimpleclass, forbidden option simple}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/class/.cd, #1}%
   \umlemptyclass[simple, #1]{#2}%
@@ -597,16 +597,16 @@
 %
 \newcommand\umlsimpleinterface[2][]{%
   \pgfkeys{/tikzuml/class/.cd, .unknown/.code={%
-                                 \let\keyname=\pgfkeyscurrentname%
-                                 \let\keyvalue=\pgfkeyscurrentvalue%
-                                 \ifthenelse{\equal{\keyname}{simple}}{%
-                                   \errmessage{TIKZUML ERROR : in umlsimpleinterface, forbidden option simple}%
-                                 }{%
-                                   \ifthenelse{\equal{\keyname}{circle}}{%
-                                     \errmessage{TIKZUML ERROR : in umlsimpleinterface, forbidden option circle}%
-                                   }{}%
-                                 }%
-                               }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{simple}}{%
+ \errmessage{TIKZUML ERROR : in umlsimpleinterface, forbidden option simple}%
+ }{%
+ \ifthenelse{\equal{\keyname}{circle}}{%
+ \errmessage{TIKZUML ERROR : in umlsimpleinterface, forbidden option circle}%
+ }{}%
+ }%
+ }%
   }%
   \pgfkeys{/tikzuml/class/.cd, #1}%
   \umlsimpleclass[circle, #1]{#2}%
@@ -620,64 +620,64 @@
   \def\tikzumlNaryNodeAnchor{.north}
   \def\tikzumlNaryNodeLabelPos{above}
   \pgfkeys{/tikzuml/narynode/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlNaryNodeDefaultWidth, name/.initial=tikzumlEmpty,%
-                                  draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlClassDefaultFillColor,%
-                                  text/.initial=\tikzumlDefaultTextColor, style/.style={},%
-                                  .unknown/.code={%
-                                    \let\keyname=\pgfkeyscurrentname%
-                                    \let\keyvalue=\pgfkeyscurrentvalue%
-                                    \ifthenelse{\equal{\keyname}{above}}{%
-                                      \def\tikzumlNaryNodeAnchor{.north}%
-                                      \def\tikzumlNaryNodeLabelPos{above}%
-                                    }{%
-                                      \ifthenelse{\equal{\keyname}{above left}}{%
-                                        \def\tikzumlNaryNodeAnchor{.north west}%
-                                        \def\tikzumlNaryNodeLabelPos{above left}%
-                                      }{%
-                                        \ifthenelse{\equal{\keyname}{left}}{%
-                                          \def\tikzumlNaryNodeAnchor{.west}%
-                                          \def\tikzumlNaryNodeLabelPos{left}%
-                                        }{%
-                                          \ifthenelse{\equal{\keyname}{below left}}{%
-                                            \def\tikzumlNaryNodeAnchor{.south west}%
-                                            \def\tikzumlNaryNodeLabelPos{below left}%
-                                          }{%
-                                            \ifthenelse{\equal{\keyname}{below}}{%
-                                              \def\tikzumlNaryNodeAnchor{.south}%
-                                              \def\tikzumlNaryNodeLabelPos{below}%
-                                            }{%
-                                              \ifthenelse{\equal{\keyname}{below right}}{%
-                                                \def\tikzumlNaryNodeAnchor{.south east}%
-                                                \def\tikzumlNaryNodeLabelPos{below right}%
-                                              }{%
-                                                \ifthenelse{\equal{\keyname}{right}}{%
-                                                  \def\tikzumlNaryNodeAnchor{.east}%
-                                                  \def\tikzumlNaryNodeLabelPos{right}%
-                                                }{%
-                                                  \ifthenelse{\equal{\keyname}{above right}}{%
-                                                    \def\tikzumlNaryNodeAnchor{.north east}%
-                                                    \def\tikzumlNaryNodeLabelPos{above right}%
-                                                  }{%
-                                                    \ifx\keyvalue\pgfkeysnovalue%
-                                                      \pgfkeys{/tikzuml/narynode/.cd, style/.append style/.expand once={\keyname}}%
-                                                    \else%
-                                                      \pgfkeys{/tikzuml/narynode/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                                    \fi%
-                                                    %\errmessage{TIKZUML ERROR : in umlNarynode, invalid option \keyname}%
-                                                  }%
-                                                }%
-                                              }%
-                                            }%
-                                          }%
-                                        }%
-                                      }%
-                                    }%
-                                  }%
+  draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlClassDefaultFillColor,%
+  text/.initial=\tikzumlDefaultTextColor, style/.style={},%
+  .unknown/.code={%
+    \let\keyname=\pgfkeyscurrentname%
+    \let\keyvalue=\pgfkeyscurrentvalue%
+    \ifthenelse{\equal{\keyname}{above}}{%
+      \def\tikzumlNaryNodeAnchor{.north}%
+      \def\tikzumlNaryNodeLabelPos{above}%
+    }{%
+      \ifthenelse{\equal{\keyname}{above left}}{%
+        \def\tikzumlNaryNodeAnchor{.north west}%
+        \def\tikzumlNaryNodeLabelPos{above left}%
+      }{%
+        \ifthenelse{\equal{\keyname}{left}}{%
+          \def\tikzumlNaryNodeAnchor{.west}%
+          \def\tikzumlNaryNodeLabelPos{left}%
+        }{%
+          \ifthenelse{\equal{\keyname}{below left}}{%
+            \def\tikzumlNaryNodeAnchor{.south west}%
+            \def\tikzumlNaryNodeLabelPos{below left}%
+          }{%
+            \ifthenelse{\equal{\keyname}{below}}{%
+              \def\tikzumlNaryNodeAnchor{.south}%
+              \def\tikzumlNaryNodeLabelPos{below}%
+            }{%
+              \ifthenelse{\equal{\keyname}{below right}}{%
+                \def\tikzumlNaryNodeAnchor{.south east}%
+                \def\tikzumlNaryNodeLabelPos{below right}%
+              }{%
+                \ifthenelse{\equal{\keyname}{right}}{%
+                  \def\tikzumlNaryNodeAnchor{.east}%
+                  \def\tikzumlNaryNodeLabelPos{right}%
+                }{%
+                  \ifthenelse{\equal{\keyname}{above right}}{%
+                    \def\tikzumlNaryNodeAnchor{.north east}%
+                    \def\tikzumlNaryNodeLabelPos{above right}%
+                  }{%
+                    \ifx\keyvalue\pgfkeysnovalue%
+                      \pgfkeys{/tikzuml/narynode/.cd, style/.append style/.expand once={\keyname}}%
+                    \else%
+                      \pgfkeys{/tikzuml/narynode/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+                    \fi%
+                    %\errmessage{TIKZUML ERROR : in umlNarynode, invalid option \keyname}%
+                  }%
+                }%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
   }%
   \pgfkeys{/tikzuml/narynode/.cd,#1}%
   \pgfkeys{/tikzuml/narynode/.cd, x/.get=\tikzumlNaryNodeX, y/.get=\tikzumlNaryNodeY, width/.get=\tikzumlNaryNodeMinimumWidth,%
-                                  name/.get=\tikzumlNaryNodeName,%
-                                  draw/.get=\tikzumlNaryNodeDrawColor, fill/.get=\tikzumlNaryNodeFillColor,%
-                                  text/.get=\tikzumlNaryNodeTextColor%
+ name/.get=\tikzumlNaryNodeName,%
+ draw/.get=\tikzumlNaryNodeDrawColor, fill/.get=\tikzumlNaryNodeFillColor,%
+ text/.get=\tikzumlNaryNodeTextColor%
   }%
   %
   \def\tikzumlNaryName{#2}%
@@ -730,52 +730,52 @@
 %            recursive direction start/end: when transition relation, start/end directions of the relation arrow
 \newcommand\umlrelation[3][]{%
   \pgfkeys{/tikzuml/relation/.cd, geometry/.initial=\tikzumlRelationDefaultGeometry, weight/.initial=\tikzumlRelationDefaultWeight,%
-                                  arm1/.initial=auto, arm2/.initial=auto,%
-                                  arg1/.initial={}, arg2/.initial={}, arg/.initial={},%
-                                  mult1/.initial={}, mult2/.initial={}, mult/.initial={},%
-                                  pos1/.initial=\tikzumlRelationDefaultPosO, pos2/.initial=\tikzumlRelationDefaultPosT, pos/.initial=tikzumlEmpty,%
-                                  align1/.initial={}, align2/.initial={}, align/.initial={},%
-                                  anchor1/.initial=tikzumlEmpty, anchor2/.initial=tikzumlEmpty,%
-                                  angle1/.initial=\tikzumlRelationDefaultAngleO, angle2/.initial=\tikzumlRelationDefaultAngleT, loopsize/.initial=\tikzumlRelationDefaultLoopSize,%
-                                  stereo/.initial={}, pos stereo/.initial=\tikzumlRelationDefaultPosStereo,%
-                                  style/.initial=->, style2/.style={}, name/.initial=relation-\thetikzumlRelationNum,%
-                                  recursive mode/.initial=default, recursive direction start/.initial=right,%
-                                  recursive direction end/.initial=bottom,%
-                                  .unknown/.code={%
-                                    \let\keyname=\pgfkeyscurrentname%
-                                    \let\keyvalue=\pgfkeyscurrentvalue%
-                                    \ifthenelse{\equal{\keyname}{with port}%
-                                             \OR\equal{\keyname}{interface}%
-                                             \OR\equal{\keyname}{padding}%
-                                             \OR\equal{\keyname}{width}%
-                                             \OR\equal{\keyname}{first arm}%
-                                             \OR\equal{\keyname}{second arm}%
-                                             \OR\equal{\keyname}{middle arm}%
-                                             \OR\equal{\keyname}{last arm}%
-                                             \OR\equal{\keyname}{distance}}{}{%
-                                               \ifx\keyvalue\pgfkeysnovalue%
-                                                 \pgfkeys{/tikzuml/relation/.cd, style2/.append style/.expand once={\keyname}}%
-                                               \else%
-                                                 \pgfkeys{/tikzuml/relation/.cd, style2/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                               \fi%
-                                               %\errmessage{TIKZUML ERROR : in umlrelation, invalid option \keyname}%
-                                    }%
-                                  }%
+  arm1/.initial=auto, arm2/.initial=auto,%
+  arg1/.initial={}, arg2/.initial={}, arg/.initial={},%
+  mult1/.initial={}, mult2/.initial={}, mult/.initial={},%
+  pos1/.initial=\tikzumlRelationDefaultPosO, pos2/.initial=\tikzumlRelationDefaultPosT, pos/.initial=tikzumlEmpty,%
+  align1/.initial={}, align2/.initial={}, align/.initial={},%
+  anchor1/.initial=tikzumlEmpty, anchor2/.initial=tikzumlEmpty,%
+  angle1/.initial=\tikzumlRelationDefaultAngleO, angle2/.initial=\tikzumlRelationDefaultAngleT, loopsize/.initial=\tikzumlRelationDefaultLoopSize,%
+  stereo/.initial={}, pos stereo/.initial=\tikzumlRelationDefaultPosStereo,%
+  style/.initial=->, style2/.style={}, name/.initial=relation-\thetikzumlRelationNum,%
+  recursive mode/.initial=default, recursive direction start/.initial=right,%
+  recursive direction end/.initial=bottom,%
+  .unknown/.code={%
+    \let\keyname=\pgfkeyscurrentname%
+    \let\keyvalue=\pgfkeyscurrentvalue%
+    \ifthenelse{\equal{\keyname}{with port}%
+              \OR\equal{\keyname}{interface}%
+              \OR\equal{\keyname}{padding}%
+              \OR\equal{\keyname}{width}%
+              \OR\equal{\keyname}{first arm}%
+              \OR\equal{\keyname}{second arm}%
+              \OR\equal{\keyname}{middle arm}%
+              \OR\equal{\keyname}{last arm}%
+              \OR\equal{\keyname}{distance}}{}{%
+                \ifx\keyvalue\pgfkeysnovalue%
+                  \pgfkeys{/tikzuml/relation/.cd, style2/.append style/.expand once={\keyname}}%
+                \else%
+                  \pgfkeys{/tikzuml/relation/.cd, style2/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+                \fi%
+                %\errmessage{TIKZUML ERROR : in umlrelation, invalid option \keyname}%
+    }%
+  }%
   }%
   \pgfkeys{/tikzuml/relation/.cd,#1}%
   \pgfkeys{/tikzuml/relation/.cd, geometry/.get=\tikzumlRelationGeometry, weight/.get=\tikzumlRelationWeight,%
-                                  arm1/.get=\tikzumlRelationArmO, arm2/.get=\tikzumlRelationArmT,%
-                                  arg1/.get=\tikzumlRelationAttrName, arg2/.get=\tikzumlRelationAttrNameTO, arg/.get=\tikzumlRelationAttrNameTT,%
-                                  mult1/.get=\tikzumlRelationMultiplicity, mult2/.get=\tikzumlRelationMultiplicityTO, mult/.get=\tikzumlRelationMultiplicityTT,%
-                                  pos1/.get=\tikzumlRelationPosition, pos2/.get=\tikzumlRelationPositionTO, pos/.get=\tikzumlRelationPositionTT,%
-                                  align1/.get=\tikzumlRelationAlign, align2/.get=\tikzumlRelationAlignTO, align/.get=\tikzumlRelationAlignTT,%
-                                  anchor1/.get=\tikzumlRelationSrcAnchor, anchor2/.get=\tikzumlRelationDestAnchor,%
-                                  angle1/.get=\tikzumlRelationStartAngle, angle2/.get=\tikzumlRelationEndAngle, loopsize/.get=\tikzumlRelationLoopSize,%
-                                  stereo/.get=\tikzumlRelationStereoType, pos stereo/.get=\tikzumlRelationPositionStereotype,%
-                                  style/.get=\tikzumlRelationStyle, name/.get=\tikzumlRelationName,%
-                                  recursive mode/.get=\tikzumlRelationRecursiveMode,%
-                                  recursive direction start/.get=\tikzumlRelationRecursiveDirectionStart,%
-                                  recursive direction end/.get=\tikzumlRelationRecursiveDirectionEnd%
+ arm1/.get=\tikzumlRelationArmO, arm2/.get=\tikzumlRelationArmT,%
+ arg1/.get=\tikzumlRelationAttrName, arg2/.get=\tikzumlRelationAttrNameTO, arg/.get=\tikzumlRelationAttrNameTT,%
+ mult1/.get=\tikzumlRelationMultiplicity, mult2/.get=\tikzumlRelationMultiplicityTO, mult/.get=\tikzumlRelationMultiplicityTT,%
+ pos1/.get=\tikzumlRelationPosition, pos2/.get=\tikzumlRelationPositionTO, pos/.get=\tikzumlRelationPositionTT,%
+ align1/.get=\tikzumlRelationAlign, align2/.get=\tikzumlRelationAlignTO, align/.get=\tikzumlRelationAlignTT,%
+ anchor1/.get=\tikzumlRelationSrcAnchor, anchor2/.get=\tikzumlRelationDestAnchor,%
+ angle1/.get=\tikzumlRelationStartAngle, angle2/.get=\tikzumlRelationEndAngle, loopsize/.get=\tikzumlRelationLoopSize,%
+ stereo/.get=\tikzumlRelationStereoType, pos stereo/.get=\tikzumlRelationPositionStereotype,%
+ style/.get=\tikzumlRelationStyle, name/.get=\tikzumlRelationName,%
+ recursive mode/.get=\tikzumlRelationRecursiveMode,%
+ recursive direction start/.get=\tikzumlRelationRecursiveDirectionStart,%
+ recursive direction end/.get=\tikzumlRelationRecursiveDirectionEnd%
   }%
   %
   \def\tikzumlSrcClassName{#2}%
@@ -878,12 +878,12 @@
       %
       \ifthenelse{\equal{\tikzumlRelationRecursiveMode}{default}}{%
         \xdef\tikzumlLastArc{node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                             node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
-                             node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                             node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                             node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
+ node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
+ node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
         \xdef\tikzumlPath{(\tikzumlSrcClassNodeName) edge[in=\tikzumlRelationEndAngle, out=\tikzumlRelationStartAngle, distance=\tikzumlRelationLoopSize] \tikzumlLastArc%
-                                                          node[midway, inner sep=0, name=\tikzumlRelationName-1, anchor=center] {} (\tikzumlDestClassNodeName) }%
+ node[midway, inner sep=0, name=\tikzumlRelationName-1, anchor=center] {} (\tikzumlDestClassNodeName) }%
       }{%
         \ifthenelse{\equal{\tikzumlRelationRecursiveMode}{transition}}{%
           \xdef\tikzumlFirstArc{node[midway, inner sep=0, name=\tikzumlRelationName-1, anchor=center] {}}%
@@ -895,7 +895,7 @@
             %
             \begin{pgfonlayer}{connections}%
             \draw (\tikzumlSrcClassNodeName) edge[in=\tikzumlRelationEndAngle, out=\tikzumlRelationStartAngle, distance=\tikzumlRelationLoopSize, draw=none] %
-                                                  node[midway, inner sep=0, name=\tikzumlRelationName-tmp, anchor=center] {} (\tikzumlDestClassNodeName);%
+ node[midway, inner sep=0, name=\tikzumlRelationName-tmp, anchor=center] {} (\tikzumlDestClassNodeName);%
             \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}\OR\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
               \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle -| \tikzumlRelationName-tmp) {};%
               \node[inner sep=0, name=\tikzumlRelationName-4] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle -| \tikzumlRelationName-tmp) {};%
@@ -911,7 +911,7 @@
             %
             \begin{pgfonlayer}{connections}%
             \draw (\tikzumlSrcClassNodeName) edge[in=\tikzumlRelationEndAngle, out=\tikzumlRelationStartAngle, distance=\tikzumlRelationLoopSize, draw=none] %
-                                                  node[midway, name=\tikzumlRelationName-4, anchor=center] {} (\tikzumlDestClassNodeName);%
+ node[midway, name=\tikzumlRelationName-4, anchor=center] {} (\tikzumlDestClassNodeName);%
             \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}\OR\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
               \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle -| \tikzumlRelationName-4) {};%
               \node[inner sep=0, name=\tikzumlRelationName-6] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle |- \tikzumlRelationName-4) {};%
@@ -1023,24 +1023,24 @@
             \ifnum\thepos>300%
               \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-300)/100}%
               \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                   node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
-                                   }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
+ }%
             \else%
               \ifnum\thepos<100%
                 \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                     node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
-                                     }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
+ }%
               \else%
                 \ifnum\thepos>200%
                   \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-200)/100}%
                   \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                         node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
-                                        }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
+ }%
                 \else%
                   \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
                   \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                         node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
-                                        }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
+ }%
                 \fi%
               \fi%
             \fi%
@@ -1127,24 +1127,24 @@
             \ifnum\theposT>300%
               \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-300)/100}%
               \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                   node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                                   }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
+ }%
             \else%
               \ifnum\theposT<100%
                 \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                     node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                                     }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
+ }%
               \else%
                 \ifnum\theposT>200%
                   \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-200)/100}%
                   \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                         node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                                        }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
+ }%
                 \else%
                   \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
                   \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                         node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                                        }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
+ }%
                 \fi%
               \fi%
             \fi%
@@ -1244,18 +1244,18 @@
             \ifnum\thepos>200%
               \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-200)/100}%
               \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                   node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
-                                   }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
+ }%
             \else%
               \ifnum\thepos<100%
                 \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                     node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
-                                     }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
+ }%
               \else%
                 \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
                 \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                       node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
-                                      }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
+ }%
               \fi%
             \fi%
             %
@@ -1342,18 +1342,18 @@
             \ifnum\theposT>200%
               \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-200)/100}%
               \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                   node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                                   }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
+ }%
             \else%
               \ifnum\theposT<100%
                 \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                     node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                                     }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
+ }%
               \else%
                 \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
                 \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                       node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                                      }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
+ }%
               \fi%
             \fi%
           \fi%
@@ -1379,10 +1379,10 @@
       %
       \node[inner sep=0] (\tikzumlRelationName-1) at (\tikzumlRelationName-middle) {};%
       \xdef\tikzumlLastArc{node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                           node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
-                           node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                           node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
-                           node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
+ node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
+ node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
       \xdef\tikzumlPath{(\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) -- \tikzumlLastArc (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor) }%
       \ifnum\thetikzumlStateLevel>0%
         \def\tikzumlStateFitTmp{\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname}%
@@ -1422,11 +1422,11 @@
       %
       \ifnum\arcNum=1%
         \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                               node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
       \fi%
       \ifnum\arcNum=2%
         \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                             node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
       \fi%
       %
       \ifnum\theposT>100%
@@ -1442,11 +1442,11 @@
       %
       \ifnum\arcNumT=1%
         \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                               node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
       \fi%
       \ifnum\arcNumT=2%
         \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                             node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
       \fi%
       %
       \xdef\tikzumlPath{(\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) -- \tikzumlFirstArc (\tikzumlRelationName-2.base) -- \tikzumlLastArc (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor) }%
@@ -1487,11 +1487,11 @@
         %
         \ifnum\arcNum=1%
           \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                                 node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
         \fi%
         \ifnum\arcNum=2%
           \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                               node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
         \fi%
         %
         \ifnum\theposT>100%
@@ -1507,11 +1507,11 @@
         %
         \ifnum\arcNumT=1%
           \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                                 node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
         \fi%
         \ifnum\arcNumT=2%
           \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                               node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
         \fi%
         %
         \xdef\tikzumlPath{(\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) -- \tikzumlFirstArc (\tikzumlRelationName-2.base) -- \tikzumlLastArc (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor) }%
@@ -1579,15 +1579,15 @@
           %
           \ifnum\arcNum=1%
             \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                                   node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
           \fi%
           \ifnum\arcNum=2%
             \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                                     node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
           \fi%
           \ifnum\arcNum=3%
             \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                                 node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
           \fi%
           %
           \ifthenelse{\theposT=200\OR\theposT=100}{%
@@ -1609,15 +1609,15 @@
           %
           \ifnum\arcNumT=1%
             \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                                   node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
           \fi%
           \ifnum\arcNumT=2%
             \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                                     node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
           \fi%
           \ifnum\arcNumT=3%
             \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                                 node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
           \fi%
           %
           \xdef\tikzumlPath{(\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) -- \tikzumlFirstArc (\tikzumlRelationName-2.base) -- \tikzumlMidOneArc (\tikzumlRelationName-4.base) -- \tikzumlLastArc (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor) }%
@@ -1685,15 +1685,15 @@
             %
             \ifnum\arcNum=1%
               \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                                     node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
             \fi%
             \ifnum\arcNum=2%
               \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                                       node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
             \fi%
             \ifnum\arcNum=3%
               \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
-                                                   node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
+ node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
             \fi%
             %
             \ifthenelse{\theposT=200\OR\theposT=100}{%
@@ -1715,15 +1715,15 @@
             %
             \ifnum\arcNumT=1%
               \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                                     node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
             \fi%
             \ifnum\arcNumT=2%
               \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                                       node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
             \fi%
             \ifnum\arcNumT=3%
               \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
-                                                   node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
+ node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
             \fi%
             %
             \xdef\tikzumlPath{(\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) -- \tikzumlFirstArc (\tikzumlRelationName-2.base) -- \tikzumlMidOneArc (\tikzumlRelationName-4.base) -- \tikzumlLastArc (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor) }%
@@ -1983,26 +1983,26 @@
 %            name: rootname used for naming nodes of the relation
 \newcommand\umlCNrelation[4][]{%
   \pgfkeys{/tikzuml/relation/.cd, arg1/.initial={}, arg2/.initial={}, arg/.initial={},%
-                                  mult1/.initial={}, mult2/.initial={}, mult/.initial={},%
-                                  pos1/.initial=0.2, pos2/.initial=0.8, pos/.initial=tikzumlEmpty,%
-                                  align1/.initial={}, align2/.initial={}, align/.initial={},%
-                                  anchor1/.initial=tikzumlEmpty, anchor2/.initial=tikzumlEmpty,%
-                                  stereo/.initial={}, pos stereo/.initial=1,%
-                                  style/.initial=->, name/.initial=relation-\thetikzumlRelationNum,%
-                                  .unknown/.code={%
-                                    \let\keyname=\pgfkeyscurrentname%
-                                    \let\keyvalue=\pgfkeyscurrentvalue%
-                                    \errmessage{TIKZUML ERROR : in umlCNrelation, invalid option \keyname}%
-                                  }%
+ mult1/.initial={}, mult2/.initial={}, mult/.initial={},%
+ pos1/.initial=0.2, pos2/.initial=0.8, pos/.initial=tikzumlEmpty,%
+ align1/.initial={}, align2/.initial={}, align/.initial={},%
+ anchor1/.initial=tikzumlEmpty, anchor2/.initial=tikzumlEmpty,%
+ stereo/.initial={}, pos stereo/.initial=1,%
+ style/.initial=->, name/.initial=relation-\thetikzumlRelationNum,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \errmessage{TIKZUML ERROR : in umlCNrelation, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/relation/.cd,#1}%
   \pgfkeys{/tikzuml/relation/.cd, arg1/.get=\tikzumlCNRelationAttrName, arg2/.get=\tikzumlCNRelationAttrNameTO, arg/.get=\tikzumlCNRelationAttrNameTT,%
-                                  mult1/.get=\tikzumlCNRelationMultiplicity, mult2/.get=\tikzumlCNRelationMultiplicityTO, mult/.get=\tikzumlCNRelationMultiplicityTT,%
-                                  pos1/.get=\tikzumlCNRelationPosition, pos2/.get=\tikzumlCNRelationPositionTO, pos/.get=\tikzumlCNRelationPositionTT,%
-                                  align1/.get=\tikzumlCNRelationAlign, align2/.get=\tikzumlCNRelationAlignTO, align/.get=\tikzumlCNRelationAlignTT,%
-                                  anchor1/.get=\tikzumlCNRelationSrcAnchor, anchor2/.get=\tikzumlCNRelationDestAnchor,%
-                                  stereo/.get=\tikzumlCNRelationStereoType, pos stereo/.get=\tikzumlCNRelationPositionStereotype,%
-                                  style/.get=\tikzumlCNRelationStyle, name/.get=\tikzumlCNRelationName%
+ mult1/.get=\tikzumlCNRelationMultiplicity, mult2/.get=\tikzumlCNRelationMultiplicityTO, mult/.get=\tikzumlCNRelationMultiplicityTT,%
+ pos1/.get=\tikzumlCNRelationPosition, pos2/.get=\tikzumlCNRelationPositionTO, pos/.get=\tikzumlCNRelationPositionTT,%
+ align1/.get=\tikzumlCNRelationAlign, align2/.get=\tikzumlCNRelationAlignTO, align/.get=\tikzumlCNRelationAlignTT,%
+ anchor1/.get=\tikzumlCNRelationSrcAnchor, anchor2/.get=\tikzumlCNRelationDestAnchor,%
+ stereo/.get=\tikzumlCNRelationStereoType, pos stereo/.get=\tikzumlCNRelationPositionStereotype,%
+ style/.get=\tikzumlCNRelationStyle, name/.get=\tikzumlCNRelationName%
   }%
   %
   % managing \_ in class names for node names
@@ -2119,11 +2119,11 @@
   %
   \ifnum\arcNum=1%
     \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlCNRelationPosition, \posAttrName, \attrAlign] {\tikzumlCNRelationAttrName}%
-                                           node[pos=\tikzumlCNRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlCNRelationMultiplicity} }%
+ node[pos=\tikzumlCNRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlCNRelationMultiplicity} }%
   \fi%
   \ifnum\arcNum=2%
     \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlCNRelationPosition, \posAttrName, \attrAlign] {\tikzumlCNRelationAttrName}%
-                                         node[pos=\tikzumlCNRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlCNRelationMultiplicity} }%
+ node[pos=\tikzumlCNRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlCNRelationMultiplicity} }%
   \fi%
   %
   \ifnum\theposT>100%
@@ -2139,11 +2139,11 @@
   %
   \ifnum\arcNumT=1%
     \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlCNRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlCNRelationAttrNameT}%
-                                           node[pos=\tikzumlCNRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlCNRelationMultiplicityT} }%
+ node[pos=\tikzumlCNRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlCNRelationMultiplicityT} }%
   \fi%
   \ifnum\arcNumT=2%
     \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlCNRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlCNRelationAttrNameT}%
-                                         node[pos=\tikzumlCNRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlCNRelationMultiplicityT} }%
+ node[pos=\tikzumlCNRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlCNRelationMultiplicityT} }%
   \fi%
   %
   \xdef\tikzumlPath{(\tikzumlSrcClassNodeName\tikzumlCNRelationSrcAnchor) -- \tikzumlFirstArc (\tikzumlCNRelationName-2.base) -- \tikzumlLastArc (\tikzumlDestClassNodeName\tikzumlCNRelationDestAnchor) }%
@@ -2216,43 +2216,43 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlnote[3][]{%
   \pgfkeys{/tikzuml/note/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlNoteDefaultWidth,%
-                              geometry/.initial=\tikzumlRelationDefaultGeometry,%
-                              weight/.initial=\tikzumlRelationDefaultWeight, arm/.initial=auto, style/.style={},%
-                              anchor1/.initial=tikzumlEmpty, anchor2/.initial=tikzumlEmpty,%
-                              draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlNoteDefaultFillColor,%
-                              text/.initial=\tikzumlDefaultTextColor,%
-                              no coords/.is if=tikzumlnoteWithoutCoords,%
-                              no coords=false,%
-                              .unknown/.code={%
-                                \let\keyname=\pgfkeyscurrentname%
-                                \let\keyvalue=\pgfkeyscurrentvalue%
-                                \ifthenelse{\equal{\keyname}{above}\OR%
-                                            \equal{\keyname}{left}\OR%
-                                            \equal{\keyname}{below}\OR%
-                                            \equal{\keyname}{right}\OR%
-                                            \equal{\keyname}{above left}\OR%
-                                            \equal{\keyname}{above right}\OR%
-                                            \equal{\keyname}{below left}\OR%
-                                            \equal{\keyname}{below right}}{%
-                                  \IfSubStr{\keyvalue}{ of }{%
-                                    \pgfkeys{/tikzuml/note/.cd, no coords}%
-                                  }{}%
-                                }{}%
-                                \ifx\keyvalue\pgfkeysnovalue%
-                                  \pgfkeys{/tikzuml/note/.cd, style/.append style/.expand once={\keyname}}%
-                                \else%
-                                  \pgfkeys{/tikzuml/note/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                \fi%
-                                %\errmessage{TIKZUML ERROR : in umlnote, invalid option \keyname}%
-                              }%
+geometry/.initial=\tikzumlRelationDefaultGeometry,%
+weight/.initial=\tikzumlRelationDefaultWeight, arm/.initial=auto, style/.style={},%
+anchor1/.initial=tikzumlEmpty, anchor2/.initial=tikzumlEmpty,%
+draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlNoteDefaultFillColor,%
+text/.initial=\tikzumlDefaultTextColor,%
+no coords/.is if=tikzumlnoteWithoutCoords,%
+no coords=false,%
+.unknown/.code={%
+\let\keyname=\pgfkeyscurrentname%
+\let\keyvalue=\pgfkeyscurrentvalue%
+\ifthenelse{\equal{\keyname}{above}\OR%
+\equal{\keyname}{left}\OR%
+\equal{\keyname}{below}\OR%
+\equal{\keyname}{right}\OR%
+\equal{\keyname}{above left}\OR%
+\equal{\keyname}{above right}\OR%
+\equal{\keyname}{below left}\OR%
+\equal{\keyname}{below right}}{%
+\IfSubStr{\keyvalue}{ of }{%
+    \pgfkeys{/tikzuml/note/.cd, no coords}%
+  }{}%
+}{}%
+\ifx\keyvalue\pgfkeysnovalue%
+  \pgfkeys{/tikzuml/note/.cd, style/.append style/.expand once={\keyname}}%
+\else%
+  \pgfkeys{/tikzuml/note/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+\fi%
+%\errmessage{TIKZUML ERROR : in umlnote, invalid option \keyname}%
+}%
   }%
   \pgfkeys{/tikzuml/note/.cd, #1}%
   \pgfkeys{/tikzuml/note/.cd, x/.get=\tikzumlNoteX, y/.get=\tikzumlNoteY, width/.get=\tikzumlNoteTextWidth,%
-                              geometry/.get=\tikzumlNoteGeometry,%
-                              weight/.get=\tikzumlNoteWeight, arm/.get=\tikzumlNoteArm,%
-                              anchor1/.get=\tikzumlNoteSrcAnchor, anchor2/.get=\tikzumlNoteDestAnchor,%
-                              draw/.get=\tikzumlNoteDrawColor, fill/.get=\tikzumlNoteFillColor,%
-                              text/.get=\tikzumlNoteTextColor%
+ geometry/.get=\tikzumlNoteGeometry,%
+ weight/.get=\tikzumlNoteWeight, arm/.get=\tikzumlNoteArm,%
+ anchor1/.get=\tikzumlNoteSrcAnchor, anchor2/.get=\tikzumlNoteDestAnchor,%
+ draw/.get=\tikzumlNoteDrawColor, fill/.get=\tikzumlNoteFillColor,%
+ text/.get=\tikzumlNoteTextColor%
   }%
   %
   \def\tikzumlClassName{#2}%
@@ -2393,50 +2393,50 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlassocclass[5][]{%
   \pgfkeys{/tikzuml/assocclass/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX,
-                                    width/.initial=\tikzumlClassDefaultWidth, type/.initial=\tikzumlClassDefaultType, style/.style={},%
-                                    template/.initial={}, name/.initial=tikzumlEmpty, geometry/.initial=\tikzumlRelationDefaultGeometry,%
-                                    weight/.initial=\tikzumlRelationDefaultWeight, arm/.initial=auto,%
-                                    anchor1/.initial=tikzumlEmpty, anchor2/.initial=tikzumlEmpty,%
-                                    draw/.initial=\tikzumlDefaultDrawColor,%
-                                    fill template/.initial=\tikzumlClassTemplateFillColorDefaultFillColor,%
-                                    fill/.initial=\tikzumlClassDefaultFillColor,%
-                                    text/.initial=\tikzumlDefaultTextColor,%
-                                    no coords/.is if=tikzumlassocclassWithoutCoords,%
-                                    no coords=false,%
-                                    .unknown/.code={%
-                                      \let\keyname=\pgfkeyscurrentname%
-                                      \let\keyvalue=\pgfkeyscurrentvalue%
-                                      \ifthenelse{\equal{\keyname}{above}\OR%
-                                                  \equal{\keyname}{left}\OR%
-                                                  \equal{\keyname}{below}\OR%
-                                                  \equal{\keyname}{right}\OR%
-                                                  \equal{\keyname}{above left}\OR%
-                                                  \equal{\keyname}{above right}\OR%
-                                                  \equal{\keyname}{below left}\OR%
-                                                  \equal{\keyname}{below right}}{%
-                                        \IfSubStr{\keyvalue}{ of }{%
-                                          \pgfkeys{/tikzuml/assocclass/.cd, no coords}%
-                                        }{}%
-                                      }{}%
-                                      \ifx\keyvalue\pgfkeysnovalue%
-                                        \pgfkeys{/tikzuml/assocclass/.cd, style/.append style/.expand once={\keyname}}%
-                                      \else%
-                                        \pgfkeys{/tikzuml/assocclass/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                      \fi%
-                                      %\errmessage{TIKZUML ERROR : in umlassocclass, invalid option \keyname}%
-                                    }%
+width/.initial=\tikzumlClassDefaultWidth, type/.initial=\tikzumlClassDefaultType, style/.style={},%
+template/.initial={}, name/.initial=tikzumlEmpty, geometry/.initial=\tikzumlRelationDefaultGeometry,%
+weight/.initial=\tikzumlRelationDefaultWeight, arm/.initial=auto,%
+anchor1/.initial=tikzumlEmpty, anchor2/.initial=tikzumlEmpty,%
+draw/.initial=\tikzumlDefaultDrawColor,%
+fill template/.initial=\tikzumlClassTemplateFillColorDefaultFillColor,%
+fill/.initial=\tikzumlClassDefaultFillColor,%
+text/.initial=\tikzumlDefaultTextColor,%
+no coords/.is if=tikzumlassocclassWithoutCoords,%
+no coords=false,%
+.unknown/.code={%
+  \let\keyname=\pgfkeyscurrentname%
+  \let\keyvalue=\pgfkeyscurrentvalue%
+  \ifthenelse{\equal{\keyname}{above}\OR%
+              \equal{\keyname}{left}\OR%
+              \equal{\keyname}{below}\OR%
+              \equal{\keyname}{right}\OR%
+              \equal{\keyname}{above left}\OR%
+              \equal{\keyname}{above right}\OR%
+              \equal{\keyname}{below left}\OR%
+              \equal{\keyname}{below right}}{%
+    \IfSubStr{\keyvalue}{ of }{%
+      \pgfkeys{/tikzuml/assocclass/.cd, no coords}%
+    }{}%
+  }{}%
+  \ifx\keyvalue\pgfkeysnovalue%
+    \pgfkeys{/tikzuml/assocclass/.cd, style/.append style/.expand once={\keyname}}%
+  \else%
+    \pgfkeys{/tikzuml/assocclass/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+  \fi%
+  %\errmessage{TIKZUML ERROR : in umlassocclass, invalid option \keyname}%
+}%
   }%
   %
   \pgfkeys{/tikzuml/assocclass/.cd,#1}%
   \pgfkeys{/tikzuml/assocclass/.cd, x/.get=\tikzumlAssocClassX, y/.get=\tikzumlAssocClassY,%
-                                    width/.get=\tikzumlAssocClassMinimumWidth, type/.get=\tikzumlAssocClassTypeTmp,%
-                                    template/.get=\tikzumlAssocClassTemplateParam,%
-                                    name/.get=\tikzumlAssocClassName, geometry/.get=\tikzumlAssocClassGeometry,%
-                                    weight/.get=\tikzumlAssocClassWeight, arm/.get=\tikzumlAssocClassArm,%
-                                    anchor1/.get=\tikzumlAssocClassSrcAnchor,%
-                                    anchor2/.get=\tikzumlAssocClassDestAnchor,%
-                                    draw/.get=\tikzumlAssocClassDrawColor, fill/.get=\tikzumlAssocClassFillColor,%
-                                    text/.get=\tikzumlAssocClassTextColor, fill template/.get=\tikzumlAssocClassTemplateFillColor%
+ width/.get=\tikzumlAssocClassMinimumWidth, type/.get=\tikzumlAssocClassTypeTmp,%
+ template/.get=\tikzumlAssocClassTemplateParam,%
+ name/.get=\tikzumlAssocClassName, geometry/.get=\tikzumlAssocClassGeometry,%
+ weight/.get=\tikzumlAssocClassWeight, arm/.get=\tikzumlAssocClassArm,%
+ anchor1/.get=\tikzumlAssocClassSrcAnchor,%
+ anchor2/.get=\tikzumlAssocClassDestAnchor,%
+ draw/.get=\tikzumlAssocClassDrawColor, fill/.get=\tikzumlAssocClassFillColor,%
+ text/.get=\tikzumlAssocClassTextColor, fill template/.get=\tikzumlAssocClassTemplateFillColor%
   }%
   %
   \ifthenelse{\equal{\tikzumlAssocClassTypeTmp}{class}}{%
@@ -2586,19 +2586,19 @@
   \setcounter{tikzumlSystemUseCaseNum}{0}%
   %
   \pgfkeys{/tikzuml/system/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX,%
-                                draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlSystemDefaultFillColor,%
-                                text/.initial=\tikzumlDefaultTextColor,%
-                                .unknown/.code={%
-                                  \let\keyname=\pgfkeyscurrentname%
-                                  \let\keyvalue=\pgfkeyscurrentvalue%
-                                  \errmessage{TIKZUML ERROR : in umlsystem, invalid option \keyname}%
-                                }%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlSystemDefaultFillColor,%
+ text/.initial=\tikzumlDefaultTextColor,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \errmessage{TIKZUML ERROR : in umlsystem, invalid option \keyname}%
+ }%
   }%
   %
   \pgfkeys{/tikzuml/system/.cd, #1}%
   \pgfkeys{/tikzuml/system/.cd, x/.get=\tikzumlSystemXShift, y/.get=\tikzumlSystemYShift,%
-                                draw/.get=\tikzumlSystemDrawColor, fill/.get=\tikzumlSystemFillColor,%
-                                text/.get=\tikzumlSystemTextColor}%
+ draw/.get=\tikzumlSystemDrawColor, fill/.get=\tikzumlSystemFillColor,%
+ text/.get=\tikzumlSystemTextColor}%
   %
   \stepcounter{tikzumlSystemLevel}%
   %
@@ -2633,39 +2633,39 @@
 \newcommand\umlusecase[2][]{%
   \stepcounter{tikzumlUseCaseNum}%
   \pgfkeys{/tikzuml/usecase/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=auto,%
-                                 name/.initial=usecase-\thetikzumlUseCaseNum,%
-                                 draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlUseCaseDefaultFillColor,%
-                                 text/.initial=\tikzumlDefaultTextColor, style/.style={},%
-                                 no coords/.is if=tikzumlusecaseWithoutCoords,%
-                                 no coords=false,%
-                                 .unknown/.code={%
-                                   \let\keyname=\pgfkeyscurrentname%
-                                   \let\keyvalue=\pgfkeyscurrentvalue%
-                                   \ifthenelse{\equal{\keyname}{above}\OR%
-                                               \equal{\keyname}{left}\OR%
-                                               \equal{\keyname}{below}\OR%
-                                               \equal{\keyname}{right}\OR%
-                                               \equal{\keyname}{above left}\OR%
-                                               \equal{\keyname}{above right}\OR%
-                                               \equal{\keyname}{below left}\OR%
-                                               \equal{\keyname}{below right}}{%
-                                     \IfSubStr{\keyvalue}{ of }{%
-                                       \pgfkeys{/tikzuml/usecase/.cd, no coords}%
-                                     }{}%
-                                   }{}%
-                                   \ifx\keyvalue\pgfkeysnovalue%
-                                     \pgfkeys{/tikzuml/usecase/.cd, style/.append style/.expand once={\keyname}}%
-                                   \else%
-                                     \pgfkeys{/tikzuml/usecase/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                   \fi%
-                                   %\errmessage{TIKZUML ERROR : in umlusecase, invalid option \keyname}%
-                                 }%
+ name/.initial=usecase-\thetikzumlUseCaseNum,%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlUseCaseDefaultFillColor,%
+ text/.initial=\tikzumlDefaultTextColor, style/.style={},%
+ no coords/.is if=tikzumlusecaseWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/usecase/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/usecase/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/usecase/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlusecase, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/usecase/.cd, #1}%
   \pgfkeys{/tikzuml/usecase/.cd, x/.get=\tikzumlUseCaseX, y/.get=\tikzumlUseCaseY, width/.get=\tikzumlUseCaseTextWidth,%
-                                 name/.get=\tikzumlUseCaseName,%
-                                 draw/.get=\tikzumlUseCaseDrawColor, fill/.get=\tikzumlUseCaseFillColor,%
-                                 text/.get=\tikzumlUseCaseTextColor%
+ name/.get=\tikzumlUseCaseName,%
+ draw/.get=\tikzumlUseCaseDrawColor, fill/.get=\tikzumlUseCaseFillColor,%
+ text/.get=\tikzumlUseCaseTextColor%
   }%
   %
   \def\tikzumlUseCaseText{#2}%
@@ -2727,32 +2727,32 @@
 \newcommand\umlactor[2][]{%
   \stepcounter{tikzumlActorNum}%
   \pgfkeys{/tikzuml/actor/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, scale/.initial=1, below/.initial=\tikzumlActorDefaultBelow,%
-                               draw/.initial=\tikzumlDefaultDrawColor, text/.initial=\tikzumlDefaultTextColor,%
-                               style/.style={},%
-                               no coords/.is if=tikzumlactorWithoutCoords,%
-                               no coords=false,%
-                               .unknown/.code={%
-                                 \let\keyname=\pgfkeyscurrentname%
-                                 \let\keyvalue=\pgfkeyscurrentvalue%
-                                 \ifthenelse{\equal{\keyname}{above}\OR%
-                                             \equal{\keyname}{left}\OR%
-                                             \equal{\keyname}{below}\OR%
-                                             \equal{\keyname}{right}\OR%
-                                             \equal{\keyname}{above left}\OR%
-                                             \equal{\keyname}{above right}\OR%
-                                             \equal{\keyname}{below left}\OR%
-                                             \equal{\keyname}{below right}}{%
-                                   \IfSubStr{\keyvalue}{ of }{%
-                                     \pgfkeys{/tikzuml/actor/.cd, no coords}%
-                                   }{}%
-                                 }{}%
-                                 \ifx\keyvalue\pgfkeysnovalue%
-                                   \pgfkeys{/tikzuml/actor/.cd, style/.append style/.expand once={\keyname}}%
-                                 \else%
-                                   \pgfkeys{/tikzuml/actor/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                 \fi%
-                                 %\errmessage{TIKZUML ERROR : in umlactor, invalid option \keyname}%
-                               }%
+ draw/.initial=\tikzumlDefaultDrawColor, text/.initial=\tikzumlDefaultTextColor,%
+ style/.style={},%
+ no coords/.is if=tikzumlactorWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/actor/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/actor/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/actor/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlactor, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/actor/.cd, #1}%
   \pgfkeys{/tikzuml/actor/.cd,%
@@ -3007,36 +3007,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatejoin[1][]{%
   \pgfkeys{/tikzuml/statejoin/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateJoinDefaultWidth,%
-                                   name/.initial=statejoin-\thetikzumlStateJoinNum,%
-                                   color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
-                                   no coords/.is if=tikzumlstatejoinWithoutCoords,%
-                                   no coords=false,%
-                                   .unknown/.code={%
-                                     \let\keyname=\pgfkeyscurrentname%
-                                     \let\keyvalue=\pgfkeyscurrentvalue%
-                                     \ifthenelse{\equal{\keyname}{above}\OR%
-                                                 \equal{\keyname}{left}\OR%
-                                                 \equal{\keyname}{below}\OR%
-                                                 \equal{\keyname}{right}\OR%
-                                                 \equal{\keyname}{above left}\OR%
-                                                 \equal{\keyname}{above right}\OR%
-                                                 \equal{\keyname}{below left}\OR%
-                                                 \equal{\keyname}{below right}}{%
-                                       \IfSubStr{\keyvalue}{ of }{%
-                                         \pgfkeys{/tikzuml/statejoin/.cd, no coords}%
-                                       }{}%
-                                     }{}%
-                                     \ifx\keyvalue\pgfkeysnovalue%
-                                       \pgfkeys{/tikzuml/statejoin/.cd, style/.append style/.expand once={\keyname}}%
-                                     \else%
-                                       \pgfkeys{/tikzuml/statejoin/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                     \fi%
-                                     %\errmessage{TIKZUML ERROR : in umlstatejoin, invalid option \keyname}%
-                                   }%
+ name/.initial=statejoin-\thetikzumlStateJoinNum,%
+ color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
+ no coords/.is if=tikzumlstatejoinWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/statejoin/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/statejoin/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/statejoin/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlstatejoin, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/statejoin/.cd, #1}%
   \pgfkeys{/tikzuml/statejoin/.cd, x/.get=\tikzumlStateJoinX, y/.get=\tikzumlStateJoinY, width/.get=\tikzumlStateJoinMinimumWidth,%
-                                   name/.get=\tikzumlStateJoinName, color/.get=\tikzumlStateJoinColor%
+ name/.get=\tikzumlStateJoinName, color/.get=\tikzumlStateJoinColor%
   }%
   %
   \def\tikzumlStateJoinPos{\tikzumlStateJoinX,\tikzumlStateJoinY}%
@@ -3067,36 +3067,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatedecision[1][]{%
   \pgfkeys{/tikzuml/statedecision/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateDecisionDefaultWidth,%
-                                       name/.initial=statedecision-\thetikzumlStateDecisionNum,%
-                                       color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
-                                       no coords/.is if=tikzumlstatedecisionWithoutCoords,%
-                                       no coords=false,%
-                                       .unknown/.code={%
-                                         \let\keyname=\pgfkeyscurrentname%
-                                         \let\keyvalue=\pgfkeyscurrentvalue%
-                                         \ifthenelse{\equal{\keyname}{above}\OR%
-                                                     \equal{\keyname}{left}\OR%
-                                                     \equal{\keyname}{below}\OR%
-                                                     \equal{\keyname}{right}\OR%
-                                                     \equal{\keyname}{above left}\OR%
-                                                     \equal{\keyname}{above right}\OR%
-                                                     \equal{\keyname}{below left}\OR%
-                                                     \equal{\keyname}{below right}}{%
-                                           \IfSubStr{\keyvalue}{ of }{%
-                                             \pgfkeys{/tikzuml/statedecision/.cd, no coords}%
-                                           }{}%
-                                         }{}%
-                                         \ifx\keyvalue\pgfkeysnovalue%
-                                           \pgfkeys{/tikzuml/statedecision/.cd, style/.append style/.expand once={\keyname}}%
-                                         \else%
-                                           \pgfkeys{/tikzuml/statedecision/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                         \fi%
-                                         %\errmessage{TIKZUML ERROR : in umlstatedecision, invalid option \keyname}%
-                                       }%
+ name/.initial=statedecision-\thetikzumlStateDecisionNum,%
+ color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
+ no coords/.is if=tikzumlstatedecisionWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/statedecision/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/statedecision/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/statedecision/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlstatedecision, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/statedecision/.cd, #1}%
   \pgfkeys{/tikzuml/statedecision/.cd, x/.get=\tikzumlStateDecisionX, y/.get=\tikzumlStateDecisionY, width/.get=\tikzumlStateDecisionMinimumWidth,%
-                                       name/.get=\tikzumlStateDecisionName, color/.get=\tikzumlStateDecisionColor%
+ name/.get=\tikzumlStateDecisionName, color/.get=\tikzumlStateDecisionColor%
   }%
   %
   \def\tikzumlStateDecisionPos{\tikzumlStateDecisionX,\tikzumlStateDecisionY}%
@@ -3128,36 +3128,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstateinitial[1][]{%
   \pgfkeys{/tikzuml/stateinitial/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateInitialDefaultWidth,%
-                                      name/.initial=stateinitial-\thetikzumlStateInitialNum,%
-                                      color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
-                                      no coords/.is if=tikzumlstateinitialWithoutCoords,%
-                                      no coords=false,%
-                                      .unknown/.code={%
-                                        \let\keyname=\pgfkeyscurrentname%
-                                        \let\keyvalue=\pgfkeyscurrentvalue%
-                                        \ifthenelse{\equal{\keyname}{above}\OR%
-                                                    \equal{\keyname}{left}\OR%
-                                                    \equal{\keyname}{below}\OR%
-                                                    \equal{\keyname}{right}\OR%
-                                                    \equal{\keyname}{above left}\OR%
-                                                    \equal{\keyname}{above right}\OR%
-                                                    \equal{\keyname}{below left}\OR%
-                                                    \equal{\keyname}{below right}}{%
-                                          \IfSubStr{\keyvalue}{ of }{%
-                                            \pgfkeys{/tikzuml/stateinitial/.cd, no coords}%
-                                          }{}%
-                                        }{}%
-                                        \ifx\keyvalue\pgfkeysnovalue%
-                                          \pgfkeys{/tikzuml/stateinitial/.cd, style/.append style/.expand once={\keyname}}%
-                                        \else%
-                                          \pgfkeys{/tikzuml/stateinitial/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                        \fi%
-                                        %\errmessage{TIKZUML ERROR : in umlstateinitial, invalid option \keyname}%
-                                      }%
+ name/.initial=stateinitial-\thetikzumlStateInitialNum,%
+ color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
+ no coords/.is if=tikzumlstateinitialWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/stateinitial/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/stateinitial/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/stateinitial/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlstateinitial, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/stateinitial/.cd, #1}%
   \pgfkeys{/tikzuml/stateinitial/.cd, x/.get=\tikzumlStateInitialX, y/.get=\tikzumlStateInitialY, width/.get=\tikzumlStateInitialMinimumWidth,%
-                                      name/.get=\tikzumlStateInitialName, color/.get=\tikzumlStateInitialColor%
+ name/.get=\tikzumlStateInitialName, color/.get=\tikzumlStateInitialColor%
   }%
   %
   \def\tikzumlStateInitialPos{\tikzumlStateInitialX,\tikzumlStateInitialY}%
@@ -3188,36 +3188,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatefinal[1][]{%
   \pgfkeys{/tikzuml/statefinal/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateFinalDefaultWidth,%
-                                    name/.initial=statefinal-\thetikzumlStateFinalNum,%
-                                    color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
-                                    no coords/.is if=tikzumlstatefinalWithoutCoords,%
-                                    no coords=false,%
-                                    .unknown/.code={%
-                                      \let\keyname=\pgfkeyscurrentname%
-                                      \let\keyvalue=\pgfkeyscurrentvalue%
-                                      \ifthenelse{\equal{\keyname}{above}\OR%
-                                                  \equal{\keyname}{left}\OR%
-                                                  \equal{\keyname}{below}\OR%
-                                                  \equal{\keyname}{right}\OR%
-                                                  \equal{\keyname}{above left}\OR%
-                                                  \equal{\keyname}{above right}\OR%
-                                                  \equal{\keyname}{below left}\OR%
-                                                  \equal{\keyname}{below right}}{%
-                                        \IfSubStr{\keyvalue}{ of }{%
-                                          \pgfkeys{/tikzuml/statefinal/.cd, no coords}%
-                                        }{}%
-                                      }{}%
-                                      \ifx\keyvalue\pgfkeysnovalue%
-                                        \pgfkeys{/tikzuml/statefinal/.cd, style/.append style/.expand once={\keyname}}%
-                                      \else%
-                                        \pgfkeys{/tikzuml/statefinal/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                      \fi%
-                                      %\errmessage{TIKZUML ERROR : in umlstatefinal, invalid option \keyname}%
-                                    }%
+ name/.initial=statefinal-\thetikzumlStateFinalNum,%
+ color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
+ no coords/.is if=tikzumlstatefinalWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/statefinal/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/statefinal/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/statefinal/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlstatefinal, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/statefinal/.cd, #1}%
   \pgfkeys{/tikzuml/statefinal/.cd, x/.get=\tikzumlStateFinalX, y/.get=\tikzumlStateFinalY, width/.get=\tikzumlStateFinalMinimumWidth,%
-                                       name/.get=\tikzumlStateFinalName, color/.get=\tikzumlStateFinalColor%
+ name/.get=\tikzumlStateFinalName, color/.get=\tikzumlStateFinalColor%
   }%
   %
   \def\tikzumlStateFinalPos{\tikzumlStateFinalX,\tikzumlStateFinalY}%
@@ -3248,36 +3248,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstateenter[1][]{%
   \pgfkeys{/tikzuml/stateenter/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateEnterDefaultWidth,%
-                                    name/.initial=stateenter-\thetikzumlStateEnterNum,%
-                                    color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
-                                    no coords/.is if=tikzumlstateenterWithoutCoords,%
-                                    no coords=false,%
-                                    .unknown/.code={%
-                                      \let\keyname=\pgfkeyscurrentname%
-                                      \let\keyvalue=\pgfkeyscurrentvalue%
-                                      \ifthenelse{\equal{\keyname}{above}\OR%
-                                                  \equal{\keyname}{left}\OR%
-                                                  \equal{\keyname}{below}\OR%
-                                                  \equal{\keyname}{right}\OR%
-                                                  \equal{\keyname}{above left}\OR%
-                                                  \equal{\keyname}{above right}\OR%
-                                                  \equal{\keyname}{below left}\OR%
-                                                  \equal{\keyname}{below right}}{%
-                                        \IfSubStr{\keyvalue}{ of }{%
-                                          \pgfkeys{/tikzuml/stateenter/.cd, no coords}%
-                                        }{}%
-                                      }{}%
-                                      \ifx\keyvalue\pgfkeysnovalue%
-                                        \pgfkeys{/tikzuml/stateenter/.cd, style/.append style/.expand once={\keyname}}%
-                                      \else%
-                                        \pgfkeys{/tikzuml/stateenter/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                      \fi%
-                                      %\errmessage{TIKZUML ERROR : in umlstateenter, invalid option \keyname}%
-                                    }%
+ name/.initial=stateenter-\thetikzumlStateEnterNum,%
+ color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
+ no coords/.is if=tikzumlstateenterWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/stateenter/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/stateenter/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/stateenter/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlstateenter, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/stateenter/.cd, #1}%
   \pgfkeys{/tikzuml/stateenter/.cd, x/.get=\tikzumlStateEnterX, y/.get=\tikzumlStateEnterY, width/.get=\tikzumlStateEnterMinimumWidth,%
-                                    name/.get=\tikzumlStateEnterName, color/.get=\tikzumlStateEnterColor%
+ name/.get=\tikzumlStateEnterName, color/.get=\tikzumlStateEnterColor%
   }%
   %
   \def\tikzumlStateEnterPos{\tikzumlStateEnterX,\tikzumlStateEnterY}%
@@ -3308,36 +3308,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstateexit[1][]{%
   \pgfkeys{/tikzuml/stateexit/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateExitDefaultWidth,%
-                                   name/.initial=stateexit-\thetikzumlStateExitNum,%
-                                   color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
-                                   no coords/.is if=tikzumlstateexitWithoutCoords,%
-                                   no coords=false,%
-                                   .unknown/.code={%
-                                     \let\keyname=\pgfkeyscurrentname%
-                                     \let\keyvalue=\pgfkeyscurrentvalue%
-                                     \ifthenelse{\equal{\keyname}{above}\OR%
-                                                 \equal{\keyname}{left}\OR%
-                                                 \equal{\keyname}{below}\OR%
-                                                 \equal{\keyname}{right}\OR%
-                                                 \equal{\keyname}{above left}\OR%
-                                                 \equal{\keyname}{above right}\OR%
-                                                 \equal{\keyname}{below left}\OR%
-                                                 \equal{\keyname}{below right}}{%
-                                       \IfSubStr{\keyvalue}{ of }{%
-                                         \pgfkeys{/tikzuml/stateexit/.cd, no coords}%
-                                       }{}%
-                                     }{}%
-                                     \ifx\keyvalue\pgfkeysnovalue%
-                                       \pgfkeys{/tikzuml/stateexit/.cd, style/.append style/.expand once={\keyname}}%
-                                     \else%
-                                       \pgfkeys{/tikzuml/stateexit/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                     \fi%
-                                     %\errmessage{TIKZUML ERROR : in umlstateexit, invalid option \keyname}%
-                                   }%
+ name/.initial=stateexit-\thetikzumlStateExitNum,%
+ color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
+ no coords/.is if=tikzumlstateexitWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/stateexit/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/stateexit/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/stateexit/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlstateexit, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/stateexit/.cd, #1}%
   \pgfkeys{/tikzuml/stateexit/.cd, x/.get=\tikzumlStateExitX, y/.get=\tikzumlStateExitY, width/.get=\tikzumlStateExitMinimumWidth,%
-                                   name/.get=\tikzumlStateExitName, color/.get=\tikzumlStateExitColor%
+ name/.get=\tikzumlStateExitName, color/.get=\tikzumlStateExitColor%
   }%
   %
   \def\tikzumlStateExitPos{\tikzumlStateExitX,\tikzumlStateExitY}%
@@ -3369,36 +3369,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstateend[1][]{%
   \pgfkeys{/tikzuml/stateend/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateEndDefaultWidth,%
-                                  name/.initial=stateend-\thetikzumlStateEndNum,%
-                                  color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
-                                  no coords/.is if=tikzumlstateendWithoutCoords,%
-                                  no coords=false,%
-                                  .unknown/.code={%
-                                    \let\keyname=\pgfkeyscurrentname%
-                                    \let\keyvalue=\pgfkeyscurrentvalue%
-                                    \ifthenelse{\equal{\keyname}{above}\OR%
-                                                \equal{\keyname}{left}\OR%
-                                                \equal{\keyname}{below}\OR%
-                                                \equal{\keyname}{right}\OR%
-                                                \equal{\keyname}{above left}\OR%
-                                                \equal{\keyname}{above right}\OR%
-                                                \equal{\keyname}{below left}\OR%
-                                                \equal{\keyname}{below right}}{%
-                                      \IfSubStr{\keyvalue}{ of }{%
-                                        \pgfkeys{/tikzuml/stateend/.cd, no coords}%
-                                      }{}%
-                                    }{}%
-                                    \ifx\keyvalue\pgfkeysnovalue%
-                                      \pgfkeys{/tikzuml/stateend/.cd, style/.append style/.expand once={\keyname}}%
-                                    \else%
-                                      \pgfkeys{/tikzuml/stateend/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                    \fi%
-                                    %\errmessage{TIKZUML ERROR : in umlstateend, invalid option \keyname}%
-                                  }%
+ name/.initial=stateend-\thetikzumlStateEndNum,%
+ color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
+ no coords/.is if=tikzumlstateendWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/stateend/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/stateend/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/stateend/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlstateend, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/stateend/.cd, #1}%
   \pgfkeys{/tikzuml/stateend/.cd, x/.get=\tikzumlStateEndX, y/.get=\tikzumlStateEndY, width/.get=\tikzumlStateEndMinimumWidth,%
-                                  name/.get=\tikzumlStateEndName, color/.get=\tikzumlStateEndColor%
+ name/.get=\tikzumlStateEndName, color/.get=\tikzumlStateEndColor%
   }%
   %
   \def\tikzumlStateEndPos{\tikzumlStateEndX,\tikzumlStateEndY}%
@@ -3438,36 +3438,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatehistory[1][]{%
   \pgfkeys{/tikzuml/statehistory/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateHistoryDefaultWidth,%
-                                      name/.initial=statehistory-\thetikzumlStateHistoryNum,%
-                                      color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
-                                      no coords/.is if=tikzumlstatehistoryWithoutCoords,%
-                                      no coords=false,%
-                                      .unknown/.code={%
-                                        \let\keyname=\pgfkeyscurrentname%
-                                        \let\keyvalue=\pgfkeyscurrentvalue%
-                                        \ifthenelse{\equal{\keyname}{above}\OR%
-                                                    \equal{\keyname}{left}\OR%
-                                                    \equal{\keyname}{below}\OR%
-                                                    \equal{\keyname}{right}\OR%
-                                                    \equal{\keyname}{above left}\OR%
-                                                    \equal{\keyname}{above right}\OR%
-                                                    \equal{\keyname}{below left}\OR%
-                                                    \equal{\keyname}{below right}}{%
-                                          \IfSubStr{\keyvalue}{ of }{%
-                                            \pgfkeys{/tikzuml/statehistory/.cd, no coords}%
-                                          }{}%
-                                        }{}%
-                                        \ifx\keyvalue\pgfkeysnovalue%
-                                          \pgfkeys{/tikzuml/statehistory/.cd, style/.append style/.expand once={\keyname}}%
-                                        \else%
-                                          \pgfkeys{/tikzuml/statehistory/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                        \fi%
-                                        %\errmessage{TIKZUML ERROR : in umlstatehistory, invalid option \keyname}%
-                                      }%
+ name/.initial=statehistory-\thetikzumlStateHistoryNum,%
+ color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
+ no coords/.is if=tikzumlstatehistoryWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/statehistory/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/statehistory/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/statehistory/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlstatehistory, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/statehistory/.cd, #1}%
   \pgfkeys{/tikzuml/statehistory/.cd, x/.get=\tikzumlStateHistoryX, y/.get=\tikzumlStateHistoryY, width/.get=\tikzumlStateHistoryMinimumWidth,%
-                                      name/.get=\tikzumlStateHistoryName, color/.get=\tikzumlStateHistoryColor%
+ name/.get=\tikzumlStateHistoryName, color/.get=\tikzumlStateHistoryColor%
   }%
   %
   \def\tikzumlStateHistoryPos{\tikzumlStateHistoryX,\tikzumlStateHistoryY}%
@@ -3509,36 +3509,36 @@
 %                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatedeephistory[1][]{%
   \pgfkeys{/tikzuml/statedeephistory/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateDeepHistoryDefaultWidth,%
-                                          name/.initial=statedeephistory-\thetikzumlStateDeepHistoryNum,%
-                                          color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
-                                          no coords/.is if=tikzumlstatedeephistoryWithoutCoords,%
-                                          no coords=false,%
-                                          .unknown/.code={%
-                                            \let\keyname=\pgfkeyscurrentname%
-                                            \let\keyvalue=\pgfkeyscurrentvalue%
-                                            \ifthenelse{\equal{\keyname}{above}\OR%
-                                                        \equal{\keyname}{left}\OR%
-                                                        \equal{\keyname}{below}\OR%
-                                                        \equal{\keyname}{right}\OR%
-                                                        \equal{\keyname}{above left}\OR%
-                                                        \equal{\keyname}{above right}\OR%
-                                                        \equal{\keyname}{below left}\OR%
-                                                        \equal{\keyname}{below right}}{%
-                                              \IfSubStr{\keyvalue}{ of }{%
-                                                \pgfkeys{/tikzuml/statedeephistory/.cd, no coords}%
-                                              }{}%
-                                            }{}%
-                                            \ifx\keyvalue\pgfkeysnovalue%
-                                              \pgfkeys{/tikzuml/statedeephistory/.cd, style/.append style/.expand once={\keyname}}%
-                                            \else%
-                                              \pgfkeys{/tikzuml/statedeephistory/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                            \fi%
-                                            %\errmessage{TIKZUML ERROR : in umlstatedeephistory, invalid option \keyname}%
-                                          }%
+ name/.initial=statedeephistory-\thetikzumlStateDeepHistoryNum,%
+ color/.initial=\tikzumlDefaultDrawColor, style/.style={},%
+ no coords/.is if=tikzumlstatedeephistoryWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/statedeephistory/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/statedeephistory/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/statedeephistory/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlstatedeephistory, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/statedeephistory/.cd, #1}%
   \pgfkeys{/tikzuml/statedeephistory/.cd, x/.get=\tikzumlStateDeepHistoryX, y/.get=\tikzumlStateDeepHistoryY, width/.get=\tikzumlStateDeepHistoryMinimumWidth,%
-                                          name/.get=\tikzumlStateDeepHistoryName, color/.get=\tikzumlStateDeepHistoryColor%
+ name/.get=\tikzumlStateDeepHistoryName, color/.get=\tikzumlStateDeepHistoryColor%
   }%
   %
   \def\tikzumlStateDeepHistoryPos{\tikzumlStateDeepHistoryX,\tikzumlStateDeepHistoryY}%
@@ -3581,40 +3581,40 @@
   \stepcounter{tikzumlStateLevel}%
   %
   \pgfkeys{/tikzuml/state/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateDefaultWidth,%
-                               name/.initial={},%
-                               entry/.initial={}, do/.initial={}, exit/.initial={},%
-                               draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlStateDefaultFillColor,%
-                               text/.initial=\tikzumlDefaultTextColor, style/.style={},%
-                               no coords/.is if=tikzumlstateWithoutCoords,%
-                               no coords=false,%
-                               .unknown/.code={%
-                                 \let\keyname=\pgfkeyscurrentname%
-                                 \let\keyvalue=\pgfkeyscurrentvalue%
-                                 \ifthenelse{\equal{\keyname}{above}\OR%
-                                             \equal{\keyname}{left}\OR%
-                                             \equal{\keyname}{below}\OR%
-                                             \equal{\keyname}{right}\OR%
-                                             \equal{\keyname}{above left}\OR%
-                                             \equal{\keyname}{above right}\OR%
-                                             \equal{\keyname}{below left}\OR%
-                                             \equal{\keyname}{below right}}{%
-                                   \IfSubStr{\keyvalue}{ of }{%
-                                     \pgfkeys{/tikzuml/state/.cd, no coords}%
-                                   }{}%
-                                 }{}%
-                                 \ifx\keyvalue\pgfkeysnovalue%
-                                   \pgfkeys{/tikzuml/state/.cd, style/.append style/.expand once={\keyname}}%
-                                 \else%
-                                   \pgfkeys{/tikzuml/state/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                 \fi%
+ name/.initial={},%
+ entry/.initial={}, do/.initial={}, exit/.initial={},%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlStateDefaultFillColor,%
+ text/.initial=\tikzumlDefaultTextColor, style/.style={},%
+ no coords/.is if=tikzumlstateWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/state/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/state/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/state/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
                     %             \errmessage{TIKZUML ERROR : in umlstate, invalid option \keyname}%
-                               }%
+ }%
   }%
   \pgfkeys{/tikzuml/state/.cd, #1}%
   \pgfkeys{/tikzuml/state/.cd, x/.get=\tikzumlStateXShift, y/.get=\tikzumlStateYShift, width/.get=\tikzumlStateMinimumWidth, name/.get=\tikzumlStateName,%
-                               entry/.get=\tikzumlStateEntry, do/.get=\tikzumlStateDo, exit/.get=\tikzumlStateExit,%
-                               draw/.get=\tikzumlStateDrawColor, fill/.get=\tikzumlStateFillColor,%
-                               text/.get=\tikzumlStateTextColor%
+ entry/.get=\tikzumlStateEntry, do/.get=\tikzumlStateDo, exit/.get=\tikzumlStateExit,%
+ draw/.get=\tikzumlStateDrawColor, fill/.get=\tikzumlStateFillColor,%
+ text/.get=\tikzumlStateTextColor%
   }%
   %
   \ifthenelse{\equal{\tikzumlStateName}{}}{%
@@ -3801,12 +3801,12 @@
   \ifx \@umlactor \@empty
     \newcommand\umlactor[2][]{%
       \pgfkeys{/tikzuml/actorobj/.cd, .unknown/.code={%
-                                        \let\keyname=\pgfkeyscurrentname%
-                                        \let\keyvalue=\pgfkeyscurrentvalue%
-                                        \ifthenelse{\equal{\keyname}{stereo}}{%
-                                          \errmessage{TIKZUML ERROR : in umlactor, forbidden option stereo}%
-                                        }{}%
-                                      }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{stereo}}{%
+ \errmessage{TIKZUML ERROR : in umlactor, forbidden option stereo}%
+ }{}%
+ }%
       }%
       %
       \pgfkeys{/tikzuml/actorobj/.cd, ##1}%
@@ -3815,12 +3815,12 @@
   \else%
     \renewcommand\umlactor[2][]{%
       \pgfkeys{/tikzuml/actorobj/.cd, .unknown/.code={%
-                                        \let\keyname=\pgfkeyscurrentname%
-                                        \let\keyvalue=\pgfkeyscurrentvalue%
-                                        \ifthenelse{\equal{\keyname}{stereo}}{%
-                                          \errmessage{TIKZUML ERROR : in umlactor, forbidden option stereo}%
-                                        }{}%
-                                      }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{stereo}}{%
+ \errmessage{TIKZUML ERROR : in umlactor, forbidden option stereo}%
+ }{}%
+ }%
       }%
       %
       \pgfkeys{/tikzuml/actorobj/.cd, ##1}%
@@ -3918,23 +3918,23 @@
   %
   \edef\tikzumlobject@ddot{:}%
   \pgfkeys{/tikzuml/obj/.cd, x/.initial=tikzumlEmpty, y/.initial=\tikzumlDefaultX, stereo/.initial=\tikzumlObjectDefaultStereo,%
-                             class/.initial={}, scale/.initial=1,%
-                             draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlObjectDefaultFillColor,%
-                             text/.initial=\tikzumlDefaultTextColor,%
-                             no ddots/.is if=tikzumlobjectNoDDots,%
-                             no ddots=false,%
-                             .unknown/.code={%
-                               \let\keyname=\pgfkeyscurrentname%
-                               \let\keyvalue=\pgfkeyscurrentvalue%
-                               \errmessage{TIKZUML ERROR : in umlobject, invalid option \keyname}%
-                             }%
+ class/.initial={}, scale/.initial=1,%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlObjectDefaultFillColor,%
+ text/.initial=\tikzumlDefaultTextColor,%
+ no ddots/.is if=tikzumlobjectNoDDots,%
+ no ddots=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \errmessage{TIKZUML ERROR : in umlobject, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/obj/.cd, #1}%
   \pgfkeys{/tikzuml/obj/.cd, x/.get=\tikzumlObjectX, y/.get=\tikzumlObjectY,%
-                             stereo/.get=\tikzumlObjectStereo, class/.get=\tikzumlObjectClass,%
-                             scale/.get=\tikzumlObjectScale,%
-                             draw/.get=\tikzumlObjectDrawColor, fill/.get=\tikzumlObjectFillColor,%
-                             text/.get=\tikzumlObjectTextColor%
+ stereo/.get=\tikzumlObjectStereo, class/.get=\tikzumlObjectClass,%
+ scale/.get=\tikzumlObjectScale,%
+ draw/.get=\tikzumlObjectDrawColor, fill/.get=\tikzumlObjectFillColor,%
+ text/.get=\tikzumlObjectTextColor%
   }%
   %
   \iftikzumlobjectNoDDots%
@@ -3993,12 +3993,12 @@
 % shortcuts for objects
 \newcommand\umlbasicobject[2][]{%
   \pgfkeys{/tikzuml/basicobj/.cd, .unknown/.code={%
-                                    \let\keyname=\pgfkeyscurrentname%
-                                    \let\keyvalue=\pgfkeyscurrentvalue%
-                                    \ifthenelse{\equal{\keyname}{no ddots}}{%
-                                      \errmessage{TIKZUML ERROR : in umlbasicobject, forbidden option no ddots}%
-                                    }{}%
-                                  }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{no ddots}}{%
+ \errmessage{TIKZUML ERROR : in umlbasicobject, forbidden option no ddots}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/basicobj/.cd, #1}%
   \umlobject[no ddots, #1]{#2}%
@@ -4006,60 +4006,60 @@
 %
 \newcommand\umldatabase[2][]{%
   \pgfkeys{/tikzuml/databaseobj/.cd, .unknown/.code={%
-                                       \let\keyname=\pgfkeyscurrentname%
-                                       \let\keyvalue=\pgfkeyscurrentvalue%
-                                       \ifthenelse{\equal{\keyname}{stereo}}{%
-                                         \errmessage{TIKZUML ERROR : in umldatabase, forbidden option stereo}%
-                                       }{}%
-                                     }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{stereo}}{%
+ \errmessage{TIKZUML ERROR : in umldatabase, forbidden option stereo}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/databaseobj/.cd, #1}%
   \umlobject[stereo=database, #1]{#2}%
 }%
 \newcommand\umlentity[2][]{%
   \pgfkeys{/tikzuml/entityobj/.cd, .unknown/.code={%
-                                     \let\keyname=\pgfkeyscurrentname%
-                                     \let\keyvalue=\pgfkeyscurrentvalue%
-                                     \ifthenelse{\equal{\keyname}{stereo}}{%
-                                       \errmessage{TIKZUML ERROR : in umlentity, forbidden option stereo}%
-                                     }{}%
-                                   }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{stereo}}{%
+ \errmessage{TIKZUML ERROR : in umlentity, forbidden option stereo}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/entityobj/.cd, #1}%
   \umlobject[stereo=entity, #1]{#2}%
 }%
 \newcommand\umlcontrol[2][]{%
   \pgfkeys{/tikzuml/controlobj/.cd, .unknown/.code={%
-                                      \let\keyname=\pgfkeyscurrentname%
-                                      \let\keyvalue=\pgfkeyscurrentvalue%
-                                      \ifthenelse{\equal{\keyname}{stereo}}{%
-                                        \errmessage{TIKZUML ERROR : in umlcontrol, forbidden option stereo}%
-                                      }{}%
-                                    }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{stereo}}{%
+ \errmessage{TIKZUML ERROR : in umlcontrol, forbidden option stereo}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/controlobj/.cd, #1}%
   \umlobject[stereo=control, #1]{#2}%
 }%
 \newcommand\umlboundary[2][]{%
   \pgfkeys{/tikzuml/boundaryobj/.cd, .unknown/.code={%
-                                       \let\keyname=\pgfkeyscurrentname%
-                                       \let\keyvalue=\pgfkeyscurrentvalue%
-                                       \ifthenelse{\equal{\keyname}{stereo}}{%
-                                         \errmessage{TIKZUML ERROR : in umlboundary, forbidden option stereo}%
-                                       }{}%
-                                     }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{stereo}}{%
+ \errmessage{TIKZUML ERROR : in umlboundary, forbidden option stereo}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/boundaryobj/.cd, #1}%
   \umlobject[stereo=boundary, #1]{#2}%
 }%
 \newcommand\umlmulti[2][]{%
   \pgfkeys{/tikzuml/multiobj/.cd, .unknown/.code={%
-                                    \let\keyname=\pgfkeyscurrentname%
-                                    \let\keyvalue=\pgfkeyscurrentvalue%
-                                    \ifthenelse{\equal{\keyname}{stereo}}{%
-                                      \errmessage{TIKZUML ERROR : in umlmulti, forbidden option stereo}%
-                                    }{}%
-                                  }%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{stereo}}{%
+ \errmessage{TIKZUML ERROR : in umlmulti, forbidden option stereo}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/multiobj/.cd, #1}%
   \umlobject[stereo=multi, #1]{#2}%
@@ -4114,26 +4114,26 @@
   \gdef\tikzumlCallBottom{0}%
   %
   \pgfkeys{/tikzuml/call/.cd, dt/.initial=\tikzumlCallDefaultDT, name/.initial={call-\thetikzumlCallNum},%
-                              op/.initial={}, return/.initial={}, type/.initial=\tikzumlCallDefaultType,%
-                              draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlCallDefaultFillColor,%
-                              text/.initial=\tikzumlDefaultTextColor,%
-                              padding/.initial=\tikzumlCallDefaultPadding,%
-                              .unknown/.code={%
-                                \let\keyname=\pgfkeyscurrentname%
-                                \let\keyvalue=\pgfkeyscurrentvalue%
-                                \ifthenelse{\equal{\keyname}{with return}}{%
-                                  \def\tikzumlCallWithReturn{tikzumlTrue}%
-                                }{%
-                                  \errmessage{TIKZUML ERROR : in umlcall,  invalid option \keyname}%
-                                }%
-                              }%
+ op/.initial={}, return/.initial={}, type/.initial=\tikzumlCallDefaultType,%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlCallDefaultFillColor,%
+ text/.initial=\tikzumlDefaultTextColor,%
+ padding/.initial=\tikzumlCallDefaultPadding,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{with return}}{%
+ \def\tikzumlCallWithReturn{tikzumlTrue}%
+ }{%
+ \errmessage{TIKZUML ERROR : in umlcall,  invalid option \keyname}%
+ }%
+ }%
   }%
   \pgfkeys{/tikzuml/call/.cd, #1}%
   \pgfkeys{/tikzuml/call/.cd, dt/.get=\tikzumlCallDT, name/.get=\tikzumlCallName, op/.get=\tikzumlCallOp,%
-                              return/.get=\tikzumlCallReturn, type/.get=\tikzumlCallType,%
-                              padding/.get=\tikzumlCallPadding,%
-                              draw/.get=\tikzumlCallDrawColor, fill/.get=\tikzumlCallFillColor,%
-                              text/.get=\tikzumlCallTextColor%
+ return/.get=\tikzumlCallReturn, type/.get=\tikzumlCallType,%
+ padding/.get=\tikzumlCallPadding,%
+ draw/.get=\tikzumlCallDrawColor, fill/.get=\tikzumlCallFillColor,%
+ text/.get=\tikzumlCallTextColor%
   }%
   %
   \edef\tikzumlfillcall{\tikzumlCallFillColor}%
@@ -4316,9 +4316,9 @@
   \begin{pgfonlayer}{connections}%
   \ifthenelse{\equal{\tikzumlCallStartNodeName}{\tikzumlCallEndNodeName}}{%
     \draw[\tikzumlcallstyle, \tikzumldrawcall] (st-\tikzumlCall@nodeName.east) -- ++(2.5*\tikzumlCallPadding ex,0) %
-                                               -- ++(0,-0.75*\tikzumlCallPadding ex) %
-                                               node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, right, name=\tikzumlCall@nodeName-op] {\tikzumlCallOp} %
-                                               -- (et-\tikzumlCall@nodeName.east);%
+ -- ++(0,-0.75*\tikzumlCallPadding ex) %
+ node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, right, name=\tikzumlCall@nodeName-op] {\tikzumlCallOp} %
+ -- (et-\tikzumlCall@nodeName.east);%
     %
     % draw return arrow and update fit for parent fragment
     \ifthenelse{\equal{\tikzumltypecall}{synchron}}{%
@@ -4329,9 +4329,9 @@
         \fi%
         %
         \draw[tikzuml call return style, \tikzumldrawcall] (eb-\tikzumlCall@nodeName.east) -- ++(2.5*\tikzumlCallPadding ex,0)
-                                                           -- ++(0,-0.75*\tikzumlCallPadding ex) %
-                                         node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, right, name=\tikzumlCall@nodeName-return] {\tikzumlCallReturn} %
-                                         -- (sb-\tikzumlCall@nodeName.east);%
+ -- ++(0,-0.75*\tikzumlCallPadding ex) %
+ node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, right, name=\tikzumlCall@nodeName-return] {\tikzumlCallReturn} %
+ -- (sb-\tikzumlCall@nodeName.east);%
       }{%
         \ifnum\c@tikzumlFragmentLevel>0%
           \edef\tikzumlFragmentFitOld{\csname tikzumlFragmentFit\tikzumlFragment@name \endcsname}%
@@ -4351,10 +4351,10 @@
     %
     \ifthenelse{\tikzumlCall@xb>\tikzumlCall@xa}{%
       \draw[\tikzumlcallstyle, \tikzumldrawcall] (st-\tikzumlCall@nodeName.east) -- (et-\tikzumlCall@nodeName.west) %
-                                                 node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, above=-0.4ex, name=\tikzumlCall@nodeName-op] {\tikzumlCallOp};%
+ node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, above=-0.4ex, name=\tikzumlCall@nodeName-op] {\tikzumlCallOp};%
     }{%
       \draw[\tikzumlcallstyle, \tikzumldrawcall] (st-\tikzumlCall@nodeName.west) -- (et-\tikzumlCall@nodeName.east) %
-                                                 node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, above=-0.4ex, name=\tikzumlCall@nodeName-op] {\tikzumlCallOp};%
+ node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, above=-0.4ex, name=\tikzumlCall@nodeName-op] {\tikzumlCallOp};%
     }%
     %
     % draw return arrow and update fit for parent fragment
@@ -4367,10 +4367,10 @@
         %
         \ifthenelse{\tikzumlCall@xb>\tikzumlCall@xa}{%
           \draw[tikzuml call return style, \tikzumldrawcall] (eb-\tikzumlCall@nodeName.west) -- (sb-\tikzumlCall@nodeName.east) %
-                                     node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, above=-0.4ex, name=\tikzumlCall@nodeName-return] {\tikzumlCallReturn};%
+ node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, above=-0.4ex, name=\tikzumlCall@nodeName-return] {\tikzumlCallReturn};%
         }{%
           \draw[tikzuml call return style, \tikzumldrawcall] (eb-\tikzumlCall@nodeName.east) -- (sb-\tikzumlCall@nodeName.west) %
-                                     node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, above=-0.4ex, name=\tikzumlCall@nodeName-return] {\tikzumlCallReturn};%
+ node[font=\tikzumlDefaultFont, text=\tikzumltextcall, midway, above=-0.4ex, name=\tikzumlCall@nodeName-return] {\tikzumlCallReturn};%
         }%
       }{%
         \ifnum\c@tikzumlFragmentLevel>0%
@@ -4400,7 +4400,7 @@
 \newenvironment{umlfragment}[1][]{%
   % define a fragment separator
   % optional : label of the fragment part (ex : else for alt)
-  \providecommand{\umlfpart}[1][]{%
+  \providecommand\umlfpart[1][]{%
     \stepcounter{tikzumlFragmentPartNum}%
     %
     \node[outer sep=0, inner xsep=\tikzumlFragmentXSep ex, inner ysep=\tikzumlFragmentYSep ex, fit=\csname tikzumlFragmentFit\tikzumlFragment@name \endcsname, name=\tikzumlFragment@name-Part-tmp] {};%
@@ -4415,22 +4415,22 @@
   \stepcounter{tikzumlFragmentNum}%
   %
   \pgfkeys{/tikzuml/fragment/.cd, name/.initial=fragment@\alph{tikzumlFragmentNum}, type/.initial=\tikzumlFragmentDefaultType,%
-                                  label/.initial=tikzumlEmpty,%
-                                  inner xsep/.initial=\tikzumlFragmentDefaultXSep, inner ysep/.initial=\tikzumlFragmentDefaultYSep,%
-                                  draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlFragmentDefaultFillColor,%
-                                  text/.initial=\tikzumlDefaultTextColor,%
-                                  .unknown/.code={%
-                                    \let\keyname=\pgfkeyscurrentname%
-                                    \let\keyvalue=\pgfkeyscurrentvalue%
-                                    \errmessage{TIKZUML ERROR : in umlfragment, invalid option \keyname}%
-                                  }%
+ label/.initial=tikzumlEmpty,%
+ inner xsep/.initial=\tikzumlFragmentDefaultXSep, inner ysep/.initial=\tikzumlFragmentDefaultYSep,%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlFragmentDefaultFillColor,%
+ text/.initial=\tikzumlDefaultTextColor,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \errmessage{TIKZUML ERROR : in umlfragment, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/fragment/.cd, #1}%
   \pgfkeys{/tikzuml/fragment/.cd, name/.get=\tikzumlFragmentName, type/.get=\tikzumlFragmentType,%
-                                  label/.get=\tikzumlFragmentLabel,%
-                                  inner xsep/.get=\tikzumlFragmentXSep, inner ysep/.get=\tikzumlFragmentYSep,%
-                                  draw/.get=\tikzumlFragmentDrawColor, fill/.get=\tikzumlFragmentFillColor,%
-                                  text/.get=\tikzumlFragmentTextColor%
+ label/.get=\tikzumlFragmentLabel,%
+ inner xsep/.get=\tikzumlFragmentXSep, inner ysep/.get=\tikzumlFragmentYSep,%
+ draw/.get=\tikzumlFragmentDrawColor, fill/.get=\tikzumlFragmentFillColor,%
+ text/.get=\tikzumlFragmentTextColor%
   }%
   %
   \ifthenelse{\equal{\tikzumlFragmentLabel}{tikzumlEmpty}}{%
@@ -4486,9 +4486,9 @@
   %
   % draw type and label
   \node[text=\tikzumlFragmentTextColor, font=\tikzumlDefaultFont, anchor=north east, name=\tikzumlFragment@name-type] %
-                                   at (\tikzumlFragment@name-back.north west) {\tikzumlFragmentType};%
+ at (\tikzumlFragment@name-back.north west) {\tikzumlFragmentType};%
   \node[text=\tikzumlFragmentTextColor, font=\tikzumlDefaultFont, anchor=north west, name=\tikzumlFragment@name-label] %
-                                   at (\tikzumlFragment@name-type.south west) {\tikzumlFragmentLabel};%
+ at (\tikzumlFragment@name-type.south west) {\tikzumlFragmentLabel};%
   %
   % draw final fragment box
   \begin{pgfonlayer}{fragment\thetikzumlFragmentLevel}%
@@ -4520,27 +4520,27 @@
   \edef\tikzumlCall@lastchildNum{\thetikzumlCallNum}% for testing presence of sub-calls
   \gdef\tikzumlInCreateCall{1}%
   \pgfkeys{/tikzuml/createcall/.cd, x/.initial=tikzumlEmpty, stereo/.initial=\tikzumlObjectDefaultStereo, class/.initial={},%
-                                    dt/.initial=\tikzumlCreateCallDefaultDT, name/.initial=call-\thetikzumlCallNum,%
-                                    draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlCallDefaultFillColor,%
-                                    text/.initial=\tikzumlDefaultTextColor,%
-                                    draw obj/.initial=\tikzumlDefaultDrawColor, fill obj/.initial=\tikzumlObjectDefaultFillColor,%
-                                    text obj/.initial=\tikzumlDefaultTextColor,%
-                                    no ddots/.is if=tikzumlcreatecallNoDDots,%
-                                    no ddots=false,%
-                                    .unknown/.code={%
-                                      \let\keyname=\pgfkeyscurrentname%
-                                      \let\keyvalue=\pgfkeyscurrentvalue%
-                                      \errmessage{TIKZUML ERROR : in umlcreatecall, invalid option \keyname}%
-                                    }%
+ dt/.initial=\tikzumlCreateCallDefaultDT, name/.initial=call-\thetikzumlCallNum,%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlCallDefaultFillColor,%
+ text/.initial=\tikzumlDefaultTextColor,%
+ draw obj/.initial=\tikzumlDefaultDrawColor, fill obj/.initial=\tikzumlObjectDefaultFillColor,%
+ text obj/.initial=\tikzumlDefaultTextColor,%
+ no ddots/.is if=tikzumlcreatecallNoDDots,%
+ no ddots=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \errmessage{TIKZUML ERROR : in umlcreatecall, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/createcall/.cd, #1}%
   \pgfkeys{/tikzuml/createcall/.cd, x/.get=\tikzumlCreateCallX, stereo/.get=\tikzumlCreateCallStereo,%
-                                    class/.get=\tikzumlCreateCallClass,%
-                                    dt/.get=\tikzumlCreateCallDT, name/.get=\tikzumlCreateCallName,%
-                                    draw/.get=\tikzumlCreateCallDrawColor, fill/.get=\tikzumlCreateCallFillColor,%
-                                    text/.get=\tikzumlCreateCallTextColor,%
-                                    draw obj/.get=\tikzumlCreateCallObjectDrawColor, fill obj/.get=\tikzumlCreateCallObjectFillColor,%
-                                    text obj/.get=\tikzumlCreateCallObjectTextColor%
+ class/.get=\tikzumlCreateCallClass,%
+ dt/.get=\tikzumlCreateCallDT, name/.get=\tikzumlCreateCallName,%
+ draw/.get=\tikzumlCreateCallDrawColor, fill/.get=\tikzumlCreateCallFillColor,%
+ text/.get=\tikzumlCreateCallTextColor,%
+ draw obj/.get=\tikzumlCreateCallObjectDrawColor, fill obj/.get=\tikzumlCreateCallObjectFillColor,%
+ text obj/.get=\tikzumlCreateCallObjectTextColor%
   }%
   %
   \def\tikzumlCreateCallSrc@name{#2}%
@@ -4655,38 +4655,38 @@
   \stepcounter{tikzumlComponentLevel}%
   %
   \pgfkeys{/tikzuml/component/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlComponentDefaultWidth, name/.initial={},%
-                                   draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlComponentDefaultFillColor,%
-                                   text/.initial=\tikzumlDefaultTextColor, style/.style={},%
-                                   no coords/.is if=tikzumlcomponentWithoutCoords,%
-                                   no coords=false,%
-                                   .unknown/.code={%
-                                     \let\keyname=\pgfkeyscurrentname%
-                                     \let\keyvalue=\pgfkeyscurrentvalue%
-                                     \ifthenelse{\equal{\keyname}{above}\OR%
-                                                 \equal{\keyname}{left}\OR%
-                                                 \equal{\keyname}{below}\OR%
-                                                 \equal{\keyname}{right}\OR%
-                                                 \equal{\keyname}{above left}\OR%
-                                                 \equal{\keyname}{above right}\OR%
-                                                 \equal{\keyname}{below left}\OR%
-                                                 \equal{\keyname}{below right}}{%
-                                       \IfSubStr{\keyvalue}{ of }{%
-                                         \pgfkeys{/tikzuml/component/.cd, no coords}%
-                                       }{}%
-                                     }{}%
-                                     \ifx\keyvalue\pgfkeysnovalue%
-                                       \pgfkeys{/tikzuml/component/.cd, style/.append style/.expand once={\keyname}}%
-                                     \else%
-                                       \pgfkeys{/tikzuml/component/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                                     \fi%
-                                     %\errmessage{TIKZUML ERROR : in umlcomponent, invalid option \keyname}%
-                                   }%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlComponentDefaultFillColor,%
+ text/.initial=\tikzumlDefaultTextColor, style/.style={},%
+ no coords/.is if=tikzumlcomponentWithoutCoords,%
+ no coords=false,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{above}\OR%
+ \equal{\keyname}{left}\OR%
+ \equal{\keyname}{below}\OR%
+ \equal{\keyname}{right}\OR%
+ \equal{\keyname}{above left}\OR%
+ \equal{\keyname}{above right}\OR%
+ \equal{\keyname}{below left}\OR%
+ \equal{\keyname}{below right}}{%
+ \IfSubStr{\keyvalue}{ of }{%
+ \pgfkeys{/tikzuml/component/.cd, no coords}%
+ }{}%
+ }{}%
+ \ifx\keyvalue\pgfkeysnovalue%
+ \pgfkeys{/tikzuml/component/.cd, style/.append style/.expand once={\keyname}}%
+ \else%
+ \pgfkeys{/tikzuml/component/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+ \fi%
+ %\errmessage{TIKZUML ERROR : in umlcomponent, invalid option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/component/.cd, #1}%
   \pgfkeys{/tikzuml/component/.cd, x/.get=\tikzumlComponentXShift, y/.get=\tikzumlComponentYShift,%
-                                   width/.get=\tikzumlComponentMinimumWidth, name/.get=\tikzumlComponentName,%
-                                   draw/.get=\tikzumlComponentDrawColor, fill/.get=\tikzumlComponentFillColor,%
-                                   text/.get=\tikzumlComponentTextColor%
+ width/.get=\tikzumlComponentMinimumWidth, name/.get=\tikzumlComponentName,%
+ draw/.get=\tikzumlComponentDrawColor, fill/.get=\tikzumlComponentFillColor,%
+ text/.get=\tikzumlComponentTextColor%
   }%
   %
   \ifthenelse{\equal{\tikzumlComponentName}{}}{%
@@ -4759,25 +4759,25 @@
 \newcommand\umlrequiredinterface[2][]{%
   \def\tikzumlInterfaceWithPort{tikzumlFalse}%
   \pgfkeys{/tikzuml/requiredinterfacerelation/.cd, interface/.initial={}, distance/.initial=\tikzumlRequiredInterfaceDefaultDistance,%
-                                                   name/.initial=tikzumlEmpty, width/.initial=\tikzumlRequiredInterfaceDefaultWidth,%
-                                                   padding/.initial=\tikzumlRequiredInterfaceDefaultPadding,%
-                                                   draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlComponentDefaultFillColor,%
-                                                   .unknown/.code={%
-                                                     \let\keyname=\pgfkeyscurrentname%
-                                                     \let\keyvalue=\pgfkeyscurrentvalue%
-                                                     \ifthenelse{\equal{\keyname}{with port}}{%
-                                                       \def\tikzumlInterfaceWithPort{tikzumlTrue}%
-                                                     }{}%
-                                                   }%
+ name/.initial=tikzumlEmpty, width/.initial=\tikzumlRequiredInterfaceDefaultWidth,%
+ padding/.initial=\tikzumlRequiredInterfaceDefaultPadding,%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlComponentDefaultFillColor,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{with port}}{%
+ \def\tikzumlInterfaceWithPort{tikzumlTrue}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/requiredinterfacerelation/.cd, #1}%
   \pgfkeys{/tikzuml/requiredinterfacerelation/.cd, interface/.get=\tikzumlRequiredInterfaceLabel,%
-                                                   distance/.get=\tikzumlRequiredInterfaceDistance,%
-                                                   name/.get=\tikzumlRequiredInterfaceName,%
-                                                   width/.get=\tikzumlRequiredInterfaceWidth,%
-                                                   padding/.get=\tikzumlRequiredInterfacePadding,%
-                                                   draw/.get=\tikzumlRequiredInterfaceDrawColor,%
-                                                   fill/.get=\tikzumlRequiredInterfaceFillColor%
+ distance/.get=\tikzumlRequiredInterfaceDistance,%
+ name/.get=\tikzumlRequiredInterfaceName,%
+ width/.get=\tikzumlRequiredInterfaceWidth,%
+ padding/.get=\tikzumlRequiredInterfacePadding,%
+ draw/.get=\tikzumlRequiredInterfaceDrawColor,%
+ fill/.get=\tikzumlRequiredInterfaceFillColor%
   }%
   %
   \ifthenelse{\equal{\tikzumlRequiredInterfaceName}{tikzumlEmpty}}{%
@@ -4834,25 +4834,25 @@
 \newcommand\umlprovidedinterface[2][]{%
   \def\tikzumlInterfaceWithPort{tikzumlFalse}%
   \pgfkeys{/tikzuml/providedinterfacerelation/.cd, interface/.initial={}, distance/.initial=\tikzumlProvidedInterfaceDefaultDistance,%
-                                                   name/.initial=tikzumlEmpty, width/.initial=\tikzumlProvidedInterfaceDefaultWidth,%
-                                                   padding/.initial=\tikzumlProvidedInterfaceDefaultPadding,%
-                                                   draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlComponentDefaultFillColor,%
-                                                   .unknown/.code={%
-                                                     \let\keyname=\pgfkeyscurrentname%
-                                                     \let\keyvalue=\pgfkeyscurrentvalue%
-                                                     \ifthenelse{\equal{\keyname}{with port}}{%
-                                                       \def\tikzumlInterfaceWithPort{tikzumlTrue}%
-                                                     }{}%
-                                                   }%
+ name/.initial=tikzumlEmpty, width/.initial=\tikzumlProvidedInterfaceDefaultWidth,%
+ padding/.initial=\tikzumlProvidedInterfaceDefaultPadding,%
+ draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlComponentDefaultFillColor,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{with port}}{%
+ \def\tikzumlInterfaceWithPort{tikzumlTrue}%
+ }{}%
+ }%
   }%
   \pgfkeys{/tikzuml/providedinterfacerelation/.cd, #1}%
   \pgfkeys{/tikzuml/providedinterfacerelation/.cd, interface/.get=\tikzumlProvidedInterfaceLabel,%
-                                                   distance/.get=\tikzumlProvidedInterfaceDistance,%
-                                                   name/.get=\tikzumlProvidedInterfaceName,%
-                                                   width/.get=\tikzumlProvidedInterfaceWidth,%
-                                                   padding/.get=\tikzumlProvidedInterfacePadding,%
-                                                   draw/.get=\tikzumlProvidedInterfaceDrawColor,%
-                                                   fill/.get=\tikzumlProvidedInterfaceFillColor%
+ distance/.get=\tikzumlProvidedInterfaceDistance,%
+ name/.get=\tikzumlProvidedInterfaceName,%
+ width/.get=\tikzumlProvidedInterfaceWidth,%
+ padding/.get=\tikzumlProvidedInterfacePadding,%
+ draw/.get=\tikzumlProvidedInterfaceDrawColor,%
+ fill/.get=\tikzumlProvidedInterfaceFillColor%
   }%
   %
   \ifthenelse{\equal{\tikzumlProvidedInterfaceName}{tikzumlEmpty}}{%
@@ -4985,49 +4985,49 @@
   \def\tikzumlAssemblyConnectorMiddleArm{tikzumlFalse}%
   \def\tikzumlAssemblyConnectorLastArm{tikzumlFalse}%
   \pgfkeys{/tikzuml/assemblyconnectorrelation/.cd, geometry/.initial=--, interface/.initial={},%
-                                                   arm1/.initial={auto}, arm2/.initial={auto},%
-                                                   name/.initial=connector-\thetikzumlConnectorNum, width/.initial=1em,%
-                                                   anchor1/.initial={}, anchor2/.initial={},%
-                                                   draw/.initial=\tikzumlDefaultDrawColor,%
-                                                   fill assembly connector/.initial=\tikzumlAssemblyConnectorDefaultFillColor,%
-                                                   fill port/.initial=\tikzumlPortDefaultFillColor,%
-                                                   .unknown/.code={%
-                                                     \let\keyname=\pgfkeyscurrentname%
-                                                     \let\keyvalue=\pgfkeyscurrentvalue%
-                                                     \ifthenelse{\equal{\keyname}{with port}}{%
-                                                       \def\tikzumlAssemblyConnectorWithPort{tikzumlTrue}%
-                                                     }{%
-                                                       \ifthenelse{\equal{\keyname}{first arm}}{%
-                                                         \def\tikzumlAssemblyConnectorFirstArm{tikzumlTrue}%
-                                                       }{%
-                                                         \ifthenelse{\equal{\keyname}{second arm}}{%
-                                                           \def\tikzumlAssemblyConnectorSecondArm{tikzumlTrue}%
-                                                         }{%
-                                                           \ifthenelse{\equal{\keyname}{middle arm}}{%
-                                                             \def\tikzumlAssemblyConnectorMiddleArm{tikzumlTrue}%
-                                                           }{%
-                                                             \ifthenelse{\equal{\keyname}{last arm}}{%
-                                                               \def\tikzumlAssemblyConnectorLastArm{tikzumlTrue}%
-                                                             }{%
-                                                             }%
-                                                           }%
-                                                         }%
-                                                       }%
-                                                     }%
-                                                   }%
+ arm1/.initial={auto}, arm2/.initial={auto},%
+ name/.initial=connector-\thetikzumlConnectorNum, width/.initial=1em,%
+ anchor1/.initial={}, anchor2/.initial={},%
+ draw/.initial=\tikzumlDefaultDrawColor,%
+ fill assembly connector/.initial=\tikzumlAssemblyConnectorDefaultFillColor,%
+ fill port/.initial=\tikzumlPortDefaultFillColor,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \ifthenelse{\equal{\keyname}{with port}}{%
+ \def\tikzumlAssemblyConnectorWithPort{tikzumlTrue}%
+ }{%
+ \ifthenelse{\equal{\keyname}{first arm}}{%
+ \def\tikzumlAssemblyConnectorFirstArm{tikzumlTrue}%
+ }{%
+ \ifthenelse{\equal{\keyname}{second arm}}{%
+ \def\tikzumlAssemblyConnectorSecondArm{tikzumlTrue}%
+ }{%
+ \ifthenelse{\equal{\keyname}{middle arm}}{%
+ \def\tikzumlAssemblyConnectorMiddleArm{tikzumlTrue}%
+ }{%
+ \ifthenelse{\equal{\keyname}{last arm}}{%
+ \def\tikzumlAssemblyConnectorLastArm{tikzumlTrue}%
+ }{%
+ }%
+ }%
+ }%
+ }%
+ }%
+ }%
   }%
   \pgfkeys{/tikzuml/assemblyconnectorrelation/.cd, #1}%
   \pgfkeys{/tikzuml/assemblyconnectorrelation/.cd, geometry/.get=\tikzumlAssemblyConnectorGeometry,%
-                                                   name/.get=\tikzumlAssemblyConnectorName,%
-                                                   interface/.get=\tikzumlAssemblyConnectorLabel,%
-                                                   width/.get=\tikzumlAssemblyConnectorWidth,%
-                                                   arm1/.get=\tikzumlAssemblyConnectorStartArm,%
-                                                   arm2/.get=\tikzumlAssemblyConnectorEndArm,%
-                                                   anchor1/.get=\tikzumlAssemblyConnectorStartAnchorTmp,%
-                                                   anchor2/.get=\tikzumlAssemblyConnectorEndAnchorTmp,%
-                                                   draw/.get=\tikzumlAssemblyConnectorDrawColor,%
-                                                   fill assembly connector/.get=\tikzumlAssemblyConnectorFillColor,%
-                                                   fill port/.get=\tikzumlAssemblyConnectorPortFillColor%
+ name/.get=\tikzumlAssemblyConnectorName,%
+ interface/.get=\tikzumlAssemblyConnectorLabel,%
+ width/.get=\tikzumlAssemblyConnectorWidth,%
+ arm1/.get=\tikzumlAssemblyConnectorStartArm,%
+ arm2/.get=\tikzumlAssemblyConnectorEndArm,%
+ anchor1/.get=\tikzumlAssemblyConnectorStartAnchorTmp,%
+ anchor2/.get=\tikzumlAssemblyConnectorEndAnchorTmp,%
+ draw/.get=\tikzumlAssemblyConnectorDrawColor,%
+ fill assembly connector/.get=\tikzumlAssemblyConnectorFillColor,%
+ fill port/.get=\tikzumlAssemblyConnectorPortFillColor%
   }%
   %
   \edef\tikzumlAssemblyConnectorStart@name{#2}%
@@ -5266,16 +5266,16 @@
 %
 \newcommand\umlport[3][]{%
   \pgfkeys{/tikzuml/port/.cd, draw/.initial=\tikzumlDefaultDrawColor, fill/.initial=\tikzumlPortDefaultFillColor,%
-                              width/.initial=\tikzumlPortDefaultWidth,%
-                              .unknown/.code={%
-                                \let\keyname=\pgfkeyscurrentname%
-                                \let\keyvalue=\pgfkeyscurrentvalue%
-                                \errmessage{TIKZUML ERROR : in umlport forbidden option \keyname}%
-                              }%
+ width/.initial=\tikzumlPortDefaultWidth,%
+ .unknown/.code={%
+ \let\keyname=\pgfkeyscurrentname%
+ \let\keyvalue=\pgfkeyscurrentvalue%
+ \errmessage{TIKZUML ERROR : in umlport forbidden option \keyname}%
+ }%
   }%
   \pgfkeys{/tikzuml/port/.cd, #1}%
   \pgfkeys{/tikzuml/port/.cd, width/.get=\tikzumlPortWidth,%
-                              draw/.get=\tikzumlPortDrawColor, fill/.get=\tikzumlPortFillColor}%
+ draw/.get=\tikzumlPortDrawColor, fill/.get=\tikzumlPortFillColor}%
   \edef\tikzumlPort@name{#2}%
   \edef\tikzumlPort@anchor{#3}%
   \begingroup%

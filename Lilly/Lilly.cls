@@ -26,8 +26,8 @@
 \renewcommand*\thefootnote{$\langle$\textbf{\arabic{footnote}}$\rangle$}
 \renewcommand*\thempfootnote{$\langle$\textbf{\doublealph{mpfootnote}}$\rangle$}
 
-\LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}% Package, Info
-    {Dieses Paket ist für LILLY überlebenswichtig}% Error-Text
+\LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}
+    {Dieses Paket ist für LILLY überlebenswichtig}
     {\LILLYxGeneralxPaperformat,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering,\LILLYxGeometryxExtras}{}
 \LILLYxDemandPackage{babel}{Sprachverwaltung}
     {Um dieses Paket kommt LILLY nicht herum!}{english,ngerman}{}

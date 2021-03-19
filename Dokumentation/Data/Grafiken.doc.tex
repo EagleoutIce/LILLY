@@ -419,7 +419,7 @@ Ersteinmal ein Beispiel:
         \draw (Teile) +(1.25,0) node[above right] {\small $0..*$} -- (liefert) -- (Lieferanten) +(-1.25,0) node[above left] {\small $0..*$} %
         +(0,-0.377) node[below right] {\small $1$} -- (erhielt) -- (Bestellungen) +(0,0.377) node[above left] (bpkard)  {\small $0..*$};
 
-        \providecommand{\descNode}[4][above]{%
+        \providecommand\descNode[4][above]{%
             \draw #2 node[#1]  {\parbox{3cm}{\textbf{#3}:\\\itshape #4}};
         }
 

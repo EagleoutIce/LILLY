@@ -1,5 +1,5 @@
 % comment - in case of need :D
-heading_prefix "\n\\providecommand{\\idxfsize}{\\normalsize}\n\\noindent\\ {\\centering\\tikz{\\node at(-1,0) {};\\node at(2,0) {};\\draw[rounded corners=3pt,fill=black!03,thick] (0,0) rectangle ++(5,0.5) node[midway,centered]{\\textbf{"
+heading_prefix "\n\\providecommand\\idxfsize{\\normalsize}\n\\noindent\\ {\\centering\\tikz{\\node at(-1,0) {};\\node at(2,0) {};\\draw[rounded corners=3pt,fill=black!03,thick] (0,0) rectangle ++(5,0.5) node[midway,centered]{\\textbf{"
 heading_suffix "}};}}\\par\\nopagebreak\n"
 headings_flag 1
 preamble "\\protect\\thispagestyle{empty}

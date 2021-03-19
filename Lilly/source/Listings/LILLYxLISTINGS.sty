@@ -1,55 +1,29 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxLISTINGS}[2019/07/14 Stellt die Listings-Erweiterungen fuer LILLY zur Verfuegung]
-
 \RequirePackage{LILLYxPACKAGExCTRL,LILLYxCONTROLLERxCONTENT,LILLYxCOLOR,LILLYxFONTS,LILLYxLIST,LILLYxLISTINGSxLANGUAGExCONTROL,kvoptions}
-% ifLILLY@runtimes: Control the runtimes-module
 \DeclareBoolOption[true]{runtimes}\DeclareComplementaryOption{noruntimes}{runtimes}
 \ProcessOptions*
-% Packages
-% Die Verwaltung der Listings verläuft auf verschiedene Highlighting -Module welche auch über die Kommandozeile definiert werden können
-\LILLYxPoliteKnock{listingsutf8}{% wir wollen natürlich UTF8, wenns geht
 
+\LILLYxPoliteKnock{listingsutf8}{% wir wollen natürlich UTF8, wenns geht
 \LILLYxDemandPackage{listingsutf8}{Tolle Umlaute in tollen Codes}
   {Also dieser Fehler sollte nun wirklich nicht vorkommen.}
-  {}{}}{
+  {}{}}{\LILLYxDemandPackage{listings}{Tolle Codes}{Also mit irgendwas muss ich arbeiten.}{}{}}
 
-\LILLYxDemandPackage{listings}{Tolle Codes}
-  {Also mit irgendwas muss ich arbeiten.}
-  {}{}
-}
-
-% Key patch from: https://tex.stackexchange.com/questions/149056/how-can-i-define-additional-literate-replacements-without-deleting-existing-ones
 \def\addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
 \lst@Key{add to literate}{}{\addToLiterate{#1}}
 
-\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}% Package, Info
-  {Wir wollen mehr Symbole}% Error-Text
-  {}{}
-
-
+\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}{Wir wollen mehr Symbole}{}{}
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
-  {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
-  {}{}
-
-
-\LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
-  {Dieses Paket ist für includegraphics von noeten!}
+  {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}{}{}
+\LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}{Dieses Paket ist für includegraphics von noeten!}
   {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}}{}{}
 
-\newif\ifaccsup@available@
-\accsup@available@true
+\newif\ifaccsup@available@ \accsup@available@true
 
 \LILLYxLoadPackage{accsupp}{Besserer PDF-Support}
-  {Ohne gehts nicht}
-  {\global\accsup@available@false}{}{}
+  {Ohne gehts nicht}{\global\accsup@available@false}{}{}
+\LILLYxDemandPackage{etoolbox}{Damit die Befehle robust sind}{Ohne gehts nicht - leider}{}{}
 
-\LILLYxDemandPackage{etoolbox}{Damit die Befehle robust sind}
-  {Ohne gehts nicht - leider}
-  {}{}
-
-% NOTE: https://ctan.kako-dev.de/macros/latex/contrib/lstaddons/lstautogobble.pdf
-% Colors
-% Current Colors:
 \definecolor{lstmainbordercol}{HTML}{EAECF0}
 \definecolor{lstmainbackcol}{HTML}{F8F9FA}
 
@@ -78,19 +52,14 @@
 
 % Handling of Number-Highlighting
 \newif\iflstlastwasacharacter% Will disable numberhl if true
-\lstlastwasacharacterfalse
 \newif\iflstlastwasacharacterkeep
-\lstlastwasacharacterkeepfalse
-\newif\iflstdonumhl
-\lstdonumhltrue
+\newif\iflstdonumhl \lstdonumhltrue
 \newif\iflstforcenum
-\lstforcenumfalse
 
 \newcommand\digitstyle{\color{DarkMidnightBlue}}
-% Lilly process Digit
 \newcommand\lpDigit[1]
-{\begingroup%
-\iflstdonumhl%
+{\begingroup
+\iflstdonumhl
 \iflstlastwasacharacter%\lstnumnohlmodetrue% was char => don't highlight, we won't check for hex right now
 \global\lstlastwasacharacterkeeptrue#1\else\global\lstlastwasacharacterkeepfalse%
   \ifnum\lst@mode=\lst@Pmode\relax% PMode: Not in any special Mode
@@ -114,63 +83,57 @@
 \def\@nc{\iflstlastwasacharacterkeep\else\lstlastwasacharacterfalse\fi}
 % Literates - Routine
 \def\lst@Literate#1#2#3{%
-\ifx\relax#2\@empty\else%
-\lst@CArgX #1\relax\lst@CDef%
+\ifx\relax#2\@empty\else
+\lst@CArgX #1\relax\lst@CDef
 {}%
-{\let\lst@next\@empty%
-\lst@ifxliterate%
-  \lst@ifmode \let\lst@next\lst@CArgEmpty \fi%
+{\let\lst@next\@empty
+\lst@ifxliterate
+  \lst@ifmode \let\lst@next\lst@CArgEmpty \fi
 \fi
-\ifx\lst@next\@empty%
-    \ifx\lst@OutputBox\@gobble\else%
-      \lst@XPrintToken \let\lst@scanmode\lst@scan@m%
-      \lst@token{#2}\lst@length#3\relax%
-      \lst@XPrintToken
-      %\fi%
-      \lst@whitespacefalse\@nc%
-    \fi
-    \let\lst@next\lst@CArgEmptyGobble
+\ifx\lst@next\@empty
+\ifx\lst@OutputBox\@gobble\else
+  \lst@XPrintToken \let\lst@scanmode\lst@scan@m
+  \lst@token{#2}\lst@length#3\relax
+  \lst@XPrintToken
+  \lst@whitespacefalse\@nc
+\fi
+\let\lst@next\lst@CArgEmptyGobble
 \fi
 \lst@next}%
 \@empty
 \expandafter\lst@Literate
 \fi}
 
-% Literates - Definitions
-
-% Konfiguriere Sonderzeichen
 \lstset{literate=%
-  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
-  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
-  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
-  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
-  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
-  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
-  {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
-  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
-  {:bs:}{{\color{Orchid}\textbackslash}}1 {:bmath:}{{\color{bondiBlue}\$}}1 {:percent:}{{\%}}1
-  {:emath:}{{{\color{bondiBlue}\$}}}1 {:dollar:}{{{\color{bondiBlue}\$\normalcolor}}}1 {:plaindollar:}{{\$}}1%spaces
-  % brace fix
-  {:rn:}{{\textcolor{AppleGreen}{{\small\T{\textbf{\textbackslash r\textbackslash n}}}}}}4
-  {(}{{(\@nc}}1 {)}{{)\@nc}}1 {:space:}{{{ }}}1 {:ws:}{{{ }}}1 {:cdots:}{{{$\cdots$}}}1 {:cdot:}{{{$\cdot$}}}1 {:ldots:}{{{\ldots}}}1 {:!:}{{{!}}}1
-  {:c:}{{{}}}0 {:star:}{{{*}}}1 {:minus:}{{{-}}}1
-  {:float:}{{{\color{bondiBlue}f\normalcolor}}}1 {:exp:}{{{\color{bondiBlue}e\normalcolor}}}1 {:yields:}{{{$\rightarrow$}}}1%
-  {:lan:}{{{$\langle\,$}}}1 {:ran:}{{{$\,\rangle$}}}1
-  {:bcmd:}{\color{Orchid}\textbackslash}1 {:ecmd:}{\normalcolor}0
-  {0}{{{\lpDigit{0}}}}1
-  {1}{{{\lpDigit{1}}}}1 {2}{{{\lpDigit{2}}}}1 {3}{{{\lpDigit{3}}}}1
-  {4}{{{\lpDigit{4}}}}1 {5}{{{\lpDigit{5}}}}1 {6}{{{\lpDigit{6}}}}1
-  {7}{{{\lpDigit{7}}}}1 {8}{{{\lpDigit{8}}}}1 {9}{{{\lpDigit{9}}}}1
-  {.0}{{{\lpDigit{.0}}}}2
-  {.1}{{{\lpDigit{.1}}}}2 {.2}{{{\lpDigit{.2}}}}2 {.3}{{{\lpDigit{.3}}}}2
-  {.4}{{{\lpDigit{.4}}}}2 {.5}{{{\lpDigit{.5}}}}2 {.6}{{{\lpDigit{.6}}}}2
-  {.7}{{{\lpDigit{.7}}}}2 {.8}{{{\lpDigit{.8}}}}2 {.9}{{{\lpDigit{.9}}}}2
-  {:lmath:}{{\textcolor{bondiBlue}{\textbackslash(}}}2 {:rmath:}{{\textcolor{bondiBlue}{\textbackslash)}}}2 {:ldmath:}{{\textcolor{bondiBlue}{\textbackslash[}}}2 {:rdmath:}{{\textcolor{bondiBlue}{\textbackslash]}}}2 {:ul:}{{\_}}1
+{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+{ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+{€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+{»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+{:bs:}{{\color{Orchid}\textbackslash}}1 {:bmath:}{{\color{bondiBlue}\$}}1 {:percent:}{{\%}}1
+{:emath:}{{{\color{bondiBlue}\$}}}1 {:dollar:}{{{\color{bondiBlue}\$\normalcolor}}}1 {:plaindollar:}{{\$}}1%spaces
+% brace fix
+{:rn:}{{\textcolor{AppleGreen}{{\small\T{\textbf{\textbackslash r\textbackslash n}}}}}}4
+{(}{{(\@nc}}1 {)}{{)\@nc}}1 {:space:}{{{ }}}1 {:ws:}{{{ }}}1 {:cdots:}{{{$\cdots$}}}1 {:cdot:}{{{$\cdot$}}}1 {:ldots:}{{{\ldots}}}1 {:!:}{{{!}}}1
+{:c:}{{{}}}0 {:star:}{{{*}}}1 {:minus:}{{{-}}}1
+{:float:}{{{\color{bondiBlue}f\normalcolor}}}1 {:exp:}{{{\color{bondiBlue}e\normalcolor}}}1 {:yields:}{{{$\rightarrow$}}}1%
+{:lan:}{{{$\langle\,$}}}1 {:ran:}{{{$\,\rangle$}}}1
+{:bcmd:}{\color{Orchid}\textbackslash}1 {:ecmd:}{\normalcolor}0
+{0}{{{\lpDigit{0}}}}1 {1}{{{\lpDigit{1}}}}1 {2}{{{\lpDigit{2}}}}1 {3}{{{\lpDigit{3}}}}1
+{4}{{{\lpDigit{4}}}}1 {5}{{{\lpDigit{5}}}}1 {6}{{{\lpDigit{6}}}}1
+{7}{{{\lpDigit{7}}}}1 {8}{{{\lpDigit{8}}}}1 {9}{{{\lpDigit{9}}}}1
+{.0}{{{\lpDigit{.0}}}}2 {.1}{{{\lpDigit{.1}}}}2 {.2}{{{\lpDigit{.2}}}}2 {.3}{{{\lpDigit{.3}}}}2
+{.4}{{{\lpDigit{.4}}}}2 {.5}{{{\lpDigit{.5}}}}2 {.6}{{{\lpDigit{.6}}}}2
+{.7}{{{\lpDigit{.7}}}}2 {.8}{{{\lpDigit{.8}}}}2 {.9}{{{\lpDigit{.9}}}}2
+{:lmath:}{{\textcolor{bondiBlue}{\textbackslash(}}}2 {:rmath:}{{\textcolor{bondiBlue}{\textbackslash)}}}2 {:ldmath:}{{\textcolor{bondiBlue}{\textbackslash[}}}2 {:rdmath:}{{\textcolor{bondiBlue}{\textbackslash]}}}2 {:ul:}{{\_}}1
 } %Damit die Umlaute in lstlistings auch korrekt formatiert werden.
 
 % Core-Commands for Highlighting of Inline-Snippes
@@ -182,7 +145,6 @@
   lstmainbordercol, fill=lstmainbackcol, centered]{\vphantom{I}\lstinline[#1]`#2`};}\endgroup
 }
 \gdef\LILLYxLSTBLANKINLINE#1#2{\begingroup\thinspace\vphantom{I}\lstinline[#1]`#2`\thinspace\endgroup}
-
 \gdef\LILLYxLSTINPL#1#2{\begingroup\lstinputlisting[#1]{#2}\endgroup}
 
 % Listing - Command specific patches
@@ -194,24 +156,19 @@
 \emergencystretch 3em%
 \hfuzz .5cm%
 \vfuzz\hfuzz\makeatother}
-
 \def\LillyXlstXfussy{\makeatletter
 \emergencystretch=\z@
 \tolerance 200%
 \hfuzz .1pt%
 \vfuzz\hfuzz\makeatother}
-
 % Definitions, could be done via pgfkeys?
 \def\LILLYxLISTINGSxFONTSIZE{\linespread{1}}
 \def\LILLYxLISTINGSxNUMxFONTSIZE{\footnotesize}
 
 \lstdefinestyle{nonum}{
     xleftmargin=3pt,xrightmargin=3pt,%will fix some overhead :D
-    numbers=none,numbersep=\z@,
-}
-
+    numbers=none,numbersep=\z@}
 % Environments - always wannahaves
-
 \lstnewenvironment{lstplain}[1][]
   {\def\lillyst@backcol{white}\lstset{xleftmargin=\z@,xrightmargin=\z@,%
   numbers=none,numbersep=\z@,frame=none,%
@@ -219,26 +176,18 @@
   ,#1}}
 {\def\lilly@lst@backcol{MudWhite}}
 
-\lstnewenvironment{lstnonum}[1][]
-  {\lstset{style=nonum%
-  ,#1}}
-{}
-
-% Package-Control
-
+\lstnewenvironment{lstnonum}[1][]{\lstset{style=nonum,#1}}{}
 % Es ist möglich über diesen Befehl das zu ladende Sprachpaket zu definieren
-\providecommand{\LILLYxListingsxPACK}{MAIN}
-
+\providecommand\LILLYxListingsxPACK{MAIN}
 % Lädt ein entsprechendes Sprachpaket
 \input{\LILLYxPATHxLISTINGS/Packages/_LILLY_PACK_\LILLYxListingsxPACK}
 \storeRegisteredLanguages{LISTxRegisteredLanguages}
 \storeRegisteredLanguageNames{LISTxRegisteredLanguageNames}
 % erlaubt es Den inhalt eines Befehls zu setzen
-\newcommand\lstshowcmd[2][]{\edef\@tmp@@b{\noexpand\lstinline[#1]!#2!}\@tmp@@b}
+\newcommand\lstshowcmd[2][]{\protected@edef\@tmp@@b{\noexpand\lstinline[#1]!#2!}\@tmp@@b}
 %Embetter Break Control:
 \LillyXlstXsloppy
 \newcommand\isLanguageLoaded[1]{\containsList{RegisteredLanguages}{#1}}%
-
 % for more convenience
 \newcommand\isLanguageNameLoaded[1]{\containsList{RegisteredLanguageNames}{#1}}%
 \RequirePackage{LILLYxLISTINGSxHL}

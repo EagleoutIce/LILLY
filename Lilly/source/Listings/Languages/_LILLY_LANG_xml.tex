@@ -1,29 +1,24 @@
 % Wird für die Dokumentation entsprechend erweitert
 \def\@lillylst@inouter#1{\ifnum\lst@mode=\lst@Pmode\relax \lstkwone{#1}\else#1\fi}
 \lstdefinelanguage{lXml}{
-    morestring=[b]",
-    morestring=[b]',
-    %morestring=[s]{>}{<},
-    morestring=[s]{"}{"},
-    morecomment=[s]{<?}{?>},
-    morecomment=[s]{!--}{--},
-    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
-    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
-    moredelim=**[il][{\lstHLError}]{|err|:},
-    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
-    moredelim=[is][{}]{|plain|}{|plain|},
-    moredelim=[is][{\color{gray}}]{|gray|}{|gray|},
-    alsoletter={:\#!-},
-    alsoother={<>},
-    add to literate={/}{{\@lillylst@inouter{/}}}1 {<}{{\@lillylst@inouter{<}}}1 {>}{{\@lillylst@inouter{>}}}1,
-    escapeinside={!*}{*!},
-    showstringspaces=true,  %Damit es keine Verwechslungen gibt
-    morekeywords = {!DOCTYPE,DOCTYPE,!ELEMENT,ELEMENT,!ATTLIST,ATTLIST},
-    morekeywords = [2]{xml},
-    morekeywords = [3]{SYSTEM,PUBLIC,EMPTY,\#PCDATA,\#IMPLIED,\#REQUIRED,\#FIXED,ANY},
-    morekeywords = [4]{CDATA,ID,ENTITY,IDREF,IDREFS,NOTATION},
-    morekeywords = [5]{xs:element,xs:list,xs:namespace,xs:attribute,xs:simpleType,xs:minInclusive,xs:maxInclusive,xs:restriction,xs:enumeration,xs:union,xs:sequence,xs:complexType,xmlns,xmlns:xs,xmlns:xsi,xsi:schemaLocation,xs:schema,xs:integer,last()},% + xpath
-    morekeywords = [6]{name,maxOccurs,minOccurs,version,encoding,targetNamespace,ref,type,memberTypes,itemType,base,value,default,transaction-type,version},
+morestring=[b]",morestring=[b]',
+morestring=[s]{"}{"},morecomment=[s]{<?}{?>},morecomment=[s]{!--}{--},
+moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+moredelim=**[il][{\lstHLError}]{|err|:},
+moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+moredelim=[is][{}]{|plain|}{|plain|},
+moredelim=[is][{\color{gray}}]{|gray|}{|gray|},
+alsoletter={:\#!-},alsoother={<>},
+add to literate={/}{{\@lillylst@inouter{/}}}1 {<}{{\@lillylst@inouter{<}}}1 {>}{{\@lillylst@inouter{>}}}1,
+escapeinside={!*}{*!},
+showstringspaces=true,  %Damit es keine Verwechslungen gibt
+morekeywords = {!DOCTYPE,DOCTYPE,!ELEMENT,ELEMENT,!ATTLIST,ATTLIST},
+morekeywords = [2]{xml},
+morekeywords = [3]{SYSTEM,PUBLIC,EMPTY,\#PCDATA,\#IMPLIED,\#REQUIRED,\#FIXED,ANY},
+morekeywords = [4]{CDATA,ID,ENTITY,IDREF,IDREFS,NOTATION},
+morekeywords = [5]{xs:element,xs:list,xs:namespace,xs:attribute,xs:simpleType,xs:minInclusive,xs:maxInclusive,xs:restriction,xs:enumeration,xs:union,xs:sequence,xs:complexType,xmlns,xmlns:xs,xmlns:xsi,xsi:schemaLocation,xs:schema,xs:integer,last()},% + xpath
+morekeywords = [6]{name,maxOccurs,minOccurs,version,encoding,targetNamespace,ref,type,memberTypes,itemType,base,value,default,transaction-type,version},
 }
 
 \RegisterLanguage{xml}{lXml}

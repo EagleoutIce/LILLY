@@ -1,18 +1,18 @@
 \lstdefinelanguage{lDocker}{
-    alsoletter={|~_.><-},
-    moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
-    moredelim=**[is][{\lstHLError}]{|err|}{|err|},
-    moredelim=**[il][{\lstHLError}]{|err|:},
-    moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
-    moredelim=[is][{}]{|plain|}{|plain|},
-    moredelim=**[il][{\color{Charcoal}\bfseries}]{>imp>},
-    comment=[l]{\#},
-    morestring=[s]"",
-    escapeinside={!*}{*!},
-    morekeywords = {FROM,RUN,LABEL,VOLUME,ENTRYPOINT,EXPOSE,ADD},
-    morekeywords = [3]{pull,run,build,image,inspect,rmi},
-    morekeywords = [5]{docker},
-    morekeywords = [6]{ls},
-    morestring=[b]'
+alsoletter={|~_.><-},
+moredelim=**[is][{\lstHLWarning}]{|warn|}{|warn|},
+moredelim=**[is][{\lstHLError}]{|err|}{|err|},
+moredelim=**[il][{\lstHLError}]{|err|:},
+moredelim=**[is][{\lstHLInfo}]{|info|}{|info|},
+moredelim=[is][{}]{|plain|}{|plain|},
+moredelim=**[il][{\color{Charcoal}\bfseries}]{>imp>},
+comment=[l]{\#},
+morestring=[s]"",
+escapeinside={!*}{*!},
+morekeywords = {FROM,RUN,LABEL,VOLUME,ENTRYPOINT,EXPOSE,ADD},
+morekeywords = [3]{pull,run,build,image,inspect,rmi},
+morekeywords = [5]{docker},
+morekeywords = [6]{ls},
+morestring=[b]'
 }
 \RegisterLanguage{docker}{lDocker}

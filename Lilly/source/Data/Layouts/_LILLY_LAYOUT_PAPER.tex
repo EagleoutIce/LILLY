@@ -35,11 +35,11 @@
 \rofoot{\textbf{\thepage}/\,\begingroup\hypersetup{linkcolor=black}\pageref{LastPage}\endgroup}
 }
 
-\providecommand{\ABSTRACT}{Hier könnte ihre Werbung stehen. Ich mag Züge wirklich sehr immer mehr, immer mehr, dies ist das Abstract - oh - Abstract oh jäah! \textbf{Ändere diesen Text durch:
+\providecommand\ABSTRACT{Hier könnte ihre Werbung stehen. Ich mag Züge wirklich sehr immer mehr, immer mehr, dies ist das Abstract - oh - Abstract oh jäah! \textbf{Ändere diesen Text durch:
 {\T{\textbackslash providecommand\{\textbackslash ABSTRACT\}\{<Dein neuer Titel>\}}} vor {\T{\textbackslash documentclass[paper]\{LILLY\}.}}}}
-\providecommand{\TITLE}{Hier könnte ihre Werbung stehen1. (\T{\textbackslash TITLE})}
-\providecommand{\BRIEF}{Informatik Student,\\Universit\"{a}t Ulm -- \heute}
-\providecommand{\LILLYxColorxTITLExSTYLE}[1]{\usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{#1}\par}
+\providecommand\TITLE{Hier könnte ihre Werbung stehen1. (\T{\textbackslash TITLE})}
+\providecommand\BRIEF{Informatik Student,\\Universit\"{a}t Ulm -- \heute}
+\providecommand\LILLYxColorxTITLExSTYLE[1]{\usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{#1}\par}
 
 \newcommand\printHeader{\columnsep=2em{\twocolumn[
     \begin{@twocolumnfalse}
@@ -71,7 +71,7 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
     \renewcommand\figurename{\small\textbf{Abb.}~}%
     \renewcommand\tablename{\small\textbf{Tbl.}~}%
 }
-\providecommand{\LILLYxPAPERxNUMxGET}[1]{\Roman{#1}} % ALPH{#1}
+\providecommand\LILLYxPAPERxNUMxGET[1]{\Roman{#1}} % ALPH{#1}
 \ifcsname LILLYxPAPERxNUM\endcsname\else
     \gdef\LILLYxPAPERxNUM{TRUE}
 \fi

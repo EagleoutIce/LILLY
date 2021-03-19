@@ -4402,7 +4402,7 @@
 \newenvironment{umlfragment}[1][]{%
   % define a fragment separator
   % optional : label of the fragment part (ex : else for alt)
-  \providecommand{\umlfpart}[1][]{%
+  \providecommand\umlfpart[1][]{%
     \stepcounter{tikzumlFragmentPartNum}%
     %
     \node[outer sep=0, inner xsep=\tikzumlFragmentXSep ex, inner ysep=\tikzumlFragmentYSep ex, fit=\csname tikzumlFragmentFit\tikzumlFragment@name \endcsname, name=\tikzumlFragment@name-Part-tmp] {};%
