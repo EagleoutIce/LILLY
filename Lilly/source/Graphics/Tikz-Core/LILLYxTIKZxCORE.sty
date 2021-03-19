@@ -2,9 +2,8 @@
 \ProvidesPackage{LILLYxTIKZxCORE}[2019/07/12 Stellt den Kern der Tikz-Schnittstelle fuer LILLY zur Verfuegung]
 \RequirePackage{LILLYxCORE,LILLYxCOLOR}
 
-\LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}% Package, Info
-    {Dieses Paket funktioniert nicht ohne tikz}% Error-Text
-    {}{}
+\LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}
+    {Dieses Paket funktioniert nicht ohne tikz}{}{}
 \usetikzlibrary{%
 arrows,automata,calc,intersections,%
 through,decorations.pathreplacing,%
@@ -12,34 +11,23 @@ decorations.pathmorphing,backgrounds,%
 positioning,fit,shapes,shadings,arrows.meta,%
 shadows,matrix,scopes,patterns,mindmap} % zusätzliche Bilbiotheken für Tikz
 
-\LILLYxDemandPackage{circuitikz}{Ach komm schon, das sind Schaltplaene, die mag jeder!}% Package, Info
-    {Ohne Schalplaene mache ich gar nichts}% Error-Text
-    {european}{}
+\LILLYxDemandPackage{circuitikz}{Ach komm schon, das sind Schaltplaene, die mag jeder!}
+    {Ohne Schalplaene mache ich gar nichts}{european}{}
 %Schaltkreise, Standard: Europäisches Schaltkreislayout
 
-\LILLYxDemandPackage{pgfplots}{Diese Plots werden zwangslaeufig benoetigt}% Package, Info
-    {Ohne dieses Paket mache ich garnichts, das ist einfach so}% Error-Text
-    {}{}
-% Optionale Pakete für den Tikz Core
-
-\LILLYxLoadPackage{tkz-euclide}{Diese Erweiterung scheint notwendig?}% Package, Info
-    {Es gilt zu ueberpruefen, ob dieses Paket wirklich Relevanz besitzt}% Error-Text
-    {}{}{}
-
-\LILLYxLoadPackage{tikz-qtree}{Diese Erweiterung scheint notwendig?}% Package, Info
-    {Es gilt zu ueberpruefen, ob dieses Paket wirklich Relevanz besitzt}% Error-Text
-    {}{}{}
-% Hypbrid Pakete für den Tikz Core: Tikzternal
+\LILLYxDemandPackage{pgfplots}{Diese Plots werden zwangslaeufig benoetigt}
+    {Ohne dieses Paket mache ich garnichts, das ist einfach so}{}{}
+\LILLYxLoadPackage{tkz-euclide}{Diese Erweiterung scheint notwendig?}
+    {Es gilt zu ueberpruefen, ob dieses Paket wirklich Relevanz besitzt}{}{}{}
+\LILLYxLoadPackage{tikz-qtree}{Diese Erweiterung scheint notwendig?}
+    {Es gilt zu ueberpruefen, ob dieses Paket wirklich Relevanz besitzt}{}{}{}
 \ifx\LILLYxEXTERNALIZE\true
-
-\LILLYxDemandPackage{environ}{Ermöglicht spezifisches externalize} % Package, Info
-    {Leider ist auch dieses Paket bei der Benutzung von Externalize verpflichtend :/}% Error-Text
-    {}{}
+\LILLYxDemandPackage{environ}{Ermöglicht spezifisches externalize}
+    {Leider ist auch dieses Paket bei der Benutzung von Externalize verpflichtend :/}{}{}
 \else
 
-\LILLYxLoadPackage{environ}{Ermöglicht spezifisches externalize} % Package, Info
-    {Dann keine coolen Environments}% Error-Text
-    {}{}{}
+\LILLYxLoadPackage{environ}{Ermöglicht spezifisches externalize}
+    {Dann keine coolen Environments}{}{}{}
 \fi
 \RequirePackage{tikzducks}
 \tikzset{stretch/.initial=1,%

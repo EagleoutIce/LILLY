@@ -18,9 +18,7 @@
 
 % Stellt über getGraphics{3} eine Schnittstelle
 % für alle enthaltenen Grafiken zur Verfügung
-%
 %  Note: Collapse? \linewdith as width default
-%
 % [width] {path} [height] width and height are mutually exclusive (to keep aspect ratio), if both given, width will Dominate by Design
 \ProvideDocumentCommand{\getGraphics}{ o m o }{%
 \lillyXgraphicsXproviderXisresizeabletrue%
@@ -29,17 +27,12 @@
 \IfValueTF{#1}{\resizebox{#1}{!}{\LILLYxGRAPHICSxSHOW}}%
 {\IfValueTF{#3}{\resizebox{!}{#3}{\LILLYxGRAPHICSxSHOW}}%
 {\resizebox{\linewidth}{!}{\LILLYxGRAPHICSxSHOW}}%
-}%
-\else\fi
-}
-
+}\else\fi}
 \gdef\getGraphicsPath#1{\LILLYxPATHxDATA/Graphics/#1}
-
 % erlaubt es direkt die PDF einzubinden - vermutlich oft um einiges schneller :D
 \ProvideDocumentCommand{\getPrerendered}{ o m o }{%
 \IfValueTF{#1}{\includegraphics[width=#1]{\getGraphicsPath{#2}}}%
 {\IfValueTF{#3}{\includegraphics[height=#3]{\getGraphicsPath{#2}}}%
 {\resizebox{\linewidth}{!}{\includegraphics[width=\linewidth]{\getGraphicsPath{#2}}}}%
-}%
-}
+}}
 \endinput

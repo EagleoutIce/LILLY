@@ -2,25 +2,21 @@
 % Adaptet from: https://tex.stackexchange.com/questions/104528/tikz-shade-also-the-border-of-a-node
 \tikzset{horizontal shaded border/.style args={from #1 to #2}{
    append after command={
-      \pgfextra{%
-         \begin{pgfinterruptpath}
-               \path[rounded corners,left color=#1,right color=#2]
-               ($(\tikzlastnode.south west)+(-\pgflinewidth,-\pgflinewidth)$)
-               rectangle
-               ($(\tikzlastnode.north east)+(\pgflinewidth,\pgflinewidth)$);
-         \end{pgfinterruptpath}
-      }
-   }
-},
+\pgfextra{%
+\begin{pgfinterruptpath}
+      \path[rounded corners,left color=#1,right color=#2]
+      ($(\tikzlastnode.south west)+(-\pgflinewidth,-\pgflinewidth)$)
+      rectangle
+      ($(\tikzlastnode.north east)+(\pgflinewidth,\pgflinewidth)$);
+\end{pgfinterruptpath}
+}}},
 vertical shaded border/.style args={from #1 to #2}{
    append after command={
-      \pgfextra{%
-         \begin{pgfinterruptpath}
-               \path[rounded corners,top color=#1,bottom color=#2]
-               ($(\tikzlastnode.south west)+(-\pgflinewidth,-\pgflinewidth)$)
-               rectangle
-               ($(\tikzlastnode.north east)+(\pgflinewidth,\pgflinewidth)$);
-         \end{pgfinterruptpath}
-      }
-   }
-}}
+\pgfextra{%
+\begin{pgfinterruptpath}
+      \path[rounded corners,top color=#1,bottom color=#2]
+      ($(\tikzlastnode.south west)+(-\pgflinewidth,-\pgflinewidth)$)
+      rectangle
+      ($(\tikzlastnode.north east)+(\pgflinewidth,\pgflinewidth)$);
+\end{pgfinterruptpath}
+}}}}
