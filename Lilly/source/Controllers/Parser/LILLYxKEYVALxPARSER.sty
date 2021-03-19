@@ -1,12 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxKEYVALxPARSER}[2019/08/25 Stellt den KeyVal-Parser fuer LILLY zur Verfuegung]
 
-\RequirePackage{kvoptions}                                 %Erweiterte Optionen
-
-\SetupKeyvalOptions{%                                      %Interne Benennung für Steuervariablen
-    family=LILLY,prefix=LILLY@}
-
-\RequirePackage{LILLYxCONTROLLERxCONTENT},LILLYxCOMMAND
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=LILLY,prefix=LILLY@}
+\RequirePackage{LILLYxCONTROLLERxCONTENT,LILLYxCOMMAND}
 
 % User-Defined Shortcuts:
 \userput{_LILLY_KEYVAL_GENERAL}{\lillyPathConfig}{\LILLYxPATHxDATA/Configs}
