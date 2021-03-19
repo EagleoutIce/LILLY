@@ -17,8 +17,13 @@ import java.util.logging.*;
  * Liefert den Logger (static)
  */
 public class JakeLogger {
+    private static final String MSG_FORMAT = "%-45s        %-8s: %s";
+
     /// der logger
     private static Logger LOGGER;
+
+    private JakeLogger() {
+    }
 
     /**
      * Initialisiert den Logger mit einer Temp-Datei
@@ -46,7 +51,7 @@ public class JakeLogger {
      * @param level          auf Basis welches Levels soll die Ausgabe erfolgen ?
      */
     public static void initLogger(String targetFilePath, boolean output, Level level) {
-        if(enabled){
+        if (enabled) {
             LOGGER = Logger.getLogger("Main Jake Log");
             target = targetFilePath;
             getLogger().setUseParentHandlers(output);
@@ -71,20 +76,6 @@ public class JakeLogger {
         return LOGGER;
     }
 
-    /*
-     * =============================================================================
-     * =========================
-     */
-    /*
-     * Nette kleine shortcuts - diese können später auch andere Designs hervorrufen
-     * und werden einfach mal
-     */
-    /* Auf Basis der guten Java-Schule gekapselt - JAY */
-    /*
-     * =============================================================================
-     * =========================
-     */
-
     /// @note für korrekte Angabe des Debugs wurde WriteLogger als zwischenschritt
     /// wieder entfernt ^^ - SAD
 
@@ -99,8 +90,8 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerDebug1(String message, String sender) {
-        if(enabled)
-        getLogger().log(Level.FINE, String.format("%-45s        %-8s: %s", getCallerName(), sender, message));
+        if (enabled)
+            getLogger().log(Level.FINE, String.format(MSG_FORMAT, getCallerName(), sender, message));
     }
 
     /**
@@ -116,8 +107,8 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerDebug2(String message, String sender) {
-        if(enabled)
-        getLogger().log(Level.FINER, String.format("%-45s        %-8s: %s", getCallerName(), sender, message));
+        if (enabled)
+            getLogger().log(Level.FINER, String.format(MSG_FORMAT, getCallerName(), sender, message));
     }
 
     /**
@@ -140,8 +131,8 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerDebug3(String message, String sender) {
-        if(enabled)
-        getLogger().log(Level.FINEST, String.format("%-45s        %-8s: %s", getCallerName(), sender, message));
+        if (enabled)
+            getLogger().log(Level.FINEST, String.format(MSG_FORMAT, getCallerName(), sender, message));
     }
 
     /**
@@ -155,8 +146,8 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerWarning(String message, String sender) {
-        if(enabled)
-        getLogger().log(Level.WARNING, String.format("%-45s   !!   %-8s: %s", getCallerName(), sender, message));
+        if (enabled)
+            getLogger().log(Level.WARNING, String.format("%-45s   !!   %-8s: %s", getCallerName(), sender, message));
     }
 
     /**
@@ -186,8 +177,8 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerInfo(String message, String sender) {
-        if(enabled)
-        getLogger().log(Level.INFO, String.format("%-45s        %-8s: %s", getCallerName(), sender, message));
+        if (enabled)
+            getLogger().log(Level.INFO, String.format(MSG_FORMAT, getCallerName(), sender, message));
     }
 
     /**
@@ -205,16 +196,14 @@ public class JakeLogger {
      *
      */
     public static void writeLoggerError(String message, String sender) {
-        // @Todo nicht machen wenn Terminal-Sync aktiv
-        // System.err.format("%-45s ## %-8s: %s", getCallerName(), sender, message);
-        if(enabled)
-        getLogger().log(Level.SEVERE, String.format("%-45s   ##   %-8s: %s", getCallerName(), sender, message));
+        if (enabled)
+            getLogger().log(Level.SEVERE, String.format("%-45s   ##   %-8s: %s", getCallerName(), sender, message));
     }
 
     /**
-     * Nicht mehr so ultimatives Mind hinter allen anderen Logger Funktionen Schreibt
-     * eine Nachricht die Wirklich nirgendwo sonst reinpasst Diese Funktion sollte
-     * so nicht verwendet werden! Kann aber
+     * Nicht mehr so ultimatives Mind hinter allen anderen Logger Funktionen
+     * Schreibt eine Nachricht die Wirklich nirgendwo sonst reinpasst Diese Funktion
+     * sollte so nicht verwendet werden! Kann aber
      *
      * @note Please don't use me!
      *
@@ -222,18 +211,18 @@ public class JakeLogger {
      * @param sender  Nachrichtenschreiber
      * @param level   Relevanz der Nachricht
      *
-     *                Nutzer: - {@link #writeLoggerDebug1(String, String)} -
-     *                {@link #writeLoggerDebug2(String, String)} -
-     *                {@link #writeLoggerDebug3(String, String)} -
-     *                {@link #writeLoggerInfo(String, String)} -
-     *                {@link #writeLoggerWarning(String, String)} -
-     *                {@link #writeLoggerError(String, String)}
+     * Nutzer: {@link #writeLoggerDebug1(String, String)}
+     * {@link #writeLoggerDebug2(String, String)}
+     * {@link #writeLoggerDebug3(String, String)}
+     * {@link #writeLoggerInfo(String, String)}
+     * {@link #writeLoggerWarning(String, String)}
+     * {@link #writeLoggerError(String, String)}
      *
      * @see JakeLogger
      */
     public static void writeLogger(String message, String sender, Level level) {
-        if(enabled)
-        getLogger().log(Level.WARNING, String.format("%-45s   ~~   %-8s: %s", getCallerName(), sender, message));
+        if (enabled)
+            getLogger().log(Level.WARNING, String.format("%-45s   ~~   %-8s: %s", getCallerName(), sender, message));
     }
 
     public static String getTarget() {

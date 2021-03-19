@@ -29,7 +29,7 @@ public abstract class AbstractConsoleWriter {
     /**
      * Leerer Konstruktor
      */
-    public AbstractConsoleWriter(){}
+    private AbstractConsoleWriter(){}
 
 
     /**

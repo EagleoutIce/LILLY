@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * @class JakeWriter
  *
- * Kapselt println format und print um auch für die GUI zu funktionieren
+ *        Kapselt println format und print um auch für die GUI zu funktionieren
  *
  * @author Florian Sihler
  *
@@ -16,8 +16,8 @@ import java.util.Arrays;
  * @version 1.0.0
  */
 public class JakeWriter {
-    // This will output The text to wherever you want, AND pass through all needed
-    // Information to the according Log-File denoted by JakeLogger - this is english, cause i like it
+    private JakeWriter() {
+    }
 
     public static class MirrorStream {
         private final boolean mirrorLog;
@@ -26,13 +26,14 @@ public class JakeWriter {
 
         /**
          * This will change the 'Console Output Stream' to the desired Target
+         *
          * @param out OutputStream
          */
-        public void reassignConsole(AbstractConsoleWriter out){
+        public void reassignConsole(AbstractConsoleWriter out) {
             this.out = out;
         }
 
-        public MirrorStream(){
+        public MirrorStream() {
             this(Definitions.MIRROR_LOG, Definitions.MIRROR_CONSOLE);
         }
 
@@ -43,39 +44,59 @@ public class JakeWriter {
         }
 
         public MirrorStream append(char c) {
-            if(mirrorLog) JakeLogger.writeLoggerInfo("Appended: " + c, "WRITER");
-            if(mirrorConsole) out.append(String.valueOf(c));
+            if (mirrorLog)
+                JakeLogger.writeLoggerInfo("Appended: " + c, "WRITER");
+            if (mirrorConsole)
+                out.append(String.valueOf(c));
             return this;
         }
 
         public MirrorStream append(CharSequence c) {
-            if(mirrorLog) JakeLogger.writeLoggerInfo("Appended: " + c, "WRITER");
-            if(mirrorConsole) out.append(c.toString());
+            if (mirrorLog)
+                JakeLogger.writeLoggerInfo("Appended: " + c, "WRITER");
+            if (mirrorConsole)
+                out.append(c.toString());
             return this;
         }
+
         public MirrorStream format(String format, Object... args) {
-            if(mirrorLog) JakeLogger.writeLoggerInfo("Formatting: \"" + format + "\" with: \"" + Arrays.toString(args) + "\"", "WRITER");
-            if(mirrorConsole) out.format(format,args);
+            if (mirrorLog)
+                JakeLogger.writeLoggerInfo("Formatting: \"" + format + "\" with: \"" + Arrays.toString(args) + "\"",
+                        "WRITER");
+            if (mirrorConsole)
+                out.format(format, args);
             return this;
         }
+
         public MirrorStream print(String s) {
-            if(mirrorLog) JakeLogger.writeLoggerInfo("Written: " + s, "WRITER");
-            if(mirrorConsole) out.print(s);
+            if (mirrorLog)
+                JakeLogger.writeLoggerInfo("Written: " + s, "WRITER");
+            if (mirrorConsole)
+                out.print(s);
             return this;
         }
+
         public MirrorStream println(String s) {
-            if(mirrorLog) JakeLogger.writeLoggerInfo("Written Line: " + s, "WRITER");
-            if(mirrorConsole) out.println(s);
+            if (mirrorLog)
+                JakeLogger.writeLoggerInfo("Written Line: " + s, "WRITER");
+            if (mirrorConsole)
+                out.println(s);
             return this;
         }
+
         public MirrorStream println() {
-            if(mirrorLog) JakeLogger.writeLoggerInfo("Written empty line!", "WRITER");
-            if(mirrorConsole) out.println();
+            if (mirrorLog)
+                JakeLogger.writeLoggerInfo("Written empty line!", "WRITER");
+            if (mirrorConsole)
+                out.println();
             return this;
         }
+
         public MirrorStream flush() {
-            if(mirrorLog) JakeLogger.writeLoggerInfo("Flushed!", "WRITER");
-            if(mirrorConsole) out.flush();
+            if (mirrorLog)
+                JakeLogger.writeLoggerInfo("Flushed!", "WRITER");
+            if (mirrorConsole)
+                out.flush();
             return this;
         }
 

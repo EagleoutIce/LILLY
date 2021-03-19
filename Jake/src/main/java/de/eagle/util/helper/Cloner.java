@@ -28,7 +28,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 public class Cloner<T> implements iRealCloneable<T> {
 
     /// Zwischenspeicher der zu kopierenden Daten
-    private T clone_data;
+    private T cloneData;
 
     /**
      * Konstruiert den entsprechenden Kopierer
@@ -36,7 +36,7 @@ public class Cloner<T> implements iRealCloneable<T> {
      * @param data zu kopierende Daten
      */
     public Cloner(T data) {
-        clone_data = data;
+        cloneData = data;
     }
 
     /**
@@ -44,12 +44,12 @@ public class Cloner<T> implements iRealCloneable<T> {
      */
     @SuppressWarnings("unchecked")
     public T clone() {
-        if (clone_data == null)
+        if (cloneData == null)
             return null;
 
         Cloner<T> newT = new Cloner<T>(null);
         try {
-            newT.clone_data = (T) clone_data.getClass().getMethod("clone").invoke(clone_data);
+            newT.cloneData = (T) cloneData.getClass().getMethod("clone").invoke(cloneData);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -63,7 +63,7 @@ public class Cloner<T> implements iRealCloneable<T> {
                 ex.printStackTrace();
             }
         }
-        return newT.clone_data;
+        return newT.cloneData;
     }
 
     /**
@@ -73,15 +73,6 @@ public class Cloner<T> implements iRealCloneable<T> {
      */
     public static String cloneFileRessource(String res, String dst) throws IOException {
         Files.copy(Cloner.class.getResourceAsStream(res), Paths.get(dst), StandardCopyOption.REPLACE_EXISTING);
-        // BufferedReader in = new BufferedReader(new InputStreamReader(Executer.class.getResourceAsStream(res)));
-        // File outf = new File(dst);
-        // BufferedWriter out = new BufferedWriter(new FileWriter(outf));
-        // String s;
-        // while ((s = in.readLine()) != null) {
-        //     out.write(s + "\n");
-        // }
-        // in.close();
-        // out.close();
         return dst;
     }
 

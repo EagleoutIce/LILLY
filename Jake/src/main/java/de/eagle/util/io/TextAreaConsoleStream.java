@@ -4,6 +4,7 @@ import de.eagle.util.constants.ColorConstants;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @class TextAreaConsoleStream
@@ -22,7 +23,7 @@ public class TextAreaConsoleStream extends AbstractConsoleWriter {
 
     String currentLine = "";
 
-    private ArrayList<String> contents = new ArrayList<>();
+    private List<String> contents = new ArrayList<>();
 
     private TextAreaConsoleStream update() {
         flush();
@@ -54,13 +55,13 @@ public class TextAreaConsoleStream extends AbstractConsoleWriter {
 
     @Override
     public AbstractConsoleWriter println(String s) {
-        contents.add(format(currentLine + s.replaceAll("\\n","<br>")));
+        contents.add(format(currentLine + s.replace("\\n","<br>")));
         currentLine = ""; return update();
     }
 
     @Override
     public AbstractConsoleWriter print(String s) {
-        currentLine += format(s.replaceAll("\\n","<br>"));
+        currentLine += format(s.replace("\\n","<br>"));
         return update();
     }
 

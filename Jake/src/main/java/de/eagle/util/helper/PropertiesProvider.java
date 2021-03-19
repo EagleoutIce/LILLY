@@ -12,7 +12,6 @@ import de.eagle.lillyjakeframework.core.Definitions;
  * @brief Liefert Eigenschaften über das Betriebssystem oder andere Meta-Basierte Informationen.
  */
 
-
 import de.eagle.lillyjakeframework.installer.AutoInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.LinuxJakeInstaller;
 import de.eagle.lillyjakeframework.installer.JakeInstaller.MacOSJakeInstaller;
@@ -26,7 +25,6 @@ import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 /**
  * Liefert verschiedene System-Spezifische Einstellungen
  */
@@ -37,6 +35,7 @@ public class PropertiesProvider {
      */
     public enum OS {
         WINDOWS("win"), LINUX("nix", "nux", "aix"), SOLARIS("sunos"), MAC("mac"), OTHER("WAFFEL");
+
         String[] matchers;
 
         OS(String... m) {
@@ -50,7 +49,7 @@ public class PropertiesProvider {
 
     /**
      * Liefert das entsprechende Betriebssystem als {@link PropertiesProvider.OS}
-     * 
+     *
      * @return Das entsprechende Betriebssystem
      */
     public static OS getOS() {
@@ -71,7 +70,7 @@ public class PropertiesProvider {
     /**
      * @return true, wenn das (Linux-) System ohne laufenden X-Server betrieben wird
      */
-    public static boolean isHeadless(){
+    public static boolean isHeadless() {
         return System.getenv("DISPLAY") == null;
     }
 
@@ -138,7 +137,8 @@ public class PropertiesProvider {
      */
     public static String getThisPath() {
         try {
-            return PropertiesProvider.class.getProtectionDomain().getCodeSource().getLocation().toURI().toString().replaceFirst("file:", "");
+            return PropertiesProvider.class.getProtectionDomain().getCodeSource().getLocation().toURI().toString()
+                    .replaceFirst("file:", "");
         } catch (URISyntaxException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -147,36 +147,38 @@ public class PropertiesProvider {
     }
 
     /**
-     * @param gui Soll der Installer mithilfe einer graphischen Oberfläche angezeigt werden.
+     * @param gui Soll der Installer mithilfe einer graphischen Oberfläche angezeigt
+     *            werden.
      * @return einen Installer für das entsprechende Betriebssystem
      */
     public static AutoInstaller getJakeInstaller(boolean gui) {
         switch (PropertiesProvider.getOS()) {
-            case LINUX:
-                return new LinuxJakeInstaller(gui);
-            case MAC:
-                return new MacOSJakeInstaller(gui);
-            case WINDOWS:
-                return new WindowsJakeInstaller(gui);
-            default:
-                throw new UnsupportedOperationException("Es existiert kein Installer für dieses Betriebssystem");
+        case LINUX:
+            return new LinuxJakeInstaller(gui);
+        case MAC:
+            return new MacOSJakeInstaller(gui);
+        case WINDOWS:
+            return new WindowsJakeInstaller(gui);
+        default:
+            throw new UnsupportedOperationException("Es existiert kein Installer für dieses Betriebssystem");
         }
     }
 
     /**
-     * @param gui Soll der Installer mithilfe einer graphischen Oberfläche angezeigt werden.
+     * @param gui Soll der Installer mithilfe einer graphischen Oberfläche angezeigt
+     *            werden.
      * @return einen Installer für Lilly, für das entsprechende Betriebssystem
      */
     public static AutoInstaller getLillyInstaller(boolean gui) {
         switch (PropertiesProvider.getOS()) {
-            case LINUX:
-                return new LinuxLillyInstaller(gui);
-            case MAC:
-                return new MacOSLillyInstaller(gui);
-            case WINDOWS:
-                return new WindowsJakeInstaller(gui);
-            default:
-                throw new UnsupportedOperationException("Es existiert kein Installer für dieses Betriebssystem");
+        case LINUX:
+            return new LinuxLillyInstaller(gui);
+        case MAC:
+            return new MacOSLillyInstaller(gui);
+        case WINDOWS:
+            return new WindowsJakeInstaller(gui);
+        default:
+            throw new UnsupportedOperationException("Es existiert kein Installer für dieses Betriebssystem");
         }
     }
 
@@ -185,27 +187,28 @@ public class PropertiesProvider {
      *
      * @return true, wenn bereits installiert, sonst false.
      */
-    public static boolean isInstalled(){
-        switch(getOS()) {
-            case LINUX:
-                return new LinuxJakeInstaller(false).validate();
-            case MAC:
-                return new MacOSJakeInstaller(false).validate();
-            case WINDOWS:
-                return new WindowsJakeInstaller(false ).validate();
-            default: // we don't care
-                return true;
+    public static boolean isInstalled() {
+        switch (getOS()) {
+        case LINUX:
+            return new LinuxJakeInstaller(false).validate();
+        case MAC:
+            return new MacOSJakeInstaller(false).validate();
+        case WINDOWS:
+            return new WindowsJakeInstaller(false).validate();
+        default: // we don't care
+            return true;
         }
     }
 
     /**
      * Set's the Working directory for the Program.
+     *
      * @param dirname The new working directory
      * @return false, if the operation failed (dir not exists etc.)
      */
-    public static boolean setUserDirectoy(String dirname) {
+    public static boolean setUserDirectory(String dirname) {
         File dir = new File(dirname).getAbsoluteFile();
-        if(dir.exists() || dir.mkdirs()) {
+        if (dir.exists() || dir.mkdirs()) {
             return System.setProperty("user.dir", dir.getAbsolutePath()) != null;
         }
         return false;
