@@ -1,12 +1,9 @@
 \deftranslation{Inhaltsverzeichnis}{Table of Contents}
-
 \deftranslation{und}{and}
-
 % Gedichte
 \deftranslation{Gedichtsammlung}{Poetry Collection}
 \deftranslation{Alle Zitate}{List of Quotes}
 \deftranslation{Gedichte der Jahre}{Poems from}
-
 % Wochentage
 \deftranslation{Montag}{Monday}
 \deftranslation{Dienstag}{Tuesday}
@@ -15,7 +12,6 @@
 \deftranslation{Freitag}{Friday}
 \deftranslation{Sammstag}{Saturday}
 \deftranslation{Sonntag}{Sunday}
-
 % Monate
 \deftranslation{Januar}{January}
 \deftranslation{Februar}{Februrary}
@@ -29,13 +25,10 @@
 \deftranslation{Oktober}{October}
 \deftranslation{November}{November}
 \deftranslation{Dezember}{December}
-
-
 % Universität
 \deftranslation{Vorlesung}{Lecture}
 \deftranslation{Uebung}{Exercise}
 \deftranslation{Tutorium}{Tutorial}
-
 % Boxen
 \deftranslation{Alle Bemerkungen}{List of Comments}
 \deftranslation{Bemerkung}{Comment}
@@ -50,24 +43,18 @@
 \deftranslation{Alle Aufgaben}{List of exercises}
 \deftranslation{Aufgabe}{Exercise}
 \deftranslation{Loesung}{Solution}
-
 \deftranslation{AlleUebungsblaetter}{List of exercise sheets}
 \deftranslation{Uebungsblatt}{Exercise Sheet}
-
 % Transcripts
-
 \deftranslation{Sitzung}{Meeting}
 \deftranslation{Sitzung des}{Meeting of}
 \deftranslation{Ende der}{End of}
 \deftranslation{Teilnehmer}{attendees}
-
 % General
-
 \deftranslation{Abb.}{Fig.}
 \deftranslation{Tbl.}{Tbl.}
 \deftranslation{Alle Algorithmen}{List of Algorithms}
 % Application
-
 \deftranslation{Kurzbeschreibung}{About me}
 \deftranslation{Kontakt}{Contact Information}
 \deftranslation{PersoenlicheFertigkeiten}{Personal skills}

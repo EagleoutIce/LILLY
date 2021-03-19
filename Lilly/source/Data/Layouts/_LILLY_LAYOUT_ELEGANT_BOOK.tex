@@ -171,7 +171,7 @@
 % Set the formats of the chapters, sections and titles :D
 % the#amazing#chapterfix
 \let\defChapter\chapter
-\renewcommand*{\chapter}{
+\renewcommand*\chapter{
     \@ifstar{\starchapter}{\@dblarg\nostarchapter}
 }
 \newcommand\starchapter[1]{

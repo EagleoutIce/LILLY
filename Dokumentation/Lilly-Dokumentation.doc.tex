@@ -19,12 +19,12 @@
 \newcommand\Jake[1][~]{\jmark[\begingroup\Fontauri Jake\endgroup]{mrk:JAKE}#1}
 \newcommand\LJake[1][~]{\begingroup\T{lilly\_jake}\endgroup#1}
 
-\newcommand*{\blankcmd}[1]{\bgroup\setLinkColor{Orchid}\jmark[\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}]{cmd:#1}\egroup}
-\newcommand*{\blankcmdidx}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}}
-\newcommand*{\blankenv}[1]{\bgroup\setLinkColor{AppleGreen}\jmark[\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}]{cmd:#1}\egroup}
-\newcommand*{\blankenvidx}[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}}
+\newcommand*\blankcmd[1]{\bgroup\setLinkColor{Orchid}\jmark[\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}]{cmd:#1}\egroup}
+\newcommand*\blankcmdidx[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}}
+\newcommand*\blankenv[1]{\bgroup\setLinkColor{AppleGreen}\jmark[\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}]{cmd:#1}\egroup}
+\newcommand*\blankenvidx[1]{\textcolor{AppleGreen}{\LILLYxlstTypeWriter env@\ignorespaces #1}}
 
-\newcommand*{\secline}{\newline\hbox{}\protect\qquad\quad}
+\newcommand*\secline{\newline\hbox{}\protect\qquad\quad}
 
 \def\typesetVersion#1{\text{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}}
 
@@ -56,12 +56,12 @@
 \DeclareDocumentCommand{\presentEnvironment}{ O{1.0.0} O{1.0.0} m O{} }{%
     \presentStuff[#1]{\blankenvidx{#3#4}}[#3]\addenv[#1][#2]{#3}\ignorespaces%
 }
-\newcommand*{\frmttxt}[1]{\begingroup\color{black}\emph{#1}\endgroup}
-\newcommand*{\cmdlist}{\begingroup\color{black},\;\endgroup}
-\newcommand*{\manArg}[1]{\{\frmttxt{#1}\}}
-\newcommand*{\optArg}[2][]{[\frmttxt{#2\ifthenelse{\equal{#1}{}}{}{=$\langle$#1$\rangle$}}]}
-\newcommand*{\optStar}{\optArg{*}}
-\newcommand*{\cmdold}{~\LILLYxNOTExWarning{Veraltet}}
+\newcommand*\frmttxt[1]{\begingroup\color{black}\emph{#1}\endgroup}
+\newcommand*\cmdlist{\begingroup\color{black},\;\endgroup}
+\newcommand*\manArg[1]{\{\frmttxt{#1}\}}
+\newcommand*\optArg[2][]{[\frmttxt{#2\ifthenelse{\equal{#1}{}}{}{=$\langle$#1$\rangle$}}]}
+\newcommand*\optStar{\optArg{*}}
+\newcommand*\cmdold{~\LILLYxNOTExWarning{Veraltet}}
 
 \newcommand\displayCommandList[2][2]{%
 \begin{multicols}{#1}%
