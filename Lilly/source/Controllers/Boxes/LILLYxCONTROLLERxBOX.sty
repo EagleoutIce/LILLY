@@ -162,10 +162,10 @@
     % Check: Is the Box to be a plain box :D
     \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xUseBox}}{TRUE}}{%
         \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={}}% No Modifications needed :D
-        \renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
+        \renewcommand\LILLYxColorxLINKSxCurrentColor{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
     }{%
         \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain, after title app={\leavevmode\\[-.75\baselineskip]\ignorespaces}}}% Set Blank Box
-        \renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}% If the Box is plain, we will drop the color, as it doesnt make any sense to display color in that case ;D
+        \renewcommand\LILLYxColorxLINKSxCurrentColor{\LILLYxColorxLINKSxMainColor}% If the Box is plain, we will drop the color, as it doesnt make any sense to display color in that case ;D
     }%
     %\addvspace{0em plus .33em minus 0em}%
     \phantomsection% Here we will start the corresponding box
@@ -186,7 +186,7 @@
 \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
     \endLILLYxSPECIALBOXxHIDDEN% This shall be the end of silence :D
 }{%
-    \@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}%\addvspace{0em plus .33em minus 0em}
+    \@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand\LILLYxColorxLINKSxCurrentColor{\LILLYxColorxLINKSxMainColor}%\addvspace{0em plus .33em minus 0em}
     \ignorespacesafterend
 }%
 \endgroup}}

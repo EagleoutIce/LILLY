@@ -10,7 +10,7 @@
     {Sonst geht halt errorEmblem nicht xD}
     {}{nointegrals}{\let\wasysymLightning\lightning}% otherwise this would collide with the amssymb :D
 % General and Layoutkonfiguration
-\renewcommand\sectionmark[1]{\markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}}
+\renewcommand\sectionmark[1]{\markright{#1}\renewcommand\LILLYxRIGHTMARK{#1}}
 
 \RequirePackage{titlesec}
 % lines above and below, number right
@@ -109,15 +109,15 @@
 
 \def\@lilly@mitschrieb@selfont{\sffamily\bfseries}
 
-\renewcommand{\section}{\@startsection{section}{1}{\z@}
+\renewcommand\section{\@startsection{section}{1}{\z@}
 {-4ex \@plus -1ex \@minus -.4ex}
 {1ex \@plus.2ex }
 {\normalfont\LARGE\@lilly@mitschrieb@selfont}}
-\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
+\renewcommand\subsection{\@startsection {subsection}{2}{\z@}
 {-3ex \@plus -.1ex \@minus -.4ex}
 {.5ex \@plus.2ex }
 {\normalfont\Large\@lilly@mitschrieb@selfont}}
-\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
+\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
 {\normalfont\@lilly@mitschrieb@selfont}}
@@ -141,7 +141,7 @@
 }
 
 \LILLYcommand\cftsubsecfont{\normalfont\footnotesize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!90!white}}
-%\renewcommand{\cftsecleader}{\hfill}
+%\renewcommand\cftsecleader{\hfill}
 \LILLYcommand\cftsubsecleader{{\lilly@cftdotfill{\cftsubsecdotsep}}}
 \LILLYcommand\cftsubsecpagefont{\normalfont\scriptsize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!70!white}}
 

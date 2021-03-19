@@ -1,7 +1,7 @@
 \chapter[Mathe\lilib{LILLYxMATH}{1.0.0}]{Mathe}
 \TitleSUB{Einzelne Variationen und eine Menge Abkürzungen \hfill \LILLYxBOXxVersion{\small 2.0.0}}
 \bigskip\newline
-\renewcommand{\arraystretch}{1.5}
+\renewcommand\arraystretch{1.5}
 \elable{chp:MATH}\hypertarget{LILLYxMATH}An sich ändert LILLY nicht viel an der normalen Implementation der Mathewelt. Dieses Paket liegt hier: \begin{center}
     \blankcmd{LILLYxPATHxMATHS} = \T{\LILLYxPATHxMATHS}
 \end{center}
@@ -122,7 +122,7 @@ Setzt einen Ausdruck in doppelte Striche und kann so für Abstände eingesetzt w
 
 \presentEnvironment[1.0.2]{matrix}[\optArg{Spaltendefinition}\cmdlist \anotherenv[1.0.0]{pmatrix}\optArg{Spaltendefinition}]
 Des Weiteren wurde noch die Matrixumgebung (\blankenv{matrix}) so erweitert, dass sie als optionales Argument eine gültige Array-Spaltendefinition entgegennimmt:
-\begin{center}\renewcommand{\arraystretch}{0.75}
+\begin{center}\renewcommand\arraystretch{0.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{5.5cm}@{\hspace{1em}}|@{\hspace{1em}}C{2cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
 {\begin{latex}
@@ -557,4 +557,4 @@ Bisher sind noch keine Definitionen für 3-Dimensionale Plots integriert. Desweg
     \end{tabular}
 \end{center}
 \fi
-\renewcommand{\arraystretch}{1}
+\renewcommand\arraystretch{1}

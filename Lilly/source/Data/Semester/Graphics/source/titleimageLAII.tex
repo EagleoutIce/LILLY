@@ -1,12 +1,12 @@
 \documentclass[11pt]{standalone}
- 
+
 \usepackage{tikz}
-\usepackage{pgfplots} 
+\usepackage{pgfplots}
 \usepackage{xcolor}
 \usepackage{tabularx}
 \pgfplotsset{width=6.05cm,compat=newest}
 
-\newcommand{\tab}[1][1cm]{\hspace{#1}}
+\newcommand\tab[1][1cm]{\hspace{#1}}
 \pgfplotsset{
   /pgfplots/colormap={pink}{%
     color(0cm) = (purple);
@@ -17,10 +17,10 @@
 \newcommand\placeheart[1]{
   \begin{tikzpicture}
     \begin{axis}[
-        view={0}{10}, 
+        view={0}{10},
         axis equal,
         axis lines=none,
-        colormap name =pink, 
+        colormap name =pink,
         scale=1.6
       ]
       \addplot3[
@@ -30,13 +30,13 @@
         domain=0:2*pi,y domain=0:2*pi,
         z buffer=sort,
         opacity=0.35
-      ] 
+      ]
       (
         {(sin(deg(x)))^3*cos(deg(y))},
         {(sin(deg(x)))^3*sin(deg(y))},
         {(13*cos(deg(x))-5*cos(2*deg(x))-2*cos(3*deg(x))-cos(4*deg(x)))/16}
       );
-    \end{axis} 
+    \end{axis}
   \end{tikzpicture}
 }
 \begin{document}
@@ -45,7 +45,7 @@
 %    & \placeheart{15} && \placeheart{25} &\\
 %   && \placeheart{40} &&
 %\end{tabularx}
-\newcommand{\hatgraph}[1]{
+\newcommand\hatgraph[1]{
   \begin{tikzpicture}
     \begin{axis}[
         hide axis,
@@ -76,5 +76,5 @@
 \draw[-latex] (5) -- (1);
 \end{tikzpicture}
 
-  
-\end{document} 
+
+\end{document}

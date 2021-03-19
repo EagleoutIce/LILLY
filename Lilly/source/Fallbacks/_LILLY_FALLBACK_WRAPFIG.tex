@@ -5,7 +5,7 @@
 % Signature: [number of narrow lines]{placement}[Overhang]{width}
 \DeclareDocumentEnvironment{wrapfigure}{ O{12} m O{0pt} m }{
 \begin{center}\begin{minipage}[l]{#4}%
-\renewcommand{\caption}[1]{\renewcommand{\LILLYxWRAPFIGxFBxCAPTION}{\mdseries ##1\relax{}~}}%
+\renewcommand\caption[1]{\renewcommand\LILLYxWRAPFIGxFBxCAPTION{\mdseries ##1\relax{}~}}%
 }{%
-~\\\textbf{Fake Figure: }\LILLYxWRAPFIGxFBxCAPTION\renewcommand{\LILLYxWRAPFIGxFBxCAPTION}{}\end{minipage}\end{center}%
+~\\\textbf{Fake Figure: }\LILLYxWRAPFIGxFBxCAPTION\renewcommand\LILLYxWRAPFIGxFBxCAPTION{}\end{minipage}\end{center}%
 }

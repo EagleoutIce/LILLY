@@ -1,35 +1,31 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCONTROLLERxENVIRONMENT}[2019/08/30 Stellt die Umgebungs-Erweiterung fuer LILLY zur Verfuegung]
-
 % Eigentlich kein Controller aber naja wo soll man es sonst machen :P
 % Überschreibt normale environments sodass sie sich besser ans Dokument anpassen
-
 \LILLYxLoadPackage{enumerate}{Wir wollen ja auch schöne Auflistungen :D}
     {Wie, kein enumerate ?! Dann versuche ich das wohl zu simulieren}
-    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}}
-    {}{}
-
+    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}}{}{}
 
 \LILLYxLoadPackage{enumitem}{Wir wollen ja noch schoenere Auflistungen :D}
 {Wie, kein enumitem?! Das könnte aua machen!}
 {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}}
 {}{ % old
-    \newenvironment{enumeratea}[1][,]{\begin{enumerate}[label=\textbf{\alph*)},##1]\setlength{\itemsep}{1pt}}{\end{enumerate}}
-    \setlistdepth{9}
-    \newlist{ditemize}{itemize}{4}
-    \setlist[ditemize,1]{label=$\diamond$}
-    \setlist[ditemize,2]{label=$\heartsuit$}
-    \setlist[ditemize,3]{label=--} %$\spadesuit$
-    \setlist[ditemize,4]{label=--} %$\clubsuit$
-    \DeclareDocumentEnvironment{aufgaben}{ o O{} }{%
-        \begingroup\IfValueT{##1}{\vspace{-.15cm}\begin{multicols}{##1}}%
-            \begin{enumerate}[label={\ifnum\@listdepth=\@ne\textbf{\alph*)}\else{\roman*)}\fi},##2]\setlength{\itemsep}{1pt}%
-    }{%
-        \end{enumerate}%
-        \IfValueT{##1}{\end{multicols}\vspace{-.15cm}}%
-    \endgroup}
-    \newlist{steps}{enumerate}{1}
-    \setlist[steps]{label=\textit{\arabic*. Schritt:~},labelindent=\parindent,leftmargin=2cm,align=right,topsep=0pt}
-    \gdef\descriptionlabel##1{\hspace{\labelsep}\textbf{##1}}%
+\newenvironment{enumeratea}[1][,]{\begin{enumerate}[label=\textbf{\alph*)},##1]\setlength{\itemsep}{1pt}}{\end{enumerate}}
+\setlistdepth{9}
+\newlist{ditemize}{itemize}{4}
+\setlist[ditemize,1]{label=$\diamond$}
+\setlist[ditemize,2]{label=$\heartsuit$}
+\setlist[ditemize,3]{label=--} %$\spadesuit$
+\setlist[ditemize,4]{label=--} %$\clubsuit$
+\DeclareDocumentEnvironment{aufgaben}{ o O{} }{%
+    \begingroup\IfValueT{##1}{\vspace{-.15cm}\begin{multicols}{##1}}%
+        \begin{enumerate}[label={\ifnum\@listdepth=\@ne\textbf{\alph*)}\else{\roman*)}\fi},##2]\setlength{\itemsep}{1pt}%
+}{%
+    \end{enumerate}%
+    \IfValueT{##1}{\end{multicols}\vspace{-.15cm}}%
+\endgroup}
+\newlist{steps}{enumerate}{1}
+\setlist[steps]{label=\textit{\arabic*. Schritt:~},labelindent=\parindent,leftmargin=2cm,align=right,topsep=0pt}
+\gdef\descriptionlabel##1{\hspace{\labelsep}\textbf{##1}}%
 }
 \endinput

@@ -10,14 +10,14 @@
 % Sonderboxen
 
 %taken and adaptet from tcolorbox
-\newcommand{\ENVpar}[1]{\marginpar{\raggedleft\raisebox{1pt}{\T{\tiny\ttfamily env: #1}}}}
-\newcommand{\CMDpreview}[2][]{\marginpar{\raggedleft\raisebox{1pt}{\T{\tiny\ttfamily \textbackslash #2}}}\T{\textbackslash #2#1}}
-\newcommand{\CMDshow}[2][]{\T{\textbackslash #1#2}}
+\newcommand\ENVpar[1]{\marginpar{\raggedleft\raisebox{1pt}{\T{\tiny\ttfamily env: #1}}}}
+\newcommand\CMDpreview[2][]{\marginpar{\raggedleft\raisebox{1pt}{\T{\tiny\ttfamily \textbackslash #2}}}\T{\textbackslash #2#1}}
+\newcommand\CMDshow[2][]{\T{\textbackslash #1#2}}
 
 
 \usepackage{aurical}
-\newcommand{\Jake}[1][~]{\jmark[\begingroup\Fontauri Jake\endgroup]{mrk:JAKE}#1}
-\newcommand{\LJake}[1][~]{\begingroup\T{lilly\_jake}\endgroup#1}
+\newcommand\Jake[1][~]{\jmark[\begingroup\Fontauri Jake\endgroup]{mrk:JAKE}#1}
+\newcommand\LJake[1][~]{\begingroup\T{lilly\_jake}\endgroup#1}
 
 \newcommand*{\blankcmd}[1]{\bgroup\setLinkColor{Orchid}\jmark[\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}]{cmd:#1}\egroup}
 \newcommand*{\blankcmdidx}[1]{\textcolor{Orchid}{\LILLYxlstTypeWriter\textbackslash\ignorespaces #1}}
@@ -63,7 +63,7 @@
 \newcommand*{\optStar}{\optArg{*}}
 \newcommand*{\cmdold}{~\LILLYxNOTExWarning{Veraltet}}
 
-\newcommand{\displayCommandList}[2][2]{%
+\newcommand\displayCommandList[2][2]{%
 \begin{multicols}{#1}%
     \begin{ditemize}\narrowitems%
         \foreach \cmd in {#2}{%
@@ -73,7 +73,7 @@
 \end{multicols}%
 }
 \def\docuidxname{Kurzübersicht}
-\def\compileidx{\makeindex[title=\docuidxname,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{\docuidxname}}
+\def\compileidx{\makeindex[title=\docuidxname,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand\indexname{\docuidxname}}
 % lilly library
 % Libname
 % Version
@@ -90,7 +90,7 @@
 }
 \makeatother
 % Dokumentation
-\renewcommand{\indexname}{Befehle}
+\renewcommand\indexname{Befehle}
 \compileidx
 
 % collect new

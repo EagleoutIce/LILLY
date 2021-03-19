@@ -84,7 +84,7 @@
 \let\defSection\section
 \renewcommand*\section{\@ifstar{\starsection}{\@dblarg\nostarsection}}
 \newcommand\starsection[1]{\defSection*{#1}}
-\def\nostarsection[#1]#2{\defSection[{#1}]{#2}\addcontentsline{TOP}{section}{\thesection~#2}\renewcommand{\rightmark}{#2}}
+\def\nostarsection[#1]#2{\defSection[{#1}]{#2}\addcontentsline{TOP}{section}{\thesection~#2}\renewcommand\rightmark{#2}}
 
 \let\defSubsection\subsection
 \renewcommand*\subsection{\@ifstar{\starsubsection}{\@dblarg\nostarsubsection}}

@@ -8,7 +8,7 @@
 \providecommand\LILLYxWANNABExERROR{\false} % GENERAL WHOOPS
 
 \makeatletter
-\newcommand{\LILLYxUSure}[2][Du hast mich verraten! Ein Paket sollte da sein, ist es aber nicht!]{%
+\newcommand\LILLYxUSure[2][Du hast mich verraten! Ein Paket sollte da sein, ist es aber nicht!]{%
     \@ifpackageloaded{#2}
         {}
         {\ClassError{Lilly}{Package-Loaded-Assertion for #2 failed: #1}{This cannot be recovered}}%
@@ -36,7 +36,7 @@
 % DEMAND VARIANT: CRITICAL LOAD
 \newcommand\LILLYxDemandPackage[5]{\LILLY@L@adP@ck@ge[#4]{#2}{#1}{#3}{}{LILLYxDemandPackage}{ClassError}{Dieser Fehler wird nicht behoben!}{#5}}% consumes erhandling mjammi
 %Load VARIANT: WARNING LOAD
-\newcommand\LILLYxLoadPackage[6]{\LILLY@L@adP@ck@ge[#5]{#2}{#1}{#3}{\renewcommand{\LILLYxWANNABExERROR}{#1}#4}{LILLYxLoadPackage}{ClassWarning}{Versuche es mit einer Fehlerbehandlung, vielleicht bringt es ja etwas!}{#6}}%
+\newcommand\LILLYxLoadPackage[6]{\LILLY@L@adP@ck@ge[#5]{#2}{#1}{#3}{\renewcommand\LILLYxWANNABExERROR{#1}#4}{LILLYxLoadPackage}{ClassWarning}{Versuche es mit einer Fehlerbehandlung, vielleicht bringt es ja etwas!}{#6}}%
 %
 }{ % Es ist nicht gewünscht autodetect-Features zu verwenden
 \ClassInfo{Lilly}{Lilly's intelligentes Packet-Handling wurde explizit mithilfe der Definition des Makros LILLYxNOxPACKAGEC deaktiviert!}%

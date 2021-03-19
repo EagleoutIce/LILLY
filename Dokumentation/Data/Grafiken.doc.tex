@@ -1,4 +1,4 @@
-\renewcommand{\arraystretch}{1.5}
+\renewcommand\arraystretch{1.5}
 \chapter[Grafiken\lilib{LILLYxGRAPHICS}{1.0.0}]{Grafiken}
 \TitleSUB{Etliche Vereinfachungen und andere Freuden :D\hfill \LILLYxBOXxVersion{\small 1.0.2}}
 \bigskip\newline
@@ -87,7 +87,7 @@ Weiter definiert diese Bibliothek etliche sogenannte \T{graphdot}s, welche alle 
 
 \presentCommand[1.0.2]{graphdot}[\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}\cmdlist\newline\hbox{}~~\anothercmd[1.0.2]{tgraphdot}\manArg{fill-color}\manArg{(PosX,PosY)}\manArg{node-name}\manArg{border-color}]
 Die Befehle unterscheiden sich darin, dass der \blankcmd{tgraphdot} das Farbargument ignoriert und entsprechend transparent (\T{fill opacity = 0}) als Füllfarbe verwendet:
-\begin{center}\renewcommand{\arraystretch}{1.75}
+\begin{center}\renewcommand\arraystretch{1.75}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\linewidth}@{\hspace{1em}}|@{\hspace{1em}}C{1cm}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
         {\blatex[morekeywords={[5]{graphdot}}]{:bs:graphdot\{DebianRed\}\{(0,0)\}\{42\}\{a\}\{Azure\}}} &\raisebox{-0.375\baselineskip}{\tikz{\graphdot{DebianRed}{(0,0)}{42}{a}{Azure}}}\\\hline
@@ -131,7 +131,7 @@ Im Folgenden eine Repräsentation, die den Wirrwarr an Optionen etwas übersicht
 \end{minipage} } ++(9cm,0.3) node [below right] {\begin{minipage}[c]{0.3\textwidth}
     \href{#7}{\fcolorbox{#2}{white}{\includegraphics[height=2cm]{\LILLYxPATH#6}}}
 \end{minipage}} ;}%
-\begin{center}%\renewcommand{\arraystretch}{0.25}
+\begin{center}%\renewcommand\arraystretch{0.25}
 \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.45\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.55\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
     {\tiny\begin{plainlatex}
@@ -162,7 +162,7 @@ Wir dieser Befehl auf \verb|\true| (\true) gesetzt, so wird \blankcmd{graphPOI} 
 
 \presentCommand[2.0.0]{PgetXY}[\manArg{Point}\manArg{out:x-cord}\manArg{out:y-cord}\cmdlist\secline\anothercmd[2.0.0]{PgetX}\manArg{out:x-cord}\cmdlist \anothercmd[2.0.0]{PgetY}\manArg{out:y-cord}]
 Da es oft notwendig ist die Koordinate eines Punktes weiter zu benutzen und da das Kreuzen von Koordinaten nervig ist, gibt es verschiedene Befehle die es erlauben, die entsprechenden Koordinaten zu speichern, wobei die letzteren beiden nur lesbarere Alternativen für die erste sind, sofern die entsprechend andere Koordinate nicht benötigt wird:\vspace{-1.15\baselineskip}
-\begin{center}%\renewcommand{\arraystretch}{0.25}
+\begin{center}%\renewcommand\arraystretch{0.25}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.6\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.4\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
         \specialrule{1pt}{0pt}{0pt}
 {\begin{plainlatex}
@@ -231,7 +231,7 @@ Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxGRAPHICS/Tikz-Co
 
 \presentCommand[1.0.4]{rotateRPY}[\optArg[0/0/0]{transform-point}\manArg{roll}\manArg{pitch}\manArg{yaw}]
 Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und dementsprechend anzupassen. Dieser Code entstammt der Feder von David Carlisle und Tom Bombadil\footnote{\url{https://tex.stackexchange.com/questions/67573/tikz-shift-and-rotate-in-3d}} und wird hier beispielhaft illustriert:
-\newcommand{\examplecube}%
+\newcommand\examplecube%
 {   \coordinate (a) at (-2,-2,-2);
     \coordinate (b) at (-2,-2,2);
     \coordinate (c) at (-2,2,-2);
@@ -385,7 +385,7 @@ Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAP
 Ersteinmal ein Beispiel:
 \begin{center}
     \begin{tikzternal}[scale=0.7,every node/.style={transform shape}]
-        \newcommand{\ttw}{3};\newcommand{\tth}{2} % tth heightsteps ttw widthsteps
+        \newcommand\ttw{3};\newcommand\tth{2} % tth heightsteps ttw widthsteps
         % could be for each ^^ sorry
         \entity{(2*\ttw,4*\tth)}{Teile};
         \entity{(4*\ttw,4*\tth)}{Lieferanten}; \entity{(4*\ttw,2*\tth)}{Bestellungen};

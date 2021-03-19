@@ -68,10 +68,10 @@
 % Styling the toc:
 % Used with babel :D
 \addto\captionsngerman{%
-        \renewcommand{\contentsname}{}%
+        \renewcommand\contentsname{}%
 }
 \providecommand{\idxtitle}{Kurz\"{u}bersicht}
-\def\compileidx{\makeindex[title=\idxtitle,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{\idxtitle}}
+\def\compileidx{\makeindex[title=\idxtitle,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand\indexname{\idxtitle}}
 \compileidx
 
 \renewcommand\sectionlinesformat[4]{%

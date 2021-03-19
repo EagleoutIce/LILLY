@@ -1,6 +1,6 @@
 \gdef\GRAPHICSxHaskellTypen{%
 \begin{tikzternal}[scale=0.75,every node/.style={transform shape}]
-    \newcommand{\typklassendeskriptor}[4][Azure]{\draw[fill=##1,rounded corners = 5pt] ##2 rectangle ++ (2.25,2.25) node[midway,centered, minimum width=2.25cm, minimum height = 2.25cm, rectangle, rounded corners=5pt] (##3) {\centering\parbox{2.15cm}{\centering\textbf{\T{##3}}\\\tiny\LILLYxlstTypeWriter ##4\par}\par
+    \newcommand\typklassendeskriptor[4][Azure]{\draw[fill=##1,rounded corners = 5pt] ##2 rectangle ++ (2.25,2.25) node[midway,centered, minimum width=2.25cm, minimum height = 2.25cm, rectangle, rounded corners=5pt] (##3) {\centering\parbox{2.15cm}{\centering\textbf{\T{##3}}\\\tiny\LILLYxlstTypeWriter ##4\par}\par
         }; }
 
     \foreach \pos/\col/\nam/\brief in {%

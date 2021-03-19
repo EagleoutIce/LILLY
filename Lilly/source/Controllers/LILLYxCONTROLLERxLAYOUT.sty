@@ -1,25 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCONTROLLERxLAYOUT}[2019/08/25 Stellt den Layout-Controller fuer LILLY zur Verfuegung]
-
 % Hier wird endgültig die Intro- und Outro-Konfiguration über das jeweilige Layout gesetzt. De facto handelt es sich um eine Komposition des Intro- und des Outro- Controllers, die hier gemeinsam einen Platz finden :d
-
-\RequirePackage{LILLYxCORE}
-% \RequirePackage{LILLYxCORE}
-\RequirePackage{LILLYxFONTS}
-\RequirePackage{LILLYxPHILOSOPHER}
-
-
-
+\RequirePackage{LILLYxCORE,LILLYxFONTS,LILLYxPHILOSOPHER}
 \LILLYxDemandPackage{tocloft}{custom lists und so}
-                    {Leider wird dieses Paket zu oft verwendet :/}
-                    {}{}
-
+    {Leider wird dieses Paket zu oft verwendet :/}{}{}
 \def\cftsubsecdotsep{3.49}
 
 % Dieser Controller kümmert sich um die korrekte Implementierung des Beginn eines Dokuments durch die initiierung von AtBeginDocument-Zugriffen
 
 %DEBUG wird immer die erste Seite sein, sofern dies gewünscht ist, alle anderen Pages werden sich zwangsläufig an diese Positionierung orientieren müssen. Damit ist auch nicht gewährleistet, dass das Titelbild sicher die erste Seite der PDF-Datei erhält!!
-
 \ifx\LILLYxDEBUG\true
     \RequirePackage{LILLYxDEBUG}
     \errorcontextlines 10000
@@ -45,30 +34,24 @@
 
 % Lilly vertraut auf 'cite' wenn es darum geht Bibtex zu integrieren.
 % Das Paket wird allerdings nur bei Bedarf eingebunden:
-\ifx\LILLYxBIBTEX\undefined%
+\ifx\LILLYxBIBTEX\undefined
     \ClassInfo{Lilly}{Bibtex wird nicht verwendet!}
-\else%
+\else
     \ClassInfo{Lilly}{Bibtex wird verwendet!}
     \RequirePackage{cite}
 \fi
-
 % Für die klassischen Layouts gab es hier früher einige Anpassungen.
 % Um die Struktur zu behalten, wir diese Aufgabe nun komplett dem entsprechenden Layout übergeben,
 % Welches sich auch um das OUTRO-Handling kümmern wird.
-
 % Load Layout:
 \typeout{Lade Layout: _LILLY_LAYOUT_\LILLY@Typ}
 \userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
-
 % Bibtex Control:
 \ifx\LILLYxBIBTEX\undefined\else
-
 \ifx\LILLYxCMD\undefined
     \immediate\write18{bibtex \jobname.aux}
-\else % NOTHING
 \fi
-
-\providecommand{\printbib}[1][\LILLYxBIBTEX]{%
+\providecommand\printbib[1][\LILLYxBIBTEX]{%
    \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
    \protect\pagestyle{empty}\thispagestyle{empty}
    \LILLYxCLEARxHEADFOOT\pagestyle{empty}
@@ -76,7 +59,5 @@
    \bibliographystyle{apalike}
    \bibliography{#1}
 }
-
 \fi
-
 \endinput

@@ -88,7 +88,7 @@
 
 \newcommand\digitstyle{\color{DarkMidnightBlue}}
 % Lilly process Digit
-\newcommand{\lpDigit}[1]
+\newcommand\lpDigit[1]
 {\begingroup%
 \iflstdonumhl%
 \iflstlastwasacharacter%\lstnumnohlmodetrue% was char => don't highlight, we won't check for hex right now
@@ -234,13 +234,13 @@
 \storeRegisteredLanguages{LISTxRegisteredLanguages}
 \storeRegisteredLanguageNames{LISTxRegisteredLanguageNames}
 % erlaubt es Den inhalt eines Befehls zu setzen
-\newcommand{\lstshowcmd}[2][]{\edef\@tmp@@b{\noexpand\lstinline[#1]!#2!}\@tmp@@b}
+\newcommand\lstshowcmd[2][]{\edef\@tmp@@b{\noexpand\lstinline[#1]!#2!}\@tmp@@b}
 %Embetter Break Control:
 \LillyXlstXsloppy
-\newcommand{\isLanguageLoaded}[1]{\containsList{RegisteredLanguages}{#1}}%
+\newcommand\isLanguageLoaded[1]{\containsList{RegisteredLanguages}{#1}}%
 
 % for more convenience
-\newcommand{\isLanguageNameLoaded}[1]{\containsList{RegisteredLanguageNames}{#1}}%
+\newcommand\isLanguageNameLoaded[1]{\containsList{RegisteredLanguageNames}{#1}}%
 \RequirePackage{LILLYxLISTINGSxHL}
 \def\HLError#1{}
 \makeatletter

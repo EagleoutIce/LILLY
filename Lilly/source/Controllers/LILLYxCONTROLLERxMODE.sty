@@ -17,11 +17,8 @@
 \def\LILLY@Typ@Uebungsblatt{UEBUNGSBLATT}
 \def\LILLY@Typ@Dokumentation{DOKUMENTATION}
 \def\LILLY@Typ@Zusammenfassung{ZUSAMMENFASSUNG}
-
 \RequirePackage{imakeidx}
-
 \ifx\LILLY@Typ\LILLY@Typ@Mitschrieb \gdef\LILLYxBOXxAufgabexBox{FALSE} \fi
-
 \ifx\LILLYxMODE\LILLYxMODExDEFAULT
 \gdef\LILLYxBOXxBeispielxBox{FALSE}
 \else\ifx\LILLYxMODE\LILLYxMODExPRINT
@@ -42,9 +39,7 @@
     \LILLYcommand\LILLYxIMAGESxShow{FALSE}
     \gdef\LILLYxBOXxUebungsblattxEnable{FALSE}
 }
-
-
-\ifx\LILLYxBOXxBeispielxBox\false\renewcommand{\LILLYxColorxBeispiel}{\LILLYxColorxLINKSxMainColor}\fi
-\ifx\LILLYxBOXxBeweisxBox\false\renewcommand{\LILLYxColorxBeweis}{\LILLYxColorxLINKSxMainColor}\fi
-\ifx\LILLYxBOXxBemerkungxBox\false\renewcommand{\LILLYxColorxBemerkung}{\LILLYxColorxLINKSxMainColor}\fi
+\ifx\LILLYxBOXxBeispielxBox\false\renewcommand\LILLYxColorxBeispiel{\LILLYxColorxLINKSxMainColor}\fi
+\ifx\LILLYxBOXxBeweisxBox\false\renewcommand\LILLYxColorxBeweis{\LILLYxColorxLINKSxMainColor}\fi
+\ifx\LILLYxBOXxBemerkungxBox\false\renewcommand\LILLYxColorxBemerkung{\LILLYxColorxLINKSxMainColor}\fi
 \endinput

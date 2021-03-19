@@ -1,23 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxBOXES}[2019/07/13 Stellt die Boxen fuer LILLY zur Verfuegung]
-\RequirePackage{LILLYxCORE}
-
-\RequirePackage{kvoptions} %Erweiterte Optionen
+\RequirePackage{LILLYxCORE,kvoptions}
 \DeclareBoolOption[false]{iall}
-
-% ifLILLY@boxes: Control the Box-controller-module
 \DeclareBoolOption[true]{boxes}\DeclareComplementaryOption{noboxes}{boxes}
-% ifLILLY@infoboxes: Control the Infobox-module
 \DeclareBoolOption[true]{infoboxes}\DeclareComplementaryOption{noinfoboxes}{infoboxes}
-\ProcessKeyvalOptions* % Verarbeite Paketargumente (Optionen, wie auch immer)
-
+\ProcessKeyvalOptions*
 \ifLILLYxBOXES@iall \LILLYxBOXES@boxestrue \LILLYxBOXES@infoboxestrue \fi
-
-\ifLILLYxBOXES@boxes
-    \RequirePackage{LILLYxCONTROLLERxBOX,LILLYxBOXxCOUNTER}
-\fi
-
-\ifLILLYxBOXES@infoboxes
-    \RequirePackage{LILLYxBOXxMARGIN,LILLYxBOXxINFOBOXES}
-\fi
+\ifLILLYxBOXES@boxes\RequirePackage{LILLYxCONTROLLERxBOX,LILLYxBOXxCOUNTER}\fi
+\ifLILLYxBOXES@infoboxes\RequirePackage{LILLYxBOXxMARGIN,LILLYxBOXxINFOBOXES}\fi
 \endinput

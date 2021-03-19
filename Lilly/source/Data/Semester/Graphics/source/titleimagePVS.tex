@@ -69,17 +69,17 @@
   \pgfmathsetmacro\max{#2/\window}
   \foreach \col in {1,...,\max}
   {
-    \pgfmathsetmacro\xx{-\col * \window}    
+    \pgfmathsetmacro\xx{-\col * \window}
     \draw[\vthickness,draw=shadow, shift={(\yaxis:\xx)}] (0,0)--(0,\size);
     \draw[\vthickness,draw=light, shift={(\xaxis:\xx)}] (0,0)--(0,\size);
-  }  
+  }
 }
 
 % Draws horizontal lines on each side of the block
 \newcommand\hlines[2]{
   \foreach \floor in {0,...,#1}
   {
-    \pgfmathsetmacro\z{\floor * \floorheight}    
+    \pgfmathsetmacro\z{\floor * \floorheight}
     \draw[\hthickness,draw=shadow, shift={(90:\z)}] (150:#2)--(0,0);
     \draw[\hthickness,draw=light, shift={(90:\z)}] (0,0) -- (30:#2);
   }
@@ -95,20 +95,20 @@
 \newcommand\block[2]{
   % Computes the height of the block
   \pgfmathsetmacro\height{#2 * \floorheight}
-    
+
   % Erases the background
   \fill[fill=background]
     (0,0) -- (150:#1) -- ++(0,\height) -- (0,\height) -- (0,0);
   \fill[fill=background]
     (0,0) -- (30:#1) -- ++(0,\height) -- (0,\height) -- (0,0);
-  
+
   % Draws the facades
   \facade{\stories}{#1}
-  
+
   % Frames the facades
   \draw[draw=shadow] (0,0) -- (150:#1) -- ++(0,\height) -- (0,\height) -- (0,0);
   \draw[draw=light] (0,0) -- (30:#1) -- ++(0,\height) -- (0,\height) -- (0,0);
-  
+
   % Draws the terrace
   \fill[fill=background, draw=light,shift={(90:\height)}]
     (0,0) -- (30:#1) -- (0,#1) --(150:#1)--(0,0);
@@ -121,12 +121,12 @@
       \pgfmathsetmacro\pside{#1-0.1}
       \pgfmathrandominteger{\stories}{2}{\storeymax}
       \block{\pside}{\stories}
-    \end{scope}  
+    \end{scope}
   }{}
-  
+
   \ifthenelse{\alea=1}{
   % Sometimes, draws a pyramid roof
-  \pyramid{\height}{#1}  
+  \pyramid{\height}{#1}
   }{}
 }
 
@@ -136,10 +136,10 @@
   \pgfmathrandomitem{\facade}{facade}
   \setvthickness{}
   \seththickness{}
-  
+
   % Selects a random number of stores
   \pgfmathrandominteger{\stories}{\storeymin}{\storeymax}
-  
+
   \begin{scope}[shift={(\xaxis:#1)},shift={(\yaxis:#2)}]
   \block{#3}{\stories}
   \end{scope}
@@ -171,7 +171,7 @@
 \usepackage{tikz}
 \usetikzlibrary{decorations.text}
 
-\newcommand{\arcarrow}[8]% inner radius, middle radius, outer radius, start angle, end angle, tip protusion angle, options, text
+\newcommand\arcarrow[8]% inner radius, middle radius, outer radius, start angle, end angle, tip protusion angle, options, text
 {   \pgfmathsetmacro{\rin}{#1}
     \pgfmathsetmacro{\rmid}{#2}
     \pgfmathsetmacro{\rout}{#3}
@@ -192,7 +192,7 @@
 \definecolor{a8}{RGB}{191,99,166}
 \definecolor{a9}{RGB}{87,91,94}
 
-\begin{document} 
+\begin{document}
 % Draws a hundred blocks random city
 \begin{tikzpicture}[show background rectangle,
   background rectangle/.style={fill=background}]

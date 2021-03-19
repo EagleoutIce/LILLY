@@ -331,7 +331,7 @@
 }
 
 
-\newcommand{\WORLD}[1][]{
+\newcommand\WORLD[1][]{
 
   \begin{scope}[y=0.80pt, x=0.80pt, yscale=-1, xscale=1, inner sep=0pt, outer sep=0pt, #1]
 

@@ -36,8 +36,8 @@ In Lilly findet das registrieren der Farben wie folgt statt:
 \end{latex}
 
 Hier eine Auflistung der Standartfarben in \blankcmd{LISTxColors}:
-\newcommand{\csXshow}[2][]{\tikz[baseline=-0.6ex]{\draw[fill=#2,#1] (0,0) circle (0.15);}}
-\newcommand{\csXcolor}[4]{#1\({}^{~(r:~#2,~g:~#3,~b:~#4)}\)}
+\newcommand\csXshow[2][]{\tikz[baseline=-0.6ex]{\draw[fill=#2,#1] (0,0) circle (0.15);}}
+\newcommand\csXcolor[4]{#1\({}^{~(r:~#2,~g:~#3,~b:~#4)}\)}
 \begin{multicols}{2}
     \begin{ditemize}\narrowitems
         \foreach \c/\r/\g/\b in \LISTxColors {
@@ -73,7 +73,7 @@ Diese Definitionen befinden sich in der Datei: {\ltt\LILLYxPATHxDATA/Colors/\_LI
 \presentCommand[1.0.1]{LILLYxColorxInject}
 Dieses Farbprofil wird nur geladen, wenn die Variable \blankcmd{LILLYxColorxInject} \textbf{nicht} definiert ist.
 
-\newcommand{\csXcslave}[2]{\T{\scriptsize#1}${}^{~(#2)}$}
+\newcommand\csXcslave[2]{\T{\scriptsize#1}${}^{~(#2)}$}
 Dieses Farbprofile definiert die Farben, welche LILLY für Links, Boxen usw. verwenden soll. Alle diese Befehle sollten auch bei eigenen Implementationen und Erweiterungen angewendet werden, darum folgt hier eine Auflistung. Wichtig ist, dass mit \LILLYxBOXxVersion{2.0.0} auch hier alle Farben jeweils in eine Liste geladen werden. Diese trägt den Namen \T{LillyProfileColors} (der Zugriff erfolgt wieder über: \blankcmd{LISTxProfileColors}) und trägt die Verantwortung für die Konstruierten Farben. Lilly kümmert sich bisher noch nicht darum, dass nur gültige Farben in diese Liste gelangen, dies sollte allerdings nur eine untergeordnete Rolle spielen, da andere Farben schlicht ignoriert werden. Alle folgenden Farben werden durch das Präfix \T{LILLYxColorx} angeführt.
 
 \LillyxStorexCurrentColorProfile

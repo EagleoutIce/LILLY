@@ -3,7 +3,7 @@
 \def\savedy{0}
 \def\savedz{0}
 
-\newcommand{\rotateRPY}[4][0/0/0]% point to be saved to \savedxyz, roll, pitch, yaw
+\newcommand\rotateRPY[4][0/0/0]% point to be saved to \savedxyz, roll, pitch, yaw
 {   \pgfmathsetmacro{\rollangle}{#2}
     \pgfmathsetmacro{\pitchangle}{#3}
     \pgfmathsetmacro{\yawangle}{#4}

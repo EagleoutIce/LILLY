@@ -32,10 +32,10 @@
 
 % #1 width
 % #2 Color
-\newcommand{\GenericLeftBanner}[2][7cm]{\@@generic@banner{#2}{(current page.north west)}{([xshift=#1]current page.south west)}{}}
-\newcommand{\GenericTopBanner}[2][-4cm]{\@@generic@banner{#2}{(current page.north west)}{([yshift=#1]current page.north east)}{}}
-\newcommand{\GenericRightBanner}[2][-7cm]{\@@generic@banner{#2}{(current page.north east)}{([xshift=#1]current page.south east)}{}}
-\newcommand{\GenericBottomBanner}[2][4cm]{\@@generic@banner{#2}{(current page.south west)}{([yshift=#1]current page.south east)}{}}
+\newcommand\GenericLeftBanner[2][7cm]{\@@generic@banner{#2}{(current page.north west)}{([xshift=#1]current page.south west)}{}}
+\newcommand\GenericTopBanner[2][-4cm]{\@@generic@banner{#2}{(current page.north west)}{([yshift=#1]current page.north east)}{}}
+\newcommand\GenericRightBanner[2][-7cm]{\@@generic@banner{#2}{(current page.north east)}{([xshift=#1]current page.south east)}{}}
+\newcommand\GenericBottomBanner[2][4cm]{\@@generic@banner{#2}{(current page.south west)}{([yshift=#1]current page.south east)}{}}
 
 \def\@@lilly@banner@curstart{}
 \def\@@lilly@banner@curend{}

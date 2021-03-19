@@ -43,7 +43,7 @@
 }
 
 % this will typeset a List in German List-Notation
-\newcommand{\@@typesetList}[2][typesetVoid]{%
+\newcommand\@@typesetList[2][typesetVoid]{%
 \def\@tmpl{#2}%
 \getListLength{#2}%
 \foreach \x[count=\i] in \@tmpl {%
