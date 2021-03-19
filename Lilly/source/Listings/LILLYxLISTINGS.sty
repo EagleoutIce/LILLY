@@ -6,13 +6,13 @@
 \DeclareBoolOption[true]{runtimes}\DeclareComplementaryOption{noruntimes}{runtimes}
 \ProcessOptions*
 % Packages
-%%% Die Verwaltung der Listings verläuft auf verschiedene Highlighting -Module welche auch über die Kommandozeile definiert werden können
+% Die Verwaltung der Listings verläuft auf verschiedene Highlighting -Module welche auch über die Kommandozeile definiert werden können
 \LILLYxPoliteKnock{listingsutf8}{% wir wollen natürlich UTF8, wenns geht
-%% https://www.ctan.org/pkg/listingsutf8
+
 \LILLYxDemandPackage{listingsutf8}{Tolle Umlaute in tollen Codes}
   {Also dieser Fehler sollte nun wirklich nicht vorkommen.}
   {}{}}{
-%% https://www.ctan.org/pkg/listings
+
 \LILLYxDemandPackage{listings}{Tolle Codes}
   {Also mit irgendwas muss ich arbeiten.}
   {}{}
@@ -21,53 +21,53 @@
 % Key patch from: https://tex.stackexchange.com/questions/149056/how-can-i-define-additional-literate-replacements-without-deleting-existing-ones
 \def\addToLiterate#1{\protected@edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
 \lst@Key{add to literate}{}{\addToLiterate{#1}}
-%% https://ctan.org/pkg/amsfonts
-\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
-  {Wir wollen mehr Symbole}%% Error-Text
+
+\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}% Package, Info
+  {Wir wollen mehr Symbole}% Error-Text
   {}{}
 
-%% https://www.ctan.org/pkg/xparse
+
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
   {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
   {}{}
 
-%% https://ctan.org/pkg/graphicx
+
 \LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
   {Dieses Paket ist für includegraphics von noeten!}
   {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}}{}{}
 
 \newif\ifaccsup@available@
 \accsup@available@true
-%% https://www.ctan.org/pkg/accsupp
+
 \LILLYxLoadPackage{accsupp}{Besserer PDF-Support}
   {Ohne gehts nicht}
   {\global\accsup@available@false}{}{}
-%% https://www.ctan.org/pkg/etoolbox
+
 \LILLYxDemandPackage{etoolbox}{Damit die Befehle robust sind}
   {Ohne gehts nicht - leider}
   {}{}
 
-%% NOTE: https://ctan.kako-dev.de/macros/latex/contrib/lstaddons/lstautogobble.pdf
+% NOTE: https://ctan.kako-dev.de/macros/latex/contrib/lstaddons/lstautogobble.pdf
 % Colors
-%% Current Colors:
+% Current Colors:
 \definecolor{lstmainbordercol}{HTML}{EAECF0}
 \definecolor{lstmainbackcol}{HTML}{F8F9FA}
 
 % Lists
-%% Alle Sprachen müssen sich hier registrieren, solange es nicht implementiert ist,
-%% kann man nachträglich keine entfernen tihihih
+% Alle Sprachen müssen sich hier registrieren, solange es nicht implementiert ist,
+% kann man nachträglich keine entfernen tihihih
 \constructList[,]{RegisteredLanguages}
 
-%% Jede Sprache muss die Signatur besitzen: befehlspräfix/sprachenbezeichner.
-%% Also beispielhaft: 'cpp/lCpp'
-%% So können wir auch testen, ob eine Sprache registriert ist:
-%% '\isLanguageLoaded{cpp/lCpp}' => \true wenn ja, sonst \false
-%% Dies wird von \RegisterLanguage automatisch entsprechend gehandhabt :D
+% Jede Sprache muss die Signatur besitzen: befehlspräfix/sprachenbezeichner.
+% Also beispielhaft: 'cpp/lCpp'
+% So können wir auch testen, ob eine Sprache registriert ist:
+% '\isLanguageLoaded{cpp/lCpp}' => \true wenn ja, sonst \false
+% Dies wird von \RegisterLanguage automatisch entsprechend gehandhabt :D
 
-%% Jede registrierte Sprache erhält automatisch ihre environments, ihren \c-Befehl,\b-Befehl und ihren \i-Befehl
-%% Damit wird redundante Code-Generierung erspart.
+% Jede registrierte Sprache erhält automatisch ihre environments, ihren \c-Befehl,\b-Befehl und ihren \i-Befehl
+% Damit wird redundante Code-Generierung erspart.
 
-%% Enthält lediglich den Namen der entsprechenden Sprache, für convenience :D
+% Enthält lediglich den Namen der entsprechenden Sprache, für convenience :D
 \constructList[,]{RegisteredLanguageNames}
 
 % If available, remove line numbers from selection
@@ -138,7 +138,7 @@
 
 % Literates - Definitions
 
-%% Konfiguriere Sonderzeichen
+% Konfiguriere Sonderzeichen
 \lstset{literate=%
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
@@ -155,7 +155,7 @@
   {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
   {:bs:}{{\color{Orchid}\textbackslash}}1 {:bmath:}{{\color{bondiBlue}\$}}1 {:percent:}{{\%}}1
   {:emath:}{{{\color{bondiBlue}\$}}}1 {:dollar:}{{{\color{bondiBlue}\$\normalcolor}}}1 {:plaindollar:}{{\$}}1%spaces
-  %% brace fix
+  % brace fix
   {:rn:}{{\textcolor{AppleGreen}{{\small\T{\textbf{\textbackslash r\textbackslash n}}}}}}4
   {(}{{(\@nc}}1 {)}{{)\@nc}}1 {:space:}{{{ }}}1 {:ws:}{{{ }}}1 {:cdots:}{{{$\cdots$}}}1 {:cdot:}{{{$\cdot$}}}1 {:ldots:}{{{\ldots}}}1 {:!:}{{{!}}}1
   {:c:}{{{}}}0 {:star:}{{{*}}}1 {:minus:}{{{-}}}1
@@ -174,7 +174,7 @@
 } %Damit die Umlaute in lstlistings auch korrekt formatiert werden.
 
 % Core-Commands for Highlighting of Inline-Snippes
-%% Grundlegender Befehl zum Schreiben von Code innerhalb einer zeile, löst nicht die Problematiken wie Sonderzeichen, aber mit irgendwas muss man arbeiten können
+% Grundlegender Befehl zum Schreiben von Code innerhalb einer zeile, löst nicht die Problematiken wie Sonderzeichen, aber mit irgendwas muss man arbeiten können
 \DeclareRobustCommand{\LILLYxwriteLst}[2][]{\tikz[baseline=-.6ex]{\node[rectangle, minimum height=.95\baselineskip, inner sep=1pt,draw, rounded corners=4pt,MudWhite,fill=MudWhite, centered]{\thinspace\vphantom{I}\lstinline[#1]`#2`\thinspace};}}
 
 \gdef\LILLYxLSTINLINE#1#2{%
@@ -226,16 +226,16 @@
 
 % Package-Control
 
-%% Es ist möglich über diesen Befehl das zu ladende Sprachpaket zu definieren
+% Es ist möglich über diesen Befehl das zu ladende Sprachpaket zu definieren
 \providecommand{\LILLYxListingsxPACK}{MAIN}
 
-%% Lädt ein entsprechendes Sprachpaket
+% Lädt ein entsprechendes Sprachpaket
 \input{\LILLYxPATHxLISTINGS/Packages/_LILLY_PACK_\LILLYxListingsxPACK}
 \storeRegisteredLanguages{LISTxRegisteredLanguages}
 \storeRegisteredLanguageNames{LISTxRegisteredLanguageNames}
-%% erlaubt es Den inhalt eines Befehls zu setzen
+% erlaubt es Den inhalt eines Befehls zu setzen
 \newcommand{\lstshowcmd}[2][]{\edef\@tmp@@b{\noexpand\lstinline[#1]!#2!}\@tmp@@b}
-%%Embetter Break Control:
+%Embetter Break Control:
 \LillyXlstXsloppy
 \newcommand{\isLanguageLoaded}[1]{\containsList{RegisteredLanguages}{#1}}%
 

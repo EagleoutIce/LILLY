@@ -767,10 +767,10 @@ Bindet die \T{Datei} nur ein, wenn sie existiert. Führt im positiven Fall den \
 Lädt das \T{Paket} mit dem Parametern \T{Params} und fügt die Beschreibung \T{Brief} hinzu. Wird es nicht gefunden, so wird der \T{Error-Text} ausgegeben und zusätzlich \T{Error} initiiert. Das Kompilieren scheitert, wenn das Paket nicht existiert.
 Beispiel:
 \begin{latex*}
-%% https://ctan.org/pkg/amsfonts
-\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
-    {Wir wollen mehr Symbole}%% Error-Text
-    {}%%Params
+
+\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}% Package, Info
+    {Wir wollen mehr Symbole}% Error-Text
+    {}%Params
     {}
 \end{latex*}
 
@@ -782,11 +782,11 @@ Beispiel:
 Lädt das \T{Paket} mit dem Parametern \T{Params} und fügt die Beschreibung \T{Brief} hinzu. Wird es nicht gefunden, so wird der \T{Error-Text} ausgegeben, sonst \T{true} initiiert. Das Kompilieren scheitert nicht, wenn das Paket nicht existiert, allerdings wird der \T{Fallback}-Code zusätzlich ausgeführt um so Befehle zu emulieren.
 Beispiel:
 \begin{latex*}
-%% https://ctan.org/pkg/graphicx
+
 \LILLYxLoadPackage{graphicx}{Fuer tolle Grafiken}
     {Dieses Paket ist für includegraphics von noeten!}
     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_GRAPHICX}}
-    {}{} %% Sloppy includegraphics draft
+    {}{} % Sloppy includegraphics draft
 \end{latex*}
 
 %

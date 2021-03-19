@@ -124,13 +124,13 @@ Präsentiert ein Timeline Point-of-interest, der schnell einen einheitlichen Loo
 Im Folgenden eine Repräsentation, die den Wirrwarr an Optionen etwas übersichtlicher macht. Es gilt zu beachten, dass \clatex{:lan:extra:ran:} hier die Rolle des entsprechendes Landes einnimmt.\iflillycompact\else
 \vspace{-1.15\baselineskip}
 %
-%%%% COMPAT CHEAT
+% COMPAT CHEAT
 \LILLYcommand\graphPOICOMPAT[8]{
 \filldraw [thick,color=#2] #1 circle (1.45pt) node[align=left] {}  -- ++(0.5,0) node [right,color=#2] {\begin{minipage}{0.49\textwidth}\small{\textbf{#3}}\hfill #8\end{minipage}} ++(-0.3,-0.2) node[below right] {\begin{minipage}{0.5\textwidth}
     \textbf{\textcolor{#2!80}{#4:}} \textcolor{#2!65}{#5}
 \end{minipage} } ++(9cm,0.3) node [below right] {\begin{minipage}[c]{0.3\textwidth}
     \href{#7}{\fcolorbox{#2}{white}{\includegraphics[height=2cm]{\LILLYxPATH#6}}}
-\end{minipage}} ;}%%%%%%%%%%
+\end{minipage}} ;}%
 \begin{center}%\renewcommand{\arraystretch}{0.25}
 \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}C{0.45\textwidth}@{\hspace{1em}}|@{\hspace{1em}}C{0.55\textwidth}@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
@@ -250,7 +250,7 @@ Dieser Befehl wird verwendet um erstellte Ti\textit{k}Z Grafiken zu drehen und d
     {\tiny\begin{lstplain}[language=lLatex,numberstyle=\tiny\color{gray}]
 \begin{tikzternal}
     \examplecube
-    \rotateRPY[-2/2/2]{13}{171}{55} %% Rotate set
+    \rotateRPY[-2/2/2]{13}{171}{55} % Rotate set
     \begin{scope}[draw=purple, text=purple,
                     fill=purple, densely dashed, RPY]
         \examplecube
@@ -385,37 +385,37 @@ Diese Definitionen liegen in der Datei \blatex[morekeywords={[5]{LILLYxPATHxGRAP
 Ersteinmal ein Beispiel:
 \begin{center}
     \begin{tikzternal}[scale=0.7,every node/.style={transform shape}]
-        \newcommand{\ttw}{3};\newcommand{\tth}{2} %% tth heightsteps ttw widthsteps
-        %% could be for each ^^ sorry
+        \newcommand{\ttw}{3};\newcommand{\tth}{2} % tth heightsteps ttw widthsteps
+        % could be for each ^^ sorry
         \entity{(2*\ttw,4*\tth)}{Teile};
         \entity{(4*\ttw,4*\tth)}{Lieferanten}; \entity{(4*\ttw,2*\tth)}{Bestellungen};
 
         \relation{(4*\ttw,3*\tth)}{erhielt};   \relation{(3*\ttw,4*\tth)}{liefert};
 
-        %% Teile
+        % Teile
         \attribute{(1.5*\ttw,3.5*\tth)}{Farbe}; \attribute{(1.5*\ttw,3*\tth)}{KKosten};
         \attribute{(1.5*\ttw,2.5*\tth)}{Bestand}; \attribute{(1.5*\ttw,2*\tth)}{MinBest};
-        %%\draw(TeileNr)--(Teiletypen) -- (TeileName);
+        %\draw(TeileNr)--(Teiletypen) -- (TeileName);
         \draw (Farbe)++(-0.9\ttw,0) node[left]  {\scriptsize $\{0,1,2\}\ni$};
         \draw (Farbe) -| (Teile) (KKosten) -| (Teile) (Bestand) -| (Teile) (MinBest) -| (Teile);
 
-        %% liefert
+        % liefert
         \attribute{(3*\ttw, 3.25*\tth)}{Preis};
         \draw(liefert) -- (Preis);
 
-        %% Lieferanten
+        % Lieferanten
         \kattribute{(3.5*\ttw,4.75*\tth)}{LiefNr}; \attribute[LiefName]{(4.5*\ttw,4.75*\tth)}{\tiny LiefName};
         \attribute{(5*\ttw,4*\tth)}{LiefStadt}; \attribute{(5*\ttw,3.5*\tth)}{Bewert};
         \draw(LiefNr)--(Lieferanten) -- (LiefName) (LiefStadt) -- (Lieferanten) -- (Bewert);
 
         \draw (Bewert)++(0.35*\ttw,-0.1*\tth) node[right] (beweinsch) {\scriptsize $\in [-2,+2]$};
 
-        %% Bestellungen
+        % Bestellungen
         \kattribute{(5*\ttw,2.25*\tth)}{BestNr}; \attribute{(5*\ttw,1.75*\tth)}{BDatum};
         \draw(BestNr)--(Bestellungen) -- (BDatum);
 
 
-        %%kunden to Bestellpos
+        %kunden to Bestellpos
         \draw (Teile) +(1.25,0) node[above right] {\small $0..*$} -- (liefert) -- (Lieferanten) +(-1.25,0) node[above left] {\small $0..*$} %
         +(0,-0.377) node[below right] {\small $1$} -- (erhielt) -- (Bestellungen) +(0,0.377) node[above left] (bpkard)  {\small $0..*$};
 
@@ -546,7 +546,7 @@ Standardmäßig ist jedes Element ein Verzeichnis. Es gibt allerdings einige Mö
         \item \T{ldir=\manArg{Logo}} Setzt ein Verzeichnis in \T{folderbg} mit dem übergebenen Logo als Inhalt. Wird ein leeres Logo übergeben, so wird auch keins gesetzt.
         \item \T{cdir=\manArg{Color}\manArg{Logo}} Setzt ein Verzeichnis in \T{Color} mit dem übergebenen \T{Logo} als Inhalt. Wird ein leeres Logo übergeben, so wird auch keins gesetzt.
     \end{ditemize}
-    \item Für Dateien: \begin{ditemize}\narrowitems %% TODO:
+    \item Für Dateien: \begin{ditemize}\narrowitems % TODO:
         \item \T{file=\manArg{Color}} Setzt eine Datei in der übergebenen Farbe. Wird keine Farbe  übergeben, so wird die Standardfarbe (\T{filebg}) verwendet.
         \item \T{ifile=\manArg{Color}} Setzt eine Datei in der übergebenen Farbe. Wird keine Farbe übergeben, so wird die Standardfarbe (\T{ifilebg}) verwendet um einen wichtigen Ordner zu markieren.
         \item \T{lfile=\manArg{Logo}} Setzt eine Datei in \T{filebg} mit dem übergebenen Logo als Inhalt. Wird ein leeres Logo übergeben, so werden die Textstreifen gesetzt.

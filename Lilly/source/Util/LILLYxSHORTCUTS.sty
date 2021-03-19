@@ -1,13 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxSHORTCUTS}[2019/08/03 Stellt einige Shortcuts fuer LILLY zur Verfuegung]
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
-\providecommand{\heute}{\number\day.~\month@ngerman\space\number\year}
-%% Dieses Paket fordert kein anderes, es wird davon ausgegangen, dass zu den Shortcuts die benötigten Pakete
-%% geladen werden/sind
+\providecommand\heute{\number\day.~\month@ngerman\space\number\year}
+% Dieses Paket fordert kein anderes, es wird davon ausgegangen, dass zu den Shortcuts die benötigten Pakete
+% geladen werden/sind
 \newcommand*\lstfs[2][1]{\def\LILLYxLISTINGSxFONTSIZE{\fontsize{#2}{#2}\selectfont\linespread{#1}}%
 \ifnum#2>4\def\LILLYxLISTINGSxNUMxFONTSIZE{\edef\@@subfs{\the\numexpr #2-4\relax}\fontsize{\@@subfs}{\@@subfs}\selectfont\linespread{#1}}%
-\else\def\LILLYxLISTINGSxNUMxFONTSIZE{\tiny\linespread{#1}}\fi%
-}
+\else\def\LILLYxLISTINGSxNUMxFONTSIZE{\tiny\linespread{#1}}\fi}
 
 \providecommand\T[1]{{\text{\LILLYxlstTypeWriter #1}}}%Shortcut Schreibmaschine
 \gdef\ltt{\LILLYxlstTypeWriter}
@@ -25,92 +24,70 @@
 \providecommand\say[1]{\glqq{#1}\grqq}
 \providecommand\engl[2][]{#1(engl. \textit{#2})#1}
 \providecommand\cd{\ensuremath{\cdot}}
-
 \providecommand\rom[1]{\text{\MakeUppercase{\romannumeral #1}}} %Zahlen Römisch (GDRA)
-
 \def\fquad{\hskip1em plus .25em minus .25em\relax}
 \def\fqquad{\hskip2em plus .35em minus .35em\relax}
 
-%TIKZSYMBOLS
-\providecommand\ring[1]{\fill #1 circle [radius=.7pt];} %%Schortcuts für Schaltkreise, weil es mir so besser gefällt ^^ und ich das Scaling erst nachher angepasst habe ^^
+\providecommand\ring[1]{\fill #1 circle [radius=.7pt];}
 \providecommand\bigRing[1]{\fill #1 circle [radius=1.4pt];}
 \providecommand\bigCRing[2][limegreen]{\fill[fill=#1] #2 circle [radius=1.4pt];}
 
 \providecommand\ringC[2][limegreen]{\fill[fill=#1] #2 circle [radius=.7pt];}
 
-\def\firstcircle{(90:.5cm) circle (.75cm)} %%Shortcuts für FG, auch danach gerne genutzt
+\def\firstcircle{(90:.5cm) circle (.75cm)}
 \def\secondcircle{(330:.5cm) circle (.75cm)}
 \def\thirdcircle{(210:.5cm) circle (.75cm)}
 \def\bigcircle{(0:0cm) circle (1.5cm)}
 
-\newcommand{\dispnote}[2][]{\parbox[t]{5em}{#1{\small#2}}}
-
-\providecommand{\note}[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
-
-%%Smallnote
+\newcommand\dispnote[2][]{\parbox[t]{5em}{#1{\small#2}}}
+\providecommand\note[2][]{#2\ifthenelse{\equal{#1}{}}{\marginpar[{\dispnote[\raggedleft]{#2}~$\RHD$}]{$\LHD$~\dispnote{#2}}}{\marginpar[{\dispnote[\raggedleft]{#1}~$\RHD$}]{$\LHD$~\dispnote{#1}}}}
 \newcommand\snote[2][1]{\note[\scriptsize #1]{#2}}
 
 \newlength\LILLYxNegativeSkip
 \LILLYxNegativeSkip=-1.5\baselineskip
-\providecommand{\nskip}{\vspace{\LILLYxNegativeSkip}}
-
+\providecommand\nskip{\vspace{\LILLYxNegativeSkip}}
 
 \LILLYcommand\LILLYcoloredSQ[2][]{\tikz{\draw[fill=#2!75!white,#2!75!white] (-.05,-.05) rectangle ++ (.4,.4);\draw[fill=#2!50!white,#2!50!white] (0,0) rectangle ++ (.35,.35);\draw[fill=#2,#2] (0,0) rectangle ++ (.3,.3) node[midway,centered,MudWhite,scale=.75,inner sep=0pt] {#1};}}
 
 \LILLYcommand\LILLYxCOLORxRainbow{% who needs foreach
-    \LILLYcoloredSQ[\tiny Def]{\LILLYxColorxDefinition} %
-    \LILLYcoloredSQ[\tiny Sat]{\LILLYxColorxSatz} %
-    \LILLYcoloredSQ[\tiny Bew]{\LILLYxColorxBeweis} %
-    \LILLYcoloredSQ[\tiny Lem]{\LILLYxColorxLemma} %
-    \LILLYcoloredSQ[\tiny Bem]{\LILLYxColorxBemerkung} %
-    \LILLYcoloredSQ[\tiny Zsf]{\LILLYxColorxZusammenfassung} %
-    \LILLYcoloredSQ[\tiny Bei]{\LILLYxColorxBeispiel} %
-    \LILLYcoloredSQ[\tiny Ub]{\LILLYxColorxUebungsaufgabe} %
-    \LILLYcoloredSQ[\tiny Ub*]{\LILLYxColorxZusatzuebung} %
-    \LILLYcoloredSQ[\tiny Lin]{\LILLYxColorxLINKSxMainColor} %
-    \LILLYcoloredSQ[\tiny Lid]{\LILLYxColorxLINKSxMainColorDarker} %
-    \LILLYcoloredSQ[\tiny cit]{\LILLYxColorxLINKSxCiteColor} %
-    \LILLYcoloredSQ[\tiny url]{\LILLYxColorxLINKSxUrlColor} %
-    \LILLYcoloredSQ[\tiny coA]{\cA} %
-    \LILLYcoloredSQ[\tiny coB]{\cB} %
-    \LILLYcoloredSQ[\tiny coC]{\cC} %
-    \LILLYcoloredSQ[\tiny coD]{\cD}%
+\LILLYcoloredSQ[\tiny Def]{\LILLYxColorxDefinition} \LILLYcoloredSQ[\tiny Sat]{\LILLYxColorxSatz} %
+\LILLYcoloredSQ[\tiny Bew]{\LILLYxColorxBeweis} \LILLYcoloredSQ[\tiny Lem]{\LILLYxColorxLemma} %
+\LILLYcoloredSQ[\tiny Bem]{\LILLYxColorxBemerkung} \LILLYcoloredSQ[\tiny Zsf]{\LILLYxColorxZusammenfassung} %
+\LILLYcoloredSQ[\tiny Bei]{\LILLYxColorxBeispiel} \LILLYcoloredSQ[\tiny Ub]{\LILLYxColorxUebungsaufgabe} %
+\LILLYcoloredSQ[\tiny Ub*]{\LILLYxColorxZusatzuebung} \LILLYcoloredSQ[\tiny Lin]{\LILLYxColorxLINKSxMainColor} %
+\LILLYcoloredSQ[\tiny Lid]{\LILLYxColorxLINKSxMainColorDarker} \LILLYcoloredSQ[\tiny cit]{\LILLYxColorxLINKSxCiteColor} %
+\LILLYcoloredSQ[\tiny url]{\LILLYxColorxLINKSxUrlColor} \LILLYcoloredSQ[\tiny coA]{\cA} %
+\LILLYcoloredSQ[\tiny coB]{\cB} \LILLYcoloredSQ[\tiny coC]{\cC} %
+\LILLYcoloredSQ[\tiny coD]{\cD}%
 }
 
+% vorlesungsspezifische Shortcuts :D
+\def\lillyvlsstyle#1{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont #1}}
+\LILLYcommand\fg[1][~]{\lillyvlsstyle{For\-ma\-le\ Grund\-la\-gen}#1}
+\LILLYcommand\gdra[1][~]{\lillyvlsstyle{Grund\-la\-gen\ der\ Rech\-ner\-arch\-it\-ek\-tur}#1}
+\LILLYcommand\eidi[1][~]{\lillyvlsstyle{Ein\-f\"{u}hr\-ung\ in\ die Inf\-or\-ma\-tik}#1}
+\LILLYcommand\eidif[1][~]{\lillyvlsstyle{Ein\-f\"{u}hr\-ung\ in\ die For\-schungs\-me\-tho\-den}#1}
+\LILLYcommand\apii[1][~]{\lillyvlsstyle{All\-ge\-meine Psy\-cho\-lo\-gie IIa}#1}
+\LILLYcommand\logi[1][~]{\lillyvlsstyle{Logik}#1}
+\LILLYcommand\softi[1][~]{\lillyvlsstyle{Soft\-waretechnik I\,\&\,II}#1}
+\LILLYcommand\buk[1][~]{\lillyvlsstyle{Be\-re\-chen\-bar\-keit und Kom\-ple\-xi\-tät}#1}
+\LILLYcommand\stochI[1][~]{\lillyvlsstyle{An\-ge\-wand\-te Sto\-chas\-tik 1}#1}
+\LILLYcommand\sozi[1][~]{\lillyvlsstyle{So­\-zi\-­al\-­psy\-­cho\-­lo\-­gie I}#1}
+\LILLYcommand\la[1][~]{\lillyvlsstyle{Lin\-e\-a\-re\ Al\-ge\-bra}#1}
+\LILLYcommand\is[1][~]{\lillyvlsstyle{In\-for\-ma\-ti\-ons\-sys\-teme}#1}
+\LILLYcommand\anaI[1][~]{\lillyvlsstyle{Ana\-ly\-sis~1}#1}
+\LILLYcommand\anaII[1][~]{\lillyvlsstyle{Ana\-ly\-sis~2a}#1}
+\LILLYcommand\pdp[1][~]{\lillyvlsstyle{Pa\-ra\-dig\-men\ der\ Pro\-gram\-mie\-rung}#1}
+\LILLYcommand\gdbs[1][~]{\lillyvlsstyle{Grund\-la\-gen\ der\ Be\-triebs\-sys\-tem\-e}#1}
+\LILLYcommand\pvs[1][~]{\lillyvlsstyle{Pro\-gram\-mie\-rung\ von\ Sys\-tem\-en}#1}
+\LILLYcommand\algo[1][~]{\lillyvlsstyle{Al\-go\-rith\-men\ und\ Da\-ten\-struk\-tur\-en}#1}
+\LILLYcommand\knn[1][~]{\lillyvlsstyle{K\"{u}nstliche neuronale Netze}#1}
+\LILLYcommand\gdrn[1][~]{\lillyvlsstyle{Grundlagen der Rechnernetze}#1}
 
-%% vorlesungsspezifische Shortcuts :D
-\LILLYcommand\fg[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont For\-ma\-le\ Grund\-la\-gen}#1}
-\LILLYcommand\gdra[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen\ der\ Rech\-ner\-arch\-it\-ek\-tur}#1}
-\LILLYcommand\eidi[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ein\-f\"{u}hr\-ung\ in\ die Inf\-or\-ma\-tik}#1}
-\LILLYcommand\eidif[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ein\-f\"{u}hr\-ung\ in\ die For\-schungs\-me\-tho\-den}#1}
-\LILLYcommand\apii[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont All\-ge\-meine Psy\-cho\-lo\-gie IIa}#1}
-\LILLYcommand\logi[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Logik}#1}
-\LILLYcommand\softi[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Soft\-waretechnik I\,\&\,II}#1}
-\LILLYcommand\buk[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Be\-re\-chen\-bar\-keit und Kom\-ple\-xi\-tät}#1}
-\LILLYcommand\stochI[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont An\-ge\-wand\-te Sto\-chas\-tik 1}#1}
-\LILLYcommand\sozi[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont So­\-zi\-­al\-­psy\-­cho\-­lo\-­gie I}#1}
-\LILLYcommand\la[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Lin\-e\-a\-re\ Al\-ge\-bra}#1}
-\LILLYcommand\is[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont In\-for\-ma\-ti\-ons\-sys\-teme}#1}
-\LILLYcommand\anaI[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ana\-ly\-sis~1}#1}
-\LILLYcommand\anaII[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Ana\-ly\-sis~2a}#1}
-\LILLYcommand\pdp[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pa\-ra\-dig\-men\ der\ Pro\-gram\-mie\-rung}#1}
-\LILLYcommand\gdbs[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grund\-la\-gen\ der\ Be\-triebs\-sys\-tem\-e}#1}
-\LILLYcommand\pvs[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Pro\-gram\-mie\-rung\ von\ Sys\-tem\-en}#1}
-\LILLYcommand\algo[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Al\-go\-rith\-men\ und\ Da\-ten\-struk\-tur\-en}#1}
-%% Seminar
-\LILLYcommand\knn[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont K\"{u}nstliche neuronale Netze}#1}
-
-\LILLYcommand\gdrn[1][~]{{\bfseries\large\usefont{T1}{qzc}{m}{it}\selectfont Grundlagen der Rechnernetze}#1}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Kleine Shortcuts
 \def\setLillyAuthor#1{\gdef\AUTHOR{#1}}
 \def\setLillyAuthormail#1{\gdef\AUTHORMAIL{#1}}
 
-\def\LillyLogo{\bgroup%
+\def\LillyLogo{\begingroup
     {\fontsize{68}{68}\selectfont\centering\Lilly\par}
-{\centering{\sffamily \textbf{L}illy \textbf{i}s a \textbf{L}atex \textbf{L}ovable \textbf{Y}ogurt} \par}\vspace*{.2\baselineskip}\egroup
-}
-
+{\centering{\sffamily \textbf{L}illy \textbf{i}s a \textbf{L}atex \textbf{L}ovable \textbf{Y}ogurt} \par}\vspace*{.2\baselineskip}\endgroup}
 \endinput

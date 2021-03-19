@@ -75,7 +75,7 @@ Es ist recht einfach ein Dokument mit Lilly zu erstellen. Da es sich ja um eine 
         \item Zusammenfassung
     \end{itemize}
 \end{multicols}
-Mit \LILLYxBOXxVersion{2.0.0} ist es nötig nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben, da die explizite Zuweisung versucht, auf die entsprechende Datei zu referenzieren. Die Definition für dieses Dokument lautet zum Beispiel (für das Argument \T{kpfont} siehe \LILLYxNOTExLibrary{LILLYxFONTS}): %% TODO: Change who am i in texts
+Mit \LILLYxBOXxVersion{2.0.0} ist es nötig nur \clatex{Dokumentation} anstelle von \clatex{Typ=Dokumentation} zu schreiben, da die explizite Zuweisung versucht, auf die entsprechende Datei zu referenzieren. Die Definition für dieses Dokument lautet zum Beispiel (für das Argument \T{kpfont} siehe \LILLYxNOTExLibrary{LILLYxFONTS}): % TODO: Change who am i in texts
 \begin{latex*}
 \documentclass[Dokumentation,kpfont]{Lilly}
 \end{latex*}
@@ -93,7 +93,7 @@ Erklärungen für die geladenen Daten befinden sich in der README-Datei (\url{..
 %
 
 Weiter nutzt \emph{Uebungsblatt} ebenfalls \T{Vorlesung}\&\T{Semester} sowie noch die optionale Option (tihihi) \T{n} die angibt, um das wievielte Übungsblatt es sich handelt. Darüber müssen wir uns aber in der Regel keine Gedanken machen. Trägt unser Übungsblatt einen Namen wie \T{uebungablatt-gdbs-42.tex}, so kann \Jake über sogenannte \jmark[NameMaps]{mrk:nmaps} entsprechend alles konfigurieren, in diesem Fall benötigt dein Übungsblatt auch kein \T{documentclass} mehr, es genügt das direkte Schreiben von Latex-Code, der Rest wird von Jake übernommen.\\
-Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert, dies gilt es zu beachten, wenn man vielleicht nur etwas testen möchte. In diesem Fall gibt es (wie später auch noch weiter aufgeführt) den sogenannten \emph{Bonustyp} \T{PLAIN}, welcher ein leeres Dokument erstellt! %% TODO: LINK
+Entsprechend des Dokumenttyps werden gegebenenfalls auch bereits etliche Seiten generiert, dies gilt es zu beachten, wenn man vielleicht nur etwas testen möchte. In diesem Fall gibt es (wie später auch noch weiter aufgeführt) den sogenannten \emph{Bonustyp} \T{PLAIN}, welcher ein leeres Dokument erstellt! % TODO: LINK
 \clearpage
 \subsection[Wie funktionieren Boxen]{Die Böxli}
 Jede Box besteht als Environment und lässt sich wie folgt nutzen:
@@ -160,7 +160,7 @@ Hier eine Liste aller Boxen:
 \end{multicols}
 Sie können alle mithilfe von:
 \begin{latex}
-%% Allgemein
+% Allgemein
 % \def\LILLYxBOXx<FirstLetterUp-Name>xEnable{FALSE}
 \def!**!\LILLYxBOXxDefinitionxEnable{FALSE}
 \end{latex}
@@ -186,11 +186,11 @@ erzeugt hierbei (\textit{Natürlich sind die Linien nur zur Trennung eingefügt.
 \subsection{Hyperlinks}
 \LILLYxNOTExVersion{1.0.0}\elable{mrk:Hey}Eine Sprungmarke innerhalb eines Dokuments lässt sich mit:
 \begin{latex*}
-\elable{mrk:Hey} %% \elable{<Sprungmarke>}
+\elable{mrk:Hey} % \elable{<Sprungmarke>}
 \end{latex*}
 erstellen. Referenziert werden kann sie mithilfe des Befehls \blankcmd{jmark}:
 \begin{latex*}
-\jmark[Klick mich]{mrk:Hey} %% \jmark[Text]{Sprungmarke}
+\jmark[Klick mich]{mrk:Hey} % \jmark[Text]{Sprungmarke}
 \end{latex*}
 der erzeugte Link: \jmark[Klick mich]{mrk:Hey}, passt sich zudem der Akzentfarbe der aktuellen Boxumgebung und dem Druckmodus an:\smallskip
 \begin{zusammenfassung}[Testzusammenfassung]
@@ -198,7 +198,7 @@ Siehe hier: \jmark[Klick mich]{mrk:Hey} (Wenn Druck: \printmark[Klick mich]{mrk:
 \end{zusammenfassung}~\smallskip\newline
 Der alternative Vertreter für \blankcmd{jmark} ist \blankcmd{hmark}, er ignoriert sämtliche Farbattribute:
 \begin{latex*}
-\hmark[Klick mich]{mrk:Hey} %% \hmark[Text]{Sprungmarke}
+\hmark[Klick mich]{mrk:Hey} % \hmark[Text]{Sprungmarke}
 \end{latex*}
 und erzeugt damit: \hmark[Klick mich]{mrk:Hey}.
 
@@ -218,10 +218,10 @@ Zudem lässt sich damit über \blankcmd{LILLYxDOCUMENTxSUBNAME} der Name der zul
 \subsection{Übungsblätter}
 \elable{quicke:ublatt}Da es von Bedeutung ist Übungsblätter so zu erstellen, dass die Abgaben direkt in die Mitschrift eingebunden werden können, gibt es hierfür eine einfache Möglichkeit:
 \begin{latex}
-%% \inputUB{<Name>}{<Nummer>}{<Pfad - linput>}
+% \inputUB{<Name>}{<Nummer>}{<Pfad - linput>}
 \inputUB{Mengen}{1}{Aufgaben_Data/Uebungsblatt_1.tex}
 
-%% Wird zu:
+% Wird zu:
 \clearpage
 \begin{uebungsblatt}[Mengen][1]
     \linput{Aufgaben_Data/Uebungsblatt_1.tex}
@@ -246,7 +246,7 @@ lilly-author = Florian Sihler, Mein Partner
 
 lilly-n = @[AUTONUM]
 \end{gepard}
-Natürlich kannst du die Namen entsprechend ändern. Das sieht jetzt aus wie viel, aber das musst du nur einmal machen, sofern du die Konfigurationsdatei immer in das Verzeichnis mitkopierst, indem sich die Übungsblatt -\T{.tex} und \textbf{nur} diese \T{.tex}-Datei befindet. Wir werden uns später %% TODO: LINK
+Natürlich kannst du die Namen entsprechend ändern. Das sieht jetzt aus wie viel, aber das musst du nur einmal machen, sofern du die Konfigurationsdatei immer in das Verzeichnis mitkopierst, indem sich die Übungsblatt -\T{.tex} und \textbf{nur} diese \T{.tex}-Datei befindet. Wir werden uns später % TODO: LINK
 mit besseren Konfigurationen beschäftigen, die keinerlei Nachaufwand benötigen und galanter sind.
 In das Übungsblatt können wir nun unsere Aufgaben stecken. Hier ist der \emph{gesamte} Inhalt der oben genanten \TeX-Datei:
 \begin{latex}
@@ -265,7 +265,7 @@ In das Übungsblatt können wir nun unsere Aufgaben stecken. Hier ist der \emph{
     \end{aufgaben}
 \end{aufgabe}
 
-%% Weitere Aufgaben, wenn gewünscht
+% Weitere Aufgaben, wenn gewünscht
 \end{latex}
 
 Kompilieren kann man den Spaß nun mit: \cbash{jake jake.conf}. Und das wars, Boom \Smiley.

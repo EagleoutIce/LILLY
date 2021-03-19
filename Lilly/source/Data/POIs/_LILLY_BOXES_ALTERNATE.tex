@@ -43,8 +43,8 @@ interior code={\path[tcb fill interior] (interior.south west)
 --([yshift=4.8mm]interior.south east)--([xshift=-4.8mm]interior.south east)
 --cycle; },
 }}}
-%%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
-%%% Die Definition-Box:
+%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
+% Die Definition-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{} }{ empty, %
 frame style={fill,top color=\LILLYxColorxDefinition,bottom color=\LILLYxColorxDefinition,middle color=\LILLYxColorxDefinition},colback=\LILLYxColorxDefinition!15!white,  %
 LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2}~}}, %
@@ -53,32 +53,32 @@ LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\
 frame style={fill,top color=\LILLYxColorxDefinition,bottom color=\LILLYxColorxDefinition,middle color=\LILLYxColorxDefinition},colback=\LILLYxColorxDefinition!15!white,  %
 LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxDefinition}{#2}~}},bookmark={#2 -- #1}  %
 }
-%%% Die Beispiel-Box:
+% Die Beispiel-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxBeispiel]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ empty, %
 frame style={fill,top color=\LILLYxColorxBeispiel,bottom color=\LILLYxColorxBeispiel,middle color=\LILLYxColorxBeispiel},colback=\LILLYxColorxBeispiel!15!white,  %
 LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxBeispiel}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxBeispiel}{#2}~}}, %
 }
-%%% Die Bemerkung-Box:
+% Die Bemerkung-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxBemerkung]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ empty, %
 frame style={fill,top color=\LILLYxColorxBemerkung,bottom color=\LILLYxColorxBemerkung,middle color=\LILLYxColorxBemerkung},colback=\LILLYxColorxBemerkung!15!white,  %
 LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxBemerkung}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxBemerkung}{#2}~}}, %
 }
-%%% Die Satz-Box:
+% Die Satz-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxSatz]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{ empty, %
 frame style={fill,top color=\LILLYxColorxSatz,bottom color=\LILLYxColorxSatz,middle color=\LILLYxColorxSatz},colback=\LILLYxColorxSatz!15!white,  %
 LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxSatz}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxSatz}{#2}~}}, %
 }
-%%% Die Beweis-Box:
+% Die Beweis-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxBeweis]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ empty, %
 frame style={fill,top color=\LILLYxColorxBeweis,bottom color=\LILLYxColorxBeweis,middle color=\LILLYxColorxBeweis},colback=\LILLYxColorxBeweis!15!white,  %
 LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxBeweis}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxBeweis}{#2}~}}, %
 }
-%%% Die Lemma-Box:
+% Die Lemma-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxLemma]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{ empty, %
 frame style={fill,top color=\LILLYxColorxLemma,bottom color=\LILLYxColorxLemma,middle color=\LILLYxColorxLemma},colback=\LILLYxColorxLemma!15!white,  %
 LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxLemma}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxLemma}{#2}~}}, %
 }
-%%% Die Zusammenfassung-Box:
+% Die Zusammenfassung-Box:
 \RenewTColorBox[use counter from=LILLYxBOXxZusammenfassung]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ empty, %
 frame style={fill,top color=\LILLYxColorxZusammenfassung,bottom color=\LILLYxColorxZusammenfassung,middle color=\LILLYxColorxZusammenfassung},colback=\LILLYxColorxZusammenfassung!15!white,  %
 LillyxBOXxDesignxAlternate, #3, IfValueTF={#1}{before upper=\textbf{\textcolor{\LILLYxColorxZusammenfassung}{#2-- #1}}\newline}{before upper=\textbf{\textcolor{\LILLYxColorxZusammenfassung}{#2}~}}, %

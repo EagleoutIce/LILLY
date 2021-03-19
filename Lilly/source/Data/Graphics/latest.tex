@@ -1,15 +1,14 @@
 \documentclass[PLAIN]{Lilly}
 \begin{document}
 \pagenumbering{arabic}
-\tableofcontents \clearpage 
+\tableofcontents \clearpage
 \begin{lstplain}[language=lLatex]
-%%Einbindung erfolgt über:
+%Einbindung erfolgt über:
 \getGraphics{:lan:Pfad:ran:}
  \end{lstplain}
-\begin{tabularx}{\linewidth}{^m{0.5\linewidth}^>{\centering\arraybackslash}X+}
+\begin{tabularx}{\linewidth}{^m{.5\linewidth}^>{\centering\arraybackslash}X+}
 \toprule\headerrow Pfad & Ergebnis\\
 \midrule
-
 \phantomsection \addcontentsline{toc}{chapter}{Software}
 \phantomsection \addcontentsline{toc}{section}{UML/UMLStateDiagramExample}\verb|Software/UML/UMLStateDiagramExample| & \getGraphics{Software/UML/UMLStateDiagramExample}\\
 \midrule \bottomrule

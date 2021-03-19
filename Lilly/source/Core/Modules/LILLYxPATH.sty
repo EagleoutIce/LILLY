@@ -1,12 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxPATH}[2019/07/13 Stellt die Pfad-Erweiterungen fuer LILLY zur Verfuegung]
-\newcommand\linclude[1]{\relax} %% Dieser Befehl sollte noch nicht belegt sein
-%%% Diese Datei liefert die PATH umgebung, die speichert über welches Verzeichnis LILLY aufgerufen wurde - dies ermöglicht es input Befehle über mehrere Systeme Konsistent zu halten
+\newcommand\linclude[1]{\relax} % Dieser Befehl sollte noch nicht belegt sein
+% Diese Datei liefert die PATH umgebung, die speichert über welches Verzeichnis LILLY aufgerufen wurde - dies ermöglicht es input Befehle über mehrere Systeme Konsistent zu halten
 \providecommand\LILLYxPATH{./} % local
 \providecommand\LILLYxDOCUMENTxSUBNAME{unknown}
 \providecommand\linput[1]{\renewcommand{\LILLYxDOCUMENTxSUBNAME}{#1}\input{\LILLYxPATH#1}}
 
-%%% include ist verboten
+% include ist verboten
 \renewcommand\include[1]{\clearpage\renewcommand\LILLYxDOCUMENTxSUBNAME{#1}\input{#1}}
 \renewcommand\linclude[1]{\clearpage\renewcommand\LILLYxDOCUMENTxSUBNAME{#1}\linput{#1}}
 \endinput

@@ -9,16 +9,16 @@
 \RequirePackage{LILLYxPHILOSOPHER}
 
 
-%% https://www.ctan.org/pkg/tocloft
+
 \LILLYxDemandPackage{tocloft}{custom lists und so}
                     {Leider wird dieses Paket zu oft verwendet :/}
-                    {}{} %% keine Argumente
+                    {}{}
 
 \def\cftsubsecdotsep{3.49}
 
-%% Dieser Controller kümmert sich um die korrekte Implementierung des Beginn eines Dokuments durch die initiierung von AtBeginDocument-Zugriffen
+% Dieser Controller kümmert sich um die korrekte Implementierung des Beginn eines Dokuments durch die initiierung von AtBeginDocument-Zugriffen
 
-%%DEBUG wird immer die erste Seite sein, sofern dies gewünscht ist, alle anderen Pages werden sich zwangsläufig an diese Positionierung orientieren müssen. Damit ist auch nicht gewährleistet, dass das Titelbild sicher die erste Seite der PDF-Datei erhält!!
+%DEBUG wird immer die erste Seite sein, sofern dies gewünscht ist, alle anderen Pages werden sich zwangsläufig an diese Positionierung orientieren müssen. Damit ist auch nicht gewährleistet, dass das Titelbild sicher die erste Seite der PDF-Datei erhält!!
 
 \ifx\LILLYxDEBUG\true
     \RequirePackage{LILLYxDEBUG}
@@ -34,17 +34,17 @@
 }
 
 
-%% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten.
+% Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten.
 \def\LILLYxCLEARxHEADFOOT{\lohead{}\cohead{}\rohead{}\lofoot{}\cofoot{}\rofoot{}}
 
 
-%% Wenn eine gültige Vorlesung, dann versuchen wir eine entsprechende Einstellung zu laden.
+% Wenn eine gültige Vorlesung, dann versuchen wir eine entsprechende Einstellung zu laden.
 \iflilly@vorlesung@isvalid@
     \RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
 \fi
 
-%% Lilly vertraut auf 'cite' wenn es darum geht Bibtex zu integrieren.
-%% Das Paket wird allerdings nur bei Bedarf eingebunden:
+% Lilly vertraut auf 'cite' wenn es darum geht Bibtex zu integrieren.
+% Das Paket wird allerdings nur bei Bedarf eingebunden:
 \ifx\LILLYxBIBTEX\undefined%
     \ClassInfo{Lilly}{Bibtex wird nicht verwendet!}
 \else%
@@ -52,20 +52,20 @@
     \RequirePackage{cite}
 \fi
 
-%% Für die klassischen Layouts gab es hier früher einige Anpassungen.
-%% Um die Struktur zu behalten, wir diese Aufgabe nun komplett dem entsprechenden Layout übergeben,
-%% Welches sich auch um das OUTRO-Handling kümmern wird.
+% Für die klassischen Layouts gab es hier früher einige Anpassungen.
+% Um die Struktur zu behalten, wir diese Aufgabe nun komplett dem entsprechenden Layout übergeben,
+% Welches sich auch um das OUTRO-Handling kümmern wird.
 
-%% Load Layout:
+% Load Layout:
 \typeout{Lade Layout: _LILLY_LAYOUT_\LILLY@Typ}
 \userput{_LILLY_LAYOUT_\LILLY@Typ}{\lillyPathLayout}{\LILLYxPATHxDATA/Layouts}
 
-%% Bibtex Control:
+% Bibtex Control:
 \ifx\LILLYxBIBTEX\undefined\else
 
 \ifx\LILLYxCMD\undefined
     \immediate\write18{bibtex \jobname.aux}
-\else %% NOTHING
+\else % NOTHING
 \fi
 
 \providecommand{\printbib}[1][\LILLYxBIBTEX]{%

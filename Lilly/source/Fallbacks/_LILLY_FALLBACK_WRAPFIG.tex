@@ -1,7 +1,7 @@
-%% Fallback for common wrapfig commands
+% Fallback for common wrapfig commands
 \LILLYxUSure[Du hast das wrapfig-Paket nicht, leider benoetige ich aber das xParse-Paket um das wrapfig-Paket halbwegs zu ersetzen]{xparse}
 \newcommand\LILLYxWRAPFIGxFBxCAPTION{None}
-%% Da xParse zwangsläufig notwendig ist können wir dies hier verwenden
+% Da xParse zwangsläufig notwendig ist können wir dies hier verwenden
 % Signature: [number of narrow lines]{placement}[Overhang]{width}
 \DeclareDocumentEnvironment{wrapfigure}{ O{12} m O{0pt} m }{
 \begin{center}\begin{minipage}[l]{#4}%

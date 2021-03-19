@@ -1,15 +1,11 @@
 \ProvidesPackage{LILLYxRANDOM}[2019/08/06 Stellt eine einfach Zufallsintegration fuer LILLY zur Verfuegung]
-\LILLYxDemandPackage{pgf}{bis expl3 :P}
-    {Ohne gehts nicht}{}{}
-%% Init Random
+\LILLYxDemandPackage{pgf}{bis expl3 :P}{Ohne gehts nicht}{}{}
+% Init Random
 \pgfmathsetseed{\number\pdfrandomseed}
 \def\PickRandom#1{%
-    \pgfmathdeclarerandomlist{tmp@rnd@list}{#1}%
-    \pgfmathrandomitem{\tmp@rnd@item}{tmp@rnd@list}%
-    \tmp@rnd@item
-}
-% returns a random integer
-% #1 LowerBound (0)
-% #2 UpperBound
-\newcommand{\RandomInt}[2][0]{\pgfmathrandominteger{\@lilly@rnd@tmp}{#1}{#2}\@lilly@rnd@tmp}
+\pgfmathdeclarerandomlist{tmp@rnd@list}{#1}%
+\pgfmathrandomitem{\tmp@rnd@item}{tmp@rnd@list}%
+\tmp@rnd@item}
+% #1 LowerBound (0) #2 UpperBound
+\newcommand*\RandomInt[2][0]{\pgfmathrandominteger{\@lilly@rnd@tmp}{#1}{#2}\@lilly@rnd@tmp}
 \endinput

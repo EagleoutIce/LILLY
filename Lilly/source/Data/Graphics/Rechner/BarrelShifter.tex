@@ -10,7 +10,7 @@
             \bigRing{(\x*3.5+0.5,\x/3+0.5)};
             \draw (\x*3.5+0.5,\x/3+0.5) -- ++(0,-\x/3-0.5);
         }
-        %%lines
+        %lines
         \foreach \x in {1,...,3}{
             \draw[-latex] (\x*3.5-0.65,-0.15) -- ++(0.8,0) node[midway,above] {\tiny \(s_1\)};
             \draw[-latex] (\x*3.5-0.85,-0.35) -- ++(1.2,0) node[midway,below] {\tiny \(s_2\)};
@@ -19,13 +19,13 @@
         \draw[-latex] (-0.45,-0.35) node[left] {\tiny \(s_2\)} -- ++(0.8,0);
 
 
-        %%dots
+        %dots
         \foreach \x in {0}      { \bigRing{(\x*3.5+3*3.5 + 0.5 +6/3,\x/3+0.5)}; \draw (\x*3.5+3*3.5 + 0.5 +6/3,\x/3+0.5) -- ++(0,-\x/3-0.5); }
         \foreach \x in {0,...,1}{ \bigRing{(\x*3.5+2*3.5 + 0.5 +4/3,\x/3+0.5)}; \draw (\x*3.5+2*3.5 + 0.5 +4/3,\x/3+0.5) -- ++(0,-\x/3-0.5); }
         \foreach \x in {0,...,2}{ \bigRing{(\x*3.5+1*3.5 + 0.5 +2/3,\x/3+0.5)}; \draw (\x*3.5+1*3.5 + 0.5 +2/3,\x/3+0.5) -- ++(0,-\x/3-0.5); }
 
 
-        %% Extra dots
+        % Extra dots
         \foreach \x/\xoff/\xlab in {1/0/1,2/0/2,3/0/3,2/1/1,3/1/2,3/2/1}{
             \bigRing{(\xoff*3.5 + 0.5 +\x*2/3,2)};
             \draw (\xoff*3.5 + 0.5 +\x*2/3,2) node[above] {\scriptsize \(x_{-\xlab}\)} -- ++(0,-2);

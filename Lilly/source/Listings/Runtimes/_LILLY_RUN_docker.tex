@@ -1,5 +1,5 @@
 
-%% Diese Datei liefert einen Befehl mit folgenden Eigenschaften:
+% Diese Datei liefert einen Befehl mit folgenden Eigenschaften:
 % Laden einer Shell-Datei
 % Ausführen dieser Shell-Datei mit einem angebenen Interpreter
 % Evaluation zu Ergebnis der Ausführung
@@ -12,15 +12,15 @@
 }
 \gdef\rdocker{\@ifnextchar[{\rdocker@opt}{\rdocker@noopt}}
 \gdef\rdocker@opt[#1]#2{
-  \cdocker{#2}~#1%% TODO: configure layout with #1
+  \cdocker{#2}~#1% TODO: configure layout with #1
   \getBashFileExecutionOutput{#2}
 }
 \gdef\rdocker@noopt#1{\cdocker{#1}\,:\getBashFileExecutionOutput{#1}}
 
 \def\lstrdockerlistopts{}
-%% oldies are goldies :D
+% oldies are goldies :D
 \ifx\LILLYxCMD\undefined
-%% {file} (coming soon: [input])
+% {file} (coming soon: [input])
 \gdef\getDockerFileExecutionOutput#1{%
 \immediate\write18{ #1 > \jobname-docker.txt 2> \jobname-docker.txt} % safest way :D
 \lstinputlisting[style=DockerOutput,language=lDocker]{\jobname-docker.txt}

@@ -1,22 +1,22 @@
 \RequirePackage[headsepline]{scrlayer-scrpage}         %Header konfigurieren
 \RequirePackage{lastpage,relsize}
-%% https://www.ctan.org/pkg/changepage
+
 \LILLYxDemandPackage{changepage}{Genaue identifikation der Seite}
                     {Fuer die genaue identifikation der Seite noetig!}
-                    {}{} %% keine Argumente
-%% https://ctan.org/pkg/wasysym
+                    {}{}
+
 \catcode`\"=12
-\LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}%% Package, Info
+\LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}% Package, Info
     {Sonst geht halt errorEmblem nicht xD}
-    {}{nointegrals}{\let\wasysymLightning\lightning}%% otherwise this would collide with the amssymb :D
+    {}{nointegrals}{\let\wasysymLightning\lightning}% otherwise this would collide with the amssymb :D
 % General and Layoutkonfiguration
 \renewcommand\sectionmark[1]{\markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}}
 
 \RequirePackage{titlesec}
 % lines above and below, number right
-\renewcommand\chaptermark[1]{\markboth{\rmdefault #1}{\faBookmark}} %%Chaptermark fix inject
+\renewcommand\chaptermark[1]{\markboth{\rmdefault #1}{\faBookmark}} %Chaptermark fix inject
 
-\LILLYcommand\leftmark{} %% fix no chapter bug
+\LILLYcommand\leftmark{} % fix no chapter bug
 \LILLYcommand\rightmark{}
 
 \def\@lilly@mitschrieb@chfont{\scshape}
@@ -93,12 +93,12 @@
 \iflilly@mitschrieb@sectionlines@useold@
     \phantomsection
     \protect\if@twoside%
-    \strictpagecheck\checkoddpage\ifoddpage%\protect\ifodd\c@page%% oddpage -> rSide
+    \strictpagecheck\checkoddpage\ifoddpage%\protect\ifodd\c@page% oddpage -> rSide
     {#4\hfill\makebox[\z@][l]{\smaller\hspace{.75\marginparsep}#3}}%
     \else
     {\makebox[\z@][r]{\smaller#3\hspace{\marginparsep}}#4}%
     \fi
-    \else %% is oneside
+    \else % is oneside
     {\makebox[\z@][r]{\textcolor{\LILLYxColorxTITLExCOLOR}{#3}\hspace{\marginparsep}}#4}%
     \fi
 \else
@@ -128,13 +128,13 @@
 \parindent=\z@
 
 % Introkonfiguration
-%%Lade gewünschtes Titelblatt => LILLYxTITLE
+%Lade gewünschtes Titelblatt => LILLYxTITLE
 \RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}
 %}{}
-%%OLD: \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
+%OLD: \input{\LILLYxPATHxDATA/Semester/\LILLYxSemester/TitlepageProvider.tex}
 \AtBeginDocument{\LILLYxTITLE}
 
-%%Generieren Inhaltsverzeichnis
+%Generieren Inhaltsverzeichnis
 \LILLYcommand\contentsname{\vspace{-1cm}\hfill \xtranslate{Inhaltsverzeichnis}\hfill\vspace{-.8cm}}
 \addto\captionsngerman{%
     \renewcommand\contentsname{\hbox{}\relax\hfill \xtranslate{Inhaltsverzeichnis}\hfill\hbox{}\relax}%
@@ -146,11 +146,11 @@
 \LILLYcommand\cftsubsecpagefont{\normalfont\scriptsize\hypersetup{linkcolor=\LILLYxColorxLINKSxMainColorDarker!70!white}}
 
 \AtBeginDocument{
-%%Niemand will irgendwas sehen beim TOC :D
+%Niemand will irgendwas sehen beim TOC :D
 \frontmatter
 \newpage\addtocontents{toc}{\protect\pagestyle{empty}}
 \addtocontents{toc}{\protect\thispagestyle{empty}}
-%%Sichergeh :D
+%Sichergeh :D
 \thispagestyle{empty}%
 \protect\pagestyle{empty}%
 \elable{eagleTOC}
@@ -169,18 +169,18 @@
 
 % Outrokonfiguration
 
-%% Dieser Controller kümmert sich um die korrekte implementierung des OUTROS eines Dokuments er fügt bei Bedarf Listen für Definitionen usw an und bindet auch den Index ein etc.
+% Dieser Controller kümmert sich um die korrekte implementierung des OUTROS eines Dokuments er fügt bei Bedarf Listen für Definitionen usw an und bindet auch den Index ein etc.
 
 % there is a clear command i know :P
 \def\LILLYxCLEARxHEADFOOT{\lohead{}\cohead{}\rohead{}\lofoot{}\cofoot{}\rofoot{}}
 
 \providecommand\LillyDocLevel{chapter}
-%% Wir haben einen Mitschrieb =>
-%% - Definitionen
-%% - Sätze
-%% - Lemmas
-%% - Zusamenfassungen
-%% - Übungsblätter
+% Wir haben einen Mitschrieb =>
+% - Definitionen
+% - Sätze
+% - Lemmas
+% - Zusamenfassungen
+% - Übungsblätter
 \AtEndDocument{
 \pagestyle{empty}\tocloftpagestyle{plain}
     \ohead{}\chead{}\ihead{} %clear header

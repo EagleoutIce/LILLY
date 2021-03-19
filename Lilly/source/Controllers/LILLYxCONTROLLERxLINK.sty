@@ -5,22 +5,22 @@
 \RequirePackage{LILLYxCORE,LILLYxCOLOR,LILLYxCONTROLLERxMODE,LILLYxCONTROLLERxCONTENT}
 
 \ifcsname LILLYxBEAMER\endcsname\else
-%% https://ctan.org/pkg/titletoc
-\LILLYxDemandPackage{titletoc}{Damit der tableofcountetns auch schön hübsch gemacht werden kann.}%% Package, Info
-    {Das Paket titletoc ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+
+\LILLYxDemandPackage{titletoc}{Damit der tableofcountetns auch schön hübsch gemacht werden kann.}% Package, Info
+    {Das Paket titletoc ist verpflichtend für die Arbeit mit LILLY}% Error-Text
     {}{}
 \fi
-%% https://www.ctan.org/pkg/xparse
+
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
-    {}{} %% keine Argumente
-%% https://www.ctan.org/pkg/ifplatform
+    {}{}
+
 \LILLYxDemandPackage{ifplatform}{Weil ich Faul bin braucht LILLY dieses Paket unbedingt!}
     {Um dieses Paket kommt LILLY nicht herum!}
     {}{}
-%% https://ctan.org/pkg/hyperref
-\LILLYxDemandPackage{hyperref}{Fuer tolle Verlinkungen und einen tollen Ueberblick}%% Package, Info
-    {Das Paket hyperref ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+
+\LILLYxDemandPackage{hyperref}{Fuer tolle Verlinkungen und einen tollen Ueberblick}% Package, Info
+    {Das Paket hyperref ist verpflichtend für die Arbeit mit LILLY}% Error-Text
     {pageanchor}{}
 
 % Grundelgendes setup von hyperref
@@ -84,7 +84,7 @@
 \let\@oldautoref\autoref
 \renewcommand{\autoref}[1]{\jmark[\@oldautoref*{#1}]{#1}\nolinebreak{}}
 \fi
-%% With sepcific color :D
+% With sepcific color :D
 \newcommand{\cmark}[3][Linkname]{\setLinkColor{#3}\textbf{{\hyperref[#2]{#1}}}}
 \providecommand*{\eXButton}[2]{\Acrobatmenu{#1}{\textcolor{\LILLYxColorxLINKSxMainColor}{#2}}}
 \endinput

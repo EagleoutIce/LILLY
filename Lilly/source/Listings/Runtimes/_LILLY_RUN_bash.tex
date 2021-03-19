@@ -1,4 +1,4 @@
-%% Diese Datei liefert einen Befehl mit folgenden Eigenschaften:
+% Diese Datei liefert einen Befehl mit folgenden Eigenschaften:
 % Laden einer Shell-Datei
 % Ausführen dieser Shell-Datei mit einem angebenen Interpreter
 % Evaluation zu Ergebnis der Ausführung
@@ -12,14 +12,14 @@
 
 \gdef\rbash{\@ifnextchar[{\rbash@opt}{\rbash@noopt}}
 \gdef\rbash@opt[#1]#2{
-  \cbash{#2}~#1%% TODO: configure layout with #1
+  \cbash{#2}~#1% TODO: configure layout with #1
   \getBashFileExecutionOutput{#2}
 }
 \gdef\rbash@noopt#1{\cbash{#1}\,:\getBashFileExecutionOutput{#1}}
 % will execute #3 but display #2
 \gdef\Rbash{\@ifnextchar[{\Rbash@opt}{\Rbash@noopt}}
 \gdef\Rbash@opt[#1]#2#3{
-  \cbash{#2}~#1%% TODO: configure layout with #1
+  \cbash{#2}~#1% TODO: configure layout with #1
   \getBashFileExecutionOutput{#3}%
 }
 \gdef\Rbash@noopt#1#2{\cbash{#1}\,:\getBashFileExecutionOutput{#2}}
@@ -30,9 +30,9 @@
 }
 
 \gdef\rbashcurrentinject{}
-%% oldies are goldies :D
+% oldies are goldies :D
 \ifx\LILLYxCMD\undefined
-%% {file} (coming soon: [input])
+% {file} (coming soon: [input])
 \gdef\getBashFileExecutionOutput#1{%
 \ExecuteBash{\jobname.run.out}{#1}% safest way :D
 \edef\@exectmp{\noexpand\lstinputlisting[style=BashOutput,language=lVoid,keywords={[4]{}},\rbashcurrentinject]{\jobname.run.out}}\@exectmp{}

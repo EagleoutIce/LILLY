@@ -1,34 +1,34 @@
 %!
-%%
-%% This is file `xcolor.pro',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% xcolor.dtx  (with options: `dvips')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from xcolor.pro.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file xcolor.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
-%%
-%% xcolor.pro (PostScript/dvips header file)
-%%  [2016/05/11 v2.12 LaTeX color extensions (UK)]
-%%
-%% ----------------------------------------------------------------
-%% Copyright (C) 2003-2016 by Dr. Uwe Kern <xcolor at ukern dot de>
-%% ----------------------------------------------------------------
-%%
+%
+% This is file `xcolor.pro',
+% generated with the docstrip utility.
+%
+% The original source files were:
+%
+% xcolor.dtx  (with options: `dvips')
+%
+% IMPORTANT NOTICE:
+%
+% For the copyright see the source file.
+%
+% Any modified versions of this file must be renamed
+% with new filenames distinct from xcolor.pro.
+%
+% For distribution of the original source see the terms
+% for copying and modification in the file xcolor.dtx.
+%
+% This generated file may be distributed as long as the
+% original source files, as listed above, are part of the
+% same distribution. (The sources need not necessarily be
+% in the same archive or directory.)
+%
+% xcolor.pro (PostScript/dvips header file)
+%  [2016/05/11 v2.12 LaTeX color extensions (UK)]
+%
+% ----------------------------------------------------------------
+% Copyright (C) 2003-2016 by Dr. Uwe Kern <xcolor at ukern dot de>
+% ----------------------------------------------------------------
+%
 userdict begin
 /setcmycolor{0 setcmykcolor}def
 /XCbd{bind def}bind def
@@ -55,4 +55,4 @@ userdict begin
  {XCsp2bp 0 XCsetline
   0 d neg w h d add rectfill}if}if}XCbd
 end
-%% End of file `xcolor.pro'.
+% End of file `xcolor.pro'.

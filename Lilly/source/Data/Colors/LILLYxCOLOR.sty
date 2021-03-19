@@ -3,40 +3,40 @@
 
 \providecommand{\LILLYxMODExPRINT}{print}
 
-%% Information: Durch: \def\LILLYxColorxInject{} lässt sich das integrieren der jeweiligen Farbpakete annulieren
-%% Diese Option erlaubt ein manuelles überschreiben entfernt allerdings auch jede Garantie bezüglich der Funktionsweise
+% Information: Durch: \def\LILLYxColorxInject{} lässt sich das integrieren der jeweiligen Farbpakete annulieren
+% Diese Option erlaubt ein manuelles überschreiben entfernt allerdings auch jede Garantie bezüglich der Funktionsweise
 \RequirePackage{LILLYxCORE}
 % \RequirePackage{LILLYxCORE}
 
-%% https://ctan.org/pkg/colortbl
-\LILLYxDemandPackage{colortbl}{Farbige Tables :D}%% Package, Info
-    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+
+\LILLYxDemandPackage{colortbl}{Farbige Tables :D}% Package, Info
+    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}% Error-Text
     {}{}
 
 \ifx\LILLYxUSEREGXCOLOR\undefined
-%% https://ctan.org/pkg/xcolor
+
 \LILLYxDemandPackage{lilly-xcolor}{Ohne Farben mache ich GARNICHTS}% Package, Info
     {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}% Error-Text
     {table}{}
 \else
-%% https://ctan.org/pkg/xcolor
+
 \LILLYxDemandPackage{xcolor}{Ohne Farben mache ich GARNICHTS}% Package, Info
     {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}% Error-Text
     {table}{}
 \fi
-%% https://ctan.org/pkg/pgf
+
 \LILLYxDemandPackage{pgf}{Ohne pgf mache ich GARNICHTS}% Package, Info
     {Jetzt mal ernsthaft, was wären wir ohne pgf? Auch wenn ich nicht mehr weiss, warum es hier gebraucht wird.}% Error-Text
     {}{}
 
-%%% Hier wird, entsprechend der Konfiguration,
-%% Geladen welches Farbschema angwendet werden soll, es wird stehts der Standart geladen,
-%% Es ist möglich diesen zu überschreiben und entsprechend umzudefinieren.
+% Hier wird, entsprechend der Konfiguration,
+% Geladen welches Farbschema angwendet werden soll, es wird stehts der Standart geladen,
+% Es ist möglich diesen zu überschreiben und entsprechend umzudefinieren.
 
 \RequirePackage{LILLYxLIST}
 
 \gdef\registerColors#1#2{
-    %\globalcolorstrue %% colors, colors everywhere :D
+    %\globalcolorstrue % colors, colors everywhere :D
     \foreach \name/\r/\g/\b in #1 {
         \ifthenelse{\equal{\name}{}}{}{
             \debugout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
@@ -46,7 +46,7 @@
 }
 
 \gdef\updateColors#1#2{
-    %\globalcolorstrue %% colors, colors everywhere :D
+    %\globalcolorstrue % colors, colors everywhere :D
     \foreach \name/\r/\g/\b in #1 {
         \ifthenelse{\equal{\name}{}}{}{
             \debugout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
@@ -56,73 +56,73 @@
 }
 
 \constructList[,]{LillyColorList}
-\pushList{LillyColorList}{Butter/255/247/155}          %%#fff79b
-\pushList{LillyColorList}{Aureolin/253/238/0}          %%#FDEE00
-\pushList{LillyColorList}{Amber/255/191/0}             %%#FFBF00
-\pushList{LillyColorList}{ChromeYellow/255/167/0}      %%#FFa700
-\pushList{LillyColorList}{DarkChromeYellow/255/140/0}  %%#FF8C00
-\pushList{LillyColorList}{Coquelicot/255/56/0}         %%#FF3800
-\pushList{LillyColorList}{Cinnabar/227/66/52}          %%#E34234
-\pushList{LillyColorList}{BrightMaroon/195/33/72}      %%#C32148
-\pushList{LillyColorList}{Cherry/222/49/99}            %%#DE3163
-\pushList{LillyColorList}{AlizarinCrimson/227/ 28/ 54} %%#E32636
-\pushList{LillyColorList}{Amaranth/229/43/80}          %%#E52B50
-\pushList{LillyColorList}{AmericanRose/255/3/62}       %%#FF033E
-\pushList{LillyColorList}{Awesome/255/32/82}           %%#FF2052
-\pushList{LillyColorList}{BrightPink/255/0/127}        %%#FF007F
-\pushList{LillyColorList}{DebianRed/215/10/83}         %%#D70A53
-\pushList{LillyColorList}{Crimson/220/20/60}           %%#DC143C
+\pushList{LillyColorList}{Butter/255/247/155}          %#fff79b
+\pushList{LillyColorList}{Aureolin/253/238/0}          %#FDEE00
+\pushList{LillyColorList}{Amber/255/191/0}             %#FFBF00
+\pushList{LillyColorList}{ChromeYellow/255/167/0}      %#FFa700
+\pushList{LillyColorList}{DarkChromeYellow/255/140/0}  %#FF8C00
+\pushList{LillyColorList}{Coquelicot/255/56/0}         %#FF3800
+\pushList{LillyColorList}{Cinnabar/227/66/52}          %#E34234
+\pushList{LillyColorList}{BrightMaroon/195/33/72}      %#C32148
+\pushList{LillyColorList}{Cherry/222/49/99}            %#DE3163
+\pushList{LillyColorList}{AlizarinCrimson/227/ 28/ 54} %#E32636
+\pushList{LillyColorList}{Amaranth/229/43/80}          %#E52B50
+\pushList{LillyColorList}{AmericanRose/255/3/62}       %#FF033E
+\pushList{LillyColorList}{Awesome/255/32/82}           %#FF2052
+\pushList{LillyColorList}{BrightPink/255/0/127}        %#FF007F
+\pushList{LillyColorList}{DebianRed/215/10/83}         %#D70A53
+\pushList{LillyColorList}{Crimson/220/20/60}           %#DC143C
 
-\pushList{LillyColorList}{DarkMidnightBlue/0/74/148}   %%#004A94
-\pushList{LillyColorList}{Azure/0/127/255}             %%#007FFF
-\pushList{LillyColorList}{SteelBlue/25/25/112}         %%#4682B4
-\pushList{LillyColorList}{bondiBlue/0/149/182}         %%#0095B6
-\pushList{LillyColorList}{antiVeg/190/238/239}         %%#BEEEEF
+\pushList{LillyColorList}{DarkMidnightBlue/0/74/148}   %#004A94
+\pushList{LillyColorList}{Azure/0/127/255}             %#007FFF
+\pushList{LillyColorList}{SteelBlue/25/25/112}         %#4682B4
+\pushList{LillyColorList}{bondiBlue/0/149/182}         %#0095B6
+\pushList{LillyColorList}{antiVeg/190/238/239}         %#BEEEEF
 
-\pushList{LillyColorList}{DarkOrchid/104/34/139}       %%#68228B
-\pushList{LillyColorList}{Purple/128/0/128}            %%#800080
-\pushList{LillyColorList}{Veronica/160/32/240}         %%#A020F0
-\pushList{LillyColorList}{Orchid/180/82/205}           %%#B452CD
-\pushList{LillyColorList}{Amethyst/153/102/204}        %%#9966CC
-\pushList{LillyColorList}{AntiqueFuchsia/145/92/131}   %%#915C83
+\pushList{LillyColorList}{DarkOrchid/104/34/139}       %#68228B
+\pushList{LillyColorList}{Purple/128/0/128}            %#800080
+\pushList{LillyColorList}{Veronica/160/32/240}         %#A020F0
+\pushList{LillyColorList}{Orchid/180/82/205}           %#B452CD
+\pushList{LillyColorList}{Amethyst/153/102/204}        %#9966CC
+\pushList{LillyColorList}{AntiqueFuchsia/145/92/131}   %#915C83
 
-\pushList{LillyColorList}{BritishRacingGreen/0/66/37}  %%#004225
-\pushList{LillyColorList}{DatmouthGreen/0/105/62}      %%#00693E
-\pushList{LillyColorList}{Ao/0/128/0}                  %%#008000
-\pushList{LillyColorList}{Leaf/44/171/63}              %%#2cab3f
-\pushList{LillyColorList}{AppleGreen/141/182/0}        %%#8DB600
-\pushList{LillyColorList}{BrightGreen/102/255/0}       %%#66FF00
+\pushList{LillyColorList}{BritishRacingGreen/0/66/37}  %#004225
+\pushList{LillyColorList}{DatmouthGreen/0/105/62}      %#00693E
+\pushList{LillyColorList}{Ao/0/128/0}                  %#008000
+\pushList{LillyColorList}{Leaf/44/171/63}              %#2cab3f
+\pushList{LillyColorList}{AppleGreen/141/182/0}        %#8DB600
+\pushList{LillyColorList}{BrightGreen/102/255/0}       %#66FF00
 
-\pushList{LillyColorList}{MudWhite/245/245/243}        %%#F5F5F3
-\pushList{LillyColorList}{LightGray/224/224/224}       %%#E0E0E0
-\pushList{LillyColorList}{SpanishGray/151/152/151}     %%#979897
-\pushList{LillyColorList}{PlumbagoGray/133/138/141}    %%#858a8d
-\pushList{LillyColorList}{AuroMetalSaurus/110/127/128} %%#6E7F80
-\pushList{LillyColorList}{Charcoal/54/69/79}           %%#36454F
-\pushList{LillyColorList}{Jet/52/52/52}                %%#343434
+\pushList{LillyColorList}{MudWhite/245/245/243}        %#F5F5F3
+\pushList{LillyColorList}{LightGray/224/224/224}       %#E0E0E0
+\pushList{LillyColorList}{SpanishGray/151/152/151}     %#979897
+\pushList{LillyColorList}{PlumbagoGray/133/138/141}    %#858a8d
+\pushList{LillyColorList}{AuroMetalSaurus/110/127/128} %#6E7F80
+\pushList{LillyColorList}{Charcoal/54/69/79}           %#36454F
+\pushList{LillyColorList}{Jet/52/52/52}                %#343434
 
 \storeLillyColorList{LISTxColors}
 \registerColors{\LISTxColors}{}
 
-%% The old ones will still exists for compatibility-reasons
+% The old ones will still exists for compatibility-reasons
 \constructList[,]{LillyCompatColorList}
 
-\pushList{LillyCompatColorList}{gold/255/215/50}             %% #FFD732
-\pushList{LillyCompatColorList}{dgold/232/177/38}            %% #e8b126
-\pushList{LillyCompatColorList}{mint/255/128/0}              %% #FF9000  %% this is clearly not mint, but it is how it is ._.
-\pushList{LillyCompatColorList}{dorange/255/102/0}           %% #FF6600
-\pushList{LillyCompatColorList}{thered/255/47/47}            %% #ff2f2f
-\pushList{LillyCompatColorList}{candypink/227/112/122}       %% #E3707A
+\pushList{LillyCompatColorList}{gold/255/215/50}             % #FFD732
+\pushList{LillyCompatColorList}{dgold/232/177/38}            % #e8b126
+\pushList{LillyCompatColorList}{mint/255/128/0}              % #FF9000  % this is clearly not mint, but it is how it is ._.
+\pushList{LillyCompatColorList}{dorange/255/102/0}           % #FF6600
+\pushList{LillyCompatColorList}{thered/255/47/47}            % #ff2f2f
+\pushList{LillyCompatColorList}{candypink/227/112/122}       % #E3707A
 
-\pushList{LillyCompatColorList}{ddpurple/128/0/128}          %% #800080
-\pushList{LillyCompatColorList}{beauty/104/55/107}           %% #68376B
-\pushList{LillyCompatColorList}{dpurple/86/60/92}            %% #563C5C
+\pushList{LillyCompatColorList}{ddpurple/128/0/128}          % #800080
+\pushList{LillyCompatColorList}{beauty/104/55/107}           % #68376B
+\pushList{LillyCompatColorList}{dpurple/86/60/92}            % #563C5C
 
-\pushList{LillyCompatColorList}{limegreen/51/204/51}         %% #33CC33
-\pushList{LillyCompatColorList}{skyblue/60/179/113}          %% #3CB371
+\pushList{LillyCompatColorList}{limegreen/51/204/51}         % #33CC33
+\pushList{LillyCompatColorList}{skyblue/60/179/113}          % #3CB371
 
-\pushList{LillyCompatColorList}{tealblue/51/153/255}         %% #3399FF
-\pushList{LillyCompatColorList}{superlightgray/240/240/240}  %% #F0F0F0
+\pushList{LillyCompatColorList}{tealblue/51/153/255}         % #3399FF
+\pushList{LillyCompatColorList}{superlightgray/240/240/240}  % #F0F0F0
 
 \storeLillyCompatColorList{LISTxCompatColors}
 \registerColors{\LISTxCompatColors}{Compat-}
@@ -130,9 +130,9 @@
 \providecommand\Hcolor{Leaf}
 \providecommand\HBcolor{\Hcolor!7}
 
-%% Doese Farben werden nun durch Default entsprechend gesetzt:
+% Doese Farben werden nun durch Default entsprechend gesetzt:
 \gdef\setProfileColors#1{
-    %\globalcolorstrue %% colors, colors everywhere :D
+    %\globalcolorstrue % colors, colors everywhere :D
     \foreach \name/\col in #1 {
         \ifthenelse{\equal{\name}{}}{}{
             \debugout{Register Profile Color: LILLYxColorx\name} %\space based on \col}
@@ -141,11 +141,11 @@
     }
 }
 
-\gdef\LillyxStorexCurrentColorProfile{%% store current colorprofile
+\gdef\LillyxStorexCurrentColorProfile{% store current colorprofile
 \global\let\lilly@oldcolors\LISTxProfileColors%
 }
 
-\gdef\LillyxRestorexCurrentColorProfile{%% restore current colorprofile
+\gdef\LillyxRestorexCurrentColorProfile{% restore current colorprofile
     \setList{LillyProfileColors}{\lilly@oldcolors}
     \storeLillyProfileColors{LISTxProfileColors}
     \setProfileColors{\LISTxProfileColors}
@@ -162,8 +162,8 @@
 \storeLillyProfileColors{LISTxProfileColors}
 \RequirePackage{LILLYxCOLORxPALETTE}
 
-%% Aktuell erlaubt Lilly nur Standartmäßig diese beiden Farprofile
-%% Allerings werden Farberweiterungen unterstützt:
+% Aktuell erlaubt Lilly nur Standartmäßig diese beiden Farprofile
+% Allerings werden Farberweiterungen unterstützt:
 \providecommand{\LILLYxCOLORxEXTENSION}{VOID}
 \userput{_LILLY_COLOR_EXTENSION_\LILLYxCOLORxEXTENSION}{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}
 

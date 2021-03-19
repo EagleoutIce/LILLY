@@ -1,20 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxLIST}[2019/07/13 Stellt die Grundlagen einer Liste fuer LILLY zur Verfuegung]
 \RequirePackage{LILLYxCORE,LILLYxCOMMAND}
-
-\LILLYxDemandPackage{pgffor}{Fuer die Registrierung der Sprachen}
-    {Ohne gehts nicht}{}{}
-
-    \gdef\lilly@list@operation#1{!#1!}
+\LILLYxDemandPackage{pgffor}{Fuer die Registrierung der Sprachen}{Ohne gehts nicht}{}{}
+\gdef\lilly@list@operation#1{!#1!}
 \gdef\lill@list@end!{}
-\gdef\lilly@iter@commalist#1,{\edef\@tmp{#1}\lilly@list@operation{\@tmp}\@ifnextchar!{\lill@list@end}{\expandafter\lilly@iter@commalist}}
+\gdef\lilly@iter@commalist#1,{\protected@edef\@tmp{#1}\lilly@list@operation{\@tmp}\@ifnextchar!{\lill@list@end}{\expandafter\lilly@iter@commalist}}
 
 \newcommand\constructList[2][]{%$ Definiere Liste BlahBlah
 \expandafter\def\csname lilly@list@seperator@#2\endcsname{#1}%
-\expandafter\def\csname lilly@list@#2\endcsname{}%% Listendefinition lilly@list@BlahBlah
-\expandafter\def\csname the#2\endcsname{\csname lilly@list@#2\endcsname}%% Liste kann über \theBlahBlah abgefragt werden
-\expandafter\def\csname delete#2\endcsname{\let\csname lilly@list@#2\endcsname{}}%% delete the list
-%% get an iterator for the list, it will use the specific iterator:
+\expandafter\def\csname lilly@list@#2\endcsname{}% Listendefinition lilly@list@BlahBlah
+\expandafter\def\csname the#2\endcsname{\csname lilly@list@#2\endcsname}% Liste kann über \theBlahBlah abgefragt werden
+\expandafter\def\csname delete#2\endcsname{\let\csname lilly@list@#2\endcsname{}}% delete the list
+% get an iterator for the list, it will use the specific iterator:
 \expandafter\gdef\csname iter#2\endcsname{\lilly@iter@list\csname lilly@list@seperator@#2\endcsname\csname get#2\endcsname}%
 %
 \expandafter\def\csname get#2\endcsname{%
@@ -23,7 +20,7 @@
 \expandafter\def\csname store#2\endcsname##1{%
     \expandafter\xdef\csname ##1\endcsname{\csname lilly@list@#2\endcsname}%
 }%
-%% Evaluates to the length of an komma seperated List
+% Evaluates to the length of an komma seperated List
 \@namedef{len#2}{%
     \getListLength{\@nameuse{lilly@list@#2}}%
 }%
@@ -34,32 +31,27 @@
 \gdef\@c@tmp{0}%
 \foreach \@tmp[count=\@@c@tmp] in \@tmpl {\xdef\@c@tmp{\@@c@tmp}}%
 }
-
 \def\typesetVoid#1{#1}%
 \def\@typeset@list@and{und}
-
 \newcommand\TypesetList[3][typesetVoid]{\begingroup
-    \edef\@typeset@list@and{#3}\edef\@@tmp{\noexpand\@@typesetList[\unexpanded{#1}]{#2}}\@@tmp
+    \protected@edef\@typeset@list@and{#3}\protected@edef\@@tmp{\noexpand\@@typesetList[\unexpanded{#1}]{#2}}\@@tmp
     \endgroup
 }
 
 \newcommand\typesetList[2][typesetVoid]{%
-    \edef\@@tmp{\noexpand\@@typesetList[\unexpanded{#1}]{#2}}\@@tmp%
+    \protected@edef\@@tmp{\noexpand\@@typesetList[\unexpanded{#1}]{#2}}\@@tmp%
 }
 
-%% this will typeset a List in German List-Notation
+% this will typeset a List in German List-Notation
 \newcommand{\@@typesetList}[2][typesetVoid]{%
 \def\@tmpl{#2}%
 \getListLength{#2}%
 \foreach \x[count=\i] in \@tmpl {%
     \ifnum\i>1 \ifnum\i=\@c@tmp
     ~\xtranslate{\@typeset@list@and} \else
-    ,\space\fi
-    \fi
+    ,\space\fi\fi
     \@nameuse{#1}{\x}%
 }\ignorespaces}
-
-
 \newcommand\containsList[2]{%
 \csname get#1\endcsname
 \xdef\c@mp@re{#2}%
@@ -67,10 +59,7 @@
 \foreach \d in \lillyxlist {%
 \ifthenelse{\equal{\d}{\c@mp@re}}{%
 \global\let\c@nditi@n@l\true
-}{}%
-}%
-\c@nditi@n@l
-}
+}{}}\c@nditi@n@l}
 
 \newcommand\setList[2]{\expandafter\xdef\csname lilly@list@#1\endcsname{#2}}
 
@@ -81,10 +70,9 @@
     \expandafter\xdef\csname lilly@list@#1\endcsname{\csname lilly@list@last@#1\endcsname{#2}}%
 }{% Not empty
     \expandafter\xdef\csname lilly@list@#1\endcsname{\csname lilly@list@last@#1\endcsname\csname lilly@list@seperator@#1\endcsname{#2}}%
-}%
-}
+}}
 
-%% operation is work in progress
+% operation is work in progress
 \newcommand\popList[1]{\csname lilly@list@last@#1\endcsname}
 \constructList{lillytmplist}
 % This one will hold all important lists, like list of Definitions etc. to let them be registered in chapters etc.

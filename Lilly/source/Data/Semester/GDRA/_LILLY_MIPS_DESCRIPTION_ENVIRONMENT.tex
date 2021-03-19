@@ -2,13 +2,13 @@
     O {add} % MIPS COMMAND
     O {I}      % REGISTER FORMAT
     O {\mipsADD \text{ }\$rd, \$rt, \$rs} % EXAMPLE
-    O {BRIEF BRIEF BRIEF BRIEF} %%BRIEF
-    O {0000 0000 0000 0000 0000 0000 0000 0000} %%CODEC
+    O {BRIEF BRIEF BRIEF BRIEF} %BRIEF
+    O {0000 0000 0000 0000 0000 0000 0000 0000} %CODEC
     O {0x00} % OPCODE
     O {NA} % FUNCCODE
     O {\textcolor{black}{Normal}} % IS MAKRO ?
     O {4} %PROGRAMMCOUNTER INCREASE
-}{\leavevmode\\[0.5em] %%REFERENCE
+}{\leavevmode\\[0.5em] %REFERENCE
 \relax\noindent
 \begin{tikzpicture}[card/.style={inner sep=0pt}]
     \node [card,right] (a) at(0.5,0.35) {\large\bfseries\LILLYxlstTypeWriter\textcolor{black}{\text{ }#1 }};
@@ -46,22 +46,22 @@
     O {npoint} % MIPS COMMAND
     O {I}      % REGISTER FORMAT
     O {\mipsADD \text{ }\$rd, \$rt, \$rs} % EXAMPLE
-    O {BRIEF BRIEF BRIEF BRIEF} %%BRIEF
-    O {0000 0000 0000 0000 0000 0000 0000 0000} %%CODEC
+    O {BRIEF BRIEF BRIEF BRIEF} %BRIEF
+    O {0000 0000 0000 0000 0000 0000 0000 0000} %CODEC
     O {0x00} % OPCODE
     O {NA} % FUNCCODE
     O {\textcolor{black}{Normal}} % IS MAKRO ?
     O {4} %PROGRAMMCOUNTER INCREASE
-}{\phantomsection\elable{cmd:#1}\leavevmode\\[0.5em] %%REFERENCE
+}{\phantomsection\elable{cmd:#1}\leavevmode\\[0.5em] %REFERENCE
 \relax\noindent
-\begin{minipage}{\textwidth} %%no midbreak
+\begin{minipage}{\textwidth} %no midbreak
 \begin{tikzpicture}[card/.style={inner sep=0pt}]
     \node [card,right] (a) at(0.5,0.35) {\large\bfseries\LILLYxlstTypeWriter\textcolor{black}{\text{ }#1 }};
 
     \draw (2.6,0.35) node [right] (b) {\tiny\parbox{\widthof{\mnemonicDecode{#1}}}{\mnemonicDecode{#1}}\hspace{-0.2cm}};
 
     \node [card,left,minimum width=2cm] (c) at(\textwidth-2.75cm,0.35) {\small \textcolor{black}{\hmark[\text{ }\textbf{#2}--Format ]{frmt:#2}}};
-    
+
     \node [card,left] (d) at(\textwidth-0.6cm,0.35) {\small \textcolor{black}{\text{ }\silentHmark[\mdseries #9]{cmd:PC}[black] }};
     \draw[rounded corners=6pt] (0,0) |- (a) (a) -- (b) (b) -- (c) (c) -- (d) (d) -| (\textwidth,0);
     \draw (\textwidth/4-3cm ,-0.125) rectangle ++(6cm,-0.75) node[midway,centered] {\LILLYxlstTypeWriter #3};

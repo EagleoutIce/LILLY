@@ -2,7 +2,7 @@
 \ProvidesPackage{LILLYxCARDSxFANTASY}[2019/10/05 Stellt eine Fantasy-Erweiterung fuer LILLY-Karten zur Verfuegung]
 \RequirePackage{LILLYxCARDS,LILLYxTIKZxCORE,LILLYxFONTS}
 \usetikzlibrary{calc,fadings}
-%% Verwendungszwecke der Extra-Register:
+% Verwendungszwecke der Extra-Register:
 % 1: Path to the Image
 % 2: Cost of the Card
 % 3: color of the price field
@@ -25,7 +25,7 @@
 \newdimen\@lilly@cards@fantasy@textp  \@lilly@cards@fantasy@textp=.1cm  % padding
 
 % lets define the shapes of the cards:
-%% Card:
+% Card:
 % Base area
 \def\@lilly@cards@shapes@fantasy@card{(0,0) rectangle (\@lilly@cards@fantasy@cardwidth,\@lilly@cards@fantasy@cardheight)}
 % Title area:
@@ -35,7 +35,7 @@
 % Content
 \def\@lilly@cards@shapes@fantasy@content{(2*\@lilly@cards@fantasy@stripp+\@lilly@cards@fantasy@stripw,.5*\@lilly@cards@fantasy@cardheight) rectangle (\@lilly@cards@fantasy@cardwidth+\@lilly@cards@fantasy@stript,-\@lilly@cards@fantasy@stript)}
 
-%% Strips
+% Strips
 % Long left:
 \def\@lilly@cards@shapes@fantasy@typeStrip{(\@lilly@cards@fantasy@stripp ,-\@lilly@cards@fantasy@stript) rectangle (\@lilly@cards@fantasy@stripp +\@lilly@cards@fantasy@stripw,\@lilly@cards@fantasy@cardheight-2*\@lilly@cards@fantasy@stripp-1cm)}
 % Upper short left:
@@ -43,7 +43,7 @@
 % Upper short right
 \def\@lilly@cards@shapes@fantasy@rightStrip{(\@lilly@cards@fantasy@cardwidth-\@lilly@cards@fantasy@stripw-\@lilly@cards@fantasy@stripp,\@lilly@cards@fantasy@cardheight-\@lilly@cards@fantasy@stripp-1cm) rectangle (\@lilly@cards@fantasy@cardwidth-\@lilly@cards@fantasy@stripp,\@lilly@cards@fantasy@cardheight+\@lilly@cards@fantasy@stript)}
 
-%% Tikz Data:
+% Tikz Data:
 % based on tikzcards
 \providedef{@lilly@cards@fantasy@scaling}{.75}
 
@@ -94,7 +94,7 @@
 \node at (\@lilly@cards@fantasy@cardwidth-.5*\@lilly@cards@fantasy@stripw-\@lilly@cards@fantasy@stripp,\@lilly@cards@shapes@fantasy@titley-.1cm) {\color{black}\ifthenelse{\equal{}{\@lilly@cards@get{#2}{extra@b}}}{?}{\@lilly@cards@get{#2}{extra@b}}};
 % Price set
 
-%% left tags
+% left tags
 % uper left
 \fill[@lilly@cards@fantasy@strip,\@lilly@cards@get{#2}{main@color}] \@lilly@cards@shapes@fantasy@leftStrip;
 % icon

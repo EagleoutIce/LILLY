@@ -1,4 +1,4 @@
-%% https://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz#34268
+
 % disable ", otherwise forest will fail
 \catcode`\"=12
 \usepackage[edges]{forest}
@@ -24,7 +24,7 @@
 \tikzset{
   dirtree/.style={
     growth function=\dirtree@growth,
-    every node/.style={anchor=north,font=\LILLYxlstTypeWriter,rectangle,draw,rounded corners=2.75pt,inner sep=3pt, minimum height=0.65cm, minimum width=2em, align=center,transform shape}, %% 3em
+    every node/.style={anchor=north,font=\LILLYxlstTypeWriter,rectangle,draw,rounded corners=2.75pt,inner sep=3pt, minimum height=0.65cm, minimum width=2em, align=center,transform shape}, % 3em
     every child node/.style={anchor=west},
     edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tikzchildanchor)}
   }

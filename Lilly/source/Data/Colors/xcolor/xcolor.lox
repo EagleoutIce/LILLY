@@ -1,30 +1,30 @@
-%%
-%% This is file `xcolor.lox',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% xcolor.dtx  (with options: `extract')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from xcolor.lox.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file xcolor.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
-%%
-%% ----------------------------------------------------------------
-%% Copyright (C) 2003-2016 by Dr. Uwe Kern <xcolor at ukern dot de>
-%% ----------------------------------------------------------------
-%%
+%
+% This is file `xcolor.lox',
+% generated with the docstrip utility.
+%
+% The original source files were:
+%
+% xcolor.dtx  (with options: `extract')
+%
+% IMPORTANT NOTICE:
+%
+% For the copyright see the source file.
+%
+% Any modified versions of this file must be renamed
+% with new filenames distinct from xcolor.lox.
+%
+% For distribution of the original source see the terms
+% for copying and modification in the file xcolor.dtx.
+%
+% This generated file may be distributed as long as the
+% original source files, as listed above, are part of the
+% same distribution. (The sources need not necessarily be
+% in the same archive or directory.)
+%
+% ----------------------------------------------------------------
+% Copyright (C) 2003-2016 by Dr. Uwe Kern <xcolor at ukern dot de>
+% ----------------------------------------------------------------
+%
 \def\XCfileversion{v2.12}%
 \def\XCfiledate{2016/05/11}%
 \def\ukfile#1#2#3#4%
@@ -53,5 +53,5 @@
 \ukfile3{xcolor}{dvips}{LaTeX color extensions}
 }
 \endinput
-%%
-%% End of file `xcolor.lox'.
+%
+% End of file `xcolor.lox'.

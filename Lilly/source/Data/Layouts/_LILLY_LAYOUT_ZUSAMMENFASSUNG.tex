@@ -1,6 +1,6 @@
 \RequirePackage[automark,headsepline]{scrlayer-scrpage}         %Header konfigurieren
 \RequirePackage{lastpage,titlesec}
-\RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
+\RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung} %Konstanten etc.
 % General and Layoutkonfiguration
 \newif\ifappendix
 \appendixfalse
@@ -89,7 +89,7 @@
     \refstepcounter{\curAddonsCounter}\addcontentsline{toc}{subsection}{#2}\else%
     \ifnum\value{TOPICS}>-1\addcontentsline{DEFS}{chapter}{#2}\fi\addcontentsline{toc}{section}{#2}%
     \TOPICS{#2}\markleft{#2}\fi\elable{top:#1}%
-    \nopagebreak[4]\par\nopagebreak[4]%%breakpatch
+    \nopagebreak[4]\par\nopagebreak[4]%breakpatch
     \parbox{\linewidth}{{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \ifappendix\formatAddons{\curAddonsCounter}\else\arabic{TOPICS}\fi) #2} \hfill{\tiny #3}}\vspace{-0.5\baselineskip}\\*%
     \rule{\textwidth}{2pt}\smallskip\\*\ignorespacesafterend%
 }
@@ -97,12 +97,12 @@
 \DeclareRobustCommand\sw[2][Gruppenname]{#2\index{#1!#2}}
 \DeclareRobustCommand\sr[3][Gruppenname]{#3\index{#1!#2!#3}}
 
-%% definitions
+% definitions
 \def\imp{\ensuremath{\prec}}
 \def\<{\ensuremath{\langle}}
 \def\>{\ensuremath{\rangle}}
 \def\mto{\ensuremath{\to}}
-%% Register
+% Register
 \def\reg#1{\T{#1}}
 
 \gdef\customex#1{\begingroup\scriptsize\textit{#1}\normalsize\endgroup}
@@ -117,14 +117,14 @@
 \newenvironment{smalldesc}{%
 \begingroup\negbskip\begin{description}\narrowitems\footnotesize}
 {\negbskip\end{description}\endgroup}
-%% Smaller variant of the ditemize environment
+% Smaller variant of the ditemize environment
 \newenvironment{smalldite}{%
 \begingroup\negbskip\begin{ditemize}\narrowitems\footnotesize}
 {\negbskip\end{ditemize}\endgroup}
 
 \newlength{\showcaseXwidth}\setlength{\showcaseXwidth}{6cm}
 
-%% Will render a tikzternal as a nice info-box
+% Will render a tikzternal as a nice info-box
 \DeclareDocumentCommand{\showcase}{%
     O{Charcoal}         % Color
     O{scale=1}          % TikZ-Commands
@@ -147,7 +147,7 @@
 \AtBeginDocument{\LILLYxLayoutxRestore}
 
 % Introkonfiguration
-%% Work in Progress new Layout:
+% Work in Progress new Layout:
 \AtBeginDocument{%
     \ifnum\LILLY@n>0\relax
         \LILLYxTITLExBONUS{Zusammenfassung \LILLY@n}%
@@ -157,7 +157,7 @@
     \cleardoublepage\POLITEINTRO
 }
 
-%% TODO: make small arrow in limerence if page breaks
+% TODO: make small arrow in limerence if page breaks
 % Outrokonfiguration
 \providecommand\LILLYxINDEXxINTERMEDIATExFORMAT{\clearpage}
 

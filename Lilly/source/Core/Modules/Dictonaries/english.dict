@@ -2,12 +2,12 @@
 
 \deftranslation{und}{and}
 
-%% Gedichte
+% Gedichte
 \deftranslation{Gedichtsammlung}{Poetry Collection}
 \deftranslation{Alle Zitate}{List of Quotes}
 \deftranslation{Gedichte der Jahre}{Poems from}
 
-%% Wochentage
+% Wochentage
 \deftranslation{Montag}{Monday}
 \deftranslation{Dienstag}{Tuesday}
 \deftranslation{Mittwoch}{Wednesday}
@@ -16,7 +16,7 @@
 \deftranslation{Sammstag}{Saturday}
 \deftranslation{Sonntag}{Sunday}
 
-%% Monate
+% Monate
 \deftranslation{Januar}{January}
 \deftranslation{Februar}{Februrary}
 \deftranslation{Maerz}{March}
@@ -31,12 +31,12 @@
 \deftranslation{Dezember}{December}
 
 
-%% Universität
+% Universität
 \deftranslation{Vorlesung}{Lecture}
 \deftranslation{Uebung}{Exercise}
 \deftranslation{Tutorium}{Tutorial}
 
-%% Boxen
+% Boxen
 \deftranslation{Alle Bemerkungen}{List of Comments}
 \deftranslation{Bemerkung}{Comment}
 \deftranslation{Alle Beispiele}{List of Examples}
@@ -61,7 +61,7 @@
 \deftranslation{Ende der}{End of}
 \deftranslation{Teilnehmer}{attendees}
 
-%% General
+% General
 
 \deftranslation{Abb.}{Fig.}
 \deftranslation{Tbl.}{Tbl.}

@@ -5,53 +5,53 @@
 % Es werden verschiedene Befehle gesetzt, die dann das jeweilige geladene Bewerbungs-Design mit effekten Versehen kann.
 % Macht ein Befehl im Rahmen des Bewerbungslayouts keinen Sinn, so wird er einfach nicht gesetzt.
 
-%% Die folgenden Datensammlung wird als pgfkeys abgelegt und kann von den Designs verwendet werden.
-%% Anschließend einige Kurzbefehle, die es erlauben die einzelnen Felder automatisiert zu setzen.
+% Die folgenden Datensammlung wird als pgfkeys abgelegt und kann von den Designs verwendet werden.
+% Anschließend einige Kurzbefehle, die es erlauben die einzelnen Felder automatisiert zu setzen.
 \pgfkeys{%
-    /lillyxAPPLICATIONS/.is family, /lillyxAPPLICATIONS,
-    %% colors:
-    primary color/.store in=\lilly@applications@primary@color,
-    secondary color/.store in=\lilly@applications@secondary@color,
-    contrast color/.store in=\lilly@applications@contrast@color,
-    text color/.store in=\lilly@applications@text@color,
-    page color/.store in=\lilly@applications@page@color,
-    %% Person:
-    title/.store in=\lilly@applications@person@title,
-    first name/.store in=\lilly@applications@person@first@name,
-    last name/.store in=\lilly@applications@person@last@name,
-    image/.store in=\lilly@applications@person@image,
-    job title/.store in=\lilly@applications@person@job@title,
-    birth day/.store in=\lilly@applications@person@birth@day,
-    birth month/.store in=\lilly@applications@person@birth@month,
-    birth year/.store in=\lilly@applications@person@birth@year,
-    age/.store in=\lilly@applications@person@age,
-    % Contact data:
-    telephone/.store in=\lilly@applications@person@telephone,
-    mobile phone/.store in=\lilly@applications@person@mobile@phone,
-    email/.store in=\lilly@applications@person@email,
-    private email/.store in=\lilly@applications@person@private@email,
-    website/.store in=\lilly@applications@person@website,
-    location/.store in=\lilly@applications@person@location,
-    % Social:
-    instagram/.store in=\lilly@applications@person@instagram,
-    facebook/.store in=\lilly@applications@person@facebook,
-    twitter/.store in=\lilly@applications@person@twitter,
-    rss/.store in=\lilly@applications@person@rss,
-    linkedin/.store in=\lilly@applications@person@linkedin,
-    steam/.store in=\lilly@applications@person@steam,
-    soundcloud/.store in=\lilly@applications@person@soundcloud,
-    wordpress/.store in=\lilly@applications@person@wordpress,
-    xing/.store in=\lilly@applications@person@xing,
-    youtube/.store in=\lilly@applications@person@youtube,
-    reddit/.store in=\lilly@applications@person@reddit,
-    github/.store in=\lilly@applications@person@github,
-    gitlab/.store in=\lilly@applications@person@gitlab,
-    telegram/.store in=\lilly@applications@person@telegram,
-    dropbox/.store in=\lilly@applications@person@dropbox,
-    slack/.store in=\lilly@applications@person@slack,
-    %% General Stuff:
-    brief init/.store in=\lilly@applications@brief@init,
-    brief/.store in=\lilly@applications@brief
+/lillyxAPPLICATIONS/.is family, /lillyxAPPLICATIONS,
+% colors:
+primary color/.store in=\lilly@applications@primary@color,
+secondary color/.store in=\lilly@applications@secondary@color,
+contrast color/.store in=\lilly@applications@contrast@color,
+text color/.store in=\lilly@applications@text@color,
+page color/.store in=\lilly@applications@page@color,
+% Person:
+title/.store in=\lilly@applications@person@title,
+first name/.store in=\lilly@applications@person@first@name,
+last name/.store in=\lilly@applications@person@last@name,
+image/.store in=\lilly@applications@person@image,
+job title/.store in=\lilly@applications@person@job@title,
+birth day/.store in=\lilly@applications@person@birth@day,
+birth month/.store in=\lilly@applications@person@birth@month,
+birth year/.store in=\lilly@applications@person@birth@year,
+age/.store in=\lilly@applications@person@age,
+% Contact data:
+telephone/.store in=\lilly@applications@person@telephone,
+mobile phone/.store in=\lilly@applications@person@mobile@phone,
+email/.store in=\lilly@applications@person@email,
+private email/.store in=\lilly@applications@person@private@email,
+website/.store in=\lilly@applications@person@website,
+location/.store in=\lilly@applications@person@location,
+% Social:
+instagram/.store in=\lilly@applications@person@instagram,
+facebook/.store in=\lilly@applications@person@facebook,
+twitter/.store in=\lilly@applications@person@twitter,
+rss/.store in=\lilly@applications@person@rss,
+linkedin/.store in=\lilly@applications@person@linkedin,
+steam/.store in=\lilly@applications@person@steam,
+soundcloud/.store in=\lilly@applications@person@soundcloud,
+wordpress/.store in=\lilly@applications@person@wordpress,
+xing/.store in=\lilly@applications@person@xing,
+youtube/.store in=\lilly@applications@person@youtube,
+reddit/.store in=\lilly@applications@person@reddit,
+github/.store in=\lilly@applications@person@github,
+gitlab/.store in=\lilly@applications@person@gitlab,
+telegram/.store in=\lilly@applications@person@telegram,
+dropbox/.store in=\lilly@applications@person@dropbox,
+slack/.store in=\lilly@applications@person@slack,
+% General Stuff:
+brief init/.store in=\lilly@applications@brief@init,
+brief/.store in=\lilly@applications@brief
 }%
 
 %Helper Macro fro
@@ -86,12 +86,12 @@
 % #6 progresscol
 % #7 backcol (blank=transparent)
 \def\@@ProgressBar#1#2#3#4#5#6#7{%
-    \tikz{\begin{scope}%
-        \clip[#3] (0,0) rectangle (#1,#2);%Clip
-        \ifx!#7!\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
-        \fill[#6] (0,0) rectangle (#4*#1,#2);% Progress
-        \end{scope}\draw[#5,thick,#3] (0,0) rectangle (#1,#2);% border
-    }%
+\tikz{\begin{scope}%
+    \clip[#3] (0,0) rectangle (#1,#2);%Clip
+    \ifx!#7!\else\fill[#7,thick] (0,0) rectangle (#1,#2);\fi% back
+    \fill[#6] (0,0) rectangle (#4*#1,#2);% Progress
+    \end{scope}\draw[#5,thick,#3] (0,0) rectangle (#1,#2);% border
+}%
 }
 
 \def\@@applications@Construct@FullName{%
@@ -118,12 +118,11 @@
 \newcounter{@applications@elemc}
 % Typesets up to #1 Elements from a List, if they're Commands exist
 % they will be passed to #2, which should be a csname consuming exactly four arguments:
-%       ##1: current element counter
-%       ##2: current total counter in list
-%       ##3: existing csname
-%       ##4: tag passed with the list:
+% ##1: current element counter
+% ##2: current total counter in list
+% ##3: existing csname
+% ##4: tag passed with the list:
 % #3 The List of csnames in the shape of "csname/tag" whereas tag will be
-%
 \def\@applications@SetNElementsFromCmdListIfTheyExist#1#2#3{%
     \edef\@cmax{#1}%
     \setcounter{@applications@elemc}{0}
@@ -138,15 +137,13 @@
     \fi
 }
 
-
 % Typesets up to #1 Elements from a List,
 % they will be passed to #2, which should be a csname consuming exactly four arguments:
-%       ##1: current element counter
-%       ##2: current total counter in list
-%       ##3: text
-%       ##4: tag passed with the list:
+% ##1: current element counter
+% ##2: current total counter in list
+% ##3: text
+% ##4: tag passed with the list:
 % #3 The List of texts in the shape of "text/tag" whereas tag will be
-%
 \def\@applications@SetNElementsFromList#1#2#3{%
     \edef\@cmax{#1}%
     \ifnum\@cmax<1\else% Handle the zero or less case which should be the 'i am stupid' case :D, hopefully
@@ -181,7 +178,7 @@
 \def\@applications@SetImage#1{\applicationset{image={#1}}}
 \long\def\@applications@SetLocation#1{\applicationset{location={#1}}}
 
-%% all other Commands will be available only in the application-environment
+% all other Commands will be available only in the application-environment
 \DeclareDocumentEnvironment{application}{%
     O{} % applicationset
     m   % theme name

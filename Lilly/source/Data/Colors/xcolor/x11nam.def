@@ -1,33 +1,33 @@
-%%
-%% This is file `x11nam.def',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% xcolor.dtx  (with options: `x11names')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from x11nam.def.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file xcolor.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
-%%
+%
+% This is file `x11nam.def',
+% generated with the docstrip utility.
+%
+% The original source files were:
+%
+% xcolor.dtx  (with options: `x11names')
+%
+% IMPORTANT NOTICE:
+%
+% For the copyright see the source file.
+%
+% Any modified versions of this file must be renamed
+% with new filenames distinct from x11nam.def.
+%
+% For distribution of the original source see the terms
+% for copying and modification in the file xcolor.dtx.
+%
+% This generated file may be distributed as long as the
+% original source files, as listed above, are part of the
+% same distribution. (The sources need not necessarily be
+% in the same archive or directory.)
+%
 \ProvidesFile{x11nam.def}
  [2016/05/11 v2.12 Predefined colors according to Unix/X11 (UK)]
-%%
-%% ----------------------------------------------------------------
-%% Copyright (C) 2003-2016 by Dr. Uwe Kern <xcolor at ukern dot de>
-%% ----------------------------------------------------------------
-%%
+%
+% ----------------------------------------------------------------
+% Copyright (C) 2003-2016 by Dr. Uwe Kern <xcolor at ukern dot de>
+% ----------------------------------------------------------------
+%
 \def\colornameprefix{XC@}
 \preparecolorset{rgb}{}{}{%
 AntiqueWhite1,1,.936,.86;%
@@ -348,5 +348,5 @@ Grey0,.745,.745,.745;%
 Maroon0,.69,.19,.376;%
 Purple0,.628,.125,.94}
 \endinput
-%%
-%% End of file `x11nam.def'.
+%
+% End of file `x11nam.def'.

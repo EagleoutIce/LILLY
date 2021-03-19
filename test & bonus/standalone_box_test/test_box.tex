@@ -8,7 +8,7 @@
 \LoadLillyBoxMode{quackbox}
 \getRegisteredBoxes
 \foreach \ignore/\bn in \lillyxlist {
-    \ifthenelse{\equal{\bn}{aufgabe} \OR \equal{\bn}{uebungsblatt}}{}{ %% differenz signarue
+    \ifthenelse{\equal{\bn}{aufgabe} \OR \equal{\bn}{uebungsblatt}}{}{ % differenz signarue
     \begin{\bn}[wau]
         Hallo Welt :D
     \end{\bn}
@@ -25,7 +25,7 @@ Hallo
 
 \clearpage
 
-%% Testing the NewBox register mechanism includin the new way of transforming all the boxes with this measurement.
+% Testing the NewBox register mechanism includin the new way of transforming all the boxes with this measurement.
 
 
 \elable{mrk:XXX}
@@ -63,7 +63,7 @@ Hallo
 % \begin{waffel}[Hallo Welt]
 %     \elable{mrk:HIERHER}Hallo Welt
 % \end{waffel}
-% \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel} %% All Links will no be listening to 'waffel'
+% \TransformBox{bemerkung}{Waffelgönner42~\noexpand\thetcbcounter~}[waffel]{waffel} % All Links will no be listening to 'waffel'
 
 % % Will fail as link gets destroyed:
 % % \begin{bemerkung}[Thymiän, Böädriän:]
@@ -77,7 +77,7 @@ Hallo
 
 % \end{waffel}
 
-% %% Here we will disable the display of the Box
+% % Here we will disable the display of the Box
 % \def\lillyxBOXxwaffelxBoxEnabled{FALSE}
 
 

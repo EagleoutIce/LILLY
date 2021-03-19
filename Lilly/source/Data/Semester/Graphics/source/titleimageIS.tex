@@ -187,7 +187,7 @@
 
 
 
-%% HERE WE DEFINE THE CHARACTERS AND THE CARRIAGE LOGIC
+% HERE WE DEFINE THE CHARACTERS AND THE CARRIAGE LOGIC
 \newcounter{carriageX} \setcounter{carriageX}{0}
 \newcounter{carriageY} \setcounter{carriageY}{0}
 
@@ -229,7 +229,7 @@
         \r\BrickTwoXOne{3,13*\h,-1}{\rndColor}
     \else
         \r\BrickOneXTwo{5,2*\h,0}{\rndColor}
-        \ifnum\currand=2%    
+        \ifnum\currand=2%
             \r\BrickTwoXTwo{1,13*\h,0}{\rndColor}
         \else
             \r\BrickTwoXTwo{6,13*\h,0}{\rndColor}
@@ -371,7 +371,7 @@
         \else\r
             \ifnum\currand=2
                 \BrickFourXOne{-1,\yi*\h + 2*\h,0}{\rndColor}
-            \else 
+            \else
                 \BrickTwoXTwo{0,\yi*\h + 2*\h,0}{\rndColor}
             \fi
         \fi
@@ -425,7 +425,7 @@
     \r\BrickThreeXTwo{4,10*\h,0}{\rndColor}
     \r\BrickThreeXTwo{10,10*\h,0}{\rndColor}
 
-    % 11 
+    % 11
     \dobuffertrue
         \def\BufferC{3}
         \r\BrickSixXTwo[2/1,3/1,4/1,5/1]{-1,11*\h,0}{\rndColor}

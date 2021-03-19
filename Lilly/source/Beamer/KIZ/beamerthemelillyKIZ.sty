@@ -1,19 +1,19 @@
-%% Pakete
+% Pakete
 \RequirePackage[utf8x]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{ngerman}
-%% Schrift:
+% Schrift:
 \RequirePackage[default]{lato}
 \RequirePackage{geometry,xcolor,tikz,graphicx,textcomp,float,environ}
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
 % Helpers%
-%% Leightweight Font
+% Leightweight Font
 \newcommand\lfseries{\fontseries{l}\selectfont}
-%% Datum - Kleine Hilfe
+% Datum - Kleine Hilfe
 \providecommand\heute{\number\day.~\month@ngerman\space\number\year}
 % Befehle
 
-%% Header, Footer und Titlepage
+% Header, Footer und Titlepage
 \def\@@beamer@subheading{Zwischentitel}               \def\setsubheading#1{\gdef\@@beamer@subheading{#1}}
 
 \def\@@beamer@author{Autor}                           \def\setauthor#1{\gdef\@@beamer@author{#1}}
@@ -28,14 +28,14 @@
 \def\@@beamer@logoimage{logo_100_Pant_RGB}            \def\setlogoimage#1{\gdef\@@beamer@logoimage{#1}}
 % Farben%
 
-%% Signature Farbe
+% Signature Farbe
 \definecolor{sigCol}{RGB}{163,38,56}% uni ulm informatik signatur
 \definecolor{apGray}{RGB}{52,48,48}% test-farbe TODO remove
 
 \def\@@beamer@signature{sigCol}                                \def\setsignature#1{\gdef\@@beamer@signature{#1}}
 \def\@@beamer@signatureDarker{\@@beamer@signature!90!black}    \def\setsignatureDarker#1{\gdef\@@beamer@signatureDarker{#1}}
 
-%% Farbsätze
+% Farbsätze
 \AtBeginDocument{%
   \setbeamercolor{normal text}{fg=apGray, bg=}
   \setbeamercolor{frametitle}{fg=\@@beamer@signature}
@@ -46,7 +46,7 @@
   \setbeamercolor{section in toc}{fg=\@@beamer@signature}
   \setbeamercolor{subsection in toc}{fg=\@@beamer@signature}
 }
-% Zähler & Längen%%%%
+% Zähler & Längen%
 
 \newcounter{ctrSlide}\setcounter{ctrSlide}{0}
 \newlength\lenLogoHeight  \setlength\lenLogoHeight=1cm
@@ -55,14 +55,14 @@
 \newlength\lenItemIndent  \setlength\lenItemIndent=1.25em
 % Layouts
 
-%% Keine Navigationssymbole
+% Keine Navigationssymbole
 \setbeamertemplate{navigation symbols}{}
 \beamertemplatenavigationsymbolsempty
 
-%% NoLogo
+% NoLogo
 \AtBeginDocument{\setbeamertemplate{logo}{}}
 
-%% Layout
+% Layout
 \setbeamersize{text margin left=14mm,text margin right=10mm}
 \setbeamertemplate{title page}{}
 
@@ -73,7 +73,7 @@
 \setbeamerfont{institute}{family=\rmfamily, series=\bfseries, size=\normalsize}
 \setbeamertemplate{itemize items}{---}
 
-%% Frame design
+% Frame design
 \setbeamertemplate{frametitle}{
 \hspace*{-1.6cm}\begin{tikzpicture}
     \node at(0,0.07) {};
@@ -91,7 +91,7 @@
 
 % Aufzählungen
 
-%% Aufzählung die der Vorlage ähnelt, ohne itemize o.ä. zu modifizieren
+% Aufzählung die der Vorlage ähnelt, ohne itemize o.ä. zu modifizieren
 \newenvironment{bulletpoints}[1][] { \begin{itemize}[#1]
   \setlength{\itemsep}{1.5ex}
 
@@ -101,7 +101,7 @@
 % Slides%
 \NewEnviron{slide}[2][t]{ \refstepcounter{ctrSlide}\addcontentsline{toc}{chapter}{#2}\begin{frame}[#1]{#2} \BODY \end{frame}}
 
-% Titelfolie%%
+% Titelfolie%
 \AtBeginDocument{%
 {\begin{frame}
     \newgeometry{margin=0pt}

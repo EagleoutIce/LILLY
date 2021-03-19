@@ -2,31 +2,31 @@
 \ProvidesPackage{LILLYxTABLESxMATERIAL}[2019/09/05 Zeigt das Material-Design fuer die LILLY-Tables]
 \RequirePackage{LILLYxCORE,LILLYxCOLOR}
 
-%% https://ctan.org/pkg/makecell
-\LILLYxDemandPackage{makecell}{Rotierte Zellen, Super Zellen, Enten, ...}%% Package, Info
-    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+
+\LILLYxDemandPackage{makecell}{Rotierte Zellen, Super Zellen, Enten, ...}% Package, Info
+    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}% Error-Text
     {}{}
 
-%% https://ctan.org/pkg/tabu
-\LILLYxDemandPackage{tabu}{Coole Tabellen}%% Package, Info
-    {Das Paket tabu ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+
+\LILLYxDemandPackage{tabu}{Coole Tabellen}% Package, Info
+    {Das Paket tabu ist verpflichtend für die Arbeit mit LILLY}% Error-Text
     {}{}
 
 \def\tabu@classz{\tabu@classzORI}
 \def\tabu@ignorehfil{\tabu@nohfil}
 
-%% https://ctan.org/pkg/longtable
-\LILLYxDemandPackage{longtable}{Coole, lange Tabellen}%% Package, Info
-    {Das Paket longtable ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
-    {}%%Params
+
+\LILLYxDemandPackage{longtable}{Coole, lange Tabellen}% Package, Info
+    {Das Paket longtable ist verpflichtend für die Arbeit mit LILLY}% Error-Text
+    {}%Params
     {}
 
-%% https://www.ctan.org/pkg/xparse
+
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
-    {}{} %% keine Argumente
+    {}{}
 
-%% We will define the materialtabel 'mtable' and the long variant as 'mltable'
+% We will define the materialtabel 'mtable' and the long variant as 'mltable'
 %
 
 % As the tabu - version seems to be unstable
@@ -64,7 +64,7 @@
     \IfBooleanTF{#1}{\rowcolors{0}{#5}{#6}}
         {\rowcolors{2}{#6}{#5}}
     #3\ignorespaces
-    %% Information:
+    % Information:
     % As there is no 'rowfont' command for the tabular environment we will fake it. We will use \@@tabularArgPatch and insert an '^' before every character. NOTE: This means its not possible to use '>' or '<' etc as they will be polluted with '^' in the process
     % Therefore you will have to create a temporary column to use them - it would be theoretically possible to change that behaviour but it should be perfectly fine atm :) - hate the future moment
     % Expand the header arguments:
@@ -87,7 +87,7 @@
     \IfBooleanTF{#1}{\rowcolors{0}{#6}{#7}}
         {\rowcolors{2}{#6}{#7}}
     #3\ignorespaces
-    %% Information:
+    % Information:
     % As there is no 'rowfont' command for the tabular environment we will fake it. We will use \@@tabularArgPatch and insert an '^' before every character. NOTE: This means its not possible to use '>' or '<' etc as they will be polluted with '^' in the process
     % Therefore you will have to create a temporary column to use them - it would be theoretically possible to change that behaviour but it should be perfectly fine atm :) - hate the future moment
     % Expand the header arguments:

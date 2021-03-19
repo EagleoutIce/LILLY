@@ -2,14 +2,14 @@
 \ProvidesPackage{LILLYxORNAMENTS}[2019/09/09 Stellt Ornamente fuer LILLY zur Verfuegung]
 \RequirePackage{LILLYxCORE,LILLYxLIST}
 
-%% https://www.ctan.org/pkg/pgfornaments
+
 \LILLYxDemandPackage{pgfornament}{Fuer tolle Ornamente}
     {Dieses Paket kann nicht ohne pgfornaments verwendet werden ;D}
     {}{}
 
-%% https://ctan.org/pkg/calc
-\LILLYxDemandPackage{calc}{Zur Berechnung der richtigen Masse} %% Package, Info
-    {Es ist wichtig, dass die dimensionen übereinstimmen}%% Error-Text
+
+\LILLYxDemandPackage{calc}{Zur Berechnung der richtigen Masse} % Package, Info
+    {Es ist wichtig, dass die dimensionen übereinstimmen}% Error-Text
     {}{}
 
 \tikzset{pgfornamentstyle/.style={line width=.075pt}}%
@@ -22,7 +22,7 @@
 % weiter ist eine Bibliothek wie ORNAMENTSxTHEMES geplahnt, die es erlaubt, einfache Befehle wie \ornabreak zu verwenden, deren Stil dann über pgfkeys gesteuert werden kann
 \constructList[,]{RegisteredOrnaments}
 
-%% Creates the \orna<name> commands, which pass through the optional argument :D
+% Creates the \orna<name> commands, which pass through the optional argument :D
 % #1 The Number to map
 % #2 The (Animal) name to be used in the command signature
 % #3 Optional default arguments, which will be passed to pgfornaments every time :D
@@ -90,7 +90,7 @@
     \@@CreateOrnamentCommand{\nr}{\lorna}{}%
 }
 
-%% Here we define a simple Frame command, inspired by the simple Frame example from the ornaments documentation
+% Here we define a simple Frame command, inspired by the simple Frame example from the ornaments documentation
 \newlength{\@@framesize}
 \DeclareDocumentCommand\OrnamentsBoxTitle{%
     O{} % Optional tikz arguments
@@ -124,7 +124,7 @@
     \end{tikzpicture}
 }
 
-%% Some other Definitions :D
+% Some other Definitions :D
 \DeclareDocumentCommand\OrnamentsUpper{%
     O{} % Optional Emblem upper right
     O{ornafeather} % Optional Emblem upper left

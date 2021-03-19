@@ -1,22 +1,22 @@
 \LILLYcommand\LILLYxGRAPHICSxSHOW{%
 \begin{tikzternal}[every node/.style={font=\sffamily}]
-    %% Base Plate
+    % Base Plate
     \draw (0,0) rectangle ++ (13,3.6);
-    %% Registers:
+    % Registers:
     \foreach \r[count=\ii, evaluate=\ii as \i using {int(3-\ii)}] in {0,0.45,0.9} {
         \draw[fill=LightGray!70!white] (1.5,1.9+\r) node[left] {R\i} (1.5,1.7+\r)rectangle ++ (3.5,0.45);
     }
-    %% PC:
+    % PC:
     \draw[fill=AuroMetalSaurus!50!white] (1.5,0.45+0.225) node[left] {PC} (1.5,0.45)rectangle ++ (3.5,0.45);
-    %% IR:
+    % IR:
     \draw[fill=Amber!35!white] (6.5,2.6)rectangle ++ (3.5,0.45) (10,2.6+0.225) node[right] {IR};
-    %% CCR:
+    % CCR:
     \draw[fill=AuroMetalSaurus!50!white] (6.5,0.45)rectangle ++ (3.5,0.45) (10,0.45+0.225) node[right] {CCR};
-    %% Base-Description
+    % Base-Description
     \node[left] (duffel) at (12.75,1.8) {Prozessor};
-    %% Storage Connection
+    % Storage Connection
     \draw[latex-latex] (2,0) -- ++(0,-0.5);
-    %% Storage
+    % Storage
     \draw[fill=LightGray!30!white] (0,-0.5) rectangle ++ (4,-1.25) node[midway,centered] {Speicher};
 \end{tikzternal}
 }

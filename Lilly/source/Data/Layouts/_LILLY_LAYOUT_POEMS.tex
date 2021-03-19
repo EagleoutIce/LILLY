@@ -1,28 +1,28 @@
-%%% This Layout is meant to provide the Layout for a poems collection
+% This Layout is meant to provide the Layout for a poems collection
 % Its' currently work in Progress :D
 
 \RequirePackage{LILLYxCONTROLLERxBOX}
 % \RequirePackage{LILLYxCONTROLLERxBOX}
 
 \RequirePackage{tocloft,LILLYxPOEMS}
-%% General Packages needed for Typesetting
-%% https://www.ctan.org/pkg/scrlayer-scrpage
+% General Packages needed for Typesetting
+
 \LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
 	{Verpflichtööönd}{automark}{}
 
-%% https://www.ctan.org/pkg/framed
+
 \LILLYxDemandPackage{framed}{Erlaubt das nutzen von leftbar}
     {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}{}{}
 
-%% https://www.ctan.org/pkg/titletoc
+
 \LILLYxDemandPackage{titletoc}{Macht zusammen mit titlesec den toc}
     {Das sieht garnicht gut aus :P}{}{}
 
-%% https://www.ctan.org/pkg/titlesec
+
 \LILLYxDemandPackage{titlesec}{Macht zusammen mit titletoc den toc}
 	{Das sieht garnicht gut aus :P}{}{}
 
-%% Setting up the predefined fonts we're going to use:
+% Setting up the predefined fonts we're going to use:
 \DeclareFixedFont{\tocFont}{U}{eur}{b}{n}{10}
 \DeclareFixedFont{\chpFont}{U}{eur}{b}{n}{24}
 % \DeclareFixedFont{\chpNumber}{U}{eur}{b}{n}{165} no chapter :D
@@ -30,7 +30,7 @@
 \titlecontents{section}[2.5em]
 {} {\contentslabel{.6em}} {} {,\quad\bgroup\itshape\contentspage\egroup}[\addvspace{6pt plus 4pt minus 4pt}]
 
-%% Set General style of the Page:
+% Set General style of the Page:
 \def\LILLYxRIGHTMARK{}
 
 \def\SetStyle{%
@@ -42,16 +42,16 @@
 
 \def\rightmark{}
 
-%% Check Markers:
+% Check Markers:
 \renewcommand*\sectionmark[1]{%
     \markright{#1}\renewcommand\LILLYxRIGHTMARK{#1}
 }
 
-%% we have no header. (there is a koma-option for that, but its not that 'reliable')
+% we have no header. (there is a koma-option for that, but its not that 'reliable')
 \setheadsepline{0pt}
 
-%% Set Hooks for the Beginning of the Document:
-%% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
+% Set Hooks for the Beginning of the Document:
+% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
 \AtBeginDocument{%
 	\SetStyle
 	% Two column \listofPOEMS
@@ -64,14 +64,14 @@
 	\addtocontents{QUOTE}{\protect\end{multicols}}
 }
 
-%% General spacing stuff:
+% General spacing stuff:
 \parskip=1ex
 \parindent=\z@
 \setlength{\skip\footins}{0.75cm}
 \footnotesep=2mm
 
-%% Styling the toc:
-%% Used with babel :D
+% Styling the toc:
+% Used with babel :D
 \addto\captionsngerman{%
     \renewcommand\contentsname{\leavevmode\vspace*{-.8\baselineskip}\newline\noindent\efont{Kurzübersicht}\hfill\hbox{}\vspace*{-.3\baselineskip}}%
 }

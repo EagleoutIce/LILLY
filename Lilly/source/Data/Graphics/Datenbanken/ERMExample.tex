@@ -1,36 +1,36 @@
 \gdef\GRAPHICSxERMExample{
 \begin{tikzternal}[scale=0.7,every node/.style={transform shape}]
-    \newcommand{\ttw}{3};\newcommand{\tth}{2} %% tth heightsteps ttw widthsteps
-    %% could be for each ^^ sorry
+    \newcommand{\ttw}{3};\newcommand{\tth}{2} % tth heightsteps ttw widthsteps
+    % could be for each ^^ sorry
     \entity{(2*\ttw,4*\tth)}{Teile};
     \entity{(4*\ttw,4*\tth)}{Lieferanten}; \entity{(4*\ttw,2*\tth)}{Bestellungen};
 
     \relation{(4*\ttw,3*\tth)}{erhielt};   \relation{(3*\ttw,4*\tth)}{liefert};
 
-    %% Teile
+    % Teile
     \attribute{(1.5*\ttw,3.5*\tth)}{Farbe}; \attribute{(1.5*\ttw,3*\tth)}{KKosten};
     \attribute{(1.5*\ttw,2.5*\tth)}{Bestand}; \attribute{(1.5*\ttw,2*\tth)}{MinBest};
-    %%\draw(TeileNr)--(Teiletypen) -- (TeileName);
+    %\draw(TeileNr)--(Teiletypen) -- (TeileName);
     \draw (Farbe)++(-0.9\ttw,0) node[left]  {\scriptsize $\{0,1,2\}\ni$};
     \draw (Farbe) -| (Teile) (KKosten) -| (Teile) (Bestand) -| (Teile) (MinBest) -| (Teile);
 
-    %% liefert
+    % liefert
     \attribute{(3*\ttw, 3.25*\tth)}{Preis};
     \draw(liefert) -- (Preis);
 
-    %% Lieferanten
+    % Lieferanten
     \kattribute{(3.5*\ttw,4.75*\tth)}{LiefNr}; \attribute[LiefName]{(4.5*\ttw,4.75*\tth)}{\tiny LiefName};
     \attribute{(5*\ttw,4*\tth)}{LiefStadt}; \attribute{(5*\ttw,3.5*\tth)}{Bewert};
     \draw(LiefNr)--(Lieferanten) -- (LiefName) (LiefStadt) -- (Lieferanten) -- (Bewert);
 
     \draw (Bewert)++(0.35*\ttw,-0.1*\tth) node[right] (beweinsch) {\scriptsize $\in [-2,+2]$};
 
-    %% Bestellungen
+    % Bestellungen
     \kattribute{(5*\ttw,2.25*\tth)}{BestNr}; \attribute{(5*\ttw,1.75*\tth)}{BDatum};
     \draw(BestNr)--(Bestellungen) -- (BDatum);
 
 
-    %%kunden to Bestellpos
+    %kunden to Bestellpos
     \draw (Teile) +(1.25,0) node[above right] {\small $0..*$} -- (liefert) -- (Lieferanten) +(-1.25,0) node[above left] {\small $0..*$} %
     +(0,-0.377) node[below right] {\small $1$} -- (erhielt) -- (Bestellungen) +(0,0.377) node[above left] (bpkard)  {\small $0..*$};
 

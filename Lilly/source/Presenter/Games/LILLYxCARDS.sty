@@ -5,9 +5,9 @@
 \LILLYxDemandPackage{pgfkeys}{Damit wir angenehme kv-pairs haben}
                     {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
                     {}{}
-%% https://www.ctan.org/pkg/tikz
-\LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
-    {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
+
+\LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}% Package, Info
+    {Dieses Paket funktioniert nicht ohne tikz}% Error-Text
     {}{}
 \usetikzlibrary{patterns,shadows}
 % hier wird die Grundlegende Schnittstelle für Spielkarten erzeugt, die es ermöglicht
@@ -37,7 +37,7 @@
         draw={default}, main color={Azure}, back color={MudWhite!25}, border color={Charcoal}, second color={AppleGreen}, text style={white},%
         extra 1={}, extra 2={}, extra 3={}, extra 4={}, extra 5={}, extra 6={}, extra 7={}, extra 8={}, extra 9={}%
     }
-}%% All those values will be persisted with 'lillyxCARDSx'-Prefix :D
+}% All those values will be persisted with 'lillyxCARDSx'-Prefix :D
 
 \newdimen\@lilly@cards@default@cardwidth \@lilly@cards@default@cardwidth=6cm
 \newdimen\@lilly@cards@default@cardheight \@lilly@cards@default@cardheight=9cm
@@ -82,7 +82,7 @@
     }
 }
 
-%% CreateCardGame
+% CreateCardGame
 % erzeugt \<ID>xCreateCardClass
 % welches es dann erlaubt eine KartenKlasse zu erzeugen von der dann mittels
 % \<ID>x<ClassID>xNewCard neue Karten erzeugt werden können die dann mit \<CardID> zur Verfügung stehen.

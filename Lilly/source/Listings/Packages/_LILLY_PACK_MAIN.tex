@@ -1,16 +1,16 @@
-%% Das normale Source-Code Paket für die Latex-Mitschriebe
+% Das normale Source-Code Paket für die Latex-Mitschriebe
 \ifx\LILLYxMODE\LILLYxMODExPRINT
     \providecommand\LILLYxCODExKEYWORDSTYLE{\color{DebianRed}\bfseries}
 \else
     \providecommand\LILLYxCODExKEYWORDSTYLE{\color{DebianRed}}
 \fi
-%% Die explizite Angabe erfolgt gewollt :D
+% Die explizite Angabe erfolgt gewollt :D
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_assembler}
-%%%%% Pseudo-Sprachen
+% Pseudo-Sprachen
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_pseudo}
-%%%%% GDRA
+% GDRA
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_mips}
-%%%%% Dokumentation - needfull shell
+% Dokumentation - needfull shell
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_bash}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_latex}
 \input{\LILLYxPATHxLISTINGS/Languages/_LILLY_LANG_gepard}
@@ -58,7 +58,7 @@
   keywordstyle 6/.initial={\itshape}
 }
 
-%% Typesets values like the listings comment:D
+% Typesets values like the listings comment:D
 \def\lstcomment#1{\bgroup\lstPackget{basicstyle}\lstPackget{commentstyle}#1\egroup}
 \foreach \kw/\sig in {{keywordstyle}/one,{keywordstyle 2}/two,{keywordstyle 3}/three,{keywordstyle 4}/four,{keywordstyle 5}/five,{keywordstyle 6}/six}{
   \expandafter\xdef\csname lstkw\sig\endcsname##1{\bgroup\noexpand\lstPackget{basicstyle}\noexpand\lstPackget{\kw}##1\egroup}
@@ -72,11 +72,11 @@
   rulecolor       = \lstPackget{rulecolor},
   stringstyle     = \lstPackget{stringstyle},
   keywordstyle    = \lstPackget{keywordstyle},
-  keywordstyle    = [2]\lstPackget{keywordstyle 2}, %%KW
-  keywordstyle    = [3]\lstPackget{keywordstyle 3}, %% PARAM
-  keywordstyle    = [4]\lstPackget{keywordstyle 4}, %% FILES
-  keywordstyle    = [5]\lstPackget{keywordstyle 5}, %% SHELLPRE
-  keywordstyle    = [6]\lstPackget{keywordstyle 6}, %% SHELLPRE
+  keywordstyle    = [2]\lstPackget{keywordstyle 2}, %KW
+  keywordstyle    = [3]\lstPackget{keywordstyle 3}, % PARAM
+  keywordstyle    = [4]\lstPackget{keywordstyle 4}, % FILES
+  keywordstyle    = [5]\lstPackget{keywordstyle 5}, % SHELLPRE
+  keywordstyle    = [6]\lstPackget{keywordstyle 6}, % SHELLPRE
   otherkeywords   = {},
   alsoletter      = {@},
   keywordsprefix  = {},

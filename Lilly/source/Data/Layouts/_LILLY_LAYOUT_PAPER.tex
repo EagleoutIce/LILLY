@@ -2,7 +2,7 @@
 \RequirePackage{lastpage,relsize}
 
 \RequirePackage[german]{fancyref}
-\RequirePackage{lipsum,float} %% macht vieles einfacher
+\RequirePackage{lipsum,float} % macht vieles einfacher
 
 \LILLYxLoadPackage{subcaption}{Fuer tolle Untertitel}
     {Dieses Paket ist oft nicht vorhanden, nicht schlimm, wird dann nicht benutzt!}{}{}{}
@@ -57,7 +57,7 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
 
 \AtBeginDocument{\LILLYxLayoutxRestore}
 \RequirePackage{marginnote}
-%% fontsize
+% fontsize
 \def\XfszXsection{\normalsize}
 \def\XfszXsubsection{\footnotesize}
 \def\XfszXsubsubsection{\scriptsize}
@@ -71,7 +71,7 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
     \renewcommand\figurename{\small\textbf{Abb.}~}%
     \renewcommand\tablename{\small\textbf{Tbl.}~}%
 }
-\providecommand{\LILLYxPAPERxNUMxGET}[1]{\Roman{#1}} %% ALPH{#1}
+\providecommand{\LILLYxPAPERxNUMxGET}[1]{\Roman{#1}} % ALPH{#1}
 \ifcsname LILLYxPAPERxNUM\endcsname\else
     \gdef\LILLYxPAPERxNUM{TRUE}
 \fi

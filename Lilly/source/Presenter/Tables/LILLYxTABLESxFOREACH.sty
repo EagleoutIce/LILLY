@@ -6,11 +6,11 @@
     {Ohne gehts nicht - leider}{}{}
 % Wir konstruieren einen Befehl, der Analog zu Foreach es ermöglicht
 \newtoks\@@tabular@tokens% Hält die aktuellen Tokens
-%% Adds Tokens to the current token holder by appending it to the current Tokens:D
+% Adds Tokens to the current token holder by appending it to the current Tokens:D
 \long\def\tabadd#1{%
     \global\@@tabular@tokens\expandafter{\the\@@tabular@tokens#1}%
 }
-%% Adds expanded Tokens to the current token holder by appending it to the current Tokens:D
+% Adds expanded Tokens to the current token holder by appending it to the current Tokens:D
 \long\def\etabadd#1{%
     \protected@edef\@@@tmp{#1}\expandafter\tabadd\expandafter{\@@@tmp}%
 }
@@ -20,7 +20,7 @@
 % Prints the Tokens for the tabular
 \def\tabprint{\the\@@tabular@tokens}
 
-%% Foreach :D
+% Foreach :D
 % foreach #1 in #2 do #3
 \long\def\tabforeach#1#2#3{%
     \tabreset\def\amp{\noexpand&}%
@@ -28,7 +28,7 @@
         #3\tabadd{\\}%
     }
 }
-%% Foreach :D
+% Foreach :D
 % Manual foreach #1 in #2 do #3, wil insert no newline
 \long\def\tabforeachm#1#2#3{%
     \tabreset\def\amp{\noexpand&}%

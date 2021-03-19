@@ -9,13 +9,13 @@
 \def\bblock#1#2{\draw #1 [thin] rectangle ++(.5,.5) node [pos=.5] {\tiny{#2} }; }
 \LILLYcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
 \def\trenner{\ensuremath{\tab[.05cm]\Big|\tab[.05cm]}}
-%%Tabbing umgebung ohne Abstand - Veraltet
+%Tabbing umgebung ohne Abstand - Veraltet
 % @Deprecated
 \newenvironment{nstabbing}{
 \topsep=-\parskip \partopsep=\z@ \tabbing
 }{\endtabbing}
 
-%%Center umgebung ohne Abstand
+%Center umgebung ohne Abstand
 % @Deprecated
 \newenvironment{centered}{%
 \topsep=\z@ \parskip=\z@

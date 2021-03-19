@@ -13,10 +13,10 @@
 \RequirePackage{titlesec}
 % lines above and below, number right
 
-\LILLYcommand\leftmark{} %% fix no chapter bug
+\LILLYcommand\leftmark{} % fix no chapter bug
 \LILLYcommand\rightmark{}
 \@ifundefined{chapter}{}{
-\renewcommand\chaptermark[1]{\markboth{\rmdefault #1}{\faBookmark}} %%Chaptermark fix inject
+\renewcommand\chaptermark[1]{\markboth{\rmdefault #1}{\faBookmark}} %Chaptermark fix inject
 
 \titleformat{\chapter}[display]{\relax}
     {\vspace{-4\baselineskip}\raggedleft{\color{LightGray}\chapterNumber\thechapter} \\ }

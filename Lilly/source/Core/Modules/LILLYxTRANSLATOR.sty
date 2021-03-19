@@ -3,13 +3,13 @@
 
 \RequirePackage{LILLYxVANILLA,LILLYxPACKAGExCTRL,LILLYxCONTROLLERxCONTENT}
 
-%% https://ctan.org/pkg/translator
-\LILLYxDemandPackage{translator}{Fuer Uebersetzungen}%% Package, Info
+
+\LILLYxDemandPackage{translator}{Fuer Uebersetzungen}% Package, Info
     {Ohne gehts nedda :/}{}{}
-%% https://ctan.org/pkg/xspace
+
 \LILLYxLoadPackage{xspace}{Abstaende}
     {Naja, dann halt ein modifiziertes xspace}
-    {\global\let\xspace\space}{}{} %% Sloppy xspace draft
+    {\global\let\xspace\space}{}{} % Sloppy xspace draft
 
 \RequirePackage{kvoptions} %Erweiterte Optionen
 
@@ -20,7 +20,7 @@
 
 \ProcessKeyvalOptions* % Verarbeite Paketargumente (Optionen, wie auch immer)
 
-%% Maybe make them real dictionraies?
+% Maybe make them real dictionraies?
 \ifLILLYxTRANSLATOR@english
     \InputIfFileExists{\LILLYxABSPATHxCORE/Modules/Dictonaries/english.dict}{}{\typeout{English dict not found! Searched: \LILLYxPATHxCORE/Modules/Dictonaries/}}
 \fi

@@ -5,11 +5,11 @@
 % pgf-keys control
 \gdef\lillylstset#1{\pgfkeys{/lillyxLISTINGS/.cd, #1}}
 \pgfkeys{/lillyxLISTINGS/.is family}
-%% Here we define globals, which are basically applied to every listing - like for example the initial style
+% Here we define globals, which are basically applied to every listing - like for example the initial style
 \pgfkeys{/lillyxLISTINGS/globals/.is family,%
          /lillyxLISTINGS/globals,%
         listing style/.initial = {MAIN}}
-%% Just to provide a clearer structure the keys will be defined seperate for all different styles.
+% Just to provide a clearer structure the keys will be defined seperate for all different styles.
 \pgfkeys{/lillyxLISTINGS/default/.is family,%
     /lillyxLISTINGS/default,
       listing style/.initial = {\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style}},
@@ -40,7 +40,7 @@
       command name prefix/.initial = {s},% This one was used to create the show environment. it's kept for historcal reasons
       command name suffix/.initial = {},%
       constructor command/.initial={LillyNewLstEnvironPresent}}
-%%% Inlines
+% Inlines
 \pgfkeys{/lillyxLISTINGS/inline default/.is family,%
     /lillyxLISTINGS/inline default,
       listing style/.initial = {\pgfkeysvalueof{/lillyxLISTINGS/globals/listing style}},
@@ -66,7 +66,7 @@
       command name suffix/.initial = {},
       draw command/.initial={LILLYxLSTINLINExADVANCED}}
 % Environments used to style the languages
-%% They all HAVE to follow the signature of one optional followed by one mandatory Argument
+% They all HAVE to follow the signature of one optional followed by one mandatory Argument
 
 \newlength\lilly@lst@outer@spacing \lilly@lst@outer@spacing=3pt
 
@@ -161,10 +161,10 @@
 }
 
 \DeclareDocumentCommand{\RegisterLanguage}{%
-  m   %% Name of the Language [java,latex]
-  m   %% Name of the corresponding lst-Language [lJava, lLatex,...]
-  O{RegisteredLanguages}      %% List it should register to - check for already existing output warning
-  O{RegisteredLanguageNames}  %% List to enter the Name - check for already existing, output warning
+  m   % Name of the Language [java,latex]
+  m   % Name of the corresponding lst-Language [lJava, lLatex,...]
+  O{RegisteredLanguages}      % List it should register to - check for already existing output warning
+  O{RegisteredLanguageNames}  % List to enter the Name - check for already existing, output warning
 }{%
 % Register the Environments
 % This will allow us to construct the environments via foreach :D
@@ -177,24 +177,24 @@
       \CreateAnLstEnviron
 }
 % This procedure can be used in persistence to iterate over the pgf-keys
-%% Register 'inline default'
+% Register 'inline default'
 \foreach \inlineName in {default,blank,input,present}{%
   \debugout{Register 'inline \inlineName' for #1/#2}%
     \edef\inlineCurName{\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/command name prefix}#1\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/command name suffix}}% assign
     \debugout{\space > Command Name: [\inlineCurName]}%
     \debugout{\space > Style: [\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/listing style}]}%
     \debugout{\space > Draw Command: [\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/draw command}]}%
-    %% We will construct those with optional arguments, to give the user a chance to pass optional Arguments :D
+    % We will construct those with optional arguments, to give the user a chance to pass optional Arguments :D
     % luckily we can construct the main Argument without any expansion problems :D
     \expandafter\xdef\csname\inlineCurName\endcsname{\noexpand\protect\noexpand\@ifnextchar[{\noexpand\protect\expandafter\noexpand\csname @@hasopt@@\inlineCurName\endcsname}{\noexpand\protect\expandafter\noexpand\csname @@noopt@@\inlineCurName\endcsname}}%
-    %% Variant without optionals :D
+    % Variant without optionals :D
     \expandafter\xdef\csname @@noopt@@\inlineCurName\endcsname####1{\noexpand\protect\expandafter\noexpand\csname\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/draw command}\endcsname{style=\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/listing style},language=#2}{####1}}%
     % Variant with one optional argument, it will be matched by the default delimiter
     \expandafter\xdef\csname @@hasopt@@\inlineCurName\endcsname[####1]####2{\noexpand\protect\expandafter\noexpand\csname\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/draw command}\endcsname{style=\pgfkeysvalueof{/lillyxLISTINGS/inline \inlineName/listing style},language=#2,####1}{####2}}%
     \expandafter\robustify\csname\inlineCurName\endcsname% robustify
 }%
   %
-  %% END: Register Language to supplied Lists:
+  % END: Register Language to supplied Lists:
   \pushList{#3}{#1/#2}% Register Signature
   \pushList{#4}{#1}% Register Name (extra)
 }

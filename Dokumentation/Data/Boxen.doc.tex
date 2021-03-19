@@ -45,7 +45,7 @@ Die 3 Standard-Designs, welche mit LILLY ausgeliefert werden lauten wie folgt:\v
 \begin{center}
 \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
     \specialrule{1pt}{0pt}{0pt}
-    \bfseries DEFAULT & \bfseries ALTERNATE & \bfseries LIMERENCE \\\hline %% Leider ist es nicht möglich zu mischen ^^
+    \bfseries DEFAULT & \bfseries ALTERNATE & \bfseries LIMERENCE \\\hline % Leider ist es nicht möglich zu mischen ^^
 {\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT}\hspace{-3.25em}\begin{minipage}{0.32\linewidth}
     \begin{satz}[Nice]
         Superwichtig
@@ -136,7 +136,7 @@ Dieser Befehl besitzt (Stand \LILLYxBOXxVersion{2.0.0}) nicht für alle Boxbezei
 \iflillycompact\else
 Hier die definierten Umgebungen in ihrer freien Wildbahn und Gestalt:
 
-%%PYSCRIPT:
+%PYSCRIPT:
 %
 % b = ("definition", "definition*", "bemerkung", "beispiel", "satz", "beweis", "lemma", "zusammenfassung", "aufgabe")
 % for a in b:
@@ -311,7 +311,7 @@ Mit \LILLYxBOXxVersion{\small 1.0.0} stellt dieses Design den Urvater dar. Bis \
 Erzeugt durch den bekannten Aufruf:
 \begin{latex}
 \begin{zusammenfassung}[Wichtige Box - Jeah]
-    %% ....
+    % ....
 \end{zusammenfassung}
 \end{latex}
 Auf Basis des Pakets \T{tcolorbox} definiert LILLY das Design \T{LillyxBOXxDesignxDefault} mit folgender Implementation:
@@ -329,9 +329,9 @@ Auf Basis dessen werden nun die einzelnen Boxumgebungen generiert. Hier exemplar
 \begin{latex}[morekeywords={[5]{\\LILLYxColorxZusammenfassung,\\LILLYxBOXxZusammenfassungxLock,\\LILLYxDEFAULTxTYPESETxTITLE}}]
 \DeclareTColorBox[auto counter]%
         {LILLYxBOXxZusammenfassung}%
-        { O{} %% Title
-          O{Zusammenfassung \thetcbcounter~} %% TitlePrefix
-          O{} %% tcb addonargs
+        { O{} % Title
+          O{Zusammenfassung \thetcbcounter~} % TitlePrefix
+          O{} % tcb addonargs
         }{%
     LillyxBOXxDesignxDefault, %
     colback=\LILLYxColorxZusammenfassung!5!white, %

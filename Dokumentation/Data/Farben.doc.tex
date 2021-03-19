@@ -62,7 +62,7 @@ Hier eine Auflistung der Standartfarben in \blankcmd{LISTxColors}:
     \end{bemerkung}
 
 \presentCommand[1.0.9]{Hcolor}[\cmdlist \anothercmd[1.0.9]{HBColor}]
-Diese Farben können mithilfe von \Jake auch durch den Parameter \T{lilly-signatur-farbe} gesetzt werden, wobei \blankcmd{HBColor} immer eine etwas dunklere Variante der Farbe darstellt.\newline %% List Use Cases
+Diese Farben können mithilfe von \Jake auch durch den Parameter \T{lilly-signatur-farbe} gesetzt werden, wobei \blankcmd{HBColor} immer eine etwas dunklere Variante der Farbe darstellt.\newline % List Use Cases
 Standartmäßig ist diese Farbe Leaf (\csXshow{\Hcolor}). \medskip
 
 \presentCommand[2.0.0]{LillyxStorexCurrentColorProfile}[\cmdlist\secline\anothercmd[2.0.0]{LillyxRestorexCurrentColorProfile}]
@@ -109,7 +109,7 @@ Auch dieses Profil definiert seine Farben nur, wenn \blankcmd{LILLYxColorxInject
 \end{multicols}
 \endgroup
 Die Farbe \blankcmd{LILLYxColorxLINKSxMainColorDarker} (\csXshow{\LILLYxColorxLINKSxMainColorDarker}) wird hier mithilfe von: \newline\T{\blankcmd{LILLYxColorxLINKSxMainColor}!95!black} generiert.
-%% reset colorprofile to before
+% reset colorprofile to before
 
 \LillyxRestorexCurrentColorProfile
 
@@ -125,7 +125,7 @@ Eine weitere Repräsentation der Farben ergibt sich durch \blankcmd{LILLYxCOLORx
 %
 
 \presentCommand[2.2.0]{LillyNewPaletteColor}[\optArg{tikzstyle}\manArg{name}\manArg{color}\manArg{color-name}\secline\manArg{color-adj}]
-Erzeugt neue Farbbefehle der Struktur \blankcmd{c<name>} für die gewünschte Farbe (\T{color}), \blankcmd{c<name>name} für den Name der Farbe (\T{color-name}), \blankcmd{c<name>adj} für eine Beugung der Farbe (\T{color-adj}) und \blankcmd{c<name>tikz} für die Tikz-Befehle (\T{tikzstyle} oder, wenn leer \T{color}). Sie werden von den folgenden Fabrprofilen definiert: 
+Erzeugt neue Farbbefehle der Struktur \blankcmd{c<name>} für die gewünschte Farbe (\T{color}), \blankcmd{c<name>name} für den Name der Farbe (\T{color-name}), \blankcmd{c<name>adj} für eine Beugung der Farbe (\T{color-adj}) und \blankcmd{c<name>tikz} für die Tikz-Befehle (\T{tikzstyle} oder, wenn leer \T{color}). Sie werden von den folgenden Fabrprofilen definiert:
 
 %
 %
@@ -148,16 +148,16 @@ Es gibt eine Reihe an Farberweiterungen, die die oben definierten Druckprofile h
         \bottomrule
     \end{tabular}
 \end{center}
-Die Farbprofile können durch das Setzen von \blankcmd{LILLYxCOLORxEXTENSION} auf den jeweiligen Bezeichner oder, ab \LILLYxBOXxVersion{2.2.0} mittels \blankcmd{lillycolorprofile} geladen werden. 
+Die Farbprofile können durch das Setzen von \blankcmd{LILLYxCOLORxEXTENSION} auf den jeweiligen Bezeichner oder, ab \LILLYxBOXxVersion{2.2.0} mittels \blankcmd{lillycolorprofile} geladen werden.
 \begin{bemerkung}[PalettenFarben]
     Jede dieser Paletten (auch \T{VOID}) erzeugt mittels \blankcmd{LillyNewPaletteColor} die Farben \typesetList{A,B,C,D}, die im Dokument (auch zu Konsistenzzwecken) verwendet werden sollten!
     So erzeugt zum Beispiel \T{VOID} die Palettenfarbe \T{A} durch:
     \begin{latex*}
-\LillyNewPaletteColor{A}{Purple}{Lila}{lila}%        
+\LillyNewPaletteColor{A}{Purple}{Lila}{lila}%
     \end{latex*}
     Wir können also zum Beispiel folgendes machen:
     \begin{defaultlst}[][listing side text,righthand width=3cm]{lLatex}
-\textcolor{\cA}{Dieser Text ist in \cAname, 
+\textcolor{\cA}{Dieser Text ist in \cAname,
     also \cAadj.}
     \end{defaultlst}
 \end{bemerkung}

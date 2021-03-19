@@ -4,24 +4,24 @@
 \RequirePackage{LILLYxCORE}
 % \RequirePackage{LILLYxCORE}
 
-%% https://www.ctan.org/pkg/amsmath
-\LILLYxDemandPackage{amsmath}{Was ist Mathe ohne dieses Paket?}%% Package, Info
-    {Ohne dieses Paket kann man kein Mathe machen!}%% Error-Text
+
+\LILLYxDemandPackage{amsmath}{Was ist Mathe ohne dieses Paket?}% Package, Info
+    {Ohne dieses Paket kann man kein Mathe machen!}% Error-Text
     {}{}
 
-%% https://www.ctan.org/pkg/wasysym
-\LILLYxDemandPackage{wasysym}{Es ist eine tolle Sammlung an Schriftarten}%% Package, Info
-    {Wir wollen Symbole}%% Error-Text
+
+\LILLYxDemandPackage{wasysym}{Es ist eine tolle Sammlung an Schriftarten}% Package, Info
+    {Wir wollen Symbole}% Error-Text
     {}{}
 
-%% https://ctan.org/pkg/amsfonts
-\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}%% Package, Info
-    {Wir wollen mehr Symbole}%% Error-Text
+
+\LILLYxDemandPackage{amssymb}{Noch mehr Symbole}% Package, Info
+    {Wir wollen mehr Symbole}% Error-Text
     {}{}
 
-%% https://www.ctan.org/pkg/stmaryrd
-\LILLYxDemandPackage{stmaryrd}{The St Mary's Roadsymbolfont}%% Package, Info
-    {Diese Symbole wurden als integral erkannt}%% Error-Text
+
+\LILLYxDemandPackage{stmaryrd}{The St Mary's Roadsymbolfont}% Package, Info
+    {Diese Symbole wurden als integral erkannt}% Error-Text
     {}{}
 
 \LILLYxDemandPackage{tabularx}{Niemand würde es wagen, das glorreiche tabularx-Paket zu ersetzen!}
@@ -30,52 +30,52 @@
                      AUF JEDEN FALL GEHT DAS NICHT! AAAAAAAAARGH}
     {}{}
 
-%% https://ctan.org/pkg/pgfplots
-\LILLYxDemandPackage{pgfplots}{Wir alle wollen plots!}%% Package, Info
+
+\LILLYxDemandPackage{pgfplots}{Wir alle wollen plots!}% Package, Info
     {dann keine plots :/ dann will ich aber auch nicht!}
     {}{}
 
-%% https://www.ctan.org/pkg/xparse
+
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
     {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
-    {}{} %% keine Argumente
+    {}{}
 
 % Optionale Pakete für Mathe
 
-%% https://www.ctan.org/pkg/enumerate
+
 \LILLYxLoadPackage{enumerate}{Wir wollen ja auch schรถne Auflistungen :D}
     {Wie, kein enumerate ?! Dann versuche ich das wohl zu simulieren}
     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}}
     {}{}
 
-%% https://www.ctan.org/pkg/enumitem?lang=en
+
 \LILLYxLoadPackage{enumitem}{Wir wollen ja noch schoenere Auflistungen :D}
     {Wie, kein enumitem?! Das könnte aua machen!}
     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ENVIRONMENTS}}
     {}{\setlist{nolistsep}\newenvironment{enumeratea}[1][,]{\begin{enumerate}[label=\alph*),##1]}{\end{enumerate}}} % shortlabels
 
-%% https://www.ctan.org/pkg/varwidth
+
 \LILLYxLoadPackage{varwidth}{Damit alles ein bisschen besser aussieht}
     {Dann wohl doofe Boxen :P}
     {}{}{} % shortlabels
 
-%% https://www.ctan.org/pkg/extarrows
+
 \LILLYxLoadPackage{extarrows}{Für noch längere Pfeile :D}
     {dann keine coolen Pfeile :D}
-    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ARROWS}} %% TODO: defaults
+    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_ARROWS}} % TODO: defaults
     {}{} % shortlabels
 
-%% https://ctan.org/pkg/letltxmacro
-\LILLYxLoadPackage{letltxmacro}{Beruecksichtige involvierte let Macros}%% Package, Info
+
+\LILLYxLoadPackage{letltxmacro}{Beruecksichtige involvierte let Macros}% Package, Info
     {Dieses Paket wird benötigt für die Definition der verbesserten sqrt (Wurzel)}
     {}{}{}
 
-%% https://ctan.org/pkg/letltxmacro
-\LILLYxLoadPackage{polynom}{Tolle Polynomdivisionen}%% Package, Info
+
+\LILLYxLoadPackage{polynom}{Tolle Polynomdivisionen}% Package, Info
     {Dieses Paket wird fuer Polynomdivisionen benoetigt}
     {\polyset{style=C,div=:,vars=xyz\lambda}}{}{}
 
-\providecommand\LILLYxMathxMode{normal}                %%% Niemand mag euler-mathfont
+\providecommand\LILLYxMathxMode{normal}                % Niemand mag euler-mathfont
 \mathversion{\LILLYxMathxMode}                              % Welche Schriftart für Matheumgebung
 
 \input{\LILLYxPATHxMATHS/_LILLY_MATHS_SYMBOLS}

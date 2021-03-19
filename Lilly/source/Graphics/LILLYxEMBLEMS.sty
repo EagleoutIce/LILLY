@@ -1,21 +1,21 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxEMBLEMS}[2019/08/30 Stellt einen Emblem-Generator fuer LILLY zur Verfuegung]
-%% Dieses Paket soll relativ einfach auf Basis von LILLYxCOLOR Embleme generieren.
-%% Ein Emblem ist an sich ein Befehl, der auf einen '\tikz'-Befehel zum Setzen zurückfällt.
-%% Dem jeweiligen Emblem-Befehl kann dann ein Zeichen übergeben werden, welches dann auf das Emblem gesetzt wird.
-%% Die jeweiligen Konfigurationen werden wieder für die Nutzung persistiert und können darüber modifiziert werden
+% Dieses Paket soll relativ einfach auf Basis von LILLYxCOLOR Embleme generieren.
+% Ein Emblem ist an sich ein Befehl, der auf einen '\tikz'-Befehel zum Setzen zurückfällt.
+% Dem jeweiligen Emblem-Befehl kann dann ein Zeichen übergeben werden, welches dann auf das Emblem gesetzt wird.
+% Die jeweiligen Konfigurationen werden wieder für die Nutzung persistiert und können darüber modifiziert werden
 \RequirePackage{LILLYxCORE,LILLYxCOLOR,LILLYxGRAPHICS}
 
 \catcode`\"=12
-%% https://ctan.org/pkg/wasysym
-\LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}%% Package, Info
-                    {Sonst geht halt errorEmblem nicht xD}
-                    {}{nointegrals}{\let\wasysymLightning\lightning}%% otherwise this would collide with the amssymb :D
 
-%% https://www.ctan.org/pkg/fontawesome
+\LILLYxLoadPackage{wasysym}{Existenz des Blitzes :D}% Package, Info
+                    {Sonst geht halt errorEmblem nicht xD}
+                    {}{nointegrals}{\let\wasysymLightning\lightning}% otherwise this would collide with the amssymb :D
+
+
 \LILLYxLoadPackage{fontawesome}{Für coole Symbole - ist sie nicht da so wird versucht für alle Befehle die LILLY verwendet ein Wrapper zu finden :D}
     {Damit codeEmblem funktioniert}
-    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_FONTAWESOME}} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
+    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_FONTAWESOME}} % Wir müssen keine Befehle faken damit die Welt schön aussieht
     {}{}
 \pgfkeys{%
     /lillyxEMBLEM/.is family, /lillyxEMBLEM,
@@ -37,8 +37,8 @@
     }%
 }
 
-%% TODO: Change typeouts to a Debug-Command which will only output the stuff if in debug-Mode :D
-%% draw :: borderColor -> bgColor -> optArgs -> center -> radius
+% TODO: Change typeouts to a Debug-Command which will only output the stuff if in debug-Mode :D
+% draw :: borderColor -> bgColor -> optArgs -> center -> radius
 \def\EmblemDrawerNothing#1#2#3#4#5{}
 \def\EmblemDrawerQuadratic#1#2#3#4#5{%
     \draw[#1,fill=#2,#3] (#4)++(-#5,-#5) rectangle ++(#5*2,#5*2);% double as it is radius
@@ -52,18 +52,18 @@
 \def\EmblemDrawerOctagon#1#2#3#4#5{%
     \node[regular polygon, regular polygon sides=8, draw, #1,fill=#2,#3,inner sep=#5/1.534, transform shape] at (#4) {};%
 }
-%% :: OptArgs -> Draw -> Radius -> BackgroundColor -> ForeGroundColor -> BorderColor -> Font -> Text
+% :: OptArgs -> Draw -> Radius -> BackgroundColor -> ForeGroundColor -> BorderColor -> Font -> Text
 \def\AbstractEmblemDrawer#1#2#3#4#5#6#7#8{%
     {\tikz[baseline=-.6ex]{\csname EmblemDrawer#2\endcsname{#6}{#4}{#1}{0,0}{#3};\node at(0,0) {\textcolor{#5}{#7#8}};}}%
 }
 
 \DeclareDocumentCommand{\NewEmblem}{%
-    O{} %% List of Emblem-Keys
-    O{} %% Optional Arguments that should be passed to the Emblem code
-    m   %% Name of the Emblem-Command it will be constructed taking 2 args
+    O{} % List of Emblem-Keys
+    O{} % Optional Arguments that should be passed to the Emblem code
+    m   % Name of the Emblem-Command it will be constructed taking 2 args
 }{%
 \pgfkeys{/lillyxEMBLEM, defaults, #1}%
-%% We will now persist the Codes, the 'draw' command has to take 5 arguments :D
+% We will now persist the Codes, the 'draw' command has to take 5 arguments :D
 \expandafter\xdef\csname lillyxEMBLEMx#3xRadius\endcsname{\lillyxEmblemxradius}
 \expandafter\xdef\csname lillyxEMBLEMx#3xBgColor\endcsname{\lillyxEmblemxbgcolor}
 \expandafter\xdef\csname lillyxEMBLEMx#3xBorderColor\endcsname{\lillyxEmblemxbordercolor}
@@ -79,7 +79,7 @@
     \AbstractEmblemDrawer{#2,##1}{\@nameuse{lillyxEMBLEMx#3xDraw}}{\@nameuse{lillyxEMBLEMx#3xRadius}}{\@nameuse{lillyxEMBLEMx#3xBgColor}}{\@nameuse{lillyxEMBLEMx#3xFgColor}}{{\@nameuse{lillyxEMBLEMx#3xBorderColor}}}{\@nameuse{lillyxEMBLEMx#3xFont}}{##2}%
 }
 }
-%% Here we have some emblems to work with :D
+% Here we have some emblems to work with :D
 \NewEmblem[shape/none]{NoneEmblem}
 \NewEmblem[shape/quadratic]{QuadraticEmblem}
 \NewEmblem[shape/round]{RoundEmblem}

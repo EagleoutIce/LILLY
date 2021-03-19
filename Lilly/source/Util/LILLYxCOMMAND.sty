@@ -2,28 +2,16 @@
 \ProvidesPackage{LILLYxCOMMAND}[2019/07/14 Liefert den grundlegenden LILLYcommand]
 \RequirePackage{LILLYxPACKAGExCTRL}
 
-%% https://www.ctan.org/pkg/xparse
 \LILLYxDemandPackage{xparse}{Damit es auch toll und einfach geht mehrere optionale Argumente zu verwalten!}
-  {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}
-  {}{} %% keine Argumente
-
-%% tex '\def' in latex style - überschreibe einen Befehl oder erzeuge ihn, wenn es ihn noch nicht gibt
-\def\LILLYcommand{%
-    \@ifstar
-        \LILLYcommand@S %% star
-        \LILLYcommand@N %% nostar
-}
-
+  {Leider kann LILLY aus diversen Gründen nicht ohne xparse existieren :/}{}{}
+\def\LILLYcommand{\@ifstar\LILLYcommand@S\LILLYcommand@N}
 \def\LILLYcommand@S#1{\let#1\outer\renewcommand*#1}
 \def\LILLYcommand@N#1{\let#1\outer\renewcommand#1}
-
-%% DANKE an: https://tex.stackexchange.com/questions/51733/global-renewcommand-equivalent-of-global-def
 \makeatletter
 \def\gnewcommand{\g@star@or@long\new@command}
 \def\grenewcommand{\g@star@or@long\renew@command}
 \def\g@star@or@long#1{%
   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
-
 \makeatletter
 \let\@local@newenv\@newenv
 \long\def\@global@newenv#1#2#3#4{%
@@ -31,28 +19,23 @@
   {\let\def\gdef\expandafter\new@command\csname #1\endcsname#2{#3}}%
   \l@ngrel@x\expandafter\gdef\csname end#1\endcsname{#4}%
 }
-%% will render the environments in the globalspace for current group
+% will render the environments in the globalspace for current group
 \gdef\makerenewglobal{\global\let\@newenv\@global@newenv}
 \gdef\makerenewlocal{\global\let\@newenv\@local@newenv}
 
-\def\@xaldef#1{%
-  \debugout{Current Value: #1}
-}
+\def\@xaldef#1{\debugout{Current Value: #1}}
 \def\providedef#1#2{%
   \expandafter\@xaldef{\csname #1\endcsname}%
   \@ifundefined{#1}{\expandafter\def\csname #1\endcsname{#2}}{}%
 }
-
-%% Access Konfiguration File :D This can be determined by the Semester, but in theory every valide tex-File kann
+% Access Konfiguration File :D This can be determined by the Semester, but in theory every valide tex-File kann
 \def\RequestConfig#1{%
     \InputIfFileExists{#1}{}{%
       \typeout{Die Datei '#1' wurde angefordet, aber nicht gefunden!}%
     }
 }
-
 \gdef\makeenvglobal#1{%
   \global\expandafter\expandafter\let\csname #1\expandafter\endcsname\csname #1\endcsname
   \global\expandafter\expandafter\let\csname end#1\expandafter\endcsname\csname end#1\endcsname
 }
-
 \endinput

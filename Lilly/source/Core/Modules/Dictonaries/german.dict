@@ -1,5 +1,5 @@
-%% All Default Translations will be applied to German, so this will have no effect whatsoever :D
-%% it will hold shortcuts or other 'non-german' translations
+% All Default Translations will be applied to German, so this will have no effect whatsoever :D
+% it will hold shortcuts or other 'non-german' translations
 
 \deftranslation{Alle Saetze}{Alle S\"{a}tze}
 \deftranslation{Loesung}{L\"{o}sung}

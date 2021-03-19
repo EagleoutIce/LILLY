@@ -4,12 +4,12 @@
 
 \usepackage{lipsum}
 
-%%Move \Lilly to Lilly :D
+%Move \Lilly to Lilly :D
 
 
 % Sonderboxen
 
-%%taken and adaptet from tcolorbox
+%taken and adaptet from tcolorbox
 \newcommand{\ENVpar}[1]{\marginpar{\raggedleft\raisebox{1pt}{\T{\tiny\ttfamily env: #1}}}}
 \newcommand{\CMDpreview}[2][]{\marginpar{\raggedleft\raisebox{1pt}{\T{\tiny\ttfamily \textbackslash #2}}}\T{\textbackslash #2#1}}
 \newcommand{\CMDshow}[2][]{\T{\textbackslash #1#2}}
@@ -29,10 +29,10 @@
 \def\typesetVersion#1{\text{\ifthenelse{\equal{#1}{\LILLYxVERSION}}{\color{DebianRed}\bfseries}{}\tiny\T{v#1}\normalcolor}}
 
 \makeatletter
-%% [Version][lastchange][Tagname][Additionals]
-\DeclareDocumentCommand{\presentStuff}{ o m o } { %% \ifthenelse{\equal{#4}{}}{}:bs:\qquad#4}
+% [Version][lastchange][Tagname][Additionals]
+\DeclareDocumentCommand{\presentStuff}{ o m o } { % \ifthenelse{\equal{#4}{}}{}:bs:\qquad#4}
   \begingroup~\newline\elable{cmd:#3}%\IfValueTF{#3}{\elable{cmd:#3}}{\elable{cmd:#2}}%
-  \hspace*{-1.5cm}$\diamond$~~\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\typesetVersion{#1}}\smallskip\newline %% link to version history? => make command list at end with retrospective version tag
+  \hspace*{-1.5cm}$\diamond$~~\parbox[t]{0.9\linewidth}{#2}\hbox{}\hfill{\typesetVersion{#1}}\smallskip\newline % link to version history? => make command list at end with retrospective version tag
 \endgroup%
 }
 \makeatother
@@ -49,7 +49,7 @@
 \DeclareDocumentCommand{\anothercmd}{ s O{1.0.0} O{1.0.0} m}{\elable{cmd:#4}\addcmd[#2][#3]{#4}\IfBooleanF{#1}{\blankcmdidx{#4}}}%
 \DeclareDocumentCommand{\anotherenv}{ s O{1.0.0} O{1.0.0} m}{\elable{cmd:#4}\addenv[#2][#3]{#4}\IfBooleanF{#1}{\blankenvidx{#4}}}%
 
-%% Since,
+% Since,
 \DeclareDocumentCommand{\presentCommand}{ O{1.0.0} O{1.0.0} m O{} } {%
     \presentStuff[#1]{\blankcmdidx{#3#4}}[#3]\addcmd[#1][#2]{#3}\ignorespaces%
 }
@@ -74,7 +74,7 @@
 }
 \def\docuidxname{Kurzübersicht}
 \def\compileidx{\makeindex[title=\docuidxname,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{\docuidxname}}
-%% lilly library
+% lilly library
 % Libname
 % Version
 \def\lilib#1#2{\;\protect\textsuperscript{\protect\LILLYxNOTExLibrary{#1}\;\typesetVersion{#2}}}
@@ -146,7 +146,7 @@
 \linput{Data/Jake.doc}
 \linput{Data/Exkurse.doc}
 
-%% FOR 2.2/3.0:
+% FOR 2.2/3.0:
 % Make the persistence library
 % Changelog
 % Dokumentiere die einzelnen Module wie LILLYxMIPS aus GDRA :D

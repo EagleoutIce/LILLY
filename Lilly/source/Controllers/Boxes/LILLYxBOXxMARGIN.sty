@@ -1,9 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxBOXxMARGIN}[2019/07/13 Stellt die MarginBoxes fuer LILLY zur Verfuegung]
 \RequirePackage{LILLYxCONTROLLERxBOX,LILLYxMARGIN}
-%% Dieses Paket soll Boxen in die margin Verfrachten und es ermöglichen wahlweise mit oder ohne Footmark im Text versehen zu
-%% werden. Jede Boxumgebung kann übergeben werden, wobei das Ziel ist einfach über '\toMargin' eine Beliebige Box entsprechend
-%% Im Rand zu Positionieren
+% Dieses Paket soll Boxen in die margin Verfrachten und es ermöglichen wahlweise mit oder ohne Footmark im Text versehen zu
+% werden. Jede Boxumgebung kann übergeben werden, wobei das Ziel ist einfach über '\toMargin' eine Beliebige Box entsprechend
+% Im Rand zu Positionieren
 \gdef\lillyboxmarginset#1{\pgfkeys{/lillyxMARGIN/box/.cd, #1}}
 
 \newif\iflillyxMarginxBox
@@ -21,11 +21,11 @@
 }
 
 \DeclareDocumentCommand{\abstractMarginBox}{%
-    s                 %% * to 'toggle' the configured default for all Boxes
-    O{\baselineskip}  %% Assured Height of the Box
-    m                 %% Icon to be displayed as Marker in the text
-    m                 %% Color to be displayed
-   +m                 %% The Box or generic Content to be displayed.
+    s                 % * to 'toggle' the configured default for all Boxes
+    O{\baselineskip}  % Assured Height of the Box
+    m                 % Icon to be displayed as Marker in the text
+    m                 % Color to be displayed
+   +m                 % The Box or generic Content to be displayed.
 }{% Maybe insert a linker for hypersetup?
     \IfBooleanTF{#1}% Toggle
         {\ShowMarkerIf{\iflillyxMarginxBox}{}{#3}{#4}}%

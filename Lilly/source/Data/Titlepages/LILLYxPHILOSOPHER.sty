@@ -1,10 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxPHILOSOPHER}[2019/08/06 Stellt eine Titelseiten-Erweiterungen fuer LILLY zur Verfuegung]
-%% PHILOSOPHER ist ein Titlepageprovider der nach und nach die alten provider ersetzen soll
+% PHILOSOPHER ist ein Titlepageprovider der nach und nach die alten provider ersetzen soll
 
 \RequirePackage{LILLYxTIKZxCORE,LILLYxCONTROLLERxLINK}
-\LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}%% Package, Info
-                    {Dieses Paket ist für LILLY überlebenswichtig}%% Error-Text
+\LILLYxDemandPackage{geometry}{Paket zum Einstellen das Seitenlayouts}% Package, Info
+                    {Dieses Paket ist für LILLY überlebenswichtig}% Error-Text
                     {\LILLYxGeneralxPaperformat,total={\LILLYxLayoutxWidth, \LILLYxLayoutxHeight}, top=1.25in,centering,\LILLYxGeometryxExtras}{}
 \providecommand{\LILLY@Typ}{Unbekannt}
 \usetikzlibrary{decorations.text}
@@ -21,21 +21,21 @@
 \end{switch}%
 }
 
-%% Mathe
-\xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028} %% rgb(086,170,028)
-%% Praktische Informatik
-\xglobal\definecolor{FacultyPraktischeInformatikxColor}{RGB}{236,130,000} %% rgb(236,130,000)
-%% Theoretische Informatik
-\xglobal\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221} %% rgb(002,133,221)
-%% Technische Informatik
-\xglobal\definecolor{FacultyTechnischeInformatikxColor}{RGB}{221,0,107} %% rgb(221,0,107)
-%% Anwendungsfach Psychologie
-\xglobal\definecolor{FacultyPsychologiexColor}{RGB}{129,74,38} %% rgb(129,74,38)
+% Mathe
+\xglobal\definecolor{FacultyMathexColor}{RGB}{086,170,028} % rgb(086,170,028)
+% Praktische Informatik
+\xglobal\definecolor{FacultyPraktischeInformatikxColor}{RGB}{236,130,000} % rgb(236,130,000)
+% Theoretische Informatik
+\xglobal\definecolor{FacultyTheoretischeInformatikxColor}{RGB}{002,133,221} % rgb(002,133,221)
+% Technische Informatik
+\xglobal\definecolor{FacultyTechnischeInformatikxColor}{RGB}{221,0,107} % rgb(221,0,107)
+% Anwendungsfach Psychologie
+\xglobal\definecolor{FacultyPsychologiexColor}{RGB}{129,74,38} % rgb(129,74,38)
 \newlength\LILLYxLeftsep \LILLYxLeftsep=2cm
 
 \def\@@university@name{ulm university}
 
-%% Upper Text %% Symbol %% WHITE Color %% BACK Color %% Tikz %% Size %% FONTSIZE UPPER
+% Upper Text % Symbol % WHITE Color % BACK Color % Tikz % Size % FONTSIZE UPPER
 \DeclareDocumentCommand{\LILLYxGENxFACULTY} {%
     m        % #1 Upper Text [Mathematik,...]
     m        % #2 Symbol to be displayed [$\pi$], can be theoretically everything.
@@ -94,7 +94,7 @@
 \DeclareDocumentCommand{\LILLYxFACULTYxTECHNISCHEINFORMATIK}{ O{MudWhite} O{FacultyTechnischeInformatikxColor} O{} }{%
     \LILLYxGENxFACULTY{Technische Informatik}{\hspace*{-0.025em}\begin{tikzpicture}\filldraw[rounded corners=4pt] (0,0) rectangle ++(1,1);%
         \foreach \y in {1.117,-0.317} {%
-            \foreach \x in {0,0.18,...,0.9} {%%
+            \foreach \x in {0,0.18,...,0.9} {%
                 \filldraw[rounded corners=0.04] (\x,\y) rectangle ++(0.07,0.2); % TOP/BOT
                 \filldraw[rounded corners=0.04] (\y,\x) rectangle ++(0.2,0.07); % LEFT/RIGHT
             }%
@@ -113,7 +113,7 @@
 
 
 
-%%% Dieser Befehl malt die untere Leiste und setzt die entsprechenden Daten. Hierbei Kann, von der Höhe abgesehen, keine andere Metrik modifiziert werden.
+% Dieser Befehl malt die untere Leiste und setzt die entsprechenden Daten. Hierbei Kann, von der Höhe abgesehen, keine andere Metrik modifiziert werden.
 \DeclareDocumentCommand{\LILLYxPHILOSOPHERxBORDERBLOCK}{%
     O{\LILLYxFACULTYxCOLOR} % SignaturFarbe
     O{MudWhite}            % Textfarbe
@@ -145,11 +145,11 @@
     {\itshape\small Version vom: \\ \heute\par}}}
 }
 
-%% title toc listname
+% title toc listname
 \providecommand{\LILLYxPHILOSOPHERxBONUSxTTOCxHEADER}{Themenübersicht}
 \providecommand\LILLYZSFxLOGOHEIGHT{11em}
 
-%% This variant prints an highlighted Bonus and include \LILLY@n/a number if wanted as an extra number to seperate Versions
+% This variant prints an highlighted Bonus and include \LILLY@n/a number if wanted as an extra number to seperate Versions
 \DeclareDocumentCommand{\LILLYxTITLExBONUS}{%
     O{\LILLYxFACULTYxCOLOR} % SignaturFarbe
     O{MudWhite}             % Textfarbe
@@ -198,7 +198,7 @@
 \hbox{}\vfill%
 \LILLYxPHILOSOPHERxMETADATA
 {\par\vspace*{7.5em plus 3em minus 3em}\par}%
-\LILLYxPHILOSOPHERxBORDERBLOCK[#1][#2]{3}[#4][#5] %% height
+\LILLYxPHILOSOPHERxBORDERBLOCK[#1][#2]{3}[#4][#5] % height
 \end{titlepage}
 \clearpage
 \endgroup\restoregeometry\hypersetup{pageanchor=true}%
@@ -218,11 +218,11 @@
     \hbox{}\vfill
     \LILLYxPHILOSOPHERxMETADATA
     {\par\vspace*{7.5em}\par}%
-    \LILLYxPHILOSOPHERxBORDERBLOCK{3} %% height
+    \LILLYxPHILOSOPHERxBORDERBLOCK{3} % height
 \end{titlepage}\endgroup\restoregeometry\hypersetup{pageanchor=true}%
 }
 
-%% Pfad zu den Einstellungen %% Pfad zur Grafik
+% Pfad zu den Einstellungen % Pfad zur Grafik
 \DeclareDocumentCommand{\LILLYxTITLE}{ O{\LILLYxPATHxDATA/Semester/Graphics/titleimage\LILLYxVorlesung.pdf} } {%
     \IfFileExists{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}{\LILLYxTITLExRAW[#1]}{}%
 }

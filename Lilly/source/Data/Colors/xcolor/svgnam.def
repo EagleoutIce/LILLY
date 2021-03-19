@@ -1,33 +1,33 @@
-%%
-%% This is file `svgnam.def',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% xcolor.dtx  (with options: `svgnames')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from svgnam.def.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file xcolor.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
-%%
+%
+% This is file `svgnam.def',
+% generated with the docstrip utility.
+%
+% The original source files were:
+%
+% xcolor.dtx  (with options: `svgnames')
+%
+% IMPORTANT NOTICE:
+%
+% For the copyright see the source file.
+%
+% Any modified versions of this file must be renamed
+% with new filenames distinct from svgnam.def.
+%
+% For distribution of the original source see the terms
+% for copying and modification in the file xcolor.dtx.
+%
+% This generated file may be distributed as long as the
+% original source files, as listed above, are part of the
+% same distribution. (The sources need not necessarily be
+% in the same archive or directory.)
+%
 \ProvidesFile{svgnam.def}
  [2016/05/11 v2.12 Predefined colors according to SVG 1.1 (UK)]
-%%
-%% ----------------------------------------------------------------
-%% Copyright (C) 2003-2016 by Dr. Uwe Kern <xcolor at ukern dot de>
-%% ----------------------------------------------------------------
-%%
+%
+% ----------------------------------------------------------------
+% Copyright (C) 2003-2016 by Dr. Uwe Kern <xcolor at ukern dot de>
+% ----------------------------------------------------------------
+%
 \def\colornameprefix{XC@}
 \preparecolorset{rgb}{}{}{%
 AliceBlue,.94,.972,1;%
@@ -182,5 +182,5 @@ WhiteSmoke,.96,.96,.96;%
 Yellow,1,1,0;%
 YellowGreen,.604,.804,.196}
 \endinput
-%%
-%% End of file `svgnam.def'.
+%
+% End of file `svgnam.def'.

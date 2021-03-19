@@ -1,15 +1,15 @@
 
-%%% Currently this package won't work on some texlive installations! it will be suspended for now
+% Currently this package won't work on some texlive installations! it will be suspended for now
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxLISTINGSxLINEBGRD}[2019/08/20 Stellt eine Erweiterungen fuer LILLYs Listings zur Verfuegung]
 \RequirePackage{LILLYxLISTINGS}
-%% This is not optional for linebgrd
-%% https://www.ctan.org/pkg/listings
+% This is not optional for linebgrd
+
 \LILLYxDemandPackage{listings}{Tolle Codes}
     {Also mit irgendwas muss ich arbeiten.}{}{}
 
-%% Information, dieses Paket arbeitet auf Basis von: https://ctan.org/pkg/lstaddons versucht allerdings die Probleme, die das enthaltene lstlinebgrd liefert, portabel zu gestalten.
+% Information, dieses Paket arbeitet auf Basis von: https://ctan.org/pkg/lstaddons versucht allerdings die Probleme, die das enthaltene lstlinebgrd liefert, portabel zu gestalten.
 % Original Author: Martin Scharrer <martin@scharrer-online.de>
 \lst@Key{numbers}{none}{%
 \def\lst@PlaceNumber{\lst@linebgrd}%
@@ -30,7 +30,7 @@
 \lst@Key{linebackgrounddepth}{\dp\strutbox}{\def\lst@linebgrddepth{#1}}
 \lst@Key{linebackgroundcmd}{\color@block}{\def\lst@linebgrdcmd{#1}}
 
-%% work in Progress: detect original Backgroundcolor and use it
+% work in Progress: detect original Backgroundcolor and use it
 \def\lilly@lst@backcol{MudWhite}
 
 % Line Background macro => modified
@@ -38,7 +38,7 @@
 \ifx\lst@linebgrdcolor\empty\else
 \rlap{%
     \lst@basicstyle
-    \color{\lilly@lst@backcol}%% changed
+    \color{\lilly@lst@backcol}% changed
     \lst@linebgrdcolor{%
     \kern-\dimexpr\lst@linebgrdsep\relax%
     \lst@linebgrdcmd{\lst@linebgrdwidth}{\lst@linebgrdheight}{\lst@linebgrddepth}%
@@ -47,7 +47,7 @@
 \fi
 }
 
-%% Beautifying Shortcuts:
+% Beautifying Shortcuts:
 \def\HLError#1{% sloppy
   \ifnum\value{lstnumber}=#1\color{DebianRed!25}\else\color{\lilly@lst@backcol}\fi
 }

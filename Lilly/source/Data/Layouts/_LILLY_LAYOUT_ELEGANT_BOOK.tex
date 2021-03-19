@@ -1,34 +1,34 @@
-%%% This Layout is meant to provide the Layout for an Beautiful Book. It will conform with the regular Lilly-Base
+% This Layout is meant to provide the Layout for an Beautiful Book. It will conform with the regular Lilly-Base
 \RequirePackage{LILLYxCONTROLLERxBOX}
-%% https://www.ctan.org/pkg/scrlayer-scrpage
+
 \LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
 	{Verpflichtoeoeoend}{automark}{}
 
-%% https://www.ctan.org/pkg/framed
+
 \LILLYxDemandPackage{framed}{Erlaubt das nutzen von leftbar}
   {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}{}{}
 
-%% https://www.ctan.org/pkg/titletoc
+
 \LILLYxDemandPackage{titletoc}{Macht zusammen mit titlesec den toc}
   {Das sieht garnicht gut aus :P}{}{}
 
-%% https://www.ctan.org/pkg/titlesec
+
 \LILLYxDemandPackage{titlesec}{Macht zusammen mit titletoc den toc}
 	{Das sieht garnicht gut aus :P}{}{}
 
-%%% Set Fonts for the document :D
+% Set Fonts for the document :D
 % https://tug.org/FontCatalogue/lato/
 \LILLYxLoadPackage{lato}{Scriftart für das (pdfLaTeX) Dokument}
 	{Naja, ohne ging schon, aber sieht halt doof aus.}
   {\def\lfseries{\normalfont}}
   {default}{\def\lfseries{\fontseries{l}\selectfont}}
 
-%% Setting up the predefined fonts we're going to use:
+% Setting up the predefined fonts we're going to use:
 \DeclareFixedFont\tocFont{U}{eur}{b}{n}{10}
 \DeclareFixedFont\chpFont{U}{eur}{b}{n}{24}
 \DeclareFixedFont\chpNumber{U}{eur}{b}{n}{165}
 
-%% Set General style of the Page:
+% Set General style of the Page:
 \def\LILLYxRIGHTMARK{Inhalts\"{u}bersicht}
 
 \def\SetStyle{%
@@ -40,20 +40,20 @@
 	\refoot{\lfseries{\leftmark}}%
 }
 
-\def\leftmark{} %% fix no chapter bug
+\def\leftmark{} % fix no chapter bug
 \def\rightmark{}
 
-%% Check Markers:
+% Check Markers:
 \renewcommand{\sectionmark}[1]{%
     \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
 }
-\renewcommand{\chaptermark}[1]{\markboth{\rmdefault #1}{}} %%Chaptermark fix inject
+\renewcommand{\chaptermark}[1]{\markboth{\rmdefault #1}{}} %Chaptermark fix inject
 
-%% we have no header. (there is a koma-option for that, but its not that 'reliable')
+% we have no header. (there is a koma-option for that, but its not that 'reliable')
 \setheadsepline{0pt}
 
-%% Set Hooks for the Beginning of the Document:
-%% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
+% Set Hooks for the Beginning of the Document:
+% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
 \AtBeginDocument{%
 \newgeometry{a4paper, ignoreheadfoot,%
         left=3.4cm, right=2.6cm,%
@@ -63,13 +63,13 @@
   \SetStyle
 }
 
-%% General spacing stuff:
+% General spacing stuff:
 \parskip=1ex
 \parindent=\z@
 \setlength{\skip\footins}{.75cm}
 \footnotesep=2mm
 
-%% Set lengths and Definitions to configure the leftbar environment:
+% Set lengths and Definitions to configure the leftbar environment:
 \newlength{\lbarsep}
 \setlength{\lbarsep}{3em}
 \def\lbarcol{AuroMetalSaurus}
@@ -86,8 +86,8 @@
 	}\vskip2pt%
 }{\endMakeFramed}
 
-%% Styling the toc:
-%% Used with babel :D
+% Styling the toc:
+% Used with babel :D
 \addto\captionsngerman{%
   \renewcommand\contentsname{\hbox{}\hfill\Huge{\lfseries Inhalts\"{u}bersicht\hbox{}\hfill\relax}}%
 }
@@ -130,7 +130,7 @@
   {\sffamily\contentslabel{3em}}{}{}
   {\hspace{.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
 
-%% Set The Mini-TOCs
+% Set The Mini-TOCs
 \newcommand\printMiniToc[1][]{\vspace{-3em}
   \hfill\parbox[t]{.25\textwidth}{
 		{\mbox{}\\
@@ -168,8 +168,8 @@
 
 
 
-%% Set the formats of the chapters, sections and titles :D
-%% the#amazing#chapterfix
+% Set the formats of the chapters, sections and titles :D
+% the#amazing#chapterfix
 \let\defChapter\chapter
 \renewcommand*{\chapter}{
     \@ifstar{\starchapter}{\@dblarg\nostarchapter}
@@ -182,7 +182,7 @@
 
 \makeatletter
 \renewcommand\sectionlinesformat[4]{%
-	\phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
+	\phantomsection%\textcolor{\LILLYxColorxTITLExCOLOR}{
 	{{\smaller #3}\, #4}%
 }
 \renewcommand\@seccntformat[1]{\textcolor{\Hcolor}{\csname the#1\endcsname}}
@@ -196,13 +196,13 @@
   \gdef\PRTcurAuth{#2}
 }
 
-%% Define and set the Title:
+% Define and set the Title:
 \makeatletter
 \titleformat{\part}[display]
   {\vspace*{3em}\hfill\parbox{.75\linewidth}{\lfseries\raggedleft \PRTcurText}\hspace*{.5em}\medskip\\\hbox{}\hfill {\mdseries \PRTcurAuth}\\\Huge\scshape\vfill}
   {\Large\color{\Hcolor}\partname~\thepart:}
   {2pt}
-  {\SetPartFlavour{}{}}[\vspace*{4.5em}] %% Reset :D
+  {\SetPartFlavour{}{}}[\vspace*{4.5em}] % Reset :D
 
 
 \titleformat{\chapter}[display]

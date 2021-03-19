@@ -1,7 +1,7 @@
-%%%%%%%%%%%%%%%%%%%%%%%%MIPS COMMANDLINKERCHEATS (DIRTY)
-\newcommand{\mipsGEN}[2][]{                   %%design text: #1,  ref: cmd:#2 (can be ommited - same as #1)
-    \ifthenelse{\equal{#1}{}}{\text{\cmd[#2]{cmd:#2}}}{\text{\cmd[#1]{cmd:#2}}}% 
-} 
+%MIPS COMMANDLINKERCHEATS (DIRTY)
+\newcommand{\mipsGEN}[2][]{                   %design text: #1,  ref: cmd:#2 (can be ommited - same as #1)
+    \ifthenelse{\equal{#1}{}}{\text{\cmd[#2]{cmd:#2}}}{\text{\cmd[#1]{cmd:#2}}}%
+}
 \def\mips#1{\mipsGEN{#1}}
 
 \newcommand{\mipsADD}{\mipsGEN{add}}
@@ -16,12 +16,12 @@
 \newcommand{\mipsANDI}{\mipsGEN{andi}}
 
 \newcommand{\mipsOR}{\mipsGEN{or}}
-\newcommand{\mipsORI}{\mipsGEN{ori}} %%and the blind forest ._.
+\newcommand{\mipsORI}{\mipsGEN{ori}} %and the blind forest ._.
 \newcommand{\mipsNOR}{\mipsGEN{nor}}
 \newcommand{\mipsNOT}{\mipsGEN{not}}
 
 \newcommand{\mipsXOR}{\mipsGEN{xor}}
-\newcommand{\mipsXORI}{\mipsGEN{xori}} %%wäre ein viel besserer Titel für den Nachfolger
+\newcommand{\mipsXORI}{\mipsGEN{xori}} %wäre ein viel besserer Titel für den Nachfolger
 
 \newcommand{\mipsBEQ}{\mipsGEN{beq}}
 \newcommand{\mipsBNE}{\mipsGEN{bne}}
@@ -40,7 +40,7 @@
 \newcommand{\mipsJAL}{\mipsGEN{jal}}
 \newcommand{\mipsJR}{\mipsGEN{jr}}
 
-%%schade loadbyte.... du kommst bestimmt noch, ich mag dich
+%schade loadbyte.... du kommst bestimmt noch, ich mag dich
 \newcommand{\mipsLW}{\mipsGEN{lw}}
 \newcommand{\mipsLB}{\mipsGEN{lb}}
 \newcommand{\mipsLI}{\mipsGEN{li}}
@@ -52,7 +52,7 @@
 \newcommand{\mipsSLT}{\mipsGEN{slt}}
 
 
-%%die kommen sicher noch:
+%die kommen sicher noch:
 \newcommand{\mipsMFHI}{\mipsGEN{mfhi}}
 \newcommand{\mipsMFLO}{\mipsGEN{mflo}}
 \newcommand{\mipsMTHI}{\mipsGEN{mthi}}
@@ -61,7 +61,7 @@
 \newcommand{\mipsLO}{\T{\textbf{\hypersetup{linkcolor=black}{\hyperref[cmd:HILO]{\$LO}}}}}
 
 
-%Entspannend - Will ich auch 
+%Entspannend - Will ich auch
 \newcommand{\mipsNOP}{\mipsGEN{nop}}
 
 \newcommand{\mipsTEXT}{\textcolor{dgold}{\T{.text}}}

@@ -238,16 +238,16 @@ public class JakeCompile {
         // Todo identify documenttype first => nmaps!
         PrintWriter out = new PrintWriter(name);
 
-        out.write("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
-        out.write("%% Von Jake erstelltes Lilly LaTeX-File                        %%\n");
-        out.write("%% Version: " + Definitions.JAKE_VERSION + "  Author: Florian Sihler                    %%\n");
-        out.write("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n");
+        out.write("%\n");
+        out.write("% Von Jake erstelltes Lilly LaTeX-File                        %\n");
+        out.write("% Version: " + Definitions.JAKE_VERSION + "  Author: Florian Sihler                    %\n");
+        out.write("%\n\n");
 
         switch (CoreSettings.requestValue("S_LILLY_DOCTYPE")) {
         default: // annahme: Mitschrieb
         case "Mitschrieb":
             // CURRENT POINT OF TODO
-            out.write("%% Dokumenttyp: Mitschrieb\n");
+            out.write("% Dokumenttyp: Mitschrieb\n");
             out.write("\\documentclass[Mitschrieb,Jake]{Lilly}\n\n");
             out.write("\\begin{document}\n");
             out.write("Hallo Welt\\newline\n");

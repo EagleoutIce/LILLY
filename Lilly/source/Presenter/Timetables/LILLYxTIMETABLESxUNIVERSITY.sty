@@ -2,67 +2,61 @@
 \ProvidesPackage{LILLYxTIMETABLESxUNIVERSITY}[2019/09/09 Stellt eine Universitaet-Erweiterung fuer die Stundenplaene zur Verfuegung]
 
 \RequirePackage{LILLYxTIMETABLES}
-% Liefert neue Befehle, die es erleichtern Stundenpläne für einen Studiengang zu erstellen.
 
 \newif\ifttuni@hasvl
 \newif\ifttuni@hasub
 \newif\ifttuni@hastu
 \pgfkeys{%
     /lillyxTIMETABLES/Lectures/.is family, /lillyxTIMETABLES/Lectures,%
-    title/.store in=\lillyxTimetablesLecturesxtitle,                                          % title (Lineare Algebra) !
-    short title/.store in=\lillyxTimetablesLecturesxshortitle,                               % short title
-    docent/.store in=\lillyxTimetablesLecturesxdocent,                                        % docent !
-    exercise instructor/.store in=\lillyxTimetablesLecturesxexerciseinstructor,               % exercise instructor
-    tutor/.store in=\lillyxTimetablesLecturesxtutor,                                          % tutor
-    % Lecture/Vorlesung:
-    vl length/.is choice,                                                                     % length
-    vl length/30 minutes/.code={\def\lillyxTimetablesLecturesxvlduration{1.25*0.25}},         % 30 minutes
-    vl length/1 hour/.code={\def\lillyxTimetablesLecturesxvlduration{1.25*0.5}},              % 60 minutes
-    vl length/1 hour 30 minutes/.code={\def\lillyxTimetablesLecturesxvlduration{1.25*0.75}},  % 90 minutes
-    vl length/2 hours/.code={\def\lillyxTimetablesLecturesxvlduration{1.25*1}},               % 120 minutes
-    vl bgcolor/.store in=\lillyxTimetablesLecturesxvlbgcolor,                                 % vl bgcolor
-    vl where/.store in=\lillyxTimetablesLecturesxvlwhere,                                     % vl where
-    vl title/.store in=\lillyxTimetablesLecturesxvltitle,                                     % vl title
-    vl signature/.store in=\lillyxTimetablesLecturesxvlsignature,                             % vl signature
-    vl enabled/.is if =ttuni@hasvl,                                                           % vl enabled
-    % Exercise/Übung
-    ub length/.is choice,                                                                     % length
-    ub length/30 minutes/.code={\def\lillyxTimetablesLecturesxubduration{1.25*0.25}},         % 30 minutes
-    ub length/1 hour/.code={\def\lillyxTimetablesLecturesxubduration{1.25*0.5}},              % 60 minutes
-    ub length/1 hour 30 minutes/.code={\def\lillyxTimetablesLecturesxubduration{1.25*0.75}},  % 90 minutes
-    ub length/2 hours/.code={\def\lillyxTimetablesLecturesxubduration{1.25*1}},               % 120 minutes
-    ub bgcolor/.store in=\lillyxTimetablesLecturesxubbgcolor,                                 % ub bgcolor
-    ub where/.store in=\lillyxTimetablesLecturesxubwhere,                                     % ub where
-    ub title/.store in=\lillyxTimetablesLecturesxubtitle,                                     % ub title
-    ub signature/.store in=\lillyxTimetablesLecturesxubsignature,                             % ub signature
-    ub enabled/.is if =ttuni@hasub,                                                           % ub enabled
-    % 'seminar conducted by a postgrade' :P/Tutorium
-    tu length/.is choice,                                                                     % length
-    tu length/30 minutes/.code={\def\lillyxTimetablesLecturesxtuduration{1.25*0.25}},         % 30 minutes
-    tu length/1 hour/.code={\def\lillyxTimetablesLecturesxtuduration{1.25*0.5}},              % 60 minutes
-    tu length/1 hour 30 minutes/.code={\def\lillyxTimetablesLecturesxtuduration{1.25*0.75}},  % 90 minutes
-    tu length/2 hours/.code={\def\lillyxTimetablesLecturesxtuduration{1.25*1}},               % 120 minutes
-    tu bgcolor/.store in=\lillyxTimetablesLecturesxtubgcolor,                                 % tu bgcolor
-    tu where/.store in=\lillyxTimetablesLecturesxtuwhere,                                     % tu where
-    tu title/.store in=\lillyxTimetablesLecturesxtutitle,                                     % tu title
-    tu signature/.store in=\lillyxTimetablesLecturesxtusignature,                             % tu signature
-    tu enabled/.is if =ttuni@hastu,                                                           % tu enabled
-    %
+    title/.store in=\lillyxTimetablesLecturesxtitle,
+    short title/.store in=\lillyxTimetablesLecturesxshortitle,
+    docent/.store in=\lillyxTimetablesLecturesxdocent,
+    exercise instructor/.store in=\lillyxTimetablesLecturesxexerciseinstructor,
+    tutor/.store in=\lillyxTimetablesLecturesxtutor,
+    vl length/.is choice,
+    vl length/30 minutes/.code={\def\lillyxTimetablesLecturesxvlduration{1.25*.25}},
+    vl length/1 hour/.code={\def\lillyxTimetablesLecturesxvlduration{1.25*.5}},
+    vl length/1 hour 30 minutes/.code={\def\lillyxTimetablesLecturesxvlduration{1.25*.75}},
+    vl length/2 hours/.code={\def\lillyxTimetablesLecturesxvlduration{1.25*1}},
+    vl bgcolor/.store in=\lillyxTimetablesLecturesxvlbgcolor,
+    vl where/.store in=\lillyxTimetablesLecturesxvlwhere,
+    vl title/.store in=\lillyxTimetablesLecturesxvltitle,
+    vl signature/.store in=\lillyxTimetablesLecturesxvlsignature,
+    vl enabled/.is if =ttuni@hasvl,
+    ub length/.is choice,
+    ub length/30 minutes/.code={\def\lillyxTimetablesLecturesxubduration{1.25*.25}},
+    ub length/1 hour/.code={\def\lillyxTimetablesLecturesxubduration{1.25*.5}},
+    ub length/1 hour 30 minutes/.code={\def\lillyxTimetablesLecturesxubduration{1.25*.75}},
+    ub length/2 hours/.code={\def\lillyxTimetablesLecturesxubduration{1.25*1}},
+    ub bgcolor/.store in=\lillyxTimetablesLecturesxubbgcolor,
+    ub where/.store in=\lillyxTimetablesLecturesxubwhere,
+    ub title/.store in=\lillyxTimetablesLecturesxubtitle,
+    ub signature/.store in=\lillyxTimetablesLecturesxubsignature,
+    ub enabled/.is if =ttuni@hasub,
+    tu length/.is choice,
+    tu length/30 minutes/.code={\def\lillyxTimetablesLecturesxtuduration{1.25*.25}},
+    tu length/1 hour/.code={\def\lillyxTimetablesLecturesxtuduration{1.25*.5}},
+    tu length/1 hour 30 minutes/.code={\def\lillyxTimetablesLecturesxtuduration{1.25*.75}},
+    tu length/2 hours/.code={\def\lillyxTimetablesLecturesxtuduration{1.25*1}},
+    tu bgcolor/.store in=\lillyxTimetablesLecturesxtubgcolor,
+    tu where/.store in=\lillyxTimetablesLecturesxtuwhere,
+    tu title/.store in=\lillyxTimetablesLecturesxtutitle,
+    tu signature/.store in=\lillyxTimetablesLecturesxtusignature,
+    tu enabled/.is if =ttuni@hastu,
     defaults/.style={%
-        % We won't set title and docent here, as they have to be entered for the Command
         exercise instructor={None}, tutor={None}, short title={},%
-        vl length=2 hours, vl bgcolor=AppleGreen!25,       vl where={}, vl title={Vorlesung},      % Vorlesung
+        vl length=2 hours, vl bgcolor=AppleGreen!25, vl where={}, vl title={Vorlesung},
         vl signature=vl, vl enabled = true,
-        ub length=2 hours, ub bgcolor=ChromeYellow!25,     ub where={}, ub title={\"{U}bung},      % Übung
+        ub length=2 hours, ub bgcolor=ChromeYellow!25, ub where={}, ub title={\"{U}bung},
         ub signature=ub, ub enabled = true,
-        tu length=1 hour,  tu bgcolor=DarkMidnightBlue!25, tu where={}, tu title={Tutorium},       % Tutorium
+        tu length=1 hour,  tu bgcolor=DarkMidnightBlue!25, tu where={}, tu title={Tutorium},
         tu signature=tu, tu enabled = true
     }
 }
 
 % Will construct a new Lecture event
 % #1 Id of the Lecture Series
-% #2 The event length (decoded into the height using: lillyxTimetablesLecturesx<signature>duration)
+% #2 The event length (decoded into the height)
 % #3 The bgcolor for the event
 % #4 who moderates the event?
 % #5 where does the event take place (default)
@@ -73,7 +67,6 @@
 \def\@@CreateNewLectureEvent#1#2#3#4#5#6#7#8#9{%
     % The main command:
     \expandafter\xdef\csname#7#1\endcsname{\noexpand\protect\noexpand\@ifnextchar[{\expandafter\noexpand\csname @@hasopt@@#7#1\endcsname}{\expandafter\noexpand\csname @@noopt@@#7#1\endcsname}}
-
     % The command with the optional argument:
     \expandafter\gdef\csname @@hasopt@@#7#1\endcsname[##1]##2##3##4{%
         \RawTimeTableEvent[%
@@ -94,10 +87,10 @@
     }
 }
 
-%% Erstelle eine neue vorlesungsreihe
-%% Dies erstellt Befehle für Übungen, Vorlesungen und Tutorien
-%% Sie folgen dem Muster:
-%% \(ub/vl/tu)<id>[where?][opt TimeTable Args]{table}{when}{hour}
+% Erstelle eine neue vorlesungsreihe
+% Dies erstellt Befehle für Übungen, Vorlesungen und Tutorien
+% Sie folgen dem Muster:
+% \(ub/vl/tu)<id>[where?][opt TimeTable Args]{table}{when}{hour}
 \DeclareDocumentCommand{\NewLectureSeries}{%
     O{} % Other arguments for the tt/uni keys
     m   % Id of the Lecture Series
@@ -108,45 +101,44 @@
     \pgfkeys{/lillyxTIMETABLES/Lectures, defaults, title={#3}, docent={#4}, #1}%
     % Konstruiere die Vorlesung:
     \ifttuni@hasvl
-    \protected@edef\@@tmp@c{\noexpand\@@CreateNewLectureEvent{#2}% ID => #1
-        {\lillyxTimetablesLecturesxvlduration}% Decoded Duration => #2
-        {\lillyxTimetablesLecturesxvlbgcolor}% Background color => #3
-        {\lillyxTimetablesLecturesxdocent}% Moderator => #4
-        {\lillyxTimetablesLecturesxvlwhere}% Where does it take place= => #5
-        {\lillyxTimetablesLecturesxtitle}% Event title => #6
-        {\lillyxTimetablesLecturesxvlsignature}% Signature of the Event => #7
-        {\lillyxTimetablesLecturesxvltitle}% Name of the Event => #8
-        {\lillyxTimetablesLecturesxshortitle}% Short title => #9
-    }\@@tmp@c%persist
+\protected@edef\@@tmp@c{\noexpand\@@CreateNewLectureEvent{#2}% ID => #1
+    {\lillyxTimetablesLecturesxvlduration}% Decoded Duration => #2
+    {\lillyxTimetablesLecturesxvlbgcolor}% Background color => #3
+    {\lillyxTimetablesLecturesxdocent}% Moderator => #4
+    {\lillyxTimetablesLecturesxvlwhere}% Where does it take place= => #5
+    {\lillyxTimetablesLecturesxtitle}% Event title => #6
+    {\lillyxTimetablesLecturesxvlsignature}% Signature of the Event => #7
+    {\lillyxTimetablesLecturesxvltitle}% Name of the Event => #8
+    {\lillyxTimetablesLecturesxshortitle}% Short title => #9
+}\@@tmp@c%persist
     \fi
     %
     % Konstruiere die Übung:
     \ifttuni@hasub
-    \protected@edef\@@tmp@c{\noexpand\@@CreateNewLectureEvent{#2}% ID => #1
-        {\lillyxTimetablesLecturesxubduration}% Decoded Duration => #2
-        {\lillyxTimetablesLecturesxubbgcolor}% Background color => #3
-        {\lillyxTimetablesLecturesxexerciseinstructor}% Moderator => #4
-        {\lillyxTimetablesLecturesxubwhere}% Where does it take place= => #5
-        {\lillyxTimetablesLecturesxtitle}% Event title => #6
-        {\lillyxTimetablesLecturesxubsignature}% Signature of the Event => #7
-        {\lillyxTimetablesLecturesxubtitle}% Name of the Event => #8
-        {\lillyxTimetablesLecturesxshortitle}% Short title => #9
-    }\@@tmp@c%persist
+\protected@edef\@@tmp@c{\noexpand\@@CreateNewLectureEvent{#2}% ID => #1
+    {\lillyxTimetablesLecturesxubduration}% Decoded Duration => #2
+    {\lillyxTimetablesLecturesxubbgcolor}% Background color => #3
+    {\lillyxTimetablesLecturesxexerciseinstructor}% Moderator => #4
+    {\lillyxTimetablesLecturesxubwhere}% Where does it take place= => #5
+    {\lillyxTimetablesLecturesxtitle}% Event title => #6
+    {\lillyxTimetablesLecturesxubsignature}% Signature of the Event => #7
+    {\lillyxTimetablesLecturesxubtitle}% Name of the Event => #8
+    {\lillyxTimetablesLecturesxshortitle}% Short title => #9
+}\@@tmp@c%persist
     \fi
     %
     % Konstruiere das Tutorium:
     \ifttuni@hastu
-    \protected@edef\@@tmp@c{\noexpand\@@CreateNewLectureEvent{#2}% ID => #1
-        {\lillyxTimetablesLecturesxtuduration}% Decoded Duration => #2
-        {\lillyxTimetablesLecturesxtubgcolor}% Background color => #3
-        {\lillyxTimetablesLecturesxtutor}% Moderator => #4
-        {\lillyxTimetablesLecturesxtuwhere}% Where does it take place= => #5
-        {\lillyxTimetablesLecturesxtitle}% Event title => #6
-        {\lillyxTimetablesLecturesxtusignature}% Signature of the Event => #7
-        {\lillyxTimetablesLecturesxtutitle}% Name of the Event => #8
-        {\lillyxTimetablesLecturesxshortitle}% Short title => #9
+\protected@edef\@@tmp@c{\noexpand\@@CreateNewLectureEvent{#2}% ID => #1
+    {\lillyxTimetablesLecturesxtuduration}% Decoded Duration => #2
+    {\lillyxTimetablesLecturesxtubgcolor}% Background color => #3
+    {\lillyxTimetablesLecturesxtutor}% Moderator => #4
+    {\lillyxTimetablesLecturesxtuwhere}% Where does it take place= => #5
+    {\lillyxTimetablesLecturesxtitle}% Event title => #6
+    {\lillyxTimetablesLecturesxtusignature}% Signature of the Event => #7
+    {\lillyxTimetablesLecturesxtutitle}% Name of the Event => #8
+    {\lillyxTimetablesLecturesxshortitle}% Short title => #9
     }\@@tmp@c%persist
     \fi
 }
-
 \endinput

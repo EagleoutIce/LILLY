@@ -3,13 +3,13 @@
 
 \RequirePackage{LILLYxCORE,LILLYxCOLOR,LILLYxCONTROLLERxLINK}
 
-%% https://www.ctan.org/pkg/pgfkeys
+
 \LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schluessel-Wert-Spiel zur Verfuegung}
     {Hierfür zwangsläufig notwendig.}{}{}
-%% https://www.ctan.org/pkg/changepage
+
 \LILLYxDemandPackage{changepage}{Genaue identifikation der Seite}
     {Fuer die genaue identifikation der Seite noetig!}{}{}
-%% https://www.ctan.org/pkg/marginfix
+
 \LILLYxLoadPackage{marginfix}{Verhindern uebervoller margins}
     {Ohne machts einfach nur halb so viel spass, aber ok}{}{}{}
 
@@ -25,8 +25,8 @@
     }\unskip\ignorespaces
 }
 \else
-%% https://www.ctan.org/pkg/marginnote
-\LILLYxDemandPackage{marginnote}{Wens glücklich macht}{}{}{} %% keine Argumente
+
+\LILLYxDemandPackage{marginnote}{Wens glücklich macht}{}{}{}
 \gdef\lillyxMarginxElement#1{%
     \marginnote{%
         \pgfkeys{/lillyxMARGIN/alignment}\pgfkeys{/lillyxMARGIN/font}%
@@ -34,7 +34,7 @@
     }\unskip\ignorespaces
 }
 \fi
-%% Die globalen Konfigurationen für die Randkontroller
+% Die globalen Konfigurationen für die Randkontroller
 
 \gdef\lillymarginset#1{\pgfkeys{/lillyxMARGIN/.cd, #1}}
 

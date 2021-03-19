@@ -4,10 +4,10 @@
 !: Dieses Template wird im 'target-mode=1' verwendet, um alle Variablen zu expandieren :!
 !: Ein solcher Kommentar wie dieser hier, wird nicht übernommen :!
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Von Jake erstelltes Lilly LaTeX-File                        %%
-%% Version: @[JAKEVER]  Author: Florian Sihler                    %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Von Jake erstelltes Lilly LaTeX-File                        %
+% Version: @[JAKEVER]  Author: Florian Sihler                    %
+%
 :
 %
 % Erstellt am ${GEN-DATE} um ${GEN-TIME}

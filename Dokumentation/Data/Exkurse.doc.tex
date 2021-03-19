@@ -74,65 +74,65 @@ Weiter ist es möglich, die beiden folgenden Befehle zu setzen, die eine besonde
 Zur Definition weiterer Einschränkungen wie zum Beispiel der Sichtbarkeit von \LILLYxNOTExLibrary{LILLYxBOXES} sollten mit \blankcmd{providedef} getätigt, können allerdings auch anderweitig gesetzt werden, wenn es zum Beispiel anders nicht funktioniert.
 Hier ein Beispiel für die Vorlesung \T{ANA1}:
 \begin{latex}
-%%% Diese Datei enthält alle notwendigen Definitionen
+% Diese Datei enthält alle notwendigen Definitionen
 
-%%%%%%%%%%%%%%%%%%%%% General
+% General
 
-%% Setzt den Professor
+% Setzt den Professor
 \def!**!\PROFESSOR{Dr. Supermann}
-%% Setzt den Übungsleiter
+% Setzt den Übungsleiter
 \def!**!\UEBUNGSLEITER{Someone Günther}
-%% Setzt den Tutor
+% Setzt den Tutor
 \def!**!\TUTOR{Unbekannt}
 
-%% Setzt den Titel
+% Setzt den Titel
 \def!**!\TITLE{Analysis 1 für Inf. und Ing.}
-%% Setzt den Untertitel (Standard)
+% Setzt den Untertitel (Standard)
 \def!**!\SUBTITLE{\PROFESSOR}
-%% Setzt den Titel für ein Übungsblatt (Standard)
+% Setzt den Titel für ein Übungsblatt (Standard)
 \def!**!\UEBUNGSHEADER{\TITLE!**!\\!**!Übungsblatt \LILLY@n }
 
-%% Setzt den Titel für die Titelseite (Standard)
+% Setzt den Titel für die Titelseite (Standard)
 \def!**!\FULLTITLE{\TITLE!**!\\!**!\fontsize{18pt}{16pt}\selectfont{\SUBTITLE} }
 
-%% Setzt den Namen der Vorlesung als Text, siehe !*\blankcmd{anaI}*!
+% Setzt den Namen der Vorlesung als Text, siehe !*\blankcmd{anaI}*!
 \def!**!\VORLESUNG{\anaI}
 
-%% Setzt das Intro für eine Zusammenfassung
+% Setzt das Intro für eine Zusammenfassung
 \DeclareRobustCommand{\POLITEINTRO}{\setcounter{TOPICS}{-1}%
     \TOP[disc]{Disclaimer}{Worte des Autors}
     Offensichtlich erhebt %... Hier gekürzt
     \end{center}
 }
 
-%%%%%%%%%%%%%%%%%%%%% Layout Control
+% Layout Control
 
-%% Setze den Abstand für das Titelbild
+% Setze den Abstand für das Titelbild
 \providedef{LILLYxColorxTITLExOffset}{10.3cm}
-%% Der Zähler für Definitionen wird mit jeder Sektion zurück gesetzt
+% Der Zähler für Definitionen wird mit jeder Sektion zurück gesetzt
 \providedef{LILLYxBOXxDefinitionxLock}{section}
-%% Der Zähler für jeden Satz wird mit jeder Sektion zurück gesetzt
+% Der Zähler für jeden Satz wird mit jeder Sektion zurück gesetzt
 \providedef{LILLYxBOXxSatzxLock}{section}
-%% Bemerkungen sollen ohne Box angezeigt werden
+% Bemerkungen sollen ohne Box angezeigt werden
 \providedef{LILLYxBOXxBemerkungxBox}{FALSE}
-%% Beispiele sollen ohne Box angezeigt werden
+% Beispiele sollen ohne Box angezeigt werden
 \providedef{LILLYxBOXxBeispielxBox}{FALSE}
-%% Beweise sollen ohne Box angezeigt werden
+% Beweise sollen ohne Box angezeigt werden
 \providedef{LILLYxBOXxBeweisxBox}{FALSE}
-%% Auf Übungsblättern soll kein Tutorheader angezeigt werden
-%% (automatisches !*\blankcmd{TUTORBOX}*!) Dies empfiehlt sich für
-%% Übungsblätter mit Onlineabgabe, wenn sie gedruckt werden
-%% sollen, dann: TRUE
+% Auf Übungsblättern soll kein Tutorheader angezeigt werden
+% (automatisches !*\blankcmd{TUTORBOX}*!) Dies empfiehlt sich für
+% Übungsblätter mit Onlineabgabe, wenn sie gedruckt werden
+% sollen, dann: TRUE
 \providedef{LILLYxUBxSHOWTUTOR}{FALSE}
 
-%%%%%%%%%%%%%%%%%%%%% Title Control
+% Title Control
 
-%% Setze das Fakultätssymbol
+% Setze das Fakultätssymbol
 \def!**!\LILLYxFACULTY{\LILLYxFACULTYxMATHE}
-%% Setze die Fakultätsfarbe
+% Setze die Fakultätsfarbe
 \def!**!\LILLYxFACULTYxCOLOR{FacultyMathexColor}
 
-%% Komplett optional, wurde für angenehmere Abstände hier eingefügt
+% Komplett optional, wurde für angenehmere Abstände hier eingefügt
 \setlength{\itemsep}{0.40\baselineskip}
 \end{latex}
 
@@ -355,7 +355,7 @@ Kompilieren abgeschlossen!
 
 \begin{document}
 \begin{application}{SimpleLeftBanner}
-    %% Weiterer Code hier.
+    % Weiterer Code hier.
 \end{application}
 \end{document}
 \end{latex}

@@ -16,7 +16,7 @@ Für ein Lilly-Dokument ohne \LILLYxNOTExLibrary{LILLYxMATH}.
 %
 %
 
-\presentCommand[1.0.3]{LILLYxMathxMode} %% Overbar
+\presentCommand[1.0.3]{LILLYxMathxMode} % Overbar
 Der verwendete Mathemodus lässt sich mithilfe des Befehls \clatex[morekeywords={[5]{LILLYxMathxMode}}]{:bs:LILLYxMathxMode} frei einstellen. Standardmäßig wird dieser Wert auf \emph{normal} gesetzt.
 \begin{bemerkung}[Standalone-Math]
     Mit \LILLYxBOXxVersion{2.0.0} wurde die Mathe-Integration als eigenes Paket \LILLYxNOTExLibrary{LILLYxMATH} etabliert, welches sich eigenständig über \begin{latex*}
@@ -34,7 +34,7 @@ Diese Definitionen befinden sich in der Datei: \T{Maths/\_LILLY\_MATHS\_OPERATOR
 %
 %
 
-\presentCommand[1.0.3]{overbar}[\manArg{text}] %% Overbar
+\presentCommand[1.0.3]{overbar}[\manArg{text}] % Overbar
 Lilly liefert den Befehl auf Basis von \T{mkern} so, dass er direkt Abstände zwischen den Overlines definiert, sodass kein manueller Abstand eingefügt werden muss. So ergibt sich:
 \begin{center}
     \begin{tabular}{!{\VRule[1pt]}@{\hspace{1em}}l@{\hspace{1em}}|@{\hspace{1em}}c@{\hspace{1em}}!{\VRule[1pt]}}
@@ -68,8 +68,8 @@ Weiter wurde das Aussehen der Wurzel verändert und die Möglichkeit hinzugefüg
     \end{tabular}\smallskip
 \end{center}
 
-%% todo error patterns:
-%% error, missing $, improper alphabetic constant, ! Too many }'s (in general, lines starting with '!')
+% todo error patterns:
+% error, missing $, improper alphabetic constant, ! Too many }'s (in general, lines starting with '!')
 %
 %
 %
@@ -255,7 +255,7 @@ Weiter existieren die Befehle \blankcmd{xa} ($\xa$), \blankcmd{xb} ($\xb$), \bla
 
 
 \presentCommand[1.0.1]{crossAT}[\manArg{(PosX,PosY)}\cmdlist \anothercmd[1.0.1]{circAT}\manArg{(PosX,PosY)}\cmdlist \anothercmd[1.0.1]{bblock}\manArg{(PosX,PosY)}\manArg{text}]
-Für Ti\textit{k}Z gibt es noch die Befehle \T{\blankcmd{crossAT}}\manArg{(PosX,PosY)} (\raisebox{-0.35\baselineskip}{\tikz{\crossAT{(0,0)};}}\footnote{\T{\blankcmd{tikz}\{\blankcmd{crossAT}\{(0,0)\};\}} -- Zum Erhalt der Textzeile vertikal um \T{-0.35\textbackslash baselineskip} verschoben.}) und analog\newline \T{\blankcmd{circAT}\manArg{(PosX,PosY)}} (\tikz{\circAT{(0,0)};} \footnote{\T{\blankcmd{tikz}\{\blankcmd{circAT}\{(0,0)\};\}}}), sowie \T{\blankcmd{bblock}\manArg{(PosX,PosY)}\manArg{text}} (\raisebox{-0.2\baselineskip}{\tikz{\bblock{(0,0)}{42};}} \footnote{\T{\blankcmd{tikz}\{\blankcmd{bblock}\{(0,0)\}\{42\};\}} -- Wieder vertikal um \T{-0.2\textbackslash baselineskip} verschoben.}). Hier fragt man sich nun vielleicht, warum diese nicht in einem entsprechenden Ti\textit{k}Z-Paket sind. Im Rahmen der mit \LILLYxBOXxVersion{2.0.0} eingeführten Modularisierung hat sich diese Verteilung als günstig erwiesen. %% vielleicht doch verschieben?
+Für Ti\textit{k}Z gibt es noch die Befehle \T{\blankcmd{crossAT}}\manArg{(PosX,PosY)} (\raisebox{-0.35\baselineskip}{\tikz{\crossAT{(0,0)};}}\footnote{\T{\blankcmd{tikz}\{\blankcmd{crossAT}\{(0,0)\};\}} -- Zum Erhalt der Textzeile vertikal um \T{-0.35\textbackslash baselineskip} verschoben.}) und analog\newline \T{\blankcmd{circAT}\manArg{(PosX,PosY)}} (\tikz{\circAT{(0,0)};} \footnote{\T{\blankcmd{tikz}\{\blankcmd{circAT}\{(0,0)\};\}}}), sowie \T{\blankcmd{bblock}\manArg{(PosX,PosY)}\manArg{text}} (\raisebox{-0.2\baselineskip}{\tikz{\bblock{(0,0)}{42};}} \footnote{\T{\blankcmd{tikz}\{\blankcmd{bblock}\{(0,0)\}\{42\};\}} -- Wieder vertikal um \T{-0.2\textbackslash baselineskip} verschoben.}). Hier fragt man sich nun vielleicht, warum diese nicht in einem entsprechenden Ti\textit{k}Z-Paket sind. Im Rahmen der mit \LILLYxBOXxVersion{2.0.0} eingeführten Modularisierung hat sich diese Verteilung als günstig erwiesen. % vielleicht doch verschieben?
 
 %
 %
@@ -299,7 +299,7 @@ Zudem definiert sich noch für Tabellen der Befehl \T{\blankcmd{VRule}\manArg{wi
 \presentCommand[1.0.0]{trenner}[\cmdold]
 Fügt einen großen senkrechten Strich ein: \blankcmd{trenner} ($\trenner$).
 
-%% MOVED TO LILLYxTABLES ! TODO
+% MOVED TO LILLYxTABLES ! TODO
 % \begin{bemerkung}[Tabellenspalten]
 %     Weiter gibt es noch einige verschiedene Tabellen-Spalten, deren Kurzbezeichner den Anschein erwecken wild zusammengewürfelt zu sein: \begin{multicols}{2}
 %         \begin{ditemize}\narrowitems

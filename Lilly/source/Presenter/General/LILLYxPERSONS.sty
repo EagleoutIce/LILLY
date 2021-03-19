@@ -3,16 +3,16 @@
 \RequirePackage{LILLYxCORE,LILLYxTIKZxCORE,LILLYxFONTS,LILLYxCONTROLLERxLINK}
 \LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schlüssel-Wert-Spiel zur Verfuegung}
     {Lilly ist sich ziemlich sicher, aber doch nicht ganz ob dieses Paket relevant ist}
-    {}{} %% keine Argumente
+    {}{}
 \LILLYxDemandPackage{shapepar}{Eigentlich nicht sooo wichtig, aber irgendwie dann schon :P}
     {Ohne geht es einfach nicht, weil, naja, das einfach gut aussieht :D}
-    {}{} %% keine Argumente
+    {}{}
 % Ziel ist es, Datenbanken für Personen erstelllen zu können un ddiese dann entsprechend anzeigen zu können,
 % Es werden automatisch IDs für jede Person generiert, wobei andere Pakete diese Daten ebenfalls zur Visualisierung nutzen können.
 % Jede Person zeichnet sich durch ein von PGF-keys zur Verfügung gestelltes Datenfeld aus.
 % Ersteinmal gilt es festzulegen, was für Daten eine Person überhaupt hat, die anschließende Persistierung erfolgt mit dem Präfix @@lilly@persons@.
 
-%% Die Werte werden wieder für jede InfoBox persistiert, damit das Design variiert werden kann, je nach Geschmack :D
+% Die Werte werden wieder für jede InfoBox persistiert, damit das Design variiert werden kann, je nach Geschmack :D
 \pgfkeys{%
     /lillyxPERSONS/.is family, /lillyxPERSONS,
     title/.store in=\lillyxPersonsxtitle,

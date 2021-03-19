@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxSHOWCASExFIGURES}[2019/09/29 Stellt die Grafikunterstuetzung fuer LILLYxSHOWCASE zur Verfuegung]
-%% https://ctan.org/pkg/caption
-\LILLYxDemandPackage{caption}{Zur Modifikation der Untertitel}%% Package, Info
-    {Ohne gehts nedda :/}%% Error-Text
+
+\LILLYxDemandPackage{caption}{Zur Modifikation der Untertitel}% Package, Info
+    {Ohne gehts nedda :/}% Error-Text
     {format=plain,labelformat=simple,indention=0.5cm,labelsep=colon,justification=justified,singlelinecheck=true,font={small,it},labelfont=bf}{} % ,width=0.95\linewidth - doesn't hold:P
 
 \LILLYxLoadPackage{subcaption}{Fuer tolle Untertitel}
@@ -16,7 +16,7 @@
 \captionsetup[table]{name=\xtranslate{Tbl.}}
 \intextsep=.75\baselineskip
 \floatsep=1.5\baselineskip
-%% Some utility environments based on wrapfig
+% Some utility environments based on wrapfig
 
 \newenvironment{lfig}[1][\z@]{\wrapfigure{L}{#1}\centering
 }{\endwrapfigure}

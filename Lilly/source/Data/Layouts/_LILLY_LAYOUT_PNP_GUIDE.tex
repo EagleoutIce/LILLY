@@ -1,4 +1,4 @@
-%%% This Layout is meant to provide the Layout for Pen and Paper Guides
+% This Layout is meant to provide the Layout for Pen and Paper Guides
 
 
 \RequirePackage{LILLYxCONTROLLERxBOX}
@@ -6,21 +6,21 @@
 
 \RequirePackage{tocloft}
 
-%% General Packages needed for Typesetting
+% General Packages needed for Typesetting
 
-%% https://www.ctan.org/pkg/scrlayer-scrpage
+
 \LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
 					{Verpflichtoeoeoend}{automark}{}
 
-%% https://www.ctan.org/pkg/framed
+
 \LILLYxDemandPackage{framed}{Erlaubt das nutzen von leftbar}
                     {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}{}{}
 
-%% https://www.ctan.org/pkg/titletoc
+
 \LILLYxDemandPackage{titletoc}{Macht zusammen mit titlesec den toc}
                     {Das sieht garnicht gut aus :P}{}{}
 
-%% https://www.ctan.org/pkg/titlesec
+
 \LILLYxDemandPackage{titlesec}{Macht zusammen mit titletoc den toc}
 				    {Das sieht garnicht gut aus :P}{}{}
 
@@ -33,7 +33,7 @@
 \LILLYcommand\cftsubsecpagefont{\scriptsize}
 \LILLYcommand\cftsubsecnumwidth{1.75em}
 
-%% Set General style of the Page:
+% Set General style of the Page:
 \def\LILLYxRIGHTMARK{}
 
 \def\SetStyle{%
@@ -47,26 +47,26 @@
 }
 \def\rightmark{}
 
-%% Check Markers:
+% Check Markers:
 \renewcommand\sectionmark[1]{%
     \markright{#1}\renewcommand\LILLYxRIGHTMARK{#1}
 }
 
-%% we have no header. (there is a koma-option for that, but its not that 'reliable')
+% we have no header. (there is a koma-option for that, but its not that 'reliable')
 \setheadsepline{0pt}
 
-%% Set Hooks for the Beginning of the Document:
-%% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
+% Set Hooks for the Beginning of the Document:
+% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
 \AtBeginDocument{\SetStyle}
 
-%% General spacing stuff:
+% General spacing stuff:
 \parskip=1ex
 \parindent=\z@
 \setlength{\skip\footins}{.75cm}
 \footnotesep=2mm
 
-%% Styling the toc:
-%% Used with babel :D
+% Styling the toc:
+% Used with babel :D
 \addto\captionsngerman{%
         \renewcommand{\contentsname}{}%
 }

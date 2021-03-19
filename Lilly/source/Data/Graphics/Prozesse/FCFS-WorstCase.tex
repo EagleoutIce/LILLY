@@ -1,4 +1,4 @@
-%% Mittlere Wartezeit: \((\textcolor{AppleGreen}{0} + \textcolor{Azure}{4.5} + \textcolor{DebianRed}{5})/3 = 3.16\)
+% Mittlere Wartezeit: \((\textcolor{AppleGreen}{0} + \textcolor{Azure}{4.5} + \textcolor{DebianRed}{5})/3 = 3.16\)
 \LILLYcommand\LILLYxGRAPHICSxSHOW{%
 \begin{tikzternal}[every node/.style={font=\small\sffamily,Charcoal},ls/.style={left,xshift=-0.25cm},every path/.style={rounded corners=1pt}]
 \foreach \llabel [count=\i, evaluate=\i as \ii using {-2*\i}] in {A,B,C} {
@@ -13,15 +13,15 @@
     \ifnum\blabel<7\draw (2*\blabel+1,-8) -- (2*\blabel+1,-2);\fi
 }
 
-%% A - line
+% A - line
 \filldraw[AppleGreen] (3,-3) circle (2pt) (8,-2.5) circle (2pt);
 \draw [AppleGreen,ultra thick] (3,-3) -- ++(3,0) |- ++(2,0.5);
 
-%% B - line
+% B - line
 \filldraw[Azure] (1,-5) circle (2pt) (14,-4.5) circle (2pt);
 \draw [Azure,ultra thick] (1,-5) -- ++(1,0) |- ++(4,0.5) |- ++(2,-1) |- ++(2,0.5) |- ++(4,0.5);
 
-%% C - line
+% C - line
 \filldraw[DebianRed] (0,-6.5) circle (2pt) (10,-6.5) circle (2pt);
 \draw [DebianRed,ultra thick] (0,-6.5) -- ++(2,0) |- ++(4,-1)  |- ++(2,0.5) |- ++(2,0.5);
 \end{tikzternal}}

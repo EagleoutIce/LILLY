@@ -6,7 +6,7 @@
 \DeclareBoolOption[true]{german}\DeclareComplementaryOption{english}{german}
 \DeclareBoolOption[true]{algomod}\DeclareComplementaryOption{noalgomod}{algomod}
 \ProcessKeyvalOptions* % Verarbeite Paketargumente (Optionen, wie auch immer)
-%% https://www.ctan.org/pkg/algorithm2e
+
 \LILLYxDemandPackage{algorithm2e}{Algoritmen im Pseudo-Dialect}
   {Ohne macht dieses Paket keinen Sinn :D}
   {linesnumbered,algoruled,\ifLILLYxLISTINGSxALGORITHMS@german german\else english\fi}{}
@@ -48,7 +48,7 @@
 \def\@lillyalgo@exit{\DecMargin{1em}}
 \def\@@@lillystpone#1{\the\numexpr\value{#1}+1\relax}
 
-%%% Algorithm
+% Algorithm
 \let\@oldalgo\algorithm \let\end@oldalgo\endalgorithm
 \DeclareDocumentEnvironment{algorithm}{ O{\@lilly@AUTOPLACEMENTALGO} m O{#2} }{\bgroup\addcontentsline{ALGO}{section}{\makebox[.4cm][r]{\@@@lillystpone{algocf}.} #3}\@lillyalgo@init\edef\@tbg{\noexpand\@oldalgo[#1]}\@tbg\Indm%
 }{\ifx!#2!\else\caption[#3]{#2}\fi\end@oldalgo\@lillyalgo@exit\egroup}
