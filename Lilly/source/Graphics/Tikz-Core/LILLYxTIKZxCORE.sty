@@ -1,19 +1,16 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxTIKZxCORE}[2019/07/12 Stellt den Kern der Tikz-Schnittstelle fuer LILLY zur Verfuegung]
 \RequirePackage{LILLYxCORE,LILLYxCOLOR}
-
 %% https://www.ctan.org/pkg/tikz
 \LILLYxDemandPackage{tikz}{Was wäre dieses Paket ohne Tikz?}%% Package, Info
     {Dieses Paket funktioniert nicht ohne tikz}%% Error-Text
     {}{}
-
 \usetikzlibrary{%
 arrows,automata,calc,intersections,%
 through,decorations.pathreplacing,%
 decorations.pathmorphing,backgrounds,%
 positioning,fit,shapes,shadings,arrows.meta,%
 shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
-
 %% https://www.ctan.org/pkg/circuitikz
 \LILLYxDemandPackage{circuitikz}{Ach komm schon, das sind Schaltplaene, die mag jeder!}%% Package, Info
     {Ohne Schalplaene mache ich gar nichts}%% Error-Text
@@ -23,18 +20,15 @@ shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
 \LILLYxDemandPackage{pgfplots}{Diese Plots werden zwangslaeufig benoetigt}%% Package, Info
     {Ohne dieses Paket mache ich garnichts, das ist einfach so}%% Error-Text
     {}{}
-
 % Optionale Pakete für den Tikz Core
 %% https://www.ctan.org/pkg/tkz-euclide
 \LILLYxLoadPackage{tkz-euclide}{Diese Erweiterung scheint notwendig?}%% Package, Info
     {Es gilt zu ueberpruefen, ob dieses Paket wirklich Relevanz besitzt}%% Error-Text
     {}{}{}
-
 %% https://www.ctan.org/pkg/tkz-euclide
 \LILLYxLoadPackage{tikz-qtree}{Diese Erweiterung scheint notwendig?}%% Package, Info
     {Es gilt zu ueberpruefen, ob dieses Paket wirklich Relevanz besitzt}%% Error-Text
     {}{}{}
-
 % Hypbrid Pakete für den Tikz Core: Tikzternal
 \ifx\LILLYxEXTERNALIZE\true
 %% https://www.ctan.org/pkg/environ
@@ -47,9 +41,7 @@ shadows,matrix,scopes,patterns,mindmap} %% zusätzliche Bilbiotheken für Tikz
     {Dann keine coolen Environments}%% Error-Text
     {}{}{}
 \fi
-
 \RequirePackage{tikzducks}
-
 \tikzset{stretch/.initial=1,%
          invclip/.style={clip,insert path={{[reset cm](-100pt,-100pt) rectangle (100pt,100pt)}}}} %Für die FG-Kreise, damit man clippings auch invertieren kann
 \input{\LILLYxPATHxGRAPHICS/Tikz-Core/_LILLY_TIKZ_EXTERNAL}

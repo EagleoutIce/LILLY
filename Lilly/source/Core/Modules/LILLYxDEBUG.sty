@@ -7,40 +7,37 @@
 %% https://www.ctan.org/pkg/ifthen
 \RequirePackage{ifthen}
 
-\providecommand{\LILLYxDEBUG}{FALSE}
+\providecommand\LILLYxDEBUG{FALSE}
 
 \newif\iflillydebug
 \ifthenelse{\equal{\LILLYxDEBUG}{TRUE}}{\lillydebugtrue}{\lillydebugfalse}
-\gdef\debugout#1{%
-    \iflillydebug\typeout{#1}\fi%
-}
+\gdef\debugout#1{\iflillydebug\typeout{#1}\fi}
 
 %Not Documented!
 \gdef\@@Debug@Page@Content{%
 \begin{minipage}{\textwidth}
-    {\centering \LARGE\textbf{DEBUG-TITLEPAGE}\par}~\\
-    {\centering\textbf{\large Allgemein:}\par}
+{\centering \LARGE\textbf{DEBUG-TITLEPAGE}\par}~\\
+{\centering\textbf{\large Allgemein:}\par}
+\begin{description}\narrowitems
+    \foreach \cl/\r in {Lilly/LILLYxVERSIONxLONG,Datum/heute,Kompilier-Modus/LILLYxMODE,Box-Modus/LILLYxBOXxMODE,Farbprofil/LILLYxCOLORxRainbow} {
+        \item[{\cl}:] \T{\csname\r\endcsname}~\hfill\textcolor{Orchid}{\T{\textbackslash \r}}
+    }
+\end{description}
+
+{\centering\textbf{\large PDF-Spezifisch:}\par}
     \begin{description}\narrowitems
-        \foreach \cl/\r in {Lilly/LILLYxVERSIONxLONG,Datum/heute,Kompilier-Modus/LILLYxMODE,Box-Modus/LILLYxBOXxMODE,Farbprofil/LILLYxCOLORxRainbow} {
+        \foreach \cl/\r in {Author/AUTHOR,Email/AUTHORMAIL,Dokumentname/LILLYxDOCUMENTNAME,PDF-Name/LILLYxPDFNAME,Output/LILLYxOUTPUTDIR,Input/LILLYxPATH,External/LILLYxEXTERNALIZE,Bibtex\footnote{No Value means bibtex was disabled.}/LILLYxBIBTEX} {
             \item[{\cl}:] \T{\csname\r\endcsname}~\hfill\textcolor{Orchid}{\T{\textbackslash \r}}
         }
     \end{description}
-
-    {\centering\textbf{\large PDF-Spezifisch:}\par}
-    %% LILLYxLISTINGS
-        \begin{description}\narrowitems
-            \foreach \cl/\r in {Author/AUTHOR,Email/AUTHORMAIL,Dokumentname/LILLYxDOCUMENTNAME,PDF-Name/LILLYxPDFNAME,Output/LILLYxOUTPUTDIR,Input/LILLYxPATH,External/LILLYxEXTERNALIZE,Bibtex\footnote{No Value means bibtex was disabled.}/LILLYxBIBTEX} {
-                \item[{\cl}:] \T{\csname\r\endcsname}~\hfill\textcolor{Orchid}{\T{\textbackslash \r}}
-            }
-        \end{description}
-    \renewcommand{\arraystretch}{1}
-    {\centering\textbf{\large Jake:}\par}
-        \begin{description}\narrowitems
-            \foreach \cl/\r in {ThreadID\footnote{No Value means compilation wasn't parallelized.}/LILLYxTHREADxID,Semester/LILLYxSemester,Vorlesung/LILLYxVorlesung,Highlight-Color/Hcolor,Layout Path/lillyPathLayout} {
-                \item[{\cl}:] \T{\csname\r\endcsname}~\hfill\textcolor{Orchid}{\T{\textbackslash \r}}
-            }
-        \end{description}
-    \end{minipage}
+\renewcommand{\arraystretch}{1}
+{\centering\textbf{\large Jake:}\par}
+    \begin{description}\narrowitems
+        \foreach \cl/\r in {ThreadID\footnote{No Value means compilation wasn't parallelized.}/LILLYxTHREADxID,Semester/LILLYxSemester,Vorlesung/LILLYxVorlesung,Highlight-Color/Hcolor,Layout Path/lillyPathLayout} {
+            \item[{\cl}:] \T{\csname\r\endcsname}~\hfill\textcolor{Orchid}{\T{\textbackslash \r}}
+        }
+    \end{description}
+\end{minipage}
 }
 
 

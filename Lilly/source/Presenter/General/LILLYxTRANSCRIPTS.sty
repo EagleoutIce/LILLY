@@ -7,9 +7,8 @@
 % Baut hierbei auf LILLYxPERSONS auf.
 %% https://www.ctan.org/pkg/tocloft
 \LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
-                    {Das ist wichtig!}%% Error-Text
-                    {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliotheken weitaus einfacher finden kann :D
+    {Das ist wichtig!}%% Error-Text
+    {}{}
 
 % Konstruiere die Liste in der sich die Sitzungen eintragen:
 \newcounter{ctrXsessions}\setcounter{ctrXsessions}{0}% counter for the sessions
@@ -31,7 +30,7 @@
             \fi
         \fi
     \fi
-\fi} % Padding for minutes
+\fi}
 
 \def\SessionNameFont{}
 \def\SessionName{\SessionNameFont\xtranslate{Sitzung des} \SessionDate~(\SESSIONxATTENDEESxCOUNT~\xtranslate{Teilnehmer})}% Titel
@@ -50,7 +49,6 @@
         attendees={}, where={}, when={01.01.0001}, duration={0}, start time={-1:-1}%
     }
 }
-
 
 \def\@@Sessions@MapDate#1.#2.#3\@nil{\gdef\SESSIONxDAY{#1}\gdef\SESSIONxMONTH{#2}\gdef\SESSIONxYEAR{#3}}
 
@@ -82,8 +80,6 @@
 \end{tikzpicture}\vspace*{-0.1cm}\newline%
 % Typeset the attendees:
 \resizebox{7cm}{!}{%
-    %%\parbox[c][1.5cm]{1pt}{\relax{}}% We want to enforce somewhat of a minimum height :D
-    %\parbox[t]{8cm}{%
     \begin{minipage}{8cm}
         \foreach \attendee in \lillyxSessionxattendees{%
             \ShowPersonTag{\attendee}~$\;$%
@@ -91,14 +87,13 @@
             \addtocounter{ctrX\attendee Xattendancetime}{\SESSIONxDURATIONxMINUTES}%
         }
     \end{minipage}
-}\hbox{}\hfill{}\parbox{4cm}{\raggedleft\scriptsize\sffamily%parbox:[c][1cm]
-        \lillyxSessionxwhere\\
-        \SessionDuration
+}\hbox{}\hfill{}\parbox{4cm}{\raggedleft\scriptsize\sffamily
+        \lillyxSessionxwhere\\\SessionDuration
 }\smallskip\newline
 % Set a telegram:
 \newenvironment{telegram}{\centering%
-    \begin{tcolorbox}[presenterstyle,width=0.75\linewidth]
-    \begin{itemize}[label={$\RHD$}]\setlength{\itemindent}{-0.5cm}\narrowitems
+    \begin{tcolorbox}[presenterstyle,width=.75\linewidth]
+    \begin{itemize}[label={$\RHD$}]\setlength{\itemindent}{-.5cm}\narrowitems
 }{\end{itemize}\end{tcolorbox}\smallskip}
 %
 % Typeset the Telegram, but only if Given!

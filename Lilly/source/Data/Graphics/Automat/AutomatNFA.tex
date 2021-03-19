@@ -1,27 +1,27 @@
 \gdef\GRAPHICSxAutomatxNFA{%
-\begin{tikzternal}[scale=1, every node/.style={transform shape} zustand/.style={circle, draw, minimum width= 0.75cm,thick}]
-        \node at(0,0) {N{\tiny ondeterministic} F{\tiny inite} A{\tiny utomaton}};
-        \node at (0,-2) (subNFA) {
-            \begin{tikzternal}[scale=0.75,every node/.style={transform shape}, zustand/.style={circle, draw, minimum width= 0.75cm,thick}]
-                \node[zustand] at(0,0) (0) {\(z_0\)};
-                \draw[-latex] (0)++(-1,0) -- (0);
-                \node[zustand] at(0,-2) (1) {\(z_1\)};
-                \node[zustand] at(2,-2) (2) {\(z_2\)};
-                \node[zustand] at(2,0) (3) {\(z_3\)};
-                \draw[-latex] (3)++(0,1) -- (3);
+\begin{tikzternal}[scale=1, every node/.style={transform shape} zustand/.style={circle, draw, minimum width= .75cm,thick}]
+\node at(0,0) {N{\tiny ondeterministic} F{\tiny inite} A{\tiny utomaton}};
+\node at (0,-2) (subNFA) {
+\begin{tikzternal}[scale=.75,every node/.style={transform shape}, zustand/.style={circle, draw, minimum width= .75cm,thick}]
+    \node[zustand] at(0,0) (0) {\(z_0\)};
+    \draw[-latex] (0)++(-1,0) -- (0);
+    \node[zustand] at(0,-2) (1) {\(z_1\)};
+    \node[zustand] at(2,-2) (2) {\(z_2\)};
+    \node[zustand] at(2,0) (3) {\(z_3\)};
+    \draw[-latex] (3)++(0,1) -- (3);
 
-                \draw (0) circle (0.3cm);
-                \draw (2) circle (0.3cm);
-                \begin{scope}[every path/.style={-latex}]
-                    \draw (0) to[bend left,edge node={node[above,sloped] {a}}] (1);
-                    \draw (1) to[bend left, edge node={node[above,sloped] {a}}] (0);
-                    \draw (3) to[edge node={node[above,sloped] {b}}] (2);
-                \end{scope}
-                \loopRight[4]{3}{a};
-            \end{tikzternal}
-        };
-        \node [scale=0.65,transform shape] at(-0.25,-4.25) {\(N = \left(\underset{Menge}{\overset{\text{Zustände}}{Z}}, \underset{Alphabet}{\overset{\text{Eingabe}}{\Sigma}},  \underset{Z\times\Sigma \rightarrow Z^*}{\overset{\text{Übergangsfkt.}}{\delta}}, \underset{\subseteq Z}{\overset{\text{Start(s)}}{S}},\overset{\text{ Endzust.}}{\underset{\subseteq Z}{E}}\right)\)};
-        \node[scale=0.65,transform shape] at(-0.25,-5) {\(T(N) = \left\{x \in \Sigma^* \mid \hat\delta(S,x) \cap E \neq \emptyset\right\}\)};
-    \end{tikzternal}
+    \draw (0) circle (.3cm);
+    \draw (2) circle (.3cm);
+    \begin{scope}[every path/.style={-latex}]
+        \draw (0) to[bend left,edge node={node[above,sloped] {a}}] (1);
+        \draw (1) to[bend left, edge node={node[above,sloped] {a}}] (0);
+        \draw (3) to[edge node={node[above,sloped] {b}}] (2);
+    \end{scope}
+    \loopRight[4]{3}{a};
+\end{tikzternal}
+};
+\node [scale=.65,transform shape] at(-.25,-4.25) {\(N = \left(\underset{Menge}{\overset{\text{Zustände}}{Z}}, \underset{Alphabet}{\overset{\text{Eingabe}}{\Sigma}},  \underset{Z\times\Sigma \rightarrow Z^*}{\overset{\text{Übergangsfkt.}}{\delta}}, \underset{\subseteq Z}{\overset{\text{Start(s)}}{S}},\overset{\text{ Endzust.}}{\underset{\subseteq Z}{E}}\right)\)};
+\node[scale=.65,transform shape] at(-.25,-5) {\(T(N) = \left\{x \in \Sigma^* \mid \hat\delta(S,x) \cap E \neq \emptyset\right\}\)};
+\end{tikzternal}
 }
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxAutomatxNFA} 
+\LILLYcommand\LILLYxGRAPHICSxSHOW{\GRAPHICSxAutomatxNFA}

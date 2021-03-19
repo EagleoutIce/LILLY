@@ -1,15 +1,11 @@
 
-\RequirePackage{pifont}                                         %Mehr symbole => \ding
-\RequirePackage{centernot}
-\RequirePackage{mathtools}
+\RequirePackage{pifont,mathtools,centernot}
 
-%% somehow make boldfont toggle if textbf (\newif\iflillybold\gdef\textbf#1{\lillyboldtrue#1\lillyboldfalse}... \iflillybold)
 \LILLYcommand\N{\ensuremath{\mathbb{N}}}
 \LILLYcommand\Z{\ensuremath{\mathbb{Z}}}
 \LILLYcommand\Q{\ensuremath{\mathbb{Q}}}
 \LILLYcommand\R{\ensuremath{\mathbb{R}}}
 \LILLYcommand\C{\ensuremath{\mathbb{C}}}
-
 \LILLYcommand\i{\ensuremath{\mathtt{i}}}
 \LILLYcommand\e{\textbf{e}}
 \LILLYcommand\B{\ensuremath{\mathbb{B}}}
@@ -21,8 +17,8 @@
 \LILLYcommand\O{\ensuremath{{\cal O}}} %%Landau
 \let\oldepsilon\epsilon
 \let\oldphi\phi
-\renewcommand{\epsilon}{\ensuremath{\varepsilon}}
-\renewcommand{\phi}{\ensuremath{\varphi}}
+\renewcommand\epsilon{\ensuremath{\varepsilon}}
+\renewcommand\phi{\ensuremath{\varphi}}
 
 \gdef\join{\ensuremath{\bowtie}}
 \gdef\ojoin{\setbox0=\hbox{$\bowtie$}%

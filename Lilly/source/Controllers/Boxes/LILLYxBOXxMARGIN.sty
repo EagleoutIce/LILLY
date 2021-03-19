@@ -1,15 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxBOXxMARGIN}[2019/07/13 Stellt die MarginBoxes fuer LILLY zur Verfuegung]
-
-\RequirePackage{LILLYxCONTROLLERxBOX}
-% \RequirePackage{LILLYxCONTROLLERxBOX}
-\RequirePackage{LILLYxMARGIN}
-% \RequirePackage{LILLYxMARGIN}
-
-%% Dieses Paket soll Boxen in die margin Verfrachten und es ermöglichen wahlweise mit oder ohne Footmark im Text versehen zu 
-%% werden. Jede Boxumgebung kann übergeben werden, wobei das Ziel ist einfach über '\toMargin' eine Beliebige Box entsprechend 
+\RequirePackage{LILLYxCONTROLLERxBOX,LILLYxMARGIN}
+%% Dieses Paket soll Boxen in die margin Verfrachten und es ermöglichen wahlweise mit oder ohne Footmark im Text versehen zu
+%% werden. Jede Boxumgebung kann übergeben werden, wobei das Ziel ist einfach über '\toMargin' eine Beliebige Box entsprechend
 %% Im Rand zu Positionieren
-
 \gdef\lillyboxmarginset#1{\pgfkeys{/lillyxMARGIN/box/.cd, #1}}
 
 \newif\iflillyxMarginxBox
@@ -19,16 +13,11 @@
     showIcon=true
 }
 
-% #1 the if condition
-% #2 truetext
-% #3 falsetext
-% #4 color
+% #1 the if condition #2 truetext #3 falsetext #4 color
 \def\ShowMarkerIf#1#2#3#4{%
-    #1%
-        \textsuperscript{\color{#4}#2}%
-    \else%
+#1\textsuperscript{\color{#4}#2}\else
         \textsuperscript{\color{#4}#3}%
-    \fi%
+\fi
 }
 
 \DeclareDocumentCommand{\abstractMarginBox}{%
@@ -42,8 +31,6 @@
         {\ShowMarkerIf{\iflillyxMarginxBox}{}{#3}{#4}}%
         % Don't
         {\ShowMarkerIf{\iflillyxMarginxBox}{#3}{}{#4}}%
-    \lillyxMarginxElement{#5}   
+    \lillyxMarginxElement{#5}
 }
-
-
 \endinput

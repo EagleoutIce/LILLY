@@ -1,13 +1,12 @@
 \gdef\GRAPHICSxGraphxZyklus{%
 \begin{tikzternal}
-        \norgraphdot{(0,0)}{1}{one};
-        \margraphdot{(1,0)}{2}{two};
-        \margraphdot{(2,1)}{3}{tre};
-        \margraphdot{(3,0)}{4}{for};
-        \margraphdot{(2,-1)}{5}{fiv};
-        \norgraphdot{(4,0)}{6}{six};
-        \draw[very thick,color=purple] (two) to[bend left=45] (tre) (tre) to[bend left=45] (for)(two) to[bend right=45] (fiv) (fiv) to[bend right=45] (for);
-        \draw  (one) -- (two)     (for)-- (six) ;
-    \end{tikzternal}
-}
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxGraphxZyklus} 
+\norgraphdot{(0,0)}{1}{one};
+\margraphdot{(1,0)}{2}{two};
+\margraphdot{(2,1)}{3}{tre};
+\margraphdot{(3,0)}{4}{for};
+\margraphdot{(2,-1)}{5}{fiv};
+\norgraphdot{(4,0)}{6}{six};
+\draw[very thick,color=purple] (two) to[bend left=45] (tre) (tre) to[bend left=45] (for)(two) to[bend right=45] (fiv) (fiv) to[bend right=45] (for);
+\draw (one)--(two) (for)--(six);
+\end{tikzternal}}
+\LILLYcommand\LILLYxGRAPHICSxSHOW{\GRAPHICSxGraphxZyklus}

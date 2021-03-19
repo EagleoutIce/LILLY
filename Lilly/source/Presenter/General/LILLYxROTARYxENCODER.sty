@@ -1,10 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxROTARYxENCODER}[2019/06/29 Stellt eine Codierscheibe fuer LILLY zur Verfuegung]
-
 \def\minimumRadius{.5}
 \def\radiusScaling{.5}
 \def\startAngle{180}
-
 %%% {false-color}{true-color}{list}
 \def\codierscheibe#1#2#3{
 \foreach \elementIndex [count=\counterIndex] in #3 {\xdef\totalElements{\counterIndex}} %GesamtzahlElemente
@@ -28,7 +26,5 @@
 }
 \pgfmathsetmacro{\elementLabel}{int(\elementCounter-1)}
 \node[anchor={\startAngle+180+(\elementCounter+.5)*360/\totalElements}] at ({\startAngle+(\elementCounter+.5)*360/\totalElements}:\maximumRadius){\footnotesize\textbf \elementLabel};
-}
-}
-
+}}
 \endinput

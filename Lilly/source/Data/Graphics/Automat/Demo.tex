@@ -1,4 +1,4 @@
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{
+\LILLYcommand\LILLYxGRAPHICSxSHOW{
 \begin{tikzternal}[scale=1,
     every node/.style={minimum size=12pt,transform shape},
     state/.style={circle, draw, minimum size=20pt},
@@ -7,11 +7,9 @@
     ]
     \node[initial,accepting,state] (1) at (180:1){\T{1}};
     \node[state]                   (2) at (  0:1){\T{2}};
-    
-    \draw (1) to node[pos=0.5,above,sloped]{\T{0}} (2);
-    
+
+    \draw (1) to node[pos=.5,above,sloped]{\T{0}} (2);
+
     \loopTop[4]{1}{\T{4}};
     \loopRight[4]{2}{\T{2}};
-
-\end{tikzternal}
-}
+\end{tikzternal}}

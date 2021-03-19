@@ -1,9 +1,9 @@
 \gdef\GRAPHICSxThreadStates{%
 \begin{tikzternal}[every node/.style={font=\sffamily}]
     \begin{umlstate}[x=0,y=0]{Runnable}
-        \umlstateinitial[x=0,y=2,width=2ex,name=Binit] 
+        \umlstateinitial[x=0,y=2,width=2ex,name=Binit]
         \umlbasicstate[x=0, name=re]{Ready}
-        \umlbasicstate[x=6, name=ru]{Running} 
+        \umlbasicstate[x=6, name=ru]{Running}
         \umltrans{Binit}{re};
 
         \draw[->,thick] (re.20) -- (ru.160) node[midway,above,sloped] {\scriptsize CPU zugewiesen};
@@ -13,7 +13,7 @@
     \umlbasicstate[x=12, y=0.8, name=te]{Terminated}
     \umlbasicstate[x=-6, y=0.8, name=bl]{Blocking}
 
-    \umlstateinitial[x=0,y=6,width=2ex,name=BinitMain] 
+    \umlstateinitial[x=0,y=6,width=2ex,name=BinitMain]
     \umlbasicstate[x=3, y=5, name=ne]{New}
 
     \umltrans[arg={start()},pos=0.5]{ne}{Runnable};
@@ -35,4 +35,4 @@
     \draw[<-,thick] (tw) -- ++(-2.5,3) node[above,sloped,midway] {\scriptsize join(ms), wait(ms)} node[below,sloped,midway] {\scriptsize sleep(ms)};
     \draw[->,thick,rounded corners=6pt] (tw) -| ++(-3,2.7);
 \end{tikzternal}}
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxThreadStates} 
+\LILLYcommand\LILLYxGRAPHICSxSHOW{\GRAPHICSxThreadStates}

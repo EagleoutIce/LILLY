@@ -17,8 +17,6 @@
     {Damit codeEmblem funktioniert}
     {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_FONTAWESOME}} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
     {}{}
-
-
 \pgfkeys{%
     /lillyxEMBLEM/.is family, /lillyxEMBLEM,
     radius/.store in=\lillyxEmblemxradius,
@@ -40,9 +38,7 @@
 }
 
 %% TODO: Change typeouts to a Debug-Command which will only output the stuff if in debug-Mode :D
-
 %% draw :: borderColor -> bgColor -> optArgs -> center -> radius
-
 \def\EmblemDrawerNothing#1#2#3#4#5{}
 \def\EmblemDrawerQuadratic#1#2#3#4#5{%
     \draw[#1,fill=#2,#3] (#4)++(-#5,-#5) rectangle ++(#5*2,#5*2);% double as it is radius
@@ -56,7 +52,6 @@
 \def\EmblemDrawerOctagon#1#2#3#4#5{%
     \node[regular polygon, regular polygon sides=8, draw, #1,fill=#2,#3,inner sep=#5/1.534, transform shape] at (#4) {};%
 }
-
 %% :: OptArgs -> Draw -> Radius -> BackgroundColor -> ForeGroundColor -> BorderColor -> Font -> Text
 \def\AbstractEmblemDrawer#1#2#3#4#5#6#7#8{%
     {\tikz[baseline=-.6ex]{\csname EmblemDrawer#2\endcsname{#6}{#4}{#1}{0,0}{#3};\node at(0,0) {\textcolor{#5}{#7#8}};}}%
@@ -78,7 +73,6 @@
 \foreach \x in {Radius,BgColor,BorderColor,FgColor,Draw,Font} {
     \typeout{[Emblem:#3] \x: [\csname lillyxEMBLEMx#3x\x\endcsname]}
 }
-
 % #1 Optional Emblem-Keys
 % #2 Symbol (shold be one character with default sizes)
 \expandafter\DeclareDocumentCommand\expandafter{\csname #3\endcsname}{O{} m}{\ignorespaces%
@@ -93,18 +87,15 @@
 \NewEmblem[shape/octagon]{OctagonEmblem}
 \colorlet{EmblemColor}{\Hcolor} % will not cap other mixtures, if they exist
 \NewEmblem[shape/hexagon,bgcolor={EmblemColor!75},bordercolor={EmblemColor}][rotate=90,thick]{DefaultBaseEmblem}
-
 \gdef\infoEmblem{\,\DefaultBaseEmblem[draw=Leaf,fill=Leaf!75]{i}\,}
 \gdef\warningEmblem{\,\DefaultBaseEmblem[draw=ChromeYellow,fill=ChromeYellow!75]{!}\,}
 \gdef\errorEmblem{\,\DefaultBaseEmblem[draw=DebianRed,fill=DebianRed!75]{\wasysymLightning}\,}
 \gdef\mathEmblem{\,\DefaultBaseEmblem[draw=DarkMidnightBlue,fill=DarkMidnightBlue!75]{$\mathbf{\pi}$}\,}
 \gdef\codeEmblem{\,\DefaultBaseEmblem[draw=DarkOrchid,fill=DarkOrchid!75]{\faCode}\,}
-
 \DeclareRobustCommand{\textEmblem}[1]{%
     \mbox{\raisebox{2pt}{\resizebox{!}{.62\baselineskip}{#1}}}%
 }
 \DeclareRobustCommand{\btextEmblem}[1]{%
     \mbox{\raisebox{2pt}{\resizebox{!}{\baselineskip}{#1}}}%
 }
-
 \endinput

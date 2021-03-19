@@ -3,9 +3,7 @@
 % Die grundlegende Idee ist es, bestimme Befehle über die Datei hinweg aufnehmen zu lassen um so zum Beispiel zu Beginn
 % des Dokuments zu erfahren, ob im Dokument ein gewisser Befehl auftaucht.
 % Die Verwendung dieses Pakets erfordert grundlegend einen zweiten kompilier-Durchgang
-\RequirePackage{LILLYxVANILLA}
-\RequirePackage{LILLYxPACKAGExCTRL}
-\RequirePackage{kvoptions}
+\RequirePackage{LILLYxVANILLA,LILLYxPACKAGExCTRL,kvoptions}
 \DeclareVoidOption{morewrites}{\RequirePackage{morewrites}}
 \ProcessKeyvalOptions* % Verarbeite Paketargumente (Optionen, wie auch immer)
 
@@ -15,29 +13,21 @@
 \def\@Lilly@Recorder@ImmediateWrite#1#2{%
   \expandafter\immediate\expandafter\write\csname lr@#1\endcsname{#2}%
 }
-
 % Writes #2 into the Recorder-File with ID #1, write will be protected
 \def\@Lilly@Recorder@ProtectedWrite#1#2{\expandafter\protected@write\csname lr@#1\endcsname{#2}}
-
 % Does nothing, but consuming 4 arguments
 \def\@@Lilly@Recorder@GenericVoidWrite#1#2#3#4{}
-
 % Writes #3 into the Recorder-File with ID #2, executed by WriteCommand Suffixed with #1
 % Checks Suffix #4 for existing
 \def\@@Lilly@Recorder@GenericWrite#1#2#3#4{%
   \IfFileExists{\jobname.#4}{}{%
     \immediate\openout \csname lr@#2\endcsname \jobname.#4\relax%
   }%
-  %\csname iflillyregister@lr@#1@enabled@\endcsname%
     \csname @Lilly@Recorder@#1\endcsname{#2}{#3}%
-  %\fi% Otherwise ignore the write-request
 }
 
 \let\@Lilly@Recorder@GenericWrite\@@Lilly@Recorder@GenericWrite
-% \let\@Lilly@Recorder@PreviousWrite\relax
-\def\NewRecorder{%
-  \@ifstar{\@NewRecorder}{\@iNewRecorder}% Input the File
-}
+\def\NewRecorder{\@ifstar\@NewRecorder\@iNewRecorder}
 
 \def\@iNewRecorder#1#2{%
   % Is there an existing File that we can use?

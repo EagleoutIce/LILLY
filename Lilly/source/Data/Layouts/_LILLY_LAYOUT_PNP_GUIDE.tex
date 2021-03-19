@@ -10,43 +10,28 @@
 
 %% https://www.ctan.org/pkg/scrlayer-scrpage
 \LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
-					{Verpflichtoeoeoend}
-					{automark}{}
+					{Verpflichtoeoeoend}{automark}{}
 
 %% https://www.ctan.org/pkg/framed
 \LILLYxDemandPackage{framed}{Erlaubt das nutzen von leftbar}
-                    {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}
-                    {}{}
+                    {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}{}{}
 
 %% https://www.ctan.org/pkg/titletoc
 \LILLYxDemandPackage{titletoc}{Macht zusammen mit titlesec den toc}
-                    {Das sieht garnicht gut aus :P}
-					{}{}
+                    {Das sieht garnicht gut aus :P}{}{}
 
 %% https://www.ctan.org/pkg/titlesec
 \LILLYxDemandPackage{titlesec}{Macht zusammen mit titletoc den toc}
-					{Das sieht garnicht gut aus :P}
-					{}{}
+				    {Das sieht garnicht gut aus :P}{}{}
 
-% %%% Set Fonts for the document :D
-% % https://tug.org/FontCatalogue/lato/
-% \LILLYxLoadPackage{lato}{Scriftart für das (pdfLaTeX) Dokument}
-% 					{Naja, ohne ging schon, aber sieht halt doof aus.}
-%                     {\def{\normalfont}}
-%                     {default}{\def{\fontseries{l}\selectfont}}
-
-
-%% Setting up the predefined fonts we're going to use:
 \DeclareFixedFont{\tocFont}{U}{eur}{b}{n}{10}
 \DeclareFixedFont{\chpFont}{U}{eur}{b}{n}{24}
 % \DeclareFixedFont{\chpNumber}{U}{eur}{b}{n}{165} no chapter :D
 
-\LILLYcommand{\cftsubsecfont}{\footnotesize}
-%\renewcommand{\cftsecleader}{\hfill}
-%\LILLYcommand{\cftsecleader}{\tiny{\cftdotfill{\cftsecdotsep}}}
-\LILLYcommand{\cftsubsecleader}{{\lilly@cftdotfill{\cftsecdotsep}}}
-\LILLYcommand{\cftsubsecpagefont}{\scriptsize}
-\LILLYcommand{\cftsubsecnumwidth}{1.75em}
+\LILLYcommand\cftsubsecfont{\footnotesize}
+\LILLYcommand\cftsubsecleader{{\lilly@cftdotfill{\cftsecdotsep}}}
+\LILLYcommand\cftsubsecpagefont{\scriptsize}
+\LILLYcommand\cftsubsecnumwidth{1.75em}
 
 %% Set General style of the Page:
 \def\LILLYxRIGHTMARK{}
@@ -54,18 +39,17 @@
 \def\SetStyle{%
 	\pagenumbering{arabic}%
 	\pagestyle{scrheadings}%
-	\clearscrheadfoot%
+	\clearscrheadfoot
 	\ofoot{\textbf{\thepage}}%
 	\lofoot{{\thesection.~\LILLYxRIGHTMARK}}%
-	\refoot{{\leftmark}}%
+	\refoot{\leftmark}%
 	\addtocontents{toc}{\protect\thispagestyle{scrheadings}}
 }
-
 \def\rightmark{}
 
 %% Check Markers:
-\renewcommand{\sectionmark}[1]{%
-    \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
+\renewcommand\sectionmark[1]{%
+    \markright{#1}\renewcommand\LILLYxRIGHTMARK{#1}
 }
 
 %% we have no header. (there is a koma-option for that, but its not that 'reliable')
@@ -73,13 +57,13 @@
 
 %% Set Hooks for the Beginning of the Document:
 %% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
-\AtBeginDocument{%
-    \SetStyle
-}
+\AtBeginDocument{\SetStyle}
 
 %% General spacing stuff:
-\setlength{\parskip}{1ex}\setlength{\parindent}{0ex}
-\setlength{\skip\footins}{0.75cm}\setlength{\footnotesep}{2mm}
+\parskip=1ex
+\parindent=\z@
+\setlength{\skip\footins}{.75cm}
+\footnotesep=2mm
 
 %% Styling the toc:
 %% Used with babel :D
@@ -91,33 +75,29 @@
 \compileidx
 
 \renewcommand\sectionlinesformat[4]{%
-	\phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
-	{{\smaller #3}\, #4}%
+	\phantomsection{{\smaller #3}\, #4}%
 }
-
 \DeclareRobustCommand{\@seccntformat}[1]{%
   \def\temp@@a{#1}%
   \def\temp@@b{section}%
-  \ifx\temp@@a\temp@@b%
+  \ifx\temp@@a\temp@@b
   	\textcolor{\Hcolor}{\thesection}%
-  \else%
+  \else
   	\textcolor{\Hcolor}{\thesection:\arabic{#1}}%
-  \fi%
+  \fi
 }
+\cftbeforesecskip=2.3pt
 
-\setlength{\cftbeforesecskip}{2.3pt}
-
-
-\renewcommand{\section}{\@startsection{section}{1}{\z@}
+\renewcommand\section{\@startsection{section}{1}{\z@}
 {-4ex \@plus -1ex \@minus -.4ex}
 {1ex \@plus.2ex }
 {\normalfont\LARGE\bfseries\useefont}}
-\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
-{-3ex \@plus -0.1ex \@minus -.4ex}
+\renewcommand\subsection{\@startsection {subsection}{2}{\z@}
+{-3ex \@plus -.1ex \@minus -.4ex}
 {0.5ex \@plus.2ex }
 {\normalfont\normalsize\bfseries\useefont}}
-\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
-{-2ex \@plus -0.1ex \@minus -.2ex}
+\renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}
+{-2ex \@plus -.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
 {\normalfont\small\sffamily\itshape}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
@@ -125,21 +105,16 @@
 {.1ex}
 {\normalfont\large\itshape}}
 
-\def\pnptoc{%
-{%
+\def\pnptoc{{%
 \begin{center}
-	\hypersetup{linkcolor=black}%
-	\begin{tcolorbox}[presenterstyle,bottom=5.6pt]
-		\leavevmode\\\noindent{\Large\efont{Kurzübersicht}}\hfill\\[-1.5\baselineskip]
-		\setlength\columnsep{25pt}\begin{multicols}{2}
-		\tableofcontents
-		\end{multicols}
-    \end{tcolorbox}
-\end{center}
-}
-}
-
-
+\hypersetup{linkcolor=black}%
+\begin{tcolorbox}[presenterstyle,bottom=5.6pt]
+\leavevmode\\\noindent{\Large\efont{Kurzübersicht}}\hfill\\[-1.5\baselineskip]
+\setlength\columnsep{25pt}\begin{multicols}{2}
+\tableofcontents
+\end{multicols}
+\end{tcolorbox}
+\end{center}}}
 
 \def\pnp@title{PnP - Regelwerk}
 \def\pnp@subtitle{Anleitung}
@@ -150,14 +125,13 @@
 \def\pnpsetauthor#1{\gdef\pnp@author{#1}}
 
 \def\pnptitle{%
-	\leavevmode{\begin{minipage}{17cm}
-		\begin{center}
-			{\Huge\efont{\pnp@title}}\\
-			\Large\pnp@subtitle\bigskip\\
-		\end{center}
-	\end{minipage}}\\
+\leavevmode{\begin{minipage}{17cm}
+	\begin{center}
+		{\Huge\efont{\pnp@title}}\\
+		\Large\pnp@subtitle\bigskip\\
+	\end{center}
+\end{minipage}}\\
 }
-
 \DeclareDocumentEnvironment{abstract}{%
 	O{Abstract:} % Title
 }{%

@@ -185,9 +185,7 @@
     \def\noexpand\csname #3\endcsname{#2}}\x%
 }%
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                       class diagrams                    %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                       class diagrams                   %%%%%%%%%
 %
 \pgfkeys{/tikzuml/relation/.cd, attr1/.style args={#1|#2}{arg1=#1, mult1=#2},%
                                 attr2/.style args={#1|#2}{arg2=#1, mult2=#2},%
@@ -2565,9 +2563,7 @@
 }%
 %
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                     use case diagrams                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                     use case diagrams                  %%%%%%%%%
 %
 \tikzstyle{tikzuml usecase style}=[ellipse, text centered]%
 \tikzstyle{tikzuml actor style}=[ellipse, inner sep=0, outer sep=0]%
@@ -2971,9 +2967,7 @@
   \umlCNrelation[stereo=extend, style={tikzuml dependency style}, #1]{#2}{#3}{#4}%
 }%
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                      state diagrams                     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                      state diagrams                    %%%%%%%%%
 %
 \tikzstyle{tikzuml state style}=[rectangle split, rectangle split parts=2, rounded corners, inner xsep=1.5ex]%
 \tikzstyle{tikzuml transition style}=[color=\tikzumlDefaultDrawColor, rounded corners, -angle 45]%
@@ -3769,9 +3763,7 @@
 \newcommand{\umlHVHtrans}[3][]{\umlHVHrelation[style={tikzuml transition style}, #1]{#2}{#3}}%
 \newcommand{\umlCNtrans}[4][]{\umlCNrelation[style={tikzuml transition style}, #1]{#2}{#3}{#4}}%
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                     sequence diagrams                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                     sequence diagrams                  %%%%%%%%%
 %
 \tikzstyle{tikzuml synchron-msg style}=[color=\tikzumlDefaultDrawColor, -triangle 45]%
 \tikzstyle{tikzuml asynchron-msg style}=[color=\tikzumlDefaultDrawColor, -angle 45]%
@@ -4624,9 +4616,7 @@
   \fi%
 }
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                     component diagrams                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                     component diagrams                 %%%%%%%%%
 %
 \tikzstyle{tikzuml connector style}=[color=\tikzumlDefaultDrawColor, -]%
 %

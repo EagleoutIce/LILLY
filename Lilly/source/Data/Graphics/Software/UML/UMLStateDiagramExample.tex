@@ -2,16 +2,16 @@
 \begin{tikzternal}[every node/.style={font=\sffamily}]
     \begin{umlstate}[width=14cm,x=0,y=0]{Leben}
 %%%%%%%%%%%%%%%%%%%%%
-        \umlstateinitial[x=0,y=-10,width=2ex,name=Binit2] 
-        \umlbasicstate[x=0,y=0, width=6.6cm,name=happi,entry={Beziehungsstatus = Vergeben},exit={Beziehungsstatus = Supersingle}]{Glücklich} 
-        \umlbasicstate[x=0,y=-8, width=6.6cm,name=sad,entry={Kaufe Kuschelteddy},exit={}]{Traurig} 
+        \umlstateinitial[x=0,y=-10,width=2ex,name=Binit2]
+        \umlbasicstate[x=0,y=0, width=6.6cm,name=happi,entry={Beziehungsstatus = Vergeben},exit={Beziehungsstatus = Supersingle}]{Glücklich}
+        \umlbasicstate[x=0,y=-8, width=6.6cm,name=sad,entry={Kaufe Kuschelteddy},exit={}]{Traurig}
         \umltrans{Binit2}{sad};
-        \umlbasicstate[x=7.25,y=-4, name=tollertyp]{Toller Typ}; 
-        \umltrans[recursive=-170|-110|2cm, pos=2, recursive direction=left to bottom]{tollertyp}{tollertyp} 
+        \umlbasicstate[x=7.25,y=-4, name=tollertyp]{Toller Typ};
+        \umltrans[recursive=-170|-110|2cm, pos=2, recursive direction=left to bottom]{tollertyp}{tollertyp}
         \draw[->,thick] (happi.-45) -| (sad.45) node[pos=0.75,above,sloped] (ft2) {macht Schluss [kein Geld]};
-        \draw[->,thick] (sad.135) -| (happi.225) node[pos=0.75,above,sloped] (ft1) {Freundin [hat Geld] / Endorphin};    
+        \draw[->,thick] (sad.135) -| (happi.225) node[pos=0.75,above,sloped] (ft1) {Freundin [hat Geld] / Endorphin};
     \end{umlstate}
-    
+
 %%%%%%%%%%%%%%%%%%%%%
 
     \draw[densely dashed] (5cm,2.25) -- ++(0,-13);
@@ -32,4 +32,4 @@
 \end{scope}
 
 \end{tikzternal}}
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxUMLStateDiagramExample} 
+\LILLYcommand\LILLYxGRAPHICSxSHOW{\GRAPHICSxUMLStateDiagramExample}

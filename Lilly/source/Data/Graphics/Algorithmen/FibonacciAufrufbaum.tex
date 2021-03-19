@@ -1,30 +1,24 @@
 \gdef\GRAPHICSxFibonaccixAufrufbaum{%
-\begin{tikzternal}[every node/.style={scale=0.8}]
-
-    \node [] at(0,5) (em) {Fib(6)};
-    \node [] at(-3,4) (zl) {Fib(5)}; \node [] at(3,4) (zr) {Fib(4)};
+\begin{tikzternal}[every node/.style={scale=.8}]
+    \node at(0,5) (em) {Fib(6)};
+    \node at(-3,4) (zl) {Fib(5)}; \node at(3,4) (zr) {Fib(4)};
     \draw (em) -- (zl) (em) -- (zr);
-    \node [] at(-4.5,3) (dll) {Fib(4)}; \node [] at(-1.5,3) (dlr) {Fib(3)};
-    \node [] at(1.5,3) (drl){Fib(3)};
-    \node [] at(4.5,3) (drr) {Fib(2)};
+    \node at(-4.5,3) (dll) {Fib(4)}; \node at(-1.5,3) (dlr) {Fib(3)};
+    \node at(1.5,3) (drl){Fib(3)};
+    \node at(4.5,3) (drr) {Fib(2)};
     \draw (zl) -- (dll) (zl) -- (dlr) (zr) -- (drr) (zr) -- (drl);
-    \node [] at(-5.5,2) (tlll) {Fib(3)};
-    \node [] at(-3.5,2) (tllr) {Fib(2)};
-
-    \node [] at(-2.5,2) (tlrl) {Fib(2)};
-    \node [] at(-0.5,2) (tlrr) {Fib(1)};
-
-    \node [] at(0.5,2) (trll) {Fib(2)};
-    \node [] at(2.5,2) (trlr) {Fib(1)};
-
-    \node [] at(3.5,2) (trrl) {Fib(1)};
-    \node [] at(5.5,2) (trrr) {Fib(1)};
+    \node at(-5.5,2) (tlll) {Fib(3)};
+    \node at(-3.5,2) (tllr) {Fib(2)};
+    \node at(-2.5,2) (tlrl) {Fib(2)};
+    \node at(-0.5,2) (tlrr) {Fib(1)};
+    \node at(0.5,2) (trll) {Fib(2)};
+    \node at(2.5,2) (trlr) {Fib(1)};
+    \node at(3.5,2) (trrl) {Fib(1)};
+    \node at(5.5,2) (trrr) {Fib(1)};
     \draw (dll) -- (tlll) (dll) --(tllr) (dlr) -- (tlrl) (dlr) -- (tlrr) (drl) -- (trll) (drl) -- (trlr) (drr) -- (trrl) (drr) -- (trrr);
-    \node [] at(-6.5,1) (fllll) {Fib(2)};
-    \node [] at(-4.5,1) (flllr) {Fib(1)};
+    \node at(-6.5,1) (fllll) {Fib(2)};
+    \node at(-4.5,1) (flllr) {Fib(1)};
     \draw (tlll) -- (fllll) (tlll) -- (flllr);
-
     \node at (0,1) {\Huge{\vdots}};
-\end{tikzternal}
-}
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxFibonaccixAufrufbaum} %% new pattern maybe apply to all?
+\end{tikzternal}}
+\LILLYcommand\LILLYxGRAPHICSxSHOW{\GRAPHICSxFibonaccixAufrufbaum} %% new pattern maybe apply to all?

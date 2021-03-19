@@ -130,5 +130,4 @@ if update:
         print("Generation failed!")
 else:
     print("Nothing has changed since last generation.... won't recompile. Delete 'ALLchanges.save' to force")
-#os.system("xdg-open " + dir_path + "/" + outname + "-OUT/" + outname + ".pdf")
     view("{0}/{1}-OUT/{1}.pdf".format(dir_path,outname))

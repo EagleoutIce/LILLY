@@ -1,6 +1,3 @@
 %% Fallback für includegraphics
-
-\providecommand{\graphicspath}[1]{\relax} %% what should be done else?
-
-\renewcommand{\includegraphics}[2][1]{\framebox[5cm][s]{Bitte Lade das graphicx-Paket herunter! Dies ist ein Platzhalter Katzhalter für: \url{#2}}}
-
+\providecommand\graphicspath[1]{\relax} %% what should be done else?
+\renewcommand\includegraphics[2][1]{\framebox[5cm][s]{Bitte Lade das graphicx-Paket herunter! Dies ist ein Platzhalter Katzhalter für: \url{#2}}}

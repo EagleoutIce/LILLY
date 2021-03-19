@@ -1,12 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCOLORxPALETTE}[2019/10/11 Stellt die Farbpaletten-Erweiterungen fuer die Lillyfarben zur Verfuegung]
 
-\RequirePackage{LILLYxCORE}
-% \RequirePackage{LILLYxCORE}
-\RequirePackage{LILLYxCOLOR}
-% \RequirePackage{LILLYxCOLOR}
+\RequirePackage{LILLYxCORE,LILLYxCOLOR}
 % Erlaube Paletten fürs Drucken (mit Stil etc....)
-
 
 % Constructs \cX based commands for using in code :smile:
 %
@@ -25,7 +21,7 @@
     % tikz styling
     \ifx!#1!\expandafter\gdef\csname c#2tikz\endcsname{#3}%
     \else\expandafter\gdef\csname c#2tikz\endcsname{#1}%
-    \fi%
+    \fi
 }
 
 % Load the Colorprofile #1.
@@ -34,6 +30,4 @@
 % Reload Colors:
 \hypersetup{linkcolor=\LILLYxColorxLINKSxMainColor,citecolor=\LILLYxColorxLINKSxCiteColor,filecolor=black!75!black,urlcolor=\LILLYxColorxLINKSxUrlColor}%
 }
-
-
 \endinput

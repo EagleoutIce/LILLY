@@ -1,25 +1,19 @@
 \tikzset{%
 path image/.style 2 args={
-   path picture={
-      \node at (path picture bounding box.center) {
-         \includegraphics[height=#2]{#1}
-      };
-   }
-}
-}
+path picture={\node at (path picture bounding box.center) {\includegraphics[height=#2]{#1}};}}}
 
 % This one was adapted from: https://tex.stackexchange.com/questions/120861/making-tikz-path-into-a-hyperlink
 \tikzset{
-  hyper/.style 2 args={
-    path picture={%
-      \pgfpointanchor{path picture bounding box}{south west}%
-      \pgf@xb-\pgf@x
-      \pgf@yb-\pgf@y
-      \pgfpointanchor{path picture bounding box}{north east}%
-      \advance\pgf@xb\pgf@x
-      \advance\pgf@yb\pgf@y
-      \pgftext[at={\pgfqpoint{\pgf@x}{\pgf@y}},right,top]{#1{#2}{\vrule height\pgf@yb depth0ptwidth0pt\vrule height0ptdepth0ptwidth\pgf@xb}}%
-    }
-  },
-  hyperlink/.style={hyper=\hyperlink{#1}}
+hyper/.style 2 args={
+  path picture={%
+    \pgfpointanchor{path picture bounding box}{south west}%
+    \pgf@xb-\pgf@x
+    \pgf@yb-\pgf@y
+    \pgfpointanchor{path picture bounding box}{north east}%
+    \advance\pgf@xb\pgf@x
+    \advance\pgf@yb\pgf@y
+    \pgftext[at={\pgfqpoint{\pgf@x}{\pgf@y}},right,top]{#1{#2}{\vrule height\pgf@yb depth0ptwidth0pt\vrule height0ptdepth0ptwidth\pgf@xb}}%
+  }
+},
+hyperlink/.style={hyper=\hyperlink{#1}}
 }

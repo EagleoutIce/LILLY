@@ -20,7 +20,6 @@
 
 % Todo:
 % weiter ist eine Bibliothek wie ORNAMENTSxTHEMES geplahnt, die es erlaubt, einfache Befehle wie \ornabreak zu verwenden, deren Stil dann über pgfkeys gesteuert werden kann
-
 \constructList[,]{RegisteredOrnaments}
 
 %% Creates the \orna<name> commands, which pass through the optional argument :D
@@ -173,8 +172,8 @@
 
 % Shows all Ornaments in a Table :D
 \def\PresentAllOrnaments{%
-    \getRegisteredOrnaments%
-    \tabreset%
+    \getRegisteredOrnaments
+    \tabreset
     \foreach \animal in \lillyxlist {%
         \ifthenelse{\equal{\animal}{}}{}{%
         \etabadd{\animal}%

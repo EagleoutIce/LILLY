@@ -65,24 +65,16 @@
     \stop
     }
 
-
 \newlength\@parindent
-\setlength\@parindent{\parindent}
+\@parindent=\parindent
 
 \if@twocolumn
-    \newenvironment{widetext}
-        {%
-            \begin{strip}
-            %\rule{\dimexpr(0.5\textwidth-0.5\columnsep-0.4pt)}{0.4pt}%
-            %\rule{0.4pt}{6pt}
-            \par %\vspace{6pt}
-            \parindent \@parindent
-        }%
-        {%
-            \vspace{-3em}\par%\rule[-6pt]{0.4pt}{6.4pt}%
-            %\rule{\dimexpr(0.5\textwidth-0.5\columnsep-1pt)}{0.4pt}
-            \end{strip}
-        }
+    \newenvironment{widetext}{\begin{strip}
+        \par %\vspace{6pt}
+        \parindent \@parindent
+    }%
+    {\vspace{-3em}\par
+        \end{strip}}
 \else
     \newenvironment{widetext}{}{}
 \fi

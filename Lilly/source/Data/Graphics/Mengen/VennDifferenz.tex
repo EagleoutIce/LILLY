@@ -1,12 +1,11 @@
 \gdef\GRAPHICSxVennxDifferenz{%
 \begin{tikzternal}[scale=0.8]
-            \tkzDefPoint(0,0){A};
-            \tkzDefPoint(1.5,0){B};
-            \node at (-1.1,0) {A}; \node at (2.6,0) {B};
-            \draw[thick,fill=mint!35!white] (0,0) circle (1.5);
-            \draw[thick,fill=white] (1.5,0) circle (1.5);
-            \node at (-1.1,0) {A}; \node at (2.6,0) {B};
-            \draw[thick] (0,0) circle (1.5);
-        \end{tikzternal}
-}
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxVennxDifferenz} 
+\tkzDefPoint(0,0){A};
+\tkzDefPoint(1.5,0){B};
+\node at (-1.1,0) {A}; \node at (2.6,0) {B};
+\draw[thick,fill=mint!35!white] (0,0) circle (1.5);
+\draw[thick,fill=white] (1.5,0) circle (1.5);
+\node at (-1.1,0) {A}; \node at (2.6,0) {B};
+\draw[thick] (0,0) circle (1.5);
+\end{tikzternal}}
+\LILLYcommand\LILLYxGRAPHICSxSHOW{\GRAPHICSxVennxDifferenz}

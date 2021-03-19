@@ -1,35 +1,27 @@
 \RequirePackage[automark,headsepline]{scrlayer-scrpage}         %Header konfigurieren
-\RequirePackage{lastpage}                                       %Letzte Seite erhalten
-\RequirePackage{titlesec}
-
+\RequirePackage{lastpage,titlesec}
 \RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung} %%Konstanten etc.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% General and Layoutkonfiguration                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% General and Layoutkonfiguration
 \newif\ifappendix
 \appendixfalse
 
-\LILLYcommand{\cftsubsecleader}{\hfill}
-\LILLYcommand{\cftsubsecfont}{\pgfsetfillopacity{1.0}\footnotesize}
-\LILLYcommand{\cftsecfont}{\pgfsetfillopacity{1.0}\small}
-\LILLYcommand{\cftchapfont}{\pgfsetfillopacity{1.0}\bfseries}
-
-\LILLYcommand{\cftsecleader}{\normalfont{\cftdotfill{\cftsecdotsep}}}
-
-\LILLYcommand{\cftsubsecpagefont}{\pgfsetfillopacity{0.0}}
+\LILLYcommand\cftsubsecleader{\hfill}
+\LILLYcommand\cftsubsecfont{\pgfsetfillopacity{1.0}\footnotesize}
+\LILLYcommand\cftsecfont{\pgfsetfillopacity{1.0}\small}
+\LILLYcommand\cftchapfont{\pgfsetfillopacity{1.0}\bfseries}
+\LILLYcommand\cftsecleader{\normalfont{\cftdotfill{\cftsecdotsep}}}
+\LILLYcommand\cftsubsecpagefont{\pgfsetfillopacity{0.0}}
 
 \newcommand{\LILLYxFormatxTitle}[2][]{~\\{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont #2\hfill{\normalfont\tiny #1}}\\[-0.3cm]
 \noindent\rule{\textwidth}{1.25pt}\\[0.15cm]}
 
 \newlistof{TOPS}{TOP}{\LILLYxFormatxTitle{Inhaltsverzeichnis}\vspace*{-2cm}}
 
-\LILLYcommand{\LILLYxLayoutxClear}{ %
+\LILLYcommand\LILLYxLayoutxClear{ %
     \pagestyle{empty} %KOMA-FTW!
     \pagenumbering{gobble}
 }
-\LILLYcommand{\LILLYxLayoutxRestore}{ %
+\LILLYcommand\LILLYxLayoutxRestore{ %
 \pagenumbering{arabic}
 \pagestyle{scrheadings} %KOMA-FTW!
 \ifx\LILLYxMODE\LILLYxMODExPRINT
@@ -45,60 +37,54 @@
     \cfoot{}
     \chead{}
     \rohead{\VORLESUNG}
-    \ifx\LILLYxFOOTERxBUTTONS\true %
+    \ifx\LILLYxFOOTERxBUTTONS\true
         \rofoot{\raisebox{0.75pt}{\eXButton{Find}{\tiny \faSearch} \text{ } \eXButton{GoBack}{\tiny \faUndo} \text{ } \eXButton{GoForward}{\tiny \faRepeat}\text{ } \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{0.75pt}{\eXButton{NextPage}{\(\RHD\)}}} %
-    \else %
+    \else
         \rofoot{\thepage/\pageref{LastPage}} %
-    \fi %
+    \fi
 \fi
 }
-
 \providecommand{\LILLYxBOXxDefinitionxLock}{TRUE}
 
-\setlength{\parindent}{0pt}
+\parindent=\z@
 \newcounter{ctr_ADDONS}
 \def\curAddonsCounter{ctr_ADDONS}
 
-\newcommand{\startExtra}[1]{\clearpage\par\phantomsection%
+\newcommand\startExtra[1]{\clearpage\par\phantomsection
 \addcontentsline{toc}{section}{#1}\addcontentsline{TOPIC}{TOPICS}{#1}\addcontentsline{DEFS}{chapter}{#1}%
 \ifx\LILLYxMODE\LILLYxMODExPRINT\lehead{\textsf{$\mathbf{A}\mid\,$ \normalfont\textsf{#1}}}%
 \else\lofoot{\silentHmark[\small\textit{Thema}]{eagleTOC}[\LILLYxColorxLINKSxMainColor]\textnormal{\guilsinglright}\,#1}%
 \fi
 }
 
-\newcommand{\startAppendix}{\startExtra{Anhang}\appendixtrue}
+\newcommand\startAppendix{\startExtra{Anhang}\appendixtrue}
 
-\newcommand{\theTOPIC}{undefined}
-\newcommand{\listTOPICSname}{\leavevmode\\[-4.75cm]}
+\newcommand\theTOPIC{undefined}
+\newcommand\listTOPICSname{\leavevmode\\[-4.75cm]}
 \newlistof{TOPICS}{TOPIC}{\listTOPICSname}
-\newcommand{\TOPICS}[1]{%
-\renewcommand{\theTOPIC}{#1}%
+\newcommand\TOPICS[1]{%
+\renewcommand\theTOPIC{#1}%
 \refstepcounter{TOPICS}%
 % Set in Appendix without a number
-\ifappendix\ifnum\value{TOPICS}>0\addcontentsline{TOPIC}{TOPICS}{#1}\fi\par\else\ifnum\value{TOPICS}>0\addcontentsline{TOPIC}{TOPICS}{\arabic{TOPICS}) #1}\fi\par\fi%
-}
+\ifappendix\ifnum\value{TOPICS}>0 \addcontentsline{TOPIC}{TOPICS}{#1}\fi\par\else\ifnum\value{TOPICS}>0\addcontentsline{TOPIC}{TOPICS}{\arabic{TOPICS}) #1}\fi\par\fi}
 
-\def\compileidx{\makeindex[title=Stichwortverzeichnis,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=0.75cm]\renewcommand{\indexname}{Stichwortverzeichnis}}
+\def\compileidx{\makeindex[title=Stichwortverzeichnis,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=.75cm]\renewcommand\indexname{Stichwortverzeichnis}}
 
-\newcommand{\aLink}[1]{%
-    \ifx\LILLYxMODE\LILLYxMODExPRINT%
-        \pageref{#1}%
-    \else%
-        \jmark[\faLeanpub]{#1}%
-    \fi%
-}
+\newcommand\aLink[1]{%
+\ifx\LILLYxMODE\LILLYxMODExPRINT
+    \pageref{#1}%
+\else
+    \jmark[\faLeanpub]{#1}%
+\fi}
 
-\newcommand{\bLink}[1]{%
-    \ifx\LILLYxMODE\LILLYxMODExPRINT%
-        \pageref{#1}%
-    \else%
-        \jmark[\faPencil]{#1}%
-    \fi%
-}
-
+\newcommand\bLink[1]{%
+\ifx\LILLYxMODE\LILLYxMODExPRINT
+    \pageref{#1}%
+\else
+    \jmark[\faPencil]{#1}%
+\fi}
 \let\formatAddons\arabic
-
-\providecommand{\TOP}[3][top_default_jmpmrk]{%
+\providecommand\TOP[3][top_default_jmpmrk]{%
     \addvspace{1.5em plus 0.75em minus 0.5em}\ifappendix%
     \refstepcounter{\curAddonsCounter}\addcontentsline{toc}{subsection}{#2}\else%
     \ifnum\value{TOPICS}>-1\addcontentsline{DEFS}{chapter}{#2}\fi\addcontentsline{toc}{section}{#2}%
@@ -107,17 +93,11 @@
     \parbox{\linewidth}{{\bfseries\usefont{T1}{qzc}{m}{it}\fontsize{14pt}{4pt}\selectfont \ifappendix\formatAddons{\curAddonsCounter}\else\arabic{TOPICS}\fi) #2} \hfill{\tiny #3}}\vspace{-0.5\baselineskip}\\*%
     \rule{\textwidth}{2pt}\smallskip\\*\ignorespacesafterend%
 }
-
-\DeclareRobustCommand{\kw}[1]{\textbf{#1}\index{#1}}
-\DeclareRobustCommand{\sw}[2][Gruppenname]{#2\index{#1!#2}}
-\DeclareRobustCommand{\sr}[3][Gruppenname]{#3\index{#1!#2!#3}}
-
-% \DeclareDocumentCommand{\idx}{%
-
-% }
+\DeclareRobustCommand\kw[1]{\textbf{#1}\index{#1}}
+\DeclareRobustCommand\sw[2][Gruppenname]{#2\index{#1!#2}}
+\DeclareRobustCommand\sr[3][Gruppenname]{#3\index{#1!#2!#3}}
 
 %% definitions
-
 \def\imp{\ensuremath{\prec}}
 \def\<{\ensuremath{\langle}}
 \def\>{\ensuremath{\rangle}}
@@ -125,15 +105,12 @@
 %% Register
 \def\reg#1{\T{#1}}
 
-% registerIndex{2} ? \index{#1!#2}
-
 \gdef\customex#1{\begingroup\scriptsize\textit{#1}\normalsize\endgroup}
-
-\newlength{\askip}\setlength{\askip}{-0.9\baselineskip}
-\newlength{\bskip}\setlength{\bskip}{-0.275\baselineskip}
+\newlength{\askip} \askip=-.9\baselineskip
+\newlength{\bskip} \bskip=-.275\baselineskip
 \gdef\negaskip{\vspace*{\askip}}
 \gdef\negbskip{\vspace*{\bskip}}
-\gdef\TOPskip{\vspace*{-0.35cm}}
+\gdef\TOPskip{\vspace*{-.35cm}}
 
 \def\infot#1{\begingroup\tiny\itshape#1\endgroup}
 
@@ -165,37 +142,26 @@
     }{\relax\hbox{}\hfill\tiny #6}}};
 \end{tikzternal} \tab[0.15cm]
 }
-
 \compileidx
 
-\AtBeginDocument{
-    \LILLYxLayoutxRestore
-}
+\AtBeginDocument{\LILLYxLayoutxRestore}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Introkonfiguration                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% Introkonfiguration
 %% Work in Progress new Layout:
 \AtBeginDocument{%
-    \ifnum\LILLY@n>0%
+    \ifnum\LILLY@n>0\relax
         \LILLYxTITLExBONUS{Zusammenfassung \LILLY@n}%
-    \else%
+    \else
         \LILLYxTITLExBONUS{Zusammenfassung}%
-    \fi%
+    \fi
     \cleardoublepage\POLITEINTRO
-    %{\par\vspace*{4.25em}\par}%
 }
 
 %% TODO: make small arrow in limerence if page breaks
+% Outrokonfiguration
+\providecommand\LILLYxINDEXxINTERMEDIATExFORMAT{\clearpage}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Outrokonfiguration                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\providecommand{\LILLYxINDEXxINTERMEDIATExFORMAT}{\clearpage}
-
-\AtEndDocument{\makeatletter%
+\AtEndDocument{\makeatletter
     \addtocontents{DEFINITIONS}{\protect\thispagestyle{empty}}
     \protect\pagestyle{empty}\thispagestyle{empty}
     \LILLYxCLEARxHEADFOOT\pagestyle{empty}

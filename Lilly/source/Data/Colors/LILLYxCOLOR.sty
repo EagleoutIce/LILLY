@@ -10,28 +10,24 @@
 
 %% https://ctan.org/pkg/colortbl
 \LILLYxDemandPackage{colortbl}{Farbige Tables :D}%% Package, Info
-                    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
-                    {}%%Params
-                    {}
+    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
+    {}{}
 
 \ifx\LILLYxUSEREGXCOLOR\undefined
 %% https://ctan.org/pkg/xcolor
-\LILLYxDemandPackage{lilly-xcolor}{Ohne Farben mache ich GARNICHTS}%% Package, Info
-                    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
-                    {table}%%Params
-                    {}
+\LILLYxDemandPackage{lilly-xcolor}{Ohne Farben mache ich GARNICHTS}% Package, Info
+    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}% Error-Text
+    {table}{}
 \else
 %% https://ctan.org/pkg/xcolor
-\LILLYxDemandPackage{xcolor}{Ohne Farben mache ich GARNICHTS}%% Package, Info
-                    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}%% Error-Text
-                    {table}%%Params
-                    {}
+\LILLYxDemandPackage{xcolor}{Ohne Farben mache ich GARNICHTS}% Package, Info
+    {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}% Error-Text
+    {table}{}
 \fi
 %% https://ctan.org/pkg/pgf
-\LILLYxDemandPackage{pgf}{Ohne pgf mache ich GARNICHTS}%% Package, Info
-                    {Jetzt mal ernsthaft, was wären wir ohne pgf? Auch wenn ich nicht mehr weiss, warum es hier gebraucht wird.}%% Error-Text
-                    {}%%Params
-                    {}
+\LILLYxDemandPackage{pgf}{Ohne pgf mache ich GARNICHTS}% Package, Info
+    {Jetzt mal ernsthaft, was wären wir ohne pgf? Auch wenn ich nicht mehr weiss, warum es hier gebraucht wird.}% Error-Text
+    {}{}
 
 %%% Hier wird, entsprechend der Konfiguration,
 %% Geladen welches Farbschema angwendet werden soll, es wird stehts der Standart geladen,
@@ -105,7 +101,6 @@
 \pushList{LillyColorList}{Charcoal/54/69/79}           %%#36454F
 \pushList{LillyColorList}{Jet/52/52/52}                %%#343434
 
-
 \storeLillyColorList{LISTxColors}
 \registerColors{\LISTxColors}{}
 
@@ -127,43 +122,15 @@
 \pushList{LillyCompatColorList}{skyblue/60/179/113}          %% #3CB371
 
 \pushList{LillyCompatColorList}{tealblue/51/153/255}         %% #3399FF
-
 \pushList{LillyCompatColorList}{superlightgray/240/240/240}  %% #F0F0F0
 
 \storeLillyCompatColorList{LISTxCompatColors}
 \registerColors{\LISTxCompatColors}{Compat-}
 
-%% Hier eine Auflistung der verwendten Farb-Befehlen
-%% Die von Lilly für bestimmte Aufgaben verwendet werden, für die Grundfarben
-%% werden Befehle verwendet um eine Style-Erweiterung möglich zu machen
-
-% \providecommand{\LILLYxColorxDefinition}{black}
-% \providecommand{\LILLYxColorxSatz}{black}
-% \providecommand{\LILLYxColorxBeweis}{black}
-% \providecommand{\LILLYxColorxLemma}{black}
-% \providecommand{\LILLYxColorxBemerkung}{black}
-% \providecommand{\LILLYxColorxZusammenfassung}{black}
-% \providecommand{\LILLYxColorxBeispiel}{black}
-% \providecommand{\LILLYxColorxUebungsaufgabe}{black}
-% \providecommand{\LILLYxColorxZusatzuebung}{black}
-
-% \providecommand{\LILLYxColorxLINKSxMainColor}{black}
-% \providecommand{\LILLYxColorxLINKSxMainColorDarker}{\LILLYxColorxLINKSxMainColor!95!black}
-
-% \providecommand{\LILLYxColorxLINKSxCiteColor}{black}
-% \providecommand{\LILLYxColorxLINKSxUrlColor}{black}
-
-% \providecommand{\LILLYxColorxTITLExCOLOR}{black}
-
-% %% can be defined by Jake ahead
-% \providecommand{\Hcolor}{black}
-% \providecommand{\HBcolor}{black}
-
-\providecommand{\Hcolor}{Leaf}
-\providecommand{\HBcolor}{\Hcolor!7}
+\providecommand\Hcolor{Leaf}
+\providecommand\HBcolor{\Hcolor!7}
 
 %% Doese Farben werden nun durch Default entsprechend gesetzt:
-
 \gdef\setProfileColors#1{
     %\globalcolorstrue %% colors, colors everywhere :D
     \foreach \name/\col in #1 {
@@ -186,14 +153,13 @@
 \constructList[,]{LillyProfileColors}
 
 
-\input{\LILLYxPATHxDATA/Colors/_LILLY_DEFAULT_COLORPROFILE}%
+\input{\LILLYxPATHxDATA/Colors/_LILLY_DEFAULT_COLORPROFILE}
 
 \ifx\LILLYxMODE\LILLYxMODExPRINT
-    \input{\LILLYxPATHxDATA/Colors/_LILLY_PRINT_COLORPROFILE}%
+    \input{\LILLYxPATHxDATA/Colors/_LILLY_PRINT_COLORPROFILE}
 \fi
 
 \storeLillyProfileColors{LISTxProfileColors}
-
 \RequirePackage{LILLYxCOLORxPALETTE}
 
 %% Aktuell erlaubt Lilly nur Standartmäßig diese beiden Farprofile

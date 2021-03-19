@@ -1,14 +1,12 @@
 \gdef\GRAPHICSxVennxVereinigung{%
-\begin{tikzternal}[scale=0.8]
-            \tkzDefPoint(0,0){A};
-            \tkzDefPoint(1.5,0){B};
-            \node at (-1.1,0) {A}; \node at (2.6,0) {B};
-            \tkzFillCircle[color=mint!35!white](A,B);
-            \tkzFillCircle[color=mint!35!white](B,A);
-            \draw[thick] (0,0) circle (1.5);
-            \draw[thick] (1.5,0) circle (1.5);
-            \node at (-1.1,0) {A}; \node at (2.6,0) {B};
-
-        \end{tikzternal}
-}
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxVennxVereinigung} 
+\begin{tikzternal}[scale=.8]
+\tkzDefPoint(0,0){A};
+\tkzDefPoint(1.5,0){B};
+\node at (-1.1,0) {A}; \node at (2.6,0) {B};
+\tkzFillCircle[color=mint!35!white](A,B);
+\tkzFillCircle[color=mint!35!white](B,A);
+\draw[thick] (0,0) circle (1.5);
+\draw[thick] (1.5,0) circle (1.5);
+\node at (-1.1,0) {A}; \node at (2.6,0) {B};
+\end{tikzternal}}
+\LILLYcommand\LILLYxGRAPHICSxSHOW{\GRAPHICSxVennxVereinigung}

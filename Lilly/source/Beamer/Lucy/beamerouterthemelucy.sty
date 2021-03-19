@@ -1,6 +1,4 @@
 \mode<presentation>
-
-
 \providecommand{\totalframes}{\inserttotalframenumber}
 \defbeamertemplate*{footline}{lucy}[1][] {
     \hskip0.25cm\begin{tikzpicture}[fnote/.style={cwhite,font={\lfseries\supertiny}}]
@@ -11,7 +9,6 @@
     \end{tikzpicture}
     \vskip0.25cm
 }
-
 \defbeamertemplate*{frametitle}{lucy}[1][]{
     \vskip0.35cm%
     \hspace*{-0.25cm}\begin{tikzpicture}
@@ -20,18 +17,9 @@
     \end{tikzpicture}
     \vskip0.25cm
 }
-
-% \newenvironment{pframe}{%
-%     \setbeamertemplate{headline}[default]%
-%     \def\beamer@entrycode{\vspace*{-\headheight}}%
-%     \begin{frame}%
-%     }{\end{frame}}
-
-
 \setbeamertemplate{section in toc}{%
   {\Fontauri$\inserttocsectionnumber$}.~~\inserttocsection}
 \setbeamercolor{subsection in toc}{bg=white,fg=structure}
 \setbeamertemplate{subsection in toc}{%
   \hspace{1.2em}{\color{csecondary}\rule[0.3ex]{3pt}{3pt}}~~\small\inserttocsubsection\par}
-
 \mode<all>

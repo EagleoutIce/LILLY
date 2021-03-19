@@ -1,9 +1,7 @@
 %% https://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz#34268
-
 % disable ", otherwise forest will fail
 \catcode`\"=12
 \usepackage[edges]{forest}
-
 \newcount\dirtree@lvl
 \newcount\dirtree@plvl
 \newcount\dirtree@clvl
@@ -22,7 +20,6 @@
   \ifnum\tikznumberofcurrentchild=\tikznumberofchildren
   \global\advance\dirtree@plvl by -1
   \fi
-}
 
 \tikzset{
   dirtree/.style={
@@ -32,27 +29,18 @@
     edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tikzchildanchor)}
   }
 }
-
 \newenvironment{directory}[1][]{%
-    \begin{tikzpicture}[dirtree, #1]
-    }{;\end{tikzpicture}}
-
-
-
-
+  \begin{tikzpicture}[dirtree, #1]
+  }{;\end{tikzpicture}}
 \colorlet{folderbg}{bondiBlue}
 \colorlet{ifolderbg}{DebianRed}
 \colorlet{filebg}{bondiBlue}
 \colorlet{ifilebg}{DebianRed}
 \newlength\len@folder@size
 \setlength\len@folder@size{4pt}
-
 \def\@folderindent{2.6}
 \def\@fileindent{1.75}
-
-\def\SetFolderFileSameIndent{%
-    \gdef\@fileindent{\@folderindent}
-}
+\def\SetFolderFileSameIndent{\gdef\@fileindent{\@folderindent}}
 
 % #1 light color
 % #2 darker color
@@ -88,10 +76,6 @@
 \end{scope}
 }
 
-% \def\@SmashText#1\@nil{%
-%   \smash{XX#1XX}%
-% }
-
 \tikzset{%
   folder/.pic={%
         \@lilly@td@folder{#1}{#1!85}{MudWhite}{}%
@@ -106,11 +90,7 @@
   },
   pics/complexfolder/.default={folderbg}{$\pi$},
   %
-  %
-  %
-  file/.pic={%
-        \@lilly@td@file{#1}{#1!85}{MudWhite}{}%
-  },
+  file/.pic={\@lilly@td@file{#1}{#1!85}{MudWhite}{}},
   pics/file/.default={filebg},
   pics/logofile/.default={$\pi$},
   logofile/.pic={%
@@ -139,12 +119,7 @@
         edge label+/.option={icon pic},
         text depth={1pt},
         execute at begin node={\strut},%
-        %node format = {\noexpand\node(\forestoption{name}) [\forestoption{node options}]{\forestoption{content format}};},
       },
-      % edge path={
-      %   \noexpand\path[\forestoption{edge},densely dashed]
-      %   (!to tier=p.parent anchor)++(-0.25,0) |-(.child anchor)\forestoption{edge label};
-      %  },
       if pic root={
         tikz+={
           \pic at ([xshift=\len@folder@size].west) {folder};
@@ -153,24 +128,15 @@
       }{},
     },
   },
-  % #1 style name
-  % #2 pic name
-  % #3 color default
-  % #4 offset
+  % #1 style name #2 pic name #3 color default #4 offset
   create pic key/.code n args=4{%
     \forestset{%
       #1/.style={%
         inner xsep=#4*\len@folder@size,
         icon pic={pic {#2=##1}},
       },
-      #1/.default=#3,
-    }
-  },
-  % #1 style name
-  % #2 pic name
-  % #3 color default
-  % #4 offset
-  % #5 default symbol
+    #1/.default=#3}},
+  % #1 style name #2 pic name #3 color default #4 offset #5 default symbol
   create symbol pic key/.code n args=5{%
     \forestset{%
       #1/.style n args=2{%
@@ -190,11 +156,10 @@
   create symbol pic key={cfile}{complexfile}{filebg}{\@fileindent}{$\mathbf{\pi}$}, % colored file with logo option
 }
 
-
 \DeclareDocumentCommand{\CreateNewFolderType}{
-    o           % Color
-    m           % Name
-    O{}         % icon
+    o   % Color
+    m   % Name
+    O{} % icon
 }{%
   \IfValueTF{#1}{
     \forestset{%
@@ -214,8 +179,6 @@
     }%
   }
 }
-
-
 
 \DeclareDocumentCommand{\CreateNewFileType}{
     o           % Color
@@ -240,8 +203,6 @@
     }
   }
 }
-
-
 
 \environbodyname\STLXTREE% forest uses \BODY too. collision prevention over 9000
 \bracketset{action character=@}

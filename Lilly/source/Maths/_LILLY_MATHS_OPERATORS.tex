@@ -1,6 +1,6 @@
 \providecommand\overbar[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} %Anpassung overlapping: GDRA
-\ifcsname LetLtxMacro\endcsname%
-\LetLtxMacro{\legsqrt}{\sqrt}
+\ifcsname LetLtxMacro\endcsname
+\LetLtxMacro\legsqrt\sqrt
 \let\oldr@@t\r@@t
 \def\r@@t#1#2{%
 \setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0

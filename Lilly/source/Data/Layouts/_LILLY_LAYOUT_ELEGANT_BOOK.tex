@@ -1,51 +1,32 @@
 %%% This Layout is meant to provide the Layout for an Beautiful Book. It will conform with the regular Lilly-Base
-
-
-%%% Todo list:
-% [X] - create a possibility to add Keyval AND Pre-Listeners for Layouts and Types
-% [X] - create the possibility to add and load OUTRO-Templates
-% [X] - create a Layout-module which will do PRE-, INTRO-, OUTRO- and POST- Loadingt
-% [X] - Include Elegant_book as design
-%% All done :D
-
-
 \RequirePackage{LILLYxCONTROLLERxBOX}
-% \RequirePackage{LILLYxCONTROLLERxBOX}
-
-%% General Packages needed for Typesetting
-
 %% https://www.ctan.org/pkg/scrlayer-scrpage
 \LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
-					{Verpflichtoeoeoend}
-					{automark}{}
+	{Verpflichtoeoeoend}{automark}{}
 
 %% https://www.ctan.org/pkg/framed
 \LILLYxDemandPackage{framed}{Erlaubt das nutzen von leftbar}
-                    {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}
-                    {}{}
+  {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}{}{}
 
 %% https://www.ctan.org/pkg/titletoc
 \LILLYxDemandPackage{titletoc}{Macht zusammen mit titlesec den toc}
-                    {Das sieht garnicht gut aus :P}
-					{}{}
+  {Das sieht garnicht gut aus :P}{}{}
 
 %% https://www.ctan.org/pkg/titlesec
 \LILLYxDemandPackage{titlesec}{Macht zusammen mit titletoc den toc}
-					{Das sieht garnicht gut aus :P}
-					{}{}
+	{Das sieht garnicht gut aus :P}{}{}
 
 %%% Set Fonts for the document :D
 % https://tug.org/FontCatalogue/lato/
 \LILLYxLoadPackage{lato}{Scriftart für das (pdfLaTeX) Dokument}
-					{Naja, ohne ging schon, aber sieht halt doof aus.}
-                    {\def\lfseries{\normalfont}}
-                    {default}{\def\lfseries{\fontseries{l}\selectfont}}
+	{Naja, ohne ging schon, aber sieht halt doof aus.}
+  {\def\lfseries{\normalfont}}
+  {default}{\def\lfseries{\fontseries{l}\selectfont}}
 
 %% Setting up the predefined fonts we're going to use:
-\DeclareFixedFont{\tocFont}{U}{eur}{b}{n}{10}
-\DeclareFixedFont{\chpFont}{U}{eur}{b}{n}{24}
-\DeclareFixedFont{\chpNumber}{U}{eur}{b}{n}{165}
-
+\DeclareFixedFont\tocFont{U}{eur}{b}{n}{10}
+\DeclareFixedFont\chpFont{U}{eur}{b}{n}{24}
+\DeclareFixedFont\chpNumber{U}{eur}{b}{n}{165}
 
 %% Set General style of the Page:
 \def\LILLYxRIGHTMARK{Inhalts\"{u}bersicht}
@@ -74,18 +55,19 @@
 %% Set Hooks for the Beginning of the Document:
 %% We will reset the Geometry-Layout to achieve a more beautiful Page-Layout:
 \AtBeginDocument{%
-	\newgeometry{a4paper, ignoreheadfoot,%
-				 left=3.4cm, right=2.6cm,%
-				 top=3cm, bottom=3.5cm,%
-				 nohead, marginparwidth=0cm,%
-				 marginparsep=0mm%
-				}
-    \SetStyle
+\newgeometry{a4paper, ignoreheadfoot,%
+        left=3.4cm, right=2.6cm,%
+        top=3cm, bottom=3.5cm,%
+        nohead, marginparwidth=\z@,%
+        marginparsep=\z@}
+  \SetStyle
 }
 
 %% General spacing stuff:
-\setlength{\parskip}{1ex}\setlength{\parindent}{0ex}
-\setlength{\skip\footins}{0.75cm}\setlength{\footnotesep}{2mm}
+\parskip=1ex
+\parindent=\z@
+\setlength{\skip\footins}{.75cm}
+\footnotesep=2mm
 
 %% Set lengths and Definitions to configure the leftbar environment:
 \newlength{\lbarsep}
@@ -107,21 +89,20 @@
 %% Styling the toc:
 %% Used with babel :D
 \addto\captionsngerman{%
-        \renewcommand{\contentsname}{\hbox{}\hfill\Huge{\lfseries Inhalts\"{u}bersicht\hbox{}\hfill\relax}}%
+  \renewcommand\contentsname{\hbox{}\hfill\Huge{\lfseries Inhalts\"{u}bersicht\hbox{}\hfill\relax}}%
 }
 
 \titlecontents{chapter}
-  [3.31em]{\vspace*{-0.125\baselineskip}}
+  [3.31em]{\vspace*{-.125\baselineskip}}
   {\def\lbarcol{AuroMetalSaurus}\def\lbarbackcol{}\setlength{\lbarsep}{-3.75em}%
     %\begin{minipage}{\textwidth}
     %\needspace{2cm}
     \parbox{.1\linewidth}{\hbox{}\hfill\Huge{\thecontentspage}}\nopagebreak%
-   \vspace*{-2.7\baselineskip}\leftbar{\vspace*{0.5em}\parbox{\linewidth}{\hspace*{-2.25em}\tocFont\chaptername~\thecontentslabel}}\\\hspace*{-2.25em}%
+   \vspace*{-2.7\baselineskip}\leftbar{\vspace*{.5em}\parbox{\linewidth}{\hspace*{-2.25em}\tocFont\chaptername~\thecontentslabel}}\\\hspace*{-2.25em}%
    \Large%
-  }
-  {%
+  }{%
     %\begin{minipage}{\textwidth}
-    \parbox{0.1\linewidth}{\hfill\Huge\thecontentspage}%
+    \parbox{.1\linewidth}{\hfill\Huge\thecontentspage}%
    \vspace{-2.85\baselineskip}\leftbar{}\\}
   {\endleftbar%\end{minipage}
     \nopagebreak}[\vskip2pt\nopagebreak]
@@ -130,35 +111,34 @@
 {\def\lbarcol{\Hcolor}\def\lbarbackcol{\colorbox{\Hcolor!6}}\setlength{\lbarsep}{1.75em}%
   \begin{minipage}{\textwidth}
   \parbox{.1\linewidth}{\hbox{}\hfill\Huge\bfseries{\thecontentspage}}%
-  \vspace{-2.85\baselineskip}\leftbar\vspace*{0.5em}\hspace*{1em}{\tocFont\partname~\thepart}~\\\hspace*{1em}%
+  \vspace{-2.85\baselineskip}\leftbar\vspace*{.5em}\hspace*{1em}{\tocFont\partname~\thepart}~\\\hspace*{1em}%
   \Large
 }
 {\def\lbarcol{\Hcolor}\def\lbarbackcol{\colorbox{\Hcolor!6}}\setlength{\lbarsep}{1.75em}%
 \begin{minipage}{\textwidth}
 \parbox{.1\linewidth}{\hbox{}\hfill\Huge\bfseries{\thecontentspage}}%
-\vspace{-2.85\baselineskip}\leftbar\vspace*{0.5em}\hspace*{1em}{\tocFont\partname~\thepart}~\\\hspace*{1em}%
+\vspace{-2.85\baselineskip}\leftbar\vspace*{.5em}\hspace*{1em}{\tocFont\partname~\thepart}~\\\hspace*{1em}%
 \Large}
 {\endleftbar\end{minipage}
   \nopagebreak}[\vskip2pt\nopagebreak]
 \titlecontents{section}
   [0em]
   {\sffamily\contentslabel{3em}\contentslabel{}}{}{}
-  {\hspace{0.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
+  {\hspace{.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
 \titlecontents{subsection}
   [0em]
   {\sffamily\contentslabel{3em}}{}{}
-  {\hspace{0.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
+  {\hspace{.5em}\nobreak\itshape\color{AuroMetalSaurus}\contentspage}
 
 %% Set The Mini-TOCs
-
-\newcommand{\printMiniToc}[1][]{\vspace{-3em}
+\newcommand\printMiniToc[1][]{\vspace{-3em}
   \hfill\parbox[t]{.25\textwidth}{
 		{\mbox{}\\
 			\mbox{}\bfseries{\chpNumber\hfill\thechapter~~}}
 	}
 	\parbox[t]{.65\textwidth}{\vspace*{1.5cm}
 		\begin{flushright}
-			{\Large\textbf{Übersicht}}\quad \raisebox{0.25mm}{\faList}
+			{\Large\textbf{Übersicht}}\quad \raisebox{.25mm}{\faList}
 		\end{flushright}
         \vspace*{-3mm}
         \begin{tcolorbox}[presenterstyle]
@@ -170,7 +150,7 @@
                 %\minitoc
               \printcontents[chapters]{p}{1}{\setcounter{tocdepth}{4}}
 			\end{spacing}
-			\vspace*{-0.5mm}%
+			\vspace*{-.5mm}%
         \end{tcolorbox}
 	}\hspace*{1cm}
   %\bigskip
@@ -182,7 +162,7 @@
 }
 
 \titlecontents{psection}[2.3em]
-{} {\contentslabel{2.3em}} {} {\titlerule*[0.75pc]{.}{\contentspage}}
+{} {\contentslabel{2.3em}} {} {\titlerule*[.75pc]{.}{\contentspage}}
 \titlecontents{psubsection}[5.5em]
 {} {\contentslabel{3.2em}} {} {,\itshape\contentspage}
 
@@ -201,12 +181,11 @@
 
 
 \makeatletter
-
 \renewcommand\sectionlinesformat[4]{%
 	\phantomsection%%\textcolor{\LILLYxColorxTITLExCOLOR}{
 	{{\smaller #3}\, #4}%
 }
-\renewcommand{\@seccntformat}[1]{\textcolor{\Hcolor}{\csname the#1\endcsname}}
+\renewcommand\@seccntformat[1]{\textcolor{\Hcolor}{\csname the#1\endcsname}}
 
 
 \gdef\PRTcurText{}
@@ -220,7 +199,7 @@
 %% Define and set the Title:
 \makeatletter
 \titleformat{\part}[display]
-  {\vspace*{3em}\hfill\parbox{0.75\linewidth}{\lfseries\raggedleft \PRTcurText}\hspace*{0.5em}\medskip\\\hbox{}\hfill {\mdseries \PRTcurAuth}\\\Huge\scshape\vfill}
+  {\vspace*{3em}\hfill\parbox{.75\linewidth}{\lfseries\raggedleft \PRTcurText}\hspace*{.5em}\medskip\\\hbox{}\hfill {\mdseries \PRTcurAuth}\\\Huge\scshape\vfill}
   {\Large\color{\Hcolor}\partname~\thepart:}
   {2pt}
   {\SetPartFlavour{}{}}[\vspace*{4.5em}] %% Reset :D
@@ -231,33 +210,25 @@
     {29pt}{~\vspace{-4em}\newline\hbox{}\hfill{}\Huge%
       %\newlistof{chap\alph{chapter}}{chap\alph{chapter}}{HeyMum}
     }
-    %\chapterfont}
-% \titleformat*{\section}{\Huge}
-% %\titlefont}
-% \titleformat*{\subsection}{\huge}
-% %\titlefont}
-% \titleformat*{\subsubsection}{\LARGE}
-%\titlefont}
 
 % spacing:
-\titlespacing*{\part}{0pt}{0pt}{20pt}
-\titlespacing*{\chapter}{0mm}{50pt}{20pt}
-\titlespacing*{name=\chapter,numberless}{0pt}{20pt}{20pt} %starred
-\titlespacing*{\section}{0mm}{4mm}{3mm}
-\titlespacing*{\subsection}{0mm}{3mm}{2mm}
-\titlespacing*{\subsubsection}{0mm}{2mm}{1.5mm}
-
+\titlespacing*{\part}{\z@}{\z@}{20pt}
+\titlespacing*{\chapter}{\z@}{50pt}{20pt}
+\titlespacing*{name=\chapter,numberless}{\z@}{20pt}{20pt} %starred
+\titlespacing*{\section}{\z@}{4mm}{3mm}
+\titlespacing*{\subsection}{\z@}{3mm}{2mm}
+\titlespacing*{\subsubsection}{\z@}{2mm}{1.5mm}
 
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
 {-4ex \@plus -1ex \@minus -.4ex}
 {1ex \@plus.2ex }
 {\normalfont\LARGE\sffamily\bfseries}}
 \renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
-{-3ex \@plus -0.1ex \@minus -.4ex}
-{0.5ex \@plus.2ex }
+{-3ex \@plus -.1ex \@minus -.4ex}
+{.5ex \@plus.2ex }
 {\normalfont\normalsize\sffamily\bfseries}}
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
-{-2ex \@plus -0.1ex \@minus -.2ex}
+{-2ex \@plus -.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
 {\normalfont\small\sffamily\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
@@ -272,6 +243,5 @@
 	\pagestyle{empty}%
 	\tableofcontents%
 }
-\clearpage%
-\SetStyle%
+\clearpage\SetStyle
 }

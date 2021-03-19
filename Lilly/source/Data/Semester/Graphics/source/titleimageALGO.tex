@@ -1,19 +1,14 @@
 \documentclass[tikz,border=2mm]{standalone}
 \usetikzlibrary{positioning,matrix,decorations.pathmorphing,calc}
-
 \definecolor{BorderBlue}{RGB}{33, 51, 148}
 \definecolor{CoinColor}{RGB}{245, 230, 61}
-
 \definecolor{InkyColor}{RGB}{0, 165, 236}
 \definecolor{ClydeColor}{RGB}{255, 130, 0}
 \definecolor{PinkyColor}{RGB}{254, 171, 200}
 \definecolor{BlinkyColor}{RGB}{251, 1, 0}
-
 \pgfmathsetseed{\number\pdfrandomseed}
 
-% #1 init
-% #2 exit
-% #3 coin amount
+% #1 init #2 exit #3 coin amount
 \def\coins#1#2#3{
   \foreach \x in {1,...,#3}{%
     \pgfmathsetmacro{\current}{\x/#3}%
@@ -23,56 +18,41 @@
 
 \begin{document}
 \begin{tikzpicture} [border/.style={double,double distance=0.125cm,BorderBlue,rounded corners=10pt,thick}, block/.style={very thick,BorderBlue,rounded corners=7.5pt}]
-
 \draw[border] (0,-7) -| ++ (3,2) -| ++(-3,5) -| (7,-2) -| ++ (1,2) -| ++ (7,-5) -| ++(-3,-2) -- ++(3,0);
 \draw[border] (0,-8) -| ++(3,-2) -| ++(-3,-5.25) -| ++(15,5.25) -| ++(-3,2) -- ++(3,0);
-
 \draw[double,BorderBlue,thick,rounded corners=2pt] (6,-6.5) rectangle ++ (3,-2); \draw[black,line width=2.5pt] (7,-6.5) -- ++(1,0);
-
 % upper left stuff
 \draw[block] (1,-1) rectangle ++(2,-1) (4,-1) rectangle ++(2,-1) (1,-3.25) rectangle ++(2,-0.5);
 \draw[block] (15-1,-1) rectangle ++(-2,-1) (15-4,-1) rectangle ++(-2,-1) (15-1,-3.25) rectangle ++(-2,-0.5);
-
 % draw the 'T' palisade
 \draw[block] (5.75,-3.25) -| ++(3.5,-0.5) -| ++(-1.5,-1.25) -| ++(-0.5,1.25) -- ++(-1.5,0) -- cycle;
 \draw[block] (5.75,-9.5) -| ++(3.5,-0.5) -| ++(-1.5,-1.25) -| ++(-0.5,1.25) -- ++(-1.5,0) -- cycle;
 \draw[block] (5.75,-12.5) -| ++(3.5,-0.5) -| ++(-1.5,-1.25) -| ++(-0.5,1.25) -- ++(-1.5,0) -- cycle;
-
 % rotated upper left
 \draw[block] (4,-3.25) -| ++(0.5,-1.5) -| ++(1.25,-0.5) -| ++(-1.25,-1.5) -- ++(-0.5,0) -- cycle;
 % rotated upper right
 \draw[block] (15-4,-3.25) -| ++(-0.5,-1.5) -| ++(-1.25,-0.5) -| ++(1.25,-1.5) -- ++(0.5,0) -- cycle;
-
 % left and right blocks
 \draw[block] (4,-8) rectangle ++ (0.5,-2) (15-4,-8) rectangle ++ (-0.5,-2);
 % below sitting verticals
 \draw[block] (4,-11) rectangle ++ (2,-0.5) (15-4,-11) rectangle ++ (-2,-0.5);
-
 %Left and Rigth turned 'L'
 \draw[block] (1,-11) -| ++ (2,-2) -| ++(-0.5,1.5) -- ++(-1.5,0) -- cycle;
 \draw[block] (15-1,-11) -| ++ (-2,-2) -| ++(0.5,1.5) -- ++(1.5,0) -- cycle;
-
 % the huge creepy somewhat lying T's
 \draw[block] (1,-14.25) -| ++ (5,0.5) -| ++(-1.5,1.25) -| ++(-0.5,-1.25) -- ++(-3,0) --  cycle;
 \draw[block] (15-1,-14.25) -| ++ (-5,0.5) -| ++(1.5,1.25) -| ++(0.5,-1.25) -- ++(3,0) --  cycle;
-
-
 % Some Coins upper left
 \coins{0,-0.55}{3.5,-0.55}{7};
 \coins{0.5,-0.5}{0.5,-2.5}{4};
 \coins{4,-2.65}{11.5,-2.65}{15};
-
 \coins{15,-0.55}{15-2.5,-0.55}{5};
 \coins{9.6,-6.5}{9.6,-8.5}{4};
 \coins{10.1,-7.5}{12.1,-7.5}{4};
-
 \coins{2,-14.75}{12,-14.75}{20};
 \coins{3,-10.5}{5,-10.5}{4};
-
-
 % draw: pacman:
 \draw[thin,CoinColor!90!black,fill=CoinColor] (3.125,-10.5) -- ++(30:0.35) arc[radius = 0.35,start angle=30,delta angle=300] -- cycle;
-
 % ghost:
 % #1 where #2 color
 \def\drawGhost#1#2{

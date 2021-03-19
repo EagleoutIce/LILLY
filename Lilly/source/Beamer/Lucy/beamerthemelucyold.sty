@@ -1,28 +1,21 @@
 \mode<presentation>
-
-\RequirePackage{tikz}
-\RequirePackage{aurical}
-
+\RequirePackage{tikz,aurical}
 % Other themes
 \useinnertheme{lucy}
 \useoutertheme{lucy}
 \usecolortheme{lucy}
 \usefonttheme{lucy}
-
-
 \beamertemplatenavigationsymbolsempty
 % \setbeamertemplate{blocks}[rounded][shadow=true]
 \setbeamertemplate{itemize items}{\tiny\raisebox{1.45pt}{$\blacksquare$}}
-\setbeamertemplate{itemize subitem}{\tiny\tikz[baseline=-0.85ex]{\fill (0,0) circle (1.65pt);}}
+\setbeamertemplate{itemize subitem}{\tiny\tikz[baseline=-.85ex]{\fill (0,0) circle (1.65pt);}}
 
 \setbeamersize{text margin left=5mm,text margin right=5mm}
 
 \long\def\parallelcontent#1#2{
   \begin{columns}
-    \column{0.48\textwidth} #1
-    \column{0.48\textwidth} #2
+    \column{.48\textwidth} #1
+    \column{.48\textwidth} #2
   \end{columns}
 }
-
-
 \mode<all>

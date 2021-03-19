@@ -1,54 +1,39 @@
 \RequirePackage[automark]{scrlayer-scrpage}         %Header konfigurieren
-\RequirePackage{lastpage}                                       %Letzte Seite erhalten
-\RequirePackage{relsize}
+\RequirePackage{lastpage,relsize}
 
 \RequirePackage[german]{fancyref}
-\RequirePackage{lipsum} %% macht vieles einfacher
-
-
-\RequirePackage{float} %% for H
+\RequirePackage{lipsum,float} %% macht vieles einfacher
 
 \LILLYxLoadPackage{subcaption}{Fuer tolle Untertitel}
-                    {Dieses Paket ist oft nicht vorhanden, nicht schlimm, wird dann nicht benutzt!}
-                    {}
-                    {}{}
+    {Dieses Paket ist oft nicht vorhanden, nicht schlimm, wird dann nicht benutzt!}{}{}{}
 
-\providecommand{\LILLYxBOXxDefinitionxLock}{TRUE}
-\providecommand{\LILLYxBOXxBeispielxLock}{TRUE}
-\providecommand{\LILLYxBOXxBemerkungxLock}{TRUE}
-\providecommand{\LILLYxBOXxSatzxLock}{TRUE}
-\providecommand{\LILLYxBOXxBeweisxLock}{TRUE}
-\providecommand{\LILLYxBOXxLemmaxLock}{TRUE}
-\providecommand{\LILLYxBOXxZusammenfassungxLock}{TRUE}
+\providecommand\LILLYxBOXxDefinitionxLock{TRUE}
+\providecommand\LILLYxBOXxBeispielxLock{TRUE}
+\providecommand\LILLYxBOXxBemerkungxLock{TRUE}
+\providecommand\LILLYxBOXxSatzxLock{TRUE}
+\providecommand\LILLYxBOXxBeweisxLock{TRUE}
+\providecommand\LILLYxBOXxLemmaxLock{TRUE}
+\providecommand\LILLYxBOXxZusammenfassungxLock{TRUE}
 
 \@ifpackagelater{scrbase}{2014/12/12}{}{\def\scr@startsection{\@startsection}}%
 
-
-\renewcommand{\sectionmark}[1]{%
-    \markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}
-}
-
+\renewcommand\sectionmark[1]{\markright{#1}\renewcommand{\LILLYxRIGHTMARK}{#1}}
 \RequirePackage{titlesec}
+\LILLYcommand\leftmark{}
+\LILLYcommand\rightmark{}
+\newcommand\LILLYxRIGHTMARK{\faBookmark}
 
-\LILLYcommand{\leftmark}{}
-\LILLYcommand{\rightmark}{}
-
-\newcommand{\LILLYxRIGHTMARK}{\faBookmark}
-
-
-\LILLYcommand{\LILLYxLayoutxClear}{ %
-    \pagestyle{empty} %KOMA-FTW!
-    \pagenumbering{gobble}
+\LILLYcommand\LILLYxLayoutxClear{ %
+\pagestyle{empty} %KOMA-FTW!
+\pagenumbering{gobble}
 }
-\LILLYcommand{\LILLYxLayoutxRestore}{ %
-    \pagenumbering{arabic}
-    \pagestyle{scrheadings} %KOMA-FTW!
-
-    \lofoot{\textsc{\TITLE}}
-    \cofoot{}
-    \rofoot{\textbf{\thepage}/\,\begingroup\hypersetup{linkcolor=black}\pageref{LastPage}\endgroup}
+\LILLYcommand\LILLYxLayoutxRestore{ %
+\pagenumbering{arabic}
+\pagestyle{scrheadings} %KOMA-FTW!
+\lofoot{\textsc{\TITLE}}
+\cofoot{}
+\rofoot{\textbf{\thepage}/\,\begingroup\hypersetup{linkcolor=black}\pageref{LastPage}\endgroup}
 }
-
 
 \providecommand{\ABSTRACT}{Hier könnte ihre Werbung stehen. Ich mag Züge wirklich sehr immer mehr, immer mehr, dies ist das Abstract - oh - Abstract oh jäah! \textbf{Ändere diesen Text durch:
 {\T{\textbackslash providecommand\{\textbackslash ABSTRACT\}\{<Dein neuer Titel>\}}} vor {\T{\textbackslash documentclass[paper]\{LILLY\}.}}}}
@@ -56,8 +41,7 @@
 \providecommand{\BRIEF}{Informatik Student,\\Universit\"{a}t Ulm -- \heute}
 \providecommand{\LILLYxColorxTITLExSTYLE}[1]{\usefont{T1}{qzc}{m}{it}\fontsize{24pt}{19pt}\selectfont{#1}\par}
 
-
-\newcommand{\printHeader}{\setlength{\columnsep}{2em}{\twocolumn[
+\newcommand\printHeader{\columnsep=2em{\twocolumn[
     \begin{@twocolumnfalse}
      {\centering \LILLYxColorxTITLExSTYLE{\TITLE}~\newline}
      {\centering \AUTHOR,~\BRIEF\par}~\bigskip\newline
@@ -69,15 +53,9 @@
 
 \newcommand{\printLILLY}{%
 \paragraph{Dokumenterstellung}
-Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbei handelt es sich um ein Framework für \LaTeX, welches Florian Sihler für seine Studiumsmitschriften (aktuell) entwickelt. Es ist Quelloffen und befindet sich auf GitHub: \url{https://github.com/EagleoutIce/LILLY}.
-}
+Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbei handelt es sich um ein Framework für \LaTeX, welches Florian Sihler für seine Studiumsmitschriften (aktuell) entwickelt. Es ist Quelloffen und befindet sich auf GitHub: \url{https://github.com/EagleoutIce/LILLY}.}
 
-
-
-\AtBeginDocument{
-    \LILLYxLayoutxRestore
-}
-
+\AtBeginDocument{\LILLYxLayoutxRestore}
 \RequirePackage{marginnote}
 %% fontsize
 \def\XfszXsection{\normalsize}
@@ -86,80 +64,52 @@ Diese Ausarbeitung wurde mit \textLilly{} (Ver. \LILLYxVERSION) erstellt. Hierbe
 \def\XfszXparagraph{\footnotesize}
 \def\LILLYxsection{section}
 \def\LILLYxparagraph{paragraph}
-%\expandafter\expandafter\expandafter\widthof{\csname the#1 \endcsname}
 \makeatletter
-% \renewcommand\sectionlinesformat[4]{%
-% \def\st{#1}\ifx\st\LILLYxparagraph\else\marginnote[\csname XfszX#1\endcsname\hbox{}\hfill\sffamily\textcolor{\LILLYxColorxTITLExCOLOR}{\ifx\st\LILLYxsection\else\vspace{-1.4\baselineskip}\fi\vspace{-0.02cm}\newline#3\vphantom{\normalsize I}}]{\csname XfszX#1\endcsname\sffamily\textcolor{\LILLYxColorxTITLExCOLOR}{\ifx\st\LILLYxsection\else\vspace{-1.4\baselineskip}\fi\vspace{-0.02cm}\newline#3\vphantom{\normalsize I}}}\fi\phantomsection\ifx\st\LILLYxsection{\nobreak\tikz{\draw (0,0) |- ++(\linewidth,0.2) -- ++(0,-0.2);}}\vspace{-1.35\baselineskip}\newline\fi\begingroup\parskip=0pt\par\nopagebreak\centering#4\par\noindent\ignorespacesafterend\endgroup\ifx\st\LILLYxsection{\vspace{-1.55\baselineskip}\newline\nobreak\tikz{\draw (0,0) |- ++(\linewidth,-0.2) -- ++(0,0.2);}}\vspace{-0.5\baselineskip}\newline\else\vspace{-1.9\baselineskip}\newline\fi
-% }
 \addto\captionsngerman{%
-    \renewcommand{\listfigurename}{\vspace{-1.5\baselineskip}}%
-    \renewcommand{\listtablename}{\vspace{-1.5\baselineskip}}%
-    \renewcommand{\figurename}{\small\textbf{Abb.}~}
-    \renewcommand{\tablename}{\small\textbf{Tbl.}~}
+    \renewcommand\listfigurename{\vspace{-1.5\baselineskip}}%
+    \renewcommand\listtablename{\vspace{-1.5\baselineskip}}%
+    \renewcommand\figurename{\small\textbf{Abb.}~}%
+    \renewcommand\tablename{\small\textbf{Tbl.}~}%
 }
-
 \providecommand{\LILLYxPAPERxNUMxGET}[1]{\Roman{#1}} %% ALPH{#1}
 \ifcsname LILLYxPAPERxNUM\endcsname\else
     \gdef\LILLYxPAPERxNUM{TRUE}
 \fi
-
-\newcommand{\startAppendix}{
+\newcommand\startAppendix{
     \grenewcommand{\LILLYxPAPERxNUMxGET}[1]{\Alph{##1}}
     \setcounter{section}{0}
-    \section{Anhang}
-    \printbib
+    \section{Anhang}\printbib
     \tocloftpagestyle{scrheadings}
 }
-
-\newcommand{\intro}[1]{\smallskip\par\textit{#1}\smallskip\par}
-%% Pad Left:
-% \renewcommand{\sectionlinesformat}[4]{
-%     \begingroup%
-%         \def\st{#1}\nopagebreak%
-%         \ifx\st\LILLYxsection%
-%             \parskip=0pt\par%
-%             \getNum{#1}.~\parbox[t]{\linewidth-\widthof{\getNum{#1}}}{#4}%
-%         \else\ifx\st\LILLYxparagraph\else
-%             \normalsize\getNum{section}.\arabic{subsection} #4%
-%         \fi\fi%
-%         \par%
-%     \noindent\ignorespacesafterend\endgroup
-% }
-
-\renewcommand{\sectionlinesformat}[4]{
-    \begingroup%
-        \def\st{#1}\nopagebreak%
-        \ifx\st\LILLYxsection%
-            \parskip=0pt\par\centering%
-            \ifx\LILLYxPAPERxNUM\true%
-            \LILLYxPAPERxNUMxGET{#1}.~%
-            \fi
-        \else\ifx\st\LILLYxparagraph\else
-            \ifx\LILLYxPAPERxNUM\true%
-                \normalsize\LILLYxPAPERxNUMxGET{section}.\arabic{subsection}~%
-            \fi
-        \fi\fi%
-        #4%
-        \par%
-    \noindent\ignorespacesafterend\endgroup
+\newcommand\intro[1]{\smallskip\par\textit{#1}\smallskip\par}
+\renewcommand\sectionlinesformat[4]{%
+\begingroup
+\def\st{#1}\nopagebreak
+\ifx\st\LILLYxsection
+    \parskip=\z@\par\centering
+    \ifx\LILLYxPAPERxNUM\true
+    \LILLYxPAPERxNUMxGET{#1}.~%
+    \fi
+\else\ifx\st\LILLYxparagraph\else
+    \ifx\LILLYxPAPERxNUM\true
+        \normalsize\LILLYxPAPERxNUMxGET{section}.\arabic{subsection}~%
+    \fi
+\fi\fi
+    #4%
+    \par
+\noindent\ignorespacesafterend\endgroup
 }
 
 \renewcommand{\section}{\@startsection{section}{1}{\z@}
-{-4ex \@plus -1ex \@minus -.4ex}
-{1ex \@plus.2ex }
+{-4ex \@plus -1ex \@minus -.4ex}{1ex \@plus.2ex }
 {\normalfont\LARGE\bfseries}}
 \renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
-{-3ex \@plus -0.1ex \@minus -.4ex}
-{0.5ex \@plus.2ex }
+{-3ex \@plus -0.1ex \@minus -.4ex}{.5ex \@plus.2ex }
 {\normalfont\normalsize\bfseries}}
 \renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
 {-2ex \@plus -0.1ex \@minus -.2ex}
-{.2ex \@plus.2ex }
-{\normalfont\small\bfseries}}
+{.2ex \@plus.2ex }{\normalfont\small\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
-{-2ex \@plus-.2ex \@minus .2ex}
-{.1ex}
-{\normalfont\bfseries}}
-
-\setlength{\parindent}{0pt}
+{-2ex \@plus-.2ex \@minus .2ex}{.1ex}{\normalfont\bfseries}}
+\parindent=\z@
 \usepackage{lilly-widetext}

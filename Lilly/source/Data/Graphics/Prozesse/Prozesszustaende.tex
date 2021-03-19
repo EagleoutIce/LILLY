@@ -1,27 +1,25 @@
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{%
-\begin{tikzternal}[every node/.style={minimum width=3cm,minimum height=0.9cm,font=\sffamily,color=Charcoal,transform shape}, scale=0.85]
+\LILLYcommand\LILLYxGRAPHICSxSHOW{%
+\begin{tikzternal}[every node/.style={minimum width=3cm,minimum height=0.9cm,font=\sffamily,color=Charcoal,transform shape}, scale=.85]
+\begin{scope}[every node/.append style={ellipse, draw,font=\sffamily\bfseries}]
+    \node[fill=MudWhite] at(-0.5,0) (e) {erzeugt};
+    \node[fill=AppleGreen!20] at(3,-2) (be) {bereit};
+    \node[fill=Azure!20] at(7,-2) (l) {laufend};
+    \node[fill=DebianRed!20] at(5,-4.35) (bl) {blockiert};
+    \node[fill=MudWhite] at(10.5,0) (fin) {beendet};
+\end{scope}
 
-    \begin{scope}[every node/.append style={ellipse, draw,font=\sffamily\bfseries}]
-        \node[fill=MudWhite] at(-0.5,0) (e) {erzeugt};
-        \node[fill=AppleGreen!20] at(3,-2) (be) {bereit};
-        \node[fill=Azure!20] at(7,-2) (l) {laufend};
-        \node[fill=DebianRed!20] at(5,-4.35) (bl) {blockiert};
-        \node[fill=MudWhite] at(10.5,0) (fin) {beendet};
-    \end{scope}
+\begin{scope}[every path/.style={-latex,font={\tiny}},%
+                every node/.style={sloped,font=\tiny\sffamily}]
+    \draw (e) --(be) node[yshift=-0.1cm,midway,above] {zugelassen};
+    \draw (l) -- (fin) node[yshift=-0.1cm,midway,above] {terminiert};
 
-    \begin{scope}[every path/.style={-latex,font={\tiny}},%
-                    every node/.style={sloped,font=\tiny\sffamily}]
-        \draw (e) --(be) node[yshift=-0.1cm,midway,above] {zugelassen};
-        \draw (l) -- (fin) node[yshift=-0.1cm,midway,above] {terminiert};
+    \draw (bl) to[in=250,out=180,looseness=1.2] (be);
+    \node[left] at (2.6,-3.25) {\begin{minipage}{1.5cm}\raggedleft Wegfall des Blockadegrunds\end{minipage}};
+    \draw (l) to[in=0,out=290,looseness=1.2] (bl);
+    \node [right] at(7.4,-3.25) {\begin{minipage}{1.5cm}implizierter oder expliziter Warteaufruf\end{minipage}};
 
-        \draw (bl) to[in=250,out=180,looseness=1.2] (be);
-        \node[left] at (2.6,-3.25) {\begin{minipage}{1.5cm}\raggedleft Wegfall des Blockadegrunds\end{minipage}};
-        \draw (l) to[in=0,out=290,looseness=1.2] (bl);
-        \node [right] at(7.4,-3.25) {\begin{minipage}{1.5cm}implizierter oder expliziter Warteaufruf\end{minipage}};
+    \draw (l) to[bend left=30, edge node={node[below] {Unterbrechung oder Systemaufruf}}] (be);
+    \draw (be) to[bend left=30, edge node={node[above] {Scheduler teilt Prozess zu}}] (l);
 
-        \draw (l) to[bend left=30, edge node={node[below] {Unterbrechung oder Systemaufruf}}] (be);
-        \draw (be) to[bend left=30, edge node={node[above] {Scheduler teilt Prozess zu}}] (l);
-
-    \end{scope}
-\end{tikzternal}
-}
+\end{scope}
+\end{tikzternal}}

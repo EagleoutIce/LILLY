@@ -10,8 +10,7 @@
 %%%% LILLY - Lilly is a latex loveable yougurht
 %%%% - it doens't has to make any sense if it does look beautiful
 %%% lilly unterstütz die Verhaltenssteuerung über die Kommandozeile und erlaubt es so alle Paramter auch per '\def' zu setzen!
-
-\providecommand*{\LILLYxDummy}{dummy}                        %%% ONLY THING DEFINE HERE
+\providecommand*\LILLYxDummy{dummy}                        %%% ONLY THING DEFINE HERE
 % Key-Val-Optionen zum verarbeiten von Argumenten
 
 \RequirePackage{LILLYxKEYVALxPARSER,LILLYxCORE,LILLYxLIST,LILLYxRANDOM}
@@ -20,18 +19,17 @@
 % Setzen und Abfragen der Werte für das Dokument
 \providecommand\LILLYxMODExPRINT{print}
 \ifx\LILLYxMODE\LILLYxMODExPRINT
-    \providecommand{\LILLYxDocumentxTYPExExtras}{twoside}    %%% Weitere Zusätze für das Dokument
-    \providecommand{\LILLYxLeftOffset}{18mm}
-    \ifx\LILLYxDEBUG\true
-        %\providecommand{\LILLYxGeometryxExtras}{bindingoffset=8mm,showframe}
-        \def\LILLYxGeometryxExtras{bindingoffset=\LILLYxLeftOffset}
-    \else
-        \def\LILLYxGeometryxExtras{bindingoffset=\LILLYxLeftOffset}
-    \fi
+\providecommand{\LILLYxDocumentxTYPExExtras}{twoside}    %%% Weitere Zusätze für das Dokument
+\providecommand{\LILLYxLeftOffset}{18mm}
+\ifx\LILLYxDEBUG\true
+%\providecommand{\LILLYxGeometryxExtras}{bindingoffset=8mm,showframe}
+\def\LILLYxGeometryxExtras{bindingoffset=\LILLYxLeftOffset}
 \else
-    \providecommand{\LILLYxDocumentxTYPExExtras}{oneside}    %%% Weitere Zusätze für das Dokument
+\def\LILLYxGeometryxExtras{bindingoffset=\LILLYxLeftOffset}
 \fi
-
+\else
+\providecommand{\LILLYxDocumentxTYPExExtras}{oneside}    %%% Weitere Zusätze für das Dokument
+\fi
 \LILLYxPoliteKnock[.cls]{\LILLYxDocumentxTYPE}{} %% Hier ist alles toll
                   {\ClassError{Ich brauche leider \LILLYxDocumentxTYPE als Paket um irgendwas tun zu können! Ich darf auch nicht auf article oder gleichwertige Pakete umsteigen. Tut mir Leid, so wird das nichts!}} %% Hier dann wohl nicht!
 
@@ -102,7 +100,6 @@
 
 % Lstlisting include
 \RequirePackage{multicol}
-
 \ifLILLY@listings
     \RequirePackage{LILLYxLISTINGS}
     \RequirePackage{LILLYxLISTINGSxADVANCED}
@@ -119,16 +116,9 @@
 
 \RequirePackage{LILLYxSWITCHxCASE}
 % Generelle Controller
-\RequirePackage{LILLYxPHILOSOPHER}
-\RequirePackage{LILLYxCONTROLLERxMODE}
-\RequirePackage{LILLYxCONTROLLERxLINK}
-
-\RequirePackage{LILLYxBOXES}
-\RequirePackage{LILLYxCONTROLLERxHYPHEN}
-
+\RequirePackage{LILLYxPHILOSOPHER,LILLYxCONTROLLERxMODE,LILLYxCONTROLLERxLINK,LILLYxBOXES,LILLYxCONTROLLERxHYPHEN}
 
 % Setup für mathematisches
-
 \ifLILLY@math
     \RequirePackage{LILLYxMATH}
 \fi

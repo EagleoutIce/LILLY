@@ -1,14 +1,14 @@
 \gdef\GRAPHICSxListenoperationen{%
 \begin{tikzternal}
-    \foreach \x in {0,...,5} {%
-        \draw[thick] (\x+0.5,0) circle (0.45);
-        \node (\x) at (\x+0.5,0) {\x};
-    }
-    \draw [decorate,decoration={brace,amplitude=6pt,raise=4pt,mirror},yshift=0pt] (0,-0.45) -- ++(1,0) node [black,midway, below,yshift=-0.5cm] {\small\T{head}};
-    \draw [decorate,decoration={brace,amplitude=6pt,raise=4pt,mirror},yshift=0pt] (6,0.45) -- ++(-1,0) node [black,midway, above,yshift=0.5cm] {\small\T{last}};
-    \draw [|-|] (-0.25,-1.65) -- ++(6.5,0) node [black,midway, below] {\small\T{length}};
-    \draw [decorate,decoration={brace,amplitude=6pt,raise=4pt,mirror},yshift=0pt] (1,-0.45) -- ++(5,0) node [black,midway, below,yshift=-0.5cm] {\small\T{tail}};
-    \draw [decorate,decoration={brace,amplitude=6pt,raise=4pt,mirror},yshift=0pt] (4,0.45) -- ++(-4,0) node [black,midway, above,yshift=0.5cm] {\small\T{take 4}};
+\foreach \x in {0,...,5} {%
+    \draw[thick] (\x+0.5,0) circle (0.45);
+    \node (\x) at (\x+0.5,0) {\x};
+}
+\draw [decorate,decoration={brace,amplitude=6pt,raise=4pt,mirror},yshift=0pt] (0,-0.45) -- ++(1,0) node [black,midway, below,yshift=-0.5cm] {\small\T{head}};
+\draw [decorate,decoration={brace,amplitude=6pt,raise=4pt,mirror},yshift=0pt] (6,0.45) -- ++(-1,0) node [black,midway, above,yshift=0.5cm] {\small\T{last}};
+\draw [|-|] (-0.25,-1.65) -- ++(6.5,0) node [black,midway, below] {\small\T{length}};
+\draw [decorate,decoration={brace,amplitude=6pt,raise=4pt,mirror},yshift=0pt] (1,-0.45) -- ++(5,0) node [black,midway, below,yshift=-0.5cm] {\small\T{tail}};
+\draw [decorate,decoration={brace,amplitude=6pt,raise=4pt,mirror},yshift=0pt] (4,0.45) -- ++(-4,0) node [black,midway, above,yshift=0.5cm] {\small\T{take 4}};
 \end{tikzternal}
 }
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxListenoperationen}
+\LILLYcommand\LILLYxGRAPHICSxSHOW{\GRAPHICSxListenoperationen}

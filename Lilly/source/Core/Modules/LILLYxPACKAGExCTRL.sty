@@ -2,40 +2,33 @@
 \ProvidesPackage{LILLYxPACKAGExCTRL}[2019/06/29 Core-Funktion, erlaubt es Lilly Pakete intelligent zu verwalten]
 
 \RequirePackage{LILLYxVANILLA}
-
 %%%% ULTIMATIVES PACKETLADEGEDÖNS!
 %% JAKE SOLL DIE HIERRIN ENTHALTENEN DATEIEN DYNAMISCH LADEN KÖNNEN UND SO BEI DER INSTALLATION ODER BEI EINEM UPDATE DYNAMISCH NEUE PAKETE HINZUFÜGEN KÖNNEN
 
+\providecommand\LILLYxWANNABExERROR{\false} %% GENERAL WHOOPS
 
-\providecommand{\LILLYxWANNABExERROR}{\false} %% GENERAL WHOOPS
-
-%% \LILLYxUSure testet ob ein Paket geladen ist. Signatur: \LILLYxUSure[Fehlermeldung]{Paket}
 \makeatletter
 \newcommand{\LILLYxUSure}[2][Du hast mich verraten! Ein Paket sollte da sein, ist es aber nicht!]{%
     \@ifpackageloaded{#2}
         {}
-        {\ClassError{Lilly}{Package-Loaded-Assertion for #2 failed: #1        }{This cannot be recovered}}%
+        {\ClassError{Lilly}{Package-Loaded-Assertion for #2 failed: #1}{This cannot be recovered}}%
 }
 
 %% Testet, ob eine Daten existiert:
 %% LILLYxPoliteKnock[endung]{name}{true-case}{false-case}
-\newcommand\LILLYxPoliteKnock[4][.sty]{%
-\IfFileExists{#2#1}{#3}{#4}%
-}
+\newcommand\LILLYxPoliteKnock[4][.sty]{\IfFileExists{#2#1}{#3}{#4}}
 
 %% [Packargs]{Info}{Paket}{Fehlerm}{Fehlerb}{Call-Cmd}{type}{true}
 \newcommand\LILLY@L@adP@ck@ge[9][]{\@ifpackageloaded{#3}{}{ %% Paket bereits geladen? => Nichts machen!
-\ClassInfo{Lilly}{#6 (#3): #2               }\relax{}%%Infotext ist optional, wird nicht angezeigt wenn leer
-%% \IfFileExists{} %% check
+\ClassInfo{Lilly}{#6 (#3): #2}\relax%%Infotext ist optional, wird nicht angezeigt wenn leer
 \LILLYxPoliteKnock{#3}{%true
 \relax\RequirePackage[#1]{#3}\relax
 \protect#9%%
 }{%false
 \csname #7\endcsname{Lilly}{Paket #3 (genauer: #3.sty) nicht gefunden! Fehlermeldung: #4}{}%%return false %% Optional Error help with Demand - not implemented
-\ClassInfo{Lilly}{#8             }% - Vielleicht spezifisch machen, bringt ja bei error nichts
+\ClassInfo{Lilly}{#8}% - Vielleicht spezifisch machen, bringt ja bei error nichts
 \protect#5%%
-}}
-}
+}}}
 
 \@ifundefined{LILLYxNOxPACKAGEC}{%
 %% Wenn Lilly's Packet-Handling verwendet werden soll, so soll auch ein Fehler erhoben werden!
@@ -50,46 +43,4 @@
 \providecommand\LILLYxLoadPackage[6]{\ClassInfo{Lilly}{LILLYxLoadPackage: #2}\fi\relax\RequirePackage[#5]{#1}\relax\protect#6}%
 \providecommand\LILLYxDemandPackage[5]{\LILLXxLoadPackage{#1}{#2}{#3}{}{#4}{#5}}{}%
 }
-
-
-%% We will want to establish a new mechanism which works somewhat like \useXXXXlibrary, but with
-
-% \def\@@at{@}
-% \def\@@ltxcharconvert#1{%
-%     \ifcase`#1\relax
-%      0\or 1\or 2\or 3\or 4\or 5\or 6\or 7\or 8\or 9\or%
-%     10\or11\or12\or13\or14\or15\or16\or17\or18\or19\or%
-%     20\or21\or22\or23\or24\or25\or26\or27\or28\or29\or%
-%     30\or31\or32\or33\or34\or35\or36\or37\or38\or39\or%
-%     40\or41\or42\or x\or44\or x\or x\or47\or48\or49\or%
-%     50\or51\or52\or53\or54\or55\or56\or57\or58\or59\or%
-%     60\or61\or62\or63\or64\or A\or B\or C\or D\or E\or%
-%      F\or G\or H\or I\or J\or K\or L\or M\or N\or O\or%
-%      P\or Q\or R\or S\or T\or U\or V\or W\or X\or Y\or%
-%      Z\or91\or92\or93\or94\or95\or96\or A\or B\or C\or%
-%      D\or E\or F\or G\or H\or I\or J\or K\or L\or M\or%
-%      N\or O\or P\or Q\or R\or S\or T\or U\or V\or W\or%
-%      X\or Y\or Z\or123\or124\or125\or126\or127\or128\or129\or%
-%     \fi%
-% }
-% \def\@@uselillylibrary@iter#1#2\@nil{%
-%     \def\@@cmp{#1}\ifx\@@at\@@cmp\else%
-%     \@@ltxcharconvert{#1}%
-%     \def\@@cmp{#2}\ifx\@@at\@@cmp\else%
-%         \@@uselillylibrary@iter#2\@nil%
-%     \fi\fi
-% }
-% \def\@uselillylibrary@iter#1 #2\@nil{%
-%     \@@uselillylibrary@iter#1@\@nil
-%     \ifx!#1!\else\@uselillylibrary@iter#2 \@nil\fi%
-% }
-
-% \def\uselillylibrary#1{\bgroup%
-%     % as neither \uppercase and \MakeUppercase are expandable we will just iterate and transform
-%     \@uselillylibrary@iter#1 \@nil
-%     %\RequirePackage{\@tmp}
-%     \egroup
-% }
-
-
 \endinput

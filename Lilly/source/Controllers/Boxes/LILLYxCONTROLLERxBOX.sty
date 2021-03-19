@@ -1,98 +1,64 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCONTROLLERxBOX}[2019/07/13 Stellt die klassische Box-Erweiterung fuer LILLY zur Verfuegung]
-
-\RequirePackage{LILLYxCORE}
-
-\RequirePackage{LILLYxCOLOR}
-
-\RequirePackage{LILLYxCONTROLLERxLINK}
-\RequirePackage{LILLYxLIST}
-\RequirePackage{LILLYxFONTS}
-\RequirePackage{LILLYxSHORTCUTS}
-
-
-
-
-%% \RequirePackage{pgfkeys}
+\RequirePackage{LILLYxCORE,LILLYxCOLOR,LILLYxCONTROLLERxLINK,LILLYxLIST,LILLYxFONTS,LILLYxSHORTCUTS}
 \LILLYxDemandPackage{pgfkeys}{Damit wir angenehme kv-pairs haben}
-                    {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
-                    {}{}
-
-\ifcsname LILLYxBEAMER\endcsname%
+    {Leider ist die graph-Umgebung auf dieses Paket angewiesen}
+    {}{}
+\ifcsname LILLYxBEAMER\endcsname
     \def\lillynlistof#1#2#3{\ignorespaces}%
 \else
 %% https://www.ctan.org/pkg/tocloft
 \LILLYxDemandPackage{tocloft}{Für Listen und so}%% Package, Info
-                    {Das ist wichtig!}%% Error-Text
-                    {}%%Params
-                    {}%% Diese sind nicht optional, damit jake die benötigten Bibliotheken weitaus einfacher finden kann :D
+    {Das ist wichtig!}%% Error-Text
+    {}{}
     \let\lillynlistof\newlistof
 \fi
-
 %% https://ctan.org/pkg/tcolorbox
 \LILLYxDemandPackage{tcolorbox}{Fuer all die schoenen boexlis:D} %% Package, Info
-                    {Dieses Paket ist für LILLY überlebenswichtig, ohne es gibt es keine Boxen!}%% Error-Text
-                    {skins,many}%%Params
-                    {}
-
+    {Dieses Paket ist für LILLY überlebenswichtig, ohne es gibt es keine Boxen!}%% Error-Text
+    {skins,many}{}
 %% https://ctan.org/pkg/environ
 \LILLYxDemandPackage{environ}{Uebernimmt das leere environment ohne grosse Probleme} %% Package, Info
-                    {Leider ist auch dieses Paket verpflichtend :/}%% Error-Text
-                    {}%%Params
-                    {}
-
+    {Leider ist auch dieses Paket verpflichtend :/}%% Error-Text
+    {}{}
 %% https://ctan.org/pkg/bookmark
 \LILLYxDemandPackage{bookmark}{Fuer bookmarks eben} %% Package, Info
-                    {Dieses Paket ist für LILLY überlebenswichtig, ohne es gibt es keine Boxen, glaube ich!}%% Error-Text
-                    {}%%Params
-                    {}
-
+    {Dieses Paket ist für LILLY überlebenswichtig, ohne es gibt es keine Boxen, glaube ich!}%% Error-Text
+    {}{}
 %% https://ctan.org/pkg/calc
 \LILLYxDemandPackage{calc}{Zur Berechnung der richtigen Masse} %% Package, Info
-                    {Es ist wichtig, dass die dimensionen übereinstimmen}%% Error-Text
-                    {}%%Params
-                    {}
-
-
+    {Es ist wichtig, dass die dimensionen übereinstimmen}%% Error-Text
+    {}{}
 %% https://ctan.org/pkg/relsize
 \LILLYxDemandPackage{relsize}{Machen wir alles ein bisschen relativer} %% Package, Info
-                    {wuhuu, dann niiiicht}%% Error-Text
-                    {}%%Params
-                    {}
-
-
-
+    {wuhuu, dann niiiicht}%% Error-Text
+    {}{}
 
 %%%%%%%%% Load Configs if applicable:
-%\ifnum\LILLYxSemester>0
 \iflilly@vorlesung@isvalid@
-    \RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}%
-    \RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}%
-    \typeout{LOADED: \LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}%
+\RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}
+\RequestConfig{\LILLYxPATHxDATA/Semester/Definitions/GENERAL.tex}
+\typeout{LOADED: \LILLYxPATHxDATA/Semester/Definitions/\LILLYxVorlesung.tex}
 \fi
-%\fi
-
 
 %%%DEFAULTS
-
 %% Hält, auch in verschactelten Systemen die entsprechend zu forcierende Farbe für Links oder anschmiegsame Farbgebung
-\LILLYcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}
-
+\LILLYcommand\LILLYxColorxLINKSxCurrentColor{\LILLYxColorxLINKSxMainColor}
 \gdef\LILLYxBOXxCOLORxFRAME{black!50}
 \newlength\LILLYxBOXxHIGHLEVELxOFFSET %% can be used to determine the offset for \listof-Titles
 \@ifundefined{LILLYxBOXxHIGHLEVELxLOCK}{%
-    \@ifundefined{chapter}{%
-        \@ifundefined{section}{%
-            \def\LILLYxBOXxHIGHLEVELxLOCK{TRUE}
-            \setlength{\LILLYxBOXxHIGHLEVELxOFFSET}{0cm}
-        }{%
-            \def\LILLYxBOXxHIGHLEVELxLOCK{section}
-            \setlength{\LILLYxBOXxHIGHLEVELxOFFSET}{-0.5cm}
-        }
-    }{%
-        \def\LILLYxBOXxHIGHLEVELxLOCK{chapter}
-        \setlength{\LILLYxBOXxHIGHLEVELxOFFSET}{-1.5cm}
-    }
+\@ifundefined{chapter}{%
+\@ifundefined{section}{%
+    \def\LILLYxBOXxHIGHLEVELxLOCK{TRUE}
+    \LILLYxBOXxHIGHLEVELxOFFSET=0cm
+}{%
+    \def\LILLYxBOXxHIGHLEVELxLOCK{section}
+    \LILLYxBOXxHIGHLEVELxOFFSET=-.5cm
+}
+}{%
+\def\LILLYxBOXxHIGHLEVELxLOCK{chapter}
+    \LILLYxBOXxHIGHLEVELxOFFSET=-1.5cm
+}
 }{}
 \let\@@olock\LILLYxBOXxHIGHLEVELxLOCK
 \xdef\LILLYxBOXxHIGHLEVELxLOCK{\@@olock}
@@ -101,46 +67,28 @@
 \def\lilly@list@RegisteredBoxes{Definition/definition,Beispiel/beispiel,Bemerkung/bemerkung,Satz/satz,Beweis/beweis,Lemma/lemma,Zusammenfassung/zusammenfassung,Aufgabe/aufgabe,Uebungsblatt/uebungsblatt}
 
 \getRegisteredBoxes
-
-\ifcsname LILLYxBOXxUebungsblattxEnable\endcsname\else%
-    \def\LILLYxBOXxUebungsblattxEnable{TRUE}%
-\fi
-\ifcsname LILLYxBOXxUebungsblattxBox\endcsname\else%
-    \def\LILLYxBOXxUebungsblattxBox{TRUE}%
-\fi
+\ifcsname LILLYxBOXxUebungsblattxEnable\endcsname\else \def\LILLYxBOXxUebungsblattxEnable{TRUE} \fi
+\ifcsname LILLYxBOXxUebungsblattxBox\endcsname\else \def\LILLYxBOXxUebungsblattxBox{TRUE} \fi
 
 
-%\providecommand{\LILLYxBOXxUebungsblattxEnable}{TRUE}       \providecommand{\LILLYxBOXxUebungsblattxBox}{TRUE}
 \foreach \elem/\ignore in \lillyxlist {
-    \foreach \l/\val in {Lock/\LILLYxBOXxHIGHLEVELxLOCK,Enable/\true,Box/\true} {
-        \debugout{\elem\space by \l\space using \val: LILLYxBOXx\elem x\l\space => \val }
-        \ifcsname LILLYxBOXx\elem x\l\endcsname\else
-            %\edef\v{\val}
-            \debugout{There was no Setting given => Generate default}
-            \expandafter\expandafter\expandafter\xdef\csname LILLYxBOXx\elem x\l\endcsname{\val}%
-            %\expandafter\gnewcommand\csname LILLYxBOXx\x x\l\endcsname{\v}
-        \fi
-        \expandafter\debugout{Expected: \val, got: \csname LILLYxBOXx\elem x\l\endcsname}
-    }
-}
+\foreach \l/\val in {Lock/\LILLYxBOXxHIGHLEVELxLOCK,Enable/\true,Box/\true} {
+\debugout{\elem\space by \l\space using \val: LILLYxBOXx\elem x\l\space => \val }
+\ifcsname LILLYxBOXx\elem x\l\endcsname\else
+    \debugout{There was no Setting given => Generate default}
+    \expandafter\expandafter\expandafter\xdef\csname LILLYxBOXx\elem x\l\endcsname{\val}%
+\fi
+\expandafter\debugout{Expected: \val, got: \csname LILLYxBOXx\elem x\l\endcsname}
+}}
 
 \def\NoEmblem{XXNOEMBLEMXX}
-
-\newif\ifcreatelist
-\newif\ifuselist
-\newif\iflillyboxenabled
-\newif\iflillyboxusebox
+\newif\ifcreatelist \newif\ifuselist \newif\iflillyboxenabled \newif\iflillyboxusebox
 \pgfkeys{
     /lillyxBOX/.is family, /lillyxBOX,
-    name/.estore in = \lillyxBoxxName,
-    title/.store in = \lillyxBoxxTitle,
-    boxcol/.estore in = \lillyxBoxxColor,
-    preCode/.store in = \lillyxBoxxPrecode,
-    inCode/.store in = \lillyxBoxxIncode,
-    outCode/.store in = \lillyxBoxxOutcode,
-    postCode/.store in = \lillyxBoxxPostcode,
-    usestyle/.estore in = \lillyxBoxxUsestyle,
-    %hasemblem/.estore in = \lillyxBoxxHasemblem,
+    name/.estore in = \lillyxBoxxName, title/.store in = \lillyxBoxxTitle,
+    boxcol/.estore in = \lillyxBoxxColor, preCode/.store in = \lillyxBoxxPrecode,
+    inCode/.store in = \lillyxBoxxIncode, outCode/.store in = \lillyxBoxxOutcode,
+    postCode/.store in = \lillyxBoxxPostcode, usestyle/.estore in = \lillyxBoxxUsestyle,
     emblem/.store in = \lillyxBoxxEmblem,
     createlist/.is if = createlist,
     customlist/.is if = uselist,
@@ -152,8 +100,7 @@
     listmen/.estore in =\lillyxBoxxListmen,
     defaults/.style={%
         name=noname, title={\noexpand\lillyxBoxxName},%
-        boxcol=black,%
-        usestyle=LILLYxBOXxDefinition, %hasemblem=FALSE,%
+        boxcol=black, usestyle=LILLYxBOXxDefinition, %
         emblem={\NoEmblem}, listname={\noexpand\lillyxBoxxName}, createlist=false,%
         listtext={Alle \noexpand\lillyxBoxxName}, preCode={}, inCode={},%
         outCode={}, postCode={},lock={TRUE}, customlist=false,
@@ -163,60 +110,6 @@
 
 \NewEnviron{LILLYxSPECIALBOXxHIDDEN}{}
 
-%%% Todo-List:
-%% Done Boxes:
-%  - [\] Make \RegisterBox recognice Options like "useBox" and Locks...
-        %    =>  Will be redirected to Creation as it can be changed with 'usestyle'
-%  - [X] Make NoBox work with 'void', so 'aufgabe' and rest cannot - or maybe don't, as nested won't work
-        %    => Done using 'LILLYxSPECIALBOXxHIDDEN
-%  - [X] Include the List-Addition into \RegisterBox
-        %    => This was easy as already done :D
-%  - [!] Make the 'lillyxBOXx' prefix changeable
-        %    => This would have broken the expansions and was rendered useless. Why would someone need that?
-        %       Even if there is a name clash, if you change it after definitions it would break everything :D
-%  - [X] Include Label-Mechanic [tcolorbox-Manual Page 99] with nameref
-        %    => Included as needed, as the expansion is stupid, this won't include the full title of the Box :/
-%  - [X] Fix LabelBug so that the label will Jump Above the Box
-        %    => This will be fixed completely when using REgisterBox for all :D
-%  - [X] Migrate all Boxes to \RegisterBox
-        %    => TODO: When using tranform on a different boxtype this will prevent the Boxlists from colelctiong. so the final list won't be of th requested Type bt of the transformed one, this doesn't make any sence so i will have to check this later.
-        % OH GOSH PLEASE NOOOOOOOOOO Currentl working on :D
-%  - [X] Allow to add a symbol (outside, and inside of the Box)
-        %    => DONE as LILLYxEMBLEMS
-%  - [X] Allow a Box to live in the Margin (with and without reference marker inside of the texxt)
-        %    => DONE as LILLYxMARGIN, LILLYxBOXxMARGIN and LILLYxBOXxINFOBOXES
-%  - [!] Make Aufgaben-Box standart again (design-wise, maybe add a 'points' key or, more generic, 'addon'?)
-        %    => This should be done after seperating the answer from the main taks works
-%  - [X] add theorem-like customization-support
-        %    => Already done with \RegisterBox
-%  - [!] add a bookmark option
-        %    => Rendered useless because of \listof-Options
-%  - [!] Change Box-Appearance with 'check odd page' + limerence: orientation bar [tcb manual page 46]
-        %    => Won't be done as testet with LILLYxBOXxINFOBOXES and it looks horrible :D
-%  - [X] \tcblistof - check if it's better then the current listing implementation and if so, change
-        %    => Would be easier to code but actually is not needed for custom list handling offers mor flexibilitys
-
-%% Current Boxes:
-%  - [ ] Make 'aufgaben'-Box allow to deperate it's solution to an different possition [tcb manual ~133]
-%  - [ ] Option for own counter
-
-%  - [ ] Include Option: Frame Hidden
-%  - [?] Maybe adapt style [tcb mnual page 153]
-        %    => Don't now wut i've meant the style looks horrible :P
-
-%% Designs:
-%  - [X] Limerence, make an Arrow on Page-Break
-
-%% Listings:
-%  - [ ] Make dynamic listing environment (showcase etc.)
-%  - [ ] Make a showcase listing which displays the output of the code on the right side
-
-%% General
-%  - [ ] Persist-Library
-%  - [ ] Add an easy option, to make a box a preview box, where it is possible to display differet stuff on one side of the box
-%  - [ ] Use the 'sidebyside adapt=right' key for tabular et others note 'sidebyside switch'
-
-
 \DeclareDocumentCommand{\RegisterBox}{%
     O{} %% Boxkeys
     O{} %% Optional Box TikzKeys
@@ -224,244 +117,178 @@
     m   %% Title (will overwrite boxtitlekey)
     m   %% GroupID
 }{%
-    % \pgfkeys{/lillyxBox/#3/.is family, /lillyxBox/#3,%
-    %     name/.store in=\csname lillyxBoxx#3xName,
-    %     title/.default=none,
-    %     usestyle/.default=none,
-    %     hasemblem/.default=none,
-    %     emblem/.default=none,
-    %     listname/.default=none,
-    %     createlist/.is if = createlist,
-    %     customlist/.is if = uselist,
-    %     listtext/.default=none,
-    %     preCode/.default=none,
-    %     inCode/.default=none,
-    %     outCode/.default=none,
-    %     postCode/.default=none%
-    % }
-    %\IfValueTF{#5}{\edef\theboxid{#5}}{\edef\theboxid{#3}}
-    \edef\theboxid{#5}\typeout{Registering Box: #5}%
-    % \pgfkeys{/lillyxBox/#3, name=#3, title=#4}
-    \pgfkeys{/lillyxBOX, defaults, #1, name=#3,title=#4}%
-    %% We will now persist the values, please be patient, this is try 14 to fix ns eval failures:
-    \expandafter\xdef\csname lillyxBOXx\theboxid xName\endcsname{\lillyxBoxxName}%                                  Name
-    \expandafter\xdef\csname lillyxBOXx\theboxid xTitle\endcsname{\lillyxBoxxTitle}%                                Title
-    \expandafter\xdef\csname lillyxBOXx\theboxid xBoxCol\endcsname{\lillyxBoxxColor}%                               Color
-    \expandafter\xdef\csname lillyxBOXx\theboxid xPreCode\endcsname{\lillyxBoxxPrecode}%                            PreCode
-    \expandafter\xdef\csname lillyxBOXx\theboxid xInCode\endcsname{\lillyxBoxxIncode}%                              InCode
-    \expandafter\xdef\csname lillyxBOXx\theboxid xOutCode\endcsname{\lillyxBoxxOutcode}%                            OutCode
-    \expandafter\xdef\csname lillyxBOXx\theboxid xPostCode\endcsname{\lillyxBoxxPostcode}%                          PostCode
-    \expandafter\xdef\csname lillyxBOXx\theboxid xUseStyle\endcsname{\lillyxBoxxUsestyle}%                          UseStyle
-    %\expandafter\xdef\csname lillyxBOXx\theboxid xHasemblem\endcsname{\lillyxBoxxHasemblem}%
-    \expandafter\xdef\csname lillyxBOXx\theboxid xEmblem\endcsname{\lillyxBoxxEmblem}%                              Emblem
-    \expandafter\xdef\csname lillyxBOXx\theboxid xLock\endcsname{\lillyxBoxxLock}%                                  Lock
-    \expandafter\xdef\csname lillyxBOXx\theboxid xListName\endcsname{\lillyxBoxxListname}%                          ListName
-    \expandafter\xdef\csname lillyxBOXx\theboxid xListText\endcsname{\lillyxBoxxListtext}%                          ListText
-    \expandafter\xdef\csname lillyxBOXx\theboxid xListMen\endcsname{\lillyxBoxxListmen}%                            ListMen
-    \expandafter\xdef\csname lillyxBOXx\theboxid xCreateList\endcsname{\ifcreatelist TRUE\else FALSE\fi}%           CreateList
-    \expandafter\xdef\csname lillyxBOXx\theboxid xCustomList\endcsname{\ifuselist TRUE\else FALSE\fi}%              CustomList
-    \expandafter\xdef\csname lillyxBOXx\theboxid xBoxEnabled\endcsname{\iflillyboxenabled TRUE\else FALSE\fi}%      BoxEnabled
-    \expandafter\xdef\csname lillyxBOXx\theboxid xUseBox\endcsname{\iflillyboxusebox TRUE\else FALSE\fi}%           UuseBox
-    \foreach \x in {Name,Title,Color,Precode,Incode,Outcode,Postcode,Usestyle,Emblem,Lock,Listname,Listtext,Listmen} {
-        \debugout{[\theboxid :#5] \x: [\csname lillyxBoxx\x\endcsname]}
-    }
-    \debugout{[\theboxid :#5] CreateList: \@nameuse{lillyxBOXx\theboxid xCreateList}}
-    \debugout{[\theboxid :#5] CustomList: \@nameuse{lillyxBOXx\theboxid xCustomList}}
-    \debugout{[\theboxid :#5] BoxEnabled: \@nameuse{lillyxBOXx\theboxid xBoxEnabled}}
-    \debugout{[\theboxid :#5] UseBox: \@nameuse{lillyxBOXx\theboxid xUseBox}}
-
-    %% Persistence END
-    \ifcreatelist%
-    \debugout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\lillynlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\pushList{RegisteredListOfLists}{\@nameuse{lillyxBOXx\theboxid xListMen}}\fi%
-    %\expandafter\global\expandafter\newif\if
-    % #1 Title
-    % #2 Should be the tex-options
-    \global\DeclareDocumentEnvironment{\lillyxBoxxName}{O{} O{}}{\begingroup\ignorespaces% %%O{\theboxid}}{%
-        \edef\curboxid{#5}\debugout{Currently in Box: \curboxid}%
-        %%% Here we will check if the Box should be really displayed, or if it's disabled. If it is, we'll eliminate it
-        %%% This will include Any Codes or other Options supplied with the Box
-        \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
-            \LILLYxSPECIALBOXxHIDDEN% This shall be silenced :P [we can't use latex-environments as they would automatically search for their ends]
-        }{%
-            %% IF not disabled, we will proceed as usual.
-            \@nameuse{lillyxBOXx\curboxid xPreCode}%
-            % Check: Is the Box to be a plain box :D
-            %
-            \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xUseBox}}{TRUE}}{%
-                \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={}}% No Modifications needed :D
-                \renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
-            }{%
-                \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain, after title app={\leavevmode\\[-0.75\baselineskip]\ignorespaces}}}% Set Blank Box
-                \renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}% If the Box is plain, we will drop the color, as it doesnt make any sense to display color in that case ;D
-            }%
-            %\addvspace{0em plus 0.33em minus 0em}%
-            \phantomsection% Here we will start the corresponding box
-            % BOX:
-            \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,before upper app={\ignorespacesafterend},%
-                    before title pre={% REGISTER:
-                    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\debugout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName} using the Men: \@nameuse{lillyxBOXx\curboxid xListMen} and lock: \@nameuse{lillyxBOXx\curboxid xLock}. The Content is: ##1}%
-                    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\NoEmblem}}{\debugout{\space>\space It will register without an Emblem/Addon!}%
-                    \LILLYxBOXESxaddListElement[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xLock}}%
-                    }{\debugout{\space>\space It will register with an Emblem/Addon!}%
-                        \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
-                    }%
-                    }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}},##2]%Cannot be used if combined with math :/ think about something better? phantomlabel={##1},nameref={##1}
-                \@nameuse{lillyxBOXx\curboxid xInCode}%
-        }\ignorespaces%
-    }% SECOND PART
-    {% To ensure the Box is disabled we will do the same for the ending:
-        \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
-            \endLILLYxSPECIALBOXxHIDDEN% This shall be the end of silence :D
-        }{%
-            \@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}%\addvspace{0em plus 0.33em minus 0em}
-            \ignorespacesafterend%
-        }%
-        \endgroup%
-    }
+\edef\theboxid{#5}\typeout{Registering Box: #5}%
+\pgfkeys{/lillyxBOX, defaults, #1, name=#3,title=#4}%
+%% We will now persist the values, please be patient, this is try 14 to fix ns eval failures:
+\expandafter\xdef\csname lillyxBOXx\theboxid xName\endcsname{\lillyxBoxxName}%        Name
+\expandafter\xdef\csname lillyxBOXx\theboxid xTitle\endcsname{\lillyxBoxxTitle}%      Title
+\expandafter\xdef\csname lillyxBOXx\theboxid xBoxCol\endcsname{\lillyxBoxxColor}%     Color
+\expandafter\xdef\csname lillyxBOXx\theboxid xPreCode\endcsname{\lillyxBoxxPrecode}%  PreCode
+\expandafter\xdef\csname lillyxBOXx\theboxid xInCode\endcsname{\lillyxBoxxIncode}%    InCode
+\expandafter\xdef\csname lillyxBOXx\theboxid xOutCode\endcsname{\lillyxBoxxOutcode}%  OutCode
+\expandafter\xdef\csname lillyxBOXx\theboxid xPostCode\endcsname{\lillyxBoxxPostcode}%PostCode
+\expandafter\xdef\csname lillyxBOXx\theboxid xUseStyle\endcsname{\lillyxBoxxUsestyle}%UseStyle
+\expandafter\xdef\csname lillyxBOXx\theboxid xEmblem\endcsname{\lillyxBoxxEmblem}%    Emblem
+\expandafter\xdef\csname lillyxBOXx\theboxid xLock\endcsname{\lillyxBoxxLock}%        Lock
+\expandafter\xdef\csname lillyxBOXx\theboxid xListName\endcsname{\lillyxBoxxListname}%ListName
+\expandafter\xdef\csname lillyxBOXx\theboxid xListText\endcsname{\lillyxBoxxListtext}%ListText
+\expandafter\xdef\csname lillyxBOXx\theboxid xListMen\endcsname{\lillyxBoxxListmen}%  ListMen
+\expandafter\xdef\csname lillyxBOXx\theboxid xCreateList\endcsname{\ifcreatelist TRUE\else FALSE\fi}%           CreateList
+\expandafter\xdef\csname lillyxBOXx\theboxid xCustomList\endcsname{\ifuselist TRUE\else FALSE\fi}%              CustomList
+\expandafter\xdef\csname lillyxBOXx\theboxid xBoxEnabled\endcsname{\iflillyboxenabled TRUE\else FALSE\fi}%      BoxEnabled
+\expandafter\xdef\csname lillyxBOXx\theboxid xUseBox\endcsname{\iflillyboxusebox TRUE\else FALSE\fi}%           UuseBox
+\foreach \x in {Name,Title,Color,Precode,Incode,Outcode,Postcode,Usestyle,Emblem,Lock,Listname,Listtext,Listmen} {
+    \debugout{[\theboxid :#5] \x: [\csname lillyxBoxx\x\endcsname]}
 }
+\debugout{[\theboxid :#5] CreateList: \@nameuse{lillyxBOXx\theboxid xCreateList}}
+\debugout{[\theboxid :#5] CustomList: \@nameuse{lillyxBOXx\theboxid xCustomList}}
+\debugout{[\theboxid :#5] BoxEnabled: \@nameuse{lillyxBOXx\theboxid xBoxEnabled}}
+\debugout{[\theboxid :#5] UseBox: \@nameuse{lillyxBOXx\theboxid xUseBox}}
+
+%% Persistence END
+\ifcreatelist%
+\debugout{Creating the List: \@nameuse{lillyxBOXx\theboxid xListName}\space of \@nameuse{lillyxBOXx\theboxid xListMen} with the header: \@nameuse{lillyxBOXx\theboxid xListText} of Box: \theboxid}\global\lillynlistof{\@nameuse{lillyxBOXx\theboxid xListName}}{\@nameuse{lillyxBOXx\theboxid xListMen}}{\@nameuse{lillyxBOXx\theboxid xListText}}\pushList{RegisteredListOfLists}{\@nameuse{lillyxBOXx\theboxid xListMen}}\fi%
+% #1 Title
+% #2 Should be the tex-options
+\global\DeclareDocumentEnvironment{\lillyxBoxxName}{O{} O{}}{\begingroup\ignorespaces% %%O{\theboxid}}{%
+\edef\curboxid{#5}\debugout{Currently in Box: \curboxid}%
+%%% Here we will check if the Box should be really displayed, or if it's disabled. If it is, we'll eliminate it
+%%% This will include Any Codes or other Options supplied with the Box
+\ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
+    \LILLYxSPECIALBOXxHIDDEN% This shall be silenced :P [we can't use latex-environments as they would automatically search for their ends]
+}{%
+    %% IF not disabled, we will proceed as usual.
+    \@nameuse{lillyxBOXx\curboxid xPreCode}%
+    % Check: Is the Box to be a plain box :D
+    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xUseBox}}{TRUE}}{%
+        \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={}}% No Modifications needed :D
+        \renewcommand{\LILLYxColorxLINKSxCurrentColor}{\@nameuse{lillyxBOXx\curboxid xBoxCol}}%
+    }{%
+        \tcbset{LILLYxBOXxCURRENTBOXSTYLEMOD/.style={LillyxBOXxDesignxPlain, after title app={\leavevmode\\[-.75\baselineskip]\ignorespaces}}}% Set Blank Box
+        \renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}% If the Box is plain, we will drop the color, as it doesnt make any sense to display color in that case ;D
+    }%
+    %\addvspace{0em plus .33em minus 0em}%
+    \phantomsection% Here we will start the corresponding box
+    % BOX:
+    \begin{\@nameuse{lillyxBOXx\curboxid xUseStyle}}[##1][\@nameuse{lillyxBOXx\curboxid xTitle}{}][#2,LILLYxBOXxCURRENTBOXSTYLEMOD,before upper app={\ignorespacesafterend},%
+    before title pre={% REGISTER:
+    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xCustomList}}{TRUE}}{\debugout{#5 Box-Type will register itself to: \@nameuse{lillyxBOXx\curboxid xListName} using the Men: \@nameuse{lillyxBOXx\curboxid xListMen} and lock: \@nameuse{lillyxBOXx\curboxid xLock}. The Content is: ##1}%
+    \ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\NoEmblem}}{\debugout{\space>\space It will register without an Emblem/Addon!}%
+    \LILLYxBOXESxaddListElement[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xLock}}%
+    }{\debugout{\space>\space It will register with an Emblem/Addon!}%
+        \LILLYxBOXESxaddListElementxAD[\@nameuse{lillyxBOXx\curboxid xListName}]{\@nameuse{lillyxBOXx\curboxid xListMen}}{\thetcbcounter}{##1}{\@nameuse{lillyxBOXx\curboxid xEmblem}}{\@nameuse{lillyxBOXx\curboxid xLock}}%%
+    }%
+    }{}\elable{auto:\@nameuse{lillyxBOXx\curboxid xListMen}\thetcbcounter}},##2]%
+        \@nameuse{lillyxBOXx\curboxid xInCode}%
+}\ignorespaces
+}% SECOND PART
+{% To ensure the Box is disabled we will do the same for the ending:
+\ifthenelse{\equal{\@nameuse{lillyxBOXx\curboxid xBoxEnabled}}{\false}}{%
+    \endLILLYxSPECIALBOXxHIDDEN% This shall be the end of silence :D
+}{%
+    \@nameuse{lillyxBOXx\curboxid xOutCode}\end{\@nameuse{lillyxBOXx\curboxid xUseStyle}}\@nameuse{lillyxBOXx\curboxid xPostCode}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}%\addvspace{0em plus .33em minus 0em}
+    \ignorespacesafterend
+}%
+\endgroup}}
 
 \DeclareDocumentCommand{\TransformBox}{%
     s % if starred,  don't delete old
-    O{}                 %% New Args
+    O{} %% New Args
     %O{\BooleanFalse}    %% If \BooleanTrue => Do not delete old
-    m                   %% Old BoxID
-    m                   %% Box Title
-    o                   %% New Name (can be old Name)
-    m                   %% BoxID
+    m %% Old BoxID
+    m %% Box Title
+    o %% New Name (can be old Name)
+    m %% BoxID
 }{%
     \typeout{Transform Box: #1<>#2<>#3<>#4<>#5<>#6<>}%
     \expandafter\ifcsname  lillyxBOXx#3xName\endcsname
         \edef\oldboxname{\csname lillyxBOXx#3xName\endcsname}
         \debugout{Registered Name from BoxID: #3}
-    \else%
+    \else
         \edef\oldboxname{#3}
         \debugout{Registered Name from a new Box, as no Old exists: #3}
-    \fi%
+    \fi
     \IfBooleanF{#1}{\expandafter\let\csname\oldboxname\endcsname\@undefined}%% delete old
-    %
     \IfValueTF{#5}{\def\thecboxname{#5}}{\def\thecboxname{\oldboxname}}%% set names
-    %\IfValueTF{#5}{% % Here we will reload the old Values of
-    % Check if there is an existing Box, and if, take the Configuration from it by the persisted Values of the old ID.
     \@ifundefined{lillyxBOXx#3xName}{%
         \RegisterBox[#2]{\thecboxname}{#4}{#6}%
     }{%
-        \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xListMen\endcsname}{TRUE}}{\gdef\clisttmp{true}}{\gdef\clisttmp{false}}
-        \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xBoxEnabled\endcsname}{TRUE}}{\gdef\cbentmp{true}}{\gdef\cbentmp{false}}
-        \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xUseBox\endcsname}{TRUE}}{\gdef\cuboxtmp{true}}{\gdef\cuboxtmp{false}}
-        %\debugout{Switch-Pregeneration for clisttmp: \clisttmp}
-        \RegisterBox[% Here we will reload the old Values of the Box, we won't erase them we'll just erase the environment-link in case of a renaming. Therefore it cann be still used as Base for another Box-Creation. We will (just for completeness) assign all commands:
-        name=\csname lillyxBOXx#3xName\endcsname,%
-        title=\csname lillyxBOXx#3xTitle\endcsname,%
-        boxcol=\csname lillyxBOXx#3xBoxCol\endcsname,%
-        preCode=\csname lillyxBOXx#3xPreCode\endcsname,%
-        inCode=\csname lillyxBOXx#3xInCode\endcsname,%
-        outCode=\csname lillyxBOXx#3xOutCode\endcsname,%
-        postCode=\csname lillyxBOXx#3xPostCode\endcsname,%
-        usestyle=\csname lillyxBOXx#3xUseStyle\endcsname,%
-        emblem=\csname lillyxBOXx#3xEmblem\endcsname,%
-        lock=\csname lillyxBOXx#3xLock\endcsname,%
-        listname=\csname lillyxBOXx#3xListName\endcsname,%
-        listtext=\csname lillyxBOXx#3xListText\endcsname,%
-        listmen=\csname lillyxBOXx#3xListMen\endcsname,%
-        createlist=false,% if it has been true we don't need to recreate it
-        customlist=\clisttmp,% sloppy :D
-        boxenabled=\cbentmp,% we want to preserve the current state
-        usebox=\cuboxtmp,
-        #2]{\thecboxname}{#4}{#6}
+    \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xListMen\endcsname}{TRUE}}{\gdef\clisttmp{true}}{\gdef\clisttmp{false}}
+    \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xBoxEnabled\endcsname}{TRUE}}{\gdef\cbentmp{true}}{\gdef\cbentmp{false}}
+    \ifthenelse{\expandafter\equal{\csname lillyxBOXx#3xUseBox\endcsname}{TRUE}}{\gdef\cuboxtmp{true}}{\gdef\cuboxtmp{false}}
+    \RegisterBox[% Here we will reload the old Values of the Box, we won't erase them we'll just erase the environment-link in case of a renaming. Therefore it cann be still used as Base for another Box-Creation. We will (just for completeness) assign all commands:
+    name=\csname lillyxBOXx#3xName\endcsname, title=\csname lillyxBOXx#3xTitle\endcsname,%
+    boxcol=\csname lillyxBOXx#3xBoxCol\endcsname, preCode=\csname lillyxBOXx#3xPreCode\endcsname,%
+    inCode=\csname lillyxBOXx#3xInCode\endcsname, outCode=\csname lillyxBOXx#3xOutCode\endcsname,%
+    postCode=\csname lillyxBOXx#3xPostCode\endcsname, usestyle=\csname lillyxBOXx#3xUseStyle\endcsname,%
+    emblem=\csname lillyxBOXx#3xEmblem\endcsname, lock=\csname lillyxBOXx#3xLock\endcsname,%
+    listname=\csname lillyxBOXx#3xListName\endcsname, listtext=\csname lillyxBOXx#3xListText\endcsname,%
+    listmen=\csname lillyxBOXx#3xListMen\endcsname, createlist=false,% if it has been true we don't need to recreate it
+    customlist=\clisttmp,% sloppy :D
+    boxenabled=\cbentmp,% we want to preserve the current state
+    usebox=\cuboxtmp,#2]{\thecboxname}{#4}{#6}
     }
-    %}{\RegisterBox[#1]{\thecboxname}{#3}}%
 }
-
-
-%\RegisterBox[usestyle=LILLYxBOXxBemerkung,listname=Waffels,boxcol=AppleGreen]{Waffel}{Waffelbox~\noexpand\thetcbcounter~}
-
-%\RegisterBox[usestyle=LILLYxBOXxDefinition,boxcol=\LILLYxColorxDefinition]{bemerkung}{Waffelbox~\noexpand\thetcbcounter~}
-
 
 \newcounter{ctr_TSK} %% verwendet einen eigenen counter um im Zeifelsfall dynamisch die nummer zu ändern
 \newcounter{ctr_EXE} %% Übungsblatt Counter für Mitschriebe
 
 %%We will use the default POI-BOX if non provided
-\providecommand{\LILLYxBOXxMODExDEFAULT}{DEFAULT}
+\providecommand\LILLYxBOXxMODExDEFAULT{DEFAULT}
 \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT(init)}
-
 %% Specialboxes
 \input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_SPECIAL}
-
 
 %\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_DEFAULT} % May the ones below do not cover all boxes, thus default will be happy to provide them
 \def\LoadLillyBoxMode#1{%
     \userput{_LILLY_BOXES_#1}{\lillyPathData}{\LILLYxPATHxDATA/POIs}
 }
 \LoadLillyBoxMode{\LILLYxBOXxMODE}
-%\ifx\LILLYxBOXxMODE\LILLYxBOXxMODExDEFAULT\else
-    %\input{\LILLYxPATHxDATA/POIs/_LILLY_BOXES_\LILLYxBOXxMODE}
-%\fi
-
 
 %%Liste typ counter name lock
-\LILLYcommand{\LILLYxBOXESxaddListElement}[5][]{%
-    \refstepcounter{#1}\phantomsection%
+\LILLYcommand\LILLYxBOXESxaddListElement[5][]{%
+    \refstepcounter{#1}\phantomsection
     \ifthenelse{\equal{#5}{\true}}{%
         \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} #4}%
     }{% Da 1.12 mehr platz!
-        \addcontentsline{#2}{#1}{\makebox[0.75cm][r]{#3} #4}%
-    }\ignorespacesafterend%
+        \addcontentsline{#2}{#1}{\makebox[.75cm][r]{#3} #4}%
+    }\ignorespacesafterend
 }
 %% Liste typ counter name pin lock
-\LILLYcommand{\LILLYxBOXESxaddListElementxAD}[6][]{%
+\LILLYcommand\LILLYxBOXESxaddListElementxAD[6][]{%
     \refstepcounter{#1}%
     \ifthenelse{\equal{#6}{\true}}{%
         \addcontentsline{#2}{#1}{\makebox[.4cm][r]{#3} \makebox[1em][c]{#5}~#4}%
     }{% Da 1.12 mehr platz!
-        \addcontentsline{#2}{#1}{\makebox[0.75cm][r]{#3} \makebox[1em][c]{#5}~#4}%
-    }\ignorespacesafterend%
+        \addcontentsline{#2}{#1}{\makebox[.75cm][r]{#3} \makebox[1em][c]{#5}~#4}%
+    }\ignorespacesafterend
 }
 
-\LILLYcommand{\DEFINITIONS}[1]{%
+\LILLYcommand\DEFINITIONS[1]{%
     \LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcb@cnt@LILLYxBOXxDefinition}{#1}{}{\LILLYxBOXxDefinitionxLock}%
     \refstepcounter{tcb@cnt@LILLYxBOXxDefinition}%
-    %%\relax %% TODO IMPLEMENT CONVENIENT INCREMEMT => MANUAL COUNTERS?
 }
 
-\tcbset{LillyxBOXxDesignxPlain/.style={frame hidden, frame code={},leftrule=0mm, left=0pt, skin first is subskin of={emptyfirst}{frame code={},interior code={}}, skin middle is subskin of={emptymiddle}{frame code={},interior code={}},skin last is subskin of={emptylast}{frame code={},interior code={}}, colback=white,colframe=white,right=-2pt,top=0pt, fonttitle=\bfseries\color{black},attach title to upper={},enhanced,opacityfill=0,lines before break=4}}
-
+\tcbset{LillyxBOXxDesignxPlain/.style={frame hidden, frame code={},leftrule=\z@, left=\z@, skin first is subskin of={emptyfirst}{frame code={},interior code={}}, skin middle is subskin of={emptymiddle}{frame code={},interior code={}},skin last is subskin of={emptylast}{frame code={},interior code={}}, colback=white,colframe=white,right=-2pt,top=\z@, fonttitle=\bfseries\color{black},attach title to upper={},enhanced,opacityfill=0,lines before break=4}}
 
 %% Approach do generate a general Box provider
-
 %% {name}[initial Lock = TRUE]{ListName}{listtext}[stared-effekt]
 \DeclareDocumentCommand{\DeclareLillyBox}{ m O{TRUE} m m o }{%%
-    \lillynlistof{list@#3}{#3}{#4\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
-    %% Ist keine Box gewünscht?
-    \ifx\csname LILLYxBOXx#1xBox\endcsname\false%
-        \tcbset{LillyxBOXxDesignx#1/.style={LillyxBOXxDesignxPlain}}%
-    \else%
-        \tcbset{LillyxBOXxDesignx#1/.style={}}%
-    \fi%
-}
-
-
-%% Register Definition Box :D For Now we will name it apple
-% \RegisterBox%
-%     [usestyle=LILLYxBOXxDefinition,customlist=true,createlist=true,listname=APPLES,listmen=APPS,listtext={Alle \"{A}pfel},boxcol=\LILLYxColorxDefinition,emblem={},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxDEFINITION}{TRUE}},lock=\LILLYxBOXxDefinitionxLock]% Style definitions
-%     {apple}% Environ Name
-%     {Apple \noexpand\thetcbcounter{} -- }% The Title#
-%     {apple}% BoxID
-%% Highly work in progress stuff :D
-
+\lillynlistof{list@#3}{#3}{#4\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
+%% Ist keine Box gewünscht?
+\ifx\csname LILLYxBOXx#1xBox\endcsname\false
+    \tcbset{LillyxBOXxDesignx#1/.style={LillyxBOXxDesignxPlain}}%
+\else
+    \tcbset{LillyxBOXxDesignx#1/.style={}}%
+\fi}
 
 
 % Definitionen
-
-\providecommand{\LILLYxSEENxDEFINITION}{FALSE}
+\providecommand\LILLYxSEENxDEFINITION{FALSE}
 
 %% Definition Box
 \lillynlistof{DEFINITIONS}{DEFS}{\lillyxBOXxdefinitionxListText}
 \pushList{RegisteredListOfLists}{DEFS}
-
-%\ifx\LILLYYxBOXxDefinitionxBox\true
-
-%% TODO, register using the plain style :D
 
 \def\SetUseItAccordingly#1{%% Wow this is stupid :D
     \edef\tmpMarker{\csname LILLYxBOXx#1xBox\endcsname}
@@ -486,47 +313,15 @@
     {Definition \noexpand\thetcbcounter{}~}% The Title#
     {definitionStarred}% BoxID
 
-
-% \ifx\LILLYxBOXxDefinitionxEnable\true
-%     %\debugout{Definitions enabled}
-%     \lillynlistof{DEFINITIONS}{DEFS}{Alle Definitionen\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
-%     %% TITEL OPTIONALE-ADDONS
-
-%     \ifx\LILLYxBOXxDefinitionxBox\true\tcbset{LillyxBOXxDesignxDefinition/.style={}}\else\tcbset{LillyxBOXxDesignxDefinition/.style={LillyxBOXxDesignxPlain}}\fi
-%     % \IfValueF{#1}{\ClassInfo{Lilly}{LILLY WARNING, Definition ohne Namen!}
-%     \DeclareDocumentEnvironment{definition}{O{} O{LillyxBOXxDesignxDefinition}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}
-%         \begin{LILLYxBOXxDefinition}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-%     }{\end{LILLYxBOXxDefinition}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-%     \DeclareDocumentEnvironment{definition*}{O{} O{}}{\ifx\LILLYxBOXxDefinitionxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxDefinition}\fi\grenewcommand{\LILLYxSEENxDEFINITION}{TRUE}%
-%     \begin{LILLYxBOXxDefinition*}[#1][Definition \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[DEFINITIONS]{DEFS}{\thetcbcounter}{#1}{\small\faThumbTack}{\LILLYxBOXxDefinitionxLock}\elable{auto:DEF\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-%     }{\end{LILLYxBOXxDefinition*}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-% \else %% Keine Definitionen
-%     \debugout{Definitions disabled}
-%     \NewEnviron{definition}{}
-%     \NewEnviron{definition*}{}
-% \fi
-
 %%% Comaptibility environments
-\LILLYcommand{\DEF}[2]{ % Definition
-    \begin{definition}[#1]
-        #2
-    \end{definition}
-}
-\LILLYcommand{\DEFS}[2]{ % Definition
-    \begin{definition*}[#1]
-        #2
-    \end{definition*}
-}
-
+\LILLYcommand\DEF[2]{\begin{definition}[#1]#2\end{definition}}
+\LILLYcommand\DEFS[2]{\begin{definition*}[#1]#2\end{definition*}}
 
 %%5 TODO Colorrename not working as expected a sclor isint found => second buffer color
-
 % Bemerkungen
 \lillynlistof{BEMERKUNGEN}{BEMS}{\lillyxBOXxbemerkungxListText}
 \pushList{RegisteredListOfLists}{BEMS}
-
-\providecommand{\LILLYxSEENxBEMERKUNG}{FALSE}
-
+\providecommand\LILLYxSEENxBEMERKUNG{FALSE}
 \SetUseItAccordingly{Bemerkung}
 
 \RegisterBox%
@@ -541,34 +336,14 @@
     {\noexpand\xtranslate{Bemerkung} \noexpand\thetcbcounter{}~}% The Title
     {bemerkungStarred}% BoxID
 
-% \ifx\LILLYxBOXxBemerkungxEnable\true
-
-%     %% TITEL OPTIONALE-ADDONS
-%     \ifx\LILLYxBOXxBemerkungxBox\true\tcbset{LillyxBOXxDesignxBemerkung/.style={}}\else\tcbset{LillyxBOXxDesignxBemerkung/.style={LillyxBOXxDesignxPlain}}\fi
-
-%     \DeclareDocumentEnvironment{bemerkung}{O{} O{LillyxBOXxDesignxBemerkung}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBemerkung}\fi\begin{LILLYxBOXxBemerkung}[#1][Bemerkung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEMERKUNGEN]{BEMS}{\thetcbcounter}{#1}{\LILLYxBOXxBemerkungxLock}\elable{auto:BEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBemerkung}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-%     \DeclareDocumentEnvironment{bemerkung*}{O{} O{LillyxBOXxDesignxBemerkung}}{\begin{bemerkung}[#1][#2]\nskip}{\end{bemerkung}}
-
-% \else %% Keine Bemerkungen
-%     \NewEnviron{bemerkung}{}
-%     \NewEnviron{bemerkung*}{}
-% \fi
-
 %%% Comaptibility environment
-\LILLYcommand{\BEM}[2]{ % Bemerkung
-    \begin{bemerkung}[#1]
-        #2
-    \end{bemerkung}
-}
+\LILLYcommand\BEM[2]{ % Bemerkung
+    \begin{bemerkung}[#1]#2\end{bemerkung}}
 
 % Beispiele
-
-
 \lillynlistof{BEISPIELE}{BEIS}{\lillyxBOXxbeispielxListText}
 \pushList{RegisteredListOfLists}{BEIS}
-
-\providecommand{\LILLYxSEENxBEISPIEL}{FALSE}
-
+\providecommand\LILLYxSEENxBEISPIEL{FALSE}
 \SetUseItAccordingly{Beispiel}
 
 \RegisterBox%
@@ -583,38 +358,16 @@
     {\noexpand\xtranslate{Beispiel} \noexpand\thetcbcounter{}~}% The Title
     {beispielStarred}% BoxID
 
-
-
-% \ifx\LILLYxBOXxBeispielxEnable\true
-%     \lillynlistof{BEISPIELE}{BEIS}{Alle Beispiele\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
-
-%     %% TITEL OPTIONALE-ADDONS
-%     \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeispiel/.style={}}\else\tcbset{LillyxBOXxDesignxBeispiel/.style={LillyxBOXxDesignxPlain}}\fi
-
-%     \DeclareDocumentEnvironment{beispiel}{O{} O{LillyxBOXxDesignxBeispiel}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBeispiel}\fi\begin{LILLYxBOXxBeispiel}[#1][Beispiel \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEISPIELE]{BEIS}{\thetcbcounter}{#1}{\LILLYxBOXxBeispielxLock}\elable{auto:BEI\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeispiel}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-%     \DeclareDocumentEnvironment{beispiel*}{O{} O{LillyxBOXxDesignxBeispiel}}{\begin{beispiel}[#1][#2]\nskip}{\end{beispiel}}
-% \else %% Keine Beispielen
-%     \NewEnviron{beispiel}{}
-%     \NewEnviron{beispiel*}{}
-% \fi
-
-
 %%% Comaptibility environment
-\LILLYcommand{\BEI}[2]{ % Beispiel
-    \begin{beispiel}[#1]
-        #2
-    \end{beispiel}
-}
+\LILLYcommand\BEI[2]{ % Beispiel
+    \begin{beispiel}[#1]#2\end{beispiel}}
 
 % Sätze
-
 \lillynlistof{SATZE}{SATS}{\lillyxBOXxsatzxListText}
 \pushList{RegisteredListOfLists}{SATS}
 
-\providecommand{\LILLYxSEENxSATZ}{FALSE}
-
+\providecommand\LILLYxSEENxSATZ{FALSE}
 \SetUseItAccordingly{Satz}
-
 \RegisterBox%
     [UseIt,usestyle=LILLYxBOXxSatz,customlist=true,createlist=false,listname=SATZE,listmen=SATS,boxcol=\LILLYxColorxSatz,emblem={\NoEmblem},postCode={\noexpand\grenewcommand{\noexpand\LILLYxSEENxSATZ}{TRUE}},lock=\LILLYxBOXxSatzxLock,listtext={\noexpand\xtranslate[Alle S\"{a}tze]{Alle Saetze}\noexpand\\[\LILLYxBOXxHIGHLEVELxOFFSET]}]% Style definitions
     {satz}% Environ Name
@@ -627,33 +380,14 @@
     {\noexpand\xtranslate{Satz} \noexpand\thetcbcounter{}~}% The Title
     {satzStarred}% BoxID
 
-% \providecommand{\LILLYxSEENxSATZ}{FALSE}
-
-% \ifx\LILLYxBOXxSatzxEnable\true
-%     \lillynlistof{SATZ}{SATZE}{Alle Sätze\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
-
-%     %% TITEL OPTIONALE-ADDONS
-%     \DeclareDocumentEnvironment{satz}{O{} O{}}{\grenewcommand{\LILLYxSEENxSATZ}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxSatz}%
-%         \begin{LILLYxBOXxSatz}[#1][Satz \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[SATZ]{SATZE}{\thetcbcounter}{#1}{\LILLYxBOXxSatzxLock}\elable{auto:SAT\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-%     }{\end{LILLYxBOXxSatz}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-% \else %% Keine Sätze
-%     \NewEnviron{satz}{}
-% \fi
-
 %%% Comaptibility environment
-\LILLYcommand{\SAT}[2]{ % Satz
-    \begin{satz}[#1]
-        #2
-    \end{satz}
-}
+\LILLYcommand\SAT[2]{\begin{satz}[#1]#2\end{satz}}
 
 % Beweis
-
 \lillynlistof{BEWEISE}{BEWS}{\lillyxBOXxbeweisxListText}
 \pushList{RegisteredListOfLists}{BEWS}
 
-\providecommand{\LILLYxSEENxBEWEIS}{FALSE}
-
+\providecommand\LILLYxSEENxBEWEIS{FALSE}
 \SetUseItAccordingly{Beweis}
 
 \RegisterBox%
@@ -668,33 +402,12 @@
     {\noexpand\xtranslate{Beweis} \noexpand\thetcbcounter{}~}% The Title
     {beweisStarred}% BoxID
 
-% \ifx\LILLYxBOXxBeweisxEnable\true
-%     \lillynlistof{BEWEISE}{BEWS}{Alle Beweise\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
-
-%     %% TITEL OPTIONALE-ADDONS
-%     \ifx\LILLYxBOXxBeispielxBox\true\tcbset{LillyxBOXxDesignxBeweis/.style={}}\else\tcbset{LillyxBOXxDesignxBeweis/.style={LillyxBOXxDesignxPlain}}\fi
-
-%     \DeclareDocumentEnvironment{beweis}{O{} O{LillyxBOXxDesignxBeweis}}{\ifx\LILLYxBOXxBemerkungxBox\true\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxBeweis}\fi\begin{LILLYxBOXxBeweis}[#1][Beweis \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[BEWEISE]{BEWS}{\thetcbcounter}{#1}{\LILLYxBOXxBeweisxLock}\elable{auto:BEW\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend}{\end{LILLYxBOXxBeweis}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-%     \DeclareDocumentEnvironment{beweis*}{O{} O{LillyxBOXxDesignxBeweis}}{\begin{beweis}[#1][#2]\nskip}{\end{beweis}}
-% \else %% Keine Beweise
-%     \NewEnviron{beweis}{}
-%     \NewEnviron{beweis*}{}
-% \fi
-
 %%% Comaptibility environment
-\LILLYcommand{\BEW}[2]{ % Beweis
-    \begin{beweis}[#1]
-        #2
-    \end{beweis}
-}
-
+\LILLYcommand\BEW[2]{\begin{beweis}[#1]#2\end{beweis}}
 % Lemmas
-
 \lillynlistof{LEMMATA}{LEMS}{\lillyxBOXxlemmaxListText}
 \pushList{RegisteredListOfLists}{LEMS}
-
-\providecommand{\LILLYxSEENxLEMMA}{FALSE}
-
+\providecommand\LILLYxSEENxLEMMA{FALSE}
 \SetUseItAccordingly{Lemma}
 
 \RegisterBox%
@@ -709,33 +422,10 @@
     {Lemma \noexpand\thetcbcounter{}~}% The Title
     {lemmaStarred}% BoxID
 
-% \providecommand{\LILLYxSEENxLEMMA}{FALSE}
-
-
-% \ifx\LILLYxBOXxLemmaxEnable\true
-%     \lillynlistof{LEMMAS}{LEMME}{Alle Lemmata\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
-
-%     %% TITEL OPTIONALE-ADDONS
-%     \DeclareDocumentEnvironment{lemma}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLemma}%
-%         \begin{LILLYxBOXxLemma}[#1][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-%     }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-%     \DeclareDocumentEnvironment{lemma*}{O{} O{}}{ \grenewcommand{\LILLYxSEENxLEMMA}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLemma}%
-%         \begin{LILLYxBOXxLemma}[#1~~\hbox{}\hfill\small\textcolor{\LILLYxColorxLemma}{\faStar}][Lemma \thetcbcounter~][#2]\LILLYxBOXESxaddListElementxAD[LEMMAS]{LEMME}{\thetcbcounter}{#1}{\small\faStar}{\LILLYxBOXxLemmaxLock}\elable{auto:LEM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-%     }{\end{LILLYxBOXxLemma}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-% \else %% Keine Lemmas
-%     \NewEnviron{lemma}{}
-%     \NewEnviron{lemma*}{}
-% \fi
-
 %%% Comaptibility environment
-\LILLYcommand{\LEM}[2]{ % Lemma
-    \begin{lemma}[#1]
-        #2
-    \end{lemma}
-}
+\LILLYcommand\LEM[2]{\begin{lemma}[#1]#2\end{lemma}}
 
 % Zusammenfassungen
-
 \lillynlistof{ZUSAMMENFASSUNGEN}{ZSMS}{\lillyxBOXxzusammenfassungxListText}
 \pushList{RegisteredListOfLists}{ZSMS}
 
@@ -755,33 +445,12 @@
     {\noexpand\xtranslate{Zusammenfassung} \noexpand\thetcbcounter{}~}% The Title
     {zusammenfassungStarred}% BoxID
 
-% \providecommand{\LILLYxSEENxZUSAMMENFASSUNG}{FALSE}
-
-% \ifx\LILLYxBOXxZusammenfassungxEnable\true
-%     \lillynlistof{ZSMS}{ZSM}{Alle Zusammenfassungen\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
-
-%     %% TITEL OPTIONALE-ADDONS
-%     \DeclareDocumentEnvironment{zusammenfassung}{O{} O{}}{\grenewcommand{\LILLYxSEENxZUSAMMENFASSUNG}{TRUE}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxZusammenfassung}%
-%         \begin{LILLYxBOXxZusammenfassung}[#1][Zusammenfassung \thetcbcounter~][#2]\LILLYxBOXESxaddListElement[ZSMS]{ZSM}{\thetcbcounter}{#1}{\LILLYxBOXxZusammenfassungxLock}\elable{auto:ZSM\thetcbcounter}~\\[-.5\baselineskip]\ignorespacesafterend
-%     }{\end{LILLYxBOXxZusammenfassung}\renewcommand{\LILLYxColorxLINKSxCurrentColor}{\LILLYxColorxLINKSxMainColor}\ignorespacesafterend}
-% \else %% Keine Zusammenfassungs
-%     \NewEnviron{zusammenfassung}{}
-% \fi
-
 %%% Comaptibility environment
-\LILLYcommand{\ZSM}[2]{ % Zusammenfassung
-    \begin{zusammenfassung}[#1]
-        #2
-    \end{zusammenfassung}
-}
-
+\LILLYcommand\ZSM[2]{ % Zusammenfassung
+    \begin{zusammenfassung}[#1]#2\end{zusammenfassung}}
 
 % Aufgaben
-
-%%% TODO:
-%%%% BOXCONTROL \w: extra paramter [pin] - oder so lädt auf jedenfall nen tcbset style mit aftertitle = Pin .... - ist auf Definitionen gelockt - bezieht die Farbe nicht automatisch
-
-\ifcsname LILLYxSolutionsxShow\endcsname\else%
+\ifcsname LILLYxSolutionsxShow\endcsname\else
     \def\LILLYxSolutionsxShow{TRUE}%
 \fi
 \ifx\LILLYxBOXxAufgabexEnable\true
@@ -790,68 +459,63 @@
 
 %% Splitter could issue a tcblower and then use startrecording to get the soluions extra?
 
-    \ifthenelse{\equal{\LILLYxBOXxAufgabexBox}{\true}}{%
-        \tcbset{LillyxBOXxDesignxAufgabe/.style={lower separated=false}}%\tcblower
-        \gdef\Splitter{\ifx\LILLYxSolutionsxShow\true{\color{\LILLYxBOXxCOLORxFRAME}\leavevmode\\[-0.95\baselineskip]\makebox[\linewidth]{\rule{0.725\paperwidth}{0.6pt}}}\\[0.2cm]\else\smallskip\tcblower\fi} %% Linie für tasks
-        \gdef\vSplitter{\vspace{-0.9\baselineskip} \Splitter \nskip}
-    }{%
-        \tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
-        \gdef\Splitter{\vspace{0.1cm} {~\\[0.2cm]\textbf{\xtranslate[L\"{o}sung]{Loesung}:}\\*[0.1cm]}}
-        \gdef\vSplitter{\vspace{-0.9\baselineskip} \Splitter \vspace{-1\baselineskip}}
-    }
+\ifthenelse{\equal{\LILLYxBOXxAufgabexBox}{\true}}{%
+    \tcbset{LillyxBOXxDesignxAufgabe/.style={lower separated=false}}%\tcblower
+    \gdef\Splitter{\ifx\LILLYxSolutionsxShow\true{\color{\LILLYxBOXxCOLORxFRAME}\leavevmode\\[-.95\baselineskip]\makebox[\linewidth]{\rule{.725\paperwidth}{.6pt}}}\\[.2cm]\else\smallskip\tcblower\fi} %% Linie für tasks
+    \gdef\vSplitter{\vspace{-.9\baselineskip} \Splitter \nskip}
+}{%
+    \tcbset{LillyxBOXxDesignxAufgabe/.style={LillyxBOXxDesignxPlain}}
+    \gdef\Splitter{\vspace{.1cm} {~\\[.2cm]\textbf{\xtranslate[L\"{o}sung]{Loesung}:}\\*[.1cm]}}
+    \gdef\vSplitter{\vspace{-.9\baselineskip} \Splitter \vspace{-1\baselineskip}}
+}
 
-    \gdef\LILLYxAufgabenCounter{\arabic{ctr_EXE}.\arabic{ctr_TSK}}
-    %% [OPTIONALE-ADDONS]{TITEL}{PUNKTE}
-    \DeclareDocumentEnvironment{aufgabeXdefault}{ O{} m m }{% \scantokens{ %
-        \refstepcounter{ctr_TSK}#1%
-        \ifx\LILLYxSolutionsxShow\true\else\tcbset{LillyxBOXxDesignxAufgabe/.style={lowerbox=ignored}}\fi%
-        \begin{LILLYxBOXxAufgabe}[#2][\xtranslate{Aufgabe} \arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe,%
-            %savedelimiter=aufgabe,savelowerto={ub/\arabic{ctr_TSK}.tex},
-        #1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}\leavevmode\\[-.25\baselineskip]\ignorespaces%
-    }{\end{LILLYxBOXxAufgabe}}% } %
-    \DeclareDocumentEnvironment{aufgabeXplain}{ O{} m m }{% \scantokens{ %
-        \refstepcounter{ctr_TSK}#1%
-        \begin{LILLYxBOXxAufgabexPlain}[#2][\xtranslate{Aufgabe} \LILLYxAufgabenCounter][LillyxBOXxDesignxPlain,after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}\leavevmode\\\ignorespaces%
-    }{\end{LILLYxBOXxAufgabexPlain}}% } %
-    %% Allows live Switching between styles in the same document
-    \DeclareDocumentEnvironment{aufgabe}{ O{} m m }{%
-        \ifx\LILLYxBOXxAufgabexBox\true\begin{aufgabeXdefault}[#1]{#2}{#3}%
-        \else\begin{aufgabeXplain}[#1]{#2}{#3}\fi%
-    }{%
-        \ifx\LILLYxBOXxAufgabexBox\true\end{aufgabeXdefault}\else\end{aufgabeXplain}\fi%
-    }
-
-\else %% Keine Aufgaben
-    \NewEnviron{aufgabe}[2][]{}
-\fi
+\gdef\LILLYxAufgabenCounter{\arabic{ctr_EXE}.\arabic{ctr_TSK}}
+%% [OPTIONALE-ADDONS]{TITEL}{PUNKTE}
+\DeclareDocumentEnvironment{aufgabeXdefault}{ O{} m m }{% \scantokens{ %
+    \refstepcounter{ctr_TSK}#1%
+    \ifx\LILLYxSolutionsxShow\true\else\tcbset{LillyxBOXxDesignxAufgabe/.style={lowerbox=ignored}}\fi%
+    \begin{LILLYxBOXxAufgabe}[#2][\xtranslate{Aufgabe} \arabic{ctr_TSK}][LillyxBOXxDesignxAufgabe,%
+        %savedelimiter=aufgabe,savelowerto={ub/\arabic{ctr_TSK}.tex},
+    #1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}\leavevmode\\[-.25\baselineskip]\ignorespaces
+}{\end{LILLYxBOXxAufgabe}}% } %
+\DeclareDocumentEnvironment{aufgabeXplain}{ O{} m m }{% \scantokens{ %
+    \refstepcounter{ctr_TSK}#1%
+    \begin{LILLYxBOXxAufgabexPlain}[#2][\xtranslate{Aufgabe} \LILLYxAufgabenCounter][LillyxBOXxDesignxPlain,after title={\hfill~\mdseries\emph{ #3 \ifnum#3=1 Punkt\else Punkte\fi}\\[-1em]},frame hidden,#1]\LILLYxBOXESxaddListElement[TSKS]{TSK}{\arabic{ctr_TSK}}{#2}{\true}\leavevmode\\\ignorespaces
+}{\end{LILLYxBOXxAufgabexPlain}}% } %
+%% Allows live Switching between styles in the same document
+\DeclareDocumentEnvironment{aufgabe}{ O{} m m }{%
+    \ifx\LILLYxBOXxAufgabexBox\true\begin{aufgabeXdefault}[#1]{#2}{#3}%
+    \else\begin{aufgabeXplain}[#1]{#2}{#3}\fi
+}{%
+    \ifx\LILLYxBOXxAufgabexBox\true\end{aufgabeXdefault}\else\end{aufgabeXplain}\fi
+}
+\else \NewEnviron{aufgabe}[2][]{} \fi
 \let\task\undefined
 \NewEnviron{task}[3][]{\begin{aufgabe}[#1]{#2}{#3}\Body\end{aufgabe}}
 
-\providecommand{\LILLYxSEENxUBS}{FALSE}
+\providecommand\LILLYxSEENxUBS{FALSE}
 
 \ifx\LILLYxBOXxUebungsblattxEnable\true
     \lillynlistof{UBS}{UB}{\xtranslate[Alle \"{U}bungsbl\"{a}tter]{AlleUebungsblaetter}\\[\LILLYxBOXxHIGHLEVELxOFFSET]}
     \pushList{RegisteredListOfLists}{UB}
-
     %% TITEL NUMMER
     \DeclareDocumentEnvironment{uebungsblatt}{O{} O{42}}{\grenewcommand{\LILLYxSEENxUBS}{TRUE}%
-
-    \setcounter{ctr_EXE}{#2}\setcounter{ctr_TSK}{0}{\leavevmode\\\large \textbf{\xtranslate{Uebungsblatt}} \arabic{ctr_EXE}\mdseries\hfill#1}\LILLYxBOXESxaddListElement[UBS]{UB}{\arabic{ctr_EXE}}{#1}{\true}\elable{auto:UBS\arabic{ctr_EXE}}\\[0.2\baselineskip]\ignorespacesafterend}{}
+    \setcounter{ctr_EXE}{#2}\setcounter{ctr_TSK}{0}{\leavevmode\\\large \textbf{\xtranslate{Uebungsblatt}} \arabic{ctr_EXE}\mdseries\hfill#1}\LILLYxBOXESxaddListElement[UBS]{UB}{\arabic{ctr_EXE}}{#1}{\true}\elable{auto:UBS\arabic{ctr_EXE}}\\[.2\baselineskip]\ignorespacesafterend}{}
     \DeclareDocumentEnvironment{uebungsblatt*}{O{} O{42}}{\grenewcommand{\LILLYxSEENxUBS}{TRUE}% - differs: does not change counter
-    {\leavevmode\\\large \textbf{\xtranslate{Uebungsblatt}} #2\mdseries\hfill #1}\LILLYxBOXESxaddListElement[UBS]{UB}{#2}{#1}{\true}\elable{auto:UBS#2}\\[0.2\baselineskip]\ignorespacesafterend}{}
+    {\leavevmode\\\large \textbf{\xtranslate{Uebungsblatt}} #2\mdseries\hfill #1}\LILLYxBOXESxaddListElement[UBS]{UB}{#2}{#1}{\true}\elable{auto:UBS#2}\\[.2\baselineskip]\ignorespacesafterend}{}
 \else
     \NewEnviron{uebungsblatt}{}
     \NewEnviron{uebungsblatt*}{}
 \fi
 
-\providecommand{\LILLYxPolitePage}{\ifx\LILLY@Typ\LILLY@Typ@Mitschrieb\clearpage\fi}
+\providecommand\LILLYxPolitePage{\ifx\LILLY@Typ\LILLY@Typ@Mitschrieb\clearpage\fi}
 
 %%% Shortcut  TITLE NUMBER
 \ifx\LILLYxBOXxUebungsblattxEnable\true
-    \LILLYcommand{\inputUB}[3]{\grenewcommand{\LILLYxSEENxUBS}{TRUE}\LILLYxPolitePage\begin{uebungsblatt}[#1][#2]\linput{#3}\end{uebungsblatt}\LILLYxPolitePage}
-    \LILLYcommand{\inputUBS}[3]{\grenewcommand{\LILLYxSEENxUBS}{TRUE}\LILLYxPolitePage\begin{uebungsblatt*}[#1][#2]\linput{#3}\end{uebungsblatt*}\LILLYxPolitePage}
+    \LILLYcommand\inputUB[3]{\grenewcommand{\LILLYxSEENxUBS}{TRUE}\LILLYxPolitePage\begin{uebungsblatt}[#1][#2]\linput{#3}\end{uebungsblatt}\LILLYxPolitePage}
+    \LILLYcommand\inputUBS[3]{\grenewcommand{\LILLYxSEENxUBS}{TRUE}\LILLYxPolitePage\begin{uebungsblatt*}[#1][#2]\linput{#3}\end{uebungsblatt*}\LILLYxPolitePage}
 \else
-    \LILLYcommand{\inputUB}[3]{\LILLYxPolitePage}
-    \LILLYcommand{\inputUBS}[3]{\LILLYxPolitePage}
+    \LILLYcommand\inputUB[3]{\LILLYxPolitePage}
+    \LILLYcommand\inputUBS[3]{\LILLYxPolitePage}
 \fi
 \endinput

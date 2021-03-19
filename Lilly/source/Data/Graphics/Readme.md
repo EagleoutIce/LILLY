@@ -5,4 +5,4 @@ Hier sollen alle Grafiken zur Verfügung stehen die so im Rahmen der Vorlesungen
 Es soll ebenfalls über Unterverzeichnisse zur Verfügung gestellt werden.
 `Jake` soll in diesem Rahmen eine Suche zur Verfügung stellen die zum Beispiel über `get` oder so mögliche Grafiken
 sucht, oder am besten direkt eine Beispiel-PDF aller suchergebnisse samt Name erstellt. Dieses Verfahren kann dann auch
-für die Dokumentation benutzt werden, nur eben mit *alllen* Grafiken.
+für die Dokumentation benutzt werden, nur eben mit *allen* Grafiken.

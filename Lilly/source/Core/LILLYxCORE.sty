@@ -3,15 +3,11 @@
 %%% Enthalten sind die grundlegend für die meisten weiteren Lilly-Pakete
 %%% notwendigen Komponenten.
 \ProvidesPackage{LILLYxCORE}[2019/09/21 Stellt den Kern fuer LILLY zur Verfuegung]
-%
 % Lilly - Versions gedöns
-%
 \gdef\LILLYxVERSION{2.2.0}
 \gdef\LILLYxSTATUS{Work in Progress}
 \gdef\LILLYxVERSIONxLONG{2.2.0 - Ein Regenbogenfarbpalast}
-%
 % Pakete
-%
 \RequirePackage{LILLYxBOOLEAN} %% \true und \false
 \RequirePackage{LILLYxDEBUG} %% \debugout :D
 \RequirePackage{LILLYxVANILLA}% Wird benötigt, falls Jake nicht verwendet wird :D
@@ -21,11 +17,6 @@
 \RequirePackage{LILLYxCONTROLLERxCONTENT}% Wo ist was :D
 \RequirePackage{LILLYxRECORDER}% Da war doch was...
 \RequirePackage{LILLYxTRANSLATOR}% Lost in Translation
-%
-%
-%
 % erlaubt selektion:
-\@ifundefined{iflilly@vorlesung@isvalid@}{
-\newif\iflilly@vorlesung@isvalid@
-}{}
+\@ifundefined{iflilly@vorlesung@isvalid@}{\newif\iflilly@vorlesung@isvalid@}{}
 \endinput

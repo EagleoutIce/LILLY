@@ -3,9 +3,7 @@
 %% Alle diese Modi lassen sich manuell mithilfe der Kommandozeile verändern und anpassen
 
 % Default - Lädt und Konfiguriert Standardwerte und Farbe
-
-
-\providecommand{\LILLYxMODE}{default}
+\providecommand\LILLYxMODE{default}
 \providecommand\LILLYxMODExDEFAULT{default}
 \providecommand\LILLYxMODExPRINT{print}
 
@@ -15,47 +13,33 @@
     \gdef\LILLYxFOOTERxBUTTONS{TRUE}
 \fi
 
-
 \def\LILLY@Typ@Mitschrieb{MITSCHRIEB}
 \def\LILLY@Typ@Uebungsblatt{UEBUNGSBLATT}
 \def\LILLY@Typ@Dokumentation{DOKUMENTATION}
 \def\LILLY@Typ@Zusammenfassung{ZUSAMMENFASSUNG}
 
-\RequirePackage{imakeidx} %% HAS TO BE LOADED BEFORE HYPERREF (https://tex.stackexchange.com/questions/22012/hyperref-and-imakeidx-do-not-work-together#22014)
+\RequirePackage{imakeidx}
 
-\ifx\LILLY@Typ\LILLY@Typ@Mitschrieb
-    \gdef\LILLYxBOXxAufgabexBox{FALSE}
-\fi
-
-% \ifx\LILLY@Typ\LILLY@Typ@Zusammenfassung
-% \RequirePackage{imakeidx} %% HAS TO BE LOADED BEFORE HYPERREF (https://tex.stackexchange.com/questions/22012/hyperref-and-imakeidx-do-not-work-together#22014)
-% \fi
+\ifx\LILLY@Typ\LILLY@Typ@Mitschrieb \gdef\LILLYxBOXxAufgabexBox{FALSE} \fi
 
 \ifx\LILLYxMODE\LILLYxMODExDEFAULT
-    \gdef\LILLYxBOXxBeispielxBox{FALSE}
+\gdef\LILLYxBOXxBeispielxBox{FALSE}
 \else\ifx\LILLYxMODE\LILLYxMODExPRINT
-    \renewcommand\LILLYxFOOTERxBUTTONS{FALSE}
-    \gdef\LILLYxHYPERLINK{FALSE}
-    \gdef\LILLYxBOXxBemerkungxBox{FALSE}
-    \gdef\LILLYxBOXxBeweisxBox{FALSE}
-    \gdef\LILLYxBOXxBeispielxBox{FALSE}
-    \gdef\LILLYxBOXxLemmaxBox{FALSE}
-%     \def\@floatplacement{\global\@topnum\c@topnumber
-%    \global\@toproom \topfraction\@colht
-%    \global\@botnum  \c@bottomnumber
-%    \global\@botroom \bottomfraction\@colht
-%    \global\@colnum  \ifodd\c@page\c@totalnumber\else\z@\fi%<<<<<<<
-%    \@fpmin   \floatpagefraction\@colht}
-    \raggedbottom  %%Prevent flushbottom from doubleside
+\renewcommand\LILLYxFOOTERxBUTTONS{FALSE}
+\gdef\LILLYxHYPERLINK{FALSE}
+\gdef\LILLYxBOXxBemerkungxBox{FALSE}
+\gdef\LILLYxBOXxBeweisxBox{FALSE}
+\gdef\LILLYxBOXxBeispielxBox{FALSE}
+\gdef\LILLYxBOXxLemmaxBox{FALSE}
+\raggedbottom
 \fi\fi
 
 %%%% Da tikz davor geladen wird, helfen wir hier nach und überschreiben die option nachträglich :D
-
 \ifthenelse{\equal{\LILLYxMODExEXTRA}{\true}}{%% let's enable all the options
-    \LILLYcommand{\LILLYxIMAGESxShow}{TRUE} %% this option doesn't work for graphPOI - tikz will be loaded earlier - which is great :D (not)
+    \LILLYcommand\LILLYxIMAGESxShow{TRUE} %% this option doesn't work for graphPOI - tikz will be loaded earlier - which is great :D (not)
     \gdef\LILLYxBOXxUebungsblattxEnable{TRUE}
 }{%
-    \LILLYcommand{\LILLYxIMAGESxShow}{FALSE}
+    \LILLYcommand\LILLYxIMAGESxShow{FALSE}
     \gdef\LILLYxBOXxUebungsblattxEnable{FALSE}
 }
 
@@ -63,11 +47,4 @@
 \ifx\LILLYxBOXxBeispielxBox\false\renewcommand{\LILLYxColorxBeispiel}{\LILLYxColorxLINKSxMainColor}\fi
 \ifx\LILLYxBOXxBeweisxBox\false\renewcommand{\LILLYxColorxBeweis}{\LILLYxColorxLINKSxMainColor}\fi
 \ifx\LILLYxBOXxBemerkungxBox\false\renewcommand{\LILLYxColorxBemerkung}{\LILLYxColorxLINKSxMainColor}\fi
-%\ifx\LILLYxBOXxLemmaxBox\true\else\renewcommand{\LILLYxColorxLemma}{Charcoal}\fi
-
-
-
 \endinput
-% %%% Intro- and Outro-Constroller Stuff :D
-
-% \RequirePackage{LILLYxCONTROLLERxINTRO}

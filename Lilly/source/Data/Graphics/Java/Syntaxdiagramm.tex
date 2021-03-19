@@ -1,15 +1,15 @@
 \gdef\GRAPHICSxSyntaxdiagramm{%
 \begin{tikzternal}[scale=1, every node/.style={transform shape},sd/.style={rectangle,draw,minimum width = 3cm}, t/.style={rectangle,draw, rounded corners=6pt, minimum width=1cm}]
-    \draw (-1.25,0) node [t,right,densely dashed] (entry) {entry};
-      \draw[-latex] (entry) -- ++(1.25,0) node (if) [right,t]{if};
-      \draw[-latex] (if) -- ++(1,0) node (opBr) [right,t]{(};
-      \draw[-latex] (opBr) -- ++(1,0) node (aus) [right,sd] {Ausdruck};
-      \draw[-latex] (aus) -- ++(2,0) node (clBr) [right,t]{)};
-      \draw[-latex] (clBr) -- ++(1,0) node (anw) [right,sd] {Anweisung};
-      \draw[-latex] (anw) -- ++(2.5,0) node[right,t,densely dashed] (exit) {exit};
-      \draw[-latex] (anw) -- ++(1.65,0) |- ++(-6,-0.5) |- ++(1,-0.5) node (else) [right,t] {else};
-      \draw[-latex] (else) -- ++(1,0) node (anw2) [right,sd] {Anweisung};
-      \draw[-latex] (anw2) -| ++(2.5,1);
-  \end{tikzternal}
+\draw (-1.25,0) node [t,right,densely dashed] (entry) {entry};
+\draw[-latex] (entry) -- ++(1.25,0) node (if) [right,t]{if};
+\draw[-latex] (if) -- ++(1,0) node (opBr) [right,t]{(};
+\draw[-latex] (opBr) -- ++(1,0) node (aus) [right,sd] {Ausdruck};
+\draw[-latex] (aus) -- ++(2,0) node (clBr) [right,t]{)};
+\draw[-latex] (clBr) -- ++(1,0) node (anw) [right,sd] {Anweisung};
+\draw[-latex] (anw) -- ++(2.5,0) node[right,t,densely dashed] (exit) {exit};
+\draw[-latex] (anw) -- ++(1.65,0) |- ++(-6,-0.5) |- ++(1,-0.5) node (else) [right,t] {else};
+\draw[-latex] (else) -- ++(1,0) node (anw2) [right,sd] {Anweisung};
+\draw[-latex] (anw2) -| ++(2.5,1);
+\end{tikzternal}
 }
-\LILLYcommand{\LILLYxGRAPHICSxSHOW}{\GRAPHICSxSyntaxdiagramm} %% new pattern maybe apply to all?
+\LILLYcommand\LILLYxGRAPHICSxSHOW{\GRAPHICSxSyntaxdiagramm} %% new pattern maybe apply to all?

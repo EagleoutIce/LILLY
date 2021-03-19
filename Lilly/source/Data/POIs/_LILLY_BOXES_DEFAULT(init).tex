@@ -1,13 +1,9 @@
 %%% TITEL TITLEPREFIX OPTIONAL-CONTROLLERS
-
 \tcbset{LillyxBOXxDesignxDefault/.style={enhanced jigsaw, pad before break*=2mm, pad after break=2mm, %
-lines before break=4, before skip=0pt, boxrule = 0mm, toprule=0.5mm, %
-bottomtitle=0.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=0.2\baselineskip, enlarge bottom by=0.2\baselineskip, sharp corners=south, breakable}}
-
-\providecommand{\LILLYxDEFAULTxTYPESETxTITLE}[2]{\!\relax{}\textbf{\textsc{\vphantom{\large I}{#2}}} \hfill \parbox[t]{\linewidth-\widthof{#2}-5em}{\raggedleft\textbf{#1}}}
-
+lines before break=4, before skip=0pt, boxrule = 0mm, toprule=.5mm, %
+bottomtitle=.5mm,bottomrule=1.2mm, after skip=0pt, enlarge top by=.2\baselineskip, enlarge bottom by=.2\baselineskip, sharp corners=south, breakable}}
+\providecommand\LILLYxDEFAULTxTYPESETxTITLE[2]{\!\relax\textbf{\textsc{\vphantom{\large I}{#2}}} \hfill \parbox[t]{\linewidth-\widthof{#2}-5em}{\raggedleft\textbf{#1}}}
 %%Es scheint nicht möglich IfValueTF noch andere Optionen in kombination mithilfe von auto counter zu benutzen - dies ist in jeder hinsicht kacke
-
 %%% Die Definition-Box:
 \ifthenelse{\equal{\LILLYxBOXxDefinitionxLock}{\true}}{%
 %\typeout{unlocked}
@@ -20,7 +16,6 @@ colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxBox\true\\\else\\\fi}, bookmark={#2 -- #1} %
 }
 }{%
-%\typeout{locked}
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxDefinitionxLock]{LILLYxBOXxDefinition}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxBox\true\\\else\\\fi} %
@@ -28,9 +23,7 @@ title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxBox\true\\\
 \DeclareTColorBox[use counter from=LILLYxBOXxDefinition]{LILLYxBOXxDefinition*}{ O{} O{Definition \thetcbcounter~} O{drop fuzzy shadow} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxDefinition!5!white, colframe=\LILLYxColorxDefinition, #3, %
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxDefinitionxBox\true\\\else\\\fi} %
-}
-}
-
+}}
 %%% Die Beispiel-Box:
 \ifthenelse{\equal{\LILLYxBOXxBeispielxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
@@ -41,9 +34,7 @@ title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBeispielxLock\true\\\e
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxBeispielxLock]{LILLYxBOXxBeispiel}{ O{} O{Beispiel \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxBeispiel!5!white, colframe=\LILLYxColorxBeispiel, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBeispielxLock\true\\\else\\\fi}%
-}
-}
-
+}}
 %%% Die Bemerkung-Box:
 \ifthenelse{\equal{\LILLYxBOXxBemerkungxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxBemerkung}{ O{} O{Bemerkung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
@@ -56,7 +47,6 @@ colback=\LILLYxColorxBemerkung!5!white, colframe=\LILLYxColorxBemerkung, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBemerkungxLock\true\\\else\\\fi} %
 }
 }
-
 %%% Die Satz-Box:
 \ifthenelse{\equal{\LILLYxBOXxSatzxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
@@ -67,34 +57,27 @@ title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxSatzxLock\true\\\else\
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxSatzxLock]{LILLYxBOXxSatz}{ O{} O{Satz \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxSatz!5!white, colframe=\LILLYxColorxSatz, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxSatzxLock\true\\\else\\\fi} %
-}
-}
-
+}}
 %%% Die Beweis-Box:
 \ifthenelse{\equal{\LILLYxBOXxBeweisxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxBeweis!5!white, colframe=\LILLYxColorxBeweis, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBeweisxLock\true\\\else\\\fi} %
-}
-}{%
+}}{%
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxBeweisxLock]{LILLYxBOXxBeweis}{ O{} O{Beweis \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault,%
 colback=\LILLYxColorxBeweis!5!white, colframe=\LILLYxColorxBeweis, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxBeweisxLock\true\\\else\\\fi} %
-}
-}
-
+}}
 %%% Die Lemma-Box:
 \ifthenelse{\equal{\LILLYxBOXxLemmaxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxLemma!5!white, colframe=\LILLYxColorxLemma, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxLemmaxLock\true\\\else\\\fi} %
-}
-}{%
+}}{%
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxLemmaxLock]{LILLYxBOXxLemma}{ O{} O{Lemma \thetcbcounter~} O{} }{LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxLemma!5!white, colframe=\LILLYxColorxLemma, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxLemmaxLock\true\\\else\\\fi} %
-}
-}
+}}
 %%% Die Zusammenfassung-Box:
 \ifthenelse{\equal{\LILLYxBOXxZusammenfassungxLock}{\true}}{%
 \DeclareTColorBox[auto counter]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
@@ -105,35 +88,29 @@ title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxZusammenfassungxLock\t
 \DeclareTColorBox[auto counter, number within=\LILLYxBOXxZusammenfassungxLock]{LILLYxBOXxZusammenfassung}{ O{} O{Zusammenfassung \thetcbcounter~} O{} }{ LillyxBOXxDesignxDefault, %
 colback=\LILLYxColorxZusammenfassung!5!white, colframe=\LILLYxColorxZusammenfassung, #3,%
 title={\LILLYxDEFAULTxTYPESETxTITLE{#1}{#2}\ifx\LILLYxBOXxZusammenfassungxLock\true\\\else\\\fi} %
-}
-}
-
+}}
 %%sloppy - fix => MAKE ALL BOXES ENVIRONMENTS AND PROVIDE OLD COMMAND STYLE AS COMPAT FEATURE TODO:
 \DeclareTColorBox{LILLYxBOXxAufgabe}{O{} O{} O{}}{enforce breakable, %enforce breakable für: Mehr Seiten
     enhanced jigsaw, before skip=2mm,after skip=2mm,
-    colback=white,colframe=black!50,boxrule=0.2mm,
+    colback=white,colframe=black!50,boxrule=.2mm,
     attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
     varwidth boxed title*=-3cm,
     boxed title style={
-        frame code={
-            \path[fill=white!30!black]
-                ([yshift=-1mm,xshift=-1mm]frame.north west)
-                arc[start angle=0,end angle=180,radius=1mm]
-                ([yshift=-1mm,xshift=1mm]frame.north east)
-                arc[start angle=180,end angle=0,radius=1mm];
-            \path[left color=white!40!black,right color=white!40!black,
-                middle color=white!55!black]
-                ([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
-                [rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
-                -- (frame.south east) -- (frame.south west)
-                -- ([xshift=-1mm,yshift=-1mm]frame.north west)
-                [sharp corners]-- cycle;
-        },interior engine=empty,
-    },
+    frame code={
+        \path[fill=white!30!black]
+            ([yshift=-1mm,xshift=-1mm]frame.north west)
+            arc[start angle=0,end angle=180,radius=1mm]
+            ([yshift=-1mm,xshift=1mm]frame.north east)
+            arc[start angle=180,end angle=0,radius=1mm];
+        \path[left color=white!40!black,right color=white!40!black,
+            middle color=white!55!black]
+            ([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+            [rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+            -- (frame.south east) -- (frame.south west)
+            -- ([xshift=-1mm,yshift=-1mm]frame.north west)
+            [sharp corners]-- cycle;
+    },interior engine=empty},
     fonttitle=\bfseries, #3,%
     title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}, %Aufgabe
 }
-
-\DeclareTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}}{enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm, colback=white,colframe=black!50,boxrule=0.0mm,lines before break=4, fonttitle=\bfseries, #3,title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}}
-
-
+\DeclareTColorBox{LILLYxBOXxAufgabexPlain}{O{} O{} O{}}{enforce breakable, enhanced jigsaw, before skip=2mm,after skip=2mm, colback=white,colframe=black!50,boxrule=\z@,lines before break=4, fonttitle=\bfseries, #3,title={#2 \ifthenelse{\equal{#1}{}}{}{--~}#1}}

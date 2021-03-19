@@ -1,8 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxTIMETABLES}[2019/09/09 Stellt eine Stundenplan-Erweiterung fuer LILLY zur Verfuegung]
-
 \RequirePackage{LILLYxCORE,LILLYxFONTS,LILLYxTIKZxCORE,LILLYxTIMETABLESxCOMFORT}
-
 %% https://www.ctan.org/pkg/pgf
 \LILLYxDemandPackage{pgf}{bis expl3 :P}
     {Ohne gehts nicht}{}{}
@@ -36,7 +34,7 @@
         title={Ich bin ein Titel, setze 'title' um mich zu \"{a}ndern}, %maybe require?
         time formatter={AtLineDistCompanion}
     }
-}%% All those values will be persisted with 'lillyxINFOBOXESx'-Prefix :D
+}
 
 %% Liefert einen Persistierten Timetable Wert :D
 % #1 Bezeichner des Timetable
@@ -216,14 +214,11 @@
         preCode={}, postCode={}, extra 1 = {Hamsterbacke}, extra 2={Waffeln},
         extra 3 = {Günther Der coolere}, short title={}
     }
-}%% All those values will be persisted with 'lillyxINFOBOXESx'-Prefix :D
-
-\def\@@IncM#1{%
-    \pgfmathparse{int(1+\csname @#1@maxcount\endcsname)}\pgfmathresult
 }
 
-% Maybe make a marker to set an emblem for 'vorlesungen' ?
+\def\@@IncM#1{\pgfmathparse{int(1+\csname @#1@maxcount\endcsname)}\pgfmathresult}
 
+% Maybe make a marker to set an emblem for 'vorlesungen' ?
 \DeclareDocumentCommand{\RawTimeTableEvent}{%
     O{} % EventKeys :D
     m % Table Name

@@ -1,10 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxFONTS}[2019/07/11 Stellt die Schriften-Erweiterungen fuer LILLY zur Verfuegung]
-
-
-\RequirePackage{LILLYxCORE}
-% \RequirePackage{LILLYxCORE}
-\RequirePackage{kvoptions}
+\RequirePackage{LILLYxCORE,kvoptions}
 
 \newif\ifdefined@custom@font@\defined@custom@font@false
 \DeclareVoidOption{defaultfont}{\global\defined@custom@font@true}
@@ -15,50 +11,34 @@
 \usepackage{kpfonts}\global\defined@custom@font@true}
 
 \DeclareVoidOption{overclock}{\usepackage[sfdefault]{overlock}\global\defined@custom@font@true}
-
 \DeclareVoidOption{pxfont}{\usepackage{newpxtext,eulerpx}\global\defined@custom@font@true}
-
 \DeclareVoidOption{palatino}{\usepackage{palatino}\global\defined@custom@font@true}
-
 \RequirePackage{calligra}
 
-\DeclareDefaultOption{}%
+\DeclareDefaultOption{}
 \ifdefined@custom@font@\else
     \usepackage{CormorantGaramond}% Default: we try this font :P
-\fi%
-
-\ProcessKeyvalOptions*                                     % Verarbeite Paketargumente (Optionen, wie auch immer)
-
-
+\fi
+\ProcessKeyvalOptions*
 
 %% https://www.ctan.org/pkg/fontawesome
 \LILLYxLoadPackage{fontawesome}{Für coole Symbole - ist sie nicht da so wird versucht für alle Befehle die LILLY verwendet ein Wrapper zu finden :D}
-                    {Wie du bist nicht super fonti-awesome. Ich versuche die Symbole zu simulieren!}
-                    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_FONTAWESOME}} %% Wir müssen keine Befehle faken damit die Welt schön aussieht
-                    {}{}
+    {Wie du bist nicht super fonti-awesome. Ich versuche die Symbole zu simulieren!}
+    {\input{\LILLYxPATHxFALLBACKS/_LILLY_FALLBACK_FONTAWESOME}}{}{}
 % No doku
 %% WHICH FONT?
-\DeclareFixedFont{\chapterNumberFSize}{U}{eur}{b}{n}{\f@size} %% Euler Font für die Kapitelnummern - ich finde die toll
-\DeclareFixedFont{\chapterNumber}{U}{eur}{b}{n}{80} %% Euler Font für die Kapitelnummern - ich finde die toll
+\DeclareFixedFont\chapterNumberFSize{U}{eur}{b}{n}{\f@size} %% Euler Font für die Kapitelnummern - ich finde die toll
+\DeclareFixedFont\chapterNumber{U}{eur}{b}{n}{80} %% Euler Font für die Kapitelnummern - ich finde die toll
 \makeatletter
-\DeclareFixedFont{\normalNumber}{U}{eur}{b}{n}{\f@size} %% Euler Font für die Kapitelnummern - ich finde die toll
-\DeclareFixedFont{\smallNumber}{U}{eur}{b}{n}{9} %% Euler Font für die Kapitelnummern - ich finde die toll
-
+\DeclareFixedFont\normalNumber{U}{eur}{b}{n}{\f@size} %% Euler Font für die Kapitelnummern - ich finde die toll
+\DeclareFixedFont\smallNumber{U}{eur}{b}{n}{9} %% Euler Font für die Kapitelnummern - ich finde die toll
 %euler font
 \def\useefont{\usefont{U}{eur}{b}{n}}
-\def\efont#1{
-    \begingroup\useefont#1\endgroup
-}
+\def\efont#1{\begingroup\useefont#1\endgroup}
 % no doku
 \gdef\fsize{\dimexpr\f@size pt\relax}
-
 \providecommand{\LILLYxlstTypeWriter}{\fontfamily{AnonymousPro}\selectfont}
-
 \input Konanur.fd
-
-\newcommand{\kfont}[1]{\begingroup\usefont{U}{Konanur}{xl}{n}#1\endgroup}
-
-\newcommand{\Lilly}{\kfont{Lilly}}
-
-%% Hier sollen natürlich alle von LILLY entsprechend verwendeten Schriften eingetragen werden
+\newcommand\kfont[1]{\begingroup\usefont{U}{Konanur}{xl}{n}#1\endgroup}
+\newcommand\Lilly{\kfont{Lilly}}
 \endinput
