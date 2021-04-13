@@ -70,70 +70,70 @@
 \pgfsetlayers{\pgfsetlayersArg}%
 %
 \pgfkeys{/tikzuml/.cd, text/.initial=black, draw/.initial=black, font/.initial=\small,%
-                       x/.initial=0, y/.initial=0,%
-                       package type/.initial=tikzumlEmpty, fill package/.initial=blue!20,%
-                       class width/.initial=10ex, simple interface width/.initial=4ex, class type/.initial=class, fill class/.initial=yellow!20, fill template/.initial=yellow!2,%
-                       narynode width/.initial=6ex,%
-                       relation geometry/.initial=--, relation angle1/.initial=-30, relation angle2/.initial=30, relation loopsize/.initial=3em, relation weight/.initial=0.5, relation pos1/.initial=0.2, relation pos2/.initial=0.8, relation pos stereo/.initial=0.5,%
-                       note width/.initial=3cm, fill note/.initial=green!20,%
-                       fill system/.initial=white,%
-                       fill usecase/.initial=blue!20,%
-                       actor below/.initial=0.5cm,%
-                       state join width/.initial=3ex,%
-                       state decision width/.initial=3ex,%
-                       state initial width/.initial=5ex,%
-                       state final width/.initial=5.5ex,%
-                       state enter width/.initial=5ex,%
-                       state exit width/.initial=5ex,%
-                       state end width/.initial=5ex,%
-                       state history width/.initial=5ex,%
-                       state deep history width/.initial=5ex,%
-                       state width/.initial=8ex, fill state/.initial=yellow!20,%
-                       object stereo/.initial=object, fill object/.initial=yellow!20,%
-                       call dt/.initial=tikzumlEmpty, call padding/.initial=2, call type/.initial=synchron, fill call/.initial=white,%
-                       fragment type/.initial=opt, fragment inner xsep/.initial=1, fragment inner ysep/.initial=1, fill fragment/.initial= none,%
-                       create call dt/.initial=4,%
-                       component width/.initial=8ex, fill component/.initial= yellow!20,%
-                       required interface distance/.initial=2.5cm, required interface width/.initial=1em, required interface padding/.initial=1cm,%
-                       provided interface distance/.initial=3cm, provided interface width/.initial=1em, provided interface padding/.initial=1cm,%
-                       port width/.initial=1ex, fill port/.initial= yellow!20,%
-                       fill assembly connector/.initial= white,%
-                       .unknown/.code={%
+x/.initial=0, y/.initial=0,%
+package type/.initial=tikzumlEmpty, fill package/.initial=blue!20,%
+class width/.initial=10ex, simple interface width/.initial=4ex, class type/.initial=class, fill class/.initial=yellow!20, fill template/.initial=yellow!2,%
+narynode width/.initial=6ex,%
+relation geometry/.initial=--, relation angle1/.initial=-30, relation angle2/.initial=30, relation loopsize/.initial=3em, relation weight/.initial=0.5, relation pos1/.initial=0.2, relation pos2/.initial=0.8, relation pos stereo/.initial=0.5,%
+note width/.initial=3cm, fill note/.initial=green!20,%
+fill system/.initial=white,%
+fill usecase/.initial=blue!20,%
+actor below/.initial=0.5cm,%
+state join width/.initial=3ex,%
+state decision width/.initial=3ex,%
+state initial width/.initial=5ex,%
+state final width/.initial=5.5ex,%
+state enter width/.initial=5ex,%
+state exit width/.initial=5ex,%
+state end width/.initial=5ex,%
+state history width/.initial=5ex,%
+state deep history width/.initial=5ex,%
+state width/.initial=8ex, fill state/.initial=yellow!20,%
+object stereo/.initial=object, fill object/.initial=yellow!20,%
+call dt/.initial=tikzumlEmpty, call padding/.initial=2, call type/.initial=synchron, fill call/.initial=white,%
+fragment type/.initial=opt, fragment inner xsep/.initial=1, fragment inner ysep/.initial=1, fill fragment/.initial= none,%
+create call dt/.initial=4,%
+component width/.initial=8ex, fill component/.initial= yellow!20,%
+required interface distance/.initial=2.5cm, required interface width/.initial=1em, required interface padding/.initial=1cm,%
+provided interface distance/.initial=3cm, provided interface width/.initial=1em, provided interface padding/.initial=1cm,%
+port width/.initial=1ex, fill port/.initial= yellow!20,%
+fill assembly connector/.initial= white,%
+.unknown/.code={%
  \let\keyname=\pgfkeyscurrentname%
  \let\keyvalue=\pgfkeyscurrentvalue%
  \errmessage{TIKZUML ERROR : in tikzuml global, invalid option \keyname}%
-                       }%
+ }%
 }%
 %
 \pgfkeys{/tikzuml/.cd, text/.get=\tikzumlDefaultTextColor, draw/.get=\tikzumlDefaultDrawColor, font/.get=\tikzumlDefaultFont,%
-                       x/.get=\tikzumlDefaultX, y/.get=\tikzumlDefaultY,%
-                       package type/.get=\tikzumlPackageDefaultType, fill package/.get=\tikzumlPackageDefaultFillColor,%
-                       class width/.get=\tikzumlClassDefaultWidth, simple interface width/.get=\tikzumlSimpleInterfaceDefaultWidth, class type/.get=\tikzumlClassDefaultType, fill class/.get=\tikzumlClassDefaultFillColor, fill template/.get=\tikzumlClassTemplateFillColorDefaultFillColor,%
-                       narynode width/.get=\tikzumlNaryNodeDefaultWidth,%
-                       relation geometry/.get=\tikzumlRelationDefaultGeometry, relation angle1/.get=\tikzumlRelationDefaultAngleO, relation angle2/.get=\tikzumlRelationDefaultAngleT, relation loopsize/.get=\tikzumlRelationDefaultLoopSize, relation weight/.get=\tikzumlRelationDefaultWeight, relation pos1/.get=\tikzumlRelationDefaultPosO, relation pos2/.get=\tikzumlRelationDefaultPosT, relation pos stereo/.get=\tikzumlRelationDefaultPosStereo,%
-                       note width/.get=\tikzumlNoteDefaultWidth, fill note/.get=\tikzumlNoteDefaultFillColor,%
-                       fill system/.get=\tikzumlSystemDefaultFillColor,%
-                       fill usecase/.get=\tikzumlUseCaseDefaultFillColor,%
-                       actor below/.get=\tikzumlActorDefaultBelow,%
-                       state join width/.get=\tikzumlStateJoinDefaultWidth,%
-                       state decision width/.get=\tikzumlStateDecisionDefaultWidth,%
-                       state initial width/.get=\tikzumlStateInitialDefaultWidth,%
-                       state final width/.get=\tikzumlStateFinalDefaultWidth,%
-                       state enter width/.get=\tikzumlStateEnterDefaultWidth,%
-                       state exit width/.get=\tikzumlStateExitDefaultWidth,%
-                       state end width/.get=\tikzumlStateEndDefaultWidth,%
-                       state history width/.get=\tikzumlStateHistoryDefaultWidth,%
-                       state deep history width/.get=\tikzumlStateDeepHistoryDefaultWidth,%
-                       state width/.get=\tikzumlStateDefaultWidth, fill state/.get=\tikzumlStateDefaultFillColor,%
-                       object stereo/.get=\tikzumlObjectDefaultStereo, fill object/.get=\tikzumlObjectDefaultFillColor,%
-                       call dt/.get=\tikzumlCallDefaultDT, call padding/.get=\tikzumlCallDefaultPadding, call type/.get=\tikzumlCallDefaultType, fill call/.get=\tikzumlCallDefaultFillColor,%
-                       fragment type/.get=\tikzumlFragmentDefaultType, fragment inner xsep/.get=\tikzumlFragmentDefaultXSep, fragment inner ysep/.get=\tikzumlFragmentDefaultYSep, fill fragment/.get=\tikzumlFragmentDefaultFillColor,%
-                       create call dt/.get=\tikzumlCreateCallDefaultDT,%
-                       component width/.get=\tikzumlComponentDefaultWidth, fill component/.get=\tikzumlComponentDefaultFillColor,%
-                       required interface distance/.get=\tikzumlRequiredInterfaceDefaultDistance, required interface width/.get=\tikzumlRequiredInterfaceDefaultWidth, required interface padding/.get=\tikzumlRequiredInterfaceDefaultPadding,%
-                       provided interface distance/.get=\tikzumlProvidedInterfaceDefaultDistance, provided interface width/.get=\tikzumlProvidedInterfaceDefaultWidth, provided interface padding/.get=\tikzumlProvidedInterfaceDefaultPadding,%
-                       port width/.get=\tikzumlPortDefaultWidth, fill port/.get=\tikzumlPortDefaultFillColor,%
-                       fill assembly connector/.get=\tikzumlAssemblyConnectorDefaultFillColor%
+ x/.get=\tikzumlDefaultX, y/.get=\tikzumlDefaultY,%
+ package type/.get=\tikzumlPackageDefaultType, fill package/.get=\tikzumlPackageDefaultFillColor,%
+ class width/.get=\tikzumlClassDefaultWidth, simple interface width/.get=\tikzumlSimpleInterfaceDefaultWidth, class type/.get=\tikzumlClassDefaultType, fill class/.get=\tikzumlClassDefaultFillColor, fill template/.get=\tikzumlClassTemplateFillColorDefaultFillColor,%
+ narynode width/.get=\tikzumlNaryNodeDefaultWidth,%
+ relation geometry/.get=\tikzumlRelationDefaultGeometry, relation angle1/.get=\tikzumlRelationDefaultAngleO, relation angle2/.get=\tikzumlRelationDefaultAngleT, relation loopsize/.get=\tikzumlRelationDefaultLoopSize, relation weight/.get=\tikzumlRelationDefaultWeight, relation pos1/.get=\tikzumlRelationDefaultPosO, relation pos2/.get=\tikzumlRelationDefaultPosT, relation pos stereo/.get=\tikzumlRelationDefaultPosStereo,%
+ note width/.get=\tikzumlNoteDefaultWidth, fill note/.get=\tikzumlNoteDefaultFillColor,%
+ fill system/.get=\tikzumlSystemDefaultFillColor,%
+ fill usecase/.get=\tikzumlUseCaseDefaultFillColor,%
+ actor below/.get=\tikzumlActorDefaultBelow,%
+ state join width/.get=\tikzumlStateJoinDefaultWidth,%
+ state decision width/.get=\tikzumlStateDecisionDefaultWidth,%
+ state initial width/.get=\tikzumlStateInitialDefaultWidth,%
+ state final width/.get=\tikzumlStateFinalDefaultWidth,%
+ state enter width/.get=\tikzumlStateEnterDefaultWidth,%
+ state exit width/.get=\tikzumlStateExitDefaultWidth,%
+ state end width/.get=\tikzumlStateEndDefaultWidth,%
+ state history width/.get=\tikzumlStateHistoryDefaultWidth,%
+ state deep history width/.get=\tikzumlStateDeepHistoryDefaultWidth,%
+ state width/.get=\tikzumlStateDefaultWidth, fill state/.get=\tikzumlStateDefaultFillColor,%
+ object stereo/.get=\tikzumlObjectDefaultStereo, fill object/.get=\tikzumlObjectDefaultFillColor,%
+ call dt/.get=\tikzumlCallDefaultDT, call padding/.get=\tikzumlCallDefaultPadding, call type/.get=\tikzumlCallDefaultType, fill call/.get=\tikzumlCallDefaultFillColor,%
+ fragment type/.get=\tikzumlFragmentDefaultType, fragment inner xsep/.get=\tikzumlFragmentDefaultXSep, fragment inner ysep/.get=\tikzumlFragmentDefaultYSep, fill fragment/.get=\tikzumlFragmentDefaultFillColor,%
+ create call dt/.get=\tikzumlCreateCallDefaultDT,%
+ component width/.get=\tikzumlComponentDefaultWidth, fill component/.get=\tikzumlComponentDefaultFillColor,%
+ required interface distance/.get=\tikzumlRequiredInterfaceDefaultDistance, required interface width/.get=\tikzumlRequiredInterfaceDefaultWidth, required interface padding/.get=\tikzumlRequiredInterfaceDefaultPadding,%
+ provided interface distance/.get=\tikzumlProvidedInterfaceDefaultDistance, provided interface width/.get=\tikzumlProvidedInterfaceDefaultWidth, provided interface padding/.get=\tikzumlProvidedInterfaceDefaultPadding,%
+ port width/.get=\tikzumlPortDefaultWidth, fill port/.get=\tikzumlPortDefaultFillColor,%
+ fill assembly connector/.get=\tikzumlAssemblyConnectorDefaultFillColor%
 }%
 %
 % utility : change default colors
@@ -185,7 +185,7 @@
     \def\noexpand\csname #3\endcsname{#2}}\x%
 }%
 %
-%                       class diagrams                   %
+% class diagrams         %
 %
 \pgfkeys{/tikzuml/relation/.cd, attr1/.style args={#1|#2}{arg1=#1, mult1=#2},%
  attr2/.style args={#1|#2}{arg2=#1, mult2=#2},%
@@ -249,7 +249,7 @@
 %            draw, fill, text: colors
 %            style: to manage every default TikZ option
 %            no coords: to tell that the package position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newenvironment{umlpackage}[2][]{%
   \pgfkeys{/tikzuml/package/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, style/.style={},%
   name/.initial=tikzumlEmpty, type/.initial=\tikzumlPackageDefaultType, draw/.initial=\tikzumlDefaultDrawColor,%
@@ -260,13 +260,13 @@
     \let\keyname=\pgfkeyscurrentname%
     \let\keyvalue=\pgfkeyscurrentvalue%
     \ifthenelse{\equal{\keyname}{above}\OR%
-                \equal{\keyname}{left}\OR%
-                \equal{\keyname}{below}\OR%
-                \equal{\keyname}{right}\OR%
-                \equal{\keyname}{above left}\OR%
-                \equal{\keyname}{above right}\OR%
-                \equal{\keyname}{below left}\OR%
-                \equal{\keyname}{below right}}{%
+      \equal{\keyname}{left}\OR%
+      \equal{\keyname}{below}\OR%
+      \equal{\keyname}{right}\OR%
+      \equal{\keyname}{above left}\OR%
+      \equal{\keyname}{above right}\OR%
+      \equal{\keyname}{below left}\OR%
+      \equal{\keyname}{below right}}{%
       \IfSubStr{\keyvalue}{ of }{%
         \pgfkeys{/tikzuml/package/.cd, no coords}%
       }{}%
@@ -373,7 +373,7 @@
 %            draw, fill, fill template, and text: colors
 %            style: to manage every default TikZ option
 %            no coords: to tell that the class position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlclass[4][]{%
   \pgfkeys{/tikzuml/class/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlClassDefaultWidth, type/.initial=\tikzumlClassDefaultType,%
   tags/.initial={}, style/.style={},%
@@ -388,13 +388,13 @@
     \let\keyname=\pgfkeyscurrentname%
     \let\keyvalue=\pgfkeyscurrentvalue%
     \ifthenelse{\equal{\keyname}{above}\OR%
-                \equal{\keyname}{left}\OR%
-                \equal{\keyname}{below}\OR%
-                \equal{\keyname}{right}\OR%
-                \equal{\keyname}{above left}\OR%
-                \equal{\keyname}{above right}\OR%
-                \equal{\keyname}{below left}\OR%
-                \equal{\keyname}{below right}}{%
+      \equal{\keyname}{left}\OR%
+      \equal{\keyname}{below}\OR%
+      \equal{\keyname}{right}\OR%
+      \equal{\keyname}{above left}\OR%
+      \equal{\keyname}{above right}\OR%
+      \equal{\keyname}{below left}\OR%
+      \equal{\keyname}{below right}}{%
       \IfSubStr{\keyvalue}{ of }{%
         \pgfkeys{/tikzuml/class/.cd, no coords}%
       }{}%
@@ -642,30 +642,30 @@
             \def\tikzumlNaryNodeLabelPos{below left}%
           }{%
             \ifthenelse{\equal{\keyname}{below}}{%
-              \def\tikzumlNaryNodeAnchor{.south}%
-              \def\tikzumlNaryNodeLabelPos{below}%
+    \def\tikzumlNaryNodeAnchor{.south}%
+    \def\tikzumlNaryNodeLabelPos{below}%
             }{%
-              \ifthenelse{\equal{\keyname}{below right}}{%
-                \def\tikzumlNaryNodeAnchor{.south east}%
-                \def\tikzumlNaryNodeLabelPos{below right}%
-              }{%
-                \ifthenelse{\equal{\keyname}{right}}{%
-                  \def\tikzumlNaryNodeAnchor{.east}%
-                  \def\tikzumlNaryNodeLabelPos{right}%
-                }{%
-                  \ifthenelse{\equal{\keyname}{above right}}{%
-                    \def\tikzumlNaryNodeAnchor{.north east}%
-                    \def\tikzumlNaryNodeLabelPos{above right}%
-                  }{%
-                    \ifx\keyvalue\pgfkeysnovalue%
-                      \pgfkeys{/tikzuml/narynode/.cd, style/.append style/.expand once={\keyname}}%
-                    \else%
-                      \pgfkeys{/tikzuml/narynode/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                    \fi%
-                    %\errmessage{TIKZUML ERROR : in umlNarynode, invalid option \keyname}%
-                  }%
-                }%
-              }%
+    \ifthenelse{\equal{\keyname}{below right}}{%
+      \def\tikzumlNaryNodeAnchor{.south east}%
+      \def\tikzumlNaryNodeLabelPos{below right}%
+    }{%
+      \ifthenelse{\equal{\keyname}{right}}{%
+        \def\tikzumlNaryNodeAnchor{.east}%
+        \def\tikzumlNaryNodeLabelPos{right}%
+      }{%
+        \ifthenelse{\equal{\keyname}{above right}}{%
+          \def\tikzumlNaryNodeAnchor{.north east}%
+          \def\tikzumlNaryNodeLabelPos{above right}%
+        }{%
+          \ifx\keyvalue\pgfkeysnovalue%
+            \pgfkeys{/tikzuml/narynode/.cd, style/.append style/.expand once={\keyname}}%
+          \else%
+            \pgfkeys{/tikzuml/narynode/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+          \fi%
+          %\errmessage{TIKZUML ERROR : in umlNarynode, invalid option \keyname}%
+        }%
+      }%
+    }%
             }%
           }%
         }%
@@ -745,20 +745,20 @@
     \let\keyname=\pgfkeyscurrentname%
     \let\keyvalue=\pgfkeyscurrentvalue%
     \ifthenelse{\equal{\keyname}{with port}%
-              \OR\equal{\keyname}{interface}%
-              \OR\equal{\keyname}{padding}%
-              \OR\equal{\keyname}{width}%
-              \OR\equal{\keyname}{first arm}%
-              \OR\equal{\keyname}{second arm}%
-              \OR\equal{\keyname}{middle arm}%
-              \OR\equal{\keyname}{last arm}%
-              \OR\equal{\keyname}{distance}}{}{%
-                \ifx\keyvalue\pgfkeysnovalue%
-                  \pgfkeys{/tikzuml/relation/.cd, style2/.append style/.expand once={\keyname}}%
-                \else%
-                  \pgfkeys{/tikzuml/relation/.cd, style2/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
-                \fi%
-                %\errmessage{TIKZUML ERROR : in umlrelation, invalid option \keyname}%
+    \OR\equal{\keyname}{interface}%
+    \OR\equal{\keyname}{padding}%
+    \OR\equal{\keyname}{width}%
+    \OR\equal{\keyname}{first arm}%
+    \OR\equal{\keyname}{second arm}%
+    \OR\equal{\keyname}{middle arm}%
+    \OR\equal{\keyname}{last arm}%
+    \OR\equal{\keyname}{distance}}{}{%
+      \ifx\keyvalue\pgfkeysnovalue%
+        \pgfkeys{/tikzuml/relation/.cd, style2/.append style/.expand once={\keyname}}%
+      \else%
+        \pgfkeys{/tikzuml/relation/.cd, style2/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
+      \fi%
+      %\errmessage{TIKZUML ERROR : in umlrelation, invalid option \keyname}%
     }%
   }%
   }%
@@ -897,11 +897,11 @@
             \draw (\tikzumlSrcClassNodeName) edge[in=\tikzumlRelationEndAngle, out=\tikzumlRelationStartAngle, distance=\tikzumlRelationLoopSize, draw=none] %
  node[midway, inner sep=0, name=\tikzumlRelationName-tmp, anchor=center] {} (\tikzumlDestClassNodeName);%
             \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}\OR\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-              \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle -| \tikzumlRelationName-tmp) {};%
-              \node[inner sep=0, name=\tikzumlRelationName-4] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle -| \tikzumlRelationName-tmp) {};%
+    \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle -| \tikzumlRelationName-tmp) {};%
+    \node[inner sep=0, name=\tikzumlRelationName-4] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle -| \tikzumlRelationName-tmp) {};%
             }{%
-              \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle |- \tikzumlRelationName-tmp) {};%
-              \node[inner sep=0, name=\tikzumlRelationName-4] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle |- \tikzumlRelationName-tmp) {};%
+    \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle |- \tikzumlRelationName-tmp) {};%
+    \node[inner sep=0, name=\tikzumlRelationName-4] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle |- \tikzumlRelationName-tmp) {};%
             }%
             \end{pgfonlayer}%
           }{%
@@ -913,462 +913,462 @@
             \draw (\tikzumlSrcClassNodeName) edge[in=\tikzumlRelationEndAngle, out=\tikzumlRelationStartAngle, distance=\tikzumlRelationLoopSize, draw=none] %
  node[midway, name=\tikzumlRelationName-4, anchor=center] {} (\tikzumlDestClassNodeName);%
             \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}\OR\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-              \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle -| \tikzumlRelationName-4) {};%
-              \node[inner sep=0, name=\tikzumlRelationName-6] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle |- \tikzumlRelationName-4) {};%
+    \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle -| \tikzumlRelationName-4) {};%
+    \node[inner sep=0, name=\tikzumlRelationName-6] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle |- \tikzumlRelationName-4) {};%
             }{%
-              \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle |- \tikzumlRelationName-4) {};%
-              \node[inner sep=0, name=\tikzumlRelationName-6] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle -| \tikzumlRelationName-4) {};%
+    \node[inner sep=0, name=\tikzumlRelationName-2] at (\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle |- \tikzumlRelationName-4) {};%
+    \node[inner sep=0, name=\tikzumlRelationName-6] at (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle -| \tikzumlRelationName-4) {};%
             }%
             \end{pgfonlayer}%
           }%
           %
           \ifnum\numArcs=4%
             \ifnum\theposStereo>300%
-              \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-300)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
+    \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-300)/100}%
+    \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
             \else%
-              \ifnum\theposStereo<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
-              \else%
-                \ifnum\theposStereo>200%
-                  \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
-                  \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
-                \else%
-                  \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-                  \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
-                \fi%
-              \fi%
+    \ifnum\theposStereo<100%
+      \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
+    \else%
+      \ifnum\theposStereo>200%
+        \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
+        \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
+      \else%
+        \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
+        \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype}}%
+      \fi%
+    \fi%
             \fi%
             %
             \ifthenelse{\thepos=300\OR\thepos=100}{%
-              \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
-                  \def\posAttrName{above right}%
-                  \def\posMultiplicity{below left}%
-                }{%
-                  \def\posAttrName{above left}%
-                  \def\posMultiplicity{below right}%
-                }%
-              }{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
-                    \def\posAttrName{above left}%
-                    \def\posMultiplicity{below right}%
-                  }{%
-                    \def\posAttrName{above right}%
-                    \def\posMultiplicity{below left}%
-                  }%
-                }{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
-                    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
-                      \def\posAttrName{above right}%
-                      \def\posMultiplicity{below left}%
-                    }{%
-                      \def\posAttrName{above left}%
-                      \def\posMultiplicity{below right}%
-                    }%
-                  }{%
-                    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
-                      \def\posAttrName{above left}%
-                      \def\posMultiplicity{below right}%
-                    }{%
-                      \def\posAttrName{above right}%
-                      \def\posMultiplicity{below left}%
-                    }%
-                  }%
-                }%
-              }%
+    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
+        \def\posAttrName{above right}%
+        \def\posMultiplicity{below left}%
+      }{%
+        \def\posAttrName{above left}%
+        \def\posMultiplicity{below right}%
+      }%
+    }{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
+          \def\posAttrName{above left}%
+          \def\posMultiplicity{below right}%
+        }{%
+          \def\posAttrName{above right}%
+          \def\posMultiplicity{below left}%
+        }%
+      }{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
+          \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
+            \def\posAttrName{above right}%
+            \def\posMultiplicity{below left}%
+          }{%
+            \def\posAttrName{above left}%
+            \def\posMultiplicity{below right}%
+          }%
+        }{%
+          \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
+            \def\posAttrName{above left}%
+            \def\posMultiplicity{below right}%
+          }{%
+            \def\posAttrName{above right}%
+            \def\posMultiplicity{below left}%
+          }%
+        }%
+      }%
+    }%
             }{}%
             %
             \ifthenelse{\thepos=200}{%
-              \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
-                  \def\posAttrName{above left}%
-                  \def\posMultiplicity{below right}%
-                }{%
-                  \def\posAttrName{above right}%
-                  \def\posMultiplicity{below left}%
-                }%
-              }{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
-                    \def\posAttrName{above right}%
-                    \def\posMultiplicity{below left}%
-                  }{%
-                    \def\posAttrName{above left}%
-                    \def\posMultiplicity{below right}%
-                  }%
-                }{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
-                    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
-                      \def\posAttrName{above left}%
-                      \def\posMultiplicity{below right}%
-                    }{%
-                      \def\posAttrName{above right}%
-                      \def\posMultiplicity{below left}%
-                    }%
-                  }{%
-                    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
-                      \def\posAttrName{above right}%
-                      \def\posMultiplicity{below left}%
-                    }{%
-                      \def\posAttrName{above left}%
-                      \def\posMultiplicity{below right}%
-                    }%
-                  }%
-                }%
-              }%
+    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
+        \def\posAttrName{above left}%
+        \def\posMultiplicity{below right}%
+      }{%
+        \def\posAttrName{above right}%
+        \def\posMultiplicity{below left}%
+      }%
+    }{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
+          \def\posAttrName{above right}%
+          \def\posMultiplicity{below left}%
+        }{%
+          \def\posAttrName{above left}%
+          \def\posMultiplicity{below right}%
+        }%
+      }{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
+          \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
+            \def\posAttrName{above left}%
+            \def\posMultiplicity{below right}%
+          }{%
+            \def\posAttrName{above right}%
+            \def\posMultiplicity{below left}%
+          }%
+        }{%
+          \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
+            \def\posAttrName{above right}%
+            \def\posMultiplicity{below left}%
+          }{%
+            \def\posAttrName{above left}%
+            \def\posMultiplicity{below right}%
+          }%
+        }%
+      }%
+    }%
             }{}%
             %
             \ifnum\thepos>300%
-              \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-300)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+    \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-300)/100}%
+    \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
  }%
             \else%
-              \ifnum\thepos<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+    \ifnum\thepos<100%
+      \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
  }%
-              \else%
-                \ifnum\thepos>200%
-                  \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-200)/100}%
-                  \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+    \else%
+      \ifnum\thepos>200%
+        \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-200)/100}%
+        \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
  }%
-                \else%
-                  \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
-                  \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+      \else%
+        \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
+        \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
  }%
-                \fi%
-              \fi%
+      \fi%
+    \fi%
             \fi%
             %
             \ifthenelse{\theposT=300\OR\theposT=100}{%
-              \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
-                  \def\posAttrNameT{above right}%
-                  \def\posMultiplicityT{below left}%
-                }{%
-                  \def\posAttrNameT{above left}%
-                  \def\posMultiplicityT{below right}%
-                }%
-              }{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
-                    \def\posAttrNameT{above left}%
-                    \def\posMultiplicityT{below right}%
-                  }{%
-                    \def\posAttrNameT{above right}%
-                    \def\posMultiplicityT{below left}%
-                  }%
-                }{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
-                    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
-                      \def\posAttrNameT{above right}%
-                      \def\posMultiplicityT{below left}%
-                    }{%
-                      \def\posAttrNameT{above left}%
-                      \def\posMultiplicityT{below right}%
-                    }%
-                  }{%
-                    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
-                      \def\posAttrNameT{above left}%
-                      \def\posMultiplicityT{below right}%
-                    }{%
-                      \def\posAttrNameT{above right}%
-                      \def\posMultiplicityT{below left}%
-                    }%
-                  }%
-                }%
-              }%
+    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
+        \def\posAttrNameT{above right}%
+        \def\posMultiplicityT{below left}%
+      }{%
+        \def\posAttrNameT{above left}%
+        \def\posMultiplicityT{below right}%
+      }%
+    }{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
+          \def\posAttrNameT{above left}%
+          \def\posMultiplicityT{below right}%
+        }{%
+          \def\posAttrNameT{above right}%
+          \def\posMultiplicityT{below left}%
+        }%
+      }{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
+          \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
+            \def\posAttrNameT{above right}%
+            \def\posMultiplicityT{below left}%
+          }{%
+            \def\posAttrNameT{above left}%
+            \def\posMultiplicityT{below right}%
+          }%
+        }{%
+          \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
+            \def\posAttrNameT{above left}%
+            \def\posMultiplicityT{below right}%
+          }{%
+            \def\posAttrNameT{above right}%
+            \def\posMultiplicityT{below left}%
+          }%
+        }%
+      }%
+    }%
             }{}%
             \ifthenelse{\theposT=200}{%
-              \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
-                  \def\posAttrNameT{above left}%
-                  \def\posMultiplicity{below right}%
-                }{%
-                  \def\posAttrNameT{above right}%
-                  \def\posMultiplicityT{below left}%
-                }%
-              }{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
-                    \def\posAttrNameT{above right}%
-                    \def\posMultiplicityT{below left}%
-                  }{%
-                    \def\posAttrNameT{above left}%
-                    \def\posMultiplicityT{below right}%
-                  }%
-                }{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
-                    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
-                      \def\posAttrNameT{above left}%
-                      \def\posMultiplicityT{below right}%
-                    }{%
-                      \def\posAttrNameT{above right}%
-                      \def\posMultiplicityT{below left}%
-                    }%
-                  }{%
-                    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
-                      \def\posAttrNameT{above right}%
-                      \def\posMultiplicityT{below left}%
-                    }{%
-                      \def\posAttrNameT{above left}%
-                      \def\posMultiplicityT{below right}%
-                    }%
-                  }%
-                }%
-              }%
+    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
+        \def\posAttrNameT{above left}%
+        \def\posMultiplicity{below right}%
+      }{%
+        \def\posAttrNameT{above right}%
+        \def\posMultiplicityT{below left}%
+      }%
+    }{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{bottom}}{%
+          \def\posAttrNameT{above right}%
+          \def\posMultiplicityT{below left}%
+        }{%
+          \def\posAttrNameT{above left}%
+          \def\posMultiplicityT{below right}%
+        }%
+      }{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
+          \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
+            \def\posAttrNameT{above left}%
+            \def\posMultiplicityT{below right}%
+          }{%
+            \def\posAttrNameT{above right}%
+            \def\posMultiplicityT{below left}%
+          }%
+        }{%
+          \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionEnd}{left}}{%
+            \def\posAttrNameT{above right}%
+            \def\posMultiplicityT{below left}%
+          }{%
+            \def\posAttrNameT{above left}%
+            \def\posMultiplicityT{below right}%
+          }%
+        }%
+      }%
+    }%
             }{}%
             %
             \ifnum\theposT>300%
-              \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-300)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+    \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-300)/100}%
+    \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
  }%
             \else%
-              \ifnum\theposT<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+    \ifnum\theposT<100%
+      \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
  }%
-              \else%
-                \ifnum\theposT>200%
-                  \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-200)/100}%
-                  \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+    \else%
+      \ifnum\theposT>200%
+        \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-200)/100}%
+        \xdef\tikzumlMidTwoArc{\tikzumlMidTwoArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
  }%
-                \else%
-                  \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
-                  \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+      \else%
+        \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
+        \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
  }%
-                \fi%
-              \fi%
+      \fi%
+    \fi%
             \fi%
           \else%
             \ifnum\theposStereo>200%
-              \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+    \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
+    \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
             \else%
-              \ifnum\theposStereo<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
-              \else%
-                \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-                \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
-              \fi%
+    \ifnum\theposStereo<100%
+      \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+    \else%
+      \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
+      \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+    \fi%
             \fi%
             %
             \ifthenelse{\thepos=100}{%
-              \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
-                \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                  \def\posAttrName{above right}%
-                  \def\posMultiplicity{below left}%
-                }{%
-                  \def\posAttrName{above left}%
-                  \def\posMultiplicity{below right}%
-                }%
-              }{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-                  \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                    \def\posAttrName{above left}%
-                    \def\posMultiplicity{below right}%
-                  }{%
-                    \def\posAttrName{above right}%
-                    \def\posMultiplicity{below left}%
-                  }%
-                }{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
-                    \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                      \def\posAttrName{above right}%
-                      \def\posMultiplicity{below left}%
-                    }{%
-                      \def\posAttrName{above left}%
-                      \def\posMultiplicity{below right}%
-                    }%
-                  }{%
-                    \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                      \def\posAttrName{above left}%
-                      \def\posMultiplicity{below right}%
-                    }{%
-                      \def\posAttrName{above right}%
-                      \def\posMultiplicity{below left}%
-                    }%
-                  }%
-                }%
-              }%
+    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
+      \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+        \def\posAttrName{above right}%
+        \def\posMultiplicity{below left}%
+      }{%
+        \def\posAttrName{above left}%
+        \def\posMultiplicity{below right}%
+      }%
+    }{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
+        \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+          \def\posAttrName{above left}%
+          \def\posMultiplicity{below right}%
+        }{%
+          \def\posAttrName{above right}%
+          \def\posMultiplicity{below left}%
+        }%
+      }{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
+          \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+            \def\posAttrName{above right}%
+            \def\posMultiplicity{below left}%
+          }{%
+            \def\posAttrName{above left}%
+            \def\posMultiplicity{below right}%
+          }%
+        }{%
+          \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+            \def\posAttrName{above left}%
+            \def\posMultiplicity{below right}%
+          }{%
+            \def\posAttrName{above right}%
+            \def\posMultiplicity{below left}%
+          }%
+        }%
+      }%
+    }%
             }{}%
             %
             \ifthenelse{\thepos=200}{%
-              \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
-                \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                  \def\posAttrName{above left}%
-                  \def\posMultiplicity{below right}%
-                }{%
-                  \def\posAttrName{above right}%
-                  \def\posMultiplicity{below left}%
-                }%
-              }{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-                  \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                    \def\posAttrName{above right}%
-                    \def\posMultiplicity{below left}%
-                  }{%
-                    \def\posAttrName{above left}%
-                    \def\posMultiplicity{below right}%
-                  }%
-                }{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
-                    \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                      \def\posAttrName{above left}%
-                      \def\posMultiplicity{below right}%
-                    }{%
-                      \def\posAttrName{above right}%
-                      \def\posMultiplicity{below left}%
-                    }%
-                  }{%
-                    \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                      \def\posAttrName{above right}%
-                      \def\posMultiplicity{below left}%
-                    }{%
-                      \def\posAttrName{above left}%
-                      \def\posMultiplicity{below right}%
-                    }%
-                  }%
-                }%
-              }%
+    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
+      \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+        \def\posAttrName{above left}%
+        \def\posMultiplicity{below right}%
+      }{%
+        \def\posAttrName{above right}%
+        \def\posMultiplicity{below left}%
+      }%
+    }{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
+        \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+          \def\posAttrName{above right}%
+          \def\posMultiplicity{below left}%
+        }{%
+          \def\posAttrName{above left}%
+          \def\posMultiplicity{below right}%
+        }%
+      }{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
+          \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+            \def\posAttrName{above left}%
+            \def\posMultiplicity{below right}%
+          }{%
+            \def\posAttrName{above right}%
+            \def\posMultiplicity{below left}%
+          }%
+        }{%
+          \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+            \def\posAttrName{above right}%
+            \def\posMultiplicity{below left}%
+          }{%
+            \def\posAttrName{above left}%
+            \def\posMultiplicity{below right}%
+          }%
+        }%
+      }%
+    }%
             }{}%
             %
             \ifnum\thepos>200%
-              \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-200)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+    \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-200)/100}%
+    \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
  }%
             \else%
-              \ifnum\thepos<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+    \ifnum\thepos<100%
+      \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
  }%
-              \else%
-                \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
-                \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+    \else%
+      \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
+      \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity}%
  }%
-              \fi%
+    \fi%
             \fi%
             %
             \ifthenelse{\theposT=100}{%
-              \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
-                \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                  \def\posAttrNameT{above right}%
-                  \def\posMultiplicityT{below left}%
-                }{%
-                  \def\posAttrNameT{above left}%
-                  \def\posMultiplicityT{below right}%
-                }%
-              }{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-                  \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                    \def\posAttrNameT{above left}%
-                    \def\posMultiplicityT{below right}%
-                  }{%
-                    \def\posAttrNameT{above right}%
-                    \def\posMultiplicityT{below left}%
-                  }%
-                }{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
-                    \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                      \def\posAttrNameT{above right}%
-                      \def\posMultiplicityT{below left}%
-                    }{%
-                      \def\posAttrNameT{above left}%
-                      \def\posMultiplicityT{below right}%
-                    }%
-                  }{%
-                    \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                      \def\posAttrNameT{above left}%
-                      \def\posMultiplicityT{below right}%
-                    }{%
-                      \def\posAttrNameT{above right}%
-                      \def\posMultiplicityT{below left}%
-                    }%
-                  }%
-                }%
-              }%
+    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
+      \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+        \def\posAttrNameT{above right}%
+        \def\posMultiplicityT{below left}%
+      }{%
+        \def\posAttrNameT{above left}%
+        \def\posMultiplicityT{below right}%
+      }%
+    }{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
+        \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+          \def\posAttrNameT{above left}%
+          \def\posMultiplicityT{below right}%
+        }{%
+          \def\posAttrNameT{above right}%
+          \def\posMultiplicityT{below left}%
+        }%
+      }{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
+          \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+            \def\posAttrNameT{above right}%
+            \def\posMultiplicityT{below left}%
+          }{%
+            \def\posAttrNameT{above left}%
+            \def\posMultiplicityT{below right}%
+          }%
+        }{%
+          \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+            \def\posAttrNameT{above left}%
+            \def\posMultiplicityT{below right}%
+          }{%
+            \def\posAttrNameT{above right}%
+            \def\posMultiplicityT{below left}%
+          }%
+        }%
+      }%
+    }%
             }{}%
             %
             \ifthenelse{\theposT=200}{%
-              \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
-                \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                  \def\posAttrNameT{above left}%
-                  \def\posMultiplicityT{below right}%
-                }{%
-                  \def\posAttrNameT{above right}%
-                  \def\posMultiplicityT{below left}%
-                }%
-              }{%
-                \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
-                  \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                    \def\posAttrNameT{above right}%
-                    \def\posMultiplicityT{below left}%
-                  }{%
-                    \def\posAttrNameT{above left}%
-                    \def\posMultiplicityT{below right}%
-                  }%
-                }{%
-                  \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
-                    \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                      \def\posAttrNameT{above left}%
-                      \def\posMultiplicityT{below right}%
-                    }{%
-                      \def\posAttrNameT{above right}%
-                      \def\posMultiplicityT{below left}%
-                    }%
-                  }{%
-                    \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
-                      \def\posAttrNameT{above right}%
-                      \def\posMultiplicityT{below left}%
-                    }{%
-                      \def\posAttrNameT{above left}%
-                      \def\posMultiplicityT{below right}%
-                    }%
-                  }%
-                }%
-              }%
+    \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{right}}{%
+      \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+        \def\posAttrNameT{above left}%
+        \def\posMultiplicityT{below right}%
+      }{%
+        \def\posAttrNameT{above right}%
+        \def\posMultiplicityT{below left}%
+      }%
+    }{%
+      \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{left}}{%
+        \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+          \def\posAttrNameT{above right}%
+          \def\posMultiplicityT{below left}%
+        }{%
+          \def\posAttrNameT{above left}%
+          \def\posMultiplicityT{below right}%
+        }%
+      }{%
+        \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{top}}{%
+          \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+            \def\posAttrNameT{above left}%
+            \def\posMultiplicityT{below right}%
+          }{%
+            \def\posAttrNameT{above right}%
+            \def\posMultiplicityT{below left}%
+          }%
+        }{%
+          \ifthenelse{\tikzumlRelationEndAngle<\tikzumlRelationStartAngle}{%
+            \def\posAttrNameT{above right}%
+            \def\posMultiplicityT{below left}%
+          }{%
+            \def\posAttrNameT{above left}%
+            \def\posMultiplicityT{below right}%
+          }%
+        }%
+      }%
+    }%
             }{}%
             %
             \ifnum\theposT>200%
-              \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-200)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+    \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-200)/100}%
+    \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
  }%
             \else%
-              \ifnum\theposT<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+    \ifnum\theposT<100%
+      \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
  }%
-              \else%
-                \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
-                \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+    \else%
+      \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
+      \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT}%
  }%
-              \fi%
+    \fi%
             \fi%
           \fi%
           %
           \ifthenelse{\equal{\tikzumlRelationRecursiveDirectionStart}{\tikzumlRelationRecursiveDirectionEnd}}{%
             \xdef\tikzumlPath{(\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle) -- \tikzumlFirstArc (\tikzumlRelationName-2.center) -- \tikzumlMidOneArc (\tikzumlRelationName-4.center) -- \tikzumlLastArc (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle) }%
             \ifnum\thetikzumlStateLevel>0%
-              \def\tikzumlStateFitTmp{\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname}%
-              \expandafter\xdef\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname{\tikzumlStateFitTmp (\tikzumlRelationName-1) (\tikzumlRelationName-2) (\tikzumlRelationName-3) (\tikzumlRelationName-4) (\tikzumlRelationName-5)}%
+    \def\tikzumlStateFitTmp{\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname}%
+    \expandafter\xdef\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname{\tikzumlStateFitTmp (\tikzumlRelationName-1) (\tikzumlRelationName-2) (\tikzumlRelationName-3) (\tikzumlRelationName-4) (\tikzumlRelationName-5)}%
             \fi%
           }{%
             \xdef\tikzumlPath{(\tikzumlSrcClassNodeName.\tikzumlRelationStartAngle) -- \tikzumlFirstArc (\tikzumlRelationName-2.center) -- \tikzumlMidOneArc (\tikzumlRelationName-4.center) -- \tikzumlMidTwoArc (\tikzumlRelationName-6.center) -- \tikzumlLastArc (\tikzumlDestClassNodeName.\tikzumlRelationEndAngle) }%
             \ifnum\thetikzumlStateLevel>0%
-              \def\tikzumlStateFitTmp{\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname}%
-              \expandafter\xdef\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname{\tikzumlStateFitTmp (\tikzumlRelationName-1) (\tikzumlRelationName-2) (\tikzumlRelationName-3) (\tikzumlRelationName-4) (\tikzumlRelationName-5) (\tikzumlRelationName-6) (\tikzumlRelationName-7)}%
+    \def\tikzumlStateFitTmp{\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname}%
+    \expandafter\xdef\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname{\tikzumlStateFitTmp (\tikzumlRelationName-1) (\tikzumlRelationName-2) (\tikzumlRelationName-3) (\tikzumlRelationName-4) (\tikzumlRelationName-5) (\tikzumlRelationName-6) (\tikzumlRelationName-7)}%
             \fi%
           }%
         }{}%
@@ -1533,13 +1533,13 @@
           %
           \ifthenelse{\equal{\tikzumlRelationArmO}{auto}}{%
             \ifthenelse{\equal{\tikzumlRelationArmT}{auto}}{%
-              \node[inner sep=0] (\tikzumlRelationName-3) at (\tikzumlRelationName-middle) {};%
-              \node[inner sep=0] (\tikzumlRelationName-2) at (\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor |- \tikzumlRelationName-3) {};%
-              \node[inner sep=0] (\tikzumlRelationName-4) at (\tikzumlRelationName-3 -| \tikzumlDestClassNodeName\tikzumlRelationDestAnchor) {};%
+    \node[inner sep=0] (\tikzumlRelationName-3) at (\tikzumlRelationName-middle) {};%
+    \node[inner sep=0] (\tikzumlRelationName-2) at (\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor |- \tikzumlRelationName-3) {};%
+    \node[inner sep=0] (\tikzumlRelationName-4) at (\tikzumlRelationName-3 -| \tikzumlDestClassNodeName\tikzumlRelationDestAnchor) {};%
             }{%
-              \draw (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor)+(0,\tikzumlRelationArmT) node[inner sep=0, name=\tikzumlRelationName-4] {};%
-              \node[inner sep=0] (\tikzumlRelationName-2) at (\tikzumlRelationName-4 -| \tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) {};%
-              \node[inner sep=0] (\tikzumlRelationName-3) at (barycentric cs:\tikzumlRelationName-2=0.5,\tikzumlRelationName-4=0.5) {};%
+    \draw (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor)+(0,\tikzumlRelationArmT) node[inner sep=0, name=\tikzumlRelationName-4] {};%
+    \node[inner sep=0] (\tikzumlRelationName-2) at (\tikzumlRelationName-4 -| \tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) {};%
+    \node[inner sep=0] (\tikzumlRelationName-3) at (barycentric cs:\tikzumlRelationName-2=0.5,\tikzumlRelationName-4=0.5) {};%
             }%
           }{%
             \draw (\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor)+(0,\tikzumlRelationArmO) node[inner sep=0, name=\tikzumlRelationName-2] {};%
@@ -1553,10 +1553,10 @@
             \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
           \else%
             \ifnum\theposStereo<100%
-              \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+    \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
             \else%
-              \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-              \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+    \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
+    \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
             \fi%
           \fi%
           %
@@ -1570,10 +1570,10 @@
             \def\arcNum{3}%
           }{%
             \ifthenelse{\thepos<100}{%
-              \def\arcNum{1}%
+    \def\arcNum{1}%
             }{%
-              \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
-              \def\arcNum{2}%
+    \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
+    \def\arcNum{2}%
             }%
           }%
           %
@@ -1600,10 +1600,10 @@
             \def\arcNumT{3}%
           }{%
             \ifthenelse{\theposT<100}{%
-              \def\arcNumT{1}%
+    \def\arcNumT{1}%
             }{%
-              \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
-              \def\arcNumT{2}%
+    \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
+    \def\arcNumT{2}%
             }%
           }%
           %
@@ -1638,98 +1638,98 @@
             \begin{pgfonlayer}{connections}%
             %
             \ifthenelse{\equal{\tikzumlRelationArmO}{auto}}{%
-              \ifthenelse{\equal{\tikzumlRelationArmT}{auto}}{%
-                \node[inner sep=0] (\tikzumlRelationName-3) at (\tikzumlRelationName-middle) {};%
-                \node[inner sep=0] (\tikzumlRelationName-2) at (\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor -| \tikzumlRelationName-3) {};%
-                \node[inner sep=0] (\tikzumlRelationName-4) at (\tikzumlRelationName-3 |- \tikzumlDestClassNodeName\tikzumlRelationDestAnchor) {};%
-              }{%
-                \draw (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor)+(\tikzumlRelationArmT,0) node[inner sep=0, name=\tikzumlRelationName-4] {};%
-                \node[inner sep=0] (\tikzumlRelationName-2) at (\tikzumlRelationName-4 |- \tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) {};%
-                \node[inner sep=0] (\tikzumlRelationName-3) at (barycentric cs:\tikzumlRelationName-2=0.5,\tikzumlRelationName-4=0.5) {};%
-              }%
+    \ifthenelse{\equal{\tikzumlRelationArmT}{auto}}{%
+      \node[inner sep=0] (\tikzumlRelationName-3) at (\tikzumlRelationName-middle) {};%
+      \node[inner sep=0] (\tikzumlRelationName-2) at (\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor -| \tikzumlRelationName-3) {};%
+      \node[inner sep=0] (\tikzumlRelationName-4) at (\tikzumlRelationName-3 |- \tikzumlDestClassNodeName\tikzumlRelationDestAnchor) {};%
+    }{%
+      \draw (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor)+(\tikzumlRelationArmT,0) node[inner sep=0, name=\tikzumlRelationName-4] {};%
+      \node[inner sep=0] (\tikzumlRelationName-2) at (\tikzumlRelationName-4 |- \tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) {};%
+      \node[inner sep=0] (\tikzumlRelationName-3) at (barycentric cs:\tikzumlRelationName-2=0.5,\tikzumlRelationName-4=0.5) {};%
+    }%
             }{%
-              \draw (\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor)+(\tikzumlRelationArmO,0) node[inner sep=0, name=\tikzumlRelationName-2] {};%
-              \node[inner sep=0] (\tikzumlRelationName-4) at (\tikzumlRelationName-2 |- \tikzumlDestClassNodeName\tikzumlRelationDestAnchor) {};%
-              \node[inner sep=0] (\tikzumlRelationName-3) at (barycentric cs:\tikzumlRelationName-2=0.5,\tikzumlRelationName-4=0.5) {};%
+    \draw (\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor)+(\tikzumlRelationArmO,0) node[inner sep=0, name=\tikzumlRelationName-2] {};%
+    \node[inner sep=0] (\tikzumlRelationName-4) at (\tikzumlRelationName-2 |- \tikzumlDestClassNodeName\tikzumlRelationDestAnchor) {};%
+    \node[inner sep=0] (\tikzumlRelationName-3) at (barycentric cs:\tikzumlRelationName-2=0.5,\tikzumlRelationName-4=0.5) {};%
             }%
             \end{pgfonlayer}%
             %
             \ifnum\theposStereo>200%
-              \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+    \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-200)/100}%
+    \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
             \else%
-              \ifnum\theposStereo<100%
-                \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
-              \else%
-                \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
-                \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
-              \fi%
+    \ifnum\theposStereo<100%
+      \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+    \else%
+      \pgfmathsetmacro{\tikzumlRelationPositionStereotype}{(\theposStereo-100)/100}%
+      \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionStereotype, anchor=center] {\stereotype} }%
+    \fi%
             \fi%
             %
             \ifthenelse{\thepos=200\OR\thepos=100}{%
-              \def\posAttrName{above left}%
-              \def\posMultiplicity{below right}%
+    \def\posAttrName{above left}%
+    \def\posMultiplicity{below right}%
             }{}%
             %
             \ifthenelse{\thepos>200}{%
-              \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-200)/100}%
-              \def\arcNum{3}%
+    \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-200)/100}%
+    \def\arcNum{3}%
             }{%
-              \ifthenelse{\thepos<100}{%
-                \def\arcNum{1}%
-              }{%
-                \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
-                \def\arcNum{2}%
-              }%
+    \ifthenelse{\thepos<100}{%
+      \def\arcNum{1}%
+    }{%
+      \pgfmathsetmacro{\tikzumlRelationPosition}{(\thepos-100)/100}%
+      \def\arcNum{2}%
+    }%
             }%
             %
             \ifnum\arcNum=1%
-              \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+    \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
             \fi%
             \ifnum\arcNum=2%
-              \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+    \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
             \fi%
             \ifnum\arcNum=3%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
+    \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPosition, \posAttrName, \attrAlign] {\tikzumlRelationAttrName}%
  node[pos=\tikzumlRelationPosition, swap, \posMultiplicity, \multAlign] {\tikzumlRelationMultiplicity} }%
             \fi%
             %
             \ifthenelse{\theposT=200\OR\theposT=100}{%
-              \def\posAttrNameT{above left}%
-              \def\posMultiplicityT{below right}%
+    \def\posAttrNameT{above left}%
+    \def\posMultiplicityT{below right}%
             }{}%
             %
             \ifthenelse{\theposT>200}{%
-              \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-200)/100}%
-              \def\arcNumT{3}%
+    \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-200)/100}%
+    \def\arcNumT{3}%
             }{%
-              \ifthenelse{\theposT<100}{%
-                \def\arcNumT{1}%
-              }{%
-                \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
-                \def\arcNumT{2}%
-              }%
+    \ifthenelse{\theposT<100}{%
+      \def\arcNumT{1}%
+    }{%
+      \pgfmathsetmacro{\tikzumlRelationPositionT}{(\theposT-100)/100}%
+      \def\arcNumT{2}%
+    }%
             }%
             %
             \ifnum\arcNumT=1%
-              \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+    \xdef\tikzumlFirstArc{\tikzumlFirstArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
             \fi%
             \ifnum\arcNumT=2%
-              \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+    \xdef\tikzumlMidOneArc{\tikzumlMidOneArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
             \fi%
             \ifnum\arcNumT=3%
-              \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
+    \xdef\tikzumlLastArc{\tikzumlLastArc node[pos=\tikzumlRelationPositionT, \posAttrNameT, \attrAlignT] {\tikzumlRelationAttrNameT}%
  node[pos=\tikzumlRelationPositionT, swap, \posMultiplicityT, \multAlignT] {\tikzumlRelationMultiplicityT} }%
             \fi%
             %
             \xdef\tikzumlPath{(\tikzumlSrcClassNodeName\tikzumlRelationSrcAnchor) -- \tikzumlFirstArc (\tikzumlRelationName-2.base) -- \tikzumlMidOneArc (\tikzumlRelationName-4.base) -- \tikzumlLastArc (\tikzumlDestClassNodeName\tikzumlRelationDestAnchor) }%
             \ifnum\thetikzumlStateLevel>0%
-              \def\tikzumlStateFitTmp{\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname}%
-              \expandafter\xdef\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname{\tikzumlStateFitTmp (\tikzumlRelationName-1) (\tikzumlRelationName-2) (\tikzumlRelationName-3) (\tikzumlRelationName-4) (\tikzumlRelationName-5) }%
+    \def\tikzumlStateFitTmp{\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname}%
+    \expandafter\xdef\csname tikzumlStateFit\tikzumlState@parent @@\tikzumlState@fitname\endcsname{\tikzumlStateFitTmp (\tikzumlRelationName-1) (\tikzumlRelationName-2) (\tikzumlRelationName-3) (\tikzumlRelationName-4) (\tikzumlRelationName-5) }%
             \fi%
           }{%
             \errmessage{TIKZUML ERROR : Unknown geometry value !!! It should be in the following list : --, |-, -|, |-|, -|-}%
@@ -1770,11 +1770,11 @@
 \newcommand\umlHVrelation[3][]{%
   \pgfkeys{/tikzuml/HVrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlHVrelation, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlHVrelation, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/HVrelation/.cd, #1}%
   \umlrelation[geometry=-|, #1]{#2}{#3}%
@@ -1783,11 +1783,11 @@
 \newcommand\umlVHrelation[3][]{%
   \pgfkeys{/tikzuml/VHrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlVHrelation, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlVHrelation, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/VHrelation/.cd, #1}%
   \umlrelation[geometry=|-, #1]{#2}{#3}%
@@ -1796,11 +1796,11 @@
 \newcommand\umlHVHrelation[3][]{%
   \pgfkeys{/tikzuml/HVHrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlHVHrelation, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlHVHrelation, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/HVHrelation/.cd, #1}%
   \umlrelation[geometry=-|-, #1]{#2}{#3}%
@@ -1809,11 +1809,11 @@
 \newcommand\umlVHVrelation[3][]{%
   \pgfkeys{/tikzuml/VHVrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlVHVrelation, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlVHVrelation, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/VHVrelation/.cd, #1}%
   \umlrelation[geometry=|-|, #1]{#2}{#3}%
@@ -1837,11 +1837,11 @@
 \newcommand\umlfriend[3][]{%
   \pgfkeys{/tikzuml/friendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlfriend, forbidden option stereo}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlfriend, forbidden option stereo}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/friendrelation/.cd, #1}%
   \umlrelation[stereo=friend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -1862,15 +1862,15 @@
 \newcommand\umlHVfriend[3][]{%
   \pgfkeys{/tikzuml/friendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlHVfriend, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlHVfriend, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlHVfriend, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlHVfriend, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/friendrelation/.cd, #1}%
   \umlrelation[geometry=-|, stereo=friend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -1891,15 +1891,15 @@
 \newcommand\umlVHfriend[3][]{%
   \pgfkeys{/tikzuml/friendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlVHfriend, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlVHfriend, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlVHfriend, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlVHfriend, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/friendrelation/.cd, #1}%
   \umlrelation[geometry=|-, stereo=friend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -1920,15 +1920,15 @@
 \newcommand\umlHVHfriend[3][]{%
   \pgfkeys{/tikzuml/friendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlHVHfriend, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlHVHfriend, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlHVHfriend, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlHVHfriend, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/friendrelation/.cd, #1}%
   \umlrelation[geometry=-|-, stereo=friend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -1949,15 +1949,15 @@
 \newcommand\umlVHVfriend[3][]{%
   \pgfkeys{/tikzuml/friendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlVHVfriend, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlVHVfriend, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlVHVfriend, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlVHVfriend, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/friendrelation/.cd, #1}%
   \umlrelation[geometry=|-|, stereo=friend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2191,11 +2191,11 @@
 \newcommand\umlCNfriend[4][]{%
   \pgfkeys{/tikzuml/friendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlCNfriend, forbidden option stereo}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlCNfriend, forbidden option stereo}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/friendrelation/.cd, #1}%
   \umlCNrelation[stereo=friend, style={tikzuml dependency style}, #1]{#2}{#3}{#4}%
@@ -2213,7 +2213,7 @@
 %            draw, fill, text: colors
 %            style: to manage every default TikZ option
 %            no coords: to tell that the note position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlnote[3][]{%
   \pgfkeys{/tikzuml/note/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlNoteDefaultWidth,%
 geometry/.initial=\tikzumlRelationDefaultGeometry,%
@@ -2327,11 +2327,11 @@ no coords=false,%
 \newcommand\umlHVnote[3][]{%
   \pgfkeys{/tikzuml/note/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlHVnote, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlHVnote, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/note/.cd, #1}%
   \umlnote[geometry=-|, #1]{#2}{#3}%
@@ -2339,11 +2339,11 @@ no coords=false,%
 \newcommand\umlVHnote[3][]{%
   \pgfkeys{/tikzuml/note/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlVHnote, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlVHnote, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/note/.cd, #1}%
   \umlnote[geometry=|-, #1]{#2}{#3}%
@@ -2351,11 +2351,11 @@ no coords=false,%
 \newcommand\umlVHVnote[3][]{%
   \pgfkeys{/tikzuml/note/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlVHVnote, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlVHVnote, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/note/.cd, #1}%
   \umlnote[geometry=|-|, #1]{#2}{#3}%
@@ -2363,11 +2363,11 @@ no coords=false,%
 \newcommand\umlHVHnote[3][]{%
   \pgfkeys{/tikzuml/note/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlHVHnote, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlHVHnote, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/note/.cd, #1}%
   \umlnote[geometry=-|-, #1]{#2}{#3}%
@@ -2390,7 +2390,7 @@ no coords=false,%
 %            draw, fill, fill template, text: colors
 %            style: to manage every default TikZ option
 %            no coords: to tell that the class position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlassocclass[5][]{%
   \pgfkeys{/tikzuml/assocclass/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX,
 width/.initial=\tikzumlClassDefaultWidth, type/.initial=\tikzumlClassDefaultType, style/.style={},%
@@ -2407,13 +2407,13 @@ no coords=false,%
   \let\keyname=\pgfkeyscurrentname%
   \let\keyvalue=\pgfkeyscurrentvalue%
   \ifthenelse{\equal{\keyname}{above}\OR%
-              \equal{\keyname}{left}\OR%
-              \equal{\keyname}{below}\OR%
-              \equal{\keyname}{right}\OR%
-              \equal{\keyname}{above left}\OR%
-              \equal{\keyname}{above right}\OR%
-              \equal{\keyname}{below left}\OR%
-              \equal{\keyname}{below right}}{%
+    \equal{\keyname}{left}\OR%
+    \equal{\keyname}{below}\OR%
+    \equal{\keyname}{right}\OR%
+    \equal{\keyname}{above left}\OR%
+    \equal{\keyname}{above right}\OR%
+    \equal{\keyname}{below left}\OR%
+    \equal{\keyname}{below right}}{%
     \IfSubStr{\keyvalue}{ of }{%
       \pgfkeys{/tikzuml/assocclass/.cd, no coords}%
     }{}%
@@ -2563,7 +2563,7 @@ no coords=false,%
 }%
 %
 %
-%                     use case diagrams                  %
+%           use case diagrams        %
 %
 \tikzstyle{tikzuml usecase style}=[ellipse, text centered]%
 \tikzstyle{tikzuml actor style}=[ellipse, inner sep=0, outer sep=0]%
@@ -2629,7 +2629,7 @@ no coords=false,%
 %            draw, fill, text: colors
 %            style: to manage every default TikZ option
 %            no coords: to tell that the use case position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlusecase[2][]{%
   \stepcounter{tikzumlUseCaseNum}%
   \pgfkeys{/tikzuml/usecase/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=auto,%
@@ -2723,7 +2723,7 @@ no coords=false,%
 %            draw, text: colors
 %            style: to manage every default TikZ option
 %            no coords: to tell that the actor position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlactor[2][]{%
   \stepcounter{tikzumlActorNum}%
   \pgfkeys{/tikzuml/actor/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, scale/.initial=1, below/.initial=\tikzumlActorDefaultBelow,%
@@ -2780,15 +2780,15 @@ no coords=false,%
 \newcommand\umlinclude[3][]{%
   \pgfkeys{/tikzuml/includerelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlinclude, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlinclude, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlinclude, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlinclude, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/includerelation/.cd, #1}%
   \umlrelation[stereo=include, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2796,15 +2796,15 @@ no coords=false,%
 \newcommand\umlextend[3][]{%
   \pgfkeys{/tikzuml/extendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlextend, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlextend, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlextend, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlextend, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/extendrelation/.cd, #1}%
   \umlrelation[stereo=extend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2813,15 +2813,15 @@ no coords=false,%
 \newcommand\umlHVinclude[3][]{%
   \pgfkeys{/tikzuml/includerelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlHVinclude, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlHVinclude, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlHVinclude, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlHVinclude, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/includerelation/.cd, #1}%
   \umlrelation[geometry=-|, stereo=include, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2829,15 +2829,15 @@ no coords=false,%
 \newcommand\umlHVextend[3][]{%
   \pgfkeys{/tikzuml/extendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlHVextend, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlHVextend, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlHVextend, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlHVextend, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/extendrelation/.cd, #1}%
   \umlrelation[geometry=-|, stereo=extend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2846,15 +2846,15 @@ no coords=false,%
 \newcommand\umlVHinclude[3][]{%
   \pgfkeys{/tikzuml/includerelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlVHinclude, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlVHinclude, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlVHinclude, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlVHinclude, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/includerelation/.cd, #1}%
   \umlrelation[geometry=|-, stereo=include, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2862,15 +2862,15 @@ no coords=false,%
 \newcommand\umlVHextend[3][]{%
   \pgfkeys{/tikzuml/extendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR :in umlVHextend,  forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlVHextend, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR :in umlVHextend,  forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlVHextend, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/extendrelation/.cd, #1}%
   \umlrelation[geometry=|-, stereo=extend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2879,15 +2879,15 @@ no coords=false,%
 \newcommand\umlHVHinclude[3][]{%
   \pgfkeys{/tikzuml/includerelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlHVHinclude, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlHVHinclude, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlHVHinclude, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlHVHinclude, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/includerelation/.cd, #1}%
   \umlrelation[geometry=-|-, stereo=include, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2895,15 +2895,15 @@ no coords=false,%
 \newcommand\umlHVHextend[3][]{%
   \pgfkeys{/tikzuml/extendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlHVHextend, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlHVHextend, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlHVHextend, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlHVHextend, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/extendrelation/.cd, #1}%
   \umlrelation[geometry=-|-, stereo=extend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2912,15 +2912,15 @@ no coords=false,%
 \newcommand\umlVHVinclude[3][]{%
   \pgfkeys{/tikzuml/includerelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlVHVinclude, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlVHVinclude, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlVHVinclude, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlVHVinclude, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/includerelation/.cd, #1}%
   \umlrelation[geometry=|-|, stereo=include, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2928,15 +2928,15 @@ no coords=false,%
 \newcommand\umlVHVextend[3][]{%
   \pgfkeys{/tikzuml/extendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlVHVextend, forbidden option stereo}%
-             }{%
-               \ifthenelse{\equal{\keyname}{geometry}}{%
-                 \errmessage{TIKZUML ERROR : in umlVHVextend, forbidden option geometry}%
-               }{}%
-             }%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlVHVextend, forbidden option stereo}%
+   }{%
+     \ifthenelse{\equal{\keyname}{geometry}}{%
+       \errmessage{TIKZUML ERROR : in umlVHVextend, forbidden option geometry}%
+     }{}%
+   }%
            }}%
   \pgfkeys{/tikzuml/extendrelation/.cd, #1}%
   \umlrelation[geometry=|-|, stereo=extend, style={tikzuml dependency style}, #1]{#2}{#3}%
@@ -2945,11 +2945,11 @@ no coords=false,%
 \newcommand\umlCNinclude[4][]{%
   \pgfkeys{/tikzuml/includerelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlCNinclude, forbidden option stereo}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlCNinclude, forbidden option stereo}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/includerelation/.cd, #1}%
   \umlCNrelation[stereo=include, style={tikzuml dependency style}, #1]{#2}{#3}{#4}%
@@ -2957,17 +2957,17 @@ no coords=false,%
 \newcommand\umlCNextend[4][]{%
   \pgfkeys{/tikzuml/extendrelation/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlCNextend, forbidden option stereo}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlCNextend, forbidden option stereo}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/extendrelation/.cd, #1}%
   \umlCNrelation[stereo=extend, style={tikzuml dependency style}, #1]{#2}{#3}{#4}%
 }%
 %
-%                      state diagrams                    %
+%            state diagrams          %
 %
 \tikzstyle{tikzuml state style}=[rectangle split, rectangle split parts=2, rounded corners, inner xsep=1.5ex]%
 \tikzstyle{tikzuml transition style}=[color=\tikzumlDefaultDrawColor, rounded corners, -angle 45]%
@@ -3004,7 +3004,7 @@ no coords=false,%
 %            color: color of the join symbol
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatejoin[1][]{%
   \pgfkeys{/tikzuml/statejoin/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateJoinDefaultWidth,%
  name/.initial=statejoin-\thetikzumlStateJoinNum,%
@@ -3064,7 +3064,7 @@ no coords=false,%
 %            color: color of the join symbol
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatedecision[1][]{%
   \pgfkeys{/tikzuml/statedecision/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateDecisionDefaultWidth,%
  name/.initial=statedecision-\thetikzumlStateDecisionNum,%
@@ -3125,7 +3125,7 @@ no coords=false,%
 %            color: color of the join symbol
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstateinitial[1][]{%
   \pgfkeys{/tikzuml/stateinitial/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateInitialDefaultWidth,%
  name/.initial=stateinitial-\thetikzumlStateInitialNum,%
@@ -3185,7 +3185,7 @@ no coords=false,%
 %            color: color of the join symbol
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatefinal[1][]{%
   \pgfkeys{/tikzuml/statefinal/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateFinalDefaultWidth,%
  name/.initial=statefinal-\thetikzumlStateFinalNum,%
@@ -3245,7 +3245,7 @@ no coords=false,%
 %            color: color of the join symbol
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstateenter[1][]{%
   \pgfkeys{/tikzuml/stateenter/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateEnterDefaultWidth,%
  name/.initial=stateenter-\thetikzumlStateEnterNum,%
@@ -3305,7 +3305,7 @@ no coords=false,%
 %            color: color of the join symbol
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstateexit[1][]{%
   \pgfkeys{/tikzuml/stateexit/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateExitDefaultWidth,%
  name/.initial=stateexit-\thetikzumlStateExitNum,%
@@ -3366,7 +3366,7 @@ no coords=false,%
 %            color: color of the join symbol
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstateend[1][]{%
   \pgfkeys{/tikzuml/stateend/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateEndDefaultWidth,%
  name/.initial=stateend-\thetikzumlStateEndNum,%
@@ -3422,8 +3422,8 @@ no coords=false,%
 \newcommand\picturedhistory[1]{%
   \begin{tikzpicture}[#1]%
   \draw[thick] (-0.1cm,-0.15cm) -- (-0.1cm,0.15cm)
-               (-0.1cm,0) -- (0.1cm,0)
-               (0.1cm,-0.15cm) -- (0.1cm,0.15cm);%
+     (-0.1cm,0) -- (0.1cm,0)
+     (0.1cm,-0.15cm) -- (0.1cm,0.15cm);%
   \end{tikzpicture}%
 }%
 %
@@ -3435,7 +3435,7 @@ no coords=false,%
 %            color: color of the join symbol
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatehistory[1][]{%
   \pgfkeys{/tikzuml/statehistory/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateHistoryDefaultWidth,%
  name/.initial=statehistory-\thetikzumlStateHistoryNum,%
@@ -3490,11 +3490,11 @@ no coords=false,%
 \newcommand\pictureddeephistory[1]{%
   \begin{tikzpicture}[#1]%
   \draw[thick] (-0.1cm,-0.15cm) -- (-0.1cm,0.15cm)
-               (-0.1cm,0) -- (0.1cm,0)
-               (0.1cm,-0.15cm) -- (0.1cm,0.15cm)
-               (0.23cm,0.19cm) -- (0.23cm,0.11cm)
-               (0.20cm,0.17cm) -- (0.26cm,0.13cm)
-               (0.20cm,0.13cm) -- (0.26cm,0.17cm);%
+     (-0.1cm,0) -- (0.1cm,0)
+     (0.1cm,-0.15cm) -- (0.1cm,0.15cm)
+     (0.23cm,0.19cm) -- (0.23cm,0.11cm)
+     (0.20cm,0.17cm) -- (0.26cm,0.13cm)
+     (0.20cm,0.13cm) -- (0.26cm,0.17cm);%
   \end{tikzpicture}%
 }%
 %
@@ -3506,7 +3506,7 @@ no coords=false,%
 %            color: color of the join symbol
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newcommand\umlstatedeephistory[1][]{%
   \pgfkeys{/tikzuml/statedeephistory/.cd, x/.initial=\tikzumlDefaultX, y/.initial=\tikzumlDefaultX, width/.initial=\tikzumlStateDeepHistoryDefaultWidth,%
  name/.initial=statedeephistory-\thetikzumlStateDeepHistoryNum,%
@@ -3568,7 +3568,7 @@ no coords=false,%
 %            draw, fill, text: colors
 %            style: to manage every default TikZ option
 %            no coords: to tell that the state position is defined relatively
-%                       to another node (automatically used with TikZ options above, below, left, right, below left, ...)
+% to another node (automatically used with TikZ options above, below, left, right, below left, ...)
 \newenvironment{umlstate}[2][]{%
   \ifnum\thetikzumlStateLevel>0%
     \let\tikzumlState@nameold\tikzumlState@fitname%
@@ -3607,7 +3607,7 @@ no coords=false,%
  \else%
  \pgfkeys{/tikzuml/state/.cd, style/.append style/.expand twice={\expandafter\keyname\expandafter=\keyvalue}}%
  \fi%
-                    %             \errmessage{TIKZUML ERROR : in umlstate, invalid option \keyname}%
+          %   \errmessage{TIKZUML ERROR : in umlstate, invalid option \keyname}%
  }%
   }%
   \pgfkeys{/tikzuml/state/.cd, #1}%
@@ -3763,7 +3763,7 @@ no coords=false,%
 \newcommand\umlHVHtrans[3][]{\umlHVHrelation[style={tikzuml transition style}, #1]{#2}{#3}}%
 \newcommand\umlCNtrans[4][]{\umlCNrelation[style={tikzuml transition style}, #1]{#2}{#3}{#4}}%
 %
-%                     sequence diagrams                  %
+%           sequence diagrams        %
 %
 \tikzstyle{tikzuml synchron-msg style}=[color=\tikzumlDefaultDrawColor, -triangle 45]%
 \tikzstyle{tikzuml asynchron-msg style}=[color=\tikzumlDefaultDrawColor, -angle 45]%
@@ -4616,7 +4616,7 @@ no coords=false,%
   \fi%
 }
 %
-%                     component diagrams                 %
+%           component diagrams       %
 %
 \tikzstyle{tikzuml connector style}=[color=\tikzumlDefaultDrawColor, -]%
 %
@@ -4642,7 +4642,7 @@ no coords=false,%
 % args : name of the component
 %         content of the component
 % optional args : x,y coordinates of the component
-%                 width of the component node
+%       width of the component node
 \newenvironment{umlcomponent}[2][]{%
   \ifnum\thetikzumlComponentLevel>0%
     \let\tikzumlComponent@nameold\tikzumlComponent@fitname%
@@ -5186,21 +5186,21 @@ no coords=false,%
             \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorStart@nodeName}{\tikzumlAssemblyConnectorName-2}%
           }{%
             \ifthenelse{\equal{\tikzumlAssemblyConnectorLastArm}{tikzumlTrue}}{%
-              \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorName-4}{\tikzumlAssemblyConnectorEnd@nodeName}%
+    \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorName-4}{\tikzumlAssemblyConnectorEnd@nodeName}%
             }{%
-              \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorName-2}{\tikzumlAssemblyConnectorName-4}%
+    \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorName-2}{\tikzumlAssemblyConnectorName-4}%
             }%
           }%
         }{%
           \ifthenelse{\equal{\tikzumlAssemblyConnectorGeometry}{|-|}}{%
             \ifthenelse{\equal{\tikzumlAssemblyConnectorFirstArm}{tikzumlTrue}}{%
-              \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorStart@nodeName}{\tikzumlAssemblyConnectorName-2}%
+    \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorStart@nodeName}{\tikzumlAssemblyConnectorName-2}%
             }{%
-              \ifthenelse{\equal{\tikzumlAssemblyConnectorLastArm}{tikzumlTrue}}{%
-                \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorName-4}{\tikzumlAssemblyConnectorEnd@nodeName}%
-              }{%
-                \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorName-2}{\tikzumlAssemblyConnectorName-4}%
-              }%
+    \ifthenelse{\equal{\tikzumlAssemblyConnectorLastArm}{tikzumlTrue}}{%
+      \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorName-4}{\tikzumlAssemblyConnectorEnd@nodeName}%
+    }{%
+      \umlassemblyconnectorsymbol{\tikzumlAssemblyConnectorName-2}{\tikzumlAssemblyConnectorName-4}%
+    }%
             }%
           }{}%
         }%
@@ -5214,11 +5214,11 @@ no coords=false,%
 \newcommand\umlHVassemblyconnector[3][]{%
   \pgfkeys{/tikzuml/HVassemblyconnector/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlHVassemblyconnector, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlHVassemblyconnector, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/HVassemblyconnector/.cd, #1}%
   \umlassemblyconnector[geometry=-|, #1]{#2}{#3}%
@@ -5227,9 +5227,9 @@ no coords=false,%
 \newcommand\umlVHassemblyconnector[3][]{%
   \pgfkeys{/tikzuml/VHassemblyconnector/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
         \errmessage{TIKZUML ERROR : in umlVHassemblyconnector, forbidden option geometry}%
       }{}%
     }%
@@ -5241,11 +5241,11 @@ no coords=false,%
 \newcommand\umlHVHassemblyconnector[3][]{%
   \pgfkeys{/tikzuml/HVHassemblyconnector/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlHVHassemblyconnector, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlHVHassemblyconnector, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/HVHassemblyconnector/.cd, #1}%
   \umlassemblyconnector[geometry=-|-, #1]{#2}{#3}%
@@ -5254,11 +5254,11 @@ no coords=false,%
 \newcommand\umlVHVassemblyconnector[3][]{%
   \pgfkeys{/tikzuml/VHVassemblyconnector/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}}{%
-               \errmessage{TIKZUML ERROR : in umlVHVassemblyconnector, forbidden option geometry}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}}{%
+     \errmessage{TIKZUML ERROR : in umlVHVassemblyconnector, forbidden option geometry}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/VHVassemblyconnector/.cd, #1}%
   \umlassemblyconnector[geometry=|-|, #1]{#2}{#3}%
@@ -5290,11 +5290,11 @@ no coords=false,%
   \def\tikzumlDelegateConnectorWithEndPort{tikzumlFalse}%
   \pgfkeys{/tikzuml/delegateconnector/.cd,
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umldelegateconnector, forbidden option stereo}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umldelegateconnector, forbidden option stereo}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/delegateconnector/.cd, #1}%
   \umlrelation[style={tikzuml connector style}, stereo=delegate, #1]{#2}{#3}%
@@ -5304,11 +5304,11 @@ no coords=false,%
 \newcommand\umlHVdelegateconnector[3][]{%
   \pgfkeys{/tikzuml/HVdelegateconnector/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}\OR\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlHVdelegateconnector, forbidden option \keyname}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}\OR\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlHVdelegateconnector, forbidden option \keyname}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/HVdelegateconnector/.cd, #1}%
   \umldelegateconnector[geometry=-|, #1]{#2}{#3}%
@@ -5317,11 +5317,11 @@ no coords=false,%
 \newcommand\umlVHdelegateconnector[3][]{%
   \pgfkeys{/tikzuml/VHdelegateconnector/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}\OR\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlVHdelegateconnector, forbidden option \keyname}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}\OR\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlVHdelegateconnector, forbidden option \keyname}%
+   }{}%
             }}%
   \pgfkeys{/tikzuml/VHdelegateconnector/.cd, #1}%
   \umldelegateconnector[geometry=|-, #1]{#2}{#3}%
@@ -5330,11 +5330,11 @@ no coords=false,%
 \newcommand\umlHVHdelegateconnector[3][]{%
   \pgfkeys{/tikzuml/HVHdelegateconnector/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}\OR\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlHVHdelegateconnector, forbidden option \keyname}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}\OR\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlHVHdelegateconnector, forbidden option \keyname}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/HVHdelegateconnector/.cd, #1}%
   \umldelegateconnector[geometry=-|-, #1]{#2}{#3}%
@@ -5343,11 +5343,11 @@ no coords=false,%
 \newcommand\umlVHVdelegateconnector[3][]{%
   \pgfkeys{/tikzuml/VHVdelegateconnector/.cd,%
            .unknown/.code={%
-             \let\keyname=\pgfkeyscurrentname%
-             \let\keyvalue=\pgfkeyscurrentvalue%
-             \ifthenelse{\equal{\keyname}{geometry}\OR\equal{\keyname}{stereo}}{%
-               \errmessage{TIKZUML ERROR : in umlVHVdelegateconnector, forbidden option \keyname}%
-             }{}%
+   \let\keyname=\pgfkeyscurrentname%
+   \let\keyvalue=\pgfkeyscurrentvalue%
+   \ifthenelse{\equal{\keyname}{geometry}\OR\equal{\keyname}{stereo}}{%
+     \errmessage{TIKZUML ERROR : in umlVHVdelegateconnector, forbidden option \keyname}%
+   }{}%
            }}%
   \pgfkeys{/tikzuml/VHVdelegateconnector/.cd, #1}%
   \umldelegateconnector[geometry=|-|, #1]{#2}{#3}%

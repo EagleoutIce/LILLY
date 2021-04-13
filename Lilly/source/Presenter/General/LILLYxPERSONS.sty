@@ -14,27 +14,26 @@
 
 % Die Werte werden wieder für jede InfoBox persistiert, damit das Design variiert werden kann, je nach Geschmack :D
 \pgfkeys{%
-    /lillyxPERSONS/.is family, /lillyxPERSONS,
-    title/.store in=\lillyxPersonsxtitle,
-    name/.store in=\lillyxPersonsxname,
-    last name/.store in =\lillyxPersonsxlastname,
-    age/.store in=\lillyxPersonsxage,
-    color/.store in=\lillyxPersonsxcolor,       % Primary signature Color of the person, this can be tossed too but, hey who cares :D
-    secondary color/.store in=\lillyxPersonsxsecondarycolor,
-    email/.store in=\lillyxPersonsxemail,
-    mobile number/.store in=\lillyxPersonsxmobilenumber,
-    alias/.store in=\lillyxPersonsxalias,
-    brief/.store in=\lillyxPersonsxbrief,
-    symbol/.store in=\lillyxPersonsxsymbol,
-    image/.store in=\lillyxPersonsximage,     % Path to an reguar image accepted by includegraphics => set a dummy?
-    image multiplier/.store in=\lillyxPersonsximagemultiplier,
-    defaults/.style={%
-        age={-1}, secondary color=MudWhite, mobile number={}, email={}, title={}, image={\LILLYxPATHxDATA/Images/me.jpg},% <INSERT DEFAULTPATH>
-        alias={}, symbol={P},image multiplier={1.4\@PersonTag@Height},% All others have to be given!, otherwise the system itself will raise an error message :D
-        % GIVE THEM:
-        name={Noname}, last name={M\"{u}ller}, color={AppleGreen}, brief={Nothing here}%
-    }
-}
+/lillyxPERSONS/.is family, /lillyxPERSONS,
+title/.store in=\lillyxPersonsxtitle,
+name/.store in=\lillyxPersonsxname,
+last name/.store in =\lillyxPersonsxlastname,
+age/.store in=\lillyxPersonsxage,
+color/.store in=\lillyxPersonsxcolor,       % Primary signature Color of the person, this can be tossed too but, hey who cares :D
+secondary color/.store in=\lillyxPersonsxsecondarycolor,
+email/.store in=\lillyxPersonsxemail,
+mobile number/.store in=\lillyxPersonsxmobilenumber,
+alias/.store in=\lillyxPersonsxalias,
+brief/.store in=\lillyxPersonsxbrief,
+symbol/.store in=\lillyxPersonsxsymbol,
+image/.store in=\lillyxPersonsximage,     % Path to an reguar image accepted by includegraphics => set a dummy?
+image multiplier/.store in=\lillyxPersonsximagemultiplier,
+defaults/.style={%
+    age={-1}, secondary color=MudWhite, mobile number={}, email={}, title={}, image={\LILLYxPATHxDATA/Images/me.jpg},% <INSERT DEFAULTPATH>
+    alias={}, symbol={P},image multiplier={1.4\@PersonTag@Height},% All others have to be given!, otherwise the system itself will raise an error message :D
+    % GIVE THEM:
+    name={Noname}, last name={M\"{u}ller}, color={AppleGreen}, brief={Nothing here}%
+}}
 % #1 Person ID
 % #2 Field Name
 \def\@@LILLY@persons@get#1#2{\csname @@lilly@persons@#1@#2\endcsname}

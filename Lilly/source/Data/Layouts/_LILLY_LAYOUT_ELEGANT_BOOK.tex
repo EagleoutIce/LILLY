@@ -1,21 +1,13 @@
 % This Layout is meant to provide the Layout for an Beautiful Book. It will conform with the regular Lilly-Base
 \RequirePackage{LILLYxCONTROLLERxBOX}
-
 \LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
 	{Verpflichtoeoeoend}{automark}{}
-
-
 \LILLYxDemandPackage{framed}{Erlaubt das nutzen von leftbar}
   {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}{}{}
-
-
 \LILLYxDemandPackage{titletoc}{Macht zusammen mit titlesec den toc}
   {Das sieht garnicht gut aus :P}{}{}
-
-
 \LILLYxDemandPackage{titlesec}{Macht zusammen mit titletoc den toc}
 	{Das sieht garnicht gut aus :P}{}{}
-
 % Set Fonts for the document :D
 % https://tug.org/FontCatalogue/lato/
 \LILLYxLoadPackage{lato}{Scriftart für das (pdfLaTeX) Dokument}
@@ -132,33 +124,33 @@
 
 % Set The Mini-TOCs
 \newcommand\printMiniToc[1][]{\vspace{-3em}
-  \hfill\parbox[t]{.25\textwidth}{
-		{\mbox{}\\
-			\mbox{}\bfseries{\chpNumber\hfill\thechapter~~}}
-	}
-	\parbox[t]{.65\textwidth}{\vspace*{1.5cm}
-		\begin{flushright}
-			{\Large\textbf{Übersicht}}\quad \raisebox{.25mm}{\faList}
-		\end{flushright}
-        \vspace*{-3mm}
-        \begin{tcolorbox}[presenterstyle]
-      \hypersetup{linkcolor=black}\lfseries{}
-            \startcontents[chapters]
-            \begin{spacing}{1.175}
-                %\makeatletter
-                %\expandafter\csname listofchap\alph{chapter}\endcsname
-                %\minitoc
-              \printcontents[chapters]{p}{1}{\setcounter{tocdepth}{4}}
-			\end{spacing}
-			\vspace*{-.5mm}%
-        \end{tcolorbox}
-	}\hspace*{1cm}
-  %\bigskip
-  \hbox{}\vfill
-  \begin{center}
-      #1
-  \end{center}
-  \vfill\hbox{}\clearpage
+\hfill\parbox[t]{.25\textwidth}{
+  {\mbox{}\\
+    \mbox{}\bfseries{\chpNumber\hfill\thechapter~~}}
+}
+\parbox[t]{.65\textwidth}{\vspace*{1.5cm}
+  \begin{flushright}
+    {\Large\textbf{Übersicht}}\quad \raisebox{.25mm}{\faList}
+  \end{flushright}
+      \vspace*{-3mm}
+      \begin{tcolorbox}[presenterstyle]
+    \hypersetup{linkcolor=black}\lfseries{}
+          \startcontents[chapters]
+          \begin{spacing}{1.175}
+              %\makeatletter
+              %\expandafter\csname listofchap\alph{chapter}\endcsname
+              %\minitoc
+            \printcontents[chapters]{p}{1}{\setcounter{tocdepth}{4}}
+    \end{spacing}
+    \vspace*{-.5mm}%
+      \end{tcolorbox}
+}\hspace*{1cm}
+%\bigskip
+\hbox{}\vfill
+\begin{center}
+    #1
+\end{center}
+\vfill\hbox{}\clearpage
 }
 
 \titlecontents{psection}[2.3em]

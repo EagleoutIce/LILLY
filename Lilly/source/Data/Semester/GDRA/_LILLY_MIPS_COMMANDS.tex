@@ -1,77 +1,60 @@
 %MIPS COMMANDLINKERCHEATS (DIRTY)
-\newcommand\mipsGEN[2][]{                   %design text: #1,  ref: cmd:#2 (can be ommited - same as #1)
+\def\mipsGEN[2][]{%design text: #1,  ref: cmd:#2 (can be ommited - same as #1)
     \ifthenelse{\equal{#1}{}}{\text{\cmd[#2]{cmd:#2}}}{\text{\cmd[#1]{cmd:#2}}}%
 }
 \def\mips#1{\mipsGEN{#1}}
-
-\newcommand\mipsADD{\mipsGEN{add}}
-\newcommand\mipsADDI{\mipsGEN{addi}}
-\newcommand\mipsADDIU{\mipsGEN{addiu}}
-\newcommand\mipsADDU{\mipsGEN{addu}}
-
-\newcommand\mipsSUB{\mipsGEN{sub}}
-\newcommand\mipsSUBU{\mipsGEN{subu}}
-
-\newcommand\mipsAND{\mipsGEN{and}}
-\newcommand\mipsANDI{\mipsGEN{andi}}
-
-\newcommand\mipsOR{\mipsGEN{or}}
-\newcommand\mipsORI{\mipsGEN{ori}} %and the blind forest ._.
-\newcommand\mipsNOR{\mipsGEN{nor}}
-\newcommand\mipsNOT{\mipsGEN{not}}
-
-\newcommand\mipsXOR{\mipsGEN{xor}}
-\newcommand\mipsXORI{\mipsGEN{xori}} %wäre ein viel besserer Titel für den Nachfolger
-
-\newcommand\mipsBEQ{\mipsGEN{beq}}
-\newcommand\mipsBNE{\mipsGEN{bne}}
-\newcommand\mipsBLEZ{\mipsGEN{blez}}
-
-\newcommand\mipsBGE{\mipsGEN{bge}}
-\newcommand\mipsBLT{\mipsGEN{blt}}
-
-\newcommand\mipsDIV{\mipsGEN{div}}
-\newcommand\mipsDIVU{\mipsGEN{divu}}
-
-\newcommand\mipsMULT{\mipsGEN{mult}}
-\newcommand\mipsMULTU{\mipsGEN{multu}}
-
-\newcommand\mipsJ{\mipsGEN{j}}
-\newcommand\mipsJAL{\mipsGEN{jal}}
-\newcommand\mipsJR{\mipsGEN{jr}}
+\def\mipsADD{\mipsGEN{add}}
+\def\mipsADDI{\mipsGEN{addi}}
+\def\mipsADDIU{\mipsGEN{addiu}}
+\def\mipsADDU{\mipsGEN{addu}}
+\def\mipsSUB{\mipsGEN{sub}}
+\def\mipsSUBU{\mipsGEN{subu}}
+\def\mipsAND{\mipsGEN{and}}
+\def\mipsANDI{\mipsGEN{andi}}
+\def\mipsOR{\mipsGEN{or}}
+\def\mipsORI{\mipsGEN{ori}} %and the blind forest ._.
+\def\mipsNOR{\mipsGEN{nor}}
+\def\mipsNOT{\mipsGEN{not}}
+\def\mipsXOR{\mipsGEN{xor}}
+\def\mipsXORI{\mipsGEN{xori}} %wäre ein viel besserer Titel für den Nachfolger
+\def\mipsBEQ{\mipsGEN{beq}}
+\def\mipsBNE{\mipsGEN{bne}}
+\def\mipsBLEZ{\mipsGEN{blez}}
+\def\mipsBGE{\mipsGEN{bge}}
+\def\mipsBLT{\mipsGEN{blt}}
+\def\mipsDIV{\mipsGEN{div}}
+\def\mipsDIVU{\mipsGEN{divu}}
+\def\mipsMULT{\mipsGEN{mult}}
+\def\mipsMULTU{\mipsGEN{multu}}
+\def\mipsJ{\mipsGEN{j}}
+\def\mipsJAL{\mipsGEN{jal}}
+\def\mipsJR{\mipsGEN{jr}}
 
 %schade loadbyte.... du kommst bestimmt noch, ich mag dich
-\newcommand\mipsLW{\mipsGEN{lw}}
-\newcommand\mipsLB{\mipsGEN{lb}}
-\newcommand\mipsLI{\mipsGEN{li}}
-\newcommand\mipsLA{\mipsGEN{la}}
-\newcommand\mipsSW{\mipsGEN{sw}}
-\newcommand\mipsMOVE{\mipsGEN{move}}
-
-\newcommand\mipsSLTI{\mipsGEN{slti}}
-\newcommand\mipsSLT{\mipsGEN{slt}}
-
-
+\def\mipsLW{\mipsGEN{lw}}
+\def\mipsLB{\mipsGEN{lb}}
+\def\mipsLI{\mipsGEN{li}}
+\def\mipsLA{\mipsGEN{la}}
+\def\mipsSW{\mipsGEN{sw}}
+\def\mipsMOVE{\mipsGEN{move}}
+\def\mipsSLTI{\mipsGEN{slti}}
+\def\mipsSLT{\mipsGEN{slt}}
 %die kommen sicher noch:
-\newcommand\mipsMFHI{\mipsGEN{mfhi}}
-\newcommand\mipsMFLO{\mipsGEN{mflo}}
-\newcommand\mipsMTHI{\mipsGEN{mthi}}
-\newcommand\mipsMTLO{\mipsGEN{mtlo}}
-\newcommand\mipsHI{\T{\textbf{\hypersetup{linkcolor=black}{\hyperref[cmd:HILO]{\$HI}}}}}
-\newcommand\mipsLO{\T{\textbf{\hypersetup{linkcolor=black}{\hyperref[cmd:HILO]{\$LO}}}}}
-
+\def\mipsMFHI{\mipsGEN{mfhi}}
+\def\mipsMFLO{\mipsGEN{mflo}}
+\def\mipsMTHI{\mipsGEN{mthi}}
+\def\mipsMTLO{\mipsGEN{mtlo}}
+\def\mipsHI{\T{\textbf{\hypersetup{linkcolor=black}{\hyperref[cmd:HILO]{\$HI}}}}}
+\def\mipsLO{\T{\textbf{\hypersetup{linkcolor=black}{\hyperref[cmd:HILO]{\$LO}}}}}
 
 %Entspannend - Will ich auch
-\newcommand\mipsNOP{\mipsGEN{nop}}
+\def\mipsNOP{\mipsGEN{nop}}
+\def\mipsTEXT{\textcolor{dgold}{\T{.text}}}
+\def\mipsDATA{\textcolor{dgold}{\T{.data}}}
 
-\newcommand\mipsTEXT{\textcolor{dgold}{\T{.text}}}
-\newcommand\mipsDATA{\textcolor{dgold}{\T{.data}}}
+\def\mipsSLL{\mipsGEN{sll}}
+\def\mipsSRL{\mipsGEN{srl}}
+\def\mipsSRA{\mipsGEN{sra}}
+\def\mipsSYS{\cmdGreen[syscall]{cmd:syscall}}
 
-\newcommand\mipsSLL{\mipsGEN{sll}}
-\newcommand\mipsSRL{\mipsGEN{srl}}
-\newcommand\mipsSRA{\mipsGEN{sra}}
-
-\newcommand\mipsSYS{\cmdGreen[syscall]{cmd:syscall}}
-
-
-\newcommand\MIPSTITLE[2]{{\phantomsection\bfseries\large #1 \\[-0.5em]\rule{\textwidth}{2pt}\MIPS{#1}\elable{cmd:#2}\vspace{-0.5cm}}}
+\def\MIPSTITLE[2]{{\phantomsection\bfseries\large #1 \\[-0.5em]\rule{\textwidth}{2pt}\MIPS{#1}\elable{cmd:#2}\vspace{-0.5cm}}}

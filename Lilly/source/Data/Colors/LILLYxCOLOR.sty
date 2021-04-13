@@ -1,59 +1,44 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{LILLYxCOLOR}[2019/07/11 Stellt die Farb-Erweiterungen fuer LILLY zur Verfuegung]
-
 \providecommand\LILLYxMODExPRINT{print}
-
 % Information: Durch: \def\LILLYxColorxInject{} lässt sich das integrieren der jeweiligen Farbpakete annulieren
 % Diese Option erlaubt ein manuelles überschreiben entfernt allerdings auch jede Garantie bezüglich der Funktionsweise
 \RequirePackage{LILLYxCORE}
-% \RequirePackage{LILLYxCORE}
-
-
 \LILLYxDemandPackage{colortbl}{Farbige Tables :D}
-    {Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}
-    {}{}
+{Das Paket makecell ist verpflichtend für die Arbeit mit LILLY}{}{}
 
 \ifx\LILLYxUSEREGXCOLOR\undefined
-
 \LILLYxDemandPackage{lilly-xcolor}{Ohne Farben mache ich GARNICHTS}
     {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}
     {table}{}
 \else
-
 \LILLYxDemandPackage{xcolor}{Ohne Farben mache ich GARNICHTS}
     {Das Paket xcolor ist verpflichtend für die Arbeit mit LILLY}
     {table}{}
 \fi
 
 \LILLYxDemandPackage{pgf}{Ohne pgf mache ich GARNICHTS}
-    {Jetzt mal ernsthaft, was wären wir ohne pgf? Auch wenn ich nicht mehr weiss, warum es hier gebraucht wird.}
-    {}{}
+    {Jetzt mal ernsthaft, was wären wir ohne pgf? Auch wenn ich nicht mehr weiss, warum es hier gebraucht wird.}{}{}
 
 % Hier wird, entsprechend der Konfiguration,
 % Geladen welches Farbschema angwendet werden soll, es wird stehts der Standart geladen,
 % Es ist möglich diesen zu überschreiben und entsprechend umzudefinieren.
-
 \RequirePackage{LILLYxLIST}
-
 \gdef\registerColors#1#2{
-    %\globalcolorstrue % colors, colors everywhere :D
-    \foreach \name/\r/\g/\b in #1 {
-        \ifthenelse{\equal{\name}{}}{}{
-            \debugout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
-            \xglobal\providecolor{\name}{RGB}{\r,\g,\b}
-        }
+\foreach \name/\r/\g/\b in #1 {
+    \ifthenelse{\equal{\name}{}}{}{
+        \debugout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
+        \xglobal\providecolor{\name}{RGB}{\r,\g,\b}
     }
-}
+}}
 
 \gdef\updateColors#1#2{
-    %\globalcolorstrue % colors, colors everywhere :D
-    \foreach \name/\r/\g/\b in #1 {
-        \ifthenelse{\equal{\name}{}}{}{
-            \debugout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
-            \xglobal\definecolor{\name}{RGB}{\r,\g,\b}
-        }
+\foreach \name/\r/\g/\b in #1 {
+    \ifthenelse{\equal{\name}{}}{}{
+        \debugout{Register #2Color: \name\space with R: \r, G: \g, B: \b}
+        \xglobal\definecolor{\name}{RGB}{\r,\g,\b}
     }
-}
+}}
 
 \constructList[,]{LillyColorList}
 \pushList{LillyColorList}{Butter/255/247/155}          %#fff79b
@@ -166,5 +151,4 @@
 % Allerings werden Farberweiterungen unterstützt:
 \providecommand\LILLYxCOLORxEXTENSION{VOID}
 \userput{_LILLY_COLOR_EXTENSION_\LILLYxCOLORxEXTENSION}{\lillyPathColorExtension}{\LILLYxPATHxDATA/Colors/Extensions}
-
 \endinput

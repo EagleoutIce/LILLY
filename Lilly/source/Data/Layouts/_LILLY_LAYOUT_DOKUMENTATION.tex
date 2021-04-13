@@ -13,7 +13,6 @@
 % lines above and below, number right
 \renewcommand*\chaptermark[1]{\markboth{#1}{\faBookmark}} %Chaptermark fix inject
 
-
 \titleformat{\chapter}[display]{\relax}%
     {\vspace{-4\baselineskip}\raggedleft{\color{LightGray}\chapterNumber\thechapter} \\ }
     {0pt}%
@@ -46,23 +45,21 @@
     \pagenumbering{gobble}
 }
 \LILLYcommand\LILLYxLayoutxRestore{ %
-    \pagenumbering{arabic}   %
-    \pagestyle{scrheadings} %KOMA-FTW!
-    \renewcommand\chapterpagestyle{scrheadings} %Kein Übungsblatt? => Mitschrieb => Konfiguriere Kapitel
-    \lofoot{\scriptsize{\silentHmark[Kapitel]{eagleTOC}\textnormal{\guilsinglright} \leftmark}} %
-    \lohead{\AUTHOR} %
-    \cofoot{} %
-    \rohead{Dokumentation} %
-    \chead{\rightmark} %
-    \ifx\LILLYxFOOTERxBUTTONS\true %
-        \rofoot{\raisebox{.75pt}{\eXButton{Find}{\tiny \faSearch} \text{ } \eXButton{GoBack}{\tiny \faUndo} \text{ } \eXButton{GoForward}{\tiny \faRepeat}\text{ } \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{.75pt}{\eXButton{NextPage}{\(\RHD\)}}} %
-    \else
-        \rofoot{\thepage/\pageref{LastPage}} %
-    \fi
+\pagenumbering{arabic}   %
+\pagestyle{scrheadings} %KOMA-FTW!
+\renewcommand\chapterpagestyle{scrheadings} %Kein Übungsblatt? => Mitschrieb => Konfiguriere Kapitel
+\lofoot{\scriptsize{\silentHmark[Kapitel]{eagleTOC}\textnormal{\guilsinglright} \leftmark}} %
+\lohead{\AUTHOR} %
+\cofoot{} %
+\rohead{Dokumentation} %
+\chead{\rightmark} %
+\ifx\LILLYxFOOTERxBUTTONS\true %
+    \rofoot{\raisebox{.75pt}{\eXButton{Find}{\tiny \faSearch} \text{ } \eXButton{GoBack}{\tiny \faUndo} \text{ } \eXButton{GoForward}{\tiny \faRepeat}\text{ } \eXButton{PrevPage}{\(\LHD\)}} \thepage/\pageref{LastPage} \raisebox{.75pt}{\eXButton{NextPage}{\(\RHD\)}}} %
+\else
+    \rofoot{\thepage/\pageref{LastPage}} %
+\fi
 }
-
 \AtBeginDocument{\LILLYxLayoutxRestore}
-
 \makeatletter
 \renewcommand\@seccntformat[1]{\llap{\textcolor{\LILLYxColorxDefinition}{\csname the#1\endcsname}\hspace{1em}}}
 \renewcommand\section{\@startsection{section}{1}{\z@}
@@ -70,11 +67,11 @@
 {1ex \@plus.2ex }
 {\normalfont\LARGE\sffamily\bfseries}}
 \renewcommand\subsection{\@startsection {subsection}{2}{\z@}
-{-3ex \@plus -0.1ex \@minus -.4ex}
-{0.5ex \@plus.2ex }
+{-3ex \@plus -.1ex \@minus -.4ex}
+{.5ex \@plus.2ex }
 {\normalfont\Large\sffamily\bfseries}}
 \renewcommand\subsubsection{\@startsection {subsubsection}{3}{\z@}
-{-2ex \@plus -0.1ex \@minus -.2ex}
+{-2ex \@plus -.1ex \@minus -.2ex}
 {.2ex \@plus.2ex }
 {\normalfont\small\sffamily\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}

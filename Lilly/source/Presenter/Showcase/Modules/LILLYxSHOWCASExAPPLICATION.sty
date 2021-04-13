@@ -184,20 +184,18 @@ brief/.store in=\lilly@applications@brief
     m   % theme name
 }{\begingroup\makeatletter
 \userput{#2.config.tex}{\lillyPathData}{\LILLYxPATHxPRESENTER/Showcase/Modules/ApplicationDesigns}
-    \applicationset{#1}%
-    \let\setname\@applications@SetName{#1}%
-    \let\colorprofile\@applications@ColorProfile
-    \def\StartApplication{\@applications@StartApplication{#2}}%
-    \let\setbrief\@applications@SetBrief
-    \let\setemail\@applications@SetEmail
-    \let\setphone\@applications@SetPhone
-    \let\setmphone\@applications@SetMphone
-    \let\setwebsite\@applications@SetWebsite
-    \let\setlocation\@applications@SetLocation
-    \let\setimage\@applications@SetImage
-    \let\addskill\@applications@addskill% with progress
-    \def\addskilltext##1{\@applications@addskill{##1}{}}% text only skill
-}{%
-    \restoregeometry\endgroup
-}
+\applicationset{#1}%
+\let\setname\@applications@SetName{#1}%
+\let\colorprofile\@applications@ColorProfile
+\def\StartApplication{\@applications@StartApplication{#2}}%
+\let\setbrief\@applications@SetBrief
+\let\setemail\@applications@SetEmail
+\let\setphone\@applications@SetPhone
+\let\setmphone\@applications@SetMphone
+\let\setwebsite\@applications@SetWebsite
+\let\setlocation\@applications@SetLocation
+\let\setimage\@applications@SetImage
+\let\addskill\@applications@addskill% with progress
+\def\addskilltext##1{\@applications@addskill{##1}{}}% text only skill
+}{\restoregeometry\endgroup}
 \endinput

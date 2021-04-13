@@ -2,32 +2,18 @@
 
 
 \RequirePackage{LILLYxCONTROLLERxBOX}
-% \RequirePackage{LILLYxCONTROLLERxBOX}
-
 \RequirePackage{tocloft}
-
 % General Packages needed for Typesetting
-
-
 \LILLYxDemandPackage{scrlayer-scrpage}{Header and Footer configuration. Good, old KOMA}
 					{Verpflichtoeoeoend}{automark}{}
-
-
 \LILLYxDemandPackage{framed}{Erlaubt das nutzen von leftbar}
                     {Ohne sieht das Inhaltsverzeichnis ein bisschen doof aus :D}{}{}
-
-
 \LILLYxDemandPackage{titletoc}{Macht zusammen mit titlesec den toc}
                     {Das sieht garnicht gut aus :P}{}{}
-
-
 \LILLYxDemandPackage{titlesec}{Macht zusammen mit titletoc den toc}
 				    {Das sieht garnicht gut aus :P}{}{}
-
-\DeclareFixedFont{\tocFont}{U}{eur}{b}{n}{10}
-\DeclareFixedFont{\chpFont}{U}{eur}{b}{n}{24}
-% \DeclareFixedFont{\chpNumber}{U}{eur}{b}{n}{165} no chapter :D
-
+\DeclareFixedFont\tocFont{U}{eur}{b}{n}{10}
+\DeclareFixedFont\chpFont{U}{eur}{b}{n}{24}
 \LILLYcommand\cftsubsecfont{\footnotesize}
 \LILLYcommand\cftsubsecleader{{\lilly@cftdotfill{\cftsecdotsep}}}
 \LILLYcommand\cftsubsecpagefont{\scriptsize}
@@ -46,7 +32,6 @@
 	\addtocontents{toc}{\protect\thispagestyle{scrheadings}}
 }
 \def\rightmark{}
-
 % Check Markers:
 \renewcommand\sectionmark[1]{%
     \markright{#1}\renewcommand\LILLYxRIGHTMARK{#1}

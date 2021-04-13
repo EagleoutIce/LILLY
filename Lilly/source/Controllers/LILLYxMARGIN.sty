@@ -2,17 +2,12 @@
 \ProvidesPackage{LILLYxMARGIN}[2019/07/13 Stellt die Margin-Kontrolle fuer LILLY zur Verfuegung]
 
 \RequirePackage{LILLYxCORE,LILLYxCOLOR,LILLYxCONTROLLERxLINK}
-
-
 \LILLYxDemandPackage{pgfkeys}{Stellt uns das beliebte Schluessel-Wert-Spiel zur Verfuegung}
     {Hierfür zwangsläufig notwendig.}{}{}
-
 \LILLYxDemandPackage{changepage}{Genaue identifikation der Seite}
     {Fuer die genaue identifikation der Seite noetig!}{}{}
-
 \LILLYxLoadPackage{marginfix}{Verhindern uebervoller margins}
     {Ohne machts einfach nur halb so viel spass, aber ok}{}{}{}
-
 \RequirePackage{kvoptions}
 \DeclareBoolOption[true]{usemarginpar}\DeclareComplementaryOption{usemarginnote}{usemarginpar}
 \ProcessKeyvalOptions*

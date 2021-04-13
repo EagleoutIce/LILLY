@@ -5,13 +5,11 @@
 \LILLYxDemandPackage{tocloft}{custom lists und so}
     {Leider wird dieses Paket zu oft verwendet :/}{}{}
 \def\cftsubsecdotsep{3.49}
-
 % Dieser Controller kümmert sich um die korrekte Implementierung des Beginn eines Dokuments durch die initiierung von AtBeginDocument-Zugriffen
-
 %DEBUG wird immer die erste Seite sein, sofern dies gewünscht ist, alle anderen Pages werden sich zwangsläufig an diese Positionierung orientieren müssen. Damit ist auch nicht gewährleistet, dass das Titelbild sicher die erste Seite der PDF-Datei erhält!!
 \ifx\LILLYxDEBUG\true
     \RequirePackage{LILLYxDEBUG}
-    \errorcontextlines 10000
+    \errorcontextlines\@MM
     \input{\LILLYxPATHxDATA/Titlepages/_LILLY_DEBUG_TITLEPAGE} % Anzeigen relevanter Konfigurationen
 \fi
 
@@ -22,10 +20,8 @@
 \fi
 }
 
-
 % Hier greifen wir auf die Daten des KEYVAL-Prozessors zurück um Meta-Informationen des Dokuments zu erhalten.
 \def\LILLYxCLEARxHEADFOOT{\lohead{}\cohead{}\rohead{}\lofoot{}\cofoot{}\rofoot{}}
-
 
 % Wenn eine gültige Vorlesung, dann versuchen wir eine entsprechende Einstellung zu laden.
 \iflilly@vorlesung@isvalid@
