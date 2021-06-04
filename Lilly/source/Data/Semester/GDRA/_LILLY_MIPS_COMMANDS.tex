@@ -1,5 +1,5 @@
 %MIPS COMMANDLINKERCHEATS (DIRTY)
-\def\mipsGEN[2][]{%design text: #1,  ref: cmd:#2 (can be ommited - same as #1)
+\newcommand*\mipsGEN[2][]{%design text: #1,  ref: cmd:#2 (can be ommited - same as #1)
     \ifthenelse{\equal{#1}{}}{\text{\cmd[#2]{cmd:#2}}}{\text{\cmd[#1]{cmd:#2}}}%
 }
 \def\mips#1{\mipsGEN{#1}}
