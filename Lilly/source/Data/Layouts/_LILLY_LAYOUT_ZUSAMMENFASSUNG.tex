@@ -70,12 +70,8 @@
 
 \def\compileidx{\makeindex[title=Stichwortverzeichnis,options=-s \LILLYxPATHxINDEX,columns=2,columnsep=.75cm]\renewcommand\indexname{Stichwortverzeichnis}}
 
-\newcommand\aLink[1]{%
-\ifx\LILLYxMODE\LILLYxMODExPRINT
-    \pageref{#1}%
-\else
-    \jmark[\faLeanpub]{#1}%
-\fi}
+\newcommand\aLink[1]{\ifx\LILLYxMODE\LILLYxMODExPRINT\pageref{#1}%
+\else\jmark[\faLeanpub]{#1}\fi}
 
 \newcommand\bLink[1]{%
 \ifx\LILLYxMODE\LILLYxMODExPRINT
